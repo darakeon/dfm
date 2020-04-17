@@ -9,19 +9,20 @@
 	<link rel="shortcut icon" type="image/ico" href="~/Assets/Images/pig.ico" />
 	<meta property="og:image" content="https://dontflymoney.com/Assets/Images/face-pig.png" />
 
-	<link href="~/Assets/Libs/Themes/bootstrap-@(Model.Theme).min.css?v=@Cfg.Version" rel="stylesheet" type="text/css" id="bootstrap-theme" />
+	<link href="~/Assets/Themes/bootstrap-@(Model.Theme).min.css?v=@Cfg.Version" rel="stylesheet" type="text/css" id="bootstrap-theme" />
 	<link href="~/Assets/Styles/android.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
 	<link href="~/Assets/Styles/default.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
 
 	@RenderSection("Styles", false)
 
-	<script src="~/Assets/Libs/Scripts/jquery.min.js?v=@Cfg.Version" type="text/javascript"></script>
-	<script src="~/Assets/Libs/Scripts/bootstrap.min.js?v=@Cfg.Version" type="text/javascript"></script>
-	<script src="~/Assets/Libs/Scripts/jquery.moneyMask.js?v=@Cfg.Version" type="text/javascript"></script>
+	<script src="~/Assets/Libs/jQuery/jquery.min.js?v=@Cfg.Version" type="text/javascript"></script>
+	<script src="~/Assets/Libs/Bootstrap/umd/popper.min.js?v=@Cfg.Version" type="text/javascript"></script>
+	<script src="~/Assets/Libs/Bootstrap/js/bootstrap.min.js?v=@Cfg.Version" type="text/javascript"></script>
+	<script src="~/Assets/Libs/jQuery/jquery.maskMoney.min.js?v=@Cfg.Version" type="text/javascript"></script>
 
 	<script src="~/Assets/Scripts/default.js?v=@Cfg.Version" type="text/javascript"></script>
 
-	<script src="~/Assets/Libs/Scripts/jquery.unobtrusive-ajax.min.js?v=@Cfg.Version"></script>
+	<script src="~/Assets/Libs/jQuery/jquery.unobtrusive-ajax.min.js?v=@Cfg.Version"></script>
 
 	@RenderSection("Scripts", false)
 </head>

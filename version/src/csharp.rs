@@ -3,7 +3,6 @@ use std::fs;
 use crate::version::Version;
 
 pub fn update_csharp(version: &Version) {
-	update_csharp_file(&version, r"..\site\AssetPackages\AssetPackages.csproj");
 	update_csharp_file(&version, r"..\site\Authentication\Authentication.csproj");
 	update_csharp_file(&version, r"..\site\BusinessLogic\BusinessLogic.csproj");
 	update_csharp_file(&version, r"..\site\Email\Email.csproj");

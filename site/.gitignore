@@ -8,13 +8,10 @@ obj
 *.user
 packages
 
-AssetPackages/*
-!AssetPackages/AssetPackages.csproj
-!AssetPackages/packages.config
-!AssetPackages/copy-to-mvc.bat
-
 TestResults/*
 Tests/Core/log
 *.feature.cs
 
 *.amazon.json
+
+MVC/Assets/Libs

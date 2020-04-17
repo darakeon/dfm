@@ -52,6 +52,7 @@ itself. Well, we are always our most demanding client.
 - [MVC](https://dotnet.microsoft.com/apps/aspnet/mvc)
 - [jQuery](https://jquery.com)
 - [Bootstrap](https://getbootstrap.com)
+- [Popper](https://popper.js.org/)
 - [Bootstrap Themes](https://bootswatch.com)
 
 #### Android App

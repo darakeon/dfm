@@ -1,0 +1,49 @@
+{
+	"version": "1.0",
+	"defaultProvider": "cdnjs",
+	"libraries": [
+		{
+			"library": "jquery@3.5.0",
+			"destination": "Assets/Libs/jQuery/",
+			"files": [
+				"jquery.min.js"
+			]
+		},
+		{
+			"library": "jquery.qrcode@1.0",
+			"destination": "Assets/Libs/jQuery/"
+		},
+		{
+			"library": "jquery-maskmoney@3.0.2",
+			"destination": "Assets/Libs/jQuery/"
+		},
+		{
+			"library": "jquery-ajax-unobtrusive@3.2.6",
+			"destination": "Assets/Libs/jQuery/",
+			"files": [
+				"jquery.unobtrusive-ajax.min.js"
+			]
+		},
+		{
+			"library": "qrcode-generator@1.4.4",
+			"destination": "Assets/Libs/jQuery/",
+			"files": [
+				"qrcode.min.js"
+			]
+		},
+		{
+			"library": "twitter-bootstrap@4.4.1",
+			"destination": "Assets/Libs/Bootstrap/",
+			"files": [
+				"js/bootstrap.min.js"
+			]
+		},
+		{
+			"library": "popper.js@2.3.3",
+			"destination": "Assets/Libs/Bootstrap/",
+			"files": [
+				"umd/popper.min.js"
+			]
+		}
+	]
+}

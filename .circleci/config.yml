@@ -21,9 +21,6 @@ jobs:
           paths:
             - ~/.nuget/packages
       - run:
-          name: copy_assets
-          command: sh .circleci/site/copy_assets.sh
-      - run:
           name: build
           command: dotnet.exe build -c Debug site/DFM.sln --no-restore
       - run:
@@ -61,9 +58,17 @@ jobs:
           key: dotnet-{{ checksum "site/Authentication/Authentication.csproj" }}-{{ checksum "site/BusinessLogic/BusinessLogic.csproj" }}-{{ checksum "site/Email/Email.csproj" }}-{{ checksum "site/Entities/Entities.csproj" }}-{{ checksum "site/Generic/Generic.csproj" }}-{{ checksum "site/Language/Language.csproj" }}-{{ checksum "site/MVC/MVC.csproj" }}-{{ checksum "site/Tests/BusinessLogic/BusinessLogic.Tests.csproj" }}-{{ checksum "site/Tests/Email/Email.Tests.csproj" }}-{{ checksum "site/Tests/Language/Language.Tests.csproj" }}-{{ checksum "site/Tests/MVC/MVC.Tests.csproj" }}
           paths:
             - ~/.nuget/packages
+      - restore_cache:
+          keys:
+            - dotnet-libman-{{ checksum "site/MVC/libman.json" }}
       - run:
-          name: copy_assets
-          command: sh .circleci/site/copy_assets.sh
+          name: dependencies_client
+          path: site/MVC
+          command: dotnet tool install -g Microsoft.Web.LibraryManager.Cli; libman restore
+      - save_cache:
+          key: dotnet-libman-{{ checksum "site/MVC/libman.json" }}
+          paths:
+            - /site/MVC/Assets/Libs
       - run:
           name: publish_site
           path: site/MVC
