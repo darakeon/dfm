@@ -2,7 +2,10 @@
 
 taskkill /IM "DFM.MVC.exe"
 
-dotnet.exe publish -c Release ..\..\MVC\MVC.csproj -o server
+cd ..\..\MVC
+libman restore
+dotnet.exe publish -c Release -o ..\Tests\Browser\server
+cd ..\Tests\Browser
 
 SET ASPNETCORE_ENVIRONMENT=CircleCI
 

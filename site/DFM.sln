@@ -24,8 +24,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication", "Authentic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVC", "MVC\MVC.csproj", "{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssetPackages", "AssetPackages\AssetPackages.csproj", "{FFC5BB5A-5A6E-46AB-8D57-F3AD482DDAC7}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogic.Tests", "Tests\BusinessLogic\BusinessLogic.Tests.csproj", "{7A988044-7667-4A77-AF91-06E9FC5CD3EF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Language.Tests", "Tests\Language\Language.Tests.csproj", "{FA44C4F9-1B21-4F99-AD35-F61F592895FC}"
@@ -87,10 +85,6 @@ Global
 		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FFC5BB5A-5A6E-46AB-8D57-F3AD482DDAC7}.BrowserTests|Any CPU.ActiveCfg = Release|Any CPU
-		{FFC5BB5A-5A6E-46AB-8D57-F3AD482DDAC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FFC5BB5A-5A6E-46AB-8D57-F3AD482DDAC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FFC5BB5A-5A6E-46AB-8D57-F3AD482DDAC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A988044-7667-4A77-AF91-06E9FC5CD3EF}.BrowserTests|Any CPU.ActiveCfg = Release|Any CPU
 		{7A988044-7667-4A77-AF91-06E9FC5CD3EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7A988044-7667-4A77-AF91-06E9FC5CD3EF}.Debug|Any CPU.Build.0 = Debug|Any CPU

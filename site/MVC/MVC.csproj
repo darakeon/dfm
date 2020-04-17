@@ -31,38 +31,24 @@
     <None Remove="Assets\Images\pig.ico" />
     <None Remove="Assets\Images\pig.svg" />
     <None Remove="Assets\Images\ptbr_apps_rgb_wo.jpg" />
-    <None Remove="Assets\Libs\fonts\glyphicons-halflings-regular.eot" />
-    <None Remove="Assets\Libs\fonts\glyphicons-halflings-regular.svg" />
-    <None Remove="Assets\Libs\fonts\glyphicons-halflings-regular.ttf" />
-    <None Remove="Assets\Libs\fonts\glyphicons-halflings-regular.woff" />
-    <None Remove="Assets\Libs\fonts\glyphicons-halflings-regular.woff2" />
-    <None Remove="Assets\Libs\Scripts\bootstrap.js" />
-    <None Remove="Assets\Libs\Scripts\bootstrap.min.js" />
-    <None Remove="Assets\Libs\Scripts\jquery.intellisense.js" />
-    <None Remove="Assets\Libs\Scripts\jquery.js" />
-    <None Remove="Assets\Libs\Scripts\jquery.min.js" />
-    <None Remove="Assets\Libs\Scripts\jquery.qrcode.min.js" />
-    <None Remove="Assets\Libs\Scripts\jquery.unobtrusive-ajax.js" />
-    <None Remove="Assets\Libs\Scripts\jquery.unobtrusive-ajax.min.js" />
-    <None Remove="Assets\Libs\Scripts\qrcode.min.js" />
-    <None Remove="Assets\Libs\Themes\bootstrap-cerulean.min.css" />
-    <None Remove="Assets\Libs\Themes\bootstrap-cosmo.min.css" />
-    <None Remove="Assets\Libs\Themes\bootstrap-cyborg.min.css" />
-    <None Remove="Assets\Libs\Themes\bootstrap-darkly.min.css" />
-    <None Remove="Assets\Libs\Themes\bootstrap-flatly.min.css" />
-    <None Remove="Assets\Libs\Themes\bootstrap-journal.min.css" />
-    <None Remove="Assets\Libs\Themes\bootstrap-lumen.min.css" />
-    <None Remove="Assets\Libs\Themes\bootstrap-none.min.css" />
-    <None Remove="Assets\Libs\Themes\bootstrap-paper.min.css" />
-    <None Remove="Assets\Libs\Themes\bootstrap-readable.min.css" />
-    <None Remove="Assets\Libs\Themes\bootstrap-sandstone.min.css" />
-    <None Remove="Assets\Libs\Themes\bootstrap-simplex.min.css" />
-    <None Remove="Assets\Libs\Themes\bootstrap-slate.min.css" />
-    <None Remove="Assets\Libs\Themes\bootstrap-solar.min.css" />
-    <None Remove="Assets\Libs\Themes\bootstrap-spacelab.min.css" />
-    <None Remove="Assets\Libs\Themes\bootstrap-superhero.min.css" />
-    <None Remove="Assets\Libs\Themes\bootstrap-united.min.css" />
-    <None Remove="Assets\Libs\Themes\bootstrap-yeti.min.css" />
+    <None Remove="Assets\Themes\bootstrap-cerulean.min.css" />
+    <None Remove="Assets\Themes\bootstrap-cosmo.min.css" />
+    <None Remove="Assets\Themes\bootstrap-cyborg.min.css" />
+    <None Remove="Assets\Themes\bootstrap-darkly.min.css" />
+    <None Remove="Assets\Themes\bootstrap-flatly.min.css" />
+    <None Remove="Assets\Themes\bootstrap-journal.min.css" />
+    <None Remove="Assets\Themes\bootstrap-lumen.min.css" />
+    <None Remove="Assets\Themes\bootstrap-none.min.css" />
+    <None Remove="Assets\Themes\bootstrap-paper.min.css" />
+    <None Remove="Assets\Themes\bootstrap-readable.min.css" />
+    <None Remove="Assets\Themes\bootstrap-sandstone.min.css" />
+    <None Remove="Assets\Themes\bootstrap-simplex.min.css" />
+    <None Remove="Assets\Themes\bootstrap-slate.min.css" />
+    <None Remove="Assets\Themes\bootstrap-solar.min.css" />
+    <None Remove="Assets\Themes\bootstrap-spacelab.min.css" />
+    <None Remove="Assets\Themes\bootstrap-superhero.min.css" />
+    <None Remove="Assets\Themes\bootstrap-united.min.css" />
+    <None Remove="Assets\Themes\bootstrap-yeti.min.css" />
     <None Remove="Assets\Scripts\default.js" />
     <None Remove="Assets\Scripts\dynamic-theme-change.js" />
     <None Remove="Assets\Scripts\move-crud.js" />
@@ -98,42 +84,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Images\ptbr_apps_rgb_wo.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Libs\fonts\glyphicons-halflings-regular.eot">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Libs\fonts\glyphicons-halflings-regular.svg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Libs\fonts\glyphicons-halflings-regular.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Libs\fonts\glyphicons-halflings-regular.woff">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Libs\fonts\glyphicons-halflings-regular.woff2">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Libs\Scripts\jquery.moneyMask.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Libs\Scripts\bootstrap.min.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Libs\Scripts\jquery.intellisense.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Libs\Scripts\jquery.min.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Libs\Scripts\jquery.qrcode.min.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Libs\Scripts\jquery.unobtrusive-ajax.min.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Libs\Scripts\qrcode.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Scripts\default.js">
@@ -175,58 +125,58 @@
     <Content Include="Assets\Styles\updates.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Libs\Themes\bootstrap-cerulean.min.css">
+    <Content Include="Assets\Themes\bootstrap-cerulean.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Libs\Themes\bootstrap-cosmo.min.css">
+    <Content Include="Assets\Themes\bootstrap-cosmo.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Libs\Themes\bootstrap-cyborg.min.css">
+    <Content Include="Assets\Themes\bootstrap-cyborg.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Libs\Themes\bootstrap-darkly.min.css">
+    <Content Include="Assets\Themes\bootstrap-darkly.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Libs\Themes\bootstrap-flatly.min.css">
+    <Content Include="Assets\Themes\bootstrap-flatly.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Libs\Themes\bootstrap-journal.min.css">
+    <Content Include="Assets\Themes\bootstrap-journal.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Libs\Themes\bootstrap-lumen.min.css">
+    <Content Include="Assets\Themes\bootstrap-lumen.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Libs\Themes\bootstrap-none.min.css">
+    <Content Include="Assets\Themes\bootstrap-none.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Libs\Themes\bootstrap-paper.min.css">
+    <Content Include="Assets\Themes\bootstrap-paper.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Libs\Themes\bootstrap-readable.min.css">
+    <Content Include="Assets\Themes\bootstrap-readable.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Libs\Themes\bootstrap-sandstone.min.css">
+    <Content Include="Assets\Themes\bootstrap-sandstone.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Libs\Themes\bootstrap-simplex.min.css">
+    <Content Include="Assets\Themes\bootstrap-simplex.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Libs\Themes\bootstrap-slate.min.css">
+    <Content Include="Assets\Themes\bootstrap-slate.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Libs\Themes\bootstrap-solar.min.css">
+    <Content Include="Assets\Themes\bootstrap-solar.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Libs\Themes\bootstrap-spacelab.min.css">
+    <Content Include="Assets\Themes\bootstrap-spacelab.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Libs\Themes\bootstrap-superhero.min.css">
+    <Content Include="Assets\Themes\bootstrap-superhero.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Libs\Themes\bootstrap-united.min.css">
+    <Content Include="Assets\Themes\bootstrap-united.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Libs\Themes\bootstrap-yeti.min.css">
+    <Content Include="Assets\Themes\bootstrap-yeti.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -250,6 +200,45 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Assets\Fonts\glyphicons-halflings-regular.eot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Fonts\glyphicons-halflings-regular.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Fonts\glyphicons-halflings-regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Fonts\glyphicons-halflings-regular.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Fonts\glyphicons-halflings-regular.woff2">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Libs\Bootstrap\js\bootstrap.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Libs\Bootstrap\umd\popper.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Libs\jQuery\jquery.maskMoney.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Libs\jQuery\jquery.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Libs\jQuery\jquery.qrcode.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Libs\jQuery\jquery.unobtrusive-ajax.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Libs\jQuery\qrcode.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
