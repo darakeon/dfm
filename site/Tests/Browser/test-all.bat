@@ -2,11 +2,11 @@
 
 taskkill /IM "DFM.MVC.exe"
 
-dotnet.exe publish -c Release ..\..\MVC\MVC.csproj -o site
+dotnet.exe publish -c Release ..\..\MVC\MVC.csproj -o server
 
 SET ASPNETCORE_ENVIRONMENT=CircleCI
 
-cd site
+cd server
 start DFM.MVC.exe p2709
 cd ..
 timeout 10
@@ -19,4 +19,4 @@ call npm test -- --runInBand
 
 taskkill /IM "DFM.MVC.exe"
 timeout 2
-rmdir site /s /q
+rmdir server /s /q
