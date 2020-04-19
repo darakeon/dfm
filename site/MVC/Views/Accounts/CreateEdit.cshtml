@@ -29,9 +29,7 @@
 <div class="form-group">
 	@Html.LabelFor(m => m.Account.Url, Context.Translate("Url"), new { @class = "control-label" })
 	<span class="glyphicon glyphicon-info-sign control-label"
-		  data-toggle="tooltip" data-placement="right"
-		  title="@String.Format(Context.Translate("AcceptedUrlCharacters"), MaxLen.AccountUrl)"
-		  data-original-title="@String.Format(Context.Translate("AcceptedUrlCharacters"), MaxLen.AccountUrl)">
+		  title="@String.Format(Context.Translate("AcceptedUrlCharacters"), MaxLen.AccountUrl)">
 	</span>
 
 	@Html.TextBoxFor(m => m.Account.Url, new { maxlength = MaxLen.AccountUrl, @class = "form-control suggest-target" })
@@ -43,8 +41,7 @@
 	@Html.LabelFor(m => m.HasLimit, Context.Translate("AccountHasLimit"), new { @class = "control-label" })
 	<span
 		class="glyphicon glyphicon-info-sign"
-		data-toggle="tooltip" data-placement="right"
-		data-original-title="@Context.Translate("LimitExplanation")"
+		title="@Context.Translate("LimitExplanation")"
 	></span>
 
 	<br />
