@@ -8,6 +8,7 @@ const password = {
 }
 
 const language = 'pt-BR'
+const languageSecond = 'en-US'
 
 async function createContract() {
 	await execute(
@@ -18,6 +19,11 @@ async function createContract() {
 	await execute(
 		`insert into terms (contract_ID, language, json)
 			select id, '${language}', '{ \"Text\": \"contract\" }' from contract`
+	)
+
+	await execute(
+		`insert into terms (contract_ID, language, json)
+			select id, '${languageSecond}', '{ \"Text\": \"contract\" }' from contract`
 	)
 }
 
