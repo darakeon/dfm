@@ -8,7 +8,7 @@
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <AssemblyVersion>4.1.4.3</AssemblyVersion>
     <FileVersion>4.1.4.3</FileVersion>
-    <ApplicationIcon>Assets\Images\pig.ico</ApplicationIcon>
+    <ApplicationIcon>Assets\images\pig.ico</ApplicationIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -25,158 +25,158 @@
   <ItemGroup>
     <None Remove=".gitignore" />
     <None Remove="Assets" />
-    <None Remove="Assets\Images\face-pig.png" />
-    <None Remove="Assets\Images\github.png" />
-    <None Remove="Assets\Images\mail-pig.png" />
-    <None Remove="Assets\Images\pig.ico" />
-    <None Remove="Assets\Images\pig.svg" />
-    <None Remove="Assets\Images\ptbr_apps_rgb_wo.jpg" />
-    <None Remove="Assets\Themes\bootstrap-cerulean.min.css" />
-    <None Remove="Assets\Themes\bootstrap-cosmo.min.css" />
-    <None Remove="Assets\Themes\bootstrap-cyborg.min.css" />
-    <None Remove="Assets\Themes\bootstrap-darkly.min.css" />
-    <None Remove="Assets\Themes\bootstrap-flatly.min.css" />
-    <None Remove="Assets\Themes\bootstrap-journal.min.css" />
-    <None Remove="Assets\Themes\bootstrap-lumen.min.css" />
-    <None Remove="Assets\Themes\bootstrap-none.min.css" />
-    <None Remove="Assets\Themes\bootstrap-paper.min.css" />
-    <None Remove="Assets\Themes\bootstrap-readable.min.css" />
-    <None Remove="Assets\Themes\bootstrap-sandstone.min.css" />
-    <None Remove="Assets\Themes\bootstrap-simplex.min.css" />
-    <None Remove="Assets\Themes\bootstrap-slate.min.css" />
-    <None Remove="Assets\Themes\bootstrap-solar.min.css" />
-    <None Remove="Assets\Themes\bootstrap-spacelab.min.css" />
-    <None Remove="Assets\Themes\bootstrap-superhero.min.css" />
-    <None Remove="Assets\Themes\bootstrap-united.min.css" />
-    <None Remove="Assets\Themes\bootstrap-yeti.min.css" />
-    <None Remove="Assets\Scripts\default.js" />
-    <None Remove="Assets\Scripts\dynamic-theme-change.js" />
-    <None Remove="Assets\Scripts\move-crud.js" />
-    <None Remove="Assets\Scripts\qrcode.js" />
-    <None Remove="Assets\Scripts\sign-up.js" />
-    <None Remove="Assets\Scripts\suggest.js" />
-    <None Remove="Assets\Scripts\tab-forms.js" />
-    <None Remove="Assets\Scripts\toggle.js" />
-    <None Remove="Assets\Styles\android.css" />
-    <None Remove="Assets\Styles\contract.css" />
-    <None Remove="Assets\Styles\default.css" />
-    <None Remove="Assets\Styles\qrcode.css" />
-    <None Remove="Assets\Styles\updates.css" />
+    <None Remove="Assets\images\face-pig.png" />
+    <None Remove="Assets\images\github.png" />
+    <None Remove="Assets\images\mail-pig.png" />
+    <None Remove="Assets\images\pig.ico" />
+    <None Remove="Assets\images\pig.svg" />
+    <None Remove="Assets\images\ptbr_apps_rgb_wo.jpg" />
+    <None Remove="Assets\themes\bootstrap-cerulean.min.css" />
+    <None Remove="Assets\themes\bootstrap-cosmo.min.css" />
+    <None Remove="Assets\themes\bootstrap-cyborg.min.css" />
+    <None Remove="Assets\themes\bootstrap-darkly.min.css" />
+    <None Remove="Assets\themes\bootstrap-flatly.min.css" />
+    <None Remove="Assets\themes\bootstrap-journal.min.css" />
+    <None Remove="Assets\themes\bootstrap-lumen.min.css" />
+    <None Remove="Assets\themes\bootstrap-none.min.css" />
+    <None Remove="Assets\themes\bootstrap-paper.min.css" />
+    <None Remove="Assets\themes\bootstrap-readable.min.css" />
+    <None Remove="Assets\themes\bootstrap-sandstone.min.css" />
+    <None Remove="Assets\themes\bootstrap-simplex.min.css" />
+    <None Remove="Assets\themes\bootstrap-slate.min.css" />
+    <None Remove="Assets\themes\bootstrap-solar.min.css" />
+    <None Remove="Assets\themes\bootstrap-spacelab.min.css" />
+    <None Remove="Assets\themes\bootstrap-superhero.min.css" />
+    <None Remove="Assets\themes\bootstrap-united.min.css" />
+    <None Remove="Assets\themes\bootstrap-yeti.min.css" />
+    <None Remove="Assets\scripts\default.js" />
+    <None Remove="Assets\scripts\dynamic-theme-change.js" />
+    <None Remove="Assets\scripts\move-crud.js" />
+    <None Remove="Assets\scripts\qrcode.js" />
+    <None Remove="Assets\scripts\sign-up.js" />
+    <None Remove="Assets\scripts\suggest.js" />
+    <None Remove="Assets\scripts\tab-forms.js" />
+    <None Remove="Assets\scripts\toggle.js" />
+    <None Remove="Assets\styles\android.css" />
+    <None Remove="Assets\styles\contract.css" />
+    <None Remove="Assets\styles\default.css" />
+    <None Remove="Assets\styles\qrcode.css" />
+    <None Remove="Assets\styles\updates.css" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Assets\Images\android.png">
+    <Content Include="Assets\images\android.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Images\face-pig.png">
+    <Content Include="Assets\images\face-pig.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Images\github.png">
+    <Content Include="Assets\images\github.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Images\mail-pig.png">
+    <Content Include="Assets\images\mail-pig.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Images\pig.ico">
+    <Content Include="Assets\images\pig.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Images\pig.svg">
+    <Content Include="Assets\images\pig.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Images\ptbr_apps_rgb_wo.jpg">
+    <Content Include="Assets\images\ptbr_apps_rgb_wo.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Scripts\default.js">
+    <Content Include="Assets\scripts\default.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Scripts\dynamic-theme-change.js">
+    <Content Include="Assets\scripts\dynamic-theme-change.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Scripts\move-crud.js">
+    <Content Include="Assets\scripts\move-crud.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Scripts\qrcode.js">
+    <Content Include="Assets\scripts\qrcode.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Scripts\sign-up.js">
+    <Content Include="Assets\scripts\sign-up.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Scripts\suggest.js">
+    <Content Include="Assets\scripts\suggest.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Scripts\tab-forms.js">
+    <Content Include="Assets\scripts\tab-forms.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Scripts\toggle.js">
+    <Content Include="Assets\scripts\toggle.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Styles\android.css">
+    <Content Include="Assets\styles\android.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Styles\contract.css">
+    <Content Include="Assets\styles\contract.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Styles\default.css">
+    <Content Include="Assets\styles\default.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Styles\qrcode.css">
+    <Content Include="Assets\styles\qrcode.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Styles\updates.css">
+    <Content Include="Assets\styles\updates.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Themes\bootstrap-cerulean.min.css">
+    <Content Include="Assets\themes\bootstrap-cerulean.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Themes\bootstrap-cosmo.min.css">
+    <Content Include="Assets\themes\bootstrap-cosmo.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Themes\bootstrap-cyborg.min.css">
+    <Content Include="Assets\themes\bootstrap-cyborg.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Themes\bootstrap-darkly.min.css">
+    <Content Include="Assets\themes\bootstrap-darkly.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Themes\bootstrap-flatly.min.css">
+    <Content Include="Assets\themes\bootstrap-flatly.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Themes\bootstrap-journal.min.css">
+    <Content Include="Assets\themes\bootstrap-journal.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Themes\bootstrap-lumen.min.css">
+    <Content Include="Assets\themes\bootstrap-lumen.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Themes\bootstrap-none.min.css">
+    <Content Include="Assets\themes\bootstrap-none.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Themes\bootstrap-paper.min.css">
+    <Content Include="Assets\themes\bootstrap-paper.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Themes\bootstrap-readable.min.css">
+    <Content Include="Assets\themes\bootstrap-readable.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Themes\bootstrap-sandstone.min.css">
+    <Content Include="Assets\themes\bootstrap-sandstone.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Themes\bootstrap-simplex.min.css">
+    <Content Include="Assets\themes\bootstrap-simplex.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Themes\bootstrap-slate.min.css">
+    <Content Include="Assets\themes\bootstrap-slate.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Themes\bootstrap-solar.min.css">
+    <Content Include="Assets\themes\bootstrap-solar.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Themes\bootstrap-spacelab.min.css">
+    <Content Include="Assets\themes\bootstrap-spacelab.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Themes\bootstrap-superhero.min.css">
+    <Content Include="Assets\themes\bootstrap-superhero.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Themes\bootstrap-united.min.css">
+    <Content Include="Assets\themes\bootstrap-united.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Themes\bootstrap-yeti.min.css">
+    <Content Include="Assets\themes\bootstrap-yeti.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -203,40 +203,40 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Assets\Fonts\glyphicons-halflings-regular.eot">
+    <None Update="Assets\fonts\glyphicons-halflings-regular.eot">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Assets\Fonts\glyphicons-halflings-regular.svg">
+    <None Update="Assets\fonts\glyphicons-halflings-regular.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Assets\Fonts\glyphicons-halflings-regular.ttf">
+    <None Update="Assets\fonts\glyphicons-halflings-regular.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Assets\Fonts\glyphicons-halflings-regular.woff">
+    <None Update="Assets\fonts\glyphicons-halflings-regular.woff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Assets\Fonts\glyphicons-halflings-regular.woff2">
+    <None Update="Assets\fonts\glyphicons-halflings-regular.woff2">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Assets\Libs\Bootstrap\js\bootstrap.min.js">
+    <None Update="Assets\libs\bootstrap\js\bootstrap.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Assets\Libs\Bootstrap\umd\popper.min.js">
+    <None Update="Assets\libs\bootstrap\umd\popper.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Assets\Libs\jQuery\jquery.maskMoney.min.js">
+    <None Update="Assets\libs\jquery\jquery.maskMoney.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Assets\Libs\jQuery\jquery.min.js">
+    <None Update="Assets\libs\jquery\jquery.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Assets\Libs\jQuery\jquery.qrcode.min.js">
+    <None Update="Assets\libs\jquery\jquery.qrcode.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Assets\Libs\jQuery\jquery.unobtrusive-ajax.min.js">
+    <None Update="Assets\libs\jquery\jquery.unobtrusive-ajax.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Assets\Libs\jQuery\qrcode.min.js">
+    <None Update="Assets\libs\jquery\qrcode.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
