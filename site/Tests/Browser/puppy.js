@@ -8,6 +8,12 @@ async function call(path) {
 	page.setExtraHTTPHeaders({
 		'Accept-Language': db.language
 	})
+
+	page.on('response', (r) => {
+		if (r.status() >= 400)
+			console.error(r.url(), r.status())
+	})
+
 	const result = await page.goto(url(path))
 	
 	const status = result.status()
