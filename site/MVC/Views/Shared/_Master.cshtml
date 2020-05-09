@@ -1,28 +1,32 @@
 ﻿@model BaseSiteModel
 
+@{
+	var theme = Model.Theme.ToString().ToLower();
+}
+
 <!DOCTYPE html>
 
 <html>
 <head>
 	<title>@await Html.PartialAsync("Title")</title>
 
-	<link rel="shortcut icon" type="image/ico" href="~/Assets/Images/pig.ico" />
-	<meta property="og:image" content="https://dontflymoney.com/Assets/Images/face-pig.png" />
+	<link rel="shortcut icon" type="image/ico" href="~/Assets/images/pig.ico" />
+	<meta property="og:image" content="https://dontflymoney.com/Assets/images/face-pig.png" />
 
-	<link href="~/Assets/Themes/bootstrap-@(Model.Theme).min.css?v=@Cfg.Version" rel="stylesheet" type="text/css" id="bootstrap-theme" />
-	<link href="~/Assets/Styles/android.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
-	<link href="~/Assets/Styles/default.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
+	<link href="~/Assets/themes/bootstrap-@(theme).min.css?v=@Cfg.Version" rel="stylesheet" type="text/css" id="bootstrap-theme" />
+	<link href="~/Assets/styles/android.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
+	<link href="~/Assets/styles/default.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
 
 	@RenderSection("Styles", false)
 
-	<script src="~/Assets/Libs/jQuery/jquery.min.js?v=@Cfg.Version" type="text/javascript"></script>
-	<script src="~/Assets/Libs/Bootstrap/umd/popper.min.js?v=@Cfg.Version" type="text/javascript"></script>
-	<script src="~/Assets/Libs/Bootstrap/js/bootstrap.min.js?v=@Cfg.Version" type="text/javascript"></script>
-	<script src="~/Assets/Libs/jQuery/jquery.maskMoney.min.js?v=@Cfg.Version" type="text/javascript"></script>
+	<script src="~/Assets/libs/jquery/jquery.min.js?v=@Cfg.Version" type="text/javascript"></script>
+	<script src="~/Assets/libs/bootstrap/umd/popper.min.js?v=@Cfg.Version" type="text/javascript"></script>
+	<script src="~/Assets/libs/bootstrap/js/bootstrap.min.js?v=@Cfg.Version" type="text/javascript"></script>
+	<script src="~/Assets/libs/jquery/jquery.maskMoney.min.js?v=@Cfg.Version" type="text/javascript"></script>
 
-	<script src="~/Assets/Scripts/default.js?v=@Cfg.Version" type="text/javascript"></script>
+	<script src="~/Assets/scripts/default.js?v=@Cfg.Version" type="text/javascript"></script>
 
-	<script src="~/Assets/Libs/jQuery/jquery.unobtrusive-ajax.min.js?v=@Cfg.Version"></script>
+	<script src="~/Assets/libs/jquery/jquery.unobtrusive-ajax.min.js?v=@Cfg.Version"></script>
 
 	@RenderSection("Scripts", false)
 </head>
