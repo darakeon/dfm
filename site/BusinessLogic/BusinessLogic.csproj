@@ -4,8 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>DFM.BusinessLogic</AssemblyName>
     <RootNamespace>DFM.BusinessLogic</RootNamespace>
-    <AssemblyVersion>4.1.4.3</AssemblyVersion>
-    <FileVersion>4.1.4.3</FileVersion>
+    <AssemblyVersion>4.1.4.4</AssemblyVersion>
+    <FileVersion>4.1.4.4</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

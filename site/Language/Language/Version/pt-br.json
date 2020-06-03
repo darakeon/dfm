@@ -1,4 +1,7 @@
 {
+	"4.1.4.4": [
+		"Testes automatizados colocados para rodar em Linux"
+	],
 	"4.1.4.3": [
 		"Adiciona os testes do centro do sistema e de navegador a uma integração que roda testes automaticamente"
 	],
