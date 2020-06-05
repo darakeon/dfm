@@ -1,13 +1,9 @@
 version: 2.1
 
-orbs:
-  win: circleci/windows@2.2.0
-
 jobs:
   core:
-    executor:
-      name: win/default
-      shell: powershell.exe
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:latest
     steps:
       - checkout
       - restore_cache:

@@ -6,7 +6,7 @@ obj
 *dotCover
 .vs
 *.user
-packages
+packages*/
 
 TestResults/*
 Tests/Core/log
