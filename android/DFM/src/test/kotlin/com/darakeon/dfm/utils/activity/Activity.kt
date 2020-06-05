@@ -1,5 +1,6 @@
 package com.darakeon.dfm.utils.activity
 
+import android.app.DatePickerDialog
 import android.view.ContextMenu
 import android.view.View
 import com.darakeon.dfm.R
@@ -8,6 +9,7 @@ import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.setPrivate
 import com.darakeon.dfm.utils.api.Server
 import org.robolectric.Robolectric.buildActivity
+import org.robolectric.shadows.ShadowDialog.getShownDialogs
 
 class ActivityMock {
 	val server = Server()
@@ -72,3 +74,8 @@ class TestActivity : BaseActivity() {
 	fun testDestroy() =
 		super.onDestroy()
 }
+
+fun getLastDatePicker() =
+	getShownDialogs()
+		.filterIsInstance<DatePickerDialog>()
+		.last { it.isShowing }
