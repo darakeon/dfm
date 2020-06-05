@@ -19,22 +19,16 @@ fun Activity.getDateDialog(year: Int, month: Int?, getAnswer: (Int, Int) -> Unit
 fun Activity.getDateDialog(
 	year: Int, month: Int?, day: Int?,
 	getAnswer: (Int, Int, Int) -> Unit
-) : DatePickerDialog {
-	val dialog: DatePickerDialog
-
-	dialog = DatePickerDialog(
-		this,
-		{
-			picker, newYear, newMonth, newDay ->
-				onSet(picker, newYear, newMonth, newDay, getAnswer)
-		},
-		year,
-		month ?: 1,
-		day ?: 1
-	)
-
-	return dialog
-}
+) = DatePickerDialog(
+	this,
+	{
+		picker, newYear, newMonth, newDay ->
+			onSet(picker, newYear, newMonth, newDay, getAnswer)
+	},
+	year,
+	month ?: 1,
+	day ?: 1
+)
 
 private fun onSet(
 	picker: DatePicker,

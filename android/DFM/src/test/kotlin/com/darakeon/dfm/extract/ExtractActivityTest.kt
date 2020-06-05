@@ -1,9 +1,9 @@
 package com.darakeon.dfm.extract
 
-import android.app.DatePickerDialog
 import android.app.Dialog
 import android.net.Uri
 import android.os.Bundle
+import android.os.Looper.getMainLooper
 import android.os.PersistableBundle
 import android.view.View
 import com.darakeon.dfm.R
@@ -16,6 +16,7 @@ import com.darakeon.dfm.extensions.getPrivate
 import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.utils.activity.ActivityMock
 import com.darakeon.dfm.utils.activity.getActivityName
+import com.darakeon.dfm.utils.activity.getLastDatePicker
 import com.darakeon.dfm.utils.api.readBundle
 import com.darakeon.dfm.utils.getDecimal
 import com.darakeon.dfm.utils.log.LogRule
@@ -39,7 +40,6 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog
-import org.robolectric.shadows.ShadowDialog.getShownDialogs
 import java.util.Calendar
 
 @RunWith(RobolectricTestRunner::class)
@@ -283,12 +283,9 @@ class ExtractActivityTest {
 
 		activity.changeDate(View(activity))
 
-		val dialog = getShownDialogs()
-			.filterIsInstance<DatePickerDialog>()
-			.last { it.isShowing }
-
 		mocker.server.enqueue("extract")
 
+		val dialog = getLastDatePicker()
 		dialog.updateDate(1986, aMonthJava, 1)
 		dialog.getButton(Dialog.BUTTON_POSITIVE).performClick()
 
@@ -298,6 +295,7 @@ class ExtractActivityTest {
 		val month = activity.getPrivate<Int>("month")
 		assertThat(month, `is`(aMonthJava))
 
+		shadowOf(getMainLooper()).idle()
 		val extract = activity.getPrivate<Extract>("extract")
 		assertThat(extract.moveList.size, `is`(1))
 	}
