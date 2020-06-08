@@ -5,8 +5,8 @@
     <IsPackable>false</IsPackable>
     <AssemblyName>DFM.BusinessLogic.Tests</AssemblyName>
     <RootNamespace>DFM.BusinessLogic.Tests</RootNamespace>
-    <AssemblyVersion>4.1.4.4</AssemblyVersion>
-    <FileVersion>4.1.4.4</FileVersion>
+    <AssemblyVersion>4.1.4.5</AssemblyVersion>
+    <FileVersion>4.1.4.5</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

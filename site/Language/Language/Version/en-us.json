@@ -1,4 +1,7 @@
 {
+	"4.1.4.5": [
+		"Change business logic automated tests to run at Linux"
+	],
 	"4.1.4.4": [
 		"Change browser automated tests to run at Linux"
 	],
