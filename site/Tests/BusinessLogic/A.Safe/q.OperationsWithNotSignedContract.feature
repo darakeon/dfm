@@ -133,7 +133,7 @@ Scenario: Aq18. Update Config - Change Language
 
 Scenario: Aq19. Update Config - Change TimeZone
 	Given there is a new contract
-	When I try to change the timezone to E. South America Standard Time
+	When I try to change the timezone to UTC-03:00
 	Then I will receive this core error: NotSignedLastContract
 
 Scenario: Aq20. Get active Account list

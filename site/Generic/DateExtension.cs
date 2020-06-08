@@ -24,28 +24,41 @@ namespace DFM.Generic
 
 		public static DateTime Now(this String timeZoneName)
 		{
-			if (!TimeZoneList.ContainsKey(timeZoneName))
+			if (!IsTimeZone(timeZoneName))
 				return DateTime.UtcNow;
 
-			var timeZone =
-				timeZones.First(
-					tz => tz.StandardName == timeZoneName
-				);
+			var timeZone = timeZoneDic[timeZoneName];
 
-			return TimeZoneInfo.ConvertTime(
-				DateTime.UtcNow,
-				TimeZoneInfo.Utc,
-				timeZone
-			);
+			return DateTime.UtcNow
+				.AddHours(timeZone.Hours)
+				.AddMinutes(timeZone.Minutes);
 		}
 
-		private static readonly ReadOnlyCollection<TimeZoneInfo> timeZones =
-			TimeZoneInfo.GetSystemTimeZones();
+		private static readonly ReadOnlyCollection<TimeSpan> timeZones =
+			new ReadOnlyCollection<TimeSpan>(
+				TimeZoneInfo.GetSystemTimeZones()
+					.Select(tz => tz.BaseUtcOffset)
+					.Distinct()
+					.ToList()
+			);
+
+		private static readonly IDictionary<String, TimeSpan> timeZoneDic =
+			timeZones.ToDictionary(getName, tz => tz);
+
+		private static String getName(TimeSpan timeSpan)
+		{
+			var hour = timeSpan.Hours;
+			var minute = timeSpan.Minutes;
+			return $"UTC{hour:+00;-00; 00}:{minute:00;00;00}";
+		}
+
+		public static IDictionary<String, String> TimeZoneList =
+			timeZoneDic.ToDictionary(tz => tz.Key, tz => tz.Key);
 
 		public static String GetTimeZone(this Int32 offset) =>
-			timeZones.First(
-				tz => equal(tz.BaseUtcOffset, offset)
-			).StandardName;
+			timeZones
+				.First(o => equal(o, offset))
+				.ToString();
 
 		private static Boolean equal(TimeSpan timeSpan, Int32 offset)
 		{
@@ -53,14 +66,8 @@ namespace DFM.Generic
 			return timeSpanOffset == offset;
 		}
 
-		public static IDictionary<String, String> TimeZoneList =
-			timeZones.GroupBy(tz => tz.StandardName)
-				.ToDictionary(tz => tz.Key, tz => tz.ToList().First().DisplayName);
-
-		public static Boolean IsTimeZone(this String timeZone)
-		{
-			return timeZone == null
-			       || TimeZoneList.ContainsKey(timeZone);
-		}
+		public static Boolean IsTimeZone(
+			this String timeZone
+		) => TimeZoneList.ContainsKey(timeZone);
 	}
 }

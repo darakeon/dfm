@@ -13,7 +13,6 @@ namespace DFM.BusinessLogic.Tests.E.Report
 	public class ReportStep : BaseStep
 	{
 		#region Variables
-
 		private static Int16 month
 		{
 			get => get<Int16>("Month");
@@ -167,7 +166,7 @@ namespace DFM.BusinessLogic.Tests.E.Report
 
 				var dateString = row["Date"];
 				var moveDate = isRelative(dateString)
-					? DateTime.Today.AddDays(Int32.Parse(dateString))
+					? current.Now.AddDays(Int32.Parse(dateString))
 					: DateTime.Parse(dateString);
 
 				move.SetDate(moveDate);
@@ -200,7 +199,7 @@ namespace DFM.BusinessLogic.Tests.E.Report
 
 				if (isRelative(monthString))
 				{
-					month = (Int16) DateTime.Today.AddMonths(month).Month;
+					month = (Int16) current.Now.AddMonths(month).Month;
 				}
 			}
 
@@ -209,7 +208,7 @@ namespace DFM.BusinessLogic.Tests.E.Report
 
 			if (isRelative(yearString))
 			{
-				year = (Int16) DateTime.Today.AddYears(year).Year;
+				year = (Int16) current.Now.AddYears(year).Year;
 			}
 		}
 
