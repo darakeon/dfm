@@ -191,4 +191,15 @@ describe('Users', () => {
 		const panelBody = await puppy.content('.panel-body')
 		await expect(panelBody).toContain('Agradecemos por ler as mensagens do Tutorial.')
 	})
+
+	test('Contract', async () => {
+		const email = 'contract@dontflymoney.com'
+		await db.createUserIfNotExists(email, 1, 1)
+
+		await puppy.call('Users/Contract')
+		await page.waitForSelector('#body form')
+
+		const acceptLabel = await puppy.content('.panel-heading')
+		await expect(acceptLabel).toContain('Termos de Uso')
+	})
 })
