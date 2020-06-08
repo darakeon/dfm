@@ -21,10 +21,13 @@
 
 	@if (canSign)
 	{
+		var text = Context.Translate("ContractAccept");
+		var link = Context.Translate("ContractTitle");
+
 		<div class="checkbox text-center form-group">
 			<label for="@Html.IdFor(m => m.Accept)">
 				@Html.CheckBoxFor(m => m.Accept)
-				@String.Format(Context.Translate("ContractAccept", "ContractTitle"))
+				@String.Format(text, link)
 			</label>
 		</div>
 	}
