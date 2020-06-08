@@ -59,12 +59,12 @@ Scenario: Bk06. Disable categories use and enable a category
 	When I try to enable the category
 	Then I will receive this core error: CategoriesDisabled
 
-Scenario: Bk07. Change language to en-US
+Scenario: Bk07. Change language to one that doesn't exist
 	When I try to change the language to zz-ZZ
 	Then I will receive this core error: LanguageUnknown
 
-Scenario: Bk08. Change timezone to en-US
-	When I try to change the timezone to Someplace
+Scenario: Bk08. Change timezone to one that doesn't exist
+	When I try to change the timezone to UTC-99:99
 	Then I will receive this core error: TimeZoneUnknown
 
 Scenario: Bk09. Disable categories use
@@ -121,7 +121,7 @@ Scenario: Bk14. Change language to en-US
 			| CurrentLanguage | english    |
 
 Scenario: Bk15. Change timezone
-	When I try to change the timezone to E. South America Standard Time
+	When I try to change the timezone to UTC-03:00
 	Then I will receive no core error
 
 Scenario: Bk16. Disable move send e-mail

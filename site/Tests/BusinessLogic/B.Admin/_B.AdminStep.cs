@@ -890,7 +890,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			}
 		}
 
-		[When(@"I try to change the timezone to ([\w\s\.]+)")]
+		[When(@"I try to change the timezone to (.+)")]
 		public void WhenITryToChangeTheTimeZoneTo(String timeZone)
 		{
 			try
