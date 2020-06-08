@@ -133,6 +133,7 @@ Legend:
 - [ ] Test android tests payloads x .net api objects
 
 ## <a name="4.1.4.5"></a>4.1.4.5 :sheep: <sup>`2`</sup>
+- [x] `200608>200608` Automatizate add tasks from docs to release list
 - [x] `200605>200607` Change ci core tests machine to linux
 - [x] `200604>200605` Fix android intermitent tests
 

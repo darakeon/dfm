@@ -1,8 +1,11 @@
+use std::collections::LinkedList;
+
 pub struct Version {
 	pub code: String,
 	pub done: bool,
 	pub prev: String,
 	pub next: String,
+	pub tasks: LinkedList<String>,
 }
 
 impl Version {
@@ -12,6 +15,7 @@ impl Version {
 			done: false,
 			prev: "".to_string(),
 			next: "".to_string(),
+			tasks: LinkedList::new(),
 		}
 	}
 	pub fn new(code: String, next: String) -> Self {
@@ -20,6 +24,7 @@ impl Version {
 			done: true,
 			prev: String::new(),
 			next,
+			tasks: LinkedList::new(),
 		}
 	}
 }
