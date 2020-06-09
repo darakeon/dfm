@@ -43,4 +43,10 @@
     <ProjectReference Include="..\Util\Tests.Util.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="specflow.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
