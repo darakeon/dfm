@@ -13,8 +13,6 @@ This is the task list for the project.
 
 | Task | Type | Difficulty | Importance | Points (4-D+I) | Issue | Depend |
 | --- | --- | --- | --- | --- | --- | --- |
-| Make it clear that clicking on account, you go to account area | 2 | 1 | 4 | 7 | [#42](https://github.com/darakeon/dfm/issues/42) |  |
-| Fix accessibility of blue and red values at mobile | 2 | 1 | 4 | 7 |  |  |
 | Make/find app to verify DFM status | 1 | 2 | 4 | 6 |  |  |
 | Make DTO use guid, not db id (delete fakeid) | 1 | 2 | 4 | 6 |  |  |
 | Handle CoreError at Robot | 1 | 2 | 4 | 6 |  |  |
