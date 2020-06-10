@@ -37,7 +37,8 @@ itself. Well, we are always our most demanding client.
 
 - [Collaborate](docs/COLLABORATE.md)
 - [License (GPL)](LICENSE.md)
-- [Task list](docs/TASKS.md)
+- [Releases](docs/RELEASES.md)
+- [Task list](docs/TODO.md)
 
 ### Technologies
 

@@ -42,8 +42,8 @@ understanding what you did. This rule applies to your code too.
 
 ## Don't know what to do?
 
-It's probably not the case, but... There is a [task list](TASKS.md).
+It's probably not the case, but... There is a [to-do list](TODO.md).
 You can pickup a task from any place of the list, the order set to this
 file is the order @darakeon intend to do them. Once it's ready, the new
-system version number will depend on the documentation inside the task
-list and the current version number.
+system version number will depend the column type and the current
+version.

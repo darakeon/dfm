@@ -1,7 +1,7 @@
 use crate::version::Version;
 use std::fs;
 
-static PATH: &str = r"..\docs\TASKS.MD";
+static PATH: &str = r"..\docs\RELEASES.md";
 
 pub fn task_list() -> Vec<String> {
 	fs::read_to_string(PATH)
@@ -39,5 +39,5 @@ fn development(version: &str) -> String {
 }
 
 fn state(version: &str) -> String {
-	format!("{}/docs/TASKS.md#{}", version, version)
+	format!("{}/docs/RELEASES.md#{}", version, version)
 }

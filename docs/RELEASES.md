@@ -1,143 +1,28 @@
 <img src="../site/MVC/Assets/images/pig.svg" width="85" align="right"/>
 
-# Task list
+# RELEASES
 
-This is the task list for the project. Done, Doing, To-do, all here, all planned. =)
+This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
 - [go to published version](#4.1.4.5)
 - [go to version in development](#4.1.4.6)
-- [dev version state](../../4.1.4.6/docs/TASKS.md#4.1.4.6)
+- [dev version state](../../4.1.4.6/docs/RELEASES.md#4.1.4.6)
 
 Legend:
 - :dragon:: a huge change in system
 - :whale:: big changes, like a new feature
 - :sheep:: little changes, as a change in an existing feature
-- :ant:: the developer is just fixing some sh*t it did
+- :ant:: the developer is improving something or just fixing some sh\*t it did
 
-## <a name="8.0.0.0"></a>8.0.0.0 :dragon: <sup>`3`</sup>
-- [ ] Make/find app to verify DFM status
-- [ ] Link unsubscribe
-- [ ] Run robot each hour and remove it from request (Rust)
+## <a name="4.1.4.6"></a>4.1.4.6 :ant: <sup>`1`</sup>
+- [x] `200610>200610` Reorganize e reprioritize task list
 
-## <a name="7.0.0.0"></a>7.0.0.0 :dragon: <sup>`2`</sup>
-- [ ] Create service to translate site ("put in your language")
-- [ ] Use .NET resources
-
-## <a name="6.0.0.0"></a>6.0.0.0 :dragon: <sup>`1`</sup>
-- [ ] OCR to add values to system
-
-## <a name="5.6.0.0"></a>5.6.0.0 :whale: <sup>`1`</sup>
-- [ ] Add spendable value - how much one can spend by day [#28](https://github.com/darakeon/dfm/issues/28)
-
-## <a name="5.5.1.0"></a>5.5.1.0 :sheep: <sup>`2`</sup>
-- [ ] Add priority account (listed above others) [#50](https://github.com/darakeon/dfm/issues/50)
-- [ ] Add priority category (listed above others) [#50](https://github.com/darakeon/dfm/issues/50)
-
-## <a name="5.5.0.0"></a>5.5.0.0 :whale: <sup>`5`</sup>
-- [ ] E-mail send mock
-- [ ] "Guess" the category
-- [ ] report with more than one account
-- [ ] year report by category [(chartjs)](http://www.chartjs.org/)
-- [ ] month report by category [(chartjs)](http://www.chartjs.org/)
-
-## <a name="5.4.1.0"></a>5.4.1.0 :sheep: <sup>`1`</sup>
-- [ ] Fix error handling to have all at header
-
-## <a name="5.4.0.0"></a>5.4.0.0 :whale: <sup>`5`</sup>
-- [ ] Feature to join Categories
-- [ ] Link account and category (combo)
-- [ ] Report with date filters
-- [ ] Report with values: select to see sum
-- [ ] Show account state on account area
-
-## <a name="5.3.0.0"></a>5.3.0.0 :whale: <sup>`4`</sup>
-- [ ] Delete not accessed users [#49](https://github.com/darakeon/dfm/issues/49)
-- [ ] Last login date
-- [ ] Data export (csv, json)
-- [ ] Data import (csv, json)
-
-## <a name="5.2.0.0"></a>5.2.0.0 :whale: <sup>`4`</sup>
-- [ ] Enable reopen account
-- [ ] Config max request length
-- [ ] Show future moves and foreseen balance [#21](https://github.com/darakeon/dfm/issues/21)
-- [ ] Add config for first day of account
-
-## <a name="5.1.0.0"></a>5.1.0.0 :whale: <sup>`1`</sup>
-- [ ] Create Market - group of moves, each one of one category, to when you are shopping
-
-## <a name="5.0.0.0"></a>5.0.0.0 :dragon: <sup>`5`</sup>
-- [ ] Add contributing rules to repo [#44](https://github.com/darakeon/dfm/issues/44)
-- [ ] Add code of conduct to repo [#44](https://github.com/darakeon/dfm/issues/44)
-- [ ] Add issue template to repo [#43](https://github.com/darakeon/dfm/issues/43)
-- [ ] Add auth by cellphone
-- [ ] Store data locally, to use when there is no internet (Mobile)
-
-## <a name="4.6.0.0"></a>4.6.0.0 :whale: <sup>`2`</sup>
-- [ ] Add Negative / Positive / Sum to Year summary
-- [ ] Add Balance Negative / Positive / Sum to Year summary
-
-## <a name="4.5.0.0"></a>4.5.0.0 :whale: <sup>`5`</sup>
-- [ ] Add Template to Mobile
-- [ ] Create Template (Move)
-- [ ] Enable Copy Move (web+mobile)
-- [ ] Search by category
-- [ ] Search by move
-
-## <a name="4.4.1.0"></a>4.4.1.0 :sheep: <sup>`5`</sup>
-- [ ] If session drop, call history.go(-2) after re-login
-- [ ] Remove GetOrCreate
-- [ ] Add system tips (based on user "age")
-- [ ] If lost authy, send e-mail do remove authy
-- [ ] Use Authy as password
-
-## <a name="4.4.0.1"></a>4.4.0.1 :ant: <sup>`5`</sup>
-- [ ] Make DTO use guid, not db id (delete fakeid)
-- [ ] Handle DFMCoreException at Robot
-- [ ] Separate validators from service/repository
-- [ ] Implement entities limits (acc opened, cat enabled, moves/month, active sched)
-- [ ] Separate MVC projects: site and api
-
-## <a name="4.4.0.0"></a>4.4.0.0 :whale: <sup>`4`</sup>
-- [ ] Put info that you can disabled mobile login if your cellphone is stolen
-- [ ] Adjust tab order at move screen (mobile)
-- [ ] Add account creation (mobile)
-- [ ] Add category creation (mobile)
-
-## <a name="4.3.0.0"></a>4.3.0.0 :whale: <sup>`8`</sup>
-- [ ] Allow to hide values at start screen (mobile)
-- [ ] Change date to field with datepicker button (mobile)
-- [ ] Change category to autocomplete (mobile)
-- [ ] Move datetime spinner to the side of the button (remove modal)
-- [ ] Make it clear that clicking on account, you go to account area [#42](https://github.com/darakeon/dfm/issues/42)
-- [ ] Add update gesture to all screens
-- [ ] Add moves gestures (left delete, right check, hold edit)
-- [ ] Deny double use of authy code
-
-## <a name="4.2.0.1"></a>4.2.0.1 :ant: <sup>`1`</sup>
-- [ ] Replace XML at UI android by compose jetpack
-
-## <a name="4.2.0.0"></a>4.2.0.0 :whale: <sup>`3`</sup>
-- [ ] Reset Misc on password change
-- [ ] Add Misc reset manually
-- [ ] Add misc to accounts
-
-## <a name="4.1.5.0"></a>4.1.5.0 :sheep: <sup>`4`</sup>
-- [ ] Add change language icon to site
-- [ ] Make default language EN if browser is not PT, ES, IT or FR
-- [ ] Fix accessibility of blue and red values at mobile
-- [ ] Remove move on delete at Android
-
-## <a name="4.1.4.6"></a>4.1.4.6 :sheep: <sup>`3`</sup>
-- [ ] Add different icon for test at android
-- [ ] Check if android tests are really testing all methods
-- [ ] Test android tests payloads x .net api objects
-
-## <a name="4.1.4.5"></a>4.1.4.5 :sheep: <sup>`2`</sup>
+## <a name="4.1.4.5"></a>4.1.4.5 :ant: <sup>`3`</sup>
 - [x] `200608>200608` Automatizate add tasks from docs to release list
 - [x] `200605>200607` Change ci core tests machine to linux
 - [x] `200604>200605` Fix android intermitent tests
 
-## <a name="4.1.4.4"></a>4.1.4.4 :sheep: <sup>`1`</sup>
+## <a name="4.1.4.4"></a>4.1.4.4 :ant: <sup>`1`</sup>
 - [x] `200415>200603` Change ci browser tests machine to linux
 
 ## <a name="4.1.4.3"></a>4.1.4.3 :ant: <sup>`2`</sup>
@@ -168,7 +53,7 @@ Legend:
 - [x] `191129>191129` Fix android summary bug
 - [x] `191128>191129` Review Wizard messages
 
-## <a name="4.1.3.8"></a>4.1.3.8 :ant: <sup>`8`</sup>
+## <a name="4.1.3.8"></a>4.1.3.8 :ant: <sup>`5`</sup>
 - [x] `191121>191121` Add reference of where themes came from (docs / site settings)
 - [x] `191121>191121` Original bootstrap on NONE theme
 - [x] `191121>191121` Add PRIVACY to contract
@@ -191,7 +76,7 @@ Legend:
 - [x] `190913>190918` Remove Month and Year (summaries goes to account)
 - [x] `190908>190912` Transform ADMIN service receiving / returns into DTO - check android
 
-## <a name="4.1.3.5"></a>4.1.3.5 :ant: <sup>`4`</sup>
+## <a name="4.1.3.5"></a>4.1.3.5 :ant: <sup>`1`</sup>
 - [x] `190912>190912` Fix bug on signup page
 
 ## <a name="4.1.3.4"></a>4.1.3.4 :ant: <sup>`3`</sup>
