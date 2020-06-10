@@ -14,6 +14,12 @@ Legend:
 - :sheep:: little changes, as a change in an existing feature
 - :ant:: the developer is improving something or just fixing some sh\*t it did
 
+## <a name="4.1.4.7"></a>4.1.4.7 :ant: <sup>`4`</sup>
+- [ ] Make it clear that clicking on account, you go to account area [#42](https://github.com/darakeon/dfm/issues/42)
+- [ ] Fix accessibility of blue and red values at mobile
+- [ ] Fix error testing url
+- [ ] Fix environment variable to get server db config
+
 ## <a name="4.1.4.6"></a>4.1.4.6 :ant: <sup>`1`</sup>
 - [x] `200610>200610` Reorganize e reprioritize task list
 
