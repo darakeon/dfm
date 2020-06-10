@@ -1,4 +1,7 @@
 {
+	"4.1.4.6": [
+		"Reorganize e reprioritize task list"
+	],
 	"4.1.4.5": [
 		"Change business logic automated tests to run at Linux"
 	],

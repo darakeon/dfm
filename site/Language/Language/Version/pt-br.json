@@ -1,4 +1,7 @@
 {
+	"4.1.4.6": [
+		"Reorganizando e repriorizando lista de tarefas"
+	],
 	"4.1.4.5": [
 		"Testes automatizados da lógica de negócio colocados para rodar em Linux"
 	],
