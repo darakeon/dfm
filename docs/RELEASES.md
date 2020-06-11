@@ -14,7 +14,7 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="4.1.4.7"></a>4.1.4.7 :ant: <sup>`5`</sup>
+## <a name="4.1.5.0"></a>4.1.5.0 :sheep: <sup>`5`</sup>
 - [ ] Change menu github links to modal with options of all contact types (y, f, t, g) and release/todo
 - [ ] Make it clear that clicking on account, you go to account area [#42](https://github.com/darakeon/dfm/issues/42)
 - [ ] Fix accessibility of blue and red values at mobile
