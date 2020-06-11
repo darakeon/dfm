@@ -18,7 +18,7 @@ Legend:
 - [ ] Change menu github links to modal with options of all contact types (y, f, t, g) and release/todo
 - [ ] Make it clear that clicking on account, you go to account area [#42](https://github.com/darakeon/dfm/issues/42)
 - [ ] Fix accessibility of blue and red values at mobile
-- [ ] Fix error testing url
+- [x] `200611>200611` Fix error testing url
 - [x] `200611>200611` Fix environment variable to get server db config
 
 ## <a name="4.1.4.6"></a>4.1.4.6 :ant: <sup>`1`</sup>
