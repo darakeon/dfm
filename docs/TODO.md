@@ -24,6 +24,7 @@ This is the task list for the project.
 | Add navigate gestures to reports (left to future, right to past)                        |  3  |  1  |  3  |  6  |                    |                                                  |
 | Add moves gestures (left delete, right check/uncheck, hold edit, click show options)    |  3  |  1  |  3  |  6  |                    |                                                  |
 | Show future moves and foreseen balance                                                  |  3  |  3  |  4  |  5  |                    | [#21](https://github.com/darakeon/dfm/issues/21) |
+| Add create new task list at version changer (q2 add tasks 1 and 2, numbers add by line) |  1  |  2  |  3  |  5  |                    |                                                  |
 | Check if android tests are really testing all methods                                   |  1  |  2  |  3  |  5  |                    |                                                  |
 | Add code of conduct to repo                                                             |  2  |  2  |  3  |  5  |                    | [#44](https://github.com/darakeon/dfm/issues/44) |
 | If lost authy, send e-mail to remove authy                                              |  2  |  2  |  3  |  5  |                    |                                                  |
