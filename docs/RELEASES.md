@@ -19,7 +19,7 @@ Legend:
 - [ ] Make it clear that clicking on account, you go to account area [#42](https://github.com/darakeon/dfm/issues/42)
 - [ ] Fix accessibility of blue and red values at mobile
 - [ ] Fix error testing url
-- [ ] Fix environment variable to get server db config
+- [x] `200611>200611` Fix environment variable to get server db config
 
 ## <a name="4.1.4.6"></a>4.1.4.6 :ant: <sup>`1`</sup>
 - [x] `200610>200610` Reorganize e reprioritize task list
