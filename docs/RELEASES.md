@@ -9,10 +9,10 @@ This is the list of project releases, past and current. To see tasks that are st
 - [dev version state](../../4.1.4.7/docs/RELEASES.md#4.1.4.7)
 
 Legend:
-- :dragon:: a huge change in system
-- :whale:: big changes, like a new feature
-- :sheep:: little changes, as a change in an existing feature
-- :ant:: the developer is improving something or just fixing some sh\*t it did
+- :dragon:: at least one huge change (increases first number)
+- :whale:: at least one big change, like a new feature (increases second number)
+- :sheep:: at least one little change, as a change at an existing feature (increases third number)
+- :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="4.1.4.7"></a>4.1.4.7 :ant: <sup>`4`</sup>
 - [ ] Make it clear that clicking on account, you go to account area [#42](https://github.com/darakeon/dfm/issues/42)
