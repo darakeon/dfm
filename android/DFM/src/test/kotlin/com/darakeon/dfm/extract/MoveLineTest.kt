@@ -77,7 +77,7 @@ class MoveLineTest {
 
 		moveLine.setMove(move, false)
 
-		assertThat(moveLine.value.text.toString(), `is`("34.00".getDecimal()))
+		assertThat(moveLine.value.text.toString(), `is`("+34.00".getDecimal()))
 		val color = activity.getColor(R.color.positive_dark)
 		assertThat(moveLine.value.currentTextColor, `is`(color))
 
@@ -98,7 +98,7 @@ class MoveLineTest {
 
 		moveLine.setMove(move, false)
 
-		assertThat(moveLine.value.text.toString(), `is`("34.00".getDecimal()))
+		assertThat(moveLine.value.text.toString(), `is`("-34.00".getDecimal()))
 		val color = activity.getColor(R.color.negative_dark)
 		assertThat(moveLine.value.currentTextColor, `is`(color))
 

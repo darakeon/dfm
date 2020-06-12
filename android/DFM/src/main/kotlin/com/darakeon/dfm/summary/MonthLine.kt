@@ -6,6 +6,7 @@ import android.widget.LinearLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.extensions.setColorByAttr
+import com.darakeon.dfm.extensions.setValueColored
 import com.darakeon.dfm.extract.ExtractActivity
 import kotlinx.android.synthetic.main.month_line.view.name
 import kotlinx.android.synthetic.main.month_line.view.value
@@ -22,12 +23,7 @@ class MonthLine(context: Context, attributeSet: AttributeSet)
 	) {
 		this.name.text = name
 
-		val totalColor = if (total < 0) R.attr.negative else R.attr.positive
-		val totalToShow = if (total < 0) -total else total
-		val totalStr = DecimalFormat("#,##0.00").format(totalToShow)
-
-		value.setColorByAttr(totalColor)
-		value.text = totalStr
+		value.setValueColored(total)
 
 		isClickable = true
 

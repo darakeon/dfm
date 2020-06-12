@@ -83,7 +83,7 @@ class FormTest {
 		val textView = TextView(activity)
 
 		textView.setValueColored(50.00)
-		assertThat(textView.text.toString(), `is`("50.00"))
+		assertThat(textView.text.toString(), `is`("+50.00"))
 		val color = activity.getColor(R.color.positive_dark)
 		assertThat(textView.currentTextColor, `is`(color))
 	}
@@ -95,6 +95,16 @@ class FormTest {
 		textView.setValueColored(-50.00)
 		assertThat(textView.text.toString(), `is`("-50.00"))
 		val color = activity.getColor(R.color.negative_dark)
+		assertThat(textView.currentTextColor, `is`(color))
+	}
+
+	@Test
+	fun setValueColoredNeutral() {
+		val textView = TextView(activity)
+
+		textView.setValueColored(0.00)
+		assertThat(textView.text.toString(), `is`("0.00"))
+		val color = activity.getColor(R.color.neutral_dark)
 		assertThat(textView.currentTextColor, `is`(color))
 	}
 

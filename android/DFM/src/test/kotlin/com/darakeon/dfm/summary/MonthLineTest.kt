@@ -39,7 +39,7 @@ class MonthLineTest {
 		monthLine.setMonth("march", 27.0, "url", 1986, 3)
 
 		assertThat(monthLine.name.text.toString(), `is`("march"))
-		assertThat(monthLine.value.text.toString(), `is`("27.00".getDecimal()))
+		assertThat(monthLine.value.text.toString(), `is`("+27.00".getDecimal()))
 
 		val color = activity.getColor(R.color.positive_dark)
 		assertThat(monthLine.value.currentTextColor, `is`(color))
@@ -50,7 +50,7 @@ class MonthLineTest {
 		monthLine.setMonth("march", -27.0, "url", 1986, 3)
 
 		assertThat(monthLine.name.text.toString(), `is`("march"))
-		assertThat(monthLine.value.text.toString(), `is`("27.00".getDecimal()))
+		assertThat(monthLine.value.text.toString(), `is`("-27.00".getDecimal()))
 
 		val color = activity.getColor(R.color.negative_dark)
 		assertThat(monthLine.value.currentTextColor, `is`(color))

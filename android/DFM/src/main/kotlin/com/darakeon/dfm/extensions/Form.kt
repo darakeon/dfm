@@ -1,5 +1,6 @@
 package com.darakeon.dfm.extensions
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.graphics.Typeface
@@ -22,10 +23,22 @@ fun TextView.applyGlyphicon() {
 }
 
 fun TextView.setValueColored(value: Double) {
-	text = String.format("%1$,.2f", value)
+	text = String.format("%,.2f", value)
 
-	val color = if (value < 0) R.attr.negative else R.attr.positive
-	setColorByAttr(color)
+	@SuppressLint("SetTextI18n")
+	if (value > 0) text = "+$text"
+
+	setColorByAttr(getColor(value))
+}
+
+private fun getColor(value: Double): Int {
+	if (value < 0)
+		return R.attr.negative
+
+	if (value > 0)
+		return R.attr.positive
+
+	return R.attr.neutral
 }
 
 fun Activity.showChangeList(
@@ -33,7 +46,7 @@ fun Activity.showChangeList(
 	titleId: Int,
 	setResult: (String, String) -> Unit
 ) {
-	val adapter = list.map { it.text as CharSequence }.toTypedArray()
+	val adapter = list.map { it.text }.toTypedArray()
 
 	val title = getString(titleId)
 
