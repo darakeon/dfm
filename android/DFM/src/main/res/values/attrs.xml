@@ -2,6 +2,7 @@
 <resources>
 	<attr name="negative" format="reference" />
 	<attr name="positive" format="reference" />
+	<attr name="neutral" format="reference" />
 	<attr name="transfer" format="reference" />
 	<attr name="checked" format="reference" />
 	<attr name="unchecked" format="reference" />

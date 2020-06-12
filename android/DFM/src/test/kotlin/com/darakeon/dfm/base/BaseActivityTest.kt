@@ -19,6 +19,7 @@ import com.darakeon.dfm.utils.activity.getActivityName
 import com.darakeon.dfm.utils.log.LogRule
 import com.darakeon.dfm.utils.robolectric.RoboContextMenu
 import com.darakeon.dfm.utils.robolectric.simulateNetwork
+import com.darakeon.dfm.utils.waitTasksFinish
 import kotlinx.android.synthetic.main.bottom_menu.action_close
 import kotlinx.android.synthetic.main.bottom_menu.action_logout
 import kotlinx.android.synthetic.main.bottom_menu.bottom_menu
@@ -209,6 +210,7 @@ class BaseActivityTest {
 
 		activity.action_logout.performLongClick()
 
+		waitTasksFinish()
 		assertThat(activity.ticket, `is`(""))
 	}
 

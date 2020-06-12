@@ -4,12 +4,14 @@
 
 	<color name="negative_dark">#FFCC3333</color>
 	<color name="positive_dark">#FF3333FF</color>
+	<color name="neutral_dark">#FF339933</color>
 	<color name="transfer_dark">#FF339933</color>
 	<color name="checked_dark">#FF339933</color>
 	<color name="unchecked_dark">#FFCC3333</color>
 
 	<color name="negative_light">#FFDD2222</color>
 	<color name="positive_light">#FF2222DD</color>
+	<color name="neutral_light">#FF00BB00</color>
 	<color name="transfer_light">#FF00BB00</color>
 	<color name="checked_light">#FF00BB00</color>
 	<color name="unchecked_light">#FFDD2222</color>

@@ -10,14 +10,16 @@ import com.darakeon.dfm.api.entities.extract.Move
 import com.darakeon.dfm.api.entities.moves.Nature
 import com.darakeon.dfm.extensions.applyGlyphicon
 import com.darakeon.dfm.extensions.setColorByAttr
+import com.darakeon.dfm.extensions.setValueColored
 import kotlinx.android.synthetic.main.move_line.view.check_move
 import kotlinx.android.synthetic.main.move_line.view.date
 import kotlinx.android.synthetic.main.move_line.view.name
 import kotlinx.android.synthetic.main.move_line.view.value
-import java.text.DecimalFormat
 
-class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(context, attributeSet) {
-
+class MoveLine(
+	context: Context,
+	attributeSet: AttributeSet
+) : LinearLayout(context, attributeSet) {
 	var menu: Menu? = null
 
 	private var move: Move? = null
@@ -38,12 +40,7 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 	}
 
 	private fun setTotalField(move: Move) {
-		val totalColor = if (move.total < 0) R.attr.negative else R.attr.positive
-		val totalToShow = if (move.total < 0) -move.total else move.total
-		val totalStr = DecimalFormat("#,##0.00").format(totalToShow)
-
-		value.setColorByAttr(totalColor)
-		value.text = totalStr
+		value.setValueColored(move.total)
 	}
 
 	private fun setCheckField(canCheck: Boolean) {

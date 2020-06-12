@@ -17,7 +17,7 @@ Legend:
 ## <a name="4.1.5.0"></a>4.1.5.0 :sheep: <sup>`5`</sup>
 - [ ] Change menu github links to modal with options of all contact types (y, f, t, g) and release/todo
 - [ ] Make it clear that clicking on account, you go to account area [#42](https://github.com/darakeon/dfm/issues/42)
-- [ ] Fix accessibility of blue and red values at mobile
+- [x] `200611>200611` Fix accessibility of blue and red values at mobile
 - [x] `200611>200611` Fix error testing url
 - [x] `200611>200611` Fix environment variable to get server db config
 

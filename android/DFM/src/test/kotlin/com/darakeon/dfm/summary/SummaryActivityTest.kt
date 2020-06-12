@@ -17,6 +17,7 @@ import com.darakeon.dfm.utils.api.readBundle
 import com.darakeon.dfm.utils.getDecimal
 import com.darakeon.dfm.utils.log.LogRule
 import com.darakeon.dfm.utils.robolectric.simulateNetwork
+import com.darakeon.dfm.utils.waitTasksFinish
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.summary.empty_list
 import kotlinx.android.synthetic.main.summary.main_table
@@ -200,7 +201,7 @@ class SummaryActivityTest {
 		activity.onCreate(saved, null)
 
 		assertThat(activity.total_title.text.toString(), `is`("account"))
-		assertThat(activity.total_value.text.toString(), `is`("2.00".getDecimal()))
+		assertThat(activity.total_value.text.toString(), `is`("+2.00".getDecimal()))
 		val color = activity.getColor(R.color.positive_dark)
 		assertThat(activity.total_value.currentTextColor, `is`(color))
 	}
@@ -250,10 +251,11 @@ class SummaryActivityTest {
 		dialog.updateDate(1986, 1, 1)
 		dialog.getButton(Dialog.BUTTON_POSITIVE).performClick()
 
+		waitTasksFinish()
 		val year = activity.getPrivate<Int>("year")
 		assertThat(year, `is`(1986))
 
-		shadowOf(getMainLooper()).idle()
+		waitTasksFinish()
 		val summary = activity.getPrivate<Summary>("summary")
 		assertThat(summary.monthList.size, `is`(2))
 	}
