@@ -24,27 +24,26 @@
 @section TableHeader
 {
 	<tr class="row">
-		<th class="col-sm-6">@Context.Translate("Name")</th>
+		<th class="col-sm-5">@Context.Translate("Name")</th>
 		<th class="col-sm-4 text-center" colspan="3">@Context.Translate("Total")</th>
-		<th class="col-sm-2 text-center" colspan="2">@Context.Translate("TODO")</th>
+		<th class="col-sm-3 text-center" colspan="3">@Context.Translate("TODO")</th>
 	</tr>
 }
 
 @foreach (var account in Model.AccountList)
 {
 	var sign = Context.Translate($"{account.Sign}Limit");
+	var reports = new
+	{
+		area = route.Area,
+		accountUrl = account.Url,
+		controller = String.Empty,
+	};
 
 	<tr class="row">
-		<td class="col-sm-6">
-			@Html.RouteLink(
-				account.Name,
-				route.Name,
-				new
-				{
-					accountUrl = account.Url,
-					controller = String.Empty,
-					area = route.Area,
-				}
+		<td class="col-sm-5">
+			@Html.RouteLink(account.Name, route.Name, reports,
+				new { title = Context.Translate("AccountMoves") }
 			)
 		</td>
 
@@ -59,6 +58,13 @@
 				new ValueWithSign(account.Total, Model.Language))
 		</td>
 		<td class="col-sm-1"></td>
+
+		<td class="col-sm-1 text-center">
+			<a href="@Url.RouteUrl(route.Name, reports)">
+				<span class="glyphicon glyphicon-th-list"
+					  title="@Context.Translate("AccountMoves")"></span>
+			</a>
+		</td>
 
 		<td class="col-sm-1 text-center">
 			<a href="@Url.Action("Edit", "Accounts", new {id = account.Url})">

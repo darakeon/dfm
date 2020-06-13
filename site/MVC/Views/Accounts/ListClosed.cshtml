@@ -13,61 +13,64 @@
 
 @section TableHeader {
 	<tr class="row">
-		<th class="col-sm-4">@Context.Translate("Name")</th>
+		<th class="col-sm-3">@Context.Translate("Name")</th>
 		<th class="col-sm-2 text-center">@Context.Translate("BeginDate")</th>
 		<th class="col-sm-2 text-center">@Context.Translate("EndDate")</th>
-		<th class="col-sm-4 text-center" colspan="4">@Context.Translate("Total")</th>
-		<!--th class="todo-column">@Context.Translate("TODO")</th-->
+		<th class="col-sm-4 text-center" colspan="3">@Context.Translate("Total")</th>
+		<th class="col-sm-1 text-center">@Context.Translate("TODO")</th>
 	</tr>
 }
 
 @foreach (var account in Model.AccountList)
 {
-	if (account.End != null)
+	var sign = Context.Translate($"{account.Sign}Limit");
+	var reports = new
 	{
-		var sign = Context.Translate($"{account.Sign}Limit");
-		//var reopenLabel = Context.Translate("Reopen", "Account");
-		//var reopenUrl = Url.Action("Reopen", new { id = account.Name });
+		area = route.Area,
+		accountUrl = account.Url,
+		controller = "Reports",
+		action = "ShowMoves",
+		id = account.End.ToMonthYear()
+	};
 
-		<tr class="row">
+	<tr class="row">
 
-			<td class="col-sm-4">
-				@Html.RouteLink(account.Name, route.Name,
-					new
-					{
-						area = route.Area,
-						accountUrl = account.Url,
-						controller = "Reports",
-						action = "ShowMoves",
-						id = account.End.ToMonthYear()
-					})
+		<td class="col-sm-3">
+			@Html.RouteLink(account.Name, route.Name, reports,
+				new { title = Context.Translate("AccountMoves") }
+			)
+		</td>
+
+		<td class="col-sm-2 text-center">
+			@account.Start.ToShortDateString()
+		</td>
+		<td class="col-sm-2 text-center">
+			@account.End.ToShortDateString()
+		</td>
+
+		<td class="col-sm-1"></td>
+		<td class="col-sm-2 text-right">
+			<span class="@await Html.PartialAsync("AccountSign", account.Sign) pull-left"
+			      title="@sign"></span>
+
+			@await Html.PartialAsync("ValueWithSign",
+				new ValueWithSign(account.Total, Model.Language))
+		</td>
+		<td class="col-sm-1"></td>
+
+		<td class="col-sm-1 text-center">
+			<a href="@Url.RouteUrl(route.Name, reports)">
+				<span class="glyphicon glyphicon-th-list"
+				      title="@Context.Translate("AccountMoves")"></span>
+			</a>
+		</td>
+
+		@*
+			<td class="image">
+				<a href="@reopenUrl">
+					<img src="/Assets/image/icons/reopen.gif" alt="@reopenLabel" title="@reopenLabel" />
+				</a>
 			</td>
-
-			<td class="col-sm-2 text-center">
-				@account.Start.ToShortDateString()
-			</td>
-			<td class="col-sm-2 text-center">
-				@account.End.ToShortDateString()
-			</td>
-
-			<td class="col-sm-1"></td>
-			<td class="col-sm-2 text-right">
-				<span class="@await Html.PartialAsync("AccountSign", account.Sign) pull-left"
-					  title="@sign"></span>
-
-				@await Html.PartialAsync("ValueWithSign",
-					new ValueWithSign(account.Total, Model.Language))
-			<td class="col-sm-1"></td>
-
-			@*
-				<td class="image">
-					<a href="@reopenUrl">
-						<img src="/Assets/image/icons/reopen.gif" alt="@reopenLabel" title="@reopenLabel" />
-					</a>
-				</td>
-			*@
-		</tr>
-	}
+		*@
+	</tr>
 }
-
-
