@@ -28,7 +28,7 @@ describe('Accounts', () => {
 
 		const table = await puppy.content('#body .table')
 		expect(table).toContain(
-			'<a href="/Account/account_create">Account Create</a>'
+			'<a href="/Account/account_create" title="Movimentações da Conta">Account Create</a>'
 		)
 	})
 
@@ -45,7 +45,7 @@ describe('Accounts', () => {
 
 		const table = await puppy.content('#body .table')
 		expect(table).toContain(
-			'<a href="/Account/account_edit">Account 2</a>'
+			'<a href="/Account/account_edit" title="Movimentações da Conta">Account 2</a>'
 		)
 	})
 
@@ -59,7 +59,7 @@ describe('Accounts', () => {
 
 		const body = await puppy.content('#body')
 		expect(body).not.toContain(
-			'<a href="/Account/account_delete">Account Delete</a>'
+			'<a href="/Account/account_delete" title="Movimentações da Conta">Account Delete</a>'
 		)
 	})
 
@@ -84,7 +84,7 @@ describe('Accounts', () => {
 
 		let body = await puppy.content('#body')
 		expect(body).not.toContain(
-			'<a href="/Account/account_close">Account Close</a>'
+			'<a href="/Account/account_close" title="Movimentações da Conta">Account Close</a>'
 		)
 
 		await puppy.call('Accounts/ListClosed')
@@ -97,7 +97,7 @@ describe('Accounts', () => {
 		const report = year * 100 + month
 
 		expect(body).toContain(
-			`<a href="/Account/account_close/Reports/ShowMoves/${report}">Account Close</a>`
+			`<a href="/Account/account_close/Reports/ShowMoves/${report}" title="Movimentações da Conta">Account Close</a>`
 		)
 	})
 })
