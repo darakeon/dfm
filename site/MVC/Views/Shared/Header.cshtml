@@ -24,11 +24,10 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
 			<ul class="nav navbar-nav navbar-right">
 				<li>
-					@await Html.PartialAsync("MenuIssues")
-				</li>
-
-				<li>
-					@await Html.PartialAsync("MenuTasks")
+					<a role='button' data-toggle='modal' data-target='#contact-modal'>
+						<span class="glyphicon glyphicon-comment"
+							  title="@Context.Translate("Contact_Title")"></span>
+					</a>
 				</li>
 
 				@if (!Model.IsAuthenticated)

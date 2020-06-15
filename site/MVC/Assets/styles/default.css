@@ -61,3 +61,7 @@ footer {
 input[type="date"] {
 	line-height: 1.25 !important;
 }
+
+.modal-backdrop {
+	opacity: 0.75;
+}
