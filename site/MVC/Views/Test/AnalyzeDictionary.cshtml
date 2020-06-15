@@ -15,50 +15,53 @@
 
 		<h3>@(section.Name.ToUpper())</h3>
 
-		<table class="table table-striped table-responsive table-hover">
-
-			<tr>
-				<th style="width: 15%"></th>
-
-				@foreach (var language in section.LanguageList)
-				{
-					<th style="width: @size%">@language.Name</th>
-
-					foreach (var phrase in language.PhraseList)
-					{
-						var phraseName = Regex.Replace(phrase.Name, "([A-Z])", " $1");
-
-						if (!data.ContainsKey(phraseName))
-						{
-							data.Add(phraseName, new Dictionary<String, String>());
-						}
-
-						data[phraseName].Add(language.Name, phrase.Text);
-					}
-				}
-
-			</tr>
-
-			@foreach (var phrase in data)
-			{
+		<table class="table table-striped table-hover table-responsive">
+			<thead>
 				<tr>
-					<td>
-						@phrase.Key
-					</td>
+					<th style="width: 15%"></th>
 
-					@foreach (var language in phrase.Value)
+					@foreach (var language in section.LanguageList)
 					{
-						var key = phrase.Key + "_" + language.Key;
+						<th style="width: @size%">@language.Name</th>
 
-						<td class="@(phrases.Contains(key) ? "text-danger" : "")">
-							@language.Value
-						</td>
+						foreach (var phrase in language.PhraseList)
+						{
+							var phraseName = Regex.Replace(phrase.Name, "([A-Z])", " $1");
 
-						phrases.Add(key);
+							if (!data.ContainsKey(phraseName))
+							{
+								data.Add(phraseName, new Dictionary<String, String>());
+							}
+
+							data[phraseName].Add(language.Name, phrase.Text);
+						}
 					}
 
 				</tr>
-			}
+			</thead>
+
+			<tbody>
+				@foreach (var phrase in data)
+				{
+					<tr>
+						<td>
+							@phrase.Key
+						</td>
+
+						@foreach (var language in phrase.Value)
+						{
+							var key = phrase.Key + "_" + language.Key;
+
+							<td class="@(phrases.Contains(key) ? "text-danger" : "")">
+								@language.Value
+							</td>
+
+							phrases.Add(key);
+						}
+
+					</tr>
+				}
+			</tbody>
 		</table>
 	}
 }

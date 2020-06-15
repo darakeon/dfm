@@ -36,7 +36,9 @@
 	<span class="control-label">
 		@Html.Raw(String.Format(
 			Context.Translate("ContractAccept"),
-			$"<a role='button' data-toggle='modal' data-target='#contract-modal'>{Context.Translate("ContractTitle")}</a>"
+			"<a role='button' data-toggle='modal' data-target='#contract-modal'>" +
+				$"{Context.Translate("ContractTitle")}" +
+			"</a>"
 		))
 	</span>
 </div>

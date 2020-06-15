@@ -1,0 +1,61 @@
+﻿@model BaseModel
+
+@{
+	var contacts = new Dictionary<String, String>
+	{
+		{ "Email", "dfm@dontflymoney.com" },
+		{ "GitHub", "https://github.com/darakeon/dfm/issues/new" },
+		{ "Twitter", "https://twitter.com/dfm_grunt" },
+		{ "Facebook", "https://facebook.com/dontflymoney" },
+	};
+}
+
+<div class="modal" id="contact-modal">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="modal-title">
+					@Context.Translate("Contact_Title")
+				</span>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span
+						aria-hidden="true"
+						class="glyphicon glyphicon-remove"
+						title="@Context.Translate("Close")"
+					></span>
+				</button>
+			</div>
+			<div class="modal-body">
+				@Context.Translate("Contact_Text")
+				<ul>
+					@foreach (var contact in contacts)
+					{
+						var text = Context.Translate($"Contact_{contact.Key}");
+						var link = contact.Value;
+						var target = "";
+
+						if (!link.StartsWith("https"))
+						{
+							link = $"mailto:{link}";
+						}
+						else
+						{
+							target = "target='_blank'";
+						}
+
+						var a = $"<a href='{link}' {target}>{contact.Value}</a>";
+
+						<li>
+							@Html.Raw(String.Format(text, a))
+						</li>
+					}
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<a href="https://github.com/darakeon/dfm/blob/master/docs/TODO.md" target="_blank">
+					@Context.Translate("Contact_TaskList")
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

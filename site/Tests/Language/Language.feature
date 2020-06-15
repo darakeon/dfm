@@ -323,3 +323,16 @@ Scenario: 17. Keys should not be repeated (site)
 
 Scenario: 18. Keys should not be repeated (e-mail)
 	Then no keys should be repeated at e-mail dictionary
+
+Scenario: 19. Get translate of Interface (contact)
+	Given I have these keys
+			| Section | Phrase           |
+			| General | Contact_Title    |
+			| General | Contact_Text     |
+			| General | Contact_Email    |
+			| General | Contact_GitHub   |
+			| General | Contact_Twitter  |
+			| General | Contact_Facebook |
+			| General | Contact_TaskList |
+	When I try get the translate
+	Then I will receive no language error
