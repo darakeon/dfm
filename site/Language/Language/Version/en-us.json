@@ -1,4 +1,9 @@
 {
+	"4.1.5.0": [
+		"Add all contact types",
+		"Improve accounts screen link to account area",
+		"Add + and - at mobile for accessibility",
+	],
 	"4.1.4.6": [
 		"Reorganize e reprioritize task list"
 	],
