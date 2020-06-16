@@ -7,12 +7,34 @@ DfM -, you are welcome!
 
 Lets just make somethings clearer, to not make it a huge mess...
 
+## Branches
+
+I usually develop in a branch with the version number. When I finish
+the version, I open a [pull request](../pulls) to branch `main`. The name
+of the branch you will use develop, you can choose what better fits
+you.
+
+## Versioning
+
+The document [RELEASES.md] has what was done in each version.
+Remember to add your new version, numbering it according to the
+description at the beginning of the document. Add it below the version
+in progress (the last one, where all the tasks are unchecked).
+
+Then, there is a folder called `version` at project root. Inside of it,
+there is a project in Rust to change places where the version number
+is. You can:
+
+- use `cargo run`: better one!
+- do it manually: it will be boring and you can forget something;
+- ask us to change the version and make the commit: good one too!
+
 ## GitCop
 
 There is a bot hearing your PRs. Its name is GitCop, and it will look
 all the commits and tell if it follows some rules. Yeah, I know, the
 history has almost 1400 commits that definitely do not do that, but
-lets just what our steps from now on, ok?
+lets just watch our steps from now on, ok?
 
 ### Commit message format
 
