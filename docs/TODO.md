@@ -11,12 +11,8 @@ This is the task list for the project.
 - Dependency: which other task it depends on (if it exists)
 - Issue: github issue about the task (if it exists)
 
-| Task                                                                                    | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
+| Task (64)                                                                               | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
 | --------------------------------------------------------------------------------------- | -------- | --- | --- | --- | ------------------ | ------------------------------------------------ |
-| Make/find app to verify DFM status                                                      | :ant:    |  2  |  4  |  6  |                    |                                                  |
-| Make DTO use guid, not db id (delete fakeid)                                            | :ant:    |  2  |  4  |  6  |                    |                                                  |
-| Handle CoreError at Robot                                                               | :ant:    |  2  |  4  |  6  |                    |                                                  |
-| Adjust tab order at move screen (mobile)                                                | :sheep:  |  2  |  4  |  6  |                    |                                                  |
 | Search by move/detail                                                                   | :whale:  |  2  |  4  |  6  |                    |                                                  |
 | Last login date                                                                         | :sheep:  |  1  |  3  |  6  |                    |                                                  |
 | Enable reopen account                                                                   | :sheep:  |  1  |  3  |  6  |                    |                                                  |
@@ -24,6 +20,7 @@ This is the task list for the project.
 | Add navigate gestures to reports (left to future, right to past)                        | :whale:  |  1  |  3  |  6  |                    |                                                  |
 | Add moves gestures (left delete, right check/uncheck, hold edit, click show options)    | :whale:  |  1  |  3  |  6  |                    |                                                  |
 | Show future moves and foreseen balance                                                  | :whale:  |  3  |  4  |  5  |                    | [#21](https://github.com/darakeon/dfm/issues/21) |
+| Make/find app to verify DFM status                                                      | :ant:    |  3  |  4  |  5  |                    |                                                  |
 | Add create new task list at version changer (q2 add tasks 1 and 2, numbers add by line) | :ant:    |  2  |  3  |  5  |                    |                                                  |
 | Check if android tests are really testing all methods                                   | :ant:    |  2  |  3  |  5  |                    |                                                  |
 | Add code of conduct to repo                                                             | :sheep:  |  2  |  3  |  5  |                    | [#44](https://github.com/darakeon/dfm/issues/44) |
@@ -59,9 +56,7 @@ This is the task list for the project.
 | Enable Copy Move (web+mobile)                                                           | :whale:  |  2  |  2  |  4  |                    |                                                  |
 | Add different icon for test at android                                                  | :ant:    |  1  |  1  |  4  |                    |                                                  |
 | If session drop, call history.go(-2) after re-login                                     | :sheep:  |  1  |  1  |  4  |                    |                                                  |
-| Change date to field with datepicker button (mobile)                                    | :sheep:  |  1  |  1  |  4  |                    |                                                  |
 | Make default language EN if browser is not PT, ES, IT or FR                             | :sheep:  |  1  |  1  |  4  |                    |                                                  |
-| Change category to autocomplete (mobile)                                                | :whale:  |  1  |  1  |  4  |                    |                                                  |
 | Replace XML at UI android by compose jetpack                                            | :ant:    |  4  |  3  |  3  |                    |                                                  |
 | Add misc to users                                                                       | :dragon: |  3  |  2  |  3  |                    |                                                  |
 | Reset Misc on password change and send e-mail                                           | :sheep:  |  1  |  3  |  6  | misc               |                                                  |

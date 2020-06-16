@@ -4,15 +4,22 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#4.1.4.6)
-- [go to version in development](#4.1.4.7)
-- [dev version state](../../4.1.4.7/docs/RELEASES.md#4.1.4.7)
+- [go to published version](#4.1.5.0)
+- [go to version in development](#4.2.0.0)
+- [dev version state](../../4.2.0.0/docs/RELEASES.md#4.2.0.0)
 
 Legend:
 - :dragon:: at least one huge change (increases first number)
 - :whale:: at least one big change, like a new feature (increases second number)
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="4.2.0.0"></a>4.2.0.0 :whale: <sup>`5`</sup>
+- [ ] Make DTO use guid, not db id (delete fakeid)
+- [ ] Handle CoreError at Robot
+- [ ] Adjust tab order at move screen (mobile)
+- [ ] Change category to autocomplete (mobile)
+- [ ] Change date to field with datepicker button (mobile)
 
 ## <a name="4.1.5.0"></a>4.1.5.0 :sheep: <sup>`5`</sup>
 - [x] `200615>200615` Change menu github links to modal with options of all contact types (y, f, t, g) and release/todo

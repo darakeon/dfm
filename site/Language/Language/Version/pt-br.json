@@ -1,4 +1,9 @@
 {
+	"4.1.5.0": [
+		"Adicionada lista completa de formas de contato",
+		"Melhorado link para a área da conta que fica na listagem de conta",
+		"Adicionados sinais de + e - no aplicativo, por causa de acessibilidade",
+	],
 	"4.1.4.6": [
 		"Reorganizando e repriorizando lista de tarefas"
 	],
