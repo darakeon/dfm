@@ -4,6 +4,9 @@ import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
 import android.view.View.FOCUS_DOWN
+import android.view.View.GONE
+import android.widget.GridLayout
+import android.widget.GridLayout.LayoutParams.MATCH_PARENT
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.Date
 import com.darakeon.dfm.api.entities.moves.Move
@@ -32,7 +35,6 @@ import kotlinx.android.synthetic.main.moves.detail_value
 import kotlinx.android.synthetic.main.moves.detailed_value
 import kotlinx.android.synthetic.main.moves.details
 import kotlinx.android.synthetic.main.moves.form
-import kotlinx.android.synthetic.main.moves.lose_category
 import kotlinx.android.synthetic.main.moves.nature
 import kotlinx.android.synthetic.main.moves.no_accounts
 import kotlinx.android.synthetic.main.moves.no_categories
@@ -98,14 +100,15 @@ class MovesActivity : BaseActivity() {
 		if (moveForm.isUsingCategories) {
 			moveForm.categoryList
 				.setLabel(move.categoryName, category)
+			category.setOnClickListener { changeCategory() }
+		} else if (move.warnCategory) {
+			category.paintFlags += Paint.STRIKE_THRU_TEXT_FLAG
+			category.setOnClickListener { warnLoseCategory() }
 		} else {
-			category.visibility = View.GONE
-		}
-
-		if (move.warnCategory)
-		{
-			lose_category.paintFlags += Paint.STRIKE_THRU_TEXT_FLAG
-			lose_category.visibility = View.VISIBLE
+			category.visibility = GONE
+			val layoutParams = date.layoutParams as GridLayout.LayoutParams
+			layoutParams.columnSpec = GridLayout.spec(0, 2, 0f)
+			layoutParams.width = MATCH_PARENT
 		}
 
 		val nature = move.natureEnum
@@ -216,14 +219,14 @@ class MovesActivity : BaseActivity() {
 		}
 	}
 
-	fun changeCategory(@Suppress(ON_CLICK) view: View) {
+	fun changeCategory() {
 		showChangeList(moveForm.categoryList, R.string.category) { text, value ->
 			category.text = text
 			move.categoryName = value
 		}
 	}
 
-	fun warnLoseCategory(@Suppress(ON_CLICK) view: View) {
+	fun warnLoseCategory() {
 		this.alertError(R.string.losingCategory)
 	}
 
