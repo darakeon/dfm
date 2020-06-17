@@ -525,7 +525,7 @@ class MovesActivityTest {
 		assertThat(activity.category.text.toString(), `is`("category"))
 		assertNull(move.categoryName)
 
-		activity.changeCategory(View(activity))
+		activity.changeCategory()
 
 		val alert = getLatestAlertDialog()
 		shadowOf(alert).clickOnItem(0)
