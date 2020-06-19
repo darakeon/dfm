@@ -7,6 +7,7 @@ using DFM.Language.Emails;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
+using Keon.Util.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Controllers
@@ -15,7 +16,7 @@ namespace DFM.MVC.Controllers
 	public class TestController : Controller
 	{
 		[HttpGetAndHead]
-		public IActionResult Index()
+		public IActionResult Language()
 		{
 			return View(
 				"AnalyzeDictionary",
@@ -24,19 +25,42 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpGetAndHead]
-		public IActionResult Email()
+		public IActionResult EmailLayout()
 		{
-			var themes = new[] {SimpleTheme.Dark, SimpleTheme.Light};
+			var themes = new[] { SimpleTheme.Dark, SimpleTheme.Light };
 			var languages = PlainText.AcceptedLanguage();
 
 			var result =
 				from language in languages
 				from theme in themes
 				select getLayout(Format.MoveNotification(language, theme))
-					 + getLayout(Format.SecurityAction(language, theme, SecurityAction.PasswordReset))
-					 + getLayout(Format.SecurityAction(language, theme, SecurityAction.UserVerification));
+				       + getLayout(Format.SecurityAction(language, theme, SecurityAction.PasswordReset))
+				       + getLayout(Format.SecurityAction(language, theme, SecurityAction.UserVerification));
 
 			return View(result);
+		}
+
+		[HttpGetAndHead]
+		public IActionResult SendEmail()
+		{
+			var message = "The e-mail sending is working!";
+
+			try
+			{
+				new Sender()
+					.Subject("Test")
+					.Body(message)
+					.To("darakeon@gmail.com")
+					.Send();
+			}
+			catch (Exception e)
+			{
+				e = e.MostInner();
+				message = e.Message + "<br />"
+					+ e.StackTrace.Replace("\n", "<br />");
+			}
+
+			return Content(message, "text/html");
 		}
 
 		private String getLayout(Format format)
