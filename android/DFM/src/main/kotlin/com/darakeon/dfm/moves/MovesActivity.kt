@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.view.View
 import android.view.View.FOCUS_DOWN
 import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.GridLayout
-import android.widget.GridLayout.LayoutParams.MATCH_PARENT
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.Date
 import com.darakeon.dfm.api.entities.moves.Move
@@ -18,6 +18,8 @@ import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.dialogs.getDateDialog
 import com.darakeon.dfm.extensions.ON_CLICK
+import com.darakeon.dfm.extensions.addMask
+import com.darakeon.dfm.extensions.applyGlyphicon
 import com.darakeon.dfm.extensions.backWithExtras
 import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.onChange
@@ -28,6 +30,7 @@ import kotlinx.android.synthetic.main.moves.account_in
 import kotlinx.android.synthetic.main.moves.account_out
 import kotlinx.android.synthetic.main.moves.category
 import kotlinx.android.synthetic.main.moves.date
+import kotlinx.android.synthetic.main.moves.date_picker
 import kotlinx.android.synthetic.main.moves.description
 import kotlinx.android.synthetic.main.moves.detail_amount
 import kotlinx.android.synthetic.main.moves.detail_description
@@ -58,6 +61,8 @@ class MovesActivity : BaseActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
+		date_picker.applyGlyphicon()
+
 		accountUrl = getExtraOrUrl("accountUrl") ?: ""
 		id = getExtraOrUrl("id")?.toIntOrNull() ?: 0
 
@@ -85,30 +90,38 @@ class MovesActivity : BaseActivity() {
 	private fun populateResponse() {
 		move.setDefaultData(accountUrl, moveForm.isUsingCategories)
 
-		if (!isMoveAllowed()) return
+		if (!isMoveAllowed())
+			return
 
 		if (move.checked)
-			remove_check.visibility = View.VISIBLE
+			remove_check.visibility = VISIBLE
 
 		description.setText(move.description)
-		description.onChange {
-			move.description = it
-		}
+		description.onChange { move.description = it }
 
-		date.text = move.date.format()
+		date.addMask("####-##-##")
+		date.setText(move.date.format())
+		date.onChange { move.date = Date(it) }
+		date_picker.setOnClickListener { showDatePicker() }
 
-		if (moveForm.isUsingCategories) {
-			moveForm.categoryList
-				.setLabel(move.categoryName, category)
-			category.setOnClickListener { changeCategory() }
-		} else if (move.warnCategory) {
-			category.paintFlags += Paint.STRIKE_THRU_TEXT_FLAG
-			category.setOnClickListener { warnLoseCategory() }
-		} else {
-			category.visibility = GONE
-			val layoutParams = date.layoutParams as GridLayout.LayoutParams
-			layoutParams.columnSpec = GridLayout.spec(0, 2, 0f)
-			layoutParams.width = MATCH_PARENT
+		when {
+			moveForm.isUsingCategories -> {
+				moveForm.categoryList
+					.setLabel(move.categoryName, category)
+				category.setOnClickListener { changeCategory() }
+			}
+			move.warnCategory -> {
+				category.paintFlags += Paint.STRIKE_THRU_TEXT_FLAG
+				category.setOnClickListener { warnLoseCategory() }
+			}
+			else -> {
+				category.visibility = GONE
+				val layoutParams = date.layoutParams as GridLayout.LayoutParams
+				layoutParams.columnSpec = GridLayout.spec(0, 5, 5f)
+
+				val lp = category.layoutParams as GridLayout.LayoutParams
+				lp.columnSpec = GridLayout.spec(0, 0, 0f)
+			}
 		}
 
 		val nature = move.natureEnum
@@ -138,17 +151,17 @@ class MovesActivity : BaseActivity() {
 
 		if (moveForm.blockedByAccounts()) {
 			canMove = false
-			no_accounts.visibility = View.VISIBLE
+			no_accounts.visibility = VISIBLE
 		}
 
 		if (moveForm.blockedByCategories()) {
 			canMove = false
-			no_categories.visibility = View.VISIBLE
+			no_categories.visibility = VISIBLE
 		}
 
 		if (!canMove) {
-			form.visibility = View.GONE
-			warnings.visibility = View.VISIBLE
+			form.visibility = GONE
+			warnings.visibility = VISIBLE
 		}
 
 		return canMove
@@ -158,10 +171,10 @@ class MovesActivity : BaseActivity() {
 		nature.text = text
 		move.natureEnum = Nature.get(value)
 
-		val accountOutVisibility = if (move.natureEnum != Nature.In) View.VISIBLE else View.GONE
+		val accountOutVisibility = if (move.natureEnum != Nature.In) VISIBLE else GONE
 		account_out.visibility = accountOutVisibility
 
-		val accountInVisibility = if (move.natureEnum != Nature.Out) View.VISIBLE else View.GONE
+		val accountInVisibility = if (move.natureEnum != Nature.Out) VISIBLE else GONE
 		account_in.visibility = accountInVisibility
 
 		if (move.natureEnum == Nature.Out) {
@@ -178,8 +191,8 @@ class MovesActivity : BaseActivity() {
 	private fun useDetailed() {
 		move.isDetailed = true
 
-		simple_value.visibility = View.GONE
-		detailed_value.visibility = View.VISIBLE
+		simple_value.visibility = GONE
+		detailed_value.visibility = VISIBLE
 
 		scrollToTheEnd()
 	}
@@ -187,8 +200,8 @@ class MovesActivity : BaseActivity() {
 	private fun useSimple() {
 		move.isDetailed = false
 
-		simple_value.visibility = View.VISIBLE
-		detailed_value.visibility = View.GONE
+		simple_value.visibility = VISIBLE
+		detailed_value.visibility = GONE
 
 		scrollToTheEnd()
 	}
@@ -210,11 +223,10 @@ class MovesActivity : BaseActivity() {
 		outState.putJson(moveFormKey, moveForm)
 	}
 
-	fun showDatePicker(@Suppress(ON_CLICK) view: View) {
+	fun showDatePicker() {
 		with(move.date) {
 			getDateDialog(year, javaMonth, day) { y, m, d ->
-				move.date = Date(y, m+1, d)
-				date.text = move.date.format()
+				date.setText(Date(y, m+1, d).format())
 			}.show()
 		}
 	}
