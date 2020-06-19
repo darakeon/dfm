@@ -1,6 +1,6 @@
 ## Task list
 
-[{code}](https://github.com/darakeon/dfm/blob/master/docs/RELEASES.md#{code})
+[{code}](https://github.com/darakeon/dfm/blob/main/docs/RELEASES.md#{code})
 
 ## Issues to close
 
@@ -19,7 +19,7 @@
 - [ ] Upload new mobile prints
 - [ ] Merge PR
 - [ ] Create branch of other version
-- [ ] Create tag on master
+- [ ] Create tag on main
 - [ ] Upload video
 - [ ] Post Twitter
 - [ ] Post Facebook
