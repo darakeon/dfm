@@ -47,7 +47,7 @@
 		<GridLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:columnCount="2">
+			android:columnCount="6">
 
 			<TextView
 				android:layout_width="match_parent"
@@ -55,14 +55,14 @@
 				android:id="@+id/remove_check"
 				android:text="@string/removingCheck"
 				android:visibility="gone"
-				android:layout_columnSpan="2"
+				android:layout_columnSpan="6"
 				android:gravity="top|center" />
 
 			<TextView
 				android:id="@+id/description_label"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_columnSpan="2"
+				android:layout_columnSpan="6"
 				android:text="@string/description"
 				android:labelFor="@+id/description" />
 
@@ -70,31 +70,41 @@
 				android:id="@+id/description"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_columnSpan="2"
+				android:layout_columnSpan="6"
 				android:inputType="text"
 				android:layout_marginBottom="10dp" />
 
-			<Button
-				android:text="@string/date"
+			<EditText
+				android:id="@+id/date"
 				android:layout_height="wrap_content"
 				android:layout_width="0dp"
-				android:layout_columnWeight="1"
-				android:id="@+id/date"
-				android:onClick="showDatePicker" />
+				android:layout_columnSpan="2"
+				android:layout_columnWeight="2"
+				android:inputType="date" />
+
+			<Button
+				android:text="@string/calendar"
+				android:id="@+id/date_picker"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_columnSpan="1"
+				android:layout_columnWeight="1" />
 
 			<Button
 				android:text="@string/category"
 				android:id="@+id/category"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
-				android:layout_columnWeight="1" />
+				android:layout_columnSpan="3"
+				android:layout_columnWeight="3" />
 
 			<Button
 				android:text="@string/nature"
 				android:id="@+id/nature"
 				android:layout_width="0dp"
 				android:layout_height="0dp"
-				android:layout_columnWeight="1"
+				android:layout_columnWeight="3"
+				android:layout_columnSpan="3"
 				android:layout_rowWeight="2"
 				android:layout_rowSpan="2"
 				android:onClick="changeNature" />
@@ -104,7 +114,8 @@
 				android:id="@+id/account_out"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
-				android:layout_columnWeight="1"
+				android:layout_columnWeight="3"
+				android:layout_columnSpan="3"
 				android:onClick="changeAccountOut"
 				android:visibility="visible"/>
 
@@ -113,7 +124,8 @@
 				android:id="@+id/account_in"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
-				android:layout_columnWeight="1"
+				android:layout_columnWeight="3"
+				android:layout_columnSpan="3"
 				android:layout_gravity="fill_horizontal"
 				android:onClick="changeAccountIn"
 				android:visibility="gone"/>
@@ -122,7 +134,7 @@
 				android:id="@+id/simple_value"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
-				android:layout_columnSpan="2"
+				android:layout_columnSpan="6"
 				android:layout_marginTop="10dp"
 				android:columnCount="2">
 
@@ -155,7 +167,7 @@
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:columnCount="4"
-				android:layout_columnSpan="2"
+				android:layout_columnSpan="6"
 				android:visibility="gone">
 
 				<TextView
@@ -234,6 +246,7 @@
 				android:text="@string/cancel"
 				android:layout_width="0dp"
 				android:layout_columnWeight="1"
+				android:layout_columnSpan="3"
 				android:layout_height="wrap_content"
 				android:onClick="back" />
 
@@ -241,6 +254,7 @@
 				android:text="@string/save"
 				android:layout_width="0dp"
 				android:layout_columnWeight="1"
+				android:layout_columnSpan="3"
 				android:layout_height="wrap_content"
 				android:onClick="save" />
 

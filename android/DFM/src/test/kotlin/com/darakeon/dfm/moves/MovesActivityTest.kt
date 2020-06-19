@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.ComboItem
@@ -37,7 +38,6 @@ import kotlinx.android.synthetic.main.moves.detail_value
 import kotlinx.android.synthetic.main.moves.detailed_value
 import kotlinx.android.synthetic.main.moves.details
 import kotlinx.android.synthetic.main.moves.form
-import kotlinx.android.synthetic.main.moves.lose_category
 import kotlinx.android.synthetic.main.moves.nature
 import kotlinx.android.synthetic.main.moves.no_accounts
 import kotlinx.android.synthetic.main.moves.no_categories
@@ -83,10 +83,10 @@ class MovesActivityTest {
 		assertNotNull(activity.findViewById(R.id.no_accounts))
 		assertNotNull(activity.findViewById(R.id.no_categories))
 		assertNotNull(activity.findViewById(R.id.remove_check))
-		assertNotNull(activity.findViewById(R.id.lose_category))
 		assertNotNull(activity.findViewById(R.id.form))
 		assertNotNull(activity.findViewById(R.id.description))
 		assertNotNull(activity.findViewById(R.id.date))
+		assertNotNull(activity.findViewById(R.id.date_picker))
 		assertNotNull(activity.findViewById(R.id.category))
 		assertNotNull(activity.findViewById(R.id.nature))
 		assertNotNull(activity.findViewById(R.id.account_out))
@@ -319,6 +319,11 @@ class MovesActivityTest {
 		activity.onCreate(saved, null)
 
 		assertThat(activity.date.text.toString(), `is`("2020-03-08"))
+
+		val pickerButton = shadowOf(
+			activity.findViewById<Button>(R.id.date_picker)
+		)
+		assertNotNull(pickerButton.onClickListener)
 	}
 
 	@Test
@@ -339,8 +344,6 @@ class MovesActivityTest {
 		saved.putString("move", readBundle("move_without_category"))
 
 		activity.onCreate(saved, null)
-
-		assertThat(activity.category.visibility, `is`(View.GONE))
 	}
 
 	@Test
@@ -351,11 +354,9 @@ class MovesActivityTest {
 
 		activity.onCreate(saved, null)
 
-		val fieldFlags = activity.lose_category.paintFlags
+		val fieldFlags = activity.category.paintFlags
 		val strikeLine = Paint.STRIKE_THRU_TEXT_FLAG
 		assertThat(fieldFlags.and(strikeLine), `is`(strikeLine))
-
-		assertThat(activity.lose_category.visibility, `is`(View.VISIBLE))
 	}
 
 	@Test
@@ -499,13 +500,29 @@ class MovesActivityTest {
 	}
 
 	@Test
-	fun dateDialog() {
+	fun dateTyping() {
 		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
 		activity.onCreate(saved, null)
 
-		assertThat(activity.date.text.toString(), `is`("date"))
+		assertThat(activity.date.text.toString(), `is`(""))
 
-		activity.showDatePicker(View(activity))
+		activity.date.append("1986-03-27")
+
+		val move = activity.getPrivate<Move>("move")
+
+		assertThat(move.date, `is`(Date(1986, 3, 27)))
+	}
+
+	@Test
+	fun dateDialog() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		activity.onCreate(saved, null)
+
+		assertThat(activity.date.text.toString(), `is`(""))
+
+		activity.showDatePicker()
 
 		val dialog = getLastDatePicker()
 		dialog.updateDate(1986, Calendar.MARCH, 27)
@@ -539,7 +556,7 @@ class MovesActivityTest {
 		val saved = Bundle()
 		activity.onCreate(saved, null)
 
-		activity.warnLoseCategory(View(activity))
+		activity.warnLoseCategory()
 
 		val alert = getLatestAlertDialog()
 		val shadow = shadowOf(alert)
@@ -772,15 +789,4 @@ class MovesActivityTest {
 		assertThat(intent.getIntExtra("id", 0), `is`(0))
 		assertThat(intent.getActivityName(), `is`("WelcomeActivity"))
 	}
-	/*
-	fun save(@Suppress(ON_CLICK) view: View) {
-		move.clearNotUsedValues()
-		callApi {
-			it.saveMove(move) {
-				intent.removeExtra("id")
-				backWithExtras()
-			}
-		}
-	}
-	*/
 }

@@ -19,7 +19,7 @@ Legend:
 - [ ] Handle CoreError at Robot
 - [ ] Adjust tab order at move screen (mobile)
 - [ ] Change category to autocomplete (mobile)
-- [ ] `200616>......` Change date to field with datepicker button (mobile)
+- [x] `200616>200623` Change date to field with datepicker button (mobile)
 
 ## <a name="4.1.5.0"></a>4.1.5.0 :sheep: <sup>`5`</sup>
 - [x] `200615>200615` Change menu github links to modal with options of all contact types (y, f, t, g) and release/todo
