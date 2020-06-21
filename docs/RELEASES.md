@@ -18,7 +18,7 @@ Legend:
 - [ ] Make DTO use guid, not db id (delete fakeid)
 - [ ] Handle CoreError at Robot
 - [ ] Adjust tab order at move screen (mobile)
-- [ ] Change category to autocomplete (mobile)
+- [x] `200620>200623` Change category to autocomplete (mobile)
 - [x] `200616>200623` Change date to field with datepicker button (mobile)
 
 ## <a name="4.1.5.0"></a>4.1.5.0 :sheep: <sup>`5`</sup>

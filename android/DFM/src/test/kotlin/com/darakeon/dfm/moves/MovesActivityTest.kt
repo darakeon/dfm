@@ -6,7 +6,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
-import android.widget.Button
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.TextView
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.ComboItem
@@ -30,7 +31,9 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.moves.account_in
 import kotlinx.android.synthetic.main.moves.account_out
 import kotlinx.android.synthetic.main.moves.category
+import kotlinx.android.synthetic.main.moves.category_picker
 import kotlinx.android.synthetic.main.moves.date
+import kotlinx.android.synthetic.main.moves.date_picker
 import kotlinx.android.synthetic.main.moves.description
 import kotlinx.android.synthetic.main.moves.detail_amount
 import kotlinx.android.synthetic.main.moves.detail_description
@@ -88,6 +91,7 @@ class MovesActivityTest {
 		assertNotNull(activity.findViewById(R.id.date))
 		assertNotNull(activity.findViewById(R.id.date_picker))
 		assertNotNull(activity.findViewById(R.id.category))
+		assertNotNull(activity.findViewById(R.id.category_picker))
 		assertNotNull(activity.findViewById(R.id.nature))
 		assertNotNull(activity.findViewById(R.id.account_out))
 		assertNotNull(activity.findViewById(R.id.account_in))
@@ -261,10 +265,10 @@ class MovesActivityTest {
 		val form = activity.getPrivate<MoveForm>("moveForm")
 
 		assertTrue(form.blockedByAccounts())
-		assertThat(activity.no_accounts.visibility, `is`(View.VISIBLE))
+		assertThat(activity.no_accounts.visibility, `is`(VISIBLE))
 
-		assertThat(activity.form.visibility, `is`(View.GONE))
-		assertThat(activity.warnings.visibility, `is`(View.VISIBLE))
+		assertThat(activity.form.visibility, `is`(GONE))
+		assertThat(activity.warnings.visibility, `is`(VISIBLE))
 	}
 
 	@Test
@@ -277,10 +281,10 @@ class MovesActivityTest {
 		val form = activity.getPrivate<MoveForm>("moveForm")
 
 		assertTrue(form.blockedByCategories())
-		assertThat(activity.no_categories.visibility, `is`(View.VISIBLE))
+		assertThat(activity.no_categories.visibility, `is`(VISIBLE))
 
-		assertThat(activity.form.visibility, `is`(View.GONE))
-		assertThat(activity.warnings.visibility, `is`(View.VISIBLE))
+		assertThat(activity.form.visibility, `is`(GONE))
+		assertThat(activity.warnings.visibility, `is`(VISIBLE))
 	}
 
 	@Test
@@ -291,7 +295,7 @@ class MovesActivityTest {
 
 		activity.onCreate(saved, null)
 
-		assertThat(activity.remove_check.visibility, `is`(View.VISIBLE))
+		assertThat(activity.remove_check.visibility, `is`(VISIBLE))
 	}
 
 	@Test
@@ -320,9 +324,7 @@ class MovesActivityTest {
 
 		assertThat(activity.date.text.toString(), `is`("2020-03-08"))
 
-		val pickerButton = shadowOf(
-			activity.findViewById<Button>(R.id.date_picker)
-		)
+		val pickerButton = shadowOf(activity.date_picker)
 		assertNotNull(pickerButton.onClickListener)
 	}
 
@@ -335,6 +337,11 @@ class MovesActivityTest {
 		activity.onCreate(saved, null)
 
 		assertThat(activity.category.text.toString(), `is`("My Category"))
+
+		val categoryButton = shadowOf(
+			activity.category_picker
+		)
+		assertNotNull(categoryButton.onClickListener)
 	}
 
 	@Test
@@ -344,6 +351,9 @@ class MovesActivityTest {
 		saved.putString("move", readBundle("move_without_category"))
 
 		activity.onCreate(saved, null)
+
+		assertThat(activity.category.visibility, `is`(GONE))
+		assertThat(activity.category_picker.visibility, `is`(GONE))
 	}
 
 	@Test
@@ -354,7 +364,10 @@ class MovesActivityTest {
 
 		activity.onCreate(saved, null)
 
-		val fieldFlags = activity.category.paintFlags
+		assertThat(activity.category.visibility, `is`(GONE))
+		assertThat(activity.category_picker.visibility, `is`(VISIBLE))
+
+		val fieldFlags = activity.category_picker.paintFlags
 		val strikeLine = Paint.STRIKE_THRU_TEXT_FLAG
 		assertThat(fieldFlags.and(strikeLine), `is`(strikeLine))
 	}
@@ -372,8 +385,8 @@ class MovesActivityTest {
 		val move = activity.getPrivate<Move>("move")
 
 		assertThat(move.natureEnum, `is`(Nature.Transfer))
-		assertThat(activity.account_out.visibility, `is`(View.VISIBLE))
-		assertThat(activity.account_in.visibility, `is`(View.VISIBLE))
+		assertThat(activity.account_out.visibility, `is`(VISIBLE))
+		assertThat(activity.account_in.visibility, `is`(VISIBLE))
 
 		assertNotNull(move.outUrl)
 		assertNotNull(move.inUrl)
@@ -396,8 +409,8 @@ class MovesActivityTest {
 
 		assertThat(move.natureEnum, `is`(Nature.In))
 
-		assertThat(activity.account_out.visibility, `is`(View.GONE))
-		assertThat(activity.account_in.visibility, `is`(View.VISIBLE))
+		assertThat(activity.account_out.visibility, `is`(GONE))
+		assertThat(activity.account_in.visibility, `is`(VISIBLE))
 
 		assertNull(move.outUrl)
 		assertNotNull(move.inUrl)
@@ -430,8 +443,8 @@ class MovesActivityTest {
 
 		assertTrue(move.isDetailed)
 
-		assertThat(activity.simple_value.visibility, `is`(View.GONE))
-		assertThat(activity.detailed_value.visibility, `is`(View.VISIBLE))
+		assertThat(activity.simple_value.visibility, `is`(GONE))
+		assertThat(activity.detailed_value.visibility, `is`(VISIBLE))
 
 		assertThat(activity.details.childCount, `is`(2))
 
@@ -460,8 +473,8 @@ class MovesActivityTest {
 
 		assertFalse(move.isDetailed)
 
-		assertThat(activity.simple_value.visibility, `is`(View.VISIBLE))
-		assertThat(activity.detailed_value.visibility, `is`(View.GONE))
+		assertThat(activity.simple_value.visibility, `is`(VISIBLE))
+		assertThat(activity.detailed_value.visibility, `is`(GONE))
 
 		assertThat(activity.value.text.toString(), `is`("1.00".getDecimal()))
 
@@ -532,20 +545,41 @@ class MovesActivityTest {
 	}
 
 	@Test
-	fun changeCategory() {
+	fun changeCategoryByList() {
 		val saved = Bundle()
 		saved.putString("moveForm", readBundle("move_form"))
 		activity.onCreate(saved, null)
 
 		val move = activity.getPrivate<Move>("move")
 
-		assertThat(activity.category.text.toString(), `is`("category"))
+		assertThat(activity.category.text.toString(), `is`(""))
 		assertNull(move.categoryName)
 
 		activity.changeCategory()
 
 		val alert = getLatestAlertDialog()
 		shadowOf(alert).clickOnItem(0)
+
+		assertThat(activity.category.text.toString(), `is`("My Category"))
+		assertThat(move.categoryName, `is`("category"))
+	}
+
+	@Test
+	fun changeCategoryByTyping() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		activity.onCreate(saved, null)
+
+		val suggestions = activity.category.adapter
+		assertNotNull(suggestions)
+		assertThat(suggestions.count, `is`(1))
+
+		val move = activity.getPrivate<Move>("move")
+
+		assertThat(activity.category.text.toString(), `is`(""))
+		assertNull(move.categoryName)
+
+		activity.category.append("My Category")
 
 		assertThat(activity.category.text.toString(), `is`("My Category"))
 		assertThat(move.categoryName, `is`("category"))

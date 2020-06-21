@@ -7,6 +7,7 @@ import android.view.View.FOCUS_DOWN
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.GridLayout
+import android.widget.GridLayout.UNDEFINED
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.Date
 import com.darakeon.dfm.api.entities.moves.Move
@@ -22,6 +23,7 @@ import com.darakeon.dfm.extensions.addMask
 import com.darakeon.dfm.extensions.applyGlyphicon
 import com.darakeon.dfm.extensions.backWithExtras
 import com.darakeon.dfm.extensions.getFromJson
+import com.darakeon.dfm.extensions.complete
 import com.darakeon.dfm.extensions.onChange
 import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.extensions.showChangeList
@@ -29,6 +31,7 @@ import com.darakeon.dfm.extensions.toDoubleByCulture
 import kotlinx.android.synthetic.main.moves.account_in
 import kotlinx.android.synthetic.main.moves.account_out
 import kotlinx.android.synthetic.main.moves.category
+import kotlinx.android.synthetic.main.moves.category_picker
 import kotlinx.android.synthetic.main.moves.date
 import kotlinx.android.synthetic.main.moves.date_picker
 import kotlinx.android.synthetic.main.moves.description
@@ -62,6 +65,7 @@ class MovesActivity : BaseActivity() {
 		super.onCreate(savedInstanceState)
 
 		date_picker.applyGlyphicon()
+		category_picker.applyGlyphicon()
 
 		accountUrl = getExtraOrUrl("accountUrl") ?: ""
 		id = getExtraOrUrl("id")?.toIntOrNull() ?: 0
@@ -108,19 +112,28 @@ class MovesActivity : BaseActivity() {
 			moveForm.isUsingCategories -> {
 				moveForm.categoryList
 					.setLabel(move.categoryName, category)
-				category.setOnClickListener { changeCategory() }
+				category.complete(moveForm.categoryList) {
+					move.categoryName = it
+				}
+
+				category_picker.setOnClickListener { changeCategory() }
 			}
 			move.warnCategory -> {
-				category.paintFlags += Paint.STRIKE_THRU_TEXT_FLAG
-				category.setOnClickListener { warnLoseCategory() }
+				category.visibility = GONE
+				changeColSpan(category, 0)
+				changeColSpan(category_picker, 3)
+
+				category_picker.text = move.categoryName
+				category_picker.paintFlags += Paint.STRIKE_THRU_TEXT_FLAG
+				category_picker.setOnClickListener { warnLoseCategory() }
 			}
 			else -> {
 				category.visibility = GONE
-				val layoutParams = date.layoutParams as GridLayout.LayoutParams
-				layoutParams.columnSpec = GridLayout.spec(0, 5, 5f)
+				category_picker.visibility = GONE
 
-				val lp = category.layoutParams as GridLayout.LayoutParams
-				lp.columnSpec = GridLayout.spec(0, 0, 0f)
+				changeColSpan(date, 5)
+				changeColSpan(category, 0)
+				changeColSpan(category_picker, 0)
 			}
 		}
 
@@ -144,6 +157,11 @@ class MovesActivity : BaseActivity() {
 		}
 
 		value.onChange { move.setValue(it) }
+	}
+
+	private fun changeColSpan(view: View, size: Int) {
+		val layoutParams = view.layoutParams as GridLayout.LayoutParams
+		layoutParams.columnSpec = GridLayout.spec(UNDEFINED, size, size.toFloat())
 	}
 
 	private fun isMoveAllowed(): Boolean {
@@ -232,9 +250,8 @@ class MovesActivity : BaseActivity() {
 	}
 
 	fun changeCategory() {
-		showChangeList(moveForm.categoryList, R.string.category) { text, value ->
-			category.text = text
-			move.categoryName = value
+		showChangeList(moveForm.categoryList, R.string.category) {
+			text, _ -> category.setText(text)
 		}
 	}
 

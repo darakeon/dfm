@@ -76,8 +76,8 @@
 
 			<EditText
 				android:id="@+id/date"
-				android:layout_height="wrap_content"
 				android:layout_width="0dp"
+				android:layout_height="wrap_content"
 				android:layout_columnSpan="2"
 				android:layout_columnWeight="2"
 				android:inputType="date" />
@@ -90,13 +90,20 @@
 				android:layout_columnSpan="1"
 				android:layout_columnWeight="1" />
 
-			<Button
-				android:text="@string/category"
+			<AutoCompleteTextView
 				android:id="@+id/category"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
-				android:layout_columnSpan="3"
-				android:layout_columnWeight="3" />
+				android:layout_columnSpan="2"
+				android:layout_columnWeight="2" />
+
+			<Button
+				android:text="@string/picker"
+				android:id="@+id/category_picker"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_columnSpan="1"
+				android:layout_columnWeight="1" />
 
 			<Button
 				android:text="@string/nature"
