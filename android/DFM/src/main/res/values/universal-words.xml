@@ -14,6 +14,7 @@
 	<string name="unchecked" translatable="false"></string>
 
 	<string name="calendar" translatable="false"></string>
+	<string name="picker" translatable="false"></string>
 
 	<string name="error_mail_address" translatable="false">dfm@dontflymoney.com</string>
 

@@ -5,6 +5,8 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.graphics.Typeface
 import android.util.TypedValue
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.TextView
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.ComboItem
@@ -57,4 +59,25 @@ fun Activity.showChangeList(
 				list[w].value
 			)
 		}}.show()
+}
+
+fun AutoCompleteTextView.complete(
+	list: Array<ComboItem>,
+	setResult: (String) -> Unit
+) {
+	val adapter = ArrayAdapter(
+		context,
+		android.R.layout.simple_dropdown_item_1line,
+		list.map { it.text }
+	)
+
+	setAdapter(adapter)
+
+	onChange { text ->
+		val value = list
+			.firstOrNull { it.text == text }
+			?.value ?: ""
+
+		setResult(value)
+	}
 }

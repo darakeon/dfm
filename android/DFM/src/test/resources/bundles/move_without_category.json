@@ -6,7 +6,7 @@
 	"day": 8,
 
 	"nature": 2,
-	"categoryName": "category",
+	"categoryName": null,
 	"outUrl": "out",
 	"inUrl": "in",
 	"value": 1,
