@@ -373,6 +373,30 @@ class MovesActivityTest {
 	}
 
 	@Test
+	fun populateResponseNatureOut() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		saved.putString("move", readBundle("move_out"))
+
+		activity.onCreate(saved, null)
+
+		assertThat(activity.nature.text.toString(), `is`("Out"))
+
+		val move = activity.getPrivate<Move>("move")
+
+		assertThat(move.natureEnum, `is`(Nature.Out))
+
+		assertThat(activity.account_out.visibility, `is`(VISIBLE))
+		assertThat(activity.account_in.visibility, `is`(GONE))
+
+		assertNotNull(move.outUrl)
+		assertNull(move.inUrl)
+
+		assertThat(activity.account_out.text.toString(), not(`is`("account out")))
+		assertThat(activity.account_in.text.toString(), `is`("account in"))
+	}
+
+	@Test
 	fun populateResponseNatureTransfer() {
 		val saved = Bundle()
 		saved.putString("moveForm", readBundle("move_form"))
