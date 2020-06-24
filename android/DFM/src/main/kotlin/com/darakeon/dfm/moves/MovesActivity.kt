@@ -14,7 +14,7 @@ import com.darakeon.dfm.api.entities.moves.Move
 import com.darakeon.dfm.api.entities.moves.MoveCreation
 import com.darakeon.dfm.api.entities.moves.MoveForm
 import com.darakeon.dfm.api.entities.moves.Nature
-import com.darakeon.dfm.api.entities.setLabel
+import com.darakeon.dfm.api.entities.setCombo
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.dialogs.getDateDialog
@@ -23,13 +23,14 @@ import com.darakeon.dfm.extensions.addMask
 import com.darakeon.dfm.extensions.applyGlyphicon
 import com.darakeon.dfm.extensions.backWithExtras
 import com.darakeon.dfm.extensions.getFromJson
-import com.darakeon.dfm.extensions.complete
 import com.darakeon.dfm.extensions.onChange
 import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.extensions.showChangeList
 import com.darakeon.dfm.extensions.toDoubleByCulture
 import kotlinx.android.synthetic.main.moves.account_in
+import kotlinx.android.synthetic.main.moves.account_in_picker
 import kotlinx.android.synthetic.main.moves.account_out
+import kotlinx.android.synthetic.main.moves.account_out_picker
 import kotlinx.android.synthetic.main.moves.category
 import kotlinx.android.synthetic.main.moves.category_picker
 import kotlinx.android.synthetic.main.moves.date
@@ -64,8 +65,12 @@ class MovesActivity : BaseActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
-		date_picker.applyGlyphicon()
-		category_picker.applyGlyphicon()
+		arrayOf(
+			date_picker,
+			category_picker,
+			account_out_picker,
+			account_in_picker
+		).forEach { it.applyGlyphicon() }
 
 		accountUrl = getExtraOrUrl("accountUrl") ?: ""
 		id = getExtraOrUrl("id")?.toIntOrNull() ?: 0
@@ -110,13 +115,12 @@ class MovesActivity : BaseActivity() {
 
 		when {
 			moveForm.isUsingCategories -> {
-				moveForm.categoryList
-					.setLabel(move.categoryName, category)
-				category.complete(moveForm.categoryList) {
-					move.categoryName = it
-				}
-
-				category_picker.setOnClickListener { changeCategory() }
+				moveForm.categoryList.setCombo(
+					category,
+					category_picker,
+					move::categoryName,
+					this::changeCategory
+				)
 			}
 			move.warnCategory -> {
 				category.visibility = GONE
@@ -143,8 +147,18 @@ class MovesActivity : BaseActivity() {
 		} ?: moveForm.natureList.first()
 		setNature(natureOption.text, natureOption.value.toInt())
 
-		moveForm.accountList.setLabel(move.outUrl, account_out)
-		moveForm.accountList.setLabel(move.inUrl, account_in)
+		moveForm.accountList.setCombo(
+			account_out,
+			account_out_picker,
+			move::outUrl,
+			this::changeAccountOut
+		)
+		moveForm.accountList.setCombo(
+			account_in,
+			account_in_picker,
+			move::inUrl,
+			this::changeAccountIn
+		)
 
 		if (move.detailList.isNotEmpty()) {
 			useDetailed()
@@ -191,18 +205,20 @@ class MovesActivity : BaseActivity() {
 
 		val accountOutVisibility = if (move.natureEnum != Nature.In) VISIBLE else GONE
 		account_out.visibility = accountOutVisibility
+		account_out_picker.visibility = accountOutVisibility
 
 		val accountInVisibility = if (move.natureEnum != Nature.Out) VISIBLE else GONE
 		account_in.visibility = accountInVisibility
+		account_in_picker.visibility = accountInVisibility
 
 		if (move.natureEnum == Nature.Out) {
 			move.inUrl = null
-			account_in.text = getString(R.string.account_in)
+			account_in.text.clear()
 		}
 
 		if (move.natureEnum == Nature.In) {
 			move.outUrl = null
-			account_out.text = getString(R.string.account_out)
+			account_out.text.clear()
 		}
 	}
 
@@ -265,17 +281,15 @@ class MovesActivity : BaseActivity() {
 		}
 	}
 
-	fun changeAccountOut(@Suppress(ON_CLICK) view: View) {
-		showChangeList(moveForm.accountList, R.string.account) { text, value ->
-			account_out.text = text
-			move.outUrl = value
+	fun changeAccountOut() {
+		showChangeList(moveForm.accountList, R.string.account) { text, _ ->
+			account_out.setText(text)
 		}
 	}
 
-	fun changeAccountIn(@Suppress(ON_CLICK) view: View) {
-		showChangeList(moveForm.accountList, R.string.account) { text, value ->
-			account_in.text = text
-			move.inUrl = value
+	fun changeAccountIn() {
+		showChangeList(moveForm.accountList, R.string.account) { text, _ ->
+			account_in.setText(text)
 		}
 	}
 
