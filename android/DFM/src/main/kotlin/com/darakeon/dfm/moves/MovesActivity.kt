@@ -121,7 +121,7 @@ class MovesActivity : BaseActivity() {
 			move.warnCategory -> {
 				category.visibility = GONE
 				changeColSpan(category, 0)
-				changeColSpan(category_picker, 3)
+				changeColSpan(category_picker, 4)
 
 				category_picker.text = move.categoryName
 				category_picker.paintFlags += Paint.STRIKE_THRU_TEXT_FLAG
@@ -131,7 +131,7 @@ class MovesActivity : BaseActivity() {
 				category.visibility = GONE
 				category_picker.visibility = GONE
 
-				changeColSpan(date, 5)
+				changeColSpan(date, 7)
 				changeColSpan(category, 0)
 				changeColSpan(category_picker, 0)
 			}
