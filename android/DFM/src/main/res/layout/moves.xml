@@ -102,23 +102,12 @@
 				android:layout_columnSpan="1"
 				android:layout_columnWeight="1" />
 
-			<Button
-				android:text="@string/nature"
-				android:id="@+id/nature"
-				android:layout_width="0dp"
-				android:layout_height="0dp"
-				android:layout_columnWeight="4"
-				android:layout_columnSpan="4"
-				android:layout_rowWeight="2"
-				android:layout_rowSpan="2"
-				android:onClick="changeNature" />
-
 			<AutoCompleteTextView
 				android:id="@+id/account_out"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
-				android:layout_columnSpan="3"
-				android:layout_columnWeight="3"
+				android:layout_columnSpan="4"
+				android:layout_columnWeight="4"
 				android:hint="@string/account_out" />
 
 			<Button
@@ -129,12 +118,58 @@
 				android:layout_columnSpan="1"
 				android:layout_columnWeight="1" />
 
+			<LinearLayout
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_columnWeight="3"
+				android:layout_columnSpan="3"
+				android:layout_rowWeight="2"
+				android:layout_rowSpan="2"
+				android:orientation="vertical">
+
+				<ToggleButton
+					android:id="@+id/nature_out"
+					android:layout_width="match_parent"
+					android:layout_height="0dp"
+					android:layout_weight="1"
+					android:clickable="false"
+					android:textSize="12sp"
+					android:textOff="@string/out"
+					android:textOn="@string/OUT"
+					>
+				</ToggleButton>
+
+				<ToggleButton
+					android:id="@+id/nature_transfer"
+					android:layout_width="match_parent"
+					android:layout_height="0dp"
+					android:layout_weight="1"
+					android:clickable="false"
+					android:textSize="12sp"
+					android:textOff="@string/transfer"
+					android:textOn="@string/TRANSFER"
+					>
+				</ToggleButton>
+
+				<ToggleButton
+					android:id="@+id/nature_in"
+					android:layout_width="match_parent"
+					android:layout_height="0dp"
+					android:layout_weight="1"
+					android:clickable="false"
+					android:textSize="12sp"
+					android:textOff="@string/in"
+					android:textOn="@string/IN"
+					>
+				</ToggleButton>
+			</LinearLayout>
+
 			<AutoCompleteTextView
 				android:id="@+id/account_in"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
-				android:layout_columnSpan="3"
-				android:layout_columnWeight="3"
+				android:layout_columnSpan="4"
+				android:layout_columnWeight="4"
 				android:hint="@string/account_in" />
 
 			<Button

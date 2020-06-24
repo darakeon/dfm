@@ -90,6 +90,13 @@
 		Esta Movimentação está marcada como verificada.\n
 		A marcação será removida quando salvar o formulário.
 	</string>
+	<string name="out">saída</string>
+	<string name="OUT">SAÍDA</string>
+	<string name="transfer">transferência</string>
+	<string name="TRANSFER">TRANSFERÊNCIA</string>
+	<string name="in">entrada</string>
+	<string name="IN">ENTRADA</string>
+	<string name="clear">- limpar -</string>
 
 	<!-- Settings -->
 	<string name="title_activity_settings">Configurações</string>

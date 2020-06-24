@@ -42,7 +42,9 @@ import kotlinx.android.synthetic.main.moves.detail_value
 import kotlinx.android.synthetic.main.moves.detailed_value
 import kotlinx.android.synthetic.main.moves.details
 import kotlinx.android.synthetic.main.moves.form
-import kotlinx.android.synthetic.main.moves.nature
+import kotlinx.android.synthetic.main.moves.nature_in
+import kotlinx.android.synthetic.main.moves.nature_out
+import kotlinx.android.synthetic.main.moves.nature_transfer
 import kotlinx.android.synthetic.main.moves.no_accounts
 import kotlinx.android.synthetic.main.moves.no_categories
 import kotlinx.android.synthetic.main.moves.remove_check
@@ -141,11 +143,7 @@ class MovesActivity : BaseActivity() {
 			}
 		}
 
-		val nature = move.natureEnum
-		val natureOption = moveForm.natureList.firstOrNull {
-			it.value.toInt() == nature?.value
-		} ?: moveForm.natureList.first()
-		setNature(natureOption.text, natureOption.value.toInt())
+		setNatureFromEnum()
 
 		moveForm.accountList.setCombo(
 			account_out,
@@ -153,12 +151,15 @@ class MovesActivity : BaseActivity() {
 			move::outUrl,
 			this::changeAccountOut
 		)
+		account_out.onChange { setNatureFromAccounts() }
+
 		moveForm.accountList.setCombo(
 			account_in,
 			account_in_picker,
 			move::inUrl,
 			this::changeAccountIn
 		)
+		account_in.onChange { setNatureFromAccounts() }
 
 		if (move.detailList.isNotEmpty()) {
 			useDetailed()
@@ -171,6 +172,20 @@ class MovesActivity : BaseActivity() {
 		}
 
 		value.onChange { move.setValue(it) }
+	}
+
+	private fun setNatureFromAccounts() {
+		val hasOut = !move.outUrl.isNullOrBlank()
+		val hasIn = !move.inUrl.isNullOrBlank()
+
+		when {
+			hasOut && hasIn -> move.natureEnum = Nature.Transfer
+			hasOut -> move.natureEnum = Nature.Out
+			hasIn -> move.natureEnum = Nature.In
+			else -> move.natureEnum = null
+		}
+
+		setNatureFromEnum()
 	}
 
 	private fun changeColSpan(view: View, size: Int) {
@@ -199,26 +214,15 @@ class MovesActivity : BaseActivity() {
 		return canMove
 	}
 
-	private fun setNature(text: String, value: Int) {
-		nature.text = text
-		move.natureEnum = Nature.get(value)
+	private fun setNatureFromEnum() {
+		nature_out.isChecked = false
+		nature_transfer.isChecked = false
+		nature_in.isChecked = false
 
-		val accountOutVisibility = if (move.natureEnum != Nature.In) VISIBLE else GONE
-		account_out.visibility = accountOutVisibility
-		account_out_picker.visibility = accountOutVisibility
-
-		val accountInVisibility = if (move.natureEnum != Nature.Out) VISIBLE else GONE
-		account_in.visibility = accountInVisibility
-		account_in_picker.visibility = accountInVisibility
-
-		if (move.natureEnum == Nature.Out) {
-			move.inUrl = null
-			account_in.text.clear()
-		}
-
-		if (move.natureEnum == Nature.In) {
-			move.outUrl = null
-			account_out.text.clear()
+		when (move.natureEnum) {
+			Nature.Out -> nature_out.isChecked = true
+			Nature.Transfer -> nature_transfer.isChecked = true
+			Nature.In -> nature_in.isChecked = true
 		}
 	}
 
@@ -273,12 +277,6 @@ class MovesActivity : BaseActivity() {
 
 	fun warnLoseCategory() {
 		this.alertError(R.string.losingCategory)
-	}
-
-	fun changeNature(@Suppress(ON_CLICK) view: View) {
-		showChangeList(moveForm.natureList, R.string.nature) { text, value ->
-			setNature(text, value.toInt())
-		}
 	}
 
 	fun changeAccountOut() {

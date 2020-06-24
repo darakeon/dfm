@@ -91,6 +91,13 @@
 		This move is marked as checked.\n
 		When you save this move, the check will be removed.
 	</string>
+	<string name="out">out</string>
+	<string name="OUT">OUT</string>
+	<string name="transfer">transfer</string>
+	<string name="TRANSFER">TRANSFER</string>
+	<string name="in">in</string>
+	<string name="IN">IN</string>
+	<string name="clear">- clear -</string>
 
 	<!-- Settings -->
 	<string name="title_activity_settings">Settings</string>

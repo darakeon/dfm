@@ -125,9 +125,15 @@ class FormTest {
 
 		val alert = getLatestAlertDialog()
 
-		shadowOf(alert).clickOnItem(1)
+		shadowOf(alert).clickOnItem(2)
 
 		assertThat(chosenText, `is`("B"))
 		assertThat(chosenValue, `is`("b"))
+
+		// clear
+		shadowOf(alert).clickOnItem(0)
+
+		assertThat(chosenText, `is`(""))
+		assertThat(chosenValue, `is`(""))
 	}
 }

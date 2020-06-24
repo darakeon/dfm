@@ -8,7 +8,7 @@
 	"nature": 0,
 	"categoryName": "category",
 	"outUrl": "out",
-	"inUrl": "in",
+	"inUrl": null,
 	"value": 1,
 	"detailList": [
 		{
