@@ -98,7 +98,7 @@ class MoveTest {
 		move.setDefaultData("url", false)
 
 		assertThat(move.outUrl, `is`("url"))
-		assertThat(move.inUrl, `is`("url"))
+		assertNull(move.inUrl)
 
 		assertFalse(move.warnCategory)
 	}

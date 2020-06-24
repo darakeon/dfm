@@ -11,7 +11,7 @@ data class ComboItem(
 	val value: String
 )
 
-fun Array<ComboItem>.setLabel(value: String?, field: TextView) {
+fun Array<ComboItem>.setLabel(field: TextView, value: String?) {
 	val saved = this.firstOrNull {
 		it.value == value
 	} ?: return
@@ -25,7 +25,7 @@ fun Array<ComboItem>.setCombo(
 	field: KMutableProperty0<String?>,
 	change: () -> Unit
 ) {
-	setLabel(field.get(), autoComplete)
+	setLabel(autoComplete, field.get())
 	autoComplete.complete(this) { field.set(it) }
 	picker.setOnClickListener { change() }
 }

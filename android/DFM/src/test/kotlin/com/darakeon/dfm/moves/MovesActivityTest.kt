@@ -29,9 +29,7 @@ import com.darakeon.dfm.utils.robolectric.simulateNetwork
 import com.darakeon.dfm.welcome.WelcomeActivity
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.moves.account_in
-import kotlinx.android.synthetic.main.moves.account_in_picker
 import kotlinx.android.synthetic.main.moves.account_out
-import kotlinx.android.synthetic.main.moves.account_out_picker
 import kotlinx.android.synthetic.main.moves.category
 import kotlinx.android.synthetic.main.moves.category_picker
 import kotlinx.android.synthetic.main.moves.date
@@ -43,7 +41,9 @@ import kotlinx.android.synthetic.main.moves.detail_value
 import kotlinx.android.synthetic.main.moves.detailed_value
 import kotlinx.android.synthetic.main.moves.details
 import kotlinx.android.synthetic.main.moves.form
-import kotlinx.android.synthetic.main.moves.nature
+import kotlinx.android.synthetic.main.moves.nature_in
+import kotlinx.android.synthetic.main.moves.nature_out
+import kotlinx.android.synthetic.main.moves.nature_transfer
 import kotlinx.android.synthetic.main.moves.no_accounts
 import kotlinx.android.synthetic.main.moves.no_categories
 import kotlinx.android.synthetic.main.moves.remove_check
@@ -94,7 +94,9 @@ class MovesActivityTest {
 		assertNotNull(activity.findViewById(R.id.date_picker))
 		assertNotNull(activity.findViewById(R.id.category))
 		assertNotNull(activity.findViewById(R.id.category_picker))
-		assertNotNull(activity.findViewById(R.id.nature))
+		assertNotNull(activity.findViewById(R.id.nature_out))
+		assertNotNull(activity.findViewById(R.id.nature_transfer))
+		assertNotNull(activity.findViewById(R.id.nature_in))
 		assertNotNull(activity.findViewById(R.id.account_out))
 		assertNotNull(activity.findViewById(R.id.account_out_picker))
 		assertNotNull(activity.findViewById(R.id.account_in))
@@ -384,16 +386,11 @@ class MovesActivityTest {
 
 		activity.onCreate(saved, null)
 
-		assertThat(activity.nature.text.toString(), `is`("Out"))
+		assertTrue(activity.nature_out.isChecked)
 
 		val move = activity.getPrivate<Move>("move")
 
 		assertThat(move.natureEnum, `is`(Nature.Out))
-
-		assertThat(activity.account_out.visibility, `is`(VISIBLE))
-		assertThat(activity.account_out_picker.visibility, `is`(VISIBLE))
-		assertThat(activity.account_in.visibility, `is`(GONE))
-		assertThat(activity.account_in_picker.visibility, `is`(GONE))
 
 		assertNotNull(move.outUrl)
 		assertNull(move.inUrl)
@@ -407,16 +404,11 @@ class MovesActivityTest {
 
 		activity.onCreate(saved, null)
 
-		assertThat(activity.nature.text.toString(), `is`("Transfer"))
+		assertTrue(activity.nature_transfer.isChecked)
 
 		val move = activity.getPrivate<Move>("move")
 
 		assertThat(move.natureEnum, `is`(Nature.Transfer))
-
-		assertThat(activity.account_out.visibility, `is`(VISIBLE))
-		assertThat(activity.account_out_picker.visibility, `is`(VISIBLE))
-		assertThat(activity.account_in.visibility, `is`(VISIBLE))
-		assertThat(activity.account_in_picker.visibility, `is`(VISIBLE))
 
 		assertNotNull(move.outUrl)
 		assertNotNull(move.inUrl)
@@ -433,16 +425,11 @@ class MovesActivityTest {
 
 		activity.onCreate(saved, null)
 
-		assertThat(activity.nature.text.toString(), `is`("In"))
+		assertTrue(activity.nature_in.isChecked)
 
 		val move = activity.getPrivate<Move>("move")
 
 		assertThat(move.natureEnum, `is`(Nature.In))
-
-		assertThat(activity.account_out.visibility, `is`(GONE))
-		assertThat(activity.account_out_picker.visibility, `is`(GONE))
-		assertThat(activity.account_in.visibility, `is`(VISIBLE))
-		assertThat(activity.account_in_picker.visibility, `is`(VISIBLE))
 
 		assertNull(move.outUrl)
 		assertNotNull(move.inUrl)
@@ -584,9 +571,7 @@ class MovesActivityTest {
 		assertNull(move.categoryName)
 
 		activity.changeCategory()
-
-		val alert = getLatestAlertDialog()
-		shadowOf(alert).clickOnItem(0)
+		shadowOf(getLatestAlertDialog()).clickOnItem(1)
 
 		assertThat(activity.category.text.toString(), `is`("My Category"))
 		assertThat(move.categoryName, `is`("category"))
@@ -628,26 +613,6 @@ class MovesActivityTest {
 	}
 
 	@Test
-	fun natureDialog() {
-		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
-		activity.onCreate(saved, null)
-
-		val move = activity.getPrivate<Move>("move")
-
-		assertThat(activity.nature.text.toString(), `is`("Out"))
-		assertThat(move.natureEnum, `is`(Nature.Out))
-
-		activity.changeNature(View(activity))
-
-		val alert = getLatestAlertDialog()
-		shadowOf(alert).clickOnItem(2)
-
-		assertThat(activity.nature.text.toString(), `is`("Transfer"))
-		assertThat(move.natureEnum, `is`(Nature.Transfer))
-	}
-
-	@Test
 	fun accountOutDialog() {
 		val saved = Bundle()
 		saved.putString("moveForm", readBundle("move_form"))
@@ -659,12 +624,14 @@ class MovesActivityTest {
 		assert(move.outUrl.isNullOrEmpty())
 
 		activity.changeAccountOut()
-
-		val alert = getLatestAlertDialog()
-		shadowOf(alert).clickOnItem(0)
+		shadowOf(getLatestAlertDialog()).clickOnItem(1)
 
 		assertThat(activity.account_out.text.toString(), `is`("My Out"))
 		assertThat(move.outUrl, `is`("out"))
+
+		assertTrue(activity.nature_out.isChecked)
+		assertFalse(activity.nature_transfer.isChecked)
+		assertFalse(activity.nature_in.isChecked)
 	}
 
 	@Test
@@ -681,6 +648,10 @@ class MovesActivityTest {
 		activity.account_out.append("My Out")
 
 		assertThat(move.outUrl, `is`("out"))
+
+		assertTrue(activity.nature_out.isChecked)
+		assertFalse(activity.nature_transfer.isChecked)
+		assertFalse(activity.nature_in.isChecked)
 	}
 
 	@Test
@@ -695,12 +666,14 @@ class MovesActivityTest {
 		assert(move.inUrl.isNullOrEmpty())
 
 		activity.changeAccountIn()
-
-		val alert = getLatestAlertDialog()
-		shadowOf(alert).clickOnItem(1)
+		shadowOf(getLatestAlertDialog()).clickOnItem(2)
 
 		assertThat(activity.account_in.text.toString(), `is`("My In"))
 		assertThat(move.inUrl, `is`("in"))
+
+		assertFalse(activity.nature_out.isChecked)
+		assertFalse(activity.nature_transfer.isChecked)
+		assertTrue(activity.nature_in.isChecked)
 	}
 
 	@Test
@@ -717,6 +690,60 @@ class MovesActivityTest {
 		activity.account_in.append("My In")
 
 		assertThat(move.inUrl, `is`("in"))
+
+		assertFalse(activity.nature_out.isChecked)
+		assertFalse(activity.nature_transfer.isChecked)
+		assertTrue(activity.nature_in.isChecked)
+	}
+
+	@Test
+	fun accountOutAndInDialog() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		activity.onCreate(saved, null)
+
+		val move = activity.getPrivate<Move>("move")
+
+		assertThat(activity.account_in.text.toString(), `is`(""))
+		assert(move.inUrl.isNullOrEmpty())
+
+		activity.changeAccountIn()
+		shadowOf(getLatestAlertDialog()).clickOnItem(2)
+
+		activity.changeAccountOut()
+		shadowOf(getLatestAlertDialog()).clickOnItem(1)
+
+		assertThat(activity.account_in.text.toString(), `is`("My In"))
+		assertThat(move.inUrl, `is`("in"))
+
+		assertThat(activity.account_out.text.toString(), `is`("My Out"))
+		assertThat(move.outUrl, `is`("out"))
+
+		assertFalse(activity.nature_out.isChecked)
+		assertTrue(activity.nature_transfer.isChecked)
+		assertFalse(activity.nature_in.isChecked)
+	}
+
+	@Test
+	fun accountOutAndInTyping() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		activity.onCreate(saved, null)
+
+		val move = activity.getPrivate<Move>("move")
+
+		assertThat(activity.account_in.text.toString(), `is`(""))
+		assert(move.inUrl.isNullOrEmpty())
+
+		activity.account_in.append("My In")
+		activity.account_out.append("My Out")
+
+		assertThat(move.inUrl, `is`("in"))
+		assertThat(move.outUrl, `is`("out"))
+
+		assertFalse(activity.nature_out.isChecked)
+		assertTrue(activity.nature_transfer.isChecked)
+		assertFalse(activity.nature_in.isChecked)
 	}
 
 	@Test

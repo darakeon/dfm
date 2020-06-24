@@ -61,7 +61,6 @@ data class Move (
 	fun setDefaultData(accountUrl: String, useCategories: Boolean) {
 		if (id == 0) {
 			outUrl = accountUrl
-			inUrl = accountUrl
 		} else {
 			warnCategory = !useCategories && categoryName != null
 		}

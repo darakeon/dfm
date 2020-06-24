@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.graphics.Typeface
+import android.text.method.TextKeyListener.clear
 import android.util.TypedValue
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
@@ -48,16 +49,27 @@ fun Activity.showChangeList(
 	titleId: Int,
 	setResult: (String, String) -> Unit
 ) {
-	val adapter = list.map { it.text }.toTypedArray()
+	val clear = ComboItem(getString(R.string.clear), "")
+
+	val itemsList = listOf(clear)
+		.union(list.asIterable())
+		.toTypedArray()
+
+	val adapter = itemsList
+		.map { it.text }
+		.toTypedArray()
 
 	val title = getString(titleId)
 
 	AlertDialog.Builder(this).setTitle(title)
 		.setItems(adapter) { _, w -> run {
-			setResult(
-				list[w].text,
-				list[w].value
-			)
+			if (w == 0)
+				setResult("", "")
+			else
+				setResult(
+					itemsList[w].text,
+					itemsList[w].value
+				)
 		}}.show()
 }
 
