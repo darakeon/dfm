@@ -69,8 +69,8 @@
 	<string name="value">value</string>
 	<string name="amount">qty</string>
 	<string name="pick">pick</string>
-	<string name="use_detailed">++</string>
-	<string name="use_simple">––</string>
+	<string name="use_detailed">go to detailed</string>
+	<string name="use_simple">back to single value</string>
 	<string name="add_detail">+</string>
 	<string name="remove_detail">–</string>
 	<string name="fill_all">Fill all fields to add a detail.</string>

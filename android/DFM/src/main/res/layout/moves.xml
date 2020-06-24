@@ -58,14 +58,6 @@
 				android:layout_columnSpan="8"
 				android:gravity="top|center" />
 
-			<TextView
-				android:id="@+id/description_label"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_columnSpan="8"
-				android:text="@string/description"
-				android:labelFor="@id/description" />
-
 			<EditText
 				android:id="@+id/description"
 				android:layout_width="match_parent"
@@ -73,6 +65,7 @@
 				android:layout_columnSpan="8"
 				android:inputType="text"
 				android:layout_marginBottom="10dp"
+				android:hint="@string/description"
 				android:autofillHints="description" />
 
 			<EditText
@@ -152,38 +145,32 @@
 				android:layout_columnSpan="1"
 				android:layout_columnWeight="1" />
 
-			<GridLayout
+			<LinearLayout
 				android:id="@+id/simple_value"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:layout_columnSpan="8"
 				android:layout_marginTop="10dp"
-				android:columnCount="2">
+				android:orientation="horizontal">
 
-				<TextView
-					android:id="@+id/value_label"
-					android:layout_width="wrap_content"
+				<EditText
+					android:id="@+id/value"
+					android:layout_width="0dp"
+					android:layout_weight="1"
 					android:layout_height="wrap_content"
-					android:text="@string/value"
-					android:labelFor="@id/value" />
+					android:inputType="numberDecimal"
+					android:digits="0123456789,."
+					android:hint="@string/value"
+					android:autofillHints="value" />
 
 				<Button
 					android:text="@string/use_detailed"
 					android:textSize="12sp"
 					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="end"
+					android:layout_height="36sp"
 					android:onClick="useDetailed" />
 
-				<EditText
-					android:id="@+id/value"
-					android:layout_columnSpan="2"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:inputType="numberDecimal"
-					android:digits="0123456789,."
-					android:autofillHints="value" />
-			</GridLayout>
+			</LinearLayout>
 
 			<GridLayout
 				android:id="@+id/detailed_value"
@@ -193,68 +180,48 @@
 				android:layout_columnSpan="8"
 				android:visibility="gone">
 
-				<TextView
-					android:text="@string/description"
-					android:textSize="12sp"
-					android:layout_width="0dp"
-					android:layout_columnWeight="8"
-					android:layout_height="wrap_content"
-					android:labelFor="@+id/detail_description" />
-				<TextView
-					android:text="@string/amount"
-					android:textSize="12sp"
-					android:layout_width="0dp"
-					android:layout_columnWeight="2"
-					android:gravity="center"
-					android:layout_height="wrap_content"
-					android:labelFor="@+id/detail_amount" />
-				<TextView
-					android:text="@string/value"
-					android:textSize="12sp"
-					android:layout_width="0dp"
-					android:layout_columnWeight="4"
-					android:gravity="center"
-					android:layout_height="wrap_content"
-					android:labelFor="@+id/detail_value"  />
 				<Button
 					android:text="@string/use_simple"
 					android:textSize="12sp"
-					android:layout_width="0dp"
-					android:layout_columnWeight="3"
-					android:layout_height="wrap_content"
+					android:layout_width="match_parent"
+					android:layout_height="36sp"
+					android:layout_columnSpan="4"
 					android:onClick="useSimple" />
 
 				<EditText
 					android:id="@+id/detail_description"
 					android:textSize="14sp"
 					android:layout_width="0dp"
-					android:layout_columnWeight="8"
 					android:layout_height="wrap_content"
+					android:layout_columnSpan="1"
+					android:layout_columnWeight="9"
 					android:inputType="text"
+					android:hint="@string/description"
 					android:autofillHints="description" />
 				<EditText
 					android:id="@+id/detail_amount"
 					android:textSize="14sp"
 					android:layout_width="0dp"
-					android:layout_columnWeight="2"
 					android:layout_height="wrap_content"
-					android:text="@integer/amount_default"
+					android:layout_columnWeight="3"
 					android:inputType="number"
+					android:hint="@string/amount"
 					android:autofillHints="amount" />
 				<EditText
 					android:id="@+id/detail_value"
 					android:textSize="14sp"
 					android:layout_width="0dp"
-					android:layout_columnWeight="4"
 					android:layout_height="wrap_content"
+					android:layout_columnWeight="6"
 					android:inputType="numberDecimal"
 					android:digits="0123456789,."
+					android:hint="@string/value"
 					android:autofillHints="value" />
 				<Button
 					android:text="@string/add_detail"
 					android:textSize="12sp"
 					android:layout_width="0dp"
-					android:layout_columnWeight="3"
+					android:layout_columnWeight="2"
 					android:layout_height="wrap_content"
 					android:onClick="addDetail" />
 
