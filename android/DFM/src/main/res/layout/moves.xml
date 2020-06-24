@@ -64,7 +64,7 @@
 				android:layout_height="wrap_content"
 				android:layout_columnSpan="8"
 				android:text="@string/description"
-				android:labelFor="@+id/description" />
+				android:labelFor="@id/description" />
 
 			<EditText
 				android:id="@+id/description"
@@ -72,7 +72,8 @@
 				android:layout_height="wrap_content"
 				android:layout_columnSpan="8"
 				android:inputType="text"
-				android:layout_marginBottom="10dp" />
+				android:layout_marginBottom="10dp"
+				android:autofillHints="description" />
 
 			<EditText
 				android:id="@+id/date"
@@ -80,7 +81,9 @@
 				android:layout_height="wrap_content"
 				android:layout_columnSpan="3"
 				android:layout_columnWeight="3"
-				android:inputType="date" />
+				android:inputType="date"
+				android:hint="@string/date"
+				android:autofillHints="date" />
 
 			<Button
 				android:text="@string/calendar"
@@ -95,7 +98,8 @@
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
 				android:layout_columnSpan="3"
-				android:layout_columnWeight="3" />
+				android:layout_columnWeight="3"
+				android:hint="@string/category" />
 
 			<Button
 				android:text="@string/picker"
@@ -116,26 +120,37 @@
 				android:layout_rowSpan="2"
 				android:onClick="changeNature" />
 
-			<Button
-				android:text="@string/account_out"
+			<AutoCompleteTextView
 				android:id="@+id/account_out"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
-				android:layout_columnWeight="4"
-				android:layout_columnSpan="4"
-				android:onClick="changeAccountOut"
-				android:visibility="visible"/>
+				android:layout_columnSpan="3"
+				android:layout_columnWeight="3"
+				android:hint="@string/account_out" />
 
 			<Button
-				android:text="@string/account_in"
+				android:text="@string/picker"
+				android:id="@+id/account_out_picker"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_columnSpan="1"
+				android:layout_columnWeight="1" />
+
+			<AutoCompleteTextView
 				android:id="@+id/account_in"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
-				android:layout_columnWeight="4"
-				android:layout_columnSpan="4"
-				android:layout_gravity="fill_horizontal"
-				android:onClick="changeAccountIn"
-				android:visibility="gone"/>
+				android:layout_columnSpan="3"
+				android:layout_columnWeight="3"
+				android:hint="@string/account_in" />
+
+			<Button
+				android:text="@string/picker"
+				android:id="@+id/account_in_picker"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_columnSpan="1"
+				android:layout_columnWeight="1" />
 
 			<GridLayout
 				android:id="@+id/simple_value"
@@ -149,7 +164,7 @@
 					android:id="@+id/value_label"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:hint="@string/value"
+					android:text="@string/value"
 					android:labelFor="@id/value" />
 
 				<Button
@@ -166,7 +181,8 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:inputType="numberDecimal"
-					android:digits="0123456789,." />
+					android:digits="0123456789,."
+					android:autofillHints="value" />
 			</GridLayout>
 
 			<GridLayout
@@ -214,7 +230,8 @@
 					android:layout_width="0dp"
 					android:layout_columnWeight="8"
 					android:layout_height="wrap_content"
-					android:inputType="text" />
+					android:inputType="text"
+					android:autofillHints="description" />
 				<EditText
 					android:id="@+id/detail_amount"
 					android:textSize="14sp"
@@ -222,7 +239,8 @@
 					android:layout_columnWeight="2"
 					android:layout_height="wrap_content"
 					android:text="@integer/amount_default"
-					android:inputType="number" />
+					android:inputType="number"
+					android:autofillHints="amount" />
 				<EditText
 					android:id="@+id/detail_value"
 					android:textSize="14sp"
@@ -230,7 +248,8 @@
 					android:layout_columnWeight="4"
 					android:layout_height="wrap_content"
 					android:inputType="numberDecimal"
-					android:digits="0123456789,." />
+					android:digits="0123456789,."
+					android:autofillHints="value" />
 				<Button
 					android:text="@string/add_detail"
 					android:textSize="12sp"
@@ -255,7 +274,8 @@
 				android:layout_columnWeight="4"
 				android:layout_columnSpan="4"
 				android:layout_height="wrap_content"
-				android:onClick="back" />
+				android:onClick="back"
+				tools:ignore="OnClick" />
 
 			<Button
 				android:text="@string/save"

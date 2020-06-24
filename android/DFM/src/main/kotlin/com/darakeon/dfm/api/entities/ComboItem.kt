@@ -1,6 +1,10 @@
 package com.darakeon.dfm.api.entities
 
+import android.widget.AutoCompleteTextView
+import android.widget.Button
 import android.widget.TextView
+import com.darakeon.dfm.extensions.complete
+import kotlin.reflect.KMutableProperty0
 
 data class ComboItem(
 	val text: String,
@@ -15,3 +19,13 @@ fun Array<ComboItem>.setLabel(value: String?, field: TextView) {
 	field.text = saved.text
 }
 
+fun Array<ComboItem>.setCombo(
+	autoComplete: AutoCompleteTextView,
+	picker: Button,
+	field: KMutableProperty0<String?>,
+	change: () -> Unit
+) {
+	setLabel(field.get(), autoComplete)
+	autoComplete.complete(this) { field.set(it) }
+	picker.setOnClickListener { change() }
+}
