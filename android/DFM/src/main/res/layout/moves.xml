@@ -7,7 +7,8 @@
 	android:paddingTop="@dimen/activity_vertical_margin"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:orientation="vertical">
+	android:orientation="vertical"
+	>
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -15,7 +16,8 @@
 		android:layout_weight="1"
 		android:visibility="gone"
 		android:orientation="vertical"
-		android:id="@+id/warnings">
+		android:id="@+id/warnings"
+		>
 
 		<TextView
 			android:layout_width="match_parent"
@@ -25,7 +27,8 @@
 			android:visibility="gone"
 			android:textSize="20sp"
 			android:gravity="top|center"
-			android:paddingBottom="20sp" />
+			android:paddingBottom="20sp"
+			/>
 
 		<TextView
 			android:layout_width="match_parent"
@@ -34,7 +37,8 @@
 			android:text="@string/no_categories_move"
 			android:visibility="gone"
 			android:textSize="20sp"
-			android:gravity="top|center" />
+			android:gravity="top|center"
+			/>
 
 	</LinearLayout>
 
@@ -42,12 +46,14 @@
 		android:id="@+id/form"
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
-		android:layout_weight="1">
+		android:layout_weight="1"
+		>
 
 		<GridLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:columnCount="8">
+			android:columnCount="8"
+			>
 
 			<TextView
 				android:layout_width="match_parent"
@@ -56,17 +62,19 @@
 				android:text="@string/removingCheck"
 				android:visibility="gone"
 				android:layout_columnSpan="8"
-				android:gravity="top|center" />
+				android:gravity="top|center"
+				/>
 
 			<EditText
 				android:id="@+id/description"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_columnSpan="8"
+				android:layout_marginBottom="@dimen/margin_move_field"
 				android:inputType="text"
-				android:layout_marginBottom="10dp"
 				android:hint="@string/description"
-				android:autofillHints="description" />
+				android:autofillHints="description"
+				/>
 
 			<EditText
 				android:id="@+id/date"
@@ -74,17 +82,22 @@
 				android:layout_height="wrap_content"
 				android:layout_columnSpan="3"
 				android:layout_columnWeight="3"
+				android:layout_marginBottom="@dimen/margin_move_field"
 				android:inputType="date"
 				android:hint="@string/date"
-				android:autofillHints="date" />
+				android:autofillHints="date"
+				/>
 
 			<Button
 				android:text="@string/calendar"
+				android:textSize="@dimen/mini_button_font"
 				android:id="@+id/date_picker"
 				android:layout_width="0dp"
-				android:layout_height="wrap_content"
+				android:layout_height="@dimen/mini_button_height"
 				android:layout_columnSpan="1"
-				android:layout_columnWeight="1" />
+				android:layout_columnWeight="1"
+				android:layout_marginBottom="@dimen/margin_move_field"
+				/>
 
 			<AutoCompleteTextView
 				android:id="@+id/category"
@@ -92,101 +105,109 @@
 				android:layout_height="wrap_content"
 				android:layout_columnSpan="3"
 				android:layout_columnWeight="3"
-				android:hint="@string/category" />
+				android:layout_marginBottom="@dimen/margin_move_field"
+				android:hint="@string/category"
+				/>
 
 			<Button
 				android:text="@string/picker"
+				android:textSize="@dimen/mini_button_font"
 				android:id="@+id/category_picker"
 				android:layout_width="0dp"
-				android:layout_height="wrap_content"
+				android:layout_height="@dimen/mini_button_height"
 				android:layout_columnSpan="1"
-				android:layout_columnWeight="1" />
+				android:layout_columnWeight="1"
+				android:layout_marginBottom="@dimen/margin_move_field"
+				/>
 
 			<AutoCompleteTextView
 				android:id="@+id/account_out"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
-				android:layout_columnSpan="4"
-				android:layout_columnWeight="4"
-				android:hint="@string/account_out" />
+				android:layout_columnSpan="3"
+				android:layout_columnWeight="3"
+				android:hint="@string/account_out"
+				android:inputType="textAutoComplete"
+				/>
 
 			<Button
 				android:text="@string/picker"
+				android:textSize="@dimen/mini_button_font"
 				android:id="@+id/account_out_picker"
 				android:layout_width="0dp"
-				android:layout_height="wrap_content"
+				android:layout_height="@dimen/mini_button_height"
 				android:layout_columnSpan="1"
-				android:layout_columnWeight="1" />
+				android:layout_columnWeight="1"
+				/>
 
-			<LinearLayout
+			<ToggleButton
+				android:id="@+id/nature_out"
 				android:layout_width="0dp"
-				android:layout_height="0dp"
-				android:layout_columnWeight="3"
-				android:layout_columnSpan="3"
-				android:layout_rowWeight="2"
-				android:layout_rowSpan="2"
-				android:orientation="vertical">
+				android:layout_height="@dimen/mini_button_height"
+				android:layout_columnWeight="2"
+				android:layout_columnSpan="2"
+				android:clickable="false"
+				android:textSize="@dimen/mini_button_font"
+				android:textOff="@string/out"
+				android:textOn="@string/OUT"
+				android:backgroundTint="@android:color/transparent"
+				/>
 
-				<ToggleButton
-					android:id="@+id/nature_out"
-					android:layout_width="match_parent"
-					android:layout_height="0dp"
-					android:layout_weight="1"
-					android:clickable="false"
-					android:textSize="12sp"
-					android:textOff="@string/out"
-					android:textOn="@string/OUT"
-					>
-				</ToggleButton>
+			<ToggleButton
+				android:id="@+id/nature_in"
+				android:layout_width="0dp"
+				android:layout_height="@dimen/mini_button_height"
+				android:layout_columnWeight="2"
+				android:layout_columnSpan="2"
+				android:clickable="false"
+				android:textSize="@dimen/mini_button_font"
+				android:textOff="@string/in"
+				android:textOn="@string/IN"
+				android:backgroundTint="@android:color/transparent"
+				/>
 
-				<ToggleButton
-					android:id="@+id/nature_transfer"
-					android:layout_width="match_parent"
-					android:layout_height="0dp"
-					android:layout_weight="1"
-					android:clickable="false"
-					android:textSize="12sp"
-					android:textOff="@string/transfer"
-					android:textOn="@string/TRANSFER"
-					>
-				</ToggleButton>
-
-				<ToggleButton
-					android:id="@+id/nature_in"
-					android:layout_width="match_parent"
-					android:layout_height="0dp"
-					android:layout_weight="1"
-					android:clickable="false"
-					android:textSize="12sp"
-					android:textOff="@string/in"
-					android:textOn="@string/IN"
-					>
-				</ToggleButton>
-			</LinearLayout>
 
 			<AutoCompleteTextView
 				android:id="@+id/account_in"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
-				android:layout_columnSpan="4"
-				android:layout_columnWeight="4"
-				android:hint="@string/account_in" />
+				android:layout_columnSpan="3"
+				android:layout_columnWeight="3"
+				android:hint="@string/account_in"
+				/>
 
 			<Button
 				android:text="@string/picker"
+				android:textSize="@dimen/mini_button_font"
 				android:id="@+id/account_in_picker"
 				android:layout_width="0dp"
-				android:layout_height="wrap_content"
+				android:layout_height="@dimen/mini_button_height"
 				android:layout_columnSpan="1"
-				android:layout_columnWeight="1" />
+				android:layout_columnWeight="1"
+				/>
+
+			<ToggleButton
+				android:id="@+id/nature_transfer"
+				android:layout_width="0dp"
+				android:layout_height="@dimen/mini_button_height"
+				android:layout_columnWeight="4"
+				android:layout_columnSpan="4"
+				android:layout_marginBottom="@dimen/margin_move_field"
+				android:clickable="false"
+				android:textSize="@dimen/mini_button_font"
+				android:textOff="@string/transfer"
+				android:textOn="@string/TRANSFER"
+				android:backgroundTint="@android:color/transparent"
+				/>
 
 			<LinearLayout
 				android:id="@+id/simple_value"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:layout_columnSpan="8"
-				android:layout_marginTop="10dp"
-				android:orientation="horizontal">
+				android:layout_marginBottom="@dimen/margin_move_field"
+				android:orientation="horizontal"
+				>
 
 				<EditText
 					android:id="@+id/value"
@@ -196,14 +217,16 @@
 					android:inputType="numberDecimal"
 					android:digits="0123456789,."
 					android:hint="@string/value"
-					android:autofillHints="value" />
+					android:autofillHints="value"
+					/>
 
 				<Button
 					android:text="@string/use_detailed"
-					android:textSize="12sp"
+					android:textSize="@dimen/mini_button_font"
 					android:layout_width="wrap_content"
-					android:layout_height="36sp"
-					android:onClick="useDetailed" />
+					android:layout_height="@dimen/mini_button_height"
+					android:onClick="useDetailed"
+					/>
 
 			</LinearLayout>
 
@@ -211,17 +234,20 @@
 				android:id="@+id/detailed_value"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
+				android:layout_marginBottom="@dimen/margin_move_field"
 				android:columnCount="4"
 				android:layout_columnSpan="8"
-				android:visibility="gone">
+				android:visibility="gone"
+				>
 
 				<Button
 					android:text="@string/use_simple"
-					android:textSize="12sp"
+					android:textSize="@dimen/mini_button_font"
 					android:layout_width="match_parent"
-					android:layout_height="36sp"
+					android:layout_height="@dimen/mini_button_height"
 					android:layout_columnSpan="4"
-					android:onClick="useSimple" />
+					android:onClick="useSimple"
+					/>
 
 				<EditText
 					android:id="@+id/detail_description"
@@ -232,7 +258,8 @@
 					android:layout_columnWeight="9"
 					android:inputType="text"
 					android:hint="@string/description"
-					android:autofillHints="description" />
+					android:autofillHints="description"
+					/>
 				<EditText
 					android:id="@+id/detail_amount"
 					android:textSize="14sp"
@@ -241,7 +268,8 @@
 					android:layout_columnWeight="3"
 					android:inputType="number"
 					android:hint="@string/amount"
-					android:autofillHints="amount" />
+					android:autofillHints="amount"
+					/>
 				<EditText
 					android:id="@+id/detail_value"
 					android:textSize="14sp"
@@ -251,21 +279,24 @@
 					android:inputType="numberDecimal"
 					android:digits="0123456789,."
 					android:hint="@string/value"
-					android:autofillHints="value" />
+					android:autofillHints="value"
+					/>
 				<Button
 					android:text="@string/add_detail"
-					android:textSize="12sp"
+					android:textSize="@dimen/mini_button_font"
 					android:layout_width="0dp"
 					android:layout_columnWeight="2"
-					android:layout_height="wrap_content"
-					android:onClick="addDetail" />
+					android:layout_height="@dimen/mini_button_height"
+					android:onClick="addDetail"
+					/>
 
 				<LinearLayout
 					android:id="@+id/details"
 					android:orientation="vertical"
 					android:layout_columnSpan="4"
 					android:layout_width="fill_parent"
-					android:layout_height="wrap_content">
+					android:layout_height="wrap_content"
+					>
 				</LinearLayout>
 
 			</GridLayout>
@@ -277,7 +308,8 @@
 				android:layout_columnSpan="4"
 				android:layout_height="wrap_content"
 				android:onClick="back"
-				tools:ignore="OnClick" />
+				tools:ignore="OnClick"
+				/>
 
 			<Button
 				android:text="@string/save"
@@ -285,7 +317,8 @@
 				android:layout_columnWeight="4"
 				android:layout_columnSpan="4"
 				android:layout_height="wrap_content"
-				android:onClick="save" />
+				android:onClick="save"
+				/>
 
 		</GridLayout>
 	</ScrollView>

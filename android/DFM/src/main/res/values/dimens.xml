@@ -5,6 +5,9 @@
 	<dimen name="activity_vertical_margin">16dp</dimen>
 	<dimen name="logo_margin_top">-50sp</dimen>
 	<dimen name="logo_margin_bottom">20sp</dimen>
-	<dimen name="padding_field">12dp</dimen>
+	<dimen name="padding_detail_field">12dp</dimen>
+	<dimen name="margin_move_field">16dp</dimen>
+	<dimen name="mini_button_height">36dp</dimen>
+	<dimen name="mini_button_font">12sp</dimen>
 
 </resources>
