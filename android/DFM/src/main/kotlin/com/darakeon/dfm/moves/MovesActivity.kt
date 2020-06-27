@@ -232,7 +232,9 @@ class MovesActivity : BaseActivity() {
 		simple_value.visibility = GONE
 		detailed_value.visibility = VISIBLE
 
-		scrollToTheEnd()
+		account_in.nextFocusDownId = R.id.detail_description
+
+		scrollToTheEnd(detail_description)
 	}
 
 	private fun useSimple() {
@@ -241,13 +243,16 @@ class MovesActivity : BaseActivity() {
 		simple_value.visibility = VISIBLE
 		detailed_value.visibility = GONE
 
-		scrollToTheEnd()
+		account_in.nextFocusDownId = R.id.value
+
+		scrollToTheEnd(value)
 	}
 
-	private fun scrollToTheEnd() {
-		form.postDelayed({
+	private fun scrollToTheEnd(view: View) {
+		form.post {
 			form.fullScroll(FOCUS_DOWN)
-		}, 100)
+			view.requestFocus()
+		}
 	}
 
 	private fun addViewDetail(move: Move, description: String, amount: Int, value: Double) {
@@ -319,7 +324,7 @@ class MovesActivity : BaseActivity() {
 
 		addViewDetail(move, description, amount, value)
 
-		scrollToTheEnd()
+		scrollToTheEnd(detail_description)
 	}
 
 	fun save(@Suppress(ON_CLICK) view: View) {
