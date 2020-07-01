@@ -1,4 +1,6 @@
-﻿namespace DFM.BusinessLogic.Exceptions
+﻿using System;
+
+namespace DFM.BusinessLogic.Exceptions
 {
 	public enum Error
 	{
@@ -85,9 +87,9 @@
 
 	public static class ErrorX
 	{
-		public static CoreError Throw(this Error error)
+		public static CoreError Throw(this Error error, Exception inner = null)
 		{
-			return new CoreError(error);
+			return new CoreError(error, inner);
 		}
 	}
 }

@@ -5,19 +5,19 @@ namespace DFM.MVC.Areas.Api.Models
 {
 	public class MovesModel : BaseApiModel
 	{
-		public void Delete(Int32 id)
+		public void Delete(Guid guid)
 		{
-			money.DeleteMove(id);
+			money.DeleteMove(guid);
 		}
 
-		public void Check(Int32 id, PrimalMoveNature nature)
+		public void Check(Guid guid, PrimalMoveNature nature)
 		{
-			money.CheckMove(id, nature);
+			money.CheckMove(guid, nature);
 		}
 
-		public void Uncheck(Int32 id, PrimalMoveNature nature)
+		public void Uncheck(Guid guid, PrimalMoveNature nature)
 		{
-			money.UncheckMove(id, nature);
+			money.UncheckMove(guid, nature);
 		}
 	}
 }

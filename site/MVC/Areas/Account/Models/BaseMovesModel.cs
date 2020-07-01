@@ -96,7 +96,7 @@ namespace DFM.MVC.Areas.Account.Models
 
 		private void arrangeDetails()
 		{
-			IsDetailed = GenericMove.ID != 0 && GenericMove.IsDetailed();
+			IsDetailed = GenericMove.Guid != Guid.Empty && GenericMove.IsDetailed();
 		}
 
 

@@ -337,12 +337,12 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		public void GivenIDeleteTheMovesOf(String givenAccountUrl)
 		{
 			var user = userRepository.GetByEmail(current.Email);
-			var account = accountRepository.GetByUrl(accountUrl, user);
+			var account = accountRepository.GetByUrl(givenAccountUrl, user);
 			var moveList = moveRepository.ByAccount(account);
 
 			foreach (var move in moveList)
 			{
-				service.Money.DeleteMove(move.ID);
+				service.Money.DeleteMove(move.Guid);
 			}
 		}
 
@@ -1052,7 +1052,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			}
 
 			var schedule = service.Robot.SaveSchedule(scheduleInfo);
-			scheduleInfo.ID = schedule.ID;
+			scheduleInfo.Guid = schedule.Guid;
 		}
 
 		[Given(@"the account has a disabled schedule( with details)?")]
@@ -1087,9 +1087,9 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			}
 
 			var schedule = service.Robot.SaveSchedule(scheduleInfo);
-			scheduleInfo.ID = schedule.ID;
+			scheduleInfo.Guid = schedule.Guid;
 
-			service.Robot.DisableSchedule(scheduleInfo.ID);
+			service.Robot.DisableSchedule(scheduleInfo.Guid);
 		}
 
 

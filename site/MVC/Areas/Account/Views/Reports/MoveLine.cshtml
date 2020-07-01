@@ -2,7 +2,7 @@
 
 @{ var move = Model.Move; }
 
-<tr class="row" id="m@(move.ID)">
+<tr class="row" id="m@(move.Guid)">
 	<td>@move.Description</td>
 
 	@if (Model.IsUsingCategories)
@@ -40,7 +40,7 @@
 	}
 
 	<td class="col-sm-1 text-center">
-		<a href="@Url.Action("Edit", "Moves", new {id = move.ID})">
+		<a href="@Url.Action("Edit", "Moves", new {id = move.Guid})">
 			<span class="glyphicon glyphicon-edit"
 				  title="@Context.Translate("Edit")">
 			</span>
@@ -50,7 +50,7 @@
 	<td class="col-sm-1 text-center">
 		@await Html.PartialAsync("MicroForm",
 			MicroForm.WithGlyph(Context, "trash", "Delete")
-				.AddIdUrl("Moves", "Delete", move.ID)
+				.AddIdUrl("Moves", "Delete", move.Guid)
 			)
 	</td>
 
@@ -65,9 +65,9 @@
 		<td class="col-sm-1 text-center">
 			@await Html.PartialAsync("MicroForm",
 				MicroForm.WithGlyph(Context, glyph, action)
-					.AddIdUrl("Moves", action, move.ID)
+					.AddIdUrl("Moves", action, move.Guid)
 					.AddHidden("nature", nature)
-					.AsAjax($"m{move.ID}")
+					.AsAjax($"m{move.Guid}")
 				)
 		</td>
 	}

@@ -1,6 +1,7 @@
 const sqlite = require('sqlite3')
 const util = require('util')
 const { v4: uuid } = require('uuid')
+const { bytesToGuid } = require('./guid')
 
 const password = {
 	plain: 'password',
@@ -219,31 +220,49 @@ async function createSchedule(
 	const category = await getCategory(categoryName, user)
 	const accountOut = await getAccount(accountOutUrl, user)
 	const accountIn = await getAccount(accountInUrl, user)
-	
+
 	const categoryId = category.length == 0 ? 'null' : category[0].ID
 	const accountOutId = accountOut.length == 0 ? 'null' : accountOut[0].ID
 	const accountInId = accountIn.length == 0 ? 'null' : accountIn[0].ID
-	
+
 	const dateParts = date.split('-')
 	const year = dateParts[0]
 	const month = dateParts[1]
 	const day = dateParts[2]
-	
-	return execute(
+
+	const externalId = random()
+
+	const query =
 		`insert into schedule `
-			+ `(times, boundless, showInstallment, frequency, `
-			+ `description, year, month, day, nature, valueCents, `
-			+ `category_id, out_id, in_id, user_id, lastRun, deleted) `
-		+ `values `
-			+ `(${times}, ${boundless}, ${showInstallment}, ${frequency}, `
-			+ `'${description}', ${year}, ${month}, ${day}, '${nature}', ${value}, `
-			+ `${categoryId}, ${accountOutId}, ${accountInId}, ${user.ID}, 1, 0);`
+				+ `(externalId, times, boundless, showInstallment, frequency, `
+				+ `description, year, month, day, nature, valueCents, `
+				+ `category_id, out_id, in_id, user_id, lastRun, deleted) `
+			+ `values `
+				+ `(?, ${times}, ${boundless}, ${showInstallment}, ${frequency}, `
+				+ `'${description}', ${year}, ${month}, ${day}, '${nature}', ${value}, `
+				+ `${categoryId}, ${accountOutId}, ${accountInId}, ${user.ID}, 1, 0);`
+
+	const inserted = await execute(query, [externalId])
+
+	const result = await execute(
+		`select externalId from schedule where id=${inserted.lastID}`
 	)
+
+	return bytesToGuid(result[0].ExternalId)
+}
+
+function random() {
+	const array = []
+	for(let b = 0; b < 16; b++) {
+		const rnd = Math.floor(Math.random() * 256) % 256
+		array.push(rnd)
+	}
+	return Buffer.from(array)
 }
 
 async function getMoveId(description, year, month, day) {
 	const result = await execute(
-		`select id from move `
+		`select externalId from move `
 			+ `where description='${description}' `
 				+ `and year=${year} `
 				+ `and month=${month} `
@@ -252,17 +271,27 @@ async function getMoveId(description, year, month, day) {
 		+ `limit 1`
 	)
 	
-	return result[0].ID
+	const id = result[0].ExternalId
+
+	return bytesToGuid(id)
 }
 
-async function checkMove(id, nature) {
-	await execute(`update move set checked${nature}=1 where id=${id}`)
+async function checkMove(description, year, month, day, nature) {
+	const result = await execute(
+		`update move set checked${nature}=1 `
+			+ `where description='${description}' `
+				+ `and year=${year} `
+				+ `and month=${month} `
+				+ `and day=${day}`
+	)
 }
 
-async function execute(query) {	
+async function execute(query, params) {	
 	let done = false;
 	let result;
 	let error;
+	
+	if (!params) params = []
 
 	const db = new sqlite.Database(
 		'server/tests.db',
@@ -270,13 +299,13 @@ async function execute(query) {
 	)
 
 	if (query.indexOf('select') == 0) {
-		db.all(query, [], (err, rows) => {
+		db.all(query, params, (err, rows) => {
 			done = true
 			error = err
 			result = rows			
 		})
 	} else {
-		db.run(query, [], function(err) {
+		db.run(query, params, function(err) {
 			done = true
 			error = err
 			result = this

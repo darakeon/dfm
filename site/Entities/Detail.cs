@@ -11,6 +11,7 @@ namespace DFM.Entities
 		}
 
 		public virtual Int64 ID { get; set; }
+		public virtual Byte[] ExternalId { get; set; }
 
 		public virtual String Description { get; set; }
 		public virtual Int16 Amount { get; set; }

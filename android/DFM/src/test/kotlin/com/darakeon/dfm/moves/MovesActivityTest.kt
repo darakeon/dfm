@@ -22,6 +22,7 @@ import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.utils.activity.ActivityMock
 import com.darakeon.dfm.utils.activity.getActivityName
 import com.darakeon.dfm.utils.activity.getLastDatePicker
+import com.darakeon.dfm.utils.api.guid
 import com.darakeon.dfm.utils.api.readBundle
 import com.darakeon.dfm.utils.getDecimal
 import com.darakeon.dfm.utils.log.LogRule
@@ -66,6 +67,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog
 import java.util.Calendar
+import java.util.UUID
 
 @RunWith(RobolectricTestRunner::class)
 class MovesActivityTest {
@@ -113,28 +115,28 @@ class MovesActivityTest {
 	@Test
 	fun onCreateAccountAndIdByIntent() {
 		activity.intent.putExtra("accountUrl", "url")
-		activity.intent.putExtra("id", 27)
+		activity.intent.putExtra("id", guid)
 
 		activity.onCreate(Bundle(), null)
 
 		val accountUrl = activity.getPrivate<String>("accountUrl")
 		assertThat(accountUrl, `is`("url"))
 
-		val id = activity.getPrivate<Int>("id")
-		assertThat(id, `is`(27))
+		val id = activity.getPrivate<UUID?>("id")
+		assertThat(id, `is`(guid))
 	}
 
 	@Test
 	fun onCreateAccountAndIdByQuery() {
-		activity.intent.data = Uri.parse("?accountUrl=url&id=27")
+		activity.intent.data = Uri.parse("?accountUrl=url&id=$guid")
 
 		activity.onCreate(Bundle(), null)
 
 		val accountUrl = activity.getPrivate<String>("accountUrl")
 		assertThat(accountUrl, `is`("url"))
 
-		val id = activity.getPrivate<Int>("id")
-		assertThat(id, `is`(27))
+		val id = activity.getPrivate<UUID?>("id")
+		assertThat(id, `is`(guid))
 	}
 
 	@Test
@@ -146,8 +148,8 @@ class MovesActivityTest {
 		val accountUrl = activity.getPrivate<String>("accountUrl")
 		assertThat(accountUrl, `is`("url"))
 
-		val id = activity.getPrivate<Int>("id")
-		assertThat(id, `is`(0))
+		val id = activity.getPrivate<UUID?>("id")
+		assertNull(id)
 	}
 
 	@Test
@@ -184,6 +186,7 @@ class MovesActivityTest {
 		activity.onCreate(null, null)
 
 		val move = activity.getPrivate<Move>("move")
+		assertNull(move.guid)
 		assertThat(move.date, `is`(Date()))
 		assertNull(move.inUrl)
 		assertThat(move.outUrl, `is`("url"))
@@ -199,7 +202,7 @@ class MovesActivityTest {
 		activity.onCreate(null, null)
 
 		val move = activity.getPrivate<Move>("move")
-		assertThat(move.id, `is`(1))
+		assertThat(move.guid, `is`(guid))
 		assertThat(move.description, `is`("move"))
 		assertThat(move.date, `is`(Date(2020, 3, 8)))
 		assertThat(move.natureEnum, `is`(Nature.Transfer))
@@ -243,7 +246,7 @@ class MovesActivityTest {
 
 		val move = activity.getPrivate<Move>("move")
 
-		assertThat(move.id, `is`(1))
+		assertThat(move.guid, `is`(guid))
 		assertThat(move.description, `is`("move"))
 		assertThat(move.date, `is`(Date(2020, 3, 8)))
 		assertThat(move.natureEnum, `is`(Nature.Transfer))
@@ -890,7 +893,7 @@ class MovesActivityTest {
 			"__parent",
 			WelcomeActivity::class.java
 		)
-		activity.intent.putExtra("id", 27)
+		activity.intent.putExtra("id", guid)
 
 		val saved = Bundle()
 		saved.putString("moveForm", readBundle("move_form"))
@@ -906,7 +909,29 @@ class MovesActivityTest {
 
 		val shadow = shadowOf(activity)
 		val intent = shadow.peekNextStartedActivity()
-		assertThat(intent.getIntExtra("id", 0), `is`(0))
+		assertNull(intent.extras?.get("id"))
 		assertThat(intent.getActivityName(), `is`("WelcomeActivity"))
+	}
+
+	@Test
+	fun edit() {
+		activity.simulateNetwork()
+
+		activity.intent.putExtra("accountUrl", "url")
+		activity.intent.putExtra("id", guid)
+		activity.intent.putExtra(
+			"__parent",
+			WelcomeActivity::class.java
+		)
+
+		mocker.server.enqueue("move_get")
+		activity.onCreate(null, null)
+
+		mocker.server.enqueue("empty")
+		activity.save(View(activity))
+
+		val requestPath = mocker.server.lastPath()
+		val urlGuid = requestPath.split('/').last()
+		assertThat(urlGuid, `is`(guid.toString()))
 	}
 }

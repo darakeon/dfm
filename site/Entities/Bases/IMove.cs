@@ -7,6 +7,8 @@ namespace DFM.Entities.Bases
 {
 	public interface IMove : IEntityLong, IDate
 	{
+		Guid Guid { get; set; }
+
 		String Description { get; set; }
 		MoveNature Nature { get; set; }
 

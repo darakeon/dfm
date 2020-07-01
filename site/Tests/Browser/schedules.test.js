@@ -44,13 +44,12 @@ describe('Schedules', () => {
 	})
 
 	test('Delete', async () => {
-		const result = await db.createSchedule(
+		const id = await db.createSchedule(
 			1, 0, 0, 1,
 			'Schedule Delete', '2019-11-16', 0, 1,
 			category, accountOut, null,
 			user
 		)
-		const id = result.lastID
 
 		await puppy.call('Schedules')
 

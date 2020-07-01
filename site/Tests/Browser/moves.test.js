@@ -173,11 +173,11 @@ describe('Moves', () => {
 			category, accountOut, null
 		)
 
-		await db.checkMove(id, 'Out')
+		await db.checkMove('Move Uncheck', 2019, 11, 16, 'Out')
 
 		await puppy.call(`Account/${accountOut}/Reports/ShowMoves/201911`)
 		await page.waitForSelector('#body .table')
-
+		
 		const uncheckUrl = `/Account/${accountOut}/Moves/Uncheck/${id}`
 		await puppy.submit(uncheckUrl)
 

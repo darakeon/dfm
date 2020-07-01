@@ -35,7 +35,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 		}
 
 		[Auth, HttpGetAndHead]
-		public IActionResult Edit(Int32? id)
+		public IActionResult Edit(Guid? id)
 		{
 			if (!id.HasValue)
 				return RedirectToAction("Create");
@@ -46,15 +46,15 @@ namespace DFM.MVC.Areas.Account.Controllers
 		}
 
 		[Auth, HttpPost, ValidateAntiForgeryToken]
-		public IActionResult Edit(Int32 id, MovesCreateEditModel model)
+		public IActionResult Edit(Guid id, MovesCreateEditModel model)
 		{
-			model.ID = id;
+			model.Guid = id;
 
 			return createEditSchedule(model);
 		}
 
 		[Auth, HttpPost, ValidateAntiForgeryToken]
-		public IActionResult Delete(Int32 id)
+		public IActionResult Delete(Guid id)
 		{
 			var model = new MoneyModel();
 
@@ -64,7 +64,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 		}
 
 		[JsonAuth, HttpPost, ValidateAntiForgeryToken]
-		public IActionResult Check(Int32 id, PrimalMoveNature nature)
+		public IActionResult Check(Guid id, PrimalMoveNature nature)
 		{
 			var model = new MoneyModel();
 
@@ -74,7 +74,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 		}
 
 		[JsonAuth, HttpPost, ValidateAntiForgeryToken]
-		public IActionResult Uncheck(Int32 id, PrimalMoveNature nature)
+		public IActionResult Uncheck(Guid id, PrimalMoveNature nature)
 		{
 			var model = new MoneyModel();
 

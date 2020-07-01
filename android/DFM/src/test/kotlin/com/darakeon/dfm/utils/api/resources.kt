@@ -3,6 +3,7 @@ package com.darakeon.dfm.utils.api
 import java.nio.charset.Charset
 import java.nio.file.Files
 import java.nio.file.Paths
+import java.util.UUID
 
 fun readBundle(jsonName: String) =
 	readFromFile("bundles/$jsonName.json")
@@ -28,3 +29,5 @@ const val noBody = "Error on contacting the Pig. " +
 
 const val internetSlow = "Problems while connecting to website, " +
 	"please check your internet connection"
+
+val guid: UUID = UUID.fromString("01234567-89AB-CDEF-FEDC-BA9876543210")

@@ -25,7 +25,7 @@ namespace DFM.MVC.Areas.Api.Controllers
 		}
 
 		[HttpGetAndHead]
-		public IActionResult Create(Int32? id)
+		public IActionResult Create(Guid? id)
 		{
 			return json(() => new MovesCreateModel(id));
 		}
@@ -39,19 +39,19 @@ namespace DFM.MVC.Areas.Api.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Delete(Int32 id)
+		public IActionResult Delete(Guid id)
 		{
 			return json(() => new MovesModel().Delete(id));
 		}
 
 		[HttpPost]
-		public IActionResult Check(Int32 id, PrimalMoveNature nature)
+		public IActionResult Check(Guid id, PrimalMoveNature nature)
 		{
 			return json(() => new MovesModel().Check(id, nature));
 		}
 
 		[HttpPost]
-		public IActionResult Uncheck(Int32 id, PrimalMoveNature nature)
+		public IActionResult Uncheck(Guid id, PrimalMoveNature nature)
 		{
 			return json(() => new MovesModel().Uncheck(id, nature));
 		}

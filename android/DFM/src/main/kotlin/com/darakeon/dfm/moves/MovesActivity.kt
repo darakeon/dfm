@@ -51,6 +51,7 @@ import kotlinx.android.synthetic.main.moves.remove_check
 import kotlinx.android.synthetic.main.moves.simple_value
 import kotlinx.android.synthetic.main.moves.value
 import kotlinx.android.synthetic.main.moves.warnings
+import java.util.UUID
 
 class MovesActivity : BaseActivity() {
 	override val contentView = R.layout.moves
@@ -62,7 +63,7 @@ class MovesActivity : BaseActivity() {
 	private val moveFormKey = "moveForm"
 
 	private var accountUrl = ""
-	private var id = 0
+	private var id: UUID? = null
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -75,10 +76,13 @@ class MovesActivity : BaseActivity() {
 		).forEach { it.applyGlyphicon() }
 
 		accountUrl = getExtraOrUrl("accountUrl") ?: ""
-		id = getExtraOrUrl("id")?.toIntOrNull() ?: 0
+		val id = getExtraOrUrl("id")
+
+		if (id != null)
+			this.id = tryGetGuid(id)
 
 		if (savedInstanceState == null) {
-			callApi { it.getMove(id, this::populateScreen) }
+			callApi { it.getMove(this.id, this::populateScreen) }
 		} else {
 			move = savedInstanceState.getFromJson(moveKey, Move())
 			moveForm = savedInstanceState.getFromJson(moveFormKey, MoveCreation())
@@ -86,6 +90,13 @@ class MovesActivity : BaseActivity() {
 			populateResponse()
 		}
 	}
+
+	private fun tryGetGuid(id: String?) =
+		try {
+			UUID.fromString(id)
+		} catch (e: IllegalArgumentException) {
+			null
+		}
 
 	private fun populateScreen(data: MoveCreation) {
 		moveForm = data

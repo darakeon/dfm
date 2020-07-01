@@ -8,6 +8,18 @@ namespace DFM.Entities
 		private void init()
 		{
 			Amount = 1;
+			ExternalId = new Byte[16];
+		}
+
+		public override String ToString()
+		{
+			return $"[{ID}] {Description}";
+		}
+
+		public virtual Guid Guid
+		{
+			get => new Guid(ExternalId);
+			set => ExternalId = value.ToByteArray();
 		}
 
 		public virtual Decimal Value
@@ -20,12 +32,6 @@ namespace DFM.Entities
 		{
 			return Value * Amount;
 		}
-
-		public override String ToString()
-		{
-			return $"[{ID}] {Description}";
-		}
-
 
 		public virtual Detail Clone()
 		{

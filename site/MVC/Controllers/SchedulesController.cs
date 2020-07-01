@@ -16,7 +16,7 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
-		public IActionResult Delete(Int32 id)
+		public IActionResult Delete(Guid id)
 		{
 			var model = new RobotModel();
 

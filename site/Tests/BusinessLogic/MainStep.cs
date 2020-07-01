@@ -3,7 +3,6 @@ using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.BusinessLogic.Response;
-using DFM.BusinessLogic.Tests.Helpers;
 using DFM.Entities;
 using DFM.Generic;
 using DFM.Language;
@@ -146,7 +145,7 @@ namespace DFM.BusinessLogic.Tests
 
 				foreach (var pendentSchedule in pendentSchedules)
 				{
-					service.Robot.DisableSchedule(pendentSchedule.ID);
+					service.Robot.DisableSchedule(pendentSchedule.Guid);
 				}
 			}
 			catch (CoreError e)

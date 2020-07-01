@@ -12,11 +12,18 @@ namespace DFM.Entities
 		private void init()
 		{
 			DetailList = new List<Detail>();
+			ExternalId = new Byte[16];
 		}
 
 		public override String ToString()
 		{
 			return Description;
+		}
+
+		public virtual Guid Guid
+		{
+			get => new Guid(ExternalId);
+			set => ExternalId = value.ToByteArray();
 		}
 
 		public virtual Decimal? Value

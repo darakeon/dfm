@@ -11,6 +11,7 @@ import com.darakeon.dfm.api.entities.settings.Settings
 import com.darakeon.dfm.api.entities.summary.Summary
 import com.darakeon.dfm.base.BaseActivity
 import retrofit2.Call
+import java.util.UUID
 
 class Api(activity: BaseActivity) {
 	private val requestHandler = RequestHandler(activity)
@@ -47,7 +48,7 @@ class Api(activity: BaseActivity) {
 	}
 
 	fun check(
-		id: Int,
+		id: UUID,
 		nature: Nature,
 		onSuccess: () -> Unit
 	) {
@@ -55,7 +56,7 @@ class Api(activity: BaseActivity) {
 	}
 
 	fun uncheck(
-		id: Int,
+		id: UUID,
 		nature: Nature,
 		onSuccess: () -> Unit
 	) {
@@ -63,7 +64,7 @@ class Api(activity: BaseActivity) {
 	}
 
 	fun delete(
-		id: Int,
+		id: UUID,
 		onSuccess: () -> Unit
 	) {
 		service.delete(id).call { onSuccess() }
@@ -84,17 +85,28 @@ class Api(activity: BaseActivity) {
 	}
 
 	fun getMove(
-		id: Int,
+		id: UUID?,
 		onSuccess: (MoveCreation) -> Unit
 	) {
-		service.getMove(id).call { onSuccess(it) }
+		(
+			if (id == null)
+				service.getMove()
+			else
+				service.getMove(id)
+		).call { onSuccess(it) }
 	}
 
 	fun saveMove(
 		move: Move,
 		onSuccess: () -> Unit
 	) {
-		service.saveMove(move.id, move).call { onSuccess() }
+		val id = move.guid
+		(
+			if (id == null)
+				service.saveMove(move)
+			else
+				service.saveMove(id, move)
+		).call { onSuccess() }
 	}
 
 	fun getConfig(

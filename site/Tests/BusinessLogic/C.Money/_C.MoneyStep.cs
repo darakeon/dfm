@@ -19,16 +19,16 @@ namespace DFM.BusinessLogic.Tests.C.Money
 	public class MoneyStep : BaseStep
 	{
 		#region Variables
-		private static Int64 id
+		private static Guid guid
 		{
-			get => get<Int64>("ID");
-			set => set("ID", value);
+			get => get<Guid>("guid");
+			set => set("guid", value);
 		}
 
-		private static List<Int64> ids
+		private static List<Guid> guids
 		{
-			get => get<List<Int64>>("IDs");
-			set => set("IDs", value);
+			get => get<List<Guid>>("guids");
+			set => set("guids", value);
 		}
 
 		private static DateTime oldDate
@@ -176,15 +176,15 @@ namespace DFM.BusinessLogic.Tests.C.Money
 		[Then(@"the move will not be saved")]
 		public void ThenTheMoveWillNotBeSaved()
 		{
-			Assert.AreEqual(0, moveResult?.ID ?? 0);
+			Assert.AreEqual(Guid.Empty, moveResult?.Guid ?? Guid.Empty);
 		}
 
 		[Then(@"the move will be saved")]
 		public void ThenTheMoveWillBeSaved()
 		{
-			Assert.AreNotEqual(0, moveResult?.ID ?? 0);
+			Assert.AreNotEqual(Guid.Empty, moveResult?.Guid ?? Guid.Empty);
 
-			var newMove = service.Money.GetMove(moveResult?.ID ?? 0);
+			var newMove = service.Money.GetMove(moveResult?.Guid ?? Guid.Empty);
 
 			Assert.IsNotNull(newMove);
 		}
@@ -277,7 +277,7 @@ namespace DFM.BusinessLogic.Tests.C.Money
 		[Given("I get the move")]
 		public void GivenIGetTheMove()
 		{
-			moveInfo = service.Money.GetMove(id);
+			moveInfo = service.Money.GetMove(guid);
 		}
 
 		[When(@"I change the category of the move")]
@@ -533,22 +533,22 @@ namespace DFM.BusinessLogic.Tests.C.Money
 		[Then(@"the move total will be (\-?\d+\.?\d*)")]
 		public void ThenTheMoveTotalWillBe(Decimal value)
 		{
-			var move = service.Money.GetMove(moveInfo.ID);
+			var move = service.Money.GetMove(moveInfo.Guid);
 			Assert.AreEqual(value, move.Total);
 		}
 
 		[Then(@"the Move will still be at the Schedule")]
 		public void ThenTheMoveWillStillBeAtTheSchedule()
 		{
-			var move = moveRepository.Get(moveInfo.ID);
+			var move = moveRepository.Get(moveInfo.Guid);
 			Assert.IsNotNull(move.Schedule);
-			Assert.AreEqual(scheduleInfo.ID, move.Schedule.ID);
+			Assert.AreEqual(scheduleInfo.Guid, move.Schedule.Guid);
 		}
 
 		[Then(@"the move is (not )?checked for account (Out|In)")]
 		public void ThenTheMoveIsNotCheckedForAccountOutAnymore(Boolean @checked, PrimalMoveNature nature)
 		{
-			var move = moveRepository.Get(moveInfo.ID);
+			var move = moveRepository.Get(moveInfo.Guid);
 			Assert.AreEqual(@checked, move.IsChecked(nature));
 		}
 		#endregion
@@ -562,7 +562,7 @@ namespace DFM.BusinessLogic.Tests.C.Money
 
 			try
 			{
-				moveInfo = service.Money.GetMove(id);
+				moveInfo = service.Money.GetMove(guid);
 			}
 			catch (CoreError e)
 			{
@@ -595,8 +595,8 @@ namespace DFM.BusinessLogic.Tests.C.Money
 		{
 			service.Robot.RunSchedule();
 
-			var schedule = scheduleRepository.Get(scheduleInfo.ID);
-			id = schedule.MoveList.Last().ID;
+			var schedule = scheduleRepository.Get(scheduleInfo.Guid);
+			guid = schedule.MoveList.Last().Guid;
 		}
 
 		[Given(@"I run the scheduler and get all the moves")]
@@ -604,8 +604,8 @@ namespace DFM.BusinessLogic.Tests.C.Money
 		{
 			service.Robot.RunSchedule();
 
-			var schedule = scheduleRepository.Get(scheduleInfo.ID);
-			ids = schedule.MoveList.Select(m => m.ID).ToList();
+			var schedule = scheduleRepository.Get(scheduleInfo.Guid);
+			guids = schedule.MoveList.Select(m => m.Guid).ToList();
 		}
 
 		[When(@"I try to delete the move")]
@@ -613,7 +613,7 @@ namespace DFM.BusinessLogic.Tests.C.Money
 		{
 			try
 			{
-				service.Money.DeleteMove(id);
+				service.Money.DeleteMove(guid);
 			}
 			catch (CoreError e)
 			{
@@ -626,7 +626,7 @@ namespace DFM.BusinessLogic.Tests.C.Money
 		{
 			try
 			{
-				foreach (var moveId in ids)
+				foreach (var moveId in guids)
 				{
 					service.Money.DeleteMove(moveId);
 				}
@@ -644,7 +644,7 @@ namespace DFM.BusinessLogic.Tests.C.Money
 
 			try
 			{
-				var result = service.Money.DeleteMove(id);
+				var result = service.Money.DeleteMove(guid);
 				currentEmailStatus = result.Email;
 			}
 			catch (CoreError e)
@@ -663,7 +663,7 @@ namespace DFM.BusinessLogic.Tests.C.Money
 
 			try
 			{
-				var result = service.Money.DeleteMove(id);
+				var result = service.Money.DeleteMove(guid);
 				currentEmailStatus = result.Email;
 			}
 			catch (CoreError e)
@@ -678,7 +678,7 @@ namespace DFM.BusinessLogic.Tests.C.Money
 		[Then(@"the move will (not )?be deleted")]
 		public void ThenTheMoveWillOrNotBeDeleted(Boolean deleted)
 		{
-			var move = moveRepository.Get(id);
+			var move = moveRepository.Get(guid);
 			Assert.AreEqual(deleted, move == null);
 		}
 		#endregion
@@ -687,16 +687,16 @@ namespace DFM.BusinessLogic.Tests.C.Money
 		[Given(@"the move is (not )?checked for account (In|Out)")]
 		public void GivenTheMoveIsChecked(Boolean @checked, PrimalMoveNature nature)
 		{
-			var move = moveRepository.Get(moveInfo.ID);
+			var move = moveRepository.Get(moveInfo.Guid);
 			var moveChecked = move.IsChecked(nature);
 
 			if (moveChecked == @checked)
 				return;
 
 			if (@checked)
-				service.Money.CheckMove(moveInfo.ID, nature);
+				service.Money.CheckMove(moveInfo.Guid, nature);
 			else
-				service.Money.UncheckMove(moveInfo.ID, nature);
+				service.Money.UncheckMove(moveInfo.Guid, nature);
 		}
 
 		[When(@"I try to mark it as (not )?checked for account (In|Out)")]
@@ -705,9 +705,9 @@ namespace DFM.BusinessLogic.Tests.C.Money
 			try
 			{
 				if (@checked)
-					service.Money.CheckMove(moveInfo.ID, nature);
+					service.Money.CheckMove(moveInfo.Guid, nature);
 				else
-					service.Money.UncheckMove(moveInfo.ID, nature);
+					service.Money.UncheckMove(moveInfo.Guid, nature);
 			}
 			catch (CoreError e)
 			{
@@ -718,7 +718,7 @@ namespace DFM.BusinessLogic.Tests.C.Money
 		[Then(@"the move will (not )?be checked for account (In|Out)")]
 		public void ThenTheMoveWillBeChecked(Boolean @checked, PrimalMoveNature nature)
 		{
-			var move = moveRepository.Get(moveInfo.ID);
+			var move = moveRepository.Get(moveInfo.Guid);
 			Assert.IsNotNull(move);
 
 			switch (nature)
@@ -812,7 +812,7 @@ namespace DFM.BusinessLogic.Tests.C.Money
 
 			var result = service.Money.SaveMove(moveInfo);
 
-			moveInfo.ID = result.ID;
+			moveInfo.Guid = result.Guid;
 
 			var user = userRepository.GetByEmail(current.Email);
 			var category = categoryRepository.GetByName(mainCategoryName, user);
@@ -867,22 +867,22 @@ namespace DFM.BusinessLogic.Tests.C.Money
 		[Given(@"I pass an id of Move that doesn't exist")]
 		public void GivenIPassAnIdOfMoveThatDoesNotExist()
 		{
-			id = 0;
+			guid = Guid.Empty;
 		}
 
 		[Given(@"I pass valid Move ID")]
 		public void GivenIPassValidMoveID()
 		{
-			id = moveInfo.ID;
+			guid = moveInfo.Guid;
 		}
 
-		[Given(@"I pass the first schedule move ID")]
-		public void GivenIPassTheFirstScheduleMoveID()
+		[Given(@"I pass the first schedule move guid")]
+		public void GivenIPassTheFirstScheduleMoveGuid()
 		{
-			var schedule = scheduleRepository.Get(scheduleInfo.ID);
+			var schedule = scheduleRepository.Get(scheduleInfo.Guid);
 			var move = schedule.MoveList.First();
 
-			id = move.ID;
+			guid = move.Guid;
 		}
 		#endregion
 	}

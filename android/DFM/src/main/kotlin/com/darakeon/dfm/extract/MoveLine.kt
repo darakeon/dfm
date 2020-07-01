@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.move_line.view.check_move
 import kotlinx.android.synthetic.main.move_line.view.date
 import kotlinx.android.synthetic.main.move_line.view.name
 import kotlinx.android.synthetic.main.move_line.view.value
+import java.util.UUID
 
 class MoveLine(
 	context: Context,
@@ -22,8 +23,11 @@ class MoveLine(
 ) : LinearLayout(context, attributeSet) {
 	var menu: Menu? = null
 
-	private var move: Move? = null
+	private lateinit var move: Move
 	private var checkNature: Nature = Nature.Out
+
+	val guid: UUID
+		get() = move.guid
 
 	fun setMove(move: Move, canCheck: Boolean) {
 		this.move = move
@@ -75,8 +79,6 @@ class MoveLine(
 				Nature.In
 	}
 
-	override fun getId(): Int = move?.id ?: 0
-
 	fun check() {
 		isChecked = true
 		setCheckField()
@@ -88,12 +90,12 @@ class MoveLine(
 	}
 
 	val description: String
-		get() = move?.description ?: ""
+		get() = move.description
 
 	var isChecked: Boolean
-		get() = move?.checked ?: false
+		get() = move.checked
 		private set(value) {
-			move?.checked = value
+			move.checked = value
 		}
 
 	val nature: Nature

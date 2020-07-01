@@ -3,6 +3,7 @@ package com.darakeon.dfm.extract
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.extract.Move
 import com.darakeon.dfm.utils.activity.ActivityMock
+import com.darakeon.dfm.utils.api.guid
 import com.darakeon.dfm.utils.log.LogRule
 import kotlinx.android.synthetic.main.move_line.view.name
 import org.hamcrest.CoreMatchers.`is`
@@ -19,7 +20,7 @@ class MoveAdapterTest {
 
 	@Test
 	fun populateView() {
-		val list = listOf(Move("name", 2019, 5, 4, 0.0, false, 4))
+		val list = listOf(Move("name", 2019, 5, 4, 0.0, false, guid))
 		val activity = ActivityMock().create<ExtractActivity>()
 		val adapter = MoveAdapter(activity, list, false)
 		val line = activity.layoutInflater

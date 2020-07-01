@@ -64,7 +64,7 @@
 		<td class="col-sm-1 text-center">
 			@await Html.PartialAsync("MicroForm",
 				MicroForm.WithGlyph(Context, "trash", "Delete")
-					.AddIdUrl("Delete", schedule.ID)
+					.AddIdUrl("Delete", schedule.Guid)
 			)
 		</td>
 	</tr>

@@ -26,6 +26,11 @@ namespace DFM.BusinessLogic.Repositories
 			this.getUrl = getUrl;
 		}
 
+		internal Move Get(Guid guid)
+		{
+			return SingleOrDefault(m => m.ExternalId == guid.ToByteArray());
+		}
+
 		internal Move SaveMainInfo(Move move, DateTime now)
 		{
 			//Keep this order, weird errors happen if invert
@@ -98,9 +103,12 @@ namespace DFM.BusinessLogic.Repositories
 			}
 		}
 
-		internal new Move GetNonCached(Int64 id)
+		internal Move GetNonCached(Guid guid)
 		{
-			return base.GetNonCached(id);
+			return NewNonCachedQuery(
+				q => q.SimpleFilter(m => m.ExternalId == guid.ToByteArray())
+					.FirstOrDefault
+			);
 		}
 
 		private String detailsHTML(Move move)

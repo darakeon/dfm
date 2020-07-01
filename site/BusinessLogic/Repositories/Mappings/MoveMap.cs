@@ -10,6 +10,12 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 	{
 		public void Override(AutoMapping<Move> mapping)
 		{
+			mapping.IgnoreProperty(m => m.Guid);
+
+			mapping.Map(m => m.ExternalId)
+				.Not.Update()
+				.Not.Nullable();
+
 			mapping.Map(m => m.Description)
 				.Length(MaxLen.MoveDescription);
 

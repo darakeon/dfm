@@ -11,7 +11,7 @@ namespace DFM.MVC.Areas.Account.Models
 		public MovesCreateEditModel()
 			: base(new MoveInfo(), OperationType.Creation)  { }
 
-		public MovesCreateEditModel(Int32 id)
+		public MovesCreateEditModel(Guid id)
 			: base(service.Money.GetMove(id), OperationType.Edition) { }
 
 		internal override void Save()
@@ -38,7 +38,7 @@ namespace DFM.MVC.Areas.Account.Models
 			errorAlert.AddTranslated(final);
 		}
 
-		public Int32 ID { set => GenericMove.ID = value; }
+		public Guid Guid { set => GenericMove.Guid = value; }
 
 		private MoveInfo move => (MoveInfo) GenericMove;
 

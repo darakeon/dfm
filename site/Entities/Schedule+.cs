@@ -18,11 +18,19 @@ namespace DFM.Entities
 
 			Active = true;
 			Frequency = ScheduleFrequency.Monthly;
+
+			ExternalId = new Byte[16];
 		}
 
 		public override string ToString()
 		{
 			return $"[{ID}] {Frequency} x {Description}";
+		}
+
+		public virtual Guid Guid
+		{
+			get => new Guid(ExternalId);
+			set => ExternalId = value.ToByteArray();
 		}
 
 		public virtual Decimal? Value
