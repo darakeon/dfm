@@ -1,4 +1,4 @@
-﻿Feature: Ar. Update Two factor Authentication
+﻿Feature: Ar. Update two factor authentication
 
 Scenario: Ar01. With empty secret key
 	Given I have this user created

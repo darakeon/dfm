@@ -1,4 +1,4 @@
-﻿Feature: At. Validate Ticket Two factor Authentication
+﻿Feature: At. Validate ticket two factor authentication
 
 Background:
 	Given I have this user created

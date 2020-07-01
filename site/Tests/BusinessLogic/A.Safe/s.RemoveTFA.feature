@@ -1,4 +1,4 @@
-﻿Feature: As. Remove Two factor Authentication
+﻿Feature: As. Remove two factor authentication
 
 Scenario: As01. With wrong password
 	Given I have this user created
