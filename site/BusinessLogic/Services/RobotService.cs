@@ -35,16 +35,23 @@ namespace DFM.BusinessLogic.Services
 
 		public EmailStatus RunSchedule()
 		{
-			parent.Safe.VerifyUser();
+			try
+			{
+				parent.Safe.VerifyUser();
 
-			var useCategories = parent.Current.UseCategories;
+				var useCategories = parent.Current.UseCategories;
 
-			var equalResult = runScheduleEqualConfig(useCategories);
-			var diffResult = runScheduleDiffConfig(useCategories);
+				var equalResult = runScheduleEqualConfig(useCategories);
+				var diffResult = runScheduleDiffConfig(useCategories);
 
-			parent.BaseMove.FixSummaries();
+				parent.BaseMove.FixSummaries();
 
-			return max(equalResult, diffResult);
+				return max(equalResult, diffResult);
+			}
+			catch (Exception e)
+			{
+				throw new CoreError(Error.ErrorRunningSchedules, e);
+			}
 		}
 
 		private EmailStatus runScheduleEqualConfig(Boolean useCategories)
@@ -196,6 +203,4 @@ namespace DFM.BusinessLogic.Services
 				.ToList();
 		}
 	}
-
-
 }

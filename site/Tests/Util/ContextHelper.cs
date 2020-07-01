@@ -8,9 +8,14 @@ namespace DFM.Tests.Util
 	{
 		protected static T get<T>(String key)
 		{
-			return context.ContainsKey(key)
+			return exists(key)
 				? (T)context[key]
 				: default;
+		}
+
+		protected static Boolean exists(String key)
+		{
+			return context.ContainsKey(key);
 		}
 
 		protected static void set(String key, object value)

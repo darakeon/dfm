@@ -8,8 +8,8 @@ namespace DFM.BusinessLogic.Exceptions
 		public static Int32 ErrorCounter { get; private set; }
 		public Error Type { get; }
 
-		internal CoreError(Error type)
-			: base(type.ToString())
+		internal CoreError(Error type, Exception inner = null)
+			: base(type.ToString(), inner)
 		{
 			ErrorCounter++;
 			Type = type;

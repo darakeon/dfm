@@ -59,7 +59,7 @@ namespace DFM.BusinessLogic.Repositories
 				throw Error.DisabledSchedule.Throw();
 
 			schedule.Active = false;
-			Save(schedule);
+			SaveOrUpdate(schedule);
 		}
 
 

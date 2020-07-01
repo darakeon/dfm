@@ -74,6 +74,7 @@
 		InvalidSchedule = 603,
 		DisabledSchedule = 604,
 		TooLargeScheduleDescription = 605,
+		ErrorRunningSchedules = 606,
 
 		InvalidYear = 701,
 		InvalidMonth = 702,
