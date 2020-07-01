@@ -30,18 +30,6 @@ namespace DFM.Entities
 			return Value ?? DetailList.Sum(d => d.GetTotal());
 		}
 
-		public virtual Int64 FakeID
-		{
-			get => ID * Constants.FakeID;
-			set
-			{
-				if (value % Constants.FakeID != 0)
-					throw new SystemError("Get back!");
-
-				ID = (Int32)(value / Constants.FakeID);
-			}
-		}
-
 		public virtual String GetDescriptionWithSchedulePosition()
 		{
 			if (Schedule == null || !Schedule.ShowInstallment)
