@@ -378,7 +378,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 					Token = token
 				};
 
-				service.Safe.PasswordReset(info);
+				service.Safe.ResetPassword(info);
 			}
 			catch (CoreError e)
 			{

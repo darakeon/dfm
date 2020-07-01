@@ -128,7 +128,7 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
-		public void PasswordReset(PasswordResetInfo reset)
+		public void ResetPassword(PasswordResetInfo reset)
 		{
 			reset.VerifyPassword();
 
