@@ -187,3 +187,8 @@ Scenario: Db12. Run with schedule start in past and end in future
 		And the accountOut value will change in -30
 		And the schedule last run will be 3
 		And the schedule will be enabled
+
+Scenario: Db13. Run with bugged schedule
+	Given I have a bugged schedule
+	When I try to run the scheduler
+	Then I will receive this core error: ErrorRunningSchedules

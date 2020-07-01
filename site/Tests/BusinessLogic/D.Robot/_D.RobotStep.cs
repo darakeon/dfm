@@ -107,6 +107,18 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			scheduleInfo.AddByFrequency(frequency, -count);
 		}
 
+		[Given(@"I have a bugged schedule")]
+		public void GivenIHaveABuggedSchedule()
+		{
+			scheduleRepository.SaveOrUpdate(
+				new Schedule
+				{
+					Description = "",
+					User = userRepository.GetByEmail(current.Email),
+				}
+			);
+		}
+
 		[Given(@"I run the scheduler")]
 		[When(@"I try to run the scheduler")]
 		public void WhenITryToRunTheScheduler()

@@ -4,8 +4,8 @@ namespace DFM.Generic
 {
 	public class SystemError : Exception
 	{
-		public SystemError(String message)
-			: base(message) { }
+		public SystemError(String message, Exception inner = null)
+			: base(message, inner) { }
 
 	}
 }

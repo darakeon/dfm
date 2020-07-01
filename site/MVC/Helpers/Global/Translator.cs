@@ -64,14 +64,23 @@ namespace DFM.MVC.Helpers.Global
 				if (current == null)
 					return "Ops";
 
-				var controller = HttpUtility.UrlDecode(
-					current["controller"].ToString().ToLower()
-				);
+				if (current.ContainsKey("controller"))
+				{
+					var controller = HttpUtility.UrlDecode(
+						current["controller"].ToString().ToLower()
+					);
 
-				if (!controller.StartsWith("?")) return controller;
+					if (!controller.StartsWith("?"))
+						return controller;
+				}
 
-				var route = (Route) current["route"];
-				return route.Defaults["controller"].ToString().ToLower();
+				if (current.ContainsKey("route"))
+				{
+					var route = (Route) current["route"];
+					return route.Defaults["controller"].ToString().ToLower();
+				}
+
+				return "general";
 			}
 		}
 

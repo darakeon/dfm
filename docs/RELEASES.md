@@ -16,7 +16,7 @@ Legend:
 
 ## <a name="4.2.0.0"></a>4.2.0.0 :whale: <sup>`8`</sup>
 - [ ] Make DTO use guid, not db id (delete fakeid)
-- [ ] Handle CoreError at Robot
+- [x] `200628>200630` Handle CoreError at Robot
 - [x] `200625>200626` Adjust tab order at move screen (mobile)
 - [x] `200624>200624` Make nature a consequence of accounts choice
 - [x] `200624>200624` Field names become hints (mobile)

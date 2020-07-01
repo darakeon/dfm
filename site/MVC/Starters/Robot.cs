@@ -1,7 +1,9 @@
 using System;
+using DFM.BusinessLogic.Exceptions;
 using DFM.Email;
 using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Extensions;
+using DFM.MVC.Helpers.Global;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -33,22 +35,32 @@ namespace DFM.MVC.Starters
 				access.Safe.IsLastContractAccepted()
 				&& access.Safe.VerifyTicketTFA();
 
-			if (canRunSchedule)
+			if (!canRunSchedule) return;
+
+			try
 			{
 				var emailsStatus = access.Robot.RunSchedule();
 
 				if (emailsStatus.IsWrong())
-					addError(context, emailsStatus);
+				{
+					addError(context, translator =>
+					{
+						var message = translator["ScheduleRun"];
+						var error = translator[emailsStatus].ToLower();
+						return String.Format(message, error);
+					});
+				}
+			}
+			catch (CoreError e)
+			{
+				addError(context, t => t[e.Type]);
 			}
 		}
 
-		private static void addError(HttpContext context, EmailStatus emailsStatus)
+		private static void addError(HttpContext context, Func<Translator, String> mainError)
 		{
 			var translator = context.GetTranslator();
-
-			var message = translator["ScheduleRun"];
-			var error = translator[emailsStatus].ToLower();
-			var final = String.Format(message, error);
+			var final = mainError(translator);
 
 			var errorAlert = context.GetErrorAlert();
 			errorAlert.AddTranslated(final);
