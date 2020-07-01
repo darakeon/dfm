@@ -1,4 +1,4 @@
-﻿Feature: Ae. Create Ticket
+﻿Feature: Ae. Create ticket
 
 Background:
 

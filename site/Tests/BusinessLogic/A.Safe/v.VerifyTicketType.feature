@@ -1,4 +1,4 @@
-﻿Feature: Av. Verify Ticket Type
+﻿Feature: Av. Verify ticket type
 
 Background:
 	Given I have this user created
