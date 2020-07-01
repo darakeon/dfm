@@ -15,6 +15,7 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import java.util.UUID
 import retrofit2.http.Body as RetrofitBody
 
 internal interface RequestService {
@@ -30,20 +31,20 @@ internal interface RequestService {
 	@FormUrlEncoded
 	@POST("api/moves/check/{id}")
 	fun check(
-		@Path("id") id: Int,
+		@Path("id") id: UUID,
 		@Field("nature") nature: Nature
 	): Call<Body<Any>>
 
 	@FormUrlEncoded
 	@POST("api/moves/uncheck/{id}")
 	fun uncheck(
-		@Path("id") id: Int,
+		@Path("id") id: UUID,
 		@Field("nature") nature: Nature
 	): Call<Body<Any>>
 
 	@POST("api/moves/delete/{id}")
 	fun delete(
-		@Path("id") id: Int
+		@Path("id") id: UUID
 	): Call<Body<Any>>
 
 	@FormUrlEncoded
@@ -56,14 +57,22 @@ internal interface RequestService {
 	@POST("api/users/logout")
 	fun logout(): Call<Body<Any>>
 
+	@GET("api/moves/create")
+	fun getMove(): Call<Body<MoveCreation>>
+
 	@GET("api/moves/create/{id}")
 	fun getMove(
-		@Path("id") id: Int
+		@Path("id") id: UUID
 	): Call<Body<MoveCreation>>
+
+	@POST("api/moves/create")
+	fun saveMove(
+		@RetrofitBody move: Move
+	): Call<Body<Any>>
 
 	@POST("api/moves/create/{id}")
 	fun saveMove(
-		@Path("id") id: Int,
+		@Path("id") id: UUID,
 		@RetrofitBody move: Move
 	): Call<Body<Any>>
 

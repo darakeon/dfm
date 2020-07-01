@@ -4,11 +4,11 @@ namespace DFM.BusinessLogic.Response
 {
 	public class ScheduleResult
 	{
-		public ScheduleResult(Int64 id)
+		public ScheduleResult(Guid guid)
 		{
-			ID = id;
+			Guid = guid;
 		}
 
-		public Int64 ID { get; set; }
+		public Guid Guid { get; set; }
 	}
 }

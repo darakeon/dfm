@@ -3,7 +3,6 @@ package com.darakeon.dfm.extract
 import android.app.Dialog
 import android.net.Uri
 import android.os.Bundle
-import android.os.Looper.getMainLooper
 import android.os.PersistableBundle
 import android.view.View
 import com.darakeon.dfm.R
@@ -17,6 +16,7 @@ import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.utils.activity.ActivityMock
 import com.darakeon.dfm.utils.activity.getActivityName
 import com.darakeon.dfm.utils.activity.getLastDatePicker
+import com.darakeon.dfm.utils.api.guid
 import com.darakeon.dfm.utils.api.readBundle
 import com.darakeon.dfm.utils.getDecimal
 import com.darakeon.dfm.utils.log.LogRule
@@ -42,6 +42,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog
 import java.util.Calendar
+import java.util.UUID
 
 @RunWith(RobolectricTestRunner::class)
 class ExtractActivityTest {
@@ -166,7 +167,7 @@ class ExtractActivityTest {
 		assertThat(extract.moveList[0].date, `is`(Date(2020, 3, 8)))
 		assertThat(extract.moveList[0].total, `is`(27.0))
 		assertThat(extract.moveList[0].checked, `is`(true))
-		assertThat(extract.moveList[0].id, `is`(1))
+		assertThat(extract.moveList[0].guid, `is`(guid))
 
 		assertThat(activity.main_table.adapter.count, `is`(1))
 	}
@@ -194,7 +195,7 @@ class ExtractActivityTest {
 		assertThat(extract.moveList[0].date, `is`(Date(2020, 3, 8)))
 		assertThat(extract.moveList[0].total, `is`(27.0))
 		assertThat(extract.moveList[0].checked, `is`(true))
-		assertThat(extract.moveList[0].id, `is`(1))
+		assertThat(extract.moveList[0].guid, `is`(guid))
 
 		assertThat(activity.reportChange.text.toString(), `is`("$aMonthName/1986"))
 		assertThat(activity.main_table.adapter.count, `is`(1))
@@ -360,7 +361,7 @@ class ExtractActivityTest {
 
 		val intent = shadowOf(activity).peekNextStartedActivity()
 		assertThat(intent.getActivityName(), `is`("MovesActivity"))
-		assertThat(intent.getIntExtra("id", 0), `is`(1))
+		assertThat(intent.getSerializableExtra("id") as UUID?, `is`(guid))
 		assertThat(intent.getStringExtra("accountUrl"), `is`("url"))
 		assertThat(intent.getIntExtra("year", 0), `is`(1986))
 		assertThat(intent.getIntExtra("month", 0), `is`(aMonthJava))

@@ -35,10 +35,10 @@ namespace DFM.BusinessLogic.Services
 
 		public EmailStatus RunSchedule()
 		{
+			parent.Safe.VerifyUser();
+
 			try
 			{
-				parent.Safe.VerifyUser();
-
 				var useCategories = parent.Current.UseCategories;
 
 				var equalResult = runScheduleEqualConfig(useCategories);
@@ -50,7 +50,7 @@ namespace DFM.BusinessLogic.Services
 			}
 			catch (Exception e)
 			{
-				throw new CoreError(Error.ErrorRunningSchedules, e);
+				throw Error.ErrorRunningSchedules.Throw(e);
 			}
 		}
 
@@ -117,7 +117,7 @@ namespace DFM.BusinessLogic.Services
 					newMove, OperationType.Scheduling
 				);
 
-				var move = moveRepository.Get(result.ID);
+				var move = moveRepository.Get(result.Guid);
 
 				schedule.MoveList.Add(move);
 				emailsStati.Add(result.Email);
@@ -175,17 +175,17 @@ namespace DFM.BusinessLogic.Services
 				scheduleRepository.Save(schedule);
 			}
 
-			return new ScheduleResult(schedule.ID);
+			return new ScheduleResult(schedule.Guid);
 		}
 
-		public void DisableSchedule(Int64 id)
+		public void DisableSchedule(Guid guid)
 		{
 			parent.Safe.VerifyUser();
 
 			var user = parent.Safe.GetCurrent();
 
 			inTransaction("DisableSchedule", () => 
-				scheduleRepository.Disable(id, user)
+				scheduleRepository.Disable(guid, user)
 			);
 		}
 

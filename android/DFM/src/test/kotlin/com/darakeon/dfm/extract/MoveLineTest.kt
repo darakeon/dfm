@@ -8,6 +8,7 @@ import com.darakeon.dfm.api.entities.moves.Nature
 import com.darakeon.dfm.extensions.getPrivate
 import com.darakeon.dfm.utils.activity.ActivityMock
 import com.darakeon.dfm.utils.activity.TestActivity
+import com.darakeon.dfm.utils.api.guid
 import com.darakeon.dfm.utils.getDecimal
 import com.darakeon.dfm.utils.log.LogRule
 import com.darakeon.dfm.utils.robolectric.RoboContextMenu
@@ -29,6 +30,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
+import java.util.UUID
 
 @RunWith(RobolectricTestRunner::class)
 class MoveLineTest {
@@ -58,7 +60,7 @@ class MoveLineTest {
 		val move = Move(
 			"zelda",
 			1986, 2, 21,
-			34.0, false, 1
+			34.0, false, guid
 		)
 
 		moveLine.setMove(move, false)
@@ -72,7 +74,7 @@ class MoveLineTest {
 		val move = Move(
 			"zelda",
 			1986, 2, 21,
-			34.0, false, 1
+			34.0, false, guid
 		)
 
 		moveLine.setMove(move, false)
@@ -93,7 +95,7 @@ class MoveLineTest {
 		val move = Move(
 			"zelda",
 			1986, 2, 21,
-			-34.0, false, 1
+			-34.0, false, guid
 		)
 
 		moveLine.setMove(move, false)
@@ -114,7 +116,7 @@ class MoveLineTest {
 		val move = Move(
 			"zelda",
 			1986, 2, 21,
-			34.0, false, 1
+			34.0, false, guid
 		)
 
 		moveLine.setMove(move, true)
@@ -127,7 +129,7 @@ class MoveLineTest {
 		val move = Move(
 			"zelda",
 			1986, 2, 21,
-			34.0, false, 1
+			34.0, false, guid
 		)
 
 		moveLine.setMove(move, false)
@@ -140,7 +142,7 @@ class MoveLineTest {
 		val move = Move(
 			"zelda",
 			1986, 2, 21,
-			34.0, true, 1
+			34.0, true, guid
 		)
 
 		moveLine.setMove(move, true)
@@ -159,7 +161,7 @@ class MoveLineTest {
 		val move = Move(
 			"zelda",
 			1986, 2, 21,
-			34.0, false, 1
+			34.0, false, guid
 		)
 
 		moveLine.setMove(move, true)
@@ -179,7 +181,7 @@ class MoveLineTest {
 		val move = Move(
 			"zelda",
 			1986, 2, 21,
-			34.0, false, 1
+			34.0, false, guid
 		)
 
 		moveLine.setMove(move, false)
@@ -193,7 +195,7 @@ class MoveLineTest {
 		val move = Move(
 			"zelda",
 			1986, 2, 21,
-			34.0, false, 1
+			34.0, false, guid
 		)
 
 		moveLine.setMove(move, false)
@@ -207,7 +209,7 @@ class MoveLineTest {
 		val move = Move(
 			"zelda",
 			1986, 2, 21,
-			34.0, false, 1
+			34.0, false, guid
 		)
 
 		// to show context menu, moveLine must be
@@ -238,15 +240,17 @@ class MoveLineTest {
 
 	@Test
 	fun getId() {
+		val guid = UUID.randomUUID()
+
 		val move = Move(
 			"zelda",
 			1986, 2, 21,
-			34.0, false, 1
+			34.0, false, guid
 		)
 
 		moveLine.setMove(move, false)
 
-		assertThat(moveLine.id, `is`(1))
+		assertThat(moveLine.guid, `is`(guid))
 	}
 
 	@Test
@@ -254,7 +258,7 @@ class MoveLineTest {
 		val move = Move(
 			"zelda",
 			1986, 2, 21,
-			34.0, false, 1
+			34.0, false, guid
 		)
 
 		moveLine.setMove(move, true)
@@ -275,7 +279,7 @@ class MoveLineTest {
 		val move = Move(
 			"zelda",
 			1986, 2, 21,
-			34.0, true, 1
+			34.0, true, guid
 		)
 
 		moveLine.setMove(move, true)

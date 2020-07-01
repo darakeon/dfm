@@ -16,7 +16,7 @@ namespace DFM.BusinessLogic.Repositories
 			if (schedule.ID == 0)
 				schedule.Active = true;
 
-			return SaveOrUpdate(schedule, validate);
+			return SaveOrUpdate(schedule, complete, validate);
 		}
 
 		private void validate(Schedule schedule)
@@ -46,11 +46,14 @@ namespace DFM.BusinessLogic.Repositories
 				.ToList();
 		}
 
-
-
-		internal void Disable(Int64 id, User loggedInUser)
+		internal Schedule Get(Guid guid)
 		{
-			var schedule = Get(id);
+			return SingleOrDefault(s => s.ExternalId == guid.ToByteArray());
+		}
+
+		internal void Disable(Guid guid, User loggedInUser)
+		{
+			var schedule = Get(guid);
 
 			if (schedule == null || schedule.User.ID != loggedInUser.ID)
 				throw Error.InvalidSchedule.Throw();

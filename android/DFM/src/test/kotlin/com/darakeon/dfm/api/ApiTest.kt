@@ -24,6 +24,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog
+import java.util.UUID
 
 @RunWith(RobolectricTestRunner::class)
 class ApiTest {
@@ -36,6 +37,9 @@ class ApiTest {
 
 	private val server
 		get() = mocker.server
+
+	private val fakeGuid
+		get() = UUID.randomUUID()
 
 	@Before
 	fun setup() {
@@ -78,7 +82,7 @@ class ApiTest {
 		server.enqueue("empty")
 
 		var called = false
-		api.check(0, Nature.Transfer) {
+		api.check(fakeGuid, Nature.Transfer) {
 			called = true
 		}
 		assertTrue(called)
@@ -89,7 +93,7 @@ class ApiTest {
 		server.enqueue("empty")
 
 		var called = false
-		api.uncheck(0, Nature.Transfer) {
+		api.uncheck(fakeGuid, Nature.Transfer) {
 			called = true
 		}
 		assertTrue(called)
@@ -100,7 +104,7 @@ class ApiTest {
 		server.enqueue("empty")
 
 		var called = false
-		api.delete(0) {
+		api.delete(fakeGuid) {
 			called = true
 		}
 		assertTrue(called)
@@ -129,11 +133,11 @@ class ApiTest {
 	}
 
 	@Test
-	fun getMove() {
+	fun getMoveNew() {
 		server.enqueue("move_get")
 
 		var moveCreation: MoveCreation? = null
-		api.getMove(0) {
+		api.getMove(null) {
 			moveCreation = it
 		}
 
@@ -142,11 +146,37 @@ class ApiTest {
 	}
 
 	@Test
-	fun saveMove() {
+	fun getMoveEdit() {
+		server.enqueue("move_get")
+
+		var moveCreation: MoveCreation? = null
+		api.getMove(fakeGuid) {
+			moveCreation = it
+		}
+
+		waitTasksFinish()
+		assertNotNull(moveCreation)
+	}
+
+	@Test
+	fun saveMoveNew() {
 		server.enqueue("empty")
 
 		var called = false
 		api.saveMove(Move()) {
+			called = true
+		}
+		assertTrue(called)
+	}
+
+	@Test
+	fun saveMoveEdit() {
+		server.enqueue("empty")
+
+		val move = Move(fakeGuid)
+
+		var called = false
+		api.saveMove(move) {
 			called = true
 		}
 		assertTrue(called)

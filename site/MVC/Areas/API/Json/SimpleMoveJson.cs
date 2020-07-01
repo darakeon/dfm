@@ -6,7 +6,7 @@ namespace DFM.MVC.Areas.Api.Json
 {
 	internal class SimpleMoveJson
 	{
-		public Int64 ID { get; set; }
+		public Guid Guid { get; set; }
 
 		public String Description { get; set; }
 
@@ -22,7 +22,7 @@ namespace DFM.MVC.Areas.Api.Json
 
 		public SimpleMoveJson(MoveInfo move, String accountUrl)
 		{
-			ID = move.ID;
+			Guid = move.Guid;
 
 			Description = move.Description;
 

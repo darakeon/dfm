@@ -18,9 +18,9 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 	public class RobotStep : BaseStep
 	{
 		#region Variables
-		private static Int64 id
+		private static Guid guid
 		{
-			get => get<Int64>("ID");
+			get => get<Guid>("ID");
 			set => set("ID", value);
 		}
 
@@ -64,7 +64,7 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 					scheduleInfo.CategoryName = categoryName;
 
 					var schedule = service.Robot.SaveSchedule(scheduleInfo);
-					scheduleInfo.ID = schedule.ID;
+					scheduleInfo.Guid = schedule.Guid;
 				}
 			}
 			catch (CoreError e)
@@ -77,13 +77,13 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		public void ThenTheScheduleWillNotBeSaved()
 		{
 			if (scheduleInfo != null)
-				Assert.AreEqual(0, scheduleInfo.ID);
+				Assert.AreEqual(Guid.Empty, scheduleInfo.Guid);
 		}
 
 		[Then(@"the schedule will be saved")]
 		public void ThenTheScheduleWillBeSaved()
 		{
-			Assert.AreNotEqual(0, scheduleInfo.ID);
+			Assert.AreNotEqual(Guid.Empty, scheduleInfo.Guid);
 		}
 		#endregion
 
@@ -177,13 +177,13 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		[Given(@"I pass an id of Schedule that doesn't exist")]
 		public void GivenIPassAnIdOfScheduleThatDoesNotExist()
 		{
-			id = 0;
+			guid = Guid.NewGuid();
 		}
 
 		[Given(@"I already have disabled the Schedule")]
 		public void GivenIAlreadyHaveDisabledTheSchedule()
 		{
-			service.Robot.DisableSchedule(id);
+			service.Robot.DisableSchedule(guid);
 		}
 
 		[When(@"I try to disable the Schedule")]
@@ -191,7 +191,7 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		{
 			try
 			{
-				service.Robot.DisableSchedule(id);
+				service.Robot.DisableSchedule(guid);
 			}
 			catch (CoreError e)
 			{
@@ -204,7 +204,7 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		[Given(@"I disable the schedule")]
 		public void GivenICloseTheSchedule()
 		{
-			service.Robot.DisableSchedule(id);
+			service.Robot.DisableSchedule(guid);
 		}
 
 		[When(@"ask for the schedule list")]
@@ -295,28 +295,28 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 
 			var schedule = service.Robot.SaveSchedule(scheduleInfo);
 
-			id = schedule.ID;
-			scheduleInfo.ID = schedule.ID;
+			guid = schedule.Guid;
+			scheduleInfo.Guid = schedule.Guid;
 		}
 
 		[Then(@"the schedule will be disabled")]
 		public void ThenTheScheduleWillBeDisabled()
 		{
-			var schedule = scheduleRepository.Get(scheduleInfo.ID);
+			var schedule = scheduleRepository.Get(scheduleInfo.Guid);
 			Assert.IsFalse(schedule.Active);
 		}
 
 		[Then(@"the schedule will be enabled")]
 		public void ThenTheScheduleWillBeEnabled()
 		{
-			var schedule = scheduleRepository.Get(scheduleInfo.ID);
+			var schedule = scheduleRepository.Get(scheduleInfo.Guid);
 			Assert.IsTrue(schedule.Active);
 		}
 
 		[Then(@"the schedule last run will be (\d+)")]
 		public void ThenTheScheduleLastRunWillBe(Int32 lastRun)
 		{
-			var schedule = scheduleRepository.Get(scheduleInfo.ID);
+			var schedule = scheduleRepository.Get(scheduleInfo.Guid);
 			Assert.AreEqual(lastRun, schedule.LastRun);
 		}
 		#endregion

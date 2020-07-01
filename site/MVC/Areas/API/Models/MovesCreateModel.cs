@@ -9,13 +9,13 @@ namespace DFM.MVC.Areas.Api.Models
 {
 	internal class MovesCreateModel : BaseApiModel
 	{
-		public MovesCreateModel(Int32? id = null)
+		public MovesCreateModel(Guid? guid = null)
 		{
 			IsUsingCategories = isUsingCategories;
 
-			if (id.HasValue && id != 0)
+			if (guid.HasValue && guid != Guid.Empty)
 			{
-				Move = money.GetMove(id.Value);
+				Move = money.GetMove(guid.Value);
 			}
 
 			AccountList = admin.GetAccountList(true)

@@ -15,7 +15,7 @@ Legend:
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="4.2.0.0"></a>4.2.0.0 :whale: <sup>`8`</sup>
-- [ ] `200701>......` Make DTO use guid, not db id (delete fakeid)
+- [x] `200701>200721` Make DTO use guid, not db id (delete fakeid)
 - [x] `200628>200630` Handle CoreError at Robot
 - [x] `200625>200626` Adjust tab order at move screen (mobile)
 - [x] `200624>200624` Make nature a consequence of accounts choice

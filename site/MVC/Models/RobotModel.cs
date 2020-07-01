@@ -5,11 +5,11 @@ namespace DFM.MVC.Models
 {
 	public class RobotModel : BaseSiteModel
 	{
-		internal void Disable(Int32 id)
+		internal void Disable(Guid guid)
 		{
 			try
 			{
-				robot.DisableSchedule(id);
+				robot.DisableSchedule(guid);
 			}
 			catch (CoreError e)
 			{

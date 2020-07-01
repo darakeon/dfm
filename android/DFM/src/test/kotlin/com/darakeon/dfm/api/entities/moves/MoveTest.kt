@@ -13,6 +13,7 @@ import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
+import java.util.UUID
 
 class MoveTest {
 	@get:Rule
@@ -106,7 +107,7 @@ class MoveTest {
 	@Test
 	fun setDefaultDataToEditWithCategory() {
 		val move = Move()
-		move.id = 1
+		move.guid = UUID.randomUUID()
 		move.outUrl = "out"
 		move.inUrl = "in"
 		move.categoryName = "category"
@@ -122,7 +123,7 @@ class MoveTest {
 	@Test
 	fun setDefaultDataToEditWithoutCategory() {
 		val move = Move()
-		move.id = 1
+		move.guid = UUID.randomUUID()
 		move.outUrl = "out"
 		move.inUrl = "in"
 
@@ -137,7 +138,7 @@ class MoveTest {
 	@Test
 	fun setDefaultDataToEditWithCategoryWarning() {
 		val move = Move()
-		move.id = 1
+		move.guid = UUID.randomUUID()
 		move.outUrl = "out"
 		move.inUrl = "in"
 		move.categoryName = "category"

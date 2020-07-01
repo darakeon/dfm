@@ -1,6 +1,7 @@
 package com.darakeon.dfm.api.entities.extract
 
 import com.darakeon.dfm.api.entities.Date
+import java.util.UUID
 
 data class Move(
 	val description: String,
@@ -9,7 +10,7 @@ data class Move(
 	val day: Int,
 	val total: Double,
 	var checked: Boolean,
-	val id: Int
+	val guid: UUID
 ) {
 	val date: Date
 		get() = Date(year, month, day)

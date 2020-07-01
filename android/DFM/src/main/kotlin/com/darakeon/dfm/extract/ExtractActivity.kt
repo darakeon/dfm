@@ -27,6 +27,7 @@ import kotlinx.android.synthetic.main.extract.reportChange
 import kotlinx.android.synthetic.main.extract.total_title
 import kotlinx.android.synthetic.main.extract.total_value
 import java.util.Calendar
+import java.util.UUID
 
 class ExtractActivity : BaseActivity() {
 	private var accountUrl: String = ""
@@ -151,16 +152,16 @@ class ExtractActivity : BaseActivity() {
 
 		when (item.itemId) {
 			R.id.edit_move -> {
-				goToMove(move.id)
+				goToMove(move.guid)
 				return true
 			}
 			R.id.delete_move -> {
-				askDelete(move)
+				askDelete(move.guid, move.description)
 				return true
 			}
 			R.id.check_move -> {
 				callApi {
-					it.check(move.id, move.nature) {
+					it.check(move.guid, move.nature) {
 						this.check(move)
 					}
 				}
@@ -168,7 +169,7 @@ class ExtractActivity : BaseActivity() {
 			}
 			R.id.uncheck_move -> {
 				callApi {
-					it.uncheck(move.id, move.nature) {
+					it.uncheck(move.guid, move.nature) {
 						this.uncheck(move)
 					}
 				}
@@ -178,10 +179,10 @@ class ExtractActivity : BaseActivity() {
 		}
 	}
 
-	private fun goToMove(moveId: Int) {
+	private fun goToMove(moveId: UUID) {
 		val extras = Bundle()
 
-		extras.putInt("id", moveId)
+		extras.putSerializable("id", moveId)
 		extras.putString("accountUrl", accountUrl)
 		extras.putInt("year", year)
 		extras.putInt("month", month)
@@ -189,13 +190,13 @@ class ExtractActivity : BaseActivity() {
 		createMove(extras)
 	}
 
-	private fun askDelete(clickedMove: MoveLine): Boolean {
+	private fun askDelete(id: UUID, description: String): Boolean {
 		var messageText = getString(R.string.sure_to_delete)
 
-		messageText = String.format(messageText, clickedMove.description)
+		messageText = String.format(messageText, description)
 
 		confirm(messageText) {
-			callApi { it.delete(clickedMove.id, this::refresh) }
+			callApi { it.delete(id, this::refresh) }
 		}
 
 		return false

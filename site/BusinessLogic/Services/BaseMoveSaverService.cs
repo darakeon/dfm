@@ -31,7 +31,7 @@ namespace DFM.BusinessLogic.Services
 
 		internal MoveResult SaveMove(MoveInfo info, OperationType operationType)
 		{
-			var move = moveRepository.GetNonCached(info.ID);
+			var move = moveRepository.GetNonCached(info.Guid);
 
 			if (move == null)
 			{
@@ -124,7 +124,7 @@ namespace DFM.BusinessLogic.Services
 
 		internal void BreakSummaries(Move move)
 		{
-			move = moveRepository.GetNonCached(move.ID);
+			move = moveRepository.GetNonCached(move.Guid);
 			breakSummaries(move);
 		}
 

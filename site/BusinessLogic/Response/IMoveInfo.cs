@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
-using Keon.Util.DB;
 
 namespace DFM.BusinessLogic.Response
 {
-	public interface IMoveInfo : IEntityLong, IDate
+	public interface IMoveInfo : IDate
 	{
+		Guid Guid { get; set; }
+
 		String Description { get; set; }
 		MoveNature Nature { get; set; }
 

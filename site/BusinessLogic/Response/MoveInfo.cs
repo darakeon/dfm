@@ -13,7 +13,7 @@ namespace DFM.BusinessLogic.Response
 			DetailList = new List<DetailInfo>();
 		}
 
-		public Int64 ID { get; set; }
+		public Guid Guid { get; set; }
 
 		public String Description { get; set; }
 
@@ -92,7 +92,7 @@ namespace DFM.BusinessLogic.Response
 		{
 			return new MoveInfo
 			{
-				ID = move.ID,
+				Guid = move.Guid,
 
 				Year = move.Year,
 				Month = move.Month,

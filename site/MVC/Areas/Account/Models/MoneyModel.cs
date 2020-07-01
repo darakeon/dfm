@@ -10,9 +10,9 @@ namespace DFM.MVC.Areas.Account.Models
 {
 	public class MoneyModel : BaseAccountModel
 	{
-		public void DeleteMove(Int32 id)
+		public void DeleteMove(Guid guid)
 		{
-			var move = getMove(id);
+			var move = getMove(guid);
 
 			if (move == null)
 			{
@@ -20,7 +20,7 @@ namespace DFM.MVC.Areas.Account.Models
 				return;
 			}
 
-			var result = money.DeleteMove(id);
+			var result = money.DeleteMove(guid);
 
 			if (result.Email.IsWrong())
 			{
@@ -39,20 +39,20 @@ namespace DFM.MVC.Areas.Account.Models
 			ReportUrl = move.ToMonthYear();
 		}
 
-		public MoveLineModel CheckMove(Int32 id, PrimalMoveNature nature)
+		public MoveLineModel CheckMove(Guid guid, PrimalMoveNature nature)
 		{
-			return toggleCheck(id, nature, money.CheckMove);
+			return toggleCheck(guid, nature, money.CheckMove);
 		}
 
-		public MoveLineModel UncheckMove(Int32 id, PrimalMoveNature nature)
+		public MoveLineModel UncheckMove(Guid guid, PrimalMoveNature nature)
 		{
-			return toggleCheck(id, nature, money.UncheckMove);
+			return toggleCheck(guid, nature, money.UncheckMove);
 		}
 
-		private MoveLineModel toggleCheck(Int64 id, PrimalMoveNature nature, Func<Int64, PrimalMoveNature, MoveInfo> toggleCheck)
+		private MoveLineModel toggleCheck(Guid guid, PrimalMoveNature nature, Func<Guid, PrimalMoveNature, MoveInfo> toggleCheck)
 		{
 			return new MoveLineModel(
-				tryToggleCheck(id, nature, toggleCheck),
+				tryToggleCheck(guid, nature, toggleCheck),
 				isUsingCategories,
 				CurrentAccountUrl,
 				language,
@@ -60,26 +60,26 @@ namespace DFM.MVC.Areas.Account.Models
 			);
 		}
 
-		private MoveInfo tryToggleCheck(Int64 id, PrimalMoveNature nature, Func<Int64, PrimalMoveNature, MoveInfo> toggleCheck)
+		private MoveInfo tryToggleCheck(Guid guid, PrimalMoveNature nature, Func<Guid, PrimalMoveNature, MoveInfo> toggleCheck)
 		{
 			try
 			{
-				return toggleCheck(id, nature);
+				return toggleCheck(guid, nature);
 			}
 			catch (CoreError e)
 			{
 				if (e.Type == Error.MoveAlreadyChecked || e.Type == Error.MoveAlreadyUnchecked)
-					return getMove(id);
+					return getMove(guid);
 
 				throw;
 			}
 		}
 
-		private MoveInfo getMove(Int64 id)
+		private MoveInfo getMove(Guid guid)
 		{
 			try
 			{
-				return money.GetMove(id);
+				return money.GetMove(guid);
 			}
 			catch (CoreError)
 			{

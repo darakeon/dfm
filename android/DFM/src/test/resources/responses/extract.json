@@ -8,7 +8,7 @@
 				"day": 8,
 				"total": 27,
 				"checked": true,
-				"id": 1
+				"guid": "01234567-89AB-CDEF-FEDC-BA9876543210"
 			}
 		],
 		"title": "account",

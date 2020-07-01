@@ -3,9 +3,10 @@ package com.darakeon.dfm.api.entities.moves
 import com.darakeon.dfm.api.entities.Date
 import com.darakeon.dfm.extensions.toDoubleByCulture
 import java.util.ArrayList
+import java.util.UUID
 
 data class Move (
-	var id: Int = 0,
+	var guid: UUID? = null,
 	var description: String? = null,
 	var year: Int = 0,
 	var month: Int = 0,
@@ -59,7 +60,7 @@ data class Move (
 	}
 
 	fun setDefaultData(accountUrl: String, useCategories: Boolean) {
-		if (id == 0) {
+		if (guid == null) {
 			outUrl = accountUrl
 		} else {
 			warnCategory = !useCategories && categoryName != null

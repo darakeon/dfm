@@ -134,6 +134,18 @@ namespace DFM.BusinessLogic.Bases
 		#region Complete
 		protected static void complete(T move)
 		{
+			if (move.Guid == Guid.Empty)
+				move.Guid = Guid.NewGuid();
+
+			var detailList = move.DetailList.Where(
+				d => d.Guid == Guid.Empty
+			);
+
+			foreach (var detail in detailList)
+			{
+				detail.Guid = Guid.NewGuid();
+			}
+
 			adjustValue(move);
 			adjustDetailList(move);
 		}
@@ -157,7 +169,5 @@ namespace DFM.BusinessLogic.Bases
 			}
 		}
 		#endregion
-
-
 	}
 }

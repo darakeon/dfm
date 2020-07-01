@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Enums;
 
@@ -15,7 +16,7 @@ namespace DFM.BusinessLogic.Response
 			DetailList = new List<DetailInfo>();
 		}
 
-		public Int64 ID { get; set; }
+		public Guid Guid { get; set; }
 
 		public String OutUrl { get; set; }
 		public String InUrl { get; set; }
@@ -42,6 +43,9 @@ namespace DFM.BusinessLogic.Response
 
 		internal void Update(Schedule schedule)
 		{
+			if (Guid != schedule.Guid)
+				Error.InvalidSchedule.Throw();
+
 			schedule.Description = Description;
 			schedule.Year = Year;
 			schedule.Month = Month;
@@ -64,7 +68,7 @@ namespace DFM.BusinessLogic.Response
 		{
 			return new ScheduleInfo
 			{
-				ID = schedule.ID,
+				Guid = schedule.Guid,
 				OutUrl = schedule.Out?.Url,
 				InUrl = schedule.In?.Url,
 				CategoryName = schedule.Category?.Name,

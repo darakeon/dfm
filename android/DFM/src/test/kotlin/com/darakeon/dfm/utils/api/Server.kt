@@ -4,6 +4,7 @@ import com.darakeon.dfm.api.RequestService
 import com.darakeon.dfm.api.Retrofit
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
+import okhttp3.mockwebserver.RecordedRequest
 
 class Server {
 	private val server: MockWebServer = MockWebServer()
@@ -28,5 +29,9 @@ class Server {
 		val jsonBody = readResponse(jsonName)
 		val response = MockResponse().setBody(jsonBody)
 		server.enqueue(response)
+	}
+
+	fun lastPath(): String {
+		return server.takeRequest().path ?: ""
 	}
 }

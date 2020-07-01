@@ -21,17 +21,17 @@ namespace DFM.BusinessLogic.Services
 		}
 
 
-		public MoveInfo GetMove(Int64 id)
+		public MoveInfo GetMove(Guid guid)
 		{
 			parent.Safe.VerifyUser();
 			return MoveInfo.Convert4Edit(
-				GetMoveEntity(id)
+				GetMoveEntity(guid)
 			);
 		}
 
-		internal Move GetMoveEntity(Int64 id)
+		internal Move GetMoveEntity(Guid guid)
 		{
-			var move = moveRepository.Get(id);
+			var move = moveRepository.Get(guid);
 
 			parent.BaseMove.VerifyMove(move);
 
@@ -52,7 +52,7 @@ namespace DFM.BusinessLogic.Services
 		private MoveResult save(MoveInfo move)
 		{
 			var operationType =
-				move.ID == 0
+				move.Guid == Guid.Empty
 					? OperationType.Creation
 					: OperationType.Edition;
 
@@ -64,24 +64,24 @@ namespace DFM.BusinessLogic.Services
 		}
 
 
-		public MoveResult DeleteMove(Int64 id)
+		public MoveResult DeleteMove(Guid guid)
 		{
 			parent.Safe.VerifyUser();
 
-			var result = inTransaction("DeleteMove", () => deleteMove(id));
+			var result = inTransaction("DeleteMove", () => deleteMove(guid));
 
 			parent.BaseMove.FixSummaries();
 
 			return result;
 		}
 
-		private MoveResult deleteMove(Int64 id)
+		private MoveResult deleteMove(Guid guid)
 		{
-			var move = GetMoveEntity(id);
+			var move = GetMoveEntity(guid);
 
 			parent.BaseMove.VerifyMove(move);
 
-			moveRepository.Delete(id);
+			moveRepository.Delete(move);
 
 			parent.BaseMove.BreakSummaries(move);
 
@@ -122,21 +122,21 @@ namespace DFM.BusinessLogic.Services
 			}
 		}
 
-		public MoveInfo CheckMove(Int64 moveId, PrimalMoveNature nature)
+		public MoveInfo CheckMove(Guid guid, PrimalMoveNature nature)
 		{
-			return toggleMoveCheck(moveId, nature, true);
+			return toggleMoveCheck(guid, nature, true);
 		}
 
-		public MoveInfo UncheckMove(Int64 moveId, PrimalMoveNature nature)
+		public MoveInfo UncheckMove(Guid guid, PrimalMoveNature nature)
 		{
-			return toggleMoveCheck(moveId, nature, false);
+			return toggleMoveCheck(guid, nature, false);
 		}
 
-		private MoveInfo toggleMoveCheck(Int64 moveId, PrimalMoveNature nature, Boolean check)
+		private MoveInfo toggleMoveCheck(Guid guid, PrimalMoveNature nature, Boolean check)
 		{
 			parent.Safe.VerifyUser();
 
-			var move = GetMoveEntity(moveId);
+			var move = GetMoveEntity(guid);
 
 			parent.BaseMove.VerifyMove(move);
 			verifyMoveForCheck(move, nature, check);
