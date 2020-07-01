@@ -48,7 +48,7 @@ namespace DFM.MVC.Models
 			{
 				info.Token = token;
 
-				safe.PasswordReset(info);
+				safe.ResetPassword(info);
 			}
 			catch (CoreError e)
 			{
