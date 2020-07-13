@@ -11,16 +11,12 @@ This is the task list for the project.
 - Dependency: which other task it depends on (if it exists)
 - Issue: github issue about the task (if it exists)
 
-| Task (64)                                                                               | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
+| Task (60)                                                                               | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
 | --------------------------------------------------------------------------------------- | -------- | --- | --- | --- | ------------------ | ------------------------------------------------ |
-| Search by move/detail                                                                   | :whale:  |  2  |  4  |  6  |                    |                                                  |
-| Last login date                                                                         | :sheep:  |  1  |  3  |  6  |                    |                                                  |
-| Enable reopen account                                                                   | :sheep:  |  1  |  3  |  6  |                    |                                                  |
-| Add change language icon to site                                                        | :sheep:  |  1  |  3  |  6  |                    |                                                  |
-| Add navigate gestures to reports (left to future, right to past)                        | :whale:  |  1  |  3  |  6  |                    |                                                  |
-| Add moves gestures (left delete, right check/uncheck, hold edit, click show options)    | :whale:  |  1  |  3  |  6  |                    |                                                  |
 | Show future moves and foreseen balance                                                  | :whale:  |  3  |  4  |  5  |                    | [#21](https://github.com/darakeon/dfm/issues/21) |
 | Make/find app to verify DFM status                                                      | :ant:    |  3  |  4  |  5  |                    |                                                  |
+| Add navigate gestures to reports (left to future, right to past)                        | :whale:  |  2  |  3  |  5  |                    |                                                  |
+| Add moves gestures (left delete, right check/uncheck, hold edit, click show options)    | :whale:  |  2  |  3  |  5  |                    |                                                  |
 | Add create new task list at version changer (q2 add tasks 1 and 2, numbers add by line) | :ant:    |  2  |  3  |  5  |                    |                                                  |
 | Check if android tests are really testing all methods                                   | :ant:    |  2  |  3  |  5  |                    |                                                  |
 | Add code of conduct to repo                                                             | :sheep:  |  2  |  3  |  5  |                    | [#44](https://github.com/darakeon/dfm/issues/44) |
