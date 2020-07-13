@@ -1,4 +1,9 @@
 {
+	"4.2.0.0": [
+		"Improve security of user data",
+		"Handle error when there is a problem with schedules",
+		"Improve mobile app move screen usability and accessibility"
+	],
 	"4.1.5.0": [
 		"Add all contact types",
 		"Improve accounts screen link to account area",

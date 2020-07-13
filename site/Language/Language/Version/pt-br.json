@@ -1,4 +1,9 @@
 {
+	"4.2.0.0": [
+		"Melhorada segurança de dados do sistema",
+		"Gerenciado caso aconteça erro ao rodar agendamentos",
+		"Melhoradas usabilidade e  acessibilidade da tela de movimentaçâo do aplicativo"
+	],
 	"4.1.5.0": [
 		"Adicionada lista completa de formas de contato",
 		"Melhorado link para a área da conta que fica na listagem de conta",
