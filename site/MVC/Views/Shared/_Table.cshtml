@@ -3,11 +3,18 @@
 @{
 	Layout = "_Master.cshtml";
 	var buttonList = (List<Button>)ViewBag.Buttons;
+
+	var accountModel = Model as BaseAccountModel;
+	var subtitle = accountModel?.Account?.Name;
 }
 
 @await Html.PartialAsync("ValidationSummary")
 
-<h1>@ViewBag.Title</h1><hr />
+<h1 class="header">
+	@ViewBag.Title
+	<em>@subtitle</em>
+</h1>
+<hr />
 
 @if (!ViewBag.HasContent)
 {

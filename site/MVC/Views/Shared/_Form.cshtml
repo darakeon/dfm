@@ -11,14 +11,20 @@
 	var formSizeLg = ViewBag.FormSizeLg ?? 4;
 	if (formSizeLg % 2 == 1) { formSizeLg++; }
 	var pushLg = 6 - formSizeLg / 2;
+
+	var accountModel = Model as BaseAccountModel;
+	var subtitle = accountModel?.Account?.Name;
 }
 
 <div class="row move-down">
 	<div class="col-sm-@(formSizeSm) col-sm-push-@pushSm col-lg-@(formSizeLg) col-lg-push-@pushLg">
 
 		<div class="panel panel-default">
-			<div class="panel-heading text-center">
-				<h4>@ViewBag.Title</h4>
+			<div class="panel-heading">
+				<h4 class="header">
+					@ViewBag.Title
+					<em>@subtitle</em>
+				</h4>
 			</div>
 
 			@using (Html.BeginForm(action, controller, routeValues))
