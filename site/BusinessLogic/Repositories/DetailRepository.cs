@@ -32,6 +32,9 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			foreach (var detail in move.DetailList)
 			{
+				if (detail.Guid == Guid.Empty)
+					detail.Guid = Guid.NewGuid();
+
 				SaveOrUpdate(detail, validate);
 			}
 		}

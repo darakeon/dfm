@@ -27,7 +27,7 @@ Legend:
 - [ ] Fix change account out to in at edit
 - [ ] Put default amount to details field at mobile
 - [ ] Fix error when redirecting after error
-- [ ] Fix error on add detail when editing move
+- [x] `200820>200821` Fix error on add detail when editing move
 
 ## <a name="4.2.0.0"></a>4.2.0.0 :whale: <sup>`8`</sup>
 - [x] `200701>200721` Make DTO use guid, not db id (delete fakeid)

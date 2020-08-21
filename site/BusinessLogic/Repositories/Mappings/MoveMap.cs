@@ -14,7 +14,8 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 
 			mapping.Map(m => m.ExternalId)
 				.Not.Update()
-				.Not.Nullable();
+				.Not.Nullable()
+				.Unique();
 
 			mapping.Map(m => m.Description)
 				.Length(MaxLen.MoveDescription);
