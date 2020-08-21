@@ -1,7 +1,12 @@
-﻿@model BaseSiteModel
+﻿@using System.Globalization
+@model BaseSiteModel
 
 @{
 	var theme = Model.Theme.ToString().ToLower();
+	var culture = new CultureInfo(Model.Language);
+	var format = culture.NumberFormat;
+	var thousands = format.CurrencyGroupSeparator;
+	var decimals = format.CurrencyDecimalSeparator;
 }
 
 <!DOCTYPE html>
@@ -24,6 +29,10 @@
 	<script src="~/Assets/libs/bootstrap/js/bootstrap.min.js?v=@Cfg.Version" type="text/javascript"></script>
 	<script src="~/Assets/libs/jquery/jquery.maskMoney.min.js?v=@Cfg.Version" type="text/javascript"></script>
 
+	<script type="text/javascript">
+		const thousands = '@thousands';
+		const decimal = '@decimals';
+	</script>
 	<script src="~/Assets/scripts/default.js?v=@Cfg.Version" type="text/javascript"></script>
 
 	<script src="~/Assets/libs/jquery/jquery.unobtrusive-ajax.min.js?v=@Cfg.Version"></script>
@@ -31,7 +40,6 @@
 	@RenderSection("Scripts", false)
 </head>
 <body>
-
 	@await Html.PartialAsync("Header")
 
 	<div id="body" class="container">
