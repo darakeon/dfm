@@ -15,8 +15,8 @@
 <head>
 	<title>@await Html.PartialAsync("Title")</title>
 
-	<link rel="shortcut icon" type="image/ico" href="~/Assets/images/pig.ico" />
-	<meta property="og:image" content="https://dontflymoney.com/Assets/images/face-pig.png" />
+	<link rel="shortcut icon" type="image/ico" href="~/Assets/images/pig.ico?v=@Cfg.Version" />
+	<meta property="og:image" content="https://dontflymoney.com/Assets/images/face-pig.png?v=@Cfg.Version" />
 
 	<link href="~/Assets/themes/bootstrap-@(theme).min.css?v=@Cfg.Version" rel="stylesheet" type="text/css" id="bootstrap-theme" />
 	<link href="~/Assets/styles/android.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />

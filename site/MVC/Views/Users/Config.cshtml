@@ -11,23 +11,22 @@
 }
 
 @section Styles {
-	<link rel="stylesheet" type="text/css" href="~/Assets/styles/qrcode.css" />
+	<link rel="stylesheet" type="text/css" href="~/Assets/styles/qrcode.css?v=@Cfg.Version" />
 	
 	<style>body { display: none }</style>
 
 	@foreach (var theme in Model.ThemeOpt.ThemeList)
 	{
 		<link rel="stylesheet" type="text/css" class="delete-me" style="display: none"
-			  href="/Assets/libs/themes/bootstrap-@(theme).min.css?v=@Cfg.Version" />
+			  href="~/Assets/libs/themes/bootstrap-@(theme).min.css?v=@Cfg.Version" />
 	}
 }
 
 @section Scripts {
-	<script type="text/javascript" src="~/Assets/scripts/tab-forms.js"></script>
-	<script type="text/javascript" src="~/Assets/scripts/dynamic-theme-change.js"></script>
-	<script type="text/javascript" src="~/Assets/libs/jquery/jquery.qrcode.min.js"></script>
-	<script type="text/javascript" src="~/Assets/libs/scripts/qrcode.min.js"></script>
-	<script type="text/javascript" src="~/Assets/scripts/qrcode.js"></script>
+	<script type="text/javascript" src="~/Assets/scripts/tab-forms.js?v=@Cfg.Version"></script>
+	<script type="text/javascript" src="~/Assets/scripts/dynamic-theme-change.js?v=@Cfg.Version"></script>
+	<script type="text/javascript" src="~/Assets/libs/jquery/jquery.qrcode.min.js?v=@Cfg.Version"></script>
+	<script type="text/javascript" src="~/Assets/scripts/qrcode.js?v=@Cfg.Version"></script>
 	<script type="text/javascript">
 		window.currentTheme = '@Model.Theme';
 	</script>
