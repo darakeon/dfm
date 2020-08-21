@@ -65,3 +65,13 @@ input[type="date"] {
 .modal-backdrop {
 	opacity: 0.75;
 }
+
+.header {
+	margin-left: 5px;
+}
+
+	.header em {
+		float: right;
+		margin-right: 10px;
+		font-size: 75%;
+	}
