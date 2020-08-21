@@ -20,6 +20,15 @@ Legend:
 - [ ] Last login date
 - [ ] Search by move/detail
 
+## <a name="4.2.0.1"></a>4.2.0.1 :sheep: <sup>`7`</sup>
+- [ ] Fix mobile Nature when open move app screen
+- [ ] Add account name to \_layout of account area
+- [ ] Fix numbers insertion at site (it's about language)
+- [ ] Fix change account out to in at edit
+- [ ] Put default amount to details field at mobile
+- [ ] Fix error when redirecting after error
+- [ ] Fix error on add detail when editing move
+
 ## <a name="4.2.0.0"></a>4.2.0.0 :whale: <sup>`8`</sup>
 - [x] `200701>200721` Make DTO use guid, not db id (delete fakeid)
 - [x] `200628>200630` Handle CoreError at Robot
