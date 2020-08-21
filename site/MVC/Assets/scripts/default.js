@@ -16,8 +16,8 @@
 			allowZero: $(this).data("allow-zero"),
 			allowNegative: $(this).data("allow-negative"),
 			precision: $(this).data("precision"),
-			thousands: "",
-			decimal: "."
+			thousands,
+			decimal
 		});
 	});
 });

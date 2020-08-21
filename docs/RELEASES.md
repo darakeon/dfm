@@ -23,7 +23,7 @@ Legend:
 ## <a name="4.2.0.1"></a>4.2.0.1 :sheep: <sup>`6`</sup>
 - [ ] Fix mobile Nature when open move app screen
 - [ ] Add account name to \_layout of account area
-- [ ] Fix numbers insertion at site (it's about language)
+- [x] `200821>200821` Fix numbers insertion at site (it's about language)
 - [ ] Fix change account out to in at edit
 - [ ] Put default amount to details field at mobile
 - [x] `200820>200821` Fix error on add detail when editing move
