@@ -50,7 +50,6 @@ This is the task list for the project.
 | Add user creation (mobile)                                                              | :whale:  |  2  |  2  |  4  |                    |                                                  |
 | Add schedule creation (mobile)                                                          | :sheep:  |  2  |  2  |  4  |                    |                                                  |
 | Enable Copy Move (web+mobile)                                                           | :whale:  |  2  |  2  |  4  |                    |                                                  |
-| Add different icon for test at android                                                  | :ant:    |  1  |  1  |  4  |                    |                                                  |
 | If session drop, call history.go(-2) after re-login                                     | :sheep:  |  1  |  1  |  4  |                    |                                                  |
 | Make default language EN if browser is not PT, ES, IT or FR                             | :sheep:  |  1  |  1  |  4  |                    |                                                  |
 | Replace XML at UI android by compose jetpack                                            | :ant:    |  4  |  3  |  3  |                    |                                                  |
