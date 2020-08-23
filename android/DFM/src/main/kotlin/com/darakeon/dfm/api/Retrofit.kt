@@ -33,13 +33,16 @@ internal object Retrofit {
 
 	private fun build(config: (Retrofit.Builder) -> Unit): Retrofit {
 		val builder = Retrofit.Builder()
-
 		config(builder)
 
-		val converter = GsonConverterFactory.create()
+		builder.addConverterFactory(
+			GsonConverterFactory.create()
+		)
 
-		return builder
-			.addConverterFactory(converter)
-			.build()
+		val name = "javax.net.ssl.trustStore"
+		val value = "NONE"
+		System.setProperty(name, value)
+
+		return builder.build()
 	}
 }
