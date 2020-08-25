@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.graphics.Typeface
-import android.text.method.TextKeyListener.clear
 import android.util.TypedValue
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
@@ -47,9 +46,9 @@ private fun getColor(value: Double): Int {
 fun Activity.showChangeList(
 	list: Array<ComboItem>,
 	titleId: Int,
-	setResult: (String, String) -> Unit
+	setResult: (String, String?) -> Unit
 ) {
-	val clear = ComboItem(getString(R.string.clear), "")
+	val clear = ComboItem(getString(R.string.clear), null)
 
 	val itemsList = listOf(clear)
 		.union(list.asIterable())
@@ -64,7 +63,7 @@ fun Activity.showChangeList(
 	AlertDialog.Builder(this).setTitle(title)
 		.setItems(adapter) { _, w -> run {
 			if (w == 0)
-				setResult("", "")
+				setResult("", null)
 			else
 				setResult(
 					itemsList[w].text,
@@ -75,7 +74,7 @@ fun Activity.showChangeList(
 
 fun AutoCompleteTextView.complete(
 	list: Array<ComboItem>,
-	setResult: (String) -> Unit
+	setResult: (String?) -> Unit
 ) {
 	val adapter = ArrayAdapter(
 		context,
@@ -88,7 +87,7 @@ fun AutoCompleteTextView.complete(
 	onChange { text ->
 		val value = list
 			.firstOrNull { it.text == text }
-			?.value ?: ""
+			?.value
 
 		setResult(value)
 	}

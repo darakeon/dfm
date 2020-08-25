@@ -8,7 +8,7 @@ import kotlin.reflect.KMutableProperty0
 
 data class ComboItem(
 	val text: String,
-	val value: String
+	val value: String?
 )
 
 fun Array<ComboItem>.setLabel(field: TextView, value: String?) {

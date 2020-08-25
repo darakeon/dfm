@@ -169,7 +169,9 @@ class MovesActivity : BaseActivity() {
 			move::outUrl,
 			this::changeAccountOut
 		)
-		account_out.onChange { setNatureFromAccounts() }
+		account_out.onChange {
+			setNatureFromAccounts()
+		}
 
 		moveForm.accountList.setCombo(
 			account_in,
@@ -177,7 +179,9 @@ class MovesActivity : BaseActivity() {
 			move::inUrl,
 			this::changeAccountIn
 		)
-		account_in.onChange { setNatureFromAccounts() }
+		account_in.onChange {
+			setNatureFromAccounts()
+		}
 
 		if (move.detailList.isNotEmpty()) {
 			useDetailed()
