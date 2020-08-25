@@ -111,14 +111,14 @@ class FormTest {
 	@Test
 	fun showChangeList() {
 		var chosenText = ""
-		var chosenValue = ""
+		var chosenValue: String? = null
 
 		val options = listOf(
 			ComboItem("A", "a"), ComboItem("B", "b")
 		).toTypedArray()
 
 		activity.showChangeList(options, R.string.app_short_name) {
-			t: String, v: String ->
+			t: String, v: String? ->
 				chosenText = t
 				chosenValue = v
 		}
@@ -134,6 +134,6 @@ class FormTest {
 		shadowOf(alert).clickOnItem(0)
 
 		assertThat(chosenText, `is`(""))
-		assertThat(chosenValue, `is`(""))
+		assertNull(chosenValue)
 	}
 }
