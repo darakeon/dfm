@@ -760,6 +760,8 @@ class MovesActivityTest {
 		activity.useDetailed(View(activity))
 
 		assertTrue(move.isDetailed)
+
+		assertThat(activity.detail_amount.text.toString(), `is`("1"))
 	}
 
 	@Test
