@@ -65,6 +65,11 @@ class MovesActivity : BaseActivity() {
 	private var accountUrl = ""
 	private var id: UUID? = null
 
+	private val amountDefault
+		get() = resources.getInteger(
+			R.integer.amount_default
+		).toString()
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
@@ -80,6 +85,8 @@ class MovesActivity : BaseActivity() {
 
 		if (id != null)
 			this.id = tryGetGuid(id)
+
+		detail_amount.setText(amountDefault)
 
 		if (savedInstanceState == null) {
 			callApi { it.getMove(this.id, this::populateScreen) }
@@ -325,10 +332,8 @@ class MovesActivity : BaseActivity() {
 			return
 		}
 
-		val amountDefault = resources.getInteger(R.integer.amount_default)
-
 		detail_description.setText("")
-		detail_amount.setText(amountDefault.toString())
+		detail_amount.setText(amountDefault)
 		detail_value.setText("")
 
 		move.add(description, amount, value)

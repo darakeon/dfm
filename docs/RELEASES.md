@@ -26,7 +26,7 @@ Legend:
 - [x] `200821>200821` Add account name to \_layout of account area
 - [x] `200821>200821` Fix numbers insertion at site (it's about language)
 - [ ] Fix change account out to in at edit
-- [ ] Put default amount to details field at mobile
+- [x] `200825>200825` Put default amount to details field at mobile
 - [x] `200820>200821` Fix error on add detail when editing move
 
 ## <a name="4.2.0.0"></a>4.2.0.0 :whale: <sup>`8`</sup>
