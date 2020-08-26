@@ -183,6 +183,8 @@ class MovesActivity : BaseActivity() {
 			setNatureFromAccounts()
 		}
 
+		setNatureFromAccounts()
+
 		if (move.detailList.isNotEmpty()) {
 			useDetailed()
 			move.detailList.forEach {
