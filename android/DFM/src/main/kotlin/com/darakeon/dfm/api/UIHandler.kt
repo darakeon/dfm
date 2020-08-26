@@ -7,7 +7,13 @@ import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+import android.content.res.Configuration.ORIENTATION_LANDSCAPE
+import android.content.res.Configuration.ORIENTATION_PORTRAIT
 import android.view.Surface
+import android.view.Surface.ROTATION_0
+import android.view.Surface.ROTATION_180
+import android.view.Surface.ROTATION_270
+import android.view.Surface.ROTATION_90
 import android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
 import com.darakeon.dfm.dialogs.createWaitDialog
 
@@ -33,16 +39,30 @@ open class UIHandler(
 	}
 
 	private fun disableRotation() {
-		val currentRotation = activity.windowManager.defaultDisplay.rotation
+		val orientation = activity.resources.configuration.orientation;
+		val rotation = activity.windowManager.defaultDisplay.rotation;
 
-		activity.requestedOrientation = when (currentRotation) {
-			Surface.ROTATION_0 -> SCREEN_ORIENTATION_PORTRAIT
-			Surface.ROTATION_90 -> SCREEN_ORIENTATION_LANDSCAPE
-			Surface.ROTATION_180 -> SCREEN_ORIENTATION_REVERSE_PORTRAIT
-			Surface.ROTATION_270 -> SCREEN_ORIENTATION_REVERSE_LANDSCAPE
-			else -> SCREEN_ORIENTATION_UNSPECIFIED
-		}
+		activity.requestedOrientation =
+			rotations[rotation]?.get(orientation)
+				?: SCREEN_ORIENTATION_UNSPECIFIED
 	}
+
+	private val upSide = hashMapOf(
+		ORIENTATION_PORTRAIT to SCREEN_ORIENTATION_PORTRAIT,
+		ORIENTATION_LANDSCAPE to SCREEN_ORIENTATION_LANDSCAPE
+	)
+
+	private val downSide = hashMapOf(
+		ORIENTATION_PORTRAIT to SCREEN_ORIENTATION_REVERSE_PORTRAIT,
+		ORIENTATION_LANDSCAPE to SCREEN_ORIENTATION_REVERSE_LANDSCAPE
+	)
+
+	private val rotations = hashMapOf(
+		ROTATION_0 to upSide,
+		ROTATION_90 to downSide,
+		ROTATION_180 to downSide,
+		ROTATION_270 to upSide
+	)
 
 	open fun endUIWait() {
 		ended = true
