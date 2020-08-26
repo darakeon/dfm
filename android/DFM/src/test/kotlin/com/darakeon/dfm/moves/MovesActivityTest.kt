@@ -190,6 +190,10 @@ class MovesActivityTest {
 		assertThat(move.date, `is`(Date()))
 		assertNull(move.inUrl)
 		assertThat(move.outUrl, `is`("url"))
+
+		assertTrue(activity.nature_out.isChecked)
+		assertFalse(activity.nature_in.isChecked)
+		assertFalse(activity.nature_transfer.isChecked)
 	}
 
 	@Test

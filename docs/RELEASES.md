@@ -22,7 +22,7 @@ Legend:
 
 ## <a name="4.2.0.1"></a>4.2.0.1 :sheep: <sup>`8`</sup>
 - [ ] Add different icon for test at android
-- [ ] Fix mobile Nature when open move app screen
+- [x] `200825>200825` Fix mobile Nature when open move app screen
 - [x] `200825>200825` Fix tablet eternal rotation
 - [x] `200821>200821` Add account name to \_layout of account area
 - [x] `200821>200821` Fix numbers insertion at site (it's about language)
