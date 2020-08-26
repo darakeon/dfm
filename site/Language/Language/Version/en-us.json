@@ -1,4 +1,13 @@
 {
+	"4.2.0.1": [
+		"Fix mobile Nature when open move app screen",
+		"Fix tablet eternal rotation",
+		"Add account name to screens of account area",
+		"Fix money numbers insertion at site",
+		"Fix change account out to in at edit at mobile",
+		"Put default amount to details field at mobile",
+		"Fix error on add detail when editing move"
+	],
 	"4.2.0.0": [
 		"Improve security of user data",
 		"Handle error when there is a problem with schedules",

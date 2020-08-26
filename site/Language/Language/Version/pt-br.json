@@ -1,4 +1,13 @@
 {
+	"4.2.0.1": [
+		"Arrumada Natureza da Movimentação na tela inicial de criação do aplicativo",
+		"Corrigido problema de rotação do aplicativo em tablets",
+		"Colocado nome da Conta nas telas da Conta no site",
+		"Corrigido problema com inserção de valores no site",
+		"Arrumado problema de edição de Conta de Movimentação no aplicativo",
+		"Colocado valor padrão na criação de Detalhes de Movimentação no aplicativo",
+		"Arrumado problema ao adicionar Detalhes editando Movimentação"
+	],
 	"4.2.0.0": [
 		"Melhorada segurança de dados do sistema",
 		"Gerenciado caso aconteça erro ao rodar agendamentos",
