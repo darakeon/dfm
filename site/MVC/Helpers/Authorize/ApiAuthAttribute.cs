@@ -6,8 +6,8 @@ namespace DFM.MVC.Helpers.Authorize
 {
 	public class ApiAuthAttribute : AuthAttribute
 	{
-		public ApiAuthAttribute(Boolean needTFA = true)
-			: base(needTFA: needTFA, isMobile: true) { }
+		public ApiAuthAttribute(Boolean needTFA = true, Boolean needAdmin = false)
+			: base(needAdmin: needAdmin, needTFA: needTFA, isMobile: true) { }
 
 		protected override void goToContractPage(AuthorizationFilterContext filterContext)
 		{
