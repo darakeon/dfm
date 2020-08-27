@@ -1,6 +1,7 @@
 ﻿using System;
 using Keon.Util.Collection;
 using DFM.BusinessLogic.Exceptions;
+using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Helpers.Global;
 using DFM.MVC.Models;
@@ -14,7 +15,6 @@ namespace DFM.MVC.Controllers
 		public IActionResult Index()
 		{
 			var model = new OpsModel();
-
 			return View(model);
 		}
 
@@ -38,7 +38,6 @@ namespace DFM.MVC.Controllers
 		public IActionResult Error(Error id)
 		{
 			var model = new OpsModel(id);
-
 			return View(model);
 		}
 
@@ -46,7 +45,6 @@ namespace DFM.MVC.Controllers
 		public IActionResult Help()
 		{
 			var model = new BaseSiteModel();
-
 			return View(model);
 		}
 
@@ -54,7 +52,6 @@ namespace DFM.MVC.Controllers
 		public IActionResult Legend()
 		{
 			var model = new BaseSiteModel();
-
 			return View(model);
 		}
 	}

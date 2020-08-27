@@ -20,7 +20,6 @@ namespace DFM.MVC.Helpers.Global
 		}
 
 		private readonly HttpContext context;
-		private Exception exception { get; set; }
 		private String key => BrowserId.Get(() => context);
 
 		private static readonly
@@ -36,23 +35,24 @@ namespace DFM.MVC.Helpers.Global
 		{
 			try
 			{
-				sendEmail();
+				var exception = context.Features
+					.Get<IExceptionHandlerFeature>()
+					.Error;
+
+				exception.TryLog();
+
+				sendEmail(exception);
 			}
 			catch (Exception e)
 			{
-				exception?.TryLog();
 				e.TryLog();
 			}
 
 			redirect();
 		}
 
-		private void sendEmail()
+		private void sendEmail(Exception exception)
 		{
-			exception = context.Features
-				.Get<IExceptionHandlerFeature>()
-				.Error;
-
 			var user = context.User.Identity;
 			var request = context.Request;
 
