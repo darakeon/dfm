@@ -20,6 +20,9 @@ Legend:
 - [ ] Last login date
 - [ ] Search by move/detail
 
+## <a name="4.2.0.2"></a>4.2.0.2 :sheep: <sup>`1`</sup>
+- [ ] Send site errors to cellphone 
+
 ## <a name="4.2.0.1"></a>4.2.0.1 :sheep: <sup>`8`</sup>
 - [x] `200825>200826` Add different icon for test at android
 - [x] `200825>200825` Fix mobile Nature when open move app screen

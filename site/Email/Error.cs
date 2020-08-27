@@ -47,7 +47,7 @@ namespace DFM.Email
 					{exceptionsFormatted}";
 
 				new Sender()
-					.ToDefault()
+					.To("darakeon@gmail.com")
 					.Subject(subject)
 					.Body(body)
 					.Send();
