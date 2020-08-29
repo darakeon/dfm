@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
 
 namespace DFM.MVC.Starters
 {
@@ -8,7 +7,7 @@ namespace DFM.MVC.Starters
 	{
 		public static void SetHttps(IApplicationBuilder app, IWebHostEnvironment env)
 		{
-			if (!env.IsDevelopment())
+			if (env.EnvironmentName == "amazon")
 				app.UseHttpsRedirection();
 		}
 
