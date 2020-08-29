@@ -54,5 +54,6 @@ private fun Activity.alert(
 fun Activity.createWaitDialog(): AlertDialog? {
 	return AlertDialog.Builder(this)
 		.setTitle(getString(R.string.wait_title))
-		.setMessage(R.string.wait_text)?.show()
+		.setMessage(R.string.wait_text)
+		?.show()
 }

@@ -2,6 +2,7 @@ package com.darakeon.dfm.api
 
 import com.darakeon.dfm.BuildConfig
 import com.darakeon.dfm.base.BaseActivity
+import com.darakeon.dfm.extensions.getPrivate
 import com.darakeon.dfm.utils.activity.ActivityMock
 import com.darakeon.dfm.utils.api.CallMock
 import com.darakeon.dfm.utils.TestException
@@ -27,12 +28,12 @@ class RequestHandlerTest {
 	val log = LogRule()
 
 	private lateinit var activity: BaseActivity
-	private lateinit var handler: RequestHandler
+	private lateinit var handler: RequestHandler<BaseActivity>
 
 	@Before
 	fun setup() {
 		activity = ActivityMock().create()
-		handler = RequestHandler(activity)
+		handler = activity.getPrivate("api", "requestHandler")
 	}
 
 	@Test

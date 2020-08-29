@@ -133,7 +133,7 @@ class BaseActivityTest {
 	fun onCreateAddApiAndAuth() {
 		val activity = mocker.get()
 
-		var api = activity.getPrivate<Api>("api")
+		var api = activity.getPrivate<Api<BaseActivity>>("api")
 		var auth = activity.getPrivate<Authentication>("auth")
 
 		assertNull(api)
@@ -324,7 +324,7 @@ class BaseActivityTest {
 	fun onDestroy() {
 		val activity = mocker.create()
 
-		val api = activity.getPrivate<Api>("api")
+		val api = activity.getPrivate<Api<BaseActivity>>("api")
 
 		activity.testDestroy()
 

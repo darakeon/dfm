@@ -5,6 +5,7 @@ import android.view.ContextMenu
 import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.Api
+import com.darakeon.dfm.api.UIHandler
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.setPrivate
 import com.darakeon.dfm.utils.api.Server
@@ -28,10 +29,13 @@ class ActivityMock {
 
 		val activity = builder.get()
 
-		activity.setPrivate("serverUrl") {server.url}
+		activity.setPrivate("serverUrl") { server.url }
 
-		if (create)
-			activity.setPrivate("api") { Api(activity) }
+		if (create) {
+			activity.setPrivate("api") {
+				Api(activity, server.url)
+			}
+		}
 
 		return activity
 	}
@@ -68,7 +72,7 @@ class TestActivity : BaseActivity() {
 	fun testGetExtraOrUrl(key: String) =
 		super.getExtraOrUrl(key)
 
-	fun testCallApi(call: (Api) -> Unit) =
+	fun testCallApi(call: (Api<BaseActivity>) -> Unit) =
 		super.callApi(call)
 
 	fun testDestroy() =
