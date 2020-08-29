@@ -10,6 +10,7 @@ import com.darakeon.dfm.api.entities.moves.MoveCreation
 import com.darakeon.dfm.api.entities.moves.Nature
 import com.darakeon.dfm.api.entities.settings.Settings
 import com.darakeon.dfm.api.entities.summary.Summary
+import com.darakeon.dfm.service.ErrorList
 import retrofit2.Call
 import java.util.UUID
 
@@ -143,5 +144,9 @@ class Api<T>(
 
 	fun wakeUpSite(onSuccess: () -> Unit) {
 		service.wakeUpSite().call { onSuccess() }
+	}
+
+	fun listErrors(onSuccess: (ErrorList) -> Unit) {
+		service.listErrors().call { onSuccess(it) }
 	}
 }
