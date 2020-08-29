@@ -116,4 +116,7 @@
 	<string name="error_call_api_email" translatable="false">Error on calling api, object null</string>
 	<string name="error_not_identified">Not identified site error. Contact us.</string>
 
+	<!-- Service -->
+	<string name="service_error_title">Site error check</string>
+
 </resources>
