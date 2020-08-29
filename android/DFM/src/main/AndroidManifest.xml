@@ -143,6 +143,16 @@
 
 		<activity android:name=".tfa.TFAActivity" />
 
+		<service
+			android:description="@string/service_error_title"
+			android:exported="false"
+			android:icon="@drawable/ic_launcher"
+			android:isolatedProcess="false"
+			android:label="@string/service_error_title"
+			android:name=".service.SiteErrorService" >
+
+		</service>
+
 		<meta-data
 			android:name="asset_statements"
 			android:resource="@string/asset_statements" />

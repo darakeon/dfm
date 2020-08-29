@@ -115,4 +115,7 @@
 	<string name="error_call_api">Erro ao chamar site, entre em contato conosco</string>
 	<string name="error_not_identified">Erro não identificado no site, entre em contato conosco</string>
 
+	<!-- Service -->
+	<string name="service_error_title">Verificação de erro no site</string>
+
 </resources>
