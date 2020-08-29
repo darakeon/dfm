@@ -9,6 +9,8 @@ import com.darakeon.dfm.api.entities.moves.MoveCreation
 import com.darakeon.dfm.api.entities.moves.Nature
 import com.darakeon.dfm.api.entities.settings.Settings
 import com.darakeon.dfm.api.entities.summary.Summary
+import com.darakeon.dfm.service.ErrorList
+import com.darakeon.dfm.service.ErrorLog
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -98,4 +100,7 @@ internal interface RequestService {
 
 	@GET("api")
 	fun wakeUpSite(): Call<Body<Any>>
+
+	@GET("api/status/log")
+	fun listErrors(): Call<Body<ErrorList>>
 }
