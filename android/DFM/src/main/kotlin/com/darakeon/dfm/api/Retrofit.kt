@@ -1,6 +1,6 @@
 package com.darakeon.dfm.api
 
-import com.darakeon.dfm.base.BaseActivity
+import android.content.Context
 import okhttp3.Dispatcher
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 internal object Retrofit {
 	fun build(
-		activity: BaseActivity,
+		context: Context,
 		dispatcher: Dispatcher,
 		interceptor: (Interceptor.Chain) -> Response
 	): Retrofit {
@@ -22,7 +22,7 @@ internal object Retrofit {
 					.build()
 
 			it.baseUrl(
-				MainInfo.getSiteUrl(activity)
+				MainInfo.getSiteUrl(context)
 			).client(client)
 		}
 	}

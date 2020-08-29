@@ -1,5 +1,6 @@
 package com.darakeon.dfm.api
 
+import android.content.Context
 import com.darakeon.dfm.api.entities.Body
 import com.darakeon.dfm.api.entities.accounts.AccountList
 import com.darakeon.dfm.api.entities.extract.Extract
@@ -9,12 +10,15 @@ import com.darakeon.dfm.api.entities.moves.MoveCreation
 import com.darakeon.dfm.api.entities.moves.Nature
 import com.darakeon.dfm.api.entities.settings.Settings
 import com.darakeon.dfm.api.entities.summary.Summary
-import com.darakeon.dfm.base.BaseActivity
 import retrofit2.Call
 import java.util.UUID
 
-class Api(activity: BaseActivity) {
-	private val requestHandler = RequestHandler(activity)
+class Api<T>(
+	caller: T,
+	url: String?,
+) where T: Context, T: Caller {
+	private val requestHandler = RequestHandler(caller, url)
+
 	private val service = requestHandler.service
 	private var currentCall: Call<*>? = null
 

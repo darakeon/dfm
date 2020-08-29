@@ -1,30 +1,32 @@
 package com.darakeon.dfm.api
 
+import android.content.Context
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.Body
 import com.darakeon.dfm.base.BaseActivity
-import com.darakeon.dfm.dialogs.alertError
 import okhttp3.Dispatcher
 import okhttp3.Interceptor.Chain
 import retrofit2.Call
 
-internal class RequestHandler(
-	private val activity: BaseActivity
-) {
+internal class RequestHandler<C>(
+	private val caller: C,
+	url: String?,
+) where C: Context, C: Caller {
 	internal val service: RequestService
 	private val dispatcher = Dispatcher()
-	private val uiHandler = UIHandler(activity)
+	private var ui: UIHandler? = null
 
 	init {
-		val url = activity.serverUrl
-
 		val retrofit =
 			if (url == null)
-				Retrofit.build(activity, dispatcher, this::intercept)
+				Retrofit.build(caller, dispatcher, this::intercept)
 			else
 				Retrofit.build(url)
 
 		service = retrofit.create(RequestService::class.java)
+
+		if (caller is BaseActivity)
+			ui = UIHandler(caller)
 	}
 
 	private fun intercept(chain: Chain) =
@@ -33,26 +35,25 @@ internal class RequestHandler(
 	private fun addAuthTicket(chain: Chain) =
 		chain.request()
 			.newBuilder()
-			.addHeader("ticket", activity.ticket)
+			.addHeader("ticket", caller.ticket)
 			.build()
 
 	internal fun <T> call(response: Call<Body<T>>, onSuccess: (T) -> Unit) {
-		if (Internet.isOffline(activity)) {
-			val error = activity.getString(R.string.u_r_offline)
-			activity.alertError(error)
+		if (Internet.isOffline(caller)) {
+			caller.error(R.string.u_r_offline)
 			return
 		}
 
 		response.enqueue(
-			ResponseHandler(activity, uiHandler, onSuccess)
+			ResponseHandler(caller, ui, onSuccess)
 		)
 
-		uiHandler.startUIWait()
+		ui?.startUIWait()
 	}
 
 	fun cancel(call: Call<*>?) {
 		call?.cancel()
 		dispatcher.cancelAll()
-		uiHandler.endUIWait()
+		ui?.endUIWait()
 	}
 }

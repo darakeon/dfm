@@ -45,7 +45,7 @@ fun Activity.refresh() {
 	startActivity(intent)
 }
 
-internal fun BaseActivity.logout(api: Api?) {
+internal fun BaseActivity.logout(api: Api<BaseActivity>?) {
 	if (api == null)
 		logoutLocal()
 	else

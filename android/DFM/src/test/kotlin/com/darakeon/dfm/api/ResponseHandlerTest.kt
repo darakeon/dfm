@@ -46,7 +46,7 @@ internal class ResponseHandlerTest {
 	private lateinit var activity: BaseActivity
 	private lateinit var ui: UIHandler
 	private var waitEnded = false
-	private lateinit var handler: ResponseHandler<String>
+	private lateinit var handler: ResponseHandler<BaseActivity, String>
 	private var result: String? = null
 
 	@Before

@@ -10,6 +10,8 @@ import android.widget.Toast
 import com.darakeon.dfm.R
 import com.darakeon.dfm.accounts.AccountsActivity
 import com.darakeon.dfm.api.Api
+import com.darakeon.dfm.api.Caller
+import com.darakeon.dfm.api.UIHandler
 import com.darakeon.dfm.auth.Authentication
 import com.darakeon.dfm.auth.recoverEnvironment
 import com.darakeon.dfm.dialogs.alertError
@@ -18,9 +20,11 @@ import com.darakeon.dfm.extensions.applyGlyphicon
 import com.darakeon.dfm.extensions.back
 import com.darakeon.dfm.extensions.close
 import com.darakeon.dfm.extensions.composeErrorApi
+import com.darakeon.dfm.extensions.composeErrorEmail
 import com.darakeon.dfm.extensions.createMove
 import com.darakeon.dfm.extensions.goToSettings
 import com.darakeon.dfm.extensions.logout
+import com.darakeon.dfm.extensions.logoutLocal
 import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.extensions.refresh
 import com.darakeon.dfm.moves.MovesActivity
@@ -33,13 +37,11 @@ import kotlinx.android.synthetic.main.bottom_menu.action_settings
 import kotlinx.android.synthetic.main.bottom_menu.bottom_menu
 import java.util.HashMap
 
-abstract class BaseActivity: Activity() {
-	private var api: Api? = null
+abstract class BaseActivity: Activity(), Caller {
+	private var api: Api<BaseActivity>? = null
+	private var serverUrl: String? = null
 
-	var serverUrl: String? = null
-		private set
-
-	protected fun callApi(call: (Api) -> Unit) {
+	protected fun callApi(call: (Api<BaseActivity>) -> Unit) {
 		val api = api
 
 		if (api == null) {
@@ -53,7 +55,7 @@ abstract class BaseActivity: Activity() {
 
 	private var auth: Authentication? = null
 
-	var ticket: String
+	override var ticket: String
 		get() = auth?.ticket ?: ""
 		set(value) { auth?.ticket = value }
 
@@ -83,7 +85,7 @@ abstract class BaseActivity: Activity() {
 
 		super.onCreate(savedInstanceState)
 
-		api = Api(this)
+		api = Api(this, serverUrl)
 		auth = Authentication(this)
 
 		handleScreen()
@@ -203,4 +205,10 @@ abstract class BaseActivity: Activity() {
 
 		return null
 	}
+
+	override fun error(url: String, error: Throwable) = composeErrorEmail(url, error)
+	override fun error(resId: Int) = alertError(resId)
+	override fun error(resId: Int, action: () -> Unit) = alertError(resId, action)
+	override fun error(text: String) = alertError(text)
+	override fun logout() = logoutLocal()
 }

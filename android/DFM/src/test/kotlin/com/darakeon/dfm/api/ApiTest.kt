@@ -8,6 +8,7 @@ import com.darakeon.dfm.api.entities.moves.MoveCreation
 import com.darakeon.dfm.api.entities.moves.Nature
 import com.darakeon.dfm.api.entities.settings.Settings
 import com.darakeon.dfm.api.entities.summary.Summary
+import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.getPrivate
 import com.darakeon.dfm.utils.activity.ActivityMock
 import com.darakeon.dfm.utils.activity.TestActivity
@@ -33,7 +34,7 @@ class ApiTest {
 
 	private lateinit var mocker: ActivityMock
 	private lateinit var activity: TestActivity
-	private lateinit var api: Api
+	private lateinit var api: Api<BaseActivity>
 
 	private val server
 		get() = mocker.server
@@ -251,8 +252,7 @@ class ApiTest {
 	@Test
 	fun cancel() {
 		val ui = api.getPrivate<UIHandler>(
-			"requestHandler",
-			"uiHandler"
+			"requestHandler", "ui"
 		)
 
 		ui.startUIWait()

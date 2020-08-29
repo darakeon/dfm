@@ -27,7 +27,7 @@ fun Activity.setEnvironment(env: Environment) {
 		refresh()
 }
 
-private fun Activity.themeChangeAndSave(theme: String): Boolean {
+private fun Context.themeChangeAndSave(theme: String): Boolean {
 	val themeId = getThemeId(theme)
 	val spTheme = themeId.toString()
 
@@ -48,7 +48,7 @@ private fun getThemeId(theme: String): Int =
 		else -> R.style.AppTheme
 	}
 
-private fun Activity.languageChangeAndSave(systemLanguage: String): Boolean {
+private fun Context.languageChangeAndSave(systemLanguage: String): Boolean {
 	val language = systemLanguage.replace("-", "_")
 	val current = Locale.getDefault().toString()
 
@@ -62,7 +62,7 @@ private fun Activity.languageChangeAndSave(systemLanguage: String): Boolean {
 	return true
 }
 
-private fun Activity.change(language: String) {
+private fun Context.change(language: String) {
 	val availableLocales = Locale.getAvailableLocales()
 
 	val locale: Locale = availableLocales.lastOrNull {
