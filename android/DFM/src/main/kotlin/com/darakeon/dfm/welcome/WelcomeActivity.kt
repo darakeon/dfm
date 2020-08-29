@@ -1,11 +1,13 @@
 package com.darakeon.dfm.welcome
 
+import android.content.Intent
 import android.os.Bundle
 import com.darakeon.dfm.R
 import com.darakeon.dfm.accounts.AccountsActivity
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.login.LoginActivity
+import com.darakeon.dfm.service.SiteErrorService
 
 class WelcomeActivity : BaseActivity() {
 	override val contentView = R.layout.welcome
@@ -26,5 +28,8 @@ class WelcomeActivity : BaseActivity() {
 					redirect<LoginActivity>()
 			}
 		}
+
+		//val intent = Intent(this, SiteErrorService::class.java)
+		//startService(intent)
 	}
 }
