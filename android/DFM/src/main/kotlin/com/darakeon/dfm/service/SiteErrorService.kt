@@ -1,9 +1,16 @@
 package com.darakeon.dfm.service
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.Service
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.IBinder
-import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import com.darakeon.dfm.R
 import com.darakeon.dfm.api.Api
 import com.darakeon.dfm.api.Caller
 import com.darakeon.dfm.auth.Authentication
@@ -19,12 +26,13 @@ class SiteErrorService : Service(), Caller {
 	override fun onCreate() {
 		api = Api(this, null)
 		auth = Authentication(this)
+		initChannel()
 	}
 
 	override fun onStart(intent: Intent?, startid: Int) {
 		api.listErrors { list ->
 			list.forEach {
-				notify("${it.id}: ${it.error().message}")
+				notify(it.id(), it.title(), it.message())
 			}
 		}
 	}
@@ -45,7 +53,40 @@ class SiteErrorService : Service(), Caller {
 	private fun toText(resId: Int) =
 		applicationContext.getString(resId)
 
-	private fun notify(text: String) {
-		Toast.makeText(this, text, Toast.LENGTH_LONG).show()
+	private var channelID = "0"
+	private val priorityOlder = NotificationCompat.PRIORITY_DEFAULT
+	@RequiresApi(Build.VERSION_CODES.O)
+	private val priorityNewer = NotificationManager.IMPORTANCE_DEFAULT
+
+	private fun notify(error: String) {
+		val title = getString(R.string.error_title)
+		notify(0, title, error)
 	}
+
+	private fun notify(id: Int, title: String, text: String) {
+		val builder = NotificationCompat.Builder(this, channelID)
+			.setSmallIcon(R.drawable.notification)
+			.setContentTitle(title)
+			.setContentText(text)
+			.setPriority(priorityOlder)
+
+		with(NotificationManagerCompat.from(this)) {
+			notify(id, builder.build())
+		}
+	}
+
+	private fun initChannel() {
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return
+
+		val name = "ERROR"
+		val descriptionText = "LOGS"
+		val channel = NotificationChannel(channelID, name, priorityNewer)
+			.apply { description = descriptionText }
+
+		val notificationManager: NotificationManager =
+			getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+		notificationManager.createNotificationChannel(channel)
+	}
+
 }
