@@ -10,8 +10,7 @@ import android.widget.Toast
 import com.darakeon.dfm.R
 import com.darakeon.dfm.accounts.AccountsActivity
 import com.darakeon.dfm.api.Api
-import com.darakeon.dfm.api.Caller
-import com.darakeon.dfm.api.UIHandler
+import com.darakeon.dfm.api.ApiCaller
 import com.darakeon.dfm.auth.Authentication
 import com.darakeon.dfm.auth.recoverEnvironment
 import com.darakeon.dfm.dialogs.alertError
@@ -37,7 +36,7 @@ import kotlinx.android.synthetic.main.bottom_menu.action_settings
 import kotlinx.android.synthetic.main.bottom_menu.bottom_menu
 import java.util.HashMap
 
-abstract class BaseActivity: Activity(), Caller {
+abstract class BaseActivity: Activity(), ApiCaller {
 	private var api: Api<BaseActivity>? = null
 	private var serverUrl: String? = null
 
