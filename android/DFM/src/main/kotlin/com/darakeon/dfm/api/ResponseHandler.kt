@@ -19,7 +19,7 @@ internal class ResponseHandler<C, A>(
 	private val ui: UIHandler?,
 	private val onSuccess: (A) -> Unit,
 ) : Callback<Body<A>>
-	where C: Context, C: Caller
+	where C: Context, C: ApiCaller
 {
 	override fun onResponse(call: Call<Body<A>>, response: Response<Body<A>>?) {
 		ui?.endUIWait()

@@ -31,7 +31,7 @@ namespace DFM.MVC.Areas.Api.Models
 				if (!Directory.Exists(readLogs))
 					Directory.CreateDirectory(readLogs);
 
-				var files = Directory.GetFiles(newLogs);
+				var files = Directory.GetFiles(newLogs, "*.log");
 
 				files = archiveLog(files, id);
 

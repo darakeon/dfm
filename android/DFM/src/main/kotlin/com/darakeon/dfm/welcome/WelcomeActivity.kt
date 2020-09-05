@@ -22,14 +22,21 @@ class WelcomeActivity : BaseActivity() {
 
 		callApi {
 			it.wakeUpSite {
-				if (isLoggedIn)
-					redirect<AccountsActivity>()
-				else
-					redirect<LoginActivity>()
+				startServices()
+				redirect()
 			}
 		}
+	}
 
-		//val intent = Intent(this, SiteErrorService::class.java)
-		//startService(intent)
+	private fun startServices() {
+		val intent = Intent(this, SiteErrorService::class.java)
+		startService(intent)
+	}
+
+	private fun redirect() {
+		if (isLoggedIn)
+			redirect<AccountsActivity>()
+		else
+			redirect<LoginActivity>()
 	}
 }

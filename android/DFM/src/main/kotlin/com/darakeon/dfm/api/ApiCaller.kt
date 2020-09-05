@@ -1,6 +1,6 @@
 package com.darakeon.dfm.api
 
-interface Caller {
+interface ApiCaller {
 	val ticket: String
 	fun logout()
 	fun error(text: String)

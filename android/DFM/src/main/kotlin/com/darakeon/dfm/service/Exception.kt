@@ -1,13 +1,13 @@
 package com.darakeon.dfm.service
 
 data class Exception(
-	val ClassName: String,
-	val Message: String,
-	val InnerException: Exception?,
-	val StackTraceString: String,
-	val Source: String,
+	val className: String,
+	val message: String,
+	val innerException: Exception?,
+	val stackTrace: String,
+	val source: String,
 ) {
 	fun mostInner(): Exception {
-		return InnerException?.mostInner() ?: this
+		return innerException?.mostInner() ?: this
 	}
 }

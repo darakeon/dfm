@@ -4,7 +4,7 @@ data class ErrorLog(
 	val id: String,
 	val exception: Exception
 ) {
-	fun id() = id.substring(10).toInt()
+	fun id() = id.substring(11).toInt()
 
 	fun title(): String {
 		val pattern = "(\\d{4})(\\d{2})(\\d{2})(\\d{2})(\\d{2})(\\d{2})(\\d+)"
@@ -13,5 +13,5 @@ data class ErrorLog(
 		return regex.replace(id, replacer)
 	}
 
-	fun message() = exception.mostInner().Message
+	fun message() = exception.mostInner().message
 }

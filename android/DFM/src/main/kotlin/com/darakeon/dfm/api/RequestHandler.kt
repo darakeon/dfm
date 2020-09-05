@@ -11,7 +11,7 @@ import retrofit2.Call
 internal class RequestHandler<C>(
 	private val caller: C,
 	url: String?,
-) where C: Context, C: Caller {
+) where C: Context, C: ApiCaller {
 	internal val service: RequestService
 	private val dispatcher = Dispatcher()
 	private var ui: UIHandler? = null
