@@ -86,6 +86,40 @@ task wrapper(type: Wrapper) {
 	gradleVersion = '6.2'
 }
 
+static def getLocalIP() {
+	def ip4s = []
+	NetworkInterface.getNetworkInterfaces()
+		.findAll { it.isUp() && !it.isLoopback() && !it.isVirtual() }
+		.each {
+			if (it.name.startsWith("wlan")) {
+				it.getInetAddresses()
+					.findAll { !it.isLoopbackAddress() && it instanceof Inet4Address }
+					.each { ip4s << it }
+			}
+		}
+	return ip4s.first().toString().substring(1)
+}
+
+task ipNetwork(type: Copy) {
+	from ('src/main/res/xml/network_security_config.xml')
+	into ('src/debug/res/xml')
+	filter {
+		String line -> line.replaceAll("<!-- YOUR LOCAL IP -->", getLocalIP())
+	}
+}
+
+task ipAddress(type: Copy) {
+	from ('src/main/res/values/local-address.xml')
+	into ('src/debug/res/values')
+	filter {
+		String line -> line.replaceAll("<!-- YOUR LOCAL IP -->", getLocalIP())
+	}
+}
+
+tasks.withType(JavaCompile) {
+	buildTask -> buildTask.dependsOn ipNetwork, ipAddress
+}
+
 /*
 I did not understood the meaning of this number until it was too late.
 So, when I hit limit, I just make a really really really ugly
