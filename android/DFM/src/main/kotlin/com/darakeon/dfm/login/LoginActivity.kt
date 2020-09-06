@@ -19,6 +19,7 @@ class LoginActivity : BaseActivity() {
 				password.text.toString()
 			) {
 				ticket = it.ticket
+				isAdm = it.isAdm
 				redirect<WelcomeActivity>()
 			}
 		}

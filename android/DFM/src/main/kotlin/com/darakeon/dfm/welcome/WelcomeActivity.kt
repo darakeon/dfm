@@ -29,8 +29,10 @@ class WelcomeActivity : BaseActivity() {
 	}
 
 	private fun startServices() {
-		val intent = Intent(this, SiteErrorService::class.java)
-		startService(intent)
+		if (isAdm) {
+			val intent = Intent(this, SiteErrorService::class.java)
+			startService(intent)
+		}
 	}
 
 	private fun redirect() {
