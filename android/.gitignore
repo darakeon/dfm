@@ -15,5 +15,7 @@ build
 DFM/log
 
 res/values/license.xml
-DFM/src/main/res/values/localaddress.xml
 DFM/release
+
+DFM/src/debug/res/values/local-address.xml
+DFM/src/debug/res/xml/network_security_config.xml
