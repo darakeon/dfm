@@ -58,6 +58,10 @@ abstract class BaseActivity: Activity(), ApiCaller {
 		get() = auth?.ticket ?: ""
 		set(value) { auth?.ticket = value }
 
+	protected var isAdm
+		get() = isLoggedIn && auth?.isAdm ?: false
+		set(value) { auth?.isAdm = value }
+
 	open fun clearAuth() = auth?.clear()
 
 	protected abstract val contentView: Int
