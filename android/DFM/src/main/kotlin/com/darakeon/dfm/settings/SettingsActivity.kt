@@ -4,13 +4,13 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.MainInfo
-import com.darakeon.dfm.api.entities.settings.Settings
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.backWithExtras
 import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
+import com.darakeon.dfm.lib.api.MainInfo
+import com.darakeon.dfm.lib.api.entities.settings.Settings
 import kotlinx.android.synthetic.main.settings.move_check
 import kotlinx.android.synthetic.main.settings.site
 import kotlinx.android.synthetic.main.settings.use_categories

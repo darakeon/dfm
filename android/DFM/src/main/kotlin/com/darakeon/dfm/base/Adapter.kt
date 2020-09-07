@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import com.darakeon.dfm.auth.getThemeLineColor
+import com.darakeon.dfm.lib.auth.getThemeLineColor
 
 abstract class Adapter<Act, Ent, Lin>(
 	private val activity: Act,

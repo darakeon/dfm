@@ -3,11 +3,11 @@ package com.darakeon.dfm.accounts
 import android.os.Bundle
 import android.view.View
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.accounts.Account
-import com.darakeon.dfm.api.entities.accounts.AccountList
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
+import com.darakeon.dfm.lib.api.entities.accounts.Account
+import com.darakeon.dfm.lib.api.entities.accounts.AccountList
 import kotlinx.android.synthetic.main.accounts.empty_list
 import kotlinx.android.synthetic.main.accounts.main_table
 

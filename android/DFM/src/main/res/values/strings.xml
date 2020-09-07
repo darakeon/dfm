@@ -14,7 +14,6 @@
 	<string name="cancel">cancel</string>
 
 	<!-- Alert dialog -->
-	<string name="error_title">Ops!</string>
 	<string name="send_report_button">Send error</string>
 	<string name="ok_button">OK</string>
 	<string name="cancel_button">Cancel</string>
@@ -25,17 +24,7 @@
 	<string name="wait_text">Calling the Pig&#8230;</string>
 
 	<!-- Errors -->
-	<string name="u_r_offline">You\'re offline</string>
 	<string name="error_set_parameters">Error on set parameters</string>
-	<string name="internet_too_slow">Problems while connecting to website, please check your internet connection</string>
-	<string name="error_contact_url">
-		Error on contacting the Pig. It\'s either a internet problem or a system issue.
-		If it\'s the second option, the error is recorded and we will solve it as soon as possible.
-	</string>
-	<string name="body_null">
-		Error on contacting the Pig. The error is recorded and we will solve it as soon as possible.
-	</string>
-	<string name="uninvited">You are uninvited!</string>
 
 	<!-- Login -->
 	<string name="email">e-mail</string>
@@ -97,7 +86,6 @@
 	<string name="TRANSFER">TRANSFER</string>
 	<string name="in">in</string>
 	<string name="IN">IN</string>
-	<string name="clear">- clear -</string>
 
 	<!-- Settings -->
 	<string name="title_activity_settings">Settings</string>
@@ -114,9 +102,4 @@
 	<string name="version">App Version</string>
 	<string name="error_call_api">Error on calling the site, contact us</string>
 	<string name="error_call_api_email" translatable="false">Error on calling api, object null</string>
-	<string name="error_not_identified">Not identified site error. Contact us.</string>
-
-	<!-- Service -->
-	<string name="service_error_title">Site error check</string>
-
 </resources>

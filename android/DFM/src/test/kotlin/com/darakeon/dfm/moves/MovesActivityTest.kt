@@ -10,23 +10,23 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.TextView
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.ComboItem
-import com.darakeon.dfm.api.entities.Date
-import com.darakeon.dfm.api.entities.moves.Move
-import com.darakeon.dfm.api.entities.moves.MoveCreation
-import com.darakeon.dfm.api.entities.moves.MoveForm
-import com.darakeon.dfm.api.entities.moves.Nature
 import com.darakeon.dfm.extensions.getFromJson
-import com.darakeon.dfm.extensions.getPrivate
 import com.darakeon.dfm.extensions.putJson
-import com.darakeon.dfm.utils.activity.ActivityMock
-import com.darakeon.dfm.utils.activity.getActivityName
+import com.darakeon.dfm.lib.api.entities.ComboItem
+import com.darakeon.dfm.lib.api.entities.Date
+import com.darakeon.dfm.lib.api.entities.moves.Move
+import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
+import com.darakeon.dfm.lib.api.entities.moves.MoveForm
+import com.darakeon.dfm.lib.api.entities.moves.Nature
+import com.darakeon.dfm.lib.extensions.getPrivate
+import com.darakeon.dfm.utils.api.ActivityMock
+import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.api.guid
+import com.darakeon.dfm.testutils.api.readBundle
+import com.darakeon.dfm.testutils.context.getCalledName
+import com.darakeon.dfm.testutils.getDecimal
+import com.darakeon.dfm.testutils.robolectric.simulateNetwork
 import com.darakeon.dfm.utils.activity.getLastDatePicker
-import com.darakeon.dfm.utils.api.guid
-import com.darakeon.dfm.utils.api.readBundle
-import com.darakeon.dfm.utils.getDecimal
-import com.darakeon.dfm.utils.log.LogRule
-import com.darakeon.dfm.utils.robolectric.simulateNetwork
 import com.darakeon.dfm.welcome.WelcomeActivity
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.moves.account_in
@@ -53,8 +53,8 @@ import kotlinx.android.synthetic.main.moves.value
 import kotlinx.android.synthetic.main.moves.warnings
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.CoreMatchers.not
 import org.hamcrest.Matchers.isEmptyString
-import org.hamcrest.Matchers.not
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
@@ -74,13 +74,13 @@ class MovesActivityTest {
 	@get:Rule
 	val log = LogRule()
 
-	private lateinit var mocker: ActivityMock
+	private lateinit var mocker: ActivityMock<MovesActivity>
 	private lateinit var activity: MovesActivity
 
 	@Before
 	fun setup() {
-		mocker = ActivityMock()
-		activity = mocker.get<MovesActivity>()
+		mocker = ActivityMock(MovesActivity::class)
+		activity = mocker.get()
 	}
 
 	@Test
@@ -916,7 +916,7 @@ class MovesActivityTest {
 		val shadow = shadowOf(activity)
 		val intent = shadow.peekNextStartedActivity()
 		assertNull(intent.extras?.get("id"))
-		assertThat(intent.getActivityName(), `is`("WelcomeActivity"))
+		assertThat(intent.getCalledName(), `is`("WelcomeActivity"))
 	}
 
 	@Test

@@ -1,7 +1,7 @@
 package com.darakeon.dfm.extensions
 
-import com.darakeon.dfm.utils.TestException
-import com.darakeon.dfm.utils.log.LogRule
+import com.darakeon.dfm.testutils.TestException
+import com.darakeon.dfm.testutils.LogRule
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Rule

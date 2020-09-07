@@ -2,20 +2,28 @@ package com.darakeon.dfm.extensions
 
 import android.view.KeyEvent
 import android.widget.EditText
-import com.darakeon.dfm.utils.activity.ActivityMock
+import com.darakeon.dfm.utils.api.ActivityMock
+import com.darakeon.dfm.utils.activity.TestActivity
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
 class MaskTest {
+	private lateinit var activity: TestActivity
+	private lateinit var editable: EditText
+
+	@Before
+	fun setup() {
+		activity = ActivityMock(TestActivity::class).create()
+		editable = EditText(activity)
+	}
+
 	@Test
 	fun useMask() {
-		val context = ActivityMock().create()
-		val editable = EditText(context)
-
 		editable.addMask("#.#")
 		editable.append("aa")
 
@@ -24,9 +32,6 @@ class MaskTest {
 
 	@Test
 	fun addChar() {
-		val context = ActivityMock().create()
-		val editable = EditText(context)
-
 		editable.addMask("#.#.#")
 
 		editable.append("a")
@@ -41,9 +46,6 @@ class MaskTest {
 
 	@Test
 	fun moreCharsThanAllowed() {
-		val context = ActivityMock().create()
-		val editable = EditText(context)
-
 		editable.addMask("#.#")
 
 		editable.append("ab")
@@ -55,9 +57,6 @@ class MaskTest {
 
 	@Test
 	fun removeChar() {
-		val context = ActivityMock().create()
-		val editable = EditText(context)
-
 		editable.addMask("#.#")
 
 		editable.append("a.b")

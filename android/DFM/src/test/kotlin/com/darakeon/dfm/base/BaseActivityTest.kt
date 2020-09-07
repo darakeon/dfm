@@ -8,18 +8,19 @@ import android.view.Window
 import android.widget.Button
 import com.darakeon.dfm.R
 import com.darakeon.dfm.accounts.AccountsActivity
-import com.darakeon.dfm.api.Api
-import com.darakeon.dfm.auth.Authentication
-import com.darakeon.dfm.auth.setValue
-import com.darakeon.dfm.extensions.getPrivate
+import com.darakeon.dfm.lib.api.Api
+import com.darakeon.dfm.lib.auth.Authentication
+import com.darakeon.dfm.lib.auth.setValue
+import com.darakeon.dfm.lib.extensions.getPrivate
 import com.darakeon.dfm.moves.MovesActivity
 import com.darakeon.dfm.settings.SettingsActivity
-import com.darakeon.dfm.utils.activity.ActivityMock
-import com.darakeon.dfm.utils.activity.getActivityName
-import com.darakeon.dfm.utils.log.LogRule
+import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.context.getCalledName
+import com.darakeon.dfm.utils.api.ActivityMock
+import com.darakeon.dfm.utils.activity.TestActivity
 import com.darakeon.dfm.utils.robolectric.RoboContextMenu
-import com.darakeon.dfm.utils.robolectric.simulateNetwork
-import com.darakeon.dfm.utils.waitTasksFinish
+import com.darakeon.dfm.testutils.robolectric.simulateNetwork
+import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
 import kotlinx.android.synthetic.main.bottom_menu.action_close
 import kotlinx.android.synthetic.main.bottom_menu.action_logout
 import kotlinx.android.synthetic.main.bottom_menu.bottom_menu
@@ -27,8 +28,8 @@ import kotlinx.android.synthetic.main.bottom_menu.view.action_home
 import kotlinx.android.synthetic.main.bottom_menu.view.action_move
 import kotlinx.android.synthetic.main.bottom_menu.view.action_settings
 import org.hamcrest.CoreMatchers.not
+import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.core.Is.`is`
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
@@ -48,11 +49,11 @@ class BaseActivityTest {
 	@get:Rule
 	val log = LogRule()
 
-	private lateinit var mocker: ActivityMock
+	private lateinit var mocker: ActivityMock<TestActivity>
 
 	@Before
 	fun setup() {
-		mocker = ActivityMock()
+		mocker = ActivityMock(TestActivity::class)
 	}
 
 	@Test
@@ -263,7 +264,7 @@ class BaseActivityTest {
 
 	@Test
 	fun onCreateCustomizeBottomMenuAccountsActivity() {
-		val activity = mocker.create<AccountsActivity>()
+		val activity = ActivityMock(AccountsActivity::class).create()
 
 		val menu = activity.bottom_menu
 		assertFalse(menu.action_home.isEnabled)
@@ -273,7 +274,7 @@ class BaseActivityTest {
 
 	@Test
 	fun onCreateCustomizeBottomMenuSettingsActivity() {
-		val activity = mocker.create<SettingsActivity>()
+		val activity = ActivityMock(SettingsActivity::class).create()
 
 		val menu = activity.bottom_menu
 		assertTrue(menu.action_home.isEnabled)
@@ -283,7 +284,7 @@ class BaseActivityTest {
 
 	@Test
 	fun onCreateCustomizeBottomMenuMovesActivity() {
-		val activity = mocker.create<MovesActivity>()
+		val activity = ActivityMock(MovesActivity::class).create()
 
 		val menu = activity.bottom_menu
 		assertTrue(menu.action_home.isEnabled)
@@ -358,7 +359,7 @@ class BaseActivityTest {
 
 		val called = shadow
 			.peekNextStartedActivity()
-			.getActivityName()
+			.getCalledName()
 
 		assertThat(called, `is`("TestActivity"))
 	}
@@ -384,7 +385,7 @@ class BaseActivityTest {
 
 		val called = shadowOf(activity)
 			.peekNextStartedActivity()
-			.getActivityName()
+			.getCalledName()
 
 		assertThat(called, `is`("AccountsActivity"))
 	}
@@ -398,7 +399,7 @@ class BaseActivityTest {
 
 		val called = shadowOf(activity)
 			.peekNextStartedActivity()
-			.getActivityName()
+			.getCalledName()
 
 		assertThat(called, `is`("SettingsActivity"))
 	}
@@ -412,7 +413,7 @@ class BaseActivityTest {
 
 		val called = shadowOf(activity)
 			.peekNextStartedActivity()
-			.getActivityName()
+			.getCalledName()
 
 		assertThat(called, `is`("MovesActivity"))
 	}

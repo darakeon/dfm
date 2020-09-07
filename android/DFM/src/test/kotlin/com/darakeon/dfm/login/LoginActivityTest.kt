@@ -2,12 +2,12 @@ package com.darakeon.dfm.login
 
 import android.view.View
 import com.darakeon.dfm.R
-import com.darakeon.dfm.auth.Authentication
-import com.darakeon.dfm.extensions.getPrivate
-import com.darakeon.dfm.utils.activity.ActivityMock
-import com.darakeon.dfm.utils.activity.getActivityName
-import com.darakeon.dfm.utils.log.LogRule
-import com.darakeon.dfm.utils.robolectric.simulateNetwork
+import com.darakeon.dfm.lib.auth.Authentication
+import com.darakeon.dfm.lib.extensions.getPrivate
+import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.context.getCalledName
+import com.darakeon.dfm.testutils.robolectric.simulateNetwork
+import com.darakeon.dfm.utils.api.ActivityMock
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertNotNull
@@ -24,16 +24,16 @@ class LoginActivityTest {
 	@get:Rule
 	val log = LogRule()
 
-	private lateinit var mocker: ActivityMock
+	private lateinit var mocker: ActivityMock<LoginActivity>
 
 	@Before
 	fun setup() {
-		mocker = ActivityMock()
+		mocker = ActivityMock(LoginActivity::class)
 	}
 
 	@Test
 	fun structure() {
-		val activity = mocker.create<LoginActivity>()
+		val activity = mocker.create()
 		assertNotNull(activity.findViewById(R.id.email))
 		assertNotNull(activity.findViewById(R.id.password))
 		assertNotNull(activity.findViewById(R.id.login_button))
@@ -43,7 +43,7 @@ class LoginActivityTest {
 	fun login() {
 		mocker.server.enqueue("login")
 
-		val activity = mocker.create<LoginActivity>()
+		val activity = mocker.create()
 		activity.simulateNetwork()
 
 		val view = View(activity)
@@ -56,6 +56,6 @@ class LoginActivityTest {
 		val shadow = shadowOf(activity)
 		val intent = shadow.peekNextStartedActivity()
 
-		assertThat(intent.getActivityName(), `is`("WelcomeActivity"))
+		assertThat(intent.getCalledName(), `is`("WelcomeActivity"))
 	}
 }

@@ -1,8 +1,8 @@
 package com.darakeon.dfm.extensions
 
 import android.os.Bundle
-import com.darakeon.dfm.api.entities.Date
-import com.darakeon.dfm.utils.log.LogRule
+import com.darakeon.dfm.lib.api.entities.Date
+import com.darakeon.dfm.testutils.LogRule
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.After
 import org.hamcrest.MatcherAssert.assertThat

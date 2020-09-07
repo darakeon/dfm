@@ -21,7 +21,7 @@ Legend:
 - [ ] Search by move/detail
 
 ## <a name="4.2.0.2"></a>4.2.0.2 :sheep: <sup>`1`</sup>
-- [ ] `200827>......` Send site errors to cellphone 
+- [ ] `200827>......` Send site errors to cellphone
 
 ## <a name="4.2.0.1"></a>4.2.0.1 :sheep: <sup>`8`</sup>
 - [x] `200825>200826` Add different icon for test at android
@@ -323,7 +323,7 @@ Legend:
 - [x] `170303>170305` Fix remember at login
 - [x] `170224>170225` Fix android packages
 - [x] `170223>170223` Add android start image
-- [x] `170223>170223` Implement Admin/Robot GetList tests 
+- [x] `170223>170223` Implement Admin/Robot GetList tests
 - [x] `170209>170222` Android Kotlin
 
 ## <a name="2.1.4.4"></a>2.1.4.4 :ant: <sup>`1`</sup>

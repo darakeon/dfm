@@ -4,11 +4,12 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.content.res.Resources
 import android.view.View
-import com.darakeon.dfm.utils.activity.ActivityMock
-import com.darakeon.dfm.utils.log.LogRule
+import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.utils.api.ActivityMock
+import com.darakeon.dfm.utils.activity.TestActivity
 import org.hamcrest.CoreMatchers.`is`
-import org.junit.Assert.assertFalse
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
@@ -27,11 +28,11 @@ class DateDialogTest {
 	private val yearId = getResId("year")
 	private val monthId = getResId("month")
 	private val dayId = getResId("day")
-	private lateinit var mocker: ActivityMock
+	private lateinit var mocker: ActivityMock<TestActivity>
 
 	@Before
 	fun setup() {
-		mocker = ActivityMock()
+		mocker = ActivityMock(TestActivity::class)
 	}
 
 	@Test

@@ -1,11 +1,11 @@
 package com.darakeon.dfm.welcome
 
 import com.darakeon.dfm.R
-import com.darakeon.dfm.auth.setValue
-import com.darakeon.dfm.utils.activity.ActivityMock
-import com.darakeon.dfm.utils.activity.getActivityName
-import com.darakeon.dfm.utils.log.LogRule
-import com.darakeon.dfm.utils.robolectric.simulateNetwork
+import com.darakeon.dfm.lib.auth.setValue
+import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.context.getCalledName
+import com.darakeon.dfm.testutils.robolectric.simulateNetwork
+import com.darakeon.dfm.utils.api.ActivityMock
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertNotNull
@@ -22,22 +22,22 @@ class WelcomeActivityTest {
 	@get:Rule
 	val log = LogRule()
 
-	private lateinit var mocker: ActivityMock
+	private lateinit var mocker: ActivityMock<WelcomeActivity>
 
 	@Before
 	fun setup() {
-		mocker = ActivityMock()
+		mocker = ActivityMock(WelcomeActivity::class)
 	}
 
 	@Test
 	fun structure() {
-		val activity = mocker.create<WelcomeActivity>()
+		val activity = mocker.create()
 		assertNotNull(activity.findViewById(R.id.pig))
 	}
 
 	@Test
 	fun exit() {
-		val activity = mocker.get<WelcomeActivity>()
+		val activity = mocker.get()
 		activity.intent.putExtra("EXIT", true)
 
 		activity.onCreate(null, null)
@@ -47,7 +47,7 @@ class WelcomeActivityTest {
 
 	@Test
 	fun redirectLoggedIn() {
-		val activity = mocker.get<WelcomeActivity>()
+		val activity = mocker.get()
 		activity.setValue("Ticket", "ticket")
 		activity.simulateNetwork()
 		mocker.server.enqueue("empty")
@@ -56,13 +56,13 @@ class WelcomeActivityTest {
 
 		val shadow = shadowOf(activity)
 		val intent = shadow.peekNextStartedActivity()
-		val name = intent.getActivityName()
+		val name = intent.getCalledName()
 		assertThat(name, `is`("AccountsActivity"))
 	}
 
 	@Test
 	fun redirectLoggedOut() {
-		val activity = mocker.get<WelcomeActivity>()
+		val activity = mocker.get()
 		activity.setValue("Ticket", "")
 		activity.simulateNetwork()
 		mocker.server.enqueue("empty")
@@ -71,7 +71,7 @@ class WelcomeActivityTest {
 
 		val shadow = shadowOf(activity)
 		val intent = shadow.peekNextStartedActivity()
-		val name = intent.getActivityName()
+		val name = intent.getCalledName()
 		assertThat(name, `is`("LoginActivity"))
 	}
 }

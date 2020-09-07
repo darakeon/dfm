@@ -6,16 +6,16 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.settings.Settings
 import com.darakeon.dfm.extensions.getFromJson
-import com.darakeon.dfm.extensions.getPrivate
 import com.darakeon.dfm.extensions.putJson
-import com.darakeon.dfm.utils.activity.ActivityMock
-import com.darakeon.dfm.utils.activity.getActivityName
-import com.darakeon.dfm.utils.api.readBundle
-import com.darakeon.dfm.utils.log.LogRule
-import com.darakeon.dfm.utils.robolectric.simulateNetwork
-import com.darakeon.dfm.utils.waitTasksFinish
+import com.darakeon.dfm.lib.api.entities.settings.Settings
+import com.darakeon.dfm.lib.extensions.getPrivate
+import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.api.readBundle
+import com.darakeon.dfm.testutils.context.getCalledName
+import com.darakeon.dfm.utils.api.ActivityMock
+import com.darakeon.dfm.testutils.robolectric.simulateNetwork
+import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
 import com.darakeon.dfm.welcome.WelcomeActivity
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.settings.move_check
@@ -40,13 +40,13 @@ class SettingsActivityTest {
 	@get:Rule
 	val log = LogRule()
 
-	private lateinit var mocker: ActivityMock
+	private lateinit var mocker: ActivityMock<SettingsActivity>
 	private lateinit var activity: SettingsActivity
 
 	@Before
 	fun setup() {
-		mocker = ActivityMock()
-		activity = mocker.get<SettingsActivity>()
+		mocker = ActivityMock(SettingsActivity::class)
+		activity = mocker.get()
 	}
 
 	@Test
@@ -171,6 +171,6 @@ class SettingsActivityTest {
 		val shadowActivity = shadowOf(activity)
 		val intent = shadowActivity.peekNextStartedActivity()
 
-		assertThat(intent.getActivityName(), `is`("WelcomeActivity"))
+		assertThat(intent.getCalledName(), `is`("WelcomeActivity"))
 	}
 }

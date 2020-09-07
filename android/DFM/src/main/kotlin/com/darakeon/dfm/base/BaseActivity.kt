@@ -9,13 +9,8 @@ import android.widget.Button
 import android.widget.Toast
 import com.darakeon.dfm.R
 import com.darakeon.dfm.accounts.AccountsActivity
-import com.darakeon.dfm.api.Api
-import com.darakeon.dfm.api.ApiCaller
-import com.darakeon.dfm.auth.Authentication
-import com.darakeon.dfm.auth.recoverEnvironment
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.extensions.ON_CLICK
-import com.darakeon.dfm.extensions.applyGlyphicon
 import com.darakeon.dfm.extensions.back
 import com.darakeon.dfm.extensions.close
 import com.darakeon.dfm.extensions.composeErrorApi
@@ -25,9 +20,15 @@ import com.darakeon.dfm.extensions.goToSettings
 import com.darakeon.dfm.extensions.logout
 import com.darakeon.dfm.extensions.logoutLocal
 import com.darakeon.dfm.extensions.redirect
-import com.darakeon.dfm.extensions.refresh
+import com.darakeon.dfm.lib.api.Api
+import com.darakeon.dfm.lib.api.ApiCaller
+import com.darakeon.dfm.lib.auth.Authentication
+import com.darakeon.dfm.lib.auth.recoverEnvironment
+import com.darakeon.dfm.lib.extensions.applyGlyphicon
+import com.darakeon.dfm.lib.extensions.refresh
 import com.darakeon.dfm.moves.MovesActivity
 import com.darakeon.dfm.settings.SettingsActivity
+import com.darakeon.dfm.tfa.TFAActivity
 import kotlinx.android.synthetic.main.bottom_menu.action_close
 import kotlinx.android.synthetic.main.bottom_menu.action_home
 import kotlinx.android.synthetic.main.bottom_menu.action_logout
@@ -37,7 +38,7 @@ import kotlinx.android.synthetic.main.bottom_menu.bottom_menu
 import java.util.HashMap
 
 abstract class BaseActivity: Activity(), ApiCaller {
-	private var api: Api<BaseActivity>? = null
+	override var api: Api<BaseActivity>? = null
 	private var serverUrl: String? = null
 
 	protected fun callApi(call: (Api<BaseActivity>) -> Unit) {
@@ -53,14 +54,11 @@ abstract class BaseActivity: Activity(), ApiCaller {
 	}
 
 	private var auth: Authentication? = null
+	private var ui: UIHandler? = null
 
 	override var ticket: String
 		get() = auth?.ticket ?: ""
 		set(value) { auth?.ticket = value }
-
-	protected var isAdm
-		get() = isLoggedIn && auth?.isAdm ?: false
-		set(value) { auth?.isAdm = value }
 
 	open fun clearAuth() = auth?.clear()
 
@@ -90,6 +88,7 @@ abstract class BaseActivity: Activity(), ApiCaller {
 
 		api = Api(this, serverUrl)
 		auth = Authentication(this)
+		ui = UIHandler(this)
 
 		handleScreen()
 		setMenuLongClicks()
@@ -214,4 +213,16 @@ abstract class BaseActivity: Activity(), ApiCaller {
 	override fun error(resId: Int, action: () -> Unit) = alertError(resId, action)
 	override fun error(text: String) = alertError(text)
 	override fun logout() = logoutLocal()
+
+	override fun checkTFA() {
+		redirect<TFAActivity>()
+	}
+
+	override fun startWait() {
+		ui?.startUIWait()
+	}
+
+	override fun endWait() {
+		ui?.endUIWait()
+	}
 }

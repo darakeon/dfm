@@ -3,13 +3,13 @@ package com.darakeon.dfm.summary
 import android.os.Bundle
 import android.view.View
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.summary.Summary
+import com.darakeon.dfm.lib.api.entities.summary.Summary
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.getDateDialog
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
-import com.darakeon.dfm.extensions.setValueColored
+import com.darakeon.dfm.lib.extensions.setValueColored
 import kotlinx.android.synthetic.main.summary.empty_list
 import kotlinx.android.synthetic.main.summary.main_table
 import kotlinx.android.synthetic.main.summary.reportChange

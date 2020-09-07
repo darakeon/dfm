@@ -5,11 +5,11 @@ import android.net.Uri
 import android.os.Bundle
 import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
-import com.darakeon.dfm.utils.activity.MockContext
-import com.darakeon.dfm.utils.TestException
-import com.darakeon.dfm.utils.execute
-import com.darakeon.dfm.utils.activity.getActivityName
-import com.darakeon.dfm.utils.log.LogRule
+import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.TestException
+import com.darakeon.dfm.testutils.context.getCalledName
+import com.darakeon.dfm.testutils.execute
+import com.darakeon.dfm.utils.activity.mockContext
 import com.darakeon.dfm.welcome.WelcomeActivity
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.containsString
@@ -35,13 +35,13 @@ class NavigationTest {
 
 	private var calledIntent: Intent? = null
 	private val calledActivity
-		get() = calledIntent?.getActivityName()
+		get() = calledIntent?.getCalledName()
 
 	private var calledFinish = false
 
 	@Before
 	fun setup() {
-		val mockContext = MockContext()
+		val mockContext = mockContext()
 			.mockSharedPreferences()
 			.mockExternalCall()
 
@@ -98,16 +98,6 @@ class NavigationTest {
 		`when`(intent.extras).thenReturn(null)
 
 		activity.backWithExtras()
-	}
-
-	@Test
-	fun refresh() {
-		val intent = mock(Intent::class.java)
-		`when`(activity.intent).thenReturn(intent)
-
-		activity.refresh()
-
-		assertThat(calledIntent, `is`(intent))
 	}
 
 	@Test

@@ -5,15 +5,15 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.moves.Detail
-import com.darakeon.dfm.api.entities.moves.Move
-import com.darakeon.dfm.utils.activity.ActivityMock
-import com.darakeon.dfm.utils.getDecimal
-import com.darakeon.dfm.utils.log.LogRule
+import com.darakeon.dfm.lib.api.entities.moves.Detail
+import com.darakeon.dfm.lib.api.entities.moves.Move
+import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.getDecimal
+import com.darakeon.dfm.utils.api.ActivityMock
 import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
-import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -31,7 +31,7 @@ class DetailBoxTest {
 
 	@Before
 	fun setup() {
-		context = ActivityMock().create()
+		context = ActivityMock(MovesActivity::class).create()
 
 		val detail = Detail("desc", 3, 2.7)
 		move.detailList.add(detail)

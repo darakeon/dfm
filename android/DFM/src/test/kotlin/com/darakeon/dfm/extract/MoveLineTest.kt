@@ -3,14 +3,13 @@ package com.darakeon.dfm.extract
 import android.view.View
 import android.widget.LinearLayout
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.extract.Move
-import com.darakeon.dfm.api.entities.moves.Nature
-import com.darakeon.dfm.extensions.getPrivate
-import com.darakeon.dfm.utils.activity.ActivityMock
-import com.darakeon.dfm.utils.activity.TestActivity
-import com.darakeon.dfm.utils.api.guid
-import com.darakeon.dfm.utils.getDecimal
-import com.darakeon.dfm.utils.log.LogRule
+import com.darakeon.dfm.lib.api.entities.extract.Move
+import com.darakeon.dfm.lib.api.entities.moves.Nature
+import com.darakeon.dfm.lib.extensions.getPrivate
+import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.api.guid
+import com.darakeon.dfm.testutils.getDecimal
+import com.darakeon.dfm.utils.api.ActivityMock
 import com.darakeon.dfm.utils.robolectric.RoboContextMenu
 import kotlinx.android.synthetic.main.extract.main_table
 import kotlinx.android.synthetic.main.move_line.view.check_move
@@ -37,17 +36,15 @@ class MoveLineTest {
 	@get:Rule
 	val log = LogRule()
 
-	private lateinit var mocker: ActivityMock
-	private lateinit var activity: TestActivity
+	private lateinit var mocker: ActivityMock<ExtractActivity>
+	private lateinit var activity: ExtractActivity
 	private lateinit var moveLine: MoveLine
 
 	@Before
 	fun setup() {
-		mocker = ActivityMock()
+		mocker = ActivityMock(ExtractActivity::class)
 
 		activity = mocker.get()
-		activity.testContentView = R.layout.extract
-		activity.hasContextMenu = true
 		activity.onCreate(null, null)
 
 		moveLine = activity.layoutInflater
