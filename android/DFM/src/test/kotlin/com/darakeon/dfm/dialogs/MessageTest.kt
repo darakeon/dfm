@@ -3,12 +3,13 @@ package com.darakeon.dfm.dialogs
 import android.app.Dialog
 import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
-import com.darakeon.dfm.utils.activity.ActivityMock
-import com.darakeon.dfm.utils.log.LogRule
-import com.darakeon.dfm.utils.robolectric.assertAlertWait
+import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.robolectric.assertAlertWait
+import com.darakeon.dfm.utils.api.ActivityMock
+import com.darakeon.dfm.utils.activity.TestActivity
 import org.hamcrest.CoreMatchers.`is`
-import org.junit.Assert.assertFalse
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
@@ -27,7 +28,7 @@ class MessageTest {
 
 	@Before
 	fun setup() {
-		activity = ActivityMock().create()
+		activity = ActivityMock(TestActivity::class).create()
 	}
 
 	@Test
@@ -155,7 +156,8 @@ class MessageTest {
 		activity.createWaitDialog()
 
 		val alert = getLatestAlertDialog()
-		assertAlertWait(alert)
+
+		alert.assertAlertWait()
 
 		assertFalse(alert.getButton(Dialog.BUTTON_POSITIVE).isShown)
 		assertFalse(alert.getButton(Dialog.BUTTON_NEUTRAL).isShown)

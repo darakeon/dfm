@@ -14,7 +14,6 @@
 	<string name="cancel">cancelar</string>
 
 	<!-- Alert dialog -->
-	<string name="error_title">Ops!</string>
 	<string name="ok_button">OK</string>
 	<string name="cancel_button">Cancelar</string>
 
@@ -24,17 +23,7 @@
 	<string name="wait_text">Chamando o porquinho&#8230;</string>
 
 	<!-- Errors -->
-	<string name="u_r_offline">Sem conexão com a internet</string>
 	<string name="error_set_parameters">Error ao setar parâmetros</string>
-	<string name="internet_too_slow">Problema com a conexão com o site, verifique seu sinal de internet</string>
-	<string name="error_contact_url">
-		Erro ao chamar o Porquinho. Pode ser um problema de internet ou do sistema.
-		Caso seja o segundo, o erro foi registrado e será resolvido o mais breve possível.
-	</string>
-	<string name="body_null">
-		Erro ao chamar o Porquinho. O erro foi registrado e será resolvido o mais breve possível.
-	</string>
-	<string name="uninvited">Tchau!</string>
 
 	<!-- Login -->
 	<string name="email">e-mail</string>
@@ -96,7 +85,6 @@
 	<string name="TRANSFER">TRANSFERÊNCIA</string>
 	<string name="in">entrada</string>
 	<string name="IN">ENTRADA</string>
-	<string name="clear">- limpar -</string>
 
 	<!-- Settings -->
 	<string name="title_activity_settings">Configurações</string>
@@ -113,9 +101,4 @@
 	<string name="site">Site</string>
 	<string name="version">Versão do aplicativo</string>
 	<string name="error_call_api">Erro ao chamar site, entre em contato conosco</string>
-	<string name="error_not_identified">Erro não identificado no site, entre em contato conosco</string>
-
-	<!-- Service -->
-	<string name="service_error_title">Verificação de erro no site</string>
-
 </resources>

@@ -1,29 +1,5 @@
 <resources>
 
-	<style name="Dark" parent="android:Theme.Holo">
-		<item name="negative">@color/negative_dark</item>
-		<item name="positive">@color/positive_dark</item>
-		<item name="neutral">@color/neutral_dark</item>
-		<item name="transfer">@color/transfer_dark</item>
-		<item name="checked">@color/checked_dark</item>
-		<item name="unchecked">@color/unchecked_dark</item>
-		<item name="android:actionBarStyle">@style/ActionBar</item>
-	</style>
-
-	<style name="Light" parent="android:Theme.Holo.Light">
-		<item name="negative">@color/negative_light</item>
-		<item name="positive">@color/positive_light</item>
-		<item name="neutral">@color/neutral_light</item>
-		<item name="transfer">@color/transfer_light</item>
-		<item name="checked">@color/checked_light</item>
-		<item name="unchecked">@color/unchecked_light</item>
-		<item name="android:actionBarStyle">@style/ActionBar</item>
-	</style>
-
-	<style name="ActionBar" parent="android:style/Widget.Holo.ActionBar">
-		<item name="android:background">@color/action_bar</item>
-	</style>
-
 	<style name="AppTheme" parent="Dark">
 	</style>
 

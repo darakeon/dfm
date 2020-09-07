@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.moves.Move
+import com.darakeon.dfm.lib.api.entities.moves.Move
 import java.text.DecimalFormat
 
 class DetailBox(

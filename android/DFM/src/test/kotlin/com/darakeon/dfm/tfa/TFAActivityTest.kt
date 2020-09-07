@@ -2,10 +2,10 @@ package com.darakeon.dfm.tfa
 
 import android.view.View
 import com.darakeon.dfm.R
-import com.darakeon.dfm.utils.activity.ActivityMock
-import com.darakeon.dfm.utils.activity.getActivityName
-import com.darakeon.dfm.utils.log.LogRule
-import com.darakeon.dfm.utils.robolectric.simulateNetwork
+import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.context.getCalledName
+import com.darakeon.dfm.testutils.robolectric.simulateNetwork
+import com.darakeon.dfm.utils.api.ActivityMock
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertNotNull
@@ -21,16 +21,16 @@ class TFAActivityTest {
 	@get:Rule
 	val log = LogRule()
 
-	private lateinit var mocker: ActivityMock
+	private lateinit var mocker: ActivityMock<TFAActivity>
 
 	@Before
 	fun setup() {
-		mocker = ActivityMock()
+		mocker = ActivityMock(TFAActivity::class)
 	}
 
 	@Test
 	fun structure() {
-		val activity = mocker.create<TFAActivity>()
+		val activity = mocker.create()
 		assertNotNull(activity.findViewById(R.id.code))
 	}
 
@@ -38,7 +38,7 @@ class TFAActivityTest {
 	fun verify() {
 		mocker.server.enqueue("empty")
 
-		val activity = mocker.create<TFAActivity>()
+		val activity = mocker.create()
 		activity.simulateNetwork()
 
 		val view = View(activity)
@@ -48,6 +48,6 @@ class TFAActivityTest {
 		val shadow = shadowOf(activity)
 		val intent = shadow.peekNextStartedActivity()
 
-		assertThat(intent.getActivityName(), `is`("AccountsActivity"))
+		assertThat(intent.getCalledName(), `is`("AccountsActivity"))
 	}
 }

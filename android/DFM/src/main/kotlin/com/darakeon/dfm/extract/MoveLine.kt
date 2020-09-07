@@ -6,11 +6,11 @@ import android.view.Menu
 import android.view.View
 import android.widget.LinearLayout
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.extract.Move
-import com.darakeon.dfm.api.entities.moves.Nature
-import com.darakeon.dfm.extensions.applyGlyphicon
-import com.darakeon.dfm.extensions.setColorByAttr
-import com.darakeon.dfm.extensions.setValueColored
+import com.darakeon.dfm.lib.api.entities.extract.Move
+import com.darakeon.dfm.lib.api.entities.moves.Nature
+import com.darakeon.dfm.lib.extensions.applyGlyphicon
+import com.darakeon.dfm.lib.extensions.setColorByAttr
+import com.darakeon.dfm.lib.extensions.setValueColored
 import kotlinx.android.synthetic.main.move_line.view.check_move
 import kotlinx.android.synthetic.main.move_line.view.date
 import kotlinx.android.synthetic.main.move_line.view.name

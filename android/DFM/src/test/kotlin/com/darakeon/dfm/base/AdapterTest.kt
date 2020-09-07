@@ -6,12 +6,12 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
-import com.darakeon.dfm.api.entities.Environment
-import com.darakeon.dfm.auth.lighter1
-import com.darakeon.dfm.auth.setEnvironment
-import com.darakeon.dfm.utils.activity.MockContext
-import com.darakeon.dfm.utils.execute
-import com.darakeon.dfm.utils.log.LogRule
+import com.darakeon.dfm.lib.api.entities.Environment
+import com.darakeon.dfm.lib.auth.lighter1
+import com.darakeon.dfm.lib.auth.setEnvironment
+import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.execute
+import com.darakeon.dfm.utils.activity.mockContext
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertNotNull
@@ -33,7 +33,7 @@ class AdapterTest {
 
 	@Before
 	fun setup() {
-		val mocker = MockContext()
+		val mocker = mockContext()
 			.mockSharedPreferences()
 			.mockResources()
 

@@ -2,11 +2,10 @@ package com.darakeon.dfm.summary
 
 import android.os.Bundle
 import com.darakeon.dfm.R
-import com.darakeon.dfm.utils.activity.ActivityMock
-import com.darakeon.dfm.utils.activity.TestActivity
-import com.darakeon.dfm.utils.activity.getActivityName
-import com.darakeon.dfm.utils.getDecimal
-import com.darakeon.dfm.utils.log.LogRule
+import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.context.getCalledName
+import com.darakeon.dfm.testutils.getDecimal
+import com.darakeon.dfm.utils.api.ActivityMock
 import kotlinx.android.synthetic.main.month_line.view.name
 import kotlinx.android.synthetic.main.month_line.view.value
 import org.hamcrest.CoreMatchers.`is`
@@ -23,12 +22,12 @@ class MonthLineTest {
 	@get:Rule
 	val log = LogRule()
 
-	private lateinit var activity: TestActivity
+	private lateinit var activity: SummaryActivity
 	private lateinit var monthLine: MonthLine
 
 	@Before
 	fun setup() {
-		activity = ActivityMock().create()
+		activity = ActivityMock(SummaryActivity::class).create()
 		monthLine = activity.layoutInflater
 			.inflate(R.layout.month_line, null)
 			as MonthLine
@@ -69,7 +68,7 @@ class MonthLineTest {
 		assertThat(extras.getInt("year"), `is`(1986))
 		assertThat(extras.getInt("month"), `is`(2))
 
-		val activity = intent.getActivityName()
+		val activity = intent.getCalledName()
 		assertThat(activity, `is`("ExtractActivity"))
 	}
 }

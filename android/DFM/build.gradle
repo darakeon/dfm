@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
 	compileSdkVersion 29
@@ -15,8 +16,6 @@ android {
 
 		minSdkVersion 21
 		targetSdkVersion 29
-
-		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 	}
 
 	signingConfigs {
@@ -31,7 +30,7 @@ android {
 	buildTypes {
 		release {
 			minifyEnabled false
-			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 			signingConfig signingConfigs.release
 			zipAlignEnabled true
 			resValue 'string', 'app_short_name', 'DfM'
@@ -46,7 +45,6 @@ android {
 		debug.resources.srcDirs += 'src/debug/res'
 		main.java.srcDirs += 'src/main/kotlin'
 		test.java.srcDirs += 'src/test/kotlin'
-		androidTest.java.srcDirs += 'src/androidTest/kotlin'
 	}
 
 	testOptions {
@@ -56,68 +54,34 @@ android {
 	}
 
 	compileOptions {
-		sourceCompatibility JavaVersion.VERSION_1_8
-		targetCompatibility JavaVersion.VERSION_1_8
+		sourceCompatibility "$java_version"
+		targetCompatibility "$java_version"
 	}
 
 	kotlinOptions {
-		jvmTarget = JavaVersion.VERSION_1_8.toString()
+		jvmTarget = "$java_version"
 	}
 }
 
 dependencies {
+	implementation project(':Lib')
+
 	implementation "com.google.android.gms:play-services-iid:$play_version"
 	implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 	implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
 	implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 	implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
+	testImplementation project(":TestUtils")
+
 	testImplementation "junit:junit:$junit_version"
 	testImplementation "org.mockito:mockito-core:$mockito_version"
 	testImplementation "org.robolectric:robolectric:$robolectric_version"
 	testImplementation "com.squareup.okhttp3:mockwebserver:$mockserver_version"
-	androidTestImplementation "com.android.support.test:runner:$testrunner_version"
-	androidTestImplementation "com.android.support.test.espresso:espresso-core:$expresso_version"
 }
-
-apply plugin: 'kotlin-android-extensions'
 
 task wrapper(type: Wrapper) {
 	gradleVersion = '6.2'
-}
-
-static def getLocalIP() {
-	def ip4s = []
-	NetworkInterface.getNetworkInterfaces()
-		.findAll { it.isUp() && !it.isLoopback() && !it.isVirtual() }
-		.each {
-			if (it.name.startsWith("wlan")) {
-				it.getInetAddresses()
-					.findAll { !it.isLoopbackAddress() && it instanceof Inet4Address }
-					.each { ip4s << it }
-			}
-		}
-	return ip4s.first().toString().substring(1)
-}
-
-task ipNetwork(type: Copy) {
-	from ('src/main/res/xml/network_security_config.xml')
-	into ('src/debug/res/xml')
-	filter {
-		String line -> line.replaceAll("<!-- YOUR LOCAL IP -->", getLocalIP())
-	}
-}
-
-task ipAddress(type: Copy) {
-	from ('src/main/res/values/local-address.xml')
-	into ('src/debug/res/values')
-	filter {
-		String line -> line.replaceAll("<!-- YOUR LOCAL IP -->", getLocalIP())
-	}
-}
-
-tasks.withType(JavaCompile) {
-	buildTask -> buildTask.dependsOn ipNetwork, ipAddress
 }
 
 /*

@@ -9,24 +9,24 @@ import android.view.View.VISIBLE
 import android.widget.GridLayout
 import android.widget.GridLayout.UNDEFINED
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.Date
-import com.darakeon.dfm.api.entities.moves.Move
-import com.darakeon.dfm.api.entities.moves.MoveCreation
-import com.darakeon.dfm.api.entities.moves.MoveForm
-import com.darakeon.dfm.api.entities.moves.Nature
-import com.darakeon.dfm.api.entities.setCombo
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.dialogs.getDateDialog
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.addMask
-import com.darakeon.dfm.extensions.applyGlyphicon
 import com.darakeon.dfm.extensions.backWithExtras
 import com.darakeon.dfm.extensions.getFromJson
-import com.darakeon.dfm.extensions.onChange
 import com.darakeon.dfm.extensions.putJson
-import com.darakeon.dfm.extensions.showChangeList
-import com.darakeon.dfm.extensions.toDoubleByCulture
+import com.darakeon.dfm.lib.api.entities.Date
+import com.darakeon.dfm.lib.api.entities.moves.Move
+import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
+import com.darakeon.dfm.lib.api.entities.moves.MoveForm
+import com.darakeon.dfm.lib.api.entities.moves.Nature
+import com.darakeon.dfm.lib.api.entities.setCombo
+import com.darakeon.dfm.lib.extensions.applyGlyphicon
+import com.darakeon.dfm.lib.extensions.onChange
+import com.darakeon.dfm.lib.extensions.showChangeList
+import com.darakeon.dfm.lib.extensions.toDoubleByCulture
 import kotlinx.android.synthetic.main.moves.account_in
 import kotlinx.android.synthetic.main.moves.account_in_picker
 import kotlinx.android.synthetic.main.moves.account_out
@@ -108,10 +108,12 @@ class MovesActivity : BaseActivity() {
 	private fun populateScreen(data: MoveCreation) {
 		moveForm = data
 
-		if (data.move != null)
-			move = data.move
+		val move = data.move
+
+		if (move != null)
+			this.move = move
 		else
-			move.date = Date()
+			this.move.date = Date()
 
 		populateResponse()
 	}

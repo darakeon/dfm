@@ -1,9 +1,9 @@
 package com.darakeon.dfm.summary
 
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.summary.Month
-import com.darakeon.dfm.utils.activity.ActivityMock
-import com.darakeon.dfm.utils.log.LogRule
+import com.darakeon.dfm.lib.api.entities.summary.Month
+import com.darakeon.dfm.utils.api.ActivityMock
+import com.darakeon.dfm.testutils.LogRule
 import kotlinx.android.synthetic.main.month_line.view.name
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
@@ -20,7 +20,7 @@ class MonthAdapterTest {
 	@Test
 	fun populateView() {
 		val list = listOf(Month("september", 9, 0.0))
-		val activity = ActivityMock().create<SummaryActivity>()
+		val activity = ActivityMock(SummaryActivity::class).create()
 		val adapter = MonthAdapter(activity, list, "url", 1989)
 		val line = activity.layoutInflater
 			.inflate(R.layout.month_line, null)

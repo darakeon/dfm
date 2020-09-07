@@ -3,21 +3,20 @@ package com.darakeon.dfm.summary
 import android.app.Dialog
 import android.net.Uri
 import android.os.Bundle
-import android.os.Looper.getMainLooper
 import android.os.PersistableBundle
 import android.view.View
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.summary.Summary
 import com.darakeon.dfm.extensions.getFromJson
-import com.darakeon.dfm.extensions.getPrivate
 import com.darakeon.dfm.extensions.putJson
-import com.darakeon.dfm.utils.activity.ActivityMock
+import com.darakeon.dfm.lib.api.entities.summary.Summary
+import com.darakeon.dfm.lib.extensions.getPrivate
+import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.api.readBundle
+import com.darakeon.dfm.testutils.getDecimal
+import com.darakeon.dfm.utils.api.ActivityMock
 import com.darakeon.dfm.utils.activity.getLastDatePicker
-import com.darakeon.dfm.utils.api.readBundle
-import com.darakeon.dfm.utils.getDecimal
-import com.darakeon.dfm.utils.log.LogRule
-import com.darakeon.dfm.utils.robolectric.simulateNetwork
-import com.darakeon.dfm.utils.waitTasksFinish
+import com.darakeon.dfm.testutils.robolectric.simulateNetwork
+import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.summary.empty_list
 import kotlinx.android.synthetic.main.summary.main_table
@@ -33,7 +32,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
-import org.robolectric.Shadows.shadowOf
 import java.util.Calendar
 
 @RunWith(RobolectricTestRunner::class)
@@ -41,15 +39,15 @@ class SummaryActivityTest {
 	@get:Rule
 	val log = LogRule()
 
-	private lateinit var mocker: ActivityMock
+	private lateinit var mocker: ActivityMock<SummaryActivity>
 	private lateinit var activity: SummaryActivity
 
 	private val currentYear = Calendar.getInstance()[Calendar.YEAR]
 
 	@Before
 	fun setup() {
-		mocker = ActivityMock()
-		activity = mocker.get<SummaryActivity>()
+		mocker = ActivityMock(SummaryActivity::class)
+		activity = mocker.get()
 	}
 
 	@Test

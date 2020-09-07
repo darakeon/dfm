@@ -6,22 +6,22 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.Date
-import com.darakeon.dfm.api.entities.Environment
-import com.darakeon.dfm.api.entities.extract.Extract
-import com.darakeon.dfm.auth.setEnvironment
 import com.darakeon.dfm.extensions.getFromJson
-import com.darakeon.dfm.extensions.getPrivate
 import com.darakeon.dfm.extensions.putJson
-import com.darakeon.dfm.utils.activity.ActivityMock
-import com.darakeon.dfm.utils.activity.getActivityName
+import com.darakeon.dfm.lib.api.entities.Date
+import com.darakeon.dfm.lib.api.entities.Environment
+import com.darakeon.dfm.lib.api.entities.extract.Extract
+import com.darakeon.dfm.lib.auth.setEnvironment
+import com.darakeon.dfm.lib.extensions.getPrivate
+import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.api.guid
+import com.darakeon.dfm.testutils.api.readBundle
+import com.darakeon.dfm.testutils.context.getCalledName
+import com.darakeon.dfm.testutils.getDecimal
+import com.darakeon.dfm.utils.api.ActivityMock
 import com.darakeon.dfm.utils.activity.getLastDatePicker
-import com.darakeon.dfm.utils.api.guid
-import com.darakeon.dfm.utils.api.readBundle
-import com.darakeon.dfm.utils.getDecimal
-import com.darakeon.dfm.utils.log.LogRule
-import com.darakeon.dfm.utils.robolectric.simulateNetwork
-import com.darakeon.dfm.utils.waitTasksFinish
+import com.darakeon.dfm.testutils.robolectric.simulateNetwork
+import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.extract.empty_list
 import kotlinx.android.synthetic.main.extract.main_table
@@ -49,7 +49,7 @@ class ExtractActivityTest {
 	@get:Rule
 	val log = LogRule()
 
-	private lateinit var mocker: ActivityMock
+	private lateinit var mocker: ActivityMock<ExtractActivity>
 	private lateinit var activity: ExtractActivity
 
 	private val currentYear = Calendar.getInstance()[Calendar.YEAR]
@@ -61,8 +61,8 @@ class ExtractActivityTest {
 
 	@Before
 	fun setup() {
-		mocker = ActivityMock()
-		activity = mocker.get<ExtractActivity>()
+		mocker = ActivityMock(ExtractActivity::class)
+		activity = mocker.get()
 	}
 
 	@Test
@@ -348,7 +348,7 @@ class ExtractActivityTest {
 		val intent = shadowOf(activity)
 			.peekNextStartedActivity()
 
-		assertThat(intent.getActivityName(), `is`("SummaryActivity"))
+		assertThat(intent.getCalledName(), `is`("SummaryActivity"))
 		assertThat(intent.getIntExtra("year", 0), `is`(1986))
 	}
 
@@ -360,7 +360,7 @@ class ExtractActivityTest {
 		activity.onContextItemSelected(item)
 
 		val intent = shadowOf(activity).peekNextStartedActivity()
-		assertThat(intent.getActivityName(), `is`("MovesActivity"))
+		assertThat(intent.getCalledName(), `is`("MovesActivity"))
 		assertThat(intent.getSerializableExtra("id") as UUID?, `is`(guid))
 		assertThat(intent.getStringExtra("accountUrl"), `is`("url"))
 		assertThat(intent.getIntExtra("year", 0), `is`(1986))
@@ -382,7 +382,7 @@ class ExtractActivityTest {
 		confirm.getButton(Dialog.BUTTON_POSITIVE).performClick()
 
 		val intent = shadowOf(activity).peekNextStartedActivity()
-		assertThat(intent.getActivityName(), `is`("ExtractActivity"))
+		assertThat(intent.getCalledName(), `is`("ExtractActivity"))
 	}
 
 	@Test

@@ -2,12 +2,11 @@ package com.darakeon.dfm.accounts
 
 import android.os.Bundle
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.accounts.Account
-import com.darakeon.dfm.utils.activity.ActivityMock
-import com.darakeon.dfm.utils.activity.TestActivity
-import com.darakeon.dfm.utils.activity.getActivityName
-import com.darakeon.dfm.utils.getDecimal
-import com.darakeon.dfm.utils.log.LogRule
+import com.darakeon.dfm.lib.api.entities.accounts.Account
+import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.context.getCalledName
+import com.darakeon.dfm.testutils.getDecimal
+import com.darakeon.dfm.utils.api.ActivityMock
 import kotlinx.android.synthetic.main.accounts_line.view.name
 import kotlinx.android.synthetic.main.accounts_line.view.value
 import org.hamcrest.CoreMatchers.`is`
@@ -24,12 +23,12 @@ class AccountLineTest {
 	@get:Rule
 	val log = LogRule()
 
-	private lateinit var activity: TestActivity
+	private lateinit var activity: AccountsActivity
 	private lateinit var accountLine: AccountLine
 
 	@Before
 	fun setup() {
-		activity = ActivityMock().create()
+		activity = ActivityMock(AccountsActivity::class).create()
 		accountLine = activity.layoutInflater
 			.inflate(R.layout.accounts_line, null)
 			as AccountLine
@@ -74,7 +73,7 @@ class AccountLineTest {
 		val extras = intent?.extras ?: Bundle()
 		assertThat(extras.getString("accountUrl"), `is`(account.url))
 
-		val activity = intent.getActivityName()
+		val activity = intent.getCalledName()
 		assertThat(activity, `is`("ExtractActivity"))
 	}
 }

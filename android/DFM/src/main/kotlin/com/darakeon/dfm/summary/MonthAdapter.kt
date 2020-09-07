@@ -1,7 +1,7 @@
 package com.darakeon.dfm.summary
 
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.summary.Month
+import com.darakeon.dfm.lib.api.entities.summary.Month
 import com.darakeon.dfm.base.Adapter
 
 class MonthAdapter(

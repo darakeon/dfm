@@ -6,7 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.Api
+import com.darakeon.dfm.lib.api.Api
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.login.LoginActivity
 import com.darakeon.dfm.moves.MovesActivity
@@ -37,11 +37,6 @@ fun Activity.backWithExtras() {
 	val intent = Intent(this, parent)
 	intent.putExtras(extras)
 
-	startActivity(intent)
-}
-
-fun Activity.refresh() {
-	finish()
 	startActivity(intent)
 }
 

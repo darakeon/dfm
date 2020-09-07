@@ -1,0 +1,107 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+	compileSdkVersion 29
+
+	defaultConfig {
+		versionCode 1
+		versionName "4.2.0.1"
+
+		minSdkVersion 21
+		targetSdkVersion 29
+
+		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+	}
+
+	buildTypes {
+		release {
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+		}
+		debug
+	}
+
+	sourceSets {
+		debug.resources.srcDirs += 'src/debug/res'
+		main.java.srcDirs += 'src/main/kotlin'
+		test.java.srcDirs += 'src/test/kotlin'
+		androidTest.java.srcDirs += 'src/androidTest/kotlin'
+	}
+
+	testOptions {
+		unitTests {
+			includeAndroidResources = true
+		}
+	}
+
+	compileOptions {
+		sourceCompatibility "$java_version"
+		targetCompatibility "$java_version"
+	}
+
+	kotlinOptions {
+		jvmTarget = "$java_version"
+	}
+}
+
+dependencies {
+	implementation "com.google.android.gms:play-services-iid:$play_version"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+	implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+	implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+	implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+
+	testImplementation project(":TestUtils")
+
+	testImplementation "junit:junit:$junit_version"
+	testImplementation "org.mockito:mockito-core:$mockito_version"
+	testImplementation "org.robolectric:robolectric:$robolectric_version"
+	testImplementation "com.squareup.okhttp3:mockwebserver:$mockserver_version"
+
+	androidTestImplementation "com.android.support.test:runner:$testrunner_version"
+	androidTestImplementation "com.android.support.test.espresso:espresso-core:$expresso_version"
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '6.2'
+}
+
+static def getLocalIP() {
+	def ips = []
+	NetworkInterface.getNetworkInterfaces()
+		.findAll { it.isUp() && !it.isLoopback() && !it.isVirtual() }
+		.each {
+			if (it.name.startsWith("wlan")) {
+				it.getInetAddresses()
+					.findAll { !it.isLoopbackAddress() && it instanceof Inet4Address }
+					.each { ips << it }
+			}
+		}
+
+	if (ips.empty)
+		return ""
+
+	return ips.first().toString().substring(1)
+}
+
+task ipNetwork(type: Copy) {
+	from ('src/main/res/xml/network_security_config.xml')
+	into ('src/debug/res/xml')
+	filter {
+		String line -> line.replaceAll("<!-- YOUR LOCAL IP -->", getLocalIP())
+	}
+}
+
+task ipAddress(type: Copy) {
+	from ('src/main/res/values/local-address.xml')
+	into ('src/debug/res/values')
+	filter {
+		String line -> line.replaceAll("<!-- YOUR LOCAL IP -->", getLocalIP())
+	}
+}
+
+tasks.withType(JavaCompile) {
+	buildTask -> buildTask.dependsOn ipNetwork, ipAddress
+}

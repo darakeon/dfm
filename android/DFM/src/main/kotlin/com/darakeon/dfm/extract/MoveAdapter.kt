@@ -1,7 +1,7 @@
 package com.darakeon.dfm.extract
 
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.extract.Move
+import com.darakeon.dfm.lib.api.entities.extract.Move
 import com.darakeon.dfm.base.Adapter
 
 class MoveAdapter(

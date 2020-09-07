@@ -1,7 +1,7 @@
 package com.darakeon.dfm.accounts
 
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.accounts.Account
+import com.darakeon.dfm.lib.api.entities.accounts.Account
 import com.darakeon.dfm.base.Adapter
 
 class AccountAdapter(
