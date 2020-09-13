@@ -6,14 +6,16 @@ using DFM.Generic;
 
 namespace DFM.MVC.Areas.Api.Models
 {
-	public class StatusLogModel
+	public class LogModel
 	{
+		public Int32 Count { get; }
 		public List<ErrorLog> Logs { get; }
 
 		private readonly String newLogs;
 		private readonly String readLogs;
+		private readonly String[] files;
 
-		public StatusLogModel(String id)
+		public LogModel(Boolean list)
 		{
 			Logs = new List<ErrorLog>();
 
@@ -31,36 +33,40 @@ namespace DFM.MVC.Areas.Api.Models
 				if (!Directory.Exists(readLogs))
 					Directory.CreateDirectory(readLogs);
 
-				var files = Directory.GetFiles(newLogs, "*.log");
+				files = Directory.GetFiles(newLogs, "*.log");
 
-				files = archiveLog(files, id);
+				Count = files.Length;
 
-				Logs = files
-					.Select(File.ReadAllText)
-					.Select(ErrorLog.FromJson)
-					.ToList();
+				if (list)
+				{
+					Logs = files
+						.Select(File.ReadAllText)
+						.Select(ErrorLog.FromJson)
+						.ToList();
+				}
 			}
 			catch (Exception e)
 			{
-				Logs.Add(new ErrorLog(e));
+				Count = -1;
+
+				if (list)
+				{
+					Logs.Add(new ErrorLog(e));
+				}
 			}
 		}
 
-		private String[] archiveLog(String[] files, String id)
+		public void Archive(String id)
 		{
-			if (id == null) return files;
+			if (id == null) return;
 
 			var move = files.FirstOrDefault(
 				f => f.EndsWith($"{id}.log")
 			);
 
-			if (move == null) return files;
+			if (move == null) return;
 
 			File.Move(move, move.Replace(newLogs, readLogs));
-
-			return files.Where(
-				f => !f.EndsWith($"{id}.log")
-			).ToArray();
 		}
 	}
 }
