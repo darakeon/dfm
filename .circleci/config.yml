@@ -104,7 +104,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - jars-{{ checksum "android/build.gradle" }}-{{ checksum "android/TestUtils/build.gradle" }}-{{ checksum "android/Lib/build.gradle" }}-{{ checksum "android/DFM/build.gradle" }}-{{ checksum "android/ErrorLogs/build.gradle" }}
+            - jars-{{ checksum "android/build.gradle" }}-{{ checksum "android/TestUtils/build.gradle" }}-{{ checksum "android/Lib/build.gradle" }}-{{ checksum "android/App/build.gradle" }}-{{ checksum "android/ErrorLogs/build.gradle" }}
       - run:
           name: runable_gradlew
           path: android
@@ -114,7 +114,7 @@ jobs:
           path: android
           command: ./gradlew androidDependencies
       - save_cache:
-          key: jars-{{ checksum "android/build.gradle" }}-{{ checksum "android/TestUtils/build.gradle" }}-{{ checksum "android/Lib/build.gradle" }}-{{ checksum "android/DFM/build.gradle" }}-{{ checksum "android/ErrorLogs/build.gradle" }}
+          key: jars-{{ checksum "android/build.gradle" }}-{{ checksum "android/TestUtils/build.gradle" }}-{{ checksum "android/Lib/build.gradle" }}-{{ checksum "android/App/build.gradle" }}-{{ checksum "android/ErrorLogs/build.gradle" }}
           paths:
             - ~/.gradle
       - run:
@@ -132,7 +132,7 @@ jobs:
           path: android/Lib/build/reports
           destination: reports/lib
       - store_artifacts:
-          path: android/DFM/build/reports
+          path: android/App/build/reports
           destination: reports/app
       - store_artifacts:
           path: android/ErrorLogs/build/reports
