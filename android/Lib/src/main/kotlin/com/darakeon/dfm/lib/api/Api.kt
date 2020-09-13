@@ -151,4 +151,12 @@ class Api<C>(
 	fun listErrors(onSuccess: (ErrorList) -> Unit) {
 		service.listErrors().call { onSuccess(it) }
 	}
+
+	fun countErrors(onSuccess: (ErrorList) -> Unit) {
+		service.countErrors().call { onSuccess(it) }
+	}
+
+	fun archiveError(id: String, onSuccess: () -> Unit) {
+		service.archiveError(id).call { onSuccess() }
+	}
 }

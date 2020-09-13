@@ -400,4 +400,83 @@ class RequestServiceTest {
 		assertThat(body.error, `is`("something went wrong"))
 		assertThat(body.code, `is`(2013))
 	}
+
+	@Test
+	fun countErrors() {
+		server.enqueue("log_count")
+
+		val response = service.countErrors().execute()
+		assertNotNull(response)
+		val body = response.body()!!
+
+		val errors = body.data!!
+		assertThat(errors.count, `is`(4))
+		assertThat(errors.logs.size, `is`(0))
+	}
+
+	@Test
+	fun listErrors() {
+		server.enqueue("log_list")
+
+		val response = service.listErrors().execute()
+		assertNotNull(response)
+		val body = response.body()!!
+
+		val errors = body.data!!
+		assertThat(errors.count, `is`(4))
+		assertThat(errors.logs.size, `is`(4))
+
+		val log0 = errors.logs[0]
+		assertThat(log0.id, `is`("20200905021935886752"))
+		assertThat(log0.exception.className, `is`("NHibernate.Exceptions.GenericADOException"))
+		assertThat(log0.exception.message, `is`("message 1"))
+		assertNull(log0.exception.stackTrace)
+		assertThat(log0.exception.source, `is`("NHibernate"))
+		assertNotNull(log0.exception.innerException)
+		assertThat(log0.exception.innerException?.className, `is`("MySql.Data.MySqlClient.MySqlException"))
+		assertThat(log0.exception.innerException?.message, `is`("message 2"))
+		assertNull(log0.exception.innerException?.stackTrace)
+		assertThat(log0.exception.innerException?.source, `is`("MySql.Data"))
+		assertNull(log0.exception.innerException?.innerException)
+
+		val log1 = errors.logs[1]
+		assertThat(log1.id, `is`("20200905040939507282"))
+		assertThat(log1.exception.className, `is`("System.ObjectDisposedException"))
+		assertThat(log1.exception.message, `is`("message 3"))
+		assertThat(log1.exception.stackTrace, `is`("stack 3"))
+		assertThat(log1.exception.source, `is`("Microsoft.AspNetCore.Http.Features"))
+		assertNull(log1.exception.innerException)
+
+		val log2 = errors.logs[2]
+		assertThat(log2.id, `is`("20200905041255989527"))
+		assertThat(log2.exception.className, `is`("System.ObjectDisposedException"))
+		assertThat(log2.exception.message, `is`("message 4"))
+		assertThat(log2.exception.stackTrace, `is`("stack 4"))
+		assertThat(log2.exception.source, `is`("Microsoft.AspNetCore.Http.Features"))
+		assertNull(log2.exception.innerException)
+
+		val log3 = errors.logs[3]
+		assertThat(log3.id, `is`("20200905041338864402"))
+		assertThat(log3.exception.className, `is`("NHibernate.Exceptions.GenericADOException"))
+		assertThat(log3.exception.message, `is`("message 5"))
+		assertThat(log3.exception.stackTrace, `is`("stack 5"))
+		assertThat(log3.exception.source, `is`("NHibernate"))
+		assertNotNull(log3.exception.innerException)
+		assertThat(log3.exception.innerException?.className, `is`("MySql.Data.MySqlClient.MySqlException"))
+		assertThat(log3.exception.innerException?.message, `is`("message 6"))
+		assertThat(log3.exception.innerException?.stackTrace, `is`("stack 6"))
+		assertThat(log3.exception.innerException?.source, `is`("MySql.Data"))
+		assertNull(log3.exception.innerException?.innerException)
+	}
+
+	@Test
+	fun archiveError() {
+		server.enqueue("empty")
+
+		val response = service.archiveError("1").execute()
+		assertNotNull(response)
+		val body = response.body()!!
+
+		assertNotNull(body.data)
+	}
 }

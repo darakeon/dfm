@@ -7,10 +7,11 @@ import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
 import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
+import com.darakeon.dfm.lib.api.entities.status.ErrorList
 import com.darakeon.dfm.lib.api.entities.summary.Summary
-import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.lib.utils.ActivityMock
 import com.darakeon.dfm.lib.utils.ApiActivity
+import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
 import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
 import org.junit.After
@@ -231,6 +232,42 @@ class ApiTest {
 
 		var called = false
 		api.wakeUpSite {
+			called = true
+		}
+
+		assertTrue(called)
+	}
+
+	@Test
+	fun countErrors() {
+		server.enqueue("log_count")
+
+		var errors: ErrorList? = null
+		api.countErrors {
+			errors = it
+		}
+
+		assertNotNull(errors)
+	}
+
+	@Test
+	fun listErrors() {
+		server.enqueue("log_list")
+
+		var errors: ErrorList? = null
+		api.listErrors {
+			errors = it
+		}
+
+		assertNotNull(errors)
+	}
+
+	@Test
+	fun archiveError() {
+		server.enqueue("log_list")
+
+		var called = false
+		api.archiveError("id") {
 			called = true
 		}
 
