@@ -9,18 +9,24 @@
 	android:paddingTop="@dimen/activity_vertical_margin"
 	tools:context=".settings.SettingsActivity" >
 
-	<TextView
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:gravity="center"
-		android:text="@string/settings_warning" />
-
-	<View android:layout_width="fill_parent" android:layout_height="35dp" />
-
-	<LinearLayout
+	<GridLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal" >
+		android:layout_height="0dp"
+		android:layout_weight="1"
+		android:orientation="horizontal"
+		android:columnCount="8">
+
+		<TextView
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:layout_columnSpan="8"
+			android:text="@string/settings_warning" />
+
+		<View
+			android:layout_width="fill_parent"
+			android:layout_height="35dp"
+			android:layout_columnSpan="8" />
 
 		<CheckBox
 			android:layout_width="wrap_content"
@@ -29,14 +35,8 @@
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="@string/use_categories" />
-
-	</LinearLayout>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal" >
+			android:text="@string/use_categories"
+			android:layout_columnSpan="7" />
 
 		<CheckBox
 			android:layout_width="wrap_content"
@@ -45,37 +45,38 @@
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="@string/move_check" />
+			android:text="@string/move_check"
+			android:layout_columnSpan="7" />
 
-	</LinearLayout>
-
-	<View android:layout_width="fill_parent" android:layout_height="35dp" />
-
-	<LinearLayout
-		android:layout_width="fill_parent"
-		android:layout_height="0sp"
-		android:layout_weight="1">
+		<View
+			android:layout_width="fill_parent"
+			android:layout_height="35dp"
+			android:layout_columnSpan="8" />
 
 		<Button
-			android:text="@string/cancel"
-			android:layout_width="0dp"
-			android:layout_weight="1"
+			android:text="@string/cancel_button"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:onClick="back" />
+			android:onClick="back"
+			android:layout_columnWeight="4"
+			android:layout_columnSpan="4" />
 
 		<Button
-			android:text="@string/save"
-			android:layout_width="0dp"
-			android:layout_weight="1"
+			android:text="@string/save_button"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:onClick="saveSettings" />
-	</LinearLayout>
+			android:onClick="saveSettings"
+			android:layout_columnWeight="4"
+			android:layout_columnSpan="4" />
 
-	<LinearLayout
+	</GridLayout>
+
+	<GridLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal"
-		android:gravity="bottom">
+		android:gravity="bottom"
+		android:columnCount="2">
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
@@ -86,13 +87,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="end" />
-	</LinearLayout>
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		android:gravity="bottom">
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
@@ -103,7 +98,7 @@
 			android:layout_height="wrap_content"
 			android:gravity="end"
 			android:id="@+id/version" />
-	</LinearLayout>
+	</GridLayout>
 
 	<include layout="@layout/bottom_menu" />
 

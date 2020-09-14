@@ -316,7 +316,7 @@
 			</GridLayout>
 
 			<Button
-				android:text="@string/cancel"
+				android:text="@string/cancel_button"
 				android:layout_width="0dp"
 				android:layout_columnWeight="4"
 				android:layout_columnSpan="4"
@@ -326,7 +326,7 @@
 				/>
 
 			<Button
-				android:text="@string/save"
+				android:text="@string/save_button"
 				android:layout_width="0dp"
 				android:layout_columnWeight="4"
 				android:layout_columnSpan="4"

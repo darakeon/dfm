@@ -10,10 +10,7 @@
 	<string name="label_close">Close</string>
 
 	<!-- Buttons -->
-	<string name="save">save</string>
-	<string name="cancel">cancel</string>
-
-	<!-- Alert dialog -->
+	<string name="save_button">Save</string>
 	<string name="send_report_button">Send error</string>
 	<string name="ok_button">OK</string>
 	<string name="cancel_button">Cancel</string>
@@ -22,9 +19,6 @@
 	<string name="wait_title">Wait!</string>
 	<string name="starting_app">Waking up the pig…</string>
 	<string name="wait_text">Calling the Pig&#8230;</string>
-
-	<!-- Errors -->
-	<string name="error_set_parameters">Error on set parameters</string>
 
 	<!-- Login -->
 	<string name="email">e-mail</string>
@@ -40,7 +34,6 @@
 	<string name="title_activity_summary">Year summary</string>
 	<string name="no_extract">There is no moves for this month</string>
 	<string name="no_summary">There is no moves for this year</string>
-	<string name="total">%s total</string>
 	<string name="change_date">change</string>
 	<string name="sure_to_delete">Do you really want to DELETE Move \'%s\'?"</string>
 	<string name="edit">edit</string>
@@ -53,11 +46,9 @@
 	<string name="description">description</string>
 	<string name="date">date</string>
 	<string name="category">category</string>
-	<string name="nature">nature</string>
 	<string name="account">account</string>
 	<string name="value">value</string>
 	<string name="amount">qty</string>
-	<string name="pick">pick</string>
 	<string name="use_detailed">go to detailed</string>
 	<string name="use_simple">back to single value</string>
 	<string name="add_detail">+</string>
@@ -94,7 +85,6 @@
 	<string name="settings_saved">Settings applied!</string>
 	<string name="move_check">Move can be checked / unchecked</string>
 	<string name="error_mail_title">Error on DfM App</string>
-	<string name="timeout">Request timeout</string>
 	<string name="verify">verify</string>
 	<string name="two_factor_code">two factor code</string>
 	<string name="long_click_warning">hold for a while to execute the action</string>

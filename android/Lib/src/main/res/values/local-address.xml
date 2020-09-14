@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="local_address" translatable="false"><!-- YOUR LOCAL IP --></string>
+	<string name="local_address" translatable="false"><!-- YOUR LOCAL IP --></string>
 </resources>
