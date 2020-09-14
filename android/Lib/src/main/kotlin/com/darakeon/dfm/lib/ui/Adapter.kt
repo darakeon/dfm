@@ -1,4 +1,4 @@
-package com.darakeon.dfm.base
+package com.darakeon.dfm.lib.ui
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -20,11 +20,11 @@ abstract class Adapter<Act, Ent, Lin>(
 	override fun getItem(position: Int): Any = list[position]
 	override fun getItemId(position: Int): Long = position.toLong()
 
-	abstract val id: Int
+	abstract val lineLayoutId: Int
 	abstract fun populateView(view: Lin, position: Int)
 
 	override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-		val view = convertView ?: inflater.inflate(id, parent, false)
+		val view = convertView ?: inflater.inflate(lineLayoutId, parent, false)
 
 		val color = activity.getThemeLineColor(position)
 		view.setBackgroundColor(color)
