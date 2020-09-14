@@ -2,7 +2,7 @@ package com.darakeon.dfm.summary
 
 import com.darakeon.dfm.R
 import com.darakeon.dfm.lib.api.entities.summary.Month
-import com.darakeon.dfm.base.Adapter
+import com.darakeon.dfm.lib.ui.Adapter
 
 class MonthAdapter(
 	activity: SummaryActivity,
@@ -10,7 +10,7 @@ class MonthAdapter(
 	private val accountUrl: String,
 	private val yearNumber: Int
 ) : Adapter<SummaryActivity, Month, MonthLine>(activity, list) {
-	override val id: Int
+	override val lineLayoutId: Int
 		get() = R.layout.month_line
 
 	override fun populateView(view: MonthLine, position: Int) {

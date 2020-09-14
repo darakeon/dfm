@@ -2,14 +2,14 @@ package com.darakeon.dfm.extract
 
 import com.darakeon.dfm.R
 import com.darakeon.dfm.lib.api.entities.extract.Move
-import com.darakeon.dfm.base.Adapter
+import com.darakeon.dfm.lib.ui.Adapter
 
 class MoveAdapter(
 	activity: ExtractActivity,
 	list: List<Move>,
 	private val canCheck: Boolean
 ) : Adapter<ExtractActivity, Move, MoveLine>(activity, list) {
-	override val id: Int
+	override val lineLayoutId: Int
 		get() = R.layout.move_line
 
 	override fun populateView(view: MoveLine, position: Int) =

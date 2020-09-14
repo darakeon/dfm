@@ -1,4 +1,4 @@
-package com.darakeon.dfm.base
+package com.darakeon.dfm.lib.ui
 
 import android.R
 import android.app.Activity
@@ -9,9 +9,9 @@ import android.widget.TextView
 import com.darakeon.dfm.lib.api.entities.Environment
 import com.darakeon.dfm.lib.auth.lighter1
 import com.darakeon.dfm.lib.auth.setEnvironment
+import com.darakeon.dfm.lib.utils.mockContext
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.execute
-import com.darakeon.dfm.utils.activity.mockContext
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertNotNull
