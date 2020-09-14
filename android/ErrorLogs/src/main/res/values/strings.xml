@@ -3,4 +3,8 @@
 	<string name="app_name">DfM: Error Logs</string>
 	<string name="service_error_title">Site error check</string>
 	<string name="notification_text">Errors count: %d</string>
+	<string name="email">e-mail</string>
+	<string name="password">password</string>
+	<string name="login">login</string>
+	<string name="tfa">tfa</string>
 </resources>

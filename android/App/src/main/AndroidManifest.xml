@@ -12,10 +12,6 @@
 		android:name="android.permission.ACCESS_NETWORK_STATE"
 		android:protectionLevel="signature" />
 
-	<uses-permission
-		android:name="android.permission.FOREGROUND_SERVICE"
-		android:protectionLevel="signature" />
-
 	<uses-feature
 		android:name="android.hardware.faketouch"
 		android:required="true" />

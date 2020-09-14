@@ -10,11 +10,14 @@ import androidx.core.app.NotificationCompat
 import com.darakeon.dfm.lib.R
 
 class Notification(private val service: Service) {
-	private var channelID = "0"
+	private var channelID = "dfm"
 
-	private val priorityOlder = NotificationCompat.PRIORITY_DEFAULT
+	private val priorityOlder =
+		NotificationCompat.PRIORITY_DEFAULT
+
 	@RequiresApi(Build.VERSION_CODES.O)
-	private val priorityNewer = NotificationManager.IMPORTANCE_DEFAULT
+	private val priorityNewer =
+		NotificationManager.IMPORTANCE_DEFAULT
 
 	private var n = 0
 
