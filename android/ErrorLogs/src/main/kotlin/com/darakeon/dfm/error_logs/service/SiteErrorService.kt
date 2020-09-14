@@ -3,7 +3,7 @@ package com.darakeon.dfm.error_logs.service
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
-import com.darakeon.dfm.lib.R
+import com.darakeon.dfm.error_logs.R
 import com.darakeon.dfm.lib.api.Api
 import com.darakeon.dfm.lib.api.ApiCaller
 import com.darakeon.dfm.lib.auth.Authentication
@@ -31,15 +31,19 @@ class SiteErrorService : Service(), ApiCaller, Timer.Caller {
 	}
 
 	private fun callServer() {
-		api?.listErrors { list ->
-			val count = list.logs.size
-			if (count == 1) {
-				val note = list.logs[0]
-				notification.notify(note.id(), note.title(), note.message())
-			} else if (count > 0) {
-				notification.notify("Errors count: $count")
-			}
+		api?.countErrors { list ->
+			notifyErrors(list.count)
 		}
+	}
+
+	private fun notifyErrors(count: Int) {
+		if (count <= 0) return
+
+		val message = getString(
+			R.string.notification_text
+		).format(count)
+
+		notification.notify(message)
 	}
 
 	override fun onDestroy() {
@@ -67,7 +71,4 @@ class SiteErrorService : Service(), ApiCaller, Timer.Caller {
 		error(R.string.uninvited)
 		stopSelf()
 	}
-
-	override fun startWait() { }
-	override fun endWait() { }
 }
