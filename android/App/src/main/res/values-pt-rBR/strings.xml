@@ -10,10 +10,8 @@
 	<string name="label_close">Fechar</string>
 
 	<!-- Buttons -->
-	<string name="save">salvar</string>
-	<string name="cancel">cancelar</string>
-
-	<!-- Alert dialog -->
+	<string name="save_button">Salvar</string>
+	<string name="send_report_button">Reportar</string>
 	<string name="ok_button">OK</string>
 	<string name="cancel_button">Cancelar</string>
 
@@ -21,9 +19,6 @@
 	<string name="wait_title">Um segundo!</string>
 	<string name="starting_app">Acordando o porquinho…</string>
 	<string name="wait_text">Chamando o porquinho&#8230;</string>
-
-	<!-- Errors -->
-	<string name="error_set_parameters">Error ao setar parâmetros</string>
 
 	<!-- Login -->
 	<string name="email">e-mail</string>
@@ -39,7 +34,6 @@
 	<string name="title_activity_summary">Resumo anual</string>
    	<string name="no_extract">Não há movimentações neste mês</string>
    	<string name="no_summary">Não há movimentações neste ano</string>
-	<string name="total">Saldo de %s</string>
  	<string name="change_date">mudar</string>
 	<string name="sure_to_delete">Realmente deseja APAGAR a Movimentação \'%s\'?</string>
 	<string name="edit">editar</string>
@@ -52,11 +46,9 @@
 	<string name="description">descrição</string>
 	<string name="date">data</string>
 	<string name="category">categoria</string>
-	<string name="nature">natureza</string>
 	<string name="account">conta</string>
 	<string name="value">valor</string>
 	<string name="amount">qte</string>
-	<string name="pick">escolher</string>
 	<string name="use_detailed">ir para detalhados</string>
 	<string name="use_simple">usar valor simplificado</string>
 	<string name="add_detail">+</string>
@@ -92,9 +84,7 @@
 	<string name="use_categories">Usar categorias</string>
 	<string name="settings_saved">Configurações salvas!</string>
 	<string name="move_check">Movimentação pode ser verificada</string>
-	<string name="send_report_button">Reportar</string>
 	<string name="error_mail_title">Erro no aplicativo DfM</string>
-	<string name="timeout">Tempo de conexão expirado</string>
 	<string name="verify">verificar</string>
 	<string name="two_factor_code">código de verificação em duas etapas</string>
 	<string name="long_click_warning">segure por um tempo para executar a ação</string>

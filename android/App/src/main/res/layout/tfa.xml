@@ -25,7 +25,8 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:hint="@string/two_factor_code"
-		android:inputType="number" />
+		android:inputType="number"
+		android:importantForAutofill="no" />
 
 	<Button
 		android:id="@+id/login_button"

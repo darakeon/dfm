@@ -1,5 +1,6 @@
 package com.darakeon.dfm.testutils.context
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
@@ -122,6 +123,7 @@ class MockContext<A: Activity>(type: KClass<A>) {
 		return this
 	}
 
+	@SuppressLint("CommitPrefEdits")
 	fun mockSharedPreferences(): MockContext<A> {
 		val prefs = mock(SharedPreferences::class.java)
 		`when`(activity.getSharedPreferences("DfM", Context.MODE_PRIVATE))

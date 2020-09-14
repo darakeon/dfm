@@ -15,6 +15,14 @@ class DetailBox(
 	private var amount: Int,
 	private var value: Double
 ) : LinearLayout(context) {
+	constructor(context: Context) : this(
+		context,
+		Move(),
+		"",
+		context.resources.getInteger(R.integer.amount_default),
+		0.0
+	)
+
 	init {
 		inflate(context, R.layout.moves_detail, this)
 
