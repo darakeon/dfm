@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">DfM: Logs de erro</string>
-
 	<string name="service_error_title">Verificação de erro no site</string>
+	<string name="notification_text">Erros: %d</string>
 </resources>
