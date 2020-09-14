@@ -20,11 +20,11 @@ android {
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 			zipAlignEnabled true
-			resValue 'string', 'app_short_name', 'DfM'
+			resValue 'string', 'app_short_name', 'Error Logs'
 		}
 		debug {
 			applicationIdSuffix '.debug'
-			resValue 'string', 'app_short_name', 'DfM Test'
+			resValue 'string', 'app_short_name', 'Error Logs Test'
 		}
 	}
 
