@@ -177,13 +177,14 @@ class MoveLineTest {
 	fun setMoveDatePortrait() {
 		val move = Move(
 			"zelda",
-			1986, 2, 21,
+			1986, 2, 1,
 			34.0, false, guid
 		)
 
 		moveLine.setMove(move, false)
 
-		assertNull(moveLine.date)
+		assertNotNull(moveLine.date)
+		assertThat(moveLine.date?.text.toString(), `is`("01"))
 	}
 
 	@Test

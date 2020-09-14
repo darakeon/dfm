@@ -1,6 +1,8 @@
 package com.darakeon.dfm.extract
 
 import android.content.Context
+import android.content.res.Configuration.ORIENTATION_LANDSCAPE
+import android.content.res.Configuration.ORIENTATION_PORTRAIT
 import android.util.AttributeSet
 import android.view.Menu
 import android.view.View
@@ -66,8 +68,14 @@ class MoveLine(
 	}
 
 	private fun setDateField(move: Move) {
-		if (date != null) {
-			date?.text = move.date.format()
+		when (context.resources.configuration.orientation) {
+			ORIENTATION_PORTRAIT -> {
+				date?.text = move.date.day
+					.toString().padStart(2, '0')
+			}
+			ORIENTATION_LANDSCAPE -> {
+				date?.text = move.date.format()
+			}
 		}
 	}
 
