@@ -1,8 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:gravity="center"
 	tools:context="com.darakeon.dfm.error_logs.StartActivity">
 
-</ConstraintLayout>
+	<ImageView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/pig"
+		android:contentDescription="@string/app_name" />
+
+	<EditText
+		android:id="@+id/email"
+		android:inputType="textEmailAddress"
+		android:hint="@string/email"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:autofillHints="emailAddress"
+		android:text="aripmav1896@gmail.com" />
+
+	<EditText
+		android:id="@+id/password"
+		android:inputType="textPassword"
+		android:hint="@string/password"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:importantForAutofill="no"
+		android:text="teste" />
+
+	<EditText
+		android:id="@+id/tfa"
+		android:inputType="numberPassword"
+		android:hint="@string/tfa"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:autofillHints="emailAddress" />
+
+	<Button
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/login"
+		android:onClick="login" />
+
+</LinearLayout>
