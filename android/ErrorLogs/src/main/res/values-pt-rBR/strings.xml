@@ -7,6 +7,5 @@
 	<string name="password">senha</string>
 	<string name="login">entrar</string>
 	<string name="tfa">código</string>
-	<string name="checking">verificando erros…</string>
 	<string name="empty">Sem erros</string>
 </resources>

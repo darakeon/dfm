@@ -10,7 +10,6 @@ import kotlinx.android.synthetic.main.activity_start.password
 import kotlinx.android.synthetic.main.activity_start.tfa
 
 class StartActivity : BaseActivity() {
-
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_start)
@@ -21,7 +20,10 @@ class StartActivity : BaseActivity() {
 	}
 
 	private fun startServiceAndGoToList() {
-		startService(Intent(this, SiteErrorService::class.java))
+		if (!SiteErrorService.running) {
+			startService(Intent(this, SiteErrorService::class.java))
+		}
+
 		startActivity(Intent(this, ListActivity::class.java))
 		finish()
 	}
