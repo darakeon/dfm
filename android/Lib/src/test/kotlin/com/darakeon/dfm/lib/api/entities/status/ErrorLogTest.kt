@@ -6,7 +6,7 @@ import org.junit.Test
 
 class ErrorLogTest {
 	private val defaultDate = "19860327012000999999"
-	private val defaultException = Exception(
+	private val defaultException = Except(
 		"className", "message", null, "stackTrace", "source",
 	)
 
@@ -36,7 +36,7 @@ class ErrorLogTest {
 
 	@Test
 	fun message() {
-		val exception = Exception(
+		val exception = Except(
 			"className", "message", null, "stackTrace", "source",
 		)
 
@@ -46,11 +46,11 @@ class ErrorLogTest {
 
 	@Test
 	fun message_inner() {
-		val inner = Exception(
+		val inner = Except(
 			"className", "message inner", null, "stackTrace", "source",
 		)
 
-		val outer = Exception(
+		val outer = Except(
 			"className", "message outer", inner, "stackTrace", "source",
 		)
 
@@ -60,15 +60,15 @@ class ErrorLogTest {
 
 	@Test
 	fun message_innerOfInner() {
-		val inner = Exception(
+		val inner = Except(
 			"className", "message inner", null, "stackTrace", "source",
 		)
 
-		val middle = Exception(
+		val middle = Except(
 			"className", "message middle", inner, "stackTrace", "source",
 		)
 
-		val outer = Exception(
+		val outer = Except(
 			"className", "message outer", middle, "stackTrace", "source",
 		)
 
