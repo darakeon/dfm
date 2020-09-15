@@ -28,6 +28,8 @@ fun Activity.setEnvironment(env: Environment) {
 }
 
 private fun Context.themeChangeAndSave(theme: String): Boolean {
+	if (theme == "") return false
+
 	val themeId = getThemeId(theme)
 	val spTheme = themeId.toString()
 
@@ -49,10 +51,11 @@ private fun getThemeId(theme: String): Int =
 	}
 
 private fun Context.languageChangeAndSave(systemLanguage: String): Boolean {
-	val language = systemLanguage.replace("-", "_")
-	val current = Locale.getDefault().toString()
+	if (systemLanguage == "") return false
 
-	if (language.equals(current, ignoreCase = true))
+	val language = systemLanguage.replace("-", "_")
+
+	if (getValue(languageKey) == language)
 		return false
 
 	change(language)
