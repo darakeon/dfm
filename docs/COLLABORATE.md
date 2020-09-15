@@ -41,17 +41,23 @@ lets just watch our steps from now on, ok?
 The message need to have one subject and may have a body. The subject
 should summarize what is done, must have no more than 50 characters,
 start with the scope - part of the system that is been changed -,
-followed by `:`, then by a verb and then by the description of what is
-done.
+followed by `:`, then by the description of what is done, what should
+start with a infinitive verb.
 
-The allowed verbs:
-- add
-- remove
-- refactor
-- move
-- update
-- fix
-- replace
+The allowed scopes are:
+- `safe`: core > user;
+- `admin`: core > accounts and categories;
+- `money`: core > moves;
+- `report`: core > reports;
+- `robot`: core > schedules;
+- `site`: ui, mvc;
+- `android`: app;
+- `chore`: little changes, refactors;
+- `version`: only used to change version numbers;
+- `docs`: documentation at the repository;
+- `tests`: automated tests;
+- `tools`: update version of stuff that is being used;
+- `security`: things like error reporting.
 
 The body of the message is the part where the details go, if they are
 necessary. To make readability easier, it must have no more than 72
