@@ -6,8 +6,7 @@ android {
 	compileSdkVersion 29
 
 	defaultConfig {
-		versionCode 1
-		versionName "4.2.0.1"
+		versionName "$dfm_version"
 
 		minSdkVersion 21
 		targetSdkVersion 29

@@ -9,7 +9,7 @@ android {
 		applicationId "com.darakeon.dfm.error_logs"
 
 		versionCode 1
-		versionName "4.2.0.1"
+		versionName "$dfm_version"
 
 		minSdkVersion 21
 		targetSdkVersion 29

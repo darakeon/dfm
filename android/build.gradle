@@ -11,6 +11,9 @@ buildscript {
 	ext.mockserver_version = '4.4.1'
 	ext.testrunner_version = '1.0.2'
 	ext.expresso_version = '3.0.2'
+
+	ext.dfm_version = "4.2.0.1"
+
 	repositories {
 		google()
 		jcenter()
