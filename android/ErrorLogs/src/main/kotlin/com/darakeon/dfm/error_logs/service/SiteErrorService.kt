@@ -27,6 +27,7 @@ class SiteErrorService : Service(), ApiCaller, Timer.Caller {
 	}
 
 	override fun onStart(intent: Intent?, startid: Int) {
+		notification.notify(getString(R.string.checking))
 		timer.start()
 	}
 

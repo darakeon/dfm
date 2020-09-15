@@ -4,10 +4,10 @@ import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 
-class ExceptionTest {
+class ExceptTest {
 	@Test
 	fun mostInner_level1() {
-		val level1 = Exception(
+		val level1 = Except(
 			"className", "message", null, "stackTrace", "source",
 		)
 
@@ -16,11 +16,11 @@ class ExceptionTest {
 
 	@Test
 	fun mostInner_level2() {
-		val level1 = Exception(
+		val level1 = Except(
 			"className", "message", null, "stackTrace", "source",
 		)
 
-		val level2 = Exception(
+		val level2 = Except(
 			"className", "message", level1, "stackTrace", "source",
 		)
 
@@ -29,15 +29,15 @@ class ExceptionTest {
 
 	@Test
 	fun mostInner_level3() {
-		val level1 = Exception(
+		val level1 = Except(
 			"className", "message", null, "stackTrace", "source",
 		)
 
-		val level2 = Exception(
+		val level2 = Except(
 			"className", "message", level1, "stackTrace", "source",
 		)
 
-		val level3 = Exception(
+		val level3 = Except(
 			"className", "message", level2, "stackTrace", "source",
 		)
 
@@ -46,19 +46,19 @@ class ExceptionTest {
 
 	@Test
 	fun mostInner_level4() {
-		val level1 = Exception(
+		val level1 = Except(
 			"className", "message", null, "stackTrace", "source",
 		)
 
-		val level2 = Exception(
+		val level2 = Except(
 			"className", "message", level1, "stackTrace", "source",
 		)
 
-		val level3 = Exception(
+		val level3 = Except(
 			"className", "message", level2, "stackTrace", "source",
 		)
 
-		val level4 = Exception(
+		val level4 = Except(
 			"className", "message", level3, "stackTrace", "source",
 		)
 

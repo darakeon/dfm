@@ -24,6 +24,8 @@
 			</intent-filter>
 		</activity>
 
+		<activity android:name=".ListActivity" />
+
 		<service
 			android:name=".service.SiteErrorService"
 			android:description="@string/service_error_title"

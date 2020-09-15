@@ -106,7 +106,7 @@ interface RequestService {
 	@GET("api/log/list")
 	fun listErrors(): Call<Body<ErrorList>>
 
-	@GET("api/log/archive/{id}")
+	@POST("api/log/archive/{id}")
 	fun archiveError(
 		@Path("id") id: String
 	): Call<Body<Any>>

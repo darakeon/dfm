@@ -35,7 +35,6 @@ class EnvironmentTest {
 		activity = mockContext.activity
 
 		`when`(activity.refresh()).execute { refreshed = true }
-
 	}
 
 	@Test

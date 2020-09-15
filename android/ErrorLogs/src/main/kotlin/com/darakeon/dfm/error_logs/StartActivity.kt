@@ -16,12 +16,13 @@ class StartActivity : BaseActivity() {
 		setContentView(R.layout.activity_start)
 
 		if (auth.isLoggedIn) {
-			startService()
+			startServiceAndGoToList()
 		}
 	}
 
-	private fun startService() {
+	private fun startServiceAndGoToList() {
 		startService(Intent(this, SiteErrorService::class.java))
+		startActivity(Intent(this, ListActivity::class.java))
 		finish()
 	}
 
@@ -42,7 +43,7 @@ class StartActivity : BaseActivity() {
 		auth.ticket = it.ticket
 		api.validateTFA(
 			tfa.text.toString(),
-			this::startService
+			this::startServiceAndGoToList
 		)
 	}
 }

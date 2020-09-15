@@ -2,13 +2,10 @@ package com.darakeon.dfm.lib.api.entities.status
 
 data class ErrorLog(
 	val id: String,
-	val exception: Exception
+	val exception: Except
 ) {
-	private val pattern = "(\\d{4})(\\d{2})(\\d{2})(\\d{2})(\\d{2})(\\d{2})(\\d{6})"
-	private val regex = Regex(pattern)
-
 	fun id(): Int {
-		if (!regex.matches(id)) return 0
+		if (!isDate()) return 0
 		return id.substring(11).toInt()
 	}
 
@@ -17,6 +14,13 @@ data class ErrorLog(
 		val replacer = "$1-$2-$3 $4:$5"
 		return regex.replace(id, replacer)
 	}
+
+	private val regex
+		get() = Regex(
+			"(\\d{4})(\\d{2})(\\d{2})(\\d{2})(\\d{2})(\\d{2})(\\d{6})"
+		)
+
+	private fun isDate() = regex.matches(id)
 
 	fun message() = exception.mostInner().message
 }
