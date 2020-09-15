@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
@@ -20,7 +21,7 @@ namespace DFM.MVC.Helpers.Extensions
 			}
 
 			private readonly IDictionary<HttpContext, T> dic =
-				new Dictionary<HttpContext, T>();
+				new ConcurrentDictionary<HttpContext, T>();
 
 			public T this[HttpContext context]
 			{
