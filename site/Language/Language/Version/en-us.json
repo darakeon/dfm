@@ -1,4 +1,7 @@
 {
+	"4.2.0.2": [
+		"Fixture to follow site bugs"
+	],
 	"4.2.0.1": [
 		"Fix mobile Nature when open move app screen",
 		"Fix tablet eternal rotation",

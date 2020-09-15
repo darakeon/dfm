@@ -1,4 +1,7 @@
 {
+	"4.2.0.2": [
+		"Manutenção para acompanhamento de erros no sistema"
+	],
 	"4.2.0.1": [
 		"Arrumada Natureza da Movimentação na tela inicial de criação do aplicativo",
 		"Corrigido problema de rotação do aplicativo em tablets",
