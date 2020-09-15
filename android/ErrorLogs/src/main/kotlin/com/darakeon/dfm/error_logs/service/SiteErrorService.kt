@@ -7,27 +7,33 @@ import com.darakeon.dfm.error_logs.R
 import com.darakeon.dfm.lib.api.Api
 import com.darakeon.dfm.lib.api.ApiCaller
 import com.darakeon.dfm.lib.auth.Authentication
+import com.darakeon.dfm.lib.R as r
 
 class SiteErrorService : Service(), ApiCaller, Timer.Caller {
 	override var api: Api<SiteErrorService>? = null
 	private lateinit var auth: Authentication
+	private lateinit var notification: Notification
 
-	private val notification = Notification(this)
+	override lateinit var timer: Timer
 
-	override var timer = Timer(this, 30 * 60) { this.callServer() }
-
-	override fun onBind(intent: Intent?): IBinder? {
-		return null
-	}
+	override fun onBind(intent: Intent?): IBinder? = null
 
 	override fun onCreate() {
+		running = true
+
 		api = Api(this, null)
 		auth = Authentication(this)
-		notification.init()
+		notification = Notification(this)
+
+		val minutes = resources.getInteger(
+			R.integer.service_minutes_interval
+		)
+		timer = Timer(this, minutes * 60) {
+			this.callServer()
+		}
 	}
 
 	override fun onStart(intent: Intent?, startid: Int) {
-		notification.notify(getString(R.string.checking))
 		timer.start()
 	}
 
@@ -37,19 +43,24 @@ class SiteErrorService : Service(), ApiCaller, Timer.Caller {
 		}
 	}
 
+	private var message: String = ""
+
 	private fun notifyErrors(count: Int) {
-		if (count <= 0) return
+		val message = if (count <= 0)
+			getString(R.string.empty)
+		else
+			getString(R.string.notification_text).format(count)
 
-		val message = getString(
-			R.string.notification_text
-		).format(count)
-
-		notification.notify(message)
+		if (message != this.message) {
+			this.message = message
+			notification.notify(message)
+		}
 	}
 
 	override fun onDestroy() {
 		timer.cancel()
 		api?.cancel()
+		running = false
 	}
 
 	override val ticket: String
@@ -64,12 +75,16 @@ class SiteErrorService : Service(), ApiCaller, Timer.Caller {
 	override fun error(url: String, error: Throwable) = error("$url > $error")
 
 	override fun checkTFA() {
-		error(R.string.uninvited)
+		error(r.string.uninvited)
 		stopSelf()
 	}
 
 	override fun logout() {
-		error(R.string.uninvited)
+		error(r.string.uninvited)
 		stopSelf()
+	}
+
+	companion object {
+		var running = false
 	}
 }
