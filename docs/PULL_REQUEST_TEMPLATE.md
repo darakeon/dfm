@@ -14,7 +14,7 @@
 - [ ] Update Site
 - [ ] Test Site
 - [ ] Test error handler
-- [ ] Upload APK
+- [ ] Upload APKs
 - [ ] Execute destructive Sql
 - [ ] Upload new mobile prints
 - [ ] Merge PR
