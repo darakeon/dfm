@@ -26,7 +26,6 @@ import kotlin.reflect.KClass
 class MockContext<A: Activity>(type: KClass<A>) {
 	val activity: A = mock(type.java)
 	private val manager = mock(ConnectivityManager::class.java)
-	private var resourceCount = 0
 
 	fun mockInternet(): MockContext<A> {
 		`when`(
@@ -105,19 +104,8 @@ class MockContext<A: Activity>(type: KClass<A>) {
 		return this
 	}
 
-	fun addStringResource(key: String, value: String): MockContext<A> {
-		resourceCount++
-
-		`when`(
-			activity.resources
-				.getIdentifier(
-					key,
-					"string",
-					activity.packageName
-				)
-		).thenReturn(resourceCount)
-
-		`when`(activity.getString(resourceCount))
+	fun addStringResource(key: Int, value: String): MockContext<A> {
+		`when`(activity.getString(key))
 			.thenReturn(value)
 
 		return this

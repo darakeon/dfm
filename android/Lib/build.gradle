@@ -89,7 +89,7 @@ task ipNetwork(type: Copy) {
 	from ('src/main/res/xml/network_security_config.xml')
 	into ('src/debug/res/xml')
 	filter {
-		String line -> line.replaceAll("<!-- YOUR LOCAL IP -->", getLocalIP())
+		String line -> line.replaceAll("dontflymoney.com", getLocalIP())
 	}
 }
 
@@ -97,7 +97,7 @@ task ipAddress(type: Copy) {
 	from ('src/main/res/values/local-address.xml')
 	into ('src/debug/res/values')
 	filter {
-		String line -> line.replaceAll("<!-- YOUR LOCAL IP -->", getLocalIP())
+		String line -> line.replaceAll("dontflymoney.com", getLocalIP())
 	}
 }
 

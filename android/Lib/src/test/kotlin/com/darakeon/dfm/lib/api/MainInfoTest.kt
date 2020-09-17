@@ -3,7 +3,7 @@ package com.darakeon.dfm.lib.api
 import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import com.darakeon.dfm.lib.BuildConfig
+import com.darakeon.dfm.lib.R
 import com.darakeon.dfm.lib.utils.mockContext
 import com.darakeon.dfm.testutils.LogRule
 import org.hamcrest.CoreMatchers.`is`
@@ -18,18 +18,27 @@ class MainInfoTest {
 	val log = LogRule()
 
 	@Test
-	fun getSiteUrl() {
+	fun getSiteUrl_IP() {
 		val context = mockContext()
 			.mockResources()
-			.addStringResource("local_address", "site")
+			.addStringResource(R.string.site_address, "127.0.0.1")
 			.activity
 
 		val url = MainInfo.getSiteUrl(context)
 
-		if (BuildConfig.DEBUG)
-			assertThat(url, `is`("http://site/"))
-		else
-			assertThat(url, `is`("https://dontflymoney.com/"))
+		assertThat(url, `is`("http://127.0.0.1/"))
+	}
+
+	@Test
+	fun getSiteUrl_Address() {
+		val context = mockContext()
+			.mockResources()
+			.addStringResource(R.string.site_address, "site")
+			.activity
+
+		val url = MainInfo.getSiteUrl(context)
+
+		assertThat(url, `is`("https://site/"))
 	}
 
 	@Test
