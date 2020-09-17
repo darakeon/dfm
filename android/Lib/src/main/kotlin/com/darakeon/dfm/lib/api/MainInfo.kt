@@ -1,35 +1,23 @@
 package com.darakeon.dfm.lib.api
 
 import android.content.Context
-import com.darakeon.dfm.lib.BuildConfig
+import com.darakeon.dfm.lib.R
 
 object MainInfo
 {
-	private const val main_address =
-		"https://dontflymoney.com/"
-
 	fun getSiteUrl(context: Context) : String {
-		if (!BuildConfig.DEBUG)
-			return main_address
+		val siteAddress =
+			context.getString(R.string.site_address)
 
-		val addressResId = context.resources
-			.getIdentifier(
-				"local_address",
-				"string",
-				context.packageName
-			)
-
-		if (addressResId == 0)
-			return main_address
-
-		val localAddress =
-			context.getString(addressResId)
-
-		if (localAddress == "")
-			return main_address
-
-		return "http://$localAddress/"
+		return if (isIP(siteAddress))
+			"http://$siteAddress/"
+		else
+			"https://$siteAddress/"
 	}
+
+	private fun isIP(address: String) =
+		Regex("\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}")
+			.matches(address)
 
 	fun getAppVersion(context: Context): String {
 		return context.packageManager.getPackageInfo(
