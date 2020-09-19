@@ -14,7 +14,7 @@ This is the task list for the project.
 | Task (60)                                                                               | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
 | --------------------------------------------------------------------------------------- | -------- | --- | --- | --- | ------------------ | ------------------------------------------------ |
 | Show future moves and foreseen balance                                                  | :whale:  |  3  |  4  |  5  |                    | [#21](https://github.com/darakeon/dfm/issues/21) |
-| Make/find app to verify DFM status                                                      | :ant:    |  3  |  4  |  5  |                    |                                                  |
+| Verify DFM [status](https://www.pingdom.com/)                                           | :ant:    |  3  |  4  |  5  |                    |                                                  |
 | Add navigate gestures to reports (left to future, right to past)                        | :whale:  |  2  |  3  |  5  |                    |                                                  |
 | Add moves gestures (left delete, right check/uncheck, hold edit, click show options)    | :whale:  |  2  |  3  |  5  |                    |                                                  |
 | Add create new task list at version changer (q2 add tasks 1 and 2, numbers add by line) | :ant:    |  2  |  3  |  5  |                    |                                                  |
@@ -52,7 +52,7 @@ This is the task list for the project.
 | Enable Copy Move (web+mobile)                                                           | :whale:  |  2  |  2  |  4  |                    |                                                  |
 | If session drop, call history.go(-2) after re-login                                     | :sheep:  |  1  |  1  |  4  |                    |                                                  |
 | Make default language EN if browser is not PT, ES, IT or FR                             | :sheep:  |  1  |  1  |  4  |                    |                                                  |
-| Replace XML at UI android by compose jetpack                                            | :ant:    |  4  |  3  |  3  |                    |                                                  |
+| Replace XML at UI android by [compose jetpack]                                          | :ant:    |  4  |  3  |  3  |                    |                                                  |
 | Add misc to users                                                                       | :dragon: |  3  |  2  |  3  |                    |                                                  |
 | Reset Misc on password change and send e-mail                                           | :sheep:  |  1  |  3  |  6  | misc               |                                                  |
 | Add Misc reset manually                                                                 | :sheep:  |  1  |  2  |  5  | misc               |                                                  |
@@ -72,3 +72,5 @@ This is the task list for the project.
 | Data import and export (csv, json)                                                      | :dragon: |  3  |  1  |  2  |                    |                                                  |
 | Config max request length                                                               | :ant:    |  1  |  2  |  5  | import/export      |                                                  |
 | Create service to translate site ("put in your language")                               | :dragon: |  4  |  1  |  1  |                    |                                                  |
+
+[compose jetpack]: https://medium.com/@nglauber/jetpack-compose-o-framework-de-ui-do-android-para-os-pr%C3%B3ximos-10-anos-e19adf28e57e
