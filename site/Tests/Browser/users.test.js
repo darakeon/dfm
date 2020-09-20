@@ -22,6 +22,18 @@ describe('Users', () => {
 		await expect(message).toContain('Cadastro efetuado com sucesso.')
 	})
 
+	test('SignUp - contract modal', async () => {
+		await puppy.call('Users/SignUp')
+		await page.waitForSelector('#body form')
+
+		await page.waitForSelector('#contract-modal', { visible: false })
+
+		const termsLink = '#body form a[role="button"]'
+		await page.click(termsLink)
+
+		await page.waitForSelector('#contract-modal', { visible: true })
+	})
+
 	test('Logon', async () => {
 		const email = 'logon_success@dontflymoney.com'
 		await db.createUserIfNotExists(email, 1)
