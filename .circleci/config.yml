@@ -120,11 +120,15 @@ jobs:
       - run:
           name: build
           path: android
-          command: ./gradlew build -x test
+          command: ./gradlew build -x test -x lint
       - run:
-          name: tests_android
+          name: tests
           path: android
-          command: ./gradlew test
+          command: ./gradlew test -x lint
+      - run:
+          name: lint
+          path: android
+          command: ./gradlew lint
       - store_artifacts:
           path: android/TestUtils/build/reports
           destination: reports/testUtils
