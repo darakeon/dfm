@@ -1,5 +1,7 @@
 {
 	"en-US": {
+		"Unknown": "ZERO",
+
 		"CheckErrors": "Check the fields and try again.",
 
 		"AccountNotFound": "Account not found.",
@@ -89,6 +91,8 @@
 		"ErrorRunningSchedules": "Error running schedules, contact us.",
 	},
 	"pt-BR": {
+		"Unknown": "ZERO",
+
 		"CheckErrors": "Verifique os erros e tente novamente.",
 
 		"AccountNotFound": "Conta não encontrada.",

@@ -14,11 +14,12 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="4.3.0.0"></a>4.3.0.0 :whale: <sup>`4`</sup>
+## <a name="4.3.0.0"></a>4.3.0.0 :whale: <sup>`5`</sup>
 - [ ] Add change language icon to site
 - [ ] Enable reopen account
 - [ ] Last login date
 - [ ] Search by move/detail
+- [x] `200919>200919` Fix zero error code problem
 
 ## <a name="4.2.0.2"></a>4.2.0.2 :sheep: <sup>`1`</sup>
 - [x] `200827>200915` Send site errors to cellphone

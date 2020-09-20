@@ -4,6 +4,8 @@ namespace DFM.BusinessLogic.Exceptions
 {
 	public enum Error
 	{
+		Unknown = 0,
+
 		Uninvited = 207,
 		NotSignedLastContract = 42,
 
