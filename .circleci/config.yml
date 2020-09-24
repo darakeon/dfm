@@ -141,8 +141,10 @@ jobs:
       - store_artifacts:
           path: android/ErrorLogs/build/reports
           destination: reports/errorLogs
-      #- store_test_results:
-      #    path: android/DFM/build/test-results
+      - store_test_results:
+          path: android/Lib/build/test-results
+      - store_test_results:
+          path: android/App/build/test-results
 
 workflows:
   version: 2.1
