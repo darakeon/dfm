@@ -54,7 +54,6 @@ import kotlinx.android.synthetic.main.moves.warnings
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.isEmptyString
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
@@ -795,9 +794,9 @@ class MovesActivityTest {
 
 		activity.addDetail(View(activity))
 
-		assertThat(activity.detail_description.text.toString(), isEmptyString())
+		assertThat(activity.detail_description.text.toString(), `is`(""))
 		assertThat(activity.detail_amount.text.toString(), `is`("1"))
-		assertThat(activity.detail_value.text.toString(), isEmptyString())
+		assertThat(activity.detail_value.text.toString(), `is`(""))
 
 		assertThat(move.detailList.size, `is`(1))
 		assertThat(move.detailList[0].description, `is`("cat"))
