@@ -2,9 +2,9 @@ package com.darakeon.dfm.extract
 
 import com.darakeon.dfm.R
 import com.darakeon.dfm.lib.api.entities.extract.Move
-import com.darakeon.dfm.utils.api.ActivityMock
-import com.darakeon.dfm.testutils.api.guid
 import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.api.guid
+import com.darakeon.dfm.utils.api.ActivityMock
 import kotlinx.android.synthetic.main.move_line.view.name
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat

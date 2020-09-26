@@ -13,10 +13,10 @@ import com.darakeon.dfm.lib.extensions.getPrivate
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.api.readBundle
 import com.darakeon.dfm.testutils.getDecimal
-import com.darakeon.dfm.utils.api.ActivityMock
-import com.darakeon.dfm.utils.activity.getLastDatePicker
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
 import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
+import com.darakeon.dfm.utils.activity.getLastDatePicker
+import com.darakeon.dfm.utils.api.ActivityMock
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.summary.empty_list
 import kotlinx.android.synthetic.main.summary.main_table
@@ -248,8 +248,8 @@ class SummaryActivityTest {
 		val dialog = getLastDatePicker()
 		dialog.updateDate(1986, 1, 1)
 		dialog.getButton(Dialog.BUTTON_POSITIVE).performClick()
-
 		waitTasksFinish()
+
 		val year = activity.getPrivate<Int>("year")
 		assertThat(year, `is`(1986))
 

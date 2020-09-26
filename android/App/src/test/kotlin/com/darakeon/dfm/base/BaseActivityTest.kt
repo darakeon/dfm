@@ -16,19 +16,19 @@ import com.darakeon.dfm.moves.MovesActivity
 import com.darakeon.dfm.settings.SettingsActivity
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.context.getCalledName
-import com.darakeon.dfm.utils.api.ActivityMock
-import com.darakeon.dfm.utils.activity.TestActivity
-import com.darakeon.dfm.utils.robolectric.RoboContextMenu
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
 import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
+import com.darakeon.dfm.utils.activity.TestActivity
+import com.darakeon.dfm.utils.api.ActivityMock
+import com.darakeon.dfm.utils.robolectric.RoboContextMenu
 import kotlinx.android.synthetic.main.bottom_menu.action_close
 import kotlinx.android.synthetic.main.bottom_menu.action_logout
 import kotlinx.android.synthetic.main.bottom_menu.bottom_menu
 import kotlinx.android.synthetic.main.bottom_menu.view.action_home
 import kotlinx.android.synthetic.main.bottom_menu.view.action_move
 import kotlinx.android.synthetic.main.bottom_menu.view.action_settings
-import org.hamcrest.CoreMatchers.not
 import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.CoreMatchers.not
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
@@ -210,8 +210,8 @@ class BaseActivityTest {
 		assertNotNull(logout.onLongClickListener)
 
 		activity.action_logout.performLongClick()
-
 		waitTasksFinish()
+
 		assertThat(activity.ticket, `is`(""))
 	}
 

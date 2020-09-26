@@ -2,12 +2,12 @@ package com.darakeon.dfm.lib.api
 
 import com.darakeon.dfm.lib.BuildConfig
 import com.darakeon.dfm.lib.extensions.getPrivate
-import com.darakeon.dfm.testutils.LogRule
-import com.darakeon.dfm.testutils.TestException
-import com.darakeon.dfm.testutils.api.internetError
 import com.darakeon.dfm.lib.utils.ActivityMock
 import com.darakeon.dfm.lib.utils.ApiActivity
 import com.darakeon.dfm.lib.utils.CallMock
+import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.TestException
+import com.darakeon.dfm.testutils.api.internetError
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
@@ -42,9 +42,7 @@ class RequestHandlerTest {
 		call.execute()
 
 		assertThat(result, `is`(""))
-
 		assertThat(activity.errorText, `is`("You're offline"))
-
 		assertTrue(call.isExecuted)
 	}
 

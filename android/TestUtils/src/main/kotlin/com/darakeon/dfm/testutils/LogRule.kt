@@ -34,7 +34,7 @@ class LogRule : TestRule {
 
 		println(log)
 
-		if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 			logToFile(log)
 		}
 	}
