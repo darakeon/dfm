@@ -140,8 +140,8 @@ class ApiTest {
 		api.getMove(null) {
 			moveCreation = it
 		}
-
 		waitTasksFinish()
+
 		assertNotNull(moveCreation)
 	}
 
@@ -153,8 +153,8 @@ class ApiTest {
 		api.getMove(fakeGuid) {
 			moveCreation = it
 		}
-
 		waitTasksFinish()
+
 		assertNotNull(moveCreation)
 	}
 

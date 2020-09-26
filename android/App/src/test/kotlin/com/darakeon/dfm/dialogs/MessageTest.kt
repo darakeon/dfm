@@ -5,8 +5,8 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.robolectric.assertAlertWait
-import com.darakeon.dfm.utils.api.ActivityMock
 import com.darakeon.dfm.utils.activity.TestActivity
+import com.darakeon.dfm.utils.api.ActivityMock
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertFalse

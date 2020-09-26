@@ -2,8 +2,8 @@ package com.darakeon.dfm.extensions
 
 import android.view.KeyEvent
 import android.widget.EditText
-import com.darakeon.dfm.utils.api.ActivityMock
 import com.darakeon.dfm.utils.activity.TestActivity
+import com.darakeon.dfm.utils.api.ActivityMock
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before

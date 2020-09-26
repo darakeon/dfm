@@ -18,10 +18,10 @@ import com.darakeon.dfm.testutils.api.guid
 import com.darakeon.dfm.testutils.api.readBundle
 import com.darakeon.dfm.testutils.context.getCalledName
 import com.darakeon.dfm.testutils.getDecimal
-import com.darakeon.dfm.utils.api.ActivityMock
-import com.darakeon.dfm.utils.activity.getLastDatePicker
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
 import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
+import com.darakeon.dfm.utils.activity.getLastDatePicker
+import com.darakeon.dfm.utils.api.ActivityMock
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.extract.empty_list
 import kotlinx.android.synthetic.main.extract.main_table
@@ -411,7 +411,6 @@ class ExtractActivityTest {
 
 		val item = line.menu!!.getItem(3)
 		activity.onContextItemSelected(item)
-
 		assertFalse(line.isChecked)
 	}
 

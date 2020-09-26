@@ -5,8 +5,8 @@ import android.app.Dialog
 import android.content.res.Resources
 import android.view.View
 import com.darakeon.dfm.testutils.LogRule
-import com.darakeon.dfm.utils.api.ActivityMock
 import com.darakeon.dfm.utils.activity.TestActivity
+import com.darakeon.dfm.utils.api.ActivityMock
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertFalse

@@ -19,7 +19,6 @@ import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
 import com.darakeon.dfm.lib.api.entities.moves.MoveForm
 import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.extensions.getPrivate
-import com.darakeon.dfm.utils.api.ActivityMock
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.api.guid
 import com.darakeon.dfm.testutils.api.readBundle
@@ -27,6 +26,7 @@ import com.darakeon.dfm.testutils.context.getCalledName
 import com.darakeon.dfm.testutils.getDecimal
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
 import com.darakeon.dfm.utils.activity.getLastDatePicker
+import com.darakeon.dfm.utils.api.ActivityMock
 import com.darakeon.dfm.welcome.WelcomeActivity
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.moves.account_in
@@ -52,8 +52,8 @@ import kotlinx.android.synthetic.main.moves.simple_value
 import kotlinx.android.synthetic.main.moves.value
 import kotlinx.android.synthetic.main.moves.warnings
 import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.CoreMatchers.not
+import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.isEmptyString
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull

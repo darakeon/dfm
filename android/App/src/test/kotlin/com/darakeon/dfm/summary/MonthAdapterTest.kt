@@ -2,8 +2,8 @@ package com.darakeon.dfm.summary
 
 import com.darakeon.dfm.R
 import com.darakeon.dfm.lib.api.entities.summary.Month
-import com.darakeon.dfm.utils.api.ActivityMock
 import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.utils.api.ActivityMock
 import kotlinx.android.synthetic.main.month_line.view.name
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat

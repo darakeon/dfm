@@ -13,9 +13,9 @@ import com.darakeon.dfm.lib.extensions.getPrivate
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.api.readBundle
 import com.darakeon.dfm.testutils.context.getCalledName
-import com.darakeon.dfm.utils.api.ActivityMock
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
 import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
+import com.darakeon.dfm.utils.api.ActivityMock
 import com.darakeon.dfm.welcome.WelcomeActivity
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.settings.move_check
@@ -65,8 +65,8 @@ class SettingsActivityTest {
 		mocker.server.enqueue("config_get")
 
 		activity.onCreate(null, null)
-
 		waitTasksFinish()
+
 		val settings = activity.getPrivate<Settings>("settings")
 		assertThat(settings, `is`(Settings(true, true)))
 

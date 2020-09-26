@@ -4,8 +4,8 @@ import android.content.pm.ActivityInfo
 import android.view.WindowManager
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.robolectric.assertAlertWait
-import com.darakeon.dfm.utils.api.ActivityMock
 import com.darakeon.dfm.utils.activity.TestActivity
+import com.darakeon.dfm.utils.api.ActivityMock
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.MatcherAssert.assertThat

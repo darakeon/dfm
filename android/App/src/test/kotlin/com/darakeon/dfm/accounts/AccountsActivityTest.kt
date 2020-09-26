@@ -10,8 +10,8 @@ import com.darakeon.dfm.lib.api.entities.accounts.Account
 import com.darakeon.dfm.lib.extensions.getPrivate
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.api.readBundle
-import com.darakeon.dfm.utils.api.ActivityMock
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
+import com.darakeon.dfm.utils.api.ActivityMock
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.accounts.empty_list
 import kotlinx.android.synthetic.main.accounts.main_table
