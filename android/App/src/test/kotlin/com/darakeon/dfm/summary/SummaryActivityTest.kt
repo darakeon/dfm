@@ -53,6 +53,8 @@ class SummaryActivityTest {
 	@Test
 	fun structure() {
 		activity.onCreate(null, null)
+		waitTasksFinish()
+
 		assertNotNull(activity.findViewById(R.id.highlight))
 		assertNotNull(activity.findViewById(R.id.total_title))
 		assertNotNull(activity.findViewById(R.id.total_value))
@@ -129,6 +131,7 @@ class SummaryActivityTest {
 		mocker.server.enqueue("summary")
 
 		activity.onCreate(null, null)
+		waitTasksFinish()
 
 		val summary = activity.getPrivate<Summary>("summary")
 		assertThat(summary.title, `is`("account"))
@@ -253,7 +256,6 @@ class SummaryActivityTest {
 		val year = activity.getPrivate<Int>("year")
 		assertThat(year, `is`(1986))
 
-		waitTasksFinish()
 		val summary = activity.getPrivate<Summary>("summary")
 		assertThat(summary.monthList.size, `is`(2))
 	}

@@ -52,6 +52,7 @@ class SettingsActivityTest {
 	@Test
 	fun structure() {
 		activity.onCreate(null, null)
+		waitTasksFinish()
 
 		assertNotNull(activity.findViewById(R.id.use_categories))
 		assertNotNull(activity.findViewById(R.id.move_check))
@@ -157,6 +158,7 @@ class SettingsActivityTest {
 		activity.onCreate(saved, null)
 
 		activity.saveSettings(View(activity))
+		waitTasksFinish()
 
 		val alert = getShownDialogs()
 			.filterIsInstance<AlertDialog>()
@@ -167,6 +169,7 @@ class SettingsActivityTest {
 		assertThat(shadowAlert.message.toString(), `is`(successMessage))
 
 		alert.getButton(Dialog.BUTTON_POSITIVE).performClick()
+		waitTasksFinish()
 
 		val shadowActivity = shadowOf(activity)
 		val intent = shadowActivity.peekNextStartedActivity()

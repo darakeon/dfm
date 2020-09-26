@@ -7,8 +7,8 @@ buildscript {
 	ext.retrofit_version = '2.8.1'
 	ext.mockito_version = '3.2.4'
 	ext.junit_version = '4.13'
-	ext.robolectric_version = '4.3.1'
-	ext.mockserver_version = '4.4.1'
+	ext.robolectric_version = '4.4'
+	ext.mockserver_version = '4.9.0'
 	ext.testrunner_version = '1.0.2'
 	ext.expresso_version = '3.0.2'
 

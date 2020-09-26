@@ -18,7 +18,11 @@ class ResponseHandler<C, A>(
 ) : Callback<Body<A>>
 	where C: Context, C: ApiCaller
 {
+	init { logDebug("INIT") }
+
 	override fun onResponse(call: Call<Body<A>>, response: Response<Body<A>>?) {
+		logDebug("SUCCESS")
+
 		caller.endWait()
 
 		if (response == null) {
@@ -44,6 +48,8 @@ class ResponseHandler<C, A>(
 	}
 
 	override fun onFailure(call: Call<Body<A>>, throwable: Throwable) {
+		logDebug("FAIL")
+
 		caller.endWait()
 
 		when (throwable) {
@@ -77,4 +83,8 @@ class ResponseHandler<C, A>(
 
 	private fun getError(error: String?) =
 		error ?: caller.getString(R.string.error_not_identified)
+
+	private fun logDebug(stage: String) {
+		println("$stage $caller")
+	}
 }

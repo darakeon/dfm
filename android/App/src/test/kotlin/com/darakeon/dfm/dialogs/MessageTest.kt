@@ -5,6 +5,7 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.robolectric.assertAlertWait
+import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
 import com.darakeon.dfm.utils.activity.TestActivity
 import com.darakeon.dfm.utils.api.ActivityMock
 import org.hamcrest.CoreMatchers.`is`
@@ -47,6 +48,7 @@ class MessageTest {
 		assertTrue(alert.getButton(Dialog.BUTTON_NEGATIVE).isShown)
 
 		alert.getButton(Dialog.BUTTON_POSITIVE).performClick()
+		waitTasksFinish()
 
 		assertTrue(ok)
 		assertFalse(alert.isShowing)
@@ -68,6 +70,7 @@ class MessageTest {
 		assertTrue(alert.getButton(Dialog.BUTTON_NEGATIVE).isShown)
 
 		alert.getButton(Dialog.BUTTON_NEGATIVE).performClick()
+		waitTasksFinish()
 
 		assertFalse(ok)
 		assertFalse(alert.isShowing)
@@ -88,6 +91,8 @@ class MessageTest {
 		assertFalse(alert.getButton(Dialog.BUTTON_NEGATIVE).isShown)
 
 		alert.getButton(Dialog.BUTTON_POSITIVE).performClick()
+		waitTasksFinish()
+
 		assertFalse(alert.isShowing)
 	}
 
@@ -106,6 +111,8 @@ class MessageTest {
 		assertFalse(alert.getButton(Dialog.BUTTON_NEGATIVE).isShown)
 
 		alert.getButton(Dialog.BUTTON_POSITIVE).performClick()
+		waitTasksFinish()
+
 		assertFalse(alert.isShowing)
 	}
 
@@ -125,6 +132,7 @@ class MessageTest {
 		assertTrue(alert.getButton(Dialog.BUTTON_NEGATIVE).isShown)
 
 		alert.getButton(Dialog.BUTTON_NEGATIVE).performClick()
+		waitTasksFinish()
 
 		assertFalse(sendError)
 		assertFalse(alert.isShowing)
@@ -146,6 +154,7 @@ class MessageTest {
 		assertTrue(alert.getButton(Dialog.BUTTON_NEGATIVE).isShown)
 
 		alert.getButton(Dialog.BUTTON_POSITIVE).performClick()
+		waitTasksFinish()
 
 		assertTrue(sendError)
 		assertFalse(alert.isShowing)

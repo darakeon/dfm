@@ -326,6 +326,7 @@ class BaseActivityTest {
 		val activity = mocker.create()
 
 		val api = activity.getPrivate<Api<BaseActivity>>("api")
+		api.wakeUpSite{}
 
 		activity.testDestroy()
 
@@ -382,6 +383,7 @@ class BaseActivityTest {
 
 		val view = View(activity)
 		activity.goToAccounts(view)
+		waitTasksFinish()
 
 		val called = shadowOf(activity)
 			.peekNextStartedActivity()
@@ -396,6 +398,7 @@ class BaseActivityTest {
 
 		val view = View(activity)
 		activity.goToSettings(view)
+		waitTasksFinish()
 
 		val called = shadowOf(activity)
 			.peekNextStartedActivity()
@@ -410,6 +413,7 @@ class BaseActivityTest {
 
 		val view = View(activity)
 		activity.createMove(view)
+		waitTasksFinish()
 
 		val called = shadowOf(activity)
 			.peekNextStartedActivity()

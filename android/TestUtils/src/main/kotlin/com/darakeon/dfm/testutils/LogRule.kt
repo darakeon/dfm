@@ -15,8 +15,9 @@ import java.util.Locale
 class LogRule : TestRule {
 	override fun apply(statement: Statement, description: Description): Statement {
 		return processInStatement {
-			log(description.className, description.methodName)
+			log(description.className, description.methodName, "START")
 			statement.evaluate()
+			log(description.className, description.methodName, "END")
 		}
 	}
 
@@ -28,9 +29,9 @@ class LogRule : TestRule {
 		}
 	}
 
-	private fun log(parent: Any, message: Any) {
+	private fun log(parent: Any, message: Any, stage: String) {
 		val now = now("HH:mm:ss.SSS")
-		val log = "[${now}] $parent.$message"
+		val log = "[${now}] $parent.$message: $stage"
 
 		println(log)
 

@@ -62,6 +62,7 @@ class ApiTest {
 		api.listAccounts {
 			accountList = it
 		}
+		waitTasksFinish()
 
 		assertNotNull(accountList)
 	}
@@ -74,6 +75,8 @@ class ApiTest {
 		api.getExtract("", 0, 0) {
 			extract = it
 		}
+		waitTasksFinish()
+
 		assertNotNull(extract)
 	}
 
@@ -85,6 +88,8 @@ class ApiTest {
 		api.check(fakeGuid, Nature.Transfer) {
 			called = true
 		}
+		waitTasksFinish()
+
 		assertTrue(called)
 	}
 
@@ -96,6 +101,8 @@ class ApiTest {
 		api.uncheck(fakeGuid, Nature.Transfer) {
 			called = true
 		}
+		waitTasksFinish()
+
 		assertTrue(called)
 	}
 
@@ -107,6 +114,8 @@ class ApiTest {
 		api.delete(fakeGuid) {
 			called = true
 		}
+		waitTasksFinish()
+
 		assertTrue(called)
 	}
 
@@ -118,6 +127,8 @@ class ApiTest {
 		api.login("", "") {
 			login = it
 		}
+		waitTasksFinish()
+
 		assertNotNull(login)
 	}
 
@@ -129,6 +140,8 @@ class ApiTest {
 		api.logout {
 			called = true
 		}
+		waitTasksFinish()
+
 		assertTrue(called)
 	}
 
@@ -166,6 +179,8 @@ class ApiTest {
 		api.saveMove(Move()) {
 			called = true
 		}
+		waitTasksFinish()
+
 		assertTrue(called)
 	}
 
@@ -179,6 +194,8 @@ class ApiTest {
 		api.saveMove(move) {
 			called = true
 		}
+		waitTasksFinish()
+
 		assertTrue(called)
 	}
 
@@ -190,6 +207,8 @@ class ApiTest {
 		api.getConfig {
 			settings = it
 		}
+		waitTasksFinish()
+
 		assertNotNull(settings)
 	}
 
@@ -201,6 +220,8 @@ class ApiTest {
 		api.saveConfig(Settings()) {
 			called = true
 		}
+		waitTasksFinish()
+
 		assertTrue(called)
 	}
 
@@ -212,6 +233,8 @@ class ApiTest {
 		api.getSummary("", 0) {
 			summary = it
 		}
+		waitTasksFinish()
+
 		assertNotNull(summary)
 	}
 
@@ -223,6 +246,8 @@ class ApiTest {
 		api.validateTFA("") {
 			called = true
 		}
+		waitTasksFinish()
+
 		assertTrue(called)
 	}
 
@@ -234,6 +259,7 @@ class ApiTest {
 		api.wakeUpSite {
 			called = true
 		}
+		waitTasksFinish()
 
 		assertTrue(called)
 	}
@@ -246,6 +272,7 @@ class ApiTest {
 		api.countErrors {
 			errors = it
 		}
+		waitTasksFinish()
 
 		assertNotNull(errors)
 	}
@@ -258,6 +285,7 @@ class ApiTest {
 		api.listErrors {
 			errors = it
 		}
+		waitTasksFinish()
 
 		assertNotNull(errors)
 	}
@@ -270,6 +298,7 @@ class ApiTest {
 		api.archiveError("id") {
 			called = true
 		}
+		waitTasksFinish()
 
 		assertTrue(called)
 	}
@@ -287,6 +316,7 @@ class ApiTest {
 
 	@Test
 	fun cancel() {
+		api.wakeUpSite { }
 		api.cancel()
 		assertTrue(activity.waitEnded)
 	}
