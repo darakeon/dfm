@@ -1,6 +1,5 @@
 package com.darakeon.dfm.moves
 
-import android.content.Context
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -25,25 +24,25 @@ class DetailBoxTest {
 	@get:Rule
 	val log = LogRule()
 
-	private lateinit var context: Context
+	private lateinit var activity: MovesActivity
 	private lateinit var box: DetailBox
 	private var move: Move = Move()
 
 	@Before
 	fun setup() {
-		context = ActivityMock(MovesActivity::class).create()
+		activity = ActivityMock(MovesActivity::class).create()
 
 		val detail = Detail("desc", 3, 2.7)
 		move.detailList.add(detail)
 
-		box = DetailBox(context, move, detail.description, detail.amount, detail.value)
+		box = DetailBox(activity, move, detail.description, detail.amount, detail.value)
 
 		box.tag = "detail"
 	}
 
 	@Test
 	fun addDetailBox() {
-		val layout = LinearLayout(context)
+		val layout = LinearLayout(activity)
 		layout.addView(box)
 
 		assertNotNull(layout.findViewWithTag("detail"))
@@ -66,7 +65,7 @@ class DetailBoxTest {
 
 	@Test
 	fun removeDetailBox() {
-		val layout = LinearLayout(context)
+		val layout = LinearLayout(activity)
 		layout.addView(box)
 
 		box.findViewById<Button>(R.id.detail_remove)
