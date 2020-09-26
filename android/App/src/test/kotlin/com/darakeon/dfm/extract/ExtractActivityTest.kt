@@ -68,6 +68,8 @@ class ExtractActivityTest {
 	@Test
 	fun structure() {
 		activity.onCreate(null, null)
+		waitTasksFinish()
+
 		assertNotNull(activity.findViewById(R.id.highlight))
 		assertNotNull(activity.findViewById(R.id.total_title))
 		assertNotNull(activity.findViewById(R.id.total_value))
@@ -104,6 +106,7 @@ class ExtractActivityTest {
 		mocker.server.enqueue("extract")
 
 		activity.onCreate(null, null)
+		waitTasksFinish()
 
 		val accountUrl = activity.getPrivate<String>("accountUrl")
 		assertThat(accountUrl, `is`("url"))
@@ -158,6 +161,7 @@ class ExtractActivityTest {
 		mocker.server.enqueue("extract")
 
 		activity.onCreate(null, null)
+		waitTasksFinish()
 
 		val extract = activity.getPrivate<Extract>("extract")
 		assertThat(extract.title, `is`("account"))
@@ -290,15 +294,16 @@ class ExtractActivityTest {
 		val dialog = getLastDatePicker()
 		dialog.updateDate(1986, aMonthJava, 1)
 		dialog.getButton(Dialog.BUTTON_POSITIVE).performClick()
+		waitTasksFinish()
 
 		val year = activity.getPrivate<Int>("year")
 		assertThat(year, `is`(1986))
 
-		waitTasksFinish()
 		val month = activity.getPrivate<Int>("month")
 		assertThat(month, `is`(aMonthJava))
 
 		waitTasksFinish()
+
 		val extract = activity.getPrivate<Extract>("extract")
 		assertThat(extract.moveList.size, `is`(1))
 	}
@@ -396,6 +401,7 @@ class ExtractActivityTest {
 
 		val item = line.menu!!.getItem(2)
 		activity.onContextItemSelected(item)
+		waitTasksFinish()
 
 		assertTrue(line.isChecked)
 	}
@@ -411,6 +417,8 @@ class ExtractActivityTest {
 
 		val item = line.menu!!.getItem(3)
 		activity.onContextItemSelected(item)
+		waitTasksFinish()
+
 		assertFalse(line.isChecked)
 	}
 

@@ -7,6 +7,7 @@ import com.darakeon.dfm.lib.extensions.getPrivate
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.context.getCalledName
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
+import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
 import com.darakeon.dfm.utils.api.ActivityMock
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
@@ -34,6 +35,7 @@ class LoginActivityTest {
 	@Test
 	fun structure() {
 		val activity = mocker.create()
+
 		assertNotNull(activity.findViewById(R.id.email))
 		assertNotNull(activity.findViewById(R.id.password))
 		assertNotNull(activity.findViewById(R.id.login_button))
@@ -49,6 +51,7 @@ class LoginActivityTest {
 		val view = View(activity)
 
 		activity.login(view)
+		waitTasksFinish()
 
 		val auth = activity.getPrivate<Authentication>("auth")
 		assertTrue(auth.isLoggedIn)

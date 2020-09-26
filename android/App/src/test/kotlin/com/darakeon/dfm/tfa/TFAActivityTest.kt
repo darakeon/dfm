@@ -5,6 +5,7 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.context.getCalledName
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
+import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
 import com.darakeon.dfm.utils.api.ActivityMock
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
@@ -31,6 +32,7 @@ class TFAActivityTest {
 	@Test
 	fun structure() {
 		val activity = mocker.create()
+
 		assertNotNull(activity.findViewById(R.id.code))
 	}
 
@@ -44,6 +46,7 @@ class TFAActivityTest {
 		val view = View(activity)
 
 		activity.verify(view)
+		waitTasksFinish()
 
 		val shadow = shadowOf(activity)
 		val intent = shadow.peekNextStartedActivity()

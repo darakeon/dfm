@@ -46,8 +46,8 @@ class RequestHandler<C>(
 		caller.startWait()
 	}
 
-	fun cancel(call: Call<*>?) {
-		call?.cancel()
+	fun cancel(call: Call<*>) {
+		call.cancel()
 		dispatcher.cancelAll()
 		caller.endWait()
 	}

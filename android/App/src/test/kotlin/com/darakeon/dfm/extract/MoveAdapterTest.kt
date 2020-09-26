@@ -20,8 +20,9 @@ class MoveAdapterTest {
 
 	@Test
 	fun populateView() {
-		val list = listOf(Move("name", 2019, 5, 4, 0.0, false, guid))
 		val activity = ActivityMock(ExtractActivity::class).create()
+
+		val list = listOf(Move("name", 2019, 5, 4, 0.0, false, guid))
 		val adapter = MoveAdapter(activity, list, false)
 		val line = activity.layoutInflater
 			.inflate(R.layout.move_line, null)

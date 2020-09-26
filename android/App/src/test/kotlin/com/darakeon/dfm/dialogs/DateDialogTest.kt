@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.content.res.Resources
 import android.view.View
 import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
 import com.darakeon.dfm.utils.activity.TestActivity
 import com.darakeon.dfm.utils.api.ActivityMock
 import org.hamcrest.CoreMatchers.`is`
@@ -56,6 +57,7 @@ class DateDialogTest {
 		assertTrue(isVisible(dialog, yearId))
 
 		dialog.getButton(Dialog.BUTTON_POSITIVE).performClick()
+		waitTasksFinish()
 
 		assertThat(day, `is`(23))
 		assertThat(month, `is`(DECEMBER))
@@ -81,6 +83,7 @@ class DateDialogTest {
 		assertTrue(isVisible(dialog, yearId))
 
 		dialog.getButton(Dialog.BUTTON_POSITIVE).performClick()
+		waitTasksFinish()
 
 		assertThat(month, `is`(DECEMBER))
 		assertThat(year, `is`(2013))
@@ -102,6 +105,7 @@ class DateDialogTest {
 		assertTrue(isVisible(dialog, yearId))
 
 		dialog.getButton(Dialog.BUTTON_POSITIVE).performClick()
+		waitTasksFinish()
 
 		assertThat(year, `is`(2013))
 	}

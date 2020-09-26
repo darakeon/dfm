@@ -29,13 +29,19 @@ class Api<C>(
 		private set
 
 	private fun <T> Call<Body<T>>.call(onSuccess: (T) -> Unit) {
+		if (currentCall != null) return
 		currentCall = this
-		requestHandler.call(this, onSuccess)
+		requestHandler.call(this) {
+			onSuccess(it)
+			currentCall = null
+		}
 	}
 
 	fun cancel() {
 		cancelled = true
-		requestHandler.cancel(currentCall)
+		val call = currentCall ?: return
+		requestHandler.cancel(call)
+		currentCall = null
 	}
 
 	fun listAccounts(

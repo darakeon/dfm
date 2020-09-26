@@ -9,6 +9,7 @@ import com.darakeon.dfm.lib.extensions.getPrivate
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.api.guid
 import com.darakeon.dfm.testutils.getDecimal
+import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
 import com.darakeon.dfm.utils.api.ActivityMock
 import com.darakeon.dfm.utils.robolectric.RoboContextMenu
 import kotlinx.android.synthetic.main.extract.main_table
@@ -46,6 +47,7 @@ class MoveLineTest {
 
 		activity = mocker.get()
 		activity.onCreate(null, null)
+		waitTasksFinish()
 
 		moveLine = activity.layoutInflater
 			.inflate(R.layout.move_line, activity.main_table, false)
