@@ -30,7 +30,7 @@ namespace DFM.BusinessLogic
 			Admin = new AdminService(this, account, category, summary, config, schedule, move);
 			Money = new MoneyService(this, move, schedule);
 			Robot = new RobotService(this, schedule, move, detail);
-			Report = new ReportService(this, account, move, summary);
+			Report = new ReportService(this, account, move, detail, summary);
 
 			Current = new Current(Safe, getTicket);
 		}

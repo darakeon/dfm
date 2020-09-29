@@ -18,7 +18,7 @@ Legend:
 - [ ] Add change language icon to site
 - [ ] Enable reopen account
 - [ ] Last login date
-- [ ] Search by move/detail
+- [ ] `200927>......` Search by move/detail
 - [x] `200919>200926` Fix android intermitent tests
 - [x] `200919>200919` Fix settings footer
 - [x] `200919>200919` Add browser signup modal test

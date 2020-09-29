@@ -1,0 +1,18 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using DFM.Entities;
+
+namespace DFM.BusinessLogic.Response
+{
+	public class SearchResult
+	{
+		public SearchResult(IList<Move> moveList)
+		{
+			MoveList = moveList
+				.Select(MoveInfo.Convert4Report)
+				.ToList();
+		}
+
+		public IList<MoveInfo> MoveList { get; set; }
+	}
+}

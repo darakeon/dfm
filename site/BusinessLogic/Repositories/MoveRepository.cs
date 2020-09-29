@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using Keon.Util.Extensions;
 using DFM.BusinessLogic.Bases;
@@ -230,6 +231,40 @@ namespace DFM.BusinessLogic.Repositories
 					m => (m.In != null && m.In.ID == account.ID)
 					     || (m.Out != null && m.Out.ID == account.ID)
 				);
+		}
+
+		public IList<Move> ByDescription(String userEmail, params String[] terms)
+		{
+			return byDescription(userEmail, PrimalMoveNature.In, terms)
+				.Union(byDescription(userEmail, PrimalMoveNature.Out, terms))
+				.ToList();
+		}
+
+		private IList<Move> byDescription(String userEmail, PrimalMoveNature nature, params String[] terms)
+		{
+			var userRelation = getUserRelation(nature);
+
+			var query = NewQuery()
+				.SimpleFilter(userRelation, u => u.Email == userEmail);
+
+			terms.ToList().ForEach(
+				term => query = query.LikeCondition(d => d.Description, term)
+			);
+
+			return query.Result;
+		}
+
+		private static Expression<Func<Move, User>> getUserRelation(PrimalMoveNature nature)
+		{
+			switch (nature)
+			{
+				case PrimalMoveNature.In:
+					return d => d.In.User;
+				case PrimalMoveNature.Out:
+					return d => d.Out.User;
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
 		}
 	}
 }
