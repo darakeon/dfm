@@ -17,9 +17,19 @@ namespace DFM.BusinessLogic.Tests
 	public class MainStep : BaseStep
 	{
 		[Given(@"I have a complete user logged in")]
-		public void GivenIHaveAnActiveUser()
+		public void GivenIHaveACompleteUserLoggedIn()
 		{
 			createLogoffLogin(userEmail, userPassword);
+		}
+
+		[Given(@"I have a complete user logged in for each test")]
+		public void GivenIHaveACompleteUserLoggedInForEachTest()
+		{
+			var title = context.ScenarioInfo.Title
+				.Substring(0, 4)
+				.ToLower();
+			var email = $"{title}@dontflymoney.com";
+			createLogoffLogin(email, userPassword);
 		}
 
 		[Given(@"there is a bad person logged in")]

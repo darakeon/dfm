@@ -43,5 +43,11 @@ namespace DFM.Entities
 				Move = Move,
 			};
 		}
+
+		public override Boolean Equals(object obj)
+		{
+			return obj is Detail detail
+			       && detail.ID == ID;
+		}
 	}
 }

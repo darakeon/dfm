@@ -31,7 +31,9 @@ namespace DFM.BusinessLogic.Response
 		public Boolean Checked { get; private set; }
 
 		public String OutUrl { get; set; }
+		public String OutName { get; set; }
 		public String InUrl { get; set; }
+		public String InName { get; set; }
 		public String CategoryName { get; set; }
 
 		internal void Update(Move move)
@@ -76,14 +78,22 @@ namespace DFM.BusinessLogic.Response
 			return convert4Report(move, info => nature);
 		}
 
-		private static MoveInfo convert4Report(Move move, Func<MoveInfo, PrimalMoveNature> getNature)
+		internal static MoveInfo Convert4Report(Move move)
+		{
+			return convert4Report(move, null);
+		}
+
+		private static MoveInfo convert4Report(Move move, Func<MoveInfo, PrimalMoveNature>? getNature)
 		{
 			var info = convert(move);
 
 			info.Description = move.GetDescriptionWithSchedulePosition();
 
-			var nature = getNature(info);
-			info.Checked = move.IsChecked(nature);
+			if (getNature != null)
+			{
+				var nature = getNature(info);
+				info.Checked = move.IsChecked(nature);
+			}
 
 			return info;
 		}
@@ -107,7 +117,9 @@ namespace DFM.BusinessLogic.Response
 					.Select(DetailInfo.Convert)
 					.ToList(),
 
+				OutName = move.Out?.Name,
 				OutUrl = move.Out?.Url,
+				InName = move.In?.Name,
 				InUrl = move.In?.Url,
 				CategoryName = move.Category?.Name,
 			};

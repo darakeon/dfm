@@ -1,0 +1,53 @@
+﻿Feature: Ec. Search by description
+
+Background:
+	Given I have a complete user logged in for each test
+		And I enable Categories use
+		And I have an account
+		And I have moves of
+			| Description            | Date       | Detail            |
+			| Chocolate              | 2020-09-21 |                   |
+			| Market                 | 2020-09-22 | Chocolate         |
+			| Cheese                 | 2020-09-23 |                   |
+			| Bakery                 | 2020-09-24 | Cheese            |
+			| Chocolate again        | 2020-09-25 | So much chocolate |
+			| Much tons of Chocolate | 2020-09-26 |                   |
+
+Scenario: Ec01. Search with result
+	When I try to search by description Choco
+	Then I will receive no core error
+		And I will receive these moves
+			| Description            | Date       | Detail            |
+			| Chocolate              | 2020-09-21 |                   |
+			| Market                 | 2020-09-22 | Chocolate         |
+			| Chocolate again        | 2020-09-25 | So much chocolate |
+			| Much tons of Chocolate | 2020-09-26 |                   |
+
+Scenario: Ec02. Search without result
+	When I try to search by description something-that-does-not-exists
+	Then I will receive no core error
+		And I will receive no moves
+
+Scenario: Ec3. Search with different case result
+	When I try to search by description choco
+	Then I will receive no core error
+		And I will receive these moves
+			| Description            | Date       | Detail            |
+			| Chocolate              | 2020-09-21 |                   |
+			| Market                 | 2020-09-22 | Chocolate         |
+			| Chocolate again        | 2020-09-25 | So much chocolate |
+			| Much tons of Chocolate | 2020-09-26 |                   |
+
+Scenario: Ec4. Search with spaces
+	When I try to search by description choco much
+	Then I will receive no core error
+		And I will receive these moves
+			| Description            | Date       | Detail            |
+			| Chocolate again        | 2020-09-25 | So much chocolate |
+			| Much tons of Chocolate | 2020-09-26 |                   |
+
+Scenario: Ec5. Search from different user
+	Given there is another person logged in
+	When I try to search by description Choco
+	Then I will receive no core error
+		And I will receive no moves

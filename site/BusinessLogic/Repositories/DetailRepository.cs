@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Bases;
+using DFM.Entities.Enums;
 using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
@@ -55,6 +59,41 @@ namespace DFM.BusinessLogic.Repositories
 
 			if (detail.ValueCents == 0)
 				throw Error.MoveDetailValueRequired.Throw();
+		}
+
+		public IList<Detail> ByDescription(String userEmail, params String[] terms)
+		{
+			return byDescription(userEmail, PrimalMoveNature.In, terms)
+				.Union(byDescription(userEmail, PrimalMoveNature.Out, terms))
+				.ToList();
+		}
+
+		private IList<Detail> byDescription(String userEmail, PrimalMoveNature nature, params String[] terms)
+		{
+			var userRelation = getUserRelation(nature);
+
+			var query = NewQuery()
+				.SimpleFilter(d => d.Move != null)
+				.SimpleFilter(userRelation, u => u.Email == userEmail);
+
+			terms.ToList().ForEach(
+				term => query = query.LikeCondition(d => d.Description, term)
+			);
+
+			return query.Result;
+		}
+
+		private static Expression<Func<Detail, User>> getUserRelation(PrimalMoveNature nature)
+		{
+			switch (nature)
+			{
+				case PrimalMoveNature.In:
+					return d => d.Move.In.User;
+				case PrimalMoveNature.Out:
+					return d => d.Move.Out.User;
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
 		}
 	}
 }

@@ -36,6 +36,12 @@ namespace DFM.BusinessLogic.Tests.E.Report
 			get => get<YearReport>("YearReport");
 			set => set("YearReport", value);
 		}
+
+		private SearchResult searchResult
+		{
+			get => get<SearchResult>("SearchResult");
+			set => set("SearchResult", value);
+		}
 		#endregion
 
 		#region GetMonthReport
@@ -145,6 +151,50 @@ namespace DFM.BusinessLogic.Tests.E.Report
 		}
 		#endregion
 
+		#region SearchByDescription
+		[When(@"I try to search by description (.+)")]
+		public void WhenITryToSearchByDescription(String description)
+		{
+			searchResult = service.Report.SearchByDescription(description);
+		}
+
+		[Then(@"I will receive no moves")]
+		public void ThenIWillReceiveNoMoves()
+		{
+			Assert.AreEqual(0, searchResult.MoveList.Count);
+		}
+
+		[Then(@"I will receive these moves")]
+		public void ThenIWillReceiveTheseMoves(Table table)
+		{
+			Assert.AreEqual(table.RowCount, searchResult.MoveList.Count);
+
+			foreach (var row in table.Rows)
+			{
+				var description = row["Description"];
+
+				var dateString = row["Date"];
+				var moveDate = isRelative(dateString)
+					? current.Now.AddDays(Int32.Parse(dateString))
+					: DateTime.Parse(dateString);
+				var detail = row["Detail"];
+
+				var move = searchResult.MoveList.FirstOrDefault(
+					m => m.Description == description
+						&& m.GetDate() == moveDate
+						&& (
+							 detail == "" ||
+							 m.DetailList.FirstOrDefault()?.Description == detail
+						)
+				);
+
+				Assert.IsNotNull(move, $"NOT FOUND: [{moveDate}] {description} ({detail})");
+
+				searchResult.MoveList.Remove(move);
+			}
+		}
+		#endregion
+
 		#region MoreThanOne
 		[Given(@"I have moves of")]
 		public void GivenIHaveMovesOf(Table table)
@@ -155,14 +205,33 @@ namespace DFM.BusinessLogic.Tests.E.Report
 
 			foreach (var row in table.Rows)
 			{
+				var description =
+					row.ContainsKey("Description")
+						? row["Description"]
+						: "Description";
+
 				var move = new MoveInfo
 				{
-					Description = "Description",
+					Description = description,
 					Nature = MoveNature.Out,
-					Value = 10,
 					OutUrl = accountInfo.Url,
 					CategoryName = categoryInfo.Name,
 				};
+
+				if (row.ContainsKey("Detail") && row["Detail"] != "")
+				{
+					var detail = new DetailInfo
+					{
+						Description = row["Detail"],
+						Amount = 1,
+						Value = 10,
+					};
+					move.DetailList.Add(detail);
+				}
+				else
+				{
+					move.Value = 10;
+				}
 
 				var dateString = row["Date"];
 				var moveDate = isRelative(dateString)

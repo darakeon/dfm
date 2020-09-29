@@ -114,5 +114,11 @@ namespace DFM.Entities
 					throw new NotImplementedException();
 			}
 		}
+
+		public override Boolean Equals(object obj)
+		{
+			return obj is Move move
+			    && move.ID == ID;
+		}
 	}
 }

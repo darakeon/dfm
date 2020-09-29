@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
+using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Generic;
 
@@ -11,13 +14,15 @@ namespace DFM.BusinessLogic.Services
 	{
 		private readonly AccountRepository accountRepository;
 		private readonly MoveRepository moveRepository;
+		private readonly DetailRepository detailRepository;
 		private readonly SummaryRepository summaryRepository;
 
-		internal ReportService(ServiceAccess serviceAccess, AccountRepository accountRepository, MoveRepository moveRepository, SummaryRepository summaryRepository)
+		internal ReportService(ServiceAccess serviceAccess, AccountRepository accountRepository, MoveRepository moveRepository, DetailRepository detailRepository, SummaryRepository summaryRepository)
 			: base(serviceAccess)
 		{
 			this.accountRepository = accountRepository;
 			this.moveRepository = moveRepository;
+			this.detailRepository = detailRepository;
 			this.summaryRepository = summaryRepository;
 		}
 
@@ -73,6 +78,21 @@ namespace DFM.BusinessLogic.Services
 				);
 
 			return new YearReport(total, dateYear, summaries);
+		}
+
+		public SearchResult SearchByDescription(String description)
+		{
+			var email = parent.Current.Email;
+
+			var terms = description.Split(" ");
+			var movesWithTerm = moveRepository.ByDescription(email, terms);
+			var detailsWithTerm = detailRepository.ByDescription(email, terms);
+
+			var moves = movesWithTerm
+				.Union(detailsWithTerm.Select(d => d.Move))
+				.ToList();
+
+			return new SearchResult(moves);
 		}
 	}
 }
