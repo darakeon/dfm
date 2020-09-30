@@ -52,7 +52,7 @@ describe('Reports', () => {
 
 	test('Year', async () => {
 		const url = `Account/${accountOut}/Reports/SummarizeMonths/2018`
-		
+
 		await puppy.call(url)
 		const alert = await puppy.content('#body .alert')
 		expect(alert).toContain(

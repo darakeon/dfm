@@ -33,7 +33,7 @@ describe('Moves', () => {
 		await page.select('#CategoryName', category)
 		await page.select('#AccountOutUrl', accountOut)
 		await page.type('#Value', '1,00')
-		
+
 		await page.click('#body form button[type="submit"]')
 
 		const table = await puppy.content('#body .table')
@@ -52,7 +52,7 @@ describe('Moves', () => {
 		await page.click('#Nature_In')
 		await page.select('#AccountInUrl', accountIn)
 		await page.type('#Value', '1,00')
-		
+
 		await page.click('#body form button[type="submit"]')
 
 		const table = await puppy.content('#body .table')
@@ -72,7 +72,7 @@ describe('Moves', () => {
 		await page.select('#AccountOutUrl', accountOut)
 		await page.select('#AccountInUrl', accountIn)
 		await page.type('#Value', '1,00')
-		
+
 		await page.click('#body form button[type="submit"]')
 
 		const table = await puppy.content('#body .table')
@@ -98,7 +98,7 @@ describe('Moves', () => {
 		await page.type('#DetailList_1__Value', '1,00')
 
 		await page.click('#body form button[type="submit"]')
-	
+
 		const table = await puppy.content('#body .table')
 		expect(table).toContain(
 			`<td>Move Create Detailed</td>`
@@ -177,7 +177,7 @@ describe('Moves', () => {
 
 		await puppy.call(`Account/${accountOut}/Reports/ShowMoves/201911`)
 		await page.waitForSelector('#body .table')
-		
+
 		const uncheckUrl = `/Account/${accountOut}/Moves/Uncheck/${id}`
 		await puppy.submit(uncheckUrl)
 

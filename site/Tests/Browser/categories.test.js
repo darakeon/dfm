@@ -58,7 +58,7 @@ describe('Categories', () => {
 		await db.createCategoryIfNotExists(name, user)
 
 		await puppy.call('Categories')
-		
+
 		const url = name.replace(' ', '%20')
 
 		await puppy.submit(`/Categories/Disable/${url}`)
@@ -74,7 +74,7 @@ describe('Categories', () => {
 		await db.createCategoryIfNotExists(name, user, true)
 
 		await puppy.call('Categories')
-		
+
 		const url = name.replace(' ', '%20')
 
 		await puppy.submit(`/Categories/Enable/${url}`)
