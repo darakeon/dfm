@@ -24,7 +24,7 @@ async function call(path) {
 
 	const result = await page.goto(url(path))
 	await page.waitForSelector('body')
-	
+
 	const status = result.status()
 	if (status == 200)
 		return result
@@ -119,7 +119,7 @@ async function createMove(
 	}
 
 	await page.type('#Value', value)
-	
+
 	await page.click('#body form button[type="submit"]')
 	await page.waitForSelector('#body')
 
@@ -133,13 +133,13 @@ async function createMove(
 
 async function imageLog(name) {
 	console.log(`Recording ${name}`)
-	
+
 	await page.setViewport({
 		width: 1024,
 		height: 768,
 		deviceScaleFactor: 1,
 	})
-	
+
 	await page.screenshot({
 		path: 'log/' + name + '.png'
 	})

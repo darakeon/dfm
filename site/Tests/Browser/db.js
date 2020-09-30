@@ -13,7 +13,7 @@ const languageSecond = 'en-US'
 
 async function createContract() {
 	await execute(
-		`insert into contract (beginDate, version) 
+		`insert into contract (beginDate, version)
 			values (datetime('now'), 'test')`
 	)
 
@@ -44,7 +44,7 @@ async function createUserIfNotExists(email, active, wizard) {
 	}
 
 	await acceptLastContract(email)
-	
+
 	return user
 }
 
@@ -145,7 +145,7 @@ async function createToken(email, action) {
 
 async function createAccountIfNotExists(name, user) {
 	const url = name.toLowerCase().replace(' ', '_')
-	
+
 	const accounts = await getAccount(url, user)
 
 	const exist = accounts.length > 0
@@ -153,7 +153,7 @@ async function createAccountIfNotExists(name, user) {
 	if (!exist) {
 		await createAccount(name, url, user)
 	}
-	
+
 	return url
 }
 
@@ -174,7 +174,7 @@ async function createAccount(name, url, user) {
 
 async function createCategoryIfNotExists(name, user, disabled) {
 	active = disabled?0:1
-	
+
 	const categories = await getCategory(name, user)
 
 	const exist = categories.length > 0
@@ -184,7 +184,7 @@ async function createCategoryIfNotExists(name, user, disabled) {
 	} else {
 		await updateCategory(name, user, active)
 	}
-	
+
 	return name
 }
 
@@ -270,7 +270,7 @@ async function getMoveId(description, year, month, day) {
 		+ `order by id desc `
 		+ `limit 1`
 	)
-	
+
 	const id = result[0].ExternalId
 
 	return bytesToGuid(id)
@@ -286,11 +286,11 @@ async function checkMove(description, year, month, day, nature) {
 	)
 }
 
-async function execute(query, params) {	
+async function execute(query, params) {
 	let done = false;
 	let result;
 	let error;
-	
+
 	if (!params) params = []
 
 	const db = new sqlite.Database(
@@ -302,7 +302,7 @@ async function execute(query, params) {
 		db.all(query, params, (err, rows) => {
 			done = true
 			error = err
-			result = rows			
+			result = rows
 		})
 	} else {
 		db.run(query, params, function(err) {

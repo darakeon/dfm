@@ -54,7 +54,7 @@ describe('Accounts', () => {
 		const url = await db.createAccountIfNotExists(name, user)
 
 		await puppy.call('Accounts')
-		
+
 		await puppy.submit(`/Accounts/Delete/${url}`)
 
 		const body = await puppy.content('#body')

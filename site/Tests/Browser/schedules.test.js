@@ -34,7 +34,7 @@ describe('Schedules', () => {
 		await page.select('#CategoryName', category)
 		await page.select('#AccountOutUrl', accountOut)
 		await page.type('#Value', '1,00')
-		
+
 		await page.click('#body form button[type="submit"]')
 
 		const table = await puppy.content('#body .table')
