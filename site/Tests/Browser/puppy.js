@@ -54,17 +54,26 @@ async function setValue(selector, value) {
 async function logon(email) {
 	user = await db.createUserIfNotExists(email, 1)
 
-	let cookies = await page.cookies()
+	const cookie = await dfmCookie()
 
-	if (cookies.length == 0) await callLogonPage(email)
+	if (!cookie || !cookie.value) {
+		await callLogonPage(email)
+	} else {
+		const rightLogin =
+			await db.checkTicket(email, cookie.value)
 
-	cookies = await page.cookies()
-	const dfmCookie = cookies
-		.filter(c => c.name == 'DFM')[0]
-
-	if (!dfmCookie || !dfmCookie.value) await callLogonPage(email)
+		if (!rightLogin) {
+			await db.cleanupTickets()
+			await callLogonPage(email)
+		}
+	}
 
 	return user
+}
+
+async function dfmCookie() {
+	const cookies = await page.cookies()
+	return cookies.filter(c => c.name == 'DFM')[0]
 }
 
 async function callLogonPage(email) {

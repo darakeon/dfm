@@ -639,7 +639,37 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		}
 		#endregion UpdateEmail
 
+		#region SaveAccess
+		[When(@"I try to save the access")]
+		public void WhenITryToSaveTheAccess()
+		{
+			try
+			{
+				service.Safe.SaveAccess();
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
 
+		[Then(@"the access will( not)? be after test start time")]
+		public void ThenTheAccessWillBeAfterTestStartTime(Boolean after)
+		{
+			var ticketList = ticketRepository.NewQuery()
+				.SimpleFilter(t => t.User, u => u.Email == userEmailByTest)
+				.Result;
+
+			Assert.AreNotEqual(0, ticketList.Count, $"no login for {userEmailByTest}");
+
+			var updated = ticketList.Count(
+				t => t.LastAccess > startDateTime
+			);
+
+			var expectedUpdated = after ? 1 : 0;
+			Assert.AreEqual(expectedUpdated, updated);
+		}
+		#endregion
 
 		#region MoreThanOne
 		[Given(@"I have this user created")]
@@ -727,10 +757,10 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		[Given(@"I pass a ticket that exist")]
 		public void GivenIPassATicketThatExist()
 		{
-			var user = userRepository.GetByEmail(email);
+			var userID = userRepository.GetByEmail(email).ID;
 
 			ticket = ticketRepository.SimpleFilter(
-				t => t.User.ID == user.ID
+				t => t.User.ID == userID
 					&& t.Expiration == null
 			).FirstOrDefault()?.Key;
 		}

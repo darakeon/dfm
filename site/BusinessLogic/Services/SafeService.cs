@@ -456,5 +456,20 @@ namespace DFM.BusinessLogic.Services
 
 			return getUserByTicket(parent.Current.TicketKey);
 		}
+
+		public void SaveAccess()
+		{
+			var key = parent.Current.TicketKey;
+			var ticket = ticketRepository.GetByKey(key);
+
+			if (ticket == null)
+				return;
+
+			inTransaction("SaveAccess", () =>
+			{
+				ticket.LastAccess = DateTime.Now;
+				ticketRepository.SaveOrUpdate(ticket);
+			});
+		}
 	}
 }

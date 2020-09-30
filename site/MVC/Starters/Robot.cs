@@ -5,15 +5,13 @@ using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Extensions;
 using DFM.MVC.Helpers.Global;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Hosting;
 
 namespace DFM.MVC.Starters
 {
 	class Robot
 	{
-		public static void Run(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime life)
+		public static void Run(IApplicationBuilder app)
 		{
 			app.Use(async (context, next) =>
 			{
@@ -22,7 +20,7 @@ namespace DFM.MVC.Starters
 
 				if (current.IsAuthenticated)
 					runUserSchedules(service, context);
-	
+
 				await next();
 			});
 		}

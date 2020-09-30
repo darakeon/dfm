@@ -342,6 +342,18 @@ namespace DFM.BusinessLogic.Tests
 			set => set("ScheduleInfo", value);
 		}
 
+		protected static DateTime startDateTime
+		{
+			get => get<DateTime>("startDateTime");
+			set => set("startDateTime", value);
+		}
+
+		protected static String userEmailByTest
+		{
+			get => get<String>("userEmailByTest");
+			set => set("userEmailByTest", value);
+		}
+
 		protected static DateTime date =>
 			moveInfo?.GetDate() ??
 			scheduleInfo?.GetDate() ??
