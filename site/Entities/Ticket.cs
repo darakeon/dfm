@@ -18,6 +18,7 @@ namespace DFM.Entities
 		public virtual TicketType Type { get; set; }
 
 		public virtual DateTime Creation { get; set; }
+		public virtual DateTime LastAccess { get; set; }
 		public virtual DateTime? Expiration { get; set; }
 		public virtual Boolean Active { get; set; }
 

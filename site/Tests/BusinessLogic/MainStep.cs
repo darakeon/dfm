@@ -28,8 +28,8 @@ namespace DFM.BusinessLogic.Tests
 			var title = context.ScenarioInfo.Title
 				.Substring(0, 4)
 				.ToLower();
-			var email = $"{title}@dontflymoney.com";
-			createLogoffLogin(email, userPassword);
+			userEmailByTest = $"{title}@dontflymoney.com";
+			createLogoffLogin(userEmailByTest, userPassword);
 		}
 
 		[Given(@"there is a bad person logged in")]
@@ -86,6 +86,11 @@ namespace DFM.BusinessLogic.Tests
 			accountUrl = accountInfo.Url;
 		}
 
+		[Given(@"I save the date the test started")]
+		public void GivenISaveTheDateTheTestStarted()
+		{
+			startDateTime = DateTime.Now;
+		}
 
 		[Then(@"I will receive this core error: ([A-Za-z]+)")]
 		public void ThenIWillReceiveThisError(Error expectedError)

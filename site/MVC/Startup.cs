@@ -55,7 +55,9 @@ namespace DFM.MVC
 
 			Context.SetLanguage(app, env);
 
-			Robot.Run(app, env, life);
+			Access.Run(app);
+
+			Robot.Run(app);
 
 			Route.Execute(app);
 

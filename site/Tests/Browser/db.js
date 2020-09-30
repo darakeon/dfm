@@ -286,6 +286,35 @@ async function checkMove(description, year, month, day, nature) {
 	)
 }
 
+async function checkTicket(email, ticket) {
+	const result = await execute(
+		`select count(*) as occurences `
+			+ `from ticket `
+				+ `inner join user `
+					+ `on user_id = user.id `
+			+ `where user.email='${email}' `
+				+ `and ticket.key_='${ticket}'`
+	)
+
+	const occurences = result[0]["occurences"]
+
+	return occurences > 0
+}
+
+async function getLastAccess(email) {
+	const result = await execute(
+		`select lastAccess `
+			+ `from ticket `
+				+ `inner join user `
+					+ `on user_id = user.id `
+			+ `where user.email='${email}'`
+	)
+
+	const field = result[0]["LastAccess"]
+
+	return new Date(field)
+}
+
 async function execute(query, params) {
 	let done = false;
 	let result;
@@ -346,4 +375,6 @@ module.exports = {
 	createSchedule,
 	getMoveId,
 	checkMove,
+	checkTicket,
+	getLastAccess,
 }
