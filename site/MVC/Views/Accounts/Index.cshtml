@@ -8,7 +8,7 @@
 			? "AccountsIndexFilled"
 			: "AccountsIndexEmpty";
 
-	Layout = "~/Views/Shared/_Table.cshtml";
+	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 
 	ViewBag.HasContent = Model.AccountList.Any();
 	ViewBag.NoContentText = Context.Translate("NoAccounts");
@@ -54,7 +54,7 @@
 				title="@sign"
 			></span>
 
-			@await Html.PartialAsync("ValueWithSign",
+			@await Html.PartialAsync("Extensions/ValueWithSign",
 				new ValueWithSign(account.Total, Model.Language))
 		</td>
 		<td class="col-sm-1"></td>
@@ -78,14 +78,14 @@
 		<td class="col-sm-1 text-center">
 			@if (account.HasMoves)
 			{
-				@await Html.PartialAsync("MicroForm",
+				@await Html.PartialAsync("Extensions/MicroForm",
 					MicroForm.WithGlyph(Context, "eye-close", "Close")
 						.AddIdUrl("Close", account.Url)
 				)
 			}
 			else
 			{
-				@await Html.PartialAsync("MicroForm",
+				@await Html.PartialAsync("Extensions/MicroForm",
 					MicroForm.WithGlyph(Context, "trash", "Delete")
 						.AddIdUrl("Delete", account.Url)
 				)

@@ -3,7 +3,7 @@
 @{
 	ViewBag.Title = Context.Translate("Categories");
 	ViewBag.WizardMessage = "Categories";
-	Layout = "~/Views/Shared/_Table.cshtml";
+	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 
 	ViewBag.HasContent = Model.CategoryList.Any();
 	ViewBag.NoContentText = Context.Translate("NoCategories");
@@ -45,14 +45,14 @@
 		<td class="col-sm-2 text-center">
 			@if (category.Active)
 			{
-				@await Html.PartialAsync("MicroForm",
+				@await Html.PartialAsync("Extensions/MicroForm",
 					MicroForm.WithGlyph(Context, "eye-close", "Disable")
 						.AddIdUrl("Disable", category.Name)
 				)
 			}
 			else
 			{
-				@await Html.PartialAsync("MicroForm",
+				@await Html.PartialAsync("Extensions/MicroForm",
 					MicroForm.WithGlyph(Context, "eye-open", "Enable")
 						.AddIdUrl("Enable", category.Name)
 				)

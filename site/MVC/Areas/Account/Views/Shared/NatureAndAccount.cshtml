@@ -18,7 +18,7 @@
 		{
 			<button type="button"
 				id="Nature_@natureUI.Nature"
-			    class="btn btn-sm btn-@await Html.PartialAsync("NatureColor", natureUI.Nature)
+			    class="btn btn-sm btn-@await Html.PartialAsync("Extensions/NatureColor", natureUI.Nature)
 					col-sm-4 button-toggle value-setter
 					@(Model.Nature == natureUI.Nature ? "active" : "")"
 			    data-to-enable="@natureUI.Enable"
@@ -34,7 +34,7 @@
 
 				<span class="pull-right">
 					<span
-						class="@await Html.PartialAsync("NatureIcon", natureUI.Nature)"
+						class="@await Html.PartialAsync("Extensions/NatureIcon", natureUI.Nature)"
 					></span>
 				</span>
 
@@ -45,7 +45,7 @@
 	<div class="col-sm-4 form-group side-vertical-button">
 		@Html.LabelFor(m => m.AccountInUrl, Context.Translate("Account", "In"), new { @class = "control-label" })
 		<span
-			class="@await Html.PartialAsync("NatureIcon", MoveNature.In)"
+			class="@await Html.PartialAsync("Extensions/NatureIcon", MoveNature.In)"
 			title="@Context.Translate(MoveNature.In.ToString())"
 		></span>
 
@@ -62,7 +62,7 @@
 	<div class="col-sm-4 form-group side-vertical-button">
 		@Html.LabelFor(m => m.AccountOutUrl, Context.Translate("Account", "Out"), new { @class = "control-label" })
 		<span
-			class="@await Html.PartialAsync("NatureIcon", MoveNature.Out)"
+			class="@await Html.PartialAsync("Extensions/NatureIcon", MoveNature.Out)"
 			title="@Context.Translate(MoveNature.Out.ToString())"
 		></span>
 

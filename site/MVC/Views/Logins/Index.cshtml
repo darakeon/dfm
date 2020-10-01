@@ -3,7 +3,7 @@
 @{
 	ViewBag.Title = Context.Translate("Logins");
 	ViewBag.WizardMessage = "Logins";
-	Layout = "~/Views/Shared/_Table.cshtml";
+	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 
 	ViewBag.HasContent = Model.LoginsList.Any();
 	ViewBag.NoContentText = Context.Translate("NoLogins");
@@ -40,7 +40,7 @@
 		}*@
 
 		<td class="col-sm-4 text-center">
-			@await Html.PartialAsync("MicroForm", 
+			@await Html.PartialAsync("Extensions/MicroForm",
 				MicroForm.WithGlyph(Context, "off", "LogOff")
 					.AddIdUrl("Delete", login.Key)
 			)
