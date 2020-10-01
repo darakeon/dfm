@@ -3,7 +3,7 @@
 
 @{
 	ViewBag.Title = Context.Translate("Ops");
-	Layout = "~/Views/Shared/_result.cshtml";
+	Layout = "~/Views/Shared/Layouts/_result.cshtml";
 
 	var messageKey = Model.EmailSent == Error.Status.Sent
 		? "InternalMessageSent"

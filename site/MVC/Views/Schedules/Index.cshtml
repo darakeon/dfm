@@ -9,7 +9,7 @@
 			? "SchedulesIndexFilled"
 			: "SchedulesIndexEmpty";
 
-	Layout = "~/Views/Shared/_Table.cshtml";
+	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 
 	ViewBag.HasContent = Model.ScheduleList.Any();
 	ViewBag.NoContentText = Context.Translate("NoSchedules");
@@ -53,16 +53,16 @@
 		<td class="col-sm-2 text-center">@(schedule.InName ?? " ")</td>
 		<td class="col-sm-2 text-center">@(schedule.OutName ?? " ")</td>
 
-		<td  class="col-sm-1 text-@await Html.PartialAsync("NatureColor", schedule.Nature) text-right">
+		<td  class="col-sm-1 text-@await Html.PartialAsync("Extensions/NatureColor", schedule.Nature) text-right">
 			<span
-				class="@await Html.PartialAsync("NatureIcon", schedule.Nature)"
+				class="@await Html.PartialAsync("Extensions/NatureIcon", schedule.Nature)"
 				title="@Context.Translate(schedule.Nature.ToString())"
 			></span>
 			@schedule.Total.ToMoney(Model.Language)
 		</td>
 
 		<td class="col-sm-1 text-center">
-			@await Html.PartialAsync("MicroForm",
+			@await Html.PartialAsync("Extensions/MicroForm",
 				MicroForm.WithGlyph(Context, "trash", "Delete")
 					.AddIdUrl("Delete", schedule.Guid)
 			)

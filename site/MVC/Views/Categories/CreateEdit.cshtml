@@ -8,7 +8,7 @@
 		ViewBag.Title += $" [{Model.Category.OriginalName}]";
 	}
 
-	Layout = "~/Views/Shared/_Form.cshtml";
+	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
 }
 
 @Html.HiddenFor(m => m.Category.OriginalName)

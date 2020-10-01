@@ -13,7 +13,7 @@
 
 <html>
 <head>
-	<title>@await Html.PartialAsync("Title")</title>
+	<title>@await Html.PartialAsync("Skeleton/Title")</title>
 
 	<link rel="shortcut icon" type="image/ico" href="~/Assets/images/pig.ico?v=@Cfg.Version" />
 	<meta property="og:image" content="https://dontflymoney.com/Assets/images/face-pig.png?v=@Cfg.Version" />
@@ -40,16 +40,20 @@
 	@RenderSection("Scripts", false)
 </head>
 <body>
-	@await Html.PartialAsync("Header")
+	@await Html.PartialAsync("Skeleton/Header")
 
 	<div id="body" class="container">
-		@await Html.PartialAsync("Wizard")
+		@await Html.PartialAsync("Skeleton/Wizard")
 		@RenderBody()
 	</div>
 
-	@await Html.PartialAsync("Footer")
+	@await Html.PartialAsync("Skeleton/Footer")
 
-	@await Html.PartialAsync("Contact")
+	@await Html.PartialAsync("Modals/Contact")
 
+	@if (Model.IsAuthenticated)
+	{
+		@await Html.PartialAsync("Modals/Search")
+	}
 </body>
 </html>

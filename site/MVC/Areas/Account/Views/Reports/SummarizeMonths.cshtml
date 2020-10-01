@@ -3,7 +3,7 @@
 @{
 	ViewBag.Title = Model.Date;
 	ViewBag.WizardMessage = "SummarizeMonths";
-	Layout = "~/Views/Shared/_Table.cshtml";
+	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 
 	var monthList = Model.Year.MonthList
 		.OrderBy(m => m.Number)
@@ -40,13 +40,13 @@
 			</a>
 		</td>
 		<td class="col-sm-3 text-right">
-			@await Html.PartialAsync("ValueWithSign", new ValueWithSign(month.In, Model.Language, true))
+			@await Html.PartialAsync("Extensions/ValueWithSign", new ValueWithSign(month.In, Model.Language, true))
 		</td>
 		<td class="col-sm-3 text-right">
-			@await Html.PartialAsync("ValueWithSign", new ValueWithSign(-month.Out, Model.Language, true))
+			@await Html.PartialAsync("Extensions/ValueWithSign", new ValueWithSign(-month.Out, Model.Language, true))
 		</td>
 		<td class="col-sm-3 text-right">
-			@await Html.PartialAsync("ValueWithSign", new ValueWithSign(month.Total, Model.Language))
+			@await Html.PartialAsync("Extensions/ValueWithSign", new ValueWithSign(month.Total, Model.Language))
 		</td>
 	</tr>
 
@@ -57,7 +57,7 @@
 		<div class="col-lg-2 col-sm-2"></div>
 
 		<div class="col-lg-8 col-sm-8 text-center">
-			@await Html.PartialAsync("Pagination", pages)
+			@await Html.PartialAsync("Extensions/Pagination", pages)
 		</div>
 
 		<div class="col-lg-2 col-sm-2">

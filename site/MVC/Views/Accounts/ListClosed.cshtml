@@ -3,7 +3,7 @@
 @{
 	ViewBag.Title = Context.Translate("ClosedAccounts");
 	ViewBag.WizardMessage = "AccountsClosed";
-	Layout = "~/Views/Shared/_Table.cshtml";
+	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 
 	ViewBag.HasContent = Model.AccountList.Any();
 	ViewBag.NoContentText = Context.Translate("NoClosedAccounts");
@@ -53,7 +53,7 @@
 			<span class="@await Html.PartialAsync("AccountSign", account.Sign) pull-left"
 			      title="@sign"></span>
 
-			@await Html.PartialAsync("ValueWithSign",
+			@await Html.PartialAsync("Extensions/ValueWithSign",
 				new ValueWithSign(account.Total, Model.Language))
 		</td>
 		<td class="col-sm-1"></td>
