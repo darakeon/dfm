@@ -36,7 +36,7 @@ describe('Reports', () => {
 			`Não há Movimentações para este mês.`
 		)
 
-		await puppy.createMove(
+		const id = await puppy.createMove(
 			db,
 			'Move for Month', '2019-11-16', '1,00',
 			category, accountOut, null,
@@ -45,9 +45,13 @@ describe('Reports', () => {
 
 		await puppy.call(url)
 		const table = await puppy.content('#body .table')
-		expect(table).toContain(
-			`<td>Move for Month</td>`
-		)
+		expect(table).toContain(`<td>Move for Month</td>`)
+
+		const editUrl = `Account/${accountOut}/Moves/Edit/${id}`
+		expect(table).toContain(editUrl)
+
+		const deleteUrl = `Account/${accountOut}/Moves/Delete/${id}`
+		expect(table).toContain(deleteUrl)
 	})
 
 	test('Year', async () => {
