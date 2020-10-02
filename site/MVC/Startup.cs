@@ -60,8 +60,6 @@ namespace DFM.MVC
 			Robot.Run(app);
 
 			Route.Execute(app);
-
-			Mobile.ConfigureIP();
 		}
 	}
 }
