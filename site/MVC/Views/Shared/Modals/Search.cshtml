@@ -1,0 +1,45 @@
+﻿@model BaseModel
+
+@{
+	var searchModel = new ReportsSearchModel();
+	var defaultRoute = new RouteDefault();
+}
+
+<div class="modal" id="search-modal">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<span class="modal-title">
+					@Context.Translate("Search_Title")
+				</span>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span
+						aria-hidden="true"
+						class="glyphicon glyphicon-remove"
+						title="@Context.Translate("Close")"
+					></span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+				@using (Html.BeginRouteForm(
+					defaultRoute.Name,
+					new { controller = "Reports", action = "Search" }
+				)) {
+					<div class="text-center">
+						@Context.Translate("Search_Text")
+					</div>
+
+					<div class="form-group">
+						<input class="form-control" name="@searchModel.FieldName"/>
+					</div>
+
+					<button class="btn btn-default">
+						<span class="glyphicon glyphicon-search"></span>
+					</button>
+				}
+			</div>
+		</div>
+	</div>
+</div>

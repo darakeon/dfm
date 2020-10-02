@@ -1,0 +1,84 @@
+﻿@model ReportsSearchModel
+
+@{
+	ViewBag.Title = Context.Translate("Search_Title");
+	ViewBag.HasContent = Model.MoveList.Any();
+
+	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
+}
+
+@section TableHeader
+{
+	@{ var descriptionSize = 4 + (Model.IsUsingCategories ? 0 : 2); }
+
+	<tr class="row">
+		<th class="col-sm-@descriptionSize">
+			@Context.Translate("Description")
+		</th>
+
+		@if (Model.IsUsingCategories)
+		{
+			<th class="col-sm-2 text-center">
+				@Context.Translate("Category")
+			</th>
+		}
+
+		<th class="col-sm-2 text-center">
+			@Context.Translate("Date")
+		</th>
+
+		<th class="col-sm-2 text-center">
+			@Context.Translate("Value")
+		</th>
+
+		<th class="col-sm-2 text-center">
+			@Context.Translate("TODO")
+		</th>
+	</tr>
+}
+
+@foreach (var move in Model.MoveList)
+{
+	var route = new RouteAccount();
+
+	var account = move.OutUrl ?? move.InUrl;
+
+	var routeValues = new
+	{
+		area = route.Area,
+		accountUrl = account,
+		controller = "Reports",
+		action = "ShowMoves",
+		id = move.Year * 100 + move.Month
+	};
+
+	<tr class="row" id="m@(move.Guid)">
+		<td>@move.Description</td>
+
+		@if (Model.IsUsingCategories)
+		{
+			<td class="text-center">
+				@(move.CategoryName ?? "---")
+			</td>
+		}
+
+		<td class="text-center">
+			@move.GetDate().ToShortDateString()
+		</td>
+
+		<td class="text-right">
+			@await Html.PartialAsync(
+				"Extensions/ValueWithSign",
+				new ValueWithSign(move.Total, move.Nature, Model.Language)
+			)
+		</td>
+
+		<td class="text-center">
+			<a href="@Url.RouteUrl(route.Name, routeValues)">
+				<span class="glyphicon glyphicon-th-list"
+					title="@Context.Translate("GoToReport")">
+				</span>
+			</a>
+		</td>
+	</tr>
+}

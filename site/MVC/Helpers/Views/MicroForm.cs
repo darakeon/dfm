@@ -72,6 +72,26 @@ namespace DFM.MVC.Helpers.Views
 			return this;
 		}
 
+		public MicroForm AddAccountIdUrl(
+			String accountUrl,
+			[AspMvcController] String controller,
+			[AspMvcAction] String action,
+			object id
+		)
+		{
+			var routeAccount = new RouteAccount();
+
+			RouteName = routeAccount.Name;
+
+			var area = routeAccount.Area;
+			controller ??= route["controller"];
+			action ??= route["action"];
+
+			RouteValues = new { area, accountUrl, controller, action, id };
+
+			return this;
+		}
+
 		public MicroForm AddRouteIdUrl<T>(
 			[AspMvcController] String controller,
 			[AspMvcAction] String action,

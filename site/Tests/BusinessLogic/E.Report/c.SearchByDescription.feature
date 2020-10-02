@@ -28,7 +28,7 @@ Scenario: Ec02. Search without result
 	Then I will receive no core error
 		And I will receive no moves
 
-Scenario: Ec3. Search with different case result
+Scenario: Ec03. Search with different case result
 	When I try to search by description choco
 	Then I will receive no core error
 		And I will receive these moves
@@ -38,7 +38,7 @@ Scenario: Ec3. Search with different case result
 			| Chocolate again        | 2020-09-25 | So much chocolate |
 			| Much tons of Chocolate | 2020-09-26 |                   |
 
-Scenario: Ec4. Search with spaces
+Scenario: Ec04. Search with spaces
 	When I try to search by description choco much
 	Then I will receive no core error
 		And I will receive these moves
@@ -46,8 +46,18 @@ Scenario: Ec4. Search with spaces
 			| Chocolate again        | 2020-09-25 | So much chocolate |
 			| Much tons of Chocolate | 2020-09-26 |                   |
 
-Scenario: Ec5. Search from different user
+Scenario: Ec05. Search from different user
 	Given there is another person logged in
 	When I try to search by description Choco
+	Then I will receive no core error
+		And I will receive no moves
+
+Scenario: Ec06. Search by null
+	When I try to search by description {null}
+	Then I will receive no core error
+		And I will receive no moves
+
+Scenario: Ec07. Search by empty
+	When I try to search by description {empty}
 	Then I will receive no core error
 		And I will receive no moves

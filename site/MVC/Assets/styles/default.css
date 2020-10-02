@@ -75,3 +75,11 @@ input[type="date"] {
 		margin-right: 10px;
 		font-size: 75%;
 	}
+
+#search-modal .modal-body {
+	margin-bottom: 40px;
+}
+
+	#search-modal .modal-body button {
+		float: right;
+	}

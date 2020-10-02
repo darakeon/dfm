@@ -6,6 +6,7 @@
 		"ShortDateFormat": "{1} {0}",
 		"Month": "Month",
 		"Summary": "Summary",
+		"GoToReport": "Go to report",
 	},
 	"pt-BR": {
 		"NoMonthMoves": "Não há Movimentações para este mês.",
@@ -14,5 +15,6 @@
 		"ShortDateFormat": "{0} de {1}",
 		"Month": "Mês",
 		"Summary": "Resumo",
+		"GoToReport": "Ir para relatório"
 	},
 }

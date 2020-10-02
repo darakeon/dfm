@@ -2,18 +2,18 @@
 @using DFM.Language.Extensions
 
 @{
-	var value =
-		(Model.Value < 0 ? -Model.Value : Model.Value)
-			.ToMoney(Model.Language, Model.DifferentIfZero);
+	var value = (Model.Value < 0 ? -Model.Value : Model.Value)
+		.ToMoney(Model.Language, Model.DifferentIfZero);
 
-	var className = Model.Value < 0 ? "danger" : "info";
+	var nature = Model.Nature ??
+	    (Model.Value > 0 ? MoveNature.In : MoveNature.Out);
 
-	var title = Context.Translate(
-		(Model.Value > 0 ? MoveNature.In : MoveNature.Out).ToString()
-	);
+	var className = await Html.PartialAsync("Extensions/NatureColor", nature);
+
+	var title = Context.Translate(nature.ToString());
 }
 
 <span class="text-@className" title="@title">
-	<span class="@await Html.PartialAsync("Extensions/Sign", Model.Value > 0)"></span>
+	<span class="@await Html.PartialAsync("Extensions/NatureIcon", nature)"></span>
 	@value
 </span>
