@@ -10,6 +10,15 @@ describe('Open site', () => {
 		await expect(page.title()).resolves.toMatch('Don\'t fly Money')
 	})
 
+	it('should have a modal for contact', async () => {
+		await page.click('#open-contact')
+
+		page.waitForSelector(
+			'#contact-modal',
+			{ visible: true }
+		)
+	})
+
 	it('should record access when logged in', async () => {
 		const start = new Date()
 
