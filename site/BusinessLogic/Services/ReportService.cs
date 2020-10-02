@@ -4,7 +4,6 @@ using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
-using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Generic;
 
@@ -82,6 +81,9 @@ namespace DFM.BusinessLogic.Services
 
 		public SearchResult SearchByDescription(String description)
 		{
+			if (String.IsNullOrEmpty(description))
+				return new SearchResult();
+
 			var email = parent.Current.Email;
 
 			var terms = description.Split(" ");

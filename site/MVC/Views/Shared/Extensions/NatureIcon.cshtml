@@ -6,8 +6,12 @@
 		@("glyphicon glyphicon-transfer")
 		break;
 	case MoveNature.In:
+		@("glyphicon glyphicon-plus-sign")
+		break;
 	case MoveNature.Out:
+		@("glyphicon glyphicon-minus-sign")
+		break;
 	default:
-		@await Html.PartialAsync("Extensions/Sign", Model == MoveNature.In)
+		@("")
 		break;
 }

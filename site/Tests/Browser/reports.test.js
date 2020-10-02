@@ -73,4 +73,29 @@ describe('Reports', () => {
 		const table = await puppy.content('#body .table')
 		expect(table).toContain('Novembro')
 	})
+
+	test('Search', async () => {
+		const id = await puppy.createMove(
+			db,
+			'Search target', '2020-10-01', '24,00',
+			category, accountOut, null
+		)
+
+		await puppy.call()
+
+		await page.click('#open-search')
+		await page.waitForSelector(
+			'#search-modal',
+			{ visible: true }
+		)
+
+		await page.type('#search-modal .modal-body input', 'target')
+		await page.click('#search-modal .modal-body button')
+
+		const line = await puppy.content(`#body .table #m${id}`)
+		expect(line).toContain('Search target')
+
+		const reportUrl = `Account/${accountOut}/Reports/ShowMoves/202010`
+		expect(line).toContain(reportUrl)
+	})
 })

@@ -6,6 +6,9 @@ namespace DFM.BusinessLogic.Response
 {
 	public class SearchResult
 	{
+		public SearchResult()
+			: this(new List<Move>()) { }
+
 		public SearchResult(IList<Move> moveList)
 		{
 			MoveList = moveList

@@ -155,6 +155,12 @@ namespace DFM.BusinessLogic.Tests.E.Report
 		[When(@"I try to search by description (.+)")]
 		public void WhenITryToSearchByDescription(String description)
 		{
+			switch (description)
+			{
+				case "{empty}": description = ""; break;
+				case "{null}": description = null; break;
+			}
+
 			searchResult = service.Report.SearchByDescription(description);
 		}
 
