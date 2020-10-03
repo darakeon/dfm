@@ -273,3 +273,8 @@ Scenario: Aq35. Get Year Report
 	Given there is a new contract
 	When I try to get the year report
 	Then I will receive this core error: NotSignedLastContract
+
+Scenario: Aq36. Search by Description
+	Given there is a new contract
+	When I try to search by description Something
+	Then I will receive this core error: NotSignedLastContract
