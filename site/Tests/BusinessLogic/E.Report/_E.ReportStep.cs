@@ -155,13 +155,21 @@ namespace DFM.BusinessLogic.Tests.E.Report
 		[When(@"I try to search by description (.+)")]
 		public void WhenITryToSearchByDescription(String description)
 		{
+			// ReSharper disable once SwitchStatementMissingSomeCases
 			switch (description)
 			{
 				case "{empty}": description = ""; break;
 				case "{null}": description = null; break;
 			}
 
-			searchResult = service.Report.SearchByDescription(description);
+			try
+			{
+				searchResult = service.Report.SearchByDescription(description);
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
 		}
 
 		[Then(@"I will receive no moves")]

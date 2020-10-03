@@ -61,3 +61,8 @@ Scenario: Ec07. Search by empty
 	When I try to search by description {empty}
 	Then I will receive no core error
 		And I will receive no moves
+
+Scenario: Ec08. Search logged off
+	Given I have no logged user (logoff)
+	When I try to search by description Choco
+	Then I will receive this core error: Uninvited

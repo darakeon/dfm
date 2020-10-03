@@ -81,6 +81,8 @@ namespace DFM.BusinessLogic.Services
 
 		public SearchResult SearchByDescription(String description)
 		{
+			parent.Safe.VerifyUser();
+
 			if (String.IsNullOrEmpty(description))
 				return new SearchResult();
 
