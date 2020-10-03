@@ -100,4 +100,34 @@ describe('Accounts', () => {
 			`<a href="/Account/account_close/Reports/ShowMoves/${report}" title="Movimentações da Conta">Account Close</a>`
 		)
 	})
+
+	test('Reopen', async () => {
+		const name = 'Account Reopened'
+		const url = await db.createAccountIfNotExists(name, user)
+
+		const category = await db.createCategoryIfNotExists(
+			'Cat Acc Reopen', user
+		)
+
+		await puppy.createMove(
+			db,
+			'Move to reopen Account', '2020-10-03', '1,00',
+			category, url, null,
+			user
+		)
+		
+		await puppy.call('Accounts')
+		await puppy.submit(`/Accounts/Close/${url}`)
+
+		await puppy.call('Accounts/ListClosed')
+		await puppy.submit(`/Accounts/Reopen/${url}`)
+
+		body = await puppy.content('#body')
+
+		await puppy.call('Accounts')
+
+		expect(body).toContain(
+			`<a href="/Account/account_reopened" title="Movimentações da Conta">Account Reopened</a>`
+		)
+	})
 })

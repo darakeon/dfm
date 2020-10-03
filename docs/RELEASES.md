@@ -16,7 +16,7 @@ Legend:
 
 ## <a name="4.3.0.0"></a>4.3.0.0 :whale: <sup>`9`</sup>
 - [ ] Add change language icon to site
-- [ ] `201002>......` Enable reopen account
+- [x] `201002>201003` Enable reopen account
 - [x] `200929>200930` Last ACCESS date
 - [x] `200927>201002` Search by move/detail
 - [x] `200919>200926` Fix android intermitent tests
