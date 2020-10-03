@@ -95,7 +95,7 @@ namespace DFM.BusinessLogic.Tests
 		[Then(@"I will receive this core error: ([A-Za-z]+)")]
 		public void ThenIWillReceiveThisError(Error expectedError)
 		{
-			Assert.IsNotNull(expectedError);
+			Assert.IsNotNull(error);
 			Assert.AreEqual(expectedError, error.Type);
 		}
 
