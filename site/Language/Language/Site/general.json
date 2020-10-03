@@ -25,6 +25,7 @@
 		"Disable": "Disable",
 		"Close": "Close",
 		"Accept": "Accept",
+		"Reopen": "Reopen",
 
 		"Status": "Status",
 		"Available": "Available",
@@ -130,6 +131,7 @@
 		"Disable": "Desativar",
 		"Close": "Fechar",
 		"Accept": "Aceitar",
+		"Reopen": "Reabrir",
 
 		"Status": "Status",
 		"Available": "Disponível",

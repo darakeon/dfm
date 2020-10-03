@@ -96,5 +96,15 @@ namespace DFM.MVC.Controllers
 
 			return RedirectToAction("Index");
 		}
+
+		[HttpPost, ValidateAntiForgeryToken]
+		public IActionResult Reopen(String id)
+		{
+			var model = new AdminModel();
+
+			model.ReopenAccount(id);
+
+			return RedirectToAction("Index");
+		}
 	}
 }

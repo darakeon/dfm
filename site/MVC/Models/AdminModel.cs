@@ -17,6 +17,18 @@ namespace DFM.MVC.Models
 			}
 		}
 
+		internal void ReopenAccount(String url)
+		{
+			try
+			{
+				admin.ReopenAccount(url);
+			}
+			catch (CoreError e)
+			{
+				errorAlert.Add(e.Type);
+			}
+		}
+
 		internal void DeleteAccount(String url)
 		{
 			try

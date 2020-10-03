@@ -13,11 +13,11 @@
 
 @section TableHeader {
 	<tr class="row">
-		<th class="col-sm-3">@Context.Translate("Name")</th>
+		<th class="col-sm-2">@Context.Translate("Name")</th>
 		<th class="col-sm-2 text-center">@Context.Translate("BeginDate")</th>
 		<th class="col-sm-2 text-center">@Context.Translate("EndDate")</th>
 		<th class="col-sm-4 text-center" colspan="3">@Context.Translate("Total")</th>
-		<th class="col-sm-1 text-center">@Context.Translate("TODO")</th>
+		<th class="col-sm-2 text-center" colspan="2">@Context.Translate("TODO")</th>
 	</tr>
 }
 
@@ -35,7 +35,7 @@
 
 	<tr class="row">
 
-		<td class="col-sm-3">
+		<td class="col-sm-2">
 			@Html.RouteLink(account.Name, route.Name, reports,
 				new { title = Context.Translate("AccountMoves") }
 			)
@@ -65,12 +65,11 @@
 			</a>
 		</td>
 
-		@*
-			<td class="image">
-				<a href="@reopenUrl">
-					<img src="/Assets/image/icons/reopen.gif" alt="@reopenLabel" title="@reopenLabel" />
-				</a>
-			</td>
-		*@
+		<td class="col-sm-1 text-center">
+			@await Html.PartialAsync("Extensions/MicroForm",
+				MicroForm.WithGlyph(Context, "eye-open", "Reopen")
+					.AddIdUrl("Reopen", account.Url)
+			)
+		</td>
 	</tr>
 }
