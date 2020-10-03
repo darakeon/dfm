@@ -9,30 +9,33 @@
 	String action = Url.RouteUrl(Model.RouteName, Model.RouteValues);
 }
 
-<form action="@action"
-	method="post"
-	data-ajax="@Model.Ajax.ToString().ToLower()"
-	data-ajax-method="post"
-	data-ajax-url="@action"
-	data-ajax-update="#@Model.UpdateTargetId"
-	data-ajax-mode="replace-with"
-	data-ajax-success="checkIfReload">
+@* tag <a> put here to simulate same color used for links *@
+<a>
+	<form action="@action"
+		method="post"
+		data-ajax="@Model.Ajax.ToString().ToLower()"
+		data-ajax-method="post"
+		data-ajax-url="@action"
+		data-ajax-update="#@Model.UpdateTargetId"
+		data-ajax-mode="replace-with"
+		data-ajax-success="checkIfReload">
 
-	@Html.AntiForgeryToken()
+		@Html.AntiForgeryToken()
 
-	@foreach (var hidden in Model.HiddenList)
-	{
-		<input type="hidden" name="@hidden.Key" value="@hidden.Value" />
-	}
-
-	<button type="submit" class="@(@class)" title="@Model.Text">
-		@if (Model.Glyphicon == null)
+		@foreach (var hidden in Model.HiddenList)
 		{
-			@Model.Text
+			<input type="hidden" name="@hidden.Key" value="@hidden.Value" />
 		}
-		else
-		{
-			<span class="glyphicon glyphicon-@Model.Glyphicon"></span>
-		}
-	</button>
-</form>
+
+		<button type="submit" class="@(@class)" title="@Model.Text">
+			@if (Model.Glyphicon == null)
+			{
+				@Model.Text
+			}
+			else
+			{
+				<span class="glyphicon glyphicon-@Model.Glyphicon"></span>
+			}
+		</button>
+	</form>
+</a>
