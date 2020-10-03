@@ -1,5 +1,12 @@
 @echo off
 
+cls
+
+IF EXIST node_modules_windows (
+	MOVE node_modules node_modules_linux
+	MOVE node_modules_windows node_modules
+)
+
 cd %~dp0
 
 taskkill /IM "DFM.MVC.exe"
