@@ -84,12 +84,10 @@
 					</li>
 
 					<li>
-						<a>
-							@await Html.PartialAsync("Extensions/MicroForm",
-								MicroForm.WithGlyph(Context, "off", "Logoff")
-									.AddRouteUrl<RouteDefault>("Users", "LogOff")
-							)
-						</a>
+						@await Html.PartialAsync("Extensions/MicroForm",
+							MicroForm.WithGlyph(Context, "off", "Logoff")
+								.AddRouteUrl<RouteDefault>("Users", "LogOff")
+						)
 					</li>
 				}
 			</ul>
