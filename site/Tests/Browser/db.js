@@ -166,9 +166,9 @@ async function getAccount(url, user) {
 async function createAccount(name, url, user) {
 	return execute(
 		`insert into account `
-			+ `(name, url, beginDate, user_id)`
+			+ `(name, url, beginDate, open, user_id)`
 		+ ` values`
-			+ ` ('${name}', '${url}', datetime('now'), ${user.ID})`
+			+ ` ('${name}', '${url}', datetime('now'), 1, ${user.ID})`
 	)
 }
 

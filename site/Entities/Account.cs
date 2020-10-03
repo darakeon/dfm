@@ -32,6 +32,8 @@ namespace DFM.Entities
 			set => YellowLimitCents = value.ToCents();
 		}
 
+		public virtual Boolean Open { get; set; }
+
 		public virtual DateTime BeginDate { get; set; }
 		public virtual DateTime? EndDate { get; set; }
 

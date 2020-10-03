@@ -39,32 +39,26 @@ namespace DFM.BusinessLogic.Services
 		{
 			parent.Safe.VerifyUser();
 
-			var query = accountRepository.NewQuery();
-
 			var user = parent.Safe.GetCurrent();
-			query.SimpleFilter(a => a.User.ID == user.ID);
 
-			if (open)
-				query.SimpleFilter(a => a.EndDate == null);
-			else
-				query.SimpleFilter(a => a.EndDate != null);
+			return accountRepository.NewQuery()
+				.SimpleFilter(a => a.User.ID == user.ID)
+				.SimpleFilter(a => a.Open == open)
+				.OrderBy(a => a.Name)
+				.Result
+				.Select(makeAccountListItem)
+				.ToList();
+		}
 
-			var accountList = query.OrderBy(a => a.Name).Result;
+		private AccountListItem makeAccountListItem(Account account)
+		{
+			var hasMoves = moveRepository.AccountHasMoves(account);
+			var total = summaryRepository.GetTotal(account);
+			var sign = getSign(account, total);
 
-			var resultList = new List<AccountListItem>();
+			var item = AccountListItem.Convert(account, total, sign, hasMoves);
 
-			foreach (var account in accountList)
-			{
-				var hasMoves = moveRepository.AccountHasMoves(account);
-				var total = summaryRepository.GetTotal(account);
-				var sign = getSign(account, total);
-
-				var item = AccountListItem.Convert(account, total, sign, hasMoves);
-
-				resultList.Add(item);
-			}
-
-			return resultList;
+			return item;
 		}
 
 		private AccountSign getSign(Account account, Decimal total)
@@ -111,7 +105,8 @@ namespace DFM.BusinessLogic.Services
 		{
 			var account = new Account
 			{
-				User = parent.Safe.GetCurrent()
+				User = parent.Safe.GetCurrent(),
+				Open = true,
 			};
 
 			saveAccount(info, account);
@@ -140,10 +135,7 @@ namespace DFM.BusinessLogic.Services
 
 			inTransaction("CloseAccount", () =>
 			{
-				var account = getAccountByUrl(url);
-
-				if (account == null)
-					throw Error.InvalidAccount.Throw();
+				var account = GetAccountByUrlInternal(url);
 
 				var hasMoves = moveRepository.AccountHasMoves(account);
 
@@ -164,9 +156,6 @@ namespace DFM.BusinessLogic.Services
 			{
 				var account = GetAccountByUrlInternal(url);
 
-				if (account == null)
-					throw Error.InvalidAccount.Throw();
-
 				var hasMoves = moveRepository.AccountHasMoves(account);
 
 				if (hasMoves)
@@ -178,6 +167,18 @@ namespace DFM.BusinessLogic.Services
 
 				accountRepository.Delete(account);
 			});
+		}
+
+		public void ReopenAccount(String url)
+		{
+			parent.Safe.VerifyUser();
+
+			inTransaction("ReopenAccount", () =>
+			{
+				var account = GetAccountByUrlInternal(url);
+				accountRepository.Reopen(account);
+			});
+
 		}
 		#endregion Account
 

@@ -131,6 +131,7 @@ Scenario: Ba15. Save Account with info all right (with limits)
 	When I try to save the account
 	Then I will receive no core error
 		And the account will be saved
+		And the account will be open
 
 Scenario: Ba16. Save Account with exactly length url
 	Given I have this account to create

@@ -101,8 +101,8 @@ namespace DFM.BusinessLogic.Bases
 
 		private static void testAccounts(T move)
 		{
-			var moveInClosed = move.In != null && !move.In.IsOpen();
-			var moveOutClosed = move.Out != null && !move.Out.IsOpen();
+			var moveInClosed = move.In != null && !move.In.Open;
+			var moveOutClosed = move.Out != null && !move.Out.Open;
 
 			if (moveInClosed || moveOutClosed)
 				throw Error.ClosedAccount.Throw();

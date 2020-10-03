@@ -14,7 +14,7 @@ namespace DFM.BusinessLogic.Response
 			OriginalUrl = account.Url;
 			YellowLimit = account.YellowLimit;
 			RedLimit = account.RedLimit;
-			IsOpen = account.IsOpen();
+			IsOpen = account.Open;
 			Start = account.BeginDate;
 			End = account.EndDate;
 		}

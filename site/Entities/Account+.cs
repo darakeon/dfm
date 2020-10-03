@@ -14,10 +14,5 @@ namespace DFM.Entities
 		{
 			return $"[{ID}] {Name}";
 		}
-
-		public virtual Boolean IsOpen()
-		{
-			return EndDate == null;
-		}
 	}
 }

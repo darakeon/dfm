@@ -89,6 +89,7 @@
 		"TooLargeScheduleDescription": "Schedule description exceeded the characters limit.",
 		"MoveCheckWrongNature": "A move In cannot be checked as Out, neither a move Out can be checked as In",
 		"ErrorRunningSchedules": "Error running schedules, contact us.",
+		"OpenedAccount": "The account is already opened",
 	},
 	"pt-BR": {
 		"Unknown": "ZERO",
@@ -180,5 +181,6 @@
 		"TooLargeScheduleDescription": "Descrição de agendamento excedeu o limite de caracteres.",
 		"MoveCheckWrongNature": "Uma Movimentação de Entrada nao pode ser verificada como Saída, nem uma de Saída pode ser verificada como Entrada",
 		"ErrorRunningSchedules": "Erro ao rodar agendamentos, entre em contato conosco.",
+		"OpenedAccount": "A conta já está aberta",
 	},
 }
