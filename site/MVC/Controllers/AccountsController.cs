@@ -92,7 +92,7 @@ namespace DFM.MVC.Controllers
 		{
 			var model = new AdminModel();
 
-			model.Delete(id);
+			model.DeleteAccount(id);
 
 			return RedirectToAction("Index");
 		}

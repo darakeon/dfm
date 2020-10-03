@@ -76,7 +76,7 @@ namespace DFM.MVC.Controllers
 		{
 			var model = new AdminModel();
 
-			model.Disable(id);
+			model.DisableCategory(id);
 
 			return RedirectToAction("Index");
 		}
@@ -86,7 +86,7 @@ namespace DFM.MVC.Controllers
 		{
 			var model = new AdminModel();
 
-			model.Enable(id);
+			model.EnableCategory(id);
 
 			return RedirectToAction("Index");
 		}

@@ -17,7 +17,7 @@ namespace DFM.MVC.Models
 			}
 		}
 
-		internal void Delete(String url)
+		internal void DeleteAccount(String url)
 		{
 			try
 			{
@@ -29,7 +29,7 @@ namespace DFM.MVC.Models
 			}
 		}
 
-		internal void Disable(String name)
+		internal void DisableCategory(String name)
 		{
 			try
 			{
@@ -41,7 +41,7 @@ namespace DFM.MVC.Models
 			}
 		}
 
-		internal void Enable(String name)
+		internal void EnableCategory(String name)
 		{
 			try
 			{
