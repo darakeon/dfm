@@ -16,11 +16,5 @@ namespace DFM.Entities
 		public virtual Boolean Active { get; set; }
 
 		public virtual User User { get; set; }
-
-
-
-
-
-
 	}
 }

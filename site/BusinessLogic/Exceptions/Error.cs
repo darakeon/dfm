@@ -42,6 +42,7 @@ namespace DFM.BusinessLogic.Exceptions
 		CantDeleteAccountWithSchedules = 313,
 		TooLargeAccountName = 314,
 		TooLargeAccountUrl = 315,
+		OpenedAccount = 316,
 
 		CategoryNameRequired = 401,
 		CategoryAlreadyExists = 402,

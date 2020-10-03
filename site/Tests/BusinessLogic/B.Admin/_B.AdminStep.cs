@@ -314,7 +314,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		{
 			var user = userRepository.GetByEmail(current.Email);
 			var account = accountRepository.GetByUrl(accountUrl, user);
-			Assert.IsTrue(account.IsOpen());
+			Assert.IsTrue(account.Open);
 		}
 
 		[Then(@"the account will be closed")]
@@ -322,7 +322,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		{
 			var user = userRepository.GetByEmail(current.Email);
 			var account = accountRepository.GetByUrl(accountUrl, user);
-			Assert.IsFalse(account.IsOpen());
+			Assert.IsFalse(account.Open);
 		}
 		#endregion
 
@@ -441,6 +441,29 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 					Assert.IsNull(account);
 				}
 			}
+		}
+		#endregion
+
+		#region ReopenAccount
+		[When(@"I try to reopen the account")]
+		public void WhenITryToReopenTheAccount()
+		{
+			try
+			{
+				service.Admin.ReopenAccount(accountUrl);
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[Then(@"the account will be open")]
+		public void ThenTheAccountWillBeOpen()
+		{
+			var url = accountUrl ?? accountInfo?.Url;
+			var account = service.Admin.GetAccount(url);
+			Assert.IsTrue(account.IsOpen);
 		}
 		#endregion
 
@@ -978,7 +1001,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			categoryName = "Invalid category";
 		}
 
-		[Given(@"I give a url of the account ([\w ]+) without moves")]
+		[Given(@"I give a url of the account ([\w]+) without moves")]
 		public void GivenIGiveAnNameOfAnAccountWithoutMoves(String givenAccountUrl)
 		{
 			accountInfo = new AccountInfo
@@ -992,7 +1015,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			accountUrl = accountInfo.Url;
 		}
 
-		[Given(@"I give a url of the account ([\w ]+) with moves")]
+		[Given(@"I give a url of the account ([\w]+) with moves")]
 		public void GivenIGiveAnIdOfAnAccountWithMoves(String givenAccountUrl)
 		{
 			accountInfo = new AccountInfo
@@ -1092,8 +1115,6 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			service.Robot.DisableSchedule(scheduleInfo.Guid);
 		}
 
-
-
 		[Then(@"I will receive no account")]
 		public void ThenIWillReceiveNoAccount()
 		{
@@ -1115,8 +1136,17 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			}
 		}
 
+		[Then(@"the account will (not )?have an end date")]
+		public void ThenTheAccountWillHaveAnEndDate(Boolean hasEndDate)
+		{
+			var url = accountUrl ?? accountInfo?.Url;
+			var account = service.Admin.GetAccount(url);
 
-
+			if (hasEndDate)
+				Assert.IsNotNull(account.End);
+			else
+				Assert.IsNull(account.End);
+		}
 
 		[Then(@"I will receive no category")]
 		public void ThenIWillReceiveNoCategory()

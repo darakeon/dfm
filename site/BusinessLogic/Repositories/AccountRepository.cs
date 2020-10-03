@@ -112,10 +112,22 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal void Close(Account account)
 		{
-			if (!account.IsOpen())
+			if (!account.Open)
 				throw Error.ClosedAccount.Throw();
 
+			account.Open = false;
 			account.EndDate = account.User.Now();
+
+			Save(account);
+		}
+
+		internal void Reopen(Account account)
+		{
+			if (account.Open)
+				throw Error.OpenedAccount.Throw();
+
+			account.Open = true;
+			account.EndDate = null;
 
 			Save(account);
 		}

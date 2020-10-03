@@ -27,6 +27,7 @@ Scenario: Bd04. Close an Account with info all right
 	When I try to close the account
 	Then I will receive no core error
 		And the account will be closed
+		And the account will have an end date
 
 Scenario: Bd05. Close an Account with schedule
 	Given I give a url of the account BdS02 with moves
@@ -34,6 +35,7 @@ Scenario: Bd05. Close an Account with schedule
 	When I try to close the account
 	Then I will receive no core error
 		And the account will be closed
+		And the account will have an end date
 		And the schedule will be disabled
 
 Scenario: Bd06. Close an Account with disabled schedule
@@ -42,3 +44,4 @@ Scenario: Bd06. Close an Account with disabled schedule
 	When I try to close the account
 	Then I will receive no core error
 		And the account will be closed
+		And the account will have an end date
