@@ -17,13 +17,7 @@
 				<span class="modal-title">
 					@Context.Translate("Contact_Title")
 				</span>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span
-						aria-hidden="true"
-						class="glyphicon glyphicon-remove"
-						title="@Context.Translate("Close")"
-					></span>
-				</button>
+				@await Html.PartialAsync("Modals/Close")
 			</div>
 			<div class="modal-body">
 				@Context.Translate("Contact_Text")

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq.Expressions;
 using DFM.Entities.Enums;
 using DFM.MVC.Controllers;
 using Keon.Util.Collection;
+using Keon.Util.Reflection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
@@ -40,6 +42,11 @@ namespace DFM.MVC.Models
 		{
 			var name = typeof(T).Name;
 			return name[0..^10];
+		}
+
+		protected String getName<T>(Expression<Func<T, object>> prop)
+		{
+			return prop.Body.ToString().Substring(2);
 		}
 	}
 }

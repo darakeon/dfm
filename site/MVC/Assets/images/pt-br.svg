@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2100 -1470 1060 742" width="26" height="18">
+	<!-- from https://commons.wikimedia.org/ -->
+	<path id="green-square" class="green-square" fill="#009b3a" fill-rule="evenodd" d="M-2100 -1470H-1040V-728H-2100z"/>
+
+	<clipPath id="white-band" class="white-band">
+		<circle r="737"/>
+	</clipPath>
+
+	<g transform="matrix(0.25238094,0,0,0.25238094,-1570,-1099)">
+		<path id="yellow-diamond" d="M -1743,0 0,1113 1743,0 0,-1113 Z" fill="#fedf00" class="yellow-diamond" />
+
+		<circle id="blue-circle" r="735" fill="#002776" class="blue-circle" />
+
+		<path clip-path="url(#white-band)" d="m -2205,1470 a 1785,1785 0 0 1 3570,0 h -105 a 1680,1680 0 1 0 -3360,0 z" fill="#fff"/>
+	</g>
+</svg>

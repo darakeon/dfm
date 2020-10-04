@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using DFM.BusinessLogic.Response;
-using Keon.Util.Reflection;
 
 namespace DFM.MVC.Models
 {
@@ -17,14 +15,7 @@ namespace DFM.MVC.Models
 			MoveList = result.MoveList;
 		}
 
-		public String FieldName
-		{
-			get { return getName(m => m.Terms); }
-		}
-
-		private String getName(Expression<Func<ReportsSearchModel, object>> prop)
-		{
-			return prop.GetName();
-		}
+		public String FieldName =>
+			getName<ReportsSearchModel>(m => m.Terms);
 	}
 }

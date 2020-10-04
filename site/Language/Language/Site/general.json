@@ -47,6 +47,10 @@
 		"NoneLimit": "No limit",
 		"Settings": "Settings",
 
+		"Language": "Language",
+		"LanguageEnus": "English",
+		"LanguagePtbr": "Portuguese",
+
 		"Account": "Account",
 		"Accounts": "Accounts",
 		"Move": "Move",
@@ -152,6 +156,10 @@
 		"GreenLimit": "Tudo bem",
 		"NoneLimit": "Sem limites",
 		"Settings": "Configurações",
+
+		"Language": "Língua",
+		"LanguageEnus": "Inglês",
+		"LanguagePtbr": "Português",
 
 		"Account": "Conta",
 		"Accounts": "Contas",

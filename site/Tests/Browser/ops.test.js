@@ -5,6 +5,14 @@ const db = require('./db.js')
 const puppy = require('./puppy.js')
 
 describe('Ops', () => {
+	beforeAll(async () => {
+		await db.cleanupTickets()
+		await puppy.call()
+		await page.click('#open-language')
+		await page.click('#language-modal #language-pt-br')
+		await page.waitForNavigation()
+	})
+
 	test('Index', async () => {
 		await puppy.call('Ops')
 

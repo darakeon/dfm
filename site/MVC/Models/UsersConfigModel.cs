@@ -1,4 +1,5 @@
-﻿using DFM.MVC.Models.UserConfig;
+﻿using System;
+using DFM.MVC.Models.UserConfig;
 
 namespace DFM.MVC.Models
 {
@@ -19,6 +20,14 @@ namespace DFM.MVC.Models
 
 		public Form ActiveForm { get; set; }
 
+		public String LanguageFieldName =>
+			getName<UsersConfigModel>(m => m.Main.Language);
+
+		public String BackTo { get; set; }
+
+		public String BackFieldName =>
+			getName<UsersConfigModel>(m => m.BackTo);
+
 		// ReSharper disable once UnusedMember.Global
 		public enum Form
 		{
@@ -28,6 +37,5 @@ namespace DFM.MVC.Models
 			Theme,
 			TFA,
 		}
-
 	}
 }

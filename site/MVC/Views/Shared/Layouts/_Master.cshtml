@@ -21,6 +21,7 @@
 	<link href="~/Assets/themes/bootstrap-@(theme).min.css?v=@Cfg.Version" rel="stylesheet" type="text/css" id="bootstrap-theme" />
 	<link href="~/Assets/styles/android.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
 	<link href="~/Assets/styles/default.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
+	<link href="~/Assets/styles/language.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
 
 	@RenderSection("Styles", false)
 
@@ -48,6 +49,8 @@
 	</div>
 
 	@await Html.PartialAsync("Skeleton/Footer")
+
+	@await Html.PartialAsync("Modals/Language")
 
 	@await Html.PartialAsync("Modals/Contact")
 
