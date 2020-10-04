@@ -115,7 +115,7 @@ describe('Accounts', () => {
 			category, url, null,
 			user
 		)
-		
+
 		await puppy.call('Accounts')
 		await puppy.submit(`/Accounts/Close/${url}`)
 
