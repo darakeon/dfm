@@ -1,0 +1,52 @@
+﻿@model BaseModel
+
+@{
+	var configModel = new UsersConfigModel();
+	var defaultRoute = new RouteDefault();
+	var routeValues = new
+	{
+		controller = "Users",
+		action = configModel.IsAuthenticated
+			? "ConfigOptions"
+			: "ChangeLanguageOffline"
+	};
+}
+
+<div class="modal" id="language-modal">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<span class="modal-title">
+					@Context.Translate("Language")
+				</span>
+				@await Html.PartialAsync("Modals/Close")
+			</div>
+
+			<div class="modal-body">
+				@using (Html.BeginRouteForm(
+					defaultRoute.Name,
+					routeValues
+				)) {
+					var langList = configModel.Main
+						.LanguageList
+						.OrderByDescending(l => l.Value);
+
+					foreach (var lang in langList)
+					{
+						<button class="btn btn-default"
+						        name="@configModel.LanguageFieldName"
+						        value="@(lang.Value)"
+						        id="language-@(lang.Value)">
+							<img src="~/Assets/images/@(lang.Value).svg"/>
+						</button>
+					}
+
+					<input type="hidden"
+					       name="@configModel.BackFieldName"
+					       value="@Context.Request.Path" />
+				}
+			</div>
+		</div>
+	</div>
+</div>

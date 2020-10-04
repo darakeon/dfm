@@ -1,0 +1,24 @@
+﻿.flag.pt-br a img {
+	margin-top: -2px;
+}
+
+.flag.en-us a img {
+	margin-top: -3px;
+}
+
+#language-modal .modal-body {
+	text-align: center;
+}
+
+#language-modal .modal-body button {
+	margin: 30px;
+	padding: 30px 50px;
+}
+
+#language-modal .modal-body button img {
+	width: 65px;
+}
+
+#language-modal .modal-body button:hover {
+	opacity: 0.75;
+}

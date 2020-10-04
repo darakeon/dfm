@@ -23,6 +23,12 @@
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
 			<ul class="nav navbar-nav navbar-right">
+				<li class="flag @(Model.Language)" role='button' id="open-language" data-toggle='modal' data-target='#language-modal'>
+					<a>
+						<img src="~/Assets/images/@(Model.Language.ToLower()).svg" />
+					</a>
+				</li>
+
 				<li>
 					<a role='button' id="open-contact" data-toggle='modal' data-target='#contact-modal'>
 						<span class="glyphicon glyphicon-comment"

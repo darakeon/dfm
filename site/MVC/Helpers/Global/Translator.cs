@@ -39,13 +39,17 @@ namespace DFM.MVC.Helpers.Global
 
 		private readonly HttpContext context;
 
-		public String this[params String[] phrase] => PlainText.Site[section, Language, phrase];
+		public String this[params String[] phrase] =>
+			PlainText.Site[section, Language, phrase];
 
-		public String this[CoreError error] => this[error.Type];
+		public String this[CoreError error] =>
+			this[error.Type];
 
-		public String this[Error exception] => this["Error", exception.ToString()];
+		public String this[Error exception] =>
+			this["Error", exception.ToString()];
 
-		public String this[EmailStatus exception] => this["Email", exception.ToString()];
+		public String this[EmailStatus exception] =>
+			this["Email", exception.ToString()];
 
 		private String this[String specificSection, params String[] phrase] =>
 			PlainText.Site[specificSection, Language, phrase];
@@ -88,19 +92,33 @@ namespace DFM.MVC.Helpers.Global
 		{
 			get
 			{
-				var browserLanguage = context.Request
-					.Headers["Accept-Language"].ToString()
-					.Split(",").Where(PlainText.AcceptLanguage)
-					.FirstOrDefault();
+				var userLanguage = context.GetService().Current.Language;
+				var language = userLanguage ?? browserLanguage();
 
-				var service = context.GetService();
-				var userLanguage = service.Current.Language ?? browserLanguage;
+				if (language == null || !PlainText.AcceptLanguage(language))
+					language = Defaults.ConfigLanguage;
 
-				if (userLanguage == null || !PlainText.AcceptLanguage(userLanguage))
-					userLanguage = Defaults.ConfigLanguage;
-
-				return userLanguage;
+				return language;
 			}
+		}
+
+		private String browserLanguage()
+		{
+			return sessionLanguage()
+			    ?? headerLanguage();
+		}
+
+		private string sessionLanguage()
+		{
+			return context?.Session?.GetString("Language");
+		}
+
+		private string headerLanguage()
+		{
+			return context.Request
+				.Headers["Accept-Language"].ToString()
+				.Split(",").Where(PlainText.AcceptLanguage)
+				.FirstOrDefault();
 		}
 
 		public IDictionary<T, String> GetEnumNames<T>()

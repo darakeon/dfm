@@ -6,6 +6,7 @@ using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
 using DFM.Generic;
 using DFM.MVC.Helpers.Extensions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Controllers
@@ -147,10 +148,13 @@ namespace DFM.MVC.Controllers
 			if (ModelState.IsValid)
 				addErrors(save());
 
-			if (ModelState.IsValid)
-				return RedirectToAction("Index", "Accounts");
+			if (!ModelState.IsValid)
+				return View("Config", model);
 
-			return View("Config", model);
+			if (!String.IsNullOrEmpty(model.BackTo))
+				return Redirect(model.BackTo);
+
+			return RedirectToAction("Index", "Accounts");
 		}
 
 		[HttpGetAndHead]
@@ -222,6 +226,13 @@ namespace DFM.MVC.Controllers
 				return RedirectToAction("Index", "Accounts");
 
 			return View(model);
+		}
+
+		[HttpPost, ValidateAntiForgeryToken]
+		public IActionResult ChangeLanguageOffline(UsersConfigModel model)
+		{
+			HttpContext.Session.SetString("Language", model.Main.Language);
+			return Redirect(model.BackTo);
 		}
 
 		public IActionResult Reload()
