@@ -50,7 +50,7 @@ Legend:
 
 ## <a name="4.1.5.0"></a>4.1.5.0 :sheep: <sup>`5`</sup>
 - [x] `200615>200615` Change menu github links to modal with options of all contact types (y, f, t, g) and release/todo
-- [x] `200612>200613` Make it clear that clicking on account, you go to account area [#42](https://github.com/darakeon/dfm/issues/42)
+- [x] `200612>200613` Make it clear that clicking on account, you go to account area [#42]
 - [x] `200611>200611` Fix accessibility of blue and red values at mobile
 - [x] `200611>200611` Fix error testing url
 - [x] `200611>200611` Fix environment variable to get server db config
@@ -87,8 +87,8 @@ Legend:
 - [x] `191218>191218` Split move check to account in / out
 
 ## <a name="4.1.3.9"></a>4.1.3.9 :ant: <sup>`6`</sup>
-- [x] `191203>191204` Fix logic of repeated account name (sql) [#32](https://github.com/darakeon/dfm/issues/32)
-- [x] `191201>191201` Change account begin date when add a older move [#46](https://github.com/darakeon/dfm/issues/46)
+- [x] `191203>191204` Fix logic of repeated account name (sql) [#32]
+- [x] `191201>191201` Change account begin date when add a older move [#46]
 - [x] `191130>191201` Fix gender on system resources
 - [x] `191129>191129` Fix show terms to accept without TFA
 - [x] `191129>191129` Fix android summary bug
@@ -128,11 +128,11 @@ Legend:
 ## <a name="4.1.3.3"></a>4.1.3.3 :ant: <sup>`4`</sup>
 - [x] `190807>190808` IDs Int64
 - [x] `190807>190807` Fix transaction call to avoid code duplication (Action/Func<>)
-- [x] `190807>190807` Put warning of no content on year summary [#47](https://github.com/darakeon/dfm/issues/47)
-- [x] `190906>190907` Fix register language half pt, half en [#41](https://github.com/darakeon/dfm/issues/41)
+- [x] `190807>190807` Put warning of no content on year summary [#47]
+- [x] `190906>190907` Fix register language half pt, half en [#41]
 
 ## <a name="4.1.3.2"></a>4.1.3.2 :ant: <sup>`4`</sup>
-- [x] `190904>190905` Map repo issues to task list [#52](https://github.com/darakeon/dfm/issues/52)
+- [x] `190904>190905` Map repo issues to task list [#52]
 - [x] `190903>190904` Cookies warning
 - [x] `190901>190901` Fix detailed sum cents at e-mail
 - [x] `190827>190831` Fix transient detail insertion
@@ -521,8 +521,8 @@ Legend:
 - [x] `140304>140304` Separate User additional data (Config)
 - [x] `140304>140304` Fix error at turning device at move creation screen (Mobile)
 - [x] `140304>140304` Put amount default 1 (Mobile)
-- [x] `140303>140303` Put [ok] at error alert (Mobile)
-- [x] `140303>140303` Change [search by name] by [search by url] at account
+- [x] `140303>140303` Put "ok" at error alert (Mobile)
+- [x] `140303>140303` Change "search by name" by "search by url" at account
 - [x] `140225>140303` Make move recording (Mobile)
 - [x] `140125>140223` Create screen to save move (Mobile)
 - [x] `140125>140125` Create accounts summary (Mobile)
@@ -540,7 +540,7 @@ Legend:
 - [x] `131003>131003` Fix detailed scheduling
 - [x] `131002>131002` Hide Move and Schedule from closed accounts
 - [x] `131002>131002` Change closed account to be same as opened, but without edit possibility
-- [x] `130928>131002` Review layout [(goodui)](http://goodui.org/)
+- [x] `130928>131002` Review layout [(goodui)]
 - [x] `130902>130902` Create Json area
 
 ## <a name="1.1.0.0"></a>1.1.0.0 :whale: <sup>`5`</sup>
@@ -555,7 +555,7 @@ Legend:
 - [x] `130926>130926` Put dot at thousand
 
 ## <a name="1.0.3.1"></a>1.0.3.1 :ant: <sup>`2`</sup>
-- [x] `130830>130830` [Fix this](http://www.dontflymoney.com/Token/Received)
+- [x] `130830>130830` [Fix this]
 - [x] `130824>130830` Move Controllers logic to Models
 
 ## <a name="1.0.3.0"></a>1.0.3.0 :sheep: <sup>`18`</sup>
@@ -568,10 +568,10 @@ Legend:
 - [x] `130717>130730` Fix tests
 - [x] `130716>130716` Replace Select by Get
 - [x] `130715>130716` Create SessionOld to use at GetByIdOld
-- [x] `130715>130715` [put Index](http://www.dontflymoney.com/Token/)
-- [x] `130715>130715` Dic [(1)](http://dontflymoney.com/?dgcr=1) / [(2)](http://dontflymoney.com/?author=1)
+- [x] `130715>130715` [put Index]
+- [x] `130715>130715` Dic [(error 1)] / [(error 2)]
 - [x] `130324>130324` Suggest account url
-- [x] `130324>130324` Fix NullReference when access non-existent [account url](http://www.dontflymoney.com/Accounts/19/Report/ShowMoves)
+- [x] `130324>130324` Fix NullReference when access non-existent [account url]
 - [x] `130318>130324` Use Identity (Generic) to store logged user
 - [x] `130318>130318` Remove Authentication setter return
 - [x] `130317>130317` Make ticket logout
@@ -725,3 +725,16 @@ Legend:
 - [x] `110629>110718` Move edit
 - [x] `110620>110629` Remake routing to have route by account
 - [x] `110601>110620` Move details
+
+[account url]: http://www.dontflymoney.com/Accounts/19/Report/ShowMoves
+[(error 1)]: http://dontflymoney.com/?dgcr=1
+[(error 2)]: http://dontflymoney.com/?author=1
+[put Index]: http://www.dontflymoney.com/Token/
+[Fix this]: http://www.dontflymoney.com/Token/Received
+[(goodui)]: http://goodui.org/
+[#52]: https://github.com/darakeon/dfm/issues/52
+[#41]: https://github.com/darakeon/dfm/issues/41
+[#47]: https://github.com/darakeon/dfm/issues/47
+[#46]: https://github.com/darakeon/dfm/issues/46
+[#32]: https://github.com/darakeon/dfm/issues/32
+[#42]: https://github.com/darakeon/dfm/issues/42
