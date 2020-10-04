@@ -1,4 +1,15 @@
 {
+	"4.3.0.0": [
+		"Add change language icon to site",
+		"Enable reopen account",
+		"Add last access date",
+		"Search by moves and details",
+		"Fix android tests",
+		"Fix settings footer at android",
+		"Add browser signup contract modal test",
+		"Make cookie warning more showy",
+		"Fix zero error code problem"
+	],
 	"4.2.0.2": [
 		"Fixture to follow site bugs"
 	],

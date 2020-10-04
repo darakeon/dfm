@@ -13,9 +13,6 @@ This is the task list for the project.
 
 | Task (79)                                                                               | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
 | --------------------------------------------------------------------------------------- | -------- | --- | --- | --- | ------------------ | ------------------------------------------------ |
-| Add [sitemap]                                                                           | :sheep:  |  1  |  3  |  6  |                    |                                                  |
-| Change android home screen to menu buttons only                                         | :whale:  |  1  |  3  |  6  |                    |                                                  |
-| Show future moves and foreseen balance                                                  | :whale:  |  3  |  4  |  5  |                    | [#21](https://github.com/darakeon/dfm/issues/21) |
 | Verify DFM [status](https://www.pingdom.com/)                                           | :ant:    |  3  |  4  |  5  |                    |                                                  |
 | Add navigate gestures to reports (left to future, right to past)                        | :whale:  |  2  |  3  |  5  |                    |                                                  |
 | Add moves gestures (left delete, right check/uncheck, hold edit, click show options)    | :whale:  |  2  |  3  |  5  |                    |                                                  |
@@ -97,5 +94,4 @@ This is the task list for the project.
 [password rules]: https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#implement-proper-password-strength-controls
 [accessibilitity]: https://chrome.google.com/webstore/detail/axe-coconut-web-accessibi/iobddmbdndbbbfjopjdgadphaoihpojp?hl=en
 [gherkin jest]: https://www.npmjs.com/package/gherkin-jest
-[sitemap]: https://support.google.com/webmasters/answer/7451001
 [Lint C#]: https://medium.com/@michaelparkerdev/linting-c-in-2019-stylecop-sonar-resharper-and-roslyn-73e88af57ebd

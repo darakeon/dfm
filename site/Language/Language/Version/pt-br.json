@@ -1,4 +1,15 @@
 {
+	"4.3.0.0": [
+		"Colocado ícone para trocar língua do site",
+		"Habilitada reabertura de Conta",
+		"Data de último acesso",
+		"Busca por movimentações e detalhes",
+		"Ajustes nos testes de android",
+		"Ajuste na tela de configurações do android",
+		"Adicionado teste da janela de contrato no registro",
+		"Aviso de cookies mais chamativo",
+		"Corrigido problema de erro com código zero"
+	],
 	"4.2.0.2": [
 		"Manutenção para acompanhamento de erros no sistema"
 	],

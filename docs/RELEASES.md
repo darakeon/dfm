@@ -4,15 +4,20 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#4.2.0.2)
-- [go to version in development](#4.3.0.0)
-- [dev version state](../../4.3.0.0/docs/RELEASES.md#4.3.0.0)
+- [go to published version](#4.3.0.0)
+- [go to version in development](#4.4.0.0)
+- [dev version state](../../4.4.0.0/docs/RELEASES.md#4.4.0.0)
 
 Legend:
 - :dragon:: at least one huge change (increases first number)
 - :whale:: at least one big change, like a new feature (increases second number)
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="4.4.0.0"></a>4.4.0.0 :whale: <sup>`3`</sup>
+- [ ] Show future moves and foreseen balance [#21]
+- [ ] Change android home screen to menu buttons only
+- [ ] Add [sitemap]
 
 ## <a name="4.3.0.0"></a>4.3.0.0 :whale: <sup>`9`</sup>
 - [x] `201003>201004` Add change language icon to site
@@ -738,3 +743,5 @@ Legend:
 [#46]: https://github.com/darakeon/dfm/issues/46
 [#32]: https://github.com/darakeon/dfm/issues/32
 [#42]: https://github.com/darakeon/dfm/issues/42
+[#21]: https://github.com/darakeon/dfm/issues/21
+[sitemap]: https://support.google.com/webmasters/answer/7451001
