@@ -17,7 +17,7 @@ describe('Ops', () => {
 		await puppy.call('Ops')
 
 		const warning = await puppy.content('.alert')
-		expect(warning).toContain('Ocorreu um erro interno. Por favor, entre em contato conosco.')
+		expect(warning).toContain('Ocorreu um erro interno.')
 	})
 
 	test('Code 404', async () => {
