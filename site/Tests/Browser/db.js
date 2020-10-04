@@ -75,7 +75,7 @@ async function createUser(email, active, wizard) {
 		`insert into config`
 			+ ` (language, timezone, sendMoveEmail, useCategories, moveCheck, theme, wizard)`
 		+ ` values`
-			+ ` ('pt-BR', 'E. South America Standard Time', 0, 1, 1, 1, ${wizard})`
+			+ ` ('pt-BR', 'UTC-03:00', 0, 1, 1, 1, ${wizard})`
 	)
 
 	const config = await execute(
