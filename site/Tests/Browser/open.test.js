@@ -77,4 +77,29 @@ describe('Open site', () => {
 			'<img src="/Assets/images/en-us.svg">'
 		)
 	})
+
+	it('should have a robots', async () => {
+		const content = await puppy.callPlain('robots.txt')
+
+		await expect(content).toBe(
+			'Sitemap: http://localhost:2709/sitemap.txt'
+		)
+	})
+
+	it('should have a sitemap', async () => {
+		const content = await puppy.callPlain('sitemap.txt')
+
+		const urls = content.split('\n')
+
+		await expect(urls.length).not.toBe(0)
+
+		for (let u = 0; u < urls.length; u++) {
+			const url = urls[u]
+
+			await expect(url).toMatch(/http:\/\/localhost:2709\/.+/)
+
+			const response = await page.goto(url)
+			await expect(response.status()).toBe(200)
+		}
+	})
 })
