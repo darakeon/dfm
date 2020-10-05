@@ -28,7 +28,7 @@ call node contract.js
 
 REM Run sequentially because of page sessions
 REM There are tests that login and logoff
-call npm test -- %1 --runInBand
+call npm test -- %1
 
 taskkill /IM "DFM.MVC.exe"
 timeout 2
