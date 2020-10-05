@@ -21,6 +21,8 @@ namespace DFM.MVC.Starters.Routes
 
 		public static void CreateRoutes()
 		{
+			addUrl<Default.Robots>();
+			addUrl<Default.SiteMap>();
 			addUrl<Accounts>();
 			addUrl<Apis.Accounts>();
 			addUrl<Apis.Main>();

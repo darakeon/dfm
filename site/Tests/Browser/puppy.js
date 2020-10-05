@@ -1,3 +1,4 @@
+const { get } = require('axios')
 const db = require('./db')
 
 const { setDefaultOptions } = require('expect-puppeteer')
@@ -7,11 +8,11 @@ let initialized = false;
 async function init() {
 	if (initialized) return
 
-	page.setExtraHTTPHeaders({
+	await page.setExtraHTTPHeaders({
 		'Accept-Language': db.language
 	})
 
-	page.on('response', (r) => {
+	await page.on('response', (r) => {
 		if (r.status() >= 400)
 			console.error(r.url(), r.status())
 	})
@@ -31,6 +32,11 @@ async function call(path) {
 
 	await imageLog('error')
 	throw status
+}
+
+async function callPlain(path) {
+	const response = await get(url(path))
+	return response.data
 }
 
 function url(path) {
@@ -158,6 +164,7 @@ async function imageLog(name) {
 
 module.exports = {
 	call,
+	callPlain,
 	content,
 	clear,
 	setValue,

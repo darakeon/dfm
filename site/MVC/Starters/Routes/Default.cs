@@ -25,5 +25,17 @@ namespace DFM.MVC.Starters.Routes
 			public Mobile() : base("Generic", "Mobile") { }
 			public override String Path => "@{activity}";
 		}
+
+		public class Robots : Default
+		{
+			public Robots() : base("Generic", "Robots") { }
+			public override String Path => "robots.txt";
+		}
+
+		public class SiteMap : Default
+		{
+			public SiteMap() : base("Generic", "SiteMap") { }
+			public override String Path => "sitemap.txt";
+		}
 	}
 }

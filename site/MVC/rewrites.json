@@ -41,7 +41,6 @@
 		"^readme.md",
 		"^component\/users\/.*$",
 		"^.well-known\/apple-app-site-association",
-		"^sitemap.xml",
 		"^.*.html$",
 		"^simpla",
 		"^.vscode/ftp-sync.json",

@@ -19,5 +19,29 @@ namespace DFM.MVC.Controllers
 			return Content(" ");
 		}
 
+		public IActionResult Robots()
+		{
+			return crawler($"Sitemap: {site}/sitemap.txt");
+		}
+
+		public IActionResult SiteMap()
+		{
+			var pages = new[]
+			{
+				$"{site}/Users/SignUp",
+				$"{site}/Users/LogOn",
+				$"{site}/Users/ForgotPassword",
+				$"{site}/Users/Contract"
+			};
+
+			return crawler(String.Join('\n', pages));
+		}
+
+		private IActionResult crawler(String content)
+		{
+			return Content(content, "text/plain", Encoding.UTF8);
+		}
+
+		private String site => $"{Request.Scheme}://{Request.Host}";
 	}
 }
