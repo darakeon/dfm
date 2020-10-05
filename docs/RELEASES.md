@@ -17,7 +17,7 @@ Legend:
 ## <a name="4.4.0.0"></a>4.4.0.0 :whale: <sup>`3`</sup>
 - [ ] Show future moves and foreseen balance [#21]
 - [ ] Change android home screen to menu buttons only
-- [ ] Add [sitemap]
+- [ ] `201005>......` Add [sitemap]
 
 ## <a name="4.3.0.0"></a>4.3.0.0 :whale: <sup>`9`</sup>
 - [x] `201003>201004` Add change language icon to site

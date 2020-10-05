@@ -21,11 +21,11 @@ namespace DFM.MVC.Starters.Routes
 
 		public static void CreateRoutes()
 		{
-			addUrl<RouteAccount>();
-			addUrl<RouteApiAccount>();
-			addUrl<RouteApi>();
-			addUrl<RouteMobile>();
-			addUrl<RouteDefault>();
+			addUrl<Accounts>();
+			addUrl<Apis.Accounts>();
+			addUrl<Apis.Main>();
+			addUrl<Default.Mobile>();
+			addUrl<Default.Main>();
 		}
 
 		private static void addUrl<T>()

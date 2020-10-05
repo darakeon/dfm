@@ -2,7 +2,7 @@
 
 @{
 	var accountArea = Model as BaseAccountModel;
-	var defaultRoute = new RouteDefault();
+	var defaultRoute = new Default.Main();
 }
 
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -92,7 +92,7 @@
 					<li>
 						@await Html.PartialAsync("Extensions/MicroForm",
 							MicroForm.WithGlyph(Context, "off", "Logoff")
-								.AddRouteUrl<RouteDefault>("Users", "LogOff")
+								.AddRouteUrl<Default.Main>("Users", "LogOff")
 						)
 					</li>
 				}
