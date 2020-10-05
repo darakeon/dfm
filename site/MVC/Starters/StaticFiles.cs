@@ -1,14 +1,13 @@
 ﻿using System;
 using System.IO;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.FileProviders;
 
 namespace DFM.MVC.Starters
 {
 	class StaticFiles
 	{
-		public static void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		public static void Configure(IApplicationBuilder app)
 		{
 			addStaticPath(app, "Assets");
 		}

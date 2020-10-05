@@ -47,7 +47,7 @@ namespace DFM.MVC
 
 			Error.AddHandlers(app, env);
 
-			StaticFiles.Configure(app, env);
+			StaticFiles.Configure(app);
 
 			StaticFiles.Certificate(app);
 
