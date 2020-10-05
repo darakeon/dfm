@@ -4,7 +4,6 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
-using DFM.Generic;
 using DFM.MVC.Helpers.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -177,12 +176,6 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
-		[HttpGetAndHead]
-		public IActionResult Mobile()
-		{
-			return Redirect(Cfg.GooglePlay);
-		}
-
 		[HttpPost, ValidateAntiForgeryToken, Auth]
 		public IActionResult EndWizard()
 		{
@@ -233,11 +226,6 @@ namespace DFM.MVC.Controllers
 		{
 			HttpContext.Session.SetString("Language", model.Main.Language);
 			return Redirect(model.BackTo);
-		}
-
-		public IActionResult Reload()
-		{
-			return Content(" ");
 		}
 	}
 }

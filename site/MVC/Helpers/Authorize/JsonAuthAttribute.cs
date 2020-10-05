@@ -10,17 +10,17 @@ namespace DFM.MVC.Helpers.Authorize
 
 		protected override void goToContractPage(AuthorizationFilterContext filterContext)
 		{
-			goTo(filterContext, "Users", "Reload");
+			goTo(filterContext, "Generic", "Reload");
 		}
 
 		protected override void goToUninvited(AuthorizationFilterContext filterContext)
 		{
-			goTo(filterContext, "Users", "Reload");
+			goTo(filterContext, "Generic", "Reload");
 		}
 
 		protected override void goToTFA(AuthorizationFilterContext filterContext)
 		{
-			goTo(filterContext, "Users", "Reload");
+			goTo(filterContext, "Generic", "Reload");
 		}
 	}
 }

@@ -22,7 +22,7 @@ namespace DFM.MVC.Starters.Routes
 
 		public class Mobile : Default
 		{
-			public Mobile() : base("Users", "Mobile") { }
+			public Mobile() : base("Generic", "Mobile") { }
 			public override String Path => "@{activity}";
 		}
 	}
