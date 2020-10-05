@@ -2,7 +2,7 @@
 
 namespace DFM.MVC.Starters.Routes
 {
-	public class RouteAccount : BaseRoute
+	public class Accounts : BaseRoute
 	{
 		public override String Area => Route.AccountArea;
 		public override String Path =>

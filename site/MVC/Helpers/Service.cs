@@ -49,7 +49,7 @@ namespace DFM.MVC.Helpers
 
 		private String getPath(PathType pathType)
 		{
-			return Route.GetUrl<RouteDefault>
+			return Route.GetUrl<Default.Main>
 				("Tokens", getAction(pathType));
 		}
 

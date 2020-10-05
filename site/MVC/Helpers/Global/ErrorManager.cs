@@ -73,7 +73,7 @@ namespace DFM.MVC.Helpers.Global
 		private void redirect()
 		{
 			context.Response.Redirect(
-				Route.GetUrl<RouteDefault>
+				Route.GetUrl<Default.Main>
 					("Ops", "Code", 500)
 			);
 		}

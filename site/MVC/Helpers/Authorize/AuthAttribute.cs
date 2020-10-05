@@ -83,7 +83,7 @@ namespace DFM.MVC.Helpers.Authorize
 			[AspMvcController] String controller,
 			[AspMvcAction] String action)
 		{
-			goTo<RouteDefault>(filterContext, controller, action);
+			goTo<Default.Main>(filterContext, controller, action);
 		}
 
 		protected void goTo<T>(
