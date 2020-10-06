@@ -2,10 +2,15 @@ package com.darakeon.dfm.welcome
 
 import android.os.Bundle
 import com.darakeon.dfm.R
-import com.darakeon.dfm.accounts.AccountsActivity
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.redirect
+import com.darakeon.dfm.lib.extensions.applyGlyphicon
 import com.darakeon.dfm.login.LoginActivity
+import kotlinx.android.synthetic.main.welcome.action_close
+import kotlinx.android.synthetic.main.welcome.action_home
+import kotlinx.android.synthetic.main.welcome.action_logout
+import kotlinx.android.synthetic.main.welcome.action_move
+import kotlinx.android.synthetic.main.welcome.action_settings
 
 class WelcomeActivity : BaseActivity() {
 	override val contentView = R.layout.welcome
@@ -15,16 +20,14 @@ class WelcomeActivity : BaseActivity() {
 
 		if (intent.getBooleanExtra("EXIT", false)) {
 			finish()
-			return
-		}
-
-		callApi { it.wakeUpSite { redirect() } }
-	}
-
-	private fun redirect() {
-		if (isLoggedIn)
-			redirect<AccountsActivity>()
-		else
+		} else if (!isLoggedIn) {
 			redirect<LoginActivity>()
+		} else {
+			action_home.applyGlyphicon()
+			action_settings.applyGlyphicon()
+			action_move.applyGlyphicon()
+			action_logout.applyGlyphicon()
+			action_close.applyGlyphicon()
+		}
 	}
 }

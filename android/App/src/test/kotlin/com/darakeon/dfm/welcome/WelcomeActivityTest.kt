@@ -10,6 +10,7 @@ import com.darakeon.dfm.utils.api.ActivityMock
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
@@ -36,6 +37,11 @@ class WelcomeActivityTest {
 		waitTasksFinish()
 
 		assertNotNull(activity.findViewById(R.id.pig))
+		assertNotNull(activity.findViewById(R.id.action_logout))
+		assertNotNull(activity.findViewById(R.id.action_close))
+		assertNotNull(activity.findViewById(R.id.action_home))
+		assertNotNull(activity.findViewById(R.id.action_move))
+		assertNotNull(activity.findViewById(R.id.action_settings))
 	}
 
 	@Test
@@ -60,8 +66,7 @@ class WelcomeActivityTest {
 
 		val shadow = shadowOf(activity)
 		val intent = shadow.peekNextStartedActivity()
-		val name = intent.getCalledName()
-		assertThat(name, `is`("AccountsActivity"))
+		assertNull(intent)
 	}
 
 	@Test

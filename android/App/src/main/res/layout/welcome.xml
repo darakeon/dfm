@@ -12,7 +12,55 @@
 		android:layout_width="match_parent"
 		android:src="@drawable/pigs"
 		android:scaleType="centerCrop"
+		android:alpha="0.10"
 		android:contentDescription="@string/starting_app"
 		/>
+
+	<Button
+		android:id="@+id/action_logout"
+		android:text="@string/action_logout"
+		android:contentDescription="@string/label_logout"
+		android:onClick="showLongClickWarning"
+		android:layout_alignParentStart="true"
+		style="@style/home_button_top" />
+
+	<Button
+		android:id="@+id/action_close"
+		android:text="@string/action_close"
+		android:contentDescription="@string/label_close"
+		android:onClick="showLongClickWarning"
+		android:layout_alignParentEnd="true"
+		style="@style/home_button_top" />
+
+	<GridLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerInParent="true"
+		android:columnCount="@integer/welcome_columns">
+
+		<Button
+			android:id="@+id/action_home"
+			android:text="@string/action_home"
+			android:contentDescription="@string/label_home"
+			android:onClick="goToAccounts"
+			style="@style/home_button_main" />
+
+		<Button
+			android:id="@+id/action_settings"
+			android:text="@string/action_settings"
+			android:contentDescription="@string/label_settings"
+			android:onClick="goToSettings"
+			style="@style/home_button_main" />
+
+		<Button
+			android:id="@+id/action_move"
+			android:text="@string/action_move"
+			android:contentDescription="@string/label_move"
+			android:onClick="createMove"
+			android:layout_columnSpan="@integer/welcome_column_move"
+			android:layout_columnWeight="@integer/welcome_column_move"
+			style="@style/home_button_main" />
+
+	</GridLayout>
 
 </RelativeLayout>
