@@ -3,4 +3,22 @@
 	<style name="AppTheme" parent="Dark">
 	</style>
 
+	<style name="home_button_main" parent="home_button">
+		<item name="android:textSize">70sp</item>
+		<item name="android:padding">30sp</item>
+		<item name="android:layout_width">140sp</item>
+	</style>
+
+	<style name="home_button_top" parent="home_button">
+		<item name="android:textSize">20sp</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:padding">10sp</item>
+	</style>
+
+	<style name="home_button">
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:background">@android:color/transparent</item>
+		<item name="android:textAlignment">center</item>
+	</style>
+
 </resources>

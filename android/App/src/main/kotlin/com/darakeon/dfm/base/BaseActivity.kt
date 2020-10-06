@@ -36,6 +36,8 @@ import kotlinx.android.synthetic.main.bottom_menu.action_move
 import kotlinx.android.synthetic.main.bottom_menu.action_settings
 import kotlinx.android.synthetic.main.bottom_menu.bottom_menu
 import java.util.HashMap
+import kotlinx.android.synthetic.main.welcome.action_close as welcome_close
+import kotlinx.android.synthetic.main.welcome.action_logout as welcome_logout
 
 abstract class BaseActivity: Activity(), ApiCaller {
 	override var api: Api<BaseActivity>? = null
@@ -110,12 +112,14 @@ abstract class BaseActivity: Activity(), ApiCaller {
 	}
 
 	private fun setMenuLongClicks() {
-		action_logout?.setOnLongClickListener {
+		val logout = action_logout ?: welcome_logout
+		logout?.setOnLongClickListener {
 			logout(api)
 			true
 		}
 
-		action_close?.setOnLongClickListener {
+		val close = action_close ?: welcome_close
+		close?.setOnLongClickListener {
 			close()
 			true
 		}
