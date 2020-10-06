@@ -18,5 +18,5 @@ res/values/license.xml
 release
 */release
 
-*/*/debug/res/values/local-address.xml
+*/*/debug/res/values/site-address.xml
 */*/debug/res/xml/network_security_config.xml
