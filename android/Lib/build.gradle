@@ -80,7 +80,7 @@ static def getLocalIP() {
 		}
 
 	if (ips.empty)
-		return ""
+		return "dontflymoney.com"
 
 	return ips.first().toString().substring(1)
 }
@@ -94,7 +94,7 @@ task ipNetwork(type: Copy) {
 }
 
 task ipAddress(type: Copy) {
-	from ('src/main/res/values/local-address.xml')
+	from ('src/main/res/values/site-address.xml')
 	into ('src/debug/res/values')
 	filter {
 		String line -> line.replaceAll("dontflymoney.com", getLocalIP())

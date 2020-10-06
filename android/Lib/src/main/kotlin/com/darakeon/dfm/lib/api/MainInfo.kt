@@ -9,10 +9,11 @@ object MainInfo
 		val siteAddress =
 			context.getString(R.string.site_address)
 
-		return if (isIP(siteAddress))
-			"http://$siteAddress/"
-		else
-			"https://$siteAddress/"
+		return when {
+			siteAddress == "" -> ""
+			isIP(siteAddress) -> "http://$siteAddress/"
+			else -> "https://$siteAddress/"
+		}
 	}
 
 	private fun isIP(address: String) =
