@@ -24,7 +24,8 @@
 			</intent-filter>
 		</activity>
 
-		<activity android:name=".ListActivity" />
+		<activity android:name=".ListActivity"
+			android:label="@string/site_address" />
 
 		<service
 			android:name=".service.SiteErrorService"
