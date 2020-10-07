@@ -2,6 +2,7 @@
 <resources>
 
 	<string name="app_name" translatable="false">Don\'t fly Money</string>
+	<string name="app_short_name" translatable="false">DfM</string>
 
 	<string name="action_home" translatable="false"></string>
 	<string name="action_move" translatable="false"></string>
