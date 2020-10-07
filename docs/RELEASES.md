@@ -17,7 +17,7 @@ Legend:
 ## <a name="4.4.0.0"></a>4.4.0.0 :whale: <sup>`4`</sup>
 - [ ] Show future moves and foreseen balance [#21]
 - [x] `201006>201006` Change android home screen to menu buttons only
-- [ ] Group error logs at app
+- [ ] `201006>......` Group error logs at app
 - [x] `201005>201005` Add [sitemap]
 
 ## <a name="4.3.0.0"></a>4.3.0.0 :whale: <sup>`9`</sup>
