@@ -23,15 +23,15 @@ class ErrorLogTest {
 	}
 
 	@Test
-	fun title() {
+	fun date() {
 		val errorLog = ErrorLog("20200912224537886752", defaultException)
-		assertThat(errorLog.title(), `is`("2020-09-12 22:45"))
+		assertThat(errorLog.date(), `is`("2020-09-12 22:45"))
 	}
 
 	@Test
-	fun title_outOfPattern() {
+	fun date_outOfPattern() {
 		val errorLog = ErrorLog("something", defaultException)
-		assertThat(errorLog.title(), `is`("something"))
+		assertThat(errorLog.date(), `is`("something"))
 	}
 
 	@Test
