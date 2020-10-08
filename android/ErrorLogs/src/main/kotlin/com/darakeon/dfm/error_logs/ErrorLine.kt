@@ -2,24 +2,24 @@ package com.darakeon.dfm.error_logs
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.LinearLayout
-import com.darakeon.dfm.lib.api.entities.status.ErrorLog
+import android.widget.GridLayout
+import kotlinx.android.synthetic.main.error_line.view.count
+import kotlinx.android.synthetic.main.error_line.view.last_date
 import kotlinx.android.synthetic.main.error_line.view.message
-import kotlinx.android.synthetic.main.error_line.view.title
 
 class ErrorLine(
 	context: Context, attributeSet: AttributeSet
-) : LinearLayout(context, attributeSet) {
-	fun set(log: ErrorLog, archive: (id: String) -> Unit) {
-		title.text = log.title()
-		message.text = log.message()
+) : GridLayout(context, attributeSet) {
+	fun set(log: ErrorGroup, archive: () -> Unit) {
+		last_date.text = log.lastDate
+		message.text = log.message
+		count.text = log.count.toString()
 
 		isClickable = true
 
 		setOnLongClickListener {
-			archive(log.id)
+			archive()
 			true
 		}
 	}
 }
-

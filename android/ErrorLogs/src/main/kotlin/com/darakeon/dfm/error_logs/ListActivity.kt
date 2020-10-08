@@ -8,7 +8,7 @@ import com.darakeon.dfm.lib.api.entities.status.ErrorLog
 import kotlinx.android.synthetic.main.activity_list.list
 
 class ListActivity : BaseActivity() {
-	private var logs: MutableList<ErrorLog> = mutableListOf()
+	private var logs: MutableList<ErrorGroup> = mutableListOf()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -27,8 +27,21 @@ class ListActivity : BaseActivity() {
 				arrayOf(getString(R.string.empty))
 			)
 		} else {
-			logs = errors.logs.toMutableList()
+			errors.logs.forEach(this::addLog)
+
 			list.adapter = ErrorAdapter(this, logs)
+		}
+	}
+
+	private fun addLog(log: ErrorLog) {
+		val group = logs.singleOrNull {
+			it.message == log.message()
+		}
+
+		if (group == null) {
+			logs.add(ErrorGroup(log))
+		} else {
+			group.add(log)
 		}
 	}
 }
