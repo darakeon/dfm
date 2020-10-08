@@ -32,8 +32,8 @@ class Api<C>(
 		if (currentCall != null) return
 		currentCall = this
 		requestHandler.call(this) {
-			onSuccess(it)
 			currentCall = null
+			onSuccess(it)
 		}
 	}
 
