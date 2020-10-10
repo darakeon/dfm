@@ -39,5 +39,13 @@ namespace DFM.Tests.Util
 		#pragma warning disable 618
 		protected static ScenarioContext context => ScenarioContext.Current;
 		#pragma warning restore 618
+
+		protected static String scenarioTitle => context?.ScenarioInfo?.Title;
+		protected String scenarioCode => scenarioTitle?.ToLower().Substring(0, 4);
+
+		protected Boolean isCurrent(ScenarioBlock block)
+		{
+			return context.CurrentScenarioBlock == block;
+		}
 	}
 }

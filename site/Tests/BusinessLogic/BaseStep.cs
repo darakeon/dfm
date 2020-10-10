@@ -73,8 +73,7 @@ namespace DFM.BusinessLogic.Tests
 
 		protected static void log(String text)
 		{
-			var title = context?.ScenarioInfo?.Title;
-			var log = $"{DateTime.Now:HH:mm:ss-fff}\t{title}\t{text}\n";
+			var log = $"{DateTime.Now:HH:mm:ss-fff}\t{scenarioTitle}\t{text}\n";
 			File.AppendAllText(logFileName, log);
 		}
 
@@ -384,11 +383,6 @@ namespace DFM.BusinessLogic.Tests
 			if (!String.IsNullOrEmpty(detailData["Amount"]))
 				newDetail.Amount = Int16.Parse(detailData["Amount"]);
 			return newDetail;
-		}
-
-		protected Boolean isCurrent(ScenarioBlock block)
-		{
-			return context.CurrentScenarioBlock == block;
 		}
 		#endregion
 	}
