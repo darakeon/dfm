@@ -76,11 +76,11 @@ namespace DFM.BusinessLogic.Tests
 
 			yearCategoryAccountOutTotal =
 				summaryRepository.Get(
-					accountOut, category, date.Year
+					accountOut, category, entityDate.Year
 				)?.Out ?? 0;
 			monthCategoryAccountOutTotal =
 				summaryRepository.Get(
-					accountOut, category, date.ToMonthYear()
+					accountOut, category, entityDate.ToMonthYear()
 				)?.Out ?? 0;
 		}
 
@@ -147,11 +147,11 @@ namespace DFM.BusinessLogic.Tests
 
 			yearCategoryAccountInTotal =
 				summaryRepository.Get(
-					accountIn, category, date.Year
+					accountIn, category, entityDate.Year
 				)?.In ?? 0;
 			monthCategoryAccountInTotal =
 				summaryRepository.Get(
-					accountIn, category, date.ToMonthYear()
+					accountIn, category, entityDate.ToMonthYear()
 				)?.In ?? 0;
 		}
 
@@ -220,20 +220,20 @@ namespace DFM.BusinessLogic.Tests
 
 			yearCategoryAccountInTotal =
 				summaryRepository.Get(
-					accountIn, category, date.Year
+					accountIn, category, entityDate.Year
 				)?.In ?? 0;
 			monthCategoryAccountInTotal =
 				summaryRepository.Get(
-					accountIn, category, date.ToMonthYear()
+					accountIn, category, entityDate.ToMonthYear()
 				)?.In ?? 0;
 
 			yearCategoryAccountOutTotal =
 				summaryRepository.Get(
-					accountOut, category, date.Year
+					accountOut, category, entityDate.Year
 				)?.Out ?? 0;
 			monthCategoryAccountOutTotal =
 				summaryRepository.Get(
-					accountOut, category, date.ToMonthYear()
+					accountOut, category, entityDate.ToMonthYear()
 				)?.Out ?? 0;
 		}
 
@@ -256,7 +256,7 @@ namespace DFM.BusinessLogic.Tests
 			var category = categoryRepository.GetByName(categoryName, user);
 
 			var currentTotal = summaryRepository.Get(
-				accountOut, category, date.ToMonthYear()
+				accountOut, category, entityDate.ToMonthYear()
 			)?.Out ?? 0;
 
 			Assert.AreEqual(monthCategoryAccountOutTotal, currentTotal);
@@ -271,7 +271,7 @@ namespace DFM.BusinessLogic.Tests
 			var category = categoryRepository.GetByName(categoryName, user);
 
 			var currentTotal = summaryRepository.Get(
-				accountOut, category, date.Year
+				accountOut, category, entityDate.Year
 			)?.Out ?? 0;
 
 			Assert.AreEqual(yearCategoryAccountOutTotal, currentTotal);
@@ -294,7 +294,7 @@ namespace DFM.BusinessLogic.Tests
 			var category = categoryRepository.GetByName(categoryName, user);
 
 			var currentTotal = summaryRepository.Get(
-				accountIn, category, date.ToMonthYear()
+				accountIn, category, entityDate.ToMonthYear()
 			)?.In ?? 0;
 
 			Assert.AreEqual(monthCategoryAccountInTotal, currentTotal);
@@ -309,7 +309,7 @@ namespace DFM.BusinessLogic.Tests
 			var category = categoryRepository.GetByName(categoryName, user);
 
 			var currentTotal = summaryRepository.Get(
-				accountIn, category, date.Year
+				accountIn, category, entityDate.Year
 			)?.In ?? 0;
 
 			Assert.AreEqual(yearCategoryAccountInTotal, currentTotal);
@@ -335,7 +335,7 @@ namespace DFM.BusinessLogic.Tests
 			var category = categoryRepository.GetByName(categoryName, user);
 
 			var currentTotal = summaryRepository.Get(
-				accountOut, category, date.ToMonthYear()
+				accountOut, category, entityDate.ToMonthYear()
 			)?.Out ?? 0;
 
 			Assert.AreEqual(monthCategoryAccountOutTotal + change, currentTotal);
@@ -350,7 +350,7 @@ namespace DFM.BusinessLogic.Tests
 			var category = categoryRepository.GetByName(categoryName, user);
 
 			var currentTotal = summaryRepository.Get(
-				accountOut, category, date.Year
+				accountOut, category, entityDate.Year
 			)?.Out ?? 0;
 
 			Assert.AreEqual(yearCategoryAccountOutTotal + change, currentTotal);
@@ -376,7 +376,7 @@ namespace DFM.BusinessLogic.Tests
 			var category = categoryRepository.GetByName(categoryName, user);
 
 			var currentTotal = summaryRepository.Get(
-				accountIn, category, date.ToMonthYear()
+				accountIn, category, entityDate.ToMonthYear()
 			)?.In ?? 0;
 
 			Assert.AreEqual(monthCategoryAccountInTotal + change, currentTotal);
@@ -391,7 +391,7 @@ namespace DFM.BusinessLogic.Tests
 			var category = categoryRepository.GetByName(categoryName, user);
 
 			var currentTotal = summaryRepository.Get(
-				accountIn, category, date.Year
+				accountIn, category, entityDate.Year
 			)?.In ?? 0;
 
 			Assert.AreEqual(yearCategoryAccountInTotal + change, currentTotal);
