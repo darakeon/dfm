@@ -353,7 +353,7 @@ namespace DFM.BusinessLogic.Tests
 			set => set("userEmailByTest", value);
 		}
 
-		protected static DateTime date =>
+		protected static DateTime entityDate =>
 			moveInfo?.GetDate() ??
 			scheduleInfo?.GetDate() ??
 			DateTime.MinValue;
