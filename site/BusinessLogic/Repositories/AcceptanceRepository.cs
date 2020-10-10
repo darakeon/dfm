@@ -1,10 +1,9 @@
 using System;
 using DFM.Entities;
-using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class AcceptanceRepository : BaseRepositoryLong<Acceptance>
+	internal class AcceptanceRepository : Repo<Acceptance>
 	{
 		internal void Accept(User user, Contract contract)
 		{
@@ -25,8 +24,8 @@ namespace DFM.BusinessLogic.Repositories
 				return null;
 
 			var acceptance = NewQuery()
-				.SimpleFilter(a => a.User.ID == user.ID && a.Contract.ID == contract.ID)
-				.UniqueResult;
+				.Where(a => a.User.ID == user.ID && a.Contract.ID == contract.ID)
+				.SingleOrDefault;
 
 			if (acceptance == null)
 			{

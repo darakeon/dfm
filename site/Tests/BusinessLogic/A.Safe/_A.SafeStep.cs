@@ -657,8 +657,8 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		public void ThenTheAccessWillBeAfterTestStartTime(Boolean after)
 		{
 			var ticketList = ticketRepository.NewQuery()
-				.SimpleFilter(t => t.User, u => u.Email == userEmailByTest)
-				.Result;
+				.Where(t => t.User, u => u.Email == userEmailByTest)
+				.List;
 
 			Assert.AreNotEqual(0, ticketList.Count, $"no login for {userEmailByTest}");
 
@@ -759,7 +759,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		{
 			var userID = userRepository.GetByEmail(email).ID;
 
-			ticket = ticketRepository.SimpleFilter(
+			ticket = ticketRepository.Where(
 				t => t.User.ID == userID
 					&& t.Expiration == null
 			).FirstOrDefault()?.Key;

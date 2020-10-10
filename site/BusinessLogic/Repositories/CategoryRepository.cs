@@ -3,11 +3,10 @@ using System.Linq;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Bases;
-using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class CategoryRepository : BaseRepositoryLong<Category>
+	internal class CategoryRepository : Repo<Category>
 	{
 		internal Category Save(Category category)
 		{
@@ -49,7 +48,7 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal Category GetByName(String name, User user)
 		{
-			var categoryList = SimpleFilter(
+			var categoryList = Where(
 					a => a.Name == name
 						&& a.User.ID == user.ID
 				);

@@ -97,7 +97,7 @@ namespace DFM.BusinessLogic.Tests
 		{
 			var user = userRepository.GetByEmail(email);
 
-			return securityRepository.SimpleFilter(
+			return securityRepository.Where(
 				s => s.User.ID == user.ID
 				     && s.Action == action
 				     && s.Active

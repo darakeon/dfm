@@ -12,7 +12,7 @@ using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Services
 {
-	public class RobotService : BaseService
+	public class RobotService : Service
 	{
 		private readonly ScheduleRepository scheduleRepository;
 		private readonly MoveRepository moveRepository;
@@ -196,7 +196,7 @@ namespace DFM.BusinessLogic.Services
 			var user = parent.Safe.GetCurrent();
 
 			return scheduleRepository
-				.SimpleFilter(
+				.Where(
 					s => s.Active && s.User.ID == user.ID
 				)
 				.Select(ScheduleInfo.Convert)

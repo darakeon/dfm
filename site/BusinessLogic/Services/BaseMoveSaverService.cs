@@ -11,7 +11,7 @@ using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Services
 {
-	internal class BaseMoveSaverService : BaseService
+	internal class BaseMoveSaverService : Service
 	{
 		private readonly MoveRepository moveRepository;
 		private readonly DetailRepository detailRepository;
@@ -153,7 +153,7 @@ namespace DFM.BusinessLogic.Services
 			{
 				var user = parent.Safe.GetCurrent();
 				summaryRepository
-					.SimpleFilter(s => s.Broken)
+					.Where(s => s.Broken)
 					.Where(s => s.User() == user)
 					.ToList()
 					.ForEach(fixSummaries);

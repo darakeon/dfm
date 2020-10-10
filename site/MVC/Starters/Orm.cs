@@ -1,9 +1,9 @@
-using System.IO;
 using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.Entities;
 using DFM.Generic;
 using Keon.MVC.Cookies;
-using Keon.NHibernate.Base;
+using Keon.NHibernate.Schema;
+using Keon.NHibernate.Sessions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;

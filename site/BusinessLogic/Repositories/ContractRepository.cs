@@ -1,9 +1,8 @@
 using DFM.Entities;
-using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class ContractRepository : BaseRepositoryLong<Contract>
+	internal class ContractRepository : Repo<Contract>
 	{
 		internal Contract GetContract()
 		{

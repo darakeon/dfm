@@ -3,12 +3,11 @@ using System.Text.RegularExpressions;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Bases;
-using Keon.NHibernate.Base;
 using Keon.Util.Crypto;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class UserRepository : BaseRepositoryLong<User>
+	internal class UserRepository : Repo<User>
 	{
 		private const string emailPattern = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$";
 

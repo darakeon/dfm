@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities;
 using DFM.Entities.Enums;
-using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class TicketRepository : BaseRepositoryLong<Ticket>
+	internal class TicketRepository : Repo<Ticket>
 	{
 		internal Ticket Create(User user, String key, TicketType type)
 		{
@@ -44,7 +43,7 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal IEnumerable<Ticket> List(User user)
 		{
-			return SimpleFilter(
+			return Where(
 				t => t.User.ID == user.ID
 					&& t.Active
 					&& t.Key != null

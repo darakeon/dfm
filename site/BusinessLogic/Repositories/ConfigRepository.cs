@@ -1,9 +1,8 @@
 ﻿using DFM.Entities;
-using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class ConfigRepository : BaseRepositoryLong<Config>
+	internal class ConfigRepository : Repo<Config>
 	{
 		internal void Update(Config config)
 		{

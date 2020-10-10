@@ -11,7 +11,7 @@ using DFM.Language;
 
 namespace DFM.BusinessLogic.Services
 {
-	public class AdminService : BaseService
+	public class AdminService : Service
 	{
 		private readonly AccountRepository accountRepository;
 		private readonly CategoryRepository categoryRepository;
@@ -42,10 +42,10 @@ namespace DFM.BusinessLogic.Services
 			var user = parent.Safe.GetCurrent();
 
 			return accountRepository.NewQuery()
-				.SimpleFilter(a => a.User.ID == user.ID)
-				.SimpleFilter(a => a.Open == open)
+				.Where(a => a.User.ID == user.ID)
+				.Where(a => a.Open == open)
 				.OrderBy(a => a.Name)
-				.Result
+				.List
 				.Select(makeAccountListItem)
 				.ToList();
 		}
@@ -191,18 +191,18 @@ namespace DFM.BusinessLogic.Services
 
 			var user = parent.Safe.GetCurrent();
 			var query = categoryRepository.NewQuery()
-				.SimpleFilter(a => a.User.ID == user.ID);
+				.Where(a => a.User.ID == user.ID);
 
 			if (active.HasValue)
 			{
-				query.SimpleFilter(c => c.Active == active.Value);
+				query.Where(c => c.Active == active.Value);
 			}
 			else
 			{
 				query.OrderBy(c => c.Active, false);
 			}
 
-			return query.OrderBy(a => a.Name).Result
+			return query.OrderBy(a => a.Name).List
 				.Select(CategoryListItem.Convert).ToList();
 		}
 

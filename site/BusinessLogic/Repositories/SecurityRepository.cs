@@ -6,12 +6,11 @@ using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
-using Keon.NHibernate.Base;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class SecurityRepository : BaseRepositoryLong<Security>
+	internal class SecurityRepository : Repo<Security>
 	{
 		private readonly Current.GetUrl getUrl;
 

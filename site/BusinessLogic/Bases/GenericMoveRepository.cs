@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
-using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Bases
 {
-	public abstract class GenericMoveRepository<T> : BaseRepositoryLong<T>
+	public abstract class GenericMoveRepository<T> : Repo<T>
 		where T : class, IMove, new()
 	{
 		#region Validate
