@@ -1,6 +1,4 @@
-﻿using System;
-using DFM.MVC.Helpers.Authorize;
-using DFM.MVC.Helpers.Controllers;
+﻿using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Starters.Routes;
 using Microsoft.AspNetCore.Mvc;
 
