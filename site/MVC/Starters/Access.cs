@@ -1,7 +1,5 @@
 using DFM.MVC.Helpers.Extensions;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
 
 namespace DFM.MVC.Starters
 {
