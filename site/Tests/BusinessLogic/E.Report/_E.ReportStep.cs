@@ -161,7 +161,7 @@ namespace DFM.BusinessLogic.Tests.E.Report
 			var actual = moveRepository
 				.ByAccount(account)
 				.Sum(
-					m => m.ID == account.ID
+					m => m.In?.ID == account.ID
 						? m.Total()
 						: -m.Total()
 				);
