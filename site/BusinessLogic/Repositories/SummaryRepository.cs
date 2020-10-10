@@ -7,6 +7,11 @@ using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 using DFM.Generic;
 using Keon.NHibernate.Queries;
+using monthItem = DFM.BusinessLogic.Response.YearReport.MonthItem;
+using groupByMonth = Keon.NHibernate.Queries.GroupBy<DFM.Entities.Summary, System.Int64, DFM.BusinessLogic.Response.YearReport.MonthItem, System.Int32>;
+using sumByMonth = Keon.NHibernate.Queries.Summarize<DFM.Entities.Summary, System.Int64, DFM.BusinessLogic.Response.YearReport.MonthItem, System.Int32>;
+using groupByAccount = Keon.NHibernate.Queries.GroupBy<DFM.Entities.Summary, System.Int64, DFM.Entities.Summary, System.Int32>;
+using sumByAccount = Keon.NHibernate.Queries.Summarize<DFM.Entities.Summary, System.Int64, DFM.Entities.Summary, System.Int32>;
 
 namespace DFM.BusinessLogic.Repositories
 {
@@ -76,10 +81,22 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal Decimal GetTotal(Account account)
 		{
-			// TODO: refactor to use summarize
-			return Where(s => s.Account.ID == account.ID)
+			var result = NewQuery()
+				.Where(s => s.Account.ID == account.ID)
 				.Where(s => s.Nature == SummaryNature.Year)
-				.Sum(s => s.Value());
+				.TransformResult<Summary, Int32, groupByAccount, sumByAccount>(
+					new List<groupByAccount>(),
+					new[]
+					{
+						sumByAccount.GeS(s => s.InCents, s => s.InCents, SummarizeType.Sum),
+						sumByAccount.GeS(s => s.OutCents, s => s.OutCents, SummarizeType.Sum)
+					}
+				)
+				.SingleOrDefault;
+
+				var value = result.InCents - result.OutCents;
+
+			return value/100m;
 		}
 
 		public void DeleteAll(Account account)
@@ -87,6 +104,30 @@ namespace DFM.BusinessLogic.Repositories
 			Where(s => s.Account.ID == account.ID)
 				.ToList()
 				.ForEach(Delete);
+		}
+
+		public IList<monthItem> YearReport(Account account, in short dateYear)
+		{
+			var yearBegin = new DateTime(dateYear, 1, 1);
+			var yearEnd = new DateTime(dateYear, 12, 31);
+
+			var group = groupByMonth.GeG(s => s.Time, m => m.Number);
+			var sumIn = sumByMonth.GeS(s => s.InCents, m => m.CurrentInCents, SummarizeType.Sum);
+			var sumOut = sumByMonth.GeS(s => s.OutCents, m => m.CurrentOutCents, SummarizeType.Sum);
+
+			var query = NewQuery()
+				.Where(
+					s => s.Account.ID == account.ID
+					     && s.Nature == SummaryNature.Month
+					     && s.Time >= yearBegin.ToMonthYear()
+					     && s.Time <= yearEnd.ToMonthYear()
+				)
+				.TransformResult<monthItem, Int32, groupByMonth, sumByMonth>(
+					new [] {group},
+					new [] {sumIn, sumOut}
+				);
+
+			return query.ResultAs<monthItem>();
 		}
 	}
 }

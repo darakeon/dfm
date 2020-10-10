@@ -126,9 +126,28 @@ namespace DFM.BusinessLogic.Tests.E.Report
 		}
 
 		[Then(@"I will receive the year report")]
-		public void ThenIWillReceiveTheYearReport()
+		public void ThenIWillReceiveTheYearReport(Table table)
 		{
 			Assert.IsNotNull(yearReport);
+
+			var months = yearReport.MonthList;
+
+			var count = table.RowCount;
+			Assert.AreEqual(count, months.Count);
+
+			for (var m = 0; m < count; m++)
+			{
+				var row = table.Rows[m];
+				var number = Int32.Parse(row["Number"]);
+				var currentIn = Int32.Parse(row["Current In"]);
+				var currentOut = Int32.Parse(row["Current Out"]);
+				var currentTotal = Int32.Parse(row["Current Total"]);
+				var line = months[m];
+				Assert.AreEqual(number, line.Number);
+				Assert.AreEqual(currentIn, line.CurrentIn);
+				Assert.AreEqual(currentOut, line.CurrentOut);
+				Assert.AreEqual(currentTotal, line.CurrentTotal);
+			}
 		}
 
 		[Then(@"its sum value will be equal to its months sum value")]

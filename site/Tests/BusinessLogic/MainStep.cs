@@ -66,7 +66,7 @@ namespace DFM.BusinessLogic.Tests
 		public void GivenIHaveAnAccount()
 		{
 			accountInfo = AccountInfo.Convert(
-				getOrCreateAccount(mainAccountUrl)
+				getOrCreateAccount($"{mainAccountUrl}_{scenarioCode}")
 			);
 		}
 

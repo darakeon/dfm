@@ -7,7 +7,7 @@
 
 	var monthList = Model.Year.MonthList
 		.OrderBy(m => m.Number)
-		.Where(m => m.In != 0 || m.Out != 0)
+		.Where(m => m.CurrentIn != 0 || m.CurrentOut != 0)
 		.ToList();
 
 	ViewBag.HasContent = monthList.Any();
@@ -40,13 +40,13 @@
 			</a>
 		</td>
 		<td class="col-sm-3 text-right">
-			@await Html.PartialAsync("Extensions/ValueWithSign", new ValueWithSign(month.In, Model.Language, true))
+			@await Html.PartialAsync("Extensions/ValueWithSign", new ValueWithSign(month.CurrentIn, Model.Language, true))
 		</td>
 		<td class="col-sm-3 text-right">
-			@await Html.PartialAsync("Extensions/ValueWithSign", new ValueWithSign(-month.Out, Model.Language, true))
+			@await Html.PartialAsync("Extensions/ValueWithSign", new ValueWithSign(-month.CurrentOut, Model.Language, true))
 		</td>
 		<td class="col-sm-3 text-right">
-			@await Html.PartialAsync("Extensions/ValueWithSign", new ValueWithSign(month.Total, Model.Language))
+			@await Html.PartialAsync("Extensions/ValueWithSign", new ValueWithSign(month.CurrentTotal, Model.Language))
 		</td>
 	</tr>
 

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
-using DFM.Entities.Enums;
-using DFM.Generic;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -64,19 +61,9 @@ namespace DFM.BusinessLogic.Services
 
 			var total = summaryRepository.GetTotal(account);
 
-			var yearBegin = new DateTime(dateYear, 1, 1);
-			var yearEnd = new DateTime(dateYear, 12, 31);
+			var months = summaryRepository.YearReport(account, dateYear);
 
-			// TODO: use summarize
-			var summaries = summaryRepository
-				.Where(
-					s => s.Account.ID == account.ID
-						&& s.Nature == SummaryNature.Month
-						&& s.Time >= yearBegin.ToMonthYear()
-						&& s.Time <= yearEnd.ToMonthYear()
-				);
-
-			return new YearReport(total, dateYear, summaries);
+			return new YearReport(total, dateYear, months);
 		}
 
 		public SearchResult SearchByDescription(String description)
