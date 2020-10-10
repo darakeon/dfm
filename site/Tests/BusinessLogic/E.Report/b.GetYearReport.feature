@@ -44,4 +44,7 @@ Scenario: Eb03. Get with info all right
 	When I try to get the year report
 	Then I will receive no core error
 		And I will receive the year report
+			| Number | Current In | Current Out | Current Total |
+			| 201203 | 0          | 50          | -50           |
+			| 201204 | 0          | 60          | -60           |
 		And its sum value will be equal to its months sum value

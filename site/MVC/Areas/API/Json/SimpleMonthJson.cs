@@ -12,7 +12,7 @@ namespace DFM.MVC.Areas.Api.Json
 
 			Number = monthNumber;
 			Name = translator.GetMonthName(monthNumber);
-			Total = month.Total;
+			Total = month.CurrentTotal;
 		}
 
 		public SimpleMonthJson(Int16 month, Translator translator)
