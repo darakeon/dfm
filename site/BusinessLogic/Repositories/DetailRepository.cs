@@ -6,11 +6,10 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
-using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class DetailRepository : BaseRepositoryLong<Detail>
+	internal class DetailRepository : Repo<Detail>
 	{
 		internal void SaveDetails(Move move)
 		{
@@ -73,14 +72,14 @@ namespace DFM.BusinessLogic.Repositories
 			var userRelation = getUserRelation(nature);
 
 			var query = NewQuery()
-				.SimpleFilter(d => d.Move != null)
-				.SimpleFilter(userRelation, u => u.Email == userEmail);
+				.Where(d => d.Move != null)
+				.Where(userRelation, u => u.Email == userEmail);
 
 			terms.ToList().ForEach(
-				term => query = query.LikeCondition(d => d.Description, term)
+				term => query = query.Like(d => d.Description, term)
 			);
 
-			return query.Result;
+			return query.List;
 		}
 
 		private static Expression<Func<Detail, User>> getUserRelation(PrimalMoveNature nature)

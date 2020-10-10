@@ -8,7 +8,7 @@ using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Services
 {
-	public class MoneyService : BaseService
+	public class MoneyService : Service
 	{
 		private readonly MoveRepository moveRepository;
 		private readonly ScheduleRepository scheduleRepository;

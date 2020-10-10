@@ -15,7 +15,7 @@ using Keon.TwoFactorAuth;
 
 namespace DFM.BusinessLogic.Services
 {
-	public class SafeService : BaseService, ISafeService<SignInInfo, SessionInfo>
+	public class SafeService : Service, ISafeService<SignInInfo, SessionInfo>
 	{
 		private readonly UserRepository userRepository;
 		private readonly SecurityRepository securityRepository;
@@ -101,7 +101,7 @@ namespace DFM.BusinessLogic.Services
 			securityRepository.SendEmail(security, pathAction, getPath(PathType.DisableToken));
 
 			var others = securityRepository
-				.SimpleFilter(
+				.Where(
 					s => s.ID != security.ID
 						&& s.User.ID == security.User.ID
 						&& s.Active

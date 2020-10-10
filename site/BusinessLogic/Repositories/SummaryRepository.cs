@@ -5,11 +5,12 @@ using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
-using Keon.NHibernate.Base;
+using DFM.Generic;
+using Keon.NHibernate.Queries;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class SummaryRepository : BaseRepositoryLong<Summary>
+	internal class SummaryRepository : Repo<Summary>
 	{
 		internal void Break(Account account, Category category, IDate date)
 		{
@@ -67,7 +68,7 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal IList<Summary> Get(Account account, Int32 time)
 		{
-			return SimpleFilter(
+			return Where(
 				s => s.Account.ID == account.ID
 				     && s.Time == time
 			);
@@ -76,14 +77,14 @@ namespace DFM.BusinessLogic.Repositories
 		internal Decimal GetTotal(Account account)
 		{
 			// TODO: refactor to use summarize
-			return SimpleFilter(s => s.Account.ID == account.ID)
+			return Where(s => s.Account.ID == account.ID)
 				.Where(s => s.Nature == SummaryNature.Year)
 				.Sum(s => s.Value());
 		}
 
 		public void DeleteAll(Account account)
 		{
-			SimpleFilter(s => s.Account.ID == account.ID)
+			Where(s => s.Account.ID == account.ID)
 				.ToList()
 				.ForEach(Delete);
 		}

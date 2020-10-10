@@ -4,11 +4,10 @@ using System.Text.RegularExpressions;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Bases;
-using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class AccountRepository : BaseRepositoryLong<Account>
+	internal class AccountRepository : Repo<Account>
 	{
 		internal Account Save(Account account)
 		{
@@ -86,7 +85,7 @@ namespace DFM.BusinessLogic.Repositories
 
 		private Account getByName(String name, User user)
 		{
-			var accountList = SimpleFilter(
+			var accountList = Where(
 					a => a.Name == name
 						&& a.User.ID == user.ID
 				);
@@ -99,7 +98,7 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal Account GetByUrl(String url, User user)
 		{
-			var accountList = SimpleFilter(
+			var accountList = Where(
 				a => a.Url == url.ToLower()
 				     && a.User.ID == user.ID
 			);

@@ -38,7 +38,7 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal IList<Schedule> GetRunnable(User user, Boolean hasCategory)
 		{
-			return SimpleFilter(s => s.User == user && s.Active)
+			return Where(s => s.User == user && s.Active)
 				.Where(
 					s => s.HasCategory() == hasCategory
 						&& s.CanRunNow()
@@ -68,7 +68,7 @@ namespace DFM.BusinessLogic.Repositories
 
 		public void DisableAll(Account account)
 		{
-			var scheduleList = SimpleFilter(
+			var scheduleList = Where(
 				s => s.Active
 				&& (s.In.ID == account.ID
 					|| s.Out.ID == account.ID)
@@ -84,7 +84,7 @@ namespace DFM.BusinessLogic.Repositories
 
 		public void DeleteAll(Account account)
 		{
-			var scheduleList = SimpleFilter(
+			var scheduleList = Where(
 				s => s.In.ID == account.ID
 				|| s.Out.ID == account.ID
 			);

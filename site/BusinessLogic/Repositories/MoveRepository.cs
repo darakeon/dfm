@@ -106,8 +106,8 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal Move GetNonCached(Guid guid)
 		{
-			return NewNonCachedQuery(
-				q => q.SimpleFilter(m => m.ExternalId == guid.ToByteArray())
+			return newNonCachedQuery(
+				q => q.Where(m => m.ExternalId == guid.ToByteArray())
 					.FirstOrDefault
 			);
 		}
@@ -144,7 +144,7 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal Decimal GetIn(Summary summary)
 		{
-			var query = NewQuery().SimpleFilter(
+			var query = NewQuery().Where(
 				m => m.In != null && m.In.ID == summary.Account.ID
 			);
 
@@ -153,18 +153,18 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal Decimal GetOut(Summary summary)
 		{
-			var query = NewQuery().SimpleFilter(
+			var query = NewQuery().Where(
 				m => m.Out != null && m.Out.ID == summary.Account.ID
 			);
 
 			return get(query, summary);
 		}
 
-		private Decimal get(IQuery<Move, Int64> query, Summary summary)
+		private Decimal get(Query<Move, Int64> query, Summary summary)
 		{
 			query = summary.Category == null
-				? query.SimpleFilter(m => m.Category == null)
-				: query.SimpleFilter(m => m.Category != null && m.Category.ID == summary.Category.ID);
+				? query.Where(m => m.Category == null)
+				: query.Where(m => m.Category != null && m.Category.ID == summary.Category.ID);
 
 			switch (summary.Nature)
 			{
@@ -172,14 +172,14 @@ namespace DFM.BusinessLogic.Repositories
 					var year = summary.Time / 100;
 					var month = summary.Time % 100;
 
-					query = query.SimpleFilter(m =>
+					query = query.Where(m =>
 						m.Month == month
 						&& m.Year == year
 					);
 
 					break;
 				case SummaryNature.Year:
-					query = query.SimpleFilter(m =>
+					query = query.Where(m =>
 						m.Year == summary.Time
 					);
 
@@ -190,7 +190,7 @@ namespace DFM.BusinessLogic.Repositories
 
 			// TODO: use summarize from query
 			return query
-				.Result
+				.List
 				.Sum(m => m.Total());
 		}
 
@@ -205,29 +205,29 @@ namespace DFM.BusinessLogic.Repositories
 
 		public IList<Move> ByAccount(Account account)
 		{
-			return byAccount(account).Result;
+			return byAccount(account).List;
 		}
 
 		public Boolean AccountHasMoves(Account account)
 		{
-			return byAccount(account).Any();
+			return byAccount(account).Any;
 		}
 
 		public IList<Move> ByAccountAndTime(Account account, Int16 dateYear, Int16 dateMonth)
 		{
 			return byAccount(account)
-				.SimpleFilter(
+				.Where(
 					m => m.Year == dateYear
 					     && m.Month == dateMonth
 				)
 				.OrderBy(m => m.Day)
-				.Result;
+				.List;
 		}
 
-		private IQuery<Move, Int64> byAccount(Account account)
+		private Query<Move, Int64> byAccount(Account account)
 		{
 			return NewQuery()
-				.SimpleFilter(
+				.Where(
 					m => (m.In != null && m.In.ID == account.ID)
 					     || (m.Out != null && m.Out.ID == account.ID)
 				);
@@ -245,13 +245,13 @@ namespace DFM.BusinessLogic.Repositories
 			var userRelation = getUserRelation(nature);
 
 			var query = NewQuery()
-				.SimpleFilter(userRelation, u => u.Email == userEmail);
+				.Where(userRelation, u => u.Email == userEmail);
 
 			terms.ToList().ForEach(
-				term => query = query.LikeCondition(d => d.Description, term)
+				term => query = query.Like(d => d.Description, term)
 			);
 
-			return query.Result;
+			return query.List;
 		}
 
 		private static Expression<Func<Move, User>> getUserRelation(PrimalMoveNature nature)

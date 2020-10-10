@@ -9,7 +9,7 @@ using DFM.Generic;
 
 namespace DFM.BusinessLogic.Services
 {
-	public class ReportService : BaseService
+	public class ReportService : Service
 	{
 		private readonly AccountRepository accountRepository;
 		private readonly MoveRepository moveRepository;
@@ -69,7 +69,7 @@ namespace DFM.BusinessLogic.Services
 
 			// TODO: use summarize
 			var summaries = summaryRepository
-				.SimpleFilter(
+				.Where(
 					s => s.Account.ID == account.ID
 						&& s.Nature == SummaryNature.Month
 						&& s.Time >= yearBegin.ToMonthYear()
