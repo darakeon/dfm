@@ -842,13 +842,10 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		[Given(@"there is a new contract")]
 		public void GivenICreateANewContract()
 		{
-			var scenarioName = context.ScenarioInfo.Title;
-            var contractVersion = scenarioName.Substring(0, 12);
-
             var contract = new Contract
             {
 	            BeginDate = current.Now,
-	            Version = contractVersion,
+	            Version = scenarioCode,
             };
 
             contractRepository.SaveOrUpdate(contract);

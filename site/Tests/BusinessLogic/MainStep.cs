@@ -26,10 +26,7 @@ namespace DFM.BusinessLogic.Tests
 		[Given(@"I have a complete user logged in for each test")]
 		public void GivenIHaveACompleteUserLoggedInForEachTest()
 		{
-			var title = context.ScenarioInfo.Title
-				.Substring(0, 4)
-				.ToLower();
-			userEmailByTest = $"{title}@dontflymoney.com";
+			userEmailByTest = $"{scenarioCode}@dontflymoney.com";
 			createLogoffLogin(userEmailByTest, userPassword);
 		}
 
