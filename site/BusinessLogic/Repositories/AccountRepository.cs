@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using DFM.Entities;
@@ -13,7 +14,6 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			return SaveOrUpdate(account, complete, validate);
 		}
-
 
 		private void validate(Account account)
 		{
@@ -72,8 +72,6 @@ namespace DFM.BusinessLogic.Repositories
 				throw Error.RedLimitAboveYellowLimit.Throw();
 		}
 
-
-
 		private void complete(Account account)
 		{
 			if (!String.IsNullOrEmpty(account.Url))
@@ -129,6 +127,15 @@ namespace DFM.BusinessLogic.Repositories
 			account.EndDate = null;
 
 			Save(account);
+		}
+
+		public IList<Account> Get(User user, Boolean open)
+		{
+			return NewQuery()
+				.Where(a => a.User.ID == user.ID)
+				.Where(a => a.Open == open)
+				.OrderBy(a => a.Name)
+				.List;
 		}
 	}
 }

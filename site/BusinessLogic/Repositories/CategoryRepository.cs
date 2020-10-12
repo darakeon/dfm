@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
@@ -36,15 +37,11 @@ namespace DFM.BusinessLogic.Repositories
 				throw Error.CategoryAlreadyExists.Throw();
 		}
 
-
-
 		private static void complete(Category category)
 		{
 			if (category.ID == 0)
 				category.Active = true;
 		}
-
-
 
 		internal Category GetByName(String name, User user)
 		{
@@ -58,8 +55,6 @@ namespace DFM.BusinessLogic.Repositories
 
 			return categoryList.SingleOrDefault();
 		}
-
-
 
 		internal void Disable(Category category)
 		{
@@ -84,6 +79,19 @@ namespace DFM.BusinessLogic.Repositories
 
 			category.Active = enable;
 			Save(category);
+		}
+
+		internal IList<Category> Get(User user, Boolean? active)
+		{
+			var query = NewQuery()
+				.Where(a => a.User.ID == user.ID);
+
+			if (active.HasValue)
+				query.Where(c => c.Active == active.Value);
+			else
+				query.OrderBy(c => c.Active, false);
+
+			return query.OrderBy(a => a.Name).List;
 		}
 	}
 }
