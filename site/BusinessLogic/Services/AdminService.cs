@@ -41,11 +41,7 @@ namespace DFM.BusinessLogic.Services
 
 			var user = parent.Safe.GetCurrent();
 
-			return accountRepository.NewQuery()
-				.Where(a => a.User.ID == user.ID)
-				.Where(a => a.Open == open)
-				.OrderBy(a => a.Name)
-				.List
+			return accountRepository.Get(user, open)
 				.Select(makeAccountListItem)
 				.ToList();
 		}
@@ -190,20 +186,11 @@ namespace DFM.BusinessLogic.Services
 			parent.Safe.VerifyUser();
 
 			var user = parent.Safe.GetCurrent();
-			var query = categoryRepository.NewQuery()
-				.Where(a => a.User.ID == user.ID);
+			var categories = categoryRepository.Get(user, active);
 
-			if (active.HasValue)
-			{
-				query.Where(c => c.Active == active.Value);
-			}
-			else
-			{
-				query.OrderBy(c => c.Active, false);
-			}
-
-			return query.OrderBy(a => a.Name).List
-				.Select(CategoryListItem.Convert).ToList();
+			return categories
+				.Select(CategoryListItem.Convert)
+				.ToList();
 		}
 
 		public CategoryInfo GetCategory(String name)
