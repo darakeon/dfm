@@ -20,7 +20,6 @@ namespace DFM.BusinessLogic.Services
 			this.scheduleRepository = scheduleRepository;
 		}
 
-
 		public MoveInfo GetMove(Guid guid)
 		{
 			parent.Safe.VerifyUser();
@@ -62,7 +61,6 @@ namespace DFM.BusinessLogic.Services
 				)
 			);
 		}
-
 
 		public MoveResult DeleteMove(Guid guid)
 		{
