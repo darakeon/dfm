@@ -12,16 +12,15 @@ namespace DFM.BusinessLogic.Bases
 	public abstract class GenericMoveRepository<T> : Repo<T>
 		where T : class, IMove, new()
 	{
+		protected abstract Int32 descriptionMaxSize { get; }
+		protected abstract Error descriptionError { get; }
+
 		#region Validate
-		protected void validate(
-			T move,
-			DateTime now,
-			Int32 descriptionMaxSize,
-			Error descriptionError,
-		)
+		protected void validate(T move, DateTime now)
 		{
-			testDescription(move, descriptionMaxSize, descriptionError);
+			testDescription(move);
 			testDate(move, now);
+
 			testValue(move);
 			testNature(move);
 
@@ -29,12 +28,7 @@ namespace DFM.BusinessLogic.Bases
 			testCategory(move);
 		}
 
-		// ReSharper disable once UnusedParameter.Local
-		private static void testDescription(
-			T move,
-			Int32 descriptionMaxSize,
-			Error descriptionError
-		)
+		private void testDescription(T move)
 		{
 			if (String.IsNullOrEmpty(move.Description))
 				throw Error.MoveDescriptionRequired.Throw();
