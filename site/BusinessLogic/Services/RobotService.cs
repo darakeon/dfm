@@ -123,10 +123,7 @@ namespace DFM.BusinessLogic.Services
 				emailsStati.Add(result.Email);
 			}
 
-			if (!schedule.CanRun())
-				schedule.Active = false;
-
-			scheduleRepository.Save(schedule);
+			scheduleRepository.UpdateState(schedule);
 
 			return emailsStati;
 		}

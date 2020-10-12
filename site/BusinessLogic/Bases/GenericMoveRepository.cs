@@ -18,7 +18,6 @@ namespace DFM.BusinessLogic.Bases
 			DateTime now,
 			Int32 descriptionMaxSize,
 			Error descriptionError,
-			Boolean validateParents = true
 		)
 		{
 			testDescription(move, descriptionMaxSize, descriptionError);
@@ -26,11 +25,8 @@ namespace DFM.BusinessLogic.Bases
 			testValue(move);
 			testNature(move);
 
-			if (validateParents)
-			{
-				testAccounts(move);
-				testCategory(move);
-			}
+			testAccounts(move);
+			testCategory(move);
 		}
 
 		// ReSharper disable once UnusedParameter.Local
