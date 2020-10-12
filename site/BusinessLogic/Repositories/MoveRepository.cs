@@ -20,6 +20,9 @@ namespace DFM.BusinessLogic.Repositories
 {
 	internal class MoveRepository : GenericMoveRepository<Move>
 	{
+		protected override Int32 descriptionMaxSize => MaxLen.MoveDescription;
+		protected override Error descriptionError => Error.TooLargeMoveDescription;
+
 		private readonly Current.GetUrl getUrl;
 
 		public MoveRepository(Current.GetUrl getUrl)
@@ -37,12 +40,7 @@ namespace DFM.BusinessLogic.Repositories
 			//Keep this order, weird errors happen if invert
 			return SaveOrUpdate(
 				move,
-				(m) => validate(
-					m,
-					now,
-					MaxLen.MoveDescription,
-					Error.TooLargeMoveDescription
-				),
+				m => validate(m, now),
 				complete
 			);
 		}

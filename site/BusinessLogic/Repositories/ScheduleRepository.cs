@@ -11,6 +11,9 @@ namespace DFM.BusinessLogic.Repositories
 {
 	internal class ScheduleRepository : GenericMoveRepository<Schedule>
 	{
+		protected override Int32 descriptionMaxSize => MaxLen.ScheduleDescription;
+		protected override Error descriptionError => Error.TooLargeScheduleDescription;
+
 		internal Schedule Save(Schedule schedule)
 		{
 			if (schedule.ID == 0)
@@ -22,12 +25,8 @@ namespace DFM.BusinessLogic.Repositories
 		private void validate(Schedule schedule)
 		{
 			var now = schedule.User.Now();
-			validate(
-				schedule,
-				now,
-				MaxLen.ScheduleDescription,
-				Error.TooLargeScheduleDescription,
-			);
+
+			validate(schedule, now);
 
 			if (!schedule.Boundless && schedule.Times <= 0)
 				throw Error.ScheduleTimesCantBeZero.Throw();
