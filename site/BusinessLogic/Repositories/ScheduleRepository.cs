@@ -27,7 +27,6 @@ namespace DFM.BusinessLogic.Repositories
 				now,
 				MaxLen.ScheduleDescription,
 				Error.TooLargeScheduleDescription,
-				schedule.Active
 			);
 
 			if (!schedule.Boundless && schedule.Times <= 0)
@@ -109,6 +108,19 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			schedule = Get(schedule.ID);
 			schedule.Deleted++;
+			SaveOrUpdate(schedule);
+		}
+
+		public void UpdateState(Schedule schedule)
+		{
+			var lastRun = schedule.LastRun;
+			var active = schedule.CanRun();
+
+			schedule = Get(schedule.ID);
+
+			schedule.LastRun = lastRun;
+			schedule.Active = active;
+
 			SaveOrUpdate(schedule);
 		}
 	}
