@@ -83,8 +83,8 @@ namespace DFM.BusinessLogic.Tests.E.Report
 
 			var actual = monthReport.MoveList.Sum(m =>
 					m.OutUrl == account.Url
-						? - m.Total
-						: m.Total
+						? - m.Value
+						: m.Value
 				);
 
 			Assert.AreEqual(expected, actual);
@@ -162,8 +162,8 @@ namespace DFM.BusinessLogic.Tests.E.Report
 				.ByAccount(account)
 				.Sum(
 					m => m.In?.ID == account.ID
-						? m.Total()
-						: -m.Total()
+						? m.Value
+						: -m.Value
 				);
 
 			Assert.AreEqual(expected, actual);

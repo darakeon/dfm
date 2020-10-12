@@ -136,14 +136,14 @@ namespace DFM.BusinessLogic.Bases
 				detail.Guid = Guid.NewGuid();
 			}
 
-			adjustValue(move);
 			adjustDetailList(move);
+			adjustValue(move);
 		}
 
 		private static void adjustValue(T move)
 		{
-			if (move.Value == 0)
-				move.Value = null;
+			if (move.DetailList.Any())
+				move.Value = move.DetailList.Sum(d => d.GetTotal());
 			else if (move.Value < 0)
 				move.Value = -move.Value;
 		}

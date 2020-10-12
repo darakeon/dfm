@@ -341,6 +341,12 @@ namespace DFM.BusinessLogic.Tests
 			set => set("ScheduleInfo", value);
 		}
 
+		protected static ScheduleResult scheduleResult
+		{
+			get => get<ScheduleResult>("ScheduleResult");
+			set => set("ScheduleResult", value);
+		}
+
 		protected static DateTime startDateTime
 		{
 			get => get<DateTime>("startDateTime");

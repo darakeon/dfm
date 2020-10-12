@@ -171,7 +171,12 @@ namespace DFM.BusinessLogic.Tests.C.Money
 			ConfigHelper.DeactivateMoveEmailForUser(service);
 		}
 
-
+		[Then(@"the move value will be (\d+\.?\d*)")]
+		public void ThenTheMoveValueWillBe(Decimal value)
+		{
+			var move = moveRepository.Get(moveResult.Guid);
+			Assert.AreEqual(value, move.Value);
+		}
 
 		[Then(@"the move will not be saved")]
 		public void ThenTheMoveWillNotBeSaved()
@@ -376,7 +381,7 @@ namespace DFM.BusinessLogic.Tests.C.Money
 				moveInfo.InUrl = accountIn?.Url;
 				moveInfo.CategoryName = categoryName;
 
-				service.Money.SaveMove(moveInfo);
+				moveResult = service.Money.SaveMove(moveInfo);
 			}
 			catch (CoreError e)
 			{
@@ -528,13 +533,6 @@ namespace DFM.BusinessLogic.Tests.C.Money
 			var summary = summaryRepository.Get(account, oldDate.Year);
 
 			Assert.AreEqual(yearAccountOutTotal, summary.Sum(s => s.Out));
-		}
-
-		[Then(@"the move total will be (\-?\d+\.?\d*)")]
-		public void ThenTheMoveTotalWillBe(Decimal value)
-		{
-			var move = service.Money.GetMove(moveInfo.Guid);
-			Assert.AreEqual(value, move.Total);
 		}
 
 		[Then(@"the Move will still be at the Schedule")]

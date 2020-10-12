@@ -26,15 +26,10 @@ namespace DFM.Entities
 			set => ExternalId = value.ToByteArray();
 		}
 
-		public virtual Decimal? Value
+		public virtual Decimal Value
 		{
 			get => ValueCents.ToVisual();
 			set => ValueCents = value.ToCents();
-		}
-
-		public virtual Decimal Total()
-		{
-			return Value ?? DetailList.Sum(d => d.GetTotal());
 		}
 
 		public virtual String GetDescriptionWithSchedulePosition()

@@ -12,7 +12,7 @@ namespace DFM.Entities.Bases
 		String Description { get; set; }
 		MoveNature Nature { get; set; }
 
-		Decimal? Value { get; set; }
+		Decimal Value { get; set; }
 		IList<Detail> DetailList { get; set; }
 
 		Category Category { get; set; }

@@ -18,7 +18,7 @@ namespace DFM.BusinessLogic.Repositories
 			if (schedule.ID == 0)
 				schedule.Active = true;
 
-			return SaveOrUpdate(schedule, complete, validate);
+			return SaveOrUpdate(schedule, validate, complete);
 		}
 
 		private void validate(Schedule schedule)

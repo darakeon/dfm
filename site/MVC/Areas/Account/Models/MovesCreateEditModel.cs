@@ -20,7 +20,7 @@ namespace DFM.MVC.Areas.Account.Models
 			var details = move.DetailList.ToList();
 
 			if (IsDetailed)
-				move.Value = null;
+				move.Value = 0;
 			else
 				move.DetailList.Clear();
 

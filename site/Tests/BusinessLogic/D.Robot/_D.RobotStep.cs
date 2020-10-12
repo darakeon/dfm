@@ -63,8 +63,8 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 					scheduleInfo.InUrl = accountIn?.Url;
 					scheduleInfo.CategoryName = categoryName;
 
-					var schedule = service.Robot.SaveSchedule(scheduleInfo);
-					scheduleInfo.Guid = schedule.Guid;
+					scheduleResult = service.Robot.SaveSchedule(scheduleInfo);
+					scheduleInfo.Guid = scheduleResult.Guid;
 				}
 			}
 			catch (CoreError e)
@@ -84,6 +84,13 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		public void ThenTheScheduleWillBeSaved()
 		{
 			Assert.AreNotEqual(Guid.Empty, scheduleInfo.Guid);
+		}
+
+		[Then(@"the schedule value will be (\d+\.?\d*)")]
+		public void ThenTheScheduleValueWillBe(Decimal value)
+		{
+			var schedule = scheduleRepository.Get(scheduleResult.Guid);
+			Assert.AreEqual(value, schedule.Value);
 		}
 		#endregion
 

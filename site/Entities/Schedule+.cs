@@ -33,16 +33,10 @@ namespace DFM.Entities
 			set => ExternalId = value.ToByteArray();
 		}
 
-		public virtual Decimal? Value
+		public virtual Decimal Value
 		{
 			get => ValueCents.ToVisual();
 			set => ValueCents = value.ToCents();
-		}
-
-		public virtual Decimal Total()
-		{
-			return Value ??
-				DetailList.Sum(d => d.Value * d.Amount);
 		}
 
 		public virtual Move GetNewMove()
@@ -53,7 +47,6 @@ namespace DFM.Entities
 					Description = Description,
 					Nature = Nature,
 					Schedule = this,
-					Value = Value,
 					In = In,
 					Out = Out,
 					Category = Category,
@@ -61,6 +54,9 @@ namespace DFM.Entities
 
 			var dateTime = LastDateRun();
 			move.SetDate(dateTime);
+
+			if (!DetailList.Any())
+				move.Value = Value;
 
 			foreach (var detail in DetailList)
 			{

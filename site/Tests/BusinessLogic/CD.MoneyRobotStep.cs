@@ -206,7 +206,6 @@ namespace DFM.BusinessLogic.Tests
 			service.Admin.CloseAccount(accountIn.Url);
 		}
 
-
 		[Given(@"it has an Account In equal to Out")]
 		public void GivenItHasAnAccountInEqualToOut()
 		{
@@ -236,8 +235,6 @@ namespace DFM.BusinessLogic.Tests
 					accountOut, category, entityDate.ToMonthYear()
 				)?.Out ?? 0;
 		}
-
-
 
 		[Then(@"the accountOut value will not change")]
 		public void ThenTheAccountOutValueWillNotChange()
@@ -314,7 +311,6 @@ namespace DFM.BusinessLogic.Tests
 
 			Assert.AreEqual(yearCategoryAccountInTotal, currentTotal);
 		}
-
 
 		[Then(@"the accountOut value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheAccountOutValueWillDecreaseIn(Decimal change)

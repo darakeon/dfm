@@ -32,8 +32,7 @@ namespace DFM.BusinessLogic.Response
 
 		public MoveNature Nature { get; set; }
 
-		public Decimal Total { get; private set; }
-		public Decimal? Value { get; set; }
+		public Decimal Value { get; set; }
 		public IList<DetailInfo> DetailList { get; set; }
 
 		public ScheduleFrequency Frequency { get; set; }
@@ -82,7 +81,6 @@ namespace DFM.BusinessLogic.Response
 
 				Nature = schedule.Nature,
 
-				Total = schedule.Total(),
 				Value = schedule.Value,
 				DetailList = schedule.DetailList
 					.Select(DetailInfo.Convert)

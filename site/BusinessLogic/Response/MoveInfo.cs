@@ -23,9 +23,7 @@ namespace DFM.BusinessLogic.Response
 
 		public MoveNature Nature { get; set; }
 
-		public Decimal Total { get; private set; }
-
-		public Decimal? Value { get; set; }
+		public Decimal Value { get; set; }
 		public IList<DetailInfo> DetailList { get; set; }
 
 		public Boolean Checked { get; private set; }
@@ -109,8 +107,6 @@ namespace DFM.BusinessLogic.Response
 				Day = move.Day,
 
 				Nature = move.Nature,
-
-				Total = move.Total(),
 
 				Value = move.Value,
 				DetailList = move.DetailList
