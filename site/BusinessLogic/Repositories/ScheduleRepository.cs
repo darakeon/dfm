@@ -5,7 +5,6 @@ using DFM.BusinessLogic.Bases;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Bases;
-using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Repositories
 {
@@ -32,15 +31,10 @@ namespace DFM.BusinessLogic.Repositories
 				throw Error.ScheduleTimesCantBeZero.Throw();
 		}
 
-
-
-		internal IList<Schedule> GetRunnable(User user, Boolean hasCategory)
+		internal IList<Schedule> GetRunnable(User user)
 		{
 			return Where(s => s.User == user && s.Active)
-				.Where(
-					s => s.HasCategory() == hasCategory
-						&& s.CanRunNow()
-				)
+				.Where(s => s.CanRunNow())
 				.ToList();
 		}
 
@@ -63,7 +57,6 @@ namespace DFM.BusinessLogic.Repositories
 			SaveOrUpdate(schedule);
 		}
 
-
 		public void DisableAll(Account account)
 		{
 			var scheduleList = Where(
@@ -78,7 +71,6 @@ namespace DFM.BusinessLogic.Repositories
 				Save(schedule);
 			}
 		}
-
 
 		public void DeleteAll(Account account)
 		{
