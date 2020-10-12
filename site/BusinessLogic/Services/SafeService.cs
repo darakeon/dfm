@@ -40,8 +40,6 @@ namespace DFM.BusinessLogic.Services
 			this.getPath = getPath;
 		}
 
-
-
 		public void SendPasswordReset(String email)
 		{
 			inTransaction("SendPasswordReset", () =>
@@ -114,8 +112,6 @@ namespace DFM.BusinessLogic.Services
 			}
 		}
 
-
-
 		public void ActivateUser(String token)
 		{
 			inTransaction("ActivateUser", () =>
@@ -147,7 +143,6 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
-
 		public void TestSecurityToken(String token, SecurityAction securityAction)
 		{
 			securityRepository.ValidateAndGet(token, securityAction);
@@ -157,7 +152,6 @@ namespace DFM.BusinessLogic.Services
 		{
 			inTransaction("DisableToken", () => securityRepository.Disable(token));
 		}
-
 
 		public SessionInfo GetSession(String ticketKey)
 		{
@@ -265,8 +259,6 @@ namespace DFM.BusinessLogic.Services
 				throw Error.NotSignedLastContract.Throw();
 		}
 
-
-
 		public IList<TicketInfo> ListLogins()
 		{
 			VerifyUser();
@@ -307,8 +299,6 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
-
-
 		public void UpdateEmail(String password, String email)
 		{
 			VerifyUser();
@@ -325,8 +315,6 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
-
-
 		public ContractInfo GetContract()
 		{
 			var contract = getContract();
@@ -341,7 +329,6 @@ namespace DFM.BusinessLogic.Services
 		{
 			return contractRepository.GetContract();
 		}
-
 
 		public Boolean IsLastContractAccepted()
 		{
@@ -359,7 +346,6 @@ namespace DFM.BusinessLogic.Services
 			return acceptance?.Accepted ?? false;
 		}
 
-
 		public void AcceptContract()
 		{
 			inTransaction("AcceptContract", () =>
@@ -372,7 +358,6 @@ namespace DFM.BusinessLogic.Services
 			var contract = getContract();
 			acceptanceRepository.Accept(user, contract);
 		}
-
 
 		public void UpdateTFA(TFAInfo info)
 		{
