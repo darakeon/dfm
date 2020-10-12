@@ -158,7 +158,7 @@ namespace DFM.BusinessLogic.Services
 			{
 				Out = parent.BaseMove.GetAccount(info.OutUrl),
 				In = parent.BaseMove.GetAccount(info.InUrl),
-				Category = parent.BaseMove.GetCategoryByName(info.CategoryName),
+				Category = parent.BaseMove.GetCategory(info.CategoryName),
 				User = parent.Safe.GetCurrent()
 			};
 

@@ -33,7 +33,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			var move = moveRepository.Get(guid);
 
-			parent.BaseMove.VerifyMove(move);
+			parent.BaseMove.VerifyUser(move);
 
 			return move;
 		}
@@ -79,7 +79,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			var move = GetMoveEntity(guid);
 
-			parent.BaseMove.VerifyMove(move);
+			parent.BaseMove.VerifyUser(move);
 
 			moveRepository.Delete(move);
 
@@ -111,7 +111,7 @@ namespace DFM.BusinessLogic.Services
 
 			var move = GetMoveEntity(guid);
 
-			parent.BaseMove.VerifyMove(move);
+			parent.BaseMove.VerifyUser(move);
 			verifyMoveForCheck(move, nature, check);
 
 			move.Check(nature, check);
