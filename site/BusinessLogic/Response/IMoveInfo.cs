@@ -12,7 +12,7 @@ namespace DFM.BusinessLogic.Response
 		String Description { get; set; }
 		MoveNature Nature { get; set; }
 
-		Decimal? Value { get; set; }
+		Decimal Value { get; set; }
 		IList<DetailInfo> DetailList { get; set; }
 
 		String CategoryName { get; set; }

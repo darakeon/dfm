@@ -60,7 +60,7 @@
 				class="@await Html.PartialAsync("Extensions/NatureIcon", schedule.Nature)"
 				title="@Context.Translate(schedule.Nature.ToString())"
 			></span>
-			@schedule.Total.ToMoney(Model.Language)
+			@schedule.Value.ToMoney(Model.Language)
 		</td>
 
 		<td class="col-sm-1 text-center">

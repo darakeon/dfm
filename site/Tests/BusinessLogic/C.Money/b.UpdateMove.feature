@@ -13,6 +13,7 @@ Scenario: Cb01. Update the move date in 1 day
 		And I change the move date in -1 day
 	When I update the move
 	Then I will receive no core error
+		And the move value will be 10
 		And the accountOut value will not change
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
@@ -24,6 +25,7 @@ Scenario: Cb02. Update the move date in 1 month
 		And I change the move date in -1 month
 	When I update the move
 	Then I will receive no core error
+		And the move value will be 10
 		And the accountOut value will not change
 		And the new-month-category-accountOut value will change in 10
 		And the old-month-category-accountOut value will change in -10
@@ -36,6 +38,7 @@ Scenario: Cb03. Update the move date in 1 year
 		And I change the move date in -1 year
 	When I update the move
 	Then I will receive no core error
+		And the move value will be 10
 		And the accountOut value will not change
 		And the new-month-category-accountOut value will change in 10
 		And the old-month-category-accountOut value will change in -10
@@ -49,6 +52,7 @@ Scenario: Cb04. Update the move Category
 	When I change the category of the move
 		And I update the move
 	Then I will receive no core error
+		And the move value will be 10
 		And the accountOut value will not change
 		And the month-accountOut value will not change
 		And the new-month-category-accountOut value will change in 10
@@ -64,6 +68,7 @@ Scenario: Cb05. Update the move Account Out
 	When I change the account out of the move
 		And I update the move
 	Then I will receive no core error
+		And the move value will be 10
 		And the new-accountOut value will change in -10
 		And the old-accountOut value will change in 10
 		And the new-month-category-accountOut value will change in 10
@@ -78,6 +83,7 @@ Scenario: Cb06. Update the move Account In
 	When I change the account in of the move
 		And I update the move
 	Then I will receive no core error
+		And the move value will be 10
 		And the new-accountIn value will change in 10
 		And the old-accountIn value will change in -10
 		And the new-month-category-accountIn value will change in 10
@@ -93,6 +99,7 @@ Scenario: Cb07. Update the move Account Transfer (Out)
 	When I change the account out of the move
 		And I update the move
 	Then I will receive no core error
+		And the move value will be 10
 		And the new-accountOut value will change in -10
 		And the old-accountOut value will change in 10
 		And the new-month-category-accountOut value will change in 10
@@ -109,6 +116,7 @@ Scenario: Cb08. Update the move Account Transfer (In)
 	When I change the account in of the move
 		And I update the move
 	Then I will receive no core error
+		And the move value will be 10
 		And the new-accountIn value will change in 10
 		And the old-accountIn value will change in -10
 		And the new-month-category-accountIn value will change in 10
@@ -126,6 +134,7 @@ Scenario: Cb09. Update the move Account Transfer (Both)
 		And I change the account in of the move
 		And I update the move
 	Then I will receive no core error
+		And the move value will be 10
 		And the new-accountOut value will change in -10
 		And the old-accountOut value will change in 10
 		And the new-month-category-accountOut value will change in 10
@@ -147,6 +156,7 @@ Scenario: Cb10. Update the move Out to In
 	When I change the move out to in
 		And I update the move
 	Then I will receive no core error
+		And the move value will be 10
 		And the old-accountOut value will change in 10
 		And the new-accountIn value will change in 10
 		And the old-month-category-accountOut value will change in -10
@@ -162,6 +172,7 @@ Scenario: Cb11. Update the move In to Out
 	When I change the move in to out
 		And I update the move
 	Then I will receive no core error
+		And the move value will be 10
 		And the old-accountIn value will change in -10
 		And the new-accountOut value will change in -10
 		And the old-month-category-accountIn value will change in -10
@@ -177,6 +188,7 @@ Scenario: Cb12. Update the move value
 	When I change the move value to 20
 		And I update the move
 	Then I will receive no core error
+		And the move value will be 20
 		And the old-accountOut value will change in -10
 		And the old-month-category-accountOut value will change in 10
 		And the old-year-category-accountOut value will change in 10
@@ -192,6 +204,7 @@ Scenario: Cb13. Add details to the move
 			| Move Cb13b  | 1      | 10    |
 		And I update the move
 	Then I will receive no core error
+		And the move value will be 20
 		And the old-accountOut value will change in -10
 		And the old-month-category-accountOut value will change in 10
 		And the old-year-category-accountOut value will change in 10
@@ -207,7 +220,7 @@ Scenario: Cb14. Change the details of the move - remove and add
 			| Move Cb14b  | 2      | 20    |
 		And I update the move
 	Then I will receive no core error
-		And the move total will be 40
+		And the move value will be 40
 		And the old-accountOut value will change in -30
 		And the old-month-category-accountOut value will change in 30
 		And the old-year-category-accountOut value will change in 30
@@ -224,7 +237,7 @@ Scenario: Cb15. Change the details of the move - remove one
 			| Move Cb15b  | 2      | 20    |
 		And I update the move
 	Then I will receive no core error
-		And the move total will be 40
+		And the move value will be 40
 		And the old-accountOut value will change in 10
 		And the old-month-category-accountOut value will change in -10
 		And the old-year-category-accountOut value will change in -10
@@ -268,7 +281,6 @@ Scenario: Cb18. Update the move adding details, but not removing value
 			| Move Cb13b  | 1      | 20    |
 		And I update the move
 	Then I will receive this core error: MoveValueAndDetailNotAllowed
-		And the move total will be 10
 		And the accountOut value will not change
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change

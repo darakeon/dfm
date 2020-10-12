@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using Keon.MVC.Forms;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Response;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
+using Keon.MVC.Forms;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DFM.MVC.Areas.Account.Models
@@ -198,10 +198,10 @@ namespace DFM.MVC.Areas.Account.Models
 
 		public String Value
 		{
-			get => GenericMove.Value?.ToString("0.00");
+			get => GenericMove.Value.ToString("0.00");
 			set =>
 				GenericMove.Value = value == null
-					? default(Decimal?)
+					? default
 					: Decimal.Parse(value);
 		}
 

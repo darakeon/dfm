@@ -18,7 +18,7 @@
 		@if (move.InUrl == Model.CurrentAccountUrl)
 		{
 			@await Html.PartialAsync("Extensions/ValueWithSign",
-				new ValueWithSign(move.Total, Model.Language))
+				new ValueWithSign(move.Value, Model.Language))
 		}
 	</td>
 
@@ -26,7 +26,7 @@
 		@if (move.OutUrl == Model.CurrentAccountUrl)
 		{
 			@await Html.PartialAsync("Extensions/ValueWithSign",
-				new ValueWithSign(-move.Total, Model.Language))
+				new ValueWithSign(-move.Value, Model.Language))
 		}
 	</td>
 

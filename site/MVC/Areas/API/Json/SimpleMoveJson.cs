@@ -32,7 +32,7 @@ namespace DFM.MVC.Areas.Api.Json
 
 			var accountOut = move.Nature != MoveNature.In ? move.OutUrl : null;
 
-			Total = move.Total * (accountUrl == accountOut ? -1 : 1);
+			Total = move.Value * (accountUrl == accountOut ? -1 : 1);
 
 			Checked = move.Checked;
 		}

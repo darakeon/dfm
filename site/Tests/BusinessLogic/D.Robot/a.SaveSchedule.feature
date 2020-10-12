@@ -439,6 +439,7 @@ Scenario: Da29. Save with info all right (In)
 	When I try to save the schedule
 	Then I will receive no core error
 		And the schedule will be saved
+		And the schedule value will be 10
 		And the accountIn value will not change
 		And the month-category-accountIn value will not change
 		And the year-category-accountIn value will not change
@@ -454,6 +455,7 @@ Scenario: Da30. Save with info all right (Transfer)
 	When I try to save the schedule
 	Then I will receive no core error
 		And the schedule will be saved
+		And the schedule value will be 10
 		And the accountOut value will not change
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
@@ -472,6 +474,7 @@ Scenario: Da31. Save with info all right (value)
 	When I try to save the schedule
 	Then I will receive no core error
 		And the schedule will be saved
+		And the schedule value will be 10
 		And the accountOut value will not change
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
@@ -490,6 +493,7 @@ Scenario: Da32. Save with info all right (details)
 	When I try to save the schedule
 	Then I will receive no core error
 		And the schedule will be saved
+		And the schedule value will be 20
 		And the accountOut value will not change
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
@@ -505,6 +509,7 @@ Scenario: Da33. Save negative (value)
 	When I try to save the schedule
 	Then I will receive no core error
 		And the schedule will be saved
+		And the schedule value will be 10
 		And the accountOut value will not change
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
@@ -523,6 +528,7 @@ Scenario: Da34. Save negative (details)
 	When I try to save the schedule
 	Then I will receive no core error
 		And the schedule will be saved
+		And the schedule value will be 20
 		And the accountOut value will not change
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
@@ -538,6 +544,7 @@ Scenario: Da35. Save with future Date
 	When I try to save the schedule
 	Then I will receive no core error
 		And the schedule will be saved
+		And the schedule value will be 10
 		And the accountOut value will not change
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
@@ -555,6 +562,7 @@ Scenario: Da36. Save with exactly length in Description of Detail
 	When I try to save the schedule
 	Then I will receive no core error
 		And the schedule will be saved
+		And the schedule value will be 10
 		And the accountOut value will not change
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
@@ -570,6 +578,7 @@ Scenario: Da37. Save with exactly length in Description
 	When I try to save the schedule
 	Then I will receive no core error
 		And the schedule will be saved
+		And the schedule value will be 10
 		And the accountOut value will not change
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
@@ -587,6 +596,7 @@ Scenario: Da38. Save with details with same description
 	When I try to save the schedule
 	Then I will receive no core error
 		And the schedule will be saved
+		And the schedule value will be 10
 		And the accountOut value will not change
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change

@@ -79,7 +79,7 @@ namespace DFM.BusinessLogic.Repositories
 				{ "Nature", nature },
 				{ "Category", categoryName },
 				{ "Description", move.Description },
-				{ "Value", move.Total().ToMoney(config.Language) },
+				{ "Value", move.Value.ToMoney(config.Language) },
 				{ "Details", detailsHTML(move) },
 			};
 
@@ -189,7 +189,7 @@ namespace DFM.BusinessLogic.Repositories
 			// TODO: use summarize from query
 			return query
 				.List
-				.Sum(m => m.Total());
+				.Sum(m => m.Value);
 		}
 
 		internal override User GetUser(Move move)

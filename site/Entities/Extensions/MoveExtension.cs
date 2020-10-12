@@ -11,7 +11,7 @@ namespace DFM.Entities.Extensions
 		{
 			var type = MoveValueType.Empty;
 
-			if (move.Value.HasValue && move.Value != 0)
+			if (move.Value != 0)
 				type += (Int32)MoveValueType.Unique;
 
 			if (move.DetailList.Any())

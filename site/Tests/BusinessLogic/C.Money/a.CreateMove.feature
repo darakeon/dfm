@@ -451,6 +451,7 @@ Scenario: Ca30. Save with info all right (Out)
 	When I try to save the move
 	Then I will receive no core error
 		And the move will be saved
+		And the move value will be 10
 		And the accountOut value will change in -10
 		And the month-category-accountOut value will change in 10
 		And the year-category-accountOut value will change in 10
@@ -466,6 +467,7 @@ Scenario: Ca31. Save with info all right (In)
 	When I try to save the move
 	Then I will receive no core error
 		And the move will be saved
+		And the move value will be 10
 		And the accountIn value will change in 10
 		And the month-category-accountIn value will change in 10
 		And the year-category-accountIn value will change in 10
@@ -481,6 +483,7 @@ Scenario: Ca32. Save with info all right (Transfer)
 	When I try to save the move
 	Then I will receive no core error
 		And the move will be saved
+		And the move value will be 10
 		And the accountOut value will change in -10
 		And the month-category-accountOut value will change in 10
 		And the year-category-accountOut value will change in 10
@@ -499,6 +502,7 @@ Scenario: Ca33. Save with info all right (value)
 	When I try to save the move
 	Then I will receive no core error
 		And the move will be saved
+		And the move value will be 10
 		And the accountOut value will change in -10
 		And the month-category-accountOut value will change in 10
 		And the year-category-accountOut value will change in 10
@@ -509,17 +513,18 @@ Scenario: Ca34. Save with info all right (details)
 			| Move Ca34   | 2012-03-31 | Out    |       |
 		And the move has this details
 			| Description | Amount | Value |
-			| Detail 1    | 1      | 10    |
-			| Detail 2    | 1      | 10    |
+			| Detail 1    | 3      | 27    |
+			| Detail 2    | 9      | 24    |
 		And it has a Category
 		And it has an Account Out
 		And it has no Account In
 	When I try to save the move
 	Then I will receive no core error
 		And the move will be saved
-		And the accountOut value will change in -20
-		And the month-category-accountOut value will change in 20
-		And the year-category-accountOut value will change in 20
+		And the move value will be 297
+		And the accountOut value will change in -297
+		And the month-category-accountOut value will change in 297
+		And the year-category-accountOut value will change in 297
 
 Scenario: Ca35. Save negative (value)
 	Given I have this move to create
@@ -532,6 +537,7 @@ Scenario: Ca35. Save negative (value)
 	When I try to save the move
 	Then I will receive no core error
 		And the move will be saved
+		And the move value will be 10
 		And the accountOut value will change in -10
 		And the month-category-accountOut value will change in 10
 		And the year-category-accountOut value will change in 10
@@ -550,6 +556,7 @@ Scenario: Ca36. Save negative (details)
 	When I try to save the move
 	Then I will receive no core error
 		And the move will be saved
+		And the move value will be 20
 		And the accountOut value will change in -20
 		And the month-category-accountOut value will change in 20
 		And the year-category-accountOut value will change in 20
@@ -567,6 +574,7 @@ Scenario: Ca37. Save with exactly length in Description of Detail
 	When I try to save the move
 	Then I will receive no core error
 		And the move will be saved
+		And the move value will be 10
 		And the accountOut value will change in -10
 		And the month-category-accountOut value will change in 10
 		And the year-category-accountOut value will change in 10
@@ -582,6 +590,7 @@ Scenario: Ca38. Save with exactly length in Description
 	When I try to save the move
 	Then I will receive no core error
 		And the move will be saved
+		And the move value will be 10
 		And the accountOut value will change in -10
 		And the month-category-accountOut value will change in 10
 		And the year-category-accountOut value will change in 10
@@ -599,6 +608,7 @@ Scenario: Ca39. Save with details with same description
 	When I try to save the move
 	Then I will receive no core error
 		And the move will be saved
+		And the move value will be 10
 		And the accountOut value will change in -10
 		And the month-category-accountOut value will change in 10
 		And the year-category-accountOut value will change in 10
@@ -615,6 +625,7 @@ Scenario: Ca40. Save with e-mail sender system out
 	Then I will receive no core error
 		And I will receive the notification
 		And the move will be saved
+		And the move value will be 10
 		And the accountOut value will change in -10
 		And the month-category-accountOut value will change in 10
 		And the year-category-accountOut value will change in 10
@@ -631,6 +642,7 @@ Scenario: Ca41. Save with e-mail sender system ok
 	Then I will receive no core error
 		And I will receive no notification
 		And the move will be saved
+		And the move value will be 10
 		And the accountOut value will change in -10
 		And the month-category-accountOut value will change in 10
 		And the year-category-accountOut value will change in 10
@@ -648,6 +660,7 @@ Scenario: Ca42. Save with e-mail sender system ok and without category
 	Then I will receive no core error
 		And I will receive no notification
 		And the move will be saved
+		And the move value will be 10
 		And the accountOut value will change in -10
 		And the month-category-accountOut value will change in 10
 		And the year-category-accountOut value will change in 10
@@ -663,6 +676,7 @@ Scenario: Ca43. Save with decimals
 	When I try to save the move
 	Then I will receive no core error
 		And the move will be saved
+		And the move value will be 9.45
 		And the accountOut value will change in -9.45
 		And the month-category-accountOut value will change in 9.45
 		And the year-category-accountOut value will change in 9.45
@@ -680,6 +694,7 @@ Scenario: Ca44. Save with decimals in details
 	When I try to save the move
 	Then I will receive no core error
 		And the move will be saved
+		And the move value will be 9.45
 		And the accountOut value will change in -9.45
 		And the month-category-accountOut value will change in 9.45
 		And the year-category-accountOut value will change in 9.45
