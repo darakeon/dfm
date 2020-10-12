@@ -285,46 +285,41 @@ namespace DFM.BusinessLogic.Services
 
 		#region Config
 
-		public void UpdateConfig(ConfigInfo configInfo)
+		public void UpdateConfig(ConfigInfo info)
 		{
 			parent.Safe.VerifyUser();
 
 			inTransaction("UpdateConfig", () =>
 			{
-				UpdateConfigInternal(configInfo);
+				var user = parent.Safe.GetCurrent();
+				var config = user.Config;
+
+				if (info.Language != null && !PlainText.AcceptLanguage(info.Language))
+					throw Error.LanguageUnknown.Throw();
+
+				if (info.TimeZone != null && !info.TimeZone.IsTimeZone())
+					throw Error.TimeZoneUnknown.Throw();
+
+				if (!String.IsNullOrEmpty(info.Language))
+					config.Language = info.Language;
+
+				if (!String.IsNullOrEmpty(info.TimeZone))
+					config.TimeZone = info.TimeZone;
+
+				if (info.SendMoveEmail.HasValue)
+					config.SendMoveEmail = info.SendMoveEmail.Value;
+
+				if (info.UseCategories.HasValue)
+					config.UseCategories = info.UseCategories.Value;
+
+				if (info.MoveCheck.HasValue)
+					config.MoveCheck = info.MoveCheck.Value;
+
+				if (info.Wizard.HasValue)
+					config.Wizard = info.Wizard.Value;
+
+				configRepository.Update(config);
 			});
-		}
-
-		internal void UpdateConfigInternal(ConfigInfo info)
-		{
-			var user = parent.Safe.GetCurrent();
-			var config = user.Config;
-
-			if (info.Language != null && !PlainText.AcceptLanguage(info.Language))
-				throw Error.LanguageUnknown.Throw();
-
-			if (info.TimeZone != null && !info.TimeZone.IsTimeZone())
-				throw Error.TimeZoneUnknown.Throw();
-
-			if (!String.IsNullOrEmpty(info.Language))
-				config.Language = info.Language;
-
-			if (!String.IsNullOrEmpty(info.TimeZone))
-				config.TimeZone = info.TimeZone;
-
-			if (info.SendMoveEmail.HasValue)
-				config.SendMoveEmail = info.SendMoveEmail.Value;
-
-			if (info.UseCategories.HasValue)
-				config.UseCategories = info.UseCategories.Value;
-
-			if (info.MoveCheck.HasValue)
-				config.MoveCheck = info.MoveCheck.Value;
-
-			if (info.Wizard.HasValue)
-				config.Wizard = info.Wizard.Value;
-
-			configRepository.Update(config);
 		}
 
 		public void EndWizard()

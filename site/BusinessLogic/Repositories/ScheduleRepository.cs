@@ -104,5 +104,12 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			return entity.User;
 		}
+
+		internal void AddDeleted(Schedule schedule)
+		{
+			schedule = Get(schedule.ID);
+			schedule.Deleted++;
+			SaveOrUpdate(schedule);
+		}
 	}
 }
