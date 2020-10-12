@@ -31,22 +31,22 @@ namespace DFM.BusinessLogic.Services
 			this.moveRepository = moveRepository;
 		}
 
-
-
 		public EmailStatus RunSchedule()
 		{
 			parent.Safe.VerifyUser();
 
 			try
 			{
-				var useCategories = parent.Current.UseCategories;
+				var user = parent.Safe.GetCurrent();
+				var scheduleList = scheduleRepository.GetRunnable(user);
 
-				var equalResult = runScheduleEqualConfig(useCategories);
-				var diffResult = runScheduleDiffConfig(useCategories);
+				var result = scheduleList.Any()
+					? runSchedule(scheduleList)
+					: EmailStatus.EmailSent;
 
 				parent.BaseMove.FixSummaries();
 
-				return max(equalResult, diffResult);
+				return result;
 			}
 			catch (Exception e)
 			{
@@ -54,51 +54,31 @@ namespace DFM.BusinessLogic.Services
 			}
 		}
 
-		private EmailStatus runScheduleEqualConfig(Boolean useCategories)
-		{
-			var user = parent.Safe.GetCurrent();
-			var sameConfigList = scheduleRepository.GetRunnable(user, useCategories);
-
-			return runSchedule(sameConfigList);
-		}
-
-		private EmailStatus runScheduleDiffConfig(Boolean useCategories)
-		{
-			var user = parent.Safe.GetCurrent();
-			var diffConfigList = scheduleRepository.GetRunnable(user, !useCategories);
-
-			EmailStatus emailsSent;
-
-			try
-			{
-				var mainConfig = new ConfigInfo { UseCategories = !useCategories };
-				parent.Admin.UpdateConfig(mainConfig);
-				emailsSent = runSchedule(diffConfigList);
-			}
-			finally
-			{
-				var mainConfig = new ConfigInfo { UseCategories = useCategories };
-				parent.Admin.UpdateConfig(mainConfig);
-			}
-
-			return emailsSent;
-		}
-
 		private EmailStatus runSchedule(IEnumerable<Schedule> scheduleList)
 		{
 			var emailsStati = new List<EmailStatus>();
+			var exceptions = new List<Exception>();
 
 			foreach (var schedule in scheduleList)
 			{
-				var result = inTransaction("RunSchedule", () =>
-					addNewMoves(schedule)
-				);
+				try
+				{
+					var result = inTransaction("RunSchedule", () =>
+						addNewMoves(schedule)
+					);
 
-				emailsStati.AddRange(result);
+					emailsStati.AddRange(result);
+				}
+				catch (Exception e)
+				{
+					exceptions.Add(e);
+				}
 			}
 
-			if (!emailsStati.Any())
-				return EmailStatus.EmailSent;
+			if (exceptions.Any())
+			{
+				throw new AggregateException(exceptions);
+			}
 
 			return emailsStati.Max();
 		}
@@ -127,15 +107,6 @@ namespace DFM.BusinessLogic.Services
 
 			return emailsStati;
 		}
-
-		private static EmailStatus max(EmailStatus equalResult, EmailStatus diffResult)
-		{
-			return equalResult > diffResult
-				? equalResult
-				: diffResult;
-		}
-
-
 
 		public ScheduleResult SaveSchedule(ScheduleInfo info)
 		{

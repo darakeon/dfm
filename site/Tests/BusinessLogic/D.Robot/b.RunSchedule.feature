@@ -192,3 +192,31 @@ Scenario: Db13. Run with bugged schedule
 	Given I have a bugged schedule
 	When I try to run the scheduler
 	Then I will receive this core error: ErrorRunningSchedules
+
+Scenario: Db14. Run schedule with category and categories use disabled
+	Given I enable Categories use
+		And I have this schedule to create
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Db14   | 2020-10-12 | Out    | 10    | 1     | False     | Daily     | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
+		And I disable Categories use
+	When I try to run the scheduler
+	Then I will receive this core error: ErrorRunningSchedules
+
+Scenario: Db15. Run schedule without category and categories use enabled
+	Given I disable Categories use
+		And I have this schedule to create
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Db14   | 2020-10-12 | Out    | 10    | 1     | False     | Daily     | False           |
+		And it has no Details
+		And it has no Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
+		And I enable Categories use
+	When I try to run the scheduler
+	Then I will receive this core error: ErrorRunningSchedules
