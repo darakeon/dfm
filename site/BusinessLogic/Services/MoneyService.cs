@@ -87,39 +87,12 @@ namespace DFM.BusinessLogic.Services
 
 			if (move.Schedule != null)
 			{
-				updateScheduleDeleted(move.Schedule);
+				scheduleRepository.AddDeleted(move.Schedule);
 			}
 
 			var emailStatus = moveRepository.SendEmail(move, OperationType.Deletion);
 
 			return new MoveResult(move, emailStatus);
-		}
-
-		private void updateScheduleDeleted(Schedule schedule)
-		{
-			schedule.Deleted++;
-
-			var useCategories = schedule.User.Config.UseCategories;
-
-			if (schedule.Category == null && useCategories)
-			{
-				var mainConfig = new ConfigInfo { UseCategories = false };
-				parent.Admin.UpdateConfigInternal(mainConfig);
-			}
-
-			if (schedule.Category != null && !useCategories)
-			{
-				var mainConfig = new ConfigInfo { UseCategories = true };
-				parent.Admin.UpdateConfigInternal(mainConfig);
-			}
-
-			scheduleRepository.Save(schedule);
-
-			if (schedule.User.Config.UseCategories != useCategories)
-			{
-				var mainConfig = new ConfigInfo { UseCategories = useCategories };
-				parent.Admin.UpdateConfigInternal(mainConfig);
-			}
 		}
 
 		public MoveInfo CheckMove(Guid guid, PrimalMoveNature nature)
