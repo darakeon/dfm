@@ -15,7 +15,7 @@ Scenario: Db01. Run with unlogged user
 Scenario: Db02. Run with bounded schedule
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Db91   | 2012-03-31 | Out    | 10    | 1     | False     | Monthly   | False           |
+			| Move Db02   | 2012-03-31 | Out    | 10    | 1     | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has an Account Out
@@ -30,7 +30,7 @@ Scenario: Db02. Run with bounded schedule
 Scenario: Db03. Run with boundless schedule
 	Given I have this schedule to create
 			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Db92   |      | Out    | 10    |       | True      | Monthly   | False           |
+			| Move Db03   |      | Out    | 10    |       | True      | Monthly   | False           |
 		And its Date is 3 months ago
 		And it has no Details
 		And it has a Category
@@ -46,7 +46,7 @@ Scenario: Db03. Run with boundless schedule
 Scenario: Db04. Run schedule that will finish
 	Given I have this schedule to create
 			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Db93   |      | Out    | 10    | 3     | False     | Daily     | False           |
+			| Move Db04   |      | Out    | 10    | 3     | False     | Daily     | False           |
 		And its Date is 5 days ago
 		And it has no Details
 		And it has a Category
@@ -62,7 +62,7 @@ Scenario: Db04. Run schedule that will finish
 Scenario: Db05. Run schedule that wont finish
 	Given I have this schedule to create
 			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Db94   |      | Out    | 10    | 7     | False     | Daily     | False           |
+			| Move Db05   |      | Out    | 10    | 7     | False     | Daily     | False           |
 		And its Date is 5 days ago
 		And it has no Details
 		And it has a Category
@@ -78,7 +78,7 @@ Scenario: Db05. Run schedule that wont finish
 Scenario: Db06. Run with daily schedule
 	Given I have this schedule to create
 			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Db95   |      | Out    | 10    | 10    | False     | Daily     | False           |
+			| Move Db06   |      | Out    | 10    | 10    | False     | Daily     | False           |
 		And its Date is 20 days ago
 		And it has no Details
 		And it has a Category
@@ -94,7 +94,7 @@ Scenario: Db06. Run with daily schedule
 Scenario: Db07. Run with monthly schedule
 	Given I have this schedule to create
 			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Db96   |      | Out    | 10    | 6     | False     | Monthly   | False           |
+			| Move Db07   |      | Out    | 10    | 6     | False     | Monthly   | False           |
 		And its Date is 7 months ago
 		And it has no Details
 		And it has a Category
@@ -110,7 +110,7 @@ Scenario: Db07. Run with monthly schedule
 Scenario: Db08. Run with yearly schedule
 	Given I have this schedule to create
 			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Db97   |      | Out    | 10    | 2     | False     | Monthly   | False           |
+			| Move Db08   |      | Out    | 10    | 2     | False     | Monthly   | False           |
 		And its Date is 2 years ago
 		And it has no Details
 		And it has a Category
@@ -126,7 +126,7 @@ Scenario: Db08. Run with yearly schedule
 Scenario: Db09. Run with details in schedule
 	Given I have this schedule to create
 			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Db98   |      | Out    |       | 5     | False     | Daily     | False           |
+			| Move Db09   |      | Out    |       | 5     | False     | Daily     | False           |
 		And its Date is 10 days ago
 		And the schedule has this details
 			| Description | Amount | Value |
@@ -145,7 +145,7 @@ Scenario: Db09. Run with details in schedule
 Scenario: Db10. Run with e-mail system out
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Db99   | 2014-03-22 | Out    | 10    | 1     | False     | Monthly   | False           |
+			| Move Db10   | 2014-03-22 | Out    | 10    | 1     | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has an Account Out
@@ -160,7 +160,7 @@ Scenario: Db10. Run with e-mail system out
 Scenario: Db11. Run with e-mail system ok
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Db9A   | 2014-03-22 | Out    | 10    | 1     | False     | Monthly   | False           |
+			| Move Db11   | 2014-03-22 | Out    | 10    | 1     | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has an Account Out
@@ -175,7 +175,7 @@ Scenario: Db11. Run with e-mail system ok
 Scenario: Db12. Run with schedule start in past and end in future
 	Given I have this schedule to create
 			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Db9B   |      | Out    | 10    | 5     | False     | Monthly   | False           |
+			| Move Db12   |      | Out    | 10    | 5     | False     | Monthly   | False           |
 		And its Date is 2 months ago
 		And it has no Details
 		And it has a Category
