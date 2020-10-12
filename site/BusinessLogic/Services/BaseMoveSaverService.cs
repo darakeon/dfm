@@ -44,7 +44,7 @@ namespace DFM.BusinessLogic.Services
 					.ToList()
 					.ForEach(detailRepository.Delete);
 
-				VerifyMove(move);
+				VerifyUser(move);
 
 				move.CheckedIn = false;
 				move.CheckedOut = false;
@@ -95,29 +95,27 @@ namespace DFM.BusinessLogic.Services
 			return new MoveResult(move, emailStatus);
 		}
 
-		internal Account GetAccount(String accountUrl)
+		internal Account GetAccount(String url)
 		{
-			return accountUrl == null
+			return url == null
 				? null
-				: parent.Admin.GetAccountInternal(accountUrl);
+				: parent.Admin.GetAccountEntity(url);
 		}
 
-		internal Category GetCategoryByName(String categoryName)
+		internal Category GetCategory(String name)
 		{
 			if (parent.Current.UseCategories)
-				return parent.Admin.GetCategoryInternal(categoryName);
+				return parent.Admin.GetCategoryEntity(name);
 
-			if (!String.IsNullOrEmpty(categoryName))
+			if (!String.IsNullOrEmpty(name))
 				throw Error.CategoriesDisabled.Throw();
 
 			return null;
 		}
 
-
-
 		private void linkEntities(Move move, MoveInfo info)
 		{
-			move.Category = GetCategoryByName(info.CategoryName);
+			move.Category = GetCategory(info.CategoryName);
 			move.Out = GetAccount(info.OutUrl);
 			move.In = GetAccount(info.InUrl);
 		}
@@ -168,7 +166,7 @@ namespace DFM.BusinessLogic.Services
 			summaryRepository.Fix(summary, @in, @out);
 		}
 
-		internal void VerifyMove(Move move)
+		internal void VerifyUser(Move move)
 		{
 			var user = parent.Safe.GetCurrent();
 			if (move == null || moveRepository.GetUser(move).ID != user.ID)

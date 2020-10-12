@@ -77,11 +77,11 @@ namespace DFM.BusinessLogic.Services
 		public AccountInfo GetAccount(String url)
 		{
 			parent.Safe.VerifyUser();
-			var account = GetAccountInternal(url);
+			var account = GetAccountEntity(url);
 			return AccountInfo.Convert(account);
 		}
 
-		internal Account GetAccountInternal(String url)
+		internal Account GetAccountEntity(String url)
 		{
 			var account = getAccount(url);
 
@@ -110,7 +110,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void UpdateAccount(AccountInfo info)
 		{
-			var account = GetAccountInternal(info.OriginalUrl);
+			var account = GetAccountEntity(info.OriginalUrl);
 			saveAccount(info, account);
 		}
 
@@ -131,7 +131,7 @@ namespace DFM.BusinessLogic.Services
 
 			inTransaction("CloseAccount", () =>
 			{
-				var account = GetAccountInternal(url);
+				var account = GetAccountEntity(url);
 
 				var hasMoves = moveRepository.AccountHasMoves(account);
 
@@ -150,7 +150,7 @@ namespace DFM.BusinessLogic.Services
 
 			inTransaction("DeleteAccount", () =>
 			{
-				var account = GetAccountInternal(url);
+				var account = GetAccountEntity(url);
 
 				var hasMoves = moveRepository.AccountHasMoves(account);
 
@@ -171,14 +171,12 @@ namespace DFM.BusinessLogic.Services
 
 			inTransaction("ReopenAccount", () =>
 			{
-				var account = GetAccountInternal(url);
+				var account = GetAccountEntity(url);
 				accountRepository.Reopen(account);
 			});
 
 		}
 		#endregion Account
-
-
 
 		#region Category
 		public IList<CategoryListItem> GetCategoryList(Boolean? active = null)
@@ -197,11 +195,11 @@ namespace DFM.BusinessLogic.Services
 		{
 			parent.Safe.VerifyUser();
 			return CategoryInfo.Convert(
-				GetCategoryInternal(name)
+				GetCategoryEntity(name)
 			);
 		}
 
-		internal Category GetCategoryInternal(String name)
+		internal Category GetCategoryEntity(String name)
 		{
 			var category = getCategory(name);
 
@@ -231,7 +229,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void UpdateCategory(CategoryInfo info)
 		{
-			var category = GetCategoryInternal(info.OriginalName);
+			var category = GetCategoryEntity(info.OriginalName);
 
 			saveCategory(info, category);
 		}
@@ -253,7 +251,7 @@ namespace DFM.BusinessLogic.Services
 			parent.Safe.VerifyUser();
 			verifyCategoriesEnabled();
 
-			var category = GetCategoryInternal(name);
+			var category = GetCategoryEntity(name);
 
 			inTransaction("DisableCategory", () =>
 			{
@@ -266,7 +264,7 @@ namespace DFM.BusinessLogic.Services
 			parent.Safe.VerifyUser();
 			verifyCategoriesEnabled();
 
-			var category = GetCategoryInternal(name);
+			var category = GetCategoryEntity(name);
 
 			inTransaction("EnableCategory", () =>
 			{
@@ -280,8 +278,6 @@ namespace DFM.BusinessLogic.Services
 				throw Error.CategoriesDisabled.Throw();
 		}
 		#endregion Category
-
-
 
 		#region Config
 
@@ -327,8 +323,6 @@ namespace DFM.BusinessLogic.Services
 			UpdateConfig(new ConfigInfo { Wizard = false });
 		}
 		#endregion Config
-
-
 
 		#region Theme
 		public void ChangeTheme(BootstrapTheme theme)
