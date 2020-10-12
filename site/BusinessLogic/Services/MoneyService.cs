@@ -104,13 +104,13 @@ namespace DFM.BusinessLogic.Services
 			if (schedule.Category == null && useCategories)
 			{
 				var mainConfig = new ConfigInfo { UseCategories = false };
-				parent.Admin.UpdateConfigWithinTransaction(mainConfig);
+				parent.Admin.UpdateConfigInternal(mainConfig);
 			}
 
 			if (schedule.Category != null && !useCategories)
 			{
 				var mainConfig = new ConfigInfo { UseCategories = true };
-				parent.Admin.UpdateConfigWithinTransaction(mainConfig);
+				parent.Admin.UpdateConfigInternal(mainConfig);
 			}
 
 			scheduleRepository.Save(schedule);
@@ -118,7 +118,7 @@ namespace DFM.BusinessLogic.Services
 			if (schedule.User.Config.UseCategories != useCategories)
 			{
 				var mainConfig = new ConfigInfo { UseCategories = useCategories };
-				parent.Admin.UpdateConfigWithinTransaction(mainConfig);
+				parent.Admin.UpdateConfigInternal(mainConfig);
 			}
 		}
 

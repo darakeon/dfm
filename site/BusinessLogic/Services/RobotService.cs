@@ -156,8 +156,8 @@ namespace DFM.BusinessLogic.Services
 		{
 			var schedule = new Schedule
 			{
-				Out = parent.BaseMove.GetAccountByUrl(info.OutUrl),
-				In = parent.BaseMove.GetAccountByUrl(info.InUrl),
+				Out = parent.BaseMove.GetAccount(info.OutUrl),
+				In = parent.BaseMove.GetAccount(info.InUrl),
 				Category = parent.BaseMove.GetCategoryByName(info.CategoryName),
 				User = parent.Safe.GetCurrent()
 			};
