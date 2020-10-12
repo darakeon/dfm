@@ -81,13 +81,13 @@ namespace DFM.BusinessLogic.Services
 		public AccountInfo GetAccount(String url)
 		{
 			parent.Safe.VerifyUser();
-			var account = GetAccountByUrlInternal(url);
+			var account = GetAccountInternal(url);
 			return AccountInfo.Convert(account);
 		}
 
-		internal Account GetAccountByUrlInternal(String url)
+		internal Account GetAccountInternal(String url)
 		{
-			var account = getAccountByUrl(url);
+			var account = getAccount(url);
 
 			if (account == null)
 				throw Error.InvalidAccount.Throw();
@@ -95,7 +95,7 @@ namespace DFM.BusinessLogic.Services
 			return account;
 		}
 
-		private Account getAccountByUrl(String url)
+		private Account getAccount(String url)
 		{
 			var user = parent.Safe.GetCurrent();
 			return accountRepository.GetByUrl(url, user);
@@ -114,7 +114,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void UpdateAccount(AccountInfo info)
 		{
-			var account = GetAccountByUrlInternal(info.OriginalUrl);
+			var account = GetAccountInternal(info.OriginalUrl);
 			saveAccount(info, account);
 		}
 
@@ -135,7 +135,7 @@ namespace DFM.BusinessLogic.Services
 
 			inTransaction("CloseAccount", () =>
 			{
-				var account = GetAccountByUrlInternal(url);
+				var account = GetAccountInternal(url);
 
 				var hasMoves = moveRepository.AccountHasMoves(account);
 
@@ -154,7 +154,7 @@ namespace DFM.BusinessLogic.Services
 
 			inTransaction("DeleteAccount", () =>
 			{
-				var account = GetAccountByUrlInternal(url);
+				var account = GetAccountInternal(url);
 
 				var hasMoves = moveRepository.AccountHasMoves(account);
 
@@ -175,7 +175,7 @@ namespace DFM.BusinessLogic.Services
 
 			inTransaction("ReopenAccount", () =>
 			{
-				var account = GetAccountByUrlInternal(url);
+				var account = GetAccountInternal(url);
 				accountRepository.Reopen(account);
 			});
 
@@ -210,13 +210,13 @@ namespace DFM.BusinessLogic.Services
 		{
 			parent.Safe.VerifyUser();
 			return CategoryInfo.Convert(
-				GetCategoryByNameInternal(name)
+				GetCategoryInternal(name)
 			);
 		}
 
-		internal Category GetCategoryByNameInternal(String name)
+		internal Category GetCategoryInternal(String name)
 		{
-			var category = getCategoryByName(name);
+			var category = getCategory(name);
 
 			if (category == null)
 				throw Error.InvalidCategory.Throw();
@@ -224,7 +224,7 @@ namespace DFM.BusinessLogic.Services
 			return category;
 		}
 
-		private Category getCategoryByName(String name)
+		private Category getCategory(String name)
 		{
 			verifyCategoriesEnabled();
 
@@ -244,7 +244,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void UpdateCategory(CategoryInfo info)
 		{
-			var category = GetCategoryByNameInternal(info.OriginalName);
+			var category = GetCategoryInternal(info.OriginalName);
 
 			saveCategory(info, category);
 		}
@@ -266,7 +266,7 @@ namespace DFM.BusinessLogic.Services
 			parent.Safe.VerifyUser();
 			verifyCategoriesEnabled();
 
-			var category = GetCategoryByNameInternal(name);
+			var category = GetCategoryInternal(name);
 
 			inTransaction("DisableCategory", () =>
 			{
@@ -279,7 +279,7 @@ namespace DFM.BusinessLogic.Services
 			parent.Safe.VerifyUser();
 			verifyCategoriesEnabled();
 
-			var category = GetCategoryByNameInternal(name);
+			var category = GetCategoryInternal(name);
 
 			inTransaction("EnableCategory", () =>
 			{
@@ -304,11 +304,11 @@ namespace DFM.BusinessLogic.Services
 
 			inTransaction("UpdateConfig", () =>
 			{
-				UpdateConfigWithinTransaction(configInfo);
+				UpdateConfigInternal(configInfo);
 			});
 		}
 
-		internal void UpdateConfigWithinTransaction(ConfigInfo info)
+		internal void UpdateConfigInternal(ConfigInfo info)
 		{
 			var user = parent.Safe.GetCurrent();
 			var config = user.Config;

@@ -95,17 +95,17 @@ namespace DFM.BusinessLogic.Services
 			return new MoveResult(move, emailStatus);
 		}
 
-		internal Account GetAccountByUrl(String accountUrl)
+		internal Account GetAccount(String accountUrl)
 		{
 			return accountUrl == null
 				? null
-				: parent.Admin.GetAccountByUrlInternal(accountUrl);
+				: parent.Admin.GetAccountInternal(accountUrl);
 		}
 
 		internal Category GetCategoryByName(String categoryName)
 		{
 			if (parent.Current.UseCategories)
-				return parent.Admin.GetCategoryByNameInternal(categoryName);
+				return parent.Admin.GetCategoryInternal(categoryName);
 
 			if (!String.IsNullOrEmpty(categoryName))
 				throw Error.CategoriesDisabled.Throw();
@@ -118,8 +118,8 @@ namespace DFM.BusinessLogic.Services
 		private void linkEntities(Move move, MoveInfo info)
 		{
 			move.Category = GetCategoryByName(info.CategoryName);
-			move.Out = GetAccountByUrl(info.OutUrl);
-			move.In = GetAccountByUrl(info.InUrl);
+			move.Out = GetAccount(info.OutUrl);
+			move.In = GetAccount(info.InUrl);
 		}
 
 		internal void BreakSummaries(Move move)
