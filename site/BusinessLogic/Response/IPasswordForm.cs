@@ -1,7 +1,7 @@
 ﻿using System;
 using DFM.BusinessLogic.Exceptions;
 
-namespace DFM.BusinessLogic.InterfacesAndBases
+namespace DFM.BusinessLogic.Response
 {
 	public interface IPasswordForm
 	{
