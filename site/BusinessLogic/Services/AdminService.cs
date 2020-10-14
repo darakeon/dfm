@@ -13,26 +13,8 @@ namespace DFM.BusinessLogic.Services
 {
 	public class AdminService : Service
 	{
-		private readonly AccountRepository accountRepository;
-		private readonly CategoryRepository categoryRepository;
-		private readonly SummaryRepository summaryRepository;
-		private readonly ConfigRepository configRepository;
-		private readonly ScheduleRepository scheduleRepository;
-		private readonly MoveRepository moveRepository;
-
-		internal AdminService(
-			ServiceAccess serviceAccess, AccountRepository accountRepository,
-			CategoryRepository categoryRepository, SummaryRepository summaryRepository,
-			ConfigRepository configRepository, ScheduleRepository scheduleRepository, MoveRepository moveRepository)
-			: base(serviceAccess)
-		{
-			this.accountRepository = accountRepository;
-			this.categoryRepository = categoryRepository;
-			this.summaryRepository = summaryRepository;
-			this.configRepository = configRepository;
-			this.scheduleRepository = scheduleRepository;
-			this.moveRepository = moveRepository;
-		}
+		internal AdminService(ServiceAccess serviceAccess, Repos repos)
+			: base(serviceAccess, repos) { }
 
 		#region Account
 		public IList<AccountListItem> GetAccountList(Boolean open)
@@ -41,15 +23,15 @@ namespace DFM.BusinessLogic.Services
 
 			var user = parent.Safe.GetCurrent();
 
-			return accountRepository.Get(user, open)
+			return repos.Account.Get(user, open)
 				.Select(makeAccountListItem)
 				.ToList();
 		}
 
 		private AccountListItem makeAccountListItem(Account account)
 		{
-			var hasMoves = moveRepository.AccountHasMoves(account);
-			var total = summaryRepository.GetTotal(account);
+			var hasMoves = repos.Move.AccountHasMoves(account);
+			var total = repos.Summary.GetTotal(account);
 			var sign = getSign(account, total);
 
 			var item = AccountListItem.Convert(account, total, sign, hasMoves);
@@ -94,7 +76,7 @@ namespace DFM.BusinessLogic.Services
 		private Account getAccount(String url)
 		{
 			var user = parent.Safe.GetCurrent();
-			return accountRepository.GetByUrl(url, user);
+			return repos.Account.GetByUrl(url, user);
 		}
 
 		public void CreateAccount(AccountInfo info)
@@ -121,7 +103,7 @@ namespace DFM.BusinessLogic.Services
 			inTransaction("SaveAccount", () =>
 			{
 				info.Update(account);
-				accountRepository.Save(account);
+				repos.Account.Save(account);
 			});
 		}
 
@@ -133,14 +115,14 @@ namespace DFM.BusinessLogic.Services
 			{
 				var account = GetAccountEntity(url);
 
-				var hasMoves = moveRepository.AccountHasMoves(account);
+				var hasMoves = repos.Move.AccountHasMoves(account);
 
 				if (!hasMoves)
 					throw Error.CantCloseEmptyAccount.Throw();
 
-				scheduleRepository.DisableAll(account);
+				repos.Schedule.DisableAll(account);
 
-				accountRepository.Close(account);
+				repos.Account.Close(account);
 			});
 		}
 
@@ -152,16 +134,16 @@ namespace DFM.BusinessLogic.Services
 			{
 				var account = GetAccountEntity(url);
 
-				var hasMoves = moveRepository.AccountHasMoves(account);
+				var hasMoves = repos.Move.AccountHasMoves(account);
 
 				if (hasMoves)
 					throw Error.CantDeleteAccountWithMoves.Throw();
 
-				summaryRepository.DeleteAll(account);
+				repos.Summary.DeleteAll(account);
 
-				scheduleRepository.DeleteAll(account);
+				repos.Schedule.DeleteAll(account);
 
-				accountRepository.Delete(account);
+				repos.Account.Delete(account);
 			});
 		}
 
@@ -172,7 +154,7 @@ namespace DFM.BusinessLogic.Services
 			inTransaction("ReopenAccount", () =>
 			{
 				var account = GetAccountEntity(url);
-				accountRepository.Reopen(account);
+				repos.Account.Reopen(account);
 			});
 
 		}
@@ -184,7 +166,7 @@ namespace DFM.BusinessLogic.Services
 			parent.Safe.VerifyUser();
 
 			var user = parent.Safe.GetCurrent();
-			var categories = categoryRepository.Get(user, active);
+			var categories = repos.Category.Get(user, active);
 
 			return categories
 				.Select(CategoryListItem.Convert)
@@ -214,7 +196,7 @@ namespace DFM.BusinessLogic.Services
 			verifyCategoriesEnabled();
 
 			var user = parent.Safe.GetCurrent();
-			return categoryRepository.GetByName(name, user);
+			return repos.Category.GetByName(name, user);
 		}
 
 		public void CreateCategory(CategoryInfo info)
@@ -242,7 +224,7 @@ namespace DFM.BusinessLogic.Services
 			inTransaction("SaveCategory", () =>
 			{
 				info.Update(category);
-				categoryRepository.Save(category);
+				repos.Category.Save(category);
 			});
 		}
 
@@ -255,7 +237,7 @@ namespace DFM.BusinessLogic.Services
 
 			inTransaction("DisableCategory", () =>
 			{
-				categoryRepository.Disable(category);
+				repos.Category.Disable(category);
 			});
 		}
 
@@ -268,7 +250,7 @@ namespace DFM.BusinessLogic.Services
 
 			inTransaction("EnableCategory", () =>
 			{
-				categoryRepository.Enable(category);
+				repos.Category.Enable(category);
 			});
 		}
 
@@ -314,7 +296,7 @@ namespace DFM.BusinessLogic.Services
 				if (info.Wizard.HasValue)
 					config.Wizard = info.Wizard.Value;
 
-				configRepository.Update(config);
+				repos.Config.Update(config);
 			});
 		}
 
@@ -336,7 +318,7 @@ namespace DFM.BusinessLogic.Services
 
 			inTransaction("ChangeTheme", () =>
 			{
-				configRepository.Update(config);
+				repos.Config.Update(config);
 			});
 		}
 		#endregion Theme

@@ -89,7 +89,7 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		[Then(@"the schedule value will be (\d+\.?\d*)")]
 		public void ThenTheScheduleValueWillBe(Decimal value)
 		{
-			var schedule = scheduleRepository.Get(scheduleResult.Guid);
+			var schedule = repos.Schedule.Get(scheduleResult.Guid);
 			Assert.AreEqual(value, schedule.Value);
 		}
 		#endregion
@@ -117,11 +117,11 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		[Given(@"I have a bugged schedule")]
 		public void GivenIHaveABuggedSchedule()
 		{
-			scheduleRepository.SaveOrUpdate(
+			repos.Schedule.SaveOrUpdate(
 				new Schedule
 				{
 					Description = "",
-					User = userRepository.GetByEmail(current.Email),
+					User = repos.User.GetByEmail(current.Email),
 				}
 			);
 		}
@@ -309,21 +309,21 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		[Then(@"the schedule will be disabled")]
 		public void ThenTheScheduleWillBeDisabled()
 		{
-			var schedule = scheduleRepository.Get(scheduleInfo.Guid);
+			var schedule = repos.Schedule.Get(scheduleInfo.Guid);
 			Assert.IsFalse(schedule.Active);
 		}
 
 		[Then(@"the schedule will be enabled")]
 		public void ThenTheScheduleWillBeEnabled()
 		{
-			var schedule = scheduleRepository.Get(scheduleInfo.Guid);
+			var schedule = repos.Schedule.Get(scheduleInfo.Guid);
 			Assert.IsTrue(schedule.Active);
 		}
 
 		[Then(@"the schedule last run will be (\d+)")]
 		public void ThenTheScheduleLastRunWillBe(Int32 lastRun)
 		{
-			var schedule = scheduleRepository.Get(scheduleInfo.Guid);
+			var schedule = repos.Schedule.Get(scheduleInfo.Guid);
 			Assert.AreEqual(lastRun, schedule.LastRun);
 		}
 		#endregion

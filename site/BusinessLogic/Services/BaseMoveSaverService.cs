@@ -13,25 +13,12 @@ namespace DFM.BusinessLogic.Services
 {
 	internal class BaseMoveSaverService : Service
 	{
-		private readonly MoveRepository moveRepository;
-		private readonly DetailRepository detailRepository;
-		private readonly SummaryRepository summaryRepository;
-		private readonly CategoryRepository categoryRepository;
-		private readonly AccountRepository accountRepository;
-
-		internal BaseMoveSaverService(ServiceAccess serviceAccess, MoveRepository moveRepository, DetailRepository detailRepository, SummaryRepository summaryRepository, CategoryRepository categoryRepository, AccountRepository accountRepository)
-			: base(serviceAccess)
-		{
-			this.moveRepository = moveRepository;
-			this.detailRepository = detailRepository;
-			this.summaryRepository = summaryRepository;
-			this.categoryRepository = categoryRepository;
-			this.accountRepository = accountRepository;
-		}
+		internal BaseMoveSaverService(ServiceAccess serviceAccess, Repos repos)
+			: base(serviceAccess, repos) { }
 
 		internal MoveResult SaveMove(MoveInfo info, OperationType operationType)
 		{
-			var move = moveRepository.GetNonCached(info.Guid);
+			var move = repos.Move.GetNonCached(info.Guid);
 
 			if (move == null)
 			{
@@ -42,7 +29,7 @@ namespace DFM.BusinessLogic.Services
 				move.DetailList
 					.Select(d => d.ID)
 					.ToList()
-					.ForEach(detailRepository.Delete);
+					.ForEach(repos.Detail.Delete);
 
 				VerifyUser(move);
 
@@ -66,30 +53,30 @@ namespace DFM.BusinessLogic.Services
 
 			if (moveIsNew || !move.IsDetailed())
 			{
-				move = moveRepository.SaveMainInfo(move, today);
-				detailRepository.SaveDetails(move);
+				move = repos.Move.SaveMainInfo(move, today);
+				repos.Detail.SaveDetails(move);
 			}
 			else
 			{
-				detailRepository.SaveDetails(move);
-				move = moveRepository.SaveMainInfo(move, today);
+				repos.Detail.SaveDetails(move);
+				move = repos.Move.SaveMainInfo(move, today);
 			}
 
 			if (!moveIsNew)
 				BreakSummaries(move);
 
-			var emailStatus = moveRepository.SendEmail(move, operationType);
+			var emailStatus = repos.Move.SendEmail(move, operationType);
 
 			if (move.In != null && move.In.BeginDate > move.GetDate())
 			{
 				move.In.BeginDate = move.GetDate();
-				accountRepository.Save(move.In);
+				repos.Account.Save(move.In);
 			}
 
 			if (move.Out != null && move.Out.BeginDate > move.GetDate())
 			{
 				move.Out.BeginDate = move.GetDate();
-				accountRepository.Save(move.Out);
+				repos.Account.Save(move.Out);
 			}
 
 			return new MoveResult(move, emailStatus);
@@ -122,26 +109,26 @@ namespace DFM.BusinessLogic.Services
 
 		internal void BreakSummaries(Move move)
 		{
-			move = moveRepository.GetNonCached(move.Guid);
+			move = repos.Move.GetNonCached(move.Guid);
 			breakSummaries(move);
 		}
 
 		private void breakSummaries(Move move)
 		{
 			var category = move.Category != null
-				? categoryRepository.Get(move.Category.ID)
+				? repos.Category.Get(move.Category.ID)
 				: null;
 
 			if (move.Out != null)
 			{
-				var accountOut = accountRepository.Get(move.Out.ID);
-				summaryRepository.Break(accountOut, category, move);
+				var accountOut = repos.Account.Get(move.Out.ID);
+				repos.Summary.Break(accountOut, category, move);
 			}
 
 			if (move.In != null)
 			{
-				var accountIn = accountRepository.Get(move.In.ID);
-				summaryRepository.Break(accountIn, category, move);
+				var accountIn = repos.Account.Get(move.In.ID);
+				repos.Summary.Break(accountIn, category, move);
 			}
 		}
 
@@ -150,7 +137,7 @@ namespace DFM.BusinessLogic.Services
 			inTransaction("FixSummaries", () =>
 			{
 				var user = parent.Safe.GetCurrent();
-				summaryRepository
+				repos.Summary
 					.Where(s => s.Broken)
 					.Where(s => s.User() == user)
 					.ToList()
@@ -160,16 +147,16 @@ namespace DFM.BusinessLogic.Services
 
 		private void fixSummaries(Summary summary)
 		{
-			var @in = moveRepository.GetIn(summary);
-			var @out = moveRepository.GetOut(summary);
+			var @in = repos.Move.GetIn(summary);
+			var @out = repos.Move.GetOut(summary);
 
-			summaryRepository.Fix(summary, @in, @out);
+			repos.Summary.Fix(summary, @in, @out);
 		}
 
 		internal void VerifyUser(Move move)
 		{
 			var user = parent.Safe.GetCurrent();
-			if (move == null || moveRepository.GetUser(move).ID != user.ID)
+			if (move == null || repos.Move.GetUser(move).ID != user.ID)
 				throw Error.InvalidMove.Throw();
 		}
 	}

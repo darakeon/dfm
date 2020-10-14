@@ -10,15 +10,8 @@ namespace DFM.BusinessLogic.Services
 {
 	public class MoneyService : Service
 	{
-		private readonly MoveRepository moveRepository;
-		private readonly ScheduleRepository scheduleRepository;
-
-		internal MoneyService(ServiceAccess serviceAccess, MoveRepository moveRepository, ScheduleRepository scheduleRepository)
-			: base(serviceAccess)
-		{
-			this.moveRepository = moveRepository;
-			this.scheduleRepository = scheduleRepository;
-		}
+		internal MoneyService(ServiceAccess serviceAccess, Repos repos)
+			: base(serviceAccess, repos) { }
 
 		public MoveInfo GetMove(Guid guid)
 		{
@@ -30,7 +23,7 @@ namespace DFM.BusinessLogic.Services
 
 		internal Move GetMoveEntity(Guid guid)
 		{
-			var move = moveRepository.Get(guid);
+			var move = repos.Move.Get(guid);
 
 			parent.BaseMove.VerifyUser(move);
 
@@ -79,16 +72,16 @@ namespace DFM.BusinessLogic.Services
 
 			parent.BaseMove.VerifyUser(move);
 
-			moveRepository.Delete(move);
+			repos.Move.Delete(move);
 
 			parent.BaseMove.BreakSummaries(move);
 
 			if (move.Schedule != null)
 			{
-				scheduleRepository.AddDeleted(move.Schedule);
+				repos.Schedule.AddDeleted(move.Schedule);
 			}
 
-			var emailStatus = moveRepository.SendEmail(move, OperationType.Deletion);
+			var emailStatus = repos.Move.SendEmail(move, OperationType.Deletion);
 
 			return new MoveResult(move, emailStatus);
 		}
@@ -115,7 +108,7 @@ namespace DFM.BusinessLogic.Services
 			move.Check(nature, check);
 
 			inTransaction("ToggleMoveCheck", () => 
-				moveRepository.SaveCheck(move)
+				repos.Move.SaveCheck(move)
 			);
 
 			return MoveInfo.Convert4Report(move, nature);

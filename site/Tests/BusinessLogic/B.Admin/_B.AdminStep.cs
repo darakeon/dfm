@@ -209,9 +209,9 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 
 			service.Money.SaveMove(moveInfo);
 
-			var user = userRepository.GetByEmail(current.Email);
-			var account = accountRepository.GetByUrl(accountInfo.Url, user);
-			accountTotal = summaryRepository.GetTotal(account);
+			var user = repos.User.GetByEmail(current.Email);
+			var account = repos.Account.GetByUrl(accountInfo.Url, user);
+			accountTotal = repos.Summary.GetTotal(account);
 		}
 
 		[When(@"I make this changes to the account")]
@@ -282,9 +282,9 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		[Then(@"the account value will not change")]
 		public void TheAccountValueWillNotChange()
 		{
-			var user = userRepository.GetByEmail(current.Email);
-			var account = accountRepository.GetByUrl(accountInfo.Url, user);
-			var total = summaryRepository.GetTotal(account);
+			var user = repos.User.GetByEmail(current.Email);
+			var account = repos.Account.GetByUrl(accountInfo.Url, user);
+			var total = repos.Summary.GetTotal(account);
 			Assert.AreEqual(accountTotal, total);
 		}
 		#endregion
@@ -312,16 +312,16 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		[Then(@"the account will not be closed")]
 		public void ThenTheAccountWillNotBeClosed()
 		{
-			var user = userRepository.GetByEmail(current.Email);
-			var account = accountRepository.GetByUrl(accountUrl, user);
+			var user = repos.User.GetByEmail(current.Email);
+			var account = repos.Account.GetByUrl(accountUrl, user);
 			Assert.IsTrue(account.Open);
 		}
 
 		[Then(@"the account will be closed")]
 		public void ThenTheAccountWillBeClosed()
 		{
-			var user = userRepository.GetByEmail(current.Email);
-			var account = accountRepository.GetByUrl(accountUrl, user);
+			var user = repos.User.GetByEmail(current.Email);
+			var account = repos.Account.GetByUrl(accountUrl, user);
 			Assert.IsFalse(account.Open);
 		}
 		#endregion
@@ -336,9 +336,9 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		[Given(@"I delete the moves of ([\w ]+)")]
 		public void GivenIDeleteTheMovesOf(String givenAccountUrl)
 		{
-			var user = userRepository.GetByEmail(current.Email);
-			var account = accountRepository.GetByUrl(givenAccountUrl, user);
-			var moveList = moveRepository.ByAccount(account);
+			var user = repos.User.GetByEmail(current.Email);
+			var account = repos.Account.GetByUrl(givenAccountUrl, user);
+			var moveList = repos.Move.ByAccount(account);
 
 			foreach (var move in moveList)
 			{
@@ -675,8 +675,8 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		[Then(@"the category will be disabled")]
 		public void ThenTheCategoryWillBeDisabled()
 		{
-			var user = userRepository.GetByEmail(current.Email);
-			var category = categoryRepository.GetByName(categoryName, user);
+			var user = repos.User.GetByEmail(current.Email);
+			var category = repos.Category.GetByName(categoryName, user);
 			Assert.IsFalse(category.Active);
 		}
 		#endregion
@@ -721,8 +721,8 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		[Then(@"the category will be enabled")]
 		public void ThenTheCategoryWillBeEnabled()
 		{
-			var user = userRepository.GetByEmail(current.Email);
-			var category = categoryRepository.GetByName(categoryName, user);
+			var user = repos.User.GetByEmail(current.Email);
+			var category = repos.Category.GetByName(categoryName, user);
 			Assert.IsTrue(category.Active);
 		}
 		#endregion

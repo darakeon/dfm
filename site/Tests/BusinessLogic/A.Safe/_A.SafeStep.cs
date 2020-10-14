@@ -134,14 +134,14 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		[Then(@"the user will not be saved")]
 		public void ThenTheUserWillNotBeSaved()
 		{
-			var user = userRepository.GetByEmail(email);
+			var user = repos.User.GetByEmail(email);
 			Assert.IsNull(user);
 		}
 
 		[Then(@"the user will not be changed")]
 		public void ThenTheUserWillNotBeChanged()
 		{
-			var savedUser = userRepository.GetByEmail(email);
+			var savedUser = repos.User.GetByEmail(email);
 			Assert.IsNotNull(savedUser);
 
 			var rightPassword = Crypt.Check(password, savedUser.Password);
@@ -158,7 +158,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 
 			service.Safe.ActivateUser(tokenActivate);
 
-			var savedUser = userRepository.GetByEmail(email);
+			var savedUser = repos.User.GetByEmail(email);
 			Assert.IsNotNull(savedUser);
 
 			var rightPassword = Crypt.Check(password, savedUser.Password);
@@ -187,8 +187,8 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		[Then(@"there will be no active logins")]
 		public void ThenThereWillBeNoActiveLogins()
 		{
-			var user = userRepository.GetByEmail(email);
-			var loginForUser = ticketRepository.List(user).ToList();
+			var user = repos.User.GetByEmail(email);
+			var loginForUser = repos.Ticket.List(user).ToList();
 
 			Assert.LessOrEqual(0, loginForUser.Count);
 		}
@@ -222,14 +222,14 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		[Then(@"the user will not be activated")]
 		public void ThenTheUserWillNotBeActivated()
 		{
-			var user = userRepository.GetByEmail(email);
+			var user = repos.User.GetByEmail(email);
 			Assert.IsFalse(user.Active);
 		}
 
 		[Then(@"the user will be activated")]
 		public void ThenTheUserWillBeActivated()
 		{
-			var user = userRepository.GetByEmail(email);
+			var user = repos.User.GetByEmail(email);
 			Assert.IsTrue(user.Active);
 		}
 		#endregion
@@ -389,7 +389,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		[Then(@"the password will not be changed")]
 		public void ThenThePasswordWillNotBeChanged()
 		{
-			var savedUser = userRepository.GetByEmail(email);
+			var savedUser = repos.User.GetByEmail(email);
 			Assert.IsNotNull(savedUser);
 
 			var rightPassword = Crypt.Check(password, savedUser.Password);
@@ -399,7 +399,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		[Then(@"the password will be changed")]
 		public void ThenThePasswordWillBeChanged()
 		{
-			var savedUser = userRepository.GetByEmail(email);
+			var savedUser = repos.User.GetByEmail(email);
 			Assert.IsNotNull(savedUser);
 
 			var rightPassword = Crypt.Check(newPassword, savedUser.Password);
@@ -539,14 +539,14 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		[Then(@"they will be active")]
 		public void ThenTheyWillBeActive()
 		{
-			var currentTicket = ticketRepository.GetByKey(
+			var currentTicket = repos.Ticket.GetByKey(
 				service.Current.TicketKey
 			);
 			var user = currentTicket.User;
 
 			foreach (var login in logins)
 			{
-				var loginDb = ticketRepository.GetByPartOfKey(
+				var loginDb = repos.Ticket.GetByPartOfKey(
 					user, login.Key
 				);
 
@@ -588,8 +588,8 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		[Then(@"only the last login will be active")]
 		public void ThenOnlyTheLastLoginWillBeActive()
 		{
-			var user = userRepository.GetByEmail(email);
-			var loginForUser = ticketRepository.List(user).ToList();
+			var user = repos.User.GetByEmail(email);
+			var loginForUser = repos.Ticket.List(user).ToList();
 
 			Assert.AreEqual(1, loginForUser.Count);
 			Assert.AreEqual(ticketKey, loginForUser[0].Key);
@@ -630,7 +630,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		{
 			error = null;
 
-			var actualTicket = ticketRepository.GetByKey(ticketKey);
+			var actualTicket = repos.Ticket.GetByKey(ticketKey);
 			var actualEmail = actualTicket?.User?.Email;
 			Assert.AreEqual(newEmail, actualEmail);
 
@@ -656,7 +656,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		[Then(@"the access will( not)? be after test start time")]
 		public void ThenTheAccessWillBeAfterTestStartTime(Boolean after)
 		{
-			var ticketList = ticketRepository.NewQuery()
+			var ticketList = repos.Ticket.NewQuery()
 				.Where(t => t.User, u => u.Email == userEmailByTest)
 				.List;
 
@@ -757,9 +757,9 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		[Given(@"I pass a ticket that exist")]
 		public void GivenIPassATicketThatExist()
 		{
-			var userID = userRepository.GetByEmail(email).ID;
+			var userID = repos.User.GetByEmail(email).ID;
 
-			ticket = ticketRepository.Where(
+			ticket = repos.Ticket.Where(
 				t => t.User.ID == userID
 					&& t.Expiration == null
 			).FirstOrDefault()?.Key;
@@ -829,7 +829,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 					Version = "TestContract",
 				};
 
-				contractRepository.SaveOrUpdate(contract);
+				repos.Contract.SaveOrUpdate(contract);
 			}
 		}
 
@@ -848,7 +848,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 	            Version = scenarioCode,
             };
 
-            contractRepository.SaveOrUpdate(contract);
+            repos.Contract.SaveOrUpdate(contract);
 		}
 
 		[When(@"I try to get the contract")]
@@ -975,14 +975,14 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		[Then(@"the two-factor will be empty")]
 		public void ThenTheTwoFactorWillStillBeEmpty()
 		{
-			var user = userRepository.GetByEmail(current.Email);
+			var user = repos.User.GetByEmail(current.Email);
 			Assert.IsNull(user?.TFASecret);
 		}
 
 		[Then(@"the two-factor will be \[(.*)\]")]
 		public void ThenTheTwoFactorWillStillBe(String secret)
 		{
-			var user = userRepository.GetByEmail(current.Email);
+			var user = repos.User.GetByEmail(current.Email);
 			Assert.AreEqual(secret, user.TFASecret);
 		}
 

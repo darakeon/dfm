@@ -73,11 +73,11 @@ namespace DFM.BusinessLogic.Tests.E.Report
 		[Then(@"its sum value will be equal to its moves sum value")]
 		public void ThenItsSumValueWillBeEqualToItsMovesSumValue()
 		{
-			var user = userRepository.GetByEmail(current.Email);
-			var account = accountRepository.GetByUrl(accountInfo.Url, user);
+			var user = repos.User.GetByEmail(current.Email);
+			var account = repos.Account.GetByUrl(accountInfo.Url, user);
 
 			var time = year * 100 + month;
-			var expected = summaryRepository
+			var expected = repos.Summary
 				.Get(account, time)
 				.Sum(s => s.Value());
 
@@ -153,12 +153,12 @@ namespace DFM.BusinessLogic.Tests.E.Report
 		[Then(@"its sum value will be equal to its months sum value")]
 		public void ThenItsSumValueWillBeEqualToItsMonthsSumValue()
 		{
-			var user = userRepository.GetByEmail(current.Email);
-			var account = accountRepository.GetByUrl(accountInfo.Url, user);
+			var user = repos.User.GetByEmail(current.Email);
+			var account = repos.Account.GetByUrl(accountInfo.Url, user);
 
-			var expected = summaryRepository.GetTotal(account);
+			var expected = repos.Summary.GetTotal(account);
 
-			var actual = moveRepository
+			var actual = repos.Move
 				.ByAccount(account)
 				.Sum(
 					m => m.In?.ID == account.ID
