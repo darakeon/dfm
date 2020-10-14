@@ -4,6 +4,7 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
+using DFM.Generic;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -103,6 +104,37 @@ namespace DFM.BusinessLogic.Tests.E.Report
 				monthReport.MoveList.Any(m => m.Description == description)
 			);
 		}
+
+		[Then(@"there will be these futures moves")]
+		public void ThenThereWillBeTheseFuturesMoves(Table table)
+		{
+			var foreseenMoves = monthReport.ForeseenList;
+
+			var count = table.RowCount;
+			Assert.AreEqual(count, foreseenMoves.Count);
+
+			for (var m = 0; m < count; m++)
+			{
+				var row = table.Rows[m];
+				var description = row["Description"];
+				var date = DateTime.Parse(row["Date"]);
+				var nature = EnumX.Parse<MoveNature>(row["Nature"]);
+				var value = Int32.Parse(row["Value"]);
+
+				var line = foreseenMoves[m];
+				Assert.AreEqual(description, line.Description);
+				Assert.AreEqual(date, line.GetDate());
+				Assert.AreEqual(nature, line.Nature);
+				Assert.AreEqual(value, line.Value);
+			}
+		}
+
+		[Then(@"the foreseen future value part will be ((?:\+|\-)\d+)")]
+		public void ThenTheForeseenValueWillBe(Int32 value)
+		{
+			var foreseen = monthReport.ForeseenTotal;
+			Assert.AreEqual(value, foreseen);
+		}
 		#endregion
 
 		#region GetYearReport
@@ -142,11 +174,18 @@ namespace DFM.BusinessLogic.Tests.E.Report
 				var currentIn = Int32.Parse(row["Current In"]);
 				var currentOut = Int32.Parse(row["Current Out"]);
 				var currentTotal = Int32.Parse(row["Current Total"]);
+				var foreseenIn = Int32.Parse(row["Foreseen In"]);
+				var foreseenOut = Int32.Parse(row["Foreseen Out"]);
+				var foreseenTotal = Int32.Parse(row["Foreseen Total"]);
+
 				var line = months[m];
 				Assert.AreEqual(number, line.Number);
 				Assert.AreEqual(currentIn, line.CurrentIn);
 				Assert.AreEqual(currentOut, line.CurrentOut);
 				Assert.AreEqual(currentTotal, line.CurrentTotal);
+				Assert.AreEqual(foreseenIn, line.ForeseenIn);
+				Assert.AreEqual(foreseenOut, line.ForeseenOut);
+				Assert.AreEqual(foreseenTotal, line.ForeseenTotal);
 			}
 		}
 

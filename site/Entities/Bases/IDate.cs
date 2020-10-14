@@ -13,10 +13,9 @@ namespace DFM.Entities.Bases
 	{
 		public static DateTime GetDate(this IDate date)
 		{
-			if (date.Day == 0)
-				return default;
-
-			return new DateTime(date.Year, date.Month, date.Day);
+			return date.Day == 0
+				? default
+				: new DateTime(date.Year, date.Month, date.Day);
 		}
 
 		public static void SetDate(this IDate date, DateTime value)

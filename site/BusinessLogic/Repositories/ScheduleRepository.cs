@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Bases;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using DFM.Entities.Bases;
+using DFM.Entities.Enums;
+using Keon.NHibernate.Queries;
 
 namespace DFM.BusinessLogic.Repositories
 {
@@ -33,8 +36,8 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal IList<Schedule> GetRunnable(User user)
 		{
-			return Where(s => s.User == user && s.Active)
-				.Where(s => s.CanRunNow())
+			return getRunnable(user).List
+				.Where(s => s.LastDateRun() < user.Now())
 				.ToList();
 		}
 
@@ -113,6 +116,96 @@ namespace DFM.BusinessLogic.Repositories
 			schedule.Active = active;
 
 			SaveOrUpdate(schedule);
+		}
+
+		public IList<Move> SimulateMoves(Account account, Int16 dateYear, Int16 dateMonth)
+		{
+			var foreseenMoves = new List<Move>();
+
+			var schedules = getRunnable(account);
+
+			foreach (var schedule in schedules)
+			{
+				foreseenMoves.AddRange(
+					schedule.CreateMovesByFrequency(dateYear, dateMonth)
+				);
+			}
+
+			return foreseenMoves
+				.OrderBy(d => d.GetDate())
+				.ToList();
+		}
+
+		public Decimal GetForeseenTotal(Account account, Int16 dateYear, Int16 dateMonth)
+		{
+			return getRunnable(account).Sum(
+				s => s.PreviewSumUntil(
+					account, dateYear, dateMonth
+				)
+			) / 100m;
+		}
+
+		private Decimal getForeseenAt(Account account, Int16 dateYear, Int16 dateMonth, PrimalMoveNature nature)
+		{
+			return getRunnable(account, nature).Sum(
+				       s => s.PreviewSumAt(
+					       account, dateYear, dateMonth
+				       )
+			       ) / 100m;
+		}
+
+		private IList<Schedule> getRunnable(Account account, PrimalMoveNature? nature = null)
+		{
+			var query = getRunnable(account.User);
+
+			switch (nature)
+			{
+				case PrimalMoveNature.In:
+					query = query.Where(s => s.In == account);
+					break;
+
+				case PrimalMoveNature.Out:
+					query = query.Where(s => s.Out == account);
+					break;
+
+				default:
+					query = query.Where(s => s.In == account || s.Out == account);
+					break;
+			}
+
+			return query.List;
+		}
+
+		private Query<Schedule, Int64> getRunnable(User user)
+		{
+			return NewQuery()
+				.Where(s => s.User == user && s.Active)
+				.Where(s => s.Boundless || s.LastRun < s.Times);
+		}
+
+		internal void FillForeseenTotals(Account account, Int16 dateYear, IList<YearReport.MonthItem> months)
+		{
+			for (var n = 1; n < 13; n++)
+			{
+				var number = dateYear * 100 + n;
+				var month = months.SingleOrDefault(m => m.Number == number);
+
+				if (month == null)
+				{
+					month = new YearReport.MonthItem {Number = +number};
+					months.Add(month);
+				}
+
+				var dateMonth = (Int16)n;
+
+				month.ForeseenIn = getForeseenAt(
+					account, dateYear, dateMonth, PrimalMoveNature.In
+				);
+
+				month.ForeseenOut = getForeseenAt(
+					account, dateYear, dateMonth, PrimalMoveNature.Out
+				);
+			}
 		}
 	}
 }

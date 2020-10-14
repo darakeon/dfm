@@ -96,12 +96,12 @@ namespace DFM.BusinessLogic.Repositories
 				.ForEach(Delete);
 		}
 
-		public IList<monthItem> YearReport(Account account, in short dateYear)
+		public IList<monthItem> YearReport(Account account, Int16 dateYear)
 		{
 			var yearBegin = new DateTime(dateYear, 1, 1);
 			var yearEnd = new DateTime(dateYear, 12, 31);
 
-			var query = NewQuery()
+			var months = NewQuery()
 				.Where(
 					s => s.Account.ID == account.ID
 					     && s.Nature == SummaryNature.Month
@@ -111,9 +111,10 @@ namespace DFM.BusinessLogic.Repositories
 				.TransformResult<monthItem>()
 				.GroupBy(s => s.Time, m => m.Number)
 				.Sum(s => s.InCents, m => m.CurrentInCents)
-				.Sum(s => s.OutCents, m => m.CurrentOutCents);
+				.Sum(s => s.OutCents, m => m.CurrentOutCents)
+				.List;
 
-			return query.List;
+			return months;
 		}
 	}
 }
