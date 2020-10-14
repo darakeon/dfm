@@ -16,26 +16,11 @@ namespace DFM.BusinessLogic.Services
 {
 	public class SafeService : Service, ISafeService<SignInInfo, SessionInfo>
 	{
-		private readonly UserRepository userRepository;
-		private readonly SecurityRepository securityRepository;
-		private readonly TicketRepository ticketRepository;
-		private readonly ContractRepository contractRepository;
-		private readonly AcceptanceRepository acceptanceRepository;
-
 		private readonly Func<PathType, String> getPath;
 
-		internal SafeService(ServiceAccess serviceAccess
-			, UserRepository userRepository, SecurityRepository securityRepository, TicketRepository ticketRepository, ContractRepository contractRepository, AcceptanceRepository acceptanceRepository
-			, Func<PathType, String> getPath
-			)
-			: base(serviceAccess)
+		internal SafeService(ServiceAccess serviceAccess, Repos repos, Func<PathType, String> getPath)
+			: base(serviceAccess, repos)
 		{
-			this.userRepository = userRepository;
-			this.securityRepository = securityRepository;
-			this.ticketRepository = ticketRepository;
-			this.contractRepository = contractRepository;
-			this.acceptanceRepository = acceptanceRepository;
-
 			this.getPath = getPath;
 		}
 
@@ -43,7 +28,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			inTransaction("SendPasswordReset", () =>
 			{
-				var user = userRepository.GetByEmail(email);
+				var user = repos.User.GetByEmail(email);
 
 				if (user == null)
 					return;
@@ -60,7 +45,7 @@ namespace DFM.BusinessLogic.Services
 
 				var user = info.GetEntity();
 
-				user = userRepository.Save(user);
+				user = repos.User.Save(user);
 
 				if (info.AcceptedContract)
 				{
@@ -75,7 +60,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			inTransaction("SendUserVerify", () =>
 			{
-				var user = userRepository.GetByEmail(email);
+				var user = repos.User.GetByEmail(email);
 
 				if (user == null)
 					throw Error.InvalidUser.Throw();
@@ -93,11 +78,11 @@ namespace DFM.BusinessLogic.Services
 		{
 			var security = new Security { Action = action, User = user };
 
-			security = securityRepository.Save(security);
+			security = repos.Security.Save(security);
 
-			securityRepository.SendEmail(security, pathAction, getPath(PathType.DisableToken));
+			repos.Security.SendEmail(security, pathAction, getPath(PathType.DisableToken));
 
-			var others = securityRepository
+			var others = repos.Security
 				.Where(
 					s => s.ID != security.ID
 						&& s.User.ID == security.User.ID
@@ -107,7 +92,7 @@ namespace DFM.BusinessLogic.Services
 			foreach (var other in others)
 			{
 				other.Active = false;
-				securityRepository.Save(other);
+				repos.Security.Save(other);
 			}
 		}
 
@@ -115,11 +100,11 @@ namespace DFM.BusinessLogic.Services
 		{
 			inTransaction("ActivateUser", () =>
 			{
-				var security = securityRepository.ValidateAndGet(token, SecurityAction.UserVerification);
+				var security = repos.Security.ValidateAndGet(token, SecurityAction.UserVerification);
 
-				userRepository.Activate(security.User);
+				repos.User.Activate(security.User);
 
-				securityRepository.Disable(token);
+				repos.Security.Disable(token);
 			});
 		}
 
@@ -129,27 +114,27 @@ namespace DFM.BusinessLogic.Services
 
 			inTransaction("PasswordReset", () =>
 			{
-				var security = securityRepository.ValidateAndGet(
+				var security = repos.Security.ValidateAndGet(
 					reset.Token,
 					SecurityAction.PasswordReset
 				);
 
 				security.User.Password = reset.Password;
 
-				userRepository.ChangePassword(security.User);
+				repos.User.ChangePassword(security.User);
 
-				securityRepository.Disable(reset.Token);
+				repos.Security.Disable(reset.Token);
 			});
 		}
 
 		public void TestSecurityToken(String token, SecurityAction securityAction)
 		{
-			securityRepository.ValidateAndGet(token, securityAction);
+			repos.Security.ValidateAndGet(token, securityAction);
 		}
 
 		public void DisableToken(String token)
 		{
-			inTransaction("DisableToken", () => securityRepository.Disable(token));
+			inTransaction("DisableToken", () => repos.Security.Disable(token));
 		}
 
 		public SessionInfo GetSession(String ticketKey)
@@ -161,7 +146,7 @@ namespace DFM.BusinessLogic.Services
 
 		private User getUserByTicket(String ticketKey)
 		{
-			var ticket = ticketRepository.GetByKey(ticketKey);
+			var ticket = repos.Ticket.GetByKey(ticketKey);
 
 			if (ticket == null || !ticket.Active)
 				throw Error.Uninvited.Throw();
@@ -182,16 +167,16 @@ namespace DFM.BusinessLogic.Services
 
 		private String createTicket(SignInInfo info)
 		{
-			var user = userRepository.ValidateAndGet(info.Email, info.Password);
+			var user = repos.User.ValidateAndGet(info.Email, info.Password);
 
 			if (String.IsNullOrEmpty(info.TicketKey))
 				info.TicketKey = Token.New();
 
-			var ticket = ticketRepository.GetByKey(info.TicketKey);
+			var ticket = repos.Ticket.GetByKey(info.TicketKey);
 
 			if (ticket == null)
 			{
-				ticket = ticketRepository.Create(user, info.TicketKey, info.TicketType);
+				ticket = repos.Ticket.Create(user, info.TicketKey, info.TicketType);
 			}
 			else if (ticket.User.Email != info.Email)
 			{
@@ -203,7 +188,7 @@ namespace DFM.BusinessLogic.Services
 
 		private void addPasswordError(String email)
 		{
-			var user = userRepository.GetByEmail(email);
+			var user = repos.User.GetByEmail(email);
 
 			if (user == null)
 				return;
@@ -215,7 +200,7 @@ namespace DFM.BusinessLogic.Services
 				if (user.WrongPassExceeded())
 					user.Active = false;
 
-				userRepository.SaveOrUpdate(user);
+				repos.User.SaveOrUpdate(user);
 			});
 
 			if (user.WrongPassExceeded())
@@ -231,8 +216,8 @@ namespace DFM.BusinessLogic.Services
 				var user = GetCurrent();
 
 				var ticket = ticketKey.Length == Defaults.TicketShowedPart
-					? ticketRepository.GetByPartOfKey(user, ticketKey)
-					: ticketRepository.GetByKey(ticketKey);
+					? repos.Ticket.GetByPartOfKey(user, ticketKey)
+					: repos.Ticket.GetByKey(ticketKey);
 
 				if (ticket == null) return;
 
@@ -240,7 +225,7 @@ namespace DFM.BusinessLogic.Services
 					throw Error.Uninvited.Throw();
 
 				if (ticket.Active)
-					ticketRepository.Disable(ticket);
+					repos.Ticket.Disable(ticket);
 			});
 		}
 
@@ -263,7 +248,7 @@ namespace DFM.BusinessLogic.Services
 			VerifyUser();
 
 			var user = GetCurrent();
-			var tickets = ticketRepository.List(user);
+			var tickets = repos.Ticket.List(user);
 
 			return tickets
 				.Select(TicketInfo.Convert)
@@ -278,21 +263,21 @@ namespace DFM.BusinessLogic.Services
 
 			var user = GetCurrent();
 
-			if (!userRepository.VerifyPassword(user, info.CurrentPassword))
+			if (!repos.User.VerifyPassword(user, info.CurrentPassword))
 				throw Error.WrongPassword.Throw();
 
 			inTransaction("ChangePassword", () =>
 			{
 				user.Password = info.Password;
-				userRepository.ChangePassword(user);
+				repos.User.ChangePassword(user);
 
-				var ticketList = ticketRepository.List(user);
+				var ticketList = repos.Ticket.List(user);
 
 				foreach (var ticket in ticketList)
 				{
 					if (ticket.Key != parent.Current.TicketKey)
 					{
-						ticketRepository.Disable(ticket);
+						repos.Ticket.Disable(ticket);
 					}
 				}
 			});
@@ -304,12 +289,12 @@ namespace DFM.BusinessLogic.Services
 
 			var user = GetCurrent();
 
-			if (!userRepository.VerifyPassword(user, password))
+			if (!repos.User.VerifyPassword(user, password))
 				throw Error.WrongPassword.Throw();
 
 			inTransaction("UpdateEmail", () =>
 			{
-				user = userRepository.UpdateEmail(user.ID, email);
+				user = repos.User.UpdateEmail(user.ID, email);
 				sendUserVerify(user);
 			});
 		}
@@ -326,7 +311,7 @@ namespace DFM.BusinessLogic.Services
 
 		private Contract getContract()
 		{
-			return contractRepository.GetContract();
+			return repos.Contract.GetContract();
 		}
 
 		public Boolean IsLastContractAccepted()
@@ -339,7 +324,7 @@ namespace DFM.BusinessLogic.Services
 			var user = GetCurrent();
 
 			var acceptance = inTransaction("CreateAcceptance", () =>
-				acceptanceRepository.GetOrCreate(user, contract)
+				repos.Acceptance.GetOrCreate(user, contract)
 			);
 
 			return acceptance?.Accepted ?? false;
@@ -355,7 +340,7 @@ namespace DFM.BusinessLogic.Services
 		private void acceptContract(User user)
 		{
 			var contract = getContract();
-			acceptanceRepository.Accept(user, contract);
+			repos.Acceptance.Accept(user, contract);
 		}
 
 		public void UpdateTFA(TFAInfo info)
@@ -372,10 +357,10 @@ namespace DFM.BusinessLogic.Services
 
 				var user = GetCurrent();
 
-				if (!userRepository.VerifyPassword(user, info.Password))
+				if (!repos.User.VerifyPassword(user, info.Password))
 					throw Error.TFAWrongPassword.Throw();
 
-				userRepository.SaveTFA(user, info.Secret);
+				repos.User.SaveTFA(user, info.Secret);
 			});
 		}
 
@@ -385,10 +370,10 @@ namespace DFM.BusinessLogic.Services
 			{
 				var user = GetCurrent();
 
-				if (!userRepository.VerifyPassword(user, currentPassword))
+				if (!repos.User.VerifyPassword(user, currentPassword))
 					throw Error.TFAWrongPassword.Throw();
 
-				userRepository.SaveTFA(user, null);
+				repos.User.SaveTFA(user, null);
 			});
 		}
 
@@ -406,15 +391,15 @@ namespace DFM.BusinessLogic.Services
 				if (!codes.Contains(code))
 					throw Error.TFAWrongCode.Throw();
 
-				var ticket = ticketRepository.GetByKey(parent.Current.TicketKey);
+				var ticket = repos.Ticket.GetByKey(parent.Current.TicketKey);
 				ticket.ValidTFA = true;
-				ticketRepository.SaveOrUpdate(ticket);
+				repos.Ticket.SaveOrUpdate(ticket);
 			});
 		}
 
 		public Boolean VerifyTicketTFA()
 		{
-			var ticket = ticketRepository.GetByKey(parent.Current.TicketKey);
+			var ticket = repos.Ticket.GetByKey(parent.Current.TicketKey);
 
 			if (ticket == null)
 				throw Error.Uninvited.Throw();
@@ -425,7 +410,7 @@ namespace DFM.BusinessLogic.Services
 
 		public Boolean VerifyTicketType(TicketType type)
 		{
-			var ticket = ticketRepository.GetByKey(parent.Current.TicketKey);
+			var ticket = repos.Ticket.GetByKey(parent.Current.TicketKey);
 
 			if (ticket == null)
 				throw Error.Uninvited.Throw();
@@ -444,7 +429,7 @@ namespace DFM.BusinessLogic.Services
 		public void SaveAccess()
 		{
 			var key = parent.Current.TicketKey;
-			var ticket = ticketRepository.GetByKey(key);
+			var ticket = repos.Ticket.GetByKey(key);
 
 			if (ticket == null)
 				return;
@@ -452,7 +437,7 @@ namespace DFM.BusinessLogic.Services
 			inTransaction("SaveAccess", () =>
 			{
 				ticket.LastAccess = DateTime.Now;
-				ticketRepository.SaveOrUpdate(ticket);
+				repos.Ticket.SaveOrUpdate(ticket);
 			});
 		}
 	}

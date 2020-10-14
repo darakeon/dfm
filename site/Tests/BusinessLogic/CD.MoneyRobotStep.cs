@@ -69,17 +69,17 @@ namespace DFM.BusinessLogic.Tests
 		{
 			accountOut = getOrCreateAccount(accountOutUrl);
 
-			accountOutTotal = summaryRepository.GetTotal(accountOut);
+			accountOutTotal = repos.Summary.GetTotal(accountOut);
 
-			var user = userRepository.GetByEmail(current.Email);
-			var category = categoryRepository.GetByName(categoryName, user);
+			var user = repos.User.GetByEmail(current.Email);
+			var category = repos.Category.GetByName(categoryName, user);
 
 			yearCategoryAccountOutTotal =
-				summaryRepository.Get(
+				repos.Summary.Get(
 					accountOut, category, entityDate.Year
 				)?.Out ?? 0;
 			monthCategoryAccountOutTotal =
-				summaryRepository.Get(
+				repos.Summary.Get(
 					accountOut, category, entityDate.ToMonthYear()
 				)?.Out ?? 0;
 		}
@@ -93,7 +93,7 @@ namespace DFM.BusinessLogic.Tests
 		[Given(@"it has an unknown Account Out")]
 		public void GivenItHasAnUnknownAccountOut()
 		{
-			var user = userRepository.GetByEmail(current.Email);
+			var user = repos.User.GetByEmail(current.Email);
 
 			accountOut = new Account
 			{
@@ -115,8 +115,8 @@ namespace DFM.BusinessLogic.Tests
 			};
 
 			service.Admin.CreateAccount(account);
-			var user = userRepository.GetByEmail(current.Email);
-			accountOut = accountRepository.GetByUrl(url, user);
+			var user = repos.User.GetByEmail(current.Email);
+			accountOut = repos.Account.GetByUrl(url, user);
 
 			var move = new MoveInfo
 			{
@@ -140,17 +140,17 @@ namespace DFM.BusinessLogic.Tests
 		{
 			accountIn = getOrCreateAccount(accountInUrl);
 
-			accountInTotal = summaryRepository.GetTotal(accountIn);
+			accountInTotal = repos.Summary.GetTotal(accountIn);
 
-			var user = userRepository.GetByEmail(current.Email);
-			var category = categoryRepository.GetByName(categoryName, user);
+			var user = repos.User.GetByEmail(current.Email);
+			var category = repos.Category.GetByName(categoryName, user);
 
 			yearCategoryAccountInTotal =
-				summaryRepository.Get(
+				repos.Summary.Get(
 					accountIn, category, entityDate.Year
 				)?.In ?? 0;
 			monthCategoryAccountInTotal =
-				summaryRepository.Get(
+				repos.Summary.Get(
 					accountIn, category, entityDate.ToMonthYear()
 				)?.In ?? 0;
 		}
@@ -164,7 +164,7 @@ namespace DFM.BusinessLogic.Tests
 		[Given(@"it has an unknown Account In")]
 		public void GivenItHasAnUnknownAccountIn()
 		{
-			var user = userRepository.GetByEmail(current.Email);
+			var user = repos.User.GetByEmail(current.Email);
 
 			accountIn = new Account
 			{
@@ -187,8 +187,8 @@ namespace DFM.BusinessLogic.Tests
 			 
 			service.Admin.CreateAccount(account);
 
-			var user = userRepository.GetByEmail(current.Email);
-			accountIn = accountRepository.GetByUrl(url, user);
+			var user = repos.User.GetByEmail(current.Email);
+			accountIn = repos.Account.GetByUrl(url, user);
 
 			var move = new MoveInfo
 			{
@@ -212,26 +212,26 @@ namespace DFM.BusinessLogic.Tests
 			accountOut = getOrCreateAccount(accountOutUrl);
 			accountIn = accountOut;
 
-			accountInTotal = summaryRepository.GetTotal(accountIn);
+			accountInTotal = repos.Summary.GetTotal(accountIn);
 
-			var user = userRepository.GetByEmail(current.Email);
-			var category = categoryRepository.GetByName(categoryName, user);
+			var user = repos.User.GetByEmail(current.Email);
+			var category = repos.Category.GetByName(categoryName, user);
 
 			yearCategoryAccountInTotal =
-				summaryRepository.Get(
+				repos.Summary.Get(
 					accountIn, category, entityDate.Year
 				)?.In ?? 0;
 			monthCategoryAccountInTotal =
-				summaryRepository.Get(
+				repos.Summary.Get(
 					accountIn, category, entityDate.ToMonthYear()
 				)?.In ?? 0;
 
 			yearCategoryAccountOutTotal =
-				summaryRepository.Get(
+				repos.Summary.Get(
 					accountOut, category, entityDate.Year
 				)?.Out ?? 0;
 			monthCategoryAccountOutTotal =
-				summaryRepository.Get(
+				repos.Summary.Get(
 					accountOut, category, entityDate.ToMonthYear()
 				)?.Out ?? 0;
 		}
@@ -241,7 +241,7 @@ namespace DFM.BusinessLogic.Tests
 		{
 			accountOut = getOrCreateAccount(accountOut.Url);
 
-			Assert.AreEqual(accountOutTotal, summaryRepository.GetTotal(accountOut));
+			Assert.AreEqual(accountOutTotal, repos.Summary.GetTotal(accountOut));
 		}
 
 		[Then(@"the month-category-accountOut value will not change")]
@@ -249,10 +249,10 @@ namespace DFM.BusinessLogic.Tests
 		{
 			accountOut = getOrCreateAccount(accountOut.Name);
 
-			var user = userRepository.GetByEmail(current.Email);
-			var category = categoryRepository.GetByName(categoryName, user);
+			var user = repos.User.GetByEmail(current.Email);
+			var category = repos.Category.GetByName(categoryName, user);
 
-			var currentTotal = summaryRepository.Get(
+			var currentTotal = repos.Summary.Get(
 				accountOut, category, entityDate.ToMonthYear()
 			)?.Out ?? 0;
 
@@ -264,10 +264,10 @@ namespace DFM.BusinessLogic.Tests
 		{
 			accountOut = getOrCreateAccount(accountOut.Name);
 
-			var user = userRepository.GetByEmail(current.Email);
-			var category = categoryRepository.GetByName(categoryName, user);
+			var user = repos.User.GetByEmail(current.Email);
+			var category = repos.Category.GetByName(categoryName, user);
 
-			var currentTotal = summaryRepository.Get(
+			var currentTotal = repos.Summary.Get(
 				accountOut, category, entityDate.Year
 			)?.Out ?? 0;
 
@@ -279,7 +279,7 @@ namespace DFM.BusinessLogic.Tests
 		{
 			accountIn = getOrCreateAccount(accountIn.Name);
 
-			Assert.AreEqual(accountInTotal, summaryRepository.GetTotal(accountIn));
+			Assert.AreEqual(accountInTotal, repos.Summary.GetTotal(accountIn));
 		}
 
 		[Then(@"the month-category-accountIn value will not change")]
@@ -287,10 +287,10 @@ namespace DFM.BusinessLogic.Tests
 		{
 			accountIn = getOrCreateAccount(accountIn.Name);
 
-			var user = userRepository.GetByEmail(current.Email);
-			var category = categoryRepository.GetByName(categoryName, user);
+			var user = repos.User.GetByEmail(current.Email);
+			var category = repos.Category.GetByName(categoryName, user);
 
-			var currentTotal = summaryRepository.Get(
+			var currentTotal = repos.Summary.Get(
 				accountIn, category, entityDate.ToMonthYear()
 			)?.In ?? 0;
 
@@ -302,10 +302,10 @@ namespace DFM.BusinessLogic.Tests
 		{
 			accountIn = getOrCreateAccount(accountIn.Name);
 
-			var user = userRepository.GetByEmail(current.Email);
-			var category = categoryRepository.GetByName(categoryName, user);
+			var user = repos.User.GetByEmail(current.Email);
+			var category = repos.Category.GetByName(categoryName, user);
 
-			var currentTotal = summaryRepository.Get(
+			var currentTotal = repos.Summary.Get(
 				accountIn, category, entityDate.Year
 			)?.In ?? 0;
 
@@ -317,7 +317,7 @@ namespace DFM.BusinessLogic.Tests
 		{
 			accountOut = getOrCreateAccount(accountOut.Name);
 
-			var currentTotal = summaryRepository.GetTotal(accountOut);
+			var currentTotal = repos.Summary.GetTotal(accountOut);
 
 			Assert.AreEqual(accountOutTotal + change, currentTotal);
 		}
@@ -327,10 +327,10 @@ namespace DFM.BusinessLogic.Tests
 		{
 			accountOut = getOrCreateAccount(accountOut.Name);
 
-			var user = userRepository.GetByEmail(current.Email);
-			var category = categoryRepository.GetByName(categoryName, user);
+			var user = repos.User.GetByEmail(current.Email);
+			var category = repos.Category.GetByName(categoryName, user);
 
-			var currentTotal = summaryRepository.Get(
+			var currentTotal = repos.Summary.Get(
 				accountOut, category, entityDate.ToMonthYear()
 			)?.Out ?? 0;
 
@@ -342,10 +342,10 @@ namespace DFM.BusinessLogic.Tests
 		{
 			accountOut = getOrCreateAccount(accountOut.Name);
 
-			var user = userRepository.GetByEmail(current.Email);
-			var category = categoryRepository.GetByName(categoryName, user);
+			var user = repos.User.GetByEmail(current.Email);
+			var category = repos.Category.GetByName(categoryName, user);
 
-			var currentTotal = summaryRepository.Get(
+			var currentTotal = repos.Summary.Get(
 				accountOut, category, entityDate.Year
 			)?.Out ?? 0;
 
@@ -358,7 +358,7 @@ namespace DFM.BusinessLogic.Tests
 		{
 			accountIn = getOrCreateAccount(accountIn.Name);
 
-			var currentTotal = summaryRepository.GetTotal(accountIn);
+			var currentTotal = repos.Summary.GetTotal(accountIn);
 
 			Assert.AreEqual(accountInTotal + change, currentTotal);
 		}
@@ -368,10 +368,10 @@ namespace DFM.BusinessLogic.Tests
 		{
 			accountIn = getOrCreateAccount(accountIn.Name);
 
-			var user = userRepository.GetByEmail(current.Email);
-			var category = categoryRepository.GetByName(categoryName, user);
+			var user = repos.User.GetByEmail(current.Email);
+			var category = repos.Category.GetByName(categoryName, user);
 
-			var currentTotal = summaryRepository.Get(
+			var currentTotal = repos.Summary.Get(
 				accountIn, category, entityDate.ToMonthYear()
 			)?.In ?? 0;
 
@@ -383,10 +383,10 @@ namespace DFM.BusinessLogic.Tests
 		{
 			accountIn = getOrCreateAccount(accountIn.Name);
 
-			var user = userRepository.GetByEmail(current.Email);
-			var category = categoryRepository.GetByName(categoryName, user);
+			var user = repos.User.GetByEmail(current.Email);
+			var category = repos.Category.GetByName(categoryName, user);
 
-			var currentTotal = summaryRepository.Get(
+			var currentTotal = repos.Summary.Get(
 				accountIn, category, entityDate.Year
 			)?.In ?? 0;
 

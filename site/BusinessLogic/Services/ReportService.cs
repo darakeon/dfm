@@ -8,19 +8,8 @@ namespace DFM.BusinessLogic.Services
 {
 	public class ReportService : Service
 	{
-		private readonly AccountRepository accountRepository;
-		private readonly MoveRepository moveRepository;
-		private readonly DetailRepository detailRepository;
-		private readonly SummaryRepository summaryRepository;
-
-		internal ReportService(ServiceAccess serviceAccess, AccountRepository accountRepository, MoveRepository moveRepository, DetailRepository detailRepository, SummaryRepository summaryRepository)
-			: base(serviceAccess)
-		{
-			this.accountRepository = accountRepository;
-			this.moveRepository = moveRepository;
-			this.detailRepository = detailRepository;
-			this.summaryRepository = summaryRepository;
-		}
+		internal ReportService(ServiceAccess serviceAccess, Repos repos)
+			: base(serviceAccess, repos) { }
 
 		public MonthReport GetMonthReport(String accountUrl, Int16 dateMonth, Int16 dateYear)
 		{
@@ -33,14 +22,14 @@ namespace DFM.BusinessLogic.Services
 				throw Error.InvalidMonth.Throw();
 
 			var user = parent.Safe.GetCurrent();
-			var account = accountRepository.GetByUrl(accountUrl, user);
+			var account = repos.Account.GetByUrl(accountUrl, user);
 
 			if (account == null)
 				throw Error.InvalidAccount.Throw();
 
-			var total = summaryRepository.GetTotal(account);
+			var total = repos.Summary.GetTotal(account);
 
-			var moveList = moveRepository
+			var moveList = repos.Move
 				.ByAccountAndTime(account, dateYear, dateMonth);
 
 			return new MonthReport(moveList, accountUrl, total);
@@ -54,14 +43,14 @@ namespace DFM.BusinessLogic.Services
 				throw Error.InvalidYear.Throw();
 
 			var user = parent.Safe.GetCurrent();
-			var account = accountRepository.GetByUrl(accountUrl, user);
+			var account = repos.Account.GetByUrl(accountUrl, user);
 
 			if (account == null)
 				throw Error.InvalidAccount.Throw();
 
-			var total = summaryRepository.GetTotal(account);
+			var total = repos.Summary.GetTotal(account);
 
-			var months = summaryRepository.YearReport(account, dateYear);
+			var months = repos.Summary.YearReport(account, dateYear);
 
 			return new YearReport(total, dateYear, months);
 		}
@@ -76,8 +65,8 @@ namespace DFM.BusinessLogic.Services
 			var email = parent.Current.Email;
 
 			var terms = description.Split(" ");
-			var movesWithTerm = moveRepository.ByDescription(email, terms);
-			var detailsWithTerm = detailRepository.ByDescription(email, terms);
+			var movesWithTerm = repos.Move.ByDescription(email, terms);
+			var detailsWithTerm = repos.Detail.ByDescription(email, terms);
 
 			var moves = movesWithTerm
 				.Union(detailsWithTerm.Select(d => d.Move))

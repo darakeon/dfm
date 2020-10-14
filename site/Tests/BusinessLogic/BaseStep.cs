@@ -22,16 +22,7 @@ namespace DFM.BusinessLogic.Tests
 		protected static ServiceAccess service;
 		protected static Current current => service.Current;
 
-		private protected static AccountRepository accountRepository;
-		private protected static CategoryRepository categoryRepository;
-		private protected static SummaryRepository summaryRepository;
-		private protected static MoveRepository moveRepository;
-		private protected static ScheduleRepository scheduleRepository;
-		private protected static UserRepository userRepository;
-		private protected static TicketRepository ticketRepository;
-		private protected static SecurityRepository securityRepository;
-		private protected static ContractRepository contractRepository;
-		private protected static AcceptanceRepository acceptanceRepository;
+		private protected static Repos repos;
 
 		private static String logFileName;
 
@@ -54,16 +45,7 @@ namespace DFM.BusinessLogic.Tests
 
 		protected static void setRepositories()
 		{
-			accountRepository = new AccountRepository();
-			categoryRepository = new CategoryRepository();
-			summaryRepository = new SummaryRepository();
-			moveRepository = new MoveRepository(getSite);
-			scheduleRepository = new ScheduleRepository();
-			userRepository = new UserRepository();
-			ticketRepository = new TicketRepository();
-			securityRepository = new SecurityRepository(getSite);
-			contractRepository = new ContractRepository();
-			acceptanceRepository = new AcceptanceRepository();
+			repos = new Repos(getSite);
 		}
 
 		protected static String getSite()
@@ -94,9 +76,9 @@ namespace DFM.BusinessLogic.Tests
 
 		protected String getLastTokenForUser(String email, SecurityAction action)
 		{
-			var user = userRepository.GetByEmail(email);
+			var user = repos.User.GetByEmail(email);
 
-			return securityRepository.Where(
+			return repos.Security.Where(
 				s => s.User.ID == user.ID
 				     && s.Action == action
 				     && s.Active
@@ -112,7 +94,7 @@ namespace DFM.BusinessLogic.Tests
 			Boolean shouldSignContract = false
 		)
 		{
-			var user = userRepository.GetByEmail(email);
+			var user = repos.User.GetByEmail(email);
 
 			if (user == null)
 			{
@@ -126,25 +108,25 @@ namespace DFM.BusinessLogic.Tests
 
 				service.Safe.SaveUser(info);
 
-				user = userRepository.GetByEmail(email);
+				user = repos.User.GetByEmail(email);
 
 				if (shouldActivateUser)
 				{
-					userRepository.Activate(user);
+					repos.User.Activate(user);
 				}
 
 				if (shouldSignContract)
 				{
-					var contract = contractRepository.GetContract();
-					acceptanceRepository.Accept(user, contract);
+					var contract = repos.Contract.GetContract();
+					repos.Acceptance.Accept(user, contract);
 				}
 			}
 		}
 
 		protected Account getOrCreateAccount(String url)
 		{
-			var user = userRepository.GetByEmail(current.Email);
-			var account = accountRepository.GetByUrl(url, user);
+			var user = repos.User.GetByEmail(current.Email);
+			var account = repos.Account.GetByUrl(url, user);
 			if (account != null) return account;
 
 			service.Admin.CreateAccount(
@@ -155,13 +137,13 @@ namespace DFM.BusinessLogic.Tests
 				}
 			);
 
-			return accountRepository.GetByUrl(url, user);
+			return repos.Account.GetByUrl(url, user);
 		}
 
 		protected Category getOrCreateCategory(String name)
 		{
-			var user = userRepository.GetByEmail(current.Email);
-			var category = categoryRepository.GetByName(name, user);
+			var user = repos.User.GetByEmail(current.Email);
+			var category = repos.Category.GetByName(name, user);
 			if (category != null) return category;
 
 			service.Admin.CreateCategory(
@@ -171,7 +153,7 @@ namespace DFM.BusinessLogic.Tests
 				}
 			);
 
-			return categoryRepository.GetByName(name, user);
+			return repos.Category.GetByName(name, user);
 		}
 		#endregion
 

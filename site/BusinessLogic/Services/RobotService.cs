@@ -14,22 +14,8 @@ namespace DFM.BusinessLogic.Services
 {
 	public class RobotService : Service
 	{
-		private readonly ScheduleRepository scheduleRepository;
-		private readonly MoveRepository moveRepository;
-		private readonly DetailRepository detailRepository;
-
-		internal RobotService(
-			ServiceAccess serviceAccess,
-			ScheduleRepository scheduleRepository,
-			MoveRepository moveRepository,
-			DetailRepository detailRepository
-		)
-			: base(serviceAccess)
-		{
-			this.scheduleRepository = scheduleRepository;
-			this.detailRepository = detailRepository;
-			this.moveRepository = moveRepository;
-		}
+		internal RobotService(ServiceAccess serviceAccess, Repos repos)
+			: base(serviceAccess, repos) { }
 
 		public EmailStatus RunSchedule()
 		{
@@ -38,7 +24,7 @@ namespace DFM.BusinessLogic.Services
 			try
 			{
 				var user = parent.Safe.GetCurrent();
-				var scheduleList = scheduleRepository.GetRunnable(user);
+				var scheduleList = repos.Schedule.GetRunnable(user);
 
 				var result = scheduleList.Any()
 					? runSchedule(scheduleList)
@@ -97,13 +83,13 @@ namespace DFM.BusinessLogic.Services
 					newMove, OperationType.Scheduling
 				);
 
-				var move = moveRepository.Get(result.Guid);
+				var move = repos.Move.Get(result.Guid);
 
 				schedule.MoveList.Add(move);
 				emailsStati.Add(result.Email);
 			}
 
-			scheduleRepository.UpdateState(schedule);
+			repos.Schedule.UpdateState(schedule);
 
 			return emailsStati;
 		}
@@ -134,13 +120,13 @@ namespace DFM.BusinessLogic.Services
 
 			if (schedule.ID == 0 || !schedule.IsDetailed())
 			{
-				scheduleRepository.Save(schedule);
-				detailRepository.SaveDetails(schedule);
+				repos.Schedule.Save(schedule);
+				repos.Detail.SaveDetails(schedule);
 			}
 			else
 			{
-				detailRepository.SaveDetails(schedule);
-				scheduleRepository.Save(schedule);
+				repos.Detail.SaveDetails(schedule);
+				repos.Schedule.Save(schedule);
 			}
 
 			return new ScheduleResult(schedule.Guid);
@@ -153,7 +139,7 @@ namespace DFM.BusinessLogic.Services
 			var user = parent.Safe.GetCurrent();
 
 			inTransaction("DisableSchedule", () => 
-				scheduleRepository.Disable(guid, user)
+				repos.Schedule.Disable(guid, user)
 			);
 		}
 
@@ -163,7 +149,7 @@ namespace DFM.BusinessLogic.Services
 
 			var user = parent.Safe.GetCurrent();
 
-			return scheduleRepository
+			return repos.Schedule
 				.Where(
 					s => s.Active && s.User.ID == user.ID
 				)
