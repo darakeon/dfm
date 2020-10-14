@@ -29,10 +29,16 @@ namespace DFM.BusinessLogic.Services
 
 			var total = repos.Summary.GetTotal(account);
 
+			var foreseenTotal = repos.Schedule
+				.GetForeseenTotal(account, dateYear, dateMonth);
+
 			var moveList = repos.Move
 				.ByAccountAndTime(account, dateYear, dateMonth);
 
-			return new MonthReport(moveList, accountUrl, total);
+			var foreseenList = repos.Schedule
+				.SimulateMoves(account, dateYear, dateMonth);
+
+			return new MonthReport(accountUrl, total, foreseenTotal, moveList, foreseenList);
 		}
 
 		public YearReport GetYearReport(String accountUrl, Int16 dateYear)
@@ -49,8 +55,11 @@ namespace DFM.BusinessLogic.Services
 				throw Error.InvalidAccount.Throw();
 
 			var total = repos.Summary.GetTotal(account);
-
 			var months = repos.Summary.YearReport(account, dateYear);
+
+			repos.Schedule.FillForeseenTotals(account, dateYear, months);
+
+			months = months.OrderBy(m => m.Number).ToList();
 
 			return new YearReport(total, dateYear, months);
 		}

@@ -75,7 +75,7 @@ namespace DFM.BusinessLogic.Services
 
 			while (schedule.CanRunNow())
 			{
-				var newMove = schedule.GetNewMove();
+				var newMove = schedule.CreateMove();
 
 				schedule.LastRun++;
 

@@ -306,6 +306,39 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			scheduleInfo.Guid = schedule.Guid;
 		}
 
+		[Given(@"I have schedules of")]
+		public void GivenIHaveSchedulesOf(Table table)
+		{
+			foreach (var row in table.Rows)
+			{
+				var times = default(Int16);
+				Int16.TryParse(row["Times"], out times);
+
+				scheduleInfo = new ScheduleInfo
+				{
+					Description = row["Description"],
+					Nature = EnumX.Parse<MoveNature>(row["Nature"]),
+					Value = Int32.Parse(row["Value"]),
+					Times = times,
+					Boundless = Boolean.Parse(row["Boundless"]),
+					Frequency = EnumX.Parse<ScheduleFrequency>(row["Frequency"]),
+					ShowInstallment = Boolean.Parse(row["ShowInstallment"])
+				};
+
+				scheduleInfo.SetDate(DateTime.Parse(row["Date"]));
+
+				var scenarioAccountUrl = $"{mainAccountUrl}_{scenarioCode}";
+
+				if (scheduleInfo.Nature != MoveNature.In)
+					scheduleInfo.OutUrl = scenarioAccountUrl;
+
+				if (scheduleInfo.Nature != MoveNature.Out)
+					scheduleInfo.InUrl = scenarioAccountUrl;
+
+				service.Robot.SaveSchedule(scheduleInfo);
+			}
+		}
+
 		[Then(@"the schedule will be disabled")]
 		public void ThenTheScheduleWillBeDisabled()
 		{
