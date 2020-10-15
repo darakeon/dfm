@@ -15,7 +15,7 @@ Legend:
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="4.4.0.0"></a>4.4.0.0 :whale: <sup>`4`</sup>
-- [ ] `201008>......` Show future moves and foreseen balance [#21]
+- [x] `201008>201016` Show future moves and foreseen balance [#21]
 - [x] `201006>201006` Change android home screen to menu buttons only
 - [x] `201006>201007` Group error logs at app
 - [x] `201005>201005` Add [sitemap]

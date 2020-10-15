@@ -7,49 +7,98 @@
 
 	var monthList = Model.Year.MonthList
 		.OrderBy(m => m.Number)
-		.Where(m => m.CurrentIn != 0 || m.CurrentOut != 0)
 		.ToList();
 
-	ViewBag.HasContent = monthList.Any();
+	ViewBag.HasContent = monthList.Any(
+			m => m.CurrentIn != 0 || m.CurrentOut != 0
+				|| m.ForeseenIn != 0 || m.ForeseenOut != 0
+		);
+
 	ViewBag.NoContentText = Context.Translate("NoYearMoves");
-	ViewBag.TableLgSize = 6;
-	ViewBag.TableSmSize = 8;
+	ViewBag.TableLgSize = 8;
+	ViewBag.TableSmSize = 10;
 
-	var start = new YearUnit(Model.Account.Start);
-	var end = new YearUnit(Model.Account.End ?? Context.GetService().Current.Now);
-	var current = new YearUnit(Model.Year.Time);
+	var start = Model.Account.Start;
+	var date = new DateTime(Model.Year.Time, 1, 1);
+	var end = Model.Account.End ??
+	    (date < start ? start : date).AddYears(4);
 
-	var pages = new Pages(start, end, current, 5);
+	var startPage = new YearUnit(start);
+	var endPage = new YearUnit(end);
+	var currentPage = new YearUnit(date);
+
+	var pages = new Pages(startPage, endPage, currentPage, 5);
 }
 
 @section TableHeader{
 	<tr class="row">
-		<th class="col-sm-3 text-center">@Context.Translate("Month")</th>
-		<th class="col-sm-3 text-center">@Context.Translate("In")</th>
-		<th class="col-sm-3 text-center">@Context.Translate("Out")</th>
-		<th class="col-sm-3 text-center">@Context.Translate("Total")</th>
+		<th class="col text-center" rowspan="2">
+			@Context.Translate("Month")
+		</th>
+		<th class="col text-center" colspan="3">
+			@Context.Translate("Current")
+		</th>
+		<th class="col text-center foreseen" colspan="3">
+			@Context.Translate("Foreseen")
+		</th>
+	</tr>
+	<tr class="row">
+		<th class="col text-center">
+			@Context.Translate("In")
+		</th>
+		<th class="col text-center">
+			@Context.Translate("Out")
+		</th>
+		<th class="col text-center">
+			@Context.Translate("Total")
+		</th>
+		<th class="col text-center foreseen">
+			@Context.Translate("In")
+		</th>
+		<th class="col text-center foreseen">
+			@Context.Translate("Out")
+		</th>
+		<th class="col text-center foreseen">
+			@Context.Translate("Total")
+		</th>
 	</tr>
 }
 
 @foreach (var month in monthList)
 {
+	var currentIn = new ValueWithSign(month.CurrentIn, Model.Language, true);
+	var currentOut = new ValueWithSign(-month.CurrentOut, Model.Language, true);
+	var currentTotal = new ValueWithSign(month.CurrentTotal, Model.Language);
+
+	var foreseenIn = new ValueWithSign(month.ForeseenIn, Model.Language, true);
+	var foreseenOut = new ValueWithSign(-month.ForeseenOut, Model.Language, true);
+	var foreseenTotal = new ValueWithSign(month.ForeseenTotal, Model.Language);
+
 	<tr class="row">
-		<td class="col-sm-3">
+		<td class="col">
 			<a href="@Url.Action("Month", new {id = month.Number})">
 				@Context.GetMonthName(month.Number % 100)
 			</a>
 		</td>
-		<td class="col-sm-3 text-right">
-			@await Html.PartialAsync("Extensions/ValueWithSign", new ValueWithSign(month.CurrentIn, Model.Language, true))
+		<td class="col text-right">
+			@await Html.PartialAsync("Extensions/ValueWithSign", currentIn)
 		</td>
-		<td class="col-sm-3 text-right">
-			@await Html.PartialAsync("Extensions/ValueWithSign", new ValueWithSign(-month.CurrentOut, Model.Language, true))
+		<td class="col text-right">
+			@await Html.PartialAsync("Extensions/ValueWithSign", currentOut)
 		</td>
-		<td class="col-sm-3 text-right">
-			@await Html.PartialAsync("Extensions/ValueWithSign", new ValueWithSign(month.CurrentTotal, Model.Language))
+		<td class="col text-right">
+			@await Html.PartialAsync("Extensions/ValueWithSign", currentTotal)
+		</td>
+		<td class="col text-right foreseen">
+			@await Html.PartialAsync("Extensions/ValueWithSign", foreseenIn)
+		</td>
+		<td class="col text-right foreseen">
+			@await Html.PartialAsync("Extensions/ValueWithSign", foreseenOut)
+		</td>
+		<td class="col text-right foreseen">
+			@await Html.PartialAsync("Extensions/ValueWithSign", foreseenTotal)
 		</td>
 	</tr>
-
 }
 
 @section Footer {
@@ -64,4 +113,9 @@
 			@await Html.PartialAsync("Total")
 		</div>
 	</div>
+}
+
+@section Styles {
+	<link type="text/css" rel="stylesheet"
+		href="~/Assets/styles/reports.css?v=@Cfg.Version" />
 }
