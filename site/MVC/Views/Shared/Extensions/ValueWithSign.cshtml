@@ -5,12 +5,25 @@
 	var value = (Model.Value < 0 ? -Model.Value : Model.Value)
 		.ToMoney(Model.Language, Model.DifferentIfZero);
 
+	var color = Model.Nature ??
+	    (
+		    Model.Value > 0 ? MoveNature.In :
+			Model.Value < 0 ? MoveNature.Out :
+				MoveNature.Transfer
+		);
+
+	var className = await Html.PartialAsync("Extensions/NatureColor", color);
+
 	var nature = Model.Nature ??
-	    (Model.Value > 0 ? MoveNature.In : MoveNature.Out);
+	    (
+		    Model.Value > 0 ? MoveNature.In :
+			Model.Value < 0 ? MoveNature.Out :
+				default(MoveNature?)
+		);
 
-	var className = await Html.PartialAsync("Extensions/NatureColor", nature);
-
-	var title = Context.Translate(nature.ToString());
+	var title = nature == null
+		? ""
+		: Context.Translate(nature.ToString());
 }
 
 <span class="text-@className" title="@title">

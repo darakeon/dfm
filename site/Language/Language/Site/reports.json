@@ -9,6 +9,7 @@
 		"GoToReport": "Go to report",
 		"ForeseenMove": "Foreseen moves",
 		"Foreseen": "Foreseen",
+		"Current": "Current",
 	},
 	"pt-BR": {
 		"NoMonthMoves": "Não há Movimentações para este mês.",
@@ -20,5 +21,6 @@
 		"GoToReport": "Ir para relatório",
 		"ForeseenMove": "Movimentações futuras",
 		"Foreseen": "Previsto",
+		"Current": "Atual",
 	},
 }

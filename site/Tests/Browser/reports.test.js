@@ -70,8 +70,18 @@ describe('Reports', () => {
 		)
 
 		await puppy.call(url)
-		const table = await puppy.content('#body .table')
-		expect(table).toContain('Novembro')
+
+		const cell = async (r, c) => {
+			return await puppy.content(
+				`#body .table tr:nth-child(${r}) td:nth-child(${c})`
+			)
+		}
+
+		const novemberOut = await cell(11, 3)
+		expect(novemberOut).toContain('1,00')
+		const novemberTotal = await cell(11, 4)
+		expect(novemberTotal).toContain('minus-sign')
+		expect(novemberTotal).toContain('1,00')
 	})
 
 	test('Search', async () => {
