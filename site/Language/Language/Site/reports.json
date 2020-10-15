@@ -7,7 +7,8 @@
 		"Month": "Month",
 		"Summary": "Summary",
 		"GoToReport": "Go to report",
-		"ForeseenMove": "Foreseen moves", 
+		"ForeseenMove": "Foreseen moves",
+		"Foreseen": "Foreseen",
 	},
 	"pt-BR": {
 		"NoMonthMoves": "Não há Movimentações para este mês.",
@@ -18,5 +19,6 @@
 		"Summary": "Resumo",
 		"GoToReport": "Ir para relatório",
 		"ForeseenMove": "Movimentações futuras",
+		"Foreseen": "Previsto",
 	},
 }

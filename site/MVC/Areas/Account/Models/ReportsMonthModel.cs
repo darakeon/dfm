@@ -24,7 +24,10 @@ namespace DFM.MVC.Areas.Account.Models
 				.ToList();
 
 			Total = month.AccountTotal;
-			
+
+			if (month.ForeseenTotal != 0)
+				Foreseen = month.ForeseenTotal;
+
 			Month = dateMonth;
 			Year = dateYear;
 		}
@@ -41,6 +44,7 @@ namespace DFM.MVC.Areas.Account.Models
 		}
 
 		public Decimal Total { get; }
+		public Decimal? Foreseen { get; }
 
 		public IList<MoveLineModel> MoveList { get; }
 		public IList<MoveLineModel> ForeseenList { get; }

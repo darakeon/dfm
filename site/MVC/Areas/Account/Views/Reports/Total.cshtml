@@ -5,4 +5,14 @@
 	@await Html.PartialAsync("Extensions/ValueWithSign",
 		new ValueWithSign(Model.Total, Model.Language)
 	)
+
+	@if (Model.Foreseen.HasValue)
+	{
+		<div class="foreseen foreseen-total well">
+			<h6>@Context.Translate("Foreseen")</h6>
+			@await Html.PartialAsync("Extensions/ValueWithSign",
+				new ValueWithSign(Model.Foreseen.Value + Model.Total, Model.Language)
+			)
+		</div>
+	}
 </div>

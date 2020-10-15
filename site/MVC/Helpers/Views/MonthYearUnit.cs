@@ -5,15 +5,11 @@ namespace DFM.MVC.Helpers.Views
 {
 	public class MonthYearUnit : IPage
 	{
-		public MonthYearUnit(Int32 year, Int32 month)
-		{
-			Year = year;
-			Month = month;
-		}
-
 		public MonthYearUnit(DateTime date)
-			: this(date.Year, date.Month)
-		{ }
+		{
+			Year = date.Year;
+			Month = date.Month;
+		}
 
 		public Int32 Year { get; }
 		public Int32 Month { get; }
