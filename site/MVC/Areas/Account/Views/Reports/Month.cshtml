@@ -10,7 +10,7 @@
 
 	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 
-	ViewBag.HasContent = Model.MoveList.Any();
+	ViewBag.HasContent = Model.MoveList.Any() || Model.ForeseenList.Any();
 	ViewBag.NoContentText = Context.Translate("NoMonthMoves");
 
 	var beginDate = new MonthYearUnit(Model.Account.Start);
@@ -58,6 +58,26 @@
 	@await Html.PartialAsync("MoveLine", subModel)
 }
 
+@if (Model.ForeseenList.Any())
+{
+	var colspanTitle = Model.IsUsingCategories ? 5 : 4;
+	var colspanLateral = Model.CanCheck ? 4 : 2;
+	var rowspanLateral = Model.ForeseenList.Count+1;
+
+	<tr class="row foreseen">
+		<td colspan="@colspanTitle">
+		</td>
+		<td colspan="@colspanLateral" rowspan="@rowspanLateral" class="text-right">
+			@Context.Translate("ForeseenMove").ToUpper()
+		</td>
+	</tr>
+}
+
+@foreach (var subModel in Model.ForeseenList)
+{
+	@await Html.PartialAsync("MoveLine", subModel)
+}
+
 @section Footer {
 	<div class="row">
 		<div class="col-lg-2 col-sm-2"></div>
@@ -70,4 +90,8 @@
 			@await Html.PartialAsync("Total")
 		</div>
 	</div>
+}
+
+@section Styles {
+	<link type="text/css" href="~/Assets/styles/reports.css?v=@Cfg.Version" rel="stylesheet" />
 }

@@ -15,11 +15,12 @@ namespace DFM.BusinessLogic.Response
 		{
 			AccountTotal = accountTotal;
 			MoveList = moveList
-				.Select(m => MoveInfo.Convert4Report(m, accountUrl))
+				.Select(m => MoveInfo.Convert4Report(m, accountUrl, false))
 				.ToList();
+
 			ForeseenTotal = foreseenTotal;
 			ForeseenList = foreseenList
-				.Select(m => MoveInfo.Convert4Report(m, accountUrl))
+				.Select(m => MoveInfo.Convert4Report(m, accountUrl, true))
 				.ToList();
 		}
 

@@ -19,6 +19,10 @@ namespace DFM.MVC.Areas.Account.Models
 				.Select(getSubModel)
 				.ToList();
 
+			ForeseenList = month.ForeseenList
+				.Select(getSubModel)
+				.ToList();
+
 			Total = month.AccountTotal;
 			
 			Month = dateMonth;
@@ -38,10 +42,11 @@ namespace DFM.MVC.Areas.Account.Models
 
 		public Decimal Total { get; }
 
-		public IList<MoveLineModel> MoveList { get; set; }
+		public IList<MoveLineModel> MoveList { get; }
+		public IList<MoveLineModel> ForeseenList { get; }
 
-		public Int32 Month { get; set; }
-		public Int32 Year { get; set; }
+		public Int32 Month { get; }
+		public Int32 Year { get; }
 
 		public String Date =>
 			String.Format(

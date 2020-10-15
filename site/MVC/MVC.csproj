@@ -33,6 +33,7 @@
     <None Remove="Assets\images\pig.svg" />
     <None Remove="Assets\images\pt-br.svg" />
     <None Remove="Assets\images\ptbr_apps_rgb_wo.jpg" />
+    <None Remove="Assets\styles\reports.css" />
     <None Remove="Assets\themes\bootstrap-cerulean.min.css" />
     <None Remove="Assets\themes\bootstrap-cosmo.min.css" />
     <None Remove="Assets\themes\bootstrap-cyborg.min.css" />
@@ -132,6 +133,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\styles\qrcode.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\styles\reports.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\styles\updates.css">

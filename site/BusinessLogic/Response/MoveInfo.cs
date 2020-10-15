@@ -15,6 +15,8 @@ namespace DFM.BusinessLogic.Response
 
 		public Guid Guid { get; set; }
 
+		public Boolean Foreseen { get; set; }
+
 		public String Description { get; set; }
 
 		public Int16 Year { get; set; }
@@ -61,13 +63,14 @@ namespace DFM.BusinessLogic.Response
 			return info;
 		}
 
-		internal static MoveInfo Convert4Report(Move move, String accountUrl)
+		internal static MoveInfo Convert4Report(Move move, String accountUrl, Boolean foreseen)
 		{
 			return convert4Report(
 				move,
 				info => info.OutUrl == accountUrl
 					? PrimalMoveNature.Out
-					: PrimalMoveNature.In
+					: PrimalMoveNature.In,
+				foreseen
 			);
 		}
 
@@ -78,10 +81,14 @@ namespace DFM.BusinessLogic.Response
 
 		internal static MoveInfo Convert4Report(Move move)
 		{
-			return convert4Report(move, null);
+			return convert4Report(move);
 		}
 
-		private static MoveInfo convert4Report(Move move, Func<MoveInfo, PrimalMoveNature>? getNature)
+		private static MoveInfo convert4Report(
+			Move move,
+			Func<MoveInfo, PrimalMoveNature> getNature = null,
+			Boolean foreseen = false
+		)
 		{
 			var info = convert(move);
 
@@ -92,6 +99,8 @@ namespace DFM.BusinessLogic.Response
 				var nature = getNature(info);
 				info.Checked = move.IsChecked(nature);
 			}
+
+			info.Foreseen = foreseen;
 
 			return info;
 		}
