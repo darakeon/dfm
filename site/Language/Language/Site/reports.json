@@ -7,6 +7,7 @@
 		"Month": "Month",
 		"Summary": "Summary",
 		"GoToReport": "Go to report",
+		"ForeseenMove": "Foreseen moves", 
 	},
 	"pt-BR": {
 		"NoMonthMoves": "Não há Movimentações para este mês.",
@@ -15,6 +16,7 @@
 		"ShortDateFormat": "{0} de {1}",
 		"Month": "Mês",
 		"Summary": "Resumo",
-		"GoToReport": "Ir para relatório"
+		"GoToReport": "Ir para relatório",
+		"ForeseenMove": "Movimentações futuras",
 	},
 }
