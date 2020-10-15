@@ -13,21 +13,21 @@ namespace DFM.MVC.Areas.Account.Controllers
 		[HttpGetAndHead]
 		public IActionResult Index()
 		{
-			return RedirectToAction("ShowMoves");
+			return RedirectToAction("Month");
 		}
 
 		[HttpGetAndHead]
-		public IActionResult ShowMoves(Int32? id)
+		public IActionResult Month(Int32? id)
 		{
-			var model = new ReportsShowMovesModel(id);
+			var model = new ReportsMonthModel(id);
 
 			return View(model);
 		}
 
 		[HttpGetAndHead]
-		public IActionResult SummarizeMonths(Int16? id)
+		public IActionResult Year(Int16? id)
 		{
-			var model = new ReportsSummarizeMonthsModel(id);
+			var model = new ReportsYearModel(id);
 
 			return View(model);
 		}

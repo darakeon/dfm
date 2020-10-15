@@ -97,7 +97,7 @@ describe('Accounts', () => {
 		const report = year * 100 + month
 
 		expect(body).toContain(
-			`<a href="/Account/account_close/Reports/ShowMoves/${report}" title="Movimentações da Conta">Account Close</a>`
+			`<a href="/Account/account_close/Reports/Month/${report}" title="Movimentações da Conta">Account Close</a>`
 		)
 	})
 

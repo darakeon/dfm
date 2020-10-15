@@ -28,7 +28,7 @@ describe('Reports', () => {
 	})
 
 	test('Month', async () => {
-		const url = `Account/${accountOut}/Reports/ShowMoves/201911`
+		const url = `Account/${accountOut}/Reports/Month/201911`
 
 		await puppy.call(url)
 		const alert = await puppy.content('#body .alert')
@@ -55,7 +55,7 @@ describe('Reports', () => {
 	})
 
 	test('Year', async () => {
-		const url = `Account/${accountOut}/Reports/SummarizeMonths/2018`
+		const url = `Account/${accountOut}/Reports/Year/2018`
 
 		await puppy.call(url)
 		const alert = await puppy.content('#body .alert')
@@ -95,7 +95,7 @@ describe('Reports', () => {
 		const line = await puppy.content(`#body .table #m${id}`)
 		expect(line).toContain('Search target')
 
-		const reportUrl = `Account/${accountOut}/Reports/ShowMoves/202010`
+		const reportUrl = `Account/${accountOut}/Reports/Month/202010`
 		expect(line).toContain(reportUrl)
 	})
 })

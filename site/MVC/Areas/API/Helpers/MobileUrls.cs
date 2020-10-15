@@ -10,8 +10,8 @@ namespace DFM.MVC.Areas.Api.Helpers
 		{
 			add("Users", "LogOn", "Login");
 			add("Accounts", "Index", "Accounts");
-			add("Reports", "ShowMoves", "Extract");
-			add("Reports", "SummarizeMonths", "Summary");
+			add("Reports", "Month", "Extract");
+			add("Reports", "Year", "Summary");
 			add("Moves", "Create", "MovesCreate");
 			add("Moves", "Edit", "MovesCreate");
 			add("Users", "Config", "Settings");

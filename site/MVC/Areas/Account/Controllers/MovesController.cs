@@ -60,7 +60,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 
 			model.DeleteMove(id);
 
-			return RedirectToAction("ShowMoves", "Reports", new { id = model.ReportUrl });
+			return RedirectToAction("Month", "Reports", new { id = model.ReportUrl });
 		}
 
 		[JsonAuth, HttpPost, ValidateAntiForgeryToken]

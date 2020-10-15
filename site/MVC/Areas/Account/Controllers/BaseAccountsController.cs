@@ -21,7 +21,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 					.GetDate().ToString("yyyyMM");
 
 				return RedirectToAction(
-					"ShowMoves", "Reports",
+					"Month", "Reports",
 					new { id = yearMonth }
 				);
 			}
