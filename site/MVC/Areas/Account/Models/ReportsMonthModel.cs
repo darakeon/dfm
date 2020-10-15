@@ -6,9 +6,9 @@ using DFM.MVC.Helpers.Models;
 
 namespace DFM.MVC.Areas.Account.Models
 {
-	public class ReportsShowMovesModel : BaseAccountModel, ITotal
+	public class ReportsMonthModel : BaseAccountModel, ITotal
 	{
-		public ReportsShowMovesModel(Int32? id)
+		public ReportsMonthModel(Int32? id)
 		{
 			var dateMonth = DateFromInt.GetDateMonth(id, now);
 			var dateYear = DateFromInt.GetDateYear(id, now);

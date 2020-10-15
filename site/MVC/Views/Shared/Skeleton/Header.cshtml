@@ -68,8 +68,8 @@
 							<li>@Html.ActionLink(Context.Translate("Schedule"), "Create", "Schedules")</li>
 						}
 
-						<li>@Html.ActionLink(Context.Translate("MonthMoves"), "ShowMoves", "Reports")</li>
-						<li>@Html.ActionLink(Context.Translate("YearMoves"), "SummarizeMonths", "Reports")</li>
+						<li>@Html.ActionLink(Context.Translate("MonthMoves"), "Month", "Reports")</li>
+						<li>@Html.ActionLink(Context.Translate("YearMoves"), "Year", "Reports")</li>
 
 						<li>
 							<a href="@Url.RouteUrl(defaultRoute.Name, new {action = "Index", controller = "Accounts", area = defaultRoute.Area})">

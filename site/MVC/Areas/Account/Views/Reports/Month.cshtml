@@ -1,12 +1,12 @@
-﻿@model ReportsShowMovesModel
+﻿@model ReportsMonthModel
 
 @{
 	ViewBag.Title = Model.Date;
 
 	ViewBag.WizardMessage =
 		Model.MoveList.Any()
-			? "ShowMovesFilled"
-			: "ShowMovesEmpty";
+			? "MonthFilled"
+			: "MonthEmpty";
 
 	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 

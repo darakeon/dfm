@@ -132,7 +132,7 @@ describe('Moves', () => {
 			category, accountOut, null
 		)
 
-		await puppy.call(`Account/${accountOut}/Reports/ShowMoves/201911`)
+		await puppy.call(`Account/${accountOut}/Reports/Month/201911`)
 		await page.waitForSelector('#body .table')
 
 		const deleteUrl = `/Account/${accountOut}/Moves/Delete/${id}`
@@ -151,7 +151,7 @@ describe('Moves', () => {
 			category, accountOut, null
 		)
 
-		await puppy.call(`Account/${accountOut}/Reports/ShowMoves/201911`)
+		await puppy.call(`Account/${accountOut}/Reports/Month/201911`)
 		await page.waitForSelector('#body .table')
 
 		const checkUrl = `/Account/${accountOut}/Moves/Check/${id}`
@@ -175,7 +175,7 @@ describe('Moves', () => {
 
 		await db.checkMove('Move Uncheck', 2019, 11, 16, 'Out')
 
-		await puppy.call(`Account/${accountOut}/Reports/ShowMoves/201911`)
+		await puppy.call(`Account/${accountOut}/Reports/Month/201911`)
 		await page.waitForSelector('#body .table')
 
 		const uncheckUrl = `/Account/${accountOut}/Moves/Uncheck/${id}`

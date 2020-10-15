@@ -1,8 +1,8 @@
-﻿@model ReportsSummarizeMonthsModel
+﻿@model ReportsYearModel
 
 @{
 	ViewBag.Title = Model.Date;
-	ViewBag.WizardMessage = "SummarizeMonths";
+	ViewBag.WizardMessage = "Year";
 	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 
 	var monthList = Model.Year.MonthList
@@ -35,7 +35,7 @@
 {
 	<tr class="row">
 		<td class="col-sm-3">
-			<a href="@Url.Action("ShowMoves", new {id = month.Number})">
+			<a href="@Url.Action("Month", new {id = month.Number})">
 				@Context.GetMonthName(month.Number % 100)
 			</a>
 		</td>
