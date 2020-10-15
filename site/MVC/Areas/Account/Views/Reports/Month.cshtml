@@ -13,11 +13,16 @@
 	ViewBag.HasContent = Model.MoveList.Any() || Model.ForeseenList.Any();
 	ViewBag.NoContentText = Context.Translate("NoMonthMoves");
 
-	var beginDate = new MonthYearUnit(Model.Account.Start);
-	var endDate = new MonthYearUnit(Model.Account.End ?? Context.GetService().Current.Now);
-	var current = new MonthYearUnit(Model.Year, Model.Month);
+	var start = Model.Account.Start;
+	var date = new DateTime(Model.Year, Model.Month, 1);
+	var end = Model.Account.End ??
+		(date < start ? start : date).AddMonths(4);
 
-	var pages = new Pages(beginDate, endDate, current, 5);
+	var startPage = new MonthYearUnit(start);
+	var endPage = new MonthYearUnit(end);
+	var currentPage = new MonthYearUnit(date);
+
+	var pages = new Pages(startPage, endPage, currentPage, 5);
 }
 
 @section TableHeader {
@@ -93,5 +98,6 @@
 }
 
 @section Styles {
-	<link type="text/css" href="~/Assets/styles/reports.css?v=@Cfg.Version" rel="stylesheet" />
+	<link type="text/css" rel="stylesheet"
+		href="~/Assets/styles/reports.css?v=@Cfg.Version" />
 }
