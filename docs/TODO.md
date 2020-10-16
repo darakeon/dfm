@@ -11,17 +11,13 @@ This is the task list for the project.
 - Dependency: which other task it depends on (if it exists)
 - Issue: github issue about the task (if it exists)
 
-| Task (79)                                                                               | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
+| Task (72)                                                                               | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
 | --------------------------------------------------------------------------------------- | -------- | --- | --- | --- | ------------------ | ------------------------------------------------ |
-| Verify DFM [status](https://www.pingdom.com/)                                           | :ant:    |  3  |  4  |  5  |                    |                                                  |
-| Add navigate gestures to reports (left to future, right to past)                        | :whale:  |  2  |  3  |  5  |                    |                                                  |
-| Add moves gestures (left delete, right check/uncheck, hold edit, click show options)    | :whale:  |  2  |  3  |  5  |                    |                                                  |
 | Add create new task list at version changer (q2 add tasks 1 and 2, numbers add by line) | :ant:    |  2  |  3  |  5  |                    |                                                  |
 | Check if android tests are really testing all methods                                   | :ant:    |  2  |  3  |  5  |                    |                                                  |
 | Add code of conduct to repo                                                             | :sheep:  |  2  |  3  |  5  |                    | [#44](https://github.com/darakeon/dfm/issues/44) |
 | If lost authy, send e-mail to remove authy                                              | :sheep:  |  2  |  3  |  5  |                    |                                                  |
 | Link unsubscribe for moves (ask password if logged out?)                                | :whale:  |  2  |  3  |  5  |                    |                                                  |
-| Add update gesture to all screens                                                       | :whale:  |  2  |  3  |  5  |                    |                                                  |
 | Android null body                                                                       | :ant:    |  2  |  3  |  5  |                    | [#81](https://github.com/darakeon/dfm/issues/81) |
 | Timeout                                                                                 | :ant:    |  2  |  3  |  5  |                    | [#82](https://github.com/darakeon/dfm/issues/82) |
 | Fix error on reports                                                                    | :ant:    |  2  |  3  |  5  |                    | [#83](https://github.com/darakeon/dfm/issues/83) |

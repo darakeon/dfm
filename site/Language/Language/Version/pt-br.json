@@ -1,4 +1,8 @@
 {
+	"4.4.0.0": [
+		"Mostradas movimentações e saldos previstos em Extrato e Resumo Anual",
+		"Colocados apenas botões na tela inicial do aplicativo",
+	],
 	"4.3.0.0": [
 		"Colocado ícone para trocar língua do site",
 		"Habilitada reabertura de Conta",

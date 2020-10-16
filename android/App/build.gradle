@@ -11,7 +11,7 @@ android {
 		// read the explanation
 		// at the end of the file
 		//noinspection HighAppVersionCode
-		versionCode 2011000047
+		versionCode 2011000048
 		versionName "$dfm_version"
 
 		minSdkVersion 21

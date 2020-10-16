@@ -4,8 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>DFM.Generic</AssemblyName>
     <RootNamespace>DFM.Generic</RootNamespace>
-    <AssemblyVersion>4.3.0.0</AssemblyVersion>
-    <FileVersion>4.3.0.0</FileVersion>
+    <AssemblyVersion>4.4.0.0</AssemblyVersion>
+    <FileVersion>4.4.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
