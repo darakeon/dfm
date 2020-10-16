@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Generic;
@@ -114,6 +113,12 @@ namespace DFM.Entities
 		{
 			return obj is Move move
 			    && move.ID == ID;
+		}
+
+		public override int GetHashCode()
+		{
+			// ReSharper disable once NonReadonlyMemberInGetHashCode
+			return ID.GetHashCode();
 		}
 	}
 }
