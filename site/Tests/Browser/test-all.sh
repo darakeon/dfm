@@ -20,4 +20,4 @@ mkdir data/log_files
 
 cd ../../../../
 
-.circleci/browser/run-tests.sh
+.circleci/browser/run-tests.sh $1
