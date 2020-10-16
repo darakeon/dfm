@@ -1,4 +1,8 @@
 {
+	"4.4.0.0": [
+		"Show future moves and foreseen balance at Extract and Year Summary",
+		"Change android home screen to menu buttons",
+	],
 	"4.3.0.0": [
 		"Add change language icon to site",
 		"Enable reopen account",
