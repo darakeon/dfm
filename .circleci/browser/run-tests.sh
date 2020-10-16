@@ -17,4 +17,4 @@ echo
 echo "Initializing DB data"
 node contract.js 2> /dev/null
 
-npm test
+npm test $1
