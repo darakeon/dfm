@@ -133,6 +133,7 @@ async function createMove(
 		await page.click('#Nature_Out')
 	}
 
+	await clear('#Value')
 	await page.type('#Value', value)
 
 	await page.click('#body form button[type="submit"]')
