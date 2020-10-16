@@ -49,5 +49,11 @@ namespace DFM.Entities
 			return obj is Detail detail
 			       && detail.ID == ID;
 		}
+
+		public override int GetHashCode()
+		{
+			// ReSharper disable once NonReadonlyMemberInGetHashCode
+			return ID.GetHashCode();
+		}
 	}
 }
