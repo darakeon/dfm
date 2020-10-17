@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  core:
+  test_core:
     docker:
       - image: mcr.microsoft.com/dotnet/core/sdk:latest
     steps:
@@ -38,7 +38,7 @@ jobs:
       - store_artifacts:
           path: inbox
 
-  site:
+  test_site:
     docker:
       - image: darakeon/browser-tests
     steps:
@@ -95,7 +95,7 @@ jobs:
       - store_artifacts:
           path: inbox
 
-  android:
+  test_android:
     docker:
       - image: circleci/android:api-29
     environment:
@@ -150,6 +150,6 @@ workflows:
   version: 2.1
   build_all:
     jobs:
-      - core
-      - site
-      - android
+      - test_core
+      - test_site
+      - test_android
