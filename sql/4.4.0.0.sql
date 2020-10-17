@@ -25,8 +25,10 @@ update schedule s
 		on s.id = d.schedule_id
 	set s.valueCents = d.valueCents
     where s.valueCents is null;
+update schedule
+	set valueCents = 0, active = 0
+	where valueCents is null;
 set sql_safe_updates = 1;
 
 alter table schedule
-	modify valueCents int not null; 
- 
+	modify valueCents int not null;
