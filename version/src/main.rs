@@ -23,6 +23,9 @@ use rust::update_rust;
 use tasks::update_task_list;
 use version::{create_version,Version};
 
+mod circleci;
+use circleci::update_config;
+
 fn main() {
 	stash("running version");
 
@@ -74,6 +77,7 @@ fn update_version(version: Version) {
 	update_rust(&version);
 	update_node(&version);
 	update_notes(&version);
+	update_config(&version)
 
 	commit(&format!("version: update to {}", &version.code));
 }
