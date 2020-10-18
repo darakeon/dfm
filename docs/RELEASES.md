@@ -14,11 +14,12 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="4.5.0.0"></a>4.5.0.0 :whale: <sup>`4`</sup>
+## <a name="4.5.0.0"></a>4.5.0.0 :whale: <sup>`5`</sup>
 - [ ] Add moves gestures (left delete, right check/uncheck, hold edit, click show options)
 - [ ] Add navigate gestures to reports (left to future, right to past)
 - [ ] Add update gesture to all screens
 - [ ] Verify DFM status by error logs app
+- [ ] `201017>......` Adapt android icon to new specifications
 
 ## <a name="4.4.0.0"></a>4.4.0.0 :whale: <sup>`4`</sup>
 - [x] `201008>201016` Show future moves and foreseen balance [#21]
