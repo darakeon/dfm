@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_list.list
 import kotlinx.android.synthetic.main.activity_list.message
 import kotlinx.android.synthetic.main.activity_list.start
 import kotlinx.android.synthetic.main.activity_list.stop
+import com.darakeon.dfm.lib.extensions.refresh
 
 class ListActivity : BaseActivity() {
 	private var logs: MutableList<ErrorGroup> = mutableListOf()

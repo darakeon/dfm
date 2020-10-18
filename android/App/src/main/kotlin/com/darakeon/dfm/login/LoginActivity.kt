@@ -4,7 +4,7 @@ import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.ON_CLICK
-import com.darakeon.dfm.extensions.redirect
+import com.darakeon.dfm.lib.extensions.redirect
 import com.darakeon.dfm.welcome.WelcomeActivity
 import kotlinx.android.synthetic.main.login.email
 import kotlinx.android.synthetic.main.login.password

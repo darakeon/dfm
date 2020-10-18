@@ -1,31 +1,19 @@
 package com.darakeon.dfm.extensions
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import com.darakeon.dfm.R
-import com.darakeon.dfm.lib.api.Api
 import com.darakeon.dfm.base.BaseActivity
+import com.darakeon.dfm.lib.api.Api
+import com.darakeon.dfm.lib.extensions.redirect
 import com.darakeon.dfm.login.LoginActivity
 import com.darakeon.dfm.moves.MovesActivity
 import com.darakeon.dfm.settings.SettingsActivity
 import com.darakeon.dfm.welcome.WelcomeActivity
 
 const val ON_CLICK: String = "UNUSED_PARAMETER"
-
-inline fun <reified T : Activity> Context.redirect(
-	function: (Intent) -> Unit
-) {
-	val intent = Intent(this, T::class.java)
-	function(intent)
-	startActivity(intent)
-}
-
-inline fun <reified T : Activity> Context.redirect() {
-	redirect<T> {}
-}
 
 fun Activity.backWithExtras() {
 	val extras = intent.extras ?:
