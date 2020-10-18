@@ -1,117 +1,122 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
+	tools:context=".settings.SettingsActivity"
+	android:id="@+id/main"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="vertical"
-	android:paddingBottom="@dimen/activity_vertical_margin"
-	android:paddingLeft="@dimen/activity_horizontal_margin"
-	android:paddingRight="@dimen/activity_horizontal_margin"
-	android:paddingTop="@dimen/activity_vertical_margin"
-	tools:context=".settings.SettingsActivity" >
-
-	<GridLayout
+	android:layout_height="match_parent">
+	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="1"
-		android:orientation="horizontal"
-		android:columnCount="8">
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:paddingBottom="@dimen/activity_vertical_margin"
+		android:paddingLeft="@dimen/activity_horizontal_margin"
+		android:paddingRight="@dimen/activity_horizontal_margin"
+		android:paddingTop="@dimen/activity_vertical_margin" >
 
-		<TextView
-			android:layout_width="fill_parent"
+		<GridLayout
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1"
+			android:orientation="horizontal"
+			android:columnCount="8">
+
+			<TextView
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:layout_columnSpan="8"
+				android:text="@string/settings_warning" />
+
+			<View
+				android:layout_width="fill_parent"
+				android:layout_height="35dp"
+				android:layout_columnSpan="8" />
+
+			<CheckBox
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/use_categories" />
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/use_categories"
+				android:layout_columnSpan="7" />
+
+			<CheckBox
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/move_check" />
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/move_check"
+				android:layout_columnSpan="7" />
+
+			<View
+				android:layout_width="fill_parent"
+				android:layout_height="35dp"
+				android:layout_columnSpan="8" />
+
+			<Button
+				android:text="@string/cancel_button"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:onClick="back"
+				android:layout_columnWeight="4"
+				android:layout_columnSpan="4" />
+
+			<Button
+				android:text="@string/save_button"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:onClick="saveSettings"
+				android:layout_columnWeight="4"
+				android:layout_columnSpan="4" />
+
+		</GridLayout>
+
+		<GridLayout
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:gravity="center"
-			android:layout_columnSpan="8"
-			android:text="@string/settings_warning" />
+			android:orientation="horizontal"
+			android:gravity="bottom"
+			android:columnCount="2">
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/site" />
 
-		<View
-			android:layout_width="fill_parent"
-			android:layout_height="35dp"
-			android:layout_columnSpan="8" />
+			<TextView
+				android:id="@+id/site"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="end" />
 
-		<CheckBox
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:id="@+id/use_categories" />
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/use_categories"
-			android:layout_columnSpan="7" />
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/version" />
 
-		<CheckBox
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:id="@+id/move_check" />
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/move_check"
-			android:layout_columnSpan="7" />
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="end"
+				android:id="@+id/version" />
 
-		<View
-			android:layout_width="fill_parent"
-			android:layout_height="35dp"
-			android:layout_columnSpan="8" />
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/density" />
 
-		<Button
-			android:text="@string/cancel_button"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:onClick="back"
-			android:layout_columnWeight="4"
-			android:layout_columnSpan="4" />
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="end"
+				android:id="@+id/density"
+				android:text="@string/current_density" />
+		</GridLayout>
 
-		<Button
-			android:text="@string/save_button"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:onClick="saveSettings"
-			android:layout_columnWeight="4"
-			android:layout_columnSpan="4" />
-
-	</GridLayout>
-
-	<GridLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		android:gravity="bottom"
-		android:columnCount="2">
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/site" />
-
-		<TextView
-			android:id="@+id/site"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="end" />
-
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/version" />
-
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="end"
-			android:id="@+id/version" />
-
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/density" />
-
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="end"
-			android:id="@+id/density"
-			android:text="@string/current_density" />
-	</GridLayout>
-
-	<include layout="@layout/bottom_menu" />
-
-</LinearLayout>
+		<include layout="@layout/bottom_menu" />
+	</LinearLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -2,15 +2,17 @@ package com.darakeon.dfm.summary
 
 import android.os.Bundle
 import android.view.View
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.darakeon.dfm.R
-import com.darakeon.dfm.lib.api.entities.summary.Summary
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.getDateDialog
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
+import com.darakeon.dfm.lib.api.entities.summary.Summary
 import com.darakeon.dfm.lib.extensions.setValueColored
 import kotlinx.android.synthetic.main.summary.empty_list
+import kotlinx.android.synthetic.main.summary.main
 import kotlinx.android.synthetic.main.summary.main_table
 import kotlinx.android.synthetic.main.summary.reportChange
 import kotlinx.android.synthetic.main.summary.total_title
@@ -28,6 +30,9 @@ class SummaryActivity : BaseActivity() {
 
 	override val contentView = R.layout.summary
 	override val title = R.string.title_activity_summary
+
+	override val refresh: SwipeRefreshLayout?
+		get() = main
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)

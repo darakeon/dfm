@@ -3,6 +3,7 @@ package com.darakeon.dfm.settings
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.ON_CLICK
@@ -11,6 +12,7 @@ import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.lib.api.MainInfo
 import com.darakeon.dfm.lib.api.entities.settings.Settings
+import kotlinx.android.synthetic.main.settings.main
 import kotlinx.android.synthetic.main.settings.move_check
 import kotlinx.android.synthetic.main.settings.site
 import kotlinx.android.synthetic.main.settings.use_categories
@@ -22,6 +24,9 @@ class SettingsActivity : BaseActivity() {
 
 	private var settings = Settings()
 	private val settingsKey = "settings"
+
+	override val refresh: SwipeRefreshLayout?
+		get() = main
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)

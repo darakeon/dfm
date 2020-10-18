@@ -7,21 +7,23 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ListView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.darakeon.dfm.R
-import com.darakeon.dfm.lib.api.entities.extract.Extract
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.confirm
 import com.darakeon.dfm.dialogs.getDateDialog
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.createMove
-import com.darakeon.dfm.lib.extensions.formatNoDay
 import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.extensions.redirect
+import com.darakeon.dfm.lib.api.entities.extract.Extract
+import com.darakeon.dfm.lib.extensions.formatNoDay
 import com.darakeon.dfm.lib.extensions.refresh
 import com.darakeon.dfm.lib.extensions.setValueColored
 import com.darakeon.dfm.summary.SummaryActivity
 import kotlinx.android.synthetic.main.extract.empty_list
+import kotlinx.android.synthetic.main.extract.main
 import kotlinx.android.synthetic.main.extract.main_table
 import kotlinx.android.synthetic.main.extract.reportChange
 import kotlinx.android.synthetic.main.extract.total_title
@@ -46,6 +48,9 @@ class ExtractActivity : BaseActivity() {
 
 	override val contextMenuResource = R.menu.move_options
 	override val viewWithContext: ListView get() = main_table
+
+	override val refresh: SwipeRefreshLayout?
+		get() = main
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
