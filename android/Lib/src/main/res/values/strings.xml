@@ -26,4 +26,5 @@
 		You are uninvited!
 	</string>
 	<string name="glyph" translatable="false"></string>
+	<string name="current_density">density</string>
 </resources>
