@@ -8,4 +8,6 @@
 	<string name="login">login</string>
 	<string name="tfa">tfa</string>
 	<string name="empty">No errors</string>
+	<string name="stop_service">stop service</string>
+	<string name="start_service">start service</string>
 </resources>
