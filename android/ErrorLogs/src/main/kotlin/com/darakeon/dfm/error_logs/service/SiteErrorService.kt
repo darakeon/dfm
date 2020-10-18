@@ -1,6 +1,7 @@
 package com.darakeon.dfm.error_logs.service
 
 import android.app.Service
+import android.content.Context
 import android.content.Intent
 import android.os.IBinder
 import com.darakeon.dfm.error_logs.R
@@ -19,8 +20,6 @@ class SiteErrorService : Service(), ApiCaller, Timer.Caller {
 	override fun onBind(intent: Intent?): IBinder? = null
 
 	override fun onCreate() {
-		running = true
-
 		api = Api(this, null)
 		auth = Authentication(this)
 		notification = Notification(this)
@@ -60,7 +59,7 @@ class SiteErrorService : Service(), ApiCaller, Timer.Caller {
 	override fun onDestroy() {
 		timer.cancel()
 		api?.cancel()
-		running = false
+		intent = null
 	}
 
 	override val ticket: String
@@ -85,6 +84,19 @@ class SiteErrorService : Service(), ApiCaller, Timer.Caller {
 	}
 
 	companion object {
-		var running = false
+		fun start(context: Context) {
+			if (!running) {
+				intent = Intent(context, SiteErrorService::class.java)
+				context.startService(intent)
+			}
+		}
+
+		fun stop(context: Context) {
+			context.stopService(intent)
+			intent = null
+		}
+
+		private var intent: Intent? = null
+		val running get() = intent != null
 	}
 }
