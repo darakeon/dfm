@@ -21,9 +21,7 @@ namespace DFM.MVC.Areas.Api.Controllers
 					Password = password,
 				};
 
-			var ticket = model.LogOn();
-
-			return json(() => new { ticket });
+			return json(() => new { ticket = model.LogOn() });
 		}
 
 		[HttpPost]
