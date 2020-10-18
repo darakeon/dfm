@@ -1,18 +1,18 @@
 package com.darakeon.dfm.error_logs
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.darakeon.dfm.error_logs.service.SiteErrorService
 import com.darakeon.dfm.lib.api.entities.login.Login
-import kotlinx.android.synthetic.main.activity_start.email
-import kotlinx.android.synthetic.main.activity_start.password
-import kotlinx.android.synthetic.main.activity_start.tfa
+import com.darakeon.dfm.lib.extensions.redirect
+import kotlinx.android.synthetic.main.start.email
+import kotlinx.android.synthetic.main.start.password
+import kotlinx.android.synthetic.main.start.tfa
 
 class StartActivity : BaseActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_start)
+		setContentView(R.layout.start)
 
 		if (auth.isLoggedIn) {
 			startServiceAndGoToList()
