@@ -6,6 +6,7 @@ import com.darakeon.dfm.lib.BuildConfig
 import com.darakeon.dfm.lib.R
 import com.darakeon.dfm.lib.api.entities.Body
 import com.darakeon.dfm.lib.auth.setEnvironment
+import com.darakeon.dfm.lib.extensions.log
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -85,6 +86,6 @@ class ResponseHandler<C, A>(
 		error ?: caller.getString(R.string.error_not_identified)
 
 	private fun logDebug(stage: String) {
-		println("$stage $caller")
+		log("$stage $caller")
 	}
 }
