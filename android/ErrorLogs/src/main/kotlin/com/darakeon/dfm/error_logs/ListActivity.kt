@@ -7,24 +7,27 @@ import com.darakeon.dfm.error_logs.service.SiteErrorService
 import com.darakeon.dfm.lib.api.entities.status.ErrorList
 import com.darakeon.dfm.lib.api.entities.status.ErrorLog
 import com.darakeon.dfm.lib.extensions.log
-import kotlinx.android.synthetic.main.activity_list.list
-import kotlinx.android.synthetic.main.activity_list.message
-import kotlinx.android.synthetic.main.activity_list.start
-import kotlinx.android.synthetic.main.activity_list.stop
 import com.darakeon.dfm.lib.extensions.refresh
+import kotlinx.android.synthetic.main.list.list
+import kotlinx.android.synthetic.main.list.main
+import kotlinx.android.synthetic.main.list.message
+import kotlinx.android.synthetic.main.list.start
+import kotlinx.android.synthetic.main.list.stop
 
 class ListActivity : BaseActivity() {
 	private var logs: MutableList<ErrorGroup> = mutableListOf()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_list)
+		setContentView(R.layout.list)
 
 		Handler().postDelayed({
 			api.listErrors(this::fillList)
 		}, 5000)
 
 		toggleButtons()
+
+		main.setOnRefreshListener { refresh() }
 	}
 
 	private fun fillList(errors: ErrorList) {
