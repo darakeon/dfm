@@ -2,6 +2,7 @@ package com.darakeon.dfm.testutils
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import com.darakeon.dfm.lib.extensions.log
 import org.junit.rules.TestRule
 import org.junit.runner.Description
 import org.junit.runners.model.Statement
@@ -33,7 +34,7 @@ class LogRule : TestRule {
 		val now = now("HH:mm:ss.SSS")
 		val log = "[${now}] $parent.$message: $stage"
 
-		println(log)
+		log(log)
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 			logToFile(log)
