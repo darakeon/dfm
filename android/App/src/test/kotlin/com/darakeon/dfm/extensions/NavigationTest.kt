@@ -57,22 +57,6 @@ class NavigationTest {
 	}
 
 	@Test
-	fun redirect() {
-		activity.redirect<WelcomeActivity>()
-		assertThat(calledActivity, `is`("WelcomeActivity"))
-	}
-
-	@Test
-	fun redirectWithChangeIntent() {
-		var intentModifierCalled = false
-		activity.redirect<WelcomeActivity> {
-			intentModifierCalled = true
-		}
-		assertThat(calledActivity, `is`("WelcomeActivity"))
-		assertTrue(intentModifierCalled)
-	}
-
-	@Test
 	fun backWithExtras() {
 		val intent = mock(Intent::class.java)
 		`when`(activity.intent).thenReturn(intent)

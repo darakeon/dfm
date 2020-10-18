@@ -3,8 +3,8 @@ package com.darakeon.dfm.welcome
 import android.os.Bundle
 import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
-import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.lib.extensions.applyGlyphicon
+import com.darakeon.dfm.lib.extensions.redirect
 import com.darakeon.dfm.login.LoginActivity
 import kotlinx.android.synthetic.main.welcome.action_close
 import kotlinx.android.synthetic.main.welcome.action_home

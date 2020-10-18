@@ -16,9 +16,9 @@ import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.createMove
 import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
-import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.lib.api.entities.extract.Extract
 import com.darakeon.dfm.lib.extensions.formatNoDay
+import com.darakeon.dfm.lib.extensions.redirect
 import com.darakeon.dfm.lib.extensions.refresh
 import com.darakeon.dfm.lib.extensions.setValueColored
 import com.darakeon.dfm.summary.SummaryActivity

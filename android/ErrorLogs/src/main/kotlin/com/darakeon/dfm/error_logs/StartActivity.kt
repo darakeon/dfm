@@ -21,7 +21,7 @@ class StartActivity : BaseActivity() {
 
 	private fun startServiceAndGoToList() {
 		SiteErrorService.start(this)
-		startActivity(Intent(this, ListActivity::class.java))
+		redirect<ListActivity>()
 		finish()
 	}
 

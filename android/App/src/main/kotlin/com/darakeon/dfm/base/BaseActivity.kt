@@ -20,12 +20,12 @@ import com.darakeon.dfm.extensions.createMove
 import com.darakeon.dfm.extensions.goToSettings
 import com.darakeon.dfm.extensions.logout
 import com.darakeon.dfm.extensions.logoutLocal
-import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.lib.api.Api
 import com.darakeon.dfm.lib.api.ApiCaller
 import com.darakeon.dfm.lib.auth.Authentication
 import com.darakeon.dfm.lib.auth.recoverEnvironment
 import com.darakeon.dfm.lib.extensions.applyGlyphicon
+import com.darakeon.dfm.lib.extensions.redirect
 import com.darakeon.dfm.lib.extensions.refresh
 import com.darakeon.dfm.moves.MovesActivity
 import com.darakeon.dfm.settings.SettingsActivity

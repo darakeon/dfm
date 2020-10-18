@@ -4,9 +4,11 @@ import android.app.Activity
 import android.content.Intent
 import com.darakeon.dfm.lib.utils.mockContext
 import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.context.getCalledName
 import com.darakeon.dfm.testutils.execute
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -23,6 +25,8 @@ class NavigationTest {
 
 	private lateinit var activity: Activity
 	private var calledIntent: Intent? = null
+	private val calledActivity
+		get() = calledIntent?.getCalledName()
 
 	@Before
 	fun setup() {
@@ -39,5 +43,21 @@ class NavigationTest {
 		activity.refresh()
 
 		assertThat(calledIntent, `is`(intent))
+	}
+
+	@Test
+	fun redirect() {
+		activity.redirect<Activity>()
+		assertThat(calledActivity, `is`("Activity"))
+	}
+
+	@Test
+	fun redirectWithChangeIntent() {
+		var intentModifierCalled = false
+		activity.redirect<Activity> {
+			intentModifierCalled = true
+		}
+		assertThat(calledActivity, `is`("Activity"))
+		Assert.assertTrue(intentModifierCalled)
 	}
 }

@@ -4,7 +4,7 @@ import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.accounts.AccountsActivity
 import com.darakeon.dfm.base.BaseActivity
-import com.darakeon.dfm.extensions.redirect
+import com.darakeon.dfm.lib.extensions.redirect
 import kotlinx.android.synthetic.main.tfa.code
 
 class TFAActivity : BaseActivity() {
