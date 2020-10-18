@@ -29,7 +29,13 @@ class Api<C>(
 		private set
 
 	private fun <T> Call<Body<T>>.call(onSuccess: (T) -> Unit) {
-		if (currentCall != null) return
+		val call = currentCall
+
+		// TODO: test it
+		if (call != null && !call.isCanceled && !call.isExecuted) {
+			return
+		}
+
 		currentCall = this
 		requestHandler.call(this) {
 			currentCall = null
