@@ -92,4 +92,5 @@
 	<string name="version">App Version</string>
 	<string name="error_call_api">Error on calling the site, contact us</string>
 	<string name="error_call_api_email" translatable="false">Error on calling api, object null</string>
+	<string name="density">Device screen type</string>
 </resources>

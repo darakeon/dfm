@@ -98,6 +98,18 @@
 			android:layout_height="wrap_content"
 			android:layout_gravity="end"
 			android:id="@+id/version" />
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/density" />
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="end"
+			android:id="@+id/density"
+			android:text="@string/current_density" />
 	</GridLayout>
 
 	<include layout="@layout/bottom_menu" />
