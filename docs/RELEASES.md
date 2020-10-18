@@ -19,7 +19,7 @@ Legend:
 - [ ] Add navigate gestures to reports (left to future, right to past)
 - [ ] Add update gesture to all screens
 - [ ] Verify DFM status by error logs app
-- [ ] `201017>......` Adapt android icon to new specifications
+- [x] `201017>201017` Adapt android icon to new specifications
 
 ## <a name="4.4.0.0"></a>4.4.0.0 :whale: <sup>`4`</sup>
 - [x] `201008>201016` Show future moves and foreseen balance [#21]
