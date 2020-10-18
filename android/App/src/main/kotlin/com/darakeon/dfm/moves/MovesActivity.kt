@@ -8,6 +8,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.GridLayout
 import android.widget.GridLayout.UNDEFINED
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.alertError
@@ -42,6 +43,7 @@ import kotlinx.android.synthetic.main.moves.detail_value
 import kotlinx.android.synthetic.main.moves.detailed_value
 import kotlinx.android.synthetic.main.moves.details
 import kotlinx.android.synthetic.main.moves.form
+import kotlinx.android.synthetic.main.moves.main
 import kotlinx.android.synthetic.main.moves.nature_in
 import kotlinx.android.synthetic.main.moves.nature_out
 import kotlinx.android.synthetic.main.moves.nature_transfer
@@ -69,6 +71,9 @@ class MovesActivity : BaseActivity() {
 		get() = resources.getInteger(
 			R.integer.amount_default
 		).toString()
+
+	override val refresh: SwipeRefreshLayout?
+		get() = main
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)

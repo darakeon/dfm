@@ -7,6 +7,7 @@ import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.Toast
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.accounts.AccountsActivity
 import com.darakeon.dfm.dialogs.alertError
@@ -69,6 +70,8 @@ abstract class BaseActivity: Activity(), ApiCaller {
 	protected open val contextMenuResource = 0
 	protected open val viewWithContext: View? = null
 
+	protected open val refresh: SwipeRefreshLayout? = null
+
 	protected val isLoggedIn
 		get() = auth?.isLoggedIn ?: false
 
@@ -96,6 +99,9 @@ abstract class BaseActivity: Activity(), ApiCaller {
 		setMenuLongClicks()
 		processQuery()
 		customizeBottomMenu()
+
+		// TODO: test it
+		refresh?.setOnRefreshListener { refresh() }
 	}
 
 	private fun handleScreen() {

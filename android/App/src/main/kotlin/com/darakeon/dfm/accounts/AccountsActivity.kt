@@ -2,6 +2,7 @@ package com.darakeon.dfm.accounts
 
 import android.os.Bundle
 import android.view.View
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.getFromJson
@@ -9,6 +10,7 @@ import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.lib.api.entities.accounts.Account
 import com.darakeon.dfm.lib.api.entities.accounts.AccountList
 import kotlinx.android.synthetic.main.accounts.empty_list
+import kotlinx.android.synthetic.main.accounts.main
 import kotlinx.android.synthetic.main.accounts.main_table
 
 class AccountsActivity : BaseActivity() {
@@ -17,6 +19,9 @@ class AccountsActivity : BaseActivity() {
 
 	private var accountList: List<Account> = emptyList()
 	private val accountListKey = "accountList"
+
+	override val refresh: SwipeRefreshLayout?
+		get() = main
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
