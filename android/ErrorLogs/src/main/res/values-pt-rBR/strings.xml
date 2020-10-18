@@ -8,4 +8,6 @@
 	<string name="login">entrar</string>
 	<string name="tfa">código</string>
 	<string name="empty">Sem erros</string>
+	<string name="stop_service">parar serviço</string>
+	<string name="start_service">iniciar serviço</string>
 </resources>
