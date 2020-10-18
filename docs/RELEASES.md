@@ -18,7 +18,7 @@ Legend:
 - [ ] Add moves gestures (left delete, right check/uncheck, hold edit, click show options)
 - [ ] Add navigate gestures to reports (left to future, right to past)
 - [ ] Add update gesture to all screens
-- [ ] Verify DFM status by error logs app
+- [ ] `201017>......` Verify DFM status by error logs app
 - [x] `201017>201017` Adapt android icon to new specifications
 
 ## <a name="4.4.0.0"></a>4.4.0.0 :whale: <sup>`4`</sup>

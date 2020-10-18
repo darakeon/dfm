@@ -1,9 +1,12 @@
 package com.darakeon.dfm.error_logs.service
 
+import android.app.ListActivity
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.app.Service
 import android.content.Context.NOTIFICATION_SERVICE
+import android.content.Intent
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
@@ -34,10 +37,14 @@ class Notification(private val service: Service) {
 	}
 
 	fun notify(message: String) {
+		val intent = Intent(service, ListActivity::class.java)
+		val pending = PendingIntent.getActivity(service, 0, intent, 0)
+
 		val builder = NotificationCompat.Builder(service, channelID)
 			.setSmallIcon(R.drawable.notification)
 			.setContentTitle(message)
 			.setPriority(priorityOlder)
+			.setContentIntent(pending)
 
 		service.startForeground(27, builder.build())
 	}
