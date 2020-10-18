@@ -20,10 +20,7 @@ class StartActivity : BaseActivity() {
 	}
 
 	private fun startServiceAndGoToList() {
-		if (!SiteErrorService.running) {
-			startService(Intent(this, SiteErrorService::class.java))
-		}
-
+		SiteErrorService.start(this)
 		startActivity(Intent(this, ListActivity::class.java))
 		finish()
 	}
