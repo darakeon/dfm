@@ -6,8 +6,6 @@ import android.view.View
 import android.view.View.FOCUS_DOWN
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import android.widget.GridLayout
-import android.widget.GridLayout.UNDEFINED
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
@@ -25,6 +23,7 @@ import com.darakeon.dfm.lib.api.entities.moves.MoveForm
 import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.setCombo
 import com.darakeon.dfm.lib.extensions.applyGlyphicon
+import com.darakeon.dfm.lib.extensions.changeColSpan
 import com.darakeon.dfm.lib.extensions.onChange
 import com.darakeon.dfm.lib.extensions.showChangeList
 import com.darakeon.dfm.lib.extensions.toDoubleByCulture
@@ -135,93 +134,15 @@ class MovesActivity : BaseActivity() {
 		description.setText(move.description)
 		description.onChange { move.description = it }
 
-		date.addMask("####-##-##")
-		date.setText(move.date.format())
-		date.onChange { move.date = Date(it) }
-		date_picker.setOnClickListener { showDatePicker() }
+		populateDate()
 
-		when {
-			moveForm.isUsingCategories -> {
-				moveForm.categoryList.setCombo(
-					category,
-					category_picker,
-					move::categoryName,
-					this::changeCategory
-				)
-			}
-			move.warnCategory -> {
-				category.visibility = GONE
-				changeColSpan(category, 0)
-				changeColSpan(category_picker, 4)
+		populateCategory()
 
-				category_picker.text = move.categoryName
-				category_picker.paintFlags += Paint.STRIKE_THRU_TEXT_FLAG
-				category_picker.setOnClickListener { warnLoseCategory() }
-			}
-			else -> {
-				category.visibility = GONE
-				category_picker.visibility = GONE
-
-				changeColSpan(date, 7)
-				changeColSpan(category, 0)
-				changeColSpan(category_picker, 0)
-			}
-		}
-
-		setNatureFromEnum()
-
-		moveForm.accountList.setCombo(
-			account_out,
-			account_out_picker,
-			move::outUrl,
-			this::changeAccountOut
-		)
-		account_out.onChange {
-			setNatureFromAccounts()
-		}
-
-		moveForm.accountList.setCombo(
-			account_in,
-			account_in_picker,
-			move::inUrl,
-			this::changeAccountIn
-		)
-		account_in.onChange {
-			setNatureFromAccounts()
-		}
+		populateAccounts()
 
 		setNatureFromAccounts()
 
-		if (move.detailList.isNotEmpty()) {
-			useDetailed()
-			move.detailList.forEach {
-				addViewDetail(move, it.description, it.amount, it.value)
-			}
-		} else if (move.value != null) {
-			useSimple()
-			value.setText(String.format("%1$,.2f", move.value))
-		}
-
-		value.onChange { move.setValue(it) }
-	}
-
-	private fun setNatureFromAccounts() {
-		val hasOut = !move.outUrl.isNullOrBlank()
-		val hasIn = !move.inUrl.isNullOrBlank()
-
-		when {
-			hasOut && hasIn -> move.natureEnum = Nature.Transfer
-			hasOut -> move.natureEnum = Nature.Out
-			hasIn -> move.natureEnum = Nature.In
-			else -> move.natureEnum = null
-		}
-
-		setNatureFromEnum()
-	}
-
-	private fun changeColSpan(view: View, size: Int) {
-		val layoutParams = view.layoutParams as GridLayout.LayoutParams
-		layoutParams.columnSpec = GridLayout.spec(UNDEFINED, size, size.toFloat())
+		populateValue()
 	}
 
 	private fun isMoveAllowed(): Boolean {
@@ -245,7 +166,116 @@ class MovesActivity : BaseActivity() {
 		return canMove
 	}
 
-	private fun setNatureFromEnum() {
+	private fun populateDate() {
+		date.addMask("####-##-##")
+		date.setText(move.date.format())
+		date.onChange { move.date = Date(it) }
+		date_picker.setOnClickListener { showDatePicker() }
+	}
+
+	fun showDatePicker() {
+		with(move.date) {
+			getDateDialog(year, javaMonth, day) { y, m, d ->
+				date.setText(Date(y, m+1, d).format())
+			}.show()
+		}
+	}
+
+	private fun populateCategory() {
+		when {
+			moveForm.isUsingCategories -> {
+				populateCategoryCombo()
+			}
+			move.warnCategory -> {
+				setupWarnLoseCategory()
+			}
+			else -> {
+				hideCategory()
+			}
+		}
+	}
+
+	private fun populateCategoryCombo() {
+		moveForm.categoryList.setCombo(
+			category,
+			category_picker,
+			move::categoryName,
+			this::changeCategory
+		)
+	}
+
+	fun changeCategory() {
+		showChangeList(moveForm.categoryList, R.string.category) {
+			text, _ -> category.setText(text)
+		}
+	}
+
+	private fun setupWarnLoseCategory() {
+		category.visibility = GONE
+		category.changeColSpan(0)
+		category_picker.changeColSpan(4)
+
+		category_picker.text = move.categoryName
+		category_picker.paintFlags += Paint.STRIKE_THRU_TEXT_FLAG
+		category_picker.setOnClickListener {
+			this.alertError(R.string.losingCategory)
+		}
+	}
+
+	private fun hideCategory() {
+		category.visibility = GONE
+		category_picker.visibility = GONE
+
+		date.changeColSpan(7)
+		category.changeColSpan(0)
+		category_picker.changeColSpan(0)
+	}
+
+	private fun populateAccounts() {
+		moveForm.accountList.setCombo(
+			account_out,
+			account_out_picker,
+			move::outUrl,
+			this::changeAccountOut
+		)
+		account_out.onChange {
+			setNatureFromAccounts()
+		}
+
+		moveForm.accountList.setCombo(
+			account_in,
+			account_in_picker,
+			move::inUrl,
+			this::changeAccountIn
+		)
+		account_in.onChange {
+			setNatureFromAccounts()
+		}
+	}
+
+	fun changeAccountOut() {
+		showChangeList(moveForm.accountList, R.string.account) { text, _ ->
+			account_out.setText(text)
+		}
+	}
+
+	fun changeAccountIn() {
+		showChangeList(moveForm.accountList, R.string.account) { text, _ ->
+			account_in.setText(text)
+		}
+	}
+
+	private fun setNatureFromAccounts() {
+		val hasOut = !move.outUrl.isNullOrBlank()
+		val hasIn = !move.inUrl.isNullOrBlank()
+
+		when {
+			hasOut && hasIn -> move.natureEnum = Nature.Transfer
+			hasOut -> move.natureEnum = Nature.Out
+			hasIn -> move.natureEnum = Nature.In
+			else -> move.natureEnum = null
+		}
+
 		nature_out.isChecked = false
 		nature_transfer.isChecked = false
 		nature_in.isChecked = false
@@ -257,6 +287,20 @@ class MovesActivity : BaseActivity() {
 		}
 	}
 
+	private fun populateValue() {
+		if (move.detailList.isNotEmpty()) {
+			useDetailed()
+			move.detailList.forEach {
+				addViewDetail(move, it.description, it.amount, it.value)
+			}
+		} else if (move.value != null) {
+			useSimple()
+			value.setText(String.format("%1$,.2f", move.value))
+		}
+
+		value.onChange { move.setValue(it) }
+	}
+
 	private fun useDetailed() {
 		move.isDetailed = true
 
@@ -266,6 +310,11 @@ class MovesActivity : BaseActivity() {
 		account_in.nextFocusDownId = R.id.detail_description
 
 		scrollToTheEnd(detail_description)
+	}
+
+	private fun addViewDetail(move: Move, description: String, amount: Int, value: Double) {
+		val row = DetailBox(this, move, description, amount, value)
+		details.addView(row)
 	}
 
 	private fun useSimple() {
@@ -286,45 +335,10 @@ class MovesActivity : BaseActivity() {
 		}
 	}
 
-	private fun addViewDetail(move: Move, description: String, amount: Int, value: Double) {
-		val row = DetailBox(this, move, description, amount, value)
-		details.addView(row)
-	}
-
 	override fun onSaveInstanceState(outState: Bundle) {
 		super.onSaveInstanceState(outState)
 		outState.putJson(moveKey, move)
 		outState.putJson(moveFormKey, moveForm)
-	}
-
-	fun showDatePicker() {
-		with(move.date) {
-			getDateDialog(year, javaMonth, day) { y, m, d ->
-				date.setText(Date(y, m+1, d).format())
-			}.show()
-		}
-	}
-
-	fun changeCategory() {
-		showChangeList(moveForm.categoryList, R.string.category) {
-			text, _ -> category.setText(text)
-		}
-	}
-
-	fun warnLoseCategory() {
-		this.alertError(R.string.losingCategory)
-	}
-
-	fun changeAccountOut() {
-		showChangeList(moveForm.accountList, R.string.account) { text, _ ->
-			account_out.setText(text)
-		}
-	}
-
-	fun changeAccountIn() {
-		showChangeList(moveForm.accountList, R.string.account) { text, _ ->
-			account_in.setText(text)
-		}
 	}
 
 	fun useDetailed(@Suppress(ON_CLICK) view: View) {
