@@ -613,9 +613,11 @@ class MovesActivityTest {
 	@Test
 	fun warnLoseCategory() {
 		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form_not_using_categories"))
+		saved.putString("move", readBundle("move_with_category"))
 		activity.onCreate(saved, null)
 
-		activity.warnLoseCategory()
+		activity.category_picker.performClick()
 
 		val alert = getLatestAlertDialog()
 		val shadow = shadowOf(alert)
