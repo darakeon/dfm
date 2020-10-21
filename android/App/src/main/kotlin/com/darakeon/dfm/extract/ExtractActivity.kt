@@ -17,10 +17,12 @@ import com.darakeon.dfm.extensions.createMove
 import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.lib.api.entities.extract.Extract
+import com.darakeon.dfm.lib.extensions.Direction
 import com.darakeon.dfm.lib.extensions.formatNoDay
 import com.darakeon.dfm.lib.extensions.redirect
 import com.darakeon.dfm.lib.extensions.refresh
 import com.darakeon.dfm.lib.extensions.setValueColored
+import com.darakeon.dfm.lib.extensions.swipe
 import com.darakeon.dfm.summary.SummaryActivity
 import kotlinx.android.synthetic.main.extract.empty_list
 import kotlinx.android.synthetic.main.extract.main
@@ -107,11 +109,41 @@ class ExtractActivity : BaseActivity() {
 		outState.putInt(monthKey, month)
 	}
 
+	private fun past() {
+		getExtract(year, month-1)
+	}
+
+	private fun future() {
+		getExtract(year, month+1)
+	}
+
 	fun changeDate(@Suppress(ON_CLICK) view: View) {
-		getDateDialog(year, month) { y, m ->
-			setDate(y, m)
-			getExtract()
-		}.show()
+		when (view.id) {
+			R.id.prev -> past()
+			R.id.next -> future()
+			else ->
+				getDateDialog(
+					year, month, this::getExtract
+				).show()
+		}
+	}
+
+	private fun getExtract(y: Int, m: Int) {
+		var newMonth = m
+		var newYear = y
+
+		if (newMonth == 0) {
+			newMonth = 12
+			newYear -= 1
+		}
+
+		if (newMonth == 13) {
+			newMonth = 1
+			newYear += 1
+		}
+
+		setDate(newYear, newMonth)
+		getExtract()
 	}
 
 	private fun getExtract() {
@@ -132,6 +164,9 @@ class ExtractActivity : BaseActivity() {
 		if (extract.moveList.isEmpty()) {
 			main_table.visibility = View.GONE
 			empty_list.visibility = View.VISIBLE
+
+			main.swipe(Direction.Right, this::past)
+			main.swipe(Direction.Left, this::future)
 		} else {
 			main_table.visibility = View.VISIBLE
 			empty_list.visibility = View.GONE
@@ -141,6 +176,9 @@ class ExtractActivity : BaseActivity() {
 				extract.moveList,
 				extract.canCheck
 			)
+
+			main_table.swipe(Direction.Right, this::past)
+			main_table.swipe(Direction.Left, this::future)
 		}
 	}
 

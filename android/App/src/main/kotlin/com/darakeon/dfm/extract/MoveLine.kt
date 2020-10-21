@@ -40,8 +40,9 @@ class MoveLine(
 		setCheckNature(move)
 		setDateField(move)
 
-		setOnClickListener {
+		setOnLongClickListener {
 			it.showContextMenu()
+			true
 		}
 	}
 

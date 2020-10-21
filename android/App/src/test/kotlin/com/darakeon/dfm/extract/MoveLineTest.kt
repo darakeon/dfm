@@ -5,10 +5,10 @@ import android.widget.LinearLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.lib.api.entities.extract.Move
 import com.darakeon.dfm.lib.api.entities.moves.Nature
-import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.api.guid
 import com.darakeon.dfm.testutils.getDecimal
+import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
 import com.darakeon.dfm.utils.api.ActivityMock
 import com.darakeon.dfm.utils.robolectric.RoboContextMenu
@@ -205,7 +205,7 @@ class MoveLineTest {
 	}
 
 	@Test
-	fun setMoveClick() {
+	fun setMoveLongClick() {
 		val move = Move(
 			"zelda",
 			1986, 2, 21,
@@ -222,18 +222,18 @@ class MoveLineTest {
 		moveLine.menu = menu
 
 		val shadow = shadowOf(moveLine)
-		assertNull(shadow.onClickListener)
+		assertNull(shadow.onLongClickListener)
 
 		moveLine.setMove(move, true)
 
-		assertNotNull(shadow.onClickListener)
+		assertNotNull(shadow.onLongClickListener)
 
 		var showingMenu = false
 		moveLine.setOnCreateContextMenuListener { _, _, _ ->
 			showingMenu = true
 		}
 
-		moveLine.performClick()
+		moveLine.performLongClick()
 
 		assertTrue(showingMenu)
 	}
