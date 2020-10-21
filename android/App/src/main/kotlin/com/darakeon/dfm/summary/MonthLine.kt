@@ -24,12 +24,13 @@ class MonthLine(context: Context, attributeSet: AttributeSet)
 
 		isClickable = true
 
-		setOnClickListener {
+		setOnLongClickListener {
 			context.redirect<ExtractActivity> {
 				it.putExtra("accountUrl", accountUrl)
 				it.putExtra("year", yearNumber)
 				it.putExtra("month", monthNumber - 1)
 			}
+			true
 		}
 	}
 }

@@ -14,37 +14,71 @@
 		android:layout_height="match_parent"
 		android:orientation="vertical">
 
-		<LinearLayout
+		<GridLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:id="@+id/highlight">
+			android:id="@+id/highlight"
+			android:columnCount="4">
 
 			<TextView
 				android:id="@+id/total_title"
-				android:layout_width="0dp"
-				android:layout_weight="1"
+				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:textSize="17sp"
-				android:padding="10dp" />
+				android:padding="10dp"
+				android:layout_columnSpan="2"
+				android:layout_columnWeight="2"
+				/>
 
 			<TextView
 				android:id="@+id/total_value"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:textSize="17sp"
-				android:padding="10dp" />
-		</LinearLayout>
+				android:padding="10dp"
+				android:layout_columnSpan="2"
+				android:layout_columnWeight="2"
+				android:gravity="end"
+				/>
 
-		<View android:layout_width="fill_parent" android:layout_height="15dp" />
+			<View
+				android:layout_width="fill_parent"
+				android:layout_height="15dp"
+				android:layout_columnSpan="4" />
 
-		<Button
-			android:id="@+id/reportChange"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/change_date"
-			android:onClick="changeDate" />
+			<Button
+				android:id="@+id/prev"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/prev"
+				android:onClick="changeDate"
+				android:layout_columnSpan="1"
+				/>
 
-		<View android:layout_width="fill_parent" android:layout_height="15dp" />
+			<Button
+				android:id="@+id/reportChange"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/change_date"
+				android:onClick="changeDate"
+				android:layout_columnWeight="1"
+				android:layout_columnSpan="2"
+				/>
+
+			<Button
+				android:id="@+id/next"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/next"
+				android:onClick="changeDate"
+				android:layout_columnSpan="1"
+				/>
+
+			<View
+				android:layout_width="fill_parent"
+				android:layout_height="15dp"
+				android:layout_columnSpan="4" />
+		</GridLayout>
 
 		<TextView
 			android:id="@+id/empty_list"
