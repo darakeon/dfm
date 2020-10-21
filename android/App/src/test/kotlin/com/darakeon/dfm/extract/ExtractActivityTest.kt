@@ -12,12 +12,12 @@ import com.darakeon.dfm.lib.api.entities.Date
 import com.darakeon.dfm.lib.api.entities.Environment
 import com.darakeon.dfm.lib.api.entities.extract.Extract
 import com.darakeon.dfm.lib.auth.setEnvironment
-import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.api.guid
 import com.darakeon.dfm.testutils.api.readBundle
 import com.darakeon.dfm.testutils.context.getCalledName
 import com.darakeon.dfm.testutils.getDecimal
+import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
 import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
 import com.darakeon.dfm.utils.activity.getLastDatePicker
@@ -448,7 +448,7 @@ class ExtractActivityTest {
 		shadowOf(activity.main_table).populateItems()
 		val line = activity.main_table
 			.getChildAt(0) as MoveLine
-		line.performClick()
+		line.performLongClick()
 
 		return line
 	}

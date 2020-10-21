@@ -16,7 +16,7 @@ Legend:
 
 ## <a name="4.5.0.0"></a>4.5.0.0 :whale: <sup>`6`</sup>
 - [ ] Add moves gestures (left delete, right check/uncheck, hold edit, click show options)
-- [ ] `201018>......` Add navigate gestures to reports (left to future, right to past)
+- [x] `201018>201021` Add navigate gestures to reports (left to future, right to past)
 - [x] `201018>201018` Add update gesture to all screens
 - [x] `201018>201018` Fix error when trying to login at api
 - [x] `201017>201018` Verify DFM status by error logs app
