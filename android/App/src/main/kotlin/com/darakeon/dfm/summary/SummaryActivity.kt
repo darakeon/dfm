@@ -10,7 +10,9 @@ import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.lib.api.entities.summary.Summary
+import com.darakeon.dfm.lib.extensions.Direction
 import com.darakeon.dfm.lib.extensions.setValueColored
+import com.darakeon.dfm.lib.extensions.swipe
 import kotlinx.android.synthetic.main.summary.empty_list
 import kotlinx.android.synthetic.main.summary.main
 import kotlinx.android.synthetic.main.summary.main_table
@@ -79,6 +81,10 @@ class SummaryActivity : BaseActivity() {
 		if (summary.monthList.isEmpty()) {
 			main_table.visibility = View.GONE
 			empty_list.visibility = View.VISIBLE
+
+			// TODO: test it
+			main.swipe(Direction.Right, this::past)
+			main.swipe(Direction.Left, this::future)
 		} else {
 			main_table.visibility = View.VISIBLE
 			empty_list.visibility = View.GONE
@@ -89,14 +95,35 @@ class SummaryActivity : BaseActivity() {
 				accountUrl,
 				year
 			)
+
+			// TODO: test it
+			main_table.swipe(Direction.Right, this::past)
+			main_table.swipe(Direction.Left, this::future)
 		}
 	}
 
+	private fun past() {
+		getSummary(year-1)
+	}
+
+	private fun future() {
+		getSummary(year+1)
+	}
+
 	fun changeDate(@Suppress(ON_CLICK) view: View) {
-		getDateDialog(year) { y ->
-			setDate(y)
-			getSummary()
-		}.show()
+		when (view.id) {
+			R.id.prev -> past()
+			R.id.next -> future()
+			else ->
+				getDateDialog(
+					year, this::getSummary
+				).show()
+		}
+	}
+
+	private fun getSummary(newYear: Int) {
+		setDate(newYear)
+		getSummary()
 	}
 
 	override fun onSaveInstanceState(outState: Bundle) {

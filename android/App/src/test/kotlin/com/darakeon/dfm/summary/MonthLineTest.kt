@@ -58,7 +58,7 @@ class MonthLineTest {
 	@Test
 	fun setMonthClick() {
 		monthLine.setMonth("march", -27.0, "url", 1986, 3)
-		monthLine.performClick()
+		monthLine.performLongClick()
 
 		val intent = shadowOf(activity)
 			.peekNextStartedActivity()
