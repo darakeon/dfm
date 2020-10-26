@@ -51,7 +51,7 @@ namespace DFM.MVC
 
 			StaticFiles.Certificate(app);
 
-			Orm.Set(app, env, life);
+			Orm.Config(app, life);
 
 			Context.SetLanguage(app, env);
 
