@@ -51,12 +51,14 @@ update move m
 	set m.ValueCents = d.ValueCents
 	where m.id <> 0;
 
+set sql_safe_updates = 0;
 delete from detail
 	where move_id in (
 		select id
 			from move
 			where ValueCents is not null
 	) and id <> 0;
+set sql_safe_updates = 1;
 
 /* after publish */
 alter table detail

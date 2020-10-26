@@ -1,6 +1,6 @@
-alter table move		add ExternalId blob(16) not null;
-alter table detail		add ExternalId blob(16) not null;
-alter table schedule	add ExternalId blob(16) not null;
+alter table move		add ExternalId longblob not null;
+alter table detail		add ExternalId longblob not null;
+alter table schedule	add ExternalId longblob not null;
 
 set sql_safe_updates = 0;
 update move		set ExternalId = uuid_to_bin(uuid());
