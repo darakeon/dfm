@@ -16,7 +16,7 @@ Legend:
 
 ## <a name="4.5.0.0"></a>4.5.0.0 :whale: <sup>`7`</sup>
 - [ ] Add delete, check/uncheck and edit buttons on hold move (android)
-- [ ] Fix problem with second call of ui wait (android)
+- [ ] `201031>......` Fix problem with second call of ui wait (android)
 - [x] `201018>201021` Add navigate gestures to reports (left to future, right to past)
 - [x] `201018>201018` Add update gesture to all screens
 - [x] `201018>201018` Fix error when trying to login at api
