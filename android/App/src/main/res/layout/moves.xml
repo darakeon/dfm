@@ -96,7 +96,7 @@
 					/>
 
 				<Button
-					android:text="@string/calendar"
+					android:text="@string/glyph_calendar"
 					android:textSize="@dimen/mini_button_font"
 					android:id="@+id/date_picker"
 					android:layout_width="0dp"
@@ -120,7 +120,7 @@
 					/>
 
 				<Button
-					android:text="@string/picker"
+					android:text="@string/glyph_picker"
 					android:textSize="@dimen/mini_button_font"
 					android:id="@+id/category_picker"
 					android:layout_width="0dp"
@@ -143,7 +143,7 @@
 					/>
 
 				<Button
-					android:text="@string/picker"
+					android:text="@string/glyph_picker"
 					android:textSize="@dimen/mini_button_font"
 					android:id="@+id/account_out_picker"
 					android:layout_width="0dp"
@@ -192,7 +192,7 @@
 					/>
 
 				<Button
-					android:text="@string/picker"
+					android:text="@string/glyph_picker"
 					android:textSize="@dimen/mini_button_font"
 					android:id="@+id/account_in_picker"
 					android:layout_width="0dp"

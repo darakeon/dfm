@@ -59,7 +59,7 @@ class MoveLine(
 	}
 
 	private fun setCheckField() {
-		val textRes = if (isChecked) R.string.checked else R.string.unchecked
+		val textRes = if (isChecked) R.string.glyph_checked else R.string.glyph_unchecked
 		move_status.text = context.getString(textRes)
 
 		move_status.applyGlyphicon()
