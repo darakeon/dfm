@@ -13,10 +13,10 @@ import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.extensions.applyGlyphicon
 import com.darakeon.dfm.lib.extensions.setColorByAttr
 import com.darakeon.dfm.lib.extensions.setValueColored
-import kotlinx.android.synthetic.main.move_line.view.check_move
-import kotlinx.android.synthetic.main.move_line.view.date
-import kotlinx.android.synthetic.main.move_line.view.name
-import kotlinx.android.synthetic.main.move_line.view.value
+import kotlinx.android.synthetic.main.move_details.view.move_status
+import kotlinx.android.synthetic.main.move_details.view.date
+import kotlinx.android.synthetic.main.move_details.view.name
+import kotlinx.android.synthetic.main.move_details.view.value
 import java.util.UUID
 
 class MoveLine(
@@ -54,18 +54,18 @@ class MoveLine(
 		if (canCheck) {
 			setCheckField()
 		} else {
-			check_move.visibility = View.GONE
+			move_status.visibility = View.GONE
 		}
 	}
 
 	private fun setCheckField() {
 		val textRes = if (isChecked) R.string.checked else R.string.unchecked
-		check_move.text = context.getString(textRes)
+		move_status.text = context.getString(textRes)
 
-		check_move.applyGlyphicon()
+		move_status.applyGlyphicon()
 
 		val color = if (isChecked) R.attr.checked else R.attr.unchecked
-		check_move.setColorByAttr(color)
+		move_status.setColorByAttr(color)
 	}
 
 	private fun setDateField(move: Move) {

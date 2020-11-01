@@ -10,7 +10,7 @@ class MoveAdapter(
 	private val canCheck: Boolean
 ) : Adapter<ExtractActivity, Move, MoveLine>(activity, list) {
 	override val lineLayoutId: Int
-		get() = R.layout.move_line
+		get() = R.layout.move_details
 
 	override fun populateView(view: MoveLine, position: Int) =
 		view.setMove(list[position], canCheck)
