@@ -86,14 +86,14 @@ namespace DFM.BusinessLogic.Repositories
 			var fileContent =
 				format.Layout.Format(dic);
 
+			var sender = new Sender()
+				.To(user.Email)
+				.Subject(format.Subject)
+				.Body(fileContent);
+
 			try
 			{
-				new Sender()
-					.To(user.Email)
-					.Subject(format.Subject)
-					.Body(fileContent)
-					.Send();
-
+				sender.Send();
 				return EmailStatus.EmailSent;
 			}
 			catch (MailError e)
