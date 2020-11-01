@@ -13,10 +13,10 @@ import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
 import com.darakeon.dfm.utils.api.ActivityMock
 import com.darakeon.dfm.utils.robolectric.RoboContextMenu
 import kotlinx.android.synthetic.main.extract.main_table
-import kotlinx.android.synthetic.main.move_line.view.check_move
-import kotlinx.android.synthetic.main.move_line.view.date
-import kotlinx.android.synthetic.main.move_line.view.name
-import kotlinx.android.synthetic.main.move_line.view.value
+import kotlinx.android.synthetic.main.move_details.view.move_status
+import kotlinx.android.synthetic.main.move_details.view.date
+import kotlinx.android.synthetic.main.move_details.view.name
+import kotlinx.android.synthetic.main.move_details.view.value
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertFalse
@@ -50,7 +50,7 @@ class MoveLineTest {
 		waitTasksFinish()
 
 		moveLine = activity.layoutInflater
-			.inflate(R.layout.move_line, activity.main_table, false)
+			.inflate(R.layout.move_details, activity.main_table, false)
 			as MoveLine
 	}
 
@@ -120,7 +120,7 @@ class MoveLineTest {
 
 		moveLine.setMove(move, true)
 
-		assertThat(moveLine.check_move.visibility, `is`(View.VISIBLE))
+		assertThat(moveLine.move_status.visibility, `is`(View.VISIBLE))
 	}
 
 	@Test
@@ -133,7 +133,7 @@ class MoveLineTest {
 
 		moveLine.setMove(move, false)
 
-		assertThat(moveLine.check_move.visibility, `is`(View.GONE))
+		assertThat(moveLine.move_status.visibility, `is`(View.GONE))
 	}
 
 	@Test
@@ -146,13 +146,13 @@ class MoveLineTest {
 
 		moveLine.setMove(move, true)
 
-		assertThat(moveLine.check_move.text.toString(), `is`("\uE101"))
+		assertThat(moveLine.move_status.text.toString(), `is`("\uE101"))
 		assertTrue(moveLine.isChecked)
 
 		val color = activity.getColor(R.color.checked_dark)
-		assertThat(moveLine.check_move.currentTextColor, `is`(color))
+		assertThat(moveLine.move_status.currentTextColor, `is`(color))
 
-		assertNotNull(moveLine.check_move.typeface)
+		assertNotNull(moveLine.move_status.typeface)
 	}
 
 	@Test
@@ -165,13 +165,13 @@ class MoveLineTest {
 
 		moveLine.setMove(move, true)
 
-		assertThat(moveLine.check_move.text.toString(), `is`("\uE085"))
+		assertThat(moveLine.move_status.text.toString(), `is`("\uE085"))
 		assertFalse(moveLine.isChecked)
 
 		val color = activity.getColor(R.color.unchecked_dark)
-		assertThat(moveLine.check_move.currentTextColor, `is`(color))
+		assertThat(moveLine.move_status.currentTextColor, `is`(color))
 
-		assertNotNull(moveLine.check_move.typeface)
+		assertNotNull(moveLine.move_status.typeface)
 	}
 
 	@Test
@@ -268,10 +268,10 @@ class MoveLineTest {
 		moveLine.check()
 
 		assertTrue(moveLine.isChecked)
-		assertThat(moveLine.check_move.text.toString(), `is`("\uE101"))
+		assertThat(moveLine.move_status.text.toString(), `is`("\uE101"))
 
 		val color = activity.getColor(R.color.checked_dark)
-		assertThat(moveLine.check_move.currentTextColor, `is`(color))
+		assertThat(moveLine.move_status.currentTextColor, `is`(color))
 	}
 
 	@Test
@@ -289,9 +289,9 @@ class MoveLineTest {
 		moveLine.uncheck()
 
 		assertFalse(moveLine.isChecked)
-		assertThat(moveLine.check_move.text.toString(), `is`("\uE085"))
+		assertThat(moveLine.move_status.text.toString(), `is`("\uE085"))
 
 		val color = activity.getColor(R.color.unchecked_dark)
-		assertThat(moveLine.check_move.currentTextColor, `is`(color))
+		assertThat(moveLine.move_status.currentTextColor, `is`(color))
 	}
 }
