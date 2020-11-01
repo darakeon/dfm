@@ -11,7 +11,7 @@
 
 	<Button
 		android:id="@+id/action_home"
-		android:text="@string/action_home"
+		android:text="@string/glyph_home"
 		android:contentDescription="@string/label_home"
 		android:onClick="goToAccounts"
 		android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
 
 	<Button
 		android:id="@+id/action_settings"
-		android:text="@string/action_settings"
+		android:text="@string/glyph_settings"
 		android:contentDescription="@string/label_settings"
 		android:onClick="goToSettings"
 		android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
 
 	<Button
 		android:id="@+id/action_move"
-		android:text="@string/action_move"
+		android:text="@string/glyph_move"
 		android:contentDescription="@string/label_move"
 		android:onClick="createMove"
 		android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
 
 	<Button
 		android:id="@+id/action_refresh"
-		android:text="@string/action_refresh"
+		android:text="@string/glyph_refresh"
 		android:contentDescription="@string/label_refresh"
 		android:onClick="refresh"
 		android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
 
 	<Button
 		android:id="@+id/action_logout"
-		android:text="@string/action_logout"
+		android:text="@string/glyph_logout"
 		android:contentDescription="@string/label_logout"
 		android:onClick="showLongClickWarning"
 		android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
 
 	<Button
 		android:id="@+id/action_close"
-		android:text="@string/action_close"
+		android:text="@string/glyph_close"
 		android:contentDescription="@string/label_close"
 		android:onClick="showLongClickWarning"
 		android:layout_height="wrap_content"
