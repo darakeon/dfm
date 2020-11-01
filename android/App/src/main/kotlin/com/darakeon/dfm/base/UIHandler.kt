@@ -20,13 +20,19 @@ open class UIHandler(
 	private val activity: Activity
 ) {
 	private var dialog: Dialog? = null
-	private var ended = false
+	private var started = 0
+	private var ended = 0
 
 	fun startUIWait() {
+		started++
+
 		openDialog()
 		disableSleep()
 		disableRotation()
-		if (ended) endUIWait()
+
+		if (ended == started) {
+			endUIWait()
+		}
 	}
 
 	private fun openDialog() {
@@ -64,7 +70,8 @@ open class UIHandler(
 	)
 
 	open fun endUIWait() {
-		ended = true
+		ended++
+
 		closeDialog()
 		enableSleep()
 		enableRotation()
