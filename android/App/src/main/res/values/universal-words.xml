@@ -10,6 +10,10 @@
 	<string name="glyph_logout" translatable="false"></string>
 	<string name="glyph_close" translatable="false"></string>
 
+	<string name="glyph_edit" translatable="false"></string>
+	<string name="glyph_delete" translatable="false"></string>
+	<string name="glyph_check" translatable="false"></string>
+	<string name="glyph_uncheck" translatable="false"></string>
 	<string name="glyph_checked" translatable="false"></string>
 	<string name="glyph_unchecked" translatable="false"></string>
 

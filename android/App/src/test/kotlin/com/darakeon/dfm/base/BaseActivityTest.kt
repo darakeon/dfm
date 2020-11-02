@@ -1,7 +1,6 @@
 package com.darakeon.dfm.base
 
 import android.net.Uri
-import android.view.ContextMenu
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
@@ -11,16 +10,15 @@ import com.darakeon.dfm.accounts.AccountsActivity
 import com.darakeon.dfm.lib.api.Api
 import com.darakeon.dfm.lib.auth.Authentication
 import com.darakeon.dfm.lib.auth.setValue
-import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.moves.MovesActivity
 import com.darakeon.dfm.settings.SettingsActivity
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.context.getCalledName
+import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
 import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
 import com.darakeon.dfm.utils.activity.TestActivity
 import com.darakeon.dfm.utils.api.ActivityMock
-import com.darakeon.dfm.utils.robolectric.RoboContextMenu
 import kotlinx.android.synthetic.main.bottom_menu.action_close
 import kotlinx.android.synthetic.main.bottom_menu.action_logout
 import kotlinx.android.synthetic.main.bottom_menu.bottom_menu
@@ -38,7 +36,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mockito.mock
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog
@@ -182,20 +179,6 @@ class BaseActivityTest {
 	}
 
 	@Test
-	fun onCreateHandleScreenWithContextMenu() {
-		val activity = mocker.get()
-		val view = View(activity)
-		activity.testViewWithContext = view
-
-		val shadow = shadowOf(view)
-		assertNull(shadow.onCreateContextMenuListener)
-
-		activity.onCreate(null, null)
-
-		assertNotNull(shadow.onCreateContextMenuListener)
-	}
-
-	@Test
 	fun onCreateSetMenuLongClicksLogout() {
 		val activity = mocker.get()
 		activity.testContentView = R.layout.bottom_menu
@@ -290,35 +273,6 @@ class BaseActivityTest {
 		assertTrue(menu.action_home.isEnabled)
 		assertTrue(menu.action_settings.isEnabled)
 		assertFalse(menu.action_move.isEnabled)
-	}
-
-	@Test
-	fun onCreateContextMenu() {
-		val activity = mocker.create()
-		activity.hasContextMenu = true
-
-		val menu = RoboContextMenu()
-		val view = mock(View::class.java)
-		val info = mock(ContextMenu.ContextMenuInfo::class.java)
-
-		activity.onCreateContextMenu(menu, view, info)
-
-		assertTrue(activity.inflatedContextMenu)
-		assertThat(menu.size(), `is`(4))
-	}
-
-	@Test
-	fun onCreateContextMenuZero() {
-		val activity = mocker.create()
-
-		val menu = RoboContextMenu()
-		val view = mock(View::class.java)
-		val info = mock(ContextMenu.ContextMenuInfo::class.java)
-
-		activity.onCreateContextMenu(menu, view, info)
-
-		assertFalse(activity.inflatedContextMenu)
-		assertThat(menu.size(), `is`(0))
 	}
 
 	@Test

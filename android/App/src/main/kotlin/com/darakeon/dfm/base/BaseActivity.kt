@@ -67,8 +67,6 @@ abstract class BaseActivity: Activity(), ApiCaller {
 
 	protected abstract val contentView: Int
 	protected open val title: Int = 0
-	protected open val contextMenuResource = 0
-	protected open val viewWithContext: View? = null
 
 	protected open val refresh: SwipeRefreshLayout? = null
 
@@ -77,12 +75,6 @@ abstract class BaseActivity: Activity(), ApiCaller {
 
 	private val hasTitle
 		get() = title != 0
-
-	protected open fun changeContextMenu(
-		menu: ContextMenu,
-		view: View,
-		menuInfo: ContextMenu.ContextMenuInfo
-	) {}
 
 	val query = HashMap<String, String>()
 
@@ -112,9 +104,6 @@ abstract class BaseActivity: Activity(), ApiCaller {
 
 		if (contentView != 0)
 			setContentView(contentView)
-
-		if (viewWithContext != null)
-			registerForContextMenu(viewWithContext)
 	}
 
 	private fun setMenuLongClicks() {
@@ -155,19 +144,6 @@ abstract class BaseActivity: Activity(), ApiCaller {
 
 			if (this is MovesActivity)
 				action_move.isEnabled = false
-		}
-	}
-
-	override fun onCreateContextMenu(
-		menu: ContextMenu,
-		view: View,
-		menuInfo: ContextMenu.ContextMenuInfo
-	) {
-		super.onCreateContextMenu(menu, view, menuInfo)
-
-		if (contextMenuResource != 0) {
-			menuInflater.inflate(contextMenuResource, menu)
-			changeContextMenu(menu, view, menuInfo)
 		}
 	}
 

@@ -48,9 +48,6 @@ class ExtractActivity : BaseActivity() {
 	override val contentView = R.layout.extract
 	override val title = R.string.title_activity_extract
 
-	override val contextMenuResource = R.menu.move_options
-	override val viewWithContext: ListView get() = main_table
-
 	override val refresh: SwipeRefreshLayout?
 		get() = main
 
@@ -174,7 +171,11 @@ class ExtractActivity : BaseActivity() {
 			main_table.adapter = MoveAdapter(
 				this,
 				extract.moveList,
-				extract.canCheck
+				extract.canCheck,
+				this::goToMove,
+				this::askDelete,
+				this::checkMove,
+				this::uncheckMove
 			)
 
 			main_table.swipe(Direction.Right, this::past)
@@ -189,43 +190,10 @@ class ExtractActivity : BaseActivity() {
 		}
 	}
 
-	override fun onContextItemSelected(item: MenuItem): Boolean {
-		val menuInfo = item.menuInfo as AdapterView.AdapterContextMenuInfo
-		val move = menuInfo.targetView as MoveLine
-
-		when (item.itemId) {
-			R.id.edit_move -> {
-				goToMove(move.guid)
-				return true
-			}
-			R.id.delete_move -> {
-				askDelete(move.guid, move.description)
-				return true
-			}
-			R.id.check_move -> {
-				callApi {
-					it.check(move.guid, move.nature) {
-						this.check(move)
-					}
-				}
-				return true
-			}
-			R.id.uncheck_move -> {
-				callApi {
-					it.uncheck(move.guid, move.nature) {
-						this.uncheck(move)
-					}
-				}
-				return true
-			}
-			else -> return super.onContextItemSelected(item)
-		}
-	}
-
-	private fun goToMove(moveId: UUID) {
+	private fun goToMove(move: MoveLine) {
 		val extras = Bundle()
 
-		extras.putSerializable("id", moveId)
+		extras.putSerializable("id", move.guid)
 		extras.putString("accountUrl", accountUrl)
 		extras.putInt("year", year)
 		extras.putInt("month", month)
@@ -233,69 +201,31 @@ class ExtractActivity : BaseActivity() {
 		createMove(extras)
 	}
 
-	private fun askDelete(id: UUID, description: String): Boolean {
+	private fun askDelete(move: MoveLine): Boolean {
 		var messageText = getString(R.string.sure_to_delete)
 
-		messageText = String.format(messageText, description)
+		messageText = String.format(messageText, move.description)
 
 		confirm(messageText) {
-			callApi { it.delete(id, this::refresh) }
+			callApi { it.delete(move.guid, this::refresh) }
 		}
 
 		return false
 	}
 
-	private fun check(move: MoveLine) {
-		move.check()
-		val menu = move.menu ?: return
-		showUncheck(menu)
-	}
-
-	private fun uncheck(move: MoveLine) {
-		move.uncheck()
-		val menu = move.menu ?: return
-		showCheck(menu)
-	}
-
-	public override fun changeContextMenu(
-		menu: ContextMenu,
-		view: View,
-		menuInfo: ContextMenu.ContextMenuInfo
-	) {
-		val menuAdapter = menuInfo as
-			AdapterView.AdapterContextMenuInfo
-
-		val move = menuAdapter.targetView as MoveLine
-
-		move.menu = menu
-
-		if (extract.canCheck) {
-			if (move.isChecked) {
-				showUncheck(menu)
-			} else {
-				showCheck(menu)
+	private fun checkMove(move: MoveLine) {
+		callApi {
+			it.check(move.guid, move.nature) {
+				move.check()
 			}
-		} else {
-			hideMenuItem(menu, R.id.check_move)
-			hideMenuItem(menu, R.id.uncheck_move)
 		}
 	}
 
-	private fun showCheck(menu: Menu) {
-		showMenuItem(menu, R.id.check_move)
-		hideMenuItem(menu, R.id.uncheck_move)
-	}
-
-	private fun showUncheck(menu: Menu) {
-		showMenuItem(menu, R.id.uncheck_move)
-		hideMenuItem(menu, R.id.check_move)
-	}
-
-	private fun hideMenuItem(menu: Menu, id: Int) {
-		menu.findItem(id).isVisible = false
-	}
-
-	private fun showMenuItem(menu: Menu, id: Int) {
-		menu.findItem(id).isVisible = true
+	private fun uncheckMove(move: MoveLine) {
+		callApi {
+			it.uncheck(move.guid, move.nature) {
+				move.uncheck()
+			}
+		}
 	}
 }
