@@ -33,15 +33,18 @@ class RequestHandler<C>(
 			.addHeader("ticket", caller.ticket)
 			.build()
 
-	fun <T> call(response: Call<Body<T>>, onSuccess: (T) -> Unit) {
+	fun <T> call(call: Call<Body<T>>, onSuccess: (T) -> Unit) {
 		if (Internet.isOffline(caller)) {
 			caller.error(R.string.u_r_offline)
 			return
 		}
 
-		response.enqueue(
+		call.enqueue(
 			ResponseHandler(caller, onSuccess)
 		)
+
+		this.isExecuted = { call.isExecuted }
+		this.isCancelled = { call.isCanceled }
 
 		caller.startWait()
 	}
@@ -50,5 +53,20 @@ class RequestHandler<C>(
 		call.cancel()
 		dispatcher.cancelAll()
 		caller.endWait()
+	}
+
+	val status = {
+		when {
+			isExecuted() -> Status.Executed
+			isCancelled() -> Status.Canceled
+			else -> Status.None
+		}
+	}
+
+	private var isExecuted = { false }
+	private var isCancelled = { false }
+
+	enum class Status {
+		None, Executed, Canceled
 	}
 }
