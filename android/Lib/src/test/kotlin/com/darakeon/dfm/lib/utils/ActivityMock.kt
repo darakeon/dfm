@@ -5,7 +5,7 @@ import com.darakeon.dfm.lib.api.Api
 import com.darakeon.dfm.lib.api.ApiCaller
 import com.darakeon.dfm.lib.api.RequestService
 import com.darakeon.dfm.lib.api.Retrofit
-import com.darakeon.dfm.lib.extensions.setPrivate
+import com.darakeon.dfm.testutils.setPrivate
 import com.darakeon.dfm.testutils.robolectric.ActivityMock
 import kotlin.reflect.KClass
 

@@ -18,12 +18,12 @@ import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
 import com.darakeon.dfm.lib.api.entities.moves.MoveForm
 import com.darakeon.dfm.lib.api.entities.moves.Nature
-import com.darakeon.dfm.lib.extensions.getPrivate
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.api.guid
 import com.darakeon.dfm.testutils.api.readBundle
 import com.darakeon.dfm.testutils.context.getCalledName
 import com.darakeon.dfm.testutils.getDecimal
+import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
 import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
 import com.darakeon.dfm.utils.activity.getLastDatePicker

@@ -3,9 +3,9 @@ package com.darakeon.dfm.login
 import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.lib.auth.Authentication
-import com.darakeon.dfm.lib.extensions.getPrivate
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.context.getCalledName
+import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
 import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
 import com.darakeon.dfm.utils.api.ActivityMock

@@ -1,16 +1,15 @@
 package com.darakeon.dfm.lib.api
 
 import com.darakeon.dfm.lib.BuildConfig
-import com.darakeon.dfm.lib.extensions.getPrivate
 import com.darakeon.dfm.lib.utils.ActivityMock
 import com.darakeon.dfm.lib.utils.ApiActivity
 import com.darakeon.dfm.lib.utils.CallMock
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.TestException
 import com.darakeon.dfm.testutils.api.internetError
+import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
 import com.darakeon.dfm.testutils.robolectric.simulateOffline
-import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertTrue
@@ -44,7 +43,6 @@ class RequestHandlerTest {
 		handler.call(call) { result = it }
 
 		call.execute()
-		waitTasksFinish()
 
 		assertThat(result, `is`(""))
 		assertThat(activity.errorText, `is`("You're offline"))

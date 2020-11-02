@@ -11,7 +11,7 @@ import com.darakeon.dfm.accounts.AccountsActivity
 import com.darakeon.dfm.lib.api.Api
 import com.darakeon.dfm.lib.auth.Authentication
 import com.darakeon.dfm.lib.auth.setValue
-import com.darakeon.dfm.lib.extensions.getPrivate
+import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.moves.MovesActivity
 import com.darakeon.dfm.settings.SettingsActivity
 import com.darakeon.dfm.testutils.LogRule

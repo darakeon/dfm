@@ -1,6 +1,8 @@
 package com.darakeon.dfm.lib.extensions
 
 import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.getPrivate
+import com.darakeon.dfm.testutils.setPrivate
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertNull
