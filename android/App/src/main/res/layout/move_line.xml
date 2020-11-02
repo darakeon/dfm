@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.darakeon.dfm.extract.MoveLine xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+	android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:paddingHorizontal="@dimen/padding_detail_field">
+	<include
+		layout="@layout/move_details" />
+	<LinearLayout
+		android:id="@+id/actions"
+		android:visibility="gone"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		style="?android:attr/buttonBarStyle">
+		<Button
+			android:id="@+id/action_edit"
+			android:layout_width="0dp"
+			android:layout_weight="1"
+			android:layout_height="wrap_content"
+			android:text="@string/glyph_edit"
+			style="?android:attr/buttonBarButtonStyle" />
+		<Button
+			android:id="@+id/action_delete"
+			android:layout_width="0dp"
+			android:layout_weight="1"
+			android:layout_height="wrap_content"
+			android:text="@string/glyph_delete"
+			style="?android:attr/buttonBarButtonStyle" />
+		<Button
+			android:id="@+id/action_check"
+			android:layout_width="0dp"
+			android:layout_weight="1"
+			android:layout_height="wrap_content"
+			android:text="@string/glyph_check"
+			style="?android:attr/buttonBarButtonStyle" />
+		<Button
+			android:id="@+id/action_uncheck"
+			android:layout_width="0dp"
+			android:layout_weight="1"
+			android:layout_height="wrap_content"
+			android:text="@string/glyph_uncheck"
+			style="?android:attr/buttonBarButtonStyle" />
+	</LinearLayout>
+</com.darakeon.dfm.extract.MoveLine>

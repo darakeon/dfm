@@ -65,7 +65,7 @@
 		if (Model.CanCheck)
 		{
 			var action = move.Checked ? "Uncheck" : "Check";
-			var glyph = move.Checked ? "remove" : "ok";
+			var glyph = move.Checked ? "remove-sign" : "ok-sign";
 			var nature = move.OutUrl == Model.CurrentAccountUrl
 				? PrimalMoveNature.Out
 				: PrimalMoveNature.In;

@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
+import android.widget.Button
 import com.darakeon.dfm.R
 import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
@@ -361,8 +362,8 @@ class ExtractActivityTest {
 	fun onContextItemSelectedEdit() {
 		val line = populateListAndOpenMenu()
 
-		val item = line.menu!!.getItem(0)
-		activity.onContextItemSelected(item)
+		val edit = line.findViewById<Button>(R.id.action_edit)
+		edit.performClick()
 
 		val intent = shadowOf(activity).peekNextStartedActivity()
 		assertThat(intent.getCalledName(), `is`("MovesActivity"))
@@ -379,12 +380,13 @@ class ExtractActivityTest {
 	fun onContextItemSelectedDelete() {
 		val line = populateListAndOpenMenu()
 
-		val item = line.menu!!.getItem(1)
-		activity.onContextItemSelected(item)
+		val delete = line.findViewById<Button>(R.id.action_delete)
+		delete.performClick()
 
 		mocker.server.enqueue("empty")
 		val confirm = getLatestAlertDialog()
 		confirm.getButton(Dialog.BUTTON_POSITIVE).performClick()
+		waitTasksFinish()
 
 		val intent = shadowOf(activity).peekNextStartedActivity()
 		assertThat(intent.getCalledName(), `is`("ExtractActivity"))
@@ -394,43 +396,52 @@ class ExtractActivityTest {
 	fun onContextItemSelectedCheck() {
 		val line = populateListAndOpenMenu("extract_unchecked")
 
-		val hidden = line.menu!!.getItem(3)
-		assertFalse(hidden.isVisible)
+		val check = line.findViewById<Button>(R.id.action_check)
+		val uncheck = line.findViewById<Button>(R.id.action_uncheck)
+
+		assertThat(check.visibility, `is`(View.VISIBLE))
+		assertThat(uncheck.visibility, `is`(View.GONE))
 
 		mocker.server.enqueue("empty")
-
-		val item = line.menu!!.getItem(2)
-		activity.onContextItemSelected(item)
+		check.performClick()
 		waitTasksFinish()
 
 		assertTrue(line.isChecked)
+
+		assertThat(check.visibility, `is`(View.GONE))
+		assertThat(uncheck.visibility, `is`(View.VISIBLE))
 	}
 
 	@Test
 	fun onContextItemSelectedUncheck() {
 		val line = populateListAndOpenMenu("extract_checked")
+		line.performLongClick()
 
-		val hidden = line.menu!!.getItem(2)
-		assertFalse(hidden.isVisible)
+		val check = line.findViewById<Button>(R.id.action_check)
+		val uncheck = line.findViewById<Button>(R.id.action_uncheck)
+
+		assertThat(check.visibility, `is`(View.GONE))
+		assertThat(uncheck.visibility, `is`(View.VISIBLE))
 
 		mocker.server.enqueue("empty")
-
-		val item = line.menu!!.getItem(3)
-		activity.onContextItemSelected(item)
+		uncheck.performClick()
 		waitTasksFinish()
 
 		assertFalse(line.isChecked)
+
+		assertThat(check.visibility, `is`(View.VISIBLE))
+		assertThat(uncheck.visibility, `is`(View.GONE))
 	}
 
 	@Test
 	fun onContextItemSelectedUncheckable() {
 		val line = populateListAndOpenMenu("extract_uncheckable")
 
-		val check = line.menu!!.getItem(2)
-		assertFalse(check.isVisible)
+		val check = line.findViewById<Button>(R.id.action_check)
+		assertThat(check.visibility, `is`(View.GONE))
 
-		val uncheck = line.menu!!.getItem(3)
-		assertFalse(uncheck.isVisible)
+		val uncheck = line.findViewById<Button>(R.id.action_uncheck)
+		assertThat(uncheck.visibility, `is`(View.GONE))
 	}
 
 	private fun populateListAndOpenMenu(jsonName: String = "extract_filled"): MoveLine {

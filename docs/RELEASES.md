@@ -15,7 +15,7 @@ Legend:
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="4.5.0.0"></a>4.5.0.0 :whale: <sup>`7`</sup>
-- [ ] `201101>......` Add delete, check/uncheck and edit buttons on hold move (android)
+- [x] `201101>201101` Add delete, check/uncheck and edit buttons on hold move (android)
 - [x] `201031>201101` Fix problem with second call of ui wait (android)
 - [x] `201018>201021` Add navigate gestures to reports (left to future, right to past)
 - [x] `201018>201018` Add update gesture to all screens
