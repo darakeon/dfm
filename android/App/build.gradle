@@ -64,6 +64,8 @@ android {
 dependencies {
 	implementation project(':Lib')
 
+	implementation project(":TestUtils")
+
 	implementation "com.google.android.gms:play-services-iid:$play_version"
 	implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 	implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
