@@ -1,4 +1,4 @@
-package com.darakeon.dfm.lib.extensions
+package com.darakeon.dfm.testutils
 
 import java.lang.reflect.Field
 

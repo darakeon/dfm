@@ -12,7 +12,7 @@ import com.darakeon.dfm.lib.api.entities.Date
 import com.darakeon.dfm.lib.api.entities.Environment
 import com.darakeon.dfm.lib.api.entities.extract.Extract
 import com.darakeon.dfm.lib.auth.setEnvironment
-import com.darakeon.dfm.lib.extensions.getPrivate
+import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.api.guid
 import com.darakeon.dfm.testutils.api.readBundle

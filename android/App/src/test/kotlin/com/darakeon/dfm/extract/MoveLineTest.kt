@@ -5,7 +5,7 @@ import android.widget.LinearLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.lib.api.entities.extract.Move
 import com.darakeon.dfm.lib.api.entities.moves.Nature
-import com.darakeon.dfm.lib.extensions.getPrivate
+import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.api.guid
 import com.darakeon.dfm.testutils.getDecimal

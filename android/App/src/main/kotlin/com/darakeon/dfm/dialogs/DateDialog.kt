@@ -4,7 +4,7 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.view.View
 import android.widget.DatePicker
-import com.darakeon.dfm.lib.extensions.getPrivate
+import com.darakeon.dfm.testutils.getPrivate
 
 fun Activity.getDateDialog(year: Int, getAnswer: (Int) -> Unit) =
 	getDateDialog(year, null) {
