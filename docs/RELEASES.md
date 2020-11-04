@@ -14,7 +14,8 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="4.5.0.0"></a>4.5.0.0 :whale: <sup>`7`</sup>
+## <a name="4.5.0.0"></a>4.5.0.0 :whale: <sup>`8`</sup>
+- [ ] Fix robot running concurrently
 - [x] `201101>201101` Add delete, check/uncheck and edit buttons on hold move (android)
 - [x] `201031>201101` Fix problem with second call of ui wait (android)
 - [x] `201018>201021` Add navigate gestures to reports (left to future, right to past)
