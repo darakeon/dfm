@@ -10,6 +10,7 @@ import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -76,7 +77,7 @@ class UIHandlerTest {
 		handler.startUIWait()
 
 		val dialog = getLatestAlertDialog()
-		assertFalse(dialog.isShowing)
+		assertNull(dialog)
 
 		val screenOn = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
 		assertThat(

@@ -25,7 +25,7 @@ import com.darakeon.dfm.testutils.context.getCalledName
 import com.darakeon.dfm.testutils.getDecimal
 import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
-import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
+import com.darakeon.dfm.testutils.robolectric.waitTasks
 import com.darakeon.dfm.utils.activity.getLastDatePicker
 import com.darakeon.dfm.utils.api.ActivityMock
 import com.darakeon.dfm.welcome.WelcomeActivity
@@ -86,7 +86,7 @@ class MovesActivityTest {
 	@Test
 	fun structure() {
 		activity.onCreate(null, null)
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		assertNotNull(activity.findViewById(R.id.warnings))
 		assertNotNull(activity.findViewById(R.id.no_accounts))
@@ -161,7 +161,7 @@ class MovesActivityTest {
 		mocker.server.enqueue("move_get")
 
 		activity.onCreate(null, null)
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		val form = activity
 			.getPrivate<MoveForm>("moveForm")
@@ -187,7 +187,7 @@ class MovesActivityTest {
 		mocker.server.enqueue("move_get_new")
 
 		activity.onCreate(null, null)
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		val move = activity.getPrivate<Move>("move")
 		assertNull(move.guid)
@@ -208,7 +208,7 @@ class MovesActivityTest {
 		mocker.server.enqueue("move_get_edit")
 
 		activity.onCreate(null, null)
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		val move = activity.getPrivate<Move>("move")
 		assertThat(move.guid, `is`(guid))
@@ -553,7 +553,7 @@ class MovesActivityTest {
 		val dialog = getLastDatePicker()
 		dialog.updateDate(1986, Calendar.MARCH, 27)
 		dialog.getButton(Dialog.BUTTON_POSITIVE).performClick()
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		assertThat(activity.date.text.toString(), `is`("1986-03-27"))
 	}
@@ -918,7 +918,7 @@ class MovesActivityTest {
 		assertNotNull(move.value)
 
 		activity.save(View(activity))
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		assertNull(move.value)
 
@@ -944,6 +944,8 @@ class MovesActivityTest {
 
 		mocker.server.enqueue("empty")
 		activity.save(View(activity))
+
+		activity.waitTasks(mocker.server)
 
 		val requestPath = mocker.server.lastPath()
 		val urlGuid = requestPath.split('/').last()

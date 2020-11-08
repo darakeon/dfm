@@ -2,10 +2,9 @@ package com.darakeon.dfm.dialogs
 
 import android.app.Dialog
 import com.darakeon.dfm.R
-import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.robolectric.assertAlertWait
-import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
+import com.darakeon.dfm.testutils.robolectric.waitTasks
 import com.darakeon.dfm.utils.activity.TestActivity
 import com.darakeon.dfm.utils.api.ActivityMock
 import org.hamcrest.CoreMatchers.`is`
@@ -25,11 +24,13 @@ class MessageTest {
 	@get:Rule
 	val log = LogRule()
 
-	private lateinit var activity: BaseActivity
+	private lateinit var mocker: ActivityMock<TestActivity>
+	private lateinit var activity: TestActivity
 
 	@Before
 	fun setup() {
-		activity = ActivityMock(TestActivity::class).create()
+		mocker = ActivityMock(TestActivity::class)
+		activity = mocker.create()
 	}
 
 	@Test
@@ -48,7 +49,7 @@ class MessageTest {
 		assertTrue(alert.getButton(Dialog.BUTTON_NEGATIVE).isShown)
 
 		alert.getButton(Dialog.BUTTON_POSITIVE).performClick()
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		assertTrue(ok)
 		assertFalse(alert.isShowing)
@@ -70,7 +71,7 @@ class MessageTest {
 		assertTrue(alert.getButton(Dialog.BUTTON_NEGATIVE).isShown)
 
 		alert.getButton(Dialog.BUTTON_NEGATIVE).performClick()
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		assertFalse(ok)
 		assertFalse(alert.isShowing)
@@ -91,7 +92,7 @@ class MessageTest {
 		assertFalse(alert.getButton(Dialog.BUTTON_NEGATIVE).isShown)
 
 		alert.getButton(Dialog.BUTTON_POSITIVE).performClick()
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		assertFalse(alert.isShowing)
 	}
@@ -111,7 +112,7 @@ class MessageTest {
 		assertFalse(alert.getButton(Dialog.BUTTON_NEGATIVE).isShown)
 
 		alert.getButton(Dialog.BUTTON_POSITIVE).performClick()
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		assertFalse(alert.isShowing)
 	}
@@ -132,7 +133,7 @@ class MessageTest {
 		assertTrue(alert.getButton(Dialog.BUTTON_NEGATIVE).isShown)
 
 		alert.getButton(Dialog.BUTTON_NEGATIVE).performClick()
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		assertFalse(sendError)
 		assertFalse(alert.isShowing)
@@ -154,7 +155,7 @@ class MessageTest {
 		assertTrue(alert.getButton(Dialog.BUTTON_NEGATIVE).isShown)
 
 		alert.getButton(Dialog.BUTTON_POSITIVE).performClick()
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		assertTrue(sendError)
 		assertFalse(alert.isShowing)

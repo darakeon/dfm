@@ -20,7 +20,7 @@ import com.darakeon.dfm.testutils.context.getCalledName
 import com.darakeon.dfm.testutils.getDecimal
 import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
-import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
+import com.darakeon.dfm.testutils.robolectric.waitTasks
 import com.darakeon.dfm.utils.activity.getLastDatePicker
 import com.darakeon.dfm.utils.api.ActivityMock
 import com.google.gson.Gson
@@ -69,7 +69,7 @@ class ExtractActivityTest {
 	@Test
 	fun structure() {
 		activity.onCreate(null, null)
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		assertNotNull(activity.findViewById(R.id.highlight))
 		assertNotNull(activity.findViewById(R.id.total_title))
@@ -107,7 +107,7 @@ class ExtractActivityTest {
 		mocker.server.enqueue("extract")
 
 		activity.onCreate(null, null)
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		val accountUrl = activity.getPrivate<String>("accountUrl")
 		assertThat(accountUrl, `is`("url"))
@@ -162,7 +162,7 @@ class ExtractActivityTest {
 		mocker.server.enqueue("extract")
 
 		activity.onCreate(null, null)
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		val extract = activity.getPrivate<Extract>("extract")
 		assertThat(extract.title, `is`("account"))
@@ -295,7 +295,7 @@ class ExtractActivityTest {
 		val dialog = getLastDatePicker()
 		dialog.updateDate(1986, aMonthJava, 1)
 		dialog.getButton(Dialog.BUTTON_POSITIVE).performClick()
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		val year = activity.getPrivate<Int>("year")
 		assertThat(year, `is`(1986))
@@ -303,7 +303,7 @@ class ExtractActivityTest {
 		val month = activity.getPrivate<Int>("month")
 		assertThat(month, `is`(aMonthJava))
 
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		val extract = activity.getPrivate<Extract>("extract")
 		assertThat(extract.moveList.size, `is`(1))
@@ -359,7 +359,7 @@ class ExtractActivityTest {
 	}
 
 	@Test
-	fun onContextItemSelectedEdit() {
+	fun onEdit() {
 		val line = populateListAndOpenMenu()
 
 		val edit = line.findViewById<Button>(R.id.action_edit)
@@ -377,7 +377,7 @@ class ExtractActivityTest {
 	}
 
 	@Test
-	fun onContextItemSelectedDelete() {
+	fun onDelete() {
 		val line = populateListAndOpenMenu()
 
 		val delete = line.findViewById<Button>(R.id.action_delete)
@@ -386,14 +386,14 @@ class ExtractActivityTest {
 		mocker.server.enqueue("empty")
 		val confirm = getLatestAlertDialog()
 		confirm.getButton(Dialog.BUTTON_POSITIVE).performClick()
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		val intent = shadowOf(activity).peekNextStartedActivity()
 		assertThat(intent.getCalledName(), `is`("ExtractActivity"))
 	}
 
 	@Test
-	fun onContextItemSelectedCheck() {
+	fun onCheck() {
 		val line = populateListAndOpenMenu("extract_unchecked")
 
 		val check = line.findViewById<Button>(R.id.action_check)
@@ -404,7 +404,7 @@ class ExtractActivityTest {
 
 		mocker.server.enqueue("empty")
 		check.performClick()
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		assertTrue(line.isChecked)
 
@@ -413,7 +413,7 @@ class ExtractActivityTest {
 	}
 
 	@Test
-	fun onContextItemSelectedUncheck() {
+	fun onUncheck() {
 		val line = populateListAndOpenMenu("extract_checked")
 		line.performLongClick()
 
@@ -425,7 +425,7 @@ class ExtractActivityTest {
 
 		mocker.server.enqueue("empty")
 		uncheck.performClick()
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		assertFalse(line.isChecked)
 
@@ -434,7 +434,7 @@ class ExtractActivityTest {
 	}
 
 	@Test
-	fun onContextItemSelectedUncheckable() {
+	fun uncheckable() {
 		val line = populateListAndOpenMenu("extract_uncheckable")
 
 		val check = line.findViewById<Button>(R.id.action_check)

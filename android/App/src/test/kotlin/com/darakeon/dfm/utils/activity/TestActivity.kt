@@ -1,8 +1,5 @@
 package com.darakeon.dfm.utils.activity
 
-import android.view.ContextMenu
-import android.view.View
-import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.lib.api.Api
 
@@ -24,7 +21,13 @@ class TestActivity : BaseActivity() {
 	fun testDestroy() =
 		super.onDestroy()
 
-	var waitEnded = false
+	private var waitStarted = false
+	override fun startWait() {
+		super.startWait()
+		waitStarted = true
+	}
+
+	private var waitEnded = false
 	override fun endWait() {
 		super.endWait()
 		waitEnded = true

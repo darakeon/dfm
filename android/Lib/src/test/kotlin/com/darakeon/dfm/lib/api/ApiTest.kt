@@ -13,7 +13,7 @@ import com.darakeon.dfm.lib.utils.ActivityMock
 import com.darakeon.dfm.lib.utils.ApiActivity
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
-import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
+import com.darakeon.dfm.testutils.robolectric.waitTasks
 import org.junit.After
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
@@ -62,7 +62,7 @@ class ApiTest {
 		api.listAccounts {
 			accountList = it
 		}
-		activity.waitTasksFinish()
+		activity.waitTasks()
 
 		assertNotNull(accountList)
 	}
@@ -75,7 +75,7 @@ class ApiTest {
 		api.getExtract("", 0, 0) {
 			extract = it
 		}
-		activity.waitTasksFinish()
+		activity.waitTasks()
 
 		assertNotNull(extract)
 	}
@@ -88,7 +88,7 @@ class ApiTest {
 		api.check(fakeGuid, Nature.Transfer) {
 			called = true
 		}
-		activity.waitTasksFinish()
+		activity.waitTasks()
 
 		assertTrue(called)
 	}
@@ -101,7 +101,7 @@ class ApiTest {
 		api.uncheck(fakeGuid, Nature.Transfer) {
 			called = true
 		}
-		activity.waitTasksFinish()
+		activity.waitTasks()
 
 		assertTrue(called)
 	}
@@ -114,7 +114,7 @@ class ApiTest {
 		api.delete(fakeGuid) {
 			called = true
 		}
-		activity.waitTasksFinish()
+		activity.waitTasks()
 
 		assertTrue(called)
 	}
@@ -127,7 +127,7 @@ class ApiTest {
 		api.login("", "") {
 			login = it
 		}
-		activity.waitTasksFinish()
+		activity.waitTasks()
 
 		assertNotNull(login)
 	}
@@ -140,7 +140,7 @@ class ApiTest {
 		api.logout {
 			called = true
 		}
-		activity.waitTasksFinish()
+		activity.waitTasks()
 
 		assertTrue(called)
 	}
@@ -153,7 +153,7 @@ class ApiTest {
 		api.getMove(null) {
 			moveCreation = it
 		}
-		activity.waitTasksFinish()
+		activity.waitTasks()
 
 		assertNotNull(moveCreation)
 	}
@@ -166,7 +166,7 @@ class ApiTest {
 		api.getMove(fakeGuid) {
 			moveCreation = it
 		}
-		activity.waitTasksFinish()
+		activity.waitTasks()
 
 		assertNotNull(moveCreation)
 	}
@@ -179,7 +179,7 @@ class ApiTest {
 		api.saveMove(Move()) {
 			called = true
 		}
-		activity.waitTasksFinish()
+		activity.waitTasks()
 
 		assertTrue(called)
 	}
@@ -194,7 +194,7 @@ class ApiTest {
 		api.saveMove(move) {
 			called = true
 		}
-		activity.waitTasksFinish()
+		activity.waitTasks()
 
 		assertTrue(called)
 	}
@@ -207,7 +207,7 @@ class ApiTest {
 		api.getConfig {
 			settings = it
 		}
-		activity.waitTasksFinish()
+		activity.waitTasks()
 
 		assertNotNull(settings)
 	}
@@ -220,7 +220,7 @@ class ApiTest {
 		api.saveConfig(Settings()) {
 			called = true
 		}
-		activity.waitTasksFinish()
+		activity.waitTasks()
 
 		assertTrue(called)
 	}
@@ -233,7 +233,7 @@ class ApiTest {
 		api.getSummary("", 0) {
 			summary = it
 		}
-		activity.waitTasksFinish()
+		activity.waitTasks()
 
 		assertNotNull(summary)
 	}
@@ -246,7 +246,7 @@ class ApiTest {
 		api.validateTFA("") {
 			called = true
 		}
-		activity.waitTasksFinish()
+		activity.waitTasks()
 
 		assertTrue(called)
 	}
@@ -259,7 +259,7 @@ class ApiTest {
 		api.wakeUpSite {
 			called = true
 		}
-		activity.waitTasksFinish()
+		activity.waitTasks()
 
 		assertTrue(called)
 	}
@@ -272,7 +272,7 @@ class ApiTest {
 		api.countErrors {
 			errors = it
 		}
-		activity.waitTasksFinish()
+		activity.waitTasks()
 
 		assertNotNull(errors)
 	}
@@ -285,7 +285,7 @@ class ApiTest {
 		api.listErrors {
 			errors = it
 		}
-		activity.waitTasksFinish()
+		activity.waitTasks()
 
 		assertNotNull(errors)
 	}
@@ -298,7 +298,7 @@ class ApiTest {
 		api.archiveError("id") {
 			called = true
 		}
-		activity.waitTasksFinish()
+		activity.waitTasks()
 
 		assertTrue(called)
 	}

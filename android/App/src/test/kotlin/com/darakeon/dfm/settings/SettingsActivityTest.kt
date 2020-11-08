@@ -14,7 +14,7 @@ import com.darakeon.dfm.testutils.api.readBundle
 import com.darakeon.dfm.testutils.context.getCalledName
 import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
-import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
+import com.darakeon.dfm.testutils.robolectric.waitTasks
 import com.darakeon.dfm.utils.api.ActivityMock
 import com.darakeon.dfm.welcome.WelcomeActivity
 import com.google.gson.Gson
@@ -51,8 +51,9 @@ class SettingsActivityTest {
 
 	@Test
 	fun structure() {
-		activity.onCreate(null, null)
-		waitTasksFinish()
+		val saved = Bundle()
+		saved.putJson("settings", Settings())
+		activity.onCreate(saved, null)
 
 		assertNotNull(activity.findViewById(R.id.use_categories))
 		assertNotNull(activity.findViewById(R.id.move_check))
@@ -66,7 +67,7 @@ class SettingsActivityTest {
 		mocker.server.enqueue("config_get")
 
 		activity.onCreate(null, null)
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		val settings = activity.getPrivate<Settings>("settings")
 		assertThat(settings, `is`(Settings(true, true)))
@@ -158,7 +159,7 @@ class SettingsActivityTest {
 		activity.onCreate(saved, null)
 
 		activity.saveSettings(View(activity))
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		val alert = getShownDialogs()
 			.filterIsInstance<AlertDialog>()
@@ -169,7 +170,7 @@ class SettingsActivityTest {
 		assertThat(shadowAlert.message.toString(), `is`(successMessage))
 
 		alert.getButton(Dialog.BUTTON_POSITIVE).performClick()
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		val shadowActivity = shadowOf(activity)
 		val intent = shadowActivity.peekNextStartedActivity()

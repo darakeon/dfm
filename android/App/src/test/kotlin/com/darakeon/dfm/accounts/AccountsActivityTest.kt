@@ -11,7 +11,7 @@ import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.api.readBundle
 import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
-import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
+import com.darakeon.dfm.testutils.robolectric.waitTasks
 import com.darakeon.dfm.utils.api.ActivityMock
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.accounts.empty_list
@@ -43,7 +43,6 @@ class AccountsActivityTest {
 	@Test
 	fun structure() {
 		activity.onCreate(null, null)
-		waitTasksFinish()
 
 		assertNotNull(activity.findViewById(R.id.empty_list))
 		assertNotNull(activity.findViewById(R.id.main_table))
@@ -55,7 +54,7 @@ class AccountsActivityTest {
 		mocker.server.enqueue("account_list")
 
 		activity.onCreate(null, null)
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		val accountList = activity
 			.getPrivate<List<Account>>("accountList")

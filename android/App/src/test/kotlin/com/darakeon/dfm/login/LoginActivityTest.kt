@@ -7,7 +7,7 @@ import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.context.getCalledName
 import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
-import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
+import com.darakeon.dfm.testutils.robolectric.waitTasks
 import com.darakeon.dfm.utils.api.ActivityMock
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
@@ -51,7 +51,7 @@ class LoginActivityTest {
 		val view = View(activity)
 
 		activity.login(view)
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		val auth = activity.getPrivate<Authentication>("auth")
 		assertTrue(auth.isLoggedIn)
