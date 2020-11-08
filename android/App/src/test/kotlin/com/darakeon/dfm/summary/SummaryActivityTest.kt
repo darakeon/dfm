@@ -14,7 +14,7 @@ import com.darakeon.dfm.testutils.api.readBundle
 import com.darakeon.dfm.testutils.getDecimal
 import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
-import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
+import com.darakeon.dfm.testutils.robolectric.waitTasks
 import com.darakeon.dfm.utils.activity.getLastDatePicker
 import com.darakeon.dfm.utils.api.ActivityMock
 import com.google.gson.Gson
@@ -53,7 +53,7 @@ class SummaryActivityTest {
 	@Test
 	fun structure() {
 		activity.onCreate(null, null)
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		assertNotNull(activity.findViewById(R.id.highlight))
 		assertNotNull(activity.findViewById(R.id.total_title))
@@ -131,7 +131,7 @@ class SummaryActivityTest {
 		mocker.server.enqueue("summary")
 
 		activity.onCreate(null, null)
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		val summary = activity.getPrivate<Summary>("summary")
 		assertThat(summary.title, `is`("account"))
@@ -251,7 +251,7 @@ class SummaryActivityTest {
 		val dialog = getLastDatePicker()
 		dialog.updateDate(1986, 1, 1)
 		dialog.getButton(Dialog.BUTTON_POSITIVE).performClick()
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		val year = activity.getPrivate<Int>("year")
 		assertThat(year, `is`(1986))

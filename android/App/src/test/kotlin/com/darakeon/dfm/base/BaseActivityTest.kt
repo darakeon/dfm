@@ -16,7 +16,7 @@ import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.context.getCalledName
 import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
-import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
+import com.darakeon.dfm.testutils.robolectric.waitTasks
 import com.darakeon.dfm.utils.activity.TestActivity
 import com.darakeon.dfm.utils.api.ActivityMock
 import kotlinx.android.synthetic.main.bottom_menu.action_close
@@ -193,7 +193,7 @@ class BaseActivityTest {
 		assertNotNull(logout.onLongClickListener)
 
 		activity.action_logout.performLongClick()
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		assertThat(activity.ticket, `is`(""))
 	}
@@ -337,7 +337,7 @@ class BaseActivityTest {
 
 		val view = View(activity)
 		activity.goToAccounts(view)
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		val called = shadowOf(activity)
 			.peekNextStartedActivity()
@@ -352,7 +352,7 @@ class BaseActivityTest {
 
 		val view = View(activity)
 		activity.goToSettings(view)
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		val called = shadowOf(activity)
 			.peekNextStartedActivity()
@@ -367,7 +367,7 @@ class BaseActivityTest {
 
 		val view = View(activity)
 		activity.createMove(view)
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		val called = shadowOf(activity)
 			.peekNextStartedActivity()

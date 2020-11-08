@@ -26,13 +26,12 @@ open class UIHandler(
 	fun startUIWait() {
 		started++
 
+		if (ended == started)
+			return
+
 		openDialog()
 		disableSleep()
 		disableRotation()
-
-		if (ended == started) {
-			endUIWait()
-		}
 	}
 
 	private fun openDialog() {

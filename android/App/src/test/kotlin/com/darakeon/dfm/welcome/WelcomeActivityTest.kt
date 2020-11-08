@@ -5,7 +5,7 @@ import com.darakeon.dfm.lib.auth.setValue
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.context.getCalledName
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
-import com.darakeon.dfm.testutils.robolectric.waitTasksFinish
+import com.darakeon.dfm.testutils.robolectric.waitTasks
 import com.darakeon.dfm.utils.api.ActivityMock
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
@@ -34,7 +34,7 @@ class WelcomeActivityTest {
 	@Test
 	fun structure() {
 		val activity = mocker.create()
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		assertNotNull(activity.findViewById(R.id.pig))
 		assertNotNull(activity.findViewById(R.id.action_logout))
@@ -59,10 +59,9 @@ class WelcomeActivityTest {
 		val activity = mocker.get()
 		activity.setValue("Ticket", "ticket")
 		activity.simulateNetwork()
-		mocker.server.enqueue("empty")
 
 		activity.onCreate(null, null)
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		val shadow = shadowOf(activity)
 		val intent = shadow.peekNextStartedActivity()
@@ -74,10 +73,9 @@ class WelcomeActivityTest {
 		val activity = mocker.get()
 		activity.setValue("Ticket", "")
 		activity.simulateNetwork()
-		mocker.server.enqueue("empty")
 
 		activity.onCreate(null, null)
-		waitTasksFinish()
+		activity.waitTasks(mocker.server)
 
 		val shadow = shadowOf(activity)
 		val intent = shadow.peekNextStartedActivity()
