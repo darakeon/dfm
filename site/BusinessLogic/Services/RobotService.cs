@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DFM.BusinessLogic.Concurrency;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
@@ -17,13 +18,19 @@ namespace DFM.BusinessLogic.Services
 		internal RobotService(ServiceAccess serviceAccess, Repos repos)
 			: base(serviceAccess, repos) { }
 
+		internal static Tasks Runs = new Tasks();
+
 		public EmailStatus RunSchedule()
 		{
+			if (alreadyRunToday())
+				return EmailStatus.None;
+
 			parent.Safe.VerifyUser();
 
 			try
 			{
 				var user = parent.Safe.GetCurrent();
+
 				var scheduleList = repos.Schedule.GetRunnable(user);
 
 				var result = scheduleList.Any()
@@ -38,6 +45,14 @@ namespace DFM.BusinessLogic.Services
 			{
 				throw Error.ErrorRunningSchedules.Throw(e);
 			}
+		}
+
+		private Boolean alreadyRunToday()
+		{
+			var ticket = parent.Current.TicketKey;
+
+			return ticket == null
+			    || !Runs.FirstToday(ticket);
 		}
 
 		private EmailStatus runSchedule(IEnumerable<Schedule> scheduleList)
@@ -101,9 +116,13 @@ namespace DFM.BusinessLogic.Services
 			if (info == null)
 				throw Error.ScheduleRequired.Throw();
 
-			return inTransaction("SaveSchedule",
+			var result = inTransaction("SaveSchedule",
 				() => save(info)
 			);
+
+			Runs.Remove(parent.Current.TicketKey);
+
+			return result;
 		}
 
 		private ScheduleResult save(ScheduleInfo info)
