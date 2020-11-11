@@ -41,7 +41,7 @@ namespace DFM.Authentication
 				{
 					var key = ticket?.Key;
 
-					if (key == null)
+					if (String.IsNullOrEmpty(key))
 						return null;
 
 					return userService.GetSession(key);

@@ -211,7 +211,7 @@ Scenario: Db15. Run schedule without category and categories use enabled
 	Given I disable Categories use
 		And I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Db14   | 2020-10-12 | Out    | 10    | 1     | False     | Daily     | False           |
+			| Move Db15   | 2020-10-12 | Out    | 10    | 1     | False     | Daily     | False           |
 		And it has no Details
 		And it has no Category
 		And it has an Account Out
@@ -220,3 +220,20 @@ Scenario: Db15. Run schedule without category and categories use enabled
 		And I enable Categories use
 	When I try to run the scheduler
 	Then I will receive this core error: ErrorRunningSchedules
+
+Scenario: Db16. Run robot in concurrently
+	Given I enable Categories use
+	Given I have this schedule to create
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Db16   | 2020-11-11 | Out    | 10    | 700   | False     | Daily     | False           |
+		And its Date is 600 days ago
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
+	When I try to run the scheduler in 20 parallel threads
+	Then I will receive no core error
+		And the accountOut value will change in -6010
+		And the schedule last run will be 601
+		And the schedule will be enabled

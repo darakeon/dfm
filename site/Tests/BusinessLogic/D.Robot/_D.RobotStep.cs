@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
+using DFM.BusinessLogic.Services;
 using DFM.BusinessLogic.Tests.Helpers;
 using DFM.Entities;
 using DFM.Entities.Bases;
@@ -105,6 +107,7 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		public void GivenIHaveNoLoggedUserLogoff()
 		{
 			current.Clear();
+			resetTicket();
 		}
 
 		[Given(@"its Date is (\-?\d+\.?\d*) (day|month|year)s? ago")]
@@ -117,13 +120,17 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		[Given(@"I have a bugged schedule")]
 		public void GivenIHaveABuggedSchedule()
 		{
+			var user = repos.User.GetByEmail(current.Email);
+
 			repos.Schedule.SaveOrUpdate(
 				new Schedule
 				{
 					Description = "",
-					User = repos.User.GetByEmail(current.Email),
+					User = user,
 				}
 			);
+
+			RobotService.Runs.Remove(current.TicketKey);
 		}
 
 		[Given(@"I run the scheduler")]
@@ -177,6 +184,29 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			}
 
 			ConfigHelper.DeactivateMoveEmailForUser(service);
+		}
+
+		[When(@"I try to run the scheduler in (\d+) parallel threads")]
+		public void WhenITryToRunTheSchedulerInParallelThreads(Int32 times)
+		{
+			var runs = new Action[times];
+
+			Array.Fill(runs, () =>
+			{
+				service.Robot.RunSchedule();
+			});
+
+			var tasks = runs.Select(Task.Run).ToArray();
+
+			Task.WaitAll(tasks);
+
+			foreach (var task in tasks)
+			{
+				var exception = task.Exception;
+
+				if (exception != null)
+					throw exception;
+			}
 		}
 		#endregion
 
