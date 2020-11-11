@@ -311,8 +311,7 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		{
 			foreach (var row in table.Rows)
 			{
-				var times = default(Int16);
-				Int16.TryParse(row["Times"], out times);
+				Int16.TryParse(row["Times"], out var times);
 
 				scheduleInfo = new ScheduleInfo
 				{
