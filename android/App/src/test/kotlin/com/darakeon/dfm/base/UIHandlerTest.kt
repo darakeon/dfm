@@ -2,7 +2,7 @@ package com.darakeon.dfm.base
 
 import android.content.pm.ActivityInfo
 import android.view.WindowManager
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.robolectric.assertAlertWait
 import com.darakeon.dfm.utils.activity.TestActivity
 import com.darakeon.dfm.utils.api.ActivityMock
@@ -12,17 +12,13 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog
 
 @RunWith(RobolectricTestRunner::class)
-class UIHandlerTest {
-	@get:Rule
-	val log = LogRule()
-
+class UIHandlerTest: BaseTest() {
 	private lateinit var activity: BaseActivity
 	private lateinit var handler: UIHandler
 

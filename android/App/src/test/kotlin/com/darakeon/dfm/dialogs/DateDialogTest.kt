@@ -4,7 +4,7 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.content.res.Resources
 import android.view.View
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.robolectric.waitTasks
 import com.darakeon.dfm.utils.activity.TestActivity
 import com.darakeon.dfm.utils.api.ActivityMock
@@ -13,7 +13,6 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -22,10 +21,7 @@ import java.util.Calendar.DECEMBER
 import java.util.Calendar.MARCH
 
 @RunWith(RobolectricTestRunner::class)
-class DateDialogTest {
-	@get:Rule
-	val log = LogRule()
-
+class DateDialogTest: BaseTest() {
 	private val yearId = getResId("year")
 	private val monthId = getResId("month")
 	private val dayId = getResId("day")

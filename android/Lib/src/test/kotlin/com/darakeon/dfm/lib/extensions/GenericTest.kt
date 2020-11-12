@@ -1,18 +1,14 @@
 package com.darakeon.dfm.lib.extensions
 
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.setPrivate
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertNull
-import org.junit.Rule
 import org.junit.Test
 
-class GenericTest {
-	@get:Rule
-	val log = LogRule()
-
+class GenericTest: BaseTest() {
 	@Test
 	fun getChild() {
 		val test = TestChildClass(27)

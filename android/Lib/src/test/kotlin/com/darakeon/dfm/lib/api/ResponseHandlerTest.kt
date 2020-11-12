@@ -9,7 +9,7 @@ import com.darakeon.dfm.lib.auth.setValue
 import com.darakeon.dfm.lib.utils.ActivityMock
 import com.darakeon.dfm.lib.utils.ApiActivity
 import com.darakeon.dfm.lib.utils.CallMock
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.TestException
 import com.darakeon.dfm.testutils.api.internetError
 import com.darakeon.dfm.testutils.api.internetSlow
@@ -20,7 +20,6 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -30,10 +29,7 @@ import java.net.ConnectException
 import java.net.SocketTimeoutException
 
 @RunWith(RobolectricTestRunner::class)
-internal class ResponseHandlerTest {
-	@get:Rule
-	val log = LogRule()
-
+internal class ResponseHandlerTest: BaseTest() {
 	private lateinit var activity: ApiActivity
 	private lateinit var handler: ResponseHandler<ApiActivity, String>
 	private var result: String? = null

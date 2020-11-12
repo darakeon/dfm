@@ -2,7 +2,7 @@ package com.darakeon.dfm.welcome
 
 import com.darakeon.dfm.R
 import com.darakeon.dfm.lib.auth.setValue
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.context.getCalledName
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
 import com.darakeon.dfm.testutils.robolectric.waitTasks
@@ -13,17 +13,13 @@ import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows.shadowOf
 
 @RunWith(RobolectricTestRunner::class)
-class WelcomeActivityTest {
-	@get:Rule
-	val log = LogRule()
-
+class WelcomeActivityTest: BaseTest() {
 	private lateinit var mocker: ActivityMock<WelcomeActivity>
 
 	@Before

@@ -12,7 +12,7 @@ import com.darakeon.dfm.lib.auth.Authentication
 import com.darakeon.dfm.lib.auth.setValue
 import com.darakeon.dfm.moves.MovesActivity
 import com.darakeon.dfm.settings.SettingsActivity
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.context.getCalledName
 import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
@@ -33,7 +33,6 @@ import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -42,10 +41,7 @@ import org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog
 import org.robolectric.shadows.ShadowToast.getTextOfLatestToast
 
 @RunWith(RobolectricTestRunner::class)
-class BaseActivityTest {
-	@get:Rule
-	val log = LogRule()
-
+class BaseActivityTest: BaseTest() {
 	private lateinit var mocker: ActivityMock<TestActivity>
 
 	@Before

@@ -1,10 +1,11 @@
 package com.darakeon.dfm.lib.api.entities.status
 
+import com.darakeon.dfm.testutils.BaseTest
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 
-class ErrorLogTest {
+class ErrorLogTest: BaseTest() {
 	private val defaultDate = "19860327012000999999"
 	private val defaultException = Except(
 		"className", "message", null, "stackTrace", "source",

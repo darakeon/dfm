@@ -4,7 +4,7 @@ import com.darakeon.dfm.lib.BuildConfig
 import com.darakeon.dfm.lib.utils.ActivityMock
 import com.darakeon.dfm.lib.utils.ApiActivity
 import com.darakeon.dfm.lib.utils.CallMock
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.TestException
 import com.darakeon.dfm.testutils.api.internetError
 import com.darakeon.dfm.testutils.getPrivate
@@ -14,16 +14,12 @@ import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertTrue
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-class RequestHandlerTest {
-	@get:Rule
-	val log = LogRule()
-
+class RequestHandlerTest: BaseTest() {
 	private lateinit var activity: ApiActivity
 	private lateinit var handler: RequestHandler<ApiActivity>
 

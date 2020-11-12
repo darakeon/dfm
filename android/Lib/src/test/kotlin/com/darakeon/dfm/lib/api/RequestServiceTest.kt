@@ -4,7 +4,7 @@ import com.darakeon.dfm.lib.api.entities.Date
 import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.api.Server
 import com.darakeon.dfm.testutils.api.guid
 import org.hamcrest.CoreMatchers.`is`
@@ -13,16 +13,12 @@ import org.junit.After
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-class RequestServiceTest {
-	@get:Rule
-	val log = LogRule()
-
+class RequestServiceTest: BaseTest() {
 	private lateinit var server: Server<RequestService>
 
 	private val service

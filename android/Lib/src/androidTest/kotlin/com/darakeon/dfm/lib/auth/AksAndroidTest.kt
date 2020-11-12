@@ -2,13 +2,14 @@ package com.darakeon.dfm.lib.auth
 
 import android.os.Build
 import android.support.test.InstrumentationRegistry
+import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.setAndroidVersion
-import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.not
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 
-class AksAndroidTest {
+class AksAndroidTest: BaseTest() {
 	@Test
 	fun encryptionAndDecryption_23AndSoOn() {
 		setAndroidVersion(Build.VERSION_CODES.M)
