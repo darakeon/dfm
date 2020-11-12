@@ -3,7 +3,7 @@ package com.darakeon.dfm.accounts
 import android.os.Bundle
 import com.darakeon.dfm.R
 import com.darakeon.dfm.lib.api.entities.accounts.Account
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.context.getCalledName
 import com.darakeon.dfm.testutils.getDecimal
 import com.darakeon.dfm.utils.api.ActivityMock
@@ -12,17 +12,13 @@ import kotlinx.android.synthetic.main.accounts_line.view.value
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows.shadowOf
 
 @RunWith(RobolectricTestRunner::class)
-class AccountLineTest {
-	@get:Rule
-	val log = LogRule()
-
+class AccountLineTest: BaseTest() {
 	private lateinit var activity: AccountsActivity
 	private lateinit var accountLine: AccountLine
 

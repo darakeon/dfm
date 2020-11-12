@@ -1,19 +1,13 @@
 package com.darakeon.dfm.lib.extensions
 
-import com.darakeon.dfm.lib.extensions.format
-import com.darakeon.dfm.lib.extensions.formatNoDay
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
-import org.junit.Rule
 import org.junit.Test
 import java.util.Calendar
 import java.util.Locale
 
-class DateTest {
-	@get:Rule
-	val log = LogRule()
-
+class DateTest: BaseTest() {
 	@Test
 	fun formatCalendar() {
 		val calendar = Calendar.getInstance()

@@ -1,10 +1,11 @@
 package com.darakeon.dfm.lib.api.entities.status
 
+import com.darakeon.dfm.testutils.BaseTest
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 
-class ExceptTest {
+class ExceptTest: BaseTest() {
 	@Test
 	fun mostInner_level1() {
 		val level1 = Except(

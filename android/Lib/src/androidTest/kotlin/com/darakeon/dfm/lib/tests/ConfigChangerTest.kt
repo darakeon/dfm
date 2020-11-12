@@ -1,13 +1,14 @@
 package com.darakeon.dfm.lib.tests
 
 import android.os.Build
+import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.setAndroidVersion
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 
-class ConfigChangerAndroidTest {
+class ConfigChangerAndroidTest: BaseTest() {
 	@Test
 	fun setAndroidVersionToMarshmallow() {
 		val version = Build.VERSION_CODES.M

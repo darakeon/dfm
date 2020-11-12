@@ -1,8 +1,8 @@
 package com.darakeon.dfm.lib.api.entities.moves
 
 import com.darakeon.dfm.lib.api.entities.Date
+import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.getDecimal
-import com.darakeon.dfm.testutils.LogRule
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.hasItem
 import org.hamcrest.CoreMatchers.not
@@ -11,14 +11,10 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
-import org.junit.Rule
 import org.junit.Test
 import java.util.UUID
 
-class MoveTest {
-	@get:Rule
-	val log = LogRule()
-
+class MoveTest: BaseTest() {
 	@Test
 	fun natureEnum() {
 		val move = Move()

@@ -11,7 +11,7 @@ import com.darakeon.dfm.lib.api.entities.status.ErrorList
 import com.darakeon.dfm.lib.api.entities.summary.Summary
 import com.darakeon.dfm.lib.utils.ActivityMock
 import com.darakeon.dfm.lib.utils.ApiActivity
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
 import com.darakeon.dfm.testutils.robolectric.waitTasks
 import org.junit.After
@@ -19,17 +19,13 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import java.util.UUID
 
 @RunWith(RobolectricTestRunner::class)
-class ApiTest {
-	@get:Rule
-	val log = LogRule()
-
+class ApiTest: BaseTest() {
 	private lateinit var mocker: ActivityMock<ApiActivity>
 	private lateinit var activity: ApiActivity
 	private lateinit var api: Api<ApiActivity>

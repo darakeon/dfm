@@ -5,7 +5,7 @@ import android.widget.LinearLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.lib.api.entities.extract.Move
 import com.darakeon.dfm.lib.api.entities.moves.Nature
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.api.guid
 import com.darakeon.dfm.testutils.getDecimal
 import com.darakeon.dfm.testutils.getPrivate
@@ -28,7 +28,6 @@ import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -37,10 +36,7 @@ import org.robolectric.annotation.Config
 import java.util.UUID
 
 @RunWith(RobolectricTestRunner::class)
-class MoveLineTest {
-	@get:Rule
-	val log = LogRule()
-
+class MoveLineTest: BaseTest() {
 	private lateinit var mocker: ActivityMock<ExtractActivity>
 	private lateinit var activity: ExtractActivity
 	private lateinit var moveLine: MoveLine

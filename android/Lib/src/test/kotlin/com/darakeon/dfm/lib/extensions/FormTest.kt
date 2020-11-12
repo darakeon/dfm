@@ -5,13 +5,12 @@ import com.darakeon.dfm.lib.R
 import com.darakeon.dfm.lib.api.entities.ComboItem
 import com.darakeon.dfm.lib.utils.ActivityMock
 import com.darakeon.dfm.lib.utils.ApiActivity
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -19,10 +18,7 @@ import org.robolectric.Shadows.shadowOf
 import org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog
 
 @RunWith(RobolectricTestRunner::class)
-class FormTest {
-	@get:Rule
-	val log = LogRule()
-
+class FormTest: BaseTest() {
 	lateinit var activity: ApiActivity
 
 	@Before

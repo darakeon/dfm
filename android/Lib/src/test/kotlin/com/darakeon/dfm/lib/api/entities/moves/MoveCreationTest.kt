@@ -1,20 +1,14 @@
 package com.darakeon.dfm.lib.api.entities.moves
 
 import com.darakeon.dfm.lib.api.entities.ComboItem
-import com.darakeon.dfm.lib.api.entities.moves.Move
-import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertTrue
-import org.junit.Rule
 import org.junit.Test
 
-class MoveCreationTest {
-	@get:Rule
-	val log = LogRule()
-
+class MoveCreationTest: BaseTest() {
 	@Test
 	fun equals() {
 		val move = Move()

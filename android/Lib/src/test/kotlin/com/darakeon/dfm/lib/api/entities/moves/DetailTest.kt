@@ -1,16 +1,11 @@
 package com.darakeon.dfm.lib.api.entities.moves
 
-import com.darakeon.dfm.lib.api.entities.moves.Detail
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
-import org.junit.Rule
 import org.junit.Test
 
-class DetailTest {
-	@get:Rule
-	val log = LogRule()
-
+class DetailTest: BaseTest() {
 	@Test
 	fun equals() {
 		val detail1 = Detail("desc", 1, 1.0)

@@ -2,7 +2,7 @@ package com.darakeon.dfm.extract
 
 import com.darakeon.dfm.R
 import com.darakeon.dfm.lib.api.entities.extract.Move
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.api.guid
 import com.darakeon.dfm.utils.api.ActivityMock
 import kotlinx.android.synthetic.main.move_details.view.name
@@ -13,16 +13,12 @@ import kotlinx.android.synthetic.main.move_line.view.action_uncheck
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertTrue
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-class MoveAdapterTest {
-	@get:Rule
-	val log = LogRule()
-
+class MoveAdapterTest: BaseTest() {
 	@Test
 	fun populateView() {
 		val activity = ActivityMock(ExtractActivity::class).create()

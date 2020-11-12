@@ -18,6 +18,7 @@ import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
 import com.darakeon.dfm.lib.api.entities.moves.MoveForm
 import com.darakeon.dfm.lib.api.entities.moves.Nature
+import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.LogRule
 import com.darakeon.dfm.testutils.api.guid
 import com.darakeon.dfm.testutils.api.readBundle
@@ -70,10 +71,7 @@ import java.util.Calendar
 import java.util.UUID
 
 @RunWith(RobolectricTestRunner::class)
-class MovesActivityTest {
-	@get:Rule
-	val log = LogRule()
-
+class MovesActivityTest: BaseTest() {
 	private lateinit var mocker: ActivityMock<MovesActivity>
 	private lateinit var activity: MovesActivity
 

@@ -4,22 +4,18 @@ import android.app.Activity
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.TextView
-import com.darakeon.dfm.testutils.LogRule
-import org.hamcrest.MatcherAssert.assertThat
+import com.darakeon.dfm.testutils.BaseTest
 import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertTrue
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.Robolectric.buildActivity
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-class ComboItemTest {
-	@get:Rule
-	val log = LogRule()
-
+class ComboItemTest: BaseTest() {
 	lateinit var activity: Activity
 
 	@Before

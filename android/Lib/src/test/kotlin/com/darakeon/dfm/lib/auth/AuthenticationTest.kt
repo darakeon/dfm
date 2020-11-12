@@ -1,19 +1,15 @@
 package com.darakeon.dfm.lib.auth
 
 import com.darakeon.dfm.lib.utils.mockContext
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 
-class AuthenticationTest {
-	@get:Rule
-	val log = LogRule()
-
+class AuthenticationTest: BaseTest() {
 	private lateinit var auth : Authentication
 
 	@Before

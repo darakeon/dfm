@@ -13,7 +13,7 @@ import com.darakeon.dfm.lib.api.entities.Date
 import com.darakeon.dfm.lib.api.entities.Environment
 import com.darakeon.dfm.lib.api.entities.extract.Extract
 import com.darakeon.dfm.lib.auth.setEnvironment
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.api.guid
 import com.darakeon.dfm.testutils.api.readBundle
 import com.darakeon.dfm.testutils.context.getCalledName
@@ -36,7 +36,6 @@ import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -46,10 +45,7 @@ import java.util.Calendar
 import java.util.UUID
 
 @RunWith(RobolectricTestRunner::class)
-class ExtractActivityTest {
-	@get:Rule
-	val log = LogRule()
-
+class ExtractActivityTest: BaseTest() {
 	private lateinit var mocker: ActivityMock<ExtractActivity>
 	private lateinit var activity: ExtractActivity
 

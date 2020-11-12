@@ -1,15 +1,11 @@
 package com.darakeon.dfm.lib.api.entities.moves
 
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
-import org.junit.Rule
 import org.junit.Test
 
-class NatureTest {
-	@get:Rule
-	val log = LogRule()
-
+class NatureTest: BaseTest() {
 	@Test
 	fun out() {
 		assertThat(Nature.get(0), `is`(Nature.Out))

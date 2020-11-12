@@ -3,7 +3,7 @@ package com.darakeon.dfm.login
 import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.lib.auth.Authentication
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.context.getCalledName
 import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
@@ -14,17 +14,13 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows.shadowOf
 
 @RunWith(RobolectricTestRunner::class)
-class LoginActivityTest {
-	@get:Rule
-	val log = LogRule()
-
+class LoginActivityTest: BaseTest() {
 	private lateinit var mocker: ActivityMock<LoginActivity>
 
 	@Before

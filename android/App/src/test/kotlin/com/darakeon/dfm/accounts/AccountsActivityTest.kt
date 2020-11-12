@@ -7,7 +7,7 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.lib.api.entities.accounts.Account
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.api.readBundle
 import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
@@ -21,16 +21,12 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-class AccountsActivityTest {
-	@get:Rule
-	val log = LogRule()
-
+class AccountsActivityTest: BaseTest() {
 	private lateinit var mocker: ActivityMock<AccountsActivity>
 	private lateinit var activity: AccountsActivity
 

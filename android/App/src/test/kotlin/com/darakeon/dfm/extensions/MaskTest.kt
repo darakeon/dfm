@@ -2,6 +2,7 @@ package com.darakeon.dfm.extensions
 
 import android.view.KeyEvent
 import android.widget.EditText
+import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.utils.activity.TestActivity
 import com.darakeon.dfm.utils.api.ActivityMock
 import org.hamcrest.CoreMatchers.equalTo
@@ -12,7 +13,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-class MaskTest {
+class MaskTest: BaseTest() {
 	private lateinit var activity: TestActivity
 	private lateinit var editable: EditText
 

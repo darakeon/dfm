@@ -1,18 +1,12 @@
 package com.darakeon.dfm.lib.api.entities.extract
 
-import com.darakeon.dfm.lib.api.entities.extract.Extract
-import com.darakeon.dfm.lib.api.entities.extract.Move
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
-import org.junit.Rule
 import org.junit.Test
 import java.util.UUID
 
-class ExtractTest {
-	@get:Rule
-	val log = LogRule()
-
+class ExtractTest: BaseTest() {
 	private val fakeGuid
 		get() = UUID.randomUUID()
 

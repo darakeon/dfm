@@ -6,7 +6,7 @@ import android.widget.TextView
 import com.darakeon.dfm.R
 import com.darakeon.dfm.lib.api.entities.moves.Detail
 import com.darakeon.dfm.lib.api.entities.moves.Move
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.getDecimal
 import com.darakeon.dfm.utils.api.ActivityMock
 import org.hamcrest.CoreMatchers.`is`
@@ -14,16 +14,12 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-class DetailBoxTest {
-	@get:Rule
-	val log = LogRule()
-
+class DetailBoxTest: BaseTest() {
 	private lateinit var activity: MovesActivity
 	private lateinit var box: DetailBox
 	private var move: Move = Move()

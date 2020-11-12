@@ -5,18 +5,14 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import com.darakeon.dfm.lib.R
 import com.darakeon.dfm.lib.utils.mockContext
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
-import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 
-class MainInfoTest {
-	@get:Rule
-	val log = LogRule()
-
+class MainInfoTest: BaseTest() {
 	@Test
 	fun getSiteUrl_IP() {
 		val context = mockContext()

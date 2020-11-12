@@ -10,23 +10,19 @@ import com.darakeon.dfm.lib.api.entities.Environment
 import com.darakeon.dfm.lib.auth.lighter1
 import com.darakeon.dfm.lib.auth.setEnvironment
 import com.darakeon.dfm.lib.utils.mockContext
-import com.darakeon.dfm.testutils.LogRule
+import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.execute
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertNotNull
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.mockito.ArgumentMatchers.anyString
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.anyInt
 import org.mockito.Mockito.mock
 
-class AdapterTest {
-	@get:Rule
-	val log = LogRule()
-
+class AdapterTest: BaseTest() {
 	private lateinit var activity: Activity
 	private lateinit var inflater: LayoutInflater
 	private lateinit var adapter: MockAdapter
