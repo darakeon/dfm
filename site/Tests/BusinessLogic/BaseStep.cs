@@ -33,9 +33,10 @@ namespace DFM.BusinessLogic.Tests
 			var path =
 				Path.Combine(
 					AppDomain.CurrentDomain.BaseDirectory,
-					@"..\..\",
-					"log"
+					@"..", @"..", @"..", @"..", "log"
 				);
+
+			path = Path.GetFullPath(path);
 
 			if (!Directory.Exists(path))
 				Directory.CreateDirectory(path);
