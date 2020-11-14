@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   test_core:
     docker:
-      - image: mcr.microsoft.com/dotnet/core/sdk:latest
+      - image: darakeon/netcore:latest
     steps:
       - checkout
       - restore_cache:
