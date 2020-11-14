@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>DFM.Tests.Util</AssemblyName>
     <RootNamespace>DFM.Tests.Util</RootNamespace>
     <AssemblyVersion>4.4.0.0</AssemblyVersion>
