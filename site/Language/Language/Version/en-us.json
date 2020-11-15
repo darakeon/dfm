@@ -1,4 +1,13 @@
 {
+	"4.5.0.0": [
+		"Fix problem with trying to run schedules multiple times",
+		"Add delete, check/uncheck and edit buttons on hold move (android)",
+		"Fix problem with not showing warnings when calling site",
+		"Add navigate gestures to reports: left to future, right to past",
+		"Add update gesture to all screens: pull down",
+		"Fix error when trying to login at app",
+		"Adapt android icon to new specifications"
+	],
 	"4.4.0.0": [
 		"Show future moves and foreseen balance at Extract and Year Summary",
 		"Change android home screen to menu buttons",
