@@ -3,15 +3,6 @@ use std::fs;
 
 static PATH: &str = r"..\docs\RELEASES.md";
 
-pub fn task_list() -> Vec<String> {
-	fs::read_to_string(PATH)
-		.unwrap()
-		.replace("\r", "")
-		.split("\n")
-		.map(|s| s.to_string())
-		.collect()
-}
-
 pub fn update_task_list(version: &Version) {
 	let old_published = published(&version.prev);
 	let old_development = development(&version.code);
