@@ -1,39 +1,39 @@
-mod version;
-use version::current_version;
-
-mod task_list;
-use task_list::{task_list, update_task_list};
-
 mod android;
-use android::update_android;
-
+mod arguments;
+mod browser;
 mod csharp;
-use csharp::update_csharp;
-
+mod file;
+mod notes;
 mod rust;
+mod tasks;
+mod todos;
+mod version;
+
+use android::update_android;
+use arguments::parse_arguments;
+use browser::update_node;
+use csharp::update_csharp;
+use notes::update_notes;
 use rust::update_rust;
-
-mod browser_tests;
-use browser_tests::update_node;
-
-mod release_notes;
-use release_notes::update_notes;
+use tasks::update_task_list;
+use todos::add_release;
+use version::{create_version,Version};
 
 fn main() {
-	let task_list = task_list();
+	if let Some(numbers) = parse_arguments() {
+		if let Some(version) = create_version() {
+			if let Some(new_version) = add_release(version, numbers) {
+				update_version(new_version);
+			}
+		}
+	}
+}
 
-	let version =
-		current_version(task_list).expect("not version found");
-
+fn update_version(version: Version) {
 	update_task_list(&version);
-
 	update_android(&version);
-
 	update_csharp(&version);
-
 	update_rust(&version);
-
 	update_node(&version);
-
 	update_notes(&version);
 }
