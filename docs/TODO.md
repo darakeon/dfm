@@ -13,7 +13,6 @@ This is the task list for the project.
 
 | Task (68)                                                                               | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
 | --------------------------------------------------------------------------------------- | -------- | --- | --- | --- | ------------------ | ------------------------------------------------ |
-| Add create new task list at version changer (q2 add tasks 1 and 2, numbers add by line) | :ant:    |  2  |  3  |  5  |                    |                                                  |
 | Check if android tests are really testing all methods                                   | :ant:    |  2  |  3  |  5  |                    |                                                  |
 | Add code of conduct to repo                                                             | :sheep:  |  2  |  3  |  5  |                    | [#44](https://github.com/darakeon/dfm/issues/44) |
 | If lost authy, send e-mail to remove authy                                              | :sheep:  |  2  |  3  |  5  |                    |                                                  |

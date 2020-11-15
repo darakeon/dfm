@@ -1,4 +1,13 @@
 {
+	"4.5.0.0": [
+		"Corrigido problema ao tentar rodar agendamentos múltiplas vezes",
+		"Adicionado excluir, verificar/desverificar e editar como botões ao clicar e segurar a movimentação (android)",
+		"Corrigido problema em não mostrar aviso de que está se comunicando com o site",
+		"Adicionados gestos de navegação aos relatórios: esquerda para futuro, direita para passado",
+		"Adicionado gesto de atualização: arrastar para baixo",
+		"Corrigido erro ao tentar logar no aplicativo",
+		"Ícone adaptado às especificações do google"
+	],
 	"4.4.0.0": [
 		"Mostradas movimentações e saldos previstos em Extrato e Resumo Anual",
 		"Colocados apenas botões na tela inicial do aplicativo",
