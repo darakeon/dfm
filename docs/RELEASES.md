@@ -15,6 +15,7 @@ Legend:
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="4.5.0.1"></a>4.5.0.1 :ant: <sup>`3`</sup>
+- [ ] Fix bug at future moves reports, showing zero value for move
 - [ ] Fix refresh gesture conflict with scroll of lists
 - [ ] Fix edit detailed move at site
 - [ ] Add create new task list at version changer (-q = quantity, -n = numbers)
