@@ -14,7 +14,9 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="4.5.0.1"></a>4.5.0.1 :ant: <sup>`1`</sup>
+## <a name="4.5.0.1"></a>4.5.0.1 :ant: <sup>`3`</sup>
+- [ ] Fix refresh gesture conflict with scroll of lists
+- [ ] Fix edit detailed move at site
 - [ ] Add create new task list at version changer (-q = quantity, -n = numbers)
 
 ## <a name="4.5.0.0"></a>4.5.0.0 :whale: <sup>`8`</sup>
