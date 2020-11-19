@@ -11,7 +11,7 @@ This is the task list for the project.
 - Dependency: which other task it depends on (if it exists)
 - Issue: github issue about the task (if it exists)
 
-| Task (68)                                                                               | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
+| Task (67)                                                                               | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
 | --------------------------------------------------------------------------------------- | -------- | --- | --- | --- | ------------------ | ------------------------------------------------ |
 | Check if android tests are really testing all methods                                   | :ant:    |  2  |  3  |  5  |                    |                                                  |
 | Add code of conduct to repo                                                             | :sheep:  |  2  |  3  |  5  |                    | [#44](https://github.com/darakeon/dfm/issues/44) |
