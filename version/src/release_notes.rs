@@ -19,7 +19,7 @@ pub fn update_notes_for_language(version: &Version, language: &str) {
 
 	let mut tasks_json = "".to_string();
 	let mut tasks = version.tasks.clone();
-	
+
 	if let Some(first_task) = tasks.pop_front() {
 		tasks_json = make_json(&first_task);
 

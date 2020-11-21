@@ -10,18 +10,18 @@ static PATH_ERROR_LOGS: &str = r"..\android\ErrorLogs\build.gradle";
 
 pub fn update_android(version: &Version) {
 	let changed = update_main(version);
-	
+
 	if !changed {
 		return
 	}
-	
+
 	let args: Vec<String> = env::args().collect();
 	let change_android = args.len() < 2 || args[1] != "--no-android";
 
 	if !change_android {
 		return
 	}
-	
+
 	change_code(PATH_APP, "(2011\\d{6})");
 	change_code(PATH_ERROR_LOGS, "(\\d+)");
 }
@@ -32,14 +32,14 @@ fn update_main(version: &Version) -> bool {
 	if !content.contains(&version.prev) {
 		return false;
 	}
-	
+
 	let old_name = version_name(&version.prev);
 	let new_name = version_name(&version.code);
 
 	content = content.replace(&old_name, &new_name);
 
 	fs::write(PATH_MAIN, content).expect("error on android recording");
-	
+
 	return true
 }
 
@@ -68,7 +68,7 @@ fn change_code(path: &str, pattern: &str) {
 	let new_code = version_code(&new_number.to_string());
 
 	content = content.replace(&old_code, &new_code);
-	
+
 	fs::write(path, content).expect("error on android recording");
 }
 

@@ -24,7 +24,7 @@ pub fn current_version(task_list: Vec<String>) -> Option<Version> {
 				Version::new(version_code, current_version.code);
 		} else if let Some(done) = extract(&line, done_pattern) {
 			current_version.done &= done == "x";
-			
+
 			if let Some(task) = extract(&line, task_pattern) {
 				current_version.tasks.push_back(task);
 			}
