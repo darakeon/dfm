@@ -20,6 +20,13 @@
 			decimal
 		});
 	});
+
+	$(".nav-tabs li").click(function () {
+		$(this).parent().children("li").each(function () {
+			$(this).removeClass("active");
+		});
+		$(this).addClass("active");
+	});
 });
 
 function checkIfReload(response) {
