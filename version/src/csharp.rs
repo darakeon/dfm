@@ -23,7 +23,7 @@ fn update_csharp_file(version: &Version, file: &str) {
 
 	let old_file = assembly_file_version(&version.prev);
 	let new_file = assembly_file_version(&version.code);
-	
+
 	let content = fs::read_to_string(file)
 		.unwrap()
 		.replace(&old_assembly, &new_assembly)
