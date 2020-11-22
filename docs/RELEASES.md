@@ -18,7 +18,7 @@ Legend:
 - [ ] Fix bug with android tests
 - [ ] Fix bug at future moves reports, showing zero value for move
 - [ ] Fix refresh gesture conflict with scroll of lists
-- [ ] `201121>......` Fix edit detailed move at site
+- [x] `201121>201122` Fix edit detailed move at site
 - [x] `201115>201120` Add create new task list at version changer (-q = quantity, -n = numbers)
 
 ## <a name="4.5.0.0"></a>4.5.0.0 :whale: <sup>`8`</sup>
