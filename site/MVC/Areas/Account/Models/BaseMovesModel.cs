@@ -90,20 +90,23 @@ namespace DFM.MVC.Areas.Account.Models
 
 		private void makeAccountList()
 		{
-			AccountOutSelectList = SelectListExtension.CreateSelect(accountList, a => a.Url, a => a.Name);
-			AccountInSelectList = SelectListExtension.CreateSelect(accountList, a => a.Url, a => a.Name);
+			AccountOutSelectList = SelectListExtension
+				.CreateSelect(accountList, a => a.Url, a => a.Name);
+
+			AccountInSelectList = SelectListExtension
+				.CreateSelect(accountList, a => a.Url, a => a.Name);
 		}
 
 		private void arrangeDetails()
 		{
-			IsDetailed = GenericMove.Guid != Guid.Empty && GenericMove.IsDetailed();
+			IsDetailed = GenericMove.IsDetailed();
 		}
 
 
 		public OperationType Type { get; set; }
 
 
-		protected internal IMoveInfo GenericMove { get; set; }
+		public IMoveInfo GenericMove { get; set; }
 
 		public const Int32 DetailCount = 100;
 
@@ -198,7 +201,10 @@ namespace DFM.MVC.Areas.Account.Models
 
 		public String Value
 		{
-			get => GenericMove.Value.ToString("0.00");
+			get =>
+				GenericMove.IsDetailed()
+					? null
+					: GenericMove.Value.ToString("0.00");
 			set =>
 				GenericMove.Value = value == null
 					? default

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities;
 using DFM.Entities.Enums;
+using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Response
 {
@@ -55,6 +56,9 @@ namespace DFM.BusinessLogic.Response
 		internal static MoveInfo Convert4Edit(Move move)
 		{
 			var info = convert(move);
+
+			if (info.DetailList.Any())
+				info.Value = 0;
 
 			info.Description = move.Description;
 
