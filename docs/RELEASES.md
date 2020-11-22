@@ -14,7 +14,8 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="4.5.0.1"></a>4.5.0.1 :ant: <sup>`3`</sup>
+## <a name="4.5.0.1"></a>4.5.0.1 :ant: <sup>`5`</sup>
+- [ ] Fix bug with android tests
 - [ ] Fix bug at future moves reports, showing zero value for move
 - [ ] Fix refresh gesture conflict with scroll of lists
 - [ ] `201121>......` Fix edit detailed move at site
