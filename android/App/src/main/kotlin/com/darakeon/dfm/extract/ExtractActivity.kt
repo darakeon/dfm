@@ -1,12 +1,7 @@
 package com.darakeon.dfm.extract
 
 import android.os.Bundle
-import android.view.ContextMenu
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ListView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
@@ -31,7 +26,6 @@ import kotlinx.android.synthetic.main.extract.reportChange
 import kotlinx.android.synthetic.main.extract.total_title
 import kotlinx.android.synthetic.main.extract.total_value
 import java.util.Calendar
-import java.util.UUID
 
 class ExtractActivity : BaseActivity() {
 	private var accountUrl: String = ""
@@ -162,6 +156,7 @@ class ExtractActivity : BaseActivity() {
 			main_table.visibility = View.GONE
 			empty_list.visibility = View.VISIBLE
 
+			main.listChild = main_table
 			main.swipe(Direction.Right, this::past)
 			main.swipe(Direction.Left, this::future)
 		} else {

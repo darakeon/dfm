@@ -56,6 +56,7 @@ class AccountsActivity : BaseActivity() {
 			main_table.visibility = View.VISIBLE
 			empty_list.visibility = View.GONE
 
+			main.listChild = main_table
 			main_table.adapter = AccountAdapter(this, accountList)
 		}
 	}

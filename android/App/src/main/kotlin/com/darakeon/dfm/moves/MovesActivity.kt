@@ -128,6 +128,8 @@ class MovesActivity : BaseActivity() {
 		if (!isMoveAllowed())
 			return
 
+		main.scrollChild = form
+
 		if (move.checked)
 			remove_check.visibility = VISIBLE
 

@@ -28,6 +28,7 @@ class ListActivity : BaseActivity() {
 		toggleButtons()
 
 		main.setOnRefreshListener { refresh() }
+		main.listChild = list
 	}
 
 	private fun fillList(errors: ErrorList) {

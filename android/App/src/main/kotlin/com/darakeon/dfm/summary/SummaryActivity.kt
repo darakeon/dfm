@@ -82,6 +82,7 @@ class SummaryActivity : BaseActivity() {
 			main_table.visibility = View.GONE
 			empty_list.visibility = View.VISIBLE
 
+			main.listChild = main_table
 			// TODO: test it
 			main.swipe(Direction.Right, this::past)
 			main.swipe(Direction.Left, this::future)
