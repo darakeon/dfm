@@ -144,6 +144,12 @@ jobs:
       - store_artifacts:
           path: android/ErrorLogs/build/reports
           destination: reports/errorLogs
+      - store_artifacts:
+          path: android/Lib/log
+          destination: log/lib
+      - store_artifacts:
+          path: android/App/log
+          destination: log/app
       - store_test_results:
           path: android/Lib/build/test-results
       - store_test_results:

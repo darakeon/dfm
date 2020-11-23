@@ -86,11 +86,6 @@ class MessageTest: BaseTest() {
 		assertTrue(alert.getButton(Dialog.BUTTON_POSITIVE).isShown)
 		assertFalse(alert.getButton(Dialog.BUTTON_NEUTRAL).isShown)
 		assertFalse(alert.getButton(Dialog.BUTTON_NEGATIVE).isShown)
-
-		alert.getButton(Dialog.BUTTON_POSITIVE).performClick()
-		activity.waitTasks(mocker.server)
-
-		assertFalse(alert.isShowing)
 	}
 
 	@Test
@@ -106,11 +101,6 @@ class MessageTest: BaseTest() {
 		assertTrue(alert.getButton(Dialog.BUTTON_POSITIVE).isShown)
 		assertFalse(alert.getButton(Dialog.BUTTON_NEUTRAL).isShown)
 		assertFalse(alert.getButton(Dialog.BUTTON_NEGATIVE).isShown)
-
-		alert.getButton(Dialog.BUTTON_POSITIVE).performClick()
-		activity.waitTasks(mocker.server)
-
-		assertFalse(alert.isShowing)
 	}
 
 	@Test

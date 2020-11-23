@@ -15,7 +15,7 @@ Legend:
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="4.5.0.1"></a>4.5.0.1 :ant: <sup>`5`</sup>
-- [ ] Fix bug with android tests
+- [x] `201123>201123` Fix bug with android tests
 - [x] `201122>201122` Fix bug at future moves reports, showing zero value for move
 - [x] `201122>201123` Fix refresh gesture conflict with scroll of lists
 - [x] `201121>201122` Fix edit detailed move at site
