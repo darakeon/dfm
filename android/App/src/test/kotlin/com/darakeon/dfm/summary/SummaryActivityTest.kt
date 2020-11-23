@@ -67,6 +67,7 @@ class SummaryActivityTest: BaseTest() {
 		mocker.server.enqueue("summary")
 
 		activity.onCreate(null, null)
+		activity.waitTasks(mocker.server)
 
 		val accountUrl = activity.getPrivate<String>("accountUrl")
 		assertThat(accountUrl, `is`("url"))
@@ -82,6 +83,7 @@ class SummaryActivityTest: BaseTest() {
 		mocker.server.enqueue("summary")
 
 		activity.onCreate(null, null)
+		activity.waitTasks(mocker.server)
 
 		val accountUrl = activity.getPrivate<String>("accountUrl")
 		assertThat(accountUrl, `is`("url"))
@@ -97,6 +99,7 @@ class SummaryActivityTest: BaseTest() {
 		mocker.server.enqueue("summary")
 
 		activity.onCreate(null, null)
+		activity.waitTasks(mocker.server)
 
 		val accountUrl = activity.getPrivate<String>("accountUrl")
 		assertThat(accountUrl, `is`("url"))
@@ -112,6 +115,7 @@ class SummaryActivityTest: BaseTest() {
 		mocker.server.enqueue("summary")
 
 		activity.onCreate(null, null)
+		activity.waitTasks(mocker.server)
 
 		val accountUrl = activity.getPrivate<String>("accountUrl")
 		assertThat(accountUrl, `is`("url"))

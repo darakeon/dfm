@@ -85,6 +85,7 @@ class ExtractActivityTest: BaseTest() {
 		mocker.server.enqueue("extract")
 
 		activity.onCreate(null, null)
+		activity.waitTasks(mocker.server)
 
 		val accountUrl = activity.getPrivate<String>("accountUrl")
 		assertThat(accountUrl, `is`("url"))
@@ -122,6 +123,7 @@ class ExtractActivityTest: BaseTest() {
 		mocker.server.enqueue("extract")
 
 		activity.onCreate(null, null)
+		activity.waitTasks(mocker.server)
 
 		val accountUrl = activity.getPrivate<String>("accountUrl")
 		assertThat(accountUrl, `is`("url"))
@@ -140,6 +142,7 @@ class ExtractActivityTest: BaseTest() {
 		mocker.server.enqueue("extract")
 
 		activity.onCreate(null, null)
+		activity.waitTasks(mocker.server)
 
 		val accountUrl = activity.getPrivate<String>("accountUrl")
 		assertThat(accountUrl, `is`("url"))
@@ -299,8 +302,6 @@ class ExtractActivityTest: BaseTest() {
 		val month = activity.getPrivate<Int>("month")
 		assertThat(month, `is`(aMonthJava))
 
-		activity.waitTasks(mocker.server)
-
 		val extract = activity.getPrivate<Extract>("extract")
 		assertThat(extract.moveList.size, `is`(1))
 	}
@@ -335,7 +336,7 @@ class ExtractActivityTest: BaseTest() {
 	}
 
 	@Test
-	fun goToAccounts() {
+	fun goToSummary() {
 		activity.simulateNetwork()
 
 		val saved = Bundle()
