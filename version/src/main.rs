@@ -3,6 +3,7 @@ mod arguments;
 mod browser;
 mod csharp;
 mod file;
+mod git;
 mod notes;
 mod rust;
 mod tasks;
