@@ -13,7 +13,6 @@ This is the task list for the project.
 
 | Task (68)                                                                               | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
 | --------------------------------------------------------------------------------------- | -------- | --- | --- | --- | ------------------ | ------------------------------------------------ |
-| Check if android tests are really testing all methods                                   | :ant:    |  2  |  3  |  5  |                    |                                                  |
 | Add code of conduct to repo                                                             | :sheep:  |  2  |  3  |  5  |                    | [#44](https://github.com/darakeon/dfm/issues/44) |
 | If lost authy, send e-mail to remove authy                                              | :sheep:  |  2  |  3  |  5  |                    |                                                  |
 | Link unsubscribe for moves (ask password if logged out?)                                | :whale:  |  2  |  3  |  5  |                    |                                                  |
@@ -53,6 +52,9 @@ This is the task list for the project.
 | Add schedule creation (mobile)                                                          | :sheep:  |  2  |  2  |  4  |                    |                                                  |
 | Enable Copy Move (web+mobile)                                                           | :whale:  |  2  |  2  |  4  |                    |                                                  |
 | Implement [password rules]                                                              | :sheep:  |  2  |  2  |  4  |                    |                                                  |
+| Add misc to users                                                                       | :dragon: |  2  |  2  |  4  |                    |                                                  |
+| Reset Misc on password change and send e-mail                                           | :sheep:  |  1  |  2  |  5  | misc               |                                                  |
+| Add Misc reset manually                                                                 | :sheep:  |  1  |  2  |  5  | misc               |                                                  |
 | If session drop, call history.go(-2) after re-login                                     | :sheep:  |  1  |  1  |  4  |                    |                                                  |
 | Make default language EN if browser is not PT, ES, IT or FR                             | :sheep:  |  1  |  1  |  4  |                    |                                                  |
 | Add error when schedule with 0 times                                                    | :ant:    |  1  |  1  |  4  |                    |                                                  |
@@ -60,9 +62,7 @@ This is the task list for the project.
 | If try to register an already existed user, send recover password link                  | :sheep:  |  1  |  1  |  4  |                    |                                                  |
 | Change putJson to putSerializable/Parcelable at extras in android                       | :ant:    |  1  |  1  |  4  |                    |                                                  |
 | Replace XML at UI android by [compose jetpack]                                          | :ant:    |  4  |  3  |  3  |                    |                                                  |
-| Add misc to users                                                                       | :dragon: |  3  |  2  |  3  |                    |                                                  |
-| Reset Misc on password change and send e-mail                                           | :sheep:  |  1  |  3  |  6  | misc               |                                                  |
-| Add Misc reset manually                                                                 | :sheep:  |  1  |  2  |  5  | misc               |                                                  |
+| Add all android missing tests                                                           | :ant:    |  4  |  3  |  3  |                    |                                                  |
 | Report with more than one account                                                       | :whale:  |  3  |  2  |  3  |                    |                                                  |
 | Create Market - group of moves, each one of one category, to shopping (mobile)          | :whale:  |  3  |  2  |  3  |                    |                                                  |
 | Implement entities limits (acc opened, cat enabled, moves/month, active sched)          | :dragon: |  3  |  2  |  3  |                    |                                                  |
