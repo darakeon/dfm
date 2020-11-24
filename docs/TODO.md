@@ -11,7 +11,7 @@ This is the task list for the project.
 - Dependency: which other task it depends on (if it exists)
 - Issue: github issue about the task (if it exists)
 
-| Task (67)                                                                               | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
+| Task (68)                                                                               | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
 | --------------------------------------------------------------------------------------- | -------- | --- | --- | --- | ------------------ | ------------------------------------------------ |
 | Check if android tests are really testing all methods                                   | :ant:    |  2  |  3  |  5  |                    |                                                  |
 | Add code of conduct to repo                                                             | :sheep:  |  2  |  3  |  5  |                    | [#44](https://github.com/darakeon/dfm/issues/44) |
@@ -29,6 +29,7 @@ This is the task list for the project.
 | Review columns of Schedule List (add deleted qty)                                       | :sheep:  |  1  |  2  |  5  |                    |                                                  |
 | Calculate installment move by position                                                  | :ant:    |  1  |  2  |  5  |                    |                                                  |
 | Add modal for moves with schedule, to show schedule details                             | :sheep:  |  1  |  2  |  5  |                    |                                                  |
+| Migrate DB to RDS                                                                       | :ant:    |  4  |  4  |  4  |                    |                                                  |
 | Change server to linux                                                                  | :ant:    |  4  |  4  |  4  |                    |                                                  |
 | Store data locally, to use when there is no internet (Mobile)                           | :dragon: |  4  |  4  |  4  |                    |                                                  |
 | Adjust [accessibilitity]                                                                | :sheep:  |  4  |  4  |  4  |                    |                                                  |
