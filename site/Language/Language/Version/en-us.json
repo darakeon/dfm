@@ -1,4 +1,11 @@
 {
+	"4.5.0.1": [
+		"Fix contract pt-br word",
+		"Fix bug of zero value move at future moves reports",
+		"Fix refresh gesture conflict with scroll of lists",
+		"Fix edit detailed move at site",
+		"Automate create new release when change version"
+	],
 	"4.5.0.0": [
 		"Fix problem with trying to run schedules multiple times",
 		"Add delete, check/uncheck and edit buttons on hold move (android)",

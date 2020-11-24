@@ -1,4 +1,11 @@
 {
+	"4.5.0.1": [
+		"Corrigida palavra no contrato",
+		"Corrigido problema de valor zerado em movimentação futura",
+		"Corrigido gesto de atualização de tela em telas com barra de rolagem",
+		"Corrigida edição de movimentação com detalhes",
+		"Automatizada criação de lista de tarefas para próxima versão"
+	],
 	"4.5.0.0": [
 		"Corrigido problema ao tentar rodar agendamentos múltiplas vezes",
 		"Adicionado excluir, verificar/desverificar e editar como botões ao clicar e segurar a movimentação (android)",
