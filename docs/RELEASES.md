@@ -17,7 +17,7 @@ Legend:
 ## <a name="4.6.0.0"></a>4.6.0.0 :ant: <sup>`3`</sup>
 - [ ] Add code of conduct to repo [#44]
 - [ ] If lost authy, send e-mail to remove authy
-- [ ] Link unsubscribe for moves (ask password if logged out?)
+- [ ] Link unsubscribe for moves (new security token)
 
 ## <a name="4.5.0.1"></a>4.5.0.1 :ant: <sup>`6`</sup>
 - [x] `201124>201124` Fix contract pt-br word
