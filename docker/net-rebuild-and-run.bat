@@ -14,5 +14,5 @@ if "%2" == "push" (
 	SET push=push
 )
 
-call build-all.bat %push% > NUL
-call run.bat %force%
+call net-build-all.bat %push% > NUL
+call net-run.bat %force%
