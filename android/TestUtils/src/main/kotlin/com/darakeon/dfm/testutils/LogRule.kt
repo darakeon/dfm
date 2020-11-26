@@ -41,24 +41,24 @@ class LogRule : TestRule {
 		}
 	}
 
-	@RequiresApi(Build.VERSION_CODES.O)
-	private fun logToFile(content: String) {
-		val charset = Charset.forName("UTF-8")
+	companion object {
+		@RequiresApi(Build.VERSION_CODES.O)
+		fun logToFile(content: String) {
+			val charset = Charset.forName("UTF-8")
 
-		var record = content
+			var record = content
 
-		val path = Paths.get("log", "$start.log")
+			val path = Paths.get("log", "$start.log")
 
-		if (Files.exists(path)) {
-			val bytes = Files.readAllBytes(path)
-			val current = String(bytes, charset)
-			record = "$current\n$record"
+			if (Files.exists(path)) {
+				val bytes = Files.readAllBytes(path)
+				val current = String(bytes, charset)
+				record = "$current\n$record"
+			}
+
+			Files.write(path, record.toByteArray(charset))
 		}
 
-		Files.write(path, record.toByteArray(charset))
-	}
-
-	companion object {
 		private val start = {
 			val dir = Paths.get("log")
 			if (!Files.exists(dir))
