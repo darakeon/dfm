@@ -21,7 +21,7 @@ class ListActivity : BaseActivity() {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.list)
 
-		Handler().postDelayed({
+		Handler(mainLooper).postDelayed({
 			api.listErrors(this::fillList)
 		}, 5000)
 

@@ -2,6 +2,7 @@ package com.darakeon.dfm.base
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.Context
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE
@@ -9,6 +10,7 @@ import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
 import android.content.res.Configuration.ORIENTATION_LANDSCAPE
 import android.content.res.Configuration.ORIENTATION_PORTRAIT
+import android.os.Build
 import android.view.Surface.ROTATION_0
 import android.view.Surface.ROTATION_180
 import android.view.Surface.ROTATION_270
@@ -44,12 +46,20 @@ open class UIHandler(
 
 	private fun disableRotation() {
 		val orientation = activity.resources.configuration.orientation
-		val rotation = activity.windowManager.defaultDisplay.rotation
+		val rotation = display(activity)?.rotation
 
 		activity.requestedOrientation =
 			rotations[rotation]?.get(orientation)
 				?: SCREEN_ORIENTATION_UNSPECIFIED
 	}
+
+	private fun display(context: Context) =
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+			context.display
+		} else {
+			@Suppress("DEPRECATION")
+			activity.windowManager.defaultDisplay
+		}
 
 	private val upSide = hashMapOf(
 		ORIENTATION_PORTRAIT to SCREEN_ORIENTATION_PORTRAIT,

@@ -84,7 +84,9 @@ fun AutoCompleteTextView.complete(
 		list.map { it.text }
 	)
 
-	setAdapter(adapter)
+	(context as Activity).runOnUiThread {
+		setAdapter(adapter)
+	}
 
 	onChange { text ->
 		val value = list
