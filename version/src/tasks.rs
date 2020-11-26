@@ -1,7 +1,7 @@
+use crate::file::{get_path, get_content, set_content};
 use crate::version::Version;
-use std::fs;
 
-static PATH: &str = r"..\docs\RELEASES.md";
+fn path() -> String { get_path(vec!["..", "docs", "RELEASES.md"]) }
 
 pub fn update_task_list(version: &Version) {
 	let old_published = published(&version.prev);
@@ -12,13 +12,12 @@ pub fn update_task_list(version: &Version) {
 	let new_development = development(&version.next);
 	let new_state = state(&version.next);
 
-	let content = fs::read_to_string(PATH)
-		.unwrap()
+	let content = get_content(path())
 		.replace(&old_development, &new_development)
 		.replace(&old_published, &new_published)
 		.replace(&old_state, &new_state);
 
-	fs::write(PATH, content).expect("error on tasks recording");
+	set_content(path(), content);
 }
 
 fn published(version: &str) -> String {

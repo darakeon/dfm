@@ -1,19 +1,18 @@
 use regex::Regex;
-use std::fs;
 
+use crate::file::{get_path, get_content, set_content};
 use crate::version::Version;
 
-static PATH: &str = r"..\version\Cargo.toml";
+fn path() -> String { get_path(vec!["..", "version", "Cargo.toml"]) }
 
 pub fn update_rust(version: &Version) {
 	let old_version = config_version(&version.prev);
 	let new_version = config_version(&version.code);
 
-	let content = fs::read_to_string(PATH)
-		.unwrap()
+	let content = get_content(path())
 		.replace(&old_version, &new_version);
 
-	fs::write(PATH, content).expect("error on rust recording");
+	set_content(path(), content);
 }
 
 fn config_version(version: &str) -> String {
