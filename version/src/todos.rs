@@ -111,20 +111,19 @@ fn extract_count(text: &str) -> usize {
 
 fn get_next(sizes: Vec<String>, current: String) -> Option<String> {
 	let new_version = get_new_version(sizes);
-	if new_version.is_none() {
-		eprintln!("Unknown size");
-		return None;
+
+	if let Some((size_pattern, end)) = new_version {
+		let regex = Regex::new(&size_pattern).unwrap();
+		let captures = regex.captures(&current).unwrap();
+
+		let start = captures.get(1).unwrap().as_str().to_string();
+		let change: i32 = captures.get(2).unwrap().as_str().parse().unwrap();
+
+		return Some(format!("{}{}{}", start, change + 1, end));
 	}
 
-	let (size_pattern, end) = new_version.unwrap();
-
-	let regex = Regex::new(&size_pattern).unwrap();
-	let captures = regex.captures(&current).unwrap();
-
-	let start = captures.get(1).unwrap().as_str().to_string();
-	let change: i32 = captures.get(2).unwrap().as_str().parse().unwrap();
-
-	return Some(format!("{}{}{}", start, change + 1, end));
+	eprintln!("Unknown version size");
+	return None;
 }
 
 fn get_new_version(sizes: Vec<String>) -> Option<(String, String)> {
