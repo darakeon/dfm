@@ -14,17 +14,17 @@ pub fn create_version() -> Option<Version> {
 	let published = extract_line(&task_list, 6, version_pattern);
 	let development = extract_line(&task_list, 7, version_pattern);
 
+	let version = mount_version(published, development.clone(), &task_list);
+
+	if !version.done {
+		eprintln!("Version is not done");
+		return None;
+	}
+
 	let branch = current_branch().unwrap();
 
 	if development != branch {
 		println!("Branch is '{}', but release is of '{}'", branch, development);
-		return None;
-	}
-
-	let version = mount_version(published, development, &task_list);
-
-	if !version.done {
-		eprintln!("Version is not done");
 		return None;
 	}
 
