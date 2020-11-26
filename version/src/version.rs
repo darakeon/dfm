@@ -24,7 +24,7 @@ pub fn create_version() -> Option<Version> {
 	let branch = current_branch().unwrap();
 
 	if development != branch {
-		println!("Branch is '{}', but release is of '{}'", branch, development);
+		eprintln!("Branch is '{}', but release is of '{}'", branch, development);
 		return None;
 	}
 

@@ -17,21 +17,21 @@ pub fn parse_arguments() -> Option<Vec<usize>> {
 }
 
 fn stop_program() -> Option<Vec<usize>> {
-	println!("");
-	println!("    |-----------------------------------------------------------------------------|");
-	println!("    |                                                                             |");
-	println!("    |  Need parameters to get tasks from TODO and create new version at RELEASES  |");
-	println!("    |                                                                             |");
-	println!("    |    -q {{N}}                                                                   |");
-	println!("    |    >>> get first N tasks;                                                   |");
-	println!("    |                                                                             |");
-	println!("    |    -n {{p1}} {{p2}} {{p3}} ...                                                    |");
-	println!("    |    >>> get tasks by position;                                               |");
-	println!("    |                                                                             |");
-	println!("    |                             use just numbers at parameters, not the braces  |");
-	println!("    |                                                                             |");
-	println!("    |-----------------------------------------------------------------------------|");
-	println!("");
+	eprintln!("");
+	eprintln!("    |-----------------------------------------------------------------------------|");
+	eprintln!("    |                                                                             |");
+	eprintln!("    |  Need parameters to get tasks from TODO and create new version at RELEASES  |");
+	eprintln!("    |                                                                             |");
+	eprintln!("    |    -q {{N}}                                                                   |");
+	eprintln!("    |    >>> get first N tasks;                                                   |");
+	eprintln!("    |                                                                             |");
+	eprintln!("    |    -n {{p1}} {{p2}} {{p3}} ...                                                    |");
+	eprintln!("    |    >>> get tasks by position;                                               |");
+	eprintln!("    |                                                                             |");
+	eprintln!("    |                             use just numbers at parameters, not the braces  |");
+	eprintln!("    |                                                                             |");
+	eprintln!("    |-----------------------------------------------------------------------------|");
+	eprintln!("");
 
 	return None;
 }
