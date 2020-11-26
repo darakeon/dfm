@@ -1,7 +1,7 @@
+use crate::file::{get_path, get_content, set_content};
 use crate::version::Version;
-use std::fs;
 
-static PATH: &str = r"..\site\Language\Language\Version\";
+fn path() -> String { get_path(vec!["..", "site", "Language", "Language", "Version"]) }
 static EXT: &str = r".json";
 
 pub fn update_notes(version: &Version) {
@@ -10,8 +10,8 @@ pub fn update_notes(version: &Version) {
 }
 
 pub fn update_notes_for_language(version: &Version, language: &str) {
-	let path = format!("{}{}{}", PATH, language, EXT);
-	let mut content = fs::read_to_string(&path).unwrap();
+	let path = get_path(vec![&path(), &format!("{}{}", language, EXT)]);
+	let mut content = get_content(path.clone());
 
 	if content.contains(&version.code) {
 		return;
@@ -41,8 +41,7 @@ pub fn update_notes_for_language(version: &Version, language: &str) {
 	content.remove(0);
 	let new_content = format!("{}{}", new_release, content);
 
-	fs::write(path, new_content)
-		.expect("error on tasks recording");
+	set_content(path, new_content);
 }
 
 fn make_json(task: &str) -> String {

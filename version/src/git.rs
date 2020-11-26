@@ -4,7 +4,7 @@ use git2::BranchType;
 pub fn current_branch() -> Option<String> {
 	let repo = Repository::open("../").unwrap();
 	let branches = repo.branches(None).unwrap();
-	
+
 	for item in branches {
 		let (branch, typ) = item.unwrap();
 
@@ -13,6 +13,6 @@ pub fn current_branch() -> Option<String> {
 			return Some(name.to_string());
 		}
 	}
-	
+
 	return None;
 }

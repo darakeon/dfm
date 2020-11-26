@@ -1,11 +1,13 @@
 use regex::Regex;
 use std::collections::LinkedList;
 
-use crate::file::get_lines;
+use crate::file::{get_path, get_lines};
 use crate::git::current_branch;
 
+fn path() -> String { get_path(vec!["..", "docs", "RELEASES.md"]) }
+
 pub fn create_version() -> Option<Version> {
-	let task_list = get_lines(r"..\docs\RELEASES.md");
+	let task_list = get_lines(path());
 
 	let version_pattern = r"^\- \[.+\]\(\#(\d+\.\d+\.\d+\.\d+)\)$";
 
@@ -14,7 +16,7 @@ pub fn create_version() -> Option<Version> {
 
 	let branch = current_branch().unwrap();
 
-	if development != branch {		
+	if development != branch {
 		println!("Branch is '{}', but release is of '{}'", branch, development);
 		return None;
 	}

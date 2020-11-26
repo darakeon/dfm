@@ -1,12 +1,12 @@
 use regex::Regex;
 use std::env;
-use std::fs;
 
+use crate::file::{get_path, get_content, set_content};
 use crate::version::Version;
 
-static PATH_MAIN: &str = r"..\android\build.gradle";
-static PATH_APP: &str = r"..\android\App\build.gradle";
-static PATH_ERROR_LOGS: &str = r"..\android\ErrorLogs\build.gradle";
+fn path_main() -> String { get_path(vec!["..", "android", "build.gradle"]) }
+fn path_app() -> String { get_path(vec!["..", "android", "App", "build.gradle"]) }
+fn path_error_logs() -> String { get_path(vec!["..", "android", "ErrorLogs", "build.gradle"]) }
 
 pub fn update_android(version: &Version) {
 	let changed = update_main(version);
@@ -22,12 +22,12 @@ pub fn update_android(version: &Version) {
 		return
 	}
 
-	change_code(PATH_APP, "(2011\\d{6})");
-	change_code(PATH_ERROR_LOGS, "(\\d+)");
+	change_code(path_app(), "(2011\\d{6})");
+	change_code(path_error_logs(), "(\\d+)");
 }
 
 fn update_main(version: &Version) -> bool {
-	let mut content = fs::read_to_string(PATH_MAIN).unwrap();
+	let mut content = get_content(path_main());
 
 	if !content.contains(&version.prev) {
 		return false;
@@ -38,7 +38,7 @@ fn update_main(version: &Version) -> bool {
 
 	content = content.replace(&old_name, &new_name);
 
-	fs::write(PATH_MAIN, content).expect("error on android recording");
+	set_content(path_main(), content);
 
 	return true
 }
@@ -47,8 +47,8 @@ fn version_name(version: &str) -> String {
 	format!(r#"ext.dfm_version = "{}""#, version)
 }
 
-fn change_code(path: &str, pattern: &str) {
-	let mut content = fs::read_to_string(path).unwrap();
+fn change_code(path: String, pattern: &str) {
+	let mut content = get_content(path.clone());
 
 	let pattern = version_code(&pattern);
 	let regex = Regex::new(&pattern).unwrap();
@@ -69,7 +69,7 @@ fn change_code(path: &str, pattern: &str) {
 
 	content = content.replace(&old_code, &new_code);
 
-	fs::write(path, content).expect("error on android recording");
+	set_content(path, content);
 }
 
 fn version_code(version: &str) -> String {

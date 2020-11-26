@@ -1,10 +1,10 @@
 use regex::Regex;
 
-use crate::file::{get_lines,set_lines};
+use crate::file::{get_path,get_lines,set_lines};
 use crate::version::Version;
 
-static PATH_TODO: &str = r"..\docs\TODO.md";
-static PATH_RELEASE: &str = r"..\docs\RELEASES.md";
+fn path_todo() -> String { get_path(vec!["..", "docs", "TODO.md"]) }
+fn path_release() -> String { get_path(vec!["..", "docs", "RELEASES.md"]) }
 
 pub fn add_release(mut version: Version, numbers: Vec<usize>) -> Option<Version> {
 	let processed = process_tasks(numbers);
@@ -35,7 +35,7 @@ fn process_tasks(mut numbers: Vec<usize>) -> Option<(Vec<String>, Vec<String>)> 
 	let mut new_tasks: Vec<String> = Vec::new();
 	let mut sizes: Vec<String> = Vec::new();
 
-	let mut todo_list = get_lines(PATH_TODO);
+	let mut todo_list = get_lines(path_todo());
 	let mut l = 15;
 
 	let old_size = todo_list.len();
@@ -75,7 +75,7 @@ fn process_tasks(mut numbers: Vec<usize>) -> Option<(Vec<String>, Vec<String>)> 
 		).to_string();
 	}
 
-	let error_on_write = set_lines(PATH_TODO, todo_list).is_err();
+	let error_on_write = set_lines(path_todo(), todo_list).is_err();
 
 	if error_on_write {
 		eprintln!("Error while writing TODO.md");
@@ -166,10 +166,10 @@ fn write_release(next: String, new_tasks: Vec<String>) -> bool {
 
 	new_version.push("".to_string());
 
-	let mut release_list = get_lines(PATH_RELEASE);
+	let mut release_list = get_lines(path_release());
 	release_list.splice(16..16, new_version);
 
-	let written = !set_lines(PATH_RELEASE, release_list).is_err();
+	let written = !set_lines(path_release(), release_list).is_err();
 	if !written {
 		eprintln!("Error while writing RELEASES.md");
 	}
