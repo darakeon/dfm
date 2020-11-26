@@ -78,10 +78,13 @@ class SettingsActivity : BaseActivity() {
 	}
 
 	private fun back() {
-		AlertDialog.Builder(this)
+		val alert = AlertDialog.Builder(this)
 			.setTitle(R.string.title_activity_settings)
 			.setMessage(R.string.settings_saved)
-			.setPositiveButton(R.string.ok_button) { _, _ -> backWithExtras() }
-			.show()
+			.setPositiveButton(R.string.ok_button) {
+				_, _ -> backWithExtras()
+			}
+
+		runOnUiThread { alert.show() }
 	}
 }

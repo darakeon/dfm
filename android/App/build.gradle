@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-	compileSdkVersion 29
+	compileSdkVersion 30
 
 	defaultConfig {
 		applicationId "com.dontflymoney.view"
@@ -15,7 +15,7 @@ android {
 		versionName "$dfm_version"
 
 		minSdkVersion 21
-		targetSdkVersion 29
+		targetSdkVersion 30
 	}
 
 	signingConfigs {

@@ -48,7 +48,7 @@ private fun Activity.alert(
 		}
 	}
 
-	builder.show()
+	runOnUiThread { builder.show() }
 }
 
 fun Activity.createWaitDialog(): AlertDialog? {

@@ -1,6 +1,5 @@
 package com.darakeon.dfm.error_logs.service
 
-import android.app.ListActivity
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -10,6 +9,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
+import com.darakeon.dfm.error_logs.ListActivity
 import com.darakeon.dfm.lib.R
 
 class Notification(private val service: Service) {

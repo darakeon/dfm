@@ -100,7 +100,7 @@ jobs:
 
   test_android:
     docker:
-      - image: circleci/android:api-29
+      - image: circleci/android:api-30
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
