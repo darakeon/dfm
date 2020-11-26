@@ -1,3 +1,5 @@
+use std::process::exit;
+
 mod android;
 mod arguments;
 mod browser;
@@ -21,13 +23,18 @@ use todos::add_release;
 use version::{create_version,Version};
 
 fn main() {
-	if let Some(numbers) = parse_arguments() {
-		if let Some(version) = create_version() {
+	if let Some((just_check, numbers)) = parse_arguments() {
+		if let Some(version) = create_version(just_check) {
+			if just_check {
+				exit(0);
+			}
+
 			if let Some(new_version) = add_release(version, numbers) {
 				update_version(new_version);
 			}
 		}
 	}
+	exit(1);
 }
 
 fn update_version(version: Version) {
@@ -37,4 +44,5 @@ fn update_version(version: Version) {
 	update_rust(&version);
 	update_node(&version);
 	update_notes(&version);
+	exit(0);
 }

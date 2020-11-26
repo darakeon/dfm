@@ -1,9 +1,9 @@
 use std::env;
 
-pub fn parse_arguments() -> Option<Vec<usize>> {
+pub fn parse_arguments() -> Option<(bool, Vec<usize>)> {
     let args: Vec<String> = env::args().collect();
 
-	if args.len() < 3 {
+	if args.len() < 2 {
 		return stop_program();
 	}
 
@@ -12,11 +12,12 @@ pub fn parse_arguments() -> Option<Vec<usize>> {
     match &cmd[..] {
 		"-q" => { return parse_quantity(args); },
 		"-n" => { return parse_numbers(args); },
+		"-c" => { return check(); },
 		_ => { return stop_program(); }
 	}
 }
 
-fn stop_program() -> Option<Vec<usize>> {
+fn stop_program() -> Option<(bool, Vec<usize>)> {
 	eprintln!("");
 	eprintln!("    |-----------------------------------------------------------------------------|");
 	eprintln!("    |                                                                             |");
@@ -28,6 +29,9 @@ fn stop_program() -> Option<Vec<usize>> {
 	eprintln!("    |    -n {{p1}} {{p2}} {{p3}} ...                                                    |");
 	eprintln!("    |    >>> get tasks by position;                                               |");
 	eprintln!("    |                                                                             |");
+	eprintln!("    |    -c                                                                       |");
+	eprintln!("    |    >>> just check if the version is right.                                  |");
+	eprintln!("    |                                                                             |");
 	eprintln!("    |                             use just numbers at parameters, not the braces  |");
 	eprintln!("    |                                                                             |");
 	eprintln!("    |-----------------------------------------------------------------------------|");
@@ -36,10 +40,17 @@ fn stop_program() -> Option<Vec<usize>> {
 	return None;
 }
 
-fn parse_quantity(args: Vec<String>) -> Option<Vec<usize>> {
+fn parse_quantity(args: Vec<String>) -> Option<(bool, Vec<usize>)> {
+	if args.len() != 3 {
+		return quantity_error();
+	}
+
 	let quantity = args[2].parse::<usize>();
 
 	match quantity {
+		Ok(0) | Err(_) => {
+			return quantity_error();
+		}
 		Ok(q) => {
 			let mut numbers: Vec<usize> = Vec::new();
 
@@ -47,19 +58,19 @@ fn parse_quantity(args: Vec<String>) -> Option<Vec<usize>> {
 				numbers.push(number);
 			}
 
-			return Some(numbers);
-		}
-		Err(_) => {
-			eprintln!("-q must have one argument and it must be a number");
-			return None;
+			return Some((false, numbers));
 		}
 	}
 }
 
-fn parse_numbers(args: Vec<String>) -> Option<Vec<usize>> {
-	if args.len() < 2 {
-		eprintln!("-n must have at least one argument and they must be all numbers");
-		return None;
+fn quantity_error() -> Option<(bool, Vec<usize>)> {
+	eprintln!("-q must have one argument and it must be a number greater than zero");
+	return None;
+}
+
+fn parse_numbers(args: Vec<String>) -> Option<(bool, Vec<usize>)> {
+	if args.len() < 3 {
+		return numbers_error();
 	}
 
 	let mut numbers: Vec<usize> = Vec::new();
@@ -68,15 +79,23 @@ fn parse_numbers(args: Vec<String>) -> Option<Vec<usize>> {
 		let number = args[position].parse::<usize>();
 
 		match number {
+			Ok(0) | Err(_) => {
+				return numbers_error();
+			}
 			Ok(n) => {
 				numbers.push(n);
-			}
-			Err(_) => {
-				eprintln!("At least of of the arguments of -n is not a number");
-				return None;
 			}
 		}
 	}
 
-	return Some(numbers);
+	return Some((false, numbers));
+}
+
+fn numbers_error() -> Option<(bool, Vec<usize>)> {
+	eprintln!("-n must have at least one argument and they all must be numbers greater than zero");
+	return None;
+}
+
+fn check() -> Option<(bool, Vec<usize>)> {
+	Some((true, Vec::new()))
 }

@@ -155,6 +155,29 @@ jobs:
       - store_test_results:
           path: android/App/build/test-results
 
+  version_check:
+    docker:
+      - image: rust
+    environment:
+      RUST_BACKTRACE: 1
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - rust-{{ checksum "version/Cargo.toml" }}
+      - run:
+          name: build
+          path: version
+          command: cargo build
+      - save_cache:
+          key: rust-{{ checksum "version/Cargo.toml" }}
+          paths:
+            - /usr/local/cargo/registry/
+      - run:
+          name: check_version_changed
+          path: version
+          command: cargo run -q -- -c
+
 workflows:
   version: 2.1
   build_all:
@@ -162,3 +185,4 @@ workflows:
       - test_core
       - test_site
       - test_android
+      - version_check
