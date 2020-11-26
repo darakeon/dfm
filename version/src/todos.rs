@@ -7,11 +7,7 @@ fn path_todo() -> String { get_path(vec!["..", "docs", "TODO.md"]) }
 fn path_release() -> String { get_path(vec!["..", "docs", "RELEASES.md"]) }
 
 pub fn add_release(mut version: Version, numbers: Vec<usize>) -> Option<Version> {
-	let processed = process_tasks(numbers);
-	if processed.is_none() {
-		return None;
-	}
-	let (new_tasks, sizes) = processed.unwrap();
+	let (new_tasks, sizes) = process_tasks(numbers);
 
 	let try_next = get_next(sizes, version.code.clone());
 	if try_next.is_none() {
@@ -19,17 +15,13 @@ pub fn add_release(mut version: Version, numbers: Vec<usize>) -> Option<Version>
 	}
 	let next = try_next.unwrap();
 
-	let written = write_release(next.clone(), new_tasks);
-
-	if !written {
-		return None;
-	}
+	write_release(next.clone(), new_tasks);
 
 	version.next = next;
 	return Some(version);
 }
 
-fn process_tasks(mut numbers: Vec<usize>) -> Option<(Vec<String>, Vec<String>)> {
+fn process_tasks(mut numbers: Vec<usize>) -> (Vec<String>, Vec<String>) {
 	let mut count: usize = 0;
 
 	let mut new_tasks: Vec<String> = Vec::new();
@@ -75,14 +67,9 @@ fn process_tasks(mut numbers: Vec<usize>) -> Option<(Vec<String>, Vec<String>)> 
 		).to_string();
 	}
 
-	let error_on_write = set_lines(path_todo(), todo_list).is_err();
+	set_lines(path_todo(), todo_list);
 
-	if error_on_write {
-		eprintln!("Error while writing TODO.md");
-		return None;
-	}
-
-	return Some((new_tasks, sizes));
+	return (new_tasks, sizes);
 }
 
 fn extract_task(text: &str) -> Option<(String, String, String)> {
@@ -154,7 +141,7 @@ fn get_new_version(sizes: Vec<String>) -> Option<(String, String)> {
 	}
 }
 
-fn write_release(next: String, new_tasks: Vec<String>) -> bool {
+fn write_release(next: String, new_tasks: Vec<String>) {
 	let mut new_version: Vec<String> = Vec::new();
 
 	new_version.push(format!(
@@ -169,10 +156,5 @@ fn write_release(next: String, new_tasks: Vec<String>) -> bool {
 	let mut release_list = get_lines(path_release());
 	release_list.splice(16..16, new_version);
 
-	let written = !set_lines(path_release(), release_list).is_err();
-	if !written {
-		eprintln!("Error while writing RELEASES.md");
-	}
-
-	return written;
+	set_lines(path_release(), release_list);
 }

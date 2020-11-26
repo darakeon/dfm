@@ -1,6 +1,5 @@
 use std::env;
 use std::fs;
-use std::io::Error;
 
 pub fn get_lines(path: String) -> Vec<String> {
 	fs::read_to_string(path)
@@ -10,8 +9,8 @@ pub fn get_lines(path: String) -> Vec<String> {
 		.collect()
 }
 
-pub fn set_lines(path: String, lines: Vec<String>) -> Result<(), Error> {
-	fs::write(path, lines.join("\n"))
+pub fn set_lines(path: String, lines: Vec<String>) {
+	fs::write(path, lines.join("\n")).unwrap()
 }
 
 pub fn get_content(path: String) -> String {
