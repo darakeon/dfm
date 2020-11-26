@@ -6,26 +6,37 @@ use crate::git::current_branch;
 
 fn path() -> String { get_path(vec!["..", "docs", "RELEASES.md"]) }
 
-pub fn create_version() -> Option<Version> {
+pub fn create_version(just_check: bool) -> Option<Version> {
 	let task_list = get_lines(path());
 
 	let version_pattern = r"^\- \[.+\]\(\#(\d+\.\d+\.\d+\.\d+)\)$";
 
-	let published = extract_line(&task_list, 6, version_pattern);
+	let production = extract_line(&task_list, 6, version_pattern);
 	let development = extract_line(&task_list, 7, version_pattern);
 
-	let version = mount_version(published, development.clone(), &task_list);
-
-	if !version.done {
-		eprintln!("Version is not done");
-		return None;
-	}
+	let version = mount_version(
+		production.clone(),
+		development.clone(),
+		&task_list
+	);
 
 	let branch = current_branch().unwrap();
 
-	if development != branch {
-		eprintln!("Branch is '{}', but release is of '{}'", branch, development);
-		return None;
+	if just_check {
+		if branch != production {
+			eprintln!("Branch is '{}', but release is of '{}'", branch, production);
+			return None;
+		}
+	} else {
+		if !version.done {
+			eprintln!("Version is not done");
+			return None;
+		}
+
+		if branch != development {
+			eprintln!("Branch is '{}', but release is of '{}'", branch, development);
+			return None;
+		}
 	}
 
 	if version.tasks.len() == 0 {
