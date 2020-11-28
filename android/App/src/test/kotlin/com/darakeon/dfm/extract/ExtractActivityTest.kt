@@ -70,8 +70,7 @@ class ExtractActivityTest: BaseTest() {
 
 	@Test
 	fun structure() {
-		activity.onCreate(null, null)
-		activity.waitTasks(mocker.server)
+		activity.onCreate(Bundle(), null)
 
 		assertNotNull(activity.findViewById(R.id.highlight))
 		assertNotNull(activity.findViewById(R.id.total_title))

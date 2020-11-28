@@ -87,8 +87,7 @@ class MovesActivityTest: BaseTest() {
 
 	@Test
 	fun structure() {
-		activity.onCreate(null, null)
-		activity.waitTasks(mocker.server)
+		activity.onCreate(Bundle(), null)
 
 		assertNotNull(activity.findViewById(R.id.warnings))
 		assertNotNull(activity.findViewById(R.id.no_accounts))
@@ -903,7 +902,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun save() {
 		activity.simulateNetwork()
-		mocker.server.enqueue("empty")
 
 		activity.intent.putExtra(
 			"__parent",
@@ -919,6 +917,7 @@ class MovesActivityTest: BaseTest() {
 		val move = activity.getPrivate<Move>("move")
 		assertNotNull(move.value)
 
+		mocker.server.enqueue("empty")
 		activity.save(View(activity))
 		activity.waitTasks(mocker.server)
 
