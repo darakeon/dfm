@@ -19,7 +19,8 @@ Legend:
 - [ ] If lost authy, send e-mail to remove authy
 - [ ] Link unsubscribe for moves (new security token)
 
-## <a name="4.5.0.2"></a>4.5.0.2 :ant: <sup>`1`</sup>
+## <a name="4.5.0.2"></a>4.5.0.2 :ant: <sup>`2`</sup>
+- [x] `201128>201128` Fix finish bugfix version
 - [x] `201128>201128` Fix version check to do not fail at main
 
 ## <a name="4.5.0.1"></a>4.5.0.1 :ant: <sup>`6`</sup>
