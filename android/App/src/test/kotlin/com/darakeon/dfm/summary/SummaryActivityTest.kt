@@ -25,6 +25,7 @@ import kotlinx.android.synthetic.main.summary.total_title
 import kotlinx.android.synthetic.main.summary.total_value
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.After
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Before
@@ -44,6 +45,11 @@ class SummaryActivityTest: BaseTest() {
 	fun setup() {
 		mocker = ActivityMock(SummaryActivity::class)
 		activity = mocker.get()
+	}
+
+	@After
+	fun tearDown() {
+		mocker.server.shutdown()
 	}
 
 	@Test

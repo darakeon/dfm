@@ -24,6 +24,7 @@ import kotlinx.android.synthetic.main.settings.use_categories
 import kotlinx.android.synthetic.main.settings.version
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.After
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
@@ -43,6 +44,11 @@ class SettingsActivityTest: BaseTest() {
 	fun setup() {
 		mocker = ActivityMock(SettingsActivity::class)
 		activity = mocker.get()
+	}
+
+	@After
+	fun tearDown() {
+		mocker.server.shutdown()
 	}
 
 	@Test

@@ -28,6 +28,7 @@ import kotlinx.android.synthetic.main.bottom_menu.view.action_settings
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.After
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
@@ -47,6 +48,11 @@ class BaseActivityTest: BaseTest() {
 	@Before
 	fun setup() {
 		mocker = ActivityMock(TestActivity::class)
+	}
+
+	@After
+	fun tearDown() {
+		mocker.server.shutdown()
 	}
 
 	@Test

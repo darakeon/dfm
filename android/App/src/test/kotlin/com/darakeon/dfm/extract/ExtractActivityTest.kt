@@ -31,6 +31,7 @@ import kotlinx.android.synthetic.main.extract.total_title
 import kotlinx.android.synthetic.main.extract.total_value
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.After
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
@@ -60,6 +61,11 @@ class ExtractActivityTest: BaseTest() {
 	fun setup() {
 		mocker = ActivityMock(ExtractActivity::class)
 		activity = mocker.get()
+	}
+
+	@After
+	fun tearDown() {
+		mocker.server.shutdown()
 	}
 
 	@Test
