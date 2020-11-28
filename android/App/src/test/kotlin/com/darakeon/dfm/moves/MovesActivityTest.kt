@@ -55,6 +55,7 @@ import kotlinx.android.synthetic.main.moves.warnings
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.After
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
@@ -77,6 +78,11 @@ class MovesActivityTest: BaseTest() {
 	fun setup() {
 		mocker = ActivityMock(MovesActivity::class)
 		activity = mocker.get()
+	}
+
+	@After
+	fun tearDown() {
+		mocker.server.shutdown()
 	}
 
 	@Test
