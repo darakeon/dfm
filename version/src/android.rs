@@ -1,7 +1,7 @@
 use regex::Regex;
-use std::env;
 
 use crate::file::{get_path, get_content, set_content};
+use crate::git::list_changed;
 use crate::version::Version;
 
 fn path_main() -> String { get_path(vec!["..", "android", "build.gradle"]) }
@@ -9,21 +9,50 @@ fn path_app() -> String { get_path(vec!["..", "android", "App", "build.gradle"])
 fn path_error_logs() -> String { get_path(vec!["..", "android", "ErrorLogs", "build.gradle"]) }
 
 pub fn update_android(version: &Version) {
-	let changed = update_main(version);
+	let list_changed = list_changed();
+	let changed_general = general_changed(&list_changed);
 
-	if !changed {
-		return
+	let updated_main = update_main(version);
+
+	if !updated_main { return }
+
+	if changed_general || changed("App", &list_changed) {
+		change_code(path_app(), "(2011\\d{6})");
 	}
 
-	let args: Vec<String> = env::args().collect();
-	let change_android = args.len() < 2 || args[1] != "--no-android";
+	if changed_general || changed("ErrorLogs", &list_changed) {
+		change_code(path_error_logs(), "(\\d+)");
+	}
+}
 
-	if !change_android {
-		return
+fn general_changed(list: &Vec<String>) -> bool {
+	let checks = vec![
+		"Lib",
+		"TestUtils",
+		"build.gradle",
+		"gradle.properties",
+		"settings.gradle"
+	];
+
+	for check in checks {
+		if changed(check, list) {
+			return true;
+		}
 	}
 
-	change_code(path_app(), "(2011\\d{6})");
-	change_code(path_error_logs(), "(\\d+)");
+	return false;
+}
+
+fn changed(name: &str, list: &Vec<String>) -> bool {
+	let path = format!("android/{}", name);
+
+	for item in list {
+		if item.starts_with(&path) {
+			return true;
+		}
+	}
+
+	return false;
 }
 
 fn update_main(version: &Version) -> bool {
