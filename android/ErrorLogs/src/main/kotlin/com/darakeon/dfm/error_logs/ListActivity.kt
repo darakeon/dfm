@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import com.darakeon.dfm.error_logs.service.SiteErrorService
+import com.darakeon.dfm.lib.Log
 import com.darakeon.dfm.lib.api.entities.status.ErrorList
 import com.darakeon.dfm.lib.api.entities.status.ErrorLog
-import com.darakeon.dfm.lib.extensions.log
 import com.darakeon.dfm.lib.extensions.refresh
 import kotlinx.android.synthetic.main.list.list
 import kotlinx.android.synthetic.main.list.main
@@ -68,7 +68,7 @@ class ListActivity : BaseActivity() {
 	}
 
 	private fun toggleButtons() {
-		log(SiteErrorService.running)
+		Log.record(SiteErrorService.running)
 		stop.isEnabled = SiteErrorService.running
 		start.isEnabled = !SiteErrorService.running
 	}

@@ -6,6 +6,7 @@ import android.view.MotionEvent.ACTION_MOVE
 import android.view.MotionEvent.ACTION_UP
 import android.view.View
 import android.widget.GridLayout
+import com.darakeon.dfm.lib.Log
 import kotlin.math.abs
 
 fun View.changeColSpan(size: Int) {
@@ -70,8 +71,8 @@ private fun touch(view: View, event: MotionEvent, moves: MutableMap<Direction, M
 			val diffY = event.rawY - (y[view]?:0f)
 
 			val direction = getDirection(diffX, diffY)
-			log(direction.toString())
-			log(finger[view].toString())
+			Log.record(direction)
+			Log.record(finger[view])
 
 			moves[direction]
 				?.get(finger[view])
