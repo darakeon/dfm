@@ -3,6 +3,7 @@ package com.darakeon.dfm.testutils.robolectric
 import android.app.Activity
 import android.os.Build
 import androidx.annotation.RequiresApi
+import com.darakeon.dfm.lib.Log
 import com.darakeon.dfm.testutils.getPrivate
 import org.robolectric.Shadows.shadowOf
 import java.util.Locale

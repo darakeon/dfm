@@ -3,10 +3,10 @@ package com.darakeon.dfm.lib.api
 import android.app.Activity
 import android.content.Context
 import com.darakeon.dfm.lib.BuildConfig
+import com.darakeon.dfm.lib.Log
 import com.darakeon.dfm.lib.R
 import com.darakeon.dfm.lib.api.entities.Body
 import com.darakeon.dfm.lib.auth.setEnvironment
-import com.darakeon.dfm.lib.extensions.log
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -85,7 +85,7 @@ class ResponseHandler<C, A>(
 	private fun getError(error: String?) =
 		error ?: caller.getString(R.string.error_not_identified)
 
-	private fun logDebug(stage: String) {
-		log("$stage $caller")
+	private fun logDebug(stage: Any?) {
+		Log.record("$stage $caller")
 	}
 }
