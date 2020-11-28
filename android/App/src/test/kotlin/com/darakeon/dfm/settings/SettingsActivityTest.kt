@@ -152,7 +152,6 @@ class SettingsActivityTest: BaseTest() {
 	@Test
 	fun saveSettings() {
 		activity.simulateNetwork()
-		mocker.server.enqueue("empty")
 
 		val saved = Bundle()
 		saved.putJson("settings", Settings())
@@ -160,6 +159,7 @@ class SettingsActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
+		mocker.server.enqueue("empty")
 		activity.saveSettings(View(activity))
 		activity.waitTasks(mocker.server)
 

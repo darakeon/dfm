@@ -38,7 +38,7 @@ class AccountsActivityTest: BaseTest() {
 
 	@Test
 	fun structure() {
-		activity.onCreate(null, null)
+		activity.onCreate(Bundle(), null)
 
 		assertNotNull(activity.findViewById(R.id.empty_list))
 		assertNotNull(activity.findViewById(R.id.main_table))

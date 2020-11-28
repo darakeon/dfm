@@ -1,5 +1,6 @@
 package com.darakeon.dfm.extract
 
+import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import com.darakeon.dfm.R
@@ -46,7 +47,7 @@ class MoveLineTest: BaseTest() {
 		mocker = ActivityMock(ExtractActivity::class)
 
 		activity = mocker.get()
-		activity.onCreate(null, null)
+		activity.onCreate(Bundle(), null)
 		activity.waitTasks(mocker.server)
 
 		moveLine = activity.layoutInflater
