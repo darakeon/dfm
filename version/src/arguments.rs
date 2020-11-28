@@ -1,5 +1,7 @@
 use std::env;
 
+use crate::end::{throw,throw_multiple};
+
 pub fn parse_arguments() -> Option<(bool, Vec<usize>)> {
     let args: Vec<String> = env::args().collect();
 
@@ -13,31 +15,35 @@ pub fn parse_arguments() -> Option<(bool, Vec<usize>)> {
 		"-q" => { return parse_quantity(args); },
 		"-n" => { return parse_numbers(args); },
 		"-c" => { return check(); },
+		"-e" => { return empty(); },
 		_ => { return stop_program(); }
 	}
 }
 
 fn stop_program() -> Option<(bool, Vec<usize>)> {
-	eprintln!("");
-	eprintln!("    |-----------------------------------------------------------------------------|");
-	eprintln!("    |                                                                             |");
-	eprintln!("    |  Need parameters to get tasks from TODO and create new version at RELEASES  |");
-	eprintln!("    |                                                                             |");
-	eprintln!("    |    -q {{N}}                                                                   |");
-	eprintln!("    |    >>> get first N tasks;                                                   |");
-	eprintln!("    |                                                                             |");
-	eprintln!("    |    -n {{p1}} {{p2}} {{p3}} ...                                                    |");
-	eprintln!("    |    >>> get tasks by position;                                               |");
-	eprintln!("    |                                                                             |");
-	eprintln!("    |    -c                                                                       |");
-	eprintln!("    |    >>> just check if the version is right.                                  |");
-	eprintln!("    |                                                                             |");
-	eprintln!("    |                             use just numbers at parameters, not the braces  |");
-	eprintln!("    |                                                                             |");
-	eprintln!("    |-----------------------------------------------------------------------------|");
-	eprintln!("");
-
-	return None;
+	return throw_multiple(1, vec![
+		"",
+		"    |-----------------------------------------------------------------------------|",
+		"    |                                                                             |",
+		"    |  Need parameters to get tasks from TODO and create new version at RELEASES  |",
+		"    |                                                                             |",
+		"    |    -q {{N}}                                                                   |",
+		"    |    >>> get first N tasks;                                                   |",
+		"    |                                                                             |",
+		"    |    -n {{p1}} {{p2}} {{p3}} ...                                                    |",
+		"    |    >>> get tasks by position;                                               |",
+		"    |                                                                             |",
+		"    |    -e                                                                       |",
+		"    |    >>> empty, to use when the new release is already created                |",
+		"    |                                                                             |",
+		"    |    -c                                                                       |",
+		"    |    >>> just check if the version is right.                                  |",
+		"    |                                                                             |",
+		"    |                             use just numbers at parameters, not the braces  |",
+		"    |                                                                             |",
+		"    |-----------------------------------------------------------------------------|",
+		"",
+	]);
 }
 
 fn parse_quantity(args: Vec<String>) -> Option<(bool, Vec<usize>)> {
@@ -64,8 +70,7 @@ fn parse_quantity(args: Vec<String>) -> Option<(bool, Vec<usize>)> {
 }
 
 fn quantity_error() -> Option<(bool, Vec<usize>)> {
-	eprintln!("-q must have one argument and it must be a number greater than zero");
-	return None;
+	return throw(2, "-q must have one argument and it must be a number greater than zero");
 }
 
 fn parse_numbers(args: Vec<String>) -> Option<(bool, Vec<usize>)> {
@@ -92,10 +97,13 @@ fn parse_numbers(args: Vec<String>) -> Option<(bool, Vec<usize>)> {
 }
 
 fn numbers_error() -> Option<(bool, Vec<usize>)> {
-	eprintln!("-n must have at least one argument and they all must be numbers greater than zero");
-	return None;
+	return throw(3, "-n must have at least one argument and they all must be numbers greater than zero");
 }
 
 fn check() -> Option<(bool, Vec<usize>)> {
 	Some((true, Vec::new()))
+}
+
+fn empty() -> Option<(bool, Vec<usize>)> {
+	Some((false, Vec::new()))
 }

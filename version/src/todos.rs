@@ -1,5 +1,6 @@
 use regex::Regex;
 
+use crate::end::throw;
 use crate::file::{get_path,get_lines,set_lines};
 use crate::version::Version;
 
@@ -122,8 +123,7 @@ fn get_next(sizes: Vec<String>, current: String) -> Option<String> {
 		return Some(format!("{}{}{}", start, change + 1, end));
 	}
 
-	eprintln!("Unknown version size");
-	return None;
+	return throw(21, "Unknown version size");
 }
 
 fn get_new_version(sizes: Vec<String>) -> Option<(String, String)> {

@@ -1,75 +1,72 @@
-use regex::Regex;
 use std::collections::LinkedList;
 
+use crate::end::{throw,throw_format};
 use crate::file::{get_path, get_lines};
 use crate::git::current_branch;
+use crate::regex::{extract, extract_line};
+use crate::todos::add_release;
 
 fn path() -> String { get_path(vec!["..", "docs", "RELEASES.md"]) }
 
-pub fn create_version(just_check: bool) -> Option<Version> {
+pub fn create_version(just_check: bool, numbers: Vec<usize>) -> Option<Version> {
 	let task_list = get_lines(path());
+	let pattern = r"^\- \[.+\]\(\#(\d+\.\d+\.\d+\.\d+)\)$";
 
-	let version_pattern = r"^\- \[.+\]\(\#(\d+\.\d+\.\d+\.\d+)\)$";
-
-	let production = extract_line(&task_list, 6, version_pattern);
-	let development = extract_line(&task_list, 7, version_pattern);
+	let prod = extract_line(&task_list, 6, pattern);
+	let dev = extract_line(&task_list, 7, pattern);
 
 	let version = mount_version(
-		production.clone(),
-		development.clone(),
-		&task_list
+		prod.clone(),
+		dev.clone(),
+		&task_list,
+		numbers,
 	);
 
 	let branch = current_branch().unwrap();
 
 	if just_check {
-		if branch != "main" && branch != production {
-			eprintln!("Branch is '{}', but release is of '{}'", branch, production);
-			return None;
+		if branch != "main" && branch != prod {
+			return throw_format(11, format!("Branch is '{}', but release is of '{}'", branch, prod));
 		}
 	} else {
 		if !version.done {
-			eprintln!("Version is not done");
-			return None;
+			return throw(12, "Version is not done");
 		}
 
-		if branch != development {
-			eprintln!("Branch is '{}', but release is of '{}'", branch, development);
-			return None;
+		if branch != dev {
+			return throw_format(13, format!("Branch is '{}', but release is of '{}'", branch, dev));
 		}
 	}
 
 	if version.tasks.len() == 0 {
-		eprintln!("Version without tasks");
-		return None;
+		return throw(14, "Version without tasks");
 	}
 
 	Some(version)
 }
 
-fn extract_line(lines: &Vec<String>, position: usize, pattern: &str) -> String {
-	let line = lines.get(position).unwrap();
-	return extract(line, pattern).unwrap();
-}
-
-fn extract(text: &str, pattern: &str) -> Option<String> {
-	let regex = Regex::new(pattern).unwrap();
-
-	if regex.is_match(text) {
-		let captures = regex.captures(text).unwrap();
-		Some(captures.get(1).unwrap().as_str().to_string())
-	} else {
-		None
-	}
-}
-
-fn mount_version(published: String, development: String, task_list: &Vec<String>) -> Version {
-	let mut version = Version::new(development, published);
+fn mount_version(published: String, development: String, task_list: &Vec<String>, numbers: Vec<usize>) -> Version {
+	let mut version = Version::new(development.clone(), published);
 
 	let done_pattern = r"^\- \[([ x])\] ";
 	let task_pattern = r"^\- \[[ x]\](?: `.{6}>.{6}`)? (.+)";
 
-	for l in 17..task_list.len() {
+	let mut start = 16;
+
+	let header = format!("## <a name=\"{}\">", development);
+
+	while !task_list.get(start).unwrap().starts_with(&header) {
+		start += 1;
+	}
+
+	if start != 16 {
+		let pattern = r"(\d+\.\d+\.\d+\.\d+)";
+		version.next = extract_line(task_list, 16, pattern);
+	} else if numbers.len() > 0 {
+		version = add_release(version, numbers).unwrap();
+	}
+
+	for l in (start+1)..task_list.len() {
 		let line = task_list.get(l).unwrap();
 
 		if let Some(done) = extract(&line, done_pattern) {
