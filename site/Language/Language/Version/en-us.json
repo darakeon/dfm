@@ -1,4 +1,7 @@
 {
+	"4.5.0.2": [
+		"Fix program that changes system version number"
+	],
 	"4.5.0.1": [
 		"Fix contract pt-br word",
 		"Fix bug of zero value move at future moves reports",

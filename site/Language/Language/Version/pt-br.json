@@ -1,4 +1,7 @@
 {
+	"4.5.0.2": [
+		"Arrumado programa que muda o número da versão do sistema"
+	],
 	"4.5.0.1": [
 		"Corrigida palavra no contrato",
 		"Corrigido problema de valor zerado em movimentação futura",

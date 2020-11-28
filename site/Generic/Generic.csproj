@@ -4,8 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>DFM.Generic</AssemblyName>
     <RootNamespace>DFM.Generic</RootNamespace>
-    <AssemblyVersion>4.5.0.1</AssemblyVersion>
-    <FileVersion>4.5.0.1</FileVersion>
+    <AssemblyVersion>4.5.0.2</AssemblyVersion>
+    <FileVersion>4.5.0.2</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
