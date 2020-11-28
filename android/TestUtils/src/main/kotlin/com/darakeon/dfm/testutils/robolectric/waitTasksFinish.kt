@@ -20,16 +20,16 @@ fun Activity.waitTasks(waitable: Waitable) {
 
 @RequiresApi(Build.VERSION_CODES.M)
 private fun Activity.waitTasksWithCount(count: Int?) {
-	var started: Boolean
-	var ended: Boolean
-
 	do {
 		shadowOf(mainLooper).idle()
-
-		started = this.getPrivate("Started", count)
-		ended = this.getPrivate("Ended", count)
-	} while(!started || !ended)
+	} while (!started(count) || !ended(count))
 }
+
+private fun Activity.started(count: Int?) =
+	this.getPrivate("Started", count)
+
+private fun Activity.ended(count: Int?) =
+	this.getPrivate("Ended", count)
 
 private fun Any.getPrivate(name: String, count: Int?) =
 	if (count == null) {
