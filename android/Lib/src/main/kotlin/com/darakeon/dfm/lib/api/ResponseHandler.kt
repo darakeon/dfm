@@ -22,7 +22,7 @@ class ResponseHandler<C, A>(
 	init { logDebug("INIT") }
 
 	override fun onResponse(call: Call<Body<A>>, response: Response<Body<A>>?) {
-		logDebug("SUCCESS")
+		logDebug("SUCCESS ${call.request().url()}")
 
 		caller.endWait()
 
@@ -49,7 +49,7 @@ class ResponseHandler<C, A>(
 	}
 
 	override fun onFailure(call: Call<Body<A>>, throwable: Throwable) {
-		logDebug("FAIL")
+		logDebug("FAIL ${call.request().url()}")
 
 		caller.endWait()
 
