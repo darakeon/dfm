@@ -5,8 +5,8 @@
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
 - [go to published version](#4.5.0.1)
-- [go to version in development](#4.6.0.0)
-- [dev version state](../../4.6.0.0/docs/RELEASES.md#4.6.0.0)
+- [go to version in development](#4.5.0.2)
+- [dev version state](../../4.5.0.2/docs/RELEASES.md#4.5.0.2)
 
 Legend:
 - :dragon:: at least one huge change (increases first number)
@@ -18,6 +18,9 @@ Legend:
 - [ ] Add code of conduct to repo [#44]
 - [ ] If lost authy, send e-mail to remove authy
 - [ ] Link unsubscribe for moves (new security token)
+
+## <a name="4.5.0.2"></a>4.5.0.2 :ant: <sup>`1`</sup>
+- [x] `201128>201128` Fix version check to do not fail at main
 
 ## <a name="4.5.0.1"></a>4.5.0.1 :ant: <sup>`6`</sup>
 - [x] `201124>201124` Fix contract pt-br word

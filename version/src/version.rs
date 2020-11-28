@@ -23,7 +23,7 @@ pub fn create_version(just_check: bool) -> Option<Version> {
 	let branch = current_branch().unwrap();
 
 	if just_check {
-		if branch != production {
+		if branch != "main" && branch != production {
 			eprintln!("Branch is '{}', but release is of '{}'", branch, production);
 			return None;
 		}
