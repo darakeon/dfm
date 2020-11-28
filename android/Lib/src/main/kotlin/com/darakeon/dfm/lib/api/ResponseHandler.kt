@@ -24,28 +24,27 @@ class ResponseHandler<C, A>(
 	override fun onResponse(call: Call<Body<A>>, response: Response<Body<A>>?) {
 		logDebug("SUCCESS ${call.request().url()}")
 
-		caller.endWait()
-
 		if (response == null) {
 			onError(call, ApiException("Null response"))
-			return
+		} else {
+			val body = response.body()
+
+			if (body?.environment != null && caller is Activity) {
+				caller.setEnvironment(body.environment)
+			}
+
+			when {
+				body == null ->
+					caller.error(R.string.body_null)
+
+				body.data == null || body.code != null ->
+					assemblyResponse(body.code, body.error)
+
+				else -> onSuccess(body.data)
+			}
 		}
 
-		val body = response.body()
-
-		if (body?.environment != null && caller is Activity) {
-			caller.setEnvironment(body.environment)
-		}
-
-		when {
-			body == null ->
-				caller.error(R.string.body_null)
-
-			body.data == null || body.code != null ->
-				assemblyResponse(body.code, body.error)
-
-			else -> onSuccess(body.data)
-		}
+		caller.endWait()
 	}
 
 	override fun onFailure(call: Call<Body<A>>, throwable: Throwable) {
