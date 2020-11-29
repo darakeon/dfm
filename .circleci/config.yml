@@ -101,8 +101,6 @@ jobs:
   test_android:
     docker:
       - image: circleci/android:api-30
-    environment:
-      JVM_OPTS: Xms8G -Xmx8G
     steps:
       - checkout
       - restore_cache:
