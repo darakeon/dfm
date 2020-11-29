@@ -1,6 +1,6 @@
 use std::process::exit;
 
-pub fn success() {
+pub fn success<T>() -> Option<T> {
 	exit(0);
 }
 

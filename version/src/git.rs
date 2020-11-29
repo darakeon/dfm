@@ -1,4 +1,7 @@
-use git2::{BranchType,DiffOptions,Repository,DiffFile};
+use git2::{BranchType,DiffFile,DiffOptions,Repository};
+use reqwest::blocking::Client;
+
+use crate::regex::replace;
 
 pub fn current_branch() -> Option<String> {
 	let repo = Repository::open("../").unwrap();
@@ -54,4 +57,31 @@ pub fn list_changed() -> Vec<String> {
 
 fn get_path(file: DiffFile) -> String {
 	return file.path().unwrap().to_str().unwrap().to_string();
+}
+
+pub fn has_pull_request() -> bool {
+	let url_repo = url_repo();
+	let url_api = url_api(&url_repo);
+
+	let client = Client::new().get(&url_api).header("User-Agent", "");
+	let response = client.send().unwrap();
+	let body = response.text().unwrap();
+
+	return body != "[]";
+}
+
+fn url_repo() -> String {
+	let repo = Repository::open("../").unwrap();
+	let remote = repo.find_remote("origin").unwrap();
+	return remote.url().unwrap().to_string();
+}
+
+fn url_api(url_repo: &str) -> String {
+	let pattern = r"git@github.com:(\w+)/(\w+).git";
+	let replacer = r"https://api.github.com/repos/$1/$2/pulls?state=open&head=$1:";
+	let replaced = replace(url_repo, pattern, replacer).unwrap();
+
+	let branch = current_branch().unwrap();
+
+	return format!("{}{}", replaced, branch);
 }
