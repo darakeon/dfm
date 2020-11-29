@@ -15,3 +15,13 @@ pub fn extract(text: &str, pattern: &str) -> Option<String> {
 		None
 	}
 }
+
+pub fn replace(text: &str, pattern: &str, replacer: &str) -> Option<String> {
+	let regex = Regex::new(pattern).unwrap();
+
+	if regex.is_match(text) {
+		Some(regex.replace(text, replacer).into_owned())
+	} else {
+		None
+	}
+}

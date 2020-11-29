@@ -1,8 +1,8 @@
 use std::collections::LinkedList;
 
-use crate::end::{throw,throw_format};
+use crate::end::{success,throw,throw_format};
 use crate::file::{get_path, get_lines};
-use crate::git::current_branch;
+use crate::git::{current_branch,has_pull_request};
 use crate::regex::{extract, extract_line};
 use crate::todos::add_release;
 
@@ -26,21 +26,16 @@ pub fn create_version(just_check: bool, numbers: Vec<usize>) -> Option<Version> 
 	);
 
 	if !version.done {
-		return throw(12, "Version is not done");
+		return end_not_done();
 	}
 
-	if just_check {
-		if branch != "main" && branch != prod {
-			return throw_format(11, format!("Branch is '{}', but release is of '{}'", branch, prod));
-		}
-	} else {
-		if branch != dev {
-			return throw_format(13, format!("Branch is '{}', but release is of '{}'", branch, dev));
-		}
+	let compare = if just_check { prod } else { dev };
+	if branch != "main" && branch != compare {
+		return throw_format(12, format!("Branch is '{}', but release is of '{}'", branch, compare));
 	}
 
 	if version.tasks.len() == 0 {
-		return throw(14, "Version without tasks");
+		return throw(13, "Version without tasks");
 	}
 
 	Some(version)
@@ -88,6 +83,14 @@ fn mount_version(
 	}
 
 	return version;
+}
+
+fn end_not_done() -> Option<Version> {
+	if has_pull_request() {
+		return throw(11, "Version is not done");
+	}
+
+	return success();
 }
 
 pub struct Version {

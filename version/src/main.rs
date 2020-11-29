@@ -26,7 +26,7 @@ fn main() {
 	if let Some((just_check, numbers)) = parse_arguments() {
 		if let Some(version) = create_version(just_check, numbers) {
 			if just_check {
-				success();
+				return success().unwrap();
 			}
 
 			update_version(version);
