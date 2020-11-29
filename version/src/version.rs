@@ -15,24 +15,25 @@ pub fn create_version(just_check: bool, numbers: Vec<usize>) -> Option<Version> 
 	let prod = extract_line(&task_list, 6, pattern);
 	let dev = extract_line(&task_list, 7, pattern);
 
+	let branch = current_branch().unwrap();
+
 	let version = mount_version(
 		prod.clone(),
 		dev.clone(),
+		branch.clone(),
 		&task_list,
 		numbers,
 	);
 
-	let branch = current_branch().unwrap();
+	if !version.done {
+		return throw(12, "Version is not done");
+	}
 
 	if just_check {
 		if branch != "main" && branch != prod {
 			return throw_format(11, format!("Branch is '{}', but release is of '{}'", branch, prod));
 		}
 	} else {
-		if !version.done {
-			return throw(12, "Version is not done");
-		}
-
 		if branch != dev {
 			return throw_format(13, format!("Branch is '{}', but release is of '{}'", branch, dev));
 		}
@@ -45,15 +46,21 @@ pub fn create_version(just_check: bool, numbers: Vec<usize>) -> Option<Version> 
 	Some(version)
 }
 
-fn mount_version(published: String, development: String, task_list: &Vec<String>, numbers: Vec<usize>) -> Version {
-	let mut version = Version::new(development.clone(), published);
+fn mount_version(
+	prod: String,
+	dev: String,
+	branch: String,
+	task_list: &Vec<String>,
+	numbers: Vec<usize>,
+) -> Version {
+	let mut version = Version::new(dev, prod);
 
 	let done_pattern = r"^\- \[([ x])\] ";
 	let task_pattern = r"^\- \[[ x]\](?: `.{6}>.{6}`)? (.+)";
 
 	let mut start = 16;
 
-	let header = format!("## <a name=\"{}\">", development);
+	let header = format!("## <a name=\"{}\">", branch);
 
 	while !task_list.get(start).unwrap().starts_with(&header) {
 		start += 1;
