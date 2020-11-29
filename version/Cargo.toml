@@ -7,3 +7,4 @@ edition = "2018"
 [dependencies]
 regex = "1"
 git2 = "0"
+reqwest = { version = "0", features = ["blocking"] }
