@@ -2,15 +2,14 @@ use regex::Regex;
 
 use crate::end::throw;
 use crate::file::{get_path,get_lines,set_lines};
-use crate::version::Version;
 
 fn path_todo() -> String { get_path(vec!["..", "docs", "TODO.md"]) }
 fn path_release() -> String { get_path(vec!["..", "docs", "RELEASES.md"]) }
 
-pub fn add_release(mut version: Version, numbers: Vec<usize>) -> Option<Version> {
+pub fn add_release(code: String, numbers: Vec<usize>) -> Option<String> {
 	let (new_tasks, sizes) = process_tasks(numbers);
 
-	let try_next = get_next(sizes, version.code.clone());
+	let try_next = get_next(sizes, code);
 	if try_next.is_none() {
 		return None;
 	}
@@ -18,8 +17,7 @@ pub fn add_release(mut version: Version, numbers: Vec<usize>) -> Option<Version>
 
 	write_release(next.clone(), new_tasks);
 
-	version.next = next;
-	return Some(version);
+	return Some(next);
 }
 
 fn process_tasks(mut numbers: Vec<usize>) -> (Vec<String>, Vec<String>) {

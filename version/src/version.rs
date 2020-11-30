@@ -65,7 +65,11 @@ fn mount_version(
 		let pattern = r"(\d+\.\d+\.\d+\.\d+)";
 		version.next = extract_line(task_list, 16, pattern);
 	} else if numbers.len() > 0 {
-		version = add_release(version, numbers).unwrap();
+		let code = version.code.clone();
+
+		if let Some(next) = add_release(code, numbers) {
+			version.next = next;
+		}
 	}
 
 	for l in (start+1)..task_list.len() {
