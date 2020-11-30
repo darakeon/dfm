@@ -41,6 +41,8 @@ pub fn create_version(just_check: bool, numbers: Vec<usize>) -> Option<Version> 
 	Some(version)
 }
 
+const START_OF_VERSIONS: usize = 16;
+
 fn mount_version(
 	prod: String,
 	dev: String,
@@ -50,20 +52,11 @@ fn mount_version(
 ) -> Version {
 	let mut version = Version::new(dev, prod);
 
-	let done_pattern = r"^\- \[([ x])\] ";
-	let task_pattern = r"^\- \[[ x]\](?: `.{6}>.{6}`)? (.+)";
+	let start = start_of_current_tasks(task_list, branch);
 
-	let mut start = 16;
-
-	let header = format!("## <a name=\"{}\">", branch);
-
-	while !task_list.get(start).unwrap().starts_with(&header) {
-		start += 1;
-	}
-
-	if start != 16 {
+	if start != START_OF_VERSIONS {
 		let pattern = r"(\d+\.\d+\.\d+\.\d+)";
-		version.next = extract_line(task_list, 16, pattern);
+		version.next = extract_line(task_list, START_OF_VERSIONS, pattern);
 	} else if numbers.len() > 0 {
 		let code = version.code.clone();
 
@@ -71,6 +64,9 @@ fn mount_version(
 			version.next = next;
 		}
 	}
+
+	let done_pattern = r"^\- \[([ x])\] ";
+	let task_pattern = r"^\- \[[ x]\](?: `.{6}>.{6}`)? (.+)";
 
 	for l in (start+1)..task_list.len() {
 		let line = task_list.get(l).unwrap();
@@ -87,6 +83,22 @@ fn mount_version(
 	}
 
 	return version;
+}
+
+fn start_of_current_tasks(task_list: &Vec<String>, branch: String) -> usize {
+	let mut start = START_OF_VERSIONS;
+
+	let header = format!("## <a name=\"{}\">", branch);
+
+	while start < task_list.len() && !task_list.get(start).unwrap().starts_with(&header) {
+		start += 1;
+	}
+
+	if start == task_list.len() {
+		return START_OF_VERSIONS;
+	}
+
+	return start;
 }
 
 fn end_not_done() -> Option<Version> {
