@@ -116,14 +116,14 @@ namespace DFM.BusinessLogic.Repositories
 			SaveOrUpdate(security);
 		}
 
-		internal Security ValidateAndGet(String token, SecurityAction securityAction)
+		internal Security ValidateAndGet(String token, SecurityAction action)
 		{
-			var securityToken = GetByToken(token);
+			var security = GetByToken(token);
 
-			if (securityToken == null || securityToken.Action != securityAction)
+			if (security == null || security.Action != action)
 				throw Error.InvalidToken.Throw();
 
-			return securityToken;
+			return security;
 		}
 
 	}
