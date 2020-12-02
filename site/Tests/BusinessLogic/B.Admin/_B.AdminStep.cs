@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
 using DFM.Entities;
@@ -997,6 +998,90 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		}
 		#endregion EndWizard
 
+		#region UnsubscribeMoveMail
+		[When(@"I unsubscribe move mail")]
+		public void WhenIUnsubscribeMoveMail()
+		{
+			try
+			{
+				var token = getUnsubscribeTokenFromLastEmail();
+				service.Admin.UnsubscribeMoveMail(token);
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[When(@"I unsubscribe move mail \(invalid token\)")]
+		public void WhenIUnsubscribeMoveMailInvalidToken()
+		{
+			try
+			{
+				service.Admin.UnsubscribeMoveMail("invalid");
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[When(@"I unsubscribe move mail \(expired token\)")]
+		public void WhenIUnsubscribeMoveMailExpiredToken()
+		{
+			try
+			{
+				var token = getUnsubscribeTokenFromLastEmail();
+
+				var security = repos.Security.GetByToken(token);
+				security.Expire = DateTime.Today.AddDays(-2);
+				repos.Security.SaveOrUpdate(security);
+
+				service.Admin.UnsubscribeMoveMail(token);
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[When(@"I unsubscribe move mail \(inactive token\)")]
+		public void WhenIUnsubscribeMoveMailInactiveToken()
+		{
+			try
+			{
+				var token = getUnsubscribeTokenFromLastEmail();
+
+				var security = repos.Security.GetByToken(token);
+				security.Active = false;
+				repos.Security.SaveOrUpdate(security);
+
+				service.Admin.UnsubscribeMoveMail(token);
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[Then(@"the move mail will( not)? be enabled")]
+		public void ThenTheMoveMailWill_BeEnabled(Boolean enabled)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			Assert.AreEqual(enabled, user.Config.SendMoveEmail);
+		}
+
+		private static String getUnsubscribeTokenFromLastEmail()
+		{
+			var email = Email.GetLast();
+
+			var match = Regex.Match(
+				email.Body, "UnsubscribeMoveMail/(\\w+)"
+			);
+
+			return match.Groups[1].Value;
+		}
+		#endregion UnsubscribeMoveMail
 
 		#region MoreThanOne
 		[Given(@"I pass a url of account that doesn't exist")]
