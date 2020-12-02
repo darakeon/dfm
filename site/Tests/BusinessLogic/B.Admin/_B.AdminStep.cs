@@ -982,6 +982,20 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		}
 		#endregion ChangeTheme
 
+		#region EndWizard
+		[When(@"I end wizard")]
+		public void WhenIEndWizard()
+		{
+			try
+			{
+				service.Admin.EndWizard();
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+		#endregion EndWizard
 
 
 		#region MoreThanOne
