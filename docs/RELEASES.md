@@ -14,7 +14,8 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="4.6.0.0"></a>4.6.0.0 :ant: <sup>`3`</sup>
+## <a name="4.6.0.0"></a>4.6.0.0 :ant: <sup>`4`</sup>
+- [ ] Add main URL for tokens (eliminate path from business logic)
 - [ ] Add code of conduct to repo [#44]
 - [ ] If lost authy, send e-mail to remove authy
 - [ ] Link unsubscribe for moves (new security token)
