@@ -285,3 +285,16 @@ Scenario: Cb18. Update the move adding details, but not removing value
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 		And the move is checked for account Out
+
+Scenario: Cb19. Update the move value with e-mail system out
+	Given I have a move with value 10 (Out)
+	When I update the move with e-mail system out
+	Then I will receive no core error
+		And I will receive the notification
+
+Scenario: Cb20. Update the move value with e-mail system ok
+	Given I have a move with value 10 (Out)
+	When I update the move with e-mail system ok
+	Then I will receive no core error
+		And I will receive no notification
+		And the move e-mail will have an unsubscribe link

@@ -6,6 +6,9 @@
 		"JustDfM": "This move was done JUST IN DFM SYSTEM.",
 		"Subject": "Move Notification",
 		"Title": "Move",
+		"ExplainMoveMail": "You are receiving this e-mail because your account at Don't fly Money has enabled an option of sending e-mail when a move is created, edited or deleted.",
+		"UnsubscribeClick": "Click here to disable this option.",
+		"Resubscribe": "If you want to enable this again, you can find this option at System Settings.",
 	},
 	"pt-BR": {
 		"AccountInLabel": "Cta. entrada",
@@ -14,5 +17,8 @@
 		"JustDfM": "Esta movimentação foi feita APENAS NO SISTEMA DO DFM.",
 		"Subject": "Notificação de Movimentação",
 		"Title": "Movimentação",
+		"ExplainMoveMail": "Você está recebendo este e-mail porque sua conta em Don't fly Money tem habilitada uma opção de enviar e-mail quando uma movimentação é criada, editada ou deletada.",
+		"UnsubscribeClick": "Clique aqui para desabilitar essa opção.", 
+		"Resubscribe": "Se você quiser habilitar novamente, você poderá encontrar essa opção nas Configurações do Sistema.",
 	},
 }

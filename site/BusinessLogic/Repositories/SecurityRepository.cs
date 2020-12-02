@@ -13,36 +13,59 @@ namespace DFM.BusinessLogic.Repositories
 	internal class SecurityRepository : Repo<Security>
 	{
 		private readonly Current.GetUrl getUrl;
+		private readonly Func<PathType, String> getPath;
 
-		public SecurityRepository(Current.GetUrl getUrl)
+		public SecurityRepository(Current.GetUrl getUrl, Func<PathType, String> getPath)
 		{
 			this.getUrl = getUrl;
+			this.getPath = getPath;
 		}
 
-		internal Security Save(Security security)
+		internal void CreateAndSendToken(User user, SecurityAction action, PathType path)
 		{
-			return SaveOrUpdate(security, complete);
+			var security = Create(user, action, path);
+
+			sendEmail(security);
+
+			var others = Where(
+				s => s.ID != security.ID
+				     && s.User.ID == security.User.ID
+				     && s.Active
+			);
+
+			foreach (var other in others)
+			{
+				other.Active = false;
+				SaveOrUpdate(other);
+			}
 		}
 
-		private static void complete(Security security)
+		internal Security Create(User user, SecurityAction action, PathType type)
 		{
-			if (security.ID != 0) return;
+			var security = new Security
+			{
+				Action = action,
+				Active = true,
+				Expire = user.Now().AddMonths(1),
+				User = user,
+				Path = getPath(type),
+			};
 
-			security.Active = true;
-			security.Expire = security.User.Now().AddMonths(1);
 			security.CreateToken();
+
+			return SaveOrUpdate(security);
 		}
 
-
-
-		internal void SendEmail(Security security, String pathAction, String pathDisable)
+		private void sendEmail(Security security)
 		{
+			var pathDisable = getPath(PathType.DisableToken);
+
 			var dic = new Dictionary<String, String>
 			{
 				{ "Url", getUrl() },
 				{ "Token", security.Token },
 				{ "Date", security.Expire.AddDays(-1).ToShortDateString() },
-				{ "PathAction", pathAction },
+				{ "PathAction", security.Path },
 				{ "PathDisable", pathDisable },
 			};
 
@@ -66,7 +89,7 @@ namespace DFM.BusinessLogic.Repositories
 			}
 
 			security.Sent = true;
-			Save(security);
+			SaveOrUpdate(security);
 		}
 
 
@@ -90,12 +113,8 @@ namespace DFM.BusinessLogic.Repositories
 				throw Error.InvalidToken.Throw();
 
 			security.Active = false;
-
-			Save(security);
+			SaveOrUpdate(security);
 		}
-
-
-
 
 		internal Security ValidateAndGet(String token, SecurityAction securityAction)
 		{

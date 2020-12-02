@@ -1,4 +1,6 @@
+using System;
 using DFM.Authentication;
+using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Response;
 
 namespace DFM.BusinessLogic.Repositories
@@ -18,7 +20,7 @@ namespace DFM.BusinessLogic.Repositories
 		internal TicketRepository Ticket;
 		internal UserRepository User;
 
-		internal Repos(Current<SignInInfo, SessionInfo>.GetUrl getUrl)
+		internal Repos(Current<SignInInfo, SessionInfo>.GetUrl getUrl, Func<PathType, String> getPath)
 		{
 			Acceptance = new AcceptanceRepository();
 			Account = new AccountRepository();
@@ -28,7 +30,7 @@ namespace DFM.BusinessLogic.Repositories
 			Detail = new DetailRepository();
 			Move = new MoveRepository(getUrl);
 			Schedule = new ScheduleRepository();
-			Security = new SecurityRepository(getUrl);
+			Security = new SecurityRepository(getUrl, getPath);
 			Summary = new SummaryRepository();
 			Ticket = new TicketRepository();
 			User = new UserRepository();

@@ -13,6 +13,5 @@ namespace DFM.Entities
 		{
 			Token = token.New();
 		}
-
 	}
 }

@@ -646,6 +646,7 @@ Scenario: Ca41. Save with e-mail sender system ok
 		And the accountOut value will change in -10
 		And the month-category-accountOut value will change in 10
 		And the year-category-accountOut value will change in 10
+		And the move e-mail will have an unsubscribe link
 
 Scenario: Ca42. Save with e-mail sender system ok and without category
 	Given I disable Categories use

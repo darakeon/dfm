@@ -4,6 +4,7 @@ namespace DFM.BusinessLogic.Helpers
 	{
 		UserVerification,
 		PasswordReset,
-		DisableToken
+		UnsubscribeMoveMail,
+		DisableToken,
 	}
 }
