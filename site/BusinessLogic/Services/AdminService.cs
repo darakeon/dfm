@@ -269,40 +269,63 @@ namespace DFM.BusinessLogic.Services
 
 			inTransaction("UpdateConfig", () =>
 			{
-				var user = parent.Safe.GetCurrent();
-				var config = user.Config;
-
-				if (info.Language != null && !PlainText.AcceptLanguage(info.Language))
-					throw Error.LanguageUnknown.Throw();
-
-				if (info.TimeZone != null && !info.TimeZone.IsTimeZone())
-					throw Error.TimeZoneUnknown.Throw();
-
-				if (!String.IsNullOrEmpty(info.Language))
-					config.Language = info.Language;
-
-				if (!String.IsNullOrEmpty(info.TimeZone))
-					config.TimeZone = info.TimeZone;
-
-				if (info.SendMoveEmail.HasValue)
-					config.SendMoveEmail = info.SendMoveEmail.Value;
-
-				if (info.UseCategories.HasValue)
-					config.UseCategories = info.UseCategories.Value;
-
-				if (info.MoveCheck.HasValue)
-					config.MoveCheck = info.MoveCheck.Value;
-
-				if (info.Wizard.HasValue)
-					config.Wizard = info.Wizard.Value;
-
-				repos.Config.Update(config);
+				updateConfig(info, parent.Safe.GetCurrent().Config);
 			});
+		}
+
+		private void updateConfig(ConfigInfo info, Config config)
+		{
+			if (info.Language != null && !PlainText.AcceptLanguage(info.Language))
+				throw Error.LanguageUnknown.Throw();
+
+			if (info.TimeZone != null && !info.TimeZone.IsTimeZone())
+				throw Error.TimeZoneUnknown.Throw();
+
+			if (!String.IsNullOrEmpty(info.Language))
+				config.Language = info.Language;
+
+			if (!String.IsNullOrEmpty(info.TimeZone))
+				config.TimeZone = info.TimeZone;
+
+			if (info.SendMoveEmail.HasValue)
+				config.SendMoveEmail = info.SendMoveEmail.Value;
+
+			if (info.UseCategories.HasValue)
+				config.UseCategories = info.UseCategories.Value;
+
+			if (info.MoveCheck.HasValue)
+				config.MoveCheck = info.MoveCheck.Value;
+
+			if (info.Wizard.HasValue)
+				config.Wizard = info.Wizard.Value;
+
+			repos.Config.Update(config);
 		}
 
 		public void EndWizard()
 		{
-			UpdateConfig(new ConfigInfo { Wizard = false });
+			parent.Safe.VerifyUser();
+
+			inTransaction("EndWizard", () =>
+			{
+				var config = parent.Safe.GetCurrent().Config;
+				config.Wizard = false;
+				repos.Config.Update(config);
+			});
+		}
+
+		public void UnsubscribeMoveMail(String token)
+		{
+			inTransaction("UnsubscribeMoveMail", () =>
+			{
+				var security = repos.Security.ValidateAndGet(
+					token, SecurityAction.UnsubscribeMoveMail
+				);
+
+				var config = security.User.Config;
+				config.SendMoveEmail = false;
+				repos.Config.Update(config);
+			});
 		}
 		#endregion Config
 
