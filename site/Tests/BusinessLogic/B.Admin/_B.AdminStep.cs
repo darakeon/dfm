@@ -57,8 +57,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 
 		#endregion
 
-
-
+		#region Account
 		#region SaveAccount
 		[Given(@"I have this account to create")]
 		public void GivenIHaveThisAccountToCreate(Table table)
@@ -466,9 +465,9 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			Assert.IsTrue(account.IsOpen);
 		}
 		#endregion
+		#endregion Account
 
-
-
+		#region Category
 		#region SaveCategory
 		[Given(@"I have this category to create")]
 		public void GivenIHaveThisCategoryToCreate(Table table)
@@ -792,10 +791,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			}
 		}
 		#endregion
-
-
-
-
+		#endregion Category
 
 		#region UpdateConfig
 
