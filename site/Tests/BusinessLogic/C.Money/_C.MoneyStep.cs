@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
 using DFM.BusinessLogic.Tests.Helpers;
@@ -9,6 +11,7 @@ using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Generic;
+using DFM.Language;
 using DFM.Tests.Util;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -387,6 +390,53 @@ namespace DFM.BusinessLogic.Tests.C.Money
 			{
 				error = e;
 			}
+		}
+
+
+		[When(@"I update the move with e-mail system out")]
+		public void WhenIUpdateTheMoveWithEMailSystemOut()
+		{
+			ConfigHelper.ActivateMoveEmailForUser(service);
+			ConfigHelper.BreakTheEmailSystem();
+
+			try
+			{
+				moveInfo.OutUrl = accountOut?.Url;
+				moveInfo.InUrl = accountIn?.Url;
+				moveInfo.CategoryName = categoryName;
+
+				moveResult = service.Money.SaveMove(moveInfo);
+				currentEmailStatus = moveResult.Email;
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+
+			ConfigHelper.FixTheEmailSystem();
+			ConfigHelper.DeactivateMoveEmailForUser(service);
+		}
+
+		[When(@"I update the move with e-mail system ok")]
+		public void WhenIUpdateTheMoveWithEMailSystemOk()
+		{
+			ConfigHelper.ActivateMoveEmailForUser(service);
+
+			try
+			{
+				moveInfo.OutUrl = accountOut?.Url;
+				moveInfo.InUrl = accountIn?.Url;
+				moveInfo.CategoryName = categoryName;
+
+				moveResult = service.Money.SaveMove(moveInfo);
+				currentEmailStatus = moveResult.Email;
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+
+			ConfigHelper.DeactivateMoveEmailForUser(service);
 		}
 
 		[Then(@"the old-accountOut value will change in (\-?\d+\.?\d*)")]
@@ -881,6 +931,35 @@ namespace DFM.BusinessLogic.Tests.C.Money
 			var move = schedule.MoveList.First();
 
 			guid = move.Guid;
+		}
+
+		[Then(@"the move e-mail will have an unsubscribe link")]
+		public void ThenTheMoveE_MailWillHaveAnUnsubscribeLink()
+		{
+			var email = Email.GetLast();
+
+			var user = repos.User.GetByEmail(current.Email);
+
+			var lang = user.Config.Language;
+			var subject = PlainText.Email["MoveNotification", lang, "Subject"];
+			Assert.AreEqual(subject, email.Subject);
+
+			var token = repos.Security
+				.Where(
+					s => s.Active
+						&& s.User.ID == user.ID
+						&& s.Action == SecurityAction.UnsubscribeMoveMail
+				)
+				.OrderByDescending(s => s.ID)
+				.FirstOrDefault()?.Token;
+			Assert.NotNull(token);
+
+			var link = $"https://dontflymoney.com/UnsubscribeMoveMail/{token}";
+
+			Assert.That(
+				email.Body.Contains(link),
+				() => $"{link}\nnot found at\n{email.Body}"
+			);
 		}
 		#endregion
 	}

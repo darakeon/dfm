@@ -4,5 +4,6 @@
 	{
 		UserVerification = 0,
 		PasswordReset = 1,
+		UnsubscribeMoveMail = 2,
 	}
 }

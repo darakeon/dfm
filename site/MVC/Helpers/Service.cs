@@ -59,6 +59,7 @@ namespace DFM.MVC.Helpers
 			{
 				PathType.PasswordReset => "PasswordReset",
 				PathType.UserVerification => "UserVerification",
+				PathType.UnsubscribeMoveMail => "UnsubscribeMoveMail",
 				PathType.DisableToken => "Disable",
 				_ => throw new NotImplementedException()
 			};

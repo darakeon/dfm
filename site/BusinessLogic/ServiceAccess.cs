@@ -11,11 +11,11 @@ namespace DFM.BusinessLogic
 	{
 		public ServiceAccess(Current.GetTicket getTicket, Func<PathType, String> getPath, Current.GetUrl getUrl)
 		{
-			var repos = new Repos(getUrl);
+			var repos = new Repos(getUrl, getPath);
 
 			BaseMove = new BaseMoveSaverService(this, repos);
 
-			Safe = new SafeService(this, repos, getPath);
+			Safe = new SafeService(this, repos);
 			Admin = new AdminService(this, repos);
 			Money = new MoneyService(this, repos);
 			Robot = new RobotService(this, repos);

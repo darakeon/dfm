@@ -46,12 +46,17 @@ namespace DFM.BusinessLogic.Tests
 
 		protected static void setRepositories()
 		{
-			repos = new Repos(getSite);
+			repos = new Repos(getSite, getPath);
 		}
 
 		protected static String getSite()
 		{
 			return "https://dontflymoney.com";
+		}
+
+		protected static String getPath(PathType type)
+		{
+			return $"/{type}";
 		}
 
 		protected static void log(String text)
@@ -162,11 +167,6 @@ namespace DFM.BusinessLogic.Tests
 		protected static ClientTicket getTicket(Boolean remember)
 		{
 			return new ClientTicket(ticketKey, TicketType.Local);
-		}
-
-		protected static String getPath(PathType pathType)
-		{
-			return null;
 		}
 
 		protected static String getTicketKey()

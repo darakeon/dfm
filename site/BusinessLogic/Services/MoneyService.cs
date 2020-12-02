@@ -1,5 +1,6 @@
 ﻿using System;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
 using DFM.Entities;
@@ -81,7 +82,9 @@ namespace DFM.BusinessLogic.Services
 				repos.Schedule.AddDeleted(move.Schedule);
 			}
 
-			var emailStatus = repos.Move.SendEmail(move, OperationType.Deletion);
+			var user = parent.Safe.GetCurrent();
+			var security = repos.Security.Create(user, SecurityAction.UnsubscribeMoveMail, PathType.UnsubscribeMoveMail);
+			var emailStatus = repos.Move.SendEmail(move, OperationType.Deletion, security);
 
 			return new MoveResult(move, emailStatus);
 		}

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
 using DFM.Entities;
@@ -65,7 +66,14 @@ namespace DFM.BusinessLogic.Services
 			if (!moveIsNew)
 				BreakSummaries(move);
 
-			var emailStatus = repos.Move.SendEmail(move, operationType);
+			var user = parent.Safe.GetCurrent();
+			var security = repos.Security.Create(
+				user,
+				SecurityAction.UnsubscribeMoveMail,
+				PathType.UnsubscribeMoveMail
+			);
+
+			var emailStatus = repos.Move.SendEmail(move, operationType, security);
 
 			if (move.In != null && move.In.BeginDate > move.GetDate())
 			{

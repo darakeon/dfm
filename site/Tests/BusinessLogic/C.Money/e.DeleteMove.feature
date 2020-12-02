@@ -57,6 +57,7 @@ Scenario: Ce06. Delete with e-mail sender system ok
 		And the move will be deleted
 		And the accountOut value will change in 10
 		And the accountIn value will change in -10
+		And the move e-mail will have an unsubscribe link
 
 Scenario: Ce07. Delete move from schedule with Category
 	Given I have this schedule to create

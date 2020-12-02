@@ -18,7 +18,7 @@ Legend:
 - [ ] Add main URL for tokens (eliminate path from business logic)
 - [ ] Add code of conduct to repo [#44]
 - [ ] If lost authy, send e-mail to remove authy
-- [ ] Link unsubscribe for moves (new security token)
+- [ ] `201130>......` Link unsubscribe for moves (new security token)
 
 ## <a name="4.5.0.2"></a>4.5.0.2 :ant: <sup>`3`</sup>
 - [x] `201128>201128` Fix android build number change

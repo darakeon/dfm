@@ -16,13 +16,8 @@ namespace DFM.BusinessLogic.Services
 {
 	public class SafeService : Service, ISafeService<SignInInfo, SessionInfo>
 	{
-		private readonly Func<PathType, String> getPath;
-
-		internal SafeService(ServiceAccess serviceAccess, Repos repos, Func<PathType, String> getPath)
-			: base(serviceAccess, repos)
-		{
-			this.getPath = getPath;
-		}
+		internal SafeService(ServiceAccess serviceAccess, Repos repos)
+			: base(serviceAccess, repos) { }
 
 		public void SendPasswordReset(String email)
 		{
@@ -33,7 +28,11 @@ namespace DFM.BusinessLogic.Services
 				if (user == null)
 					return;
 
-				createAndSendToken(user, SecurityAction.PasswordReset, getPath(PathType.PasswordReset));
+				repos.Security.CreateAndSendToken(
+					user,
+					SecurityAction.PasswordReset,
+					PathType.PasswordReset
+				);
 			});
 		}
 		
@@ -71,29 +70,11 @@ namespace DFM.BusinessLogic.Services
 
 		private void sendUserVerify(User user)
 		{
-			createAndSendToken(user, SecurityAction.UserVerification, getPath(PathType.UserVerification));
-		}
-
-		private void createAndSendToken(User user, SecurityAction action, String pathAction)
-		{
-			var security = new Security { Action = action, User = user };
-
-			security = repos.Security.Save(security);
-
-			repos.Security.SendEmail(security, pathAction, getPath(PathType.DisableToken));
-
-			var others = repos.Security
-				.Where(
-					s => s.ID != security.ID
-						&& s.User.ID == security.User.ID
-						&& s.Active
-				);
-
-			foreach (var other in others)
-			{
-				other.Active = false;
-				repos.Security.Save(other);
-			}
+			repos.Security.CreateAndSendToken(
+				user,
+				SecurityAction.UserVerification,
+				PathType.UserVerification
+			);
 		}
 
 		public void ActivateUser(String token)

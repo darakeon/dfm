@@ -51,7 +51,7 @@ namespace DFM.BusinessLogic.Repositories
 		}
 
 		#region SendEmail
-		internal EmailStatus SendEmail(Move move, OperationType operationType)
+		internal EmailStatus SendEmail(Move move, OperationType operationType, Security security)
 		{
 			var user = GetUser(move);
 			var config = user.Config;
@@ -81,6 +81,8 @@ namespace DFM.BusinessLogic.Repositories
 				{ "Description", move.Description },
 				{ "Value", move.Value.ToMoney(config.Language) },
 				{ "Details", detailsHTML(move) },
+				{ "UnsubscribePath", security.Path },
+				{ "UnsubscribeToken", security.Token },
 			};
 
 			var fileContent =
