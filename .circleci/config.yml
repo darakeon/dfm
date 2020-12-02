@@ -71,10 +71,6 @@ jobs:
           name: publish_site
           path: site/MVC
           command: dotnet publish -c Release MVC.csproj -o ../Tests/Browser/server --no-restore
-      - run:
-          name: create_log_folders
-          path: site/Tests/Browser
-          command: mkdir log
       - restore_cache:
           keys:
             - node-{{ checksum "site/Tests/Browser/package.json" }}
