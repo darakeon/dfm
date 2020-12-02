@@ -4,14 +4,15 @@
 	"description": "DfM Site Tests",
 	"main": "index.js",
 	"dependencies": {
-		"axios": "^0.20.0",
-		"sqlite3": "4.2.0",
-		"uuid": "8.1.0"
+		"axios": "0.21.0",
+		"sqlite3": "5.0.0",
+		"uuid": "8.3.1"
 	},
 	"devDependencies": {
-		"jest": "26.0.1",
+		"jest": "26.6.3",
 		"jest-puppeteer": "4.4.0",
-		"puppeteer": "4.0.0"
+		"puppeteer": "5.5.0",
+		"babel-core": "6.26.3"
 	},
 	"scripts": {
 		"test": "jest --runInBand"
