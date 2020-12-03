@@ -33,7 +33,6 @@ namespace DFM.MVC.Controllers
 				model.SecurityAction.ToString(),
 				new { id = model.Token }
 			);
-
 		}
 
 		[HttpGetAndHead]
@@ -77,6 +76,18 @@ namespace DFM.MVC.Controllers
 
 			return isValid
 				? baseModelView("UserVerificationSuccess")
+				: baseModelView("Invalid");
+		}
+
+		[HttpGetAndHead]
+		public IActionResult UnsubscribeMoveMail(String id)
+		{
+			var model = new AdminModel();
+
+			var isValid = model.TestAndUnsubscribe(id);
+
+			return isValid
+				? baseModelView("UnsubscribeMoveMailSuccess")
 				: baseModelView("Invalid");
 		}
 
