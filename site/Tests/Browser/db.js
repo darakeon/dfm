@@ -315,6 +315,18 @@ async function getLastAccess(email) {
 	return new Date(field)
 }
 
+async function getLastUnsubscribeMoveMailToken(user) {
+	const result = await execute(
+		`select token `
+			+ `from security `
+			+ `where user_id=${user.ID} `
+				+ `and action = 2 `
+			+ `order by id desc`
+	)
+
+	return result[0]["Token"]
+}
+
 async function execute(query, params) {
 	let done = false;
 	let result;
@@ -377,4 +389,5 @@ module.exports = {
 	checkMove,
 	checkTicket,
 	getLastAccess,
+	getLastUnsubscribeMoveMailToken,
 }

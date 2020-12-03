@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using Keon.MVC.Forms;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Enums;
+using DFM.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DFM.MVC.Models
@@ -47,8 +49,11 @@ namespace DFM.MVC.Models
 				errors.Add(translator[e]);
 			}
 
-			if (SecurityAction != SecurityAction.PasswordReset
-				&& SecurityAction != SecurityAction.UserVerification)
+			var values = Enum.GetValues(
+				typeof(SecurityAction)
+			).Cast<SecurityAction>();
+
+			if (!values.Contains(SecurityAction))
 			{
 				errors.Add(translator["NotRecognizedAction"]);
 			}

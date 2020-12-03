@@ -1,5 +1,6 @@
 ﻿using System;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Entities.Enums;
 
 namespace DFM.MVC.Models
 {
@@ -63,6 +64,22 @@ namespace DFM.MVC.Models
 			{
 				errorAlert.Add(e.Type);
 			}
+		}
+
+		public Boolean TestAndUnsubscribe(String token)
+		{
+			try
+			{
+				safe.TestSecurityToken(token, SecurityAction.UnsubscribeMoveMail);
+			}
+			catch (CoreError)
+			{
+				return false;
+			}
+
+			admin.UnsubscribeMoveMail(token);
+
+			return true;
 		}
 	}
 }

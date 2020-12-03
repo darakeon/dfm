@@ -1,16 +1,16 @@
 ﻿@{
-	ViewBag.Title = Context.Translate("UserVerification");
+	ViewBag.Title = Context.Translate("UnsubscribeMoveMail");
 	Layout = "~/Views/Shared/Layouts/_Result.cshtml";
 	ViewBag.Style = "success";
 }
 
 <div class="well-sm">
-	@Context.Translate("UserVerificationSuccess")
+	@Context.Translate("UnsubscribeMoveMailSuccess")
 </div>
 
 @Html.ActionLink(
-	Context.Translate("Logon"),
-	"LogOn", "Users",
+	Context.Translate("GoToSettings"),
+	"Config", "Users",
 	null,
 	new { @class = "btn btn-sm btn-link" }
 )
