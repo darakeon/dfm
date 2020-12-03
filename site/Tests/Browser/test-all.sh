@@ -7,6 +7,7 @@ fi
 
 npm install
 
+pkill --help 2> /dev/null 1> /dev/null || apt-get --assume-yes install procps
 pkill -e DFM.MVC || echo "Site not running yet"
 rm -rf server
 
