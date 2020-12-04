@@ -325,6 +325,8 @@ namespace DFM.BusinessLogic.Services
 				var config = security.User.Config;
 				config.SendMoveEmail = false;
 				repos.Config.Update(config);
+
+				repos.Security.Disable(token);
 			});
 		}
 		#endregion Config

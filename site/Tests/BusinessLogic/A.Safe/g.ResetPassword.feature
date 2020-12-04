@@ -53,3 +53,14 @@ Scenario: Ag05. Password reset with token of unsubscribe move mail
 	When I try to reset the password
 	Then I will receive this core error: InvalidToken
 		And the password will not be changed
+
+Scenario: Ag06. Password reset with token already used
+	Given I pass a valid PasswordReset token
+		And I pass this password
+			| Password     | Retype Password |
+			| new_password | new_password    |
+	When I try to reset the password
+	Then I will receive no core error
+	# Same token
+	When I try to reset the password
+	Then I will receive this core error: InvalidToken
