@@ -99,7 +99,8 @@ namespace DFM.Language
 		}
 
 		public DicList<Phrase> this[String section, String language]
-			=> SectionList[section][language].PhraseList;
+			=> SectionList[section][language].PhraseList
+				.Union(SectionList["general"][language].PhraseList);
 
 		public String this[String section, String language, params String[] phrase]
 		{
@@ -149,8 +150,6 @@ namespace DFM.Language
 				$"P: {name} /// S: {section} /// L: {language} /// P: {phrase}"
 			);
 		}
-
-
 
 		public static String GetMonthName(Int32 month, String language)
 		{
