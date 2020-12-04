@@ -48,3 +48,14 @@ Scenario: Bq07. Stop sending move mail with Password Reset token
 	When I unsubscribe move mail
 	Then I will receive this core error: InvalidToken
 		And the move mail will be enabled
+
+Scenario: Bq08. Stop sending move mail with already used token
+	Given I pass a valid UnsubscribeMoveMail token
+	When I unsubscribe move mail
+	Then I will receive no core error
+		And the move mail will not be enabled
+	Given I enable move send e-mail
+	# Same token
+	When I unsubscribe move mail
+	Then I will receive this core error: InvalidToken
+		And the move mail will be enabled

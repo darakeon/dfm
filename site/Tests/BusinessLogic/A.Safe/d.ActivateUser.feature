@@ -32,3 +32,14 @@ Scenario: Ad04. Activate user with token of unsubscribe move mail
 	When I try to activate the user
 	Then I will receive this core error: InvalidToken
 		And the user will not be activated
+
+Scenario: Ad05. Activate user with token already used
+	Given I pass a valid UserVerification token
+	When I try to activate the user
+	Then I will receive no core error
+		And the user will be activated
+	Given I deactivate the user
+	# Same token
+	When I try to activate the user
+	Then I will receive this core error: InvalidToken
+		And the user will not be activated
