@@ -1,4 +1,5 @@
 ﻿using System;
+using DFM.BusinessLogic.Helpers;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +34,24 @@ namespace DFM.MVC.Controllers
 				model.SecurityAction.ToString(),
 				new { id = model.Token }
 			);
+		}
+
+		[HttpGetAndHead]
+		public IActionResult Mail(PathType path, String token)
+		{
+			return RedirectToAction(getAction(path), new {id = token});
+		}
+
+		private  String getAction(PathType pathType)
+		{
+			return pathType switch
+			{
+				PathType.PasswordReset => "PasswordReset",
+				PathType.UserVerification => "UserVerification",
+				PathType.UnsubscribeMoveMail => "UnsubscribeMoveMail",
+				PathType.DisableToken => "Disable",
+				_ => throw new NotImplementedException()
+			};
 		}
 
 		[HttpGetAndHead]

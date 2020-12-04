@@ -83,7 +83,7 @@ namespace DFM.BusinessLogic.Services
 			}
 
 			var user = parent.Safe.GetCurrent();
-			var security = repos.Security.Create(user, SecurityAction.UnsubscribeMoveMail, PathType.UnsubscribeMoveMail);
+			var security = repos.Security.Create(user, SecurityAction.UnsubscribeMoveMail);
 			var emailStatus = repos.Move.SendEmail(move, OperationType.Deletion, security);
 
 			return new MoveResult(move, emailStatus);

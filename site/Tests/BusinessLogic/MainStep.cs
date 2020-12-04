@@ -117,7 +117,7 @@ namespace DFM.BusinessLogic.Tests
 			SessionFactoryManager.Initialize<UserMap, User>(Cfg.DB);
 			SessionManager.Init(getTicketKey);
 
-			service = new ServiceAccess(getTicket, getPath, getSite);
+			service = new ServiceAccess(getTicket, getSite);
 
 			PlainText.Initialize(runPath);
 		}

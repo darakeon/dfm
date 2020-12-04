@@ -18,7 +18,7 @@ Legend:
 - [ ] Fix logic of version icon
 - [ ] Replace {{Warning}} at e-mails by real message
 - [ ] Remove forgotten toast at android
-- [ ] Add main URL for tokens (eliminate path from business logic)
+- [x] `201204>201204` Eliminate path from business logic, fixed path that MVC redirects
 - [ ] Add code of conduct to repo [#44]
 - [ ] If lost authy, send e-mail to remove authy
 - [ ] `201130>......` Link unsubscribe for moves (new security token)

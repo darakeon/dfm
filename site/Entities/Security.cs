@@ -14,9 +14,6 @@ namespace DFM.Entities
 		public virtual SecurityAction Action { get; set; }
 		public virtual Boolean Sent { get; set; }
 
-		// Just for helping business logic
-		public virtual String Path { get; set; }
-
 		public virtual User User { get; set; }
 	}
 }

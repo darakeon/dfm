@@ -9,9 +9,9 @@ namespace DFM.BusinessLogic
 {
 	public class ServiceAccess
 	{
-		public ServiceAccess(Current.GetTicket getTicket, Func<PathType, String> getPath, Current.GetUrl getUrl)
+		public ServiceAccess(Current.GetTicket getTicket, Current.GetUrl getUrl)
 		{
-			var repos = new Repos(getUrl, getPath);
+			var repos = new Repos(getUrl);
 
 			BaseMove = new BaseMoveSaverService(this, repos);
 

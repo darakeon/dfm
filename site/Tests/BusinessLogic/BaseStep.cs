@@ -46,17 +46,12 @@ namespace DFM.BusinessLogic.Tests
 
 		protected static void setRepositories()
 		{
-			repos = new Repos(getSite, getPath);
+			repos = new Repos(getSite);
 		}
 
 		protected static String getSite()
 		{
 			return "https://dontflymoney.com";
-		}
-
-		protected static String getPath(PathType type)
-		{
-			return $"/{type}";
 		}
 
 		protected static void log(String text)
