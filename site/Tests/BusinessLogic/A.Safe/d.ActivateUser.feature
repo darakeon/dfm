@@ -2,8 +2,8 @@
 
 Background:
 	Given I have this user created
-			| Email                         | Password | Retype Password |
-			| activateuser@dontflymoney.com | password | password        |
+			| Email                                       | Password | Retype Password |
+			| activateuser{scenarioCode}@dontflymoney.com | password | password        |
 		And I have a token for its activation
 
 Scenario: Ad01. Activate user with invalid token
@@ -25,3 +25,10 @@ Scenario: Ad03. Activate user with info all right
 	Then I will receive no core error
 		And the user will be activated
 		And the token will not be valid anymore
+
+Scenario: Ad04. Activate user with token of unsubscribe move mail
+	Given I have a token for its password reset
+		And I pass a valid UnsubscribeMoveMail token
+	When I try to activate the user
+	Then I will receive this core error: InvalidToken
+		And the user will not be activated
