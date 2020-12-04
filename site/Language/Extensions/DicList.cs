@@ -20,5 +20,13 @@ namespace DFM.Language.Extensions
 				return item;
 			}
 		}
+
+		public DicList<T> Union(DicList<T> other)
+		{
+			var union = new DicList<T>();
+			union.AddRange(this);
+			union.AddRange(other);
+			return union;
+		}
 	}
 }

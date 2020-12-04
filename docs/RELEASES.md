@@ -16,7 +16,7 @@ Legend:
 
 ## <a name="4.6.0.0"></a>4.6.0.0 :whale: <sup>`7`</sup>
 - [ ] Fix logic of version icon
-- [ ] Replace {{Warning}} at e-mails by real message
+- [x] `201204>201204` Replace {{Warning}} at e-mails by real message
 - [ ] Remove forgotten toast at android
 - [x] `201204>201204` Eliminate path from business logic, fixed path that MVC redirects
 - [ ] Add code of conduct to repo [#44]
