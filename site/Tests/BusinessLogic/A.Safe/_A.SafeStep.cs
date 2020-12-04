@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using DFM.Entities.Bases;
@@ -59,12 +60,6 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		{
 			get => get<String>("CurrentPassword");
 			set => set("CurrentPassword", value);
-		}
-
-		private static String token
-		{
-			get => get<String>("Token");
-			set => set("Token", value);
 		}
 
 		private static SecurityAction action
@@ -219,18 +214,11 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			}
 		}
 
-		[Then(@"the user will not be activated")]
-		public void ThenTheUserWillNotBeActivated()
+		[Then(@"the user will (not )?be activated")]
+		public void ThenTheUserWillNotBeActivated(Boolean active)
 		{
 			var user = repos.User.GetByEmail(email);
-			Assert.IsFalse(user.Active);
-		}
-
-		[Then(@"the user will be activated")]
-		public void ThenTheUserWillBeActivated()
-		{
-			var user = repos.User.GetByEmail(email);
-			Assert.IsTrue(user.Active);
+			Assert.AreEqual(active, user.Active);
 		}
 		#endregion
 
@@ -246,6 +234,14 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			);
 
 			service.Safe.ActivateUser(tokenToActivate);
+		}
+
+		[Given(@"I deactivate the user")]
+		public void GivenIDeactivateTheUser()
+		{
+			var user = repos.User.GetByEmail(email);
+			user.Active = false;
+			repos.User.SaveOrUpdate(user);
 		}
 
 		[When(@"I try to get the ticket")]
@@ -677,7 +673,9 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		{
 			var userData = table.Rows[0];
 
-			email = userData["Email"];
+			email = userData["Email"]
+				.Replace("{scenarioCode}", scenarioCode);
+
 			password = userData["Password"];
 
 			if (userData.ContainsKey("Retype Password"))
@@ -708,6 +706,24 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		public void GivenIPassAnInvalidToken()
 		{
 			token = TK.New();
+		}
+
+		[Given(@"I pass an expired (UserVerification|PasswordReset|UnsubscribeMoveMail) token")]
+		public void GivenIPassExpiredToken(SecurityAction action)
+		{
+			GivenIPassTheValidToken(action);
+			var security = repos.Security.GetByToken(token);
+			security.Expire = DateTime.Today.AddDays(-2);
+			repos.Security.SaveOrUpdate(security);
+		}
+
+		[Given(@"I pass an inactive (UserVerification|PasswordReset|UnsubscribeMoveMail) token")]
+		public void GivenIPassInactiveToken(SecurityAction action)
+		{
+			GivenIPassTheValidToken(action);
+			var security = repos.Security.GetByToken(token);
+			security.Active = false;
+			repos.Security.SaveOrUpdate(security);
 		}
 
 		[Given(@"I pass an e-mail that doesn't exist")]
@@ -765,11 +781,27 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			).FirstOrDefault()?.Key;
 		}
 
-		[Given(@"I pass a valid ([A-Za-z]+) token")]
+		[Given(@"I pass a valid (UserVerification|PasswordReset|UnsubscribeMoveMail) token")]
 		public void GivenIPassTheValidToken(SecurityAction actionOf)
 		{
 			action = actionOf;
-			token = getLastTokenForUser(email, action);
+
+			var tokenEmail = email ?? userEmail;
+
+			if (actionOf == SecurityAction.UnsubscribeMoveMail)
+			{
+				var user = repos.User.GetByEmail(tokenEmail);
+				var security = repos.Security.Create(
+					user,
+					SecurityAction.UnsubscribeMoveMail,
+					PathType.UnsubscribeMoveMail
+				);
+				token = security.Token;
+			}
+			else
+			{
+				token = getLastTokenForUser(tokenEmail, action);
+			}
 		}
 
 		[Given(@"I have a ticket of this user")]

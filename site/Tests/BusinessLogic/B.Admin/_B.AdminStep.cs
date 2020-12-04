@@ -1004,7 +1004,6 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		{
 			try
 			{
-				var token = getUnsubscribeTokenFromLastEmail();
 				service.Admin.UnsubscribeMoveMail(token);
 			}
 			catch (CoreError e)
@@ -1019,44 +1018,6 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			try
 			{
 				service.Admin.UnsubscribeMoveMail("invalid");
-			}
-			catch (CoreError e)
-			{
-				error = e;
-			}
-		}
-
-		[When(@"I unsubscribe move mail \(expired token\)")]
-		public void WhenIUnsubscribeMoveMailExpiredToken()
-		{
-			try
-			{
-				var token = getUnsubscribeTokenFromLastEmail();
-
-				var security = repos.Security.GetByToken(token);
-				security.Expire = DateTime.Today.AddDays(-2);
-				repos.Security.SaveOrUpdate(security);
-
-				service.Admin.UnsubscribeMoveMail(token);
-			}
-			catch (CoreError e)
-			{
-				error = e;
-			}
-		}
-
-		[When(@"I unsubscribe move mail \(inactive token\)")]
-		public void WhenIUnsubscribeMoveMailInactiveToken()
-		{
-			try
-			{
-				var token = getUnsubscribeTokenFromLastEmail();
-
-				var security = repos.Security.GetByToken(token);
-				security.Active = false;
-				repos.Security.SaveOrUpdate(security);
-
-				service.Admin.UnsubscribeMoveMail(token);
 			}
 			catch (CoreError e)
 			{

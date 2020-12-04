@@ -298,8 +298,6 @@ namespace DFM.BusinessLogic.Tests
 			set => set("CategoryName", value);
 		}
 
-
-
 		protected static EmailStatus? currentEmailStatus
 		{
 			get => get<EmailStatus?>("CurrentEmailStatus");
@@ -340,6 +338,12 @@ namespace DFM.BusinessLogic.Tests
 		{
 			get => get<String>("userEmailByTest");
 			set => set("userEmailByTest", value);
+		}
+
+		protected static String token
+		{
+			get => get<String>("Token");
+			set => set("Token", value);
 		}
 
 		protected static DateTime entityDate =>
