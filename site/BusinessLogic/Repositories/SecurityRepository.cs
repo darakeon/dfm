@@ -22,20 +22,8 @@ namespace DFM.BusinessLogic.Repositories
 		internal void CreateAndSendToken(User user, SecurityAction action)
 		{
 			var security = Create(user, action);
-
 			sendEmail(security);
-
-			var others = Where(
-				s => s.ID != security.ID
-				     && s.User.ID == security.User.ID
-				     && s.Active
-			);
-
-			foreach (var other in others)
-			{
-				other.Active = false;
-				SaveOrUpdate(other);
-			}
+			disableOthers(security);
 		}
 
 		internal Security Create(User user, SecurityAction action)
@@ -87,7 +75,20 @@ namespace DFM.BusinessLogic.Repositories
 			SaveOrUpdate(security);
 		}
 
+		private void disableOthers(Security security)
+		{
+			var others = Where(
+				s => s.ID != security.ID
+				     && s.User.ID == security.User.ID
+				     && s.Active
+			);
 
+			foreach (var other in others)
+			{
+				other.Active = false;
+				SaveOrUpdate(other);
+			}
+		}
 
 		internal Security GetByToken(String token)
 		{
