@@ -81,7 +81,7 @@ namespace DFM.BusinessLogic.Repositories
 				{ "Description", move.Description },
 				{ "Value", move.Value.ToMoney(config.Language) },
 				{ "Details", detailsHTML(move) },
-				{ "UnsubscribePath", SecurityAction.UnsubscribeMoveMail.ToString() },
+				{ "UnsubscribePath", security.Action.ToString() },
 				{ "UnsubscribeToken", security.Token },
 			};
 

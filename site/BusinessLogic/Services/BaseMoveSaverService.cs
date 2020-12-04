@@ -67,7 +67,7 @@ namespace DFM.BusinessLogic.Services
 				BreakSummaries(move);
 
 			var user = parent.Safe.GetCurrent();
-			var security = repos.Security.Create(
+			var security = repos.Security.Grab(
 				user, SecurityAction.UnsubscribeMoveMail
 			);
 

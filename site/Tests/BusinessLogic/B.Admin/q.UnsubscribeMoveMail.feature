@@ -2,8 +2,6 @@
 
 Background:
 	Given I have a complete user logged in
-		And I have an account
-		And I disable Categories use
 		And I enable move send e-mail
 
 Scenario: Bq01. Stop sending move mail
@@ -59,3 +57,10 @@ Scenario: Bq08. Stop sending move mail with already used token
 	When I unsubscribe move mail
 	Then I will receive this core error: InvalidToken
 		And the move mail will be enabled
+
+Scenario: Bq09. Stop sending move mail reuse token
+	Given I enable Categories use
+		And I have a category
+		And I have a move with value 20 (Out) at account Bq08
+		And I have a move with value 300 (In) at account Bq08
+	Then the last two e-mails will have same unsubscribe token

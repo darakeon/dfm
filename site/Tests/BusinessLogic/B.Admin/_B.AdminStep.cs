@@ -1032,15 +1032,20 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			Assert.AreEqual(enabled, user.Config.SendMoveEmail);
 		}
 
-		private static String getUnsubscribeTokenFromLastEmail()
+		[Then(@"the last two e-mails will have same unsubscribe token")]
+		public void ThenTheLastTwoE_MailsWillHaveSameUnsubscribeToken()
 		{
-			var email = Email.GetLast();
+			var regex = new Regex("UnsubscribeMoveMail>(\\w+)");
 
-			var match = Regex.Match(
-				email.Body, "UnsubscribeMoveMail/(\\w+)"
-			);
+			var email1 = Email.GetByPosition(-1);
+			var match1 = regex.Match(email1.Body);
+			var token1 = match1.Groups[1].Value;
 
-			return match.Groups[1].Value;
+			var email2 = Email.GetByPosition(-2);
+			var match2 = regex.Match(email2.Body);
+			var token2 = match2.Groups[1].Value;
+
+			Assert.AreEqual(token1, token2);
 		}
 		#endregion UnsubscribeMoveMail
 
