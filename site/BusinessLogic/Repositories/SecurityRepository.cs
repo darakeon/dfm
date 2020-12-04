@@ -32,7 +32,7 @@ namespace DFM.BusinessLogic.Repositories
 			{
 				Action = action,
 				Active = true,
-				Expire = user.Now().AddMonths(1),
+				Expire = user.Now().AddDays(3),
 				User = user,
 			};
 
