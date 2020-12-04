@@ -936,7 +936,7 @@ namespace DFM.BusinessLogic.Tests.C.Money
 		[Then(@"the move e-mail will have an unsubscribe link")]
 		public void ThenTheMoveE_MailWillHaveAnUnsubscribeLink()
 		{
-			var email = Email.GetLast();
+			var email = Email.GetByPosition(-1);
 
 			var user = repos.User.GetByEmail(current.Email);
 

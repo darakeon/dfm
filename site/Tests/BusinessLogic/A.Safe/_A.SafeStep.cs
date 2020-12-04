@@ -791,7 +791,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			if (actionOf == SecurityAction.UnsubscribeMoveMail)
 			{
 				var user = repos.User.GetByEmail(tokenEmail);
-				var security = repos.Security.Create(
+				var security = repos.Security.Grab(
 					user, SecurityAction.UnsubscribeMoveMail
 				);
 				token = security.Token;

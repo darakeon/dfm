@@ -21,12 +21,23 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal void CreateAndSendToken(User user, SecurityAction action)
 		{
-			var security = Create(user, action);
+			var security = create(user, action);
 			sendEmail(security);
 			disableOthers(security);
 		}
 
-		internal Security Create(User user, SecurityAction action)
+		internal Security Grab(User user, SecurityAction action)
+		{
+			return SingleOrDefault(
+					s => s.User.ID == user.ID
+					    && s.Action == action
+						&& s.Active == true
+						&& s.Expire >= user.Now()
+				)
+				?? create(user, action);
+		}
+
+		private Security create(User user, SecurityAction action)
 		{
 			var security = new Security
 			{

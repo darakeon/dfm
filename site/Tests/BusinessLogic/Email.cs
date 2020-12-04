@@ -17,13 +17,21 @@ namespace DFM.BusinessLogic.Tests
 		public String Subject { get; }
 		public String Body { get; }
 
-		public static Email GetLast()
+		public static Email GetByPosition(Int32 position)
 		{
-			var dir = new DirectoryInfo(Cfg.Smtp.PickupDirectory);
+			// cannot have -0 and +0
+			if (position == 0) return null;
 
-			var lastEmail = dir.EnumerateFiles()
-				.OrderByDescending(f => f.CreationTime)
-				.First().FullName;
+			var dir = new DirectoryInfo(Cfg.Smtp.PickupDirectory);
+			var files = dir.EnumerateFiles("*.eml");
+
+			files = position > 0
+				? files.OrderBy(f => f.CreationTime)
+				: files.OrderByDescending(f => f.CreationTime);
+
+			position = position > 0 ? position : -position;
+
+			var lastEmail = files.Skip(position-1).First().FullName;
 
 			var content = File.ReadAllLines(lastEmail);
 
