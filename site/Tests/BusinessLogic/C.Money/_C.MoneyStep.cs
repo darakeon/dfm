@@ -954,7 +954,7 @@ namespace DFM.BusinessLogic.Tests.C.Money
 				.FirstOrDefault()?.Token;
 			Assert.NotNull(token);
 
-			var link = $"https://dontflymoney.com/UnsubscribeMoveMail/{token}";
+			var link = $"https://dontflymoney.com/>UnsubscribeMoveMail>{token}";
 
 			Assert.That(
 				email.Body.Contains(link),

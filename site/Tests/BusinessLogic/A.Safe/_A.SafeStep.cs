@@ -792,9 +792,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			{
 				var user = repos.User.GetByEmail(tokenEmail);
 				var security = repos.Security.Create(
-					user,
-					SecurityAction.UnsubscribeMoveMail,
-					PathType.UnsubscribeMoveMail
+					user, SecurityAction.UnsubscribeMoveMail
 				);
 				token = security.Token;
 			}

@@ -29,9 +29,7 @@ namespace DFM.BusinessLogic.Services
 					return;
 
 				repos.Security.CreateAndSendToken(
-					user,
-					SecurityAction.PasswordReset,
-					PathType.PasswordReset
+					user, SecurityAction.PasswordReset
 				);
 			});
 		}
@@ -71,9 +69,7 @@ namespace DFM.BusinessLogic.Services
 		private void sendUserVerify(User user)
 		{
 			repos.Security.CreateAndSendToken(
-				user,
-				SecurityAction.UserVerification,
-				PathType.UserVerification
+				user, SecurityAction.UserVerification
 			);
 		}
 

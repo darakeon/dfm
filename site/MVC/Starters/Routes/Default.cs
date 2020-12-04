@@ -26,6 +26,12 @@ namespace DFM.MVC.Starters.Routes
 			public override String Path => "@{activity}";
 		}
 
+		public class Mail : Default
+		{
+			public Mail() : base("Tokens", "Mail") { }
+			public override String Path => ">{path}>{token}";
+		}
+
 		public class Robots : Default
 		{
 			public Robots() : base("Generic", "Robots") { }

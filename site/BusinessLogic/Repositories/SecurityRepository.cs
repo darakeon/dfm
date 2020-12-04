@@ -13,17 +13,15 @@ namespace DFM.BusinessLogic.Repositories
 	internal class SecurityRepository : Repo<Security>
 	{
 		private readonly Current.GetUrl getUrl;
-		private readonly Func<PathType, String> getPath;
 
-		public SecurityRepository(Current.GetUrl getUrl, Func<PathType, String> getPath)
+		public SecurityRepository(Current.GetUrl getUrl)
 		{
 			this.getUrl = getUrl;
-			this.getPath = getPath;
 		}
 
-		internal void CreateAndSendToken(User user, SecurityAction action, PathType path)
+		internal void CreateAndSendToken(User user, SecurityAction action)
 		{
-			var security = Create(user, action, path);
+			var security = Create(user, action);
 
 			sendEmail(security);
 
@@ -40,7 +38,7 @@ namespace DFM.BusinessLogic.Repositories
 			}
 		}
 
-		internal Security Create(User user, SecurityAction action, PathType type)
+		internal Security Create(User user, SecurityAction action)
 		{
 			var security = new Security
 			{
@@ -48,7 +46,6 @@ namespace DFM.BusinessLogic.Repositories
 				Active = true,
 				Expire = user.Now().AddMonths(1),
 				User = user,
-				Path = getPath(type),
 			};
 
 			security.CreateToken();
@@ -58,15 +55,13 @@ namespace DFM.BusinessLogic.Repositories
 
 		private void sendEmail(Security security)
 		{
-			var pathDisable = getPath(PathType.DisableToken);
-
 			var dic = new Dictionary<String, String>
 			{
 				{ "Url", getUrl() },
 				{ "Token", security.Token },
 				{ "Date", security.Expire.AddDays(-1).ToShortDateString() },
-				{ "PathAction", security.Path },
-				{ "PathDisable", pathDisable },
+				{ "PathAction", security.Action.ToString() },
+				{ "PathDisable", PathType.DisableToken.ToString() },
 			};
 
 			var config = security.User.Config;

@@ -13,8 +13,6 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 			mapping.Map(s => s.Token)
 				.Length(MaxLen.SecurityToken)
 				.Unique();
-
-			mapping.IgnoreProperty(s => s.Path);
 		}
 	}
 }

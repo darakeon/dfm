@@ -14,7 +14,7 @@ namespace DFM.MVC.Helpers
 		public Service(GetContext getContext)
 		{
 			this.getContext = getContext;
-			Access = new ServiceAccess(getTicket, getPath, getUrl);
+			Access = new ServiceAccess(getTicket, getUrl);
 		}
 
 		private readonly GetContext getContext;
@@ -43,24 +43,6 @@ namespace DFM.MVC.Helpers
 				TicketType.Browser => BrowserId.Get(() => context, remember),
 				TicketType.Mobile => request.Headers["ticket"],
 				TicketType.Local => throw new NotImplementedException(),
-				_ => throw new NotImplementedException()
-			};
-		}
-
-		private String getPath(PathType pathType)
-		{
-			return Route.GetUrl<Default.Main>
-				("Tokens", getAction(pathType));
-		}
-
-		private String getAction(PathType pathType)
-		{
-			return pathType switch
-			{
-				PathType.PasswordReset => "PasswordReset",
-				PathType.UserVerification => "UserVerification",
-				PathType.UnsubscribeMoveMail => "UnsubscribeMoveMail",
-				PathType.DisableToken => "Disable",
 				_ => throw new NotImplementedException()
 			};
 		}
