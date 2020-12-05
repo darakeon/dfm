@@ -11,8 +11,9 @@ This is the task list for the project.
 - Dependency: which other task it depends on (if it exists)
 - Issue: github issue about the task (if it exists)
 
-| Task (65)                                                                               | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
+| Task (66)                                                                               | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
 | --------------------------------------------------------------------------------------- | -------- | --- | --- | --- | ------------------ | ------------------------------------------------ |
+| Replace close button by contact at app                                                  | :sheep:  |  1  |  4  |  7  |                    |                                                  |
 | Android null body                                                                       | :ant:    |  2  |  3  |  5  |                    | [#81](https://github.com/darakeon/dfm/issues/81) |
 | Timeout                                                                                 | :ant:    |  2  |  3  |  5  |                    | [#82](https://github.com/darakeon/dfm/issues/82) |
 | Fix error on reports                                                                    | :ant:    |  2  |  3  |  5  |                    | [#83](https://github.com/darakeon/dfm/issues/83) |
