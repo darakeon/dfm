@@ -9,6 +9,32 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Email\DarkMaster.htm" />
+    <None Remove="Email\Detail.htm" />
+    <None Remove="Email\LightMaster.htm" />
+    <None Remove="Email\MoveNotification.htm" />
+    <None Remove="Email\SecurityAction.htm" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Email\DarkMaster.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Email\Detail.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Email\LightMaster.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Email\MoveNotification.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Email\SecurityAction.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Keon.Util" Version="2.0.2" />
   </ItemGroup>
 

@@ -13,18 +13,18 @@ namespace DFM.Language
 {
 	public class PlainText
 	{
-		private static String currentPath;
+		internal static String CurrentPath;
 
-		internal static String MainPath => Path.Combine(currentPath, "Language");
+		private static String mainPath => Path.Combine(CurrentPath, "Language");
 
 		private static readonly String siteName = "Site";
-		private static String sitePath => Path.Combine(MainPath, siteName);
+		private static String sitePath => Path.Combine(mainPath, siteName);
 
 		private static readonly String emailName = "Email";
-		private static String emailPath => Path.Combine(MainPath, emailName);
+		private static String emailPath => Path.Combine(mainPath, emailName);
 
 		private static readonly String versionName = "Version";
-		internal static String VersionPath => Path.Combine(MainPath, versionName);
+		internal static String VersionPath => Path.Combine(mainPath, versionName);
 
 		public static Html Html { get; private set; }
 		public static PlainText Site { get; private set; }
@@ -63,10 +63,10 @@ namespace DFM.Language
 
 		public static void Initialize(String path)
 		{
-			if (currentPath != null)
+			if (CurrentPath != null)
 				return;
 
-			currentPath = path;
+			CurrentPath = path;
 
 			Site = new PlainText(siteName, sitePath);
 			Email = new PlainText(emailName, emailPath);
