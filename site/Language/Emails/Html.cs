@@ -6,7 +6,7 @@ namespace DFM.Language.Emails
 {
 	public class Html
 	{
-		private static readonly String path = Path.Combine(PlainText.MainPath, "Html");
+		private static readonly String path = Path.Combine(PlainText.CurrentPath, "Email");
 
 		public String this[SimpleTheme simpleTheme, EmailType emailType]
 		{
