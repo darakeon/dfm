@@ -28,13 +28,15 @@ async function createContract() {
 	)
 }
 
-async function createUserIfNotExists(email, active, wizard) {
+async function createUserIfNotExists(email, props) {
 	const users = await getUser(email)
-	active = !!active
-	wizard = !!wizard
 
 	const exist = users.length > 0
 	let user = {}
+
+	if (!props) props = {}
+	active = props.active
+	wizard = props.wizard
 
 	if (exist) {
 		await changeUserState(email, active, wizard)
@@ -58,16 +60,22 @@ async function changeUserState(email, active, wizard) {
 	const user = await execute(
 		`select config_id from user where email='${email}'`
 	)
-	await execute(
-		`update user
-			set active=${active?1:0}
-			where email='${email}'`
-	)
-	await execute(
-		`update config as c
-			set wizard=${wizard?1:0}
-			where id=${user[0].Config_ID}`
-	)
+
+	if (active != undefined) {
+		await execute(
+			`update user
+				set active=${active?1:0}
+				where email='${email}'`
+		)
+	}
+
+	if (wizard != undefined) {
+		await execute(
+			`update config as c
+				set wizard=${wizard?1:0}
+				where id=${user[0].Config_ID}`
+		)
+	}
 }
 
 async function createUser(email, active, wizard) {
@@ -75,7 +83,7 @@ async function createUser(email, active, wizard) {
 		`insert into config`
 			+ ` (language, timezone, sendMoveEmail, useCategories, moveCheck, theme, wizard)`
 		+ ` values`
-			+ ` ('pt-BR', 'UTC-03:00', 0, 1, 1, 1, ${wizard})`
+			+ ` ('pt-BR', 'UTC-03:00', 0, 1, 1, 1, ${wizard?1:0})`
 	)
 
 	const config = await execute(
@@ -86,7 +94,7 @@ async function createUser(email, active, wizard) {
 		`insert into user`
 			+ ` (password, email, active, wrongLogin, config_id)`
 		+ ` values`
-			+ `('${password.encrypted}', '${email}', ${active}, 0, ${config[0].ID})`
+			+ `('${password.encrypted}', '${email}', ${active?1:0}, 0, ${config[0].ID})`
 	)
 
 	return { ID: result.lastID }

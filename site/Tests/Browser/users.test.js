@@ -36,7 +36,7 @@ describe('Users', () => {
 
 	test('Logon', async () => {
 		const email = 'logon_success@dontflymoney.com'
-		await db.createUserIfNotExists(email, 1)
+		await db.createUserIfNotExists(email, {active:true})
 
 		await puppy.call('Users/Logon')
 		await page.waitForSelector('#body form')
@@ -93,7 +93,7 @@ describe('Users', () => {
 
 	test('LogOff', async () => {
 		const email = 'logoff@dontflymoney.com'
-		await db.createUserIfNotExists(email, 1)
+		await db.createUserIfNotExists(email, {active:true})
 
 		await puppy.call('Users/Logon')
 		await page.waitForSelector('#body form')
@@ -113,7 +113,7 @@ describe('Users', () => {
 
 	test('End Wizard', async () => {
 		const email = 'end_wizard@dontflymoney.com'
-		await db.createUserIfNotExists(email, 1, 1)
+		await db.createUserIfNotExists(email, {active:true, wizard:true})
 
 		await puppy.call('Users/Logon')
 		await page.waitForSelector('#body form')
@@ -132,7 +132,7 @@ describe('Users', () => {
 
 	test('Contract', async () => {
 		const email = 'contract@dontflymoney.com'
-		await db.createUserIfNotExists(email, 1, 1)
+		await db.createUserIfNotExists(email, {active:true, wizard:true})
 
 		await puppy.call('Users/Contract')
 		await page.waitForSelector('#body form')
