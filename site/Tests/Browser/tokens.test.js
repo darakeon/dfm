@@ -43,7 +43,7 @@ describe('Users', () => {
 
 	test('Token Password Reset - by url', async () => {
 		const email = 'token_reset_password@dontflymoney.com'
-		await db.createUserIfNotExists(email, 1)
+		await db.createUserIfNotExists(email, {active:true})
 		const token = await db.createToken(email, 1)
 
 		await puppy.call(`Tokens/PasswordReset/${token}`)
@@ -59,7 +59,7 @@ describe('Users', () => {
 
 	test('Token Password Reset - by form', async () => {
 		const email = 'token_reset_password@dontflymoney.com'
-		await db.createUserIfNotExists(email, 1)
+		await db.createUserIfNotExists(email, {active:true})
 		const token = await db.createToken(email, 1)
 
 		await puppy.call('Tokens')
@@ -117,7 +117,7 @@ describe('Users', () => {
 
 	test('Token Disable', async () => {
 		const email = 'token_disable@dontflymoney.com'
-		await db.createUserIfNotExists(email, 1)
+		await db.createUserIfNotExists(email, {active:true})
 		const token = await db.createToken(email, 1)
 
 		await puppy.call(`Tokens/Disable/${token}`)

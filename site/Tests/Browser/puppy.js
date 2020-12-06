@@ -58,7 +58,7 @@ async function setValue(selector, value) {
 }
 
 async function logon(email) {
-	user = await db.createUserIfNotExists(email, 1)
+	user = await db.createUserIfNotExists(email, {active:true})
 
 	const cookie = await dfmCookie()
 
