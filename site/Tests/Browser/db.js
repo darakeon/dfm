@@ -327,6 +327,14 @@ async function getLastUnsubscribeMoveMailToken(user) {
 	return result[0]["Token"]
 }
 
+async function setSecret(email, secret) {
+	return await execute(
+		`update user `
+			+ `set tfaSecret='${secret}' `
+			+ `where email='${email}' `
+	)
+}
+
 async function execute(query, params) {
 	let done = false;
 	let result;
@@ -390,4 +398,5 @@ module.exports = {
 	checkTicket,
 	getLastAccess,
 	getLastUnsubscribeMoveMailToken,
+	setSecret,
 }

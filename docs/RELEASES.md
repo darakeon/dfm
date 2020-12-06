@@ -20,7 +20,7 @@ Legend:
 - [ ] Remove forgotten toast at android
 - [x] `201204>201204` Eliminate path from business logic, fixed path that MVC redirects
 - [ ] Add code of conduct to repo [#44]
-- [ ] If lost authy, send e-mail to remove authy
+- [x] `201205>201208` Add contact link to when lose the TFA
 - [x] `201130>201205` Link unsubscribe for moves (new security token)
 
 ## <a name="4.5.0.2"></a>4.5.0.2 :ant: <sup>`3`</sup>

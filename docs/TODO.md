@@ -78,6 +78,7 @@ This is the task list for the project.
 | Remove GetOrCreate                                                                      | :ant:    |  3  |  1  |  2  |                    |                                                  |
 | Data import and export (csv, json)                                                      | :dragon: |  3  |  1  |  2  |                    |                                                  |
 | Config max request length                                                               | :ant:    |  1  |  2  |  5  | import/export      |                                                  |
+| Create measure of recovering after lost authy                                           | :sheep:  |  4  |  1  |  1  |                    |                                                  |
 | Create service to translate site ("put in your language")                               | :dragon: |  4  |  1  |  1  |                    |                                                  |
 
 [compose jetpack]: https://medium.com/@nglauber/jetpack-compose-o-framework-de-ui-do-android-para-os-pr%C3%B3ximos-10-anos-e19adf28e57e
