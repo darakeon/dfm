@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer')
 const db = require('./db')
 const puppy = require('./puppy')
+const tfa = require('./tfa')
 
 describe('Users', () => {
 	beforeEach(async () => {
@@ -138,5 +139,28 @@ describe('Users', () => {
 
 		const acceptLabel = await puppy.content('.panel-heading')
 		await expect(acceptLabel).toContain('Termos de Uso')
+	})
+
+	test('TFA', async () => {
+		const email = 'tfa@dontflymoney.com'
+		const user = await puppy.logon(email)
+
+		const secret = 'answer to the life universe and everything'
+		await db.setSecret(email, secret)
+
+		await puppy.call('Accounts')
+		await page.waitForSelector('#body form')
+		await expect(page.title()).resolves.toMatch('DfM - Autenticação mais Segura')
+
+		await page.click('#body form a.btn-info')
+		await page.waitForSelector('#contact-modal', { visible: true })
+		await page.click('#contact-modal .close')
+		await page.waitForSelector('#contact-modal', { visible: false })
+
+		await page.type('#Code', tfa.code(secret))
+		await page.click('#body form button[type="submit"]')
+
+		await page.waitForSelector('#body')
+		await expect(page.title()).resolves.toMatch('DfM - Contas')
 	})
 })

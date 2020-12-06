@@ -9,7 +9,7 @@
 	@Html.LabelFor(m => m.Code, Context.Translate("Code"))
 
 	<span class="glyphicon glyphicon-info-sign control-label"
-		  title="@Context.Translate("TFAVerification")">
+	      title="@Context.Translate("TFAVerification")">
 	</span>
 
 	@Html.TextBoxFor(m => m.Code, new { @class = "form-control" })
@@ -17,6 +17,10 @@
 </div>
 
 @section Footer {
+	<a role="button" class="btn btn-info pull-left" data-toggle='modal' data-target='#contact-modal'>
+		@Context.Translate("TFAContactUs")
+	</a>
+
 	<button type="submit" class="btn btn-success">
 		@Context.Translate("Go")
 	</button>
