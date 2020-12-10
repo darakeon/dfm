@@ -37,6 +37,7 @@ itself. Well, we are always our most demanding client.
 - [License (GPL)](LICENSE.md)
 - [Releases](docs/RELEASES.md)
 - [Task list](docs/TODO.md)
+- [Code of Conduct](CODE_OF_CONDUCT.md)
 
 ## Technologies
 
