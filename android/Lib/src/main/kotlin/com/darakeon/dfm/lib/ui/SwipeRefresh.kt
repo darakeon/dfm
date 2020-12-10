@@ -15,9 +15,6 @@ class SwipeRefresh(
 	var listChild: ListView? = null
 
 	override fun canChildScrollUp(): Boolean {
-		Toast.makeText(context, scrollChild.toString(), Toast.LENGTH_LONG).show()
-		Toast.makeText(context, listChild.toString(), Toast.LENGTH_LONG).show()
-
 		if (scrollChild != null) {
 			return scrollChild?.canScrollVertically(-1) ?: true
 		}
