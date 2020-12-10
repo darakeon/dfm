@@ -13,9 +13,9 @@ pub fn add_release(code: String, numbers: Vec<usize>) -> Option<String> {
 	if try_next.is_none() {
 		return None;
 	}
-	let next = try_next.unwrap();
+	let (next, icon) = try_next.unwrap();
 
-	write_release(next.clone(), new_tasks);
+	write_release(next.clone(), new_tasks, icon);
 
 	return Some(next);
 }
@@ -108,42 +108,53 @@ fn extract_count(text: &str) -> usize {
 	return captures.get(1).unwrap().as_str().parse::<usize>().unwrap();
 }
 
-fn get_next(sizes: Vec<String>, current: String) -> Option<String> {
+fn get_next(sizes: Vec<String>, current: String) -> Option<(String, String)> {
 	let new_version = get_new_version(sizes);
 
-	if let Some((size_pattern, end)) = new_version {
+	if let Some((size_pattern, end, icon)) = new_version {
 		let regex = Regex::new(&size_pattern).unwrap();
 		let captures = regex.captures(&current).unwrap();
 
 		let start = captures.get(1).unwrap().as_str().to_string();
 		let change: i32 = captures.get(2).unwrap().as_str().parse().unwrap();
 
-		return Some(format!("{}{}{}", start, change + 1, end));
+		return Some((format!("{}{}{}", start, change + 1, end), icon));
 	}
 
 	return throw(21, "Unknown version size");
 }
 
-fn get_new_version(sizes: Vec<String>) -> Option<(String, String)> {
-	if sizes.contains(&"dragon".to_string()) {
-		return Some((r"()(\d+)\.\d+\.\d+\.\d+".to_string(), r".0.0.0".to_string()));
-	} else if sizes.contains(&"whale".to_string()) {
-		return Some((r"(\d+\.)(\d+)\.\d+\.\d+".to_string(), r".0.0".to_string()));
-	} else if sizes.contains(&"sheep".to_string()) {
-		return Some((r"(\d+\.\d+\.)(\d+)\.\d+".to_string(), r".0".to_string()));
-	} else if sizes.contains(&"ant".to_string()) {
-		return Some((r"(\d+\.\d+\.\d+\.)(\d+)".to_string(), r"".to_string()));
-	} else {
-		return None;
+fn get_new_version(sizes: Vec<String>) -> Option<(String, String, String)> {
+	let dragon = "dragon".to_string();
+	
+	if sizes.contains(&dragon) {
+		return Some((r"()(\d+)\.\d+\.\d+\.\d+".to_string(), r".0.0.0".to_string(), dragon));
 	}
+	
+	let whale = "whale".to_string();
+	if sizes.contains(&whale) {
+		return Some((r"(\d+\.)(\d+)\.\d+\.\d+".to_string(), r".0.0".to_string(), whale));
+	}
+	
+	let sheep = "sheep".to_string();
+	if sizes.contains(&sheep) {
+		return Some((r"(\d+\.\d+\.)(\d+)\.\d+".to_string(), r".0".to_string(), sheep));
+	}
+
+	let ant = "ant".to_string();
+	if sizes.contains(&ant) {
+		return Some((r"(\d+\.\d+\.\d+\.)(\d+)".to_string(), r"".to_string(), ant));
+	}
+	
+	return None;
 }
 
-fn write_release(next: String, new_tasks: Vec<String>) {
+fn write_release(next: String, new_tasks: Vec<String>, icon: String) {
 	let mut new_version: Vec<String> = Vec::new();
 
 	new_version.push(format!(
-		"## <a name=\"{}\"></a>{} :ant: <sup>`{}`</sup>",
-		next, next, new_tasks.len()
+		"## <a name=\"{}\"></a>{} :{}: <sup>`{}`</sup>",
+		next, next, icon, new_tasks.len()
 	));
 
 	new_version.splice(1..1, new_tasks);
