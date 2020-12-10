@@ -16,7 +16,7 @@ Legend:
 
 ## <a name="4.6.0.0"></a>4.6.0.0 :whale: <sup>`8`</sup>
 - [ ] Fix contact modal from TASKS to RELEASES and TODOS
-- [ ] Fix logic of version icon
+- [x] `201209>201210` Fix logic of version icon
 - [x] `201204>201204` Replace {{Warning}} at e-mails by real message
 - [x] `201209>201209` Remove forgotten toast at android
 - [x] `201204>201204` Eliminate path from business logic, fixed path that MVC redirects
