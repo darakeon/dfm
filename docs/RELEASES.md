@@ -18,7 +18,7 @@ Legend:
 - [ ] Fix contact modal from TASKS to RELEASES and TODOS
 - [ ] Fix logic of version icon
 - [x] `201204>201204` Replace {{Warning}} at e-mails by real message
-- [ ] Remove forgotten toast at android
+- [x] `201209>201209` Remove forgotten toast at android
 - [x] `201204>201204` Eliminate path from business logic, fixed path that MVC redirects
 - [x] `201209>201209` Add code of conduct to repo [#44]
 - [x] `201205>201208` Add contact link to when lose the TFA
