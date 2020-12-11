@@ -100,12 +100,13 @@
 		"TaskList": "Task List",
 
 		"Contact_Title": "Contact",
-		"Contact_Text": "You can reach site development by:",
 		"Contact_Email": "E-mail: {0}",
-		"Contact_GitHub": "GitHub: {0}",
 		"Contact_Twitter": "Twitter: {0} (posts are in portuguese)",
 		"Contact_Facebook": "Facebook: {0} (posts are in portuguese)",
-		"Contact_TaskList": "click here to see a list of things that will be developed at the system",
+		"Contact_Project": "About Project",
+		"Contact_Releases": "Things done and doing",
+		"Contact_TODO": "What we see for future",
+		"Contact_PS": "",
 
 		"Search_Title": "Search",
 		"Search_Text": "The terms will be searched at moves and its details",
@@ -211,12 +212,13 @@
 		"TaskList": "Lista de Tarefas (em inglês)",
 
 		"Contact_Title": "Formas de contato",
-		"Contact_Text": "Você pode entrar em contato através dos seguintes canais:",
 		"Contact_Email": "E-mail: {0}",
-		"Contact_GitHub": "GitHub: {0} (conteúdo em inglês)",
 		"Contact_Twitter": "Twitter: {0}",
 		"Contact_Facebook": "Facebook: {0}",
-		"Contact_TaskList": "clique aqui para ver uma lista de coisas que serão desenvolvidas para o sistema (em inglês)",
+		"Contact_Project": "Projeto",
+		"Contact_Releases": "Itens terminados e em desenvolvimento",
+		"Contact_TODO": "O que temos para o futuro",
+		"Contact_PS": "(em inglês)",
 
 		"Search_Title": "Busca",
 		"Search_Text": "Os termos serão buscados nas movimentações e em seus detalhes",
