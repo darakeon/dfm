@@ -15,7 +15,7 @@ Legend:
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="4.6.0.0"></a>4.6.0.0 :whale: <sup>`8`</sup>
-- [ ] Fix contact modal from TASKS to RELEASES and TODOS
+- [ ] `201210>......` Fix contact modal from TASKS to RELEASES and TODOS
 - [x] `201209>201210` Fix logic of version icon
 - [x] `201204>201204` Replace {{Warning}} at e-mails by real message
 - [x] `201209>201209` Remove forgotten toast at android
