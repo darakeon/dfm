@@ -4,7 +4,6 @@
 	var contacts = new Dictionary<String, String>
 	{
 		{ "Email", "dfm@dontflymoney.com" },
-		{ "GitHub", "https://github.com/darakeon/dfm/issues/new" },
 		{ "Twitter", "https://twitter.com/dfm_grunt" },
 		{ "Facebook", "https://facebook.com/dontflymoney" },
 	};
@@ -19,8 +18,8 @@
 				</span>
 				@await Html.PartialAsync("Modals/Close")
 			</div>
+
 			<div class="modal-body">
-				@Context.Translate("Contact_Text")
 				<ul>
 					@foreach (var contact in contacts)
 					{
@@ -44,11 +43,30 @@
 						</li>
 					}
 				</ul>
-			</div>
-			<div class="modal-footer">
-				<a href="https://github.com/darakeon/dfm/blob/master/docs/TODO.md" target="_blank">
-					@Context.Translate("Contact_TaskList")
-				</a>
+
+				<hr/>
+
+				<h4>
+					<a href="https://github.com/darakeon/dfm/" target="_blank">
+						@Context.Translate("Contact_Project")
+					</a>
+					<em class="small">
+						@Context.Translate("Contact_PS")
+					</em>
+				</h4>
+
+				<ul>
+					<li>
+						<a href="https://github.com/darakeon/dfm/blob/main/docs/RELEASES.md" target="_blank">
+							@Context.Translate("Contact_Releases")
+						</a>
+					</li>
+					<li>
+						<a href="https://github.com/darakeon/dfm/blob/main/docs/TODO.md" target="_blank">
+							@Context.Translate("Contact_TODO")
+						</a>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>

@@ -328,11 +328,12 @@ Scenario: 19. Get translate of Interface (contact)
 	Given I have these keys
 			| Section | Phrase           |
 			| General | Contact_Title    |
-			| General | Contact_Text     |
 			| General | Contact_Email    |
-			| General | Contact_GitHub   |
 			| General | Contact_Twitter  |
 			| General | Contact_Facebook |
-			| General | Contact_TaskList |
+			| General | Contact_Project  |
+			| General | Contact_Releases |
+			| General | Contact_TODO     |
+			| General | Contact_PS       |
 	When I try get the translate
 	Then I will receive no language error

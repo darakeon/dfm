@@ -102,7 +102,7 @@ namespace DFM.Language.Tests
 					{
 						var translation = PlainText.Site[key.Section, language, key.Phrase];
 
-						if (String.IsNullOrEmpty(translation))
+						if (translation == null)
 							errors.AppendLine($"Null at S: {key.Section}, L: {language}, P:{key.Phrase}");
 					}
 					catch (DicException e)
