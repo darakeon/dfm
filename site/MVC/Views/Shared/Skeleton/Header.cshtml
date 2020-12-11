@@ -30,10 +30,7 @@
 				</li>
 
 				<li>
-					<a role='button' id="open-contact" data-toggle='modal' data-target='#contact-modal'>
-						<span class="glyphicon glyphicon-comment"
-							  title="@Context.Translate("Contact_Title")"></span>
-					</a>
+					@await Html.PartialAsync("Skeleton/MenuContact")
 				</li>
 
 				@if (!Model.IsAuthenticated)
