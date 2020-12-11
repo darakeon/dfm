@@ -14,7 +14,8 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="4.6.0.0"></a>4.6.0.0 :whale: <sup>`9`</sup>
+## <a name="4.6.0.0"></a>4.6.0.0 :whale: <sup>`10`</sup>
+- [x] `201211>201211` Add issue template to repo [#44]
 - [x] `201211>201211` Add contributing to repo [#44]
 - [x] `201210>201211` Fix contact modal from TASKS to RELEASES and TODOS
 - [x] `201209>201210` Fix logic of version icon
