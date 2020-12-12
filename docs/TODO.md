@@ -11,13 +11,8 @@ This is the task list for the project.
 - Dependency: which other task it depends on (if it exists)
 - Issue: github issue about the task (if it exists)
 
-| Task (65)                                                                               | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
+| Task (60)                                                                               | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
 | --------------------------------------------------------------------------------------- | -------- | --- | --- | --- | ------------------ | ------------------------------------------------ |
-| Replace close button by contact at app                                                  | :sheep:  |  1  |  4  |  7  |                    |                                                  |
-| Android null body                                                                       | :ant:    |  2  |  3  |  5  |                    | [#81](https://github.com/darakeon/dfm/issues/81) |
-| Timeout                                                                                 | :ant:    |  2  |  3  |  5  |                    | [#82](https://github.com/darakeon/dfm/issues/82) |
-| Fix error on reports                                                                    | :ant:    |  2  |  3  |  5  |                    | [#83](https://github.com/darakeon/dfm/issues/83) |
-| Problem with receiving html instead of json                                             | :ant:    |  2  |  3  |  5  |                    | [#84](https://github.com/darakeon/dfm/issues/84) |
 | Report with values: select to see sum                                                   | :sheep:  |  1  |  2  |  5  |                    |                                                  |
 | Show account state on account area                                                      | :sheep:  |  1  |  2  |  5  |                    |                                                  |
 | Add Year Negative / Positive / Sum to Year summary                                      | :sheep:  |  1  |  2  |  5  |                    |                                                  |

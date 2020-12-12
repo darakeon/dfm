@@ -4,15 +4,22 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#4.5.0.2)
-- [go to version in development](#4.6.0.0)
-- [dev version state](../../4.6.0.0/docs/RELEASES.md#4.6.0.0)
+- [go to published version](#4.6.0.0)
+- [go to version in development](#4.6.1.0)
+- [dev version state](../../4.6.1.0/docs/RELEASES.md#4.6.1.0)
 
 Legend:
 - :dragon:: at least one huge change (increases first number)
 - :whale:: at least one big change, like a new feature (increases second number)
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="4.6.1.0"></a>4.6.1.0 :sheep: <sup>`5`</sup>
+- [ ] Replace close button by contact at app
+- [ ] Android null body [#81]
+- [ ] Timeout [#82]
+- [ ] Fix error on reports [#83]
+- [ ] Problem with receiving html instead of json [#84]
 
 ## <a name="4.6.0.0"></a>4.6.0.0 :whale: <sup>`10`</sup>
 - [x] `201211>201211` Add issue template to repo [#44]

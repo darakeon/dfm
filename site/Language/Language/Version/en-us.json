@@ -1,4 +1,12 @@
 {
+	"4.6.0.0": [
+		"Fix contact modal access to project",
+		"Fix e-mail message missing",
+		"Remove forgotten test message at android",
+		"Change paths of e-mail links",
+		"Add contact modal at TFA form",
+		"Link unsubscribe for moves"
+	],
 	"4.5.0.2": [
 		"Fix program that changes system version number"
 	],
