@@ -1,4 +1,12 @@
 {
+	"4.6.0.0": [
+		"Arrumado links de projeto no modal de contato",
+		"Ajustada parte da mensagem faltando no e-mail",
+		"Removida mensagem de teste esquecida no app android",
+		"Mudado caminho de links de e-mails",
+		"Colocado modal de contato no formulário de autenticação mais segura",
+		"Link para parar notificações de movimentações por e-mail"
+	],
 	"4.5.0.2": [
 		"Arrumado programa que muda o número da versão do sistema"
 	],
