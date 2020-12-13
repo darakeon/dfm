@@ -2,6 +2,7 @@ package com.darakeon.dfm.lib
 
 import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import java.nio.charset.Charset
 import java.nio.file.Files
 import java.nio.file.Paths
@@ -12,7 +13,12 @@ import java.util.Locale
 object Log {
 	fun record(text: Any?) {
 		toConsole(text)
-		toFile(text)
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+			if (Files.isWritable(Paths.get(""))) {
+				toFile(text)
+			}
+		}
 	}
 
 	private fun toConsole(text: Any?) {
@@ -23,10 +29,8 @@ object Log {
 		}
 	}
 
+	@RequiresApi(Build.VERSION_CODES.O)
 	private fun toFile(text: Any?) {
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O)
-			return
-
 		val charset = Charset.forName("UTF-8")
 
 		var record = text.toString()
@@ -42,13 +46,15 @@ object Log {
 		Files.write(path, record.toByteArray(charset))
 	}
 
-	private val start = {
-		val dir = Paths.get("log")
-		if (!Files.exists(dir))
-			Files.createDirectory(dir)
+	private val start:String
+		@RequiresApi(Build.VERSION_CODES.O)
+		get() {
+			val dir = Paths.get("log")
+			if (!Files.exists(dir))
+				Files.createDirectory(dir)
 
-		now("yyyyMMdd_HHmmss_SSS")
-	}()
+			return now("yyyyMMdd_HHmmss_SSS")
+		}
 
 	fun now(pattern: String): String {
 		val calendar = Calendar.getInstance()

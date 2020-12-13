@@ -21,6 +21,9 @@ Legend:
 - [ ] Fix error on reports [#83]
 - [ ] Problem with receiving html instead of json [#84]
 
+## <a name="4.6.0.1"></a>4.6.0.1 :sheep: <sup>`1`</sup>
+- [x] `201213>201213` Fix recording log at mobile
+
 ## <a name="4.6.0.0"></a>4.6.0.0 :whale: <sup>`10`</sup>
 - [x] `201211>201211` Add issue template to repo [#44]
 - [x] `201211>201211` Add contributing to repo [#44]
