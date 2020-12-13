@@ -1,4 +1,7 @@
 {
+	"4.6.0.1": [
+		"Corrigido problema ao abrir qualquer tela que chame o site"
+	],
 	"4.6.0.0": [
 		"Arrumado links de projeto no modal de contato",
 		"Ajustada parte da mensagem faltando no e-mail",
