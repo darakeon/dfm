@@ -1,4 +1,7 @@
 {
+	"4.6.0.1": [
+		"Fix bug that closes the app when open any screen that calls the website"
+	],
 	"4.6.0.0": [
 		"Fix contact modal access to project",
 		"Fix e-mail message missing",
