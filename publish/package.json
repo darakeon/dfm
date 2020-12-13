@@ -1,0 +1,20 @@
+{
+	"name": "browser-tests",
+	"version": "406.0.0",
+	"description": "DfM Site Tests",
+	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/darakeon/dfm.git"
+	},
+	"author": "Dara Keon",
+	"license": "GPL-3.0",
+	"bugs": {
+		"url": "https://github.com/darakeon/dfm/issues"
+	},
+	"homepage": "https://github.com/darakeon/dfm#readme",
+	"dependencies": {
+		"aws-sdk": "^2.809.0",
+		"public-ip": "^4.0.3"
+	}
+}
