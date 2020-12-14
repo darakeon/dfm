@@ -153,6 +153,9 @@ namespace DFM.Language
 
 		public static String GetMonthName(Int32 month, String language)
 		{
+			if (month < 1 || month > 12)
+				return "---";
+
 			return CultureInfo.GetCultureInfo(language)
 				.DateTimeFormat.GetMonthName(month).Capitalize();
 		}
