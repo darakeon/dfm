@@ -1,6 +1,8 @@
 package com.darakeon.dfm.lib.api
 
 import android.content.Context
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import okhttp3.Dispatcher
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -35,8 +37,12 @@ object Retrofit {
 		val builder = Retrofit.Builder()
 		config(builder)
 
+		val gson: Gson = GsonBuilder()
+			.setLenient()
+			.create()
+
 		builder.addConverterFactory(
-			GsonConverterFactory.create()
+			GsonConverterFactory.create(gson)
 		)
 
 		val name = "javax.net.ssl.trustStore"

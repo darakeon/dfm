@@ -19,7 +19,7 @@ Legend:
 - [ ] Android null body [#81]
 - [ ] Timeout [#82]
 - [ ] Fix error on reports [#83]
-- [ ] Problem with receiving html instead of json [#84]
+- [x] `201213>201218` Problem with receiving html instead of json [#84]
 
 ## <a name="4.6.0.1"></a>4.6.0.1 :sheep: <sup>`1`</sup>
 - [x] `201213>201213` Fix recording log at mobile
