@@ -1,5 +1,6 @@
 package com.darakeon.dfm.lib.api
 
+import com.darakeon.dfm.lib.BuildConfig
 import com.darakeon.dfm.lib.api.entities.accounts.AccountList
 import com.darakeon.dfm.lib.api.entities.extract.Extract
 import com.darakeon.dfm.lib.api.entities.login.Login
@@ -12,11 +13,15 @@ import com.darakeon.dfm.lib.api.entities.summary.Summary
 import com.darakeon.dfm.lib.utils.ActivityMock
 import com.darakeon.dfm.lib.utils.ApiActivity
 import com.darakeon.dfm.testutils.BaseTest
+import com.darakeon.dfm.testutils.api.internetError
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
 import com.darakeon.dfm.testutils.robolectric.waitTasks
+import com.google.gson.JsonSyntaxException
 import org.junit.After
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -315,5 +320,35 @@ class ApiTest: BaseTest() {
 		api.wakeUpSite { }
 		api.cancel()
 		assertTrue(activity.waitEnded)
+	}
+
+	@Test
+	fun receiveXMLDebug() {
+		if (!BuildConfig.DEBUG)
+			return
+
+		server.enqueue("xml")
+
+		api.wakeUpSite { }
+		activity.waitTasks()
+
+		assertNull(activity.errorText)
+		assertNotNull(activity.error)
+		assertEquals(activity.error!!::class, JsonSyntaxException::class)
+	}
+
+	@Test
+	fun receiveXMLRelease() {
+		if (BuildConfig.DEBUG)
+			return
+
+		server.enqueue("xml")
+
+		api.wakeUpSite { }
+		activity.waitTasks()
+
+		assertEquals(internetError, activity.errorText)
+		assertNotNull(activity.error)
+		assertEquals(activity.error!!::class, JsonSyntaxException::class)
 	}
 }

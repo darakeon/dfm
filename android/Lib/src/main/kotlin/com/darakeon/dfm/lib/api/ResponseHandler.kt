@@ -61,9 +61,12 @@ class ResponseHandler<C, A>(
 	}
 
 	private fun onError(call: Call<Body<A>>, error: Throwable) {
-		if (BuildConfig.DEBUG) throw error
-
 		val url = call.request().url().encodedPath()
+
+		if (BuildConfig.DEBUG) {
+			caller.error(url, error)
+			throw error
+		}
 
 		caller.error(R.string.error_contact_url) {
 			caller.error(url, error)

@@ -63,7 +63,8 @@ class RequestHandlerTest: BaseTest() {
 
 	@Test(expected = TestException::class)
 	fun callExceptionDebug() {
-		if (!BuildConfig.DEBUG) throw TestException()
+		if (!BuildConfig.DEBUG)
+			throw TestException()
 
 		activity.simulateNetwork()
 
