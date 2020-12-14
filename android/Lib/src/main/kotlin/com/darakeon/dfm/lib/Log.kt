@@ -46,14 +46,18 @@ object Log {
 		Files.write(path, record.toByteArray(charset))
 	}
 
+	private var path: String = "";
 	private val start:String
 		@RequiresApi(Build.VERSION_CODES.O)
 		get() {
-			val dir = Paths.get("log")
-			if (!Files.exists(dir))
-				Files.createDirectory(dir)
+			if (path == "") {
+				val dir = Paths.get("log")
+				if (!Files.exists(dir))
+					Files.createDirectory(dir)
 
-			return now("yyyyMMdd_HHmmss_SSS")
+				path = now("yyyyMMdd_HHmmss_SSS")
+			}
+			return path
 		}
 
 	fun now(pattern: String): String {
