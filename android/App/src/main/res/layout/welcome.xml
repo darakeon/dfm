@@ -26,9 +26,9 @@
 
 	<Button
 		android:id="@+id/action_close"
-		android:text="@string/glyph_close"
-		android:contentDescription="@string/label_close"
-		android:onClick="showLongClickWarning"
+		android:text="@string/glyph_contact"
+		android:contentDescription="@string/label_contact"
+		android:onClick="contact"
 		android:layout_alignParentEnd="true"
 		style="@style/home_button_top" />
 

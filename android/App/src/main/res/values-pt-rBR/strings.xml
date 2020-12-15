@@ -6,8 +6,8 @@
 	<string name="label_settings">Configurações</string>
 	<string name="label_move">Mover</string>
 	<string name="label_refresh">Atualizar</string>
+	<string name="label_contact">Entre em contato</string>
 	<string name="label_logout">Sair</string>
-	<string name="label_close">Fechar</string>
 
 	<!-- Buttons -->
 	<string name="save_button">Salvar</string>
@@ -92,4 +92,6 @@
 	<string name="version">Versão do aplicativo</string>
 	<string name="error_call_api">Erro ao chamar site, entre em contato conosco</string>
 	<string name="density">Tela do dispositivo</string>
+	<string name="contact_subject">Contato a partir do aplicativo</string>
+	<string name="contact_body">Por favor, descreva a sugestão, dúvida ou problema no sistema</string>
 </resources>

@@ -11,7 +11,6 @@ import com.darakeon.dfm.lib.extensions.redirect
 import com.darakeon.dfm.login.LoginActivity
 import com.darakeon.dfm.moves.MovesActivity
 import com.darakeon.dfm.settings.SettingsActivity
-import com.darakeon.dfm.welcome.WelcomeActivity
 
 const val ON_CLICK: String = "UNUSED_PARAMETER"
 
@@ -44,14 +43,6 @@ internal fun Activity.back() {
 	finish()
 }
 
-internal fun Activity.close() {
-	redirect<WelcomeActivity> {
-		it.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP +
-			Intent.FLAG_ACTIVITY_CLEAR_TASK
-		it.putExtra("EXIT", true)
-	}
-}
-
 internal fun Activity.goToSettings() {
 	goToActivityWithBack(SettingsActivity::class.java)
 }
@@ -79,25 +70,33 @@ fun Activity.composeErrorEmail(url: String, error: Throwable) {
 		error.message + "\n\n" +
 		error.stackTraceText
 
-	val emails = getString(R.string.error_mail_address)
-
-	composeEmail(subject, body, emails)
+	composeEmail(subject, body)
 }
 
 fun Activity.composeErrorApi() {
 	val subject = getString(R.string.error_call_api_email)
 	val body = javaClass.name
-	val emails = getString(R.string.error_mail_address)
-	composeEmail(subject, body, emails)
+	composeEmail(subject, body)
 }
 
-private fun Activity.composeEmail(subject: String, body: String, vararg addresses: String) {
+internal fun Activity.contact() {
+	composeEmail(
+		getString(R.string.contact_subject),
+		getString(R.string.contact_body)
+	)
+}
+
+private fun Activity.composeEmail(subject: String, body: String) {
 	val intent = Intent(Intent.ACTION_SENDTO)
 
 	// only email apps should handle this
 	intent.data = Uri.parse("mailto:")
 
-	intent.putExtra(Intent.EXTRA_EMAIL, addresses)
+	val email = arrayOf(
+		getString(R.string.dfm_mail_address)
+	)
+
+	intent.putExtra(Intent.EXTRA_EMAIL, email)
 	intent.putExtra(Intent.EXTRA_SUBJECT, subject)
 	intent.putExtra(Intent.EXTRA_TEXT, body)
 

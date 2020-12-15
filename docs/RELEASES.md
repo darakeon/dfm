@@ -15,7 +15,7 @@ Legend:
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="4.6.1.0"></a>4.6.1.0 :sheep: <sup>`3`</sup>
-- [ ] Replace close button by contact at app
+- [x] `201214>201215` Replace close button by contact at app
 - [x] `201214>201214` Fix error on reports [#83]
 - [x] `201213>201218` Problem with receiving html instead of json [#84]
 

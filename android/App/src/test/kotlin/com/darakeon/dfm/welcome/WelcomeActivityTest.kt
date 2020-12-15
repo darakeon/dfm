@@ -11,7 +11,6 @@ import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
-import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -38,16 +37,6 @@ class WelcomeActivityTest: BaseTest() {
 		assertNotNull(activity.findViewById(R.id.action_home))
 		assertNotNull(activity.findViewById(R.id.action_move))
 		assertNotNull(activity.findViewById(R.id.action_settings))
-	}
-
-	@Test
-	fun exit() {
-		val activity = mocker.get()
-		activity.intent.putExtra("EXIT", true)
-
-		activity.onCreate(null, null)
-
-		assertTrue(activity.isFinishing)
 	}
 
 	@Test

@@ -7,8 +7,8 @@
 	<string name="glyph_move" translatable="false"></string>
 	<string name="glyph_settings" translatable="false"></string>
 	<string name="glyph_refresh" translatable="false"></string>
+	<string name="glyph_contact" translatable="false"></string>
 	<string name="glyph_logout" translatable="false"></string>
-	<string name="glyph_close" translatable="false"></string>
 
 	<string name="glyph_edit" translatable="false"></string>
 	<string name="glyph_delete" translatable="false"></string>
@@ -20,7 +20,7 @@
 	<string name="glyph_calendar" translatable="false"></string>
 	<string name="glyph_picker" translatable="false"></string>
 
-	<string name="error_mail_address" translatable="false">dfm@dontflymoney.com</string>
+	<string name="dfm_mail_address" translatable="false">dfm@dontflymoney.com</string>
 
 	<string name="next" translatable="false">»</string>
 	<string name="prev" translatable="false">«</string>

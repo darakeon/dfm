@@ -104,17 +104,34 @@ class NavigationTest: BaseTest() {
 	}
 
 	@Test
-	fun close() {
-		activity.close()
+	fun contact() {
+		`when`(activity.getString(R.string.dfm_mail_address))
+			.thenReturn("ADDRESS")
 
-		assertThat(calledActivity, `is`("WelcomeActivity"))
+		`when`(activity.getString(R.string.contact_subject))
+			.thenReturn("SUBJECT")
 
-		assertThat(calledIntent?.flags, `is`(
-			Intent.FLAG_ACTIVITY_CLEAR_TOP +
-				Intent.FLAG_ACTIVITY_CLEAR_TASK
-		))
+		`when`(activity.getString(R.string.contact_body))
+			.thenReturn("BODY")
 
-		assertTrue(calledIntent?.extras?.getBoolean("EXIT") ?: false)
+		activity.contact()
+
+		assertThat(calledIntent?.action, `is`(Intent.ACTION_SENDTO))
+		assertThat(calledIntent?.data, `is`(Uri.parse("mailto:")))
+
+		val extras = calledIntent?.extras ?: Bundle()
+
+		assertThat(
+			extras.getStringArray(Intent.EXTRA_EMAIL)?.toList(),
+			hasItem("ADDRESS")
+		)
+
+		assertThat(extras.getString(Intent.EXTRA_SUBJECT), `is`("SUBJECT"))
+
+		assertThat(
+			extras.getString(Intent.EXTRA_TEXT),
+			startsWith("BODY")
+		)
 	}
 
 	@Test
@@ -162,7 +179,7 @@ class NavigationTest: BaseTest() {
 		`when`(activity.getString(R.string.error_mail_title))
 			.thenReturn("SUBJECT")
 
-		`when`(activity.getString(R.string.error_mail_address))
+		`when`(activity.getString(R.string.dfm_mail_address))
 			.thenReturn("EMAIL")
 
 		activity.composeErrorEmail("url", TestException("error"))
@@ -190,7 +207,7 @@ class NavigationTest: BaseTest() {
 		`when`(activity.getString(R.string.error_call_api_email))
 			.thenReturn("API")
 
-		`when`(activity.getString(R.string.error_mail_address))
+		`when`(activity.getString(R.string.dfm_mail_address))
 			.thenReturn("EMAIL")
 
 		activity.composeErrorApi()
