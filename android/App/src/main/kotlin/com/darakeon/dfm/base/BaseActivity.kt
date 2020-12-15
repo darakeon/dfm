@@ -2,7 +2,6 @@ package com.darakeon.dfm.base
 
 import android.app.Activity
 import android.os.Bundle
-import android.view.ContextMenu
 import android.view.View
 import android.view.Window
 import android.widget.Button
@@ -13,9 +12,9 @@ import com.darakeon.dfm.accounts.AccountsActivity
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.back
-import com.darakeon.dfm.extensions.close
 import com.darakeon.dfm.extensions.composeErrorApi
 import com.darakeon.dfm.extensions.composeErrorEmail
+import com.darakeon.dfm.extensions.contact
 import com.darakeon.dfm.extensions.createMove
 import com.darakeon.dfm.extensions.goToSettings
 import com.darakeon.dfm.extensions.logout
@@ -30,14 +29,12 @@ import com.darakeon.dfm.lib.extensions.refresh
 import com.darakeon.dfm.moves.MovesActivity
 import com.darakeon.dfm.settings.SettingsActivity
 import com.darakeon.dfm.tfa.TFAActivity
-import kotlinx.android.synthetic.main.bottom_menu.action_close
 import kotlinx.android.synthetic.main.bottom_menu.action_home
 import kotlinx.android.synthetic.main.bottom_menu.action_logout
 import kotlinx.android.synthetic.main.bottom_menu.action_move
 import kotlinx.android.synthetic.main.bottom_menu.action_settings
 import kotlinx.android.synthetic.main.bottom_menu.bottom_menu
 import java.util.HashMap
-import kotlinx.android.synthetic.main.welcome.action_close as welcome_close
 import kotlinx.android.synthetic.main.welcome.action_logout as welcome_logout
 
 abstract class BaseActivity: Activity(), ApiCaller {
@@ -112,12 +109,6 @@ abstract class BaseActivity: Activity(), ApiCaller {
 			logout(api)
 			true
 		}
-
-		val close = action_close ?: welcome_close
-		close?.setOnLongClickListener {
-			close()
-			true
-		}
 	}
 
 	private fun processQuery() {
@@ -158,6 +149,10 @@ abstract class BaseActivity: Activity(), ApiCaller {
 
 	fun refresh(@Suppress(ON_CLICK) view: View) {
 		refresh()
+	}
+
+	fun contact(@Suppress(ON_CLICK) view: View) {
+		contact()
 	}
 
 	fun showLongClickWarning(@Suppress(ON_CLICK) view: View) {

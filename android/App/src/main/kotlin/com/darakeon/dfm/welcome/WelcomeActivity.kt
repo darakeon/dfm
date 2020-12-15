@@ -18,16 +18,14 @@ class WelcomeActivity : BaseActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
-		if (intent.getBooleanExtra("EXIT", false)) {
-			finish()
-		} else if (!isLoggedIn) {
-			redirect<LoginActivity>()
-		} else {
+		if (isLoggedIn) {
 			action_home.applyGlyphicon()
 			action_settings.applyGlyphicon()
 			action_move.applyGlyphicon()
 			action_logout.applyGlyphicon()
 			action_close.applyGlyphicon()
+		} else {
+			redirect<LoginActivity>()
 		}
 	}
 }

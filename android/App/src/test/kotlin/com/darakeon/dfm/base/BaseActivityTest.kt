@@ -19,7 +19,6 @@ import com.darakeon.dfm.testutils.robolectric.simulateNetwork
 import com.darakeon.dfm.testutils.robolectric.waitTasks
 import com.darakeon.dfm.utils.activity.TestActivity
 import com.darakeon.dfm.utils.api.ActivityMock
-import kotlinx.android.synthetic.main.bottom_menu.action_close
 import kotlinx.android.synthetic.main.bottom_menu.action_logout
 import kotlinx.android.synthetic.main.bottom_menu.bottom_menu
 import kotlinx.android.synthetic.main.bottom_menu.view.action_home
@@ -198,23 +197,6 @@ class BaseActivityTest: BaseTest() {
 		activity.waitTasks(mocker.server)
 
 		assertThat(activity.ticket, `is`(""))
-	}
-
-	@Test
-	fun onCreateSetMenuLongClicksClose() {
-		val activity = mocker.get()
-		activity.testContentView = R.layout.bottom_menu
-
-		activity.onCreate(null, null)
-
-		val close = shadowOf(activity.action_close)
-		assertNotNull(close.onLongClickListener)
-
-		activity.action_close.performLongClick()
-
-		val shadow = shadowOf(activity)
-		val intent = shadow.peekNextStartedActivity()
-		assertTrue(intent.extras?.getBoolean("EXIT") ?: false)
 	}
 
 	@Test

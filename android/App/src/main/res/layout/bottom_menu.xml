@@ -50,19 +50,19 @@
 		style="?android:attr/buttonBarButtonStyle"  />
 
 	<Button
-		android:id="@+id/action_logout"
-		android:text="@string/glyph_logout"
-		android:contentDescription="@string/label_logout"
-		android:onClick="showLongClickWarning"
+		android:id="@+id/action_contact"
+		android:text="@string/glyph_contact"
+		android:contentDescription="@string/label_contact"
+		android:onClick="contact"
 		android:layout_height="wrap_content"
 		android:layout_weight="1"
 		android:layout_width="0sp"
 		style="?android:attr/buttonBarButtonStyle" />
 
 	<Button
-		android:id="@+id/action_close"
-		android:text="@string/glyph_close"
-		android:contentDescription="@string/label_close"
+		android:id="@+id/action_logout"
+		android:text="@string/glyph_logout"
+		android:contentDescription="@string/label_logout"
 		android:onClick="showLongClickWarning"
 		android:layout_height="wrap_content"
 		android:layout_weight="1"
