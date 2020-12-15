@@ -35,7 +35,7 @@ object Log {
 
 		var record = text.toString()
 
-		val path = Paths.get("log", "${start}.log")
+		val path = Paths.get("log", "${BuildConfig.BUILD_TYPE}_${start}.log")
 
 		if (Files.exists(path)) {
 			val bytes = Files.readAllBytes(path)
