@@ -4,15 +4,21 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#4.6.0.1)
-- [go to version in development](#4.6.1.0)
-- [dev version state](../../4.6.1.0/docs/RELEASES.md#4.6.1.0)
+- [go to published version](#4.6.1.0)
+- [go to version in development](#4.6.2.0)
+- [dev version state](../../4.6.2.0/docs/RELEASES.md#4.6.2.0)
 
 Legend:
 - :dragon:: at least one huge change (increases first number)
 - :whale:: at least one big change, like a new feature (increases second number)
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="4.6.2.0"></a>4.6.2.0 :sheep: <sup>`4`</sup>
+- [ ] Report with values: select to see sum
+- [ ] Show account state on account area
+- [ ] Add Year Negative / Positive / Sum to Year summary
+- [ ] Use Authy as password
 
 ## <a name="4.6.1.0"></a>4.6.1.0 :sheep: <sup>`3`</sup>
 - [x] `201214>201215` Replace close button by contact at app

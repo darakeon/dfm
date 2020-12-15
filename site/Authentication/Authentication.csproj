@@ -4,8 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>DFM.Authentication</AssemblyName>
     <RootNamespace>DFM.Authentication</RootNamespace>
-    <AssemblyVersion>4.6.0.1</AssemblyVersion>
-    <FileVersion>4.6.0.1</FileVersion>
+    <AssemblyVersion>4.6.1.0</AssemblyVersion>
+    <FileVersion>4.6.1.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,4 +1,10 @@
 {
+	"4.6.1.0": [
+		"Remove close button from app",
+		"Add contact button to app",
+		"Fix error on reports",
+		"Fix error on some app calls to site"
+	],
 	"4.6.0.1": [
 		"Fix bug that closes the app when open any screen that calls the website"
 	],

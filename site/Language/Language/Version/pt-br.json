@@ -1,4 +1,10 @@
 {
+	"4.6.1.0": [
+		"Adiciona botão de contato no aplicativo",
+		"Remove botão de fechar no aplicativo",
+		"Corrige erro nos relatórios anuais",
+		"Corrige erro em algumas chamadas do aplicativo para o site"
+	],
 	"4.6.0.1": [
 		"Corrigido problema ao abrir qualquer tela que chame o site"
 	],
