@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.ListView
 import android.widget.ScrollView
-import android.widget.Toast
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 class SwipeRefresh(
@@ -20,7 +19,6 @@ class SwipeRefresh(
 		}
 
 		if (listChild != null) {
-			Toast.makeText(context, listChild?.firstVisiblePosition?.toString(), Toast.LENGTH_LONG).show()
 			return listChild?.firstVisiblePosition != 0
 		}
 
