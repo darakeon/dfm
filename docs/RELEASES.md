@@ -20,7 +20,8 @@ Legend:
 - [ ] Add Year Negative / Positive / Sum to Year summary
 - [ ] Use Authy as password
 
-## <a name="4.6.1.0"></a>4.6.1.0 :sheep: <sup>`3`</sup>
+## <a name="4.6.1.0"></a>4.6.1.0 :sheep: <sup>`4`</sup>
+- [x] `201218>201218` Remove forgotten toast at android
 - [x] `201214>201215` Replace close button by contact at app
 - [x] `201214>201214` Fix error on reports [#83]
 - [x] `201213>201218` Problem with receiving html instead of json [#84]
