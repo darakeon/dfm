@@ -8,8 +8,7 @@
 
 ## Tasks to publish
 
-- [ ] Select tasks for new version
-- [ ] Change version numbers and add to jsons
+- [ ] Upgrade version and create new release
 - [ ] Execute non-destructive Sql
 - [ ] Update Site
 - [ ] Test Site
