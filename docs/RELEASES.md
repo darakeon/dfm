@@ -14,7 +14,8 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="4.6.2.0"></a>4.6.2.0 :sheep: <sup>`4`</sup>
+## <a name="4.6.2.0"></a>4.6.2.0 :sheep: <sup>`5`</sup>
+- [ ] Make program to finish process on git after PR
 - [ ] Report with values: select to see sum
 - [ ] Show account state on account area
 - [ ] Add Year Negative / Positive / Sum to Year summary
