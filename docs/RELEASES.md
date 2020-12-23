@@ -14,7 +14,7 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="4.6.2.0"></a>4.6.2.0 :sheep: <sup>`7`</sup>
+## <a name="4.6.2.0"></a>4.6.2.0 :sheep: <sup>`8`</sup>
 - [ ] Verify all docs links
 - [ ] Avoid error on startup mvc
 - [ ] Make program to finish process on git after PR
@@ -22,6 +22,7 @@ Legend:
 - [ ] Show account state on account area
 - [ ] Add Year Negative / Positive / Sum to Year summary
 - [ ] Use Authy as password
+- [ ] Redesign TFA warning at config screen
 
 ## <a name="4.6.1.0"></a>4.6.1.0 :sheep: <sup>`4`</sup>
 - [x] `201218>201218` Remove forgotten toast at android
