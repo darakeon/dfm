@@ -22,7 +22,7 @@ Legend:
 - [ ] Show account state on account area
 - [ ] Add Year Negative / Positive / Sum to Year summary
 - [ ] Use Authy as password
-- [ ] Redesign TFA warning at config screen
+- [x] `201222>201223` Redesign TFA warning at config screen
 
 ## <a name="4.6.1.0"></a>4.6.1.0 :sheep: <sup>`4`</sup>
 - [x] `201218>201218` Remove forgotten toast at android

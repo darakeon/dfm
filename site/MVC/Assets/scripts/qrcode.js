@@ -1,5 +1,8 @@
 ﻿$(document).ready(function () {
-	const url = $('#qrcode').data('url');
-	$('#qrcode').qrcode(url);
+	const text = $('#qrcode').data('url');
+	const width = 128;
+	const height = 128;
+	const correctLevel = 0;
+	$('#qrcode').qrcode({ text, width, height, correctLevel });
 })
 
