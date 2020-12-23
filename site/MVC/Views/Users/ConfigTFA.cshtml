@@ -1,20 +1,17 @@
 ﻿@model UsersConfigModel
 
-<div class="alert alert-info text-center">
-	@Html.Raw(String.Format(
-		Context.Translate("TFAExplanation"),
-		Environment.NewLine + Environment.NewLine,
-		"<a href='https://play.google.com/store/apps/details?id=com.authy.authy'>Authy</a>",
-		"<a href='https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2'>" +
-		"Google Authenticator" +
-		"</a>"
-		).BreakLines())
-</div>
-
 <div class="text-center">
 	<span id="qrcode" data-url="@Model.TFA.UrlPath">
 	</span>
+
 	@Html.HiddenFor(m => m.TFA.TFA.Secret)
+
+	<br/>
+	<small>
+		<a href="#" role='button' id="open-tfa" data-toggle='modal' data-target='#tfa-modal'>
+			@Context.Translate("TFAWhy")
+		</a>
+	</small>
 </div>
 
 <div class="form-group">
@@ -30,3 +27,5 @@
 <small>
 	@Html.ActionLink(Context.Translate("TFARemove"), "RemoveTFA")
 </small>
+
+@await Html.PartialAsync("Modals/TFA")
