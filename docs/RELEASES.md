@@ -21,7 +21,7 @@ Legend:
 - [ ] Report with values: select to see sum
 - [ ] Show account state on account area
 - [ ] Add Year Negative / Positive / Sum to Year summary
-- [ ] Use Authy as password
+- [ ] `201223>......` Use Authy as password
 - [x] `201222>201223` Redesign TFA warning at config screen
 
 ## <a name="4.6.1.0"></a>4.6.1.0 :sheep: <sup>`4`</sup>

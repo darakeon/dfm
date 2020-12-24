@@ -126,7 +126,8 @@ namespace DFM.BusinessLogic.Repositories
 
 		public Boolean VerifyPassword(User user, String password)
 		{
-			return Crypt.Check(password, user.Password);
+			return password != null
+			    && Crypt.Check(password, user.Password);
 		}
 
 		public void SaveTFA(User user, String secret)
