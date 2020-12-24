@@ -73,3 +73,31 @@ Scenario: Ar05. Update two-factor
 	When I try to set two-factor
 	Then I will receive no core error
 		And the two-factor will be [456]
+
+Scenario: Ar06. With empty password
+	Given I have this user created
+			| Email                  | Password | Active |
+			| Ar003@dontflymoney.com | password | true   |
+		And I login this user
+			| Email                  | Password |
+			| Ar003@dontflymoney.com | password |
+		And I have this two-factor data
+			| Secret | Code        | Password |
+			| 123    | {generated} |          |
+	When I try to set two-factor
+	Then I will receive this core error: TFAWrongPassword
+		And the two-factor will be empty
+
+Scenario: Ar07. With null password
+	Given I have this user created
+			| Email                  | Password | Active |
+			| Ar003@dontflymoney.com | password | true   |
+		And I login this user
+			| Email                  | Password |
+			| Ar003@dontflymoney.com | password |
+		And I have this two-factor data
+			| Secret | Code        | Password |
+			| 123    | {generated} | {null}   |
+	When I try to set two-factor
+	Then I will receive this core error: TFAWrongPassword
+		And the two-factor will be empty
