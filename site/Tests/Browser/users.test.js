@@ -150,7 +150,7 @@ describe('Users', () => {
 
 		await puppy.call('Accounts')
 		await page.waitForSelector('#body form')
-		await expect(page.title()).resolves.toMatch('DfM - Autenticação mais Segura')
+		await expect(page.title()).resolves.toMatch('DfM - Login mais seguro')
 
 		await page.click('#body form a.btn-info')
 		await page.waitForSelector('#contact-modal', { visible: true })
