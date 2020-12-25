@@ -843,6 +843,12 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			Assert.IsNotNull(session);
 			Assert.AreEqual(email, session.Email);
 		}
+
+		[Then(@"the TFA will (not )?be enabled")]
+		public void ThenTheTFAWill_BeEnabled(Boolean enabled)
+		{
+			Assert.AreEqual(enabled, session.HasTFA);
+		}
 		#endregion
 
 
@@ -965,6 +971,11 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			if (tfa.Code == "{generated}")
 			{
 				tfa.Code = CodeGenerator.Generate(tfa.Secret);
+			}
+
+			if (tfa.Password == "{null}")
+			{
+				tfa.Password = null;
 			}
 		}
 

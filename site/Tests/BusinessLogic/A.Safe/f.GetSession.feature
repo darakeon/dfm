@@ -2,8 +2,8 @@
 
 Background:
 	Given I have this user created
-			| Email                               | Password | Retype Password | Active |
-			| selectuserbyticket@dontflymoney.com | password | password        | true   |
+			| Email                           | Password | Retype Password | Active |
+			| {scenarioCode}@dontflymoney.com | password | password        | true   |
 		And I have a ticket of this user
 
 Scenario: Af01. Select with ticket that doesn't exist
@@ -35,3 +35,21 @@ Scenario: Af05. Select with null ticket
 	When I try to get the session
 	Then I will receive this core error: Uninvited
 		And I will receive no session
+
+Scenario: Af06. Has TFA
+	Given I have this two-factor data
+			| Secret | Code        | Password |
+			| 123    | {generated} | password |
+		And I set two-factor
+		And I pass a ticket that exist
+	When I try to get the session
+	Then I will receive no core error
+		And I will receive the session
+		And the TFA will be enabled
+
+Scenario: Af07. Has no TFA
+	Given I pass a ticket that exist
+	When I try to get the session
+	Then I will receive no core error
+		And I will receive the session
+		And the TFA will not be enabled

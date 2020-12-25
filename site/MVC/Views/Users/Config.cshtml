@@ -33,14 +33,21 @@
 }
 
 <ul class="nav nav-tabs">
-	@foreach (var tab in tabs)
+	@foreach (UsersConfigModel.Form tab in tabs)
 	{
 		var name = tab.ToString();
 		var lower = name.ToLower();
 
+		var button = $"{Context.Translate($"Save")} {Context.Translate($"{name}Settings")}";
+
+		if (tab == UsersConfigModel.Form.TFA && Model.TFA.IsActive)
+		{
+			button = Context.Translate("TFARemove");
+		}
+
 		<li class="@lower-caller">
 			<a href="#@lower" data-toggle="tab">
-				<small class="tab-text">
+				<small class="tab-text" data-button="@button">
 					@Context.Translate($"{name}Settings")
 				</small>
 			</a>
@@ -64,7 +71,7 @@
 
 @section Footer {
 	<button type="submit"
-	        class="btn btn-success tab-submit"
-	        data-text="@Context.Translate("Save")">
+	        class="btn btn-success tab-submit">
+		&hellip;
 	</button>
 }

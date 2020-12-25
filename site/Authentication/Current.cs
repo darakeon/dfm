@@ -59,6 +59,8 @@ namespace DFM.Authentication
 
 		public String Email => session?.Email;
 
+		public Boolean HasTFA => session?.HasTFA ?? false;
+
 		public DateTime Now => session?.Now ?? DateTime.UtcNow;
 		public String TimeZone => session?.TimeZone;
 		public String Language => session?.Language;
