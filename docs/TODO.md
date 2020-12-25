@@ -11,8 +11,9 @@ This is the task list for the project.
 - Dependency: which other task it depends on (if it exists)
 - Issue: github issue about the task (if it exists)
 
-| Task (56)                                                                               | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
+| Task (57)                                                                               | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
 | --------------------------------------------------------------------------------------- | -------- | --- | --- | --- | ------------------ | ------------------------------------------------ |
+| Add modal for moves with details, to show details                                       | :sheep:  |  1  |  3  |  6  |                    |                                                  |
 | Remove Move on delete at Android (and change total)                                     | :sheep:  |  1  |  2  |  5  |                    |                                                  |
 | Review columns of Schedule List (add deleted qty)                                       | :sheep:  |  1  |  2  |  5  |                    |                                                  |
 | Calculate installment move by position                                                  | :ant:    |  1  |  2  |  5  |                    |                                                  |
