@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Entities.Enums;
@@ -10,7 +9,6 @@ using DFM.Authentication;
 using DFM.BusinessLogic.Response;
 using DFM.Entities.Bases;
 using Keon.Util.Extensions;
-using Keon.TwoFactorAuth;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -144,7 +142,8 @@ namespace DFM.BusinessLogic.Services
 
 		private String createTicket(SignInInfo info)
 		{
-			var user = repos.User.ValidateAndGet(info.Email, info.Password);
+			var auth = repos.User.ValidateAndGet(info.Email, info.Password);
+			var user = auth.User;
 
 			if (String.IsNullOrEmpty(info.TicketKey))
 				info.TicketKey = Token.New();
@@ -158,6 +157,11 @@ namespace DFM.BusinessLogic.Services
 			else if (ticket.User.Email != info.Email)
 			{
 				throw Error.Uninvited.Throw();
+			}
+
+			if (auth.UsedTFAPassword)
+			{
+				repos.Ticket.ValidateTFA(ticket);
 			}
 
 			return ticket.Key;
@@ -327,9 +331,7 @@ namespace DFM.BusinessLogic.Services
 				if (String.IsNullOrEmpty(info.Secret))
 					throw Error.TFAEmptySecret.Throw();
 
-				var codes = CodeGenerator.Generate(info.Secret, 2);
-
-				if (!codes.Contains(info.Code))
+				if (!repos.User.IsValid(info.Secret, info.Code))
 					throw Error.TFAWrongCode.Throw();
 
 				var user = GetCurrent();
@@ -363,14 +365,11 @@ namespace DFM.BusinessLogic.Services
 				if (secret == null)
 					throw Error.TFANotConfigured.Throw();
 
-				var codes = CodeGenerator.Generate(secret, 2);
-
-				if (!codes.Contains(code))
+				if (!repos.User.IsValid(secret, code))
 					throw Error.TFAWrongCode.Throw();
 
 				var ticket = repos.Ticket.GetByKey(parent.Current.TicketKey);
-				ticket.ValidTFA = true;
-				repos.Ticket.SaveOrUpdate(ticket);
+				repos.Ticket.ValidateTFA(ticket);
 			});
 		}
 
@@ -415,6 +414,15 @@ namespace DFM.BusinessLogic.Services
 			{
 				ticket.LastAccess = DateTime.Now;
 				repos.Ticket.SaveOrUpdate(ticket);
+			});
+		}
+
+		public void UseTFAAsPassword(Boolean use)
+		{
+			inTransaction("UseTFAAsPassword", () =>
+			{
+				var user = GetCurrent();
+				repos.User.UseTFAAsPassword(user, use);
 			});
 		}
 	}

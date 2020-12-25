@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using DFM.Entities.Bases;
@@ -667,6 +666,70 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		}
 		#endregion
 
+		#region UseTFAAsPassword
+		[When(@"I set to (not )?use TFA as password")]
+		public void WhenISetToUseTFAAsPassword(Boolean use)
+		{
+			try
+			{
+				service.Safe.UseTFAAsPassword(use);
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[Then(@"the TFA can (not )?be used as password")]
+		public void ThenTheTFACanBeUsedAsPassword(Boolean canBe)
+		{
+			var worked = true;
+			var code = CodeGenerator.Generate(tfa.Secret);
+
+			try
+			{
+				var info = new SignInInfo
+				{
+					Email = email,
+					Password = code,
+					TicketKey = ticket,
+					TicketType = TicketType.Local
+				};
+
+				service.Safe.CreateTicket(info);
+			}
+			catch (CoreError)
+			{
+				worked = false;
+			}
+
+			Assert.AreEqual(canBe, worked);
+		}
+
+		[Then(@"the TFA will (not )?be asked")]
+		public void ThenTheTFAWillNotBeAsked(Boolean askTFA)
+		{
+			var currentTicket = repos.Ticket.GetByKey(ticket);
+			Assert.AreEqual(askTFA, !currentTicket.ValidTFA);
+		}
+
+		[Then(@"I can still login using normal password")]
+		public void ThenICanStillLoginUsingNormalPassword()
+		{
+			ticket = TK.New();
+
+			var info = new SignInInfo
+			{
+				Email = email,
+				Password = password,
+				TicketKey = ticket,
+				TicketType = TicketType.Local,
+			};
+
+			ticket = service.Safe.CreateTicket(info);
+		}
+		#endregion
+
 		#region MoreThanOne
 		[Given(@"I have this user created")]
 		public void GivenIHaveThisUserToCreate(Table table)
@@ -954,7 +1017,9 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 
 			var info = new SignInInfo
 			{
-				Email = user.Email,
+				Email = user.Email.Replace(
+					"{scenarioCode}", scenarioCode
+				),
 				Password = user.Password,
 				TicketKey = ticketKey,
 				TicketType = TicketType.Local,

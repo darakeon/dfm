@@ -21,6 +21,7 @@ namespace DFM.Entities
 		public virtual Int32 WrongLogin { get; set; }
 
 		public virtual String TFASecret { get; set; }
+		public virtual Boolean TFAPassword { get; set; }
 
 		public virtual Config Config { get; set; }
 

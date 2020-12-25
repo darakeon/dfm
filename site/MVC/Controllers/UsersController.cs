@@ -209,5 +209,21 @@ namespace DFM.MVC.Controllers
 			HttpContext.Session.SetString("Language", model.Main.Language);
 			return Redirect(model.BackTo);
 		}
+
+		[HttpGetAndHead]
+		public IActionResult TFAPasswordEnable()
+		{
+			var model = new UsersTFAModel();
+			model.UseAsPassword(true);
+			return RedirectToAction("Config");
+		}
+
+		[HttpGetAndHead]
+		public IActionResult TFAPasswordDisable()
+		{
+			var model = new UsersTFAModel();
+			model.UseAsPassword(false);
+			return RedirectToAction("Config");
+		}
 	}
 }

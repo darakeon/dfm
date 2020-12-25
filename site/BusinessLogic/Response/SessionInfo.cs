@@ -16,6 +16,7 @@ namespace DFM.BusinessLogic.Response
 
 			Email = user.Email;
 			HasTFA = !String.IsNullOrEmpty(user.TFASecret);
+			TFAPassword = user.TFAPassword;
 
 			Now = user.Now();
 			TimeZone = user.Config.TimeZone;
@@ -33,6 +34,7 @@ namespace DFM.BusinessLogic.Response
 
 		public String Email { get; }
 		public Boolean HasTFA { get; }
+		public Boolean TFAPassword { get; }
 
 		public DateTime Now { get; }
 		public String TimeZone { get; }

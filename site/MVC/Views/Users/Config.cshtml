@@ -70,6 +70,20 @@
 </div>
 
 @section Footer {
+	@if (Model.TFA.IsActive)
+	{
+		var action = Model.TFA.TFAPassword
+			? "TFAPasswordDisable"
+			: "TFAPasswordEnable";
+
+		<small>
+			<a class="pull-left text-left"
+					href="@Url.Action(action, "Users")">
+				@Html.Raw(Context.Translate(action).Replace("\n", "<br />"))
+			</a>
+		</small>
+	}
+
 	<button type="submit"
 	        class="btn btn-success tab-submit">
 		&hellip;

@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Bases;
+using Keon.TwoFactorAuth;
 using Keon.Util.Crypto;
 
 namespace DFM.BusinessLogic.Repositories
@@ -16,17 +17,23 @@ namespace DFM.BusinessLogic.Repositories
 			return SingleOrDefault(u => u.Email == email);
 		}
 
-		internal User ValidateAndGet(String email, String password)
+		internal Authentication ValidateAndGet(String email, String password)
 		{
 			var user = GetByEmail(email);
 
-			if (user == null || !Crypt.Check(password, user.Password))
+			if (user == null)
+				throw Error.InvalidUser.Throw();
+
+			var validPass = Crypt.Check(password, user.Password);
+			var validCode = user.TFAPassword && IsValid(user.TFASecret, password);
+
+			if (!validPass && !validCode)
 				throw Error.InvalidUser.Throw();
 
 			if (!user.Active)
 				throw Error.DisabledUser.Throw();
 
-			return user;
+			return new Authentication(user, validCode);
 		}
 
 		internal User Save(User user)
@@ -134,6 +141,19 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			user.TFASecret = secret;
 			update(user);
+		}
+
+		public void UseTFAAsPassword(User user, Boolean use)
+		{
+			user.TFAPassword = use;
+			update(user);
+		}
+
+		public Boolean IsValid(String secret, String code)
+		{
+			return CodeGenerator
+				.Generate(secret, 2)
+				.Contains(code);
 		}
 	}
 }
