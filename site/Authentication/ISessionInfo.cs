@@ -8,6 +8,7 @@ namespace DFM.Authentication
 		Boolean IsAdm { get; }
 
 		String Email { get; }
+		Boolean HasTFA { get; }
 
 		DateTime Now { get; }
 		String TimeZone { get; }

@@ -1,31 +1,39 @@
 ﻿@model UsersConfigModel
 
-<div class="text-center">
-	<span id="qrcode" data-url="@Model.TFA.UrlPath">
-	</span>
+@Html.HiddenFor(m => m.TFA.IsActive)
 
-	@Html.HiddenFor(m => m.TFA.TFA.Secret)
+@if (Model.TFA.IsActive)
+{
+	<div class="form-group">
+		@Html.LabelFor(m => m.TFA.TFA.Password, Context.Translate("CurrentPassword"), new { @class = "control-label" })
+		@Html.PasswordFor(m => m.TFA.TFA.Password, new { @class = "form-control" })
+	</div>
+}
+else
+{
+	<div class="text-center">
+		<span id="qrcode" data-url="@Model.TFA.UrlPath">
+		</span>
 
-	<br/>
-	<small>
-		<a href="#" role='button' id="open-tfa" data-toggle='modal' data-target='#tfa-modal'>
-			@Context.Translate("TFAWhy")
-		</a>
-	</small>
-</div>
+		@Html.HiddenFor(m => m.TFA.TFA.Secret)
 
-<div class="form-group">
-	@Html.LabelFor(m => m.TFA.TFA.Code, Context.Translate("Code"), new { @class = "control-label" })
-	@Html.TextBoxFor(m => m.TFA.TFA.Code, new { @class = "form-control" })
-</div>
+		<br/>
+		<small>
+			<a href="#" role='button' id="open-tfa" data-toggle='modal' data-target='#tfa-modal'>
+				@Context.Translate("TFAWhy")
+			</a>
+		</small>
+	</div>
 
-<div class="form-group">
-	@Html.LabelFor(m => m.TFA.TFA.Password, Context.Translate("CurrentPassword"), new { @class = "control-label" })
-	@Html.PasswordFor(m => m.TFA.TFA.Password, new { @class = "form-control" })
-</div>
+	<div class="form-group">
+		@Html.LabelFor(m => m.TFA.TFA.Code, Context.Translate("Code"), new { @class = "control-label" })
+		@Html.TextBoxFor(m => m.TFA.TFA.Code, new { @class = "form-control" })
+	</div>
 
-<small>
-	@Html.ActionLink(Context.Translate("TFARemove"), "RemoveTFA")
-</small>
+	<div class="form-group">
+		@Html.LabelFor(m => m.TFA.TFA.Password, Context.Translate("CurrentPassword"), new { @class = "control-label" })
+		@Html.PasswordFor(m => m.TFA.TFA.Password, new { @class = "form-control" })
+	</div>
+}
 
 @await Html.PartialAsync("Modals/TFA")

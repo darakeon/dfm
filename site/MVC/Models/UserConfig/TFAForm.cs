@@ -22,6 +22,8 @@ namespace DFM.MVC.Models.UserConfig
 			{
 				Secret = Secret.Generate()
 			};
+
+			IsActive = current.HasTFA;
 		}
 
 		private readonly SafeService safe;
@@ -34,14 +36,19 @@ namespace DFM.MVC.Models.UserConfig
 		private String identifier => current.Email;
 		private String key => Base32.Convert(TFA.Secret);
 		public String UrlPath => $"otpauth://totp/DfM:{identifier}?secret={key}";
+		public Boolean IsActive { get; set; }
 
-		public IList<String> Activate()
+		public IList<String> Change()
 		{
 			var errors = new List<String>();
 
 			try
 			{
-				safe.UpdateTFA(TFA);
+				if (IsActive)
+					safe.RemoveTFA(TFA.Password);
+				else
+					safe.UpdateTFA(TFA);
+
 				errorAlert.Add("TFAAuthenticated");
 			}
 			catch (CoreError e)

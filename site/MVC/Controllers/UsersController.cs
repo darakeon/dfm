@@ -139,7 +139,7 @@ namespace DFM.MVC.Controllers
 		[HttpPost, ValidateAntiForgeryToken, Auth]
 		public IActionResult ConfigTFA(UsersConfigModel model)
 		{
-			return config(model, () => model.TFA.Activate());
+			return config(model, () => model.TFA.Change());
 		}
 
 		private IActionResult config(UsersConfigModel model, Func<IList<String>> save)
@@ -199,24 +199,6 @@ namespace DFM.MVC.Controllers
 			{
 				return RedirectToAction("Index", "Accounts");
 			}
-
-			return View(model);
-		}
-
-		[HttpGetAndHead, Auth]
-		public IActionResult RemoveTFA()
-		{
-			var model = new UsersRemoveTFAModel();
-			return View(model);
-		}
-
-		[HttpPost, ValidateAntiForgeryToken, Auth]
-		public IActionResult RemoveTFA(UsersRemoveTFAModel model)
-		{
-			model.Remove(ModelState.AddModelError);
-
-			if (ModelState.IsValid)
-				return RedirectToAction("Index", "Accounts");
 
 			return View(model);
 		}

@@ -7,9 +7,7 @@
 
 		$("#ActiveForm").val(href.substr(1));
 
-		var submitText =
-			$(".tab-submit").data("text")
-			+ " " + $(this).find(".tab-text").html();
+		var submitText = $(this).find(".tab-text").data("button");
 
 		$(".tab-submit").html(submitText);
 	});
