@@ -92,9 +92,9 @@ async function createUser(email, active, wizard) {
 
 	const result = await execute(
 		`insert into user`
-			+ ` (password, email, active, wrongLogin, config_id)`
+			+ ` (password, email, active, wrongLogin, config_id, tfaPassword)`
 		+ ` values`
-			+ `('${password.encrypted}', '${email}', ${active?1:0}, 0, ${config[0].ID})`
+			+ `('${password.encrypted}', '${email}', ${active?1:0}, 0, ${config[0].ID}, 0)`
 	)
 
 	return { ID: result.lastID }

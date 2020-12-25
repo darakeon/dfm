@@ -62,6 +62,11 @@ namespace DFM.BusinessLogic.Repositories
 			SaveOrUpdate(ticket);
 		}
 
+		public void ValidateTFA(Ticket ticket)
+		{
+			ticket.ValidTFA = true;
+			SaveOrUpdate(ticket);
+		}
 	}
 
 }

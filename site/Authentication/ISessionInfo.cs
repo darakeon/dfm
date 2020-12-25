@@ -9,6 +9,7 @@ namespace DFM.Authentication
 
 		String Email { get; }
 		Boolean HasTFA { get; }
+		Boolean TFAPassword { get; }
 
 		DateTime Now { get; }
 		String TimeZone { get; }

@@ -37,6 +37,7 @@ namespace DFM.MVC.Models.UserConfig
 		private String key => Base32.Convert(TFA.Secret);
 		public String UrlPath => $"otpauth://totp/DfM:{identifier}?secret={key}";
 		public Boolean IsActive { get; set; }
+		public Boolean TFAPassword => current.TFAPassword;
 
 		public IList<String> Change()
 		{

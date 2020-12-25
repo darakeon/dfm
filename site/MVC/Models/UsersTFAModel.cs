@@ -20,5 +20,10 @@ namespace DFM.MVC.Models
 				);
 			}
 		}
+
+		public void UseAsPassword(Boolean use)
+		{
+			safe.UseTFAAsPassword(use);
+		}
 	}
 }
