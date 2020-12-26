@@ -192,10 +192,10 @@ namespace DFM.BusinessLogic.Tests.E.Report
 		[Then(@"its sum value will be equal to its months sum value")]
 		public void ThenItsSumValueWillBeEqualToItsMonthsSumValue()
 		{
+			var expected = yearReport.MonthList.Sum(m => m.CurrentTotal);
+
 			var user = repos.User.GetByEmail(current.Email);
 			var account = repos.Account.GetByUrl(accountInfo.Url, user);
-
-			var expected = repos.Summary.GetTotal(account);
 
 			var actual = repos.Move
 				.ByAccount(account)
@@ -206,6 +206,30 @@ namespace DFM.BusinessLogic.Tests.E.Report
 				);
 
 			Assert.AreEqual(expected, actual);
+		}
+
+		[Then(@"the year report sums will be")]
+		public void ThenTheYearReportSumsWillBe(Table table)
+		{
+			var row = table.Rows[0];
+
+			var currentIn = Int32.Parse(row["Current In"]);
+			Assert.AreEqual(currentIn, yearReport.CurrentIn);
+
+			var currentOut = Int32.Parse(row["Current Out"]);
+			Assert.AreEqual(currentOut, yearReport.CurrentOut);
+
+			var currentTotal = Int32.Parse(row["Current Total"]);
+			Assert.AreEqual(currentTotal, yearReport.CurrentTotal);
+
+			var foreseenIn = Int32.Parse(row["Foreseen In"]);
+			Assert.AreEqual(foreseenIn, yearReport.ForeseenIn);
+
+			var foreseenOut = Int32.Parse(row["Foreseen Out"]);
+			Assert.AreEqual(foreseenOut, yearReport.ForeseenOut);
+
+			var foreseenTotal = Int32.Parse(row["Foreseen Total"]);
+			Assert.AreEqual(foreseenTotal, yearReport.ForeseenTotal);
 		}
 		#endregion
 
