@@ -1,5 +1,10 @@
 ﻿@model AccountSign
 
-glyphicon
-glyphicon-@await Html.PartialAsync("AccountSignIcon", Model)
-text-@await Html.PartialAsync("AccountSignColor", Model)
+<span
+	class="
+		glyphicon
+		glyphicon-@await Html.PartialAsync("AccountSignIcon", Model)
+		text-@await Html.PartialAsync("AccountSignColor", Model)
+	"
+	title="@Context.Translate($"{Model}Limit")">
+</span>
