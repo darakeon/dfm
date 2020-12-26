@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DFM.BusinessLogic.Response
 {
@@ -15,6 +16,14 @@ namespace DFM.BusinessLogic.Response
 		public Decimal AccountTotal { get; set; }
 		public Int32 Time { get; set; }
 		public IList<MonthItem> MonthList { get; set; }
+
+		public Decimal CurrentIn => MonthList.Sum(m => m.CurrentIn);
+		public Decimal CurrentOut => MonthList.Sum(m => m.CurrentOut);
+		public Decimal CurrentTotal => MonthList.Sum(m => m.CurrentTotal);
+
+		public Decimal ForeseenIn => MonthList.Sum(m => m.ForeseenIn);
+		public Decimal ForeseenOut => MonthList.Sum(m => m.ForeseenOut);
+		public Decimal ForeseenTotal => MonthList.Sum(m => m.ForeseenTotal);
 
 		public class MonthItem
 		{

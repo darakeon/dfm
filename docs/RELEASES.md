@@ -20,7 +20,7 @@ Legend:
 - [ ] Make program to finish process on git after PR
 - [ ] Report with values: select to see sum
 - [ ] Show account state on account area
-- [ ] Add Year Negative / Positive / Sum to Year summary
+- [x] `201225>201226` Add Year Negative / Positive / Sum to Year summary
 - [x] `201223>201228` Use Authy as password
 - [x] `201222>201223` Redesign TFA warning at config screen
 

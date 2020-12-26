@@ -58,6 +58,9 @@ Scenario: Eb03. Get with info all right
 			| 201211 | 0          | 0           | 0             | 0           | 0            | 0              |
 			| 201212 | 0          | 0           | 0             | 0           | 0            | 0              |
 		And its sum value will be equal to its months sum value
+		And the year report sums will be
+			| Current In | Current Out | Current Total | Foreseen In | Foreseen Out | Foreseen Total |
+			| 0          | 110         | -110          | 0           | 0            | 0              |
 
 Scenario: Eb04. Get foreseen ins, outs and balances
 	Given I disable Categories use
@@ -90,3 +93,6 @@ Scenario: Eb04. Get foreseen ins, outs and balances
 			| 222010 | 0          | 0           | 0             | 192         | 222          | -30            |
 			| 222011 | 0          | 0           | 0             | 52          | 209          | -157           |
 			| 222012 | 0          | 0           | 0             | 0           | 209          | -209           |
+		And the year report sums will be
+			| Current In | Current Out | Current Total | Foreseen In | Foreseen Out | Foreseen Total |
+			| 0          | 0           | 0             | 296         | 736          | -440           |

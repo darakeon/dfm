@@ -101,6 +101,40 @@
 	</tr>
 }
 
+@{
+	var yearCurrentIn = new ValueWithSign(Model.Year.CurrentIn, Model.Language, true);
+	var yearCurrentOut = new ValueWithSign(-Model.Year.CurrentOut, Model.Language, true);
+	var yearCurrentTotal = new ValueWithSign(Model.Year.CurrentTotal, Model.Language);
+
+	var yearForeseenIn = new ValueWithSign(Model.Year.ForeseenIn, Model.Language, true);
+	var yearForeseenOut = new ValueWithSign(-Model.Year.ForeseenOut, Model.Language, true);
+	var yearForeseenTotal = new ValueWithSign(Model.Year.ForeseenTotal, Model.Language);
+
+	<tr class="row">
+		<td class="col">
+			@Context.Translate("Total")
+		</td>
+		<td class="col text-right">
+			@await Html.PartialAsync("Extensions/ValueWithSign", yearCurrentIn)
+		</td>
+		<td class="col text-right">
+			@await Html.PartialAsync("Extensions/ValueWithSign", yearCurrentOut)
+		</td>
+		<td class="col text-right">
+			@await Html.PartialAsync("Extensions/ValueWithSign", yearCurrentTotal)
+		</td>
+		<td class="col text-right foreseen">
+			@await Html.PartialAsync("Extensions/ValueWithSign", yearForeseenIn)
+		</td>
+		<td class="col text-right foreseen">
+			@await Html.PartialAsync("Extensions/ValueWithSign", yearForeseenOut)
+		</td>
+		<td class="col text-right foreseen">
+			@await Html.PartialAsync("Extensions/ValueWithSign", yearForeseenTotal)
+		</td>
+	</tr>
+}
+
 @section Footer {
 	<div class="row">
 		<div class="col-lg-2 col-sm-2"></div>
