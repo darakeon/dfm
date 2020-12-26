@@ -11,9 +11,6 @@
 	var formSizeLg = ViewBag.FormSizeLg ?? 4;
 	if (formSizeLg % 2 == 1) { formSizeLg++; }
 	var pushLg = 6 - formSizeLg / 2;
-
-	var accountModel = Model as BaseAccountModel;
-	var subtitle = accountModel?.Account?.Name;
 }
 
 <div class="row move-down">
@@ -23,7 +20,7 @@
 			<div class="panel-heading">
 				<h4 class="header">
 					@ViewBag.Title
-					<em>@subtitle</em>
+					<em>@ViewBag.Subtitle</em>
 				</h4>
 			</div>
 
