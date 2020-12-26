@@ -46,41 +46,21 @@
 
 	<br />
 	@Context.Translate("GreenLimit") =
-	(
-		<span
-			class="@await Html.PartialAsync("AccountSign", AccountSign.Green)"
-			title="@Context.Translate("GreenLimit")"
-		></span>
-	)
+	(@await Html.PartialAsync("AccountSign", AccountSign.Green))
 	//
 	@Context.Translate("NoneLimit") =
-	(
-		<span
-			class="@await Html.PartialAsync("AccountSign", AccountSign.None)"
-			title="@Context.Translate("NoneLimit")"
-		></span>
-	)
+	(@await Html.PartialAsync("AccountSign", AccountSign.None))
 </div>
 
 <div class="form-group">
 	@Html.LabelFor(m => m.YellowLimit, Context.Translate("YellowLimit"), new { @class = "control-label" })
-	(
-		<span
-			class="@await Html.PartialAsync("AccountSign", AccountSign.Yellow)"
-			title="@Context.Translate("YellowLimit")">
-		</span>
-	)
+	(@await Html.PartialAsync("AccountSign", AccountSign.Yellow))
 	@Html.TextBoxFor(m => m.YellowLimit, new { @class = "form-control limit number", data_allow_negative = 1, data_allow_zero = 1 })
 </div>
 
 <div class="form-group">
 	@Html.LabelFor(m => m.RedLimit, Context.Translate("RedLimit"), new { @class = "control-label" })
-	(
-		<span
-			class="@await Html.PartialAsync("AccountSign", AccountSign.Red)"
-			title="@Context.Translate("RedLimit")">
-		</span>
-	)
+	(@await Html.PartialAsync("AccountSign", AccountSign.Red))
 	@Html.TextBoxFor(m => m.RedLimit, new { @class = "form-control limit number", data_allow_negative = 1, data_allow_zero = 1 })
 </div>
 
