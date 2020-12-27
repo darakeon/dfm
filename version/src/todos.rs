@@ -126,16 +126,16 @@ fn get_next(sizes: Vec<String>, current: String) -> Option<(String, String)> {
 
 fn get_new_version(sizes: Vec<String>) -> Option<(String, String, String)> {
 	let dragon = "dragon".to_string();
-	
+
 	if sizes.contains(&dragon) {
 		return Some((r"()(\d+)\.\d+\.\d+\.\d+".to_string(), r".0.0.0".to_string(), dragon));
 	}
-	
+
 	let whale = "whale".to_string();
 	if sizes.contains(&whale) {
 		return Some((r"(\d+\.)(\d+)\.\d+\.\d+".to_string(), r".0.0".to_string(), whale));
 	}
-	
+
 	let sheep = "sheep".to_string();
 	if sizes.contains(&sheep) {
 		return Some((r"(\d+\.\d+\.)(\d+)\.\d+".to_string(), r".0".to_string(), sheep));
@@ -145,7 +145,7 @@ fn get_new_version(sizes: Vec<String>) -> Option<(String, String, String)> {
 	if sizes.contains(&ant) {
 		return Some((r"(\d+\.\d+\.\d+\.)(\d+)".to_string(), r"".to_string(), ant));
 	}
-	
+
 	return None;
 }
 
