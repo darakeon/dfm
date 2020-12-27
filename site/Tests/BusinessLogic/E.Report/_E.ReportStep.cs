@@ -132,7 +132,7 @@ namespace DFM.BusinessLogic.Tests.E.Report
 		[Then(@"the foreseen future value part will be ((?:\+|\-)\d+)")]
 		public void ThenTheForeseenValueWillBe(Int32 value)
 		{
-			var foreseen = monthReport.ForeseenTotal;
+			var foreseen = monthReport.ForeseenTotal - monthReport.AccountTotal;
 			Assert.AreEqual(value, foreseen);
 		}
 		#endregion

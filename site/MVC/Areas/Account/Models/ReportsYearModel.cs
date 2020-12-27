@@ -1,5 +1,7 @@
 ﻿using System;
 using DFM.BusinessLogic.Response;
+using DFM.Entities.Enums;
+using DFM.MVC.Areas.Account.Models.SubModels;
 using DFM.MVC.Helpers.Models;
 
 namespace DFM.MVC.Areas.Account.Models
@@ -13,7 +15,9 @@ namespace DFM.MVC.Areas.Account.Models
 		}
 
 		public Decimal Total => Year.AccountTotal;
+		public AccountSign TotalSign => Year.AccountSign;
 		public Decimal? Foreseen => Year.AccountForeseen;
+		public AccountSign ForeseenSign => Year.AccountForeseenSign;
 
 		public YearReport Year { get; set; }
 

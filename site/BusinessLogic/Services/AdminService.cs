@@ -32,28 +32,10 @@ namespace DFM.BusinessLogic.Services
 		{
 			var hasMoves = repos.Move.AccountHasMoves(account);
 			var total = repos.Summary.GetTotal(account);
-			var sign = getSign(account, total);
 
-			var item = AccountListItem.Convert(account, total, sign, hasMoves);
+			var item = AccountListItem.Convert(account, total, hasMoves);
 
 			return item;
-		}
-
-		private AccountSign getSign(Account account, Decimal total)
-		{
-			var hasRed = account.RedLimit != null;
-			var hasYellow = account.YellowLimit != null;
-
-			if (hasRed && total < account.RedLimit)
-				return AccountSign.Red;
-
-			if (hasYellow && total < account.YellowLimit)
-				return AccountSign.Yellow;
-
-			if (hasRed || hasYellow)
-				return AccountSign.Green;
-
-			return AccountSign.None;
 		}
 
 		public AccountInfo GetAccount(String url)

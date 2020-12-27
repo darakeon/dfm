@@ -26,7 +26,7 @@ namespace DFM.MVC.Models
 
 		public Boolean HasLimit
 		{
-			get => Account.RedLimit != null || Account.YellowLimit != null;
+			get => Account.HasLimit;
 			set => setLimit(value);
 		}
 
