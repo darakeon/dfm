@@ -136,6 +136,11 @@ namespace DFM.BusinessLogic.Repositories
 				.ToList();
 		}
 
+		public Decimal GetForeseenTotal(Account account, Int16 dateYear)
+		{
+			return GetForeseenTotal(account, dateYear, 12);
+		}
+
 		public Decimal GetForeseenTotal(Account account, Int16 dateYear, Int16 dateMonth)
 		{
 			return getRunnable(account).Sum(

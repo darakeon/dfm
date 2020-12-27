@@ -6,14 +6,16 @@ namespace DFM.BusinessLogic.Response
 {
 	public class YearReport
 	{
-		public YearReport(Decimal total, Int32 time, IList<MonthItem> months)
+		public YearReport(Decimal total, Decimal foreseen, Int32 time, IList<MonthItem> months)
 		{
 			AccountTotal = total;
+			AccountForeseen = foreseen;
 			Time = time;
 			MonthList = months;
 		}
 
 		public Decimal AccountTotal { get; set; }
+		public Decimal AccountForeseen { get; set; }
 		public Int32 Time { get; set; }
 		public IList<MonthItem> MonthList { get; set; }
 
