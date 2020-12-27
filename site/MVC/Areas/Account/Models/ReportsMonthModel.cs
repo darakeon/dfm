@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Response;
+using DFM.Entities.Enums;
+using DFM.MVC.Areas.Account.Models.SubModels;
 using DFM.MVC.Helpers.Models;
 
 namespace DFM.MVC.Areas.Account.Models
@@ -24,9 +26,13 @@ namespace DFM.MVC.Areas.Account.Models
 				.ToList();
 
 			Total = month.AccountTotal;
+			TotalSign = month.AccountTotalSign;
 
 			if (month.ForeseenTotal != 0)
+			{
 				Foreseen = month.ForeseenTotal;
+				ForeseenSign = month.ForeseenTotalSign;
+			}
 
 			Month = dateMonth;
 			Year = dateYear;
@@ -44,7 +50,9 @@ namespace DFM.MVC.Areas.Account.Models
 		}
 
 		public Decimal Total { get; }
+		public AccountSign TotalSign { get; }
 		public Decimal? Foreseen { get; }
+		public AccountSign ForeseenSign { get; }
 
 		public IList<MoveLineModel> MoveList { get; }
 		public IList<MoveLineModel> ForeseenList { get; }

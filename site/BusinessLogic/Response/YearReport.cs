@@ -1,23 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DFM.Entities;
+using DFM.Entities.Enums;
 
 namespace DFM.BusinessLogic.Response
 {
 	public class YearReport
 	{
-		public YearReport(Decimal total, Decimal foreseen, Int32 time, IList<MonthItem> months)
+		public YearReport(Account account, Decimal total, Decimal foreseen, Int32 time, IList<MonthItem> months)
 		{
 			AccountTotal = total;
-			AccountForeseen = foreseen;
+			AccountSign = account.GetSign(total);
+
+			AccountForeseen = total + foreseen;
+			AccountForeseenSign = account.GetSign(total + foreseen);
+
 			Time = time;
 			MonthList = months;
 		}
 
-		public Decimal AccountTotal { get; set; }
-		public Decimal AccountForeseen { get; set; }
-		public Int32 Time { get; set; }
-		public IList<MonthItem> MonthList { get; set; }
+		public Decimal AccountTotal { get; }
+		public AccountSign AccountSign { get; }
+		public Decimal AccountForeseen { get; }
+		public AccountSign AccountForeseenSign { get; }
+
+		public Int32 Time { get; }
+		public IList<MonthItem> MonthList { get; }
 
 		public Decimal CurrentIn => MonthList.Sum(m => m.CurrentIn);
 		public Decimal CurrentOut => MonthList.Sum(m => m.CurrentOut);

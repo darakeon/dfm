@@ -9,7 +9,6 @@ namespace DFM.BusinessLogic.Response
 		private AccountListItem(
 			Account account,
 			Decimal total,
-			AccountSign sign,
 			Boolean hasMoves
 		)
 		{
@@ -18,16 +17,15 @@ namespace DFM.BusinessLogic.Response
 			Total = total;
 			Start = account.BeginDate;
 			End = account.EndDate;
-			Sign = sign;
+			Sign = account.GetSign(total);
 			HasMoves = hasMoves;
 		}
 
 		internal static AccountListItem Convert(
 			Account account,
 			Decimal total,
-			AccountSign sign,
 			Boolean hasMoves
-		) => new AccountListItem(account, total, sign, hasMoves);
+		) => new AccountListItem(account, total, hasMoves);
 
 		public String Name { get; }
 		public String Url { get; }

@@ -1,17 +1,26 @@
-﻿@model ITotal
+﻿@using DFM.MVC.Areas.Account.Models.SubModels
+@model DFM.MVC.Areas.Account.Models.SubModels.ITotal
 
 <div class="well well-sm text-center">
-	<h6>@Context.Translate("Total")</h6>
-	@await Html.PartialAsync("Extensions/ValueWithSign",
-		new ValueWithSign(Model.Total, Model.Language)
+	@await Html.PartialAsync("Subtotal",
+		new Subtotal(
+			Model.Language,
+			"Total",
+			Model.Total,
+			Model.TotalSign
+		)
 	)
 
 	@if (Model.Foreseen.HasValue)
 	{
 		<div class="foreseen foreseen-total well">
-			<h6>@Context.Translate("Foreseen")</h6>
-			@await Html.PartialAsync("Extensions/ValueWithSign",
-				new ValueWithSign(Model.Foreseen.Value + Model.Total, Model.Language)
+			@await Html.PartialAsync("Subtotal",
+				new Subtotal(
+					Model.Language,
+					"Foreseen",
+					Model.Foreseen.Value,
+					Model.ForeseenSign
+				)
 			)
 		</div>
 	}

@@ -22,7 +22,7 @@ namespace DFM.BusinessLogic.Response
 		internal static AccountInfo Convert(Account account)
 			=> new AccountInfo(account);
 
-		public void Update(Account account)
+		internal void Update(Account account)
 		{
 			account.Name = Name;
 			account.Url = Url;
@@ -39,5 +39,7 @@ namespace DFM.BusinessLogic.Response
 		public Boolean IsOpen { get; set; }
 		public DateTime Start { get; set; }
 		public DateTime? End { get; set; }
+
+		public Boolean HasLimit => RedLimit != null || YellowLimit != null;
 	}
 }

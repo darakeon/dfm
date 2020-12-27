@@ -28,17 +28,25 @@ namespace DFM.BusinessLogic.Services
 				throw Error.InvalidAccount.Throw();
 
 			var total = repos.Summary.GetTotal(account);
-
-			var foreseenTotal = repos.Schedule
-				.GetForeseenTotal(account, dateYear, dateMonth);
+			var sign = account.GetSign(total);
 
 			var moveList = repos.Move
 				.ByAccountAndTime(account, dateYear, dateMonth);
 
+			var foreseenTotal = repos.Schedule
+				.GetForeseenTotal(account, dateYear, dateMonth)
+			    + total;
+			var foreseenSign = account.GetSign(foreseenTotal);
+
 			var foreseenList = repos.Schedule
 				.SimulateMoves(account, dateYear, dateMonth);
 
-			return new MonthReport(accountUrl, total, foreseenTotal, moveList, foreseenList);
+			return new MonthReport(
+				accountUrl,
+				total, foreseenTotal,
+				sign, foreseenSign,
+				moveList, foreseenList
+			);
 		}
 
 		public YearReport GetYearReport(String accountUrl, Int16 dateYear)
@@ -62,7 +70,7 @@ namespace DFM.BusinessLogic.Services
 
 			months = months.OrderBy(m => m.Number).ToList();
 
-			return new YearReport(total, foreseen, dateYear, months);
+			return new YearReport(account, total, foreseen, dateYear, months);
 		}
 
 		public SearchResult SearchByDescription(String description)

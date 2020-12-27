@@ -1,0 +1,23 @@
+﻿@model DFM.MVC.Areas.Account.Models.SubModels.Subtotal
+
+@{
+	var hasSign = Model.Sign != AccountSign.None;
+	var valueClass = hasSign ? "pull-right" : "";
+}
+
+<h6>@Context.Translate(Model.Key)</h6>
+
+@if (hasSign)
+{
+	<span class="pull-left">
+		@await Html.PartialAsync("AccountSign", Model.Sign)
+	</span>
+}
+
+<span class="@valueClass">
+	@await Html.PartialAsync("Extensions/ValueWithSign",
+		new ValueWithSign(Model.Value, Model.Language)
+	)
+</span>
+
+<br class="clearfix" />
