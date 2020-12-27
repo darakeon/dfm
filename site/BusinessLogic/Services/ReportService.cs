@@ -58,10 +58,11 @@ namespace DFM.BusinessLogic.Services
 			var months = repos.Summary.YearReport(account, dateYear);
 
 			repos.Schedule.FillForeseenTotals(account, dateYear, months);
+			var foreseen = repos.Schedule.GetForeseenTotal(account, dateYear);
 
 			months = months.OrderBy(m => m.Number).ToList();
 
-			return new YearReport(total, dateYear, months);
+			return new YearReport(total, foreseen, dateYear, months);
 		}
 
 		public SearchResult SearchByDescription(String description)

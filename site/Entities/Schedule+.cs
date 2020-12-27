@@ -105,7 +105,6 @@ namespace DFM.Entities
 		{
 			var firstMonthDay = new DateTime(dateYear, dateMonth, 1);
 			var firstNextMonthDay = firstMonthDay.AddMonths(1);
-			var lastMonthDay = firstNextMonthDay.AddDays(-1);
 
 			var value = 0;
 
@@ -114,7 +113,7 @@ namespace DFM.Entities
 			var run = times - LastRun;
 
 			var date = begin;
-			while (date < lastMonthDay && run > 0)
+			while (date < firstNextMonthDay && run > 0)
 			{
 				value += ValueCents;
 				date = add(date)(1);

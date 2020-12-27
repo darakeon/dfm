@@ -13,7 +13,7 @@ namespace DFM.MVC.Areas.Account.Models
 		}
 
 		public Decimal Total => Year.AccountTotal;
-		public Decimal? Foreseen => null;
+		public Decimal? Foreseen => Year.AccountForeseen;
 
 		public YearReport Year { get; set; }
 
