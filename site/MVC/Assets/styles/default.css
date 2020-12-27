@@ -83,3 +83,13 @@ input[type="date"] {
 	#search-modal .modal-body button {
 		float: right;
 	}
+
+.top-right-highlight {
+	position: absolute;
+	right: 0;
+	margin: 5px;
+}
+
+	.top-right-highlight:empty {
+		display: none;
+	}

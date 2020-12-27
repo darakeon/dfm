@@ -18,7 +18,7 @@ Legend:
 - [ ] Verify all docs links
 - [ ] Avoid error on startup mvc
 - [ ] Make program to finish process on git after PR
-- [ ] Report with values: select to see sum
+- [x] `201226>201227` Report with values: select to see sum
 - [x] `201226>201226` Show account state on account area (totals)
 - [x] `201225>201226` Add Year Negative / Positive / Sum to Year summary
 - [x] `201223>201228` Use Authy as password
