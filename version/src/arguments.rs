@@ -2,8 +2,8 @@ use std::env;
 
 use crate::end::{throw,throw_multiple};
 
-pub fn parse_arguments() -> Option<(bool, Vec<usize>)> {
-    let args: Vec<String> = env::args().collect();
+pub fn parse_arguments() -> Option<(ProgramOption, Vec<usize>)> {
+	let args: Vec<String> = env::args().collect();
 
 	if args.len() < 2 {
 		return stop_program();
@@ -11,16 +11,17 @@ pub fn parse_arguments() -> Option<(bool, Vec<usize>)> {
 
 	let cmd = &args[1];
 
-    match &cmd[..] {
+	match &cmd[..] {
 		"-q" => { return parse_quantity(args); },
 		"-n" => { return parse_numbers(args); },
-		"-c" => { return check(); },
-		"-e" => { return empty(); },
+		"-e" => { return empty(ProgramOption::Empty); },
+		"-c" => { return empty(ProgramOption::Check); },
+		"-g" => { return empty(ProgramOption::Git); },
 		_ => { return stop_program(); }
 	}
 }
 
-fn stop_program() -> Option<(bool, Vec<usize>)> {
+fn stop_program() -> Option<(ProgramOption, Vec<usize>)> {
 	return throw_multiple(1, vec![
 		"",
 		"    |-----------------------------------------------------------------------------|",
@@ -39,6 +40,9 @@ fn stop_program() -> Option<(bool, Vec<usize>)> {
 		"    |    -c                                                                       |",
 		"    |    >>> just check if the version is right.                                  |",
 		"    |                                                                             |",
+		"    |    -g                                                                       |",
+		"    |    >>> start new version at git tree (branch, tag, clear remote)            |",
+		"    |                                                                             |",
 		"    |                             use just numbers at parameters, not the braces  |",
 		"    |                                                                             |",
 		"    |-----------------------------------------------------------------------------|",
@@ -46,7 +50,7 @@ fn stop_program() -> Option<(bool, Vec<usize>)> {
 	]);
 }
 
-fn parse_quantity(args: Vec<String>) -> Option<(bool, Vec<usize>)> {
+fn parse_quantity(args: Vec<String>) -> Option<(ProgramOption, Vec<usize>)> {
 	if args.len() != 3 {
 		return quantity_error();
 	}
@@ -64,16 +68,16 @@ fn parse_quantity(args: Vec<String>) -> Option<(bool, Vec<usize>)> {
 				numbers.push(number);
 			}
 
-			return Some((false, numbers));
+			return Some((ProgramOption::Quantity, numbers));
 		}
 	}
 }
 
-fn quantity_error() -> Option<(bool, Vec<usize>)> {
+fn quantity_error() -> Option<(ProgramOption, Vec<usize>)> {
 	return throw(2, "-q must have one argument and it must be a number greater than zero");
 }
 
-fn parse_numbers(args: Vec<String>) -> Option<(bool, Vec<usize>)> {
+fn parse_numbers(args: Vec<String>) -> Option<(ProgramOption, Vec<usize>)> {
 	if args.len() < 3 {
 		return numbers_error();
 	}
@@ -93,17 +97,22 @@ fn parse_numbers(args: Vec<String>) -> Option<(bool, Vec<usize>)> {
 		}
 	}
 
-	return Some((false, numbers));
+	return Some((ProgramOption::Numbers, numbers));
 }
 
-fn numbers_error() -> Option<(bool, Vec<usize>)> {
+fn numbers_error() -> Option<(ProgramOption, Vec<usize>)> {
 	return throw(3, "-n must have at least one argument and they all must be numbers greater than zero");
 }
 
-fn check() -> Option<(bool, Vec<usize>)> {
-	Some((true, Vec::new()))
+fn empty(option: ProgramOption) -> Option<(ProgramOption, Vec<usize>)> {
+	Some((option, Vec::new()))
 }
 
-fn empty() -> Option<(bool, Vec<usize>)> {
-	Some((false, Vec::new()))
+#[derive(PartialEq)]
+pub enum ProgramOption {
+	Quantity,
+	Numbers,
+	Empty,
+	Check,
+	Git,
 }

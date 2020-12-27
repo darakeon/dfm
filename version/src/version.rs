@@ -1,5 +1,6 @@
 use std::collections::LinkedList;
 
+use crate::arguments::ProgramOption;
 use crate::end::{success,throw,throw_format};
 use crate::file::{get_path, get_lines};
 use crate::git::{current_branch,has_pull_request};
@@ -8,7 +9,7 @@ use crate::todos::add_release;
 
 fn path() -> String { get_path(vec!["..", "docs", "RELEASES.md"]) }
 
-pub fn create_version(just_check: bool, numbers: Vec<usize>) -> Option<Version> {
+pub fn create_version(option: &ProgramOption, numbers: Vec<usize>) -> Option<Version> {
 	let task_list = get_lines(path());
 	let pattern = r"^\- \[.+\]\(\#(\d+\.\d+\.\d+\.\d+)\)$";
 
@@ -25,9 +26,15 @@ pub fn create_version(just_check: bool, numbers: Vec<usize>) -> Option<Version> 
 		numbers,
 	);
 
+	if option == &ProgramOption::Git {
+		return Some(version);
+	}
+
 	if !version.done {
 		return end_not_done();
 	}
+
+	let just_check = option == &ProgramOption::Check;
 
 	let compare = if just_check { prod } else { dev };
 	if branch != "main" && branch != compare {

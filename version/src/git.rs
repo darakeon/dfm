@@ -1,6 +1,10 @@
-use git2::{BranchType,DiffFile,DiffOptions,Repository};
+use dirs::home_dir;
+use git2::{BranchType,CredentialType,Cred,DiffFile,DiffOptions,Error,FetchOptions,FetchPrune,ObjectType,Oid,PushOptions,Repository,RemoteCallbacks};
 use reqwest::blocking::Client;
+use std::cmp::Ordering::Less;
+use std::str::{from_utf8};
 
+use crate::file::get_content;
 use crate::regex::replace;
 
 pub fn current_branch() -> Option<String> {
@@ -84,4 +88,138 @@ fn url_api(url_repo: &str) -> String {
 	let branch = current_branch().unwrap();
 
 	return format!("{}{}", replaced, branch);
+}
+
+pub fn update_local(branch: &str) {
+	let repo = Repository::open("../").unwrap();
+	let mut remote = repo.find_remote("origin").unwrap();
+
+	let mut callbacks = RemoteCallbacks::new();
+	callbacks.credentials(&git_credentials_callback);
+
+	let mut options = FetchOptions::new();
+	options.remote_callbacks(callbacks);
+	options.prune(FetchPrune::On);
+
+	let reflog = format!("updating main and {}", branch);
+
+	remote.fetch(
+		&["main", branch],
+		Some(&mut options),
+		Some(&reflog)
+	).unwrap();
+}
+
+fn git_credentials_callback(
+	_url: &str,
+	username: Option<&str>,
+	_cred_type: CredentialType,
+) -> Result<Cred, Error> {
+	let mut public = home_dir().unwrap();
+	public.push(".ssh");
+	public.push("id_rsa");
+	public.set_extension("pub");
+
+	let mut private = home_dir().unwrap();
+	private.push(".ssh");
+	private.push("id_rsa");
+
+	let password = get_content("password".to_string());
+
+	return Cred::ssh_key(
+		username.unwrap(),
+		Some(public.as_path()),
+		private.as_path(),
+		Some(&password),
+	);
+}
+
+pub fn go_to_main() {
+	let repo = Repository::open("../").unwrap();
+
+	let branch = repo.find_branch(
+		"origin/main", BranchType::Remote
+	).unwrap();
+	let oid = branch.get().target().unwrap();
+	let commit = repo.find_commit(oid).unwrap();
+
+	repo.branch("main", &commit, false).unwrap();
+
+	let obj = repo.revparse_single("refs/heads/main").unwrap();
+	repo.checkout_tree(&obj, None).unwrap();
+
+	repo.set_head("refs/heads/main").unwrap();
+}
+
+pub fn create_tag(name: &str, annotation: &str) {
+	let repo = Repository::open("../").unwrap();
+
+	let mut last = String::new();
+	let mut oid: Option<Oid> = None;
+
+	repo.tag_foreach(|id: Oid, bytes: &[u8]| -> bool {
+		let name = from_utf8(bytes).unwrap();
+		if last == "" || last.cmp(&name.to_string()) == Less {
+			last = name.to_string();
+			oid = Some(id);
+		}
+		return true;
+	}).unwrap();
+
+	let tag = repo.find_tag(oid.unwrap()).unwrap();
+
+	//let oid = LAST_TAG_OID.unwrap();
+	//let tag = repo.find_tag(oid).unwrap();
+	let sign = tag.tagger().unwrap();
+	let head = repo.head().unwrap().peel(ObjectType::Commit).unwrap();
+	repo.tag(&name, &head, &sign, &annotation, false).unwrap();
+}
+
+pub fn create_branch(branch_name: &str) {
+	let repo = Repository::open("../").unwrap();
+
+	let head = repo.head().unwrap();
+	let oid = head.target().unwrap();
+	let commit = repo.find_commit(oid).unwrap();
+
+	repo.branch(&branch_name, &commit, false).unwrap();
+
+	let obj = repo.revparse_single(
+		&("refs/heads/".to_owned() + &branch_name)
+	).unwrap();
+
+	repo.checkout_tree(&obj, None).unwrap();
+
+	repo.set_head(&("refs/heads/".to_owned() + &branch_name)).unwrap();
+}
+
+pub fn remove_branch(name: &str) {
+	let repo = Repository::open("../").unwrap();
+
+	let mut branch = repo.find_branch(
+		&name, BranchType::Local
+	).unwrap();
+
+	branch.delete().unwrap();
+}
+
+pub fn update_remote(tag: &str, branch: &str) {
+	let repo = Repository::open("../").unwrap();
+	let mut remote = repo.find_remote("origin").unwrap();
+
+	let mut callbacks = RemoteCallbacks::new();
+	callbacks.credentials(&git_credentials_callback);
+
+	let mut options = PushOptions::new();
+	options.remote_callbacks(callbacks);
+
+	let refs = [
+		format!("refs/tags/{}", tag),
+		format!("refs/heads/{}", branch),
+	];
+
+	remote.push(
+		&refs,
+		Some(&mut options)
+	).unwrap();
 }
