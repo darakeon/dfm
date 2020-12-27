@@ -17,7 +17,7 @@ Legend:
 ## <a name="4.6.2.0"></a>4.6.2.0 :sheep: <sup>`8`</sup>
 - [ ] Verify all docs links
 - [ ] Avoid error on startup mvc
-- [ ] Make program to finish process on git after PR
+- [x] `201227>201228` Make program to finish process on git after PR
 - [x] `201226>201227` Report with values: select to see sum
 - [x] `201226>201226` Show account state on account area (totals)
 - [x] `201225>201226` Add Year Negative / Positive / Sum to Year summary
