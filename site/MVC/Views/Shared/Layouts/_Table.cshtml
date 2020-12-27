@@ -86,9 +86,14 @@ else
 	}
 }
 
-@RenderSection("Footer", false)
+@await RenderSectionAsync("Footer", false)
 
 @section Styles
 {
-	@RenderSection("Styles", false)
+	@await RenderSectionAsync("Styles", false)
+}
+
+@section Scripts
+{
+	@await RenderSectionAsync("Scripts", false)
 }

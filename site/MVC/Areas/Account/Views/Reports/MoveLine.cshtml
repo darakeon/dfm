@@ -5,7 +5,7 @@
 	var foreseen = move.Foreseen ? "foreseen" : "";
 }
 
-<tr class="row @foreseen" id="m@(move.Guid)">
+<tr class="row @foreseen sum-factor" data-parent="table" id="m@(move.Guid)">
 	<td>@move.Description</td>
 
 	@if (Model.IsUsingCategories)
@@ -20,6 +20,10 @@
 	<td class="text-right">
 		@if (move.InUrl == Model.CurrentAccountUrl)
 		{
+			<span class="value hidden">
+				@(move.Value)
+			</span>
+
 			@await Html.PartialAsync("Extensions/ValueWithSign",
 				new ValueWithSign(move.Value, Model.Language))
 		}
@@ -28,6 +32,10 @@
 	<td class="text-right">
 		@if (move.OutUrl == Model.CurrentAccountUrl)
 		{
+			<span class="value hidden">
+				@(-move.Value)
+			</span>
+
 			@await Html.PartialAsync("Extensions/ValueWithSign",
 				new ValueWithSign(-move.Value, Model.Language))
 		}
