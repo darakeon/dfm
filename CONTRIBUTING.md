@@ -1,4 +1,4 @@
-<img src="../site/MVC/Assets/images/pig.svg" width="85" align="right"/>
+<img src="site/MVC/Assets/images/pig.svg" width="85" align="right"/>
 
 # COLLABORATE
 
@@ -10,13 +10,13 @@ Lets just make somethings clearer, to not make it a huge mess...
 ## Branches
 
 I usually develop in a branch with the version number. When I finish
-the version, I open a [pull request](../pulls) to branch `main`. The name
+the version, I open a [pull request](../../pulls) to branch `main`. The name
 of the branch you will use develop, you can choose what better fits
 you.
 
 ## Versioning
 
-The document [RELEASES.md] has what was done in each version.
+The document [RELEASES.md](docs/RELEASES.md) has what was done in each version.
 Remember to add your new version, numbering it according to the
 description at the beginning of the document. Add it below the version
 in progress (the last one, where all the tasks are unchecked).
@@ -70,7 +70,7 @@ understanding what you did. This rule applies to your code too.
 
 ## Don't know what to do?
 
-It's probably not the case, but... There is a [to-do list](TODO.md).
+It's probably not the case, but... There is a [to-do list](docs/TODO.md).
 You can pickup a task from any place of the list, the order set to this
 file is the order @darakeon intend to do them. Once it's ready, the new
 system version number will depend the column type and the current
