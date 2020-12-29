@@ -8,6 +8,11 @@ const AWS = require('aws-sdk')
 // ports: list of ports which you want point to your IP
 const {region, securityGroup, apiVersion, ports} = require('./config.json')
 
+// ~/.aws/credentials:
+// [default]
+// aws_access_key_id = {}
+// aws_secret_access_key = {}
+
 async function updateSecurityGroup() {
 	AWS.config.update({region})
 
