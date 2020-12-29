@@ -1,3 +1,4 @@
+using System;
 using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.Entities;
 using DFM.Generic;
@@ -13,20 +14,27 @@ namespace DFM.MVC.Starters
 	{
 		public static void Config(IApplicationBuilder app, IHostApplicationLifetime life)
 		{
-			SessionFactoryManager.Initialize<UserMap, User>(Cfg.DB);
-
-			app.Use(async (context, next) =>
+			try
 			{
-				SessionManager.Init(
-					() => BrowserId.Get(() => context)
-				);
+				SessionFactoryManager.Initialize<UserMap, User>(Cfg.DB);
 
-				await next.Invoke();
+				app.Use(async (context, next) =>
+				{
+					SessionManager.Init(
+						() => BrowserId.Get(() => context)
+					);
 
-				SessionManager.Close();
-			});
+					await next();
 
-			life.ApplicationStopping.Register(SessionFactoryManager.End);
+					SessionManager.Close();
+				});
+
+				life.ApplicationStopping.Register(SessionFactoryManager.End);
+			}
+			catch (Exception e)
+			{
+				e.TryLogHandled("Error on initialize DB");
+			}
 		}
 	}
 }

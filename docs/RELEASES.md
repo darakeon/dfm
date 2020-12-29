@@ -16,7 +16,7 @@ Legend:
 
 ## <a name="4.6.2.0"></a>4.6.2.0 :sheep: <sup>`8`</sup>
 - [x] `201228>201229` Verify all docs links
-- [ ] `201228>......` Avoid error on startup mvc
+- [x] `201228>201229` Avoid error on startup mvc
 - [x] `201227>201228` Make program to finish process on git after PR
 - [x] `201226>201227` Report with values: select to see sum
 - [x] `201226>201226` Show account state on account area (totals)
