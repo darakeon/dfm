@@ -1,7 +1,10 @@
 ﻿using System.Globalization;
+using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using DFM.Generic;
 using DFM.MVC.Helpers.Extensions;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +20,11 @@ namespace DFM.MVC.Starters
 		{
 			services.AddSession();
 			services.AddHttpContextAccessor();
+			var dir = new DirectoryInfo(@"data");
+
+			services.AddDataProtection()
+				.SetApplicationName("DfM")
+				.PersistKeysToFileSystem(dir);
 		}
 
 		public static void Set(IApplicationBuilder app)

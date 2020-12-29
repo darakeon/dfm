@@ -7,16 +7,18 @@ namespace DFM.Generic
 	{
 		public String ID { get; set; }
 		public DateTime Date { get; set; }
+		public Boolean Handled { get; set; }
 		public ExceptionData Exception { get; set; }
 
 		// this is for serialization
 		public ErrorLog() { }
 
-		public ErrorLog(Exception exception)
+		public ErrorLog(Exception exception, Boolean handled)
 		{
 			Date = DateTime.Now;
 			ID = Date.ToString("yyyyMMddHHmmssffffff");
 			Exception = new ExceptionData(exception);
+			Handled = handled;
 		}
 
 		public static ErrorLog FromJson(String json)

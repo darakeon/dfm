@@ -2,5 +2,3 @@ Assets/Libs/*/*.js
 Assets/Libs/Fonts/*
 
 *.pubxml
-
-data
