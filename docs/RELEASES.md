@@ -15,7 +15,7 @@ Legend:
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="4.6.2.0"></a>4.6.2.0 :sheep: <sup>`8`</sup>
-- [ ] Verify all docs links
+- [x] `201228>201229` Verify all docs links
 - [ ] Avoid error on startup mvc
 - [x] `201227>201228` Make program to finish process on git after PR
 - [x] `201226>201227` Report with values: select to see sum

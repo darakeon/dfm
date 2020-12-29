@@ -33,7 +33,7 @@ itself. Well, we are always our most demanding client.
 
 ## Docs
 
-- [Collaborate](docs/COLLABORATE.md)
+- [Collaborate](CONTRIBUTING.md)
 - [License (GPL)](LICENSE.md)
 - [Releases](docs/RELEASES.md)
 - [Task list](docs/TODO.md)
