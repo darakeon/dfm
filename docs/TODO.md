@@ -11,13 +11,8 @@ This is the task list for the project.
 - Dependency: which other task it depends on (if it exists)
 - Issue: github issue about the task (if it exists)
 
-| Task (58)                                                                      | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
+| Task (53)                                                                      | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | ------------------ | ------------------------------------------------ |
-| Add modal for moves with details, to show details                              | :sheep:  |  1  |  3  |  6  |                    |                                                  |
-| Remove Move on delete at Android (and change total)                            | :sheep:  |  1  |  2  |  5  |                    |                                                  |
-| Review columns of Schedule List (add deleted qty)                              | :sheep:  |  1  |  2  |  5  |                    |                                                  |
-| Calculate installment move by position                                         | :ant:    |  1  |  2  |  5  |                    |                                                  |
-| Add modal for moves with schedule, to show schedule details                    | :sheep:  |  1  |  2  |  5  |                    |                                                  |
 | Migrate DB to RDS                                                              | :ant:    |  4  |  4  |  4  |                    |                                                  |
 | Change server to linux                                                         | :ant:    |  4  |  4  |  4  |                    |                                                  |
 | Store data locally, to use when there is no internet (Mobile)                  | :dragon: |  4  |  4  |  4  |                    |                                                  |

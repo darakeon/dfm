@@ -1,4 +1,14 @@
 {
+	"4.6.2.0": [
+		"Evitado erro que fazia o site ficar com erro permanente",
+		"Possibilidade de selecionar movimentações no relatório mensal para ver sua soma",
+		"Status da conta exibido nos relatórios da conta",
+		"Adicionado soma anual de valores de saída, entrada e total no relatório anual",
+		"Possibilidade de usar código de login mais seguro como senha",
+		"Tela de configuração de login mais seguro redesenhada",
+		"Ajustes na documentação do sistema (desenvolvimento)",
+		"Automatizada mais uma parte da publicação do site"
+	],
 	"4.6.1.0": [
 		"Adiciona botão de contato no aplicativo",
 		"Remove botão de fechar no aplicativo",
