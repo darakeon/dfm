@@ -38,16 +38,16 @@ async function updateSecurityGroup() {
 				const isSecret = portIndex >= 0
 				const isWrong = currentIp != ip
 
-				if (isSecret && isWrong) {
-					delete permission.Ipv6Ranges
-					delete permission.PrefixListIds
-					delete permission.UserIdGroupPairs
-				} else {
-					if (isSecret) {
-						ports.splice(portIndex, 1)
-						secretIps++
-					}
+				if (isSecret) {
+					ports.splice(portIndex, 1)
+					secretIps++
 
+					if (isWrong) {
+						delete permission.Ipv6Ranges
+						delete permission.PrefixListIds
+						delete permission.UserIdGroupPairs
+					}
+				} else {
 					permissions.splice(p, 1)
 					p--
 				}
