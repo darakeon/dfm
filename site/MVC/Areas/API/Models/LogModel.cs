@@ -51,7 +51,7 @@ namespace DFM.MVC.Areas.Api.Models
 
 				if (list)
 				{
-					Logs.Add(new ErrorLog(e));
+					Logs.Add(new ErrorLog(e, false));
 				}
 			}
 		}

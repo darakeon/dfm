@@ -1,3 +1,5 @@
+using System;
+using DFM.Generic;
 using DFM.MVC.Helpers.Extensions;
 using Microsoft.AspNetCore.Builder;
 
@@ -9,11 +11,18 @@ namespace DFM.MVC.Starters
 		{
 			app.Use(async (context, next) =>
 			{
-				var service = context.GetService();
-				var current = service.Current;
+				try
+				{
+					var service = context.GetService();
+					var current = service.Current;
 
-				if (current.IsAuthenticated)
-					service.Access.Safe.SaveAccess();
+					if (current.IsAuthenticated)
+						service.Access.Safe.SaveAccess();
+				}
+				catch (Exception e)
+				{
+					e.TryLogHandled("Error on logging access");
+				}
 
 				await next();
 			});

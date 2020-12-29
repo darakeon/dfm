@@ -17,7 +17,14 @@ namespace DFM.Generic
 
 		public static void TryLog(this Exception exception)
 		{
-			new ErrorLog(exception).TryLog();
+			new ErrorLog(exception, false).TryLog();
+		}
+
+		public static void TryLogHandled(this Exception exception, String message)
+		{
+			new ErrorLog(
+				new SystemError(message, exception), true
+			).TryLog();
 		}
 	}
 }

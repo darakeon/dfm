@@ -1,9 +1,11 @@
 using System;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Email;
+using DFM.Generic;
 using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Extensions;
 using DFM.MVC.Helpers.Global;
+using error = DFM.BusinessLogic.Exceptions.Error;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 
@@ -52,6 +54,11 @@ namespace DFM.MVC.Starters
 			catch (CoreError e)
 			{
 				addError(context, t => t[e.Type]);
+			}
+			catch (Exception e)
+			{
+				e.TryLogHandled("Error on running robot");
+				addError(context, t => t[error.Unknown]);
 			}
 		}
 
