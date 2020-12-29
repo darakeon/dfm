@@ -4,15 +4,22 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#4.6.1.0)
-- [go to version in development](#4.6.2.0)
-- [dev version state](../../4.6.2.0/docs/RELEASES.md#4.6.2.0)
+- [go to published version](#4.6.2.0)
+- [go to version in development](#4.6.3.0)
+- [dev version state](../../4.6.3.0/docs/RELEASES.md#4.6.3.0)
 
 Legend:
 - :dragon:: at least one huge change (increases first number)
 - :whale:: at least one big change, like a new feature (increases second number)
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="4.6.3.0"></a>4.6.3.0 :sheep: <sup>`5`</sup>
+- [ ] Add modal for moves with details, to show details
+- [ ] Remove Move on delete at Android (and change total)
+- [ ] Review columns of Schedule List (add deleted qty)
+- [ ] Calculate installment move by position
+- [ ] Add modal for moves with schedule, to show schedule details
 
 ## <a name="4.6.2.0"></a>4.6.2.0 :sheep: <sup>`8`</sup>
 - [x] `201228>201229` Verify all docs links

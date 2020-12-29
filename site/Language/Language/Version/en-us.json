@@ -1,4 +1,14 @@
 {
+	"4.6.2.0": [
+		"Avoid error that breaks site entirely",
+		"Select moves at site month report to see them sum",
+		"Show account state on account reports",
+		"Add year negative, positive and total to year report",
+		"Use of safer login code as password",
+		"Redesign TFA config screen",
+		"Fix development system documentation",
+		"Automate one more step of system publishing"
+	],
 	"4.6.1.0": [
 		"Remove close button from app",
 		"Add contact button to app",
