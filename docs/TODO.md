@@ -11,7 +11,7 @@ This is the task list for the project.
 - Dependency: which other task it depends on (if it exists)
 - Issue: github issue about the task (if it exists)
 
-| Task (57)                                                                      | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
+| Task (58)                                                                      | Type     | Dif | Imp | Pts | Dependency         | Issue                                            |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | ------------------ | ------------------------------------------------ |
 | Add modal for moves with details, to show details                              | :sheep:  |  1  |  3  |  6  |                    |                                                  |
 | Remove Move on delete at Android (and change total)                            | :sheep:  |  1  |  2  |  5  |                    |                                                  |
@@ -58,6 +58,7 @@ This is the task list for the project.
 | Separate MVC projects: site and api                                            | :ant:    |  3  |  2  |  3  |                    |                                                  |
 | Test android tests payloads x .net api objects                                 | :ant:    |  3  |  2  |  3  | break site/api     |                                                  |
 | [Lint C#]                                                                      | :ant:    |  3  |  2  |  3  |                    |                                                  |
+| Update bootstrap and choose 4 themes (look at https://bootswatch.com/)         | :whale:  |  2  |  1  |  3  |                    |                                                  |
 | Link account and category (combo)                                              | :sheep:  |  2  |  1  |  3  |                    |                                                  |
 | Add issue template to repo                                                     | :sheep:  |  2  |  1  |  3  |                    | [#43](https://github.com/darakeon/dfm/issues/43) |
 | Deny double use of authy code                                                  | :sheep:  |  2  |  1  |  3  |                    |                                                  |
