@@ -59,6 +59,7 @@ fn update_git(version: Version) {
 	create_branch(&new_branch);
 	remove_branch(&old_branch);
 	update_remote(&tag, &new_branch);
+	remove_branch("main");
 }
 
 fn update_version(version: Version) {
