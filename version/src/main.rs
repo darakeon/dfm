@@ -17,7 +17,7 @@ use arguments::{parse_arguments,ProgramOption};
 use browser::update_node;
 use csharp::update_csharp;
 use end::success;
-use git::{update_local,go_to_main,create_tag,create_branch,remove_branch,update_remote};
+use git::{update_local,go_to_main,create_tag,create_branch,remove_local_branch,remove_remote_branch_locally,update_remote};
 use notes::update_notes;
 use rust::update_rust;
 use tasks::update_task_list;
@@ -57,9 +57,10 @@ fn update_git(version: Version) {
 	go_to_main();
 	create_tag(&tag, &tasks);
 	create_branch(&new_branch);
-	remove_branch(&old_branch);
+	remove_local_branch(&old_branch);
 	update_remote(&tag, &new_branch);
-	remove_branch("main");
+	remove_local_branch("main");
+	remove_remote_branch_locally(&old_branch);
 }
 
 fn update_version(version: Version) {
