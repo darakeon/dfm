@@ -151,13 +151,18 @@ fn get_new_version(sizes: Vec<String>) -> Option<(String, String, String)> {
 
 fn write_release(next: String, new_tasks: Vec<String>, icon: String) {
 	let mut new_version: Vec<String> = Vec::new();
+	
+	let count = new_tasks.len();
 
 	new_version.push(format!(
 		"## <a name=\"{}\"></a>{} :{}: <sup>`{}`</sup>",
-		next, next, icon, new_tasks.len()
+		next, next, icon, count
 	));
 
-	new_version.splice(1..1, new_tasks);
+	for t in (0..count).rev() {
+		let task = new_tasks.get(t).unwrap();
+		new_version.push(task.to_string());
+	}
 
 	new_version.push("".to_string());
 
