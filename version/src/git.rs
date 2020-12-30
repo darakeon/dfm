@@ -180,7 +180,9 @@ pub fn create_branch(branch_name: &str) {
 	let oid = head.target().unwrap();
 	let commit = repo.find_commit(oid).unwrap();
 
-	repo.branch(&branch_name, &commit, false).unwrap();
+	let mut branch = repo.branch(&branch_name, &commit, false).unwrap();
+	let remote = format!("origin/{}", &branch_name);
+	branch.set_upstream(Some(&remote)).unwrap();
 
 	let obj = repo.revparse_single(
 		&("refs/heads/".to_owned() + &branch_name)
