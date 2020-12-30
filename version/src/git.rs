@@ -193,12 +193,18 @@ pub fn create_branch(branch_name: &str) {
 	repo.set_head(&("refs/heads/".to_owned() + &branch_name)).unwrap();
 }
 
-pub fn remove_branch(name: &str) {
+pub fn remove_local_branch(name: &str) {
+	remove_branch(name, BranchType::Local);
+}
+
+pub fn remove_remote_branch_locally(name: &str) {
+	remove_branch(name, BranchType::Remote);
+}
+
+fn remove_branch(name: &str, typ: BranchType) {
 	let repo = Repository::open("../").unwrap();
 
-	let mut branch = repo.find_branch(
-		&name, BranchType::Local
-	).unwrap();
+	let mut branch = repo.find_branch(&name, typ).unwrap();
 
 	branch.delete().unwrap();
 }
