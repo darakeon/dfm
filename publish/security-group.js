@@ -41,12 +41,12 @@ async function updateSecurityGroup() {
 				if (isSecret) {
 					ports.splice(portIndex, 1)
 					secretIps++
+				}
 
-					if (isWrong) {
-						delete permission.Ipv6Ranges
-						delete permission.PrefixListIds
-						delete permission.UserIdGroupPairs
-					}
+				if (isSecret && isWrong) {
+					delete permission.Ipv6Ranges
+					delete permission.PrefixListIds
+					delete permission.UserIdGroupPairs
 				} else {
 					permissions.splice(p, 1)
 					p--
