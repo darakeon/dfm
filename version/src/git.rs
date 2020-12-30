@@ -168,8 +168,6 @@ pub fn create_tag(name: &str, annotation: &str) {
 
 	let tag = repo.find_tag(oid.unwrap()).unwrap();
 
-	//let oid = LAST_TAG_OID.unwrap();
-	//let tag = repo.find_tag(oid).unwrap();
 	let sign = tag.tagger().unwrap();
 	let head = repo.head().unwrap().peel(ObjectType::Commit).unwrap();
 	repo.tag(&name, &head, &sign, &annotation, false).unwrap();
