@@ -93,3 +93,9 @@ input[type="date"] {
 	.top-right-highlight:empty {
 		display: none;
 	}
+
+.clock a {
+	font-size: 70%;
+	text-align: center;
+	line-height: 1em !important;
+}

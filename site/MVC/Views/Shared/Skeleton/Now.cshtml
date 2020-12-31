@@ -1,0 +1,10 @@
+﻿@model BaseSiteModel
+
+@if (BaseModel.IsDev)
+{
+	<li class="clock">
+		<a href="#">
+			@Html.Raw(Model.Now.ToString("yyyy-MM-dd<br />HH:mm:ss"))
+		</a>
+	</li>
+}

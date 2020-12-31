@@ -1,3 +1,4 @@
+using DFM.MVC.Models;
 using DFM.MVC.Starters;
 using DFM.MVC.Starters.Routes;
 using Microsoft.AspNetCore.Builder;
@@ -33,6 +34,8 @@ namespace DFM.MVC
 		// ReSharper disable once UnusedMember.Global
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime life)
 		{
+			BaseModel.IsDev = env.IsDevelopment();
+
 			Config.Initialize(env);
 
 			Security.DenyFrame(app);

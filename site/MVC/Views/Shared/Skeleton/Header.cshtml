@@ -17,12 +17,16 @@
 
 			@if (ViewBag.HideTopLogo == null)
 			{
-				<a href="/" class="navbar-brand">Don't fly Money</a>
+				<a href="/" class="navbar-brand">
+					Don't fly Money
+				</a>
 			}
 		</div>
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
 			<ul class="nav navbar-nav navbar-right">
+				@await Html.PartialAsync("Skeleton/Now")
+
 				<li class="flag @(Model.Language)" role='button' id="open-language" data-toggle='modal' data-target='#language-modal'>
 					<a>
 						<img src="~/Assets/images/@(Model.Language.ToLower()).svg" />

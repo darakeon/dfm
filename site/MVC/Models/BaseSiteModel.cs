@@ -21,6 +21,8 @@ namespace DFM.MVC.Models
 
 		public Boolean ShowWizard => wizard;
 
+		public DateTime Now => current.Now;
+
 		public String ActionName => route?["action"];
 		public String ControllerName => route?["controller"];
 
