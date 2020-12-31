@@ -23,6 +23,11 @@
 	var currentPage = new MonthYearUnit(date);
 
 	var pages = new Pages(startPage, endPage, currentPage, 5);
+
+	var allMoves = Model.MoveList
+		.Union(Model.ForeseenList)
+		.Select(m => m.Move)
+		.ToList();
 }
 
 @section TableHeader {
@@ -37,13 +42,14 @@
 
 	<tr class="row">
 		<th class="col-sm-@descriptionSize">@Context.Translate("Description")</th>
+		<th class="col-sm-1"></th>
 
 		@if (Model.IsUsingCategories)
 		{
 			<th class="col-sm-2 text-center">@Context.Translate("Category")</th>
 		}
 
-		<th class="col-sm-2 text-center">@Context.Translate("Date")</th>
+		<th class="col-sm-1 text-center">@Context.Translate("Date")</th>
 		<th class="col-sm-1 text-center">@Context.Translate("In")</th>
 		<th class="col-sm-1 text-center">@Context.Translate("Out")</th>
 
@@ -65,9 +71,9 @@
 
 @if (Model.ForeseenList.Any())
 {
-	var colspanTitle = Model.IsUsingCategories ? 5 : 4;
+	var colspanTitle = Model.IsUsingCategories ? 6 : 5;
 	var colspanLateral = Model.CanCheck ? 4 : 2;
-	var rowspanLateral = Model.ForeseenList.Count+1;
+	var rowspanLateral = Model.ForeseenList.Count + 1;
 
 	<tr class="row foreseen">
 		<td colspan="@colspanTitle">
@@ -95,6 +101,17 @@
 			@await Html.PartialAsync("Total")
 		</div>
 	</div>
+
+	@foreach (var move in allMoves)
+	{
+		@if (move.DetailList.Any())
+		{
+			@await Html.PartialAsync(
+				"Modals/Details",
+				new DetailsModel(move, Model.Language)
+			)
+		}
+	}
 }
 
 @section Styles {

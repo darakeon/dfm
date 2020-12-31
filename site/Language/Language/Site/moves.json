@@ -1,6 +1,5 @@
 {
 	"en-US": {
-		"Amount": "Amount",
 		"JustOneValue": "Just one value",
 		"Detailed": "Detailed",
 		"MoveNotFound": "Move not found",
@@ -15,7 +14,6 @@
 		"MoveRemoveCheck": "This move is marked as checked.\nWhen you save this move, the check will be removed.",
 	},
 	"pt-BR": {
-		"Amount": "Qte",
 		"JustOneValue": "Valor único",
 		"Detailed": "Detalhado",
 		"MoveNotFound": "Movimentação não encontrada",

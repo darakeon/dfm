@@ -1,0 +1,40 @@
+﻿@using DFM.Language.Extensions
+@model DetailsModel
+
+<div class="modal" id="details-@Model.Guid-modal">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<em class="modal-title">
+					@Model.Description
+				</em>
+				@await Html.PartialAsync("Modals/Close")
+			</div>
+
+			<div class="modal-body">
+				<table class="table table-hover table-condensed table-striped">
+					<thead>
+						<tr class="row">
+							<th class="col-sm-6 text-left"  >@Context.Translate("Description")</th>
+							<th class="col-sm-2 text-center">@Context.Translate("Amount")</th>
+							<th class="col-sm-4 text-right" >@Context.Translate("Value")</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var detail in Model.DetailList)
+						{
+							<tr class="row">
+								<td class="text-left"  >@detail.Description</td>
+								<td class="text-center">@detail.Amount</td>
+								<td class="text-right" >@detail.Value.ToMoney(Model.Language)</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+			<div class="modal-footer text-right">
+				<em>= @Model.Value.ToMoney(Model.Language)</em>
+			</div>
+		</div>
+	</div>
+</div>

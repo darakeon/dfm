@@ -15,7 +15,7 @@ Legend:
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="4.6.3.0"></a>4.6.3.0 :sheep: <sup>`5`</sup>
-- [ ] Add modal for moves with details, to show details
+- [x] `201230>201231` Add modal for moves with details, to show details
 - [ ] Remove Move on delete at Android (and change total)
 - [ ] Review columns of Schedule List (add deleted qty)
 - [ ] Calculate installment move by position
