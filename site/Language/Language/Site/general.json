@@ -58,6 +58,7 @@
 		"Category": "Category",
 		"Categories": "Categories",
 		"Detail": "Detail",
+		"Details": "Details",
 		"Nature": "Nature",
 		"TheSchedule": "Schedule",
 		"Schedules": "Schedules",
@@ -76,6 +77,7 @@
 		"Edition": "Edition",
 		"Deletion": "Deletion",
 		"Scheduling": "Scheduled Creation",
+		"Amount": "Amount",
 
 		"Index_Welcome": "Welcome!",
 		"Index_Introduction": "Don't fly Money is a personal financial management system. It is made thinking in the most generic way to manage money.",
@@ -170,6 +172,7 @@
 		"Category": "Categoria",
 		"Categories": "Categorias",
 		"Detail": "Detalhe",
+		"Details": "Detalhes",
 		"Nature": "Natureza",
 		"TheSchedule": "Agendamento",
 		"Schedules": "Agendamentos",
@@ -188,6 +191,7 @@
 		"Edition": "Edição",
 		"Deletion": "Deleção",
 		"Scheduling": "Criação Agendada",
+		"Amount": "Qte",
 
 		"Index_Welcome": "Bem-vindo!",
 		"Index_Introduction": "Don't fly Money é um sistema de gerenciamento financeiro pessoal. Foi feito pensando no modo mais genérico de gerenciar renda e despesa.",
