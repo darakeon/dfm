@@ -14,6 +14,8 @@ namespace DFM.MVC.Models
 {
 	public abstract class BaseModel
 	{
+		public static Boolean IsDev { get; set; }
+
 		private static HttpContext context => Context.Accessor.HttpContext;
 
 		protected Translator translator => context.GetTranslator();
