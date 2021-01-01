@@ -11,7 +11,7 @@ This is the task list for the project.
 - Dependency: which other task it depends on (if it exists)
 - Issue: github issue about the task (if it exists)
 
-| Task (53)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue                                            |
+| Task (52)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue                                            |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ------------------------------------------------ |
 | Migrate DB to RDS                                                              | :ant:    |  4  |  4  |  4  |                |                                                  |
 | Change server to linux                                                         | :ant:    |  4  |  4  |  4  |                |                                                  |
@@ -60,8 +60,7 @@ This is the task list for the project.
 | Check entire account moves                                                     | :whale:  |  2  |  1  |  3  |                |                                                  |
 | OCR to add values to system                                                    | :dragon: |  4  |  2  |  2  |                |                                                  |
 | Add [gherkin jest]                                                             | :ant:    |  4  |  2  |  2  |                |                                                  |
-| Data import and export (csv, json)                                             | :dragon: |  3  |  1  |  2  |                |                                                  |
-| Config max request length                                                      | :ant:    |  1  |  2  |  5  | import/export  |                                                  |
+| Data import and export (csv, json) (with max request length)                   | :dragon: |  3  |  1  |  2  |                |                                                  |
 | "Guess" the category                                                           | :sheep:  |  3  |  1  |  2  |                |                                                  |
 | Remove GetOrCreate                                                             | :ant:    |  3  |  1  |  2  |                |                                                  |
 | Create measure of recovering after lost authy                                  | :sheep:  |  4  |  1  |  1  |                |                                                  |
