@@ -343,6 +343,13 @@ async function setSecret(email, secret) {
 	)
 }
 
+async function getEndDate(url, user) {
+	const result = await execute(
+		`select endDate from account where url='${url}' and user_id=${user.ID}`
+	)
+	return result[0]["EndDate"]
+}
+
 async function execute(query, params) {
 	let done = false;
 	let result;
@@ -407,4 +414,5 @@ module.exports = {
 	getLastAccess,
 	getLastUnsubscribeMoveMailToken,
 	setSecret,
+	getEndDate,
 }

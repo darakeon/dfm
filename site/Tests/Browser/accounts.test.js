@@ -91,7 +91,8 @@ describe('Accounts', () => {
 
 		body = await puppy.content('#body')
 
-		const date = new Date()
+		const end = await db.getEndDate(url, user)
+		const date = new Date(end)
 		const month = date.getMonth() + 1
 		const year = date.getYear() + 1900
 		const report = year * 100 + month
