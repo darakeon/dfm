@@ -4,9 +4,9 @@
 	"description": "DfM Site Tests",
 	"main": "index.js",
 	"dependencies": {
-		"axios": "0.21.0",
+		"axios": "0.21.1",
 		"sqlite3": "5.0.0",
-		"uuid": "8.3.1"
+		"uuid": "8.3.2"
 	},
 	"devDependencies": {
 		"jest": "26.6.3",
