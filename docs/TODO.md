@@ -57,7 +57,6 @@ This is the task list for the project.
 | Add auth by cellphone                                                          | :whale:  |  2  |  1  |  3  |                |                                                  |
 | Update bootstrap and choose 4 themes (look at https://bootswatch.com/)         | :whale:  |  2  |  1  |  3  |                |                                                  |
 | Link account and category (combo)                                              | :sheep:  |  2  |  1  |  3  |                |                                                  |
-| Add issue template to repo                                                     | :sheep:  |  2  |  1  |  3  |                | [#43](https://github.com/darakeon/dfm/issues/43) |
 | Check entire account moves                                                     | :whale:  |  2  |  1  |  3  |                |                                                  |
 | OCR to add values to system                                                    | :dragon: |  4  |  2  |  2  |                |                                                  |
 | Add [gherkin jest]                                                             | :ant:    |  4  |  2  |  2  |                |                                                  |
