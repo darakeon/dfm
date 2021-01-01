@@ -18,7 +18,7 @@ This is the task list for the project.
 | Adjust [accessibilitity]                                                       | :sheep:  |  4  |  4  |  4  |                |                                                  |
 | Store data locally, to use when there is no internet (Mobile)                  | :dragon: |  4  |  4  |  4  |                |                                                  |
 | Add system tips (user "age" = times accessed) (disable: unsubscribe or config) | :whale:  |  3  |  3  |  4  |                |                                                  |
-| Put tip that you can disable mobile login if your cellphone is stolen          | :sheep:  |  1  |  4  |  7  | tips           |                                                  |
+| Put tip that you can disable mobile login if your cellphone is stolen          | :sheep:  |  3  |  3  |  4  | tips           |                                                  |
 | Year and Month report by category [(chartjs)](http://www.chartjs.org/)         | :whale:  |  3  |  3  |  4  |                |                                                  |
 | Report with date filters                                                       | :whale:  |  3  |  3  |  4  |                |                                                  |
 | Cache account/category at login + refresh button at app                        | :whale:  |  3  |  3  |  4  |                |                                                  |
