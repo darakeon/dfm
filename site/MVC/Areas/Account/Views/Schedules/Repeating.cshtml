@@ -11,7 +11,7 @@
 	<div class="input-group input-group-sm">
 		@Html.TextBoxFor(m => m.Times, new { @class = "form-control boundless-disable" })
 		<span class="input-group-addon">
-			@Context.Translate("Times")
+			@Context.Translate("Times").ToLower()
 		</span>
 	</div>
 </div>

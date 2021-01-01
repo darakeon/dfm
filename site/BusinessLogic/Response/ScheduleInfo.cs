@@ -38,6 +38,8 @@ namespace DFM.BusinessLogic.Response
 		public ScheduleFrequency Frequency { get; set; }
 		public Boolean Boundless { get; set; }
 		public Int16 Times { get; set; }
+		public Int16 Run { get; set; }
+		public Int16 Deleted { get; set; }
 		public Boolean ShowInstallment { get; set; }
 
 		internal void Update(Schedule schedule)
@@ -89,6 +91,8 @@ namespace DFM.BusinessLogic.Response
 				Frequency = schedule.Frequency,
 				Boundless = schedule.Boundless,
 				Times = schedule.Times,
+				Run = schedule.LastRun,
+				Deleted = schedule.Deleted,
 				ShowInstallment = schedule.ShowInstallment,
 			};
 		}

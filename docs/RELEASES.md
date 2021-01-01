@@ -19,7 +19,7 @@ Legend:
 - [ ] Add message of empty search result at site
 - [ ] Add modal for moves with schedule, to show schedule details
 - [ ] Calculate installment move by position
-- [ ] Review columns of Schedule List (add deleted qty)
+- [x] `210101>210101` Review columns of Schedule List (add deleted qty)
 - [x] `201230>201231` Add modal for moves with details, to show details
 
 ## <a name="4.6.2.0"></a>4.6.2.0 :sheep: <sup>`8`</sup>

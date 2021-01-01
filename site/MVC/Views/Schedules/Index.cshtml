@@ -26,16 +26,20 @@
 			@Context.Translate("Description")
 		</th>
 
+		<th class="col-sm-2 text-center">@Context.Translate("Account")</th>
+
 		@if (useCategories)
 		{
-			<th class="col-sm-2 text-center">
+			<th class="col-sm-1 text-center">
 				@Context.Translate("Category")
 			</th>
 		}
 
-		<th class="col-sm-2 text-center">@Context.Translate("Date")</th>
-		<th class="col-sm-2 text-center">@Context.Translate("Account", "In")</th>
-		<th class="col-sm-2 text-center">@Context.Translate("Account", "Out")</th>
+		<th class="col-sm-1 text-center">@Context.Translate("Date")</th>
+		<th class="col-sm-1 text-center">@Context.Translate("Frequency")</th>
+		<th class="col-sm-1 text-center">@Context.Translate("Times")</th>
+		<th class="col-sm-1 text-center">@Context.Translate("Run")</th>
+		<th class="col-sm-1 text-center">@Context.Translate("Deleted")</th>
 		<th class="col-sm-1 text-center">@Context.Translate("Value")</th>
 		<th class="col-sm-1 text-center">@Context.Translate("TODO")</th>
 	</tr>
@@ -43,19 +47,51 @@
 
 @foreach (var schedule in Model.ScheduleList)
 {
+	var @in = schedule.InName;
+	var @out = schedule.OutName;
+
 	<tr class="row">
-		<td class="col-sm-@descriptionSize">@schedule.Description</td>
+		<td>
+			@schedule.Description
+		</td>
+
+		<td class="text-center">
+			@(@in)
+			@if (@in != null && @out != null) {@(" > ")}
+			@(@out)
+		</td>
 
 		@if (useCategories)
 		{
-			<td class="col-sm-2 text-center">@(schedule.CategoryName ?? "---")</td>
+			<td class="text-center">
+				@(schedule.CategoryName ?? "---")
+			</td>
 		}
 
-		<td class="col-sm-2 text-center">@schedule.GetDate().ToShortDateString()</td>
-		<td class="col-sm-2 text-center">@(schedule.InName ?? " ")</td>
-		<td class="col-sm-2 text-center">@(schedule.OutName ?? " ")</td>
+		<td class="text-center">
+			@schedule.GetDate().ToShortDateString()
+		</td>
 
-		<td  class="col-sm-1 text-@await Html.PartialAsync("Extensions/NatureColor", schedule.Nature) text-right">
+		<td class="text-center">
+			@Context.Translate(schedule.Frequency.ToString())
+		</td>
+
+		<td class="text-center">
+			@(schedule.Boundless ? Context.Translate("") : $"{schedule.Times}x")
+		</td>
+
+		<td class="text-center">
+			@schedule.Run
+		</td>
+
+		<td class="text-center">
+			@schedule.Deleted
+		</td>
+
+		<td class="
+			text-@await Html.PartialAsync("Extensions/NatureColor", schedule.Nature)
+			text-right
+		">
 			<span
 				class="@await Html.PartialAsync("Extensions/NatureIcon", schedule.Nature)"
 				title="@Context.Translate(schedule.Nature.ToString())"
@@ -63,7 +99,7 @@
 			@schedule.Value.ToMoney(Model.Language)
 		</td>
 
-		<td class="col-sm-1 text-center">
+		<td class="text-center">
 			@await Html.PartialAsync("Extensions/MicroForm",
 				MicroForm.WithGlyph(Context, "trash", "Delete")
 					.AddIdUrl("Delete", schedule.Guid)
