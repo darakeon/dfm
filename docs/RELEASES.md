@@ -14,7 +14,8 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="4.6.3.0"></a>4.6.3.0 :sheep: <sup>`6`</sup>
+## <a name="4.6.3.0"></a>4.6.3.0 :sheep: <sup>`7`</sup>
+- [ ] Reset runned schedules flag if any error happens
 - [ ] Add message of empty search result at site
 - [ ] Add modal for moves with schedule, to show schedule details
 - [ ] Calculate installment move by position
