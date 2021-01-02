@@ -1,10 +1,6 @@
 alter table move
 	add column Position smallint null;
 
-select *
-	from schedule
-    where Deleted > 0;
-
 set sql_safe_updates = 0;
 update move m
 	inner join (
@@ -15,7 +11,6 @@ update move m
 				left join move b
 					on b.Schedule_ID = s.ID
 						and b.ID < m.ID
-			where s.Deleted = 0
 			group by s.ID, m.ID
 			order by s.ID, m.ID
     ) p
