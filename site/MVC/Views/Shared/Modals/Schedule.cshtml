@@ -1,0 +1,27 @@
+﻿@model DFM.BusinessLogic.Response.MoveSchedule
+
+<div class="modal" id="schedule-@Model.Guid-modal">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<em class="modal-title">
+					@Context.Translate("TheSchedule")
+				</em>
+				@await Html.PartialAsync("Modals/Close")
+			</div>
+
+			<div class="modal-body">
+				<dl class="text-center">
+					<dt>@Context.Translate("BeginDate")</dt>
+					<dd>@Model.Start.ToShortDateString()</dd>
+
+					<dt>@Context.Translate("Frequency")</dt>
+					<dd>@Context.Translate(Model.Frequency.ToString())</dd>
+
+					<dt>@Context.Translate("Times")</dt>
+					<dd>@Model.Times</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+</div>

@@ -2,8 +2,6 @@
 	"en-US": {
 		"NoAccounts": "There's no Accounts yet.",
 		"NoClosedAccounts": "There's no closed Accounts.",
-		"BeginDate": "Begin",
-		"EndDate": "End",
 		"Reopen": "Reopen",
 		"DeleteConfirm": "Do you really want to DELETE Account '{0}'?\nThis action cannot be undone.",
 		"CloseConfirm": "Do you really want to CLOSE Account '{0}'?\nThis action cannot be undone and this\naccount schedules will be stopped.",
@@ -20,8 +18,6 @@
 	"pt-BR": {
 		"NoAccounts": "Não há Contas ainda.",
 		"NoClosedAccounts": "Não há Contas Fechadas.",
-		"BeginDate": "Início",
-		"EndDate": "Fim",
 		"Reopen": "Reabrir",
 		"DeleteConfirm": "Realmente deseja APAGAR a Conta '{0}'?\nEsta ação não poderá ser revertida.",
 		"CloseConfirm": "Realmente deseja FECHAR a Conta '{0}'?\nEsta ação não poderá ser revertida e\nos agendamentos serão parados.",

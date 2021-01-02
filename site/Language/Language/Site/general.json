@@ -79,6 +79,11 @@
 		"Scheduling": "Scheduled Creation",
 		"Amount": "Amount",
 
+		"BeginDate": "Begin",
+		"EndDate": "End",
+		"Frequency": "Frequency",
+		"Times": "Times",
+
 		"Index_Welcome": "Welcome!",
 		"Index_Introduction": "Don't fly Money is a personal financial management system. It is made thinking in the most generic way to manage money.",
 		"Index_Explanation": "To {0}sign up{1} you just need a valid e-mail and a password. Then you can create accounts and register the moves, see month extracts and year summaries of each account.",
@@ -192,6 +197,11 @@
 		"Deletion": "Deleção",
 		"Scheduling": "Criação Agendada",
 		"Amount": "Qte",
+
+		"BeginDate": "Início",
+		"EndDate": "Fim",
+		"Frequency": "Frequência",
+		"Times": "Vezes",
 
 		"Index_Welcome": "Bem-vindo!",
 		"Index_Introduction": "Don't fly Money é um sistema de gerenciamento financeiro pessoal. Foi feito pensando no modo mais genérico de gerenciar renda e despesa.",
