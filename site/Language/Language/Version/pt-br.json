@@ -1,4 +1,12 @@
 {
+	"4.6.3.0": [
+		"Ajuste ao rodar agendamentos, caso dê erro no sistema",
+		"Adicionada mensagem quando a busca não retorna resultados",
+		"Adicionada janela para ver detalhes da movimentação no relatório",
+		"Arrumada posição da movimentação no agendamento",
+		"Revistas colunas na listagem de agendamentos",
+		"Adicionada janela para ver detalhes do agendamento da movimentação no relatório"
+	],
 	"4.6.2.0": [
 		"Evitado erro que fazia o site ficar com erro permanente",
 		"Possibilidade de selecionar movimentações no relatório mensal para ver sua soma",
