@@ -23,6 +23,8 @@ namespace DFM.Entities
 		public virtual Int16 Month { get; set; }
 		public virtual Int16 Year { get; set; }
 
+		public virtual Int16? Position { get; set; }
+
 		public virtual Boolean CheckedIn { get; set; }
 		public virtual Boolean CheckedOut { get; set; }
 

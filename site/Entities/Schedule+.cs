@@ -41,13 +41,10 @@ namespace DFM.Entities
 
 		public virtual Move CreateMove()
 		{
-			var move = createMove(
-				DetailList.Any() ? 0 : ValueCents
+			return createMove(
+				DetailList.Any() ? 0 : ValueCents,
+				move => move.SetDate(LastDateRun())
 			);
-
-			move.SetDate(LastDateRun());
-
-			return move;
 		}
 
 		public virtual IEnumerable<Move> CreateMovesByFrequency(Int16 dateYear, Int16 dateMonth)
@@ -168,15 +165,15 @@ namespace DFM.Entities
 
 		private Move createMove(Int16 year, Int16 month, Int16? day = null)
 		{
-			var move = createMove(ValueCents);
-			move.Year = year;
-			move.Month = month;
-			move.Day = day ?? Day;
-
-			return move;
+			return createMove(ValueCents, move =>
+			{
+				move.Year = year;
+				move.Month = month;
+				move.Day = day ?? Day;
+			});
 		}
 
-		private Move createMove(Int32 value)
+		private Move createMove(Int32 value, Action<Move> setDate)
 		{
 			var move =
 				new Move
@@ -196,6 +193,10 @@ namespace DFM.Entities
 				newDetail.Move = move;
 				move.DetailList.Add(newDetail);
 			}
+
+			setDate(move);
+
+			move.SetPositionInSchedule();
 
 			return move;
 		}
