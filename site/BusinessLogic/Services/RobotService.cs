@@ -43,6 +43,11 @@ namespace DFM.BusinessLogic.Services
 			}
 			catch (Exception e)
 			{
+				if (e is not CoreError)
+				{
+					Runs.Remove(parent.Current.TicketKey);
+				}
+
 				throw Error.ErrorRunningSchedules.Throw(e);
 			}
 		}
