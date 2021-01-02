@@ -17,7 +17,7 @@ Legend:
 ## <a name="4.6.3.0"></a>4.6.3.0 :sheep: <sup>`6`</sup>
 - [ ] Reset runned schedules flag if any error happens
 - [ ] Add message of empty search result at site
-- [ ] Add modal for moves with schedule, to show schedule details
+- [x] `210101>210102` Add modal for moves with schedule, to show schedule details
 - [x] `210101>210101` Fix move position at schedule
 - [x] `210101>210101` Review columns of Schedule List (add deleted qty)
 - [x] `201230>201231` Add modal for moves with details, to show details

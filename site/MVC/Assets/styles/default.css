@@ -99,3 +99,11 @@ input[type="date"] {
 	text-align: center;
 	line-height: 1em !important;
 }
+
+dt {
+	margin-top: 1.5em;
+}
+
+dd {
+	font-style: italic;
+}

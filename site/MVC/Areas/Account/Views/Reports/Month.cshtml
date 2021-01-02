@@ -90,6 +90,34 @@
 }
 
 @section Footer {
+	@{
+		var movesWithDetails = allMoves
+			.Where(m => m.DetailList.Any());
+	}
+
+	@foreach (var move in movesWithDetails)
+	{
+		@await Html.PartialAsync(
+			"Modals/Details",
+			new DetailsModel(move, Model.Language)
+		)
+	}
+
+	@{
+		var schedules = allMoves
+			.Where(m => m.Schedule != null)
+			.Select(m => m.Schedule)
+			.Distinct();
+	}
+
+	@foreach (var schedule in schedules)
+	{
+		@await Html.PartialAsync(
+			"Modals/Schedule",
+			schedule
+		)
+	}
+
 	<div class="row">
 		<div class="col-lg-2 col-sm-2"></div>
 
@@ -101,17 +129,6 @@
 			@await Html.PartialAsync("Total")
 		</div>
 	</div>
-
-	@foreach (var move in allMoves)
-	{
-		@if (move.DetailList.Any())
-		{
-			@await Html.PartialAsync(
-				"Modals/Details",
-				new DetailsModel(move, Model.Language)
-			)
-		}
-	}
 }
 
 @section Styles {

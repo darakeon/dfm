@@ -37,6 +37,8 @@ namespace DFM.BusinessLogic.Response
 		public String InName { get; set; }
 		public String CategoryName { get; set; }
 
+		public MoveSchedule Schedule { get; set; }
+
 		internal void Update(Move move)
 		{
 			move.Description = Description;
@@ -105,6 +107,11 @@ namespace DFM.BusinessLogic.Response
 			}
 
 			info.Foreseen = foreseen;
+
+			if (move.Schedule != null)
+			{
+				info.Schedule = new MoveSchedule(move.Schedule);
+			}
 
 			return info;
 		}
