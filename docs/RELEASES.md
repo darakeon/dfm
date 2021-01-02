@@ -15,7 +15,7 @@ Legend:
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="4.6.3.1"></a>4.6.3.1 :ant: <sup>`1`</sup>
-- [ ] Migrate DB to RDS
+- [x] `210102>210102` Migrate DB to RDS
 
 ## <a name="4.6.3.0"></a>4.6.3.0 :sheep: <sup>`6`</sup>
 - [x] `210102>210102` Reset runned schedules flag if .net exception happens
