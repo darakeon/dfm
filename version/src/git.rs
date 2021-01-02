@@ -180,9 +180,7 @@ pub fn create_branch(branch_name: &str) {
 	let oid = head.target().unwrap();
 	let commit = repo.find_commit(oid).unwrap();
 
-	let mut branch = repo.branch(&branch_name, &commit, false).unwrap();
-	let remote = format!("origin/{}", &branch_name);
-	branch.set_upstream(Some(&remote)).unwrap();
+	repo.branch(&branch_name, &commit, false).unwrap();
 
 	let obj = repo.revparse_single(
 		&("refs/heads/".to_owned() + &branch_name)
@@ -193,18 +191,10 @@ pub fn create_branch(branch_name: &str) {
 	repo.set_head(&("refs/heads/".to_owned() + &branch_name)).unwrap();
 }
 
-pub fn remove_local_branch(name: &str) {
-	remove_branch(name, BranchType::Local);
-}
-
-pub fn remove_remote_branch_locally(name: &str) {
-	remove_branch(name, BranchType::Remote);
-}
-
-fn remove_branch(name: &str, typ: BranchType) {
+pub fn remove_branch(name: &str) {
 	let repo = Repository::open("../").unwrap();
 
-	let mut branch = repo.find_branch(&name, typ).unwrap();
+	let mut branch = repo.find_branch(&name, BranchType::Local).unwrap();
 
 	branch.delete().unwrap();
 }
@@ -228,4 +218,14 @@ pub fn update_remote(tag: &str, branch: &str) {
 		&refs,
 		Some(&mut options)
 	).unwrap();
+}
+
+pub fn connect_local_and_remote_branch(branch_name: &str) {
+	let repo = Repository::open("../").unwrap();
+
+	let mut branch = repo.find_branch(&branch_name, BranchType::Local).unwrap();
+
+	let remote = format!("origin/{}", &branch_name);
+
+	branch.set_upstream(Some(&remote)).unwrap();
 }
