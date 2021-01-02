@@ -15,7 +15,7 @@ Legend:
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="4.6.3.0"></a>4.6.3.0 :sheep: <sup>`6`</sup>
-- [ ] Reset runned schedules flag if any error happens
+- [x] `210102>210102` Reset runned schedules flag if .net exception happens
 - [x] `210102>210102` Add message of empty search result at site
 - [x] `210101>210102` Add modal for moves with schedule, to show schedule details
 - [x] `210101>210101` Fix move position at schedule
