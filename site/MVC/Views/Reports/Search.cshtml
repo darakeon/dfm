@@ -3,6 +3,10 @@
 @{
 	ViewBag.Title = Context.Translate("Search_Title");
 	ViewBag.HasContent = Model.MoveList.Any();
+	ViewBag.NoContentText = String.Format(
+		Context.Translate("Search_Empty"),
+		Model.Terms
+	);
 
 	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 }
