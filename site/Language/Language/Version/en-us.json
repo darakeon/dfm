@@ -1,4 +1,12 @@
 {
+	"4.6.3.0": [
+		"Fix run schedules problem if something goes wrong at system level",
+		"Add message of empty search result",
+		"Add modal for moves with schedule, to show schedule details",
+		"Fix move position at schedule",
+		"Review columns of Schedule List",
+		"Add modal for moves with details, to show details"
+	],
 	"4.6.2.0": [
 		"Avoid error that breaks site entirely",
 		"Select moves at site month report to see them sum",
