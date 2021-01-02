@@ -1,4 +1,7 @@
 {
+	"4.6.3.1": [
+		"Manutenção de dados"
+	],
 	"4.6.3.0": [
 		"Ajuste ao rodar agendamentos, caso dê erro no sistema",
 		"Adicionada mensagem quando a busca não retorna resultados",
