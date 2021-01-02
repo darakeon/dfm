@@ -298,3 +298,19 @@ Scenario: Cb20. Update the move value with e-mail system ok
 	Then I will receive no core error
 		And I will receive no notification
 		And the move e-mail will have an unsubscribe link
+
+Scenario: Cb21. Update move date not changing its position at schedule
+	Given I have this schedule to create
+			| Description   | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Schedule Cb21 | 2020-11-01 | Out    | 10    | 5     | False     | Monthly   | True            |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
+		And I run the scheduler
+		And I pass the first schedule move guid
+		And I get the move
+		And I change the move date in -2 months
+	When I update the move
+	Then the description will still be Schedule Cb21 [1/5]

@@ -599,6 +599,21 @@ namespace DFM.BusinessLogic.Tests.C.Money
 			var move = repos.Move.Get(moveInfo.Guid);
 			Assert.AreEqual(@checked, move.IsChecked(nature));
 		}
+
+		[Then(@"the description will still be (.+)")]
+		public void ThenTheDescriptionWillStillBeScheduleCb(String description)
+		{
+			var report = service.Report.GetMonthReport(
+				moveInfo.OutUrl,
+				moveInfo.Month,
+				moveInfo.Year
+			);
+
+			var move = report.MoveList
+				.Single(m => m.Guid == moveInfo.Guid);
+
+			Assert.AreEqual(description, move.Description);
+		}
 		#endregion
 
 		#region GetMoveById

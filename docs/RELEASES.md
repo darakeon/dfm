@@ -18,7 +18,7 @@ Legend:
 - [ ] Reset runned schedules flag if any error happens
 - [ ] Add message of empty search result at site
 - [ ] Add modal for moves with schedule, to show schedule details
-- [ ] Calculate installment move by position
+- [x] `210101>210101` Fix move position at schedule
 - [x] `210101>210101` Review columns of Schedule List (add deleted qty)
 - [x] `201230>201231` Add modal for moves with details, to show details
 

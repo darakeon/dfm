@@ -39,46 +39,41 @@ namespace DFM.Entities
 			const string boundlessFormat = "{0} [{1}]";
 			const string boundedFormat = "{0} [{1}/{2}]";
 
-			var total = Schedule.Times;
-			var executed = positionInSchedule();
-
 			var format = Schedule.Boundless ? boundlessFormat : boundedFormat;
 
-			return String.Format(format, Description, executed, total);
+			return String.Format(format, Description, Position, Schedule.Times);
 		}
 
-		private Int32 positionInSchedule()
+		public virtual void SetPositionInSchedule()
 		{
-			var schedule = Schedule;
+			if (Schedule == null)
+				return;
 
-			var diff = 0;
+			var days = this.GetDate() - Schedule.GetDate();
+			var month = Month - Schedule.Month;
+			var year = Year - Schedule.Year;
 
-			if (schedule == null)
-				return diff;
+			Int32 position;
 
-			var days = this.GetDate() - schedule.GetDate();
-			var month = Month - schedule.Month;
-			var year = Year - schedule.Year;
-
-			switch (schedule.Frequency)
+			switch (Schedule.Frequency)
 			{
 				case ScheduleFrequency.Daily:
-					diff = (Int32)days.TotalDays;
+					position = (Int32)days.TotalDays;
 					break;
 
 				case ScheduleFrequency.Monthly:
-					diff = month + year * 12;
+					position = month + year * 12;
 					break;
 
 				case ScheduleFrequency.Yearly:
-					diff = year;
+					position = year;
 					break;
 
 				default:
 					throw new NotImplementedException();
 			}
 
-			return diff + 1;
+			Position = (Int16)(position + 1);
 		}
 
 		public virtual void Check(PrimalMoveNature nature, Boolean check)
