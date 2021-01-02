@@ -117,6 +117,7 @@
 
 		"Search_Title": "Search",
 		"Search_Text": "The terms will be searched at moves and its details",
+		"Search_Empty": "The terms '{0}' was not found at any move description or details",
 	},
 	"pt-BR": {
 		"CurrentLanguage": "português",
@@ -236,5 +237,6 @@
 
 		"Search_Title": "Busca",
 		"Search_Text": "Os termos serão buscados nas movimentações e em seus detalhes",
+		"Search_Empty": "Os termos '{0}' não foram encontrados em quaisquer movimentações ou seus detalhes",
 	}
 }
