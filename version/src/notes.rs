@@ -1,3 +1,5 @@
+use std::io::{stdin,stdout,Write};
+
 use crate::file::{get_path, get_content, set_content};
 use crate::version::Version;
 
@@ -10,6 +12,8 @@ pub fn update_notes(version: &Version) {
 }
 
 pub fn update_notes_for_language(version: &Version, language: &str) {
+	print!("\n\n{} file:\n", language);
+
 	let path = get_path(vec![&path(), &format!("{}{}", language, EXT)]);
 	let mut content = get_content(path.clone());
 
@@ -21,13 +25,13 @@ pub fn update_notes_for_language(version: &Version, language: &str) {
 	let mut tasks = version.tasks.clone();
 
 	if let Some(first_task) = tasks.pop_front() {
-		tasks_json = make_json(&first_task);
+		tasks_json = translate_and_format(&first_task);
 
 		while let Some(task) = tasks.pop_front() {
 			tasks_json = format!(
 				"{},\n{}",
 				tasks_json,
-				make_json(&task)
+				translate_and_format(&task)
 			);
 		}
 	}
@@ -44,6 +48,12 @@ pub fn update_notes_for_language(version: &Version, language: &str) {
 	set_content(path, new_content);
 }
 
-fn make_json(task: &str) -> String {
-	format!("\t\t\"{}\"", task)
+fn translate_and_format(task: &str) -> String {
+	print!("\"{}\": ", task);
+	stdout().flush().unwrap();
+
+	let mut translation = String::new();
+	stdin().read_line(&mut translation).unwrap();
+
+	return format!("\t\t\"{}\"", translation.trim());
 }
