@@ -17,13 +17,15 @@ use arguments::{parse_arguments,ProgramOption};
 use browser::update_node;
 use csharp::update_csharp;
 use end::success;
-use git::{update_local,go_to_main,connect_local_and_remote_branch,create_tag,create_branch,remove_branch,update_remote};
+use git::{update_local,go_to_main,commit,connect_local_and_remote_branch,create_tag,create_branch,remove_branch,update_remote,stash,stash_pop};
 use notes::update_notes;
 use rust::update_rust;
 use tasks::update_task_list;
 use version::{create_version,Version};
 
 fn main() {
+	stash("running version");
+
 	if let Some((option, numbers)) = parse_arguments() {
 		if let Some(version) = create_version(&option, numbers) {
 			match option {
@@ -36,6 +38,8 @@ fn main() {
 			}
 		}
 	}
+
+	stash_pop();
 }
 
 fn update_git(version: Version) {
@@ -70,4 +74,6 @@ fn update_version(version: Version) {
 	update_rust(&version);
 	update_node(&version);
 	update_notes(&version);
+
+	commit(&format!("version: update to {}", &version.code));
 }

@@ -1,7 +1,7 @@
 use regex::Regex;
 
 use crate::file::{get_path, get_content, set_content};
-use crate::git::list_changed;
+use crate::git::list_changes_main;
 use crate::version::Version;
 
 fn path_main() -> String { get_path(vec!["..", "android", "build.gradle"]) }
@@ -9,18 +9,18 @@ fn path_app() -> String { get_path(vec!["..", "android", "App", "build.gradle"])
 fn path_error_logs() -> String { get_path(vec!["..", "android", "ErrorLogs", "build.gradle"]) }
 
 pub fn update_android(version: &Version) {
-	let list_changed = list_changed();
-	let changed_general = general_changed(&list_changed);
+	let changes = list_changes_main();
+	let changed_general = general_changed(&changes);
 
 	let updated_main = update_main(version);
 
 	if !updated_main { return }
 
-	if changed_general || changed("App", &list_changed) {
+	if changed_general || changed("App", &changes) {
 		change_code(path_app(), "(2011\\d{6})");
 	}
 
-	if changed_general || changed("ErrorLogs", &list_changed) {
+	if changed_general || changed("ErrorLogs", &changes) {
 		change_code(path_error_logs(), "(\\d+)");
 	}
 }

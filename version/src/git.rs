@@ -1,8 +1,24 @@
 use dirs::home_dir;
-use git2::{BranchType,CredentialType,Cred,DiffFile,DiffOptions,Error,FetchOptions,FetchPrune,ObjectType,Oid,PushOptions,Repository,RemoteCallbacks};
+
+use git2::{
+	BranchType,
+	CredentialType,
+	Cred,
+	DiffFile,
+	DiffOptions,
+	Error,
+	FetchOptions,
+	FetchPrune,
+	IndexAddOption,
+	ObjectType,
+	PushOptions,
+	Reference,
+	RemoteCallbacks,
+	Repository,
+	Signature,
+};
+
 use reqwest::blocking::Client;
-use std::cmp::Ordering::Less;
-use std::str::{from_utf8};
 
 use crate::file::get_content;
 use crate::regex::replace;
@@ -23,15 +39,22 @@ pub fn current_branch() -> Option<String> {
 	return None;
 }
 
-pub fn list_changed() -> Vec<String> {
+pub fn list_changes_main() -> Vec<String> {
+	list_changes(
+		repo().find_branch("origin/main", BranchType::Remote)
+			.unwrap()
+			.get()
+	)
+}
+
+fn list_changes_head() -> Vec<String> {
+	list_changes(&repo().head().unwrap())
+}
+
+fn list_changes(reference: &Reference) -> Vec<String> {
+	let tree = reference.peel_to_tree().unwrap();
+	
 	let repo = repo();
-
-	let branch = repo.find_branch(
-		"origin/main", BranchType::Remote
-	).unwrap();
-
-	let tree = branch.get()
-		.peel_to_tree().unwrap();
 
 	let mut options = DiffOptions::new();
 	options.include_untracked(true);
@@ -153,24 +176,8 @@ pub fn go_to_main() {
 
 pub fn create_tag(name: &str, annotation: &str) {
 	let repo = repo();
-
-	let mut last = String::new();
-	let mut oid: Option<Oid> = None;
-
-	repo.tag_foreach(|id: Oid, bytes: &[u8]| -> bool {
-		let name = from_utf8(bytes).unwrap();
-		if last == "" || last.cmp(&name.to_string()) == Less {
-			last = name.to_string();
-			oid = Some(id);
-		}
-		return true;
-	}).unwrap();
-
-	let tag = repo.find_tag(oid.unwrap()).unwrap();
-
-	let sign = tag.tagger().unwrap();
 	let head = repo.head().unwrap().peel(ObjectType::Commit).unwrap();
-	repo.tag(&name, &head, &sign, &annotation, false).unwrap();
+	repo.tag(&name, &head, &signature(), &annotation, false).unwrap();
 }
 
 pub fn create_branch(branch_name: &str) {
@@ -226,6 +233,45 @@ pub fn connect_local_and_remote_branch(branch_name: &str) {
 	branch.set_upstream(Some(&remote)).unwrap();
 }
 
+static mut STASHED: bool = false;
+
+pub fn stash(message: &str) {
+	unsafe {
+		STASHED = list_changes_head().len() != 0;
+
+		if STASHED {
+			repo().stash_save(&signature(), message, None).unwrap();
+		}
+	}
+}
+
+pub fn commit(message: &str) {
+	let repo = repo();
+
+	let mut index = repo.index().unwrap();
+	index.add_all(["*"].iter(), IndexAddOption::CHECK_PATHSPEC, None).unwrap();
+	index.write().unwrap();
+
+	let sign = signature();
+	let tree = repo.find_tree(index.write_tree().unwrap()).unwrap();
+	let parent = repo.head().unwrap().peel_to_commit().unwrap();
+	repo.commit(Some("HEAD"), &sign, &sign, message, &tree, &[&parent]).unwrap();
+}
+
+pub fn stash_pop() {
+	unsafe {
+		if STASHED {
+			repo().stash_pop(0, None).unwrap();
+		}
+	}
+}
+
+fn signature() -> Signature<'static> {
+	let name = get_content("name".to_string());
+	let email = get_content("email".to_string());
+	return Signature::now(&name, &email).unwrap();
+}
+
 fn repo() -> Repository {
-	Repository::open("../").unwrap()
+	Repository::open("..").unwrap()
 }
