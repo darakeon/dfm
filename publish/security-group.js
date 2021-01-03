@@ -35,7 +35,7 @@ async function updateSecurityGroup() {
 				const currentIp = permission.IpRanges[0].CidrIp
 
 				const portIndex = ports.indexOf(port)
-				const isSecret = portIndex >= 0
+				const isSecret = portIndex >= 0 && currentIp.endsWith('/32')
 				const isWrong = currentIp != ip
 
 				if (isSecret) {
