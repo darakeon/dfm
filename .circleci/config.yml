@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   test_core:
     docker:
-      - image: darakeon/netcore:latest
+      - image: darakeon/netcore
     steps:
       - checkout
       - restore_cache:
@@ -96,9 +96,7 @@ jobs:
 
   test_android:
     docker:
-      - image: circleci/android:api-30
-    environment:
-      JVM_OPTS: Xms8G -Xmx8G
+      - image: darakeon/android
     steps:
       - checkout
       - restore_cache:
