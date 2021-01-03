@@ -1,3 +1,5 @@
 target
 *.lock
 password
+name
+email

@@ -16,7 +16,7 @@ Legend:
 
 ## <a name="4.6.3.2"></a>4.6.3.2 :ant: <sup>`2`</sup>
 - [ ] Migrate e-mail to SES
-- [ ] `210103>......` Add update log translations to version program (and commit)
+- [x] `210103>210104` Add update log translations to version program (and commit)
 
 ## <a name="4.6.3.1"></a>4.6.3.1 :ant: <sup>`1`</sup>
 - [x] `210102>210102` Migrate DB to RDS
