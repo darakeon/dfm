@@ -8,7 +8,7 @@ use crate::file::get_content;
 use crate::regex::replace;
 
 pub fn current_branch() -> Option<String> {
-	let repo = Repository::open("../").unwrap();
+	let repo = repo();
 	let branches = repo.branches(None).unwrap();
 
 	for item in branches {
@@ -24,7 +24,7 @@ pub fn current_branch() -> Option<String> {
 }
 
 pub fn list_changed() -> Vec<String> {
-	let repo = Repository::open("../").unwrap();
+	let repo = repo();
 
 	let branch = repo.find_branch(
 		"origin/main", BranchType::Remote
@@ -75,9 +75,8 @@ pub fn has_pull_request() -> bool {
 }
 
 fn url_repo() -> String {
-	let repo = Repository::open("../").unwrap();
-	let remote = repo.find_remote("origin").unwrap();
-	return remote.url().unwrap().to_string();
+	return repo().find_remote("origin").unwrap()
+		.url().unwrap().to_string();
 }
 
 fn url_api(url_repo: &str) -> String {
@@ -91,7 +90,7 @@ fn url_api(url_repo: &str) -> String {
 }
 
 pub fn update_local(branch: &str) {
-	let repo = Repository::open("../").unwrap();
+	let repo = repo();
 	let mut remote = repo.find_remote("origin").unwrap();
 
 	let mut callbacks = RemoteCallbacks::new();
@@ -135,13 +134,14 @@ fn git_credentials_callback(
 }
 
 pub fn go_to_main() {
-	let repo = Repository::open("../").unwrap();
+	let repo = repo();
 
-	let branch = repo.find_branch(
-		"origin/main", BranchType::Remote
+	let commit = repo.find_commit(
+		repo.find_branch(
+			"origin/main", BranchType::Remote
+		).unwrap()
+		.get().target().unwrap()
 	).unwrap();
-	let oid = branch.get().target().unwrap();
-	let commit = repo.find_commit(oid).unwrap();
 
 	repo.branch("main", &commit, false).unwrap();
 
@@ -152,7 +152,7 @@ pub fn go_to_main() {
 }
 
 pub fn create_tag(name: &str, annotation: &str) {
-	let repo = Repository::open("../").unwrap();
+	let repo = repo();
 
 	let mut last = String::new();
 	let mut oid: Option<Oid> = None;
@@ -174,7 +174,7 @@ pub fn create_tag(name: &str, annotation: &str) {
 }
 
 pub fn create_branch(branch_name: &str) {
-	let repo = Repository::open("../").unwrap();
+	let repo = repo();
 
 	let head = repo.head().unwrap();
 	let oid = head.target().unwrap();
@@ -192,15 +192,12 @@ pub fn create_branch(branch_name: &str) {
 }
 
 pub fn remove_branch(name: &str) {
-	let repo = Repository::open("../").unwrap();
-
-	let mut branch = repo.find_branch(&name, BranchType::Local).unwrap();
-
-	branch.delete().unwrap();
+	repo().find_branch(&name, BranchType::Local).unwrap()
+		.delete().unwrap();
 }
 
 pub fn update_remote(tag: &str, branch: &str) {
-	let repo = Repository::open("../").unwrap();
+	let repo = repo();
 	let mut remote = repo.find_remote("origin").unwrap();
 
 	let mut callbacks = RemoteCallbacks::new();
@@ -221,11 +218,14 @@ pub fn update_remote(tag: &str, branch: &str) {
 }
 
 pub fn connect_local_and_remote_branch(branch_name: &str) {
-	let repo = Repository::open("../").unwrap();
-
+	let repo = repo();
 	let mut branch = repo.find_branch(&branch_name, BranchType::Local).unwrap();
 
 	let remote = format!("origin/{}", &branch_name);
 
 	branch.set_upstream(Some(&remote)).unwrap();
+}
+
+fn repo() -> Repository {
+	Repository::open("../").unwrap()
 }
