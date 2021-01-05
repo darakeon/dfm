@@ -10,10 +10,6 @@ fun AlertDialog.assertAlertWait() {
 	assertAlert("Wait!", "Calling the Pig…")
 }
 
-fun AlertDialog.assertAlertError(message: String) {
-	assertAlert("Ops!", message)
-}
-
 private fun AlertDialog.assertAlert(title: String, message: String) {
 	assertTrue(isShowing)
 
