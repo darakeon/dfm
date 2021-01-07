@@ -15,7 +15,7 @@ Legend:
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="4.6.3.2"></a>4.6.3.2 :ant: <sup>`3`</sup>
-- [ ] Migrate e-mail to SES
+- [x] `210105>210114` Migrate e-mail to SES
 - [x] `210104>210105` Remove unused libraries at android
 - [x] `210103>210104` Add update log translations to version program (and commit)
 
