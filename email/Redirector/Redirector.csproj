@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>Redirector</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Redirector</RootNamespace>
+	<GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="example.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="example.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.1.0" />
+    <PackageReference Include="AWSSDK.S3" Version="3.5.7.6" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="if $(ConfigurationName) == Release (&#xD;&#xA;del $(OutDir)$(ProjectName).exe&#xD;&#xA;del $(OutDir)example.json&#xD;&#xA;del $(OutDir)$(ProjectName).runtimeconfig.dev.json&#xD;&#xA;powershell Compress-Archive -Path '$(OutDir)*' -DestinationPath '$(OutDir)lambda.zip' -Force&#xD;&#xA;)" />
+  </Target>
+
+</Project>
