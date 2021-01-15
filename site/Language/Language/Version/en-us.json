@@ -1,4 +1,9 @@
 {
+	"4.6.3.2": [
+		"E-mails maintenance",
+		"Clean unused stuff at app",
+		"One more step on deploy automation"
+	],
 	"4.6.3.1": [
 		"Data maintenance"
 	],
