@@ -4,15 +4,19 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#4.6.3.1)
-- [go to version in development](#4.6.3.2)
-- [dev version state](../../4.6.3.2/docs/RELEASES.md#4.6.3.2)
+- [go to published version](#4.6.3.2)
+- [go to version in development](#4.6.3.3)
+- [dev version state](../../4.6.3.3/docs/RELEASES.md#4.6.3.3)
 
 Legend:
 - :dragon:: at least one huge change (increases first number)
 - :whale:: at least one big change, like a new feature (increases second number)
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="4.6.3.3"></a>4.6.3.3 :ant: <sup>`2`</sup>
+- [ ] Remove code that makes the log grow insanely
+- [ ] Return logs grouped from server
 
 ## <a name="4.6.3.2"></a>4.6.3.2 :ant: <sup>`3`</sup>
 - [x] `210105>210114` Migrate e-mail to SES

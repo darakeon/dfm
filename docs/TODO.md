@@ -11,10 +11,8 @@ This is the task list for the project.
 - Dependency: which other task it depends on (if it exists)
 - Issue: github issue about the task (if it exists)
 
-| Task (53)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue                                            |
+| Task (51)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue                                            |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ------------------------------------------------ |
-| Return logs grouped from server                                                | :ant:    |  2  |  4  |  6  |                |                                                  |
-| Remove code that makes the log grow insanely                                   | :ant:    |  2  |  4  |  6  |                |                                                  |
 | Change server to linux                                                         | :ant:    |  4  |  4  |  4  |                |                                                  |
 | Adjust [accessibilitity]                                                       | :sheep:  |  4  |  4  |  4  |                |                                                  |
 | Store data locally, to use when there is no internet (Mobile)                  | :dragon: |  4  |  4  |  4  |                |                                                  |
