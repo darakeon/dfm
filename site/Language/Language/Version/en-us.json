@@ -1,4 +1,9 @@
 {
+	"4.6.3.3": [
+		"Fix screen rotation during calling the pig",
+		"Maintenance at system security",
+		"Fix app month navigation between years"
+	],
 	"4.6.3.2": [
 		"E-mails maintenance",
 		"Clean unused stuff at app",
