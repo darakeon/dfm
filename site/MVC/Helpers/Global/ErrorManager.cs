@@ -8,6 +8,7 @@ using DFM.MVC.Helpers.Extensions;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using DFM.MVC.Starters.Routes;
+using Microsoft.AspNetCore.Http.Extensions;
 
 namespace DFM.MVC.Helpers.Global
 {
@@ -62,7 +63,7 @@ namespace DFM.MVC.Helpers.Global
 
 			EmailSent = Error.SendReport(
 				exception,
-				request.Host.ToString(),
+				request.GetDisplayUrl(),
 				urlReferrer,
 				request.Method,
 				parameters,
