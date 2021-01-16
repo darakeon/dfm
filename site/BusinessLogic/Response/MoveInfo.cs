@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities;
 using DFM.Entities.Enums;
-using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Response
 {

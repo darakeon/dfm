@@ -1,6 +1,5 @@
 ﻿using System.Globalization;
 using System.IO;
-using System.Security.Cryptography.X509Certificates;
 using DFM.Generic;
 using DFM.MVC.Helpers.Extensions;
 using Microsoft.AspNetCore.Builder;

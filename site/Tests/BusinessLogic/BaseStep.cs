@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using DFM.Authentication;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
 using DFM.Email;

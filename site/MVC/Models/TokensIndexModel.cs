@@ -5,7 +5,6 @@ using System.Linq;
 using Keon.MVC.Forms;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Enums;
-using DFM.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DFM.MVC.Models
