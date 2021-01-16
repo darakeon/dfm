@@ -57,7 +57,11 @@ The allowed scopes are:
 - `docs`: documentation at the repository;
 - `tests`: automated tests;
 - `tools`: update version of stuff that is being used;
-- `security`: things like error reporting.
+- `security`: things like error reporting;
+- `db`: database changes;
+- `ci`: deploy automation;
+- `mail`: e-mail sending;
+- `language`: translations;
 
 The body of the message is the part where the details go, if they are
 necessary. To make readability easier, it must have no more than 72
