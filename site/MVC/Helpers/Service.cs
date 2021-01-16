@@ -1,8 +1,6 @@
 ﻿using System;
 using DFM.Authentication;
 using DFM.BusinessLogic;
-using DFM.BusinessLogic.Helpers;
-using DFM.MVC.Starters.Routes;
 using Keon.MVC.Cookies;
 using Microsoft.AspNetCore.Http;
 using TicketType = DFM.Entities.Enums.TicketType;
