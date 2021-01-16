@@ -14,8 +14,7 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="4.6.3.3"></a>4.6.3.3 :ant: <sup>`3`</sup>
-- [ ] Remove code that makes the log grow insanely
+## <a name="4.6.3.3"></a>4.6.3.3 :ant: <sup>`2`</sup>
 - [x] `210116>210116` Return logs grouped from server
 - [ ] Fix app month navigation between years
 
