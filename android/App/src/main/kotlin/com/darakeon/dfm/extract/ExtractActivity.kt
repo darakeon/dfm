@@ -123,13 +123,13 @@ class ExtractActivity : BaseActivity() {
 		var newMonth = m
 		var newYear = y
 
-		if (newMonth == 0) {
-			newMonth = 12
+		if (newMonth < Calendar.JANUARY) {
+			newMonth = Calendar.DECEMBER
 			newYear -= 1
 		}
 
-		if (newMonth == 13) {
-			newMonth = 1
+		if (newMonth > Calendar.DECEMBER) {
+			newMonth = Calendar.JANUARY
 			newYear += 1
 		}
 
