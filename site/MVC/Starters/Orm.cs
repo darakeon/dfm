@@ -2,6 +2,7 @@ using System;
 using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.Entities;
 using DFM.Generic;
+using DfM.Logs;
 using Keon.MVC.Cookies;
 using Keon.NHibernate.Schema;
 using Keon.NHibernate.Sessions;

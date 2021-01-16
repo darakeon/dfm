@@ -1,7 +1,7 @@
 using System;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Email;
-using DFM.Generic;
+using DfM.Logs;
 using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Extensions;
 using DFM.MVC.Helpers.Global;

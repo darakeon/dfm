@@ -16,7 +16,7 @@ Legend:
 
 ## <a name="4.6.3.3"></a>4.6.3.3 :ant: <sup>`3`</sup>
 - [ ] Remove code that makes the log grow insanely
-- [ ] `210116>......` Return logs grouped from server
+- [x] `210116>210116` Return logs grouped from server
 - [ ] Fix app month navigation between years
 
 ## <a name="4.6.3.2"></a>4.6.3.2 :ant: <sup>`4`</sup>

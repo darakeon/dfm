@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using DFM.Generic;
+using DfM.Logs;
 
 namespace DFM.Email
 {
