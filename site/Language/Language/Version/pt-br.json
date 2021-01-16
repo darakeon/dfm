@@ -1,4 +1,9 @@
 {
+	"4.6.3.3": [
+		"Corrigida rotação no aplicativo ao chamar o site",
+		"Manutenção da segurança do sistema",
+		"Corrigida navegação entre anos no relatório mensal do aplicativo"
+	],
 	"4.6.3.2": [
 		"Manutenção no envio de e-mails",
 		"Limpadas coisas não usadas no aplicativo",

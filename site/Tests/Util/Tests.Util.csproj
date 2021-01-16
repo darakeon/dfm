@@ -4,8 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>DFM.Tests.Util</AssemblyName>
     <RootNamespace>DFM.Tests.Util</RootNamespace>
-    <AssemblyVersion>4.6.3.2</AssemblyVersion>
-    <FileVersion>4.6.3.2</FileVersion>
+    <AssemblyVersion>4.6.3.3</AssemblyVersion>
+    <FileVersion>4.6.3.3</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
