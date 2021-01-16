@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.Generic;
+using DfM.Logs;
 using Keon.Util.Exceptions;
 
 namespace DFM.Email

@@ -213,6 +213,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Authentication\Authentication.csproj" />
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj" />
+    <ProjectReference Include="..\Logs\Logs.csproj" />
   </ItemGroup>
 
   <ItemGroup>

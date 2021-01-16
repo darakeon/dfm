@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.MVC.Areas.Api.Models;
+using DfM.Logs;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Starters.Routes;
 using Microsoft.AspNetCore.Mvc;
@@ -12,19 +12,19 @@ namespace DFM.MVC.Areas.Api.Controllers
 		[HttpGetAndHead]
 		public IActionResult Count()
 		{
-			return json(() => new LogModel(false));
+			return json(() => new LogFile(false));
 		}
 
 		[HttpGetAndHead]
 		public IActionResult List()
 		{
-			return json(() => new LogModel(true));
+			return json(() => new LogFile(true));
 		}
 
 		[HttpPost]
-		public IActionResult Archive(String id)
+		public IActionResult Archive(Int32 id)
 		{
-			return json(() => new LogModel(false).Archive(id));
+			return json(() => new LogFile(true).Archive(id));
 		}
 	}
 }

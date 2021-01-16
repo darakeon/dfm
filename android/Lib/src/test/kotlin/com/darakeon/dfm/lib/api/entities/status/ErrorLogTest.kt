@@ -12,26 +12,18 @@ class ErrorLogTest: BaseTest() {
 	)
 
 	@Test
-	fun id() {
-		val errorLog = ErrorLog("20200912224537886752", defaultException)
-		assertThat(errorLog.id(), `is`(537886752))
-	}
-
-	@Test
-	fun id_outOfPattern() {
-		val errorLog = ErrorLog("something", defaultException)
-		assertThat(errorLog.id(), `is`(0))
-	}
-
-	@Test
 	fun date() {
-		val errorLog = ErrorLog("20200912224537886752", defaultException)
+		val errorLog = ErrorLog(
+			"20200912224537886752", false, defaultException, 1, 0
+		)
 		assertThat(errorLog.date(), `is`("2020-09-12 22:45"))
 	}
 
 	@Test
 	fun date_outOfPattern() {
-		val errorLog = ErrorLog("something", defaultException)
+		val errorLog = ErrorLog(
+			"something", false, defaultException, 1, 0
+		)
 		assertThat(errorLog.date(), `is`("something"))
 	}
 
@@ -41,7 +33,10 @@ class ErrorLogTest: BaseTest() {
 			"className", "message", null, "stackTrace", "source",
 		)
 
-		val errorLog = ErrorLog(defaultDate, exception)
+		val errorLog = ErrorLog(
+			defaultDate, false, exception, 1, 0
+		)
+
 		assertThat(errorLog.message(), `is`("message"))
 	}
 
@@ -55,7 +50,10 @@ class ErrorLogTest: BaseTest() {
 			"className", "message outer", inner, "stackTrace", "source",
 		)
 
-		val errorLog = ErrorLog(defaultDate, outer)
+		val errorLog = ErrorLog(
+			defaultDate, false, outer, 1, 0
+		)
+
 		assertThat(errorLog.message(), `is`("message inner"))
 	}
 
@@ -73,7 +71,10 @@ class ErrorLogTest: BaseTest() {
 			"className", "message outer", middle, "stackTrace", "source",
 		)
 
-		val errorLog = ErrorLog(defaultDate, outer)
+		val errorLog = ErrorLog(
+			defaultDate, false, outer, 1, 0
+		)
+
 		assertThat(errorLog.message(), `is`("message inner"))
 	}
 }

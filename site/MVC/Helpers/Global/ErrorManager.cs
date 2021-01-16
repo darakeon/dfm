@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Keon.MVC.Cookies;
 using DFM.Email;
-using DFM.Generic;
+using DfM.Logs;
 using DFM.MVC.Helpers.Extensions;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;

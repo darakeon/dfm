@@ -1,7 +1,8 @@
 ﻿using System;
 using System.IO;
+using DFM.Generic;
 
-namespace DFM.Generic
+namespace DfM.Logs
 {
 	public static class ExceptionX
 	{

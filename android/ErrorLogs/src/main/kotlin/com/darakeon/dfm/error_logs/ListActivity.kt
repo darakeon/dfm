@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.list.start
 import kotlinx.android.synthetic.main.list.stop
 
 class ListActivity : BaseActivity() {
-	private var logs: MutableList<ErrorGroup> = mutableListOf()
+	private var logs: MutableList<ErrorLog> = mutableListOf()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -37,22 +37,10 @@ class ListActivity : BaseActivity() {
 			logs.clear()
 		} else {
 			message.text = ""
-			errors.logs.forEach(this::addLog)
+			errors.logs.forEach(logs::add)
 		}
 
 		list.adapter = ErrorAdapter(this, logs)
-	}
-
-	private fun addLog(log: ErrorLog) {
-		val group = logs.singleOrNull {
-			it.message == log.message()
-		}
-
-		if (group == null) {
-			logs.add(ErrorGroup(log))
-		} else {
-			group.add(log)
-		}
 	}
 
 	@Suppress("UNUSED_PARAMETER")

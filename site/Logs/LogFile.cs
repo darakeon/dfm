@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using DFM.Generic;
 
-namespace DFM.MVC.Areas.Api.Models
+namespace DfM.Logs
 {
-	public class LogModel
+	public class LogFile
 	{
 		public Int32 Count { get; }
 		public List<ErrorLog> Logs { get; }
@@ -15,7 +15,7 @@ namespace DFM.MVC.Areas.Api.Models
 		private readonly String readLogs;
 		private readonly String[] files;
 
-		public LogModel(Boolean list)
+		public LogFile(Boolean list)
 		{
 			Logs = new List<ErrorLog>();
 
@@ -42,6 +42,8 @@ namespace DFM.MVC.Areas.Api.Models
 					Logs = files
 						.Select(File.ReadAllText)
 						.Select(ErrorLog.FromJson)
+						.GroupBy(l => l)
+						.Select(ErrorLog.Combine)
 						.ToList();
 				}
 			}
@@ -56,17 +58,10 @@ namespace DFM.MVC.Areas.Api.Models
 			}
 		}
 
-		public void Archive(String id)
+		public void Archive(Int32 id)
 		{
-			if (id == null) return;
-
-			var move = files.FirstOrDefault(
-				f => f.EndsWith($"{id}.log")
-			);
-
-			if (move == null) return;
-
-			File.Move(move, move.Replace(newLogs, readLogs));
+			Logs.FirstOrDefault(l => l.Hash == id)
+				?.Archive(newLogs, readLogs);
 		}
 	}
 }

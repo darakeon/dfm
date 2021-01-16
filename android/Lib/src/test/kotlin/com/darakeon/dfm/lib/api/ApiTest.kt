@@ -296,7 +296,7 @@ class ApiTest: BaseTest() {
 		server.enqueue("log_list")
 
 		var called = false
-		api.archiveError("id") {
+		api.archiveErrors(0) {
 			called = true
 		}
 		activity.waitTasks()
