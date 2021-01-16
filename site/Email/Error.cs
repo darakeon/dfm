@@ -9,9 +9,9 @@ namespace DFM.Email
 	public class Error
 	{
 		/// <summary>
-		/// Send a report e-mail with errors occured
+		/// Send a report e-mail with errors occurred
 		/// </summary>
-		/// <param name="exception">Errors occured</param>
+		/// <param name="exception">Errors occurred</param>
 		/// <param name="url">Current url</param>
 		/// <param name="origin">Previous url</param>
 		/// <param name="httpMethod">Get, Post, Delete, etc</param>
