@@ -15,6 +15,7 @@ Legend:
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="4.6.3.3"></a>4.6.3.3 :ant: <sup>`2`</sup>
+- [x] `210116>210116` Fix weird screen orientation change at requests
 - [x] `210116>210116` Return logs grouped from server
 - [x] `210116>210116` Fix app month navigation between years
 
