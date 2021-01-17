@@ -5,8 +5,8 @@
     <IsPackable>false</IsPackable>
     <AssemblyName>DFM.Email.Tests</AssemblyName>
     <RootNamespace>DFM.Email.Tests</RootNamespace>
-    <AssemblyVersion>4.6.3.3</AssemblyVersion>
-    <FileVersion>4.6.3.3</FileVersion>
+    <AssemblyVersion>4.6.3.4</AssemblyVersion>
+    <FileVersion>4.6.3.4</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
