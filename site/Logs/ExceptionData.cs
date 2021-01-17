@@ -39,7 +39,6 @@ namespace DfM.Logs
 		{
 			return HashCode.Combine(
 				ClassName,
-				Message,
 				StackTrace,
 				Source,
 				InnerException
