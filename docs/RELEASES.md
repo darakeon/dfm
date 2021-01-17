@@ -4,15 +4,18 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#4.6.3.3)
-- [go to version in development](#4.6.3.4)
-- [dev version state](../../4.6.3.4/docs/RELEASES.md#4.6.3.4)
+- [go to published version](#4.6.3.4)
+- [go to version in development](#4.6.3.5)
+- [dev version state](../../4.6.3.5/docs/RELEASES.md#4.6.3.5)
 
 Legend:
 - :dragon:: at least one huge change (increases first number)
 - :whale:: at least one big change, like a new feature (increases second number)
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="4.6.3.5"></a>4.6.3.5 :ant: <sup>`1`</sup>
+- [ ] Change server to linux
 
 ## <a name="4.6.3.4"></a>4.6.3.4 :ant: <sup>`1`</sup>
 - [x] `210116>210116` Remove code that makes the log grow insanely
