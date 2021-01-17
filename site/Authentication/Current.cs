@@ -69,15 +69,15 @@ namespace DFM.Authentication
 					sessions.Add(dicKey, value);
 				return value;
 			}
-			catch (SystemError e)
+			catch (SystemError)
 			{
-				return printAndReturn(e);
+				return null;
 			}
-			catch (DKException e)
+			catch (DKException)
 			{
-				return printAndReturn(e);
+				return null;
 			}
-			catch (Exception e)
+			catch
 			{
 				// random to not all the threads try the same time again
 				var milliseconds = random.Next(1000);
@@ -86,12 +86,6 @@ namespace DFM.Authentication
 
 				return getSession(++count);
 			}
-		}
-
-		private static SessionInfo printAndReturn(Exception e)
-		{
-			e.TryLogHandled("Problem on session recover");
-			return null;
 		}
 
 		private static Int64 nowKey()
