@@ -15,7 +15,7 @@ Legend:
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="4.6.3.4"></a>4.6.3.4 :ant: <sup>`1`</sup>
-- [ ] Remove code that makes the log grow insanely
+- [ ] `210116>......` Remove code that makes the log grow insanely
 
 ## <a name="4.6.3.3"></a>4.6.3.3 :ant: <sup>`2`</sup>
 - [x] `210116>210116` Fix weird screen orientation change at requests

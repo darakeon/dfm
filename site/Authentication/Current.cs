@@ -82,8 +82,6 @@ namespace DFM.Authentication
 				// random to not all the threads try the same time again
 				var milliseconds = random.Next(1000);
 
-				e.TryLogHandled($"Key not found {key}, retry in {milliseconds}ms");
-
 				Thread.Sleep(milliseconds);
 
 				return getSession(++count);
