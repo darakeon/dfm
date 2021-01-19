@@ -2,7 +2,7 @@
 
 - [x] Migrate database to RDS
 - [x] Migrate e-mail sending and receiving to SES
-- [ ] Transform MEAK site in .NET Core
+- [x] Transform MEAK site in .NET Core
 - [ ] Create a docker machine to run .NET Core sites
 - [ ] Run MEAK site inside Linux Docker
 - [ ] Upload MEAK site to amazon docker
