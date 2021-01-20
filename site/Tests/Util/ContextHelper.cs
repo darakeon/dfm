@@ -23,18 +23,8 @@ namespace DFM.Tests.Util
 			context[key] = value;
 		}
 
-		protected static String runPath
-		{
-			get
-			{
-				var assembly = typeof(ContextHelper).Assembly;
-
-				var uri = new UriBuilder(assembly.CodeBase);
-				var path = Uri.UnescapeDataString(uri.Path);
-
-				return Path.GetDirectoryName(path);
-			}
-		}
+		protected static String runPath =>
+			Path.GetDirectoryName(typeof(ContextHelper).Assembly.Location);
 
 		#pragma warning disable 618
 		protected static ScenarioContext context => ScenarioContext.Current;
