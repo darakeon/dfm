@@ -6,7 +6,7 @@ using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using DFM.Entities.Enums;
-using DFM.Generic;
+using DFM.Generic.Datetime;
 using DFM.Language;
 
 namespace DFM.BusinessLogic.Services
@@ -260,7 +260,7 @@ namespace DFM.BusinessLogic.Services
 			if (info.Language != null && !PlainText.AcceptLanguage(info.Language))
 				throw Error.LanguageUnknown.Throw();
 
-			if (info.TimeZone != null && !info.TimeZone.IsTimeZone())
+			if (info.TimeZone != null && !info.TimeZone.IsValid())
 				throw Error.TimeZoneUnknown.Throw();
 
 			if (!String.IsNullOrEmpty(info.Language))

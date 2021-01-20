@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
-using DFM.Generic;
+using DFM.Generic.Datetime;
 
 namespace DFM.MVC.Models
 {
