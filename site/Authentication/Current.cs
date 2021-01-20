@@ -6,7 +6,6 @@ using System.Threading;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Generic;
-using DfM.Logs;
 using Keon.Util.Exceptions;
 
 namespace DFM.Authentication
