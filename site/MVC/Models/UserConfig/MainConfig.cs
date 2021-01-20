@@ -5,7 +5,7 @@ using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
 using DFM.BusinessLogic.Services;
-using DFM.Generic;
+using DFM.Generic.Datetime;
 using DFM.Language;
 using DFM.MVC.Helpers.Global;
 using Keon.MVC.Forms;
@@ -26,7 +26,7 @@ namespace DFM.MVC.Models.UserConfig
 					.ToDictionary(l => l, l => translator["Language" + l]);
 
 			LanguageList = SelectListExtension.CreateSelect(languageDictionary);
-			TimeZoneList = SelectListExtension.CreateSelect(DateExtension.TimeZoneList);
+			TimeZoneList = SelectListExtension.CreateSelect(TZ.All);
 
 			UseCategories = current.UseCategories;
 			SendMoveEmail = current.SendMoveEmail;

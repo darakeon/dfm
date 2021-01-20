@@ -1,6 +1,5 @@
 @echo off
 
-set machine=%~1
 set name=%~1
 set type=%~2
 
@@ -9,43 +8,22 @@ if "%type%" neq "start" (
 )
 
 REM [android] andy
-	if "%machine%" == "andy" (
-		set machine=android
-	)
-
-	if "%name%" == "android" (
-		set name=andy
-	)
-
 	if "%name%" == "andy" (
+		set machine=android
 		set parameters=
 		set work_dir=
 	)
 
 REM [netcore] beedle
-	if "%machine%" == "beedle" (
-		set machine=netcore
-	)
-
-	if "%name%" == "netcore" (
-		set name=beedle
-	)
-
 	if "%name%" == "beedle" (
+		set machine=netcore
 		set parameters=
 		set work_dir=
 	)
 
 REM [browser-tests] yoshi
-	if "%machine%" == "yoshi" (
-		set machine=browser-tests
-	)
-
-	if "%name%" == "browser-tests" (
-		set name=yoshi
-	)
-
 	if "%name%" == "yoshi" (
+		set machine=browser-tests
 		set parameters=--expose 2709 -P
 		set work_dir=site/Tests/Browser
 	)

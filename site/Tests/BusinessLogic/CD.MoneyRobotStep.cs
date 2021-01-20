@@ -4,7 +4,7 @@ using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
-using DFM.Generic;
+using DFM.Generic.Datetime;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 

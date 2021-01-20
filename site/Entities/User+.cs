@@ -1,5 +1,6 @@
 ﻿using System;
 using DFM.Generic;
+using DFM.Generic.Datetime;
 
 namespace DFM.Entities
 {
