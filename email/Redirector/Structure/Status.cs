@@ -2,10 +2,14 @@
 
 namespace Redirector.Structure
 {
-	[Flags]
 	public enum Status
 	{
-		Fail = 0,
+		Unknown = 0,
+
 		Pass = 1,
+		Gray = 2,
+
+		Fail = -1,
+		ProcessingFailed = -2,
 	}
 }

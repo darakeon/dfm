@@ -11,12 +11,14 @@ namespace Redirector.Structure
 		public Verdict VirusVerdict { get; set; }
 		public Verdict SpfVerdict { get; set; }
 		public Verdict DkimVerdict { get; set; }
+		public Verdict DmarcVerdict { get; set; }
 		public Action Action { get; set; }
 
-		public Status Status =>
-			SpamVerdict.XStatus
-			& VirusVerdict.XStatus
-			& SpfVerdict.XStatus
-			& DkimVerdict.XStatus;
+		public Boolean IsValid =>
+			SpamVerdict.IsValid()
+			&& VirusVerdict.IsValid()
+			&& SpfVerdict.IsValid()
+			&& DkimVerdict.IsValid()
+			&& DmarcVerdict.IsValid();
 	}
 }

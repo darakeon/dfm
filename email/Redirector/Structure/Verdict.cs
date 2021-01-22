@@ -5,6 +5,15 @@ namespace Redirector.Structure
 	public struct Verdict
 	{
 		public String Status { get; set; }
-		public Status XStatus => Enum.Parse<Status>(Status, true);
+
+		public Status XStatus =>
+			Status == null
+				? Structure.Status.Unknown
+				: Enum.Parse<Status>(Status.Replace("_", ""), true);
+
+		public Boolean IsValid()
+		{
+			return XStatus >= Structure.Status.Unknown;
+		}
 	}
 }

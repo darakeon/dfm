@@ -40,7 +40,7 @@ namespace Redirector
 
 		private static Boolean spam(CommonHeaders headers, Receipt receipt)
 		{
-			if (receipt.Status != Status.Fail)
+			if (receipt.IsValid)
 				return false;
 
 			Console.WriteLine("SPAM!");
