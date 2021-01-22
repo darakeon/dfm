@@ -9,3 +9,4 @@
 - [ ] Point MEAK domain to amazon docker
 - [ ] Upload DfM site to amazon docker
 - [ ] Point DfM domain to amazon docker
+- [ ] Delete old smtp user
