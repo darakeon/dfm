@@ -8,6 +8,7 @@ namespace Redirector.Structure
 
 		Pass = 1,
 		Gray = 2,
+		Disabled = 3,
 
 		Fail = -1,
 		ProcessingFailed = -2,
