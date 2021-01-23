@@ -114,7 +114,7 @@ namespace Redirector
 
 			lines = lines.Skip(1)
 				.Where(l => !l.StartsWith("Content-Transfer-Encoding:"))
-				.Where(l => !l.Contains(boundary))
+				.Where(l => boundary == null || !l.Contains(boundary))
 				.Select(l => l.Trim())
 				.Where(l => !String.IsNullOrEmpty(l))
 				.ToList();
