@@ -57,7 +57,7 @@ fn update_git(version: Version) {
 		tasks += "\n";
 	}
 
-	update_local(&old_branch);
+	update_local();
 	go_to_main();
 	create_tag(&tag, &tasks);
 	create_branch(&new_branch);
