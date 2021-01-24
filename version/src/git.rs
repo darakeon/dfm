@@ -112,7 +112,7 @@ fn url_api(url_repo: &str) -> String {
 	return format!("{}{}", replaced, branch);
 }
 
-pub fn update_local(branch: &str) {
+pub fn update_local() {
 	let repo = repo();
 	let mut remote = repo.find_remote("origin").unwrap();
 
@@ -123,12 +123,10 @@ pub fn update_local(branch: &str) {
 	options.remote_callbacks(callbacks);
 	options.prune(FetchPrune::On);
 
-	let reflog = format!("updating main and {}", branch);
-
 	remote.fetch(
-		&["main", branch],
+		&[] as &[&str],
 		Some(&mut options),
-		Some(&reflog)
+		Some("updating local")
 	).unwrap();
 }
 
