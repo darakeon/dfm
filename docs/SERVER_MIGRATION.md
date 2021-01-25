@@ -6,6 +6,7 @@
 - [x] Create a docker machine to run .NET Core sites
 - [x] Run MEAK site inside Linux Docker
 - [x] Upload MEAK site to amazon docker
+- [ ] Add certificate generation for site inside docker
 - [ ] Point MEAK domain to amazon docker
 - [ ] Upload DfM site to amazon docker
 - [ ] Point DfM domain to amazon docker
