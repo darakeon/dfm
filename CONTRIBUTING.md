@@ -44,7 +44,7 @@ start with the scope - part of the system that is been changed -,
 followed by `:`, then by the description of what is done, what should
 start with a infinitive verb.
 
-The allowed scopes are:
+The allowed types are:
 - `safe`: core > user;
 - `admin`: core > accounts and categories;
 - `money`: core > moves;
@@ -62,6 +62,7 @@ The allowed scopes are:
 - `ci`: deploy automation;
 - `mail`: e-mail sending;
 - `language`: translations;
+- `publish`: automated publishing pieces;
 
 The body of the message is the part where the details go, if they are
 necessary. To make readability easier, it must have no more than 72
