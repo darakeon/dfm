@@ -1,7 +1,12 @@
 @echo off
 
-docker build . -f %~1.dockerfile -t darakeon/%~1
+set machine=%~1
+set push=%~2
 
-if "%~2" == "push" (
-	docker push darakeon/%~1
+docker context use default
+docker build . -f %machine%.dockerfile -t darakeon/%machine% --network=host
+docker image prune -f
+
+if "%push%" == "push" (
+	docker push darakeon/%machine%
 )
