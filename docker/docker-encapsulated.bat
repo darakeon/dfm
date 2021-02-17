@@ -10,7 +10,7 @@ if "%type%" == "start" (
  	docker start -i %name%
 )
 
-if "%type%" == "rm-and-run" (
+if "%type%" == "rebuild" (
 	single-build.bat %machine%
  	docker rm %name% > NUL 2> NUL
  	docker run --name %name% -it -v %~dp0..\:/var/dfm -w /var/dfm/%work_dir% %parameters% darakeon/%machine%
