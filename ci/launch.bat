@@ -51,4 +51,4 @@ echo ...
 echo ..
 echo .
 
-docker-encapsulated.bat %type% %name% %machine% "%work_dir%" "%parameters%"
+call docker-encapsulated.bat %type% %name% %machine% "%work_dir%" "%parameters%"
