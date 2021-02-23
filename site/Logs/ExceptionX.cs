@@ -8,12 +8,21 @@ namespace DfM.Logs
 	{
 		public static void TryLog(this ErrorLog error)
 		{
+			var textError = error.ToString();
+
 			try
 			{
 				var path = String.Format(Cfg.LogPathErrors, error.ID);
-				File.WriteAllText(path, error.ToString());
+				File.WriteAllText(path, textError);
 			}
-			catch { /* ignored, nothing can be done anymore */ }
+			catch (Exception e)
+			{
+				Console.WriteLine($"Error while recording log: {e}");
+			}
+			finally
+			{
+				Console.WriteLine($"Error that happened: {textError.Replace("\\n", "\n")}");
+			}
 		}
 
 		public static void TryLog(this Exception exception)
