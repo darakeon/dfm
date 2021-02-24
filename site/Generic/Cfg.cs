@@ -38,7 +38,7 @@ namespace DFM.Generic
 
 		public static String Email => dic["Email"];
 
-		public static String Version => typeof(Cfg).Assembly.GetName().Version.ToString();
+		public static String Version => typeof(Cfg).Assembly.GetName().Version?.ToString();
 
 		public static Int32 PasswordErrorLimit => Int32.Parse(dic["PasswordErrorLimit"]);
 
