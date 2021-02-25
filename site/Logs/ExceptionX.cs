@@ -12,7 +12,7 @@ namespace DfM.Logs
 
 			try
 			{
-				var path = String.Format(Cfg.LogPathErrors, error.ID);
+				var path = Cfg.LogErrorsFile(error.ID);
 				File.WriteAllText(path, textError);
 			}
 			catch (Exception e)

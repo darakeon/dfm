@@ -51,6 +51,10 @@ namespace DFM.Generic
 
 		public static String LanguagePath { get; set; }
 
-		public static String LogPathErrors => dic["LogPathErrors"];
+		public static String LogErrorsPath =>
+			Path.Combine(dic["LogErrorsPath"].Split(","));
+
+		public static String LogErrorsFile(String name) =>
+			Path.Combine(LogErrorsPath, $"{name}.log");
 	}
 }
