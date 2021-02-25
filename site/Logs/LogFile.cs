@@ -13,7 +13,6 @@ namespace DfM.Logs
 
 		private readonly String newLogs;
 		private readonly String readLogs;
-		private readonly String[] files;
 
 		public LogFile(Boolean list)
 		{
@@ -21,10 +20,10 @@ namespace DfM.Logs
 
 			try
 			{
-				newLogs = new FileInfo(Cfg.LogPathErrors).DirectoryName;
+				newLogs = Cfg.LogErrorsPath;
 				readLogs = Path.Combine(newLogs, "read");
 
-				if (newLogs == null)
+				if (String.IsNullOrEmpty(newLogs))
 					throw new Exception("No log path configured");
 
 				if (!Directory.Exists(newLogs))
@@ -33,7 +32,7 @@ namespace DfM.Logs
 				if (!Directory.Exists(readLogs))
 					Directory.CreateDirectory(readLogs);
 
-				files = Directory.GetFiles(newLogs, "*.log");
+				var files = Directory.GetFiles(newLogs, "*.log");
 
 				Count = files.Length;
 
