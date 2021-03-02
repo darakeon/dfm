@@ -43,7 +43,7 @@ jobs:
 
   test_site:
     docker:
-      - image: darakeon/browser-tests
+      - image: darakeon/dfm-browser-tests
     steps:
       - checkout
       - restore_cache:
