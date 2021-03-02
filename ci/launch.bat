@@ -26,7 +26,7 @@ REM [netcore] beedle
 
 REM [browser-tests] yoshi
 	if "%name%" == "yoshi" (
-		set machine=browser-tests
+		set machine=dfm-browser-tests
 		set parameters=--expose 2709 -P
 		set work_dir=site/Tests/Browser
 	)
