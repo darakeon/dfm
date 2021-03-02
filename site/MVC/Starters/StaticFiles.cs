@@ -12,11 +12,6 @@ namespace DFM.MVC.Starters
 			addStaticPath(app, "Assets");
 		}
 
-		public static void Certificate(IApplicationBuilder app)
-		{
-			addStaticPath(app, ".well-known");
-		}
-
 		private static void addStaticPath(IApplicationBuilder app, String folder)
 		{
 			if (!Directory.Exists(folder))
