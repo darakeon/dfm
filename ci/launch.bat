@@ -28,7 +28,7 @@ REM [browser-tests] yoshi
 	if "%name%" == "yoshi" (
 		set machine=dfm-browser-tests
 		set parameters=--expose 2709 -P
-		set work_dir=site/Tests/Browser
+		set work_dir=
 	)
 
 REM [rust] doki
