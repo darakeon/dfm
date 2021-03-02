@@ -1,4 +1,7 @@
 FROM darakeon/netcore-libman-node-chrome
 MAINTAINER Dara Keon
+RUN apt update
+
 ENV ASPNETCORE_ENVIRONMENT=circleCI
 ENV MSBUILDSINGLELOADCONTEXT=1
+ENV ASPNETCORE_URLS=http://+:2709
