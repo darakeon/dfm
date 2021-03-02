@@ -15,7 +15,7 @@ Legend:
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="4.6.3.5"></a>4.6.3.5 :ant: <sup>`1`</sup>
-- [ ] `210117>......` Change server to linux
+- [x] `210117>210302` Change server to linux
 
 ## <a name="4.6.3.4"></a>4.6.3.4 :ant: <sup>`1`</sup>
 - [x] `210116>210116` Remove code that makes the log grow insanely
