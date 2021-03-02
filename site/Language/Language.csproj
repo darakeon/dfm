@@ -4,8 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>DFM.Language</AssemblyName>
     <RootNamespace>DFM.Language</RootNamespace>
-    <AssemblyVersion>4.6.3.4</AssemblyVersion>
-    <FileVersion>4.6.3.4</FileVersion>
+    <AssemblyVersion>4.6.3.5</AssemblyVersion>
+    <FileVersion>4.6.3.5</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
