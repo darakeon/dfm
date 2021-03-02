@@ -83,10 +83,6 @@ jobs:
           paths:
             - site/Tests/Browser/node_modules
       - run:
-          name: allow_scripts_to_execute
-          path: .circleci/browser
-          command: chmod +x call-site.sh run-tests.sh
-      - run:
           name: tests_browser
           command: .circleci/browser/run-tests.sh
       - store_artifacts:
