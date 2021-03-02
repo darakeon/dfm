@@ -6,8 +6,8 @@
 - [x] Create a docker machine to run .NET Core sites
 - [x] Run MEAK site inside Linux Docker
 - [x] Upload MEAK site to linux machine
-- [ ] Add certificate generation for site inside docker
-- [ ] Point MEAK domain to linux machine
-- [ ] Upload DfM site to linux machine
-- [ ] Point DfM domain to linux machine
-- [ ] Delete old smtp user
+- [x] Add certificate generation for site inside docker
+- [x] Point MEAK domain to linux machine
+- [x] Upload DfM site to linux machine
+- [x] Point DfM domain to linux machine
+- [x] Delete old smtp user
