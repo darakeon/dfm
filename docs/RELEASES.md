@@ -5,8 +5,8 @@
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
 - [go to published version](#4.6.3.5)
-- [go to version in development](#4.6.4.0)
-- [dev version state](../../4.6.4.0/docs/RELEASES.md#4.6.4.0)
+- [go to version in development](#4.6.3.6)
+- [dev version state](../../4.6.3.6/docs/RELEASES.md#4.6.3.6)
 
 Legend:
 - :dragon:: at least one huge change (increases first number)
@@ -14,8 +14,11 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="4.6.4.0"></a>4.6.4.0 :sheep: <sup>`1`</sup>
+## <a name="5.0.0.0"></a>5.0.0.0 :dragon: <sup>`1`</sup>
 - [ ] Adjust [accessibilitity]
+
+## <a name="4.6.3.6"></a>4.6.3.6 :ant: <sup>`1`</sup>
+- [x] `210304>210304` Adjust version size
 
 ## <a name="4.6.3.5"></a>4.6.3.5 :ant: <sup>`1`</sup>
 - [x] `210117>210302` Change server to linux
