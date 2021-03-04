@@ -834,3 +834,4 @@ Legend:
 [#42]: https://github.com/darakeon/dfm/issues/42
 [#21]: https://github.com/darakeon/dfm/issues/21
 [sitemap]: https://support.google.com/webmasters/answer/7451001
+[accessibilitity]: https://chrome.google.com/webstore/detail/axe-coconut-web-accessibi/iobddmbdndbbbfjopjdgadphaoihpojp?hl=en
