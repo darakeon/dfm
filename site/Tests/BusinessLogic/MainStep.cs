@@ -5,6 +5,7 @@ using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using DFM.Generic;
+using DFM.Generic.Datetime;
 using DFM.Language;
 using Keon.NHibernate.Schema;
 using Keon.NHibernate.Sessions;
@@ -113,6 +114,7 @@ namespace DFM.BusinessLogic.Tests
 			log("BeforeTestRun");
 
 			Cfg.Init();
+			TZ.Init(false);
 
 			SessionFactoryManager.Initialize<UserMap, User>(Cfg.DB);
 			SessionManager.Init(getTicketKey);
