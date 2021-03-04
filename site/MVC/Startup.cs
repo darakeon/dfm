@@ -1,3 +1,4 @@
+using DFM.Generic.Datetime;
 using DFM.MVC.Models;
 using DFM.MVC.Starters;
 using DFM.MVC.Starters.Routes;
@@ -35,6 +36,7 @@ namespace DFM.MVC
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime life)
 		{
 			BaseModel.IsDev = env.IsDevelopment();
+			TZ.Init(env.IsDevelopment());
 
 			Config.Initialize(env);
 

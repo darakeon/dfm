@@ -18,7 +18,7 @@ namespace DFM.Entities
 
 		public virtual DateTime Now()
 		{
-			return Config.TimeZone.Now();
+			return TZ.Now(Config.TimeZone);
 		}
 
 		public virtual Boolean WrongPassExceeded()

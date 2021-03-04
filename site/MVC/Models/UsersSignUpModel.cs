@@ -59,7 +59,7 @@ namespace DFM.MVC.Models
 			try
 			{
 				Info.Language = Language;
-				Info.TimeZone = TimeZoneOffset.GetTimeZone();
+				Info.TimeZone = TZ.GetTimeZone(TimeZoneOffset);
 				safe.SaveUser(Info);
 			}
 			catch (CoreError e)
