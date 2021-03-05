@@ -4,12 +4,28 @@
 
 a.navbar-brand {
 	height: 100%;
-	background:
-		url('/Assets/images/pig.svg')
-		no-repeat left center;
-	background-size: 35px;
-	padding-left: 50px;
+	padding-left: 0;
 }
+
+	a.navbar-brand img {
+		height: 1.5em;
+		margin: -0.7em 0.3em -0.5em 0;
+		display: inline;
+	}
+
+.logo {
+	font-size: 36px;
+	height: 71px;
+	padding: 13px 0 17px 0;
+	margin: 0 0 0 5px;
+	text-shadow: none;
+	line-height: inherit;
+}
+
+	.logo img {
+		height: 2em;
+		margin: -1em 0.2em -0.5em 0;
+	}
 
 .move-down {
 	margin-top: 25px;
@@ -40,17 +56,6 @@ footer {
 
 .side-vertical-button {
 	margin-top: 10px;
-}
-
-.logo {
-	font-size: 36px;
-	background: url('/Assets/images/pig.svg') left center no-repeat;
-	background-size: 85px;
-	height: 71px;
-	padding: 13px 0 17px 95px;
-	margin:	0 0 0 5px;
-	text-shadow: none;
-	line-height: inherit;
 }
 
 .btn-clear {
