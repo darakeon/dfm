@@ -120,6 +120,7 @@
 		"Search_Empty": "The terms '{0}' was not found at any move description or details",
 
 		"Aria_OpenLanguage": "open language options",
+		"Aria_AndroidLink": "link to android app", 
 	},
 	"pt-BR": {
 		"CurrentLanguage": "português",
@@ -242,5 +243,6 @@
 		"Search_Empty": "Os termos '{0}' não foram encontrados em quaisquer movimentações ou seus detalhes",
 
 		"Aria_OpenLanguage": "abrir opções de língua",
+		"Aria_AndroidLink": "link para o aplicativo android", 
 	}
 }
