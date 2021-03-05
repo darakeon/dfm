@@ -114,3 +114,7 @@ dt {
 dd {
 	font-style: italic;
 }
+
+.panel-heading h1 {
+	font-size: 1.5em;
+}
