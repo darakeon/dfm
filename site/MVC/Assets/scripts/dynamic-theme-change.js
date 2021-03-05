@@ -3,11 +3,12 @@
 
 	$("body").css("display", "block");
 
-	$(".theme-changer").click(function() {
-		var currentHref = $("#bootstrap-theme").attr("href");
-		var newTheme = $(this).data("theme");
+	$(".theme-changer").click(function () {
+		var currentTheme = window.currentTheme.toLowerCase();
+		var newTheme = $(this).data("theme").toLowerCase();
 
-		var newHref = currentHref.replace(window.currentTheme, newTheme);
+		var currentHref = $("#bootstrap-theme").attr("href");
+		var newHref = currentHref.replace(currentTheme, newTheme);
 
 		$("#bootstrap-theme").attr("href", newHref);
 		window.currentTheme = newTheme;
