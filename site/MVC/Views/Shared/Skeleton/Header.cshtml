@@ -27,9 +27,9 @@
 			<ul class="nav navbar-nav navbar-right">
 				@await Html.PartialAsync("Skeleton/Now")
 
-				<li class="flag @(Model.Language)" role='button' id="open-language" data-toggle='modal' data-target='#language-modal'>
+				<li class="flag @(Model.Language)" role='button' title="@Context.Translate("Aria_OpenLanguage")" id="open-language" data-toggle='modal' data-target='#language-modal'>
 					<a>
-						<img src="~/Assets/images/@(Model.Language.ToLower()).svg" />
+						<img src="~/Assets/images/@(Model.Language.ToLower()).svg" title="@Context.Translate("Aria_OpenLanguage")" />
 					</a>
 				</li>
 
