@@ -48,7 +48,9 @@ footer {
 	background-size: 85px;
 	height: 71px;
 	padding: 13px 0 17px 95px;
-	margin-left: 5px;
+	margin:	0 0 0 5px;
+	text-shadow: none;
+	line-height: inherit;
 }
 
 .btn-clear {
