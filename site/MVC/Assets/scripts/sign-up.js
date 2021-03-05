@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-	$("#TimeZoneOffset").val(
+	$('#TimeZoneOffset').val(
 		-new Date().getTimezoneOffset()
 	)
 })

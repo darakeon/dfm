@@ -1,20 +1,20 @@
 ﻿$(document).ready(function () {
-	$(".suggest-field").change(suggestUrl);
-});
+	$('.suggest-field').change(suggestUrl)
+})
 
 function suggestUrl(obj) {
-	var field = $(obj.target);
-	var name = field.val();
+	const field = $(obj.target)
+	const name = field.val()
 
-	var targetField = $(field.data("target"));
-	var url = targetField.val();
+	const targetField = $(field.data('target'))
+	var url = targetField.val()
 
-	if (name !== "" && url === "") {
+	if (name !== '' && url === '') {
 		url = name
 			.toLowerCase()
-			.replace(/[ ]/g, "_")
-			.replace(/[^a-z0-9_]/g, "");
+			.replace(/[ ]/g, '_')
+			.replace(/[^a-z0-9_]/g, '')
 
-		targetField.val(url);
+		targetField.val(url)
 	}
 }
