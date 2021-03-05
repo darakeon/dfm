@@ -35,7 +35,7 @@ describe('Open site', () => {
 
 		let button = await puppy.content('#open-language')
 		await expect(button).toContain(
-			'<img src="/Assets/images/pt-br.svg">'
+			'/Assets/images/pt-br.svg'
 		)
 
 		await page.click('#open-language')
@@ -49,7 +49,7 @@ describe('Open site', () => {
 
 		button = await puppy.content('#open-language')
 		await expect(button).toContain(
-			'<img src="/Assets/images/en-us.svg">'
+			'/Assets/images/en-us.svg'
 		)
 	})
 
@@ -60,7 +60,7 @@ describe('Open site', () => {
 		let button = await puppy.content('#open-language')
 
 		await expect(button).toContain(
-			'<img src="/Assets/images/pt-br.svg">'
+			'/Assets/images/pt-br.svg'
 		)
 
 		await page.click('#open-language')
@@ -74,7 +74,7 @@ describe('Open site', () => {
 
 		button = await puppy.content('#open-language')
 		await expect(button).toContain(
-			'<img src="/Assets/images/en-us.svg">'
+			'/Assets/images/en-us.svg'
 		)
 	})
 
