@@ -23,7 +23,7 @@
 	<link href="~/Assets/styles/default.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
 	<link href="~/Assets/styles/language.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
 
-	@RenderSection("Styles", false)
+	@await RenderSectionAsync("Styles", false)
 
 	<script src="~/Assets/libs/jquery/jquery.min.js?v=@Cfg.Version" type="text/javascript"></script>
 	<script src="~/Assets/libs/bootstrap/umd/popper.min.js?v=@Cfg.Version" type="text/javascript"></script>
@@ -39,7 +39,7 @@
 
 	<script src="~/Assets/libs/jquery/jquery.unobtrusive-ajax.min.js?v=@Cfg.Version"></script>
 
-	@RenderSection("Scripts", false)
+	@await RenderSectionAsync("Scripts", false)
 </head>
 <body>
 	@await Html.PartialAsync("Skeleton/Header")
