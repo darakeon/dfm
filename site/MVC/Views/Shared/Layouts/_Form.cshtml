@@ -37,7 +37,7 @@
 				<div class="panel-title"></div>
 
 				<div class="panel-footer text-right">
-					@RenderSection("Footer", false)
+					@await RenderSectionAsync("Footer", false)
 				</div>
 			}
 		</div>
@@ -45,5 +45,5 @@
 	</div>
 </div>
 
-@section Scripts { @RenderSection("Scripts", false) }
-@section Styles { @RenderSection("Styles", false) }
+@section Scripts { @await RenderSectionAsync("Scripts", false) }
+@section Styles { @await RenderSectionAsync("Styles", false) }

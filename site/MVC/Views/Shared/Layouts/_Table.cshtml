@@ -37,7 +37,7 @@
 
 	@* No, it shouldn't be here *@
 	<div class="hidden">
-		@RenderSection("TableHeader", false)
+		@await RenderSectionAsync("TableHeader", false)
 	</div>
 }
 else
@@ -57,7 +57,7 @@ else
 
 				<table class="table table-striped table-hover table-responsive">
 					<thead>
-						@RenderSection("TableHeader", false)
+						@await RenderSectionAsync("TableHeader", false)
 					</thead>
 					<tbody>
 						@RenderBody()
