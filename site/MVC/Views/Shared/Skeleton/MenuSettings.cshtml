@@ -2,6 +2,6 @@
 	var route = new Default.Main();
 }
 
-<a href="@Url.RouteUrl(route.Name, new {action = "Config", controller = "Users", area = route.Area})">
+<a href="@Url.RouteUrl(route.Name, new {action = "Config", controller = "Users", area = route.Area})" role="button">
 	<span class="glyphicon glyphicon-cog" title="@Context.Translate("Settings")"></span>
 </a>
