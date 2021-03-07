@@ -21,6 +21,11 @@ namespace DFM.MVC.Starters
 
 				app.Use(async (context, next) =>
 				{
+					var path = context.Request.Path.Value;
+
+					if (path != null && path.StartsWith("/Assets"))
+						return;
+
 					SessionManager.Init(
 						() => BrowserId.Get(() => context)
 					);
