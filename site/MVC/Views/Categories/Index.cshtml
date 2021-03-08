@@ -24,9 +24,11 @@
 
 @foreach (var category in Model.CategoryList)
 {
+	var name = category.Name;
+
 	<tr class="row">
 		<td class="col-sm-6">
-			@category.Name
+			@name
 		</td>
 
 		<td class="col-sm-2 text-center">
@@ -37,7 +39,7 @@
 			<a href="@Url.Action("Edit", "Categories", new { id = category.Name })">
 				<span
 					class="glyphicon glyphicon-edit"
-					title="@Context.Translate("Edit")"
+					title="@Context.Translate("Edit") @name"
 				></span>
 			</a>
 		</td>
@@ -47,14 +49,16 @@
 			{
 				@await Html.PartialAsync("Extensions/MicroForm",
 					MicroForm.WithGlyph(Context, "eye-close", "Disable")
-						.AddIdUrl("Disable", category.Name)
+						.AddIdUrl("Disable", name)
+						.EntityName(name)
 				)
 			}
 			else
 			{
 				@await Html.PartialAsync("Extensions/MicroForm",
 					MicroForm.WithGlyph(Context, "eye-open", "Enable")
-						.AddIdUrl("Enable", category.Name)
+						.AddIdUrl("Enable", name)
+						.EntityName(name)
 				)
 			}
 		</td>
