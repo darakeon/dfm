@@ -103,6 +103,7 @@
 			@await Html.PartialAsync("Extensions/MicroForm",
 				MicroForm.WithGlyph(Context, "trash", "Delete")
 					.AddIdUrl("Delete", schedule.Guid)
+					.EntityName(schedule.Description)
 			)
 		</td>
 	</tr>
