@@ -5,6 +5,7 @@ using DFM.Language;
 using DFM.Language.Emails;
 using DFM.Entities.Enums;
 using Keon.Util.Extensions;
+using Theme = DFM.Language.Emails.Theme;
 
 namespace DFM.Email
 {
@@ -13,17 +14,17 @@ namespace DFM.Email
 		public String Subject { get; set; }
 		public String Layout { get; set; }
 
-		public static Format MoveNotification(String language, SimpleTheme theme)
+		public static Format MoveNotification(String language, Theme theme)
 		{
 			return new Format(language, theme, EmailType.MoveNotification, EmailType.MoveNotification);
 		}
 
-		public static Format SecurityAction(String language, SimpleTheme theme, SecurityAction securityAction)
+		public static Format SecurityAction(String language, Theme theme, SecurityAction securityAction)
 		{
 			return new Format(language, theme, EmailType.SecurityAction, securityAction);
 		}
 
-		private Format(String language, SimpleTheme theme, EmailType type, object layoutType)
+		private Format(String language, Theme theme, EmailType type, object layoutType)
 		{
 			var layoutName = layoutType.ToString();
 
@@ -35,7 +36,7 @@ namespace DFM.Email
 			Layout = FormatEmail(theme, type, replaces);
 		}
 
-		public static String FormatEmail<T>(SimpleTheme theme, EmailType type, IDictionary<String, T> replaces)
+		public static String FormatEmail<T>(Theme theme, EmailType type, IDictionary<String, T> replaces)
 		{
 			return PlainText.Html[theme, type]
 				.Format(

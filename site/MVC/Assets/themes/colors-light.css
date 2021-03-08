@@ -1,0 +1,90 @@
+/* ReSharper disable RequiresFallbackColor */
+:root {
+	--neutral-0: #EEE;
+	--neutral-1: #DDD;
+	--neutral-2: #CCC;
+	--neutral-3: #BBB;
+	--neutral-4: #999;
+	--neutral-5: #333;
+	--neutral-6: #111;
+	--transparent-0-0-0: rgba(0, 0, 0, 0.05);
+	--transparent-0-0-1: rgba(0, 0, 0, 0.05) 0;
+	--transparent-0-0-2: rgba(0, 0, 0, 0.05) 100%;
+	--transparent-0-1: rgba(0, 0, 0, 0.075);
+	--transparent-0-2: rgba(0, 0, 0, 0.1);
+	--transparent-0-3: rgba(0, 0, 0, 0.125);
+	--transparent-0-4: rgba(0, 0, 0, 0.15);
+	--transparent-0-5: rgba(0, 0, 0, 0.175);
+	--transparent-0-6: rgba(0, 0, 0, 0.2);
+	--transparent-0-7: rgba(0, 0, 0, 0.25);
+	--transparent-0-8-0: rgba(0, 0, 0, 0.5);
+	--transparent-0-8-1: rgba(0, 0, 0, 0.5) 0;
+	--transparent-0-8-2: rgba(0, 0, 0, 0.5) 100%;
+	--transparent-0-9: rgba(0, 0, 0, 0.6);
+	--transparent-1: rgba(85, 85, 85, 0.6);
+	--transparent-2-0: rgba(255, 255, 255, 0.1);
+	--transparent-2-1-0: rgba(255, 255, 255, 0.15) 25%;
+	--transparent-2-1-1: rgba(255, 255, 255, 0.15) 50%;
+	--transparent-2-1-2: rgba(255, 255, 255, 0.15) 75%;
+	--default-0: #555;
+	--default-1: #333;
+	--default-2: #222;
+	--default-3: #111;
+	--success-0: #175;
+	--success-1: #164;
+	--success-2: #153;
+	--success-3: #142;
+	--success-4: #131;
+	--success-5: #120;
+	--info-0: #259;
+	--info-1: #248;
+	--info-2: #237;
+	--info-3: #226;
+	--info-4: #215;
+	--info-5: #204;
+	--warning-0: #952;
+	--warning-1: #852;
+	--warning-2: #741;
+	--warning-3: #641;
+	--warning-4: #530;
+	--warning-5: #430;
+	--danger-0: #b32;
+	--danger-1: #a32;
+	--danger-2: #921;
+	--danger-3: #821;
+	--danger-4: #710;
+	--danger-5: #610;
+}
+
+:root {
+	--magic-primary-0: #436;
+	--magic-primary-1: #325;
+	--magic-primary-2: #214;
+	--magic-primary-3: #103;
+	--magic-highlight-0: #700;
+	--magic-highlight-1: #600;
+	--magic-highlight-2: #500;
+	--magic-highlight-3: #400;
+}
+
+:root {
+	--sober-primary-0: #345;
+	--sober-primary-1: #234;
+	--sober-primary-2: #123;
+	--sober-primary-3: #012;
+	--sober-highlight-0: #660;
+	--sober-highlight-1: #550;
+	--sober-highlight-2: #440;
+	--sober-highlight-3: #330;
+}
+
+:root {
+	--nature-primary-0: #354;
+	--nature-primary-1: #243;
+	--nature-primary-2: #132;
+	--nature-primary-3: #021;
+	--nature-highlight-0: #950;
+	--nature-highlight-1: #840;
+	--nature-highlight-2: #730;
+	--nature-highlight-3: #620;
+}

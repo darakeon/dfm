@@ -39,7 +39,7 @@ namespace DFM.BusinessLogic.Response
 		public DateTime Now { get; }
 		public String TimeZone { get; }
 		public String Language { get; }
-		public BootstrapTheme Theme { get; }
+		public Theme Theme { get; }
 
 		public Boolean UseCategories { get; }
 		public Boolean MoveCheck { get; }

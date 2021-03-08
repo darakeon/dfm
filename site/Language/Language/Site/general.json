@@ -45,6 +45,7 @@
 		"YellowLimit": "Watchout",
 		"GreenLimit": "All right",
 		"NoneLimit": "No limit",
+		"Zero": "Zero", 
 		"Settings": "Settings",
 
 		"Language": "Language",
@@ -168,6 +169,7 @@
 		"YellowLimit": "Atenção",
 		"GreenLimit": "Tudo bem",
 		"NoneLimit": "Sem limites",
+		"Zero": "Zero",
 		"Settings": "Configurações",
 
 		"Language": "Língua",

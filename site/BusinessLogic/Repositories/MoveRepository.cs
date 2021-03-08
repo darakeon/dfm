@@ -67,7 +67,7 @@ namespace DFM.BusinessLogic.Repositories
 
 			var nature = PlainText.Site["general", config.Language, move.Nature.ToString()];
 
-			var format = Format.MoveNotification(config.Language, config.Theme.Simplify());
+			var format = Format.MoveNotification(config.Language, config.Theme.Convert());
 
 			var dic = new Dictionary<String, String>
 			{
@@ -125,7 +125,7 @@ namespace DFM.BusinessLogic.Repositories
 			{
 				var email = Format.FormatEmail
 				(
-					config.Theme.Simplify(),
+					config.Theme.Convert(),
 					EmailType.Detail,
 					new Dictionary<String, object> {
 						{ "Description", detail.Description },

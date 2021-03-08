@@ -17,7 +17,7 @@
 			</div>
 			
 			@await Html.PartialAsync("Extensions/MicroForm",
-				MicroForm.WithResource(Context, Context.Translate("Wizard_End"), "btn btn-sm btn-default pull-right")
+				MicroForm.WithResource(Context, Context.Translate("Wizard_End"), "btn btn-sm btn-info pull-right")
 					.AddRouteUrl<Default.Main>("Users", "EndWizard")
 			)
 		</div>

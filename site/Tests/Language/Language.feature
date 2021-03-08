@@ -26,6 +26,9 @@ Scenario: 02. Get translations of Enums
 			| Schedules | ScheduleFrequency |
 			| Tokens    | SecurityAction    |
 			| General   | OperationType     |
+			| Users     | Theme             |
+			| Users     | ThemeBrightness   |
+			| Users     | ThemeColor        |
 	When I try get the translate
 	Then I will receive no language error
 

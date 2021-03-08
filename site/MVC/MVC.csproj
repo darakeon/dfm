@@ -35,24 +35,6 @@
     <None Remove="Assets\images\ptbr_apps_rgb_wo.jpg" />
     <None Remove="Assets\scripts\table-sum.js" />
     <None Remove="Assets\styles\reports.css" />
-    <None Remove="Assets\themes\bootstrap-cerulean.min.css" />
-    <None Remove="Assets\themes\bootstrap-cosmo.min.css" />
-    <None Remove="Assets\themes\bootstrap-cyborg.min.css" />
-    <None Remove="Assets\themes\bootstrap-darkly.min.css" />
-    <None Remove="Assets\themes\bootstrap-flatly.min.css" />
-    <None Remove="Assets\themes\bootstrap-journal.min.css" />
-    <None Remove="Assets\themes\bootstrap-lumen.min.css" />
-    <None Remove="Assets\themes\bootstrap-none.min.css" />
-    <None Remove="Assets\themes\bootstrap-paper.min.css" />
-    <None Remove="Assets\themes\bootstrap-readable.min.css" />
-    <None Remove="Assets\themes\bootstrap-sandstone.min.css" />
-    <None Remove="Assets\themes\bootstrap-simplex.min.css" />
-    <None Remove="Assets\themes\bootstrap-slate.min.css" />
-    <None Remove="Assets\themes\bootstrap-solar.min.css" />
-    <None Remove="Assets\themes\bootstrap-spacelab.min.css" />
-    <None Remove="Assets\themes\bootstrap-superhero.min.css" />
-    <None Remove="Assets\themes\bootstrap-united.min.css" />
-    <None Remove="Assets\themes\bootstrap-yeti.min.css" />
     <None Remove="Assets\scripts\default.js" />
     <None Remove="Assets\scripts\dynamic-theme-change.js" />
     <None Remove="Assets\scripts\move-crud.js" />
@@ -67,6 +49,18 @@
     <None Remove="Assets\styles\language.css" />
     <None Remove="Assets\styles\qrcode.css" />
     <None Remove="Assets\styles\updates.css" />
+    <None Remove="Assets\themes\bootstrap.min.css" />
+    <None Remove="Assets\themes\colors-dark.css" />
+    <None Remove="Assets\themes\colors-darkmagic.css" />
+    <None Remove="Assets\themes\colors-darknature.css" />
+    <None Remove="Assets\themes\colors-darksober.css" />
+    <None Remove="Assets\themes\colors-light.css" />
+    <None Remove="Assets\themes\colors-lightmagic.css" />
+    <None Remove="Assets\themes\colors-lightnature.css" />
+    <None Remove="Assets\themes\colors-lightsober.css" />
+    <None Remove="Assets\themes\colors-magic.css" />
+    <None Remove="Assets\themes\colors-nature.css" />
+    <None Remove="Assets\themes\colors-sober.css" />
   </ItemGroup>
 
   <ItemGroup>
@@ -145,63 +139,46 @@
     <Content Include="Assets\styles\updates.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\themes\bootstrap-cerulean.min.css">
+    <Content Include="Assets\themes\bootstrap.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\themes\bootstrap-cosmo.min.css">
+    <Content Include="Assets\themes\colors-darknature.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\themes\bootstrap-cyborg.min.css">
+    <Content Include="Assets\themes\colors-nature.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\themes\bootstrap-darkly.min.css">
+    <Content Include="Assets\themes\colors-sober.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\themes\bootstrap-flatly.min.css">
+    <Content Include="Assets\themes\colors-dark.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\themes\bootstrap-journal.min.css">
+    <Content Include="Assets\themes\colors-darksober.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\themes\bootstrap-lumen.min.css">
+    <Content Include="Assets\themes\colors-darkmagic.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\themes\bootstrap-none.min.css">
+    <Content Include="Assets\themes\colors-lightnature.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\themes\bootstrap-paper.min.css">
+    <Content Include="Assets\themes\colors-magic.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\themes\bootstrap-readable.min.css">
+    <Content Include="Assets\themes\colors-light.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\themes\bootstrap-sandstone.min.css">
+    <Content Include="Assets\themes\colors-lightsober.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\themes\bootstrap-simplex.min.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\themes\bootstrap-slate.min.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\themes\bootstrap-solar.min.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\themes\bootstrap-spacelab.min.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\themes\bootstrap-superhero.min.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\themes\bootstrap-united.min.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\themes\bootstrap-yeti.min.css">
+    <Content Include="Assets\themes\colors-lightmagic.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
     <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" />
     <PackageReference Include="Keon.MVC" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.9" />
@@ -259,6 +236,9 @@
     </None>
     <None Update="Assets\libs\jquery\qrcode.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\themes\bootstrap.css">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

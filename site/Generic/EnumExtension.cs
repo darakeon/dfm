@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DFM.Generic
 {
@@ -6,7 +8,14 @@ namespace DFM.Generic
 	{
 		public static T Parse<T>(String value)
 		{
-			return (T)Enum.Parse(typeof (T), value, true);
+			return (T)Enum.Parse(typeof(T), value, true);
+		}
+
+		public static List<T> AllValues<T>()
+		{
+			return Enum.GetValues(typeof(T))
+				.Cast<T>()
+				.ToList();
 		}
 	}
 }

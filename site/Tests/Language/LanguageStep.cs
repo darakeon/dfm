@@ -9,6 +9,7 @@ using DFM.Language.Extensions;
 using DFM.Tests.Util;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using Theme = DFM.Language.Emails.Theme;
 
 namespace DFM.Language.Tests
 {
@@ -87,7 +88,7 @@ namespace DFM.Language.Tests
 		public void GivenIHaveTheseThemes(Table table)
 		{
 			themes = table.Rows
-				.Select(r => (SimpleTheme)Enum.Parse(typeof(SimpleTheme), r["Phrase"]))
+				.Select(r => (Theme)Enum.Parse(typeof(Theme), r["Phrase"]))
 				.ToList();
 		}
 
@@ -238,9 +239,9 @@ namespace DFM.Language.Tests
 			set => set("emailTypes", value);
 		}
 
-		private static IList<SimpleTheme> themes
+		private static IList<Theme> themes
 		{
-			get => get<IList<SimpleTheme>>("themes");
+			get => get<IList<Theme>>("themes");
 			set => set("themes", value);
 		}
 

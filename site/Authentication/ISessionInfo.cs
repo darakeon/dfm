@@ -14,7 +14,7 @@ namespace DFM.Authentication
 		DateTime Now { get; }
 		String TimeZone { get; }
 		String Language { get; }
-		BootstrapTheme Theme { get; }
+		Theme Theme { get; }
 
 		Boolean UseCategories { get; }
 		Boolean MoveCheck { get; }

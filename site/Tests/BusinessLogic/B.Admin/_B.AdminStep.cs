@@ -50,9 +50,9 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		}
 
 
-		private static BootstrapTheme theme
+		private static Theme theme
 		{
-			get => get<BootstrapTheme>("theme");
+			get => get<Theme>("theme");
 			set => set("theme", value);
 		}
 
@@ -958,7 +958,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 
 		#region ChangeTheme
 		[Given(@"a theme (\w+)")]
-		public void GivenAThemeSlate(BootstrapTheme chosenTheme)
+		public void GivenAThemeSlate(Theme chosenTheme)
 		{
 			theme = chosenTheme;
 		}
@@ -977,7 +977,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		}
 
 		[Then(@"the Theme will be (\w+)")]
-		public void ThenTheThemeWillBeSlate(BootstrapTheme chosenTheme)
+		public void ThenTheThemeWillBeSlate(Theme chosenTheme)
 		{
 			Assert.AreEqual(chosenTheme, current.Theme);
 		}

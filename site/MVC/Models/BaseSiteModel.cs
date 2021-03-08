@@ -16,7 +16,9 @@ namespace DFM.MVC.Models
 
 		public Boolean IsUsingCategories => isUsingCategories;
 
-		public BootstrapTheme Theme => theme;
+		public Theme Theme => theme;
+		public ThemeColor Color => theme.Color();
+		public ThemeBrightness Brightness => theme.Brightness();
 		public String Language => language;
 
 		public Boolean ShowWizard => wizard;

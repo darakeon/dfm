@@ -116,7 +116,7 @@ namespace DFM.Authentication
 		public DateTime Now => session?.Now ?? DateTime.UtcNow;
 		public String TimeZone => session?.TimeZone;
 		public String Language => session?.Language;
-		public BootstrapTheme Theme => session?.Theme ?? Defaults.DefaultTheme;
+		public Theme Theme => session?.Theme ?? Defaults.DefaultTheme;
 
 		public Boolean UseCategories => session?.UseCategories ?? Defaults.ConfigUseCategories;
 		public Boolean MoveCheck => session?.MoveCheck ?? Defaults.ConfigMoveCheck;

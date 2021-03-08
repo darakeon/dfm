@@ -1,0 +1,11 @@
+[
+	{
+		"outputFileName": "Assets/themes/bootstrap.min.css",
+		"inputFiles": [
+			"Assets/themes/bootstrap.css"
+		],
+		"minify": {
+			"enabled": true
+		}
+	}
+]

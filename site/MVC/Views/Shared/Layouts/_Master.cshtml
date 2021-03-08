@@ -18,7 +18,14 @@
 	<link rel="shortcut icon" type="image/ico" href="~/Assets/images/pig.ico?v=@Cfg.Version" />
 	<meta property="og:image" content="https://dontflymoney.com/Assets/images/face-pig.png?v=@Cfg.Version" />
 
-	<link href="~/Assets/themes/bootstrap-@(theme).min.css?v=@Cfg.Version" rel="stylesheet" type="text/css" id="bootstrap-theme" />
+	<environment include="Development">
+		<link href="~/Assets/themes/bootstrap.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
+	</environment>
+	<environment exclude="Development">
+		<link href="~/Assets/themes/bootstrap.min.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
+	</environment>
+
+	<link href="~/Assets/themes/colors-@(theme).css?v=@Cfg.Version" rel="stylesheet" type="text/css" id="bootstrap-theme" />
 	<link href="~/Assets/styles/android.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
 	<link href="~/Assets/styles/default.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
 	<link href="~/Assets/styles/language.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
