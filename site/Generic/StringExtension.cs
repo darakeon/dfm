@@ -10,5 +10,10 @@ namespace DFM.Generic
 				.Replace(Environment.NewLine, "<br />")
 				.Replace("\n", "<br />");
 		}
+
+		public static String Format(this String format, params object[] args)
+		{
+			return String.Format(format, args);
+		}
 	}
 }

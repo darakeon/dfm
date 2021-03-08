@@ -42,8 +42,8 @@ namespace DFM.MVC.Helpers.Views
 		private readonly Dictionary<String, String> route;
 
 		public String Glyphicon { get; }
-		public String Text { get; }
 		public String Class { get; }
+		public String Text { get; private set; }
 
 		public String RouteName { get; private set; }
 		public object RouteValues { get; private set; }
@@ -145,6 +145,12 @@ namespace DFM.MVC.Helpers.Views
 		{
 			Ajax = true;
 			UpdateTargetId = updateTargetId;
+			return this;
+		}
+
+		public MicroForm EntityName(String entity)
+		{
+			Text += " " + entity;
 			return this;
 		}
 	}

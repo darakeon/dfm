@@ -24,6 +24,8 @@
 
 @foreach (var account in Model.AccountList)
 {
+	var name = account.Name;
+
 	var reports = new
 	{
 		area = route.Area,
@@ -36,8 +38,8 @@
 	<tr class="row">
 
 		<td class="col-sm-2">
-			@Html.RouteLink(account.Name, route.Name, reports,
-				new { title = Context.Translate("AccountMoves") }
+			@Html.RouteLink(name, route.Name, reports,
+				new { title = Context.Translate("AccountMoves").Format(name) }
 			)
 		</td>
 
@@ -64,7 +66,7 @@
 		<td class="col-sm-1 text-center">
 			<a href="@Url.RouteUrl(route.Name, reports)">
 				<span class="glyphicon glyphicon-th-list"
-				      title="@Context.Translate("AccountMoves")"></span>
+				      title="@Context.Translate("AccountMoves").Format(name)"></span>
 			</a>
 		</td>
 
