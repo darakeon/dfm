@@ -33,7 +33,7 @@
 		var name = tab.ToString();
 		var lower = name.ToLower();
 
-		var button = $"{Context.Translate($"Save")} {Context.Translate($"{name}Settings")}";
+		var button = Context.Translate("Save", $"{name}Settings");
 
 		if (tab == UsersConfigModel.Form.TFA && Model.TFA.IsActive)
 		{
