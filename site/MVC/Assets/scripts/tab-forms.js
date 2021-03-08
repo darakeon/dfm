@@ -10,8 +10,14 @@
 		const submitText = $(this).find('.tab-text').data('button')
 
 		$('.tab-submit').html(submitText)
+
+		location.href = $(this).children().attr('href')
 	})
 
-	const tabCaller = `.${$('#ActiveForm').val().toLowerCase()}-caller`
-	$(tabCaller).find('a').click()
+	var chosen = location.href.split('#')[1]
+		|| $('#ActiveForm').val().toLowerCase()
+	if (chosen) {
+		const tabCaller = `.${chosen}-caller`
+		$(tabCaller).find('a').click()
+	}
 })
