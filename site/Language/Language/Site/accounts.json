@@ -13,7 +13,7 @@
 		"AccountHasLimit": "Account has limits",
 		"Url": "Url",
 		"AcceptedUrlCharacters": "Use just letters (without accents), numbers and underlines (&quot;_&quot;)",
-		"AccountMoves": "Account Moves",
+		"AccountMoves": "{0} Moves",
 	},
 	"pt-BR": {
 		"NoAccounts": "Não há Contas ainda.",
@@ -29,6 +29,6 @@
 		"AccountHasLimit": "Mostrar sinalização na Conta",
 		"Url": "Url",
 		"AcceptedUrlCharacters": "Use apenas letras (sem acentos), números e underlines (&quot;_&quot;)",
-		"AccountMoves": "Movimentações da Conta"
+		"AccountMoves": "Movimentações de {0}"
 	},
 }

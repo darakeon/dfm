@@ -1,4 +1,5 @@
-﻿@model AccountsIndexModel
+﻿@using Keon.Util.Extensions
+@model AccountsIndexModel
 
 @{
 	ViewBag.Title = Context.Translate("Accounts");
@@ -32,6 +33,8 @@
 
 @foreach (var account in Model.AccountList)
 {
+	var name = account.Name;
+
 	var reports = new
 	{
 		area = route.Area,
@@ -41,8 +44,8 @@
 
 	<tr class="row">
 		<td class="col-sm-5">
-			@Html.RouteLink(account.Name, route.Name, reports,
-				new { title = Context.Translate("AccountMoves") }
+			@Html.RouteLink(name, route.Name, reports,
+				new { title = Context.Translate("AccountMoves").Format(name) }
 			)
 		</td>
 
@@ -60,15 +63,15 @@
 		<td class="col-sm-1 text-center">
 			<a href="@Url.RouteUrl(route.Name, reports)">
 				<span class="glyphicon glyphicon-th-list"
-					  title="@Context.Translate("AccountMoves")"></span>
-			</a>
+					  title="@Context.Translate("AccountMoves").Format(name)"></span>
+			</a>	
 		</td>
 
 		<td class="col-sm-1 text-center">
 			<a href="@Url.Action("Edit", "Accounts", new {id = account.Url})">
 				<span
 					class="glyphicon glyphicon-edit"
-					title="@Context.Translate("Edit")"
+					title="@Context.Translate("Edit") @name"
 				></span>
 			</a>
 		</td>
@@ -79,6 +82,7 @@
 				@await Html.PartialAsync("Extensions/MicroForm",
 					MicroForm.WithGlyph(Context, "eye-close", "Close")
 						.AddIdUrl("Close", account.Url)
+						.EntityName(name)
 				)
 			}
 			else
@@ -86,6 +90,7 @@
 				@await Html.PartialAsync("Extensions/MicroForm",
 					MicroForm.WithGlyph(Context, "trash", "Delete")
 						.AddIdUrl("Delete", account.Url)
+						.EntityName(name)
 				)
 			}
 		</td>
