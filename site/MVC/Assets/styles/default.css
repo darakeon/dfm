@@ -17,7 +17,7 @@ a.navbar-brand {
 	font-size: 36px;
 	height: 71px;
 	padding: 13px 0 17px 0;
-	margin: 0 0 0 5px;
+	margin: 15px 0 0 5px;
 	text-shadow: none;
 	line-height: inherit;
 }
@@ -118,4 +118,27 @@ dd {
 
 .panel-heading h1 {
 	font-size: 1.5em;
+}
+
+.money {
+	font-weight: bold;
+}
+
+.navbar a:focus,
+.navbar a:hover,
+.navbar a:focus span,
+.navbar a:hover span {
+	text-shadow:
+		 1px  0   var(--neutral-5),
+		 0    1px var(--neutral-5),
+		 0   -1px var(--neutral-5),
+		-1px  0   var(--neutral-5);
+}
+
+.clock > a:hover, .clock > a:focus {
+	text-shadow: none;
+}
+
+:focus {
+	outline: none;
 }

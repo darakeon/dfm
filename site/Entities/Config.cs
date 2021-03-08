@@ -15,7 +15,7 @@ namespace DFM.Entities
 		public virtual Boolean UseCategories { get; set; }
 		public virtual Boolean MoveCheck { get; set; }
 
-		public virtual BootstrapTheme Theme { get; set; }
+		public virtual Theme Theme { get; set; }
 
 		public virtual Boolean Wizard { get; set; }
 

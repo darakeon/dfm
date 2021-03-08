@@ -1,0 +1,10 @@
+:root {
+	--primary-0: var(--magic-primary-0);
+	--primary-1: var(--magic-primary-1);
+	--primary-2: var(--magic-primary-2);
+	--primary-3: var(--magic-primary-3);
+	--highlight-0: var(--magic-highlight-0);
+	--highlight-1: var(--magic-highlight-1);
+	--highlight-2: var(--magic-highlight-2);
+	--highlight-3: var(--magic-highlight-3);
+}

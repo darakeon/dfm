@@ -8,7 +8,7 @@ namespace DFM.Language.Emails
 	{
 		private static readonly String path = Path.Combine(PlainText.CurrentPath, "Email");
 
-		public String this[SimpleTheme simpleTheme, EmailType emailType]
+		public String this[Theme theme, EmailType emailType]
 		{
 			get
 			{
@@ -18,7 +18,7 @@ namespace DFM.Language.Emails
 				if (emailType < 0)
 					return mainContent;
 
-				var masterPath = Path.Combine(path, $"{simpleTheme}Master.htm");
+				var masterPath = Path.Combine(path, $"{theme}Master.htm");
 				var masterContent = getContent(masterPath);
 
 				return masterContent

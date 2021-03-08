@@ -33,7 +33,7 @@ namespace DFM.MVC.Models
 		protected Current current => service.Current;
 
 		protected DateTime now => current.Now;
-		protected BootstrapTheme theme => current.Theme;
+		protected Theme theme => current.Theme;
 		protected String language => translator.Language;
 		protected Boolean wizard => current.Wizard;
 

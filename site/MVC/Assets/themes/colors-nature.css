@@ -1,0 +1,10 @@
+:root {
+	--primary-0: var(--nature-primary-0);
+	--primary-1: var(--nature-primary-1);
+	--primary-2: var(--nature-primary-2);
+	--primary-3: var(--nature-primary-3);
+	--highlight-0: var(--nature-highlight-0);
+	--highlight-1: var(--nature-highlight-1);
+	--highlight-2: var(--nature-highlight-2);
+	--highlight-3: var(--nature-highlight-3);
+}

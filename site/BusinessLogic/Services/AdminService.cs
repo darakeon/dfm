@@ -314,9 +314,9 @@ namespace DFM.BusinessLogic.Services
 		#endregion Config
 
 		#region Theme
-		public void ChangeTheme(BootstrapTheme theme)
+		public void ChangeTheme(Theme theme)
 		{
-			if (theme == BootstrapTheme.None)
+			if (theme == Theme.None)
 				throw Error.InvalidTheme.Throw();
 
 			var user = parent.Safe.GetCurrent();

@@ -6,9 +6,9 @@ namespace DFM.MVC.Areas.Api.Models
 {
 	public class Environment
 	{
-		public Environment(BootstrapTheme theme, String language)
+		public Environment(Theme theme, String language)
 		{
-			MobileTheme = theme.Simplify().ToString();
+			MobileTheme = theme.Convert().ToString();
 			Language = language;
 		}
 

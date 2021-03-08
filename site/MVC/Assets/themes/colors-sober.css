@@ -1,0 +1,10 @@
+:root {
+	--primary-0: var(--sober-primary-0);
+	--primary-1: var(--sober-primary-1);
+	--primary-2: var(--sober-primary-2);
+	--primary-3: var(--sober-primary-3);
+	--highlight-0: var(--sober-highlight-0);
+	--highlight-1: var(--sober-highlight-1);
+	--highlight-2: var(--sober-highlight-2);
+	--highlight-3: var(--sober-highlight-3);
+}

@@ -1,5 +1,4 @@
-﻿@using DFM.Language.Extensions
-@model UsersConfigModel
+﻿@model UsersConfigModel
 
 @Html.HiddenFor(m => m.ThemeOpt.Theme, new { @class = "theme-changer-hidden" })
 
@@ -9,65 +8,92 @@
 		Context.Translate("ThemeLink")
 			.Replace(
 				"{{link}}",
-				"<a href='https://bootswatch.com' target='_blank'>Bootswatch</a>"
+				"<a href='https://bootswatch.com/flatly/' target='_blank'>Bootswatch (Flatly)</a>"
 			)
 	)
 </div>
 
-<div class="row">
-	<div class="col-lg-3 col-sm-3 text-center">
-		<div class="btn-group-vertical btn-group-sm">
-			@foreach (var theme in Model.ThemeOpt.ThemeList)
-			{
-				<button class="btn btn-sm btn-default theme-changer @(theme == Model.Theme ? "active" : "")"
-				        data-theme="@theme" type="button">
-					@theme
-				</button>
-			}
-		</div>
+<div class="text-center">
+	<div class="btn-group pull-left">
+		@foreach (var brightness in Model.ThemeOpt.BrightnessList)
+		{
+			<button class="btn btn-sm btn-default theme-changer @(brightness == Model.Brightness ? "active" : "")"
+					data-choice="@brightness" data-type="brightness" type="button">
+				<small>@Context.Translate(brightness.ToString())</small>
+			</button>
+		}
 	</div>
 
-	<div class="col-lg-9 col-sm-9 text-center">
-
-		<table class="table table-striped table-hover table-responsive">
-			<thead>
-				<tr>
-					<th class="text-center">@Context.Translate("Header")</th>
-					<th class="text-center">@Context.Translate("Header")</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td class="text-center">@Context.Translate("RowPositive")</td>
-					<td class="text-center text-info">@(1m.ToMoney(Model.Language))</td>
-				</tr>
-				<tr>
-					<td class="text-center">@Context.Translate("RowTransfer")</td>
-					<td class="text-center text-success">@(1m.ToMoney(Model.Language))</td>
-				</tr>
-				<tr>
-					<td class="text-center">@Context.Translate("RowNegative")</td>
-					<td class="text-center text-danger">@(1m.ToMoney(Model.Language))</td>
-				</tr>
-			</tbody>
-		</table>
-
-		<div class="form-group well">
-			<label class="control-label" for="example">@Context.Translate("Label")</label>
-			<input class="form-control" id="example" />
-		</div>
-
-		<div class="form-group">
-			<button type="button" class="btn btn-success">@Context.Translate("Button")</button>
-			<button type="button" class="btn btn-warning">@Context.Translate("Button")</button>
-			<button type="button" class="btn btn-danger">@Context.Translate("Button")</button>
-		</div>
-
-		<div class="alert alert-info">@Context.Translate("Alert")</div>
-		<div class="alert alert-success">@Context.Translate("Alert")</div>
-		<div class="alert alert-warning">@Context.Translate("Alert")</div>
-		<div class="alert alert-danger">@Context.Translate("Alert")</div>
-
+	<div class="btn-group pull-right">
+		@foreach (var color in Model.ThemeOpt.ColorList)
+		{
+			<button class="btn btn-sm btn-default theme-changer @(color == Model.Color ? "active" : "")"
+					data-choice="@color" data-type="color" type="button">
+				<small>@Context.Translate(color.ToString())</small>
+			</button>
+		}
 	</div>
+
+	<br class="clearfix"/>
+	<hr />
+
+	<table class="table table-striped table-hover table-responsive">
+		<thead>
+			<tr class="row">
+				<th class="text-center col-sm-6">@Context.Translate("Header")</th>
+				<th class="text-center col-sm-6">@Context.Translate("Header")</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="row">
+				<td class="text-center col-sm-6">@Context.Translate("RowPositive")</td>
+				<td class="text-center col-sm-6 text-info">
+					@await Html.PartialAsync("Extensions/ValueWithSign",
+							 new ValueWithSign(1, Model.Language))
+				</td>
+			</tr>
+			<tr class="row">
+				<td class="text-center col-sm-6">@Context.Translate("RowTransfer")</td>
+				<td class="text-center col-sm-6 text-success">
+					@await Html.PartialAsync("Extensions/ValueWithSign",
+							 new ValueWithSign(0, Model.Language))
+				</td>
+			</tr>
+			<tr class="row">
+				<td class="text-center col-sm-6">@Context.Translate("RowNegative")</td>
+				<td class="text-center col-sm-6 text-danger">
+					@await Html.PartialAsync("Extensions/ValueWithSign",
+							 new ValueWithSign(-1, Model.Language))
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="form-group well">
+		<label class="control-label" for="example">@Context.Translate("Label")</label>
+		<input class="form-control" id="example" placeholder="@Context.Translate("Label")" />
+	</div>
+
+	<div class="well">
+		this is a text with a <a href="#">link</a>
+	</div>
+
+	<div class="form-group">
+		<button type="button" class="btn btn-info">@Context.Translate("Button")</button>
+		<button type="button" class="btn btn-success">@Context.Translate("Button")</button>
+		<button type="button" class="btn btn-warning">@Context.Translate("Button")</button>
+		<button type="button" class="btn btn-danger">@Context.Translate("Button")</button>
+	</div>
+	<div class="form-group">
+		<button type="button" class="btn active btn-info">@Context.Translate("Active")</button>
+		<button type="button" class="btn active btn-success">@Context.Translate("Active")</button>
+		<button type="button" class="btn active btn-warning">@Context.Translate("Active")</button>
+		<button type="button" class="btn active btn-danger">@Context.Translate("Active")</button>
+	</div>
+
+	<div class="alert alert-info">@Context.Translate("Alert")</div>
+	<div class="alert alert-success">@Context.Translate("Alert")</div>
+	<div class="alert alert-warning">@Context.Translate("Alert")</div>
+	<div class="alert alert-danger">@Context.Translate("Alert")</div>
 
 </div>

@@ -22,11 +22,11 @@
 		);
 
 	var title = nature == null
-		? ""
+		? Context.Translate("Zero")
 		: Context.Translate(nature.ToString());
 }
 
-<span class="text-@className" title="@title">
-	<span class="@await Html.PartialAsync("Extensions/NatureIcon", nature)"></span>
+<span class="text-@className money" title="@title">
+	<span class="@await Html.PartialAsync("Extensions/NatureIcon", nature)" title="@title"></span>
 	@value
 </span>

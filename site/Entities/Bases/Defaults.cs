@@ -12,7 +12,7 @@ namespace DFM.Entities.Bases
 		public const Boolean ConfigUseCategories = false;
 		public const Boolean ConfigMoveCheck = false;
 
-		public const BootstrapTheme DefaultTheme = BootstrapTheme.Slate;
+		public const Theme DefaultTheme = Theme.LightSober;
 
 		public const Int32 TicketShowedPart = 5;
 
