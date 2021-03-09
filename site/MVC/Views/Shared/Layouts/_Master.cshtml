@@ -58,13 +58,15 @@
 
 	@await Html.PartialAsync("Skeleton/Footer")
 
-	@await Html.PartialAsync("Modals/Language")
+	<div role="complementary">
+		@await Html.PartialAsync("Modals/Language")
 
-	@await Html.PartialAsync("Modals/Contact")
+		@await Html.PartialAsync("Modals/Contact")
 
-	@if (Model.IsAuthenticated)
-	{
-		@await Html.PartialAsync("Modals/Search")
-	}
+		@if (Model.IsAuthenticated)
+		{
+			@await Html.PartialAsync("Modals/Search")
+		}
+	</div>
 </body>
 </html>
