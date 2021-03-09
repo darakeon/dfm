@@ -1,4 +1,5 @@
-﻿@model LoginsIndexModel
+﻿@using System.Globalization
+@model LoginsIndexModel
 
 @{
 	ViewBag.Title = Context.Translate("Logins");
@@ -18,15 +19,18 @@
 	</tr>
 }
 
-
 @foreach (var login in Model.LoginsList)
 {
+	var date = login.Creation;
+	var type = Context.Translate(login.Type.ToString());
+	var label = Context.Translate("LogOffLabel").Format(type, date);
+
 	<tr class="row">
-		<td class="col-sm-4">@login.Creation</td>
+		<td class="col-sm-4">@date</td>
 
 		<td class="col-sm-4 text-center">
 			<span class="label label-@await Html.PartialAsync("LoginType", login.Type)">
-				@Context.Translate(login.Type.ToString())
+				@type
 			</span>
 		</td>
 
@@ -43,9 +47,8 @@
 			@await Html.PartialAsync("Extensions/MicroForm",
 				MicroForm.WithGlyph(Context, "off", "LogOff")
 					.AddIdUrl("Delete", login.Key)
+					.EntityName(label)
 			)
 		</td>
-
 	</tr>
-
 } 

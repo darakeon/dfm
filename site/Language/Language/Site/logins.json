@@ -7,6 +7,7 @@
 		"ConfirmDeleteLogin": "Do you really want to DELETE the login at '{0}' ({1})? The login session will not work anymore.",
 		"LoginRegister": "Login",
 		"NoLogins": "There is no active logins",
+		"LogOffLabel": "{0} started at {1}",
 	},
 	"pt-BR": {
 		"Expiration": "Expiração",
@@ -16,5 +17,6 @@
 		"ConfirmDeleteLogin": "Realmente deseja APAGAR o login de '{0}' ({1})? A sessão do login irá expirar.",
 		"LoginRegister": "Login",
 		"NoLogins": "Não há logins em uso",
+		"LogOffLabel": "de {0} iniciado em {1}",
 	},
 }
