@@ -16,7 +16,7 @@ This is the task list for the project.
 | Store data locally, to use when there is no internet (Mobile)                  | :dragon: |  4  |  4  |  4  |                |                                                  |
 | Add system tips (user "age" = times accessed) (disable: unsubscribe or config) | :whale:  |  3  |  3  |  4  |                |                                                  |
 | Put tip that you can disable mobile login if your cellphone is stolen          | :sheep:  |  3  |  3  |  4  | tips           |                                                  |
-| Year and Month report by category [(chartjs)](http://www.chartjs.org/)         | :whale:  |  3  |  3  |  4  |                |                                                  |
+| Year and Month report by category [chart]                                      | :whale:  |  3  |  3  |  4  |                |                                                  |
 | Report with date filters                                                       | :whale:  |  3  |  3  |  4  |                |                                                  |
 | Cache account/category at login + refresh button at app                        | :whale:  |  3  |  3  |  4  |                |                                                  |
 | Run robot each midnight and remove it from request (no C#)                     | :sheep:  |  3  |  3  |  4  |                |                                                  |
@@ -68,3 +68,4 @@ This is the task list for the project.
 [password rules]: https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#implement-proper-password-strength-controls
 [gherkin jest]: https://www.npmjs.com/package/gherkin-jest
 [Lint C#]: https://medium.com/@michaelparkerdev/linting-c-in-2019-stylecop-sonar-resharper-and-roslyn-73e88af57ebd
+[chart](https://www.highcharts.com/demo/pie-legend)
