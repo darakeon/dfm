@@ -3,6 +3,7 @@
 @{
 	var searchModel = new ReportsSearchModel();
 	var defaultRoute = new Default.Main();
+	var title = Context.Translate("Search_Title");
 }
 
 <div class="modal" id="search-modal">
@@ -11,7 +12,7 @@
 
 			<div class="modal-header">
 				<span class="modal-title">
-					@Context.Translate("Search_Title")
+					@title
 				</span>
 				@await Html.PartialAsync("Modals/Close")
 			</div>
@@ -22,14 +23,18 @@
 					new { controller = "Reports", action = "Search" }
 				)) {
 					<div class="text-center">
-						@Context.Translate("Search_Text")
+						<label for="@searchModel.FieldName">
+							@Context.Translate("Search_Text")
+						</label>
 					</div>
 
 					<div class="form-group">
-						<input class="form-control" name="@searchModel.FieldName"/>
+						<input class="form-control"
+						       id="@searchModel.FieldName"
+						       name="@searchModel.FieldName" />
 					</div>
 
-					<button class="btn btn-info">
+					<button class="btn btn-info" title="@title">
 						<span class="glyphicon glyphicon-search"></span>
 					</button>
 				}
