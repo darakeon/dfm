@@ -45,16 +45,20 @@
 {
 	var route = new Accounts();
 
-	var account = move.OutUrl ?? move.InUrl;
+	var accountUrl = move.OutUrl ?? move.InUrl;
+	var accountName = move.OutName ?? move.InName;
 
 	var routeValues = new
 	{
 		area = route.Area,
-		accountUrl = account,
+		accountUrl,
 		controller = "Reports",
 		action = "Month",
 		id = move.Year * 100 + move.Month
 	};
+
+	var title = Context.Translate("GoToReport")
+		.Format(accountName, move.Month, move.Year);
 
 	<tr class="row" id="m@(move.Guid)">
 		<td>@move.Description</td>
@@ -78,9 +82,9 @@
 		</td>
 
 		<td class="text-center">
-			<a href="@Url.RouteUrl(route.Name, routeValues)">
+			<a href="@Url.RouteUrl(route.Name, routeValues)" title="@title">
 				<span class="glyphicon glyphicon-th-list"
-					title="@Context.Translate("GoToReport")">
+					title="@title">
 				</span>
 			</a>
 		</td>
