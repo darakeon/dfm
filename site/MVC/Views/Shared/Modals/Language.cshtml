@@ -37,8 +37,11 @@
 						<button class="btn btn-success"
 						        name="@configModel.LanguageFieldName"
 						        value="@(lang.Value)"
+						        title="@(lang.Text)"
 						        id="language-@(lang.Value)">
-							<img src="~/Assets/images/@(lang.Value).svg"/>
+							<img src="~/Assets/images/@(lang.Value).svg"
+							     alt="@(lang.Text)"
+							     title="@(lang.Text)"/>
 						</button>
 					}
 
