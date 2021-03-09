@@ -11,7 +11,7 @@ This is the task list for the project.
 - Dependency: which other task it depends on (if it exists)
 - Issue: github issue about the task (if it exists)
 
-| Task (50)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue                                            |
+| Task (49)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue                                            |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ------------------------------------------------ |
 | Store data locally, to use when there is no internet (Mobile)                  | :dragon: |  4  |  4  |  4  |                |                                                  |
 | Add system tips (user "age" = times accessed) (disable: unsubscribe or config) | :whale:  |  3  |  3  |  4  |                |                                                  |
@@ -53,7 +53,6 @@ This is the task list for the project.
 | Implement entities limits (acc opened, cat enabled, moves/month, active sched) | :dragon: |  3  |  2  |  3  |                |                                                  |
 | Deny double use of authy code                                                  | :sheep:  |  2  |  1  |  3  |                |                                                  |
 | Add auth by cellphone                                                          | :whale:  |  2  |  1  |  3  |                |                                                  |
-| Update bootstrap and choose 4 themes (look at https://bootswatch.com/)         | :whale:  |  2  |  1  |  3  |                |                                                  |
 | Link account and category (combo)                                              | :sheep:  |  2  |  1  |  3  |                |                                                  |
 | Check entire account moves                                                     | :whale:  |  2  |  1  |  3  |                |                                                  |
 | OCR to add values to system                                                    | :dragon: |  4  |  2  |  2  |                |                                                  |
