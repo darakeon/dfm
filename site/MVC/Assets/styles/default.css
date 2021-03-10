@@ -146,3 +146,13 @@ dd {
 :focus {
 	outline: none;
 }
+
+.credits {
+	font-size: 75%;
+	text-align: right;
+	margin: 1em 0;
+}
+
+#github {
+	fill: var(--highlight-0);
+}
