@@ -3,10 +3,11 @@
 	String style = ViewBag.Style;
 }
 
-<div class="row move-down">
+<div class="row move-down result-page">
 	<div class="col-sm-6 col-sm-push-3 text-center">
 
 		<div class="alert alert-@style">
+			<h1>@ViewBag.Title</h1>
 			@RenderBody()
 		</div>
 

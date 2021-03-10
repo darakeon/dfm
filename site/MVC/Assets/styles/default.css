@@ -147,6 +147,16 @@ dd {
 	outline: none;
 }
 
+.result-page .alert {
+	padding: 30px;
+	margin: 70px 0;
+}
+	.result-page h1 {
+		font-size: 1.5em;
+		margin-top: 0;
+		margin-bottom: 16px;
+	}
+
 .credits {
 	font-size: 75%;
 	text-align: right;
