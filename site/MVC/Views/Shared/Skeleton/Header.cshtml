@@ -28,7 +28,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				@await Html.PartialAsync("Skeleton/Now")
 
-				<li class="flag @(Model.Language)" title="@Context.Translate("Aria_OpenLanguage")" id="open-language" data-toggle='modal' data-target='#language-modal'>
+				<li class="flag @(Model.Language)" title="@Context.Translate("Aria_OpenLanguage")" data-toggle='modal' data-target='#language-modal'>
 					<a role='button'>
 						<img src="~/Assets/images/@(Model.Language.ToLower()).svg" title="@Context.Translate("Aria_OpenLanguage")" />
 					</a>
@@ -81,7 +81,7 @@
 					}
 
 					<li>
-						<a role='button' id="open-search" data-toggle='modal' data-target='#search-modal'>
+						<a role='button' data-toggle='modal' data-target='#search-modal'>
 							<span class="glyphicon glyphicon-search"
 							      title="@Context.Translate("Search_Title")"></span>
 						</a>

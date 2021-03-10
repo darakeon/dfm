@@ -93,7 +93,7 @@ describe('Reports', () => {
 
 		await puppy.call()
 
-		await page.click('#open-search')
+		await page.click('ul.nav li:nth-child(4) a')
 		await page.waitForSelector(
 			'#search-modal',
 			{ visible: true }
