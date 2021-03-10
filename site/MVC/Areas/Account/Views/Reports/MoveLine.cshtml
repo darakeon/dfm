@@ -5,6 +5,7 @@
 	var foreseen = move.Foreseen ? "foreseen" : "";
 	var hasDetails = move.DetailList.Any();
 	var hasSchedule = move.Schedule != null;
+	var editTitle = $"{Context.Translate("Edit")} {move.Description}";
 }
 
 <tr class="row @foreseen sum-factor" data-parent="table" id="m@(move.Guid)">
@@ -82,9 +83,10 @@
 		}
 	
 		<td class="col-sm-1 text-center">
-			<a href="@Url.Action("Edit", "Moves", new {id = move.Guid})">
+			<a href="@Url.Action("Edit", "Moves", new {id = move.Guid})"
+			   title="@editTitle">
 				<span class="glyphicon glyphicon-edit"
-					title="@Context.Translate("Edit")"
+					title="@editTitle"
 					role='button'>
 				</span>
 			</a>
@@ -95,6 +97,7 @@
 				"Extensions/MicroForm",
 				MicroForm.WithGlyph(Context, "trash", "Delete")
 					.AddIdUrl("Moves", "Delete", move.Guid)
+					.EntityName(move.Description)
 			)
 		</td>
 
@@ -113,6 +116,7 @@
 						.AddIdUrl("Moves", action, move.Guid)
 						.AddHidden("nature", nature)
 						.AsAjax($"m{move.Guid}")
+						.EntityName(move.Description)
 				)
 			</td>
 		}
