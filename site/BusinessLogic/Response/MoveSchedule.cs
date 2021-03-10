@@ -22,7 +22,7 @@ namespace DFM.BusinessLogic.Response
 
 		public override bool Equals(object obj)
 		{
-			return obj is Schedule schedule
+			return obj is MoveSchedule schedule
 				&& schedule.Guid == Guid;
 		}
 
