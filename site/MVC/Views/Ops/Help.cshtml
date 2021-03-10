@@ -8,8 +8,14 @@
 }
 
 <div class="text-center">
-	<a target='_blank' href='https://github.com/darakeon/dfm'>
-		<img src="~/Assets/images/github.png" alt="GitHub" title="GitHub" />
+	<a target='_blank' href='https://github.com/darakeon/dfm' title="github">
+		@await Html.PartialAsync("github", "github")
+	</a>
+</div>
+<div class="credits">
+	@Context.Translate("ImageBy")
+	<a href="https://www.flaticon.com/br/autores/dave-gandy" target="_blank" title="Dave Gandy">
+		Dave Gandy
 	</a>
 </div>
 

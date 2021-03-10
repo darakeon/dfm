@@ -27,7 +27,6 @@
     <None Remove="Assets" />
     <None Remove="Assets\images\en-us.svg" />
     <None Remove="Assets\images\face-pig.png" />
-    <None Remove="Assets\images\github.png" />
     <None Remove="Assets\images\mail-pig.png" />
     <None Remove="Assets\images\pig.ico" />
     <None Remove="Assets\images\pig.svg" />
@@ -71,9 +70,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\images\face-pig.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\images\github.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\images\mail-pig.png">
