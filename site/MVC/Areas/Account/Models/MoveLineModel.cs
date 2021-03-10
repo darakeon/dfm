@@ -17,6 +17,10 @@ namespace DFM.MVC.Areas.Account.Models
 			CurrentAccountUrl = currentAccountUrl;
 			Language = language;
 			CanCheck = canCheck;
+
+			// to open modals of foreseen moves correctly
+			if (Move.Guid == Guid.Empty)
+				Move.Guid = Guid.NewGuid();
 		}
 
 		public MoveInfo Move { get; }
