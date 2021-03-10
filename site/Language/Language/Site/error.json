@@ -40,7 +40,7 @@
 		"TransferMoveWrong": "A Transfer Move need to have In and Out Accounts.",
 		"UserAlreadyExists": "User already exists.",
 		"UserEmailInvalid": "User e-mail is invalid.",
-		"UserPasswordRequired": "Password cannot be empty",
+		"UserPasswordRequired": "Password cannot be empty, it is used to ensure you are the one trying to get access to your data",
 		"DisabledUser": "User is disabled.",
 		"WrongUserEmail": "Wrong user e-mail.",
 		"YearAmbiguousInAccount": "Year ambiguous reference. Contact support.",
@@ -90,6 +90,7 @@
 		"MoveCheckWrongNature": "A move In cannot be checked as Out, neither a move Out can be checked as In",
 		"ErrorRunningSchedules": "Error running schedules, contact us.",
 		"OpenedAccount": "The account is already opened",
+		"UserEmailRequired": "E-mail cannot be empty, it is used to identify you and communicate when needed",
 	},
 	"pt-BR": {
 		"Unknown": "ZERO",
@@ -132,7 +133,7 @@
 		"TransferMoveWrong": "Uma Movimentação de Transferência precisa ter Contas de Entrada e Saída.",
 		"UserAlreadyExists": "Usuário já existe.",
 		"UserEmailInvalid": "E-mail inválido.",
-		"UserPasswordRequired": "A senha não pode ser em branco",
+		"UserPasswordRequired": "A senha não pode ser em branco, é usada para garantir que você quem está tentando acessar seus dados",
 		"DisabledUser": "Usuário desabilitado.",
 		"WrongUserEmail": "E-mail de usuário errado.",
 		"YearAmbiguousInAccount": "Referência de ano ambígua. Contate o suporte.",
@@ -182,5 +183,6 @@
 		"MoveCheckWrongNature": "Uma Movimentação de Entrada nao pode ser verificada como Saída, nem uma de Saída pode ser verificada como Entrada",
 		"ErrorRunningSchedules": "Erro ao rodar agendamentos, entre em contato conosco.",
 		"OpenedAccount": "A conta já está aberta",
+		"UserEmailRequired": "E-mail não pode ficar em branco, é usado para identificar você e para comunicações quando necessário",
 	},
 }

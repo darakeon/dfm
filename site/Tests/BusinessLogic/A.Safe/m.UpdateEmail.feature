@@ -22,7 +22,7 @@ Scenario: Am02. E-mail change with empty new e-mail
 			| New E-mail | Current Password |
 			|            | password         |
 	When I try to change the e-mail
-	Then I will receive this core error: UserEmailInvalid
+	Then I will receive this core error: UserEmailRequired
 		And the e-mail will not be changed
 		And the user will be activated
 
