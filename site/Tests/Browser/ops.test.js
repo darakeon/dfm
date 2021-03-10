@@ -8,7 +8,7 @@ describe('Ops', () => {
 	beforeAll(async () => {
 		await db.cleanupTickets()
 		await puppy.call()
-		await page.click('#open-language')
+		await page.click('ul.nav li:nth-child(1) a')
 		await page.click('#language-modal #language-pt-br')
 		await page.waitForNavigation()
 	})

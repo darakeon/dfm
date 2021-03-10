@@ -10,7 +10,7 @@ describe('Open site', () => {
 	it('should have a modal for contact', async () => {
 		await puppy.call()
 
-		await page.click('#open-contact')
+		await page.click('ul.nav li:nth-child(2) a')
 
 		await page.waitForSelector(
 			'#contact-modal',
@@ -33,12 +33,12 @@ describe('Open site', () => {
 		const email = 'language@dontflymoney.com'
 		await puppy.logon(email)
 
-		let button = await puppy.content('#open-language')
+		let button = await puppy.content('ul.nav li:nth-child(1) a')
 		await expect(button).toContain(
 			'/Assets/images/pt-br.svg'
 		)
 
-		await page.click('#open-language')
+		await page.click('ul.nav li:nth-child(1) a')
 
 		await page.waitForSelector(
 			'#language-modal',
@@ -47,7 +47,7 @@ describe('Open site', () => {
 
 		await page.click('#language-modal #language-en-us')
 
-		button = await puppy.content('#open-language')
+		button = await puppy.content('ul.nav li:nth-child(1) a')
 		await expect(button).toContain(
 			'/Assets/images/en-us.svg'
 		)
@@ -57,13 +57,13 @@ describe('Open site', () => {
 		await db.cleanupTickets()
 		await puppy.call()
 
-		let button = await puppy.content('#open-language')
+		let button = await puppy.content('ul.nav li:nth-child(1) a')
 
 		await expect(button).toContain(
 			'/Assets/images/pt-br.svg'
 		)
 
-		await page.click('#open-language')
+		await page.click('ul.nav li:nth-child(1) a')
 
 		await page.waitForSelector(
 			'#language-modal',
@@ -72,7 +72,7 @@ describe('Open site', () => {
 
 		await page.click('#language-modal #language-en-us')
 
-		button = await puppy.content('#open-language')
+		button = await puppy.content('ul.nav li:nth-child(1) a')
 		await expect(button).toContain(
 			'/Assets/images/en-us.svg'
 		)
