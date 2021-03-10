@@ -33,14 +33,14 @@
 
 <div class="text-center form-group">
 	@Html.CheckBoxFor(m => m.Accept)
-	<span class="control-label">
+	<label class="control-label" for="@Html.NameFor(m => m.Accept)">
 		@Html.Raw(String.Format(
 			Context.Translate("ContractAccept"),
 			"<a role='button' data-toggle='modal' data-target='#contract-modal'>" +
 				$"{Context.Translate("ContractTitle")}" +
 			"</a>"
 		))
-	</span>
+	</label>
 </div>
 
 @await Html.PartialAsync("ModalContract")
