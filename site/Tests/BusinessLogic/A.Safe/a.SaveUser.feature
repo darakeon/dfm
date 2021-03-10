@@ -1,14 +1,14 @@
 ﻿Feature: Aa. Save user
 
-Scenario: Aa01. Save user without e-mail
+Scenario: Aa01. Save user with empty e-mail
 	Given I have this user data
 			| Email | Password | Retype Password |
 			|       | password | password        |
 	When I try to save the user
-	Then I will receive this core error: UserEmailInvalid
+	Then I will receive this core error: UserEmailRequired
 		And the user will not be saved
 
-Scenario: Aa02. Save user without password
+Scenario: Aa02. Save user with empty password
 	Given I have this user data
 			| Email                     | Password | Retype Password |
 			| saveuser@dontflymoney.com |          |                 |
@@ -63,3 +63,27 @@ Scenario: Aa08. Save user with info all right
 	When I try to save the user
 	Then I will receive no core error
 		And the user will be saved
+
+Scenario: Aa09. Save user without e-mail
+	Given I have this user data
+			| Password | Retype Password |
+			| password | password        |
+	When I try to save the user
+	Then I will receive this core error: UserEmailRequired
+		And the user will not be saved
+
+Scenario: Aa10. Save user without password
+	Given I have this user data
+			| Email                    | Retype Password |
+			| notpass@dontflymoney.com | password        |
+	When I try to save the user
+	Then I will receive this core error: UserPasswordRequired
+		And the user will not be saved
+
+Scenario: Aa11. Save user without retype password
+	Given I have this user data
+			| Email                     | Password |
+			| noretype@dontflymoney.com | password |
+	When I try to save the user
+	Then I will receive this core error: RetypeWrong
+		And the user will not be saved

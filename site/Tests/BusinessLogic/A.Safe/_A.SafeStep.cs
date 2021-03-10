@@ -97,8 +97,11 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		[Given(@"I have this user data")]
 		public void GivenIHaveThisUserData(Table table)
 		{
-			email = table.Rows[0]["Email"];
-			password = table.Rows[0]["Password"];
+			if (table.Header.Any(c => c == "Email"))
+				email = table.Rows[0]["Email"];
+
+			if (table.Header.Any(c => c == "Password"))
+				password = table.Rows[0]["Password"];
 
 			if (table.Header.Any(c => c == "Retype Password"))
 				retypePassword = table.Rows[0]["Retype Password"];

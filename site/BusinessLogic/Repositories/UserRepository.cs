@@ -88,14 +88,17 @@ namespace DFM.BusinessLogic.Repositories
 			if (String.IsNullOrEmpty(user.Password))
 				throw Error.UserPasswordRequired.Throw();
 
-			if (user.Email.Length > MaxLen.UserEmail)
-				throw Error.TooLargeUserEmail.Throw();
-
 			validateEmail(user);
 		}
 
 		private void validateEmail(User user)
 		{
+			if (String.IsNullOrEmpty(user.Email))
+				throw Error.UserEmailRequired.Throw();
+
+			if (user.Email.Length > MaxLen.UserEmail)
+				throw Error.TooLargeUserEmail.Throw();
+
 			var regex = new Regex(emailPattern, RegexOptions.IgnoreCase);
 
 			if (!regex.Match(user.Email).Success)
