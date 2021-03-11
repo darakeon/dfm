@@ -99,7 +99,7 @@ async function submit(action) {
 	const selector = `form[action="${action}"] button[type="submit"]`
 	const logPath = action.replace(/\//g, '_')
 
-	var button = await page.waitForSelector(selector, { visible: true })
+	const button = await page.waitForSelector(selector, { visible: true })
 	await page.click(selector)
 	await page.waitForSelector('footer')
 }
