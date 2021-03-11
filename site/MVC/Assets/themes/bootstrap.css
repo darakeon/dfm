@@ -3005,9 +3005,25 @@ output {
 	}
 
 	.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
-		background-color: var(--neutral-1);
+		background-color: var(--neutral-3);
 		opacity: 1
 	}
+
+		.form-control[disabled].alert-danger, .form-control[readonly].alert-danger, fieldset[disabled] .form-control.alert-danger {
+			color: var(--danger-4);
+		}
+
+		.form-control[disabled].alert-warning, .form-control[readonly].alert-warning, fieldset[disabled] .form-control.alert-warning {
+			color: var(--warning-4);
+		}
+
+		.form-control[disabled].alert-info, .form-control[readonly].alert-info, fieldset[disabled] .form-control.alert-info {
+			color: var(--info-4);
+		}
+
+		.form-control[disabled].alert-success, .form-control[readonly].alert-success, fieldset[disabled] .form-control.alert-success {
+			color: var(--success-4);
+		}
 
 	.form-control[disabled], fieldset[disabled] .form-control {
 		cursor: not-allowed
