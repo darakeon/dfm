@@ -5,7 +5,14 @@
 <div class="tab-content">
 
 	<div class="tab-pane @(Model.IsDetailed ? "": "active")" id="just-value">
-		@Html.TextBoxFor(m => m.Value, new { @class = "form-control number" })
+		@Html.TextBoxFor(
+			m => m.Value,
+			new
+			{
+				@class = "form-control number",
+				aria_label = Context.Translate("Value"),
+			}
+		)
 	</div>
 
 	<div class="tab-pane @(Model.IsDetailed ? "active" : "") form-group form-group-sm" id="detailed">

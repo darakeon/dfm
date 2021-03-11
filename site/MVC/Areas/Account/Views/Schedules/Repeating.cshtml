@@ -10,8 +10,8 @@
 <div class="form-group form-group-sm">
 	<div class="input-group input-group-sm">
 		@Html.TextBoxFor(m => m.Times, new { @class = "form-control boundless-disable" })
-		<span class="input-group-addon">
+		<label class="input-group-addon" for="@Html.NameFor(m => m.Times)">
 			@Context.Translate("Times").ToLower()
-		</span>
+		</label>
 	</div>
 </div>

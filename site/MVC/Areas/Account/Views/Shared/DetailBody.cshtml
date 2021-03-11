@@ -5,15 +5,38 @@
 	{
 		<tr class="row @(Model.DetailList[d].Send ? "" : "hidden")">
 			<td class="col-sm-6 form-group">
-				@Html.TextBoxFor(m => m.DetailList[d].Detail.Description, new { @class = "form-control detail-description", maxlength = MaxLen.DetailDescription })
+				@Html.TextBoxFor(
+					m => m.DetailList[d].Detail.Description,
+					new
+					{
+						@class = "form-control detail-description",
+						maxlength = MaxLen.DetailDescription,
+						aria_label = Context.Translate("Description"),
+					}
+				)
 			</td>
 
 			<td class="col-sm-2 form-group">
-				@Html.TextBoxFor(m => m.DetailList[d].Detail.Amount, new { @class = "form-control text-center detail-amount number", data_precision = "0" })
+				@Html.TextBoxFor(
+					m => m.DetailList[d].Detail.Amount,
+					new
+					{
+						@class = "form-control text-center detail-amount number",
+						data_precision = "0",
+						aria_label = Context.Translate("Amount"),
+					}
+				)
 			</td>
 
 			<td class="col-sm-3 form-group">
-				@Html.TextBoxFor(m => m.DetailList[d].Value, new { @class = "form-control text-right detail-value number" })
+				@Html.TextBoxFor(
+					m => m.DetailList[d].Value,
+					new
+					{
+						@class = "form-control text-right detail-value number",
+						aria_label = Context.Translate("Value"),
+					}
+				)
 			</td>
 
 			<td class="col-sm-1">
