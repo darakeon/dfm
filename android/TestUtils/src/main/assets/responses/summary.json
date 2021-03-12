@@ -16,7 +16,7 @@
 		]
 	},
 	"environment": {
-		"mobileTheme": "Dark",
+		"theme": "DarkMagic",
 		"language": "pt-BR"
 	}
 }

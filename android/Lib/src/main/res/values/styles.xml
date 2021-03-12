@@ -1,32 +1,94 @@
 <resources>
-
 	<style name="Dark" parent="android:Theme.Holo">
-		<item name="negative">@color/negative_dark</item>
-		<item name="positive">@color/positive_dark</item>
-		<item name="neutral">@color/neutral_dark</item>
-		<item name="transfer">@color/transfer_dark</item>
-		<item name="checked">@color/checked_dark</item>
-		<item name="unchecked">@color/unchecked_dark</item>
+		<item name="neutral">@color/dark_neutral_2</item>
+		<item name="negative">@color/dark_danger_1</item>
+		<item name="positive">@color/dark_info_1</item>
+		<item name="zero">@color/dark_success_1</item>
+		<item name="transfer">@color/dark_success_1</item>
+		<item name="checked">@color/dark_success_1</item>
+		<item name="unchecked">@color/dark_danger_1</item>
+		<item name="highlight">@color/dark_neutral_1</item>
 		<item name="android:actionBarStyle">@style/ActionBar</item>
 		<item name="android:windowAnimationStyle">@null</item>
+		<item name="android:windowBackground">@color/dark_neutral_0</item>
+		<item name="android:textColor">?attr/primary</item>
+		<item name="android:buttonStyle">@style/Button</item>
+	</style>
+
+	<style name="DarkMagic" parent="Dark">
+		<item name="primary">@color/dark_magic_primary_0</item>
+		<item name="link">@color/dark_magic_highlight_1</item>
+	</style>
+	<style name="DarkSober" parent="Dark">
+		<item name="primary">@color/dark_sober_primary_0</item>
+		<item name="link">@color/dark_sober_highlight_1</item>
+	</style>
+	<style name="DarkNature" parent="Dark">
+		<item name="primary">@color/dark_nature_primary_0</item>
+		<item name="link">@color/dark_nature_highlight_1</item>
 	</style>
 
 	<style name="Light" parent="android:Theme.Holo.Light">
-		<item name="negative">@color/negative_light</item>
-		<item name="positive">@color/positive_light</item>
-		<item name="neutral">@color/neutral_light</item>
-		<item name="transfer">@color/transfer_light</item>
-		<item name="checked">@color/checked_light</item>
-		<item name="unchecked">@color/unchecked_light</item>
+		<item name="neutral">@color/light_neutral_2</item>
+		<item name="negative">@color/light_danger_1</item>
+		<item name="positive">@color/light_info_1</item>
+		<item name="zero">@color/light_success_1</item>
+		<item name="transfer">@color/light_success_1</item>
+		<item name="checked">@color/light_success_1</item>
+		<item name="unchecked">@color/light_danger_1</item>
+		<item name="highlight">@color/light_neutral_1</item>
 		<item name="android:actionBarStyle">@style/ActionBar</item>
 		<item name="android:windowAnimationStyle">@null</item>
+		<item name="android:windowBackground">@color/light_neutral_0</item>
+		<item name="android:textColor">?attr/primary</item>
+		<item name="android:buttonStyle">@style/Button</item>
+	</style>
+
+	<style name="LightMagic" parent="Light">
+		<item name="primary">@color/light_magic_primary_0</item>
+		<item name="link">@color/light_magic_highlight_1</item>
+	</style>
+	<style name="LightSober" parent="Light">
+		<item name="primary">@color/light_sober_primary_0</item>
+		<item name="link">@color/light_sober_highlight_1</item>
+	</style>
+	<style name="LightNature" parent="Light">
+		<item name="primary">@color/light_nature_primary_0</item>
+		<item name="link">@color/light_nature_highlight_1</item>
+	</style>
+
+	<style name="Button" parent="android:style/Widget.Holo.Button">
+		<item name="android:textColor">?attr/link</item>
+		<item name="android:background">@drawable/button</item>
+		<item name="android:padding">10sp</item>
 	</style>
 
 	<style name="ActionBar" parent="android:style/Widget.Holo.ActionBar">
-		<item name="android:background">@color/action_bar</item>
+		<item name="android:background">?attr/primary</item>
+		<item name="android:titleTextStyle">@style/TitleBar</item>
 	</style>
 
-	<style name="AppTheme" parent="Dark">
+	<style name="TitleBar" parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+		<item name="android:textColor">?attr/neutral</item>
+	</style>
+
+	<style name="None" parent="android:Theme.Holo">
+		<item name="primary">@color/pig</item>
+
+		<item name="neutral">@android:color/black</item>
+		<item name="negative">@android:color/holo_red_dark</item>
+		<item name="positive">@android:color/holo_blue_dark</item>
+		<item name="zero">@android:color/holo_green_light</item>
+		<item name="transfer">@android:color/holo_green_dark</item>
+		<item name="checked">@android:color/holo_blue_light</item>
+		<item name="unchecked">@android:color/holo_red_light</item>
+		<item name="highlight">@android:color/holo_orange_dark</item>
+		<item name="link">@android:color/holo_orange_light</item>
+
+		<item name="android:actionBarStyle">@style/ActionBar</item>
+		<item name="android:windowAnimationStyle">@null</item>
+		<item name="android:windowBackground">@color/pig</item>
+		<item name="android:textColor">@color/pig</item>
 	</style>
 
 </resources>

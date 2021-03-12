@@ -4,6 +4,7 @@ import com.darakeon.dfm.lib.BuildConfig
 import com.darakeon.dfm.lib.R
 import com.darakeon.dfm.lib.api.entities.Body
 import com.darakeon.dfm.lib.api.entities.Environment
+import com.darakeon.dfm.lib.api.entities.Theme
 import com.darakeon.dfm.lib.auth.getValue
 import com.darakeon.dfm.lib.auth.setValue
 import com.darakeon.dfm.lib.utils.ActivityMock
@@ -120,13 +121,13 @@ internal class ResponseHandlerTest: BaseTest() {
 
 	@Test
 	fun onResponse_ResponseBodyEnvironment() {
-		val env = Environment("Light", "pt-BR")
+		val env = Environment(Theme.LightNature, "pt-BR")
 		val body = Body("result", env, null, null)
 		val response = Response.success(body)
 
 		handler.onResponse(CallMock(), response)
 
-		assertThat(activity.getValue("Theme").toInt(), `is`(R.style.Light))
+		assertThat(activity.getValue("Theme").toInt(), `is`(R.style.LightNature))
 		assertThat(activity.getValue("Language"), `is`("pt_BR"))
 
 		assertTrue(waitEnded)

@@ -6,6 +6,7 @@ import android.widget.Toast
 import com.darakeon.dfm.lib.api.Api
 import com.darakeon.dfm.lib.api.ApiCaller
 import com.darakeon.dfm.lib.api.entities.Environment
+import com.darakeon.dfm.lib.api.entities.Theme
 import com.darakeon.dfm.lib.auth.Authentication
 import com.darakeon.dfm.lib.auth.setEnvironment
 
@@ -18,7 +19,7 @@ open class BaseActivity: Activity(), ApiCaller {
 		super.onCreate(savedInstanceState)
 		auth = Authentication(this)
 		api = Api(this, serverUrl)
-		setEnvironment(Environment("Dark", ""))
+		setEnvironment(Environment(Theme.DarkMagic))
 	}
 
 	override val ticket: String
