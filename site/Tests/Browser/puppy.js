@@ -97,11 +97,16 @@ async function callLogonPage(email) {
 
 async function submit(action) {
 	const selector = `form[action="${action}"] button[type="submit"]`
-	const logPath = action.replace(/\//g, '_')
 
-	const button = await page.waitForSelector(selector, { visible: true })
-	await page.click(selector)
-	await page.waitForSelector('footer')
+	try {
+		const button = await page.waitForSelector(selector, { visible: true })
+		await page.click(selector)
+		await page.waitForSelector('footer')
+	} catch (e) {
+		const logPath = action.replace(/\//g, '_')
+		await imageLog('submit_' + logPath)
+		throw e
+	}
 }
 
 async function createMove(
