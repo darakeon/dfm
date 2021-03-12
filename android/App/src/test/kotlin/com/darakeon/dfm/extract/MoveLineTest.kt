@@ -80,7 +80,7 @@ class MoveLineTest: BaseTest() {
 		moveLine.setMove(move, false, {}, {}, {}, {})
 
 		assertThat(moveLine.value.text.toString(), `is`("+34.00".getDecimal()))
-		val color = activity.getColor(R.color.positive_dark)
+		val color = activity.getColor(android.R.color.holo_blue_dark)
 		assertThat(moveLine.value.currentTextColor, `is`(color))
 
 		assertThat(moveLine.nature, `is`(Nature.In))
@@ -101,7 +101,7 @@ class MoveLineTest: BaseTest() {
 		moveLine.setMove(move, false, {}, {}, {}, {})
 
 		assertThat(moveLine.value.text.toString(), `is`("-34.00".getDecimal()))
-		val color = activity.getColor(R.color.negative_dark)
+		val color = activity.getColor(android.R.color.holo_red_dark)
 		assertThat(moveLine.value.currentTextColor, `is`(color))
 
 		assertThat(moveLine.nature, `is`(Nature.Out))
@@ -150,7 +150,7 @@ class MoveLineTest: BaseTest() {
 		assertThat(moveLine.move_status.text.toString(), `is`("\uE101"))
 		assertTrue(moveLine.isChecked)
 
-		val color = activity.getColor(R.color.checked_dark)
+		val color = activity.getColor(android.R.color.holo_blue_light)
 		assertThat(moveLine.move_status.currentTextColor, `is`(color))
 
 		assertNotNull(moveLine.move_status.typeface)
@@ -169,7 +169,7 @@ class MoveLineTest: BaseTest() {
 		assertThat(moveLine.move_status.text.toString(), `is`("\uE085"))
 		assertFalse(moveLine.isChecked)
 
-		val color = activity.getColor(R.color.unchecked_dark)
+		val color = activity.getColor(android.R.color.holo_red_light)
 		assertThat(moveLine.move_status.currentTextColor, `is`(color))
 
 		assertNotNull(moveLine.move_status.typeface)
@@ -283,7 +283,7 @@ class MoveLineTest: BaseTest() {
 		assertTrue(moveLine.isChecked)
 		assertThat(moveLine.move_status.text.toString(), `is`("\uE101"))
 
-		val color = activity.getColor(R.color.checked_dark)
+		val color = activity.getColor(android.R.color.holo_blue_light)
 		assertThat(moveLine.move_status.currentTextColor, `is`(color))
 	}
 
@@ -303,7 +303,7 @@ class MoveLineTest: BaseTest() {
 		assertFalse(moveLine.isChecked)
 		assertThat(moveLine.move_status.text.toString(), `is`("\uE085"))
 
-		val color = activity.getColor(R.color.unchecked_dark)
+		val color = activity.getColor(android.R.color.holo_red_light)
 		assertThat(moveLine.move_status.currentTextColor, `is`(color))
 	}
 }

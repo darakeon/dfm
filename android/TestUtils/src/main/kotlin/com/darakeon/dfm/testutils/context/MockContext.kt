@@ -14,18 +14,23 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.util.TypedValue
 import android.view.LayoutInflater
 import androidx.annotation.RequiresApi
+import com.darakeon.dfm.testutils.R
 import org.mockito.ArgumentMatchers.any
+import org.mockito.ArgumentMatchers.anyBoolean
 import org.mockito.ArgumentMatchers.anyInt
 import org.mockito.ArgumentMatchers.anyString
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
+import org.mockito.invocation.InvocationOnMock
 import kotlin.reflect.KClass
 
 class MockContext<A: Activity>(type: KClass<A>) {
 	val activity: A = mock(type.java)
 	private val manager = mock(ConnectivityManager::class.java)
+	private var themeId = 0
 
 	fun mockInternet(): MockContext<A> {
 		`when`(
@@ -165,5 +170,44 @@ class MockContext<A: Activity>(type: KClass<A>) {
 		)).thenReturn(inflater)
 
 		return inflater
+	}
+
+	fun mockTheme(): MockContext<A> {
+		val theme = mock(Resources.Theme::class.java)
+		`when`(theme.resolveAttribute(anyInt(), any(), anyBoolean()))
+			.then { getColor(it) }
+		`when`(activity.theme)
+			.thenReturn(theme)
+		`when`(activity.setTheme(anyInt()))
+			.then {
+				themeId = it.arguments[0] as Int
+				true
+			}
+
+		return this
+	}
+
+	private val darkColors = hashMapOf(
+		R.attr.highlight to android.R.color.holo_orange_dark,
+	)
+
+	private val lightColors = hashMapOf(
+		R.attr.highlight to android.R.color.holo_orange_light,
+	)
+
+	private val colors = hashMapOf(
+		R.style.DarkMagic to darkColors,
+		R.style.DarkSober to darkColors,
+		R.style.DarkNature to darkColors,
+		R.style.LightMagic to lightColors,
+		R.style.LightSober to lightColors,
+		R.style.LightNature to lightColors,
+	)
+
+	private fun getColor(invocation: InvocationOnMock): Boolean {
+		val attr = invocation.arguments[0] as Int
+		val typedValue = invocation.arguments[1] as TypedValue
+		typedValue.data = colors[themeId]?.get(attr) ?: 0
+		return true
 	}
 }

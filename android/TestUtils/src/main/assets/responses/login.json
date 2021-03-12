@@ -3,7 +3,7 @@
 		"ticket": "ticket"
 	},
 	"environment": {
-		"mobileTheme": "Dark",
+		"theme": "DarkMagic",
 		"language": "pt-BR"
 	}
 }

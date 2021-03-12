@@ -1,6 +1,7 @@
 package com.darakeon.dfm.lib.api
 
 import com.darakeon.dfm.lib.api.entities.Date
+import com.darakeon.dfm.lib.api.entities.Theme
 import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
@@ -44,7 +45,7 @@ class RequestServiceTest: BaseTest() {
 
 		val environment = body.environment!!
 		assertThat(environment.language, `is`("pt-BR"))
-		assertThat(environment.mobileTheme, `is`("Dark"))
+		assertThat(environment.theme, `is`(Theme.DarkMagic))
 
 		val accountList = body.data!!.accountList
 		assertNotNull(accountList)
@@ -69,7 +70,7 @@ class RequestServiceTest: BaseTest() {
 
 		val environment = body.environment!!
 		assertThat(environment.language, `is`("pt-BR"))
-		assertThat(environment.mobileTheme, `is`("Dark"))
+		assertThat(environment.theme, `is`(Theme.DarkMagic))
 
 		val extract = body.data!!
 		assertThat(extract.title, `is`("account"))
@@ -96,7 +97,7 @@ class RequestServiceTest: BaseTest() {
 
 		val environment = body.environment!!
 		assertThat(environment.language, `is`("pt-BR"))
-		assertThat(environment.mobileTheme, `is`("Dark"))
+		assertThat(environment.theme, `is`(Theme.DarkMagic))
 
 		assertNotNull(body.data)
 	}
@@ -111,7 +112,7 @@ class RequestServiceTest: BaseTest() {
 
 		val environment = body.environment!!
 		assertThat(environment.language, `is`("pt-BR"))
-		assertThat(environment.mobileTheme, `is`("Dark"))
+		assertThat(environment.theme, `is`(Theme.DarkMagic))
 
 		assertNotNull(body.data)
 	}
@@ -126,7 +127,7 @@ class RequestServiceTest: BaseTest() {
 
 		val environment = body.environment!!
 		assertThat(environment.language, `is`("pt-BR"))
-		assertThat(environment.mobileTheme, `is`("Dark"))
+		assertThat(environment.theme, `is`(Theme.DarkMagic))
 
 		assertNotNull(body.data)
 	}
@@ -141,7 +142,7 @@ class RequestServiceTest: BaseTest() {
 
 		val environment = body.environment!!
 		assertThat(environment.language, `is`("pt-BR"))
-		assertThat(environment.mobileTheme, `is`("Dark"))
+		assertThat(environment.theme, `is`(Theme.DarkMagic))
 
 		val login = body.data!!
 		assertThat(login.ticket, `is`("ticket"))
@@ -157,7 +158,7 @@ class RequestServiceTest: BaseTest() {
 
 		val environment = body.environment!!
 		assertThat(environment.language, `is`("pt-BR"))
-		assertThat(environment.mobileTheme, `is`("Dark"))
+		assertThat(environment.theme, `is`(Theme.DarkMagic))
 
 		assertNotNull(body.data)
 	}
@@ -172,7 +173,7 @@ class RequestServiceTest: BaseTest() {
 
 		val environment = body.environment!!
 		assertThat(environment.language, `is`("pt-BR"))
-		assertThat(environment.mobileTheme, `is`("Dark"))
+		assertThat(environment.theme, `is`(Theme.DarkMagic))
 
 		val data = body.data!!
 		assertThat(data.isUsingCategories, `is`(true))
@@ -223,7 +224,7 @@ class RequestServiceTest: BaseTest() {
 
 		val environment = body.environment!!
 		assertThat(environment.language, `is`("pt-BR"))
-		assertThat(environment.mobileTheme, `is`("Dark"))
+		assertThat(environment.theme, `is`(Theme.DarkMagic))
 
 		val data = body.data!!
 		assertThat(data.isUsingCategories, `is`(true))
@@ -274,7 +275,7 @@ class RequestServiceTest: BaseTest() {
 
 		val environment = body.environment!!
 		assertThat(environment.language, `is`("pt-BR"))
-		assertThat(environment.mobileTheme, `is`("Dark"))
+		assertThat(environment.theme, `is`(Theme.DarkMagic))
 
 		assertNotNull(body.data)
 	}
@@ -289,7 +290,7 @@ class RequestServiceTest: BaseTest() {
 
 		val environment = body.environment!!
 		assertThat(environment.language, `is`("pt-BR"))
-		assertThat(environment.mobileTheme, `is`("Dark"))
+		assertThat(environment.theme, `is`(Theme.DarkMagic))
 
 		assertNotNull(body.data)
 	}
@@ -304,7 +305,7 @@ class RequestServiceTest: BaseTest() {
 
 		val environment = body.environment!!
 		assertThat(environment.language, `is`("pt-BR"))
-		assertThat(environment.mobileTheme, `is`("Dark"))
+		assertThat(environment.theme, `is`(Theme.DarkMagic))
 
 		val settings = body.data!!
 		assertThat(settings.moveCheck, `is`(true))
@@ -321,7 +322,7 @@ class RequestServiceTest: BaseTest() {
 
 		val environment = body.environment!!
 		assertThat(environment.language, `is`("pt-BR"))
-		assertThat(environment.mobileTheme, `is`("Dark"))
+		assertThat(environment.theme, `is`(Theme.DarkMagic))
 
 		assertNotNull(body.data)
 	}
@@ -336,7 +337,7 @@ class RequestServiceTest: BaseTest() {
 
 		val environment = body.environment!!
 		assertThat(environment.language, `is`("pt-BR"))
-		assertThat(environment.mobileTheme, `is`("Dark"))
+		assertThat(environment.theme, `is`(Theme.DarkMagic))
 
 		val summary = body.data!!
 		assertThat(summary.title, `is`("account"))
@@ -362,7 +363,7 @@ class RequestServiceTest: BaseTest() {
 
 		val environment = body.environment!!
 		assertThat(environment.language, `is`("pt-BR"))
-		assertThat(environment.mobileTheme, `is`("Dark"))
+		assertThat(environment.theme, `is`(Theme.DarkMagic))
 
 		assertNotNull(body.data)
 	}
@@ -377,7 +378,7 @@ class RequestServiceTest: BaseTest() {
 
 		val environment = body.environment!!
 		assertThat(environment.language, `is`("pt-BR"))
-		assertThat(environment.mobileTheme, `is`("Dark"))
+		assertThat(environment.theme, `is`(Theme.DarkMagic))
 
 		assertNotNull(body.data)
 	}

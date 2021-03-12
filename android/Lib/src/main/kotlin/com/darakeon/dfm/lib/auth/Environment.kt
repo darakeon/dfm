@@ -5,32 +5,24 @@ import android.content.Context
 import android.graphics.Color
 import com.darakeon.dfm.lib.R
 import com.darakeon.dfm.lib.api.entities.Environment
+import com.darakeon.dfm.lib.api.entities.Theme
+import com.darakeon.dfm.lib.extensions.getColorByAttr
 import com.darakeon.dfm.lib.extensions.refresh
 import java.util.Locale
 
 private const val themeKey = "Theme"
 private const val languageKey = "Language"
 
-val light = R.style.Light
-val dark = R.style.Dark
-
-const val lighter1 = 0x11FFFFFF
-const val lighter2 = 0x22FFFFFF
-const val darker1 = 0x11000000
-const val darker2 = 0x22000000
-
 fun Activity.setEnvironment(env: Environment) {
-	val changedTheme = themeChangeAndSave(env.mobileTheme)
+	val changedTheme = themeChangeAndSave(env.theme)
 	val changedLanguage = languageChangeAndSave(env.language)
 
 	if (changedTheme || changedLanguage)
 		refresh()
 }
 
-private fun Context.themeChangeAndSave(theme: String): Boolean {
-	if (theme == "") return false
-
-	val themeId = getThemeId(theme)
+private fun Context.themeChangeAndSave(theme: Theme): Boolean {
+	val themeId = theme.style
 	val spTheme = themeId.toString()
 
 	if (getValue(themeKey) == spTheme)
@@ -42,13 +34,6 @@ private fun Context.themeChangeAndSave(theme: String): Boolean {
 
 	return true
 }
-
-private fun getThemeId(theme: String): Int =
-	when (theme) {
-		"Light" -> light
-		"Dark" -> dark
-		else -> R.style.AppTheme
-	}
 
 private fun Context.languageChangeAndSave(systemLanguage: String): Boolean {
 	if (systemLanguage == "") return false
@@ -105,20 +90,9 @@ private fun Activity.languageChangeFromSaved() {
 		change(language)
 }
 
-private val colors = mapOf(
-	Pair(light, arrayOf(Color.TRANSPARENT, darker1, darker2)),
-	Pair(dark, arrayOf(Color.TRANSPARENT, lighter1, lighter2))
-)
-
-private fun Context.getColors(): Array<Int> {
-	val themeId = getValue(themeKey).toIntOrNull()
-
-	return colors[themeId] ?:
-		throw NotImplementedError()
+fun Context.getThemeLineColor(position: Int): Int {
+	return if (position % 2 == 0)
+		Color.TRANSPARENT
+	else
+		getColorByAttr(R.attr.highlight)
 }
-
-fun Context.getThemeLineColor(position: Int) =
-	getColors()[position % 2]
-
-val Context.highLightColor
-	get() = getColors()[2]

@@ -41,7 +41,7 @@ class AccountLineTest: BaseTest() {
 		assertThat(accountLine.name.text.toString(), `is`(account.name))
 		assertThat(accountLine.value.text.toString(), `is`("+27.00".getDecimal()))
 
-		val color = activity.getColor(R.color.positive_dark)
+		val color = activity.getColor(android.R.color.holo_blue_dark)
 		assertThat(accountLine.value.currentTextColor, `is`(color))
 	}
 
@@ -54,7 +54,7 @@ class AccountLineTest: BaseTest() {
 		assertThat(accountLine.name.text.toString(), `is`(account.name))
 		assertThat(accountLine.value.text.toString(), `is`("-27.00".getDecimal()))
 
-		val color = activity.getColor(R.color.negative_dark)
+		val color = activity.getColor(android.R.color.holo_red_dark)
 		assertThat(accountLine.value.currentTextColor, `is`(color))
 	}
 

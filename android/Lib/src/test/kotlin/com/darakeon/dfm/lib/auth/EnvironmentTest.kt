@@ -4,6 +4,7 @@ import android.app.Activity
 import android.graphics.Color
 import com.darakeon.dfm.lib.R
 import com.darakeon.dfm.lib.api.entities.Environment
+import com.darakeon.dfm.lib.api.entities.Theme
 import com.darakeon.dfm.lib.extensions.refresh
 import com.darakeon.dfm.lib.utils.mockContext
 import com.darakeon.dfm.testutils.BaseTest
@@ -27,6 +28,7 @@ class EnvironmentTest: BaseTest() {
 		val mockContext = mockContext()
 			.mockSharedPreferences()
 			.mockResources()
+			.mockTheme()
 
 		activity = mockContext.activity
 
@@ -42,10 +44,10 @@ class EnvironmentTest: BaseTest() {
 
 		activity.setValue("Theme", "")
 
-		activity.setEnvironment(Environment("Dark", ""))
+		activity.setEnvironment(Environment(Theme.DarkNature))
 
-		assertThat(activity.getValue("Theme"), `is`(R.style.Dark.toString()))
-		assertThat(theme, `is`(R.style.Dark))
+		assertThat(activity.getValue("Theme"), `is`(R.style.DarkNature.toString()))
+		assertThat(theme, `is`(R.style.DarkNature))
 		assertTrue(refreshed)
 	}
 
@@ -57,7 +59,7 @@ class EnvironmentTest: BaseTest() {
 			locale = it[0] as Locale
 		}
 
-		activity.setEnvironment(Environment("", "pt-BR"))
+		activity.setEnvironment(Environment("pt-BR"))
 
 		assertThat(activity.getValue("Language"), `is`("pt_BR"))
 		assertThat(locale.displayLanguage, `is`("português"))
@@ -96,82 +98,61 @@ class EnvironmentTest: BaseTest() {
 
 	@Test
 	fun getThemeLineColorEven_Dark() {
-		val env = Environment("Dark", "")
+		val env = Environment(Theme.DarkNature)
 		activity.setEnvironment(env)
 
 		assertThat(
-			activity.getThemeLineColor(0),
+			activity.getThemeLineColor(86),
 			`is`(Color.TRANSPARENT)
 		)
 	}
 
 	@Test
 	fun getThemeLineColorOdd_Dark() {
-		val env = Environment("Dark", "")
+		val env = Environment(Theme.DarkNature)
 		activity.setEnvironment(env)
 
 		assertThat(
-			activity.getThemeLineColor(1),
-			`is`(lighter1)
-		)
-	}
-
-	@Test
-	fun highLightColor_Dark() {
-		val env = Environment("Dark", "")
-		activity.setEnvironment(env)
-
-		assertThat(
-			activity.highLightColor,
-			`is`(lighter2)
+			activity.getThemeLineColor(27),
+			`is`(android.R.color.holo_orange_dark)
 		)
 	}
 
 	@Test
 	fun getThemeLineColorEven_Light() {
-		val env = Environment("Light", "")
+		val env = Environment(Theme.LightNature)
 		activity.setEnvironment(env)
 
 		assertThat(
-			activity.getThemeLineColor(0),
+			activity.getThemeLineColor(86),
 			`is`(Color.TRANSPARENT)
 		)
 	}
 
 	@Test
 	fun getThemeLineColorOdd_Light() {
-		val env = Environment("Light", "")
+		val env = Environment(Theme.LightNature)
 		activity.setEnvironment(env)
 
 		assertThat(
-			activity.getThemeLineColor(1),
-			`is`(darker1)
+			activity.getThemeLineColor(27),
+			`is`(android.R.color.holo_orange_light)
 		)
 	}
 
 	@Test
-	fun highLightColor_Light() {
-		val env = Environment("Light", "")
-		activity.setEnvironment(env)
-
+	fun getThemeLineColorEven_None() {
 		assertThat(
-			activity.highLightColor,
-			`is`(darker2)
+			activity.getThemeLineColor(86),
+			`is`(Color.TRANSPARENT)
 		)
 	}
 
-	@Test(expected = NotImplementedError::class)
-	fun getThemeLineColorEven_None() {
-		activity.getThemeLineColor(0)
-	}
-
-	@Test(expected = NotImplementedError::class)
+	@Test
 	fun getThemeLineColorOdd_None() {
-		activity.getThemeLineColor(1)
-	}
-
-	@Test(expected = NotImplementedError::class)
-	fun highLightColor_None() {
-		activity.highLightColor
+		assertThat(
+			activity.getThemeLineColor(27),
+			`is`(Color.TRANSPARENT)
+		)
 	}
 }

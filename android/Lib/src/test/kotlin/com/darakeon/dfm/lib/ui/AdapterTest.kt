@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import com.darakeon.dfm.lib.api.entities.Environment
-import com.darakeon.dfm.lib.auth.lighter1
+import com.darakeon.dfm.lib.api.entities.Theme
 import com.darakeon.dfm.lib.auth.setEnvironment
 import com.darakeon.dfm.lib.utils.mockContext
 import com.darakeon.dfm.testutils.BaseTest
@@ -32,9 +32,10 @@ class AdapterTest: BaseTest() {
 		val mocker = mockContext()
 			.mockSharedPreferences()
 			.mockResources()
+			.mockTheme()
 
 		activity = mocker.activity
-		activity.setEnvironment(Environment("Dark", ""))
+		activity.setEnvironment(Environment(Theme.DarkNature))
 
 		inflater = mocker.mockInflater()
 
@@ -78,10 +79,13 @@ class AdapterTest: BaseTest() {
 		`when`(parent.setBackgroundColor(anyInt()))
 			.execute { color = it[0] as Int }
 
-		getView(0, Color.TRANSPARENT, "L", child) { color }
-		getView(1, lighter1, "C", child) { color }
-		getView(2, Color.TRANSPARENT, "S", child) { color }
-		getView(3, lighter1, "D", child) { color }
+		val even = Color.TRANSPARENT
+		val odd = R.color.holo_orange_dark
+
+		getView(0, even, "L", child) { color }
+		getView(1, odd, "C", child) { color }
+		getView(2, even, "S", child) { color }
+		getView(3, odd, "D", child) { color }
 	}
 
 	private fun getView(

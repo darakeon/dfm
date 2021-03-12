@@ -14,7 +14,7 @@ class ApiActivity : Activity(), ApiCaller {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		api = Api(this, null)
-		setTheme(R.style.AppTheme)
+		setTheme(R.style.DarkMagic)
 	}
 
 	var loggedOut = false

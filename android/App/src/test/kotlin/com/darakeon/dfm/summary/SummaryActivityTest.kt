@@ -208,7 +208,7 @@ class SummaryActivityTest: BaseTest() {
 
 		assertThat(activity.total_title.text.toString(), `is`("account"))
 		assertThat(activity.total_value.text.toString(), `is`("+2.00".getDecimal()))
-		val color = activity.getColor(R.color.positive_dark)
+		val color = activity.getColor(android.R.color.holo_blue_dark)
 		assertThat(activity.total_value.currentTextColor, `is`(color))
 	}
 

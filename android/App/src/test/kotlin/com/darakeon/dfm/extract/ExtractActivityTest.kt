@@ -11,6 +11,7 @@ import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.lib.api.entities.Date
 import com.darakeon.dfm.lib.api.entities.Environment
+import com.darakeon.dfm.lib.api.entities.Theme
 import com.darakeon.dfm.lib.api.entities.extract.Extract
 import com.darakeon.dfm.lib.auth.setEnvironment
 import com.darakeon.dfm.testutils.BaseTest
@@ -251,7 +252,7 @@ class ExtractActivityTest: BaseTest() {
 
 		assertThat(activity.total_title.text.toString(), `is`("account"))
 		assertThat(activity.total_value.text.toString(), `is`("+27.00".getDecimal()))
-		val color = activity.getColor(R.color.positive_dark)
+		val color = activity.getColor(android.R.color.holo_blue_dark)
 		assertThat(activity.total_value.currentTextColor, `is`(color))
 	}
 
@@ -455,7 +456,7 @@ class ExtractActivityTest: BaseTest() {
 		saved.putString("extract", readBundle(jsonName))
 		activity.intent.putExtra("accountUrl", "url")
 
-		activity.setEnvironment(Environment("Dark", ""))
+		activity.setEnvironment(Environment(Theme.DarkMagic))
 		activity.onCreate(saved, null)
 
 		shadowOf(activity.main_table).populateItems()

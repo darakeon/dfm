@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.graphics.Typeface.createFromAsset
-import android.util.TypedValue
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.TextView
@@ -14,9 +13,7 @@ import com.darakeon.dfm.lib.api.entities.ComboItem
 const val glyphicon = "fonts/glyphicons-halflings-regular.ttf"
 
 fun TextView.setColorByAttr(attr : Int){
-	val typedValue = TypedValue()
-	context.theme.resolveAttribute(attr, typedValue, true)
-	setTextColor(typedValue.data)
+	setTextColor(context.getColorByAttr(attr))
 }
 
 fun TextView.applyGlyphicon() {
@@ -42,7 +39,7 @@ private fun getColor(value: Double): Int {
 	if (value > 0)
 		return R.attr.positive
 
-	return R.attr.neutral
+	return R.attr.zero
 }
 
 fun Activity.showChangeList(

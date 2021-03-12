@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<attr name="neutral" format="reference" />
+	<attr name="primary" format="reference" />
 	<attr name="negative" format="reference" />
 	<attr name="positive" format="reference" />
-	<attr name="neutral" format="reference" />
+	<attr name="zero" format="reference" />
 	<attr name="transfer" format="reference" />
 	<attr name="checked" format="reference" />
 	<attr name="unchecked" format="reference" />
+	<attr name="highlight" format="reference" />
+	<attr name="link" format="reference" />
 </resources>
