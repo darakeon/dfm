@@ -1,4 +1,7 @@
 {
+	"5.0.0.0": [
+		"Fix website accessibility for screen readers and website+app accessibility at colors"
+	],
 	"4.6.3.6": [
 		"Fix accessibilitity version size, to show the real importance of it"
 	],
