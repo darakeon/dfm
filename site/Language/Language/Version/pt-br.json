@@ -1,4 +1,7 @@
 {
+	"5.0.0.0": [
+		"Corrigida acessibilidade no site para leitores de tela e no site e no app nas cores"
+	],
 	"4.6.3.6": [
 		"Arrumado tamanho da versão com acessibilidade, para mostrar a devida importância"
 	],
