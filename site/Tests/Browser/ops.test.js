@@ -8,9 +8,16 @@ describe('Ops', () => {
 	beforeAll(async () => {
 		await db.cleanupTickets()
 		await puppy.call()
-		await page.click('ul.nav li:nth-child(1) a')
-		await page.click('#language-modal #language-pt-br')
-		await page.waitForNavigation()
+
+		const langButton = 'ul.nav li:nth-child(1) a'
+		const choosenLang = db.language.toLowerCase()
+		let brand = await puppy.content(langButton)
+
+		while (brand.indexOf(choosenLang) < 0) {
+			await page.click(langButton)
+			await page.click('#language-modal #language-pt-br')
+			brand = await puppy.content(langButton)
+		}
 	})
 
 	test('Index', async () => {
