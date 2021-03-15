@@ -63,6 +63,7 @@ The allowed types are:
 - `mail`: e-mail sending;
 - `language`: translations;
 - `publish`: automated publishing pieces;
+- `accessibility`: changes to make interface more accessible to everyone
 
 The body of the message is the part where the details go, if they are
 necessary. To make readability easier, it must have no more than 72
