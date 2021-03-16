@@ -11,8 +11,11 @@ This is the task list for the project.
 - Dependency: which other task it depends on (if it exists)
 - Issue: github issue about the task (if it exists)
 
-| Task (48)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue                                            |
+| Task (52)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue                                            |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ------------------------------------------------ |
+| Store logs at host machine instead of just inside docker                       | :ant:    |  1  |  4  |  7  |                |                                                  |
+| Add partial foreseen                                                           | :sheep:  |  2  |  4  |  6  |                |                                                  |
+| Add monochromatic flag and hover with border                                   | :sheep:  |  1  |  3  |  6  |                |                                                  |
 | Add system tips (user "age" = times accessed) (disable: unsubscribe or config) | :whale:  |  3  |  3  |  4  |                |                                                  |
 | Put tip that you can disable mobile login if your cellphone is stolen          | :sheep:  |  3  |  3  |  4  | tips           |                                                  |
 | Year and Month report by category [chart]                                      | :whale:  |  3  |  3  |  4  |                |                                                  |
@@ -50,6 +53,7 @@ This is the task list for the project.
 | Create Market - group of moves, each one of one category, to shopping (mobile) | :whale:  |  3  |  2  |  3  |                |                                                  |
 | Report with more than one account                                              | :whale:  |  3  |  2  |  3  |                |                                                  |
 | Implement entities limits (acc opened, cat enabled, moves/month, active sched) | :dragon: |  3  |  2  |  3  |                |                                                  |
+| Create tests of sendreport                                                     | :ant:    |  2  |  1  |  3  |                |                                                  |
 | Deny double use of authy code                                                  | :sheep:  |  2  |  1  |  3  |                |                                                  |
 | Add auth by cellphone                                                          | :whale:  |  2  |  1  |  3  |                |                                                  |
 | Link account and category (combo)                                              | :sheep:  |  2  |  1  |  3  |                |                                                  |
