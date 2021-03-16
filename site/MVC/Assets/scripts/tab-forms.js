@@ -3,7 +3,7 @@
 		const href = $(this).find('a').attr('href')
 
 		const action = $(href).data('form')
-		$('form').attr('action', action)
+		$(this).closest('form').attr('action', action)
 
 		$('#ActiveForm').val(href.substr(1))
 
