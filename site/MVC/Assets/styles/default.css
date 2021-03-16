@@ -139,15 +139,72 @@ dd {
 		-2px  0   var(--neutral-5);
 }
 
-.navbar .flag a:focus,
-.navbar .flag a:hover {
-	margin: 0 -3px -3px -3px;
+.navbar .flag svg {
+	height: 18px;
+	width: auto;
 }
 
-	.navbar .flag a:focus img,
-	.navbar .flag a:hover img {
-		border: 3px solid var(--neutral-5);
-		background: var(--neutral-5);
+.pt-br .green {
+	fill: var(--neutral-2);
+}
+	.pt-br:focus .green,
+	.pt-br:hover .green,
+	#language-modal .pt-br .green {
+		fill: #009b3a;
+	}
+
+.pt-br .yellow {
+	fill: var(--primary-0);
+}
+	.pt-br:focus .yellow,
+	.pt-br:hover .yellow,
+	#language-modal .pt-br .yellow {
+		fill: #fedf00;
+	}
+
+.pt-br .blue {
+	fill: var(--neutral-2);
+}
+	.pt-br:focus .blue,
+	.pt-br:hover .blue,
+	#language-modal .pt-br .blue {
+		fill: #002776;
+	}
+
+.pt-br .white {
+	fill: var(--primary-0);
+}
+	.pt-br:focus .white,
+	.pt-br:hover .white,
+	#language-modal .pt-br .white {
+		fill: #ffffff;
+	}
+
+.en-us .blue {
+	fill: var(--neutral-2);
+}
+	.en-us:focus .blue,
+	.en-us:hover .blue,
+	#language-modal .en-us .blue {
+		fill: #012169;
+	}
+
+.en-us .red {
+	stroke: var(--neutral-2);
+}
+	.en-us:focus .red,
+	.en-us:hover .red,
+	#language-modal .en-us .red {
+		stroke: #C8102E;
+	}
+
+.en-us .white {
+	stroke: var(--primary-0);
+}
+	.en-us:focus .white,
+	.en-us:hover .white,
+	#language-modal .en-us .white {
+		stroke: #ffffff;
 	}
 
 .clock > a:hover, .clock > a:focus {

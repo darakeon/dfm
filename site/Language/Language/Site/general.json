@@ -49,8 +49,8 @@
 		"Settings": "Settings",
 
 		"Language": "Language",
-		"LanguageEnus": "English",
-		"LanguagePtbr": "Portuguese",
+		"LanguageEnUs": "English",
+		"LanguagePtBr": "Portuguese",
 
 		"Account": "Account",
 		"Accounts": "Accounts",
@@ -173,8 +173,8 @@
 		"Settings": "Configurações",
 
 		"Language": "Língua",
-		"LanguageEnus": "Inglês",
-		"LanguagePtbr": "Português",
+		"LanguageEnUs": "Inglês",
+		"LanguagePtBr": "Português",
 
 		"Account": "Conta",
 		"Accounts": "Contas",

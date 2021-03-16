@@ -34,14 +34,12 @@
 
 					foreach (var lang in langList)
 					{
-						<button class="btn btn-success"
+						<button class="btn btn-success @lang.Value"
 						        name="@configModel.LanguageFieldName"
 						        value="@(lang.Value)"
 						        title="@(lang.Text)"
 						        id="language-@(lang.Value)">
-							<img src="~/Assets/images/@(lang.Value).svg"
-							     alt="@(lang.Text)"
-							     title="@(lang.Text)"/>
+							@await Html.PartialAsync($"Flags/{lang.Value}")
 						</button>
 					}
 

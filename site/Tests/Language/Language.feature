@@ -208,8 +208,8 @@ Scenario: 09. Get translate of Interface (users)
 			| Users   | MoveCheck               |
 			| Users   | Language                |
 			| Users   | TimeZone                |
-			| Users   | LanguageEnus            |
-			| Users   | LanguagePtbr            |
+			| Users   | LanguageEnUs            |
+			| Users   | LanguagePtBr            |
 			| Users   | Save                    |
 			| Users   | ConfigChanged           |
 			| Users   | CurrentPassword         |

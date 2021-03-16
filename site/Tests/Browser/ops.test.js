@@ -9,14 +9,15 @@ describe('Ops', () => {
 		await db.cleanupTickets()
 		await puppy.call()
 
-		const langButton = 'ul.nav li:nth-child(1) a'
-		const choosenLang = db.language.toLowerCase()
-		let brand = await puppy.content(langButton)
+		const langItem = 'ul.nav li:nth-child(1)'
+		const langButton = `${langItem} a`
+		const chosenLang = db.language.toLowerCase()
+		let flag = await puppy.content(langItem)
 
-		while (brand.indexOf(choosenLang) < 0) {
+		while (flag.indexOf(chosenLang) < 0) {
 			await page.click(langButton)
 			await page.click('#language-modal #language-pt-br')
-			brand = await puppy.content(langButton)
+			flag = await puppy.content(langItem)
 		}
 	})
 
