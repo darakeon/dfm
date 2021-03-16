@@ -133,11 +133,22 @@ dd {
 .navbar a:focus span,
 .navbar a:hover span {
 	text-shadow:
-		 1px  0   var(--neutral-5),
-		 0    1px var(--neutral-5),
-		 0   -1px var(--neutral-5),
-		-1px  0   var(--neutral-5);
+		 2px  0   var(--neutral-5),
+		 0    2px var(--neutral-5),
+		 0   -2px var(--neutral-5),
+		-2px  0   var(--neutral-5);
 }
+
+.navbar .flag a:focus,
+.navbar .flag a:hover {
+	margin: 0 -3px -3px -3px;
+}
+
+	.navbar .flag a:focus img,
+	.navbar .flag a:hover img {
+		border: 3px solid var(--neutral-5);
+		background: var(--neutral-5);
+	}
 
 .clock > a:hover, .clock > a:focus {
 	text-shadow: none;

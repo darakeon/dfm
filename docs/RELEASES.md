@@ -17,7 +17,7 @@ Legend:
 ## <a name="6.0.0.0"></a>6.0.0.0 :dragon: <sup>`6`</sup>
 - [ ] Store logs at host machine instead of just inside docker
 - [ ] Add partial foreseen
-- [ ] Add monochromatic flag and hover with border
+- [ ] `210316>......` Add monochromatic flag and hover with border
 - [ ] Store data locally, to use when there is no internet (Mobile)
 - [x] `210316>210316` Fix accept contract solo screen
 - [x] `210316>210316` Fix stop wizard at configuration screen
