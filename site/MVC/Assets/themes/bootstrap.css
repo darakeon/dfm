@@ -1601,7 +1601,8 @@ a.text-primary:hover, a.text-primary:focus {
 }
 
 .text-success {
-	color: var(--success-1)
+	color: var(--success-1);
+	font-weight: bold;
 }
 
 a.text-success:hover, a.text-success:focus {
@@ -1609,7 +1610,8 @@ a.text-success:hover, a.text-success:focus {
 }
 
 .text-info {
-	color: var(--info-1)
+	color: var(--info-1);
+	font-weight: bold;
 }
 
 a.text-info:hover, a.text-info:focus {
@@ -1617,7 +1619,8 @@ a.text-info:hover, a.text-info:focus {
 }
 
 .text-warning {
-	color: var(--warning-1)
+	color: var(--warning-1);
+	font-weight: bold;
 }
 
 a.text-warning:hover, a.text-warning:focus {
@@ -1625,7 +1628,8 @@ a.text-warning:hover, a.text-warning:focus {
 }
 
 .text-danger {
-	color: var(--danger-1)
+	color: var(--danger-1);
+	font-weight: bold;
 }
 
 a.text-danger:hover, a.text-danger:focus {
