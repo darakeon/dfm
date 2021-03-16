@@ -3,6 +3,7 @@
 @{
 	var accountArea = Model as BaseAccountModel;
 	var defaultRoute = new Default.Main();
+	var lang = Model.Language.ToLower();
 }
 
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -28,9 +29,9 @@
 			<ul class="nav navbar-nav navbar-right">
 				@await Html.PartialAsync("Skeleton/Now")
 
-				<li class="flag @(Model.Language)" title="@Context.Translate("Aria_OpenLanguage")" data-toggle='modal' data-target='#language-modal'>
-					<a role='button'>
-						<img src="~/Assets/images/@(Model.Language.ToLower()).svg" title="@Context.Translate("Aria_OpenLanguage")" />
+				<li class="flag @lang" title="@Context.Translate("Aria_OpenLanguage")" data-toggle='modal' data-target='#language-modal'>
+					<a role='button' class="@lang" title="@Context.Translate("Aria_OpenLanguage")">
+						@await Html.PartialAsync($"Flags/{lang}")
 					</a>
 				</li>
 

@@ -1,0 +1,18 @@
+@{ var guid = Guid.NewGuid(); }
+
+<?xml version="1.0" encoding="utf-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 742" width="100" height="70">
+	<title>@Context.Translate("LanguagePtBr")</title>
+
+	<!-- based on flag find at https://commons.wikimedia.org/ -->
+	<path class="green" d="M0 0H 1060V 742H 0z" />
+
+	<path d="M 95,371 530,649 965,371 530,93 Z" class="yellow" />
+
+	<circle r="183" class="blue" cx="530" cy="371" />
+
+	<clipPath id="crop-circle-@guid">
+		<circle r="184" cx="530" cy="371" />
+	</clipPath>
+	<path clip-path="url(#crop-circle-@guid)" d="m -21,738 a 446,446 0 0 1 892,0 h -26 a 420,420 0 1 0 -840,0 z" class="white" />
+</svg>
