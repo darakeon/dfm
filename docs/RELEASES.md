@@ -14,8 +14,10 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="6.0.0.0"></a>6.0.0.0 :dragon: <sup>`1`</sup>
+## <a name="6.0.0.0"></a>6.0.0.0 :dragon: <sup>`3`</sup>
 - [ ] Store data locally, to use when there is no internet (Mobile)
+- [ ] Fix accept contract solo screen
+- [ ] Fix stop wizard at configuration screen
 
 ## <a name="5.0.0.0"></a>5.0.0.0 :dragon: <sup>`1`</sup>
 - [x] `210304>210314` Adjust [accessibilitity]
