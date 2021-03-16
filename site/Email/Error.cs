@@ -69,7 +69,7 @@ namespace DFM.Email
 		private static String format(Exception exception)
 		{
 			var realException = exception.MostInner();
-			var stackTrace = realException.StackTrace
+			var stackTrace = realException.StackTrace?
 				.Replace("\n", "<br style='border-top: 1px solid #AAA' />");
 
 			return $@"
