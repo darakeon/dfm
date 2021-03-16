@@ -18,10 +18,10 @@ namespace DFM.Language.Emails
 				if (emailType < 0)
 					return mainContent;
 
-				var masterPath = Path.Combine(path, $"{theme}Master.htm");
-				var masterContent = getContent(masterPath);
+				var basePath = Path.Combine(path, $"{theme}Base.htm");
+				var baseContent = getContent(basePath);
 
-				return masterContent
+				return baseContent
 					.Replace("{{Body}}", mainContent)
 					.Replace("{{TokenToNotHide}}", Token.New());
 			}

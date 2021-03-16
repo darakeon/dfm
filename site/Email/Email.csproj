@@ -9,21 +9,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Email\DarkMaster.htm" />
+    <None Remove="Email\DarkBase.htm" />
     <None Remove="Email\Detail.htm" />
-    <None Remove="Email\LightMaster.htm" />
+    <None Remove="Email\LightBase.htm" />
     <None Remove="Email\MoveNotification.htm" />
     <None Remove="Email\SecurityAction.htm" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Email\DarkMaster.htm">
+    <Content Include="Email\DarkBase.htm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Email\Detail.htm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Email\LightMaster.htm">
+    <Content Include="Email\LightBase.htm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Email\MoveNotification.htm">

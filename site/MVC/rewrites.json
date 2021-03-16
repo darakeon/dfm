@@ -83,7 +83,7 @@
 		"^contact"
 	],
 
-	"https://github.com/darakeon/dfm/blob/master/docs/RELEASES.md": [
+	"https://github.com/darakeon/dfm/blob/main/docs/RELEASES.md": [
 		"^CHANGELOG.txt",
 		"^core/CHANGELOG.txt",
 		"^boards",
