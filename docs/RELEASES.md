@@ -15,10 +15,10 @@ Legend:
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="6.0.0.0"></a>6.0.0.0 :dragon: <sup>`6`</sup>
-- [ ] Store logs at host machine instead of just inside docker
-- [ ] Add partial foreseen
-- [x] `210316>210316` Add monochromatic flag before hover
 - [ ] Store data locally, to use when there is no internet (Mobile)
+- [ ] Add partial foreseen
+- [ ] Store logs at host machine instead of just inside docker
+- [x] `210316>210316` Add monochromatic flag before hover
 - [x] `210316>210316` Fix accept contract solo screen
 - [x] `210316>210316` Fix stop wizard at configuration screen
 
