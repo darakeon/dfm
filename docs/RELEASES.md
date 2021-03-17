@@ -18,7 +18,7 @@ Legend:
 - [ ] Store data locally, to use when there is no internet (Mobile)
 - [ ] Fix color at start screen at mobile
 - [ ] Fix color of dialogs at mobile
-- [ ] Fix color of inputs at mobile
+- [x] `210317>210317` Fix color of inputs at mobile
 - [x] `210316>210317` Store logs at host machine instead of just inside docker
 - [x] `210316>210316` Add monochromatic flag before hover
 - [x] `210316>210316` Fix accept contract solo screen

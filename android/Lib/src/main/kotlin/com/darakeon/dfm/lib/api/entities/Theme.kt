@@ -6,7 +6,7 @@ import com.darakeon.dfm.lib.R
 enum class Theme(
 	val style: Int,
 ) {
-	None(R.style.None),
+	None(R.style.Test),
 	DarkMagic(R.style.DarkMagic),
 	DarkSober(R.style.DarkSober),
 	DarkNature(R.style.DarkNature),

@@ -12,20 +12,29 @@
 		<item name="android:windowAnimationStyle">@null</item>
 		<item name="android:windowBackground">@color/dark_neutral_0</item>
 		<item name="android:textColor">?attr/primary</item>
+		<item name="android:textColorPrimary">?attr/primary</item>
+		<item name="android:textColorHint">?attr/placeholder</item>
 		<item name="android:buttonStyle">@style/Button</item>
+		<item name="android:buttonStyleToggle">@style/Button</item>
 	</style>
 
 	<style name="DarkMagic" parent="Dark">
 		<item name="primary">@color/dark_magic_primary_0</item>
+		<item name="placeholder">@color/dark_magic_primary_3</item>
 		<item name="link">@color/dark_magic_highlight_1</item>
+		<item name="logo">@color/dark_magic_primary_2</item>
 	</style>
 	<style name="DarkSober" parent="Dark">
 		<item name="primary">@color/dark_sober_primary_0</item>
+		<item name="placeholder">@color/dark_sober_primary_3</item>
 		<item name="link">@color/dark_sober_highlight_1</item>
+		<item name="logo">@color/dark_sober_primary_2</item>
 	</style>
 	<style name="DarkNature" parent="Dark">
 		<item name="primary">@color/dark_nature_primary_0</item>
+		<item name="placeholder">@color/dark_nature_primary_3</item>
 		<item name="link">@color/dark_nature_highlight_1</item>
+		<item name="logo">@color/dark_nature_primary_2</item>
 	</style>
 
 	<style name="Light" parent="android:Theme.Holo.Light">
@@ -41,20 +50,29 @@
 		<item name="android:windowAnimationStyle">@null</item>
 		<item name="android:windowBackground">@color/light_neutral_0</item>
 		<item name="android:textColor">?attr/primary</item>
+		<item name="android:textColorPrimary">?attr/primary</item>
+		<item name="android:textColorHint">?attr/placeholder</item>
 		<item name="android:buttonStyle">@style/Button</item>
+		<item name="android:buttonStyleToggle">@style/Button</item>
 	</style>
 
 	<style name="LightMagic" parent="Light">
 		<item name="primary">@color/light_magic_primary_0</item>
+		<item name="placeholder">@color/light_magic_primary_3</item>
 		<item name="link">@color/light_magic_highlight_1</item>
+		<item name="logo">@color/light_magic_primary_2</item>
 	</style>
 	<style name="LightSober" parent="Light">
 		<item name="primary">@color/light_sober_primary_0</item>
+		<item name="placeholder">@color/light_sober_primary_3</item>
 		<item name="link">@color/light_sober_highlight_1</item>
+		<item name="logo">@color/light_sober_primary_2</item>
 	</style>
 	<style name="LightNature" parent="Light">
 		<item name="primary">@color/light_nature_primary_0</item>
+		<item name="placeholder">@color/light_nature_primary_3</item>
 		<item name="link">@color/light_nature_highlight_1</item>
+		<item name="logo">@color/light_nature_primary_2</item>
 	</style>
 
 	<style name="Button" parent="android:style/Widget.Holo.Button">
@@ -72,7 +90,7 @@
 		<item name="android:textColor">?attr/neutral</item>
 	</style>
 
-	<style name="None" parent="android:Theme.Holo">
+	<style name="Test" parent="android:Theme.Holo">
 		<item name="primary">@color/pig</item>
 
 		<item name="neutral">@android:color/black</item>
@@ -84,11 +102,16 @@
 		<item name="unchecked">@android:color/holo_red_light</item>
 		<item name="highlight">@android:color/holo_orange_dark</item>
 		<item name="link">@android:color/holo_orange_light</item>
+		<item name="placeholder">@android:color/darker_gray</item>
+		<item name="logo">@android:color/white</item>
 
 		<item name="android:actionBarStyle">@style/ActionBar</item>
 		<item name="android:windowAnimationStyle">@null</item>
 		<item name="android:windowBackground">@color/pig</item>
-		<item name="android:textColor">@color/pig</item>
+		<item name="android:textColor">?attr/primary</item>
+		<item name="android:textColorPrimary">?attr/primary</item>
+		<item name="android:textColorHint">?attr/placeholder</item>
+		<item name="android:buttonStyle">@style/Button</item>
+		<item name="android:buttonStyleToggle">@style/Button</item>
 	</style>
-
 </resources>
