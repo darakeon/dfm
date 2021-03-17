@@ -41,8 +41,8 @@ This is the task list for the project.
 | Add tests to moves order at report                                             | :ant:    |  1  |  1  |  4  |                |                                                  |
 | If session drop, call history.go(-2) after re-login                            | :sheep:  |  1  |  1  |  4  |                |                                                  |
 | Change putJson to putSerializable/Parcelable at extras in android              | :ant:    |  1  |  1  |  4  |                |                                                  |
-| Replace XML at UI android by [compose jetpack]                                 | :ant:    |  4  |  3  |  3  |                |                                                  |
 | Add all android missing tests                                                  | :ant:    |  4  |  3  |  3  |                |                                                  |
+| Replace XML at UI android by [compose jetpack]                                 | :ant:    |  4  |  3  |  3  |                |                                                  |
 | Add accessibility to automated tests                                           | :ant:    |  4  |  3  |  3  |                |                                                  |
 | Implement security measures suggested by github                                | :ant:    |  3  |  2  |  3  |                |                                                  |
 | Separate MVC projects: site and api                                            | :ant:    |  3  |  2  |  3  |                |                                                  |
