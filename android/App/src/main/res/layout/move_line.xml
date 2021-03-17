@@ -19,6 +19,7 @@
 			android:layout_weight="1"
 			android:layout_height="wrap_content"
 			android:text="@string/glyph_edit"
+			android:textColor="@drawable/menu"
 			style="?android:attr/buttonBarButtonStyle" />
 		<Button
 			android:id="@+id/action_delete"
@@ -26,6 +27,7 @@
 			android:layout_weight="1"
 			android:layout_height="wrap_content"
 			android:text="@string/glyph_delete"
+			android:textColor="@drawable/menu"
 			style="?android:attr/buttonBarButtonStyle" />
 		<Button
 			android:id="@+id/action_check"
@@ -33,6 +35,7 @@
 			android:layout_weight="1"
 			android:layout_height="wrap_content"
 			android:text="@string/glyph_check"
+			android:textColor="@drawable/menu"
 			style="?android:attr/buttonBarButtonStyle" />
 		<Button
 			android:id="@+id/action_uncheck"
@@ -40,6 +43,7 @@
 			android:layout_weight="1"
 			android:layout_height="wrap_content"
 			android:text="@string/glyph_uncheck"
+			android:textColor="@drawable/menu"
 			style="?android:attr/buttonBarButtonStyle" />
 	</LinearLayout>
 </com.darakeon.dfm.extract.MoveLine>
