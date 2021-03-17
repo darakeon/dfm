@@ -11,7 +11,7 @@ This is the task list for the project.
 - Dependency: which other task it depends on (if it exists)
 - Issue: github issue about the task (if it exists)
 
-| Task (49)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue                                            |
+| Task (50)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue                                            |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ------------------------------------------------ |
 | Run robot each midnight and remove it from request (no C#)                     | :sheep:  |  3  |  3  |  4  |                |                                                  |
 | Robot to delete not accessed users                                             | :sheep:  |  3  |  3  |  4  | robot          | [#49](https://github.com/darakeon/dfm/issues/49) |
@@ -43,6 +43,7 @@ This is the task list for the project.
 | Change putJson to putSerializable/Parcelable at extras in android              | :ant:    |  1  |  1  |  4  |                |                                                  |
 | Replace XML at UI android by [compose jetpack]                                 | :ant:    |  4  |  3  |  3  |                |                                                  |
 | Add all android missing tests                                                  | :ant:    |  4  |  3  |  3  |                |                                                  |
+| Add accessibility to automated tests                                           | :ant:    |  4  |  3  |  3  |                |                                                  |
 | Implement security measures suggested by github                                | :ant:    |  3  |  2  |  3  |                |                                                  |
 | Separate MVC projects: site and api                                            | :ant:    |  3  |  2  |  3  |                |                                                  |
 | Test android tests payloads x .net api objects                                 | :ant:    |  3  |  2  |  3  | break site/api |                                                  |
