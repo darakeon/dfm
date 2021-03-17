@@ -9,8 +9,6 @@ RUN apt remove -y dotnet-sdk-5.0
 RUN rm -r /var/dfm
 
 ENV ASPNETCORE_ENVIRONMENT=amazon
-RUN mkdir -p /var/logs/dfm/nh
-RUN mkdir -p /var/www/data/log_errors/
 
 ENV ASPNETCORE_URLS=http://+:2106;https://+:2011
 EXPOSE 2011
