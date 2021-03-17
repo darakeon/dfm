@@ -25,8 +25,8 @@ namespace DFM.MVC.Areas.Account.Models
 				.Select(getSubModel)
 				.ToList();
 
-			Total = month.AccountTotal;
-			TotalSign = month.AccountTotalSign;
+			Current = month.AccountTotal;
+			CurrentSign = month.AccountTotalSign;
 
 			if (month.ForeseenTotal != 0)
 			{
@@ -49,8 +49,8 @@ namespace DFM.MVC.Areas.Account.Models
 			);
 		}
 
-		public Decimal Total { get; }
-		public AccountSign TotalSign { get; }
+		public Decimal Current { get; }
+		public AccountSign CurrentSign { get; }
 		public Decimal? Foreseen { get; }
 		public AccountSign ForeseenSign { get; }
 
