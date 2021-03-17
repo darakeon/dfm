@@ -94,3 +94,4 @@ itself. Well, we are always our most demanding client.
 - [KDiff3](https://www.kde.org/applications/development/kdiff3/)
 - [Notepad++](https://notepad-plus-plus.org/)
 - [Docker](https://www.docker.com/)
+- [Axe Coconut Acessibility addon - Firefox](https://addons.mozilla.org/firefox/addon/axe-devtools/)
