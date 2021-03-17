@@ -5,8 +5,8 @@ namespace DFM.MVC.Areas.Account.Models.SubModels
 {
 	public interface ITotal
 	{
-		Decimal Total { get; }
-		AccountSign TotalSign { get; }
+		Decimal Current { get; }
+ 		AccountSign CurrentSign { get; }
 		Decimal? Foreseen { get; }
 		AccountSign ForeseenSign { get; }
 		String Language { get; }

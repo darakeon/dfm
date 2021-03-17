@@ -14,8 +14,8 @@ namespace DFM.MVC.Areas.Account.Models
 			Year = report.GetYearReport(CurrentAccountUrl, yearDate);
 		}
 
-		public Decimal Total => Year.AccountTotal;
-		public AccountSign TotalSign => Year.AccountSign;
+		public Decimal Current => Year.AccountTotal;
+		public AccountSign CurrentSign => Year.AccountSign;
 		public Decimal? Foreseen => Year.AccountForeseen;
 		public AccountSign ForeseenSign => Year.AccountForeseenSign;
 

@@ -1,13 +1,13 @@
 ﻿@using DFM.MVC.Areas.Account.Models.SubModels
 @model DFM.MVC.Areas.Account.Models.SubModels.ITotal
 
-<div class="well well-sm text-center totals">
+<div class="well well-lg text-center totals">
 	@await Html.PartialAsync("Subtotal",
 		new Subtotal(
 			Model.Language,
 			"Total",
-			Model.Total,
-			Model.TotalSign
+			Model.Current,
+			Model.CurrentSign
 		)
 	)
 
