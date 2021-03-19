@@ -15,6 +15,7 @@
 		<item name="android:textColor">?attr/primary</item>
 		<item name="android:textColorPrimary">?attr/primary</item>
 		<item name="android:textColorHint">?attr/placeholder</item>
+		<item name="android:colorControlActivated">?attr/link</item>
 		<item name="android:buttonStyle">@style/Button</item>
 		<item name="android:buttonStyleToggle">@style/Button</item>
 		<item name="android:alertDialogStyle">@style/Dialog</item>
@@ -101,6 +102,7 @@
 		<item name="android:textColorAlertDialogListItem">?attr/primary</item>
 		<item name="android:background">?attr/background</item>
 		<item name="android:buttonBarButtonStyle">@style/Button</item>
+		<item name="android:colorAccent">?attr/link</item>
 	</style>
 	<style name="DateSpinner" parent="Dialog">
 		<item name="android:datePickerStyle">@style/DatePickerSpinner</item>

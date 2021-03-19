@@ -17,8 +17,8 @@ Legend:
 ## <a name="6.0.0.0"></a>6.0.0.0 :dragon: <sup>`8`</sup>
 - [ ] Store data locally, to use when there is no internet (Mobile)
 - [ ] Fix color at start screen at mobile
-- [ ] `210317>......` Fix color of dialogs at mobile
-- [x] `210317>210317` Fix color of inputs at mobile
+- [x] `210317>210319` Fix color of dialogs at mobile
+- [x] `210317>210319` Fix color of inputs at mobile
 - [x] `210316>210317` Store logs at host machine instead of just inside docker
 - [x] `210316>210316` Add monochromatic flag before hover
 - [x] `210316>210316` Fix accept contract solo screen
