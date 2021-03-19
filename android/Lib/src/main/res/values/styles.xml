@@ -8,7 +8,7 @@
 		<item name="android:textColorHint">?attr/placeholder</item>
 		<item name="android:colorControlActivated">?attr/link</item>
 		<item name="android:buttonStyle">@style/Button</item>
-		<item name="android:buttonStyleToggle">@style/Button</item>
+		<item name="android:buttonStyleToggle">@style/ToggleButton</item>
 		<item name="android:alertDialogStyle">@style/Dialog</item>
 		<item name="android:alertDialogTheme">@style/Dialog</item>
 	</style>
@@ -77,6 +77,9 @@
 		<item name="android:textColor">?attr/link</item>
 		<item name="android:background">@drawable/button</item>
 		<item name="android:padding">10sp</item>
+	</style>
+	<style name="ToggleButton" parent="Button">
+		<item name="android:background">@android:color/transparent</item>
 	</style>
 
 	<style name="ActionBar" parent="android:style/Widget.Material.ActionBar">
