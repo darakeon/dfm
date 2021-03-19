@@ -187,27 +187,24 @@ class MockContext<A: Activity>(type: KClass<A>) {
 		return this
 	}
 
-	private val darkColors = hashMapOf(
-		R.attr.highlight to android.R.color.holo_orange_dark,
-	)
-
-	private val lightColors = hashMapOf(
-		R.attr.highlight to android.R.color.holo_orange_light,
-	)
-
+	private val darkColor = android.R.color.holo_orange_dark
+	private val lightColor = android.R.color.holo_orange_light
 	private val colors = hashMapOf(
-		R.style.DarkMagic to darkColors,
-		R.style.DarkSober to darkColors,
-		R.style.DarkNature to darkColors,
-		R.style.LightMagic to lightColors,
-		R.style.LightSober to lightColors,
-		R.style.LightNature to lightColors,
+		R.style.DarkMagic to darkColor,
+		R.style.DarkSober to darkColor,
+		R.style.DarkNature to darkColor,
+		R.style.LightMagic to lightColor,
+		R.style.LightSober to lightColor,
+		R.style.LightNature to lightColor,
 	)
 
 	private fun getColor(invocation: InvocationOnMock): Boolean {
 		val attr = invocation.arguments[0] as Int
 		val typedValue = invocation.arguments[1] as TypedValue
-		typedValue.data = colors[themeId]?.get(attr) ?: 0
-		return true
+		if (attr == R.attr.background_highlight) {
+			typedValue.data = colors[themeId] ?: 0
+			return true
+		}
+		return false
 	}
 }

@@ -94,5 +94,5 @@ fun Context.getThemeLineColor(position: Int): Int {
 	return if (position % 2 == 0)
 		Color.TRANSPARENT
 	else
-		getColorByAttr(R.attr.highlight)
+		getColorByAttr(R.attr.background_highlight)
 }
