@@ -1,5 +1,5 @@
 <resources>
-	<style name="Dark" parent="android:Theme.Holo">
+	<style name="Dark" parent="android:Theme.Material">
 		<item name="neutral">@color/dark_neutral_2</item>
 		<item name="negative">@color/dark_danger_1</item>
 		<item name="positive">@color/dark_info_1</item>
@@ -39,7 +39,7 @@
 		<item name="logo">@color/dark_nature_primary_2</item>
 	</style>
 
-	<style name="Light" parent="android:Theme.Holo.Light">
+	<style name="Light" parent="android:Theme.Material.Light">
 		<item name="neutral">@color/light_neutral_2</item>
 		<item name="negative">@color/light_danger_1</item>
 		<item name="positive">@color/light_info_1</item>
@@ -79,18 +79,18 @@
 		<item name="logo">@color/light_nature_primary_2</item>
 	</style>
 
-	<style name="Button" parent="android:style/Widget.Holo.Button">
+	<style name="Button" parent="android:style/Widget.Material.Button">
 		<item name="android:textColor">?attr/link</item>
 		<item name="android:background">@drawable/button</item>
 		<item name="android:padding">10sp</item>
 	</style>
 
-	<style name="ActionBar" parent="android:style/Widget.Holo.ActionBar">
+	<style name="ActionBar" parent="android:style/Widget.Material.ActionBar">
 		<item name="android:background">?attr/primary</item>
 		<item name="android:titleTextStyle">@style/TitleBar</item>
 	</style>
 
-	<style name="TitleBar" parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+	<style name="TitleBar" parent="android:style/TextAppearance.Material.Widget.ActionBar.Title">
 		<item name="android:textColor">?attr/neutral</item>
 	</style>
 
@@ -115,7 +115,7 @@
 		<item name="android:datePickerMode">calendar</item>
 	</style>
 
-	<style name="Test" parent="android:Theme.Holo">
+	<style name="Test" parent="android:Theme.Material">
 		<item name="primary">@color/pig</item>
 
 		<item name="neutral">@android:color/black</item>
