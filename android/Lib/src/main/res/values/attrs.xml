@@ -12,4 +12,5 @@
 	<attr name="link" format="reference" />
 	<attr name="placeholder" format="reference" />
 	<attr name="logo" format="reference" />
+	<attr name="background" format="reference" />
 </resources>
