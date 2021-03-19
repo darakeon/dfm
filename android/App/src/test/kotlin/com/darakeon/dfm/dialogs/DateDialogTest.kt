@@ -1,10 +1,12 @@
 package com.darakeon.dfm.dialogs
 
 import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.res.Resources
 import android.view.View
 import com.darakeon.dfm.testutils.BaseTest
+import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.robolectric.waitTasks
 import com.darakeon.dfm.utils.activity.TestActivity
 import com.darakeon.dfm.utils.api.ActivityMock
@@ -25,7 +27,11 @@ class DateDialogTest: BaseTest() {
 	private val yearId = getResId("year")
 	private val monthId = getResId("month")
 	private val dayId = getResId("day")
+
 	private lateinit var mocker: ActivityMock<TestActivity>
+
+	private val spinner = 1
+	private val calendar = 2
 
 	@Before
 	fun setup() {
@@ -39,18 +45,14 @@ class DateDialogTest: BaseTest() {
 		var day = 27
 
 		val activity = mocker.create()
-		activity.getDateDialog(2013, DECEMBER, 23) {
-			y, m, d ->
+		activity.getDateDialog(2013, DECEMBER, 23) { y, m, d ->
 			year = y
 			month = m
 			day = d
 		}.show()
 
-		val dialog = getLatestAlertDialog()
-
-		assertTrue(isVisible(dialog, dayId))
-		assertTrue(isVisible(dialog, monthId))
-		assertTrue(isVisible(dialog, yearId))
+		val dialog = getLatestAlertDialog() as DatePickerDialog
+		assertThat(dialog.datePicker.getPrivate("mMode"), `is`(calendar))
 
 		dialog.getButton(Dialog.BUTTON_POSITIVE).performClick()
 		activity.waitTasks(mocker.server)
@@ -66,13 +68,13 @@ class DateDialogTest: BaseTest() {
 		var month = MARCH
 
 		val activity = mocker.create()
-		activity.getDateDialog(2013, DECEMBER) {
-			y, m ->
+		activity.getDateDialog(2013, DECEMBER) { y, m ->
 			year = y
 			month = m
 		}.show()
 
-		val dialog = getLatestAlertDialog()
+		val dialog = getLatestAlertDialog() as DatePickerDialog
+		assertThat(dialog.datePicker.getPrivate("mMode"), `is`(spinner))
 
 		assertFalse(isVisible(dialog, dayId))
 		assertTrue(isVisible(dialog, monthId))
@@ -90,11 +92,12 @@ class DateDialogTest: BaseTest() {
 		var year = 1986
 
 		val activity = mocker.create()
-		activity.getDateDialog(2013) {
-			y -> year = y
+		activity.getDateDialog(2013) { y ->
+			year = y
 		}.show()
 
-		val dialog = getLatestAlertDialog()
+		val dialog = getLatestAlertDialog() as DatePickerDialog
+		assertThat(dialog.datePicker.getPrivate("mMode"), `is`(spinner))
 
 		assertFalse(isVisible(dialog, dayId))
 		assertFalse(isVisible(dialog, monthId))
