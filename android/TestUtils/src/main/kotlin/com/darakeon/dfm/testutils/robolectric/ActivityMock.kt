@@ -2,6 +2,7 @@ package com.darakeon.dfm.testutils.robolectric
 
 import android.app.Activity
 import android.os.Bundle
+import com.darakeon.dfm.testutils.R
 import com.darakeon.dfm.testutils.api.Server
 import org.robolectric.Robolectric.buildActivity
 import retrofit2.Retrofit
@@ -26,6 +27,7 @@ open class ActivityMock<RS: Any, Act, Api: Any>(
 			builder.create(Bundle())
 
 		val activity = builder.get()
+		activity.setTheme(R.style.Test)
 
 		setPrivate(activity, "serverUrl", server.url)
 
