@@ -31,7 +31,7 @@ class FormTest: BaseTest() {
 		val textView = TextView(activity)
 
 		textView.setColorByAttr(R.attr.positive)
-		val color = activity.getColor(R.color.dark_info_1)
+		val color = activity.getColor(android.R.color.holo_blue_dark)
 		assertThat(textView.currentTextColor, `is`(color))
 	}
 
@@ -40,7 +40,7 @@ class FormTest: BaseTest() {
 		val textView = TextView(activity)
 
 		textView.setColorByAttr(R.attr.negative)
-		val color = activity.getColor(R.color.dark_danger_1)
+		val color = activity.getColor(android.R.color.holo_red_dark)
 		assertThat(textView.currentTextColor, `is`(color))
 	}
 
@@ -97,7 +97,7 @@ class FormTest: BaseTest() {
 
 		textView.setValueColored(50.00)
 		assertThat(textView.text.toString(), `is`("+50.00"))
-		val color = activity.getColor(R.color.dark_info_1)
+		val color = activity.getColor(android.R.color.holo_blue_dark)
 		assertThat(textView.currentTextColor, `is`(color))
 	}
 
@@ -107,7 +107,7 @@ class FormTest: BaseTest() {
 
 		textView.setValueColored(-50.00)
 		assertThat(textView.text.toString(), `is`("-50.00"))
-		val color = activity.getColor(R.color.dark_danger_1)
+		val color = activity.getColor(android.R.color.holo_red_dark)
 		assertThat(textView.currentTextColor, `is`(color))
 	}
 
@@ -117,7 +117,7 @@ class FormTest: BaseTest() {
 
 		textView.setValueColored(0.00)
 		assertThat(textView.text.toString(), `is`("0.00"))
-		val color = activity.getColor(R.color.dark_success_1)
+		val color = activity.getColor(android.R.color.holo_green_light)
 		assertThat(textView.currentTextColor, `is`(color))
 	}
 
