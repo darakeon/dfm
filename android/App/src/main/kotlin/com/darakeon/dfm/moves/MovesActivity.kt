@@ -278,14 +278,16 @@ class MovesActivity : BaseActivity() {
 			else -> move.natureEnum = null
 		}
 
-		nature_out.isChecked = false
-		nature_transfer.isChecked = false
-		nature_in.isChecked = false
+		runOnUiThread {
+			nature_out.isChecked = false
+			nature_transfer.isChecked = false
+			nature_in.isChecked = false
 
-		when (move.natureEnum) {
-			Nature.Out -> nature_out.isChecked = true
-			Nature.Transfer -> nature_transfer.isChecked = true
-			Nature.In -> nature_in.isChecked = true
+			when (move.natureEnum) {
+				Nature.Out -> nature_out.isChecked = true
+				Nature.Transfer -> nature_transfer.isChecked = true
+				Nature.In -> nature_in.isChecked = true
+			}
 		}
 	}
 

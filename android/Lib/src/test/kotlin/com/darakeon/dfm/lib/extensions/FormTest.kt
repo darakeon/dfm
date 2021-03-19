@@ -49,9 +49,15 @@ class FormTest: BaseTest() {
 		val textView = TextView(activity)
 		textView.text = ""
 
+		val original = shadowOf(textView.typeface)
+			.fontDescription.familyName
+
 		textView.applyGlyphicon()
 
-		assertNull(textView.typeface)
+		val current = shadowOf(textView.typeface)
+			.fontDescription.familyName
+
+		assertThat(current, `is`(original))
 	}
 
 	@Test
@@ -74,9 +80,15 @@ class FormTest: BaseTest() {
 		val textView = TextView(activity)
 		textView.text = "normal text"
 
+		val original = shadowOf(textView.typeface)
+			.fontDescription.familyName
+
 		textView.applyGlyphicon()
 
-		assertNull(textView.typeface)
+		val current = shadowOf(textView.typeface)
+			.fontDescription.familyName
+
+		assertThat(current, `is`(original))
 	}
 
 	@Test
