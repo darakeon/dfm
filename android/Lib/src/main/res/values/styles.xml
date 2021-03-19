@@ -1,14 +1,5 @@
 <resources>
-	<style name="Dark" parent="android:Theme.Material">
-		<item name="neutral">@color/dark_neutral_2</item>
-		<item name="negative">@color/dark_danger_1</item>
-		<item name="positive">@color/dark_info_1</item>
-		<item name="zero">@color/dark_success_1</item>
-		<item name="transfer">@color/dark_success_1</item>
-		<item name="checked">@color/dark_success_1</item>
-		<item name="unchecked">@color/dark_danger_1</item>
-		<item name="highlight">@color/dark_neutral_1</item>
-		<item name="background">@color/dark_neutral_0</item>
+	<style name="Material" parent="android:Theme.Material">
 		<item name="android:actionBarStyle">@style/ActionBar</item>
 		<item name="android:windowAnimationStyle">@null</item>
 		<item name="android:windowBackground">?attr/background</item>
@@ -20,6 +11,18 @@
 		<item name="android:buttonStyleToggle">@style/Button</item>
 		<item name="android:alertDialogStyle">@style/Dialog</item>
 		<item name="android:alertDialogTheme">@style/Dialog</item>
+	</style>
+
+	<style name="Dark" parent="Material">
+		<item name="neutral">@color/dark_neutral_2</item>
+		<item name="negative">@color/dark_danger_1</item>
+		<item name="positive">@color/dark_info_1</item>
+		<item name="zero">@color/dark_success_1</item>
+		<item name="transfer">@color/dark_success_1</item>
+		<item name="checked">@color/dark_success_1</item>
+		<item name="unchecked">@color/dark_danger_1</item>
+		<item name="highlight">@color/dark_neutral_1</item>
+		<item name="background">@color/dark_neutral_0</item>
 	</style>
 	<style name="DarkMagic" parent="Dark">
 		<item name="primary">@color/dark_magic_primary_0</item>
@@ -40,7 +43,7 @@
 		<item name="logo">@color/dark_nature_primary_2</item>
 	</style>
 
-	<style name="Light" parent="android:Theme.Material.Light">
+	<style name="Light" parent="Material">
 		<item name="neutral">@color/light_neutral_2</item>
 		<item name="negative">@color/light_danger_1</item>
 		<item name="positive">@color/light_info_1</item>
@@ -50,16 +53,6 @@
 		<item name="unchecked">@color/light_danger_1</item>
 		<item name="highlight">@color/light_neutral_1</item>
 		<item name="background">@color/light_neutral_0</item>
-		<item name="android:actionBarStyle">@style/ActionBar</item>
-		<item name="android:windowAnimationStyle">@null</item>
-		<item name="android:windowBackground">?attr/background</item>
-		<item name="android:textColor">?attr/primary</item>
-		<item name="android:textColorPrimary">?attr/primary</item>
-		<item name="android:textColorHint">?attr/placeholder</item>
-		<item name="android:buttonStyle">@style/Button</item>
-		<item name="android:buttonStyleToggle">@style/Button</item>
-		<item name="android:alertDialogStyle">@style/Dialog</item>
-		<item name="android:alertDialogTheme">@style/Dialog</item>
 	</style>
 	<style name="LightMagic" parent="Light">
 		<item name="primary">@color/light_magic_primary_0</item>
@@ -117,7 +110,7 @@
 		<item name="android:datePickerMode">calendar</item>
 	</style>
 
-	<style name="Test" parent="android:Theme.Material">
+	<style name="Test" parent="Material">
 		<item name="primary">@color/pig</item>
 
 		<item name="neutral">@android:color/black</item>
@@ -131,16 +124,5 @@
 		<item name="link">@android:color/holo_orange_light</item>
 		<item name="placeholder">@android:color/darker_gray</item>
 		<item name="logo">@android:color/white</item>
-
-		<item name="android:actionBarStyle">@style/ActionBar</item>
-		<item name="android:windowAnimationStyle">@null</item>
-		<item name="android:windowBackground">@color/pig</item>
-		<item name="android:textColor">?attr/primary</item>
-		<item name="android:textColorPrimary">?attr/primary</item>
-		<item name="android:textColorHint">?attr/placeholder</item>
-		<item name="android:buttonStyle">@style/Button</item>
-		<item name="android:buttonStyleToggle">@style/Button</item>
-		<item name="android:alertDialogStyle">@style/Dialog</item>
-		<item name="android:alertDialogTheme">@style/Dialog</item>
 	</style>
 </resources>
