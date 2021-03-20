@@ -5,8 +5,8 @@
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
 - [go to published version](#5.0.0.0)
-- [go to version in development](#6.0.0.0)
-- [dev version state](../../6.0.0.0/docs/RELEASES.md#6.0.0.0)
+- [go to version in development](#5.0.1.0)
+- [dev version state](../../5.0.1.0/docs/RELEASES.md#5.0.1.0)
 
 Legend:
 - :dragon:: at least one huge change (increases first number)
@@ -14,8 +14,10 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="6.0.0.0"></a>6.0.0.0 :dragon: <sup>`8`</sup>
+## <a name="6.0.0.0"></a>6.0.0.0 :dragon: <sup>`1`</sup>
 - [ ] Store data locally, to use when there is no internet (Mobile)
+
+## <a name="5.0.1.0"></a>5.0.1.0 :sheep: <sup>`7`</sup>
 - [x] `210319>210319` Fix color at start screen at mobile
 - [x] `210317>210319` Fix color of dialogs at mobile
 - [x] `210317>210319` Fix color of inputs at mobile
