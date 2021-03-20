@@ -57,7 +57,12 @@ class ListActivity : BaseActivity() {
 
 	private fun toggleButtons() {
 		Log.record(SiteErrorService.running)
-		stop.isEnabled = SiteErrorService.running
-		start.isEnabled = !SiteErrorService.running
+		val running = SiteErrorService.running
+		toggle(stop, running)
+		toggle(start, !running)
+	}
+
+	private fun toggle(view: View, visible: Boolean) {
+		view.visibility = if (visible) View.VISIBLE else View.GONE
 	}
 }
