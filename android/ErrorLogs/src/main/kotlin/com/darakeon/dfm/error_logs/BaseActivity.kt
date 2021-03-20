@@ -2,6 +2,8 @@ package com.darakeon.dfm.error_logs
 
 import android.app.Activity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.widget.Toast
 import com.darakeon.dfm.lib.api.Api
 import com.darakeon.dfm.lib.api.ApiCaller
@@ -20,6 +22,12 @@ open class BaseActivity: Activity(), ApiCaller {
 		auth = Authentication(this)
 		api = Api(this, serverUrl)
 		setEnvironment(Environment(Theme.DarkMagic))
+	}
+
+	override fun onCreateOptionsMenu(menu: Menu): Boolean {
+		val inflater: MenuInflater = menuInflater
+		inflater.inflate(R.menu.pig, menu)
+		return true
 	}
 
 	override val ticket: String
