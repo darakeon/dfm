@@ -24,6 +24,7 @@
 		<item name="background_highlight">?attr/neutral_1</item>
 
 		<item name="main">?attr/light</item>
+		<item name="main_highlight">?attr/average</item>
 		<item name="placeholder">?attr/heavy</item>
 		<item name="link">?attr/emphasis</item>
 	</style>
@@ -37,16 +38,19 @@
 	</style>
 	<style name="DarkMagic" parent="Dark">
 		<item name="light">@color/dark_magic_primary_0</item>
+		<item name="average">@color/dark_magic_primary_2</item>
 		<item name="heavy">@color/dark_magic_primary_3</item>
 		<item name="emphasis">@color/dark_magic_highlight_1</item>
 	</style>
 	<style name="DarkSober" parent="Dark">
 		<item name="light">@color/dark_sober_primary_0</item>
+		<item name="average">@color/dark_sober_primary_2</item>
 		<item name="heavy">@color/dark_sober_primary_3</item>
 		<item name="emphasis">@color/dark_sober_highlight_1</item>
 	</style>
 	<style name="DarkNature" parent="Dark">
 		<item name="light">@color/dark_nature_primary_0</item>
+		<item name="average">@color/dark_nature_primary_2</item>
 		<item name="heavy">@color/dark_nature_primary_3</item>
 		<item name="emphasis">@color/dark_nature_highlight_1</item>
 	</style>
@@ -60,16 +64,19 @@
 	</style>
 	<style name="LightMagic" parent="Light">
 		<item name="light">@color/light_magic_primary_0</item>
+		<item name="average">@color/light_magic_primary_2</item>
 		<item name="heavy">@color/light_magic_primary_3</item>
 		<item name="emphasis">@color/light_magic_highlight_1</item>
 	</style>
 	<style name="LightSober" parent="Light">
 		<item name="light">@color/light_sober_primary_0</item>
+		<item name="average">@color/light_sober_primary_2</item>
 		<item name="heavy">@color/light_sober_primary_3</item>
 		<item name="emphasis">@color/light_sober_highlight_1</item>
 	</style>
 	<style name="LightNature" parent="Light">
 		<item name="light">@color/light_nature_primary_0</item>
+		<item name="average">@color/light_nature_primary_2</item>
 		<item name="heavy">@color/light_nature_primary_3</item>
 		<item name="emphasis">@color/light_nature_highlight_1</item>
 	</style>

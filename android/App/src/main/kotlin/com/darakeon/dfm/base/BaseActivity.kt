@@ -2,6 +2,8 @@ package com.darakeon.dfm.base
 
 import android.app.Activity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.Window
 import android.widget.Button
@@ -136,6 +138,12 @@ abstract class BaseActivity: Activity(), ApiCaller {
 			if (this is MovesActivity)
 				action_move.isEnabled = false
 		}
+	}
+
+	override fun onCreateOptionsMenu(menu: Menu): Boolean {
+		val inflater: MenuInflater = menuInflater
+		inflater.inflate(R.menu.pig, menu)
+		return true
 	}
 
 	override fun onDestroy() {
