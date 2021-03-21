@@ -99,10 +99,6 @@ jobs:
           keys:
             - jars-{{ checksum "android/build.gradle" }}-{{ checksum "android/TestUtils/build.gradle" }}-{{ checksum "android/Lib/build.gradle" }}-{{ checksum "android/App/build.gradle" }}-{{ checksum "android/ErrorLogs/build.gradle" }}
       - run:
-          name: runable_gradlew
-          path: android
-          command: sudo chmod +x gradlew
-      - run:
           name: dependencies
           path: android
           command: ./gradlew androidDependencies
