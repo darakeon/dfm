@@ -97,27 +97,19 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - jars-{{ checksum "android/build.gradle" }}-{{ checksum "android/TestUtils/build.gradle" }}-{{ checksum "android/Lib/build.gradle" }}-{{ checksum "android/App/build.gradle" }}-{{ checksum "android/ErrorLogs/build.gradle" }}
+            - jars-{{ checksum "ci/android.dockerfile" }}-{{ checksum "android/build.gradle" }}-{{ checksum "android/TestUtils/build.gradle" }}-{{ checksum "android/Lib/build.gradle" }}-{{ checksum "android/App/build.gradle" }}-{{ checksum "android/ErrorLogs/build.gradle" }}
       - run:
           name: dependencies
           path: android
-          command: ./gradlew androidDependencies
+          command: gradle androidDependencies
       - save_cache:
-          key: jars-{{ checksum "android/build.gradle" }}-{{ checksum "android/TestUtils/build.gradle" }}-{{ checksum "android/Lib/build.gradle" }}-{{ checksum "android/App/build.gradle" }}-{{ checksum "android/ErrorLogs/build.gradle" }}
+          key: jars-{{ checksum "ci/android.dockerfile" }}-{{ checksum "android/build.gradle" }}-{{ checksum "android/TestUtils/build.gradle" }}-{{ checksum "android/Lib/build.gradle" }}-{{ checksum "android/App/build.gradle" }}-{{ checksum "android/ErrorLogs/build.gradle" }}
           paths:
-            - ~/.gradle
-      - run:
-          name: build
-          path: android
-          command: ./gradlew build -x test -x lint
+            - /var/cache/gradle
       - run:
           name: tests
           path: android
-          command: ./gradlew test -x lint
-      - run:
-          name: lint
-          path: android
-          command: ./gradlew lint
+          command: gradle test -x androidDependencies
       - store_artifacts:
           path: android/TestUtils/build/reports
           destination: reports/testUtils
