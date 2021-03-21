@@ -39,8 +39,8 @@ android {
 	}
 
 	compileOptions {
-		sourceCompatibility "$java_version"
-		targetCompatibility "$java_version"
+		sourceCompatibility "$java_compat"
+		targetCompatibility "$java_compat"
 	}
 
 	kotlinOptions {
