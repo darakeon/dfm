@@ -1,5 +1,46 @@
-FROM circleci/android:api-30
+FROM ubuntu:20.04
 MAINTAINER Dara Keon
-RUN sudo apt update
+RUN apt upgrade -y && apt update && apt autoremove -y
 
-ENV JVM_OPTS=Xms256m\ -Xmx8192m
+RUN apt install -y default-jdk
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+
+RUN apt install -y curl unzip \
+	&& curl -L https://services.gradle.org/distributions/gradle-6.8.3-bin.zip > /tmp/gradle.zip \
+	&& unzip -d /opt/gradle /tmp/gradle.zip \
+	&& rm /tmp/gradle.zip
+ENV GRADLE_HOME=/opt/gradle/gradle-6.8.3
+ENV PATH=${GRADLE_HOME}/bin/:${PATH}
+ENV GRADLE_USER_HOME=/var/cache/gradle
+
+ENV ANDROID_SDK_ROOT=/usr/lib/android-sdk
+ENV PATH=${ANDROID_SDK_ROOT}/cmdline-tools/bin/:${PATH}
+RUN apt install -y android-sdk \
+	&& curl -L https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip > /tmp/sdkmanager.zip \
+	&& unzip -d $ANDROID_SDK_ROOT /tmp/sdkmanager.zip \
+	&& rm /tmp/sdkmanager.zip \
+	&& yes | sdkmanager --licenses --sdk_root=$ANDROID_SDK_ROOT
+
+RUN apt remove -y curl unzip && apt autoremove -y
+
+RUN echo 'export PS1="\n\n[\A] \u@\W\$ "' >> ~/.bashrc
+
+RUN gradle -v # to avoid excessive info at gradle version check
+
+RUN echo "echo" >> ~/.bashrc
+RUN echo "printf '\e[38;5;46m'" >> ~/.bashrc
+RUN echo "echo --------------------------------------------------------------------------------" >> ~/.bashrc
+RUN echo "echo ------------------------------------- JAVA -------------------------------------" >> ~/.bashrc
+RUN echo "echo --------------------------------------------------------------------------------" >> ~/.bashrc
+RUN echo "printf '\e[38;5;201m'" >> ~/.bashrc
+RUN echo "java -version" >> ~/.bashrc
+RUN echo "printf '\e[38;5;46m'" >> ~/.bashrc
+RUN echo "echo" >> ~/.bashrc
+RUN echo "echo --------------------------------------------------------------------------------" >> ~/.bashrc
+RUN echo "echo ------------------------------------ GRADLE ------------------------------------" >> ~/.bashrc
+RUN echo "echo --------------------------------------------------------------------------------" >> ~/.bashrc
+RUN echo "printf '\e[38;5;201m'" >> ~/.bashrc
+RUN echo "gradle -v" >> ~/.bashrc
+RUN echo "printf '\e[38;5;253m'" >> ~/.bashrc
+
+CMD bash

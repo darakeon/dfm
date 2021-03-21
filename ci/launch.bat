@@ -7,14 +7,14 @@ if "%type%" neq "rebuild" (
 	set type=start
 )
 
-REM [android] andy
-	if "%name%" == "andy" (
+REM [android] fi
+	if "%name%" == "fi" (
 		del ..\android\Lib\src\debug\res\xml\network_security_config.xml
 		del ..\android\Lib\src\debug\res\values\site-address.xml
 
 		set machine=android
 		set parameters=
-		set work_dir=
+		set work_dir=android
 	)
 
 REM [netcore] beedle
