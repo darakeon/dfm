@@ -3,10 +3,14 @@ MAINTAINER Dara Keon
 RUN apt update
 
 COPY site /var/dfm
-RUN cd /var/dfm/MVC && libman restore
-RUN dotnet publish /var/dfm/MVC/MVC.csproj -o /var/www
-RUN apt remove -y dotnet-sdk-5.0
-RUN rm -r /var/dfm
+RUN cd /var/dfm/MVC \
+	&& libman restore \
+	&& dotnet publish MVC.csproj -o /var/www \
+	&& apt remove -y dotnet-sdk-5.0 \
+	&& apt autoremove -y \
+	&& rm -r /var/dfm \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 ENV ASPNETCORE_ENVIRONMENT=amazon
 
