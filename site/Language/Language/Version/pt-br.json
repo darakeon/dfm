@@ -1,4 +1,12 @@
 {
+	"5.0.1.0": [
+		"Arrumada cor na tela de início do aplicativo",
+		"Arrumada cor nos avisos do aplicativo",
+		"Arrumada cor dos campos de formulário do aplicativo",
+		"Ajustada bandeira de troca de língua no site",
+		"Arrumado aceite de termos do site",
+		"Arrumado botão de parar de ver tutorial na tela de configurações"
+	],
 	"5.0.0.0": [
 		"Corrigida acessibilidade no site para leitores de tela e no site e no app nas cores"
 	],
