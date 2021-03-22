@@ -14,8 +14,9 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="6.0.0.0"></a>6.0.0.0 :dragon: <sup>`3`</sup>
+## <a name="6.0.0.0"></a>6.0.0.0 :dragon: <sup>`4`</sup>
 - [ ] Store data locally, to use when there is no internet (Mobile)
+- [ ] Make machine ubuntu to build android
 - [ ] Add Black Lives Matter to pig icon
 - [ ] Remove capitalize from toggle button
 
