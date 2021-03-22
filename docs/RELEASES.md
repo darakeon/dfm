@@ -14,9 +14,10 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="6.0.0.0"></a>6.0.0.0 :dragon: <sup>`2`</sup>
+## <a name="6.0.0.0"></a>6.0.0.0 :dragon: <sup>`3`</sup>
 - [ ] Store data locally, to use when there is no internet (Mobile)
 - [ ] Add Black Lives Matter to pig icon
+- [ ] Remove capitalize from toggle button
 
 ## <a name="5.0.1.0"></a>5.0.1.0 :sheep: <sup>`7`</sup>
 - [x] `210319>210319` Fix color at start screen at mobile
