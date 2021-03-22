@@ -1,4 +1,12 @@
 {
+	"5.0.1.0": [
+		"Fix color on app start",
+		"Fix color on app popup warnings",
+		"Fix color of fields at app",
+		"Adjust site flag to change language",
+		"Fix layout of site terms",
+		"Fix 'stop seeing this' wizard button at configuration screen"
+	],
 	"5.0.0.0": [
 		"Fix website accessibility for screen readers and website+app accessibility at colors"
 	],
