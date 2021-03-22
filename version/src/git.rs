@@ -7,6 +7,7 @@ use git2::{
 	DiffFile,
 	DiffOptions,
 	Error,
+	ErrorCode,
 	FetchOptions,
 	FetchPrune,
 	IndexAddOption,
@@ -53,7 +54,7 @@ fn list_changes_head() -> Vec<String> {
 
 fn list_changes(reference: &Reference) -> Vec<String> {
 	let tree = reference.peel_to_tree().unwrap();
-	
+
 	let repo = repo();
 
 	let mut options = DiffOptions::new();
@@ -181,11 +182,7 @@ pub fn create_tag(name: &str, annotation: &str) {
 pub fn create_branch(branch_name: &str) {
 	let repo = repo();
 
-	let head = repo.head().unwrap();
-	let oid = head.target().unwrap();
-	let commit = repo.find_commit(oid).unwrap();
-
-	repo.branch(&branch_name, &commit, false).unwrap();
+	create_branch_if_not_exists(&repo, branch_name);
 
 	let obj = repo.revparse_single(
 		&("refs/heads/".to_owned() + &branch_name)
@@ -194,6 +191,22 @@ pub fn create_branch(branch_name: &str) {
 	repo.checkout_tree(&obj, None).unwrap();
 
 	repo.set_head(&("refs/heads/".to_owned() + &branch_name)).unwrap();
+}
+
+fn create_branch_if_not_exists(repo: &Repository, branch_name: &str) {
+	if let Err(err) = repo.find_branch(&branch_name, BranchType::Local) {
+		if err.code() == ErrorCode::NotFound {
+			let head = repo.head().unwrap();
+			let oid = head.target().unwrap();
+			let commit = repo.find_commit(oid).unwrap();
+
+			repo.branch(&branch_name, &commit, false).unwrap();
+
+			return;
+		}
+	}
+
+	print!("... Branch {} already exists ...", &branch_name);
 }
 
 pub fn remove_branch(name: &str) {
