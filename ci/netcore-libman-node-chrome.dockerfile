@@ -1,6 +1,6 @@
 FROM darakeon/netcore-libman-node
 MAINTAINER Dara Keon
-RUN apt update
+RUN apt upgrade -y && apt update && apt autoremove -y
 
 RUN curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb > google-chrome-stable_current_amd64.deb
 RUN apt install -y ./google-chrome-stable_current_amd64.deb
