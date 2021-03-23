@@ -1,6 +1,6 @@
 FROM darakeon/netcore-libman
 MAINTAINER Dara Keon
-RUN apt update
+RUN apt upgrade -y && apt update && apt autoremove -y
 
 COPY site /var/dfm
 RUN cd /var/dfm/MVC \
