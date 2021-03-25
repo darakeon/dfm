@@ -1,6 +1,6 @@
 FROM darakeon/netcore-libman
 MAINTAINER Dara Keon
-RUN apt upgrade -y && apt update && apt autoremove -y
+RUN maintain
 
 COPY site /var/dfm
 RUN cd /var/dfm/MVC \
@@ -9,7 +9,7 @@ RUN cd /var/dfm/MVC \
 	&& apt remove -y dotnet-sdk-5.0 \
 	&& apt autoremove -y \
 	&& rm -r /var/dfm \
-    && apt-get clean \
+    && apt clean \
     && rm -rf /var/lib/apt/lists/*
 
 ENV ASPNETCORE_ENVIRONMENT=amazon
