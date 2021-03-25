@@ -2,7 +2,6 @@
 
 set push=%~1
 
-call single-build.bat netcore %push%
 call single-build.bat netcore-libman %push%
 call single-build.bat netcore-libman-node %push%
 call single-build.bat netcore-libman-node-chrome %push%
