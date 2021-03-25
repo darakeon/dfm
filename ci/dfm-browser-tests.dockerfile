@@ -1,6 +1,6 @@
 FROM darakeon/netcore-libman-node-chrome
 MAINTAINER Dara Keon
-RUN apt upgrade -y && apt update && apt autoremove -y
+RUN maintain
 
 ENV ASPNETCORE_ENVIRONMENT=circleCI
 ENV MSBUILDSINGLELOADCONTEXT=1
