@@ -9,7 +9,7 @@ import com.darakeon.dfm.lib.api.ApiCaller
 
 class ApiActivity : Activity(), ApiCaller {
 	override val ticket: String = "27"
-	override var api: Api<ApiActivity>? = null
+	private var api: Api<ApiActivity>? = null
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)

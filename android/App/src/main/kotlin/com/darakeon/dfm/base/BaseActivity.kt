@@ -40,7 +40,7 @@ import java.util.HashMap
 import kotlinx.android.synthetic.main.welcome.action_logout as welcome_logout
 
 abstract class BaseActivity: Activity(), ApiCaller {
-	override var api: Api<BaseActivity>? = null
+	private var api: Api<BaseActivity>? = null
 	private var serverUrl: String? = null
 
 	protected fun callApi(call: (Api<BaseActivity>) -> Unit) {

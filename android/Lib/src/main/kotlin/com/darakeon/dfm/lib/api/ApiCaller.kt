@@ -1,10 +1,7 @@
 package com.darakeon.dfm.lib.api
 
 interface ApiCaller {
-	interface Api
-
 	val ticket: String
-	val api: Api?
 
 	fun logout()
 	fun checkTFA()

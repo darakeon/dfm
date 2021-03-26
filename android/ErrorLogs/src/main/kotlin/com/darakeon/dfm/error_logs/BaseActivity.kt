@@ -14,7 +14,7 @@ import com.darakeon.dfm.lib.auth.setEnvironment
 
 open class BaseActivity: Activity(), ApiCaller {
 	protected lateinit var auth: Authentication
-	override lateinit var api: Api<BaseActivity>
+	protected lateinit var api: Api<BaseActivity>
 	private var serverUrl: String? = null
 
 	override fun onCreate(savedInstanceState: Bundle?) {

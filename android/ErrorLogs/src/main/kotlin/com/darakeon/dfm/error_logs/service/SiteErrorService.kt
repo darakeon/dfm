@@ -11,7 +11,7 @@ import com.darakeon.dfm.lib.auth.Authentication
 import com.darakeon.dfm.lib.R as r
 
 class SiteErrorService : Service(), ApiCaller, Timer.Caller {
-	override var api: Api<SiteErrorService>? = null
+	private var api: Api<SiteErrorService>? = null
 	private lateinit var auth: Authentication
 	private lateinit var notification: Notification
 

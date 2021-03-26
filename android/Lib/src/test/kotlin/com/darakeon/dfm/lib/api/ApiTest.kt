@@ -14,6 +14,7 @@ import com.darakeon.dfm.lib.utils.ActivityMock
 import com.darakeon.dfm.lib.utils.ApiActivity
 import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.api.internetError
+import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
 import com.darakeon.dfm.testutils.robolectric.waitTasks
 import com.google.gson.JsonSyntaxException
@@ -47,7 +48,7 @@ class ApiTest: BaseTest() {
 		activity = mocker.create()
 		activity.simulateNetwork()
 
-		api = activity.api!!
+		api = activity.getPrivate("api")
 	}
 
 	@After
