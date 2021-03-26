@@ -108,9 +108,13 @@ jobs:
           keys:
             - jars-{{ checksum "ci/android.dockerfile" }}-{{ checksum "android/build.gradle" }}-{{ checksum "android/TestUtils/build.gradle" }}-{{ checksum "android/Lib/build.gradle" }}-{{ checksum "android/App/build.gradle" }}-{{ checksum "android/ErrorLogs/build.gradle" }}
       - run:
-          name: dependencies
+          name: project_dependencies
           path: android
           command: gradle androidDependencies
+      - run:
+          name: robolectric_dependencies
+          path: android
+          command: gradle robolectricSdkDownload
       - save_cache:
           key: jars-{{ checksum "ci/android.dockerfile" }}-{{ checksum "android/build.gradle" }}-{{ checksum "android/TestUtils/build.gradle" }}-{{ checksum "android/Lib/build.gradle" }}-{{ checksum "android/App/build.gradle" }}-{{ checksum "android/ErrorLogs/build.gradle" }}
           paths:
