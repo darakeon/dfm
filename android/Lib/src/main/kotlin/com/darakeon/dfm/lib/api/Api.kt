@@ -17,7 +17,7 @@ import java.util.UUID
 class Api<C>(
 	caller: C,
 	url: String?,
-): ApiCaller.Api
+)
 	where C: Context, C: ApiCaller
 {
 	private val requestHandler = RequestHandler(caller, url)

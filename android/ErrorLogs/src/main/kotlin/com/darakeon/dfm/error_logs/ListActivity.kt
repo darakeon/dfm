@@ -40,7 +40,7 @@ class ListActivity : BaseActivity() {
 			errors.logs.forEach(logs::add)
 		}
 
-		list.adapter = ErrorAdapter(this, logs)
+		list.adapter = ErrorAdapter(this, api, logs)
 	}
 
 	@Suppress("UNUSED_PARAMETER")

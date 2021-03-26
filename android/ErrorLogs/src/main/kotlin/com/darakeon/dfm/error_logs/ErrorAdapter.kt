@@ -1,10 +1,12 @@
 package com.darakeon.dfm.error_logs
 
+import com.darakeon.dfm.lib.api.Api
 import com.darakeon.dfm.lib.api.entities.status.ErrorLog
 import com.darakeon.dfm.lib.ui.Adapter
 
 class ErrorAdapter(
 	private val activity: ListActivity,
+	private val api: Api<*>,
 	private val logs: MutableList<ErrorLog>
 ): Adapter<ListActivity, ErrorLog, ErrorLine>(
 	activity, logs
@@ -18,7 +20,7 @@ class ErrorAdapter(
 		}
 
 	private fun archiveAll(position: Int) {
-		activity.api.archiveErrors(logs[position].hash) {
+		api.archiveErrors(logs[position].hash) {
 			logs.removeAt(position)
 			notifyDataSetChanged()
 		}
