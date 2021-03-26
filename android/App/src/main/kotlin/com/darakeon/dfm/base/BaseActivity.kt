@@ -14,9 +14,6 @@ import com.darakeon.dfm.accounts.AccountsActivity
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.back
-import com.darakeon.dfm.extensions.composeErrorApi
-import com.darakeon.dfm.extensions.composeErrorEmail
-import com.darakeon.dfm.extensions.contact
 import com.darakeon.dfm.extensions.createMove
 import com.darakeon.dfm.extensions.goToSettings
 import com.darakeon.dfm.extensions.logout
@@ -26,6 +23,9 @@ import com.darakeon.dfm.lib.api.ApiCaller
 import com.darakeon.dfm.lib.auth.Authentication
 import com.darakeon.dfm.lib.auth.recoverEnvironment
 import com.darakeon.dfm.lib.extensions.applyGlyphicon
+import com.darakeon.dfm.lib.extensions.composeErrorApi
+import com.darakeon.dfm.lib.extensions.composeErrorEmail
+import com.darakeon.dfm.lib.extensions.contact
 import com.darakeon.dfm.lib.extensions.redirect
 import com.darakeon.dfm.lib.extensions.refresh
 import com.darakeon.dfm.moves.MovesActivity

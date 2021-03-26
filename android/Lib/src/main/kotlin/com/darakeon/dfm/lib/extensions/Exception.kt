@@ -1,4 +1,4 @@
-package com.darakeon.dfm.extensions
+package com.darakeon.dfm.lib.extensions
 
 val Throwable.stackTraceText: String
 	get() {

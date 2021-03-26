@@ -2,9 +2,7 @@ package com.darakeon.dfm.extensions
 
 import android.app.Activity
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.lib.api.Api
 import com.darakeon.dfm.lib.extensions.redirect
@@ -59,46 +57,6 @@ private fun Activity.goToActivityWithBack(newActivity: Class<*>, extras: Bundle?
 
 	intent.putExtras(this.intent)
 	intent.putExtra("__parent", javaClass)
-
-	startActivity(intent)
-}
-
-fun Activity.composeErrorEmail(url: String, error: Throwable) {
-	val subject = getString(R.string.error_mail_title)
-
-	val body = url + "\n\n" +
-		error.message + "\n\n" +
-		error.stackTraceText
-
-	composeEmail(subject, body)
-}
-
-fun Activity.composeErrorApi() {
-	val subject = getString(R.string.error_call_api_email)
-	val body = javaClass.name
-	composeEmail(subject, body)
-}
-
-internal fun Activity.contact() {
-	composeEmail(
-		getString(R.string.contact_subject),
-		getString(R.string.contact_body)
-	)
-}
-
-private fun Activity.composeEmail(subject: String, body: String) {
-	val intent = Intent(Intent.ACTION_SENDTO)
-
-	// only email apps should handle this
-	intent.data = Uri.parse("mailto:")
-
-	val email = arrayOf(
-		getString(R.string.dfm_mail_address)
-	)
-
-	intent.putExtra(Intent.EXTRA_EMAIL, email)
-	intent.putExtra(Intent.EXTRA_SUBJECT, subject)
-	intent.putExtra(Intent.EXTRA_TEXT, body)
 
 	startActivity(intent)
 }

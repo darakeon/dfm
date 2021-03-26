@@ -1,4 +1,4 @@
-package com.darakeon.dfm.extensions
+package com.darakeon.dfm.lib.extensions
 
 import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.TestException

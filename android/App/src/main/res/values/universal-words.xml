@@ -20,8 +20,6 @@
 	<string name="glyph_calendar" translatable="false"></string>
 	<string name="glyph_picker" translatable="false"></string>
 
-	<string name="dfm_mail_address" translatable="false">dfm@dontflymoney.com</string>
-
 	<string name="next" translatable="false">»</string>
 	<string name="prev" translatable="false">«</string>
 

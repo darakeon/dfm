@@ -25,6 +25,19 @@
 	<string name="uninvited">
 		You are uninvited!
 	</string>
-	<string name="glyph" translatable="false"></string>
+	<string name="error_mail_title">
+		Error on DfM App
+	</string>
+	<string name="error_call_api_email">
+		Error on calling api, object null
+	</string>
+	<string name="contact_subject">
+		Contact called from app
+	</string>
+	<string name="contact_body">
+		Please describe the suggestion, doubt or problem at the system
+	</string>
 	<string name="current_density">density</string>
+	<string name="dfm_mail_address" translatable="false">dfm@dontflymoney.com</string>
+	<string name="glyph" translatable="false"></string>
 </resources>
