@@ -84,7 +84,6 @@
 	<string name="use_categories">Usar categorias</string>
 	<string name="settings_saved">Configurações salvas!</string>
 	<string name="move_check">Movimentação pode ser verificada</string>
-	<string name="error_mail_title">Erro no aplicativo DfM</string>
 	<string name="verify">verificar</string>
 	<string name="two_factor_code">código de verificação em duas etapas</string>
 	<string name="long_click_warning">segure por um tempo para executar a ação</string>
@@ -92,6 +91,4 @@
 	<string name="version">Versão do aplicativo</string>
 	<string name="error_call_api">Erro ao chamar site, entre em contato conosco</string>
 	<string name="density">Tela do dispositivo</string>
-	<string name="contact_subject">Contato a partir do aplicativo</string>
-	<string name="contact_body">Por favor, descreva a sugestão, dúvida ou problema no sistema</string>
 </resources>

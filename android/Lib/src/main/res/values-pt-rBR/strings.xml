@@ -25,5 +25,17 @@
 	<string name="uninvited">
 		Tchau!
 	</string>
+	<string name="error_mail_title">
+		Erro no aplicativo DfM
+	</string>
+	<string name="error_call_api_email">
+		Erro chamando API, object null
+	</string>
+	<string name="contact_subject">
+		Contato a partir do aplicativo
+	</string>
+	<string name="contact_body">
+		Por favor, descreva a sugestão, dúvida ou problema no sistema
+	</string>
 	<string name="current_density">densidade</string>
 </resources>

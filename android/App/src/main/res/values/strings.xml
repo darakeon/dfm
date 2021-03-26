@@ -84,15 +84,11 @@
 	<string name="use_categories">Use categories</string>
 	<string name="settings_saved">Settings applied!</string>
 	<string name="move_check">Move can be checked / unchecked</string>
-	<string name="error_mail_title">Error on DfM App</string>
 	<string name="verify">verify</string>
 	<string name="two_factor_code">two factor code</string>
 	<string name="long_click_warning">hold for a while to execute the action</string>
 	<string name="site">Site</string>
 	<string name="version">App Version</string>
 	<string name="error_call_api">Error on calling the site, contact us</string>
-	<string name="error_call_api_email" translatable="false">Error on calling api, object null</string>
 	<string name="density">Device screen type</string>
-	<string name="contact_subject">Contact called from app</string>
-	<string name="contact_body">Please describe the suggestion, doubt or problem at the system</string>
 </resources>
