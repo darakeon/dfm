@@ -20,5 +20,5 @@ fun Calendar.formatNoDay(): String {
 
 fun Date.formatNoDay(): String {
 	val formatter = SimpleDateFormat("MMM/yyyy", Locale.getDefault())
-	return formatter.format(time)
+	return formatter.format(time).replace(".", "")
 }

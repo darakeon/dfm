@@ -16,7 +16,7 @@ Legend:
 
 ## <a name="6.0.0.0"></a>6.0.0.0 :dragon: <sup>`3`</sup>
 - [ ] Store data locally, to use when there is no internet (Mobile)
-- [x] `210322>210324` Make machine ubuntu to build android
+- [x] `210322>210406` Make machine ubuntu to build android
 - [x] `210322>210322` Remove capitalize from toggle button
 
 ## <a name="5.0.1.0"></a>5.0.1.0 :sheep: <sup>`7`</sup>

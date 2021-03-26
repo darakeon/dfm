@@ -3,15 +3,21 @@ package com.darakeon.dfm.lib.api
 import android.os.Build
 import com.darakeon.dfm.lib.utils.mockContext
 import com.darakeon.dfm.testutils.BaseTest
-import com.darakeon.dfm.testutils.setAndroidVersion
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 
+@RunWith(RobolectricTestRunner::class)
 class InternetTest: BaseTest() {
 	@Test
+	@Config(sdk = [Build.VERSION_CODES.M])
 	fun isOnline_23AndSoOn() {
-		setAndroidVersion(Build.VERSION_CODES.M)
+		assertThat(Build.VERSION.SDK_INT, `is`(Build.VERSION_CODES.M))
 
 		val mockContext = mockContext().mockInternet()
 		val context = mockContext.activity
@@ -22,8 +28,9 @@ class InternetTest: BaseTest() {
 	}
 
 	@Test
+	@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 	fun isOnline_below23() {
-		setAndroidVersion(Build.VERSION_CODES.LOLLIPOP)
+		assertThat(Build.VERSION.SDK_INT, `is`(Build.VERSION_CODES.LOLLIPOP))
 
 		val mockContext = mockContext().mockInternet()
 		val context = mockContext.activity
@@ -34,8 +41,9 @@ class InternetTest: BaseTest() {
 	}
 
 	@Test
+	@Config(sdk = [Build.VERSION_CODES.M])
 	fun isOfflineBecauseOfNotConnected_23AndSoOn() {
-		setAndroidVersion(Build.VERSION_CODES.M)
+		assertThat(Build.VERSION.SDK_INT, `is`(Build.VERSION_CODES.M))
 
 		val mockContext = mockContext().mockInternet()
 		mockContext.mockFailConnection()
@@ -49,8 +57,9 @@ class InternetTest: BaseTest() {
 
 	@Test
 	@Suppress("DEPRECATION")
+	@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 	fun isOfflineBecauseOfNotConnected_below23() {
-		setAndroidVersion(Build.VERSION_CODES.LOLLIPOP)
+		assertThat(Build.VERSION.SDK_INT, `is`(Build.VERSION_CODES.LOLLIPOP))
 
 		val mockContext = mockContext().mockInternet()
 		mockContext.mockFailConnection()
@@ -63,8 +72,9 @@ class InternetTest: BaseTest() {
 	}
 
 	@Test
+	@Config(sdk = [Build.VERSION_CODES.M])
 	fun isOfflineBecauseOfNull_23AndSoOn() {
-		setAndroidVersion(Build.VERSION_CODES.M)
+		assertThat(Build.VERSION.SDK_INT, `is`(Build.VERSION_CODES.M))
 
 		val mockContext = mockContext().mockInternet()
 		mockContext.mockEmptyConnection()
@@ -78,8 +88,9 @@ class InternetTest: BaseTest() {
 
 	@Test
 	@Suppress("DEPRECATION")
+	@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 	fun isOfflineBecauseOfNull_below23() {
-		setAndroidVersion(Build.VERSION_CODES.LOLLIPOP)
+		assertThat(Build.VERSION.SDK_INT, `is`(Build.VERSION_CODES.LOLLIPOP))
 
 		val mockContext = mockContext().mockInternet()
 		mockContext.mockEmptyConnection()
