@@ -1,5 +1,5 @@
 FROM darakeon/netcore-libman
-MAINTAINER Dara Keon
+MAINTAINER Dara Keon <laboon@darakeon.com>
 RUN maintain
 
 COPY site /var/dfm

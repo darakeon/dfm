@@ -1,5 +1,5 @@
 FROM darakeon/netcore-libman-node-chrome
-MAINTAINER Dara Keon
+MAINTAINER Dara Keon <laboon@darakeon.com>
 RUN maintain
 
 ENV ASPNETCORE_ENVIRONMENT=circleCI
