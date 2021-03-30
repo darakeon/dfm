@@ -9,8 +9,19 @@ if "%type%" neq "rebuild" (
 
 REM [android] fi
 	if "%name%" == "fi" (
-		del ..\android\Lib\src\debug\res\xml\network_security_config.xml
-		del ..\android\Lib\src\debug\res\values\site-address.xml
+		cd ..\android
+		del /Q /S .gradle > NUL
+		del /Q /S .idea > NUL
+		del /Q /S App\build > NUL
+		del /Q /S App\log > NUL
+		del /Q /S build > NUL
+		del /Q /S ErrorLogs\build > NUL
+		del /Q /S Lib\build > NUL
+		del /Q /S Lib\log > NUL
+		del /Q /S Lib\src\debug\res\xml\network_security_config.xml > NUL 2> NUL
+		del /Q /S Lib\src\debug\res\values\site-address.xml > NUL 2> NUL
+		del /Q /S TestUtils\build > NUL
+		cd ..\ci
 
 		set machine=android
 		set parameters=
