@@ -1,0 +1,12 @@
+version: 2.1
+
+# Do not change file .circleci/config.yml
+# the folder .circleci/pieces has the parts of the script
+# go to .git > hooks and create a file called pre-commit
+# with this content (without first '#' sign)
+
+# #!/bin/sh
+# ./.circleci/assembly.sh
+
+
+jobs:

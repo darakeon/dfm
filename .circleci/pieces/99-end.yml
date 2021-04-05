@@ -1,0 +1,17 @@
+workflows:
+  version: 2.1
+  build_all:
+    jobs:
+      - test_ci
+      - test_core:
+          requires:
+            - test_ci
+      - test_site:
+          requires:
+            - test_ci
+      - test_android:
+          requires:
+            - test_ci
+      - version_check:
+          requires:
+            - test_ci

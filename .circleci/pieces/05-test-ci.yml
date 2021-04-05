@@ -1,0 +1,17 @@
+  test_ci:
+    docker:
+      - image: darakeon/ubuntu
+    steps:
+      - checkout
+      - run:
+          name: copy_old
+          path: .circleci
+          command: cp config.yml config_old.yml
+      - run:
+          name: assembly
+          command: ./.circleci/assembly.sh check
+      - run:
+          name: compare
+          path: .circleci
+          command: if [[ $(diff config.yml config_old.yml) != '' ]]; then echo 'outdated ci config'; exit 1; fi
+
