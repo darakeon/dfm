@@ -1,0 +1,40 @@
+  test_core:
+    docker:
+      - image: darakeon/netcore
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - dotnet-{{ checksum "site/Authentication/Authentication.csproj" }}-{{ checksum "site/BusinessLogic/BusinessLogic.csproj" }}-{{ checksum "site/Email/Email.csproj" }}-{{ checksum "site/Entities/Entities.csproj" }}-{{ checksum "site/Generic/Generic.csproj" }}-{{ checksum "site/Language/Language.csproj" }}-{{ checksum "site/MVC/MVC.csproj" }}-{{ checksum "site/Tests/BusinessLogic/BusinessLogic.Tests.csproj" }}-{{ checksum "site/Tests/Email/Email.Tests.csproj" }}-{{ checksum "site/Tests/Language/Language.Tests.csproj" }}-{{ checksum "site/Tests/MVC/MVC.Tests.csproj" }}
+      - run:
+          name: dependencies
+          command: dotnet restore site/DFM.sln
+      - save_cache:
+          key: dotnet-{{ checksum "site/Authentication/Authentication.csproj" }}-{{ checksum "site/BusinessLogic/BusinessLogic.csproj" }}-{{ checksum "site/Email/Email.csproj" }}-{{ checksum "site/Entities/Entities.csproj" }}-{{ checksum "site/Generic/Generic.csproj" }}-{{ checksum "site/Language/Language.csproj" }}-{{ checksum "site/MVC/MVC.csproj" }}-{{ checksum "site/Tests/BusinessLogic/BusinessLogic.Tests.csproj" }}-{{ checksum "site/Tests/Email/Email.Tests.csproj" }}-{{ checksum "site/Tests/Language/Language.Tests.csproj" }}-{{ checksum "site/Tests/MVC/MVC.Tests.csproj" }}
+          paths:
+            - ~/.nuget/packages
+      - run:
+          name: build
+          command: dotnet build -c Debug site/DFM.sln --no-restore
+      - run:
+          path: site/Tests/Language
+          name: tests_language
+          command: dotnet test -v m --no-build
+      - run:
+          path: site/Tests/Email
+          name: tests_email
+          command: dotnet test -v m --no-build
+      - run:
+          path: site/Tests/BusinessLogic
+          name: tests_business_logic
+          command: dotnet test -v m --no-build
+      - run:
+          path: site/Tests/MVC
+          name: tests_mvc
+          command: dotnet test -v m --no-build
+      - store_artifacts:
+          path: inbox
+      - store_artifacts:
+          path: site/Tests/log
+          destination: log
+

@@ -1,0 +1,43 @@
+  test_android:
+    docker:
+      - image: darakeon/android
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - jars-{{ checksum "ci/android.dockerfile" }}-{{ checksum "android/build.gradle" }}-{{ checksum "android/TestUtils/build.gradle" }}-{{ checksum "android/Lib/build.gradle" }}-{{ checksum "android/App/build.gradle" }}-{{ checksum "android/ErrorLogs/build.gradle" }}
+      - run:
+          name: dependencies
+          path: android
+          command: gradle androidDependencies
+      - save_cache:
+          key: jars-{{ checksum "ci/android.dockerfile" }}-{{ checksum "android/build.gradle" }}-{{ checksum "android/TestUtils/build.gradle" }}-{{ checksum "android/Lib/build.gradle" }}-{{ checksum "android/App/build.gradle" }}-{{ checksum "android/ErrorLogs/build.gradle" }}
+          paths:
+            - /var/cache/gradle
+      - run:
+          name: tests
+          path: android
+          command: gradle test -x androidDependencies
+      - store_artifacts:
+          path: android/TestUtils/build/reports
+          destination: reports/testUtils
+      - store_artifacts:
+          path: android/Lib/build/reports
+          destination: reports/lib
+      - store_artifacts:
+          path: android/App/build/reports
+          destination: reports/app
+      - store_artifacts:
+          path: android/ErrorLogs/build/reports
+          destination: reports/errorLogs
+      - store_artifacts:
+          path: android/Lib/log
+          destination: log/lib
+      - store_artifacts:
+          path: android/App/log
+          destination: log/app
+      - store_test_results:
+          path: android/Lib/build/test-results
+      - store_test_results:
+          path: android/App/build/test-results
+

@@ -1,0 +1,49 @@
+  test_site:
+    docker:
+      - image: darakeon/dfm-browser-tests
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - dotnet-{{ checksum "site/Authentication/Authentication.csproj" }}-{{ checksum "site/BusinessLogic/BusinessLogic.csproj" }}-{{ checksum "site/Email/Email.csproj" }}-{{ checksum "site/Entities/Entities.csproj" }}-{{ checksum "site/Generic/Generic.csproj" }}-{{ checksum "site/Language/Language.csproj" }}-{{ checksum "site/MVC/MVC.csproj" }}-{{ checksum "site/Tests/BusinessLogic/BusinessLogic.Tests.csproj" }}-{{ checksum "site/Tests/Email/Email.Tests.csproj" }}-{{ checksum "site/Tests/Language/Language.Tests.csproj" }}-{{ checksum "site/Tests/MVC/MVC.Tests.csproj" }}
+      - run:
+          name: dependencies_dotnet
+          command: dotnet restore site/DFM.sln
+      - save_cache:
+          key: dotnet-{{ checksum "site/Authentication/Authentication.csproj" }}-{{ checksum "site/BusinessLogic/BusinessLogic.csproj" }}-{{ checksum "site/Email/Email.csproj" }}-{{ checksum "site/Entities/Entities.csproj" }}-{{ checksum "site/Generic/Generic.csproj" }}-{{ checksum "site/Language/Language.csproj" }}-{{ checksum "site/MVC/MVC.csproj" }}-{{ checksum "site/Tests/BusinessLogic/BusinessLogic.Tests.csproj" }}-{{ checksum "site/Tests/Email/Email.Tests.csproj" }}-{{ checksum "site/Tests/Language/Language.Tests.csproj" }}-{{ checksum "site/Tests/MVC/MVC.Tests.csproj" }}
+          paths:
+            - ~/.nuget/packages
+      - restore_cache:
+          keys:
+            - dotnet-libman-{{ checksum "site/MVC/libman.json" }}
+      - run:
+          name: dependencies_client
+          path: site/MVC
+          command: libman restore
+      - save_cache:
+          key: dotnet-libman-{{ checksum "site/MVC/libman.json" }}
+          paths:
+            - /site/MVC/Assets/Libs
+      - run:
+          name: publish_site
+          path: site/MVC
+          command: dotnet publish -c Release MVC.csproj -o ../Tests/Browser/server --no-restore
+      - restore_cache:
+          keys:
+            - node-{{ checksum "site/Tests/Browser/package.json" }}
+      - run:
+          name: dependencies_node
+          path: site/Tests/Browser
+          command: npm install
+      - save_cache:
+          key: node-{{ checksum "site/Tests/Browser/package.json" }}
+          paths:
+            - site/Tests/Browser/node_modules
+      - run:
+          name: tests_browser
+          command: .circleci/browser/run-tests.sh
+      - store_artifacts:
+          path: site/Tests/Browser/log
+      - store_artifacts:
+          path: inbox
+

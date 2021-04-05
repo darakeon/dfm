@@ -1,5 +1,14 @@
 version: 2.1
 
+# Do not change file .circleci/config.yml
+# the folder .circleci/pieces has the parts of the script
+# go to .git > hooks and create a file called pre-commit
+# with this content (without first '#' sign)
+
+# #!/bin/sh
+# ./.circleci/assembly.sh
+
+
 jobs:
   test_core:
     docker:
@@ -156,11 +165,37 @@ jobs:
           path: version
           command: cargo run -q -- -c
 
+  test_ci:
+    docker:
+      - image: darakeon/ubuntu
+    steps:
+      - checkout
+      - run:
+          name: copy_old
+          path: .circleci
+          command: cp config.yml config_old.yml
+      - run:
+          name: assembly
+          command: ./.circleci/assembly.sh check
+      - run:
+          name: compare
+          path: .circleci
+          command: if [[ $(diff config.yml config_old.yml) != '' ]]; then echo 'outdated ci config'; exit 1; fi
+
 workflows:
   version: 2.1
   build_all:
     jobs:
-      - test_core
-      - test_site
-      - test_android
-      - version_check
+      - test_ci
+      - test_core:
+          requires:
+            - test_ci
+      - test_site:
+          requires:
+            - test_ci
+      - test_android:
+          requires:
+            - test_ci
+      - version_check:
+          requires:
+            - test_ci
