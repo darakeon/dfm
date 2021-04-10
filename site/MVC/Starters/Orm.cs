@@ -3,6 +3,7 @@ using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.Entities;
 using DFM.Generic;
 using DfM.Logs;
+using DFM.MVC.Helpers;
 using Keon.MVC.Cookies;
 using Keon.NHibernate.Schema;
 using Keon.NHibernate.Sessions;
@@ -27,7 +28,7 @@ namespace DFM.MVC.Starters
 						return;
 
 					SessionManager.Init(
-						() => BrowserId.Get(() => context)
+						() => Session.GetKey(() => context)
 					);
 
 					await next();
