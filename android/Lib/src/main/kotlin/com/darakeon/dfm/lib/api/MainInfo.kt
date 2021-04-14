@@ -3,11 +3,14 @@ package com.darakeon.dfm.lib.api
 import android.content.Context
 import com.darakeon.dfm.lib.R
 
-object MainInfo
-{
+object MainInfo {
 	fun getSiteUrl(context: Context) : String {
 		val siteAddress =
-			context.getString(R.string.site_address)
+			if (Internet.isEmulator(context)) {
+				"10.0.2.2"
+			} else {
+				context.getString(R.string.site_address)
+			}
 
 		return when {
 			siteAddress == "" -> ""

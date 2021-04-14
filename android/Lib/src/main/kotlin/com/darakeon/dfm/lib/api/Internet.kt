@@ -10,47 +10,71 @@ abstract class BaseInternet(context: Context) {
 	private val connectivityManager =
 		context.getSystemService(
 			Context.CONNECTIVITY_SERVICE
-		) as ConnectivityManager
+		) as ConnectivityManager?
 
-	fun isOffline(): Boolean {
-		return !isOnline(connectivityManager)
-	}
+	fun isOffline() = !isOnline(connectivityManager)
 
 	protected abstract fun isOnline(
-		connectivityManager: ConnectivityManager
+		connectivityManager: ConnectivityManager?
+	) : Boolean
+
+	fun isEmulator() = usingEthernet(connectivityManager)
+
+	protected abstract fun usingEthernet(
+		connectivityManager: ConnectivityManager?
 	) : Boolean
 }
 
 @RequiresApi(Build.VERSION_CODES.M)
 class InternetNew(context: Context) : BaseInternet(context) {
-	override fun isOnline(connectivityManager: ConnectivityManager): Boolean {
+	override fun isOnline(connectivityManager: ConnectivityManager?): Boolean {
+		return testConnection(connectivityManager) {
+			it.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
+			|| it.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
+			|| it.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
+		}
+	}
+
+	override fun usingEthernet(connectivityManager: ConnectivityManager?): Boolean {
+		return testConnection(connectivityManager) {
+			it.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
+		}
+	}
+
+	private fun testConnection(
+		connectivityManager: ConnectivityManager?,
+	   test: (NetworkCapabilities) -> Boolean
+	): Boolean {
 		val network =
-			connectivityManager.activeNetwork
+			connectivityManager?.activeNetwork
 				?: return false
 
 		val capabilities =
 			connectivityManager.getNetworkCapabilities(network)
 				?: return false
 
-		return capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
-			|| capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
-			|| capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
+		return test(capabilities)
 	}
 }
 
 class InternetOld(context: Context) : BaseInternet(context) {
 	@Suppress("DEPRECATION")
-	override fun isOnline(connectivityManager: ConnectivityManager) : Boolean {
+	override fun isOnline(connectivityManager: ConnectivityManager?) : Boolean {
 		var result = false
 
 		connectivityManager.run {
-			connectivityManager.activeNetworkInfo?.run {
+			connectivityManager?.activeNetworkInfo?.run {
 				result = state == android.net.NetworkInfo.State.CONNECTED
 			}
 		}
 
 		return result
 	}
+
+	// don't know how to test it at older devices
+	override fun usingEthernet(
+		connectivityManager: ConnectivityManager?
+	) = false
 }
 
 object Internet {
@@ -62,4 +86,7 @@ object Internet {
 
 	fun isOffline(context: Context) =
 		internet(context).isOffline()
+
+	fun isEmulator(context: Context) =
+		internet(context).isEmulator()
 }

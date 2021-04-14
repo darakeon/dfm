@@ -32,27 +32,27 @@ class MockContext<A: Activity>(type: KClass<A>) {
 	private val manager = mock(ConnectivityManager::class.java)
 	private var themeId = 0
 
-	fun mockInternet(): MockContext<A> {
+	fun mockInternet(type: Int = 0): MockContext<A> {
 		`when`(
 			activity.getSystemService(
 				Context.CONNECTIVITY_SERVICE
 			)
 		).thenReturn(manager)
 
-		mockConnection(true)
+		mockConnection(true, type)
 
 		return this
 	}
 
-	private fun mockConnection(succeeded: Boolean) {
+	private fun mockConnection(succeeded: Boolean, type: Int = 0) {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-			mockConnectionNew(succeeded)
+			mockConnectionNew(succeeded, type)
 		else
 			mockConnectionOld(succeeded)
 	}
 
 	@RequiresApi(Build.VERSION_CODES.M)
-	private fun mockConnectionNew(hasTransport: Boolean) {
+	private fun mockConnectionNew(hasTransport: Boolean, type: Int = 0) {
 		val network = mock(Network::class.java)
 		`when`(manager.activeNetwork).thenReturn(network)
 
@@ -61,7 +61,10 @@ class MockContext<A: Activity>(type: KClass<A>) {
 			.thenReturn(capabilities)
 
 		`when`(capabilities.hasTransport(anyInt()))
-			.thenReturn(hasTransport)
+			.thenAnswer {
+				(type == 0 && hasTransport)
+					|| (type != 0 && it.arguments[0] as Int == type)
+			}
 	}
 
 	@Suppress("DEPRECATION")
