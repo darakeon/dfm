@@ -1,5 +1,6 @@
 package com.darakeon.dfm.lib.api
 
+import android.net.NetworkCapabilities
 import android.os.Build
 import com.darakeon.dfm.lib.utils.mockContext
 import com.darakeon.dfm.testutils.BaseTest
@@ -22,9 +23,9 @@ class InternetTest: BaseTest() {
 		val mockContext = mockContext().mockInternet()
 		val context = mockContext.activity
 
-		val isOffline = Internet.isOffline(context)
+		val offline = Internet.isOffline(context)
 
-		assertFalse(isOffline)
+		assertFalse(offline)
 	}
 
 	@Test
@@ -35,9 +36,9 @@ class InternetTest: BaseTest() {
 		val mockContext = mockContext().mockInternet()
 		val context = mockContext.activity
 
-		val isOffline = Internet.isOffline(context)
+		val offline = Internet.isOffline(context)
 
-		assertFalse(isOffline)
+		assertFalse(offline)
 	}
 
 	@Test
@@ -50,9 +51,9 @@ class InternetTest: BaseTest() {
 
 		val context = mockContext.activity
 
-		val isOffline = Internet.isOffline(context)
+		val offline = Internet.isOffline(context)
 
-		assertTrue(isOffline)
+		assertTrue(offline)
 	}
 
 	@Test
@@ -66,9 +67,9 @@ class InternetTest: BaseTest() {
 
 		val context = mockContext.activity
 
-		val isOffline = Internet.isOffline(context)
+		val offline = Internet.isOffline(context)
 
-		assertTrue(isOffline)
+		assertTrue(offline)
 	}
 
 	@Test
@@ -81,9 +82,9 @@ class InternetTest: BaseTest() {
 
 		val context = mockContext.activity
 
-		val isOffline = Internet.isOffline(context)
+		val offline = Internet.isOffline(context)
 
-		assertTrue(isOffline)
+		assertTrue(offline)
 	}
 
 	@Test
@@ -97,8 +98,57 @@ class InternetTest: BaseTest() {
 
 		val context = mockContext.activity
 
-		val isOffline = Internet.isOffline(context)
+		val offline = Internet.isOffline(context)
 
-		assertTrue(isOffline)
+		assertTrue(offline)
+	}
+
+	@Test
+	@Config(sdk = [Build.VERSION_CODES.M])
+	fun isNotEmulator_23AndSoOn() {
+		assertThat(Build.VERSION.SDK_INT, `is`(Build.VERSION_CODES.M))
+
+		val mockContext = mockContext().mockInternet(
+			NetworkCapabilities.TRANSPORT_WIFI
+		)
+
+		val context = mockContext.activity
+
+		val emulator = Internet.isEmulator(context)
+		print(emulator)
+
+		assertFalse(emulator)
+	}
+
+	@Test
+	@Config(sdk = [Build.VERSION_CODES.M])
+	fun isEmulator_23AndSoOn() {
+		assertThat(Build.VERSION.SDK_INT, `is`(Build.VERSION_CODES.M))
+
+		val mockContext = mockContext().mockInternet(
+			NetworkCapabilities.TRANSPORT_ETHERNET
+		)
+
+		val context = mockContext.activity
+
+		val emulator = Internet.isEmulator(context)
+
+		assertTrue(emulator)
+	}
+
+	@Test
+	@Suppress("DEPRECATION")
+	@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
+	fun isEmulator_below23() {
+		assertThat(Build.VERSION.SDK_INT, `is`(Build.VERSION_CODES.LOLLIPOP))
+
+		val mockContext = mockContext().mockInternet()
+		mockContext.mockEmptyConnection()
+
+		val context = mockContext.activity
+
+		val emulator = Internet.isEmulator(context)
+
+		assertFalse(emulator)
 	}
 }
