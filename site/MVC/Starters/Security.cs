@@ -6,7 +6,7 @@ namespace DFM.MVC.Starters
 	{
 		public static void DenyFrame(IApplicationBuilder app)
 		{
-			app.Use(async (context, next) =>
+			app.Use<Security>(async (context, next) =>
 			{
 				context.Response.Headers
 					.Add("X-Frame-Options", "deny");

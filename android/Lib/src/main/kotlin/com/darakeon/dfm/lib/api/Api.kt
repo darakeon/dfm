@@ -31,7 +31,6 @@ class Api<C>(
 	private fun <T> Call<Body<T>>.call(onSuccess: (T) -> Unit) {
 		val call = currentCall
 
-		// TODO: test it
 		if (call != null && !call.isCanceled && !call.isExecuted) {
 			return
 		}

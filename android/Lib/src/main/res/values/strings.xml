@@ -16,6 +16,12 @@
 	<string name="u_r_offline">
 		You\'re offline
 	</string>
+	<string name="u_r_offline_moves">
+		You\'re offline, but your move can be send when internet is back
+	</string>
+	<string name="background_move_error">
+		We tried to create your move when internet came back, but it had an error
+	</string>
 	<string name="clear">
 		- clear -
 	</string>
@@ -36,6 +42,9 @@
 	</string>
 	<string name="contact_body">
 		Please describe the suggestion, doubt or problem at the system
+	</string>
+	<string name="send_report_button">
+		Send error
 	</string>
 	<string name="current_density">density</string>
 	<string name="dfm_mail_address" translatable="false">dfm@dontflymoney.com</string>

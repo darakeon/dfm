@@ -15,7 +15,7 @@ namespace DFM.MVC.Starters
 	{
 		public static void Run(IApplicationBuilder app)
 		{
-			app.Use(async (context, next) =>
+			app.Use<Robot>(async (context, next) =>
 			{
 				var service = context.GetService();
 				var current = service.Current;

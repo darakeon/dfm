@@ -47,7 +47,7 @@ abstract class BaseActivity: Activity(), ApiCaller {
 		val api = api
 
 		if (api == null) {
-			alertError(R.string.error_call_api) {
+			alertError(R.string.error_call_api, R.string.send_report_button) {
 				composeErrorApi()
 			}
 		} else {
@@ -199,7 +199,7 @@ abstract class BaseActivity: Activity(), ApiCaller {
 
 	override fun error(url: String, error: Throwable) = composeErrorEmail(url, error)
 	override fun error(resId: Int) = alertError(resId)
-	override fun error(resId: Int, action: () -> Unit) = alertError(resId, action)
+	override fun error(resMessage: Int, resButton: Int, action: () -> Unit) = alertError(resMessage, resButton, action)
 	override fun error(text: String) = alertError(text)
 	override fun logout() = logoutLocal()
 

@@ -46,7 +46,7 @@ object Log {
 		Files.write(path, record.toByteArray(charset))
 	}
 
-	private var path: String = "";
+	private var path: String = ""
 	private val start:String
 		@RequiresApi(Build.VERSION_CODES.O)
 		get() {
