@@ -14,7 +14,8 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="6.0.0.0"></a>6.0.0.0 :dragon: <sup>`6`</sup>
+## <a name="6.0.0.0"></a>6.0.0.0 :dragon: <sup>`7`</sup>
+- [ ] Fix calendar today color for light theme
 - [ ] Add link to create account at login app screen
 - [ ] Adjust e-mail layouts to new themes
 - [ ] Fix sum move after check it
