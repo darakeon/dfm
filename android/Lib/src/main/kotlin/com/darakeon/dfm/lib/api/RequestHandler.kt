@@ -35,6 +35,7 @@ class RequestHandler<C>(
 
 	fun <T> call(call: Call<Body<T>>, onSuccess: (T) -> Unit) {
 		if (Internet.isOffline(caller)) {
+			call.cancel()
 			caller.error(R.string.u_r_offline)
 			return
 		}
