@@ -22,12 +22,14 @@ class ResponseHandler<C, A>(
 	init { logDebug("INIT") }
 
 	override fun onResponse(call: Call<Body<A>>, response: Response<Body<A>>?) {
-		logDebug("SUCCESS ${call.request().url()}")
+		logDebug("RESPONSE ${call.request().url()}")
 
 		if (response == null) {
 			onError(call, ApiException("Null response"))
 		} else {
 			val body = response.body()
+
+			logDebug("STATUS ${response.code()}")
 
 			if (body?.environment != null && caller is Activity) {
 				caller.setEnvironment(body.environment)
@@ -68,7 +70,7 @@ class ResponseHandler<C, A>(
 			throw error
 		}
 
-		caller.error(R.string.error_contact_url) {
+		caller.error(R.string.error_contact_url, R.string.send_report_button) {
 			caller.error(url, error)
 		}
 	}

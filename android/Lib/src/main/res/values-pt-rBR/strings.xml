@@ -16,6 +16,12 @@
 	<string name="u_r_offline">
 		Sem conexão com a internet
 	</string>
+	<string name="u_r_offline_moves">
+		Sem conexão com a internet, mas sua movimentação pode ser enviada assim que retornar
+	</string>
+	<string name="background_move_error">
+		Tentamos criar a movimentação quando a internet voltou, mas havia um erro
+	</string>
 	<string name="clear">
 		- limpar -
 	</string>
@@ -36,6 +42,9 @@
 	</string>
 	<string name="contact_body">
 		Por favor, descreva a sugestão, dúvida ou problema no sistema
+	</string>
+	<string name="send_report_button">
+		Reportar
 	</string>
 	<string name="current_density">densidade</string>
 </resources>

@@ -6,6 +6,7 @@ import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.lib.extensions.applyGlyphicon
 import com.darakeon.dfm.lib.extensions.redirect
 import com.darakeon.dfm.login.LoginActivity
+import com.darakeon.dfm.moves.MovesService
 import kotlinx.android.synthetic.main.welcome.action_close
 import kotlinx.android.synthetic.main.welcome.action_home
 import kotlinx.android.synthetic.main.welcome.action_logout
@@ -24,6 +25,8 @@ class WelcomeActivity : BaseActivity() {
 			action_move.applyGlyphicon()
 			action_logout.applyGlyphicon()
 			action_close.applyGlyphicon()
+
+			MovesService.start(this)
 		} else {
 			redirect<LoginActivity>()
 		}

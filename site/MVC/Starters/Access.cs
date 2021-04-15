@@ -9,7 +9,7 @@ namespace DFM.MVC.Starters
 	{
 		public static void Run(IApplicationBuilder app)
 		{
-			app.Use(async (context, next) =>
+			app.Use<Access>(async (context, next) =>
 			{
 				try
 				{

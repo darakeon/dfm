@@ -178,7 +178,6 @@
 					android:backgroundTint="@android:color/transparent"
 					/>
 
-
 				<AutoCompleteTextView
 					android:id="@+id/account_in"
 					android:layout_width="0dp"

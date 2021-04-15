@@ -2,6 +2,7 @@ package com.darakeon.dfm.lib.api.entities.moves
 
 import com.darakeon.dfm.lib.api.entities.Date
 import com.darakeon.dfm.lib.extensions.toDoubleByCulture
+import java.io.Serializable
 import java.util.ArrayList
 import java.util.UUID
 
@@ -23,7 +24,7 @@ data class Move (
 	var detailList: MutableList<Detail> = ArrayList(),
 
 	var checked: Boolean = false
-) {
+) : Serializable {
 	var isDetailed: Boolean = false
 
 	var natureEnum
@@ -61,7 +62,9 @@ data class Move (
 
 	fun setDefaultData(accountUrl: String, useCategories: Boolean) {
 		if (guid == null) {
-			outUrl = accountUrl
+			if (accountUrl != "") {
+				outUrl = accountUrl
+			}
 		} else {
 			warnCategory = !useCategories && categoryName != null
 		}

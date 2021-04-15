@@ -59,8 +59,8 @@ class ApiActivity : Activity(), ApiCaller {
 		errorText = getString(resId)
 	}
 
-	override fun error(resId: Int, action: () -> Unit) {
-		errorText = getString(resId)
+	override fun error(resMessage: Int, resButton: Int, action: () -> Unit) {
+		errorText = getString(resMessage)
 		action()
 	}
 

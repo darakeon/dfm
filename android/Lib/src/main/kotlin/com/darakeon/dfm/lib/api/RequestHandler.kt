@@ -1,7 +1,6 @@
 package com.darakeon.dfm.lib.api
 
 import android.content.Context
-import com.darakeon.dfm.lib.R
 import com.darakeon.dfm.lib.api.entities.Body
 import okhttp3.Dispatcher
 import okhttp3.Interceptor.Chain
@@ -36,7 +35,7 @@ class RequestHandler<C>(
 	fun <T> call(call: Call<Body<T>>, onSuccess: (T) -> Unit) {
 		if (Internet.isOffline(caller)) {
 			call.cancel()
-			caller.error(R.string.u_r_offline)
+			caller.offline()
 			return
 		}
 

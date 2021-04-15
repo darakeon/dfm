@@ -11,7 +11,6 @@
 
 	<!-- Buttons -->
 	<string name="save_button">Salvar</string>
-	<string name="send_report_button">Reportar</string>
 	<string name="ok_button">OK</string>
 	<string name="cancel_button">Cancelar</string>
 
@@ -91,4 +90,5 @@
 	<string name="version">Versão do aplicativo</string>
 	<string name="error_call_api">Erro ao chamar site, entre em contato conosco</string>
 	<string name="density">Tela do dispositivo</string>
+	<string name="fail_at_offline_insert">tente inserir a movimentação novamente</string>
 </resources>

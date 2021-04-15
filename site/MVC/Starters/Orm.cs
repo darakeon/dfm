@@ -20,7 +20,7 @@ namespace DFM.MVC.Starters
 			{
 				SessionFactoryManager.Initialize<UserMap, User>(Cfg.DB);
 
-				app.Use(async (context, next) =>
+				app.Use<Orm>(async (context, next) =>
 				{
 					var path = context.Request.Path.Value;
 

@@ -11,7 +11,6 @@
 
 	<!-- Buttons -->
 	<string name="save_button">Save</string>
-	<string name="send_report_button">Send error</string>
 	<string name="ok_button">OK</string>
 	<string name="cancel_button">Cancel</string>
 
@@ -91,4 +90,5 @@
 	<string name="version">App Version</string>
 	<string name="error_call_api">Error on calling the site, contact us</string>
 	<string name="density">Device screen type</string>
+	<string name="fail_at_offline_insert">try to insert the move again</string>
 </resources>

@@ -40,7 +40,7 @@ namespace DFM.MVC.Starters
 			if (env.IsDevelopment())
 				Cfg.LanguagePath = "bin";
 
-			app.Use(async (context, next) =>
+			app.Use<Context>(async (context, next) =>
 			{
 				var current = context.GetService().Current;
 

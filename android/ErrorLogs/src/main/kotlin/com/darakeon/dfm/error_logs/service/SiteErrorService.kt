@@ -70,7 +70,7 @@ class SiteErrorService : Service(), ApiCaller, Timer.Caller {
 	}
 
 	override fun error(resId: Int) = error(getString(resId))
-	override fun error(resId: Int, action: () -> Unit) = error(resId)
+	override fun error(resMessage: Int, resButton: Int, action: () -> Unit) = error(resMessage)
 	override fun error(url: String, error: Throwable) = error("$url > $error")
 
 	override fun checkTFA() {

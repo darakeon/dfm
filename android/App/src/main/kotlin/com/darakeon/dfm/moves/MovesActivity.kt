@@ -62,6 +62,8 @@ class MovesActivity : BaseActivity() {
 	private val moveKey = "move"
 	private var moveForm: MoveForm = MoveCreation()
 	private val moveFormKey = "moveForm"
+	private var offlineHash = 0
+	private val offlineHashKey = "offlineHash"
 
 	private var accountUrl = ""
 	private var id: UUID? = null
@@ -73,6 +75,9 @@ class MovesActivity : BaseActivity() {
 
 	override val refresh: SwipeRefreshLayout?
 		get() = main
+
+	private var loadedScreen = false
+	private val offline = MovesOffline(this)
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -97,6 +102,7 @@ class MovesActivity : BaseActivity() {
 		} else {
 			move = savedInstanceState.getFromJson(moveKey, Move())
 			moveForm = savedInstanceState.getFromJson(moveFormKey, MoveCreation())
+			offlineHash = savedInstanceState.getInt(offlineHashKey, 0)
 
 			populateResponse()
 		}
@@ -113,13 +119,27 @@ class MovesActivity : BaseActivity() {
 		moveForm = data
 
 		val move = data.move
+		var error = ""
 
-		if (move != null)
+		if (move != null) {
 			this.move = move
-		else
-			this.move.date = Date()
+		} else {
+			val previousError = offline.error
+			if (previousError == null) {
+				this.move.date = Date()
+			} else {
+				this.move = previousError.move
+				error = previousError.error
+				offlineHash = previousError.hashCode()
+			}
+		}
 
 		populateResponse()
+
+		if (error != "") {
+			val tried = getString(R.string.background_move_error)
+			alertError("$tried: $error")
+		}
 	}
 
 	private fun populateResponse() {
@@ -137,14 +157,13 @@ class MovesActivity : BaseActivity() {
 		description.onChange { move.description = it }
 
 		populateDate()
-
 		populateCategory()
 
 		populateAccounts()
-
 		setNatureFromAccounts()
-
 		populateValue()
+
+		loadedScreen = true
 	}
 
 	private fun isMoveAllowed(): Boolean {
@@ -343,6 +362,7 @@ class MovesActivity : BaseActivity() {
 		super.onSaveInstanceState(outState)
 		outState.putJson(moveKey, move)
 		outState.putJson(moveFormKey, moveForm)
+		outState.putInt(offlineHashKey, offlineHash)
 	}
 
 	fun useDetailed(@Suppress(ON_CLICK) view: View) {
@@ -376,11 +396,28 @@ class MovesActivity : BaseActivity() {
 
 	fun save(@Suppress(ON_CLICK) view: View) {
 		move.clearNotUsedValues()
+
 		callApi {
 			it.saveMove(move) {
-				intent.removeExtra("id")
-				backWithExtras()
+				offline.remove(offlineHash)
+				clearAndBack()
 			}
 		}
+	}
+
+	override fun offline() {
+		if (loadedScreen) {
+			error(R.string.u_r_offline_moves, R.string.ok_button) {
+				MovesService.start(this, move)
+				clearAndBack()
+			}
+		} else {
+			super.offline()
+		}
+	}
+
+	private fun clearAndBack() {
+		intent.removeExtra("id")
+		backWithExtras()
 	}
 }

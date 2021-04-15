@@ -16,13 +16,13 @@ fun Activity.alertError(message: String) {
 	alert(message, R.string.ok_button, false) { }
 }
 
-fun Activity.alertError(resMessage: Int, sendEmailReport: () -> Unit) {
+fun Activity.alertError(resMessage: Int, resAction: Int, action: () -> Unit) {
 	alert(
 		getString(resMessage),
-		R.string.send_report_button,
+		resAction,
 		true
 	) {
-		sendEmailReport()
+		action()
 	}
 }
 

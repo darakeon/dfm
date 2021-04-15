@@ -106,7 +106,9 @@ class MessageTest: BaseTest() {
 	@Test
 	fun alertErrorWithEventClickCancel() {
 		var sendError = false
-		activity.alertError(R.string.app_name) { sendError = true }
+		activity.alertError(R.string.app_name, R.string.ok_button) {
+			sendError = true
+		}
 
 		val alert = getLatestAlertDialog()
 		assertTrue(alert.isShowing)
@@ -128,7 +130,9 @@ class MessageTest: BaseTest() {
 	@Test
 	fun alertErrorWithEventClickSendError() {
 		var sendError = false
-		activity.alertError(R.string.app_name) { sendError = true }
+		activity.alertError(R.string.app_name, R.string.ok_button) {
+			sendError = true
+		}
 
 		val alert = getLatestAlertDialog()
 		assertTrue(alert.isShowing)
