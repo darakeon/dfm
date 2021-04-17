@@ -1,6 +1,6 @@
-package com.darakeon.dfm.moves
+package com.darakeon.dfm.offlineFallback
 
-enum class MoveStatus {
+enum class Status {
 	Pending,
 	Success,
 	Error,
