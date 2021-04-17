@@ -56,7 +56,6 @@ dependencies {
 	implementation project(':Lib')
 
 	implementation "com.google.android.gms:play-services-iid:$play_version"
-	implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 	implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 }
 
