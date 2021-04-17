@@ -1,24 +1,19 @@
-package com.darakeon.dfm.moves
+package com.darakeon.dfm.offlineFallback
 
-import com.darakeon.dfm.lib.api.entities.moves.Move
-
-data class MoveWithStatus(
-        val move: Move,
-        var status: MoveStatus = MoveStatus.Pending,
-        var error: String = ""
+data class ObjStatus<O>(
+	val obj: O,
+	var status: Status = Status.Pending,
+	var error: String = ""
 ) {
-	val pending
-		get() = status == MoveStatus.Pending
-
 	fun success() {
-		status = MoveStatus.Success
+		status = Status.Success
 	}
 
 	fun error(error: String) {
-		status = MoveStatus.Error
+		status = Status.Error
 		this.error = error
 	}
 
-	fun has(move: Move): Boolean =
-		this.move.hashCode() == move.hashCode()
+	fun has(obj: O) =
+		this.obj.hashCode() == obj.hashCode()
 }

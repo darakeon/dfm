@@ -1,4 +1,4 @@
-package com.darakeon.dfm.moves
+package com.darakeon.dfm.offlineFallback
 
 import android.content.Context
 import android.content.Intent
@@ -8,11 +8,15 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.lib.Log
 import com.darakeon.dfm.lib.api.Api
 import com.darakeon.dfm.lib.api.ApiCaller
-import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.auth.Authentication
+import com.google.gson.Gson
 import java.io.Serializable
+import kotlin.reflect.KClass
 
-class MovesService : JobIntentService(), ApiCaller {
+abstract class Service<S: Service<S, O>, O: Serializable>(
+	private val typeService: KClass<S>,
+	private val typeObj: KClass<O>,
+) : JobIntentService(), ApiCaller {
 	private val intervalMin
 		get() = resources.getInteger(
 			R.integer.service_seconds_interval
@@ -21,37 +25,40 @@ class MovesService : JobIntentService(), ApiCaller {
 	private val intervalMs
 		get() = (intervalMin * 60 * 1000).toLong()
 
-	private val moveOffline
-		get() = MovesOffline(this)
-	private lateinit var move: Move
+	private lateinit var obj: O
+	private lateinit var manager: Manager<O>
 
 	override fun onHandleWork(intent: Intent) {
-		val noMove = intent.getSerializableExtra("no_move") as Boolean?
+		manager = manager(this, typeObj)
 
-		if (noMove == true) {
+		val json = intent.getStringExtra(objKey)
+		val noObj = intent.getBooleanExtra(noObjKey, false)
+
+		if (noObj) {
 			next()
 			return
 		}
 
-		val move = intent.getSerializableExtra("move") as Move?
-
-		if (move == null) {
-			Log.record("No move received")
+		if (json == null) {
+			Log.record("No object received")
 			next()
 			return
 		}
 
-		this.move = move
+		val obj = Gson().fromJson(json, typeObj.java)
 
-		moveOffline.add(move)
+		this.obj = obj
 
-		Api(this, null).saveMove(move) {
-			moveOffline.success(move)
+		manager.add(obj)
+
+		callApi(Api(this, null), obj) {
+			manager.success(obj)
 			next()
 		}
 	}
 
-	private val auth = Authentication(this)
+	private val auth
+		get() = Authentication(this)
 
 	override var ticket: String
 		get() = auth.ticket
@@ -62,69 +69,93 @@ class MovesService : JobIntentService(), ApiCaller {
 	}
 
 	override fun checkTFA() {
-		moveOffline.error(move)
+		manager.error(obj)
 	}
 
 	override fun error(text: String) {
-		moveOffline.error(move, text)
+		manager.error(obj, text)
 		next()
 	}
 
 	override fun error(resId: Int) {
 		Log.record("Error thrown: ${getString(resId)}")
-		restart(move)
+		restart()
 	}
 
 	override fun error(resMessage: Int, resButton: Int, action: () -> Unit) {
-		moveOffline.error(move, resMessage)
+		manager.error(obj, resMessage)
 		action()
 		next()
 	}
 
 	override fun error(url: String, error: Throwable) {
 		Log.record("Error thrown: $url $error")
-		restart(move)
+		restart()
 	}
 
 	private fun next() {
-		val otherMove = moveOffline.next
-		if (otherMove != null) {
-			restart(otherMove.move)
+		val next = manager.next
+		if (next != null) {
+			restart(next.obj)
 		} else {
 			Log.record("end of jobs")
 		}
 		stopSelf()
 	}
 
-	private fun restart(move: Move) {
-		if (move.hashCode() == this.move.hashCode()) {
-			Log.record("...${intervalMin}min...")
-			SystemClock.sleep(intervalMs)
-		}
+	private fun restart() {
+		Log.record("...${intervalMin}min...")
+		SystemClock.sleep(intervalMs)
 
 		if (isStopped) return
 
-		start(this, move)
+		restart(obj)
 	}
 
-	companion object {
-		fun start(context: Context, move: Move) {
-			start(context, "move", move)
-		}
+	private fun restart(obj: O) {
+		start(this, typeService, obj)
+	}
 
-		fun start(context: Context) {
-			val offline = MovesOffline(context)
-			if (offline.run) {
-				start(context, "no_move", true)
-			} else {
-				offline.clearSucceeded()
+	protected abstract fun callApi(
+		api: Api<*>, obj: O, success: () -> Unit
+	)
+
+	companion object {
+		private const val objKey = "object"
+		private const val noObjKey = "no_object"
+
+		fun <O : Any> manager(context: Context, type: KClass<O>) =
+			Manager(context, type)
+
+		fun <O: Serializable, S: Service<S, O>> start(
+			context: Context, typeService: KClass<S>, obj: O
+		) {
+			start<O, S>(context, typeService) {
+				it.putExtra(objKey, Gson().toJson(obj))
 			}
 		}
 
-		private fun start(context: Context, key: String, value: Serializable) {
+		fun <O: Serializable, S: Service<S, O>> start(
+			context: Context, typeService: KClass<S>, typeObj: KClass<O>
+		) {
+			val manager = manager(context, typeObj)
+			if (manager.run) {
+				start<O, S>(context, typeService) {
+					it.putExtra(noObjKey, true)
+				}
+			} else {
+				manager.clearSucceeded()
+			}
+		}
+
+		private fun <O : Any, S: Service<S, O>> start(
+			context: Context,
+			type: KClass<S>,
+			extra: (Intent) -> Unit
+		) {
 			val intent = Intent()
-			intent.putExtra(key, value)
-			enqueueWork(context, MovesService::class.java, 27, intent)
+			extra(intent)
+			enqueueWork(context, type.java, 27, intent)
 		}
 	}
 }

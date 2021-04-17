@@ -77,7 +77,7 @@ class MovesActivity : BaseActivity() {
 		get() = main
 
 	private var loadedScreen = false
-	private val offline = MovesOffline(this)
+	private val fallbackManager = MovesService.manager(this)
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -124,11 +124,13 @@ class MovesActivity : BaseActivity() {
 		if (move != null) {
 			this.move = move
 		} else {
-			val previousError = offline.error
+			fallbackManager.printCounting()
+			val previousError = fallbackManager.error
+
 			if (previousError == null) {
 				this.move.date = Date()
 			} else {
-				this.move = previousError.move
+				this.move = previousError.obj
 				error = previousError.error
 				offlineHash = previousError.hashCode()
 			}
@@ -399,7 +401,7 @@ class MovesActivity : BaseActivity() {
 
 		callApi {
 			it.saveMove(move) {
-				offline.remove(offlineHash)
+				fallbackManager.remove(offlineHash)
 				clearAndBack()
 			}
 		}

@@ -1,93 +1,109 @@
-package com.darakeon.dfm.moves
+package com.darakeon.dfm.offlineFallback
 
 import android.content.Context
 import com.darakeon.dfm.R
 import com.darakeon.dfm.lib.Log
-import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.auth.getValue
 import com.darakeon.dfm.lib.auth.setValue
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import kotlin.reflect.KClass
 
-class MovesOffline(private val context: Context) {
-	private var spMoves: String
-		get() = context.getValue("moves")
-		set(value) = context.setValue("moves", value)
+class Manager<O : Any>(
+	private val context: Context,
+	private val type: KClass<O>,
+) {
+	private val completeSPKey = "offline_fallback_${type.simpleName}"
 
-	private var stati: Array<MoveWithStatus>
-		get() = if (spMoves.isEmpty()) {
-			emptyArray()
+	private var queue: String
+		get() = context.getValue(completeSPKey)
+		set(value) = context.setValue(completeSPKey, value)
+
+	private var stati: Array<ObjStatus<O>>
+		get() = if (queue.isEmpty()) {
+			arrayOf()
 		} else {
-			Gson().fromJson(
-				spMoves,
-				Array<MoveWithStatus>::class.java
-			)
+			val arrayType = object : TypeToken<Array<ObjStatus<O>>>() {}.type
+			Gson().fromJson<Array<ObjStatus<O>>>(
+				queue, arrayType
+			).map {
+				ObjStatus(
+					Gson().fromJson(Gson().toJson(it.obj), type.java),
+					it.status,
+					it.error
+				)
+			}.toTypedArray()
 		}
 		set(value) {
-			spMoves = Gson().toJson(value)
+			queue = Gson().toJson(value)
 		}
 
-	val next: MoveWithStatus?
+	private val pending: Array<ObjStatus<O>>
+		get() = stati.filter {
+			m -> m.status == Status.Pending
+		}.toTypedArray()
+
+	val next: ObjStatus<O>?
 		get() {
-			val pending = stati.filter { m -> m.pending }
-			Log.record("Pending: ${pending.size}")
+			printCounting()
 			return pending.firstOrNull()
 		}
 
 	val run: Boolean
-		get() = stati.any { m -> m.pending }
+		get() = pending.any()
 
-	val error: MoveWithStatus?
+	val error: ObjStatus<O>?
 		get() = stati.firstOrNull {
-			m -> m.status == MoveStatus.Error
+			m -> m.status == Status.Error
 		}
 
-	fun add(move: Move) {
-		if (stati.any { m -> m.has(move) && m.pending}) {
+	fun printCounting() =
+		Log.record("Pending: ${pending.size}/${stati.size}")
+
+	fun add(obj: O) {
+		if (pending.any { m -> m.has(obj) }) {
 			Log.record("Already added")
 		} else {
-			stati += MoveWithStatus(move)
+			stati += ObjStatus(obj)
 		}
 	}
 
-	fun success(move: Move) {
-		Log.record("[SUCCEEDED]: $move")
-		update(move) {
+	fun success(obj: O) {
+		Log.record("[SUCCEEDED]: $obj")
+		update(obj) {
 			it.success()
 		}
 	}
 
-	fun error(move: Move) =
-		error(move, R.string.fail_at_offline_insert)
+	fun error(obj: O) =
+		error(obj, R.string.fail_at_offline_insert)
 
-	fun error(move: Move, error: Int) =
-		error(move, context.getString(error))
+	fun error(obj: O, error: Int) =
+		error(obj, context.getString(error))
 
-	fun error(move: Move, error: String) {
-		Log.record("[$error]: $move")
-		update(move) {
+	fun error(obj: O, error: String) {
+		Log.record("[$error]: $obj")
+		update(obj) {
 			it.error(error)
 		}
 	}
 
-	private fun update(move: Move, action: (MoveWithStatus) -> Unit) {
-		val list = stati
-		val item = list.first { m -> m.has(move) && m.pending }
-		action(item)
+	private fun update(obj: O, action: (ObjStatus<O>) -> Unit) {
+		val list = pending
+		action(list.first { m -> m.has(obj) })
 		stati = list
 	}
 
-	fun remove(moveWithStatusHash: Int) {
+	fun remove(objStatusHash: Int) {
 		stati = stati.filter {
-			it.hashCode() != moveWithStatusHash
+			it.hashCode() != objStatusHash
 		}.toTypedArray()
-
-		val pending = stati.filter { it.pending }.size
-		Log.record("Pending: $pending")
+		printCounting()
 	}
 
 	fun clearSucceeded() {
 		stati = stati.filter {
-			it.status != MoveStatus.Success
+			it.status != Status.Success
 		}.toTypedArray()
 		Log.record("Stack: ${stati.size}")
 	}
