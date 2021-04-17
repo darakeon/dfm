@@ -41,7 +41,7 @@ class RequestHandlerTest: BaseTest() {
 		call.execute()
 
 		assertThat(result, `is`(""))
-		assertThat(activity.errorText, `is`("You're offline"))
+		assertThat(activity.errorText, `is`("There is a problem with the connection to the site"))
 		assertTrue(call.isExecuted)
 	}
 

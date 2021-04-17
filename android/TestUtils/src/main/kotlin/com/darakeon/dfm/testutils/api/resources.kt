@@ -41,7 +41,7 @@ const val internetError = "Error on contacting the Pig. " +
 const val noBody = "Error on contacting the Pig. " +
 	"The error is recorded and we will solve it as soon as possible."
 
-const val internetSlow = "Problems while connecting to website, " +
-	"please check your internet connection"
+const val internetSlow = "There is a problem with " +
+	"the connection to the site"
 
 val guid: UUID = UUID.fromString("01234567-89AB-CDEF-FEDC-BA9876543210")

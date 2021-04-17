@@ -3,9 +3,6 @@
 	<string name="body_null">
 		Error on contacting the Pig. The error is recorded and we will solve it as soon as possible.
 	</string>
-	<string name="internet_too_slow">
-		Problems while connecting to website, please check your internet connection
-	</string>
 	<string name="error_contact_url">
 		Error on contacting the Pig. It\'s either a internet problem or a system issue.
 		If it\'s the second option, the error is recorded and we will solve it as soon as possible.
@@ -13,11 +10,11 @@
 	<string name="error_not_identified">
 		Not identified site error. Contact us.
 	</string>
-	<string name="u_r_offline">
-		You\'re offline
+	<string name="connection_fail">
+		There is a problem with the connection to the site
 	</string>
-	<string name="u_r_offline_moves">
-		You\'re offline, but your move can be send when internet is back
+	<string name="offline_fallback_moves">
+		There was a problem with the connection, but your move can be send when the problem is solved
 	</string>
 	<string name="background_move_error">
 		We tried to create your move when internet came back, but it had an error
