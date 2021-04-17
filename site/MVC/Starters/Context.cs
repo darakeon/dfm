@@ -28,8 +28,8 @@ namespace DFM.MVC.Starters
 
 		public static void Set(IApplicationBuilder app)
 		{
-			app.UseAuthorization();
-			app.UseSession();
+			app.Use<Context>("Authorization", () => app.UseAuthorization());
+			app.Use<Context>("Session", () => app.UseSession());
 
 			Accessor = app.ApplicationServices
 				.GetRequiredService<IHttpContextAccessor>();
@@ -40,7 +40,7 @@ namespace DFM.MVC.Starters
 			if (env.IsDevelopment())
 				Cfg.LanguagePath = "bin";
 
-			app.Use<Context>(async (context, next) =>
+			app.Use<Context>("Language", async (context, next) =>
 			{
 				var current = context.GetService().Current;
 
