@@ -17,11 +17,14 @@ namespace DFM.MVC.Starters
 			if (!Directory.Exists(folder))
 				return;
 
-			app.UseStaticFiles(new StaticFileOptions
+			app.Use<StaticFiles>(() =>
 			{
-				FileProvider = new PhysicalFileProvider(
-					Path.Combine(Directory.GetCurrentDirectory(), folder)),
-				RequestPath = "/" + folder,
+				app.UseStaticFiles(new StaticFileOptions
+				{
+					FileProvider = new PhysicalFileProvider(
+						Path.Combine(Directory.GetCurrentDirectory(), folder)),
+					RequestPath = "/" + folder,
+				});
 			});
 		}
 	}

@@ -41,8 +41,8 @@ namespace DFM.MVC.Starters.Routes
 
 		public static void Execute(IApplicationBuilder app)
 		{
-			app.UseRouting();
-			app.UseEndpoints(mapAll);
+			app.Use<Route>("Routing", () => app.UseRouting());
+			app.Use<Route>("Endpoints", () => app.UseEndpoints(mapAll));
 		}
 
 		private static void mapAll(IEndpointRouteBuilder endpoints)

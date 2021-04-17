@@ -10,13 +10,15 @@ namespace DFM.MVC.Starters
 	{
 		public static void AddHandlers(IApplicationBuilder app, IWebHostEnvironment env)
 		{
-			app.UseStatusCodePagesWithReExecute(
-				Route.GetUrl<Default.Main>("Ops", "Code", "{0}")
+			app.Use<Error>("StatusCode", () =>
+				app.UseStatusCodePagesWithReExecute(
+					Route.GetUrl<Default.Main>("Ops", "Code", "{0}")
+				)
 			);
 
 			if (env.IsDevelopment())
 			{
-				app.UseDeveloperExceptionPage();
+				app.Use<Error>("DevException", () => app.UseDeveloperExceptionPage());
 			}
 			else
 			{
@@ -25,8 +27,8 @@ namespace DFM.MVC.Starters
 					ExceptionHandler = ErrorManager.Process
 				};
 
-				app.UseExceptionHandler(handler);
-				app.UseHsts();
+				app.Use<Error>("Handler", () => app.UseExceptionHandler(handler));
+				app.Use<Error>("HSTS", () => app.UseHsts());
 			}
 		}
 	}
