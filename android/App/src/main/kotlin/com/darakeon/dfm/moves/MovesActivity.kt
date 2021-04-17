@@ -422,4 +422,9 @@ class MovesActivity : BaseActivity() {
 		intent.removeExtra("id")
 		backWithExtras()
 	}
+
+	fun cancel(@Suppress(ON_CLICK) view: View) {
+		fallbackManager.remove(offlineHash)
+		backWithExtras()
+	}
 }
