@@ -56,7 +56,7 @@ class ResponseHandler<C, A>(
 
 		when (throwable) {
 			is SocketTimeoutException, is ConnectException ->
-				caller.error(R.string.internet_too_slow)
+				caller.offline()
 			else ->
 				onError(call, throwable)
 		}

@@ -3,9 +3,6 @@
 	<string name="body_null">
 		Erro ao chamar o Porquinho. O erro foi registrado e será resolvido o mais breve possível.
 	</string>
-	<string name="internet_too_slow">
-		Problema com a conexão com o site, verifique seu sinal de internet
-	</string>
 	<string name="error_contact_url">
 		Erro ao chamar o Porquinho. Pode ser um problema de internet ou do sistema.
 		Caso seja o segundo, o erro foi registrado e será resolvido o mais breve possível.
@@ -13,11 +10,11 @@
 	<string name="error_not_identified">
 		Erro não identificado no site, entre em contato conosco
 	</string>
-	<string name="u_r_offline">
-		Sem conexão com a internet
+	<string name="connection_fail">
+		Há um problema na conexão com o site
 	</string>
-	<string name="u_r_offline_moves">
-		Sem conexão com a internet, mas sua movimentação pode ser enviada assim que retornar
+	<string name="offline_fallback_moves">
+		Há um problema com a conexão, mas sua movimentação pode ser enviada assim que normalizar
 	</string>
 	<string name="background_move_error">
 		Tentamos criar a movimentação quando a internet voltou, mas havia um erro

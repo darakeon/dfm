@@ -409,7 +409,7 @@ class MovesActivity : BaseActivity() {
 
 	override fun offline() {
 		if (loadedScreen) {
-			error(R.string.u_r_offline_moves, R.string.ok_button) {
+			error(R.string.offline_fallback_moves, R.string.ok_button) {
 				MovesService.start(this, move)
 				clearAndBack()
 			}
