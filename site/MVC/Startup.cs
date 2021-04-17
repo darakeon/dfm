@@ -42,6 +42,8 @@ namespace DFM.MVC
 
 			Security.DenyFrame(app);
 
+			StaticFiles.Configure(app);
+
 			Route.CreateRoutes();
 
 			Rewrite.TestThemAll(app);
@@ -49,8 +51,6 @@ namespace DFM.MVC
 			Context.Set(app);
 
 			Error.AddHandlers(app, env);
-
-			StaticFiles.Configure(app);
 
 			Orm.Config(app, life);
 
