@@ -31,7 +31,9 @@
 	<Button
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
+		android:layout_margin="@dimen/button_margin"
 		android:text="@string/verify"
-		android:onClick="verify" />
+		android:onClick="verify"
+		/>
 
 </GridLayout>

@@ -1,6 +1,5 @@
 <resources>
 
-	<!-- Default screen margins, per the Android Design guidelines. -->
 	<dimen name="activity_horizontal_margin">16dp</dimen>
 	<dimen name="activity_vertical_margin">16dp</dimen>
 	<dimen name="logo_margin_bottom">20sp</dimen>
@@ -8,5 +7,6 @@
 	<dimen name="margin_move_field">16dp</dimen>
 	<dimen name="mini_button_height">36dp</dimen>
 	<dimen name="mini_button_font">12sp</dimen>
+	<dimen name="button_margin">2sp</dimen>
 
 </resources>

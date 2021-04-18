@@ -10,6 +10,7 @@
 
 	<attr name="background" format="color" />
 	<attr name="background_highlight" format="color" />
+	<attr name="background_button" format="color" />
 
 	<attr name="main" format="color" />
 	<attr name="main_highlight" format="color" />
