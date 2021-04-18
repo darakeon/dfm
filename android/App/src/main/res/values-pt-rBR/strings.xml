@@ -91,4 +91,6 @@
 	<string name="error_call_api">Erro ao chamar site, entre em contato conosco</string>
 	<string name="density">Tela do dispositivo</string>
 	<string name="fail_at_offline_insert">tente inserir a movimentação novamente</string>
+    <string name="sign_up">Cadastrar-se</string>
+	<string name="go_to_sign_up">Para se cadastrar você precisa ir até o site. Clique \"OK\" e abriremos a página para você.</string>
 </resources>

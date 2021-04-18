@@ -3,7 +3,6 @@
 	<!-- Default screen margins, per the Android Design guidelines. -->
 	<dimen name="activity_horizontal_margin">16dp</dimen>
 	<dimen name="activity_vertical_margin">16dp</dimen>
-	<dimen name="logo_margin_top">-50sp</dimen>
 	<dimen name="logo_margin_bottom">20sp</dimen>
 	<dimen name="padding_detail_field">12dp</dimen>
 	<dimen name="margin_move_field">16dp</dimen>

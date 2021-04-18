@@ -40,7 +40,6 @@ class LoginActivityTest: BaseTest() {
 
 		assertNotNull(activity.findViewById(R.id.email))
 		assertNotNull(activity.findViewById(R.id.password))
-		assertNotNull(activity.findViewById(R.id.login_button))
 	}
 
 	@Test

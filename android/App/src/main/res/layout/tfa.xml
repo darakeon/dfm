@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<GridLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	tools:context=".tfa.TFAActivity"
@@ -8,17 +8,17 @@
 	android:paddingRight="@dimen/activity_horizontal_margin"
 	android:paddingTop="@dimen/activity_vertical_margin"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="vertical"
-	android:gravity="center" >
+	android:layout_height="wrap_content"
+	android:columnCount="1"
+	android:layout_gravity="center_vertical" >
 
 	<ImageView
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:src="@drawable/pig"
 		android:contentDescription="@string/app_name"
-		android:layout_marginTop="@dimen/logo_margin_top"
-		android:layout_marginBottom="@dimen/logo_margin_bottom"/>
+		android:layout_marginBottom="@dimen/logo_margin_bottom"
+		android:layout_gravity="center_horizontal"/>
 
 	<EditText
 		android:id="@+id/code"
@@ -29,10 +29,9 @@
 		android:importantForAutofill="no" />
 
 	<Button
-		android:id="@+id/login_button"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:text="@string/verify"
 		android:onClick="verify" />
 
-</LinearLayout>
+</GridLayout>
