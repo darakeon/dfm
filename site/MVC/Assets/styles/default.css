@@ -74,7 +74,7 @@ input[type="date"] {
 }
 
 .header {
-	margin-left: 5px;
+	margin: 0.5em 0.5em 0.3em 0.2em;
 }
 
 	.header em {

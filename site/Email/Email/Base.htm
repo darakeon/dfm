@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{{Subject}}</title>
+</head>
+<body>
+	<div style="
+		text-align: justify;
+		font-size: 15px;
+		font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+		background-color: {{neutral-0}};
+		border: 1px solid {{neutral-1}};
+		margin: 20px auto;
+		width: 400px;
+		border-radius: 4px;
+	">
+
+		<div style="
+			color: {{primary-0}};
+			background-color: {{neutral-1}};
+			padding: 10px 15px;
+			border-bottom: 1px solid {{neutral-1}};
+			border-radius: 3px 3px 0 0;
+		">
+			<div style="
+				font-size: 1.5em;
+				margin: 0.5em 0.5em 0.3em 0.2em;
+			">
+				{{Title}}
+
+				<a style="color: {{highlight-1}}; text-decoration: none; float: right"
+					href="{{Url}}" title="Don't fly Money">
+					<img src="{{Url}}/assets/images/mail-pig.png" alt="Don't fly Money" title="Don't fly Money" />
+				</a>
+			</div>
+		</div>
+
+		<div style="padding: 15px; background: {{neutral-0}}; color: {{primary-0}};">
+			{{Body}}
+			<span style="display: none">{{TokenToNotHide}}</span>
+		</div>
+
+		<div style="
+			color: {{primary-0}};
+			background-color: {{neutral-1}};
+			padding: 10px 15px;
+			border-bottom: 1px solid {{neutral-1}};
+			border-radius: 0 0 3px 3px;
+			text-align: center;
+		">
+			{{NoLink}}<br />
+			{{NoReply}}<br />
+			{{OurContact}}
+			<span style="display: none">{{TokenToNotHide}}</span>
+		</div>
+	</div>
+</body>
+</html>

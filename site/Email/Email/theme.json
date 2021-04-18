@@ -1,0 +1,54 @@
+{
+	"None": {
+		"Values": {
+			"neutral-0": "FFF",
+			"neutral-1": "000"
+		},
+		"Colors": {
+			"None": {
+				"primary-0": "777",
+				"highlight-1": "333"
+			}
+		}
+	},
+	"Dark": {
+		"Values": {
+			"neutral-0": "111",
+			"neutral-1": "222"
+		},
+		"Colors": {
+			"Magic": {
+				"primary-0": "A9C",
+				"highlight-1": "EBB"
+			},
+			"Sober": {
+				"primary-0": "9AB",
+				"highlight-1": "EEC"
+			},
+			"Nature": {
+				"primary-0": "9BA",
+				"highlight-1": "EB8"
+			}
+		}
+	},
+	"Light": {
+		"Values": {
+			"neutral-0": "EEE",
+			"neutral-1": "DDD"
+		},
+		"Colors": {
+			"Magic": {
+				"primary-0": "436",
+				"highlight-1": "600"
+			},
+			"Sober": {
+				"primary-0": "345",
+				"highlight-1": "550"
+			},
+			"Nature": {
+				"primary-0": "354",
+				"highlight-1": "840"
+			}
+		}
+	}
+}

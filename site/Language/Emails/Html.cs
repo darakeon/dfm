@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using DFM.Generic;
 using Keon.Util.Extensions;
 
 namespace DFM.Language.Emails
@@ -18,12 +19,22 @@ namespace DFM.Language.Emails
 				if (emailType < 0)
 					return mainContent;
 
-				var basePath = Path.Combine(path, $"{theme}Base.htm");
+				var basePath = Path.Combine(path, "Base.htm");
 				var baseContent = getContent(basePath);
 
-				return baseContent
+				var html = baseContent
 					.Replace("{{Body}}", mainContent)
 					.Replace("{{TokenToNotHide}}", Token.New());
+
+				var themePath = Path.Combine(path, "theme.json");
+				var themeJson = getContent(themePath);
+
+				foreach (var (name, hex) in ThemeColorize.Get(themeJson, theme))
+				{
+					html = html.Replace($"{{{{{name}}}}}", $"#{hex}");
+				}
+
+				return html;
 			}
 		}
 

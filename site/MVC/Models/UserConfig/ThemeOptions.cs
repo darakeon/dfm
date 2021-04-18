@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
-using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.MVC.Helpers.Global;
 
@@ -17,8 +16,8 @@ namespace DFM.MVC.Models.UserConfig
 			this.errorAlert = errorAlert;
 			Theme = theme;
 
-			BrightnessList = EnumX.AllValues<ThemeBrightness>();
-			ColorList = EnumX.AllValues<ThemeColor>();
+			BrightnessList = EnumX.AllExcept(ThemeBrightness.None);
+			ColorList = EnumX.AllExcept(ThemeColor.None);
 		}
 
 		private readonly AdminService admin;

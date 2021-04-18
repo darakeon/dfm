@@ -4,7 +4,6 @@ using DFM.Entities;
 using DFM.Generic;
 using DfM.Logs;
 using DFM.MVC.Helpers;
-using Keon.MVC.Cookies;
 using Keon.NHibernate.Schema;
 using Keon.NHibernate.Sessions;
 using Microsoft.AspNetCore.Builder;

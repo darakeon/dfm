@@ -4,8 +4,8 @@ using System.Linq;
 using DFM.Language;
 using DFM.Language.Emails;
 using DFM.Entities.Enums;
+using DFM.Generic;
 using Keon.Util.Extensions;
-using Theme = DFM.Language.Emails.Theme;
 
 namespace DFM.Email
 {

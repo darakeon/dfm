@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Enums;
+using DFM.Generic;
 using DFM.Language.Emails;
 using DFM.Language.Extensions;
 using DFM.Tests.Util;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
-using Theme = DFM.Language.Emails.Theme;
 
 namespace DFM.Language.Tests
 {
@@ -20,7 +21,6 @@ namespace DFM.Language.Tests
 		{
 			errors = new StringBuilder();
 		}
-
 
 		[Given(@"the dictionary is initialized")]
 		public void TheDictionaryIsInitialized()
@@ -37,19 +37,24 @@ namespace DFM.Language.Tests
 				.ToList();
 		}
 
-		[Given(@"I have these entity enums")]
-		public void GivenIHaveTheseEntityEnums(Table table)
+		[Given(@"I have these enums")]
+		public void GivenIHaveTheseEnums(Table table)
 		{
 			keys = new List<Pair>();
 
 			foreach (var row in table.Rows)
 			{
 				var section = row["Section"];
+				var project = row["Project"];
+				var path = row["Path"];
 				var type = row["Enum"];
 
-				var origin = typeof(SecurityAction);
-				var assembly = origin.Assembly;
-				var @namespace = origin.Namespace;
+				var @namespace = $"DFM.{project}";
+				var assembly = Assembly.LoadFrom($"{@namespace}.dll");
+
+				if (!String.IsNullOrEmpty(path))
+					@namespace += $".{path}";
+
 				var @enum = assembly.GetType(@namespace + "." + type);
 
 				Enum.GetNames(@enum)
@@ -57,14 +62,6 @@ namespace DFM.Language.Tests
 					.ToList()
 					.ForEach(keys.Add);
 			}
-		}
-
-		[Given(@"I have the error enum")]
-		public void GivenIHaveTheErrorEnum()
-		{
-			keys = Enum.GetNames(typeof(Error))
-				.Select(m => new Pair("Error", m))
-				.ToList();
 		}
 
 		[Given(@"I have these keys")]
@@ -76,20 +73,16 @@ namespace DFM.Language.Tests
 		}
 
 
-		[Given(@"I have these e-mail types")]
-		public void GivenIHaveTheseEmailTypes(Table table)
+		[Given(@"I have the e-mail types")]
+		public void GivenIHaveTheseEmailTypes()
 		{
-			emailTypes = table.Rows
-				.Select(r => (EmailType)Enum.Parse(typeof(EmailType), r["Phrase"]))
-				.ToList();
+			emailTypes = EnumX.AllValues<EmailType>();
 		}
 
-		[Given(@"I have these themes")]
-		public void GivenIHaveTheseThemes(Table table)
+		[Given(@"I have the themes")]
+		public void GivenIHaveTheseThemes()
 		{
-			themes = table.Rows
-				.Select(r => (Theme)Enum.Parse(typeof(Theme), r["Phrase"]))
-				.ToList();
+			themes = EnumX.AllValues<Theme>();
 		}
 
 		[When(@"I try get the translate")]
@@ -125,9 +118,9 @@ namespace DFM.Language.Tests
 				{
 					try
 					{
-						var layoutDark = PlainText.Html[theme, emailType];
+						var layout = PlainText.Html[theme, emailType];
 
-						if (String.IsNullOrEmpty(layoutDark))
+						if (String.IsNullOrEmpty(layout))
 							errors.AppendLine($"Null at {theme} {emailType}");
 					}
 					catch (DicException e)

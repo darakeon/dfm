@@ -17,7 +17,7 @@ Legend:
 ## <a name="6.0.0.0"></a>6.0.0.0 :dragon: <sup>`7`</sup>
 - [ ] Fix calendar today color for light theme
 - [ ] Add link to create account at login app screen
-- [ ] Adjust e-mail layouts to new themes
+- [x] `210417>210418` Adjust e-mail layouts to new themes
 - [x] `210417>210417` Fix sum move after check it
 - [x] `210325>210417` Store move locally when there is no internet (Mobile)
 - [x] `210322>210406` Make machine ubuntu to build android

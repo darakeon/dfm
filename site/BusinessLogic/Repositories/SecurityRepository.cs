@@ -64,7 +64,11 @@ namespace DFM.BusinessLogic.Repositories
 
 			var config = security.User.Config;
 
-			var format = Format.SecurityAction(config.Language, config.Theme.Convert(), security.Action);
+			var format = Format.SecurityAction(
+				config.Language,
+				config.Theme,
+				security.Action
+			);
 			var fileContent = format.Layout.Format(dic);
 
 			var sender = new Sender()

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
-using DFM.Entities.Enums;
+using DFM.Generic;
 using DFM.MVC.Helpers.Extensions;
 using DFM.MVC.Helpers.Global;
 using DFM.MVC.Starters;

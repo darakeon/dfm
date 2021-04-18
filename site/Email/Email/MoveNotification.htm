@@ -1,54 +1,64 @@
-﻿<table style="width: 100%; font-size: inherit; color: inherit">
+﻿<table style="width: 100%; color: inherit; font-size: inherit; border-spacing: 0 1em; border-collapse: separate;">
 	<tr>
-		<td style="text-align: center" colspan="2">
+		<td style="text-align: center;" colspan="2">
 			{{Description}}
-			<span style="font-size: 80%; display: block; font-style: italic;">
+			<small style="display: block; font-style: italic;">
 				{{Operation}}
-			</span>
+			</small>
 		</td>
 	</tr>
 	<tr>
-		<td style="width: 50%; text-align: left">
-			<span style="font-size: 80%; display: block; font-style: italic; margin-top: 10px;">
+		<td style="width: 50%; text-align: left;">
+			<small style="display: block; font-style: italic;">
 				{{CategoryLabel}}
-			</span>
+			</small>
 			{{Category}}
 		</td>
-		<td style="width: 50%; text-align: right">{{Nature}}</td>
+		<td style="width: 50%; text-align: right; vertical-align: bottom;">{{Nature}}</td>
 	</tr>
 	<tr>
-		<td style="width: 50%; text-align: left">
-			<span style="font-size: 80%; display: block; font-style: italic; margin-top: 10px;">
+		<td style="width: 50%; text-align: left;">
+			<small style="display: block; font-style: italic;">
 				{{AccountOutLabel}}
-			</span>
+			</small>
 			{{AccountOut}}
 		</td>
-		<td style="width: 50%; text-align: right">{{Date}}</td>
+		<td style="width: 50%; text-align: right; vertical-align: bottom;">{{Date}}</td>
 	</tr>
-	<tr>
-		<td style="width: 50%; text-align: left">
-			<span style="font-size: 80%; display: block; font-style: italic; margin-top: 10px;">
+	<tr style="padding-top: 10px;">
+		<td style="width: 50%; text-align: left;">
+			<small style="display: block; font-style: italic;">
 				{{AccountInLabel}}
-			</span>
+			</small>
 			{{AccountIn}}
 		</td>
-		<td style="width: 50%; text-align: right">{{Value}}</td>
+		<td style="width: 50%; text-align: right; vertical-align: bottom;">{{Value}}</td>
 	</tr>
 </table>
 
 <div style="margin: 20px 0;">
-	<table style="margin: auto; font-size: 80%">
+	<table style="margin: auto; font-size: 0.8em;">
 		{{Details}}
 	</table>
 </div>
 
-<div style="margin: 20px 0; font-size: 80%;">
+<div style="margin: 20px 0; font-size: 0.8em;">
 	{{ExplainMoveMail}}
 
-	<a style="color: #558EAA; cursor: pointer; padding: 0 3px; white-space: nowrap;"
-		href="{{Url}}/>{{UnsubscribePath}}>{{UnsubscribeToken}}">{{UnsubscribeClick}}</a>
+	<a style="color: {{highlight-1}}; cursor: pointer; padding: 0 3px;"
+		href="{{Url}}/>{{UnsubscribePath}}>{{UnsubscribeToken}}"
+		title="{{UnsubscribeClick}}">
+		{{UnsubscribeClick}}
+	</a>
 
 	{{Resubscribe}}
 </div>
 
-{{JustDfM}}
+<hr style="margin: 21px 0; border-top: 1px solid {{neutral-1}}; border-bottom: none;" />
+
+<div style="text-align: center;">
+	{{MoveDone}}<br />
+	{{JustDfM}}
+</div>
+
+<hr style="margin: 21px 0 0 0; border-top: 1px solid {{neutral-1}}; border-bottom: none;" />

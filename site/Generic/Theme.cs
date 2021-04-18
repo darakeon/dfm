@@ -2,7 +2,7 @@
 
 using System;
 
-namespace DFM.Entities.Enums
+namespace DFM.Generic
 {
 	public enum Theme
 	{
@@ -17,12 +17,14 @@ namespace DFM.Entities.Enums
 
 	public enum ThemeBrightness
 	{
+		None = 0,
 		Dark = 1,
 		Light = -1,
 	}
 
 	public enum ThemeColor
 	{
+		None = 0,
 		Magic = 1,
 		Sober = 2,
 		Nature = 3,
@@ -32,14 +34,16 @@ namespace DFM.Entities.Enums
 	{
 		public static ThemeBrightness Brightness(this Theme theme)
 		{
-			return theme > 0
-				? ThemeBrightness.Dark
-				: ThemeBrightness.Light;
+			return theme > 0 ? ThemeBrightness.Dark :
+				theme < 0 ? ThemeBrightness.Light :
+				ThemeBrightness.None;
 		}
 
 		public static ThemeColor Color(this Theme theme)
 		{
-			return (ThemeColor)((Int32)theme / (Int32)theme.Brightness());
+			return theme == Theme.None
+				? ThemeColor.None
+				: (ThemeColor)((Int32)theme / (Int32)theme.Brightness());
 		}
 	}
 }

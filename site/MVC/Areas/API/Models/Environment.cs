@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.Entities.Enums;
+using DFM.Generic;
 
 namespace DFM.MVC.Areas.Api.Models
 {
