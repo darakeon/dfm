@@ -2,11 +2,15 @@
 	"en-US": {
 		"DisableToken": "Disable Token",
 		"TokenValid": "Token valid to",
-		"Warning": "We have NO link with financial institutions. Don't reply this e-mail. Our contact: dfm@dontflymoney.com",
+		"NoLink": "We have NO link with financial institutions.",
+		"NoReply": "Don't reply this e-mail.",
+		"OurContact": "Our contact: dfm@dontflymoney.com"
 	},
 	"pt-BR": {
 		"DisableToken": "Desativar Token",
 		"TokenValid": "Token válido até",
-		"Warning": "Não temos vínculos com instituições financeiras. Não responda este e-mail. Nosso contato: dfm@dontflymoney.com",
+		"NoLink": "Não temos vínculos com instituições financeiras.",
+		"NoReply": "Não responda este e-mail.",
+		"OurContact": "Nosso contato: dfm@dontflymoney.com",
 	},
 }

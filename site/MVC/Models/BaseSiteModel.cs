@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
-using DFM.Entities.Enums;
+using DFM.Generic;
 using DFM.MVC.Controllers;
 using Keon.Util.Collection;
 using Microsoft.AspNetCore.Mvc;

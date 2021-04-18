@@ -7,6 +7,7 @@ using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
+using DFM.Generic;
 using DFM.Language;
 using NUnit.Framework;
 using TechTalk.SpecFlow;

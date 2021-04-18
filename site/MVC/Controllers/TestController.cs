@@ -2,13 +2,13 @@
 using System.Linq;
 using DFM.Email;
 using DFM.Entities.Enums;
+using DFM.Generic;
 using DFM.Language;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
 using Keon.Util.Exceptions;
 using Microsoft.AspNetCore.Mvc;
-using Theme = DFM.Language.Emails.Theme;
 
 namespace DFM.MVC.Controllers
 {
@@ -27,7 +27,8 @@ namespace DFM.MVC.Controllers
 		[HttpGetAndHead]
 		public IActionResult EmailLayout()
 		{
-			var themes = new[] { Theme.Dark, Theme.Light };
+			var themes = EnumX.AllValues<Theme>();
+
 			var languages = PlainText.AcceptedLanguage();
 
 			var result =

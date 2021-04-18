@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.Entities.Enums;
+using DFM.Generic;
 
 namespace DFM.Entities.Bases
 {

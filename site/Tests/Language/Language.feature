@@ -8,36 +8,26 @@ Background:
 			| pt-BR    |
 
 Scenario: 01. Get layouts of e-mails
-	Given I have these e-mail types
-			| Phrase           |
-			| MoveNotification |
-			| SecurityAction   |
-		And I have these themes
-			| Phrase |
-			| Dark   |
-			| Light  |
+	Given I have the e-mail types
+		And I have the themes
 	When I try get the layout
 	Then I will receive no language error
 
 Scenario: 02. Get translations of Enums
-	Given I have these entity enums
-			| Section   | Enum              |
-			| Moves     | MoveNature        |
-			| Schedules | ScheduleFrequency |
-			| Tokens    | SecurityAction    |
-			| General   | OperationType     |
-			| Users     | Theme             |
-			| Users     | ThemeBrightness   |
-			| Users     | ThemeColor        |
+	Given I have these enums
+			| Section   | Project       | Path       | Enum              |
+			| Moves     | Entities      | Enums      | MoveNature        |
+			| Schedules | Entities      | Enums      | ScheduleFrequency |
+			| Tokens    | Entities      | Enums      | SecurityAction    |
+			| General   | Entities      | Enums      | OperationType     |
+			| Users     | Generic       |            | Theme             |
+			| Users     | Generic       |            | ThemeBrightness   |
+			| Users     | Generic       |            | ThemeColor        |
+			| General   | BusinessLogic | Exceptions | Error             |
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: 03. Get translations of Errors
-	Given I have the error enum
-	When I try get the translate
-	Then I will receive no language error
-
-Scenario: 04. Get translate of Interface (moves)
+Scenario: 03. Get translate of Interface (moves)
 	Given I have these keys
 			| Section | Phrase                  |
 			| Moves   | Create                  |
@@ -66,7 +56,7 @@ Scenario: 04. Get translate of Interface (moves)
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: 05. Get translate of Interface (reports)
+Scenario: 04. Get translate of Interface (reports)
 	Given I have these keys
 			| Section | Phrase            |
 			| Reports | ShortDateFormat   |
@@ -94,7 +84,7 @@ Scenario: 05. Get translate of Interface (reports)
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: 06. Get translate of Interface (accounts)
+Scenario: 05. Get translate of Interface (accounts)
 	Given I have these keys
 			| Section  | Phrase                |
 			| Accounts | Create                |
@@ -134,7 +124,7 @@ Scenario: 06. Get translate of Interface (accounts)
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: 07. Get translate of Interface (categories)
+Scenario: 06. Get translate of Interface (categories)
 	Given I have these keys
 			| Section    | Phrase        |
 			| Categories | Create        |
@@ -151,7 +141,7 @@ Scenario: 07. Get translate of Interface (categories)
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: 08. Get translate of Interface (tokens)
+Scenario: 07. Get translate of Interface (tokens)
 	Given I have these keys
 			| Section | Phrase                  |
 			| Tokens  | NotRecognizedAction     |
@@ -174,7 +164,7 @@ Scenario: 08. Get translate of Interface (tokens)
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: 09. Get translate of Interface (users)
+Scenario: 08. Get translate of Interface (users)
 	Given I have these keys
 			| Section | Phrase                  |
 			| Users   | ForgotPassword          |
@@ -223,7 +213,7 @@ Scenario: 09. Get translate of Interface (users)
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: 10. Get translate of Interface (ops)
+Scenario: 09. Get translate of Interface (ops)
 	Given I have these keys
 			| Section | Phrase                 |
 			| Ops     | NotFound               |
@@ -233,7 +223,7 @@ Scenario: 10. Get translate of Interface (ops)
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: 11. Get translate of Interface (general)
+Scenario: 10. Get translate of Interface (general)
 	Given I have these keys
 			| Section | Phrase                  |
 			| General | LogOff                  |
@@ -256,7 +246,7 @@ Scenario: 11. Get translate of Interface (general)
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: 12. Get translate of Interface (schedules)
+Scenario: 11. Get translate of Interface (schedules)
 	Given I have these keys
 			| Section   | Phrase                |
 			| Schedules | Create                |
@@ -289,7 +279,7 @@ Scenario: 12. Get translate of Interface (schedules)
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: 13. Get translate of Interface (logins)
+Scenario: 12. Get translate of Interface (logins)
 	Given I have these keys
 			| Section | Phrase             |
 			| Logins  | Creation           |
@@ -303,7 +293,7 @@ Scenario: 13. Get translate of Interface (logins)
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: 14. Get translations of E-mail Stati
+Scenario: 13. Get translations of E-mail Stati
 	Given I have these keys
 			| Section | Phrase         |
 			| Email   | EmailDisabled  |
@@ -315,19 +305,19 @@ Scenario: 14. Get translations of E-mail Stati
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: 15. Keys should be in all languages (site)
+Scenario: 14. Keys should be in all languages (site)
 	Then all keys should be available in all languages at site dictionary
 
-Scenario: 16. Keys should be in all languages (e-mail)
+Scenario: 15. Keys should be in all languages (e-mail)
 	Then all keys should be available in all languages at e-mail dictionary
 
-Scenario: 17. Keys should not be repeated (site)
+Scenario: 16. Keys should not be repeated (site)
 	Then no keys should be repeated at site dictionary
 
-Scenario: 18. Keys should not be repeated (e-mail)
+Scenario: 17. Keys should not be repeated (e-mail)
 	Then no keys should be repeated at e-mail dictionary
 
-Scenario: 19. Get translate of Interface (contact)
+Scenario: 18. Get translate of Interface (contact)
 	Given I have these keys
 			| Section | Phrase           |
 			| General | Contact_Title    |

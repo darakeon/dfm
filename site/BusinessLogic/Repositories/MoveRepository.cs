@@ -5,7 +5,6 @@ using System.Linq.Expressions;
 using System.Text;
 using Keon.Util.Extensions;
 using DFM.BusinessLogic.Bases;
-using DFM.BusinessLogic.Helpers;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Bases;
@@ -67,7 +66,7 @@ namespace DFM.BusinessLogic.Repositories
 
 			var nature = PlainText.Site["general", config.Language, move.Nature.ToString()];
 
-			var format = Format.MoveNotification(config.Language, config.Theme.Convert());
+			var format = Format.MoveNotification(config.Language, config.Theme);
 
 			var dic = new Dictionary<String, String>
 			{
@@ -125,7 +124,7 @@ namespace DFM.BusinessLogic.Repositories
 			{
 				var email = Format.FormatEmail
 				(
-					config.Theme.Convert(),
+					config.Theme,
 					EmailType.Detail,
 					new Dictionary<String, object> {
 						{ "Description", detail.Description },
