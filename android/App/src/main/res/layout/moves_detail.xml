@@ -3,28 +3,32 @@
 	tools:context=".moves.MovesActivity"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:orientation="horizontal">
+	android:orientation="horizontal"
+	>
 
 	<TextView
 		android:layout_width="0dp"
 		android:layout_weight="9"
 		android:layout_height="wrap_content"
 		android:paddingHorizontal="@dimen/padding_detail_field"
-		android:id="@+id/detail_description" />
+		android:id="@+id/detail_description"
+		/>
 
 	<TextView
 		android:layout_width="0dp"
 		android:layout_weight="3"
 		android:layout_height="wrap_content"
 		android:paddingHorizontal="@dimen/padding_detail_field"
-		android:id="@+id/detail_amount" />
+		android:id="@+id/detail_amount"
+		/>
 
 	<TextView
 		android:layout_width="0dp"
 		android:layout_weight="6"
 		android:layout_height="wrap_content"
 		android:paddingHorizontal="@dimen/padding_detail_field"
-		android:id="@+id/detail_value" />
+		android:id="@+id/detail_value"
+		/>
 
 	<Button
 		android:id="@+id/detail_remove"
@@ -33,5 +37,6 @@
 		android:layout_height="@dimen/mini_button_height"
 		android:layout_margin="@dimen/button_margin"
 		android:textSize="@dimen/mini_button_font"
-		android:text="@string/remove_detail" />
+		android:text="@string/remove_detail"
+		/>
 </LinearLayout>

@@ -8,7 +8,8 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:layout_gravity="center"
-	android:columnCount="2">
+	android:columnCount="2"
+	>
 
 	<ImageView
 		android:layout_width="wrap_content"
@@ -18,7 +19,8 @@
 		android:src="@drawable/pig"
 		android:contentDescription="@string/app_name"
 		android:layout_marginBottom="@dimen/logo_margin_bottom"
-		android:layout_gravity="center_horizontal" />
+		android:layout_gravity="center_horizontal"
+		/>
 
 	<EditText
 		android:id="@+id/email"
@@ -49,7 +51,8 @@
 		android:layout_columnWeight="1"
 		android:layout_margin="@dimen/button_margin"
 		android:text="@string/sign_up"
-		android:onClick="signUp" />
+		android:onClick="signUp"
+		/>
 
 	<Button
 		android:layout_width="wrap_content"
@@ -57,6 +60,7 @@
 		android:layout_columnWeight="1"
 		android:layout_margin="@dimen/button_margin"
 		android:text="@string/login"
-		android:onClick="login" />
+		android:onClick="login"
+		/>
 
 </GridLayout>

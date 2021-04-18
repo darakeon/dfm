@@ -4,7 +4,8 @@
 	tools:context=".settings.SettingsActivity"
 	android:id="@+id/main"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	>
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
@@ -19,46 +20,54 @@
 			android:layout_height="0dp"
 			android:layout_weight="1"
 			android:orientation="horizontal"
-			android:columnCount="8">
+			android:columnCount="8"
+			>
 
 			<TextView
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:gravity="center"
 				android:layout_columnSpan="8"
-				android:text="@string/settings_warning" />
+				android:text="@string/settings_warning"
+				/>
 
 			<View
 				android:layout_width="fill_parent"
 				android:layout_height="35dp"
-				android:layout_columnSpan="8" />
+				android:layout_columnSpan="8"
+				/>
 
 			<CheckBox
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:id="@+id/use_categories"
-				android:buttonTint="?attr/link" />
+				android:buttonTint="?attr/link"
+				/>
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@string/use_categories"
-				android:layout_columnSpan="7" />
+				android:layout_columnSpan="7"
+				/>
 
 			<CheckBox
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:id="@+id/move_check"
-				android:buttonTint="?attr/link" />
+				android:buttonTint="?attr/link"
+				/>
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@string/move_check"
-				android:layout_columnSpan="7" />
+				android:layout_columnSpan="7"
+				/>
 
 			<View
 				android:layout_width="fill_parent"
 				android:layout_height="35dp"
-				android:layout_columnSpan="8" />
+				android:layout_columnSpan="8"
+				/>
 
 			<Button
 				android:text="@string/cancel_button"
@@ -68,7 +77,8 @@
 				android:layout_columnSpan="4"
 				android:layout_margin="@dimen/button_margin"
 				android:onClick="back"
-				tools:ignore="OnClick" />
+				tools:ignore="OnClick"
+				/>
 
 			<Button
 				android:text="@string/save_button"
@@ -87,40 +97,47 @@
 			android:layout_height="wrap_content"
 			android:orientation="horizontal"
 			android:gravity="bottom"
-			android:columnCount="2">
+			android:columnCount="2"
+			>
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="@string/site" />
+				android:text="@string/site"
+				/>
 
 			<TextView
 				android:id="@+id/site"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_gravity="end" />
+				android:layout_gravity="end"
+				/>
 
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="@string/version" />
+				android:text="@string/version"
+				/>
 
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="end"
-				android:id="@+id/version" />
+				android:id="@+id/version"
+				/>
 
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="@string/density" />
+				android:text="@string/density"
+				/>
 
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="end"
 				android:id="@+id/density"
-				android:text="@string/current_density" />
+				android:text="@string/current_density"
+				/>
 		</GridLayout>
 
 		<include layout="@layout/bottom_menu" />

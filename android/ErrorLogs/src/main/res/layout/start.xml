@@ -5,13 +5,15 @@
 	android:layout_height="match_parent"
 	android:orientation="vertical"
 	android:gravity="center"
-	tools:context="com.darakeon.dfm.error_logs.StartActivity">
+	tools:context="com.darakeon.dfm.error_logs.StartActivity"
+	>
 
 	<ImageView
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:src="@drawable/pig"
-		android:contentDescription="@string/app_name" />
+		android:contentDescription="@string/app_name"
+		/>
 
 	<EditText
 		android:id="@+id/email"
@@ -19,7 +21,8 @@
 		android:hint="@string/email"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:autofillHints="emailAddress" />
+		android:autofillHints="emailAddress"
+		/>
 
 	<EditText
 		android:id="@+id/password"
@@ -27,7 +30,8 @@
 		android:hint="@string/password"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:importantForAutofill="no" />
+		android:importantForAutofill="no"
+		/>
 
 	<EditText
 		android:id="@+id/tfa"
@@ -35,12 +39,14 @@
 		android:hint="@string/tfa"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:autofillHints="emailAddress" />
+		android:autofillHints="emailAddress"
+		/>
 
 	<Button
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:text="@string/login"
-		android:onClick="login" />
+		android:onClick="login"
+		/>
 
 </LinearLayout>

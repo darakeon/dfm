@@ -3,5 +3,6 @@
 	<item android:title="@string/app_name"
 		android:showAsAction="always"
 		android:icon="@drawable/error_icon"
-		android:enabled="false" />
+		android:enabled="false"
+		/>
 </menu>

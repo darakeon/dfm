@@ -4,7 +4,8 @@
 	tools:context=".extract.ExtractActivity"
 	android:id="@+id/main"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	>
 	<LinearLayout
 		android:paddingBottom="@dimen/activity_vertical_margin"
 		android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -12,13 +13,15 @@
 		android:paddingTop="@dimen/activity_vertical_margin"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:orientation="vertical">
+		android:orientation="vertical"
+		>
 
 		<GridLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:id="@+id/highlight"
-			android:columnCount="4">
+			android:columnCount="4"
+			>
 
 			<TextView
 				android:id="@+id/total_title"
@@ -27,7 +30,8 @@
 				android:textSize="17sp"
 				android:padding="10dp"
 				android:layout_columnSpan="2"
-				android:layout_columnWeight="1" />
+				android:layout_columnWeight="1"
+				/>
 
 			<TextView
 				android:id="@+id/total_value"
@@ -36,12 +40,14 @@
 				android:textSize="17sp"
 				android:padding="10dp"
 				android:layout_gravity="end"
-				android:layout_columnSpan="2" />
+				android:layout_columnSpan="2"
+				/>
 
 			<View
 				android:layout_width="match_parent"
 				android:layout_height="15dp"
-				android:layout_columnSpan="4" />
+				android:layout_columnSpan="4"
+				/>
 
 			<Button
 				android:id="@+id/action_summary"
@@ -50,7 +56,8 @@
 				android:layout_columnSpan="4"
 				android:layout_margin="@dimen/button_margin"
 				android:text="@string/title_activity_summary"
-				android:onClick="goToSummary" />
+				android:onClick="goToSummary"
+				/>
 
 			<Button
 				android:id="@+id/prev"
@@ -70,7 +77,8 @@
 				android:layout_columnWeight="2"
 				android:layout_margin="@dimen/button_margin"
 				android:text="@string/change_date"
-				android:onClick="changeDate" />
+				android:onClick="changeDate"
+				/>
 
 			<Button
 				android:id="@+id/next"
@@ -85,7 +93,8 @@
 			<View
 				android:layout_width="fill_parent"
 				android:layout_height="15dp"
-				android:layout_columnSpan="4" />
+				android:layout_columnSpan="4"
+				/>
 		</GridLayout>
 
 		<TextView
@@ -98,13 +107,15 @@
 			android:visibility="gone"
 			android:paddingTop="20dp"
 			android:paddingBottom="20dp"
-			android:text="@string/no_extract" />
+			android:text="@string/no_extract"
+			/>
 
 		<ListView
 			android:layout_width="match_parent"
 			android:layout_height="0sp"
 			android:layout_weight="1"
-			android:id="@+id/main_table" />
+			android:id="@+id/main_table"
+			/>
 
 		<include layout="@layout/bottom_menu" />
 	</LinearLayout>
