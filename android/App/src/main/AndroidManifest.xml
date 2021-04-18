@@ -2,23 +2,28 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	package="com.darakeon.dfm"
-	android:installLocation="auto">
+	android:installLocation="auto"
+	>
 
 	<uses-permission
 		android:name="android.permission.INTERNET"
-		android:protectionLevel="signature" />
+		android:protectionLevel="signature"
+		/>
 
 	<uses-permission
 		android:name="android.permission.ACCESS_NETWORK_STATE"
-		android:protectionLevel="signature" />
+		android:protectionLevel="signature"
+		/>
 
 	<uses-permission
 		android:name="android.permission.WAKE_LOCK"
-		android:protectionLevel="signature" />
+		android:protectionLevel="signature"
+		/>
 
 	<uses-feature
 		android:name="android.hardware.faketouch"
-		android:required="true" />
+		android:required="true"
+		/>
 
 	<application
 		android:allowBackup="false"
@@ -27,7 +32,8 @@
 		android:networkSecurityConfig="@xml/network_security_config"
 		android:supportsRtl="true"
 		android:theme="@style/LightSober"
-		tools:targetApi="n">
+		tools:targetApi="n"
+		>
 		<service
 			android:name=".moves.MovesService"
 			android:description="@string/app_name"
@@ -36,7 +42,8 @@
 			android:isolatedProcess="false"
 			android:label="@string/app_name"
 			android:permission="android.permission.BIND_JOB_SERVICE"
-			android:process=":Moves" />
+			android:process=":Moves"
+			/>
 
 		<activity
 			android:name=".welcome.WelcomeActivity"
@@ -54,7 +61,8 @@
 				<data
 					android:host="dontflymoney.com"
 					android:pathPrefix="/@Welcome"
-					android:scheme="https" />
+					android:scheme="https"
+					/>
 			</intent-filter>
 			<tools:validation testUrl="https://dontflymoney.com/@Welcome" />
 		</activity>
@@ -69,7 +77,8 @@
 				<data
 					android:host="dontflymoney.com"
 					android:pathPrefix="/@Login"
-					android:scheme="https" />
+					android:scheme="https"
+					/>
 			</intent-filter>
 			<tools:validation testUrl="https://dontflymoney.com/@Login" />
 		</activity>
@@ -84,7 +93,8 @@
 				<data
 					android:host="dontflymoney.com"
 					android:pathPrefix="/@Accounts"
-					android:scheme="https" />
+					android:scheme="https"
+					/>
 			</intent-filter>
 			<tools:validation testUrl="https://dontflymoney.com/@Accounts" />
 		</activity>
@@ -99,7 +109,8 @@
 				<data
 					android:host="dontflymoney.com"
 					android:pathPrefix="/@Extract"
-					android:scheme="https" />
+					android:scheme="https"
+					/>
 			</intent-filter>
 			<tools:validation testUrl="https://dontflymoney.com/@Extract" />
 		</activity>
@@ -114,7 +125,8 @@
 				<data
 					android:host="dontflymoney.com"
 					android:pathPrefix="/@Summary"
-					android:scheme="https" />
+					android:scheme="https"
+					/>
 			</intent-filter>
 			<tools:validation testUrl="https://dontflymoney.com/@Summary" />
 		</activity>
@@ -129,7 +141,8 @@
 				<data
 					android:host="dontflymoney.com"
 					android:pathPrefix="/@MovesCreate"
-					android:scheme="https" />
+					android:scheme="https"
+					/>
 			</intent-filter>
 			<tools:validation testUrl="https://dontflymoney.com/@MovesCreate" />
 		</activity>
@@ -144,7 +157,8 @@
 				<data
 					android:host="dontflymoney.com"
 					android:pathPrefix="/@Settings"
-					android:scheme="https" />
+					android:scheme="https"
+					/>
 			</intent-filter>
 			<tools:validation testUrl="https://dontflymoney.com/@Settings" />
 		</activity>
@@ -153,7 +167,8 @@
 
 		<meta-data
 			android:name="asset_statements"
-			android:resource="@string/asset_statements" />
+			android:resource="@string/asset_statements"
+			/>
 	</application>
 
 </manifest>

@@ -29,7 +29,8 @@
 		android:layout_weight="1"
 		android:layout_width="0sp"
 		android:textColor="@drawable/menu"
-		style="?android:attr/buttonBarButtonStyle" />
+		style="?android:attr/buttonBarButtonStyle"
+		/>
 
 	<Button
 		android:id="@+id/action_move"
@@ -40,7 +41,8 @@
 		android:layout_weight="1"
 		android:layout_width="0sp"
 		android:textColor="@drawable/menu"
-		style="?android:attr/buttonBarButtonStyle" />
+		style="?android:attr/buttonBarButtonStyle"
+		/>
 
 	<Button
 		android:id="@+id/action_refresh"
@@ -62,7 +64,8 @@
 		android:layout_weight="1"
 		android:layout_width="0sp"
 		android:textColor="@drawable/menu"
-		style="?android:attr/buttonBarButtonStyle" />
+		style="?android:attr/buttonBarButtonStyle"
+		/>
 
 	<Button
 		android:id="@+id/action_logout"
@@ -73,6 +76,7 @@
 		android:layout_weight="1"
 		android:layout_width="0sp"
 		android:textColor="@drawable/menu"
-		style="?android:attr/buttonBarButtonStyle" />
+		style="?android:attr/buttonBarButtonStyle"
+		/>
 
 </LinearLayout>
