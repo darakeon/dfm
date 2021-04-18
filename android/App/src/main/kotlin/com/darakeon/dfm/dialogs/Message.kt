@@ -8,6 +8,10 @@ fun Activity.confirm(message: String, okClick: () -> Unit) {
 	alert(message, R.string.ok_button, true) { okClick() }
 }
 
+fun Activity.confirm(resMessage: Int, okClick: () -> Unit) {
+	confirm(getString(resMessage), okClick)
+}
+
 fun Activity.alertError(resMessage: Int) {
 	alertError(getString(resMessage))
 }

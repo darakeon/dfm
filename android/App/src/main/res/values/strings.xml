@@ -91,4 +91,6 @@
 	<string name="error_call_api">Error on calling the site, contact us</string>
 	<string name="density">Device screen type</string>
 	<string name="fail_at_offline_insert">try to insert the move again</string>
+	<string name="sign_up">Sign Up</string>
+	<string name="go_to_sign_up">To sign up an account you need to go to the site. Click \"OK\" and we will open the page for you.</string>
 </resources>
