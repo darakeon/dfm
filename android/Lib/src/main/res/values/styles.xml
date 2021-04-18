@@ -22,6 +22,7 @@
 
 		<item name="background">?attr/neutral_0</item>
 		<item name="background_highlight">?attr/neutral_1</item>
+		<item name="background_button">?attr/average</item>
 
 		<item name="main">?attr/light</item>
 		<item name="main_highlight">?attr/average</item>
@@ -82,7 +83,7 @@
 	</style>
 
 	<style name="Button" parent="android:style/Widget.Material.Button">
-		<item name="android:textColor">?attr/link</item>
+		<item name="android:textColor">?attr/neutral_0</item>
 		<item name="android:background">@drawable/button</item>
 		<item name="android:padding">10sp</item>
 	</style>

@@ -103,6 +103,7 @@
 					android:layout_height="@dimen/mini_button_height"
 					android:layout_columnSpan="1"
 					android:layout_columnWeight="1"
+					android:layout_margin="@dimen/button_margin"
 					android:layout_marginBottom="@dimen/margin_move_field"
 					/>
 
@@ -127,6 +128,7 @@
 					android:layout_height="@dimen/mini_button_height"
 					android:layout_columnSpan="1"
 					android:layout_columnWeight="1"
+					android:layout_margin="@dimen/button_margin"
 					android:layout_marginBottom="@dimen/margin_move_field"
 					/>
 
@@ -150,6 +152,7 @@
 					android:layout_height="@dimen/mini_button_height"
 					android:layout_columnSpan="1"
 					android:layout_columnWeight="1"
+					android:layout_margin="@dimen/button_margin"
 					/>
 
 				<ToggleButton
@@ -198,6 +201,7 @@
 					android:layout_height="@dimen/mini_button_height"
 					android:layout_columnSpan="1"
 					android:layout_columnWeight="1"
+					android:layout_margin="@dimen/button_margin"
 					/>
 
 				<ToggleButton
@@ -240,6 +244,7 @@
 						android:textSize="@dimen/mini_button_font"
 						android:layout_width="wrap_content"
 						android:layout_height="@dimen/mini_button_height"
+						android:layout_margin="@dimen/button_margin"
 						android:onClick="useDetailed"
 						/>
 
@@ -261,6 +266,7 @@
 						android:layout_width="match_parent"
 						android:layout_height="@dimen/mini_button_height"
 						android:layout_columnSpan="4"
+						android:layout_margin="@dimen/button_margin"
 						android:onClick="useSimple"
 						/>
 
@@ -303,17 +309,19 @@
 						android:text="@string/add_detail"
 						android:textSize="@dimen/mini_button_font"
 						android:layout_width="0dp"
-						android:layout_columnWeight="2"
 						android:layout_height="@dimen/mini_button_height"
+						android:layout_columnWeight="2"
+						android:layout_margin="@dimen/button_margin"
 						android:onClick="addDetail"
 						/>
 
 					<LinearLayout
 						android:id="@+id/details"
 						android:orientation="vertical"
-						android:layout_columnSpan="4"
 						android:layout_width="fill_parent"
 						android:layout_height="wrap_content"
+						android:layout_columnSpan="4"
+						android:layout_margin="@dimen/button_margin"
 						>
 					</LinearLayout>
 
@@ -325,16 +333,17 @@
 					android:layout_columnWeight="4"
 					android:layout_columnSpan="4"
 					android:layout_height="wrap_content"
+					android:layout_margin="@dimen/button_margin"
 					android:onClick="cancel"
-					tools:ignore="OnClick"
 					/>
 
 				<Button
 					android:text="@string/save_button"
 					android:layout_width="0dp"
+					android:layout_height="wrap_content"
 					android:layout_columnWeight="4"
 					android:layout_columnSpan="4"
-					android:layout_height="wrap_content"
+					android:layout_margin="@dimen/button_margin"
 					android:onClick="save"
 					/>
 

@@ -47,35 +47,39 @@
 				android:id="@+id/action_summary"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="@string/title_activity_summary"
 				android:layout_columnSpan="4"
+				android:layout_margin="@dimen/button_margin"
+				android:text="@string/title_activity_summary"
 				android:onClick="goToSummary" />
 
 			<Button
 				android:id="@+id/prev"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
+				android:layout_columnSpan="1"
+				android:layout_margin="@dimen/button_margin"
 				android:text="@string/prev"
 				android:onClick="changeDate"
-				android:layout_columnSpan="1"
 				/>
 
 			<Button
 				android:id="@+id/reportChange"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="@string/change_date"
 				android:layout_columnSpan="2"
 				android:layout_columnWeight="2"
+				android:layout_margin="@dimen/button_margin"
+				android:text="@string/change_date"
 				android:onClick="changeDate" />
 
 			<Button
 				android:id="@+id/next"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
+				android:layout_columnSpan="1"
+				android:layout_margin="@dimen/button_margin"
 				android:text="@string/next"
 				android:onClick="changeDate"
-				android:layout_columnSpan="1"
 				/>
 
 			<View
