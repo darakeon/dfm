@@ -234,3 +234,7 @@ dd {
 #github {
 	fill: var(--highlight-0);
 }
+
+tr.sum-factor {
+	cursor: pointer;
+}

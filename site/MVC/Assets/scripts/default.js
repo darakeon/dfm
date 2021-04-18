@@ -30,5 +30,8 @@
 })
 
 function checkIfReload(response) {
-	if (response === ' ') history.go(0)
+	if (response === ' ')
+		history.go(0)
+	else if (typeof afterAjaxPost !== typeof undefined)
+		afterAjaxPost()
 }
