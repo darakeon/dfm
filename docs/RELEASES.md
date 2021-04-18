@@ -15,7 +15,7 @@ Legend:
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="6.0.0.0"></a>6.0.0.0 :dragon: <sup>`7`</sup>
-- [ ] Fix calendar today color for light theme
+- [x] `210418>210418` Fix calendar selected day color for light theme
 - [x] `210418>210418` Add link to create account at login app screen
 - [x] `210417>210418` Adjust e-mail layouts to new themes
 - [x] `210417>210417` Fix sum move after check it
