@@ -25,14 +25,16 @@ pub fn update_notes_for_language(version: &Version, language: &str) {
 	let mut tasks = version.tasks.clone();
 
 	if let Some(first_task) = tasks.pop_front() {
-		tasks_json = translate_and_format(&first_task);
+		tasks_json = translate_and_format(&first_task).unwrap();
 
 		while let Some(task) = tasks.pop_front() {
-			tasks_json = format!(
-				"{},\n{}",
-				tasks_json,
-				translate_and_format(&task)
-			);
+			if let Some(translated) = translate_and_format(&task) {
+				tasks_json = format!(
+					"{},\n{}",
+					tasks_json,
+					translated
+				);
+			}
 		}
 	}
 
@@ -48,12 +50,21 @@ pub fn update_notes_for_language(version: &Version, language: &str) {
 	set_content(path, new_content);
 }
 
-fn translate_and_format(task: &str) -> String {
+fn translate_and_format(task: &str) -> Option<String> {
 	print!("\"{}\": ", task);
 	stdout().flush().unwrap();
 
 	let mut translation = String::new();
 	stdin().read_line(&mut translation).unwrap();
+	translation = translation.trim().to_string();
 
-	return format!("\t\t\"{}\"", translation.trim());
+	if translation == "-" {
+		return None;
+	}
+
+	if translation == "=" {
+		translation = task.to_string()
+	}
+
+	return Some(format!("\t\t\"{}\"", translation));
 }
