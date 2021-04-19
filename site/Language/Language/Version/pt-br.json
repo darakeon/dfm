@@ -1,4 +1,12 @@
 {
+	"6.0.0.0": [
+		"Arrumada cor do dia no calendário do aplicativo",
+		"Adicionado link para criar conta na página de login",
+		"Arrumados temas dos e-mails vindos do site",
+		"Arrumado problema ao verificar uma movimentação e tentar usá-la na soma na tela do relatório",
+		"Se estiver sem internet, o aplicativo envia a movimentação quando a internet voltar",
+		"Arrumadas naturezas na tela de movimentação do aplicativo"
+	],
 	"5.0.1.0": [
 		"Arrumada cor na tela de início do aplicativo",
 		"Arrumada cor nos avisos do aplicativo",

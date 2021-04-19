@@ -11,10 +11,8 @@ This is the task list for the project.
 - Dependency: which other task it depends on (if it exists)
 - Issue: github issue about the task (if it exists)
 
-| Task (50)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue                                            |
+| Task (48)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue                                            |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ------------------------------------------------ |
-| Run robot each midnight and remove it from request (no C#)                     | :sheep:  |  3  |  3  |  4  |                |                                                  |
-| Robot to delete not accessed users                                             | :sheep:  |  3  |  3  |  4  | robot          | [#49](https://github.com/darakeon/dfm/issues/49) |
 | Separate validators from service/repository                                    | :ant:    |  3  |  3  |  4  |                |                                                  |
 | Cache account/category at login + refresh button at app                        | :whale:  |  3  |  3  |  4  |                |                                                  |
 | Year and Month report by category [chart]                                      | :whale:  |  3  |  3  |  4  |                |                                                  |

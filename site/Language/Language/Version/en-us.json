@@ -1,4 +1,12 @@
 {
+	"6.0.0.0": [
+		"Fix calendar selected day color for light theme",
+		"Add link to create account at login app screen",
+		"Adjust e-mail layouts to new themes",
+		"Fix sum move after check it",
+		"If offline, app sends move when the internet is back",
+		"Fix natures at move app screen"
+	],
 	"5.0.1.0": [
 		"Fix color on app start",
 		"Fix color on app popup warnings",
