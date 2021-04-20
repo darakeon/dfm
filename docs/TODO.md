@@ -66,4 +66,4 @@ This is the task list for the project.
 [password rules]: https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#implement-proper-password-strength-controls
 [gherkin jest]: https://www.npmjs.com/package/gherkin-jest
 [Lint C#]: https://medium.com/@michaelparkerdev/linting-c-in-2019-stylecop-sonar-resharper-and-roslyn-73e88af57ebd
-[chart](https://www.highcharts.com/demo/pie-legend)
+[chart]: https://www.highcharts.com/demo/pie-legend
