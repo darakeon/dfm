@@ -11,7 +11,7 @@ This is the task list for the project.
 - Dependency: which other task it depends on (if it exists)
 - Issue: github issue about the task (if it exists)
 
-| Task (48)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (49)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
 | Separate validators from service/repository                                    | :ant:    |  3  |  3  |  4  |                |       |
 | Cache account/category at login + refresh button at app                        | :whale:  |  3  |  3  |  4  |                |       |
@@ -59,8 +59,9 @@ This is the task list for the project.
 | Data import and export (csv, json) (with max request length)                   | :dragon: |  3  |  1  |  2  |                |       |
 | "Guess" the category                                                           | :sheep:  |  3  |  1  |  2  |                |       |
 | Remove GetOrCreate                                                             | :ant:    |  3  |  1  |  2  |                |       |
-| Create measure of recovering after lost authy                                  | :sheep:  |  4  |  1  |  1  |                |       |
+| Replace direct communication to DB with NH by django rest framework            | :ant:    |  4  |  1  |  1  |                |       |
 | Create service to translate site ("put in your language")                      | :dragon: |  4  |  1  |  1  |                |       |
+| Create measure of recovering after lost authy                                  | :sheep:  |  4  |  1  |  1  |                |       |
 
 [compose jetpack]: https://medium.com/@nglauber/jetpack-compose-o-framework-de-ui-do-android-para-os-pr%C3%B3ximos-10-anos-e19adf28e57e
 [password rules]: https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#implement-proper-password-strength-controls
