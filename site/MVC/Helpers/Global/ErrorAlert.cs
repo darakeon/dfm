@@ -70,7 +70,7 @@ namespace DFM.MVC.Helpers.Global
 
 	internal class SessionList<T>
 	{
-		private readonly IDictionary<String, IList<T>> messages
+		private static readonly IDictionary<String, IList<T>> messages
 			= new Dictionary<String, IList<T>>();
 
 		private readonly String name;
