@@ -53,6 +53,11 @@ namespace DFM.BusinessLogic.Repositories
 			if (schedule == null || schedule.User.ID != loggedInUser.ID)
 				throw Error.InvalidSchedule.Throw();
 
+			disable(schedule);
+		}
+
+		private void disable(Schedule schedule)
+		{
 			if (!schedule.Active)
 				throw Error.DisabledSchedule.Throw();
 
@@ -70,8 +75,7 @@ namespace DFM.BusinessLogic.Repositories
 
 			foreach (var schedule in scheduleList)
 			{
-				schedule.Active = false;
-				Save(schedule);
+				disable(schedule);
 			}
 		}
 
