@@ -17,7 +17,7 @@ Legend:
 ## <a name="6.0.1.0"></a>6.0.1.0 :sheep: <sup>`3`</sup>
 - [ ] Robot to delete not accessed users [#49]
 - [ ] Run robot each hour and remove it from request
-- [ ] `210421>......` Fix problem closing account (one of the locals is not closing)
+- [x] `210421>210421` Fix problem closing account (one of the locals is not closing)
 
 ## <a name="6.0.0.0"></a>6.0.0.0 :dragon: <sup>`7`</sup>
 - [x] `210418>210418` Fix calendar selected day color for light theme

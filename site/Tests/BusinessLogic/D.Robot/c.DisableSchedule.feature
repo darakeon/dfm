@@ -51,3 +51,18 @@ Scenario: Dc04. Disable another user's Schedule
 	Then I will receive this core error: InvalidSchedule
 	Given the right user login again
 	Then the schedule will be enabled
+
+Scenario: Dc05. Disable a Schedule with details
+	Given I have this schedule to create
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Db91   | 2012-03-31 | Out    |       | 1     | False     | Monthly   | False           |
+		And the schedule has this details
+			| Description | Amount | Value |
+			| Detail      | 1      | 10    |
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
+	When I try to disable the Schedule
+	Then I will receive no core error
+		And the schedule will be disabled
