@@ -1,0 +1,36 @@
+  test_core:
+    docker:
+      - image: darakeon/netcore
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - dotnet-{{ checksum "core/Authentication/Authentication.csproj" }}-{{ checksum "core/BusinessLogic/BusinessLogic.csproj" }}-{{ checksum "core/Email/Email.csproj" }}-{{ checksum "core/Entities/Entities.csproj" }}-{{ checksum "core/Generic/Generic.csproj" }}-{{ checksum "core/Language/Language.csproj" }}-{{ checksum "core/Tests/BusinessLogic/BusinessLogic.Tests.csproj" }}-{{ checksum "core/Tests/Email/Email.Tests.csproj" }}-{{ checksum "core/Tests/Language/Language.Tests.csproj" }}
+      - run:
+          name: dependencies
+          command: dotnet restore core/Core.sln
+      - save_cache:
+          key: dotnet-{{ checksum "core/Authentication/Authentication.csproj" }}-{{ checksum "core/BusinessLogic/BusinessLogic.csproj" }}-{{ checksum "core/Email/Email.csproj" }}-{{ checksum "core/Entities/Entities.csproj" }}-{{ checksum "core/Generic/Generic.csproj" }}-{{ checksum "core/Language/Language.csproj" }}-{{ checksum "core/Tests/BusinessLogic/BusinessLogic.Tests.csproj" }}-{{ checksum "core/Tests/Email/Email.Tests.csproj" }}-{{ checksum "core/Tests/Language/Language.Tests.csproj" }}
+          paths:
+            - ~/.nuget/packages
+      - run:
+          name: build
+          command: dotnet build -c Debug core/Core.sln --no-restore
+      - run:
+          path: core/Tests/Language
+          name: tests_language
+          command: dotnet test -v m --no-build
+      - run:
+          path: core/Tests/Email
+          name: tests_email
+          command: dotnet test -v m --no-build
+      - run:
+          path: core/Tests/BusinessLogic
+          name: tests_business_logic
+          command: dotnet test -v m --no-build
+      - store_artifacts:
+          path: inbox
+      - store_artifacts:
+          path: core/Tests/log
+          destination: log
+

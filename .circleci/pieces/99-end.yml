@@ -3,15 +3,21 @@ workflows:
   build_all:
     jobs:
       - test_ci
+      - version_check:
+          requires:
+            - test_ci
       - test_core:
           requires:
             - test_ci
       - test_site:
           requires:
             - test_ci
-      - test_android:
+            - test_core
+      - test_browser:
           requires:
             - test_ci
-      - version_check:
+            - test_core
+            - test_site
+      - test_android:
           requires:
             - test_ci
