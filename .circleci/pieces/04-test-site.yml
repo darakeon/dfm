@@ -1,0 +1,28 @@
+  test_site:
+    docker:
+      - image: darakeon/netcore
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - dotnet-{{ checksum "core/Authentication/Authentication.csproj" }}-{{ checksum "core/BusinessLogic/BusinessLogic.csproj" }}-{{ checksum "core/Email/Email.csproj" }}-{{ checksum "core/Entities/Entities.csproj" }}-{{ checksum "core/Generic/Generic.csproj" }}-{{ checksum "core/Language/Language.csproj" }}-{{ checksum "site/MVC/MVC.csproj" }}-{{ checksum "site/Tests/MVC/MVC.Tests.csproj" }}
+      - run:
+          name: dependencies
+          command: dotnet restore site/Site.sln
+      - save_cache:
+          key: dotnet-{{ checksum "core/Authentication/Authentication.csproj" }}-{{ checksum "core/BusinessLogic/BusinessLogic.csproj" }}-{{ checksum "core/Email/Email.csproj" }}-{{ checksum "core/Entities/Entities.csproj" }}-{{ checksum "core/Generic/Generic.csproj" }}-{{ checksum "core/Language/Language.csproj" }}-{{ checksum "site/MVC/MVC.csproj" }}-{{ checksum "site/Tests/MVC/MVC.Tests.csproj" }}
+          paths:
+            - ~/.nuget/packages
+      - run:
+          name: build
+          command: dotnet build -c Debug site/Site.sln --no-restore
+      - run:
+          path: site/Tests/MVC
+          name: tests_mvc
+          command: dotnet test -v m --no-build
+      - store_artifacts:
+          path: inbox
+      - store_artifacts:
+          path: site/Tests/log
+          destination: log
+

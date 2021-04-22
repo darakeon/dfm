@@ -172,9 +172,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Authentication\Authentication.csproj" />
-    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj" />
-    <ProjectReference Include="..\Logs\Logs.csproj" />
+    <ProjectReference Include="..\..\core\Authentication\Authentication.csproj" />
+    <ProjectReference Include="..\..\core\BusinessLogic\BusinessLogic.csproj" />
+    <ProjectReference Include="..\..\core\Logs\Logs.csproj" />
   </ItemGroup>
 
   <ItemGroup>

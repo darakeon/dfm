@@ -1,13 +1,21 @@
 *.gitignore
 
+core/.editorconfig
+
+core/.vs
+core/*/bin
+core/*/obj
+core/packages
+core/*/log
+core/*/*.user
+core/Tests
+
 site/.vs
 site/*/bin
 site/*/obj
 site/packages
 site/*/log
 site/*/*.user
-
-site/.editorconfig
 site/Tests
 
 site/MVC/Assets/libs
