@@ -8,8 +8,6 @@ site/*/log
 site/*/*.user
 
 site/.editorconfig
-site/ImportModels
-site/FileExchange
 site/Tests
 
 site/MVC/Assets/libs
