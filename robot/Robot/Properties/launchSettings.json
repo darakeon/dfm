@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Robot": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNET_CORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

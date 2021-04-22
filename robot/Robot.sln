@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.452
+VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7EB84316-3CE2-4426-AA5E-7234811CA5BB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{85F52249-BD6D-4164-9291-8969A750FC72}"
 	ProjectSection(SolutionItems) = preProject
 		..\core\.editorconfig = ..\core\.editorconfig
 	EndProjectSection
@@ -22,11 +22,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Language", "..\core\Languag
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logs", "..\core\Logs\Logs.csproj", "{510A4DAA-4A0F-40D2-B7BC-AB3F95885639}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVC", "MVC\MVC.csproj", "{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.Util", "..\core\Tests\Util\Tests.Util.csproj", "{0958B228-EDB7-4CDF-A916-CE9D778A9CBD}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVC.Tests", "Tests\MVC\MVC.Tests.csproj", "{02E9F72D-A580-42FF-946D-AA4F252E4754}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Robot", "Robot\Robot.csproj", "{7E07F109-67AA-45AD-A37A-8E1AB1AB7E7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,24 +58,15 @@ Global
 		{510A4DAA-4A0F-40D2-B7BC-AB3F95885639}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{510A4DAA-4A0F-40D2-B7BC-AB3F95885639}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{510A4DAA-4A0F-40D2-B7BC-AB3F95885639}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0958B228-EDB7-4CDF-A916-CE9D778A9CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0958B228-EDB7-4CDF-A916-CE9D778A9CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0958B228-EDB7-4CDF-A916-CE9D778A9CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{02E9F72D-A580-42FF-946D-AA4F252E4754}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{02E9F72D-A580-42FF-946D-AA4F252E4754}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{02E9F72D-A580-42FF-946D-AA4F252E4754}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E07F109-67AA-45AD-A37A-8E1AB1AB7E7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E07F109-67AA-45AD-A37A-8E1AB1AB7E7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E07F109-67AA-45AD-A37A-8E1AB1AB7E7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E07F109-67AA-45AD-A37A-8E1AB1AB7E7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {08FA86D1-E699-4B60-808E-E7110AF82463}
-	EndGlobalSection
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = DFM.vsmdi
+		SolutionGuid = {151F0B4D-A057-4210-BA33-8FE1C827A799}
 	EndGlobalSection
 EndGlobal

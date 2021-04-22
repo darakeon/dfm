@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>DFM.Robot</AssemblyName>
+    <RootNamespace>DFM.Robot</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="appSettings.Development.json" />
+    <None Remove="appSettings.json" />
+    <None Remove="db.amazon.json" />
+    <None Remove="db.circleCI.json" />
+    <None Remove="db.json" />
+    <None Remove="smtp.amazon.json" />
+    <None Remove="smtp.circleCI.json" />
+    <None Remove="smtp.json" />
+    <None Remove="smtp.Production.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appSettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="appSettings.*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DependentUpon>appsettings.json</DependentUpon>
+    </Content>
+    <Content Include="db.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="db.*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DependentUpon>db.json</DependentUpon>
+    </Content>
+    <Content Include="smtp.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="smtp.*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DependentUpon>smtp.json</DependentUpon>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.21" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\BusinessLogic\BusinessLogic.csproj" />
+  </ItemGroup>
+
+</Project>
