@@ -11,7 +11,7 @@ This is the task list for the project.
 - Dependency: which other task it depends on (if it exists)
 - Issue: github issue about the task (if it exists)
 
-| Task (49)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (50)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
 | Separate validators from service/repository                                    | :ant:    |  3  |  3  |  4  |                |       |
 | Cache account/category at login + refresh button at app                        | :whale:  |  3  |  3  |  4  |                |       |
@@ -54,6 +54,7 @@ This is the task list for the project.
 | Add auth by cellphone                                                          | :whale:  |  2  |  1  |  3  |                |       |
 | Link account and category (combo)                                              | :sheep:  |  2  |  1  |  3  |                |       |
 | Check entire account moves                                                     | :whale:  |  2  |  1  |  3  |                |       |
+| Transform Error Logs notification into widget                                  | :ant:    |  2  |  1  |  3  |                |       |
 | OCR to add values to system                                                    | :dragon: |  4  |  2  |  2  |                |       |
 | Add [gherkin jest]                                                             | :ant:    |  4  |  2  |  2  |                |       |
 | Data import and export (csv, json) (with max request length)                   | :dragon: |  3  |  1  |  2  |                |       |
