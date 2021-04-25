@@ -38,7 +38,7 @@ namespace DFM.Authentication
 
 		private IDictionary<String, SessionInfo> sessions =
 			new Dictionary<String, SessionInfo>();
-		private Random random = new Random();
+		private Random random = new();
 
 		private SessionInfo session => getSession(0);
 
@@ -123,7 +123,7 @@ namespace DFM.Authentication
 
 		public Boolean Wizard => session?.Wizard ?? false;
 
-		public CultureInfo Culture => new CultureInfo(Language);
+		public CultureInfo Culture => new(Language);
 
 		public String Set(String username, String password, Boolean remember)
 		{

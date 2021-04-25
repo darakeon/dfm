@@ -16,7 +16,7 @@ namespace DFM.BusinessLogic.Response
 
 		internal Detail Convert()
 		{
-			return new Detail
+			return new()
 			{
 				Description = Description,
 				Amount = Amount,
@@ -26,7 +26,7 @@ namespace DFM.BusinessLogic.Response
 
 		internal static DetailInfo Convert(Detail detail)
 		{
-			return new DetailInfo
+			return new()
 			{
 				Description = detail.Description,
 				Amount = detail.Amount,

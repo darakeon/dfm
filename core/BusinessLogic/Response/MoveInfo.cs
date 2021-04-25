@@ -117,7 +117,7 @@ namespace DFM.BusinessLogic.Response
 
 		private static MoveInfo convert(Move move)
 		{
-			return new MoveInfo
+			return new()
 			{
 				Guid = move.Guid,
 

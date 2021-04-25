@@ -23,8 +23,7 @@ namespace DFM.MVC.Models
 			set => info.RetypePassword = value;
 		}
 
-		private readonly PasswordResetInfo info =
-			new PasswordResetInfo();
+		private readonly PasswordResetInfo info = new();
 
 		internal Boolean TestToken(String token)
 		{

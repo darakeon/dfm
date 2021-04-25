@@ -67,7 +67,7 @@ namespace DFM.BusinessLogic.Response
 
 		internal static ScheduleInfo Convert(Schedule schedule)
 		{
-			return new ScheduleInfo
+			return new()
 			{
 				Guid = schedule.Guid,
 				OutUrl = schedule.Out?.Url,

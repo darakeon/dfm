@@ -9,7 +9,7 @@ namespace DFM.BusinessLogic.Response
 	{
 		internal static TicketInfo Convert(Ticket ticket)
 		{
-			return new TicketInfo
+			return new()
 			{
 				Creation = ticket.Creation,
 				Expiration = ticket.Expiration,

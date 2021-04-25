@@ -26,17 +26,17 @@ namespace DFM.MVC.Helpers.Views
 
 		public static MicroForm WithGlyph(HttpContext context, String glyphicon, String text)
 		{
-			return new MicroForm(context, glyphicon, text, null, null);
+			return new(context, glyphicon, text, null, null);
 		}
 
 		public static MicroForm WithText(HttpContext context, String text, String @class = null)
 		{
-			return new MicroForm(context, null, text, null, @class);
+			return new(context, null, text, null, @class);
 		}
 
 		public static MicroForm WithResource(HttpContext context, String resource, String @class = null)
 		{
-			return new MicroForm(context, null, null, resource, @class);
+			return new(context, null, null, resource, @class);
 		}
 
 		private readonly Dictionary<String, String> route;

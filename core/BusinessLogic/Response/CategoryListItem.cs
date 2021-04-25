@@ -12,7 +12,7 @@ namespace DFM.BusinessLogic.Response
 		}
 
 		internal static CategoryListItem Convert(Category category)
-			=> new CategoryListItem(category);
+			=> new(category);
 
 		public String Name { get; }
 		public Boolean Active { get; }

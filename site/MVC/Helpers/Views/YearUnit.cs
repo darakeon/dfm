@@ -44,7 +44,7 @@ namespace DFM.MVC.Helpers.Views
 
 		public DateTime ToDate()
 		{
-			return new DateTime(Year, 1, 1);
+			return new(Year, 1, 1);
 		}
 
 		public override string ToString()

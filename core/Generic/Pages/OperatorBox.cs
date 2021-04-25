@@ -13,7 +13,7 @@ namespace DFM.Generic.Pages
 
 		public static OperatorBox operator +(OperatorBox @this, Int32 other)
 		{
-			return new OperatorBox(@this.Item.Add(other));
+			return new(@this.Item.Add(other));
 		}
 
 		public static OperatorBox operator ++(OperatorBox @this)

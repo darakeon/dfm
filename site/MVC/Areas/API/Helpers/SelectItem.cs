@@ -25,7 +25,7 @@ namespace DFM.MVC.Areas.Api.Helpers
 			this TEnum value, Translator translator, ServiceAccess service
 		) where TEnum : IConvertible
 		{
-			return new SelectItem<String, Int32>(
+			return new(
 				translator[value.ToString(service.Current.Culture)],
 				Convert.ToInt32(value)
 			);

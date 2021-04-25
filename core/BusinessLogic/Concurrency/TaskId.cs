@@ -6,12 +6,12 @@ namespace DFM.BusinessLogic.Concurrency
 	{
 		internal static TaskId New()
 		{
-			return new TaskId(Guid.NewGuid(), DateTime.Today);
+			return new(Guid.NewGuid(), DateTime.Today);
 		}
 
 		internal static TaskId Dead()
 		{
-			return new TaskId(Guid.Empty, DateTime.Today.AddDays(-1));
+			return new(Guid.Empty, DateTime.Today.AddDays(-1));
 		}
 
 		private TaskId(Guid guid, DateTime date)

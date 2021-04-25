@@ -114,7 +114,7 @@ namespace DFM.BusinessLogic.Services
 
 		public SessionInfo GetSession(String ticketKey)
 		{
-			return new SessionInfo(
+			return new(
 				getUserByTicket(ticketKey)
 			);
 		}

@@ -46,8 +46,8 @@ namespace DFM.Generic
 
 		public static Int32 VersionCount => Int32.Parse(dic["VersionCount"] ?? "0");
 
-		public static Smtp Smtp => new Smtp(dic.GetSection("Smtp"));
-		public static Rewrite Rewrites => new Rewrite("rewrites.json");
+		public static Smtp Smtp => new(dic.GetSection("Smtp"));
+		public static Rewrite Rewrites => new("rewrites.json");
 
 		public static String LanguagePath { get; set; }
 

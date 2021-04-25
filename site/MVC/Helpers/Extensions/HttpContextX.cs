@@ -36,7 +36,7 @@ namespace DFM.MVC.Helpers.Extensions
 		}
 
 		private static readonly ContextDic<Service> services =
-			new ContextDic<Service>(c => new Service(() => c));
+			new(c => new Service(() => c));
 
 		public static Service GetService(this HttpContext context)
 		{
@@ -44,7 +44,7 @@ namespace DFM.MVC.Helpers.Extensions
 		}
 
 		private static readonly ContextDic<ErrorAlert> errorAlerts =
-			new ContextDic<ErrorAlert>(c => new ErrorAlert(translators[c]));
+			new(c => new ErrorAlert(translators[c]));
 
 		public static ErrorAlert GetErrorAlert(this HttpContext context)
 		{
@@ -52,7 +52,7 @@ namespace DFM.MVC.Helpers.Extensions
 		}
 
 		private static readonly ContextDic<Translator> translators =
-			new ContextDic<Translator>(c => new Translator(c));
+			new(c => new Translator(c));
 
 		public static Translator GetTranslator(this HttpContext context)
 		{

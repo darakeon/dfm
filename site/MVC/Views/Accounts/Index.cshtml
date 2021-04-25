@@ -14,8 +14,8 @@
 	ViewBag.NoContentText = Context.Translate("NoAccounts");
 	ViewBag.Buttons = new List<Button>
 	{
-		new Button(Context.Translate("ClosedAccounts"), "ListClosed", true),
-		new Button(Context.Translate("Create", "Account"), "Create")
+		new(Context.Translate("ClosedAccounts"), "ListClosed", true),
+		new(Context.Translate("Create", "Account"), "Create")
 	};
 
 	var route = new Accounts();

@@ -40,7 +40,7 @@ namespace DFM.MVC.Areas.Account.Models
 
 		private MoveLineModel getSubModel(MoveInfo move)
 		{
-			return new MoveLineModel(
+			return new(
 				move,
 				isUsingCategories,
 				CurrentAccountUrl,
