@@ -21,7 +21,7 @@ namespace DFM.Entities
 
 		public virtual Guid Guid
 		{
-			get => new Guid(ExternalId);
+			get => new(ExternalId);
 			set => ExternalId = value.ToByteArray();
 		}
 

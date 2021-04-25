@@ -20,7 +20,7 @@ namespace DFM.BusinessLogic.Response
 		}
 
 		internal static AccountInfo Convert(Account account)
-			=> new AccountInfo(account);
+			=> new(account);
 
 		internal void Update(Account account)
 		{

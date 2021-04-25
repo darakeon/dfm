@@ -10,7 +10,7 @@ namespace DFM.MVC.Tests
 	public class RouteStep
 	{
 		private readonly IDictionary<String, Url> urls = new Dictionary<String, Url>();
-		private readonly Queue<String> results = new Queue<String>();
+		private readonly Queue<String> results = new();
 
 		[Given(@"I have these patterns")]
 		public void GivenIHaveThesePatterns(Table table)

@@ -160,7 +160,7 @@ namespace DFM.BusinessLogic.Tests
 		#region Context
 		protected static ClientTicket getTicket(Boolean remember)
 		{
-			return new ClientTicket(ticketKey, TicketType.Local);
+			return new(ticketKey, TicketType.Local);
 		}
 
 		protected static String getTicketKey()

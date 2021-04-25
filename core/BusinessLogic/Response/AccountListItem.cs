@@ -25,7 +25,7 @@ namespace DFM.BusinessLogic.Response
 			Account account,
 			Decimal total,
 			Boolean hasMoves
-		) => new AccountListItem(account, total, hasMoves);
+		) => new(account, total, hasMoves);
 
 		public String Name { get; }
 		public String Url { get; }

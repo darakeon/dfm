@@ -51,7 +51,7 @@ namespace DFM.MVC.Areas.Account.Models
 
 		private MoveLineModel toggleCheck(Guid guid, PrimalMoveNature nature, Func<Guid, PrimalMoveNature, MoveInfo> toggleCheck)
 		{
-			return new MoveLineModel(
+			return new(
 				tryToggleCheck(guid, nature, toggleCheck),
 				isUsingCategories,
 				CurrentAccountUrl,

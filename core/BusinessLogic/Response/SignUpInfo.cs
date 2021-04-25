@@ -17,7 +17,7 @@ namespace DFM.BusinessLogic.Response
 
 		public User GetEntity()
 		{
-			return new User
+			return new()
 			{
 				Email = Email,
 				Password = Password,

@@ -16,12 +16,12 @@ namespace DFM.Email
 
 		public static Format MoveNotification(String language, Theme theme)
 		{
-			return new Format(language, theme, EmailType.MoveNotification, EmailType.MoveNotification);
+			return new(language, theme, EmailType.MoveNotification, EmailType.MoveNotification);
 		}
 
 		public static Format SecurityAction(String language, Theme theme, SecurityAction securityAction)
 		{
-			return new Format(language, theme, EmailType.SecurityAction, securityAction);
+			return new(language, theme, EmailType.SecurityAction, securityAction);
 		}
 
 		private Format(String language, Theme theme, EmailType type, object layoutType)

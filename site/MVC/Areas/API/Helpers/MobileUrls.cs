@@ -36,7 +36,7 @@ namespace DFM.MVC.Areas.Api.Helpers
 		}
 
 
-		public static MobileUrls Get = new MobileUrls();
+		public static MobileUrls Get = new();
 
 		public String this[[AspMvcController] object controller, [AspMvcAction] object action] =>
 			this[controller.ToString(), action.ToString()];

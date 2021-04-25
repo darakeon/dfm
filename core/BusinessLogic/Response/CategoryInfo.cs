@@ -14,7 +14,7 @@ namespace DFM.BusinessLogic.Response
 		}
 
 		internal static CategoryInfo Convert(Category category)
-			=> new CategoryInfo(category);
+			=> new(category);
 
 		public void Update(Category category)
 		{

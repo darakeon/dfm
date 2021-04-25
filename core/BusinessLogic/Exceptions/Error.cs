@@ -93,7 +93,7 @@ namespace DFM.BusinessLogic.Exceptions
 	{
 		public static CoreError Throw(this Error error, Exception inner = null)
 		{
-			return new CoreError(error, inner);
+			return new(error, inner);
 		}
 	}
 }

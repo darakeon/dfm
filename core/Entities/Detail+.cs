@@ -18,7 +18,7 @@ namespace DFM.Entities
 
 		public virtual Guid Guid
 		{
-			get => new Guid(ExternalId);
+			get => new(ExternalId);
 			set => ExternalId = value.ToByteArray();
 		}
 
@@ -35,7 +35,7 @@ namespace DFM.Entities
 
 		public virtual Detail Clone()
 		{
-			return new Detail
+			return new()
 			{
 				Description = Description,
 				Amount = Amount,

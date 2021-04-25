@@ -16,7 +16,7 @@ namespace DFM.MVC.Helpers.Global
 		private readonly Translator translator;
 
 		private readonly SessionList<Error> errors =
-			new SessionList<Error>("errors");
+			new("errors");
 
 		public void Add(Error error)
 		{
@@ -24,7 +24,7 @@ namespace DFM.MVC.Helpers.Global
 		}
 
 		private readonly SessionList<EmailStatus> emailsStati =
-			new SessionList<EmailStatus>("emailsStati");
+			new("emailsStati");
 
 		public void Add(EmailStatus emailStatus)
 		{
@@ -32,7 +32,7 @@ namespace DFM.MVC.Helpers.Global
 		}
 
 		private readonly SessionList<String> texts =
-			new SessionList<String>("texts");
+			new("texts");
 
 		public void AddTranslated(String text)
 		{
