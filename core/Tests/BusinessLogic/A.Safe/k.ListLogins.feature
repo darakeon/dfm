@@ -1,7 +1,7 @@
 ﻿Feature: Ak. List logins
 
 Scenario: Ak01. List all logins
-	Given I have a complete user logged in
+	Given test user login
 		And I login the user
 		And I logoff the user
 		And I login the user

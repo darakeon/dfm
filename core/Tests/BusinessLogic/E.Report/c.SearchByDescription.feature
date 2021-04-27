@@ -1,7 +1,7 @@
 ﻿Feature: Ec. Search by description
 
 Background:
-	Given I have a complete user logged in for each test
+	Given test user login
 		And I enable Categories use
 		And I have an account
 		And I have moves of

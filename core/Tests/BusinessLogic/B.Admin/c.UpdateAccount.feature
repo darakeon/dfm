@@ -1,7 +1,7 @@
 ﻿Feature: Bc. Update account
 
 Background:
-	Given I have a complete user logged in
+	Given test user login
 		And I disable Categories use
 
 Scenario: Bc01. Change the name

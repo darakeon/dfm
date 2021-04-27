@@ -4,6 +4,9 @@ Background:
 	Given I have this user created
 			| Email                           | Password | Active |
 			| {scenarioCode}@dontflymoney.com | password | true   |
+		And I have this user data
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 		And I login this user
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |

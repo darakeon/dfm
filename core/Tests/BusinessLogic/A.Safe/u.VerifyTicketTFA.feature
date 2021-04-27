@@ -2,11 +2,14 @@
 
 Background:
 	Given I have this user created
-			| Email               | Password | Active |
-			| Au@dontflymoney.com | password | true   |
+			| Email                           | Password | Active |
+			| {scenarioCode}@dontflymoney.com | password | true   |
+		And I have this user data
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 		And I login this user
-			| Email               | Password |
-			| Au@dontflymoney.com | password |
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |

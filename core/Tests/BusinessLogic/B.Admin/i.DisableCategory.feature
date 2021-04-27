@@ -1,7 +1,7 @@
 ﻿Feature: Bi. Disable category
 
 Background:
-	Given I have a complete user logged in
+	Given test user login
 		And I enable Categories use
 		And I have a category
 

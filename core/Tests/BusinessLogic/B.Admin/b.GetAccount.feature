@@ -1,7 +1,7 @@
 ﻿Feature: Bb. Get account
 
 Background:
-	Given I have a complete user logged in
+	Given test user login
 		And I have an account
 
 Scenario: Bb01. Try to get Account with wrong Url

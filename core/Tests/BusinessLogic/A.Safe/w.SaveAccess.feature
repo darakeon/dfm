@@ -1,7 +1,7 @@
 ﻿Feature: Aw. Save access
 
 Background:
-	Given I have a complete user logged in for each test
+	Given test user login
 		And I save the date the test started
 
 Scenario: Aw01. Save access for current user

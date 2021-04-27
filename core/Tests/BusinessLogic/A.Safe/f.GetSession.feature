@@ -2,8 +2,11 @@
 
 Background:
 	Given I have this user created
-			| Email                           | Password | Retype Password | Active |
-			| {scenarioCode}@dontflymoney.com | password | password        | true   |
+			| Email                           | Password | Active |
+			| {scenarioCode}@dontflymoney.com | password | true   |
+		And I have this user data
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 		And I have a ticket of this user
 
 Scenario: Af01. Select with ticket that doesn't exist

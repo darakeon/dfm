@@ -2,11 +2,14 @@
 
 Background:
 	Given I have this user created
-			| Email               | Password | Active |
-			| Av@dontflymoney.com | password | true   |
+			| Email                           | Password | Active |
+			| {scenarioCode}@dontflymoney.com | password | true   |
+		And I have this user data
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 		And I login this user
-			| Email               | Password |
-			| Av@dontflymoney.com | password |
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 
 Scenario: Av01. Verify ticket as mobile
 	Given I have a ticket key

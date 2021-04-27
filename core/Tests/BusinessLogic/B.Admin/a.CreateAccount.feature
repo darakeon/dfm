@@ -1,7 +1,7 @@
 ﻿Feature: Ba. Create account
 
 Background:
-	Given I have a complete user logged in
+	Given test user login
 
 Scenario: Ba01. Save Account without name
 	Given I have this account to create

@@ -2,8 +2,11 @@
 
 Background:
 	Given I have this user created
-			| Email                                       | Password | Retype Password |
-			| activateuser{scenarioCode}@dontflymoney.com | password | password        |
+			| Email                                       | Password |
+			| activateuser{scenarioCode}@dontflymoney.com | password |
+		And I have this user data
+			| Email                                       | Password |
+			| activateuser{scenarioCode}@dontflymoney.com | password |
 		And I have a token for its activation
 
 Scenario: Ad01. Activate user with invalid token

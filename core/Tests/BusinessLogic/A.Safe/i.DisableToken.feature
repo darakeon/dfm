@@ -2,8 +2,11 @@
 
 Background:
 	Given I have this user created
-			| Email                         | Password | Retype Password |
-			| disabletoken@dontflymoney.com | password | password        |
+			| Email                         | Password |
+			| disabletoken@dontflymoney.com | password |
+		And I have this user data
+			| Email                         | Password |
+			| disabletoken@dontflymoney.com | password |
 
 Scenario: Ai01. Disable invalid token
 	Given I pass an invalid token

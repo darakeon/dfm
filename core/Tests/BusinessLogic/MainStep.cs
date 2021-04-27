@@ -18,43 +18,22 @@ namespace DFM.BusinessLogic.Tests
 	[Binding]
 	public class MainStep : BaseStep
 	{
-		[Given(@"I have a complete user logged in")]
+		[Given(@"test user login")]
 		public void GivenIHaveACompleteUserLoggedIn()
 		{
-			createLogoffLogin(userEmail, userPassword);
-		}
-
-		[Given(@"I have a complete user logged in for each test")]
-		public void GivenIHaveACompleteUserLoggedInForEachTest()
-		{
-			userEmailByTest = $"{scenarioCode}@dontflymoney.com";
-			createLogoffLogin(userEmailByTest, userPassword);
+			createLogoffLogin(userEmail);
 		}
 
 		[Given(@"there is a bad person logged in")]
 		public void GivenIHaveABadPersonLoggedIn()
 		{
-			createLogoffLogin(badPersonEmail, userPassword);
+			createLogoffLogin(badPersonEmail);
 		}
 
 		[Given(@"there is another person logged in")]
 		public void GivenIHaveAnotherPersonLoggedIn()
 		{
-			createLogoffLogin(anotherPersonEmail, userPassword);
-		}
-
-		private void createLogoffLogin(String email, String password)
-		{
-			resetTicket();
-			createUserIfNotExists(email, password, true);
-			current.Set(email, password, false);
-			service.Safe.AcceptContract();
-		}
-
-		[Given(@"the right user login again")]
-		public void GivenTheRightUserLoginAgain()
-		{
-			createLogoffLogin(userEmail, userPassword);
+			createLogoffLogin(anotherPersonEmail);
 		}
 
 		[Given(@"the user have accepted the contract")]

@@ -2,8 +2,11 @@
 
 Background:
 	Given I have this user created
-			| Email                              | Password | Retype Password |
-			| testsecuritytoken@dontflymoney.com | password | password        |
+			| Email                              | Password |
+			| testsecuritytoken@dontflymoney.com | password |
+		And I have this user data
+			| Email                              | Password |
+			| testsecuritytoken@dontflymoney.com | password |
 
 Scenario: Ah01. Test with invalid token
 	Given I pass an invalid token

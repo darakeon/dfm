@@ -1,7 +1,7 @@
 ﻿Feature: Bo. Reopen account
 
 Background:
-	Given I have a complete user logged in
+	Given test user login
 		And I disable Categories use
 
 Scenario: Bo01. Reopen an Account that doesn't exist

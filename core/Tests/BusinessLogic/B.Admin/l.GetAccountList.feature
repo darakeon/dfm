@@ -1,7 +1,7 @@
 ﻿Feature: Bl. Get account list
 
 Background:
-	Given I have a complete user logged in
+	Given test user login
 		And I disable Categories use
 
 Scenario: Bl01. Get all active accounts

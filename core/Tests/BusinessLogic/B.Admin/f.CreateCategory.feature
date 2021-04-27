@@ -1,7 +1,7 @@
 ﻿Feature: Bf. Create category
 
 Background:
-	Given I have a complete user logged in
+	Given test user login
 		And I enable Categories use
 
 Scenario: Bf01. Save Category without name
