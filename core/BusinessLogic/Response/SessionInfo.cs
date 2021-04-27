@@ -13,6 +13,7 @@ namespace DFM.BusinessLogic.Response
 		public SessionInfo(User user)
 		{
 			IsAdm = user.IsAdm;
+			IsRobot = user.IsRobot;
 
 			Email = user.Email;
 			HasTFA = !String.IsNullOrEmpty(user.TFASecret);
@@ -31,6 +32,7 @@ namespace DFM.BusinessLogic.Response
 		}
 
 		public Boolean IsAdm { get; }
+		public Boolean IsRobot { get; }
 
 		public String Email { get; }
 		public Boolean HasTFA { get; }

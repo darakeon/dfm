@@ -106,6 +106,7 @@ namespace DFM.Authentication
 		public Boolean IsAuthenticated => session != null;
 
 		public Boolean IsAdm => IsAuthenticated && session.IsAdm;
+		public Boolean IsRobot => IsAuthenticated && session.IsRobot;
 
 		public String Email => session?.Email;
 

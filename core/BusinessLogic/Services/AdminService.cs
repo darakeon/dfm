@@ -252,7 +252,8 @@ namespace DFM.BusinessLogic.Services
 
 			inTransaction("UpdateConfig", () =>
 			{
-				updateConfig(info, parent.Safe.GetCurrent().Config);
+				var user = parent.Safe.GetCurrent();
+				updateConfig(info, user.Config);
 			});
 		}
 

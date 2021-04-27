@@ -25,5 +25,18 @@ namespace DFM.Entities
 		{
 			return WrongLogin >= Cfg.PasswordErrorLimit;
 		}
+
+		public virtual void SetRobotCheckDay()
+		{
+			var firstTime = RobotCheck == DateTime.MinValue;
+
+			var nowUser = Now();
+			var nowUtc = DateTime.UtcNow;
+			var diff = nowUtc - nowUser;
+			RobotCheck = nowUser.Date + diff;
+
+			if (!firstTime)
+				RobotCheck = RobotCheck.AddDays(1);
+		}
 	}
 }

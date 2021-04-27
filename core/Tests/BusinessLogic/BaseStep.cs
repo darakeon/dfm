@@ -6,6 +6,7 @@ using DFM.Authentication;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
+using DFM.BusinessLogic.Services;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Bases;
@@ -25,6 +26,8 @@ namespace DFM.BusinessLogic.Tests
 		private protected static Repos repos;
 
 		private static String logFileName;
+
+		protected static TestService db = new(service, repos);
 
 		protected static void setLogName()
 		{
@@ -87,6 +90,23 @@ namespace DFM.BusinessLogic.Tests
 		}
 
 		#region Get or Create
+		protected void robotRunSchedule()
+		{
+			createLogoffLoginRobot();
+
+			service.Robot.RunSchedule();
+			createLogoffLogin(userEmail);
+		}
+
+		protected void createLogoffLoginRobot()
+		{
+			createLogoffLogin(robotEmail);
+
+			var robot = repos.User.GetByEmail(robotEmail);
+			robot.IsRobot = true;
+			repos.User.SaveOrUpdate(robot);
+		}
+
 		protected void createLogoffLogin(String email)
 		{
 			resetTicket();
@@ -99,35 +119,56 @@ namespace DFM.BusinessLogic.Tests
 			String email,
 			String password,
 			Boolean shouldActivateUser = false,
-			Boolean shouldSignContract = false
+			Boolean shouldSignContract = false,
+			Int32? timezone = null
 		)
 		{
 			var user = repos.User.GetByEmail(email);
 
-			if (user == null)
+			if (user != null) return;
+
+			var info = new SignUpInfo
 			{
-				var info = new SignUpInfo
-				{
-					Email = email,
-					Password = password,
-					RetypePassword = password,
-					Language = Defaults.ConfigLanguage,
-				};
+				Email = email,
+				Password = password,
+				RetypePassword = password,
+				Language = Defaults.ConfigLanguage,
+			};
 
-				service.Safe.SaveUser(info);
+			if (timezone != null)
+			{
+				var utc = DateTime.UtcNow;
+				var tzHourToRun = 12 - utc.AddHours(-12).Hour;
+				var userHour = tzHourToRun + timezone;
 
-				user = repos.User.GetByEmail(email);
+				info.TimeZone = $"UTC{userHour:+00;-00; 00}:00";
+			}
 
-				if (shouldActivateUser)
-				{
-					repos.User.Activate(user);
-				}
+			service.Safe.SaveUser(info);
 
-				if (shouldSignContract)
-				{
-					var contract = repos.Contract.GetContract();
-					repos.Acceptance.Accept(user, contract);
-				}
+			user = repos.User.GetByEmail(email);
+
+			if (shouldActivateUser)
+			{
+				db.Execute(
+					() => repos.User.Activate(user)
+				);
+			}
+
+			if (timezone is > 0)
+			{
+				user.SetRobotCheckDay();
+				db.Execute(
+					() => repos.User.SaveOrUpdate(user)
+				);
+			}
+
+			if (shouldSignContract)
+			{
+				var contract = repos.Contract.GetContract();
+				db.Execute(
+					() => repos.Acceptance.Accept(user, contract)
+				);
 			}
 		}
 
@@ -350,6 +391,7 @@ namespace DFM.BusinessLogic.Tests
 
 		protected const String badPersonEmail = "badperson@dontflymoney.com";
 		protected const String anotherPersonEmail = "person@dontflymoney.com";
+		protected const String robotEmail = "robot@dontflymoney.com";
 
 		protected static String userPassword = "password";
 		protected const String mainAccountUrl = "first_account";

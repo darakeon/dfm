@@ -212,15 +212,18 @@ namespace DFM.BusinessLogic.Services
 
 		internal void VerifyUser()
 		{
-			var user = GetCurrent();
+			VerifyUser(GetCurrent());
+		}
 
+		internal void VerifyUser(User user)
+		{
 			if (user == null || !user.Active)
 				throw Error.Uninvited.Throw();
 
 			if (!parent.Current.IsVerified)
 				throw Error.TFANotVerified.Throw();
 
-			if (!IsLastContractAccepted())
+			if (!IsLastContractAccepted(user))
 				throw Error.NotSignedLastContract.Throw();
 		}
 
@@ -297,12 +300,15 @@ namespace DFM.BusinessLogic.Services
 
 		public Boolean IsLastContractAccepted()
 		{
+			return IsLastContractAccepted(GetCurrent());
+		}
+
+		internal Boolean IsLastContractAccepted(User user)
+		{
 			var contract = getContract();
 
 			if (contract == null)
 				return true;
-
-			var user = GetCurrent();
 
 			var acceptance = inTransaction("CreateAcceptance", () =>
 				repos.Acceptance.GetOrCreate(user, contract)

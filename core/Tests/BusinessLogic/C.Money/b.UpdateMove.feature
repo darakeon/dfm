@@ -252,7 +252,7 @@ Scenario: Cb16. Change move with schedule
 		And it has an Account Out
 		And it has no Account In
 		And I save the schedule
-		And I run the scheduler
+		And robot run the scheduler
 		And I pass the first schedule move guid
 		And I get the move
 	When I update the move
@@ -308,7 +308,7 @@ Scenario: Cb21. Update move date not changing its position at schedule
 		And it has an Account Out
 		And it has no Account In
 		And I save the schedule
-		And I run the scheduler
+		And robot run the scheduler
 		And I pass the first schedule move guid
 		And I get the move
 		And I change the move date in -2 months

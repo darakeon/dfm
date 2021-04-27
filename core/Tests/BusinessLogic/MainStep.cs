@@ -1,8 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
-using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.BusinessLogic.Response;
+using DFM.BusinessLogic.Services;
 using DFM.Entities;
 using DFM.Generic;
 using DFM.Generic.Datetime;
@@ -34,6 +35,12 @@ namespace DFM.BusinessLogic.Tests
 		public void GivenIHaveAnotherPersonLoggedIn()
 		{
 			createLogoffLogin(anotherPersonEmail);
+		}
+
+		[When(@"robot user login")]
+		public void WhenILoginAsRobot()
+		{
+			createLogoffLoginRobot();
 		}
 
 		[Given(@"the user have accepted the contract")]
@@ -70,6 +77,12 @@ namespace DFM.BusinessLogic.Tests
 			startDateTime = DateTime.Now;
 		}
 
+		[Then(@"I will receive a core error")]
+		public void ThenIWillReceiveACoreError()
+		{
+			Assert.IsNotNull(error);
+		}
+
 		[Then(@"I will receive this core error: ([A-Za-z]+)")]
 		public void ThenIWillReceiveThisError(Error expectedError)
 		{
@@ -95,6 +108,8 @@ namespace DFM.BusinessLogic.Tests
 			log("BeforeTestRun");
 
 			TZ.Init(false);
+
+			UserMap.IsTest = true;
 
 			SessionFactoryManager.Initialize<UserMap, User>(Cfg.DB);
 			SessionManager.Init(getTicketKey);
@@ -123,6 +138,7 @@ namespace DFM.BusinessLogic.Tests
 		public static void CloseSession()
 		{
 			log("After scenario block");
+
 			SessionManager.Close();
 		}
 
@@ -131,32 +147,22 @@ namespace DFM.BusinessLogic.Tests
 		public void CleanSchedulesAndLogoff()
 		{
 			log("After scenario");
-			if (!current.IsAuthenticated)
-				return;
 
-			try
+			var pendentSchedules = repos.Schedule.Where(s => s.Active);
+
+			foreach (var schedule in pendentSchedules)
 			{
-				var pendentSchedules = service.Robot.GetScheduleList();
-
-				foreach (var pendentSchedule in pendentSchedules)
-				{
-					service.Robot.DisableSchedule(pendentSchedule.Guid);
-				}
-			}
-			catch (CoreError e)
-			{
-				var ignored = new [] {
-					Error.NotSignedLastContract,
-					Error.TFANotVerified,
-				};
-
-				if (!ignored.Contains(e.Type))
-				{
-					throw;
-				}
+				repos.Schedule.Disable(schedule.Guid, schedule.User);
 			}
 
-			current.Clear();
+			RobotService.Runs.Clear();
+
+			Directory.GetFiles(Cfg.LogErrorsPath, "*.log")
+				.ToList()
+				.ForEach(File.Delete);
+
+			if (current.IsAuthenticated)
+				current.Clear();
 		}
 
 		// ReSharper disable once UnusedMember.Global

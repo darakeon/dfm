@@ -26,5 +26,8 @@ namespace DFM.Entities
 		public virtual Config Config { get; set; }
 
 		public virtual Boolean IsAdm { get; set; }
+
+		public virtual Boolean IsRobot { get; set; }
+		public virtual DateTime RobotCheck { get; set; }
 	}
 }

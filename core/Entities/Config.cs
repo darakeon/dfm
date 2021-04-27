@@ -18,6 +18,5 @@ namespace DFM.Entities
 		public virtual Theme Theme { get; set; }
 
 		public virtual Boolean Wizard { get; set; }
-
 	}
 }

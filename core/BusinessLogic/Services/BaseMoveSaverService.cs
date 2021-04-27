@@ -139,9 +139,14 @@ namespace DFM.BusinessLogic.Services
 
 		internal void FixSummaries()
 		{
+			var user = parent.Safe.GetCurrent();
+			FixSummaries(user);
+		}
+
+		internal void FixSummaries(User user)
+		{
 			inTransaction("FixSummaries", () =>
 			{
-				var user = parent.Safe.GetCurrent();
 				repos.Summary
 					.Where(s => s.Broken)
 					.Where(s => s.User() == user)

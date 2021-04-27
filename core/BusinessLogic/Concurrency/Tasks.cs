@@ -5,13 +5,13 @@ namespace DFM.BusinessLogic.Concurrency
 {
 	class Tasks : ConcurrentDictionary<string, TaskId>
 	{
-		public Boolean FirstToday(String key)
+		public Boolean AddIfNotExists(String key)
 		{
 			var taskId = TaskId.New();
 
 			var run = AddOrUpdate(
 				key, taskId,
-				(_, oldValue) => taskId.FirstToday(oldValue)
+				(_, oldValue) => taskId.LastValid(oldValue)
 			);
 
 			return taskId.Equals(run);

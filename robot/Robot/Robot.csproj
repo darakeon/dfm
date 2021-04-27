@@ -8,15 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="appSettings.Development.json" />
-    <None Remove="appSettings.json" />
-    <None Remove="db.amazon.json" />
-    <None Remove="db.circleCI.json" />
-    <None Remove="db.json" />
-    <None Remove="smtp.amazon.json" />
-    <None Remove="smtp.circleCI.json" />
-    <None Remove="smtp.json" />
-    <None Remove="smtp.Production.json" />
+    <None Remove="*.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +32,13 @@
     <Content Include="smtp.*.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>smtp.json</DependentUpon>
+    </Content>
+    <Content Include="login.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="login.*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DependentUpon>login.json</DependentUpon>
     </Content>
   </ItemGroup>
 
