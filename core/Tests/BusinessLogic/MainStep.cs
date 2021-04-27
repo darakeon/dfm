@@ -86,13 +86,14 @@ namespace DFM.BusinessLogic.Tests
 		[BeforeTestRun]
 		public static void Start()
 		{
+			Cfg.Init();
+
 			setLogName();
 
 			setRepositories();
 
 			log("BeforeTestRun");
 
-			Cfg.Init();
 			TZ.Init(false);
 
 			SessionFactoryManager.Initialize<UserMap, User>(Cfg.DB);
