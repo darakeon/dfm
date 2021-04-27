@@ -2,8 +2,8 @@
 
 Background:
 	Given I have this user created
-			| Email                              | Password | Retype Password |
-			| sendpasswordreset@dontflymoney.com | password | password        |
+			| Email                              | Password |
+			| sendpasswordreset@dontflymoney.com | password |
 
 # if you answer that the user do not exists,
 # someone could use this method to enumerate users in DB

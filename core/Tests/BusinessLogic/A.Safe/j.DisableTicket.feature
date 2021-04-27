@@ -2,8 +2,11 @@
 
 Background:
 	Given I have this user created
-			| Email                          | Password | Retype Password | Active |
-			| disableticket@dontflymoney.com | password | password        | true   |
+			| Email                          | Password | Active |
+			| disableticket@dontflymoney.com | password | true   |
+		And I have this user data
+			| Email                          | Password |
+			| disableticket@dontflymoney.com | password |
 		And I have a ticket of this user
 
 Scenario: Aj01. Disable with info all right

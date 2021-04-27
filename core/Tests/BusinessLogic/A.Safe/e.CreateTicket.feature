@@ -4,8 +4,8 @@ Background:
 
 Scenario: Ae01. Validate without e-mail
 	Given I have this user created
-			| Email                 | Password | Retype Password |
-			| Ae01@dontflymoney.com | password | password        |
+			| Email                 | Password |
+			| Ae01@dontflymoney.com | password |
 		And I have this user data
 			| Email | Password |
 			|       | password |
@@ -15,8 +15,8 @@ Scenario: Ae01. Validate without e-mail
 
 Scenario: Ae02. Validate without password
 	Given I have this user created
-			| Email                 | Password | Retype Password |
-			| Ae02@dontflymoney.com | password | password        |
+			| Email                 | Password |
+			| Ae02@dontflymoney.com | password |
 		And I have this user data
 			| Email                 | Password |
 			| Ae02@dontflymoney.com |          |
@@ -34,8 +34,8 @@ Scenario: Ae03. Validate with wrong e-mail
 
 Scenario: Ae04. Validate with wrong password
 	Given I have this user created
-			| Email                 | Password | Retype Password |
-			| Ae04@dontflymoney.com | password | password        |
+			| Email                 | Password |
+			| Ae04@dontflymoney.com | password |
 		And I have this user data
 			| Email                 | Password       |
 			| Ae04@dontflymoney.com | password_wrong |
@@ -45,8 +45,8 @@ Scenario: Ae04. Validate with wrong password
 
 Scenario: Ae05. Validate user disabled
 	Given I have this user created
-			| Email                 | Password | Retype Password |
-			| Ae05@dontflymoney.com | password | password        |
+			| Email                 | Password |
+			| Ae05@dontflymoney.com | password |
 		And I have this user data
 			| Email                 | Password |
 			| Ae05@dontflymoney.com | password |
@@ -56,8 +56,8 @@ Scenario: Ae05. Validate user disabled
 
 Scenario: Ae06. Disable user by excessive trying
 	Given I have this user created
-			| Email                 | Password | Retype Password | Active |
-			| Ae06@dontflymoney.com | password | password        | true   |
+			| Email                 | Password | Active |
+			| Ae06@dontflymoney.com | password | true   |
 		And I have this user data
 			| Email                 | Password       |
 			| Ae06@dontflymoney.com | password_wrong |
@@ -67,8 +67,8 @@ Scenario: Ae06. Disable user by excessive trying
 
 Scenario: Ae07. Validate disabled with wrong password
 	Given I have this user created
-			| Email                 | Password | Retype Password |
-			| Ae07@dontflymoney.com | password | password        |
+			| Email                 | Password |
+			| Ae07@dontflymoney.com | password |
 		And I have this user data
 			| Email | Password       |
 			|       | wrong_password |
@@ -78,8 +78,8 @@ Scenario: Ae07. Validate disabled with wrong password
 
 Scenario: Ae08. Validate with info all right
 	Given I have this user created
-			| Email                 | Password | Retype Password |
-			| Ae90@dontflymoney.com | password | password        |
+			| Email                 | Password |
+			| Ae90@dontflymoney.com | password |
 		And I have this user data
 			| Email                 | Password |
 			| Ae90@dontflymoney.com | password |
@@ -90,8 +90,8 @@ Scenario: Ae08. Validate with info all right
 
 Scenario: Ae09. Enable user let login again
 	Given I have this user created
-			| Email                 | Password | Retype Password | Active |
-			| Ae91@dontflymoney.com | password | password        | true   |
+			| Email                 | Password | Active |
+			| Ae91@dontflymoney.com | password | true   |
 		And I have this user data
 			| Email                 | Password       |
 			| Ae91@dontflymoney.com | password_wrong |
@@ -106,8 +106,8 @@ Scenario: Ae09. Enable user let login again
 
 Scenario: Ae10. Enable user resets the password trial times
 	Given I have this user created
-			| Email                 | Password | Retype Password | Active |
-			| Ae92@dontflymoney.com | password | password        | true   |
+			| Email                 | Password | Active |
+			| Ae92@dontflymoney.com | password | true   |
 		And I have this user data
 			| Email                 | Password       |
 			| Ae92@dontflymoney.com | password_wrong |

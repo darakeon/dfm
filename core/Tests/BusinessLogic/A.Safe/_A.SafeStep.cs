@@ -98,7 +98,8 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		public void GivenIHaveThisUserData(Table table)
 		{
 			if (table.Header.Any(c => c == "Email"))
-				email = table.Rows[0]["Email"];
+				email = table.Rows[0]["Email"]
+					.Replace("{scenarioCode}", scenarioCode);
 
 			if (table.Header.Any(c => c == "Password"))
 				password = table.Rows[0]["Password"];
@@ -655,10 +656,10 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		public void ThenTheAccessWillBeAfterTestStartTime(Boolean after)
 		{
 			var ticketList = repos.Ticket.NewQuery()
-				.Where(t => t.User, u => u.Email == userEmailByTest)
+				.Where(t => t.User, u => u.Email == userEmail)
 				.List;
 
-			Assert.AreNotEqual(0, ticketList.Count, $"no login for {userEmailByTest}");
+			Assert.AreNotEqual(0, ticketList.Count, $"no login for {userEmail}");
 
 			var updated = ticketList.Count(
 				t => t.LastAccess > startDateTime
@@ -734,26 +735,25 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		#endregion
 
 		#region MoreThanOne
-		[Given(@"I have this user created")]
-		public void GivenIHaveThisUserToCreate(Table table)
+		[Given(@"I have (?:this user|these users) created")]
+		public void GivenIHaveThisUserCreated(Table table)
 		{
-			var userData = table.Rows[0];
+			foreach (var userData in table.Rows)
+			{
+				var email = userData["Email"]
+					.Replace("{scenarioCode}", scenarioCode);
 
-			email = userData["Email"]
-				.Replace("{scenarioCode}", scenarioCode);
+				var password = userData["Password"];
 
-			password = userData["Password"];
+				var active = userData.ContainsKey("Active")
+				    && userData["Active"] == "true";
 
-			if (userData.ContainsKey("Retype Password"))
-				retypePassword = userData["Retype Password"];
+				var signed = userData.ContainsKey("Signed")
+				    && userData["Signed"] == "true";
 
-			var active = userData.ContainsKey("Active")
-				&& userData["Active"] == "true";
 
-			var signed = userData.ContainsKey("Signed")
-				&& userData["Signed"] == "true";
-
-			createUserIfNotExists(email, password, active, signed);
+				createUserIfNotExists(email, password, active, signed);
+			}
 		}
 
 		[Given(@"I have a token for its activation")]
@@ -995,10 +995,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		[Then(@"the contract status will be (not )?accepted")]
 		public void ThenTheContractStatusWillBeAccepted(Boolean expectAccepted)
 		{
-			if (!accepted.HasValue)
-			{
-				accepted = service.Safe.IsLastContractAccepted();
-            }
+			accepted ??= service.Safe.IsLastContractAccepted();
 
 			Assert.AreEqual(expectAccepted, accepted);
 		}
@@ -1016,14 +1013,19 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		[Given(@"I login this user")]
 		public void GivenILoginThisUser(Table table)
 		{
-			var user = table.CreateInstance<UserTable>();
+			var userTable = table.CreateInstance<UserTable>();
+
+			var user = repos.User.GetByEmail(userTable.Email);
+
+			if (user is {Active: false})
+				repos.User.Activate(user);
 
 			var info = new SignInInfo
 			{
-				Email = user.Email.Replace(
+				Email = userTable.Email.Replace(
 					"{scenarioCode}", scenarioCode
 				),
-				Password = user.Password,
+				Password = userTable.Password,
 				TicketKey = ticketKey,
 				TicketType = TicketType.Local,
 			};

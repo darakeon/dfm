@@ -26,6 +26,9 @@ Scenario: Aa03. Save user with invalid e-mail
 
 Scenario: Aa04. Save user with repeated e-mail
 	Given I have this user created
+			| Email                     | Password |
+			| repeated@dontflymoney.com | password |
+		And I have this user data
 			| Email                     | Password | Retype Password |
 			| repeated@dontflymoney.com | password | password        |
 	When I try to save the user

@@ -1,7 +1,7 @@
 ﻿Feature: Ea. Get month report
 
 Background:
-	Given I have a complete user logged in
+	Given test user login
 		And I enable Categories use
 		And I have an account
 		And I have moves of

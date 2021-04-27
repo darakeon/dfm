@@ -1,7 +1,7 @@
 ﻿Feature: Cg. Uncheck move
 
 Background:
-	Given I have a complete user logged in
+	Given test user login
 		And I enable Categories use
 		And I have two accounts
 		And I have a category
@@ -80,7 +80,7 @@ Scenario: Cg10. Mark another user's move as not checked
 		But there is a bad person logged in
 	When I try to mark it as not checked for account Out
 	Then I will receive this core error: InvalidMove
-	Given the right user login again
+	Given test user login
 	Then the move will be checked for account Out
 
 Scenario: Cg11. Mark a move as checked in closed account

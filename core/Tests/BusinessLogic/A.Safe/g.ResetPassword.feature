@@ -2,8 +2,11 @@
 
 Background:
 	Given I have this user created
-			| Email                                        | Password | Retype Password | Signed | Active |
-			| passwordreset{scenarioCode}@dontflymoney.com | password | password        | true   | true   |
+			| Email                           | Password | Signed | Active |
+			| {scenarioCode}@dontflymoney.com | password | true   | true   |
+		And I have this user data
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 		And I have a ticket of this user
 		And I have a token for its password reset
 

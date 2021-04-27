@@ -1,7 +1,7 @@
 ﻿Feature: Bd. Close account
 
 Background:
-	Given I have a complete user logged in
+	Given test user login
 		And I have an account
 		And I disable Categories use
 

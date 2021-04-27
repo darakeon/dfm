@@ -1,7 +1,7 @@
 ﻿Feature: Bh. Update category
 
 Background:
-	Given I have a complete user logged in
+	Given test user login
 		And I enable Categories use
 
 Scenario: Bh01. Change the name

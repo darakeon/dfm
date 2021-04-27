@@ -1,7 +1,7 @@
 ﻿Feature: Bp. End wizard
 
 Background:
-	Given I have a complete user logged in
+	Given test user login
 
 Scenario: Bp01. End wizard
 	Given I enable wizard

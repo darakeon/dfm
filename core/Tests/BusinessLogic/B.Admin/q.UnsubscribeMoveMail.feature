@@ -1,7 +1,7 @@
 ﻿Feature: Bq. Unsubscribe move mail
 
 Background:
-	Given I have a complete user logged in
+	Given test user login
 		And I enable move send e-mail
 
 Scenario: Bq01. Stop sending move mail

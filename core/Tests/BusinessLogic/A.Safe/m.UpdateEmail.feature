@@ -1,11 +1,16 @@
 ﻿Feature: Am. Update e-mail
 
-Scenario: Am01. E-mail change with wrong current password
+Background:
 	Given I have this user created
-			| Email                 | Password | Active | Signed |
-			| Am01@dontflymoney.com | password | true   | true   |
+			| Email                           | Password | Active | Signed |
+			| {scenarioCode}@dontflymoney.com | password | true   | true   |
+		And I have this user data
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 		And I have a ticket of this user
-		And I pass this new e-mail and password
+
+Scenario: Am01. E-mail change with wrong current password
+	Given I pass this new e-mail and password
 			| New E-mail             | Current Password |
 			| Am01_@dontflymoney.com | password_wrong   |
 	When I try to change the e-mail
@@ -14,11 +19,7 @@ Scenario: Am01. E-mail change with wrong current password
 		And the user will be activated
 
 Scenario: Am02. E-mail change with empty new e-mail
-	Given I have this user created
-			| Email                 | Password | Active | Signed |
-			| Am02@dontflymoney.com | password | true   | true   |
-		And I have a ticket of this user
-		And I pass this new e-mail and password
+	Given I pass this new e-mail and password
 			| New E-mail | Current Password |
 			|            | password         |
 	When I try to change the e-mail
@@ -27,11 +28,7 @@ Scenario: Am02. E-mail change with empty new e-mail
 		And the user will be activated
 
 Scenario: Am03. E-mail change with info all right
-	Given I have this user created
-			| Email                 | Password | Active | Signed |
-			| Am99@dontflymoney.com | password | true   | true   |
-		And I have a ticket of this user
-		And I pass this new e-mail and password
+	Given I pass this new e-mail and password
 			| New E-mail             | Current Password |
 			| Am99_@dontflymoney.com | password         |
 	When I try to change the e-mail

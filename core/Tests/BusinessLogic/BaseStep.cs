@@ -87,6 +87,14 @@ namespace DFM.BusinessLogic.Tests
 		}
 
 		#region Get or Create
+		protected void createLogoffLogin(String email)
+		{
+			resetTicket();
+			createUserIfNotExists(email, userPassword, true);
+			current.Set(email, userPassword, false);
+			service.Safe.AcceptContract();
+		}
+
 		protected void createUserIfNotExists(
 			String email,
 			String password,
@@ -147,10 +155,7 @@ namespace DFM.BusinessLogic.Tests
 			if (category != null) return category;
 
 			service.Admin.CreateCategory(
-				new CategoryInfo
-				{
-					Name = name
-				}
+				new CategoryInfo { Name = name }
 			);
 
 			return repos.Category.GetByName(name, user);
@@ -328,12 +333,6 @@ namespace DFM.BusinessLogic.Tests
 			set => set("startDateTime", value);
 		}
 
-		protected static String userEmailByTest
-		{
-			get => get<String>("userEmailByTest");
-			set => set("userEmailByTest", value);
-		}
-
 		protected static String token
 		{
 			get => get<String>("Token");
@@ -346,7 +345,9 @@ namespace DFM.BusinessLogic.Tests
 			DateTime.MinValue;
 		#endregion
 
-		protected const String userEmail = "test@dontflymoney.com";
+		protected String userEmail =>
+			$"{scenarioCode}@dontflymoney.com";
+
 		protected const String badPersonEmail = "badperson@dontflymoney.com";
 		protected const String anotherPersonEmail = "person@dontflymoney.com";
 

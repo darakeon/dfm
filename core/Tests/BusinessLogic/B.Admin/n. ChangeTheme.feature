@@ -1,7 +1,7 @@
 ﻿Feature: Bn. Change theme
 
 Background:
-	Given I have a complete user logged in
+	Given test user login
 
 Scenario: Bn01. Change system Theme to Dark Magic
 	Given a theme DarkMagic
