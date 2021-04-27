@@ -18,9 +18,22 @@ site/*/log
 site/*/*.user
 site/Tests
 
+robot/.vs
+robot/*/bin
+robot/*/obj
+robot/packages
+robot/*/log
+robot/*/*.user
+robot/Tests
+
 site/MVC/Assets/libs
 site/MVC/data
 site/MVC/Properties/PublishProfiles
-site/MVC/appsettings.Development.json
+site/MVC/appSettings.Development.json
 site/MVC/db.*.json
 site/MVC/smtp.*.json
+
+robot/Robot/appSettings.Development.json
+robot/Robot/db.*.json
+robot/Robot/smtp.*.json
+robot/Robot/login.*.json
