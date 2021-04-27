@@ -58,8 +58,6 @@ namespace DFM.MVC
 
 			Access.Run(app);
 
-			Robot.Run(app);
-
 			Route.Execute(app);
 		}
 	}

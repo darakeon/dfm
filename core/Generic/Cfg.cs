@@ -13,13 +13,17 @@ namespace DFM.Generic
 				.SetBasePath(Directory.GetCurrentDirectory())
 				.AddJsonFile("appSettings.json", true)
 				.AddJsonFile("db.json", true)
-				.AddJsonFile("smtp.json", true);
+				.AddJsonFile("smtp.json", true)
+				.AddJsonFile("login.json", true)
+				;
 
 			if (environment != null)
 			{
 				builder
 					.AddJsonFile($"db.{environment}.json", true)
-					.AddJsonFile($"smtp.{environment}.json", true);
+					.AddJsonFile($"smtp.{environment}.json", true)
+					.AddJsonFile($"login.{environment}.json", true)
+					;
 			}
 
 			dic = builder.Build();
@@ -56,5 +60,10 @@ namespace DFM.Generic
 
 		public static String LogErrorsFile(String name) =>
 			Path.Combine(LogErrorsPath, $"{name}.log");
+
+		private static IConfiguration robot => dic.GetSection("Robot");
+
+		public static String RobotEmail => robot["Email"];
+		public static String RobotPassword => robot["Password"];
 	}
 }

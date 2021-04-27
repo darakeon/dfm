@@ -6,6 +6,7 @@ namespace DFM.Authentication
 	public interface ISessionInfo
 	{
 		Boolean IsAdm { get; }
+		Boolean IsRobot { get; }
 
 		String Email { get; }
 		Boolean HasTFA { get; }

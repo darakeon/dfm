@@ -240,7 +240,8 @@ Scenario: Aq31. Run Schedule
 		And it has no Account In
 		And I save the schedule
 	But there is a new contract
-	When I try to run the scheduler
+	When robot user login
+		And run the scheduler
 	Then I will receive this core error: NotSignedLastContract
 
 Scenario: Aq32. Disable Schedule

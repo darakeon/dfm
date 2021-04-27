@@ -5,10 +5,10 @@ using DFM.BusinessLogic.Concurrency;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
-using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
+using DFM.Generic;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Services
@@ -18,81 +18,98 @@ namespace DFM.BusinessLogic.Services
 		internal RobotService(ServiceAccess serviceAccess, Repos repos)
 			: base(serviceAccess, repos) { }
 
-		internal static Tasks Runs = new Tasks();
+		internal static Tasks Runs = new();
 
-		public EmailStatus RunSchedule()
+		public DicList<CoreError> RunSchedule()
 		{
-			if (alreadyRunToday())
-				return EmailStatus.None;
+			var errors = new DicList<CoreError>();
 
-			parent.Safe.VerifyUser();
+			if (alreadyRun())
+				return errors;
+
+			if (!parent.Current.IsRobot)
+				throw Error.Uninvited.Throw();
+
+			var users = repos.User
+				.NewQuery()
+				.Where(u => u.Active)
+				.Where(u => u.RobotCheck <= DateTime.UtcNow)
+				.Where(u => !u.IsRobot)
+				.List;
+
+			var hadError = false;
+
+			foreach (var user in users)
+			{
+				hadError |= !runSchedule(user, errors);
+			}
+
+			if (hadError)
+				errorCaught();
+
+			return errors;
+		}
+
+		private Boolean alreadyRun()
+		{
+			var key = parent.Current.TicketKey;
+			var added = Runs.AddIfNotExists(key);
+			return !added;
+		}
+
+		private bool runSchedule(User user, DicList<CoreError> errors)
+		{
+			try
+			{
+				parent.Safe.VerifyUser(user);
+			}
+			catch (CoreError e)
+			{
+				errors.Add(user.Email, e);
+				return false;
+			}
 
 			try
 			{
-				var user = parent.Safe.GetCurrent();
+				runSchedule(
+					repos.Schedule.GetRunnable(user),
+					errors
+				);
 
-				var scheduleList = repos.Schedule.GetRunnable(user);
+				parent.BaseMove.FixSummaries(user);
 
-				var result = scheduleList.Any()
-					? runSchedule(scheduleList)
-					: EmailStatus.EmailSent;
+				user.SetRobotCheckDay();
 
-				parent.BaseMove.FixSummaries();
-
-				return result;
+				return true;
 			}
-			catch (Exception e)
+			catch (CoreError e)
 			{
-				if (e is not CoreError)
-				{
-					Runs.Remove(parent.Current.TicketKey);
-				}
+				errors.Add(user.Email, e);
 
-				throw Error.ErrorRunningSchedules.Throw(e);
+				return false;
 			}
 		}
 
-		private Boolean alreadyRunToday()
+		private void runSchedule(IList<Schedule> scheduleList, DicList<CoreError> errors)
 		{
-			var ticket = parent.Current.TicketKey;
-
-			return ticket == null
-			    || !Runs.FirstToday(ticket);
-		}
-
-		private EmailStatus runSchedule(IEnumerable<Schedule> scheduleList)
-		{
-			var emailsStati = new List<EmailStatus>();
-			var exceptions = new List<Exception>();
-
 			foreach (var schedule in scheduleList)
 			{
 				try
 				{
-					var result = inTransaction("RunSchedule", () =>
-						addNewMoves(schedule)
+					inTransaction(
+						"RunSchedule",
+						() => addNewMoves(schedule)
 					);
-
-					emailsStati.AddRange(result);
 				}
-				catch (Exception e)
+				catch (CoreError e)
 				{
-					exceptions.Add(e);
+					errors.Add(schedule.User.Email, e);
 				}
 			}
-
-			if (exceptions.Any())
-			{
-				throw new AggregateException(exceptions);
-			}
-
-			return emailsStati.Max();
 		}
 
-		private IEnumerable<EmailStatus> addNewMoves(Schedule schedule)
+		private void addNewMoves(Schedule schedule)
 		{
-			var emailsStati = new List<EmailStatus>();
-
 			while (schedule.CanRunNow())
 			{
 				var newMove = schedule.CreateMove();
@@ -106,12 +123,15 @@ namespace DFM.BusinessLogic.Services
 				var move = repos.Move.Get(result.Guid);
 
 				schedule.MoveList.Add(move);
-				emailsStati.Add(result.Email);
 			}
 
 			repos.Schedule.UpdateState(schedule);
+		}
 
-			return emailsStati;
+		private void errorCaught()
+		{
+			var key = parent.Current.TicketKey;
+			Runs.Remove(key);
 		}
 
 		public ScheduleResult SaveSchedule(ScheduleInfo info)
@@ -121,11 +141,10 @@ namespace DFM.BusinessLogic.Services
 			if (info == null)
 				throw Error.ScheduleRequired.Throw();
 
-			var result = inTransaction("SaveSchedule",
+			var result = inTransaction(
+				"SaveSchedule",
 				() => save(info)
 			);
-
-			Runs.Remove(parent.Current.TicketKey);
 
 			return result;
 		}
@@ -152,6 +171,9 @@ namespace DFM.BusinessLogic.Services
 				repos.Detail.SaveDetails(schedule);
 				repos.Schedule.Save(schedule);
 			}
+
+			schedule.User.RobotCheck = DateTime.Now;
+			repos.User.SaveOrUpdate(schedule.User);
 
 			return new ScheduleResult(schedule.Guid);
 		}

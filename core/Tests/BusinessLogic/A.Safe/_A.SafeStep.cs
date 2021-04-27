@@ -247,6 +247,14 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			repos.User.SaveOrUpdate(user);
 		}
 
+		[Given(@"I deactivate the user (.+)")]
+		public void GivenIDeactivateTheUser(String email)
+		{
+			var user = repos.User.GetByEmail(email);
+			user.Active = false;
+			repos.User.SaveOrUpdate(user);
+		}
+
 		[When(@"I try to get the ticket")]
 		public void WhenITryToGetTheTicket()
 		{
@@ -751,8 +759,11 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 				var signed = userData.ContainsKey("Signed")
 				    && userData["Signed"] == "true";
 
+				var timezone = userData.ContainsKey("Timezone")
+					? Int32.Parse(userData["Timezone"])
+					: default(Int32?);
 
-				createUserIfNotExists(email, password, active, signed);
+				createUserIfNotExists(email, password, active, signed, timezone);
 			}
 		}
 

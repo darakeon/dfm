@@ -239,7 +239,8 @@ namespace DFM.BusinessLogic.Tests
 		[Then(@"the accountOut value will not change")]
 		public void ThenTheAccountOutValueWillNotChange()
 		{
-			accountOut = getOrCreateAccount(accountOut.Url);
+			var url = accountOut?.Url ?? accountOutUrl;
+			accountOut = getOrCreateAccount(url);
 
 			Assert.AreEqual(accountOutTotal, repos.Summary.GetTotal(accountOut));
 		}
@@ -247,7 +248,8 @@ namespace DFM.BusinessLogic.Tests
 		[Then(@"the month-category-accountOut value will not change")]
 		public void ThenTheMonthCategoryAccountOutValueWillNotChange()
 		{
-			accountOut = getOrCreateAccount(accountOut.Name);
+			var url = accountOut?.Url ?? accountOutUrl;
+			accountOut = getOrCreateAccount(url);
 
 			var user = repos.User.GetByEmail(current.Email);
 			var category = repos.Category.GetByName(categoryName, user);
@@ -262,7 +264,8 @@ namespace DFM.BusinessLogic.Tests
 		[Then(@"the year-category-accountOut value will not change")]
 		public void ThenTheYearCategoryAccountOutValueWillNotChange()
 		{
-			accountOut = getOrCreateAccount(accountOut.Name);
+			var url = accountOut?.Url ?? accountOutUrl;
+			accountOut = getOrCreateAccount(url);
 
 			var user = repos.User.GetByEmail(current.Email);
 			var category = repos.Category.GetByName(categoryName, user);
@@ -277,7 +280,8 @@ namespace DFM.BusinessLogic.Tests
 		[Then(@"the accountIn value will not change")]
 		public void ThenTheAccountInValueWillNotChange()
 		{
-			accountIn = getOrCreateAccount(accountIn.Name);
+			var url = accountIn?.Url ?? accountInUrl;
+			accountIn = getOrCreateAccount(url);
 
 			Assert.AreEqual(accountInTotal, repos.Summary.GetTotal(accountIn));
 		}
@@ -285,7 +289,8 @@ namespace DFM.BusinessLogic.Tests
 		[Then(@"the month-category-accountIn value will not change")]
 		public void ThenTheMonthCategoryAccountInValueWillNotChange()
 		{
-			accountIn = getOrCreateAccount(accountIn.Name);
+			var url = accountIn?.Url ?? accountInUrl;
+			accountIn = getOrCreateAccount(url);
 
 			var user = repos.User.GetByEmail(current.Email);
 			var category = repos.Category.GetByName(categoryName, user);
@@ -300,7 +305,8 @@ namespace DFM.BusinessLogic.Tests
 		[Then(@"the year-category-accountIn value will not change")]
 		public void ThenTheYearCategoryAccountInValueWillNotChange()
 		{
-			accountIn = getOrCreateAccount(accountIn.Name);
+			var url = accountIn?.Url ?? accountInUrl;
+			accountIn = getOrCreateAccount(url);
 
 			var user = repos.User.GetByEmail(current.Email);
 			var category = repos.Category.GetByName(categoryName, user);
@@ -315,7 +321,8 @@ namespace DFM.BusinessLogic.Tests
 		[Then(@"the accountOut value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheAccountOutValueWillDecreaseIn(Decimal change)
 		{
-			accountOut = getOrCreateAccount(accountOut.Name);
+			var url = accountOut?.Url ?? accountOutUrl;
+			accountOut = getOrCreateAccount(url);
 
 			var currentTotal = repos.Summary.GetTotal(accountOut);
 
@@ -325,7 +332,8 @@ namespace DFM.BusinessLogic.Tests
 		[Then(@"the month-category-accountOut value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheMonthCategoryAccountOutValueWillChangeIn(Decimal change)
 		{
-			accountOut = getOrCreateAccount(accountOut.Name);
+			var url = accountOut?.Url ?? accountOutUrl;
+			accountOut = getOrCreateAccount(url);
 
 			var user = repos.User.GetByEmail(current.Email);
 			var category = repos.Category.GetByName(categoryName, user);
@@ -340,7 +348,8 @@ namespace DFM.BusinessLogic.Tests
 		[Then(@"the year-category-accountOut value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheYearCategoryAccountOutValueWillChangeIn(Decimal change)
 		{
-			accountOut = getOrCreateAccount(accountOut.Name);
+			var url = accountOut?.Url ?? accountOutUrl;
+			accountOut = getOrCreateAccount(url);
 
 			var user = repos.User.GetByEmail(current.Email);
 			var category = repos.Category.GetByName(categoryName, user);
@@ -356,7 +365,8 @@ namespace DFM.BusinessLogic.Tests
 		[Then(@"the accountIn value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheAccountInValueWillIncreaseIn(Decimal change)
 		{
-			accountIn = getOrCreateAccount(accountIn.Name);
+			var url = accountIn?.Url ?? accountInUrl;
+			accountIn = getOrCreateAccount(url);
 
 			var currentTotal = repos.Summary.GetTotal(accountIn);
 
@@ -366,7 +376,8 @@ namespace DFM.BusinessLogic.Tests
 		[Then(@"the month-category-accountIn value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheMonthCategoryAccountInValueWillChangeIn(Decimal change)
 		{
-			accountIn = getOrCreateAccount(accountIn.Name);
+			var url = accountIn?.Url ?? accountInUrl;
+			accountIn = getOrCreateAccount(url);
 
 			var user = repos.User.GetByEmail(current.Email);
 			var category = repos.Category.GetByName(categoryName, user);
@@ -381,7 +392,8 @@ namespace DFM.BusinessLogic.Tests
 		[Then(@"the year-category-accountIn value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheYearCategoryAccountInValueWillChangeIn(Decimal change)
 		{
-			accountIn = getOrCreateAccount(accountIn.Name);
+			var url = accountIn?.Url ?? accountInUrl;
+			accountIn = getOrCreateAccount(url);
 
 			var user = repos.User.GetByEmail(current.Email);
 			var category = repos.Category.GetByName(categoryName, user);

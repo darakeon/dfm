@@ -69,7 +69,7 @@ Scenario: Ce07. Delete move from schedule with Category
 		And it has no Account In
 		And I enable Categories use
 		And I save the schedule
-		And I run the scheduler and get the move
+		And robot run the scheduler and get the move
 		And I disable Categories use
 	When I try to delete the move
 	Then I will receive no core error
@@ -85,7 +85,7 @@ Scenario: Ce08. Delete move from schedule without Category
 		And it has no Account In
 		And I disable Categories use
 		And I save the schedule
-		And I run the scheduler and get the move
+		And robot run the scheduler and get the move
 		And I enable Categories use
 	When I try to delete the move
 	Then I will receive no core error
@@ -100,7 +100,7 @@ Scenario: Ce09. Delete all moves from schedule
 		And it has an Account Out
 		And it has no Account In
 		And I save the schedule
-		And I run the scheduler and get all the moves
+		And robot run the scheduler and get all the moves
 	When I try to delete all the moves
 	Then I will receive no core error
 		And the accountOut value will not change

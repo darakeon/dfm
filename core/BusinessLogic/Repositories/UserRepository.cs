@@ -130,6 +130,8 @@ namespace DFM.BusinessLogic.Repositories
 
 			user.Creation = DateTime.UtcNow;
 			user.Password = Crypt.Do(user.Password);
+
+			user.SetRobotCheckDay();
 		}
 
 

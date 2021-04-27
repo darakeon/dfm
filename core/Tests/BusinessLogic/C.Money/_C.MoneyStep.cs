@@ -652,19 +652,19 @@ namespace DFM.BusinessLogic.Tests.C.Money
 		#endregion
 
 		#region DeleteMove
-		[Given(@"I run the scheduler and get the move")]
+		[Given(@"robot run the scheduler and get the move")]
 		public void GivenIRunTheSchedulerAndGetTheMove()
 		{
-			service.Robot.RunSchedule();
+			robotRunSchedule();
 
 			var schedule = repos.Schedule.Get(scheduleInfo.Guid);
 			guid = schedule.MoveList.Last().Guid;
 		}
 
-		[Given(@"I run the scheduler and get all the moves")]
+		[Given(@"robot run the scheduler and get all the moves")]
 		public void GivenIRunTheSchedulerAndGetAllTheMoves()
 		{
-			service.Robot.RunSchedule();
+			robotRunSchedule();
 
 			var schedule = repos.Schedule.Get(scheduleInfo.Guid);
 			guids = schedule.MoveList.Select(m => m.Guid).ToList();

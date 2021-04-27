@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
-using DFM.BusinessLogic.Services;
 using DFM.BusinessLogic.Tests.Helpers;
 using DFM.Entities;
 using DFM.Entities.Bases;
@@ -97,12 +96,6 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		#endregion
 
 		#region RunSchedule
-		[Given(@"I run the scheduler to cleanup older tests")]
-		public void GivenIRunTheSchedulerToCleanupOlderTests()
-		{
-			service.Robot.RunSchedule();
-		}
-
 		[Given(@"I have no logged user \(logoff\)")]
 		public void GivenIHaveNoLoggedUserLogoff()
 		{
@@ -129,28 +122,77 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 					User = user,
 				}
 			);
-
-			RobotService.Runs.Remove(current.TicketKey);
 		}
 
-		[Given(@"I run the scheduler")]
-		[When(@"I try to run the scheduler")]
+		[Given(@"robot run the scheduler")]
+		public void GivenRobotRunTheScheduler()
+		{
+			robotRunSchedule();
+		}
+
+		[Given(@"a schedule is created by (.+)")]
+		public void GivenTheCreatedUserHasASchedule(String email)
+		{
+			resetTicket();
+			current.Set(email, userPassword, false);
+
+			getOrCreateAccount(accountOutUrl);
+
+			var info = new ScheduleInfo
+			{
+				Description = "Schedule",
+				Day = 23,
+				Month = 4,
+				Year = 2021,
+				OutUrl = accountOutUrl,
+				Frequency = ScheduleFrequency.Monthly,
+				Nature = MoveNature.Out,
+				Times = 1,
+				Value = 8,
+			};
+
+			service.Robot.SaveSchedule(info);
+		}
+
+		[Given(@"robot already ran for (.+)")]
+		public void GivenRobotAlreadyRanFor(String email)
+		{
+			db.Execute(() =>
+			{
+				var user = repos.User.GetByEmail(email);
+				user.SetRobotCheckDay();
+				repos.User.SaveOrUpdate(user);
+			});
+		}
+
+		[Given(@"(.+) is a robot")]
+		public void GivenIsARobot(String email)
+		{
+			var user = repos.User.GetByEmail(email);
+			user.IsRobot = true;
+			repos.User.SaveOrUpdate(user);
+		}
+
+		[When(@"run the scheduler")]
 		public void WhenITryToRunTheScheduler()
 		{
 			try
 			{
-				service.Robot.RunSchedule();
+				var errors = service.Robot.RunSchedule();
+
+				error = errors
+					.SingleOrDefault(
+						e => e.Key == userEmail
+					).Value?
+					.FirstOrDefault();
 			}
 			catch (CoreError e)
 			{
-				if (isCurrent(ScenarioBlock.When))
-					error = e;
-				else
-					throw;
+				error = e;
 			}
 		}
 
-		[When(@"I try to run the scheduler with e-mail system out")]
+		[When(@"run the scheduler with e-mail system out")]
 		public void WhenITryToRunTheSchedulerWithEMailSystemOut()
 		{
 			ConfigHelper.ActivateMoveEmailForUser(service);
@@ -158,7 +200,7 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 
 			try
 			{
-				currentEmailStatus = service.Robot.RunSchedule();
+				robotRunSchedule();
 			}
 			catch (CoreError e)
 			{
@@ -169,14 +211,14 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			ConfigHelper.DeactivateMoveEmailForUser(service);
 		}
 
-		[When(@"I try to run the scheduler with e-mail system ok")]
+		[When(@"run the scheduler with e-mail system ok")]
 		public void WhenITryToRunTheSchedulerWithEMailSystemOk()
 		{
 			ConfigHelper.ActivateMoveEmailForUser(service);
 
 			try
 			{
-				currentEmailStatus = service.Robot.RunSchedule();
+				robotRunSchedule();
 			}
 			catch (CoreError e)
 			{
@@ -186,7 +228,7 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			ConfigHelper.DeactivateMoveEmailForUser(service);
 		}
 
-		[When(@"I try to run the scheduler in (\d+) parallel threads")]
+		[When(@"run the scheduler in (\d+) parallel threads")]
 		public void WhenITryToRunTheSchedulerInParallelThreads(Int32 times)
 		{
 			var runs = new Action[times];

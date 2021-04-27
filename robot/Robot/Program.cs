@@ -2,6 +2,9 @@
 using DFM.Authentication;
 using DFM.BusinessLogic;
 using DFM.Entities.Enums;
+using DFM.Generic;
+using DFM.Generic.Datetime;
+using DfM.Logs;
 
 namespace DFM.Robot
 {
@@ -9,19 +12,31 @@ namespace DFM.Robot
 	{
 		public static void Main()
 		{
-			Connection.Run(() =>
+			Connection.Run(execute);
+		}
+
+		private static void execute()
+		{
+			TZ.Init(false);
+
+			var services = new ServiceAccess(getTicket, getSite);
+
+			services.Current.Set(Cfg.RobotEmail, Cfg.RobotPassword, false);
+
+			var userErrors = services.Robot.RunSchedule();
+
+			foreach (var (email, errors) in userErrors)
 			{
-				var services = new ServiceAccess(getTicket, getSite);
-
-				services.Robot.RunSchedule();
-
-				Console.WriteLine("Hello World!");
-			});
+				foreach (var error in errors)
+				{
+					error.TryLogHandled($"User: {email}");
+				}
+			}
 		}
 
 		private static ClientTicket getTicket(Boolean remember)
 		{
-			return new ClientTicket("ROBOT", TicketType.Local);
+			return new("ROBOT", TicketType.Local);
 		}
 
 		private static string getSite()

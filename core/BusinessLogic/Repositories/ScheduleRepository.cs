@@ -46,11 +46,11 @@ namespace DFM.BusinessLogic.Repositories
 			return SingleOrDefault(s => s.ExternalId == guid.ToByteArray());
 		}
 
-		internal void Disable(Guid guid, User loggedInUser)
+		internal void Disable(Guid guid, User user)
 		{
 			var schedule = Get(guid);
 
-			if (schedule == null || schedule.User.ID != loggedInUser.ID)
+			if (schedule == null || schedule.User.ID != user.ID)
 				throw Error.InvalidSchedule.Throw();
 
 			disable(schedule);
