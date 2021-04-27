@@ -10,6 +10,7 @@ using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
+using DFM.Generic;
 using DFM.Tests.Util;
 using Keon.Util.Extensions;
 using TechTalk.SpecFlow;
@@ -31,8 +32,7 @@ namespace DFM.BusinessLogic.Tests
 
 			var path =
 				Path.Combine(
-					AppDomain.CurrentDomain.BaseDirectory,
-					@"..", @"..", @"..", @"..", "log"
+					Cfg.LogErrorsPath, "..", "tests"
 				);
 
 			path = Path.GetFullPath(path);
