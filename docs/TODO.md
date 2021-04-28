@@ -11,8 +11,9 @@ This is the task list for the project.
 - Dependency: which other task it depends on (if it exists)
 - Issue: github issue about the task (if it exists)
 
-| Task (50)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (51)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
+| Login after create account, disable if not confirm e-mail in 1 week            | :sheep:  |  2  |  4  |  6  |                |       |
 | Separate validators from service/repository                                    | :ant:    |  3  |  3  |  4  |                |       |
 | Cache account/category at login + refresh button at app                        | :whale:  |  3  |  3  |  4  |                |       |
 | Year and Month report by category [chart]                                      | :whale:  |  3  |  3  |  4  |                |       |
