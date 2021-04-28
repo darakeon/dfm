@@ -21,3 +21,7 @@ workflows:
       - test_android:
           requires:
             - test_ci
+      - test_build_robot:
+          requires:
+            - test_ci
+            - test_core
