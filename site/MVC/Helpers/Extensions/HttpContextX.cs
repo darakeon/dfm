@@ -11,30 +11,6 @@ namespace DFM.MVC.Helpers.Extensions
 {
 	public static class HttpContextX
 	{
-		private class ContextDic<T>
-		{
-			private readonly Func<HttpContext, T> create;
-
-			public ContextDic(Func<HttpContext, T> create)
-			{
-				this.create = create;
-			}
-
-			private readonly IDictionary<HttpContext, T> dic =
-				new ConcurrentDictionary<HttpContext, T>();
-
-			public T this[HttpContext context]
-			{
-				get
-				{
-					if (!dic.ContainsKey(context))
-						dic.Add(context, create(context));
-
-					return dic[context];
-				}
-			}
-		}
-
 		private static readonly ContextDic<Service> services =
 			new(c => new Service(() => c));
 
@@ -94,6 +70,30 @@ namespace DFM.MVC.Helpers.Extensions
 				result.Add("area", null);
 
 			return result;
+		}
+
+		class ContextDic<T>
+		{
+			private readonly Func<HttpContext, T> create;
+
+			public ContextDic(Func<HttpContext, T> create)
+			{
+				this.create = create;
+			}
+
+			private readonly IDictionary<HttpContext, T> dic =
+				new ConcurrentDictionary<HttpContext, T>();
+
+			public T this[HttpContext context]
+			{
+				get
+				{
+					if (!dic.ContainsKey(context))
+						dic.Add(context, create(context));
+
+					return dic[context];
+				}
+			}
 		}
 	}
 }

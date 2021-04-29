@@ -66,23 +66,23 @@ namespace DFM.MVC.Helpers.Global
 				|| emailsStati.List.Any()
 				|| texts.List.Any();
 		}
-	}
 
-	internal class SessionList<T>
-	{
-		private static readonly IDictionary<String, IList<T>> messages
-			= new Dictionary<String, IList<T>>();
-
-		private readonly String name;
-
-		internal SessionList(String name)
+		class SessionList<T>
 		{
-			this.name = name;
+			private static readonly IDictionary<String, IList<T>> messages
+				= new Dictionary<String, IList<T>>();
 
-			if (!messages.ContainsKey(name))
-				messages.Add(name, new List<T>());
+			private readonly String name;
+
+			internal SessionList(String name)
+			{
+				this.name = name;
+
+				if (!messages.ContainsKey(name))
+					messages.Add(name, new List<T>());
+			}
+
+			internal IList<T> List => messages[name];
 		}
-
-		internal IList<T> List => messages[name];
 	}
 }
