@@ -139,6 +139,11 @@ dd {
 		-2px  0   var(--primary-1);
 }
 
+.alert a {
+	color: var(--neutral-0);
+	text-decoration: underline;
+}
+
 .navbar .flag svg {
 	height: 18px;
 	width: auto;
@@ -237,4 +242,10 @@ dd {
 
 tr.sum-factor {
 	cursor: pointer;
+}
+
+.btn-float {
+	position: fixed;
+	bottom: 2em;
+	right: 2em;
 }

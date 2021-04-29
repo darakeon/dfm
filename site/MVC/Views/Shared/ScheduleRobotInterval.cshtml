@@ -1,0 +1,24 @@
+﻿<button type="button" class="btn btn-info btn-float"
+        data-toggle="modal" data-target="#schedule-modal">
+	<span class="glyphicon glyphicon-info-sign"></span>
+</button>
+
+<div class="modal" id="schedule-modal">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="modal-title">
+					@Context.Translate("Schedules")
+				</span>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true"
+						  class="glyphicon glyphicon-remove"
+						  title="@Context.Translate("Close")"></span>
+				</button>
+			</div>
+			<div class="modal-body text-center">
+				@Html.Raw(Context.Translate("ScheduleRobotInterval").BreakLines())
+			</div>
+		</div>
+	</div>
+</div>
