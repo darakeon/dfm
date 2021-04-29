@@ -314,6 +314,13 @@ td, th {
 	-moz-osx-font-smoothing: grayscale
 }
 
+.alert:before {
+	font-family: 'Glyphicons Halflings';
+	margin: 0 calc(50%-0.5em);
+	display: block;
+	font-size: 1.5em;
+}
+
 .glyphicon-asterisk:before {
 	content: "\002a"
 }
@@ -662,10 +669,12 @@ td, th {
 	content: "\e082"
 }
 
+.alert-danger:before,
 .glyphicon-remove-sign:before {
 	content: "\e083"
 }
 
+.alert-success:before,
 .glyphicon-ok-sign:before {
 	content: "\e084"
 }
@@ -674,6 +683,7 @@ td, th {
 	content: "\e085"
 }
 
+.alert-info:before,
 .glyphicon-info-sign:before {
 	content: "\e086"
 }
@@ -722,6 +732,7 @@ td, th {
 	content: "\e097"
 }
 
+.alert-warning:before,
 .glyphicon-exclamation-sign:before {
 	content: "\e101"
 }
@@ -1485,7 +1496,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	h1 small, h2 small, h3 small, h4 small, h5 small, h6 small, .h1 small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small, h1 .small, h2 .small, h3 .small, h4 .small, h5 .small, h6 .small, .h1 .small, .h2 .small, .h3 .small, .h4 .small, .h5 .small, .h6 .small {
 		font-weight: normal;
 		line-height: 1;
-		color: var(--neutral-3)
+		color: var(--highlight-0);
 	}
 
 h1, .h1, h2, .h2, h3, .h3 {
