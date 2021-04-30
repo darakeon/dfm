@@ -28,7 +28,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Language.Tests", "Tests\Lan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Email.Tests", "Tests\Email\Email.Tests.csproj", "{F4A55496-34C2-4FEB-A19B-8BD437007035}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logs", "Logs\Logs.csproj", "{510A4DAA-4A0F-40D2-B7BC-AB3F95885639}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logs", "Logs\Logs.csproj", "{510A4DAA-4A0F-40D2-B7BC-AB3F95885639}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

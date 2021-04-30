@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.BusinessLogic.Response;
-using DFM.BusinessLogic.Services;
 using DFM.Entities;
 using DFM.Generic;
 using DFM.Generic.Datetime;
@@ -154,8 +153,6 @@ namespace DFM.BusinessLogic.Tests
 			{
 				repos.Schedule.Disable(schedule.Guid, schedule.User);
 			}
-
-			RobotService.Runs.Clear();
 
 			Directory.GetFiles(Cfg.LogErrorsPath, "*.log")
 				.ToList()

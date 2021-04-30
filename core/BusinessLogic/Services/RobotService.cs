@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.BusinessLogic.Concurrency;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
@@ -18,14 +17,9 @@ namespace DFM.BusinessLogic.Services
 		internal RobotService(ServiceAccess serviceAccess, Repos repos)
 			: base(serviceAccess, repos) { }
 
-		internal static Tasks Runs = new();
-
 		public DicList<CoreError> RunSchedule()
 		{
 			var errors = new DicList<CoreError>();
-
-			if (alreadyRun())
-				return errors;
 
 			if (!parent.Current.IsRobot)
 				throw Error.Uninvited.Throw();
@@ -37,27 +31,15 @@ namespace DFM.BusinessLogic.Services
 				.Where(u => !u.IsRobot)
 				.List;
 
-			var hadError = false;
-
 			foreach (var user in users)
 			{
-				hadError |= !runSchedule(user, errors);
+				runSchedule(user, errors);
 			}
-
-			if (hadError)
-				errorCaught();
 
 			return errors;
 		}
 
-		private Boolean alreadyRun()
-		{
-			var key = parent.Current.TicketKey;
-			var added = Runs.AddIfNotExists(key);
-			return !added;
-		}
-
-		private bool runSchedule(User user, DicList<CoreError> errors)
+		private void runSchedule(User user, DicList<CoreError> errors)
 		{
 			try
 			{
@@ -66,7 +48,7 @@ namespace DFM.BusinessLogic.Services
 			catch (CoreError e)
 			{
 				errors.Add(user.Email, e);
-				return false;
+				return;
 			}
 
 			try
@@ -79,14 +61,10 @@ namespace DFM.BusinessLogic.Services
 				parent.BaseMove.FixSummaries(user);
 
 				user.SetRobotCheckDay();
-
-				return true;
 			}
 			catch (CoreError e)
 			{
 				errors.Add(user.Email, e);
-
-				return false;
 			}
 		}
 
@@ -126,12 +104,6 @@ namespace DFM.BusinessLogic.Services
 			}
 
 			repos.Schedule.UpdateState(schedule);
-		}
-
-		private void errorCaught()
-		{
-			var key = parent.Current.TicketKey;
-			Runs.Remove(key);
 		}
 
 		public ScheduleResult SaveSchedule(ScheduleInfo info)
