@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
 using DFM.BusinessLogic.Tests.Helpers;
@@ -226,29 +225,6 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			}
 
 			ConfigHelper.DeactivateMoveEmailForUser(service);
-		}
-
-		[When(@"run the scheduler in (\d+) parallel threads")]
-		public void WhenITryToRunTheSchedulerInParallelThreads(Int32 times)
-		{
-			var runs = new Action[times];
-
-			Array.Fill(runs, () =>
-			{
-				service.Robot.RunSchedule();
-			});
-
-			var tasks = runs.Select(Task.Run).ToArray();
-
-			Task.WaitAll(tasks);
-
-			foreach (var task in tasks)
-			{
-				var exception = task.Exception;
-
-				if (exception != null)
-					throw exception;
-			}
 		}
 		#endregion
 

@@ -245,26 +245,7 @@ Scenario: Db15. Run schedule without category and categories use enabled
 		And run the scheduler
 	Then I will receive this core error: InvalidCategory
 
-Scenario: Db16. Run robot in concurrently
-	Given I enable Categories use
-	Given I have this schedule to create
-			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Db16   | 2020-11-11 | Out    | 10    | 700   | False     | Daily     | False           |
-		And its Date is 600 days ago
-		And it has no Details
-		And it has a Category
-		And it has an Account Out
-		And it has no Account In
-		And I save the schedule
-	When robot user login
-		And run the scheduler in 20 parallel threads
-	Then I will receive no core error
-	Given test user login
-		Then the accountOut value will change in -6010
-		And the schedule last run will be 601
-		And the schedule will be enabled
-
-Scenario: Db17. Run with normal user
+Scenario: Db16. Run with normal user
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Db17   | 2021-04-22 | Out    | 10    | 1     | False     | Monthly   | False           |
@@ -276,7 +257,7 @@ Scenario: Db17. Run with normal user
 	When run the scheduler
 	Then I will receive this core error: Uninvited
 
-Scenario: Db18. Run only that timezone schedules
+Scenario: Db17. Run only that timezone schedules
 	Given I have this user created
 			| Email                       | Password | Active | Signed | Timezone |
 			| tz_now@dontflymoney.com     | password | true   | true   | +0       |
@@ -297,7 +278,7 @@ Scenario: Db18. Run only that timezone schedules
 			| tz_not_now@dontflymoney.com | password |
 	Then the accountOut value will not change
 
-Scenario: Db19. Run only active users
+Scenario: Db18. Run only active users
 	Given I have this user created
 			| Email                     | Password | Active | Signed |
 			| active@dontflymoney.com   | password | true   | true   |
@@ -318,7 +299,7 @@ Scenario: Db19. Run only active users
 			| inactive@dontflymoney.com | password |
 	Then the accountOut value will not change
 
-Scenario: Db20. Do not run robots
+Scenario: Db19. Do not run robots
 	Given I have this user created
 			| Email                   | Password | Active | Signed |
 			| common@dontflymoney.com | password | true   | true   |
