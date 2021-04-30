@@ -14,6 +14,9 @@ This is the task list for the project.
 | Task (51)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
 | Login after create account, disable if not confirm e-mail in 1 week            | :sheep:  |  2  |  4  |  6  |                |       |
+| Add misc to users                                                              | :dragon: |  2  |  3  |  5  |                |       |
+| Reset Misc on password change and send e-mail                                  | :sheep:  |  1  |  3  |  6  | misc           |       |
+| Add Misc reset manually                                                        | :sheep:  |  1  |  3  |  6  | misc           |       |
 | Separate validators from service/repository                                    | :ant:    |  3  |  3  |  4  |                |       |
 | Cache account/category at login + refresh button at app                        | :whale:  |  3  |  3  |  4  |                |       |
 | Year and Month report by category [chart]                                      | :whale:  |  3  |  3  |  4  |                |       |
@@ -31,9 +34,6 @@ This is the task list for the project.
 | Add category creation (mobile)                                                 | :whale:  |  2  |  2  |  4  |                |       |
 | Add user creation (mobile)                                                     | :whale:  |  2  |  2  |  4  |                |       |
 | Add schedule creation (mobile)                                                 | :sheep:  |  2  |  2  |  4  |                |       |
-| Add misc to users                                                              | :dragon: |  2  |  3  |  5  |                |       |
-| Reset Misc on password change and send e-mail                                  | :sheep:  |  1  |  3  |  6  | misc           |       |
-| Add Misc reset manually                                                        | :sheep:  |  1  |  3  |  6  | misc           |       |
 | If try to register an already existed user, send recover password link         | :sheep:  |  1  |  1  |  4  |                |       |
 | Make default language EN if browser is not PT, ES, IT or FR                    | :sheep:  |  1  |  1  |  4  |                |       |
 | Add error when schedule with 0 times                                           | :ant:    |  1  |  1  |  4  |                |       |
