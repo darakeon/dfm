@@ -31,9 +31,9 @@ This is the task list for the project.
 | Add category creation (mobile)                                                 | :whale:  |  2  |  2  |  4  |                |       |
 | Add user creation (mobile)                                                     | :whale:  |  2  |  2  |  4  |                |       |
 | Add schedule creation (mobile)                                                 | :sheep:  |  2  |  2  |  4  |                |       |
-| Add misc to users                                                              | :dragon: |  2  |  2  |  4  |                |       |
-| Reset Misc on password change and send e-mail                                  | :sheep:  |  1  |  2  |  5  | misc           |       |
-| Add Misc reset manually                                                        | :sheep:  |  1  |  2  |  5  | misc           |       |
+| Add misc to users                                                              | :dragon: |  2  |  3  |  5  |                |       |
+| Reset Misc on password change and send e-mail                                  | :sheep:  |  1  |  3  |  6  | misc           |       |
+| Add Misc reset manually                                                        | :sheep:  |  1  |  3  |  6  | misc           |       |
 | If try to register an already existed user, send recover password link         | :sheep:  |  1  |  1  |  4  |                |       |
 | Make default language EN if browser is not PT, ES, IT or FR                    | :sheep:  |  1  |  1  |  4  |                |       |
 | Add error when schedule with 0 times                                           | :ant:    |  1  |  1  |  4  |                |       |
