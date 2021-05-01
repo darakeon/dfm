@@ -15,6 +15,7 @@ namespace DFM.BusinessLogic.Repositories
 		internal CategoryRepository Category;
 		internal ConfigRepository Config;
 		internal ContractRepository Contract;
+		internal ControlRepository Control;
 		internal DetailRepository Detail;
 		internal MoveRepository Move;
 		internal ScheduleRepository Schedule;
@@ -30,13 +31,14 @@ namespace DFM.BusinessLogic.Repositories
 			Category = new CategoryRepository();
 			Config = new ConfigRepository();
 			Contract = new ContractRepository();
+			Control = new ControlRepository(getUrl);
 			Detail = new DetailRepository();
 			Move = new MoveRepository(getUrl);
 			Schedule = new ScheduleRepository();
 			Security = new SecurityRepository(getUrl);
 			Summary = new SummaryRepository();
 			Ticket = new TicketRepository();
-			User = new UserRepository(getUrl);
+			User = new UserRepository();
 		}
 
 		public void Purge(User user)
@@ -46,6 +48,7 @@ namespace DFM.BusinessLogic.Repositories
 
 			User.Delete(user);
 			Config.Delete(user.Config);
+			Control.Delete(user.Control);
 		}
 
 		private void purge<E, P>(

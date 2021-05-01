@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
@@ -28,9 +27,9 @@ namespace DFM.BusinessLogic.Services
 
 			var users = repos.User
 				.NewQuery()
-				.Where(u => u.Active)
-				.Where(u => u.RobotCheck <= DateTime.UtcNow)
-				.Where(u => !u.IsRobot)
+				.Where(u => u.Control, c => c.Active)
+				.Where(u => u.Control, c => c.RobotCheck <= DateTime.UtcNow)
+				.Where(u => u.Control, c => !c.IsRobot)
 				.List;
 
 			foreach (var user in users)
@@ -146,8 +145,8 @@ namespace DFM.BusinessLogic.Services
 				repos.Schedule.Save(schedule);
 			}
 
-			schedule.User.RobotCheck = DateTime.UtcNow;
-			repos.User.SaveOrUpdate(schedule.User);
+			schedule.User.Control.RobotCheck = DateTime.UtcNow;
+			repos.Control.SaveOrUpdate(schedule.User.Control);
 
 			return new ScheduleResult(schedule.Guid);
 		}
@@ -179,29 +178,71 @@ namespace DFM.BusinessLogic.Services
 
 		public void CleanupAbandonedUsers()
 		{
+			var ignoreUsers = cleanupByLastAccess();
+			cleanupByNotSignedContract(ignoreUsers);
+		}
+
+		private List<User> cleanupByLastAccess()
+		{
 			var tickets = repos.Ticket.AllMostRecentTickets()
 				.Where(t => t.LastAccess.PassedWarn1());
 
+			var users = new List<User>();
+
 			foreach (var ticket in tickets)
 			{
-				warnOrDelete(
+				var didSomething = warnOrDelete(
 					ticket.LastAccess,
 					ticket.User,
 					RemovalReason.NoInteraction
 				);
+
+				if (didSomething)
+				{
+					users.Add(ticket.User);
+				}
+			}
+
+			return users;
+		}
+
+		private void cleanupByNotSignedContract(List<User> ignoreUsers)
+		{
+			var contract = repos.Contract.GetContract();
+
+			if (contract == null || !contract.BeginDate.PassedWarn1())
+				return;
+
+			var accepted = repos.Acceptance
+				.Where(a => a.Contract.ID == contract.ID)
+				.Select(a => a.User.ID)
+				.ToArray();
+
+			var alreadyDidSomething = ignoreUsers
+				.Select(s => s.ID).ToArray();
+
+			var notAccepted = repos.User.NewQuery()
+				.NotIn(c => c.ID, accepted)
+				.NotIn(c => c.ID, alreadyDidSomething)
+				.List;
+
+			foreach (var user in notAccepted)
+			{
+				warnOrDelete(
+					contract.BeginDate,
+					user,
+					RemovalReason.NotSignedContract
+				);
 			}
 		}
 
-		private void warnOrDelete(DateTime date, User user, RemovalReason reason)
+		private Boolean warnOrDelete(DateTime date, User user, RemovalReason reason)
 		{
-			var shouldWarn1 = date.PassedWarn1()
-				&& user.RemovalWarningSent < 1;
+			var sent = user.Control.RemovalWarningSent;
 
-			var shouldWarn2 = date.PassedWarn2()
-			    && user.RemovalWarningSent < 2;
-
-			var shouldRemove = date.PassedRemoval()
-				&& user.RemovalWarningSent >= 2;
+			var shouldWarn1 = date.PassedWarn1() && sent < 1;
+			var shouldWarn2 = date.PassedWarn2() && sent < 2;
+			var shouldRemove = date.PassedRemoval() && sent >= 2;
 
 			if (shouldRemove)
 			{
@@ -209,14 +250,21 @@ namespace DFM.BusinessLogic.Services
 					"DeleteUser",
 					() => repos.Purge(user)
 				);
+
+				return true;
 			}
-			else if (shouldWarn1 || shouldWarn2)
+
+			if (shouldWarn1 || shouldWarn2)
 			{
 				inTransaction(
 					"SaveWarning",
-					() => repos.User.WarnRemoval(user, date, reason)
+					() => repos.Control.WarnRemoval(user, date, reason)
 				);
+
+				return true;
 			}
+
+			return false;
 		}
 	}
 }

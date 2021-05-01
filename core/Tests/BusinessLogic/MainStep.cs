@@ -108,7 +108,7 @@ namespace DFM.BusinessLogic.Tests
 
 			TZ.Init(false);
 
-			UserMap.IsTest = true;
+			ControlMap.IsTest = true;
 
 			SessionFactoryManager.Initialize<UserMap, User>(Cfg.DB);
 			SessionManager.Init(getTicketKey);
@@ -166,7 +166,8 @@ namespace DFM.BusinessLogic.Tests
 
 			foreach (var ticket in loggedTickets)
 			{
-				repos.Ticket.Disable(ticket);
+				ticket.LastAccess = DateTime.UtcNow;
+				db.Execute(() => repos.Ticket.Disable(ticket));
 			}
 		}
 

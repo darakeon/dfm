@@ -77,7 +77,7 @@ namespace DFM.BusinessLogic.Services
 			{
 				var security = repos.Security.ValidateAndGet(token, SecurityAction.UserVerification);
 
-				repos.User.Activate(security.User);
+				repos.Control.Activate(security.User);
 
 				repos.Security.Disable(token);
 			});
@@ -126,7 +126,7 @@ namespace DFM.BusinessLogic.Services
 			if (ticket == null || !ticket.Active)
 				throw Error.Uninvited.Throw();
 
-			if (!ticket.User.Active)
+			if (!ticket.User.Control.Active)
 				throw Error.DisabledUser.Throw();
 
 			return ticket.User;
@@ -174,17 +174,19 @@ namespace DFM.BusinessLogic.Services
 			if (user == null)
 				return;
 
+			var control = user.Control;
+
 			inTransaction("AddPasswordError", () =>
 			{
-				user.WrongLogin++;
+				control.WrongLogin++;
 
-				if (user.WrongPassExceeded())
-					user.Active = false;
+				if (control.WrongPassExceeded())
+					control.Active = false;
 
-				repos.User.SaveOrUpdate(user);
+				repos.Control.SaveOrUpdate(control);
 			});
 
-			if (user.WrongPassExceeded())
+			if (control.WrongPassExceeded())
 				throw Error.DisabledUser.Throw();
 		}
 
@@ -217,7 +219,7 @@ namespace DFM.BusinessLogic.Services
 
 		internal void VerifyUser(User user)
 		{
-			if (user == null || !user.Active)
+			if (user == null || !user.Control.Active)
 				throw Error.Uninvited.Throw();
 
 			if (!parent.Current.IsVerified)
@@ -279,6 +281,7 @@ namespace DFM.BusinessLogic.Services
 			inTransaction("UpdateEmail", () =>
 			{
 				user = repos.User.UpdateEmail(user.ID, email);
+				repos.Control.Deactivate(user);
 				sendUserVerify(user);
 			});
 		}

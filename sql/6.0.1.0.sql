@@ -209,3 +209,46 @@ insert into terms
 	values
 		(@PT, 'pt-BR', @contract_id),
         (@EN, 'en-US', @contract_id);
+
+create table control (
+	ID bigint auto_increment not null,
+    Creation datetime not null,
+    Active bit not null,
+    IsAdm bit not null,
+    IsRobot bit not null,
+    WrongLogin int not null,
+    RemovalWarningSent int not null,
+    RobotCheck datetime not null,
+    TempUser_ID int not null,
+    primary key (ID)
+);
+
+insert into control
+	(Creation, Active, IsAdm, IsRobot, WrongLogin, RemovalWarningSent, RobotCheck, TempUser_ID)
+	select Creation, Active, IsAdm, IsRobot, WrongLogin, RemovalWarningSent, RobotCheck, ID
+		from user;
+
+alter table user
+	add Control_ID bigint,
+    add foreign key (Control_ID)
+		references control (ID);
+
+set sql_safe_updates = 0;
+update user u
+		inner join control c
+			on u.ID = c.TempUser_ID
+	set u.Control_ID = c.ID;
+set sql_safe_updates = 1;
+
+alter table user
+	modify Control_ID bigint not null,
+    drop Creation,
+    drop Active,
+    drop IsAdm,
+    drop IsRobot,
+    drop WrongLogin,
+    drop RemovalWarningSent,
+    drop RobotCheck;
+
+alter table control
+	drop TempUser_ID;
