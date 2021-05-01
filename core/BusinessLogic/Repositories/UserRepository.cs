@@ -1,15 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Email;
 using DFM.Entities.Bases;
+using DFM.Entities.Enums;
 using Keon.TwoFactorAuth;
 using Keon.Util.Crypto;
+using Keon.Util.Extensions;
+using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Repositories
 {
 	internal class UserRepository : Repo<User>
 	{
+		private readonly Current.GetUrl getUrl;
+
+		public UserRepository(Current.GetUrl getUrl)
+		{
+			this.getUrl = getUrl;
+		}
+
 		private const string emailPattern = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$";
 
 		internal User GetByEmail(String email)
@@ -159,6 +171,36 @@ namespace DFM.BusinessLogic.Repositories
 			return CodeGenerator
 				.Generate(secret, 2)
 				.Contains(code);
+		}
+
+		public void WarnRemoval(User user, DateTime dateTime, RemovalReason removalReason)
+		{
+			var dic = new Dictionary<String, String>
+			{
+				{ "Url", getUrl() },
+				{ "Date", dateTime.ToShortDateString() },
+			};
+
+			var format = Format.UserRemoval(user, removalReason);
+
+			var fileContent = format.Layout.Format(dic);
+
+			var sender = new Sender()
+				.To(user.Email)
+				.Subject(format.Subject)
+				.Body(fileContent);
+
+			try
+			{
+				sender.Send();
+			}
+			catch (MailError)
+			{
+				throw Error.FailOnEmailSend.Throw();
+			}
+
+			user.RemovalWarningSent++;
+			SaveOrUpdate(user);
 		}
 	}
 }

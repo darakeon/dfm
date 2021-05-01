@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DFM.Entities;
 using DFM.Language;
 using DFM.Language.Emails;
 using DFM.Entities.Enums;
@@ -14,18 +15,27 @@ namespace DFM.Email
 		public String Subject { get; set; }
 		public String Layout { get; set; }
 
-		public static Format MoveNotification(String language, Theme theme)
+		public static Format MoveNotification(User user)
 		{
-			return new(language, theme, EmailType.MoveNotification, EmailType.MoveNotification);
+			return new(user, EmailType.MoveNotification, EmailType.MoveNotification);
 		}
 
-		public static Format SecurityAction(String language, Theme theme, SecurityAction securityAction)
+		public static Format SecurityAction(User user, SecurityAction securityAction)
 		{
-			return new(language, theme, EmailType.SecurityAction, securityAction);
+			return new(user, EmailType.SecurityAction, securityAction);
 		}
 
-		private Format(String language, Theme theme, EmailType type, object layoutType)
+		public static Format UserRemoval(User user, RemovalReason removalReason)
 		{
+			return new(user, EmailType.RemovalReason, removalReason);
+		}
+
+		private Format(User user, EmailType type, object layoutType)
+		{
+			var config = user.Config;
+			var language = config.Language;
+			var theme = config.Theme;
+
 			var layoutName = layoutType.ToString();
 
 			Subject = PlainText.Email[layoutName, language, "Subject"];

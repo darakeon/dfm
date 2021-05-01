@@ -5,5 +5,6 @@ namespace DFM.Language.Emails
 		SecurityAction = 1,
 		MoveNotification = 2,
 		Detail = -1,
+		RemovalReason = 3,
 	}
 }

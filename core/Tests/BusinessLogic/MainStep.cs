@@ -36,12 +36,6 @@ namespace DFM.BusinessLogic.Tests
 			createLogoffLogin(anotherPersonEmail);
 		}
 
-		[When(@"robot user login")]
-		public void WhenILoginAsRobot()
-		{
-			createLogoffLoginRobot();
-		}
-
 		[Given(@"the user have accepted the contract")]
 		public void GivenTheUserHaveAcceptedTheContract()
 		{
@@ -68,6 +62,18 @@ namespace DFM.BusinessLogic.Tests
 		public void GivenIPassValidAccountUrl()
 		{
 			accountUrl = accountInfo.Url;
+		}
+
+		[Given(@"I set test start date here")]
+		public void GivenISetTestStartDateHere()
+		{
+			testStart = DateTime.UtcNow;
+		}
+
+		[When(@"robot user login")]
+		public void WhenILoginAsRobot()
+		{
+			createLogoffLoginRobot();
 		}
 
 		[Then(@"I will receive a core error")]
@@ -155,14 +161,30 @@ namespace DFM.BusinessLogic.Tests
 
 			if (current.IsAuthenticated)
 				current.Clear();
+
+			var loggedTickets = repos.Ticket.Where(s => s.Active);
+
+			foreach (var ticket in loggedTickets)
+			{
+				repos.Ticket.Disable(ticket);
+			}
 		}
 
 		// ReSharper disable once UnusedMember.Global
 		[StepArgumentTransformation(@"( not)?")]
 		[StepArgumentTransformation(@"(not )?")]
-		public bool NotToBoolTransform(string not)
+		public Boolean NotToBoolTransform(String not)
 		{
 			return not.Trim() != "not";
+		}
+
+		// ReSharper disable once UnusedMember.Global
+		[StepArgumentTransformation(@"(never|once|twice)?")]
+		public Int32 OnceTwiceTransform(String times)
+		{
+			return times == "once" ? 1 :
+				times == "twice" ? 2 :
+				0;
 		}
 	}
 }

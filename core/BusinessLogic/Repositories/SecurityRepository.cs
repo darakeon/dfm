@@ -62,13 +62,7 @@ namespace DFM.BusinessLogic.Repositories
 				{ "PathDisable", PathType.DisableToken.ToString() },
 			};
 
-			var config = security.User.Config;
-
-			var format = Format.SecurityAction(
-				config.Language,
-				config.Theme,
-				security.Action
-			);
+			var format = Format.SecurityAction(security.User, security.Action);
 			var fileContent = format.Layout.Format(dic);
 
 			var sender = new Sender()

@@ -22,7 +22,7 @@ namespace DFM.MVC.Models.UserConfig
 			this.errorAlert = errorAlert;
 
 			var languageDictionary =
-				PlainText.AcceptedLanguage()
+				PlainText.AcceptedLanguages()
 					.ToDictionary(l => l, l => translator["Language" + l]);
 
 			LanguageList = SelectListExtension.CreateSelect(languageDictionary);

@@ -66,7 +66,7 @@ namespace DFM.BusinessLogic.Repositories
 
 			var nature = PlainText.Site["general", config.Language, move.Nature.ToString()];
 
-			var format = Format.MoveNotification(config.Language, config.Theme);
+			var format = Format.MoveNotification(user);
 
 			var dic = new Dictionary<String, String>
 			{
@@ -84,8 +84,7 @@ namespace DFM.BusinessLogic.Repositories
 				{ "UnsubscribeToken", security.Token },
 			};
 
-			var fileContent =
-				format.Layout.Format(dic);
+			var fileContent = format.Layout.Format(dic);
 
 			var sender = new Sender()
 				.To(user.Email)

@@ -18,6 +18,7 @@ Scenario: 02. Get translations of Enums
 			| Section   | Project       | Path       | Enum              |
 			| Moves     | Entities      | Enums      | MoveNature        |
 			| Schedules | Entities      | Enums      | ScheduleFrequency |
+			| Schedules | Entities      | Enums      | RemovalReason     |
 			| Tokens    | Entities      | Enums      | SecurityAction    |
 			| General   | Entities      | Enums      | OperationType     |
 			| Users     | Generic       |            | Theme             |
@@ -179,14 +180,12 @@ Scenario: 08. Get translate of Interface (users)
 			| Users   | Logon                   |
 			| Users   | Login                   |
 			| Users   | Enter                   |
-			| Users   | Email                   |
 			| Users   | Password                |
 			| Users   | RememberMe              |
 			| Users   | ForgotPassword          |
 			| Users   | TokenReceivedByEmail    |
 			| Users   | LogonDisabled           |
 			| Users   | SignUp                  |
-			| Users   | Email                   |
 			| Users   | CharactersMax           |
 			| Users   | Password                |
 			| Users   | RetypePassword          |

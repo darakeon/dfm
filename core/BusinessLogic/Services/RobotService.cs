@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
 using DFM.Entities;
@@ -173,6 +175,48 @@ namespace DFM.BusinessLogic.Services
 				)
 				.Select(ScheduleInfo.Convert)
 				.ToList();
+		}
+
+		public void CleanupAbandonedUsers()
+		{
+			var tickets = repos.Ticket.AllMostRecentTickets()
+				.Where(t => t.LastAccess.PassedWarn1());
+
+			foreach (var ticket in tickets)
+			{
+				warnOrDelete(
+					ticket.LastAccess,
+					ticket.User,
+					RemovalReason.NoInteraction
+				);
+			}
+		}
+
+		private void warnOrDelete(DateTime date, User user, RemovalReason reason)
+		{
+			var shouldWarn1 = date.PassedWarn1()
+				&& user.RemovalWarningSent < 1;
+
+			var shouldWarn2 = date.PassedWarn2()
+			    && user.RemovalWarningSent < 2;
+
+			var shouldRemove = date.PassedRemoval()
+				&& user.RemovalWarningSent >= 2;
+
+			if (shouldRemove)
+			{
+				inTransaction(
+					"DeleteUser",
+					() => repos.Purge(user)
+				);
+			}
+			else if (shouldWarn1 || shouldWarn2)
+			{
+				inTransaction(
+					"SaveWarning",
+					() => repos.User.WarnRemoval(user, date, reason)
+				);
+			}
 		}
 	}
 }

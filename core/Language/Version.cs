@@ -20,7 +20,7 @@ namespace DFM.Language
 
 		static Version()
 		{
-			foreach (var language in PlainText.AcceptedLanguage())
+			foreach (var language in PlainText.AcceptedLanguages())
 			{
 				var versionsPath = Path.Combine(
 					PlainText.VersionPath,

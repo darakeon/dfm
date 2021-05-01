@@ -1,5 +1,10 @@
+using System;
+using System.Linq;
+using System.Linq.Expressions;
 using DFM.Authentication;
 using DFM.BusinessLogic.Response;
+using DFM.Entities;
+using Keon.Util.DB;
 
 namespace DFM.BusinessLogic.Repositories
 {
@@ -31,7 +36,29 @@ namespace DFM.BusinessLogic.Repositories
 			Security = new SecurityRepository(getUrl);
 			Summary = new SummaryRepository();
 			Ticket = new TicketRepository();
-			User = new UserRepository();
+			User = new UserRepository(getUrl);
+		}
+
+		public void Purge(User user)
+		{
+			purge(Ticket, s => s.User, u => u.ID == user.ID);
+			purge(Security, s => s.User, u => u.ID == user.ID);
+
+			User.Delete(user);
+			Config.Delete(user.Config);
+		}
+
+		private void purge<E, P>(
+			Repo<E> repo,
+			Expression<Func<E, P>> parent,
+			Expression<Func<P, Boolean>> condition
+		)
+			where E : class, IEntity<long>, new()
+		{
+			repo.NewQuery()
+				.Where(parent, condition)
+				.List.ToList()
+				.ForEach(repo.Delete);
 		}
 	}
 }
