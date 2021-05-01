@@ -5,17 +5,19 @@ namespace DFM.BusinessLogic.Repositories
 {
 	internal class AcceptanceRepository : Repo<Acceptance>
 	{
-		internal void Accept(User user, Contract contract)
+		internal Boolean Accept(User user, Contract contract)
 		{
 			var acceptance = GetOrCreate(user, contract);
 
-			if (acceptance == null)
-				return;
+			if (acceptance == null || acceptance.Accepted)
+				return false;
 
 			acceptance.Accepted = true;
 			acceptance.AcceptDate = DateTime.UtcNow;
 
 			SaveOrUpdate(acceptance);
+
+			return true;
 		}
 
 		internal Acceptance GetOrCreate(User user, Contract contract)

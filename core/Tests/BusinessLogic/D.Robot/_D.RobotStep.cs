@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
@@ -10,7 +11,6 @@ using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Language.Emails;
 using DFM.Tests.Util;
-using Keon.Util.Extensions;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -372,6 +372,16 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			db.Execute(() => repos.Control.SaveOrUpdate(control));
 		}
 
+		[Given(@"the user have")]
+		public void GivenTheUserHave(Table table)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			foreach (var row in table.Rows)
+			{
+				createFor(user, row["System Stuff"]);
+			}
+		}
+
 		[When(@"call cleanup abandoned users")]
 		public void WhenRobotCleanupAbandonedUsers()
 		{
@@ -416,6 +426,33 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			var user = repos.User.GetByEmail(userEmail);
 			Assert.AreEqual(count, user.Control.RemovalWarningSent);
 		}
+
+		[Then(@"there will be an export file with this content")]
+		public void ThenThereWillBeAnExportFileWithThisContent(Table table)
+		{
+			var expected = new[] {table.Header}
+				.Union(
+					table.Rows.Select(row => row.Values)
+				)
+				.Select(csvLine);
+
+			var path = $"{scenarioCode}_dontflymoney.com.csv";
+			Assert.IsTrue(File.Exists(path));
+
+			var actual = File.ReadAllLines(path);
+			Assert.AreEqual(expected, actual);
+		}
+
+		private static String csvLine(ICollection<string> fields)
+		{
+			return String.Join(
+				",",
+				fields.Select(v =>
+					v.Replace("\"", "\\\"")
+				)
+			);
+		}
+
 		#endregion
 
 		#region MoreThanOne

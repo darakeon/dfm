@@ -93,8 +93,6 @@ namespace DFM.BusinessLogic.Services
 			{
 				var newMove = schedule.CreateMove();
 
-				schedule.LastRun++;
-
 				var result = parent.BaseMove.SaveMove(
 					newMove, OperationType.Scheduling
 				);

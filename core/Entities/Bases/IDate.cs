@@ -18,11 +18,13 @@ namespace DFM.Entities.Bases
 				: new DateTime(date.Year, date.Month, date.Day);
 		}
 
-		public static void SetDate(this IDate date, DateTime value)
+		public static DateParent SetDate<DateParent>(this DateParent date, DateTime value)
+			where DateParent : IDate
 		{
 			date.Day = (Int16)value.Day;
 			date.Month = (Int16)value.Month;
 			date.Year = (Int16)value.Year;
+			return date;
 		}
 
 		public static void SetDate(this IDate date, String value)

@@ -946,16 +946,19 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		[Given(@"I have a contract")]
 		public void GivenIHaveAContract()
 		{
-			if (service.Safe.GetContract() == null)
-			{
-				var contract = new Contract
-				{
-					BeginDate = DateTime.UtcNow,
-					Version = "TestContract",
-				};
+			var version = $"Contract {scenarioCode}";
+			var contract = repos.Contract.GetContract();
 
-				repos.Contract.SaveOrUpdate(contract);
-			}
+			if (contract?.Version == version)
+				return;
+
+			contract = new Contract
+			{
+				BeginDate = DateTime.UtcNow,
+				Version = version,
+			};
+
+			repos.Contract.SaveOrUpdate(contract);
 		}
 
 		[Given(@"I have accepted the contract")]
