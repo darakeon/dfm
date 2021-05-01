@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -35,14 +36,29 @@ namespace DFM.BusinessLogic.Tests
 
 			var content = File.ReadAllLines(lastEmail);
 
-			var base64 = content[8].EndsWith("base64");
+			var headers = new Dictionary<String, String>();
 
-			var subject = content[6].Substring(9);
+			var l = 0;
+			for (; l < content.Length && content[l] != ""; l++)
+			{
+				var line = content[l];
 
-			content = content
-				.Skip(9)
-				.Where(c => !String.IsNullOrEmpty(c))
-				.ToArray();
+				if (line.StartsWith(" "))
+				{
+					var key = headers.Keys.Last();
+					headers[key] += line;
+				}
+				else
+				{
+					var parts = line.Split(": ", 2);
+					headers.Add(parts[0], parts[1]);
+				}
+			}
+
+			var base64 = headers["Content-Transfer-Encoding"] == "base64";
+			var subject = headers["Subject"];
+
+			content = content.Skip(l).ToArray();
 
 			if (!base64)
 			{
@@ -56,8 +72,10 @@ namespace DFM.BusinessLogic.Tests
 
 			if (base64)
 			{
-				subject = convert(
-					subject.Substring(10, subject.Length - 12)
+				subject = String.Join("",
+					subject
+						.Split(" ")
+						.Select(s => convert(s[10..^2]))
 				);
 
 				body = convert(body);
