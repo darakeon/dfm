@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using DFM.Email;
+using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Language;
@@ -29,16 +30,28 @@ namespace DFM.MVC.Controllers
 		{
 			var themes = EnumX.AllValues<Theme>();
 
-			var languages = PlainText.AcceptedLanguage();
+			var languages = PlainText.AcceptedLanguages();
 
 			var result =
 				from language in languages
 				from theme in themes
-				select getLayout(Format.MoveNotification(language, theme))
-				       + getLayout(Format.SecurityAction(language, theme, SecurityAction.PasswordReset))
-				       + getLayout(Format.SecurityAction(language, theme, SecurityAction.UserVerification));
+				select getLayout(Format.MoveNotification(fakeUser(language, theme)))
+				       + getLayout(Format.SecurityAction(fakeUser(language, theme), SecurityAction.PasswordReset))
+				       + getLayout(Format.SecurityAction(fakeUser(language, theme), SecurityAction.UserVerification));
 
 			return View(result);
+		}
+
+		private static User fakeUser(String language, Theme theme)
+		{
+			return new()
+			{
+				Config = new Config
+				{
+					Language = language,
+					Theme = theme,
+				}
+			};
 		}
 
 		[HttpGetAndHead]

@@ -2,6 +2,7 @@
 
 Background:
 	Given test user login
+		And I set test start date here
 
 Scenario: Aw01. Save access for current user
 	When I try to save the access

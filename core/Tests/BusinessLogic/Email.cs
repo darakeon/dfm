@@ -3,28 +3,82 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using DFM.Entities.Enums;
 using DFM.Generic;
+using DFM.Language;
+using DFM.Language.Emails;
 
 namespace DFM.BusinessLogic.Tests
 {
 	class Email
 	{
-		private Email(String subject, String body)
+		private Email(String receiver, String subject, String body, DateTime creation, EmailType? type)
 		{
+			Receiver = receiver;
 			Subject = subject;
 			Body = body;
+			Creation = creation;
+			Type = type;
 		}
 
+		public String Receiver { get; }
 		public String Subject { get; }
 		public String Body { get; }
+		public DateTime Creation { get; }
+		public EmailType? Type { get; }
+
+		private static IDictionary<String, EmailType> emailTypesField;
+		private static IDictionary<String, EmailType> emailTypes =>
+			emailTypesField ??= chargeTypes();
+
+		private static IDictionary<String, EmailType> chargeTypes()
+		{
+			var types = new Dictionary<String, EmailType>
+			{
+				{EmailType.MoveNotification.ToString(), EmailType.MoveNotification},
+			};
+
+			EnumX.AllExcept(SecurityAction.UnsubscribeMoveMail)
+				.ForEach(
+					sa => types.Add(sa.ToString(), EmailType.SecurityAction)
+				);
+
+			EnumX.AllValues<RemovalReason>()
+				.ForEach(
+					rr => types.Add(rr.ToString(), EmailType.RemovalReason)
+				);
+
+			var langs = PlainText.AcceptedLanguages();
+			var keys = types.Keys.ToList();
+
+			foreach (var key in keys)
+			{
+				var value = types[key];
+				types.Remove(key);
+
+				foreach (var lang in langs)
+				{
+					var newKey = PlainText.Email[key, lang, "Subject"];
+					types.Add(newKey, value);
+				}
+			}
+
+			return types;
+		}
 
 		public static Email GetByPosition(Int32 position)
 		{
 			// cannot have -0 and +0
 			if (position == 0) return null;
 
-			var dir = new DirectoryInfo(Cfg.Smtp.PickupDirectory);
-			var files = dir.EnumerateFiles("*.eml");
+			var emailFile = getEmailFile(position);
+
+			return fillEmail(emailFile);
+		}
+
+		private static FileInfo getEmailFile(Int32 position)
+		{
+			var files = getEmailFiles();
 
 			files = position > 0
 				? files.OrderBy(f => f.CreationTime)
@@ -32,9 +86,18 @@ namespace DFM.BusinessLogic.Tests
 
 			position = position > 0 ? position : -position;
 
-			var lastEmail = files.Skip(position-1).First().FullName;
+			return files.Skip(position - 1).First();
+		}
 
-			var content = File.ReadAllLines(lastEmail);
+		private static IEnumerable<FileInfo> getEmailFiles()
+		{
+			var dir = new DirectoryInfo(Cfg.Smtp.PickupDirectory);
+			return dir.EnumerateFiles("*.eml");
+		}
+
+		private static Email fillEmail(FileInfo emailFile)
+		{
+			var content = File.ReadAllLines(emailFile.FullName);
 
 			var headers = new Dictionary<String, String>();
 
@@ -55,6 +118,8 @@ namespace DFM.BusinessLogic.Tests
 				}
 			}
 
+			var receiver = headers["X-Receiver"];
+
 			var base64 = headers["Content-Transfer-Encoding"] == "base64";
 			var subject = headers["Subject"];
 
@@ -63,6 +128,7 @@ namespace DFM.BusinessLogic.Tests
 			if (!base64)
 			{
 				content = content
+					.Where(c => !String.IsNullOrEmpty(c))
 					.Select(
 						c => c.Substring(0, c.Length - 1)
 					).ToArray();
@@ -81,13 +147,26 @@ namespace DFM.BusinessLogic.Tests
 				body = convert(body);
 			}
 
-			return new Email(subject, body);
+			var creation = emailFile.CreationTimeUtc;
+			var type = emailTypes.FirstOrDefault(
+				t => t.Key == subject
+			).Value;
+
+			return new Email(receiver, subject, body, creation, type);
 		}
 
 		private static String convert(String text)
 		{
 			var bytes = Convert.FromBase64String(text);
 			return Encoding.UTF8.GetString(bytes);
+		}
+
+		public static Int32 CountEmails(String email, EmailType type, DateTime datetime)
+		{
+			return getEmailFiles()
+				.Where(f => f.CreationTimeUtc > datetime)
+				.Select(fillEmail)
+				.Count(e => e.Receiver == email && e.Type == type);
 		}
 	}
 }

@@ -751,7 +751,9 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 				var email = userData["Email"]
 					.Replace("{scenarioCode}", scenarioCode);
 
-				var password = userData["Password"];
+				var password = userData.ContainsKey("Password")
+					? userData["Password"]
+					: userPassword;
 
 				var active = userData.ContainsKey("Active")
 				    && userData["Active"] == "true";
@@ -938,7 +940,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			{
 				var contract = new Contract
 				{
-					BeginDate = current.Now,
+					BeginDate = DateTime.UtcNow,
 					Version = "TestContract",
 				};
 

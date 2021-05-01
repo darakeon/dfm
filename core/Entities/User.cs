@@ -17,6 +17,7 @@ namespace DFM.Entities
 
 		public virtual DateTime Creation { get; set; }
 		public virtual Boolean Active { get; set; }
+		public virtual Int32 RemovalWarningSent { get; set; }
 
 		public virtual Int32 WrongLogin { get; set; }
 

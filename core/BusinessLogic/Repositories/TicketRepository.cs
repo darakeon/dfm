@@ -16,15 +16,14 @@ namespace DFM.BusinessLogic.Repositories
 					ID = 0,
 					Key = key,
 					Type = type,
-					Creation = user.Now(),
+					Creation = DateTime.UtcNow,
+					LastAccess = DateTime.UtcNow,
 					Active = true,
 					User = user,
 				};
 
 			return SaveOrUpdate(ticket);
 		}
-
-
 
 		internal Ticket GetByKey(String key)
 		{
@@ -39,8 +38,6 @@ namespace DFM.BusinessLogic.Repositories
 				);
 		}
 
-
-
 		internal IEnumerable<Ticket> List(User user)
 		{
 			return Where(
@@ -50,8 +47,6 @@ namespace DFM.BusinessLogic.Repositories
 					&& t.Key != ""
 			);
 		}
-
-
 
 		internal void Disable(Ticket ticket)
 		{
@@ -67,6 +62,15 @@ namespace DFM.BusinessLogic.Repositories
 			ticket.ValidTFA = true;
 			SaveOrUpdate(ticket);
 		}
-	}
 
+		public IList<Ticket> AllMostRecentTickets()
+		{
+			return NewQuery()
+				.LeftJoin(t => t.User)
+				.TransformResult<Ticket>()
+				.GroupBy(t => t.User, t => t.User)
+				.Max(t => t.LastAccess, t => t.LastAccess)
+				.List;
+		}
+	}
 }

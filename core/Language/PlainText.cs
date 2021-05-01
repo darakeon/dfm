@@ -93,7 +93,7 @@ namespace DFM.Language
 			return acceptedLanguages.Contains(chosenLanguage?.ToLower());
 		}
 
-		public static IList<String> AcceptedLanguage()
+		public static IList<String> AcceptedLanguages()
 		{
 			return acceptedLanguages.ToList();
 		}

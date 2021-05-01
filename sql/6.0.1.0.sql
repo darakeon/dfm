@@ -1,6 +1,7 @@
 alter table user
 	add IsRobot bit not null default 0,
-    add RobotCheck datetime null;
+    add RobotCheck datetime null,
+    add RemovalWarningSent int not null default 0;
 
 set sql_safe_updates = 0;
 update user

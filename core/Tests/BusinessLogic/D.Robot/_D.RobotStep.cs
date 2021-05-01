@@ -8,7 +8,9 @@ using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Generic;
+using DFM.Language.Emails;
 using DFM.Tests.Util;
+using Keon.Util.Extensions;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -305,6 +307,77 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 					Assert.IsNull(schedule);
 				}
 			}
+		}
+		#endregion
+
+		#region CleanupAbandonedUsers
+		[Given(@"the user last access is (\d+) days before")]
+		public void GivenTheUserLastAccessIsDays(Int32 days)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			var date = DateTime.UtcNow.AddDays(-days);
+
+			var ticket = new Ticket
+			{
+				User = user,
+				LastAccess = date,
+				Key = Token.New(),
+			};
+
+			db.Execute(() => repos.Ticket.SaveOrUpdate(ticket));
+		}
+
+		[Given(@"the user have being warned (once|twice)")]
+		public void GivenTheUserHaveBeingWarned(Int32 times)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			user.RemovalWarningSent = times;
+			db.Execute(() => repos.User.SaveOrUpdate(user));
+		}
+
+		[When(@"robot cleanup abandoned users")]
+		public void WhenRobotCleanupAbandonedUsers()
+		{
+			try
+			{
+				service.Robot.CleanupAbandonedUsers();
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[Then(@"the user will still exist")]
+		public void ThenTheUserWillStillExists()
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			Assert.IsNotNull(user);
+		}
+
+		[Then(@"the user won't exist")]
+		public void ThenTheUserWillNotExists()
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			Assert.IsNull(user);
+		}
+
+		[Then(@"the count of warnings sent will be (\d+)")]
+		public void ThenTheCountOfWarningsSendWillBe(Int32 expectedCount)
+		{
+			var actualCount = Email.CountEmails(
+				userEmail,
+				EmailType.RemovalReason,
+				testStart
+			);
+			Assert.AreEqual(expectedCount, actualCount);
+		}
+
+		[Then(@"and the user warning count will be (\d+)")]
+		public void ThenAndTheUserWarningCountWillBe(Int32 count)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			Assert.AreEqual(count, user.RemovalWarningSent);
 		}
 		#endregion
 
