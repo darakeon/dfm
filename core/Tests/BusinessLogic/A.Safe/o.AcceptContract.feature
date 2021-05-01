@@ -1,8 +1,8 @@
 ﻿Feature: Ao. Accept contract
 
 Background:
-	Given I have a contract
-	And test user login
+	Given test user login
+	And I have a contract
 
 Scenario: Ao01. Accept contract not accepted before
 	When I try to accept the contract

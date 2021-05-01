@@ -7,7 +7,7 @@
 # Robot for delete user
 - [ ] mark the user for deletion
 - [ ] upload data to S3 when delete user
-- [ ] anticipate schedules until the month after last bounded schedule run
+- [x] anticipate schedules until the month after last bounded schedule run
 - [x] delete users not logged in for 90 days
 - [x] delete users not accepted contract after 90 days
 - [x] send warnings of no interaction

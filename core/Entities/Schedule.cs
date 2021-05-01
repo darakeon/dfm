@@ -67,10 +67,14 @@ namespace DFM.Entities
 
 		public virtual Move CreateMove()
 		{
-			return createMove(
+			var move = createMove(
 				DetailList.Any() ? 0 : ValueCents,
-				move => move.SetDate(LastDateRun())
+				m => m.SetDate(LastDateRun())
 			);
+
+			LastRun++;
+
+			return move;
 		}
 
 		public virtual IEnumerable<Move> CreateMovesByFrequency(Int16 dateYear, Int16 dateMonth)
@@ -247,6 +251,11 @@ namespace DFM.Entities
 		public virtual DateTime LastDateRun()
 		{
 			return add(LastRun);
+		}
+
+		public virtual DateTime LastDateShouldRun()
+		{
+			return add(Times);
 		}
 
 		private DateTime add(Int32 count)

@@ -9,7 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Keon.NHibernate" Version="2.1.0" />
+    <PackageReference Include="CsvHelper" Version="27.0.2" />
+    <PackageReference Include="Keon.NHibernate" Version="2.2.2" />
     <PackageReference Include="Keon.TwoFactorAuth" Version="1.0.2" />
     <PackageReference Include="sqlite" Version="3.13.0" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.113.1" />
@@ -19,6 +20,7 @@
     <ProjectReference Include="..\Authentication\Authentication.csproj" />
     <ProjectReference Include="..\Email\Email.csproj" />
     <ProjectReference Include="..\Entities\Entities.csproj" />
+    <ProjectReference Include="..\Exchange\Exchange.csproj" />
     <ProjectReference Include="..\Language\Language.csproj" />
   </ItemGroup>
 

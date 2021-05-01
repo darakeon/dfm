@@ -330,7 +330,9 @@ namespace DFM.BusinessLogic.Services
 		private void acceptContract(User user)
 		{
 			var contract = getContract();
-			repos.Acceptance.Accept(user, contract);
+			var acceptedNow = repos.Acceptance.Accept(user, contract);
+
+			if (!acceptedNow) return;
 
 			var control = user.Control;
 			repos.Control.ResetWarnCounter(control);

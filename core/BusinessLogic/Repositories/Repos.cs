@@ -1,9 +1,15 @@
 using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using CsvHelper;
 using DFM.Authentication;
 using DFM.BusinessLogic.Response;
 using DFM.Entities;
+using DFM.Entities.Bases;
+using DFM.Exchange;
 using Keon.Util.DB;
 
 namespace DFM.BusinessLogic.Repositories
@@ -41,11 +47,43 @@ namespace DFM.BusinessLogic.Repositories
 			User = new UserRepository();
 		}
 
+
 		public void Purge(User user)
 		{
-			purge(Ticket, s => s.User, u => u.ID == user.ID);
+			var accounts = Account.Where(a => a.User.ID == user.ID);
+
+			var csv = new CSV();
+
+			foreach (var account in accounts)
+			{
+				csv.Add(
+					Move.Where(m => m.In == account || m.Out == account)
+				);
+
+				csv.Add(
+					Schedule.Where(m => m.In == account || m.Out == account)
+				);
+			}
+
+			csv.Create(user);
+
+			purge(Ticket, t => t.User, u => u.ID == user.ID);
 			purge(Security, s => s.User, u => u.ID == user.ID);
-			purge(Acceptance, s => s.User, u => u.ID == user.ID);
+			purge(Acceptance, a => a.User, u => u.ID == user.ID);
+
+			foreach (var account in accounts)
+			{
+				purge(Summary, m => m.Account, a => a.ID == account.ID);
+
+				purge(Move, m => m.In, a => a.ID == account.ID);
+				purge(Move, m => m.Out, a => a.ID == account.ID);
+
+				purge(Schedule, m => m.In, a => a.ID == account.ID);
+				purge(Schedule, m => m.Out, a => a.ID == account.ID);
+			}
+
+			purge(Account, a => a.User, u => u.ID == user.ID);
+			purge(Category, c => c.User, u => u.ID == user.ID);
 
 			User.Delete(user);
 			Config.Delete(user.Config);

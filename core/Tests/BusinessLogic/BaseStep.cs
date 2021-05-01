@@ -64,7 +64,7 @@ namespace DFM.BusinessLogic.Tests
 		protected Int32? getInt(String str)
 		{
 			return String.IsNullOrEmpty(str)
-				? (Int32?) null
+				? null
 				: Int32.Parse(str);
 		}
 
@@ -410,5 +410,11 @@ namespace DFM.BusinessLogic.Tests
 			return newDetail;
 		}
 		#endregion
+
+		protected void createFor(User user, String entityName)
+		{
+			new Builder(repos, db.Execute, scenarioCode)
+				.CreateFor(user, entityName);
+		}
 	}
 }
