@@ -363,7 +363,7 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			db.Execute(() => repos.Control.SaveOrUpdate(control));
 		}
 
-		[When(@"robot cleanup abandoned users")]
+		[When(@"call cleanup abandoned users")]
 		public void WhenRobotCleanupAbandonedUsers()
 		{
 			try

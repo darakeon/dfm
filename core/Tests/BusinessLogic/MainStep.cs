@@ -70,8 +70,14 @@ namespace DFM.BusinessLogic.Tests
 			testStart = DateTime.UtcNow;
 		}
 
+		[When(@"test user login")]
+		public void WhenTestUserLogin()
+		{
+			createLogoffLogin(userEmail);
+		}
+
 		[When(@"robot user login")]
-		public void WhenILoginAsRobot()
+		public void WhenRobotUserLogin()
 		{
 			createLogoffLoginRobot();
 		}
