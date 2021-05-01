@@ -177,6 +177,9 @@ namespace DFM.BusinessLogic.Services
 
 		public void CleanupAbandonedUsers()
 		{
+			if (!parent.Current.IsRobot)
+				throw Error.Uninvited.Throw();
+
 			var ignoreUsers = new List<User>();
 			cleanupByLastAccess(ignoreUsers);
 			cleanupByNotSignedContract(ignoreUsers);
