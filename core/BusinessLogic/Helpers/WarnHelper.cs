@@ -1,23 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DFM.BusinessLogic.Helpers
 {
 	static class WarnHelper
 	{
-		public static Boolean PassedWarn1(this DateTime date) => date.passed(30);
-		public static Boolean PassedWarn2(this DateTime date) => date.passed(60);
-		public static Boolean PassedRemoval(this DateTime date) => date.passed(90);
+		public static Boolean PassedWarn1(this DateTime date) => date.passed(Limit1());
+		public static Boolean PassedWarn2(this DateTime date) => date.passed(Limit2());
+		public static Boolean PassedRemoval(this DateTime date) => date.passed(LimitRemoval());
 
-		private static Boolean passed(this DateTime date, Int32 days)
+		private static Boolean passed(this DateTime date, DateTime limit)
 		{
-			var now = DateTime.UtcNow;
-			var pastDate = now.AddDays(-days);
-			date = date.ToUniversalTime();
-			return date < pastDate;
+			return date.ToUniversalTime() < limit;
+		}
+
+		public static DateTime Limit1() => limit(30);
+		public static DateTime Limit2() => limit(60);
+		public static DateTime LimitRemoval() => limit(90);
+
+		private static DateTime limit(Int32 days)
+		{
+			return DateTime.UtcNow.AddDays(-days);
 		}
 	}
 }

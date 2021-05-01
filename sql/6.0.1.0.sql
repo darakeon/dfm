@@ -252,3 +252,19 @@ alter table user
 
 alter table control
 	drop TempUser_ID;
+
+alter table control
+	add LastAccess datetime null;
+
+set sql_safe_updates = 0;
+update control c
+		inner join user u
+			on c.ID = u.Control_ID
+		inner join (
+			select max(LastAccess) LastAccess, User_ID
+				from ticket
+                group by User_ID
+        ) t
+			on u.ID = t.User_ID
+	set c.LastAccess = t.LastAccess;
+set sql_safe_updates = 1;

@@ -62,15 +62,5 @@ namespace DFM.BusinessLogic.Repositories
 			ticket.ValidTFA = true;
 			SaveOrUpdate(ticket);
 		}
-
-		public IList<Ticket> AllMostRecentTickets()
-		{
-			return NewQuery()
-				.LeftJoin(t => t.User)
-				.TransformResult<Ticket>()
-				.GroupBy(t => t.User, t => t.User)
-				.Max(t => t.LastAccess, t => t.LastAccess)
-				.List;
-		}
 	}
 }

@@ -149,7 +149,6 @@ namespace DFM.BusinessLogic.Tests
 			log("After scenario");
 
 			var pendentSchedules = repos.Schedule.Where(s => s.Active);
-
 			foreach (var schedule in pendentSchedules)
 			{
 				repos.Schedule.Disable(schedule.Guid, schedule.User);
@@ -163,11 +162,18 @@ namespace DFM.BusinessLogic.Tests
 				current.Clear();
 
 			var loggedTickets = repos.Ticket.Where(s => s.Active);
-
 			foreach (var ticket in loggedTickets)
 			{
 				ticket.LastAccess = DateTime.UtcNow;
 				db.Execute(() => repos.Ticket.Disable(ticket));
+			}
+
+			var user = repos.User.GetByEmail(userEmail);
+			if (user != null)
+			{
+				var control = user.Control;
+				control.LastAccess = DateTime.UtcNow;
+				db.Execute(() => repos.Control.SaveOrUpdate(control));
 			}
 		}
 

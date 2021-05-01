@@ -311,20 +311,13 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		#endregion
 
 		#region CleanupAbandonedUsers
-		[Given(@"the user last access is (\d+) days before")]
-		public void GivenTheUserLastAccessIsDays(Int32 days)
+		[Given(@"the user last access was (\d+) days before")]
+		public void GivenTheUserLastAccessWas(Int32 days)
 		{
-			var user = repos.User.GetByEmail(userEmail);
-			var date = DateTime.UtcNow.AddDays(-days);
+			var control = repos.User.GetByEmail(userEmail).Control;
+			control.LastAccess = DateTime.UtcNow.AddDays(-days);
 
-			var ticket = new Ticket
-			{
-				User = user,
-				LastAccess = date,
-				Key = Token.New(),
-			};
-
-			db.Execute(() => repos.Ticket.SaveOrUpdate(ticket));
+			db.Execute(() => repos.Control.SaveOrUpdate(control));
 		}
 
 		[Given(@"the user have being warned (once|twice)")]
@@ -335,13 +328,13 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			db.Execute(() => repos.Control.SaveOrUpdate(user.Control));
 		}
 
-		[Given(@"a contract from (\d+) days before \(all other users have signed\)")]
+		[Given(@"a contract from (\d+) days before")]
 		public void GivenIHaveAContract(Int32 days)
 		{
 			var contract = new Contract
 			{
 				BeginDate = DateTime.UtcNow.AddDays(-days),
-				Version = "TestContract",
+				Version = $"Contract {scenarioCode}",
 			};
 
 			db.Execute(() =>
@@ -358,6 +351,16 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 					repos.Acceptance.Accept(user, contract);
 				}
 			});
+		}
+
+		[Given(@"the user creation was (\d+) days before")]
+		public void GivenTheUserCreationWas(Int32 days)
+		{	
+			var user = repos.User.GetByEmail(userEmail);
+			var control = user.Control;
+			control.Creation = DateTime.UtcNow.AddDays(-days);
+
+			db.Execute(() => repos.Control.SaveOrUpdate(control));
 		}
 
 		[When(@"robot cleanup abandoned users")]
