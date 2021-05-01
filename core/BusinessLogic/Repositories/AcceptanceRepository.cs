@@ -13,7 +13,7 @@ namespace DFM.BusinessLogic.Repositories
 				return;
 
 			acceptance.Accepted = true;
-			acceptance.AcceptDate = DateTime.Now;
+			acceptance.AcceptDate = DateTime.UtcNow;
 
 			SaveOrUpdate(acceptance);
 		}

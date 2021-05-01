@@ -6,7 +6,7 @@ namespace DFM.Generic.Concurrency
 	{
 		internal static TaskInfo New(Int32 minutes)
 		{
-			return new(Guid.NewGuid(), DateTime.Now, minutes);
+			return new(Guid.NewGuid(), DateTime.UtcNow, minutes);
 		}
 
 		internal static TaskInfo Dead(Int32 minutes)

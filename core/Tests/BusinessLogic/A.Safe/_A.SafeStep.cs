@@ -670,7 +670,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			Assert.AreNotEqual(0, ticketList.Count, $"no login for {userEmail}");
 
 			var updated = ticketList.Count(
-				t => t.LastAccess > startDateTime
+				t => t.LastAccess.ToUniversalTime() > testStart
 			);
 
 			var expectedUpdated = after ? 1 : 0;

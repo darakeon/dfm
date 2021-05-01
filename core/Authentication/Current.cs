@@ -88,7 +88,7 @@ namespace DFM.Authentication
 
 		private static Int64 nowKey()
 		{
-			var date = DateTime.Now;
+			var date = DateTime.UtcNow;
 			var text = date.ToString("yyyyMMddHHmmss");
 			var factor = Int64.Parse(text);
 			return factor / 2;

@@ -144,7 +144,7 @@ namespace DFM.BusinessLogic.Services
 				repos.Schedule.Save(schedule);
 			}
 
-			schedule.User.RobotCheck = DateTime.Now;
+			schedule.User.RobotCheck = DateTime.UtcNow;
 			repos.User.SaveOrUpdate(schedule.User);
 
 			return new ScheduleResult(schedule.Guid);

@@ -21,7 +21,7 @@ namespace DfM.Logs
 
 		public ErrorLog(Exception exception, Boolean handled)
 		{
-			Date = DateTime.Now;
+			Date = DateTime.UtcNow;
 			ID = Date.ToString("yyyyMMddHHmmssffffff");
 			Exception = new ExceptionData(exception);
 			Handled = handled;

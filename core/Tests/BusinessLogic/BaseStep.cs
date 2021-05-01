@@ -31,7 +31,7 @@ namespace DFM.BusinessLogic.Tests
 
 		protected static void setLogName()
 		{
-			var logDate = $"{DateTime.Now:yyyy-MM-dd-HH-mm-ss}";
+			var logDate = $"{DateTime.UtcNow:yyyy-MM-dd-HH-mm-ss}";
 
 			var path =
 				Path.Combine(
@@ -58,7 +58,7 @@ namespace DFM.BusinessLogic.Tests
 
 		protected static void log(String text)
 		{
-			var log = $"{DateTime.Now:HH:mm:ss-fff}\t{scenarioTitle}\t{text}\n";
+			var log = $"{DateTime.UtcNow:HH:mm:ss-fff}\t{scenarioTitle}\t{text}\n";
 			File.AppendAllText(logFileName, log);
 		}
 
@@ -368,10 +368,10 @@ namespace DFM.BusinessLogic.Tests
 			set => set("ScheduleResult", value);
 		}
 
-		protected static DateTime startDateTime
+		protected static DateTime testStart
 		{
-			get => get<DateTime>("startDateTime");
-			set => set("startDateTime", value);
+			get => get<DateTime>("testStart");
+			set => set("testStart", value);
 		}
 
 		protected static String token

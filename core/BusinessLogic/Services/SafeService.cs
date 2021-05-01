@@ -418,7 +418,7 @@ namespace DFM.BusinessLogic.Services
 
 			inTransaction("SaveAccess", () =>
 			{
-				ticket.LastAccess = DateTime.Now;
+				ticket.LastAccess = DateTime.UtcNow;
 				repos.Ticket.SaveOrUpdate(ticket);
 			});
 		}
