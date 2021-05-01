@@ -15,6 +15,7 @@ namespace DFM.Entities
 		public virtual Int64 ID { get; set; }
 
 		public virtual DateTime Creation { get; set; }
+		public virtual DateTime? LastAccess { get; set; }
 
 		public virtual Boolean Active { get; set; }
 
@@ -30,6 +31,11 @@ namespace DFM.Entities
 		public virtual Boolean WrongPassExceeded()
 		{
 			return WrongLogin >= Cfg.PasswordErrorLimit;
+		}
+
+		public virtual DateTime LastInteraction()
+		{
+			return LastAccess ?? Creation;
 		}
 	}
 }

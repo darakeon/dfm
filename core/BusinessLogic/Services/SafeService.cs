@@ -423,6 +423,8 @@ namespace DFM.BusinessLogic.Services
 			{
 				ticket.LastAccess = DateTime.UtcNow;
 				repos.Ticket.SaveOrUpdate(ticket);
+
+				repos.Control.SaveAccess(ticket.User.Control);
 			});
 		}
 

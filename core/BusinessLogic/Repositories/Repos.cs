@@ -45,6 +45,7 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			purge(Ticket, s => s.User, u => u.ID == user.ID);
 			purge(Security, s => s.User, u => u.ID == user.ID);
+			purge(Acceptance, s => s.User, u => u.ID == user.ID);
 
 			User.Delete(user);
 			Config.Delete(user.Config);

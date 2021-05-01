@@ -65,5 +65,11 @@ namespace DFM.BusinessLogic.Repositories
 			control.RemovalWarningSent++;
 			SaveOrUpdate(control);
 		}
+
+		public void SaveAccess(Control control)
+		{
+			control.LastAccess = DateTime.UtcNow;
+			SaveOrUpdate(control);
+		}
 	}
 }

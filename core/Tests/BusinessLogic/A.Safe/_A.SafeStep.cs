@@ -658,8 +658,8 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			}
 		}
 
-		[Then(@"the access will( not)? be after test start time")]
-		public void ThenTheAccessWillBeAfterTestStartTime(Boolean after)
+		[Then(@"the ticket access will( not)? be after test start time")]
+		public void ThenTheTicketAccessWillBeAfterTestStartTime(Boolean after)
 		{
 			var ticketList = repos.Ticket.NewQuery()
 				.Where(t => t.User, u => u.Email == userEmail)
@@ -673,6 +673,18 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 
 			var expectedUpdated = after ? 1 : 0;
 			Assert.AreEqual(expectedUpdated, updated);
+		}
+
+		[Then(@"the user access will( not)? be null")]
+		public void ThenTheUserAccessWillBeNull(Boolean isNull)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			var lastAccess = user.Control.LastAccess?.ToUniversalTime();
+
+			if (isNull)
+				Assert.IsNull(lastAccess);
+			else
+				Assert.IsNotNull(lastAccess);
 		}
 		#endregion
 

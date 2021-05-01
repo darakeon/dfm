@@ -145,8 +145,7 @@ namespace DFM.BusinessLogic.Services
 				repos.Schedule.Save(schedule);
 			}
 
-			schedule.User.Control.RobotCheck = DateTime.UtcNow;
-			repos.Control.SaveOrUpdate(schedule.User.Control);
+			repos.Control.SaveAccess(schedule.User.Control);
 
 			return new ScheduleResult(schedule.Guid);
 		}
@@ -178,35 +177,37 @@ namespace DFM.BusinessLogic.Services
 
 		public void CleanupAbandonedUsers()
 		{
-			var ignoreUsers = cleanupByLastAccess();
+			var ignoreUsers = new List<User>();
+			cleanupByLastAccess(ignoreUsers);
 			cleanupByNotSignedContract(ignoreUsers);
 		}
 
-		private List<User> cleanupByLastAccess()
+		private void cleanupByLastAccess(IList<User> ignoreUsers)
 		{
-			var tickets = repos.Ticket.AllMostRecentTickets()
-				.Where(t => t.LastAccess.PassedWarn1());
-
-			var users = new List<User>();
-
-			foreach (var ticket in tickets)
+			var users = repos.User.NewQuery()
+				.Where(
+					u => u.Control,
+					c => c.LastAccess == null
+						|| c.LastAccess < WarnHelper.Limit1()
+				)
+				.List;
+				
+			foreach (var user in users)
 			{
+				var control = user.Control;
+				var date = control.LastInteraction();
 				var didSomething = warnOrDelete(
-					ticket.LastAccess,
-					ticket.User,
-					RemovalReason.NoInteraction
+					date, user, RemovalReason.NoInteraction
 				);
 
 				if (didSomething)
 				{
-					users.Add(ticket.User);
+					ignoreUsers.Add(user);
 				}
 			}
-
-			return users;
 		}
 
-		private void cleanupByNotSignedContract(List<User> ignoreUsers)
+		private void cleanupByNotSignedContract(IList<User> ignoreUsers)
 		{
 			var contract = repos.Contract.GetContract();
 
@@ -228,11 +229,24 @@ namespace DFM.BusinessLogic.Services
 
 			foreach (var user in notAccepted)
 			{
-				warnOrDelete(
-					contract.BeginDate,
+				var userDate = user.Control.Creation;
+				var contractDate = contract.BeginDate;
+
+				var newestDate =
+					userDate > contractDate
+						? userDate
+						: contractDate;
+
+				var didSomething = warnOrDelete(
+					newestDate,
 					user,
 					RemovalReason.NotSignedContract
 				);
+
+				if (didSomething)
+				{
+					ignoreUsers.Add(user);
+				}
 			}
 		}
 
