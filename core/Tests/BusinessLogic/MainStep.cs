@@ -70,12 +70,6 @@ namespace DFM.BusinessLogic.Tests
 			accountUrl = accountInfo.Url;
 		}
 
-		[Given(@"I save the date the test started")]
-		public void GivenISaveTheDateTheTestStarted()
-		{
-			startDateTime = DateTime.Now;
-		}
-
 		[Then(@"I will receive a core error")]
 		public void ThenIWillReceiveACoreError()
 		{
@@ -130,6 +124,7 @@ namespace DFM.BusinessLogic.Tests
 		public static void RegisterRun()
 		{
 			log("Before scenario");
+			testStart = DateTime.UtcNow;
 		}
 
 		// ReSharper disable once UnusedMember.Global
