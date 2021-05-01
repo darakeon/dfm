@@ -170,8 +170,8 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		public void GivenIsARobot(String email)
 		{
 			var user = repos.User.GetByEmail(email);
-			user.IsRobot = true;
-			repos.User.SaveOrUpdate(user);
+			user.Control.IsRobot = true;
+			db.Execute(() => repos.Control.SaveOrUpdate(user.Control));
 		}
 
 		[When(@"run the scheduler")]
@@ -331,8 +331,33 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		public void GivenTheUserHaveBeingWarned(Int32 times)
 		{
 			var user = repos.User.GetByEmail(userEmail);
-			user.RemovalWarningSent = times;
-			db.Execute(() => repos.User.SaveOrUpdate(user));
+			user.Control.RemovalWarningSent = times;
+			db.Execute(() => repos.Control.SaveOrUpdate(user.Control));
+		}
+
+		[Given(@"a contract from (\d+) days before \(all other users have signed\)")]
+		public void GivenIHaveAContract(Int32 days)
+		{
+			var contract = new Contract
+			{
+				BeginDate = DateTime.UtcNow.AddDays(-days),
+				Version = "TestContract",
+			};
+
+			db.Execute(() =>
+				repos.Contract.SaveOrUpdate(contract)
+			);
+
+			var users = repos.User.Where(
+				u => u.Email != userEmail
+			);
+
+			db.Execute(() => {
+				foreach (var user in users)
+				{
+					repos.Acceptance.Accept(user, contract);
+				}
+			});
 		}
 
 		[When(@"robot cleanup abandoned users")]
@@ -377,7 +402,7 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		public void ThenAndTheUserWarningCountWillBe(Int32 count)
 		{
 			var user = repos.User.GetByEmail(userEmail);
-			Assert.AreEqual(count, user.RemovalWarningSent);
+			Assert.AreEqual(count, user.Control.RemovalWarningSent);
 		}
 		#endregion
 

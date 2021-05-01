@@ -12,8 +12,8 @@ namespace DFM.BusinessLogic.Response
 
 		public SessionInfo(User user)
 		{
-			IsAdm = user.IsAdm;
-			IsRobot = user.IsRobot;
+			IsAdm = user.Control.IsAdm;
+			IsRobot = user.Control.IsRobot;
 
 			Email = user.Email;
 			HasTFA = !String.IsNullOrEmpty(user.TFASecret);

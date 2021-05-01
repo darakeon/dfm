@@ -221,7 +221,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		public void ThenTheUserWillNotBeActivated(Boolean active)
 		{
 			var user = repos.User.GetByEmail(email);
-			Assert.AreEqual(active, user.Active);
+			Assert.AreEqual(active, user.Control.Active);
 		}
 		#endregion
 
@@ -243,16 +243,14 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		public void GivenIDeactivateTheUser()
 		{
 			var user = repos.User.GetByEmail(email);
-			user.Active = false;
-			repos.User.SaveOrUpdate(user);
+			db.Execute(() => repos.Control.Deactivate(user));
 		}
 
 		[Given(@"I deactivate the user (.+)")]
 		public void GivenIDeactivateTheUser(String email)
 		{
 			var user = repos.User.GetByEmail(email);
-			user.Active = false;
-			repos.User.SaveOrUpdate(user);
+			db.Execute(() => repos.Control.Deactivate(user));
 		}
 
 		[When(@"I try to get the ticket")]
@@ -1027,11 +1025,13 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		public void GivenILoginThisUser(Table table)
 		{
 			var userTable = table.CreateInstance<UserTable>();
+			userTable.Email = userTable.Email
+				.Replace("{scenarioCode}", scenarioCode);
 
 			var user = repos.User.GetByEmail(userTable.Email);
 
-			if (user is {Active: false})
-				repos.User.Activate(user);
+			if (user.Control is {Active: false})
+				repos.Control.Activate(user);
 
 			var info = new SignInInfo
 			{

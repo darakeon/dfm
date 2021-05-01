@@ -58,14 +58,14 @@ async function getUser(email) {
 
 async function changeUserState(email, active, wizard) {
 	const user = await execute(
-		`select config_id from user where email='${email}'`
+		`select config_id, control_ID from user where email='${email}'`
 	)
 
 	if (active != undefined) {
 		await execute(
-			`update user
+			`update control
 				set active=${active?1:0}
-				where email='${email}'`
+				where id='${user[0].Control_ID}'`
 		)
 	}
 
@@ -90,11 +90,22 @@ async function createUser(email, active, wizard) {
 		`select id from config order by id desc limit 1`
 	)
 
+	await execute(
+		`insert into control`
+			+ ` (creation, active, isAdm, isRobot, wrongLogin, removalWarningSent, robotCheck)`
+		+ ` values`
+			+ ` (datetime('now'), ${active?1:0}, 0, 0, 0, 0, datetime('now'))`
+	)
+
+	const control = await execute(
+		`select id from control order by id desc limit 1`
+	)
+
 	const result = await execute(
 		`insert into user`
-			+ ` (password, email, active, wrongLogin, config_id, tfaPassword, robotCheck)`
+			+ ` (password, email, config_id, tfaPassword, control_id)`
 		+ ` values`
-			+ `('${password.encrypted}', '${email}', ${active?1:0}, 0, ${config[0].ID}, 0, datetime('now'))`
+			+ `('${password.encrypted}', '${email}', ${config[0].ID}, 0, ${control[0].ID})`
 	)
 
 	return { ID: result.lastID }

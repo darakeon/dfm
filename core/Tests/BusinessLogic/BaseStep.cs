@@ -102,8 +102,8 @@ namespace DFM.BusinessLogic.Tests
 			createLogoffLogin(robotEmail);
 
 			var robot = repos.User.GetByEmail(robotEmail);
-			robot.IsRobot = true;
-			repos.User.SaveOrUpdate(robot);
+			robot.Control.IsRobot = true;
+			repos.Control.SaveOrUpdate(robot.Control);
 		}
 
 		protected void createLogoffLogin(String email)
@@ -149,17 +149,13 @@ namespace DFM.BusinessLogic.Tests
 
 			if (shouldActivateUser)
 			{
-				db.Execute(
-					() => repos.User.Activate(user)
-				);
+				db.Execute(() => repos.Control.Activate(user));
 			}
 
 			if (timezone is > 0)
 			{
 				user.SetRobotCheckDay();
-				db.Execute(
-					() => repos.User.SaveOrUpdate(user)
-				);
+				db.Execute(() => repos.User.SaveOrUpdate(user));
 			}
 
 			if (shouldSignContract)

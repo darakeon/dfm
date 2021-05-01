@@ -9,6 +9,7 @@ namespace DFM.Entities
 		private void init()
 		{
 			Config = new Config();
+			Control = new Control();
 		}
 
 		public override String ToString()
@@ -21,22 +22,17 @@ namespace DFM.Entities
 			return TZ.Now(Config.TimeZone);
 		}
 
-		public virtual Boolean WrongPassExceeded()
-		{
-			return WrongLogin >= Cfg.PasswordErrorLimit;
-		}
-
 		public virtual void SetRobotCheckDay()
 		{
-			var firstTime = RobotCheck == DateTime.MinValue;
+			var firstTime = Control.RobotCheck == DateTime.MinValue;
 
 			var nowUser = Now();
 			var nowUtc = DateTime.UtcNow;
 			var diff = nowUtc - nowUser;
-			RobotCheck = nowUser.Date + diff;
+			Control.RobotCheck = nowUser.Date + diff;
 
 			if (!firstTime)
-				RobotCheck = RobotCheck.AddDays(1);
+				Control.RobotCheck = Control.RobotCheck.AddDays(1);
 		}
 	}
 }
