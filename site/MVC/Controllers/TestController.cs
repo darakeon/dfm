@@ -58,7 +58,7 @@ namespace DFM.MVC.Controllers
 			{
 				e = e.MostInner();
 				message = e.Message + "<br />"
-					+ e.StackTrace.Replace("\n", "<br />");
+					+ e.StackTrace?.Replace("\n", "<br />");
 			}
 
 			return Content(message, "text/html");
