@@ -59,7 +59,7 @@ namespace DFM.MVC.Controllers
 			if (logOnError == null)
 			{
 				return String.IsNullOrEmpty(returnUrl)
-					? (IActionResult) RedirectToAction("Index", "Accounts")
+					? RedirectToAction("Index", "Accounts")
 					: Redirect(returnUrl);
 			}
 
