@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace DfM.Logs
 {
@@ -21,12 +23,22 @@ namespace DfM.Logs
 					exception.InnerException
 				);
 			}
+
+			var prop = exception.GetType()
+				.GetProperty("ValidationErrors");
+
+			if (prop != null)
+			{
+				Details = prop.GetValue(exception)
+					as ReadOnlyCollection<String>;
+			}
 		}
 
 		public String ClassName { get; set; }
 		public String Message { get; set; }
 		public String StackTrace { get; set; }
 		public String Source { get; set; }
+		public IList<String> Details { get; set; }
 
 		public ExceptionData InnerException { get; set; }
 
@@ -41,7 +53,8 @@ namespace DfM.Logs
 				ClassName,
 				StackTrace,
 				Source,
-				InnerException
+				InnerException,
+				Details
 			);
 		}
 	}
