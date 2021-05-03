@@ -122,6 +122,8 @@
 
 		"Aria_OpenLanguage": "open language options",
 		"Aria_AndroidLink": "link to android app",
+
+		"ContractTitle": "Terms of Use",
 	},
 	"pt-BR": {
 		"CurrentLanguage": "português",
@@ -246,5 +248,7 @@
 
 		"Aria_OpenLanguage": "abrir opções de língua",
 		"Aria_AndroidLink": "link para o aplicativo android",
+
+		"ContractTitle": "Termos de Uso",
 	},
 }
