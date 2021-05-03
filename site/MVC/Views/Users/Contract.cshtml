@@ -7,6 +7,11 @@
 	ViewBag.FormSizeLg = 8;
 
 	var canSign = Model.IsAuthenticated && !Model.IsLastContractAccepted;
+
+	var beginDate = Model.Contract.BeginDate
+		.ToLongDateString()
+		.Split(',', 2)
+		.Last();
 }
 
 @section Styles {
@@ -37,7 +42,7 @@
 @section Footer {
 	<span class="@(canSign ? "pull-left text-left" : "")">
 		@Context.Translate("ContractBeginDate")<br />
-		@Model.Contract.BeginDate.ToShortDateString()
+		@beginDate
 	</span>
 
 	@if (canSign)
