@@ -31,8 +31,17 @@
 
 		<div class="col-lg-7 col-sm-4 text-right">
 			Don't fly Money<br/>
+
+			@Html.RouteLink(
+				Context.Translate("ContractTitle"),
+				area,
+				new { controller = "Users", action = "Contract"},
+				new { target = "_blank" }
+			)<br />
+
 			@Cfg.Version<br/>
-			2011
+
+			2011<br />
 		</div>
 
 	</div>
