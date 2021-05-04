@@ -145,7 +145,7 @@ namespace DFM.BusinessLogic.Services
 				repos.Schedule.Save(schedule);
 			}
 
-			repos.Control.SaveAccess(schedule.User.Control);
+			repos.Control.AnticipateRobotCheck(schedule.User.Control);
 
 			return new ScheduleResult(schedule.Guid);
 		}

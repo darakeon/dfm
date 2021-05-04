@@ -69,6 +69,18 @@ namespace DFM.BusinessLogic.Repositories
 		public void SaveAccess(Control control)
 		{
 			control.LastAccess = DateTime.UtcNow;
+			ResetWarnCounter(control);
+		}
+
+		public void ResetWarnCounter(Control control)
+		{
+			control.RemovalWarningSent = 0;
+			SaveOrUpdate(control);
+		}
+
+		public void AnticipateRobotCheck(Control control)
+		{
+			control.RobotCheck = DateTime.UtcNow;
 			SaveOrUpdate(control);
 		}
 	}
