@@ -331,6 +331,9 @@ namespace DFM.BusinessLogic.Services
 		{
 			var contract = getContract();
 			repos.Acceptance.Accept(user, contract);
+
+			var control = user.Control;
+			repos.Control.ResetWarnCounter(control);
 		}
 
 		public void UpdateTFA(TFAInfo info)

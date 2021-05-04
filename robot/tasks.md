@@ -11,7 +11,7 @@
 - [x] delete users not logged in for 90 days
 - [x] delete users not accepted contract after 90 days
 - [x] send warnings of no interaction
-- [ ] zerar contador de warnings quando se logar
+- [x] zerar contador de warnings quando se logar
 - [ ] adicionar link do contrato no e-mail
 - [ ] adicionar motivo da exclusão no contrato?
 - [ ] remove "all others have signed"

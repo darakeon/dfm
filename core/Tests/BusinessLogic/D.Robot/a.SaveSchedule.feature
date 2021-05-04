@@ -478,6 +478,7 @@ Scenario: Da31. Save with info all right (value)
 		And the accountOut value will not change
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
+		And the next robot schedule run will check the user
 
 Scenario: Da32. Save with info all right (details)
 	Given I have this schedule to create

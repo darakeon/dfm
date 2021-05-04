@@ -94,6 +94,15 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			var schedule = repos.Schedule.Get(scheduleResult.Guid);
 			Assert.AreEqual(value, schedule.Value);
 		}
+
+		[Then(@"the next robot schedule run will check the user")]
+		public void ThenTheNextRobotScheduleRunWillCheckTheUser()
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			var nextCheck = user.Control.RobotCheck.ToUniversalTime();
+			Assert.Less(testStart, nextCheck);
+			Assert.Greater(DateTime.UtcNow, nextCheck);
+		}
 		#endregion
 
 		#region RunSchedule
