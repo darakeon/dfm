@@ -1,5 +1,5 @@
 FROM darakeon/ubuntu
-MAINTAINER Dara Keon <laboon@darakeon.com>
+LABEL maintainer="Dara Keon <laboon@darakeon.com>"
 RUN maintain
 
 RUN apt install -y default-jdk
