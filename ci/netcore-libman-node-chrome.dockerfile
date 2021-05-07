@@ -1,5 +1,5 @@
 FROM darakeon/netcore-libman-node
-MAINTAINER Dara Keon <laboon@darakeon.com>
+LABEL maintainer="Dara Keon <laboon@darakeon.com>"
 RUN maintain
 
 RUN curl -sL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb > chrome.deb

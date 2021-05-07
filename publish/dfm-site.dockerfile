@@ -1,5 +1,5 @@
 FROM darakeon/netcore-libman
-MAINTAINER Dara Keon <laboon@darakeon.com>
+LABEL maintainer="Dara Keon <laboon@darakeon.com>"
 RUN maintain
 
 COPY core /var/dfm/core
