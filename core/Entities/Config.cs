@@ -4,7 +4,7 @@ using Keon.Util.DB;
 
 namespace DFM.Entities
 {
-	public partial class Config : IEntityLong
+	public class Config : IEntityLong
 	{
 		public virtual Int64 ID { get; set; }
 
@@ -18,5 +18,10 @@ namespace DFM.Entities
 		public virtual Theme Theme { get; set; }
 
 		public virtual Boolean Wizard { get; set; }
+
+		public override String ToString()
+		{
+			return $"[{ID}]";
+		}
 	}
 }
