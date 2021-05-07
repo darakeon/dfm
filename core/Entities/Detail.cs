@@ -1,13 +1,15 @@
 ﻿using System;
+using DFM.Generic;
 using Keon.Util.DB;
 
 namespace DFM.Entities
 {
-	public partial class Detail : IEntityLong
+	public class Detail : IEntityLong
 	{
 		public Detail()
 		{
-			init();
+			Amount = 1;
+			ExternalId = new Byte[16];
 		}
 
 		public virtual Int64 ID { get; set; }
@@ -20,5 +22,49 @@ namespace DFM.Entities
 		public virtual Move Move { get; set; }
 		public virtual Schedule Schedule { get; set; }
 
+		public virtual Guid Guid
+		{
+			get => new(ExternalId);
+			set => ExternalId = value.ToByteArray();
+		}
+
+		public virtual Decimal Value
+		{
+			get => ValueCents.ToVisual();
+			set => ValueCents = value.ToCents();
+		}
+
+		public virtual Decimal GetTotal()
+		{
+			return Value * Amount;
+		}
+
+		public virtual Detail Clone()
+		{
+			return new()
+			{
+				Description = Description,
+				Amount = Amount,
+				Value = Value,
+				Move = Move,
+			};
+		}
+
+		public override Boolean Equals(object obj)
+		{
+			return obj is Detail detail
+			       && detail.ID == ID;
+		}
+
+		public override int GetHashCode()
+		{
+			// ReSharper disable once NonReadonlyMemberInGetHashCode
+			return ID.GetHashCode();
+		}
+
+		public override String ToString()
+		{
+			return $"[{ID}] {Description}";
+		}
 	}
 }

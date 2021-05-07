@@ -1,10 +1,11 @@
 ﻿using System;
 using Keon.Util.DB;
 using DFM.Entities.Enums;
+using token = Keon.Util.Extensions.Token;
 
 namespace DFM.Entities
 {
-	public partial class Security : IEntityLong
+	public class Security : IEntityLong
 	{
 		public virtual Int64 ID { get; set; }
 
@@ -15,5 +16,15 @@ namespace DFM.Entities
 		public virtual Boolean Sent { get; set; }
 
 		public virtual User User { get; set; }
+
+		public virtual void CreateToken()
+		{
+			Token = token.New();
+		}
+
+		public override string ToString()
+		{
+			return $"[{ID}] {Token}";
+		}
 	}
 }

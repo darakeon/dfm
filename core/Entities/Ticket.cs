@@ -4,13 +4,12 @@ using Keon.Util.DB;
 
 namespace DFM.Entities
 {
-	public partial class Ticket : IEntityLong
+	public class Ticket : IEntityLong
 	{
 		public Ticket()
 		{
-			init();
+			Active = true;
 		}
-
 
 		public virtual Int64 ID { get; set; }
 
