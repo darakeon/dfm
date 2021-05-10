@@ -11,8 +11,9 @@ This is the task list for the project.
 - Dependency: which other task it depends on (if it exists)
 - Issue: github issue about the task (if it exists)
 
-| Task (51)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (52)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
+| Delete user on demand                                                          | :sheep:  |  2  |  4  |  6  |                |       |
 | Login after create account, disable if not confirm e-mail in 1 week            | :sheep:  |  2  |  4  |  6  |                |       |
 | Add misc to users                                                              | :dragon: |  2  |  3  |  5  |                |       |
 | Reset Misc on password change and send e-mail                                  | :sheep:  |  1  |  3  |  6  | misc           |       |
