@@ -54,7 +54,7 @@ namespace DFM.Generic.Pages
 
 			var operatorMoreBack = operatorList.First() - 1;
 			HasMoreBack = operatorMoreBack >= operatorMinimum;
-			MoreBack = operatorMoreBack.Item;			
+			MoreBack = operatorMoreBack.Item;
 
 			var operatorMoreForward = operatorList.Last() + 1;
 			HasMoreForward = operatorMoreForward <= operatorMaximum;

@@ -184,7 +184,7 @@ namespace DFM.BusinessLogic.Tests
 				Name = "closed in",
 				Url = url,
 			};
-			 
+
 			service.Admin.CreateAccount(account);
 
 			var user = repos.User.GetByEmail(current.Email);
