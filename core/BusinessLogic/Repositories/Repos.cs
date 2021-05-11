@@ -1,14 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
-using CsvHelper;
 using DFM.Authentication;
 using DFM.BusinessLogic.Response;
 using DFM.Entities;
-using DFM.Entities.Bases;
 using DFM.Exchange;
 using Keon.Util.DB;
 
@@ -95,7 +90,7 @@ namespace DFM.BusinessLogic.Repositories
 			Expression<Func<E, P>> parent,
 			Expression<Func<P, Boolean>> condition
 		)
-			where E : class, IEntity<long>, new()
+			where E : class, IEntity<Int64>, new()
 		{
 			repo.NewQuery()
 				.Where(parent, condition)

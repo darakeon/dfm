@@ -124,7 +124,7 @@
 	"4.2.0.0": [
 		"Melhorada segurança de dados do sistema",
 		"Gerenciado caso aconteça erro ao rodar agendamentos",
-		"Melhoradas usabilidade e  acessibilidade da tela de movimentaçâo do aplicativo"
+		"Melhoradas usabilidade e  acessibilidade da tela de movimentação do aplicativo"
 	],
 	"4.1.5.0": [
 		"Adicionada lista completa de formas de contato",
@@ -132,7 +132,7 @@
 		"Adicionados sinais de + e - no aplicativo, por causa de acessibilidade",
 	],
 	"4.1.4.6": [
-		"Reorganizando e repriorizando lista de tarefas"
+		"Reorganizando e re-priorizando lista de tarefas"
 	],
 	"4.1.4.5": [
 		"Testes automatizados da lógica de negócio colocados para rodar em Linux"

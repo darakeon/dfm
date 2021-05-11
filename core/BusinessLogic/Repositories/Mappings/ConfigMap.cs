@@ -1,4 +1,5 @@
-﻿using DFM.Entities;
+﻿using System;
+using DFM.Entities;
 using DFM.Entities.Bases;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Automapping.Alterations;
@@ -21,7 +22,7 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 				.Default("'" + Defaults.ConfigUseCategories + "'");
 
 			mapping.Map(c => c.Theme)
-				.Default("'" + (int) Defaults.DefaultTheme + "'");
+				.Default("'" + (Int32) Defaults.DefaultTheme + "'");
 		}
 	}
 }

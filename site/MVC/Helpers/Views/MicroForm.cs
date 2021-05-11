@@ -21,7 +21,7 @@ namespace DFM.MVC.Helpers.Views
 
 			Class = @class;
 
-			HiddenList = new Dictionary<String, object>();
+			HiddenList = new Dictionary<String, Object>();
 		}
 
 		public static MicroForm WithGlyph(HttpContext context, String glyphicon, String text)
@@ -46,19 +46,19 @@ namespace DFM.MVC.Helpers.Views
 		public String Text { get; private set; }
 
 		public String RouteName { get; private set; }
-		public object RouteValues { get; private set; }
+		public Object RouteValues { get; private set; }
 
 		public Boolean Ajax { get; private set; }
 		public String UpdateTargetId { get; private set; }
 
-		public IDictionary<String, object> HiddenList { get; }
+		public IDictionary<String, Object> HiddenList { get; }
 
 		public MicroForm AddRouteIdUrl(
 			String routeName,
 			[AspMvcArea] String area,
 			[AspMvcController] String controller,
 			[AspMvcAction] String action,
-			object id
+			Object id
 		)
 		{
 			RouteName = routeName;
@@ -76,7 +76,7 @@ namespace DFM.MVC.Helpers.Views
 			String accountUrl,
 			[AspMvcController] String controller,
 			[AspMvcAction] String action,
-			object id
+			Object id
 		)
 		{
 			var routeAccount = new Accounts();
@@ -95,7 +95,7 @@ namespace DFM.MVC.Helpers.Views
 		public MicroForm AddRouteIdUrl<T>(
 			[AspMvcController] String controller,
 			[AspMvcAction] String action,
-			object id
+			Object id
 		) where T : BaseRoute, new()
 		{
 			return AddRouteIdUrl(
@@ -119,7 +119,7 @@ namespace DFM.MVC.Helpers.Views
 		public MicroForm AddIdUrl(
 			[AspMvcController] String controller,
 			[AspMvcAction] String action,
-			object id
+			Object id
 		)
 		{
 			AddRouteIdUrl(null, null, controller, action, id);
@@ -128,14 +128,14 @@ namespace DFM.MVC.Helpers.Views
 
 		public MicroForm AddIdUrl(
 			[AspMvcAction] String action,
-			object id
+			Object id
 		)
 		{
 			AddIdUrl(null, action, id);
 			return this;
 		}
 
-		public MicroForm AddHidden(String name, object value)
+		public MicroForm AddHidden(String name, Object value)
 		{
 			HiddenList.Add(name, value);
 			return this;

@@ -30,7 +30,7 @@ namespace DFM.Email
 			return new(user, EmailType.RemovalReason, removalReason);
 		}
 
-		private Format(User user, EmailType type, object layoutType)
+		private Format(User user, EmailType type, Object layoutType)
 		{
 			var config = user.Config;
 			var language = config.Language;

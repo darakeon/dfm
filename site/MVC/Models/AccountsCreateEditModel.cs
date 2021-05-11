@@ -52,11 +52,8 @@ namespace DFM.MVC.Models
 		{
 			if (hasLimit)
 			{
-				if (Account.RedLimit == null)
-					Account.RedLimit = 0;
-
-				if (Account.YellowLimit == null)
-					Account.YellowLimit = 0;
+				Account.RedLimit ??= 0;
+				Account.YellowLimit ??= 0;
 			}
 			else
 			{

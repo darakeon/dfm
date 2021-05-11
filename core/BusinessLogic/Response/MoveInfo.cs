@@ -81,7 +81,7 @@ namespace DFM.BusinessLogic.Response
 
 		internal static MoveInfo Convert4Report(Move move, PrimalMoveNature nature)
 		{
-			return convert4Report(move, info => nature);
+			return convert4Report(move, _ => nature);
 		}
 
 		internal static MoveInfo Convert4Report(Move move)

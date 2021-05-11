@@ -20,13 +20,13 @@ namespace DFM.BusinessLogic.Response
 		public ScheduleFrequency Frequency { get; }
 		public Int16 Times { get; }
 
-		public override bool Equals(object obj)
+		public override Boolean Equals(Object obj)
 		{
 			return obj is MoveSchedule schedule
 				&& schedule.Guid == Guid;
 		}
 
-		public override int GetHashCode()
+		public override Int32 GetHashCode()
 		{
 			return Guid.GetHashCode();
 		}

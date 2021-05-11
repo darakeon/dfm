@@ -38,7 +38,7 @@ namespace DFM.MVC.Areas.Api.Controllers
 			}
 		}
 
-		private object makeResult(object model)
+		private Object makeResult(Object model)
 		{
 			if (model is BaseApiModel apiModel)
 			{
@@ -81,7 +81,7 @@ namespace DFM.MVC.Areas.Api.Controllers
 			return makeMvcActionResponse(result);
 		}
 
-		private JsonResult makeMvcActionResponse(object result)
+		private JsonResult makeMvcActionResponse(Object result)
 		{
 			return Json(result);
 		}

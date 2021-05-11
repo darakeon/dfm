@@ -31,7 +31,7 @@ namespace DFM.BusinessLogic.Repositories
 			return NewQuery().Where(
 					s => s.User.ID == user.ID
 					    && s.Action == action
-						&& s.Active == true
+						&& s.Active
 						&& s.Expire >= user.Now()
 				).FirstOrDefault ?? create(user, action);
 		}
@@ -102,11 +102,10 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			var security = SingleOrDefault(s => s.Token == token);
 
-			return security != null
-					&& security.Active
-					&& security.Expire >= security.User.Now()
-				? security
-				: null;
+			var canBeUsed = security is {Active: true}
+			    && security.Expire >= security.User.Now();
+
+			return canBeUsed ? security : null;
 		}
 
 		internal void Disable(String token)

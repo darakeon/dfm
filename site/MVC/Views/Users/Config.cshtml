@@ -56,7 +56,7 @@
 	@foreach (var tab in tabs)
 	{
 		var name = tab.ToString();
-		var lower = name.ToLower();
+		var lower = tab.ToLower();
 
 		<div class="tab-pane" id="@lower" data-form="@Url.Action($"Config{name}")">
 			@await Html.PartialAsync($"Config{name}")

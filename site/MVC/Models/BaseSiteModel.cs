@@ -40,14 +40,14 @@ namespace DFM.MVC.Models
 			}
 		}
 
-		private static string getControllerUrl<T>()
+		private static String getControllerUrl<T>()
 			where T : Controller
 		{
 			var name = typeof(T).Name;
-			return name[0..^10];
+			return name[..^10];
 		}
 
-		protected String getName<T>(Expression<Func<T, object>> prop)
+		protected String getName<T>(Expression<Func<T, Object>> prop)
 		{
 			return prop.Body.ToString().Substring(2);
 		}

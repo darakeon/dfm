@@ -52,11 +52,11 @@ namespace DFM.Entities
 
 		public virtual String GetDescriptionWithSchedulePosition()
 		{
-			if (Schedule == null || !Schedule.ShowInstallment)
+			if (Schedule is not {ShowInstallment: true})
 				return Description;
 
-			const string boundlessFormat = "{0} [{1}]";
-			const string boundedFormat = "{0} [{1}/{2}]";
+			const String boundlessFormat = "{0} [{1}]";
+			const String boundedFormat = "{0} [{1}/{2}]";
 
 			var format = Schedule.Boundless ? boundlessFormat : boundedFormat;
 
@@ -123,13 +123,13 @@ namespace DFM.Entities
 			}
 		}
 
-		public override Boolean Equals(object obj)
+		public override Boolean Equals(Object obj)
 		{
 			return obj is Move move
 			       && move.ID == ID;
 		}
 
-		public override int GetHashCode()
+		public override Int32 GetHashCode()
 		{
 			// ReSharper disable once NonReadonlyMemberInGetHashCode
 			return ID.GetHashCode();

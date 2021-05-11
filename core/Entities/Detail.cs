@@ -50,13 +50,13 @@ namespace DFM.Entities
 			};
 		}
 
-		public override Boolean Equals(object obj)
+		public override Boolean Equals(Object obj)
 		{
 			return obj is Detail detail
 			       && detail.ID == ID;
 		}
 
-		public override int GetHashCode()
+		public override Int32 GetHashCode()
 		{
 			// ReSharper disable once NonReadonlyMemberInGetHashCode
 			return ID.GetHashCode();

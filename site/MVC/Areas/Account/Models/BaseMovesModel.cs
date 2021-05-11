@@ -52,8 +52,7 @@ namespace DFM.MVC.Areas.Account.Models
 
 		private void populateDropDowns(Boolean transferIsPossible)
 		{
-			if (GenericMove == null)
-				GenericMove = initIMove();
+			GenericMove ??= initIMove();
 
 			makeNatureList(transferIsPossible);
 
@@ -72,7 +71,7 @@ namespace DFM.MVC.Areas.Account.Models
 			return new MoveInfo();
 		}
 
-		private void makeNatureList(bool transferIsPossible)
+		private void makeNatureList(Boolean transferIsPossible)
 		{
 			NatureSelectList =
 				transferIsPossible

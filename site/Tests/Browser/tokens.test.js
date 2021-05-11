@@ -23,7 +23,7 @@ describe('Users', () => {
 		await puppy.call(`Tokens/UserVerification/${token}`)
 
 		const message = await puppy.content('.alert')
-		await expect(message).toContain('Verifição feita com sucesso.')
+		await expect(message).toContain('Verificação feita com sucesso.')
 	})
 
 	test('Token User Activate - by form', async () => {
@@ -38,7 +38,7 @@ describe('Users', () => {
 		await page.click('#body form button[type="submit"]')
 
 		const message = await puppy.content('.alert')
-		await expect(message).toContain('Verifição feita com sucesso.')
+		await expect(message).toContain('Verificação feita com sucesso.')
 	})
 
 	test('Token Password Reset - by url', async () => {

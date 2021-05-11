@@ -40,6 +40,8 @@ function toggleFromSum(obj, target) {
 		return clear()
 
 	recalculateTotal(obj)
+
+	return null
 }
 
 function clickedButtonChild(obj, target) {

@@ -16,13 +16,16 @@ namespace DfM.Logs
 		public Int32 Hash => GetHashCode();
 		private IList<ErrorLog> children;
 
+		// ReSharper disable once StringLiteralTypo
+		private const String dateFormat = "yyyyMMddHHmmssffffff";
+
 		// this is for serialization
 		public ErrorLog() { }
 
 		public ErrorLog(Exception exception, Boolean handled)
 		{
 			Date = DateTime.UtcNow;
-			ID = Date.ToString("yyyyMMddHHmmssffffff");
+			ID = Date.ToString(dateFormat);
 			Exception = new ExceptionData(exception);
 			Handled = handled;
 		}
@@ -60,7 +63,7 @@ namespace DfM.Logs
 			);
 		}
 
-		public override Boolean Equals(object obj)
+		public override Boolean Equals(Object obj)
 		{
 			return obj is ErrorLog log
 				&& log.Exception.Equals(Exception);

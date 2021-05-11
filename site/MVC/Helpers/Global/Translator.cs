@@ -25,7 +25,7 @@ namespace DFM.MVC.Helpers.Global
 			PlainText.Initialize(getPath());
 		}
 
-		private static string getPath()
+		private static String getPath()
 		{
 			var path = Directory.GetCurrentDirectory();
 
@@ -71,7 +71,7 @@ namespace DFM.MVC.Helpers.Global
 				if (current.ContainsKey("controller"))
 				{
 					var controller = HttpUtility.UrlDecode(
-						current["controller"].ToString().ToLower()
+						current["controller"].ToLower()
 					);
 
 					if (!controller.StartsWith("?"))
@@ -81,7 +81,7 @@ namespace DFM.MVC.Helpers.Global
 				if (current.ContainsKey("route"))
 				{
 					var route = (Route) current["route"];
-					return route.Defaults["controller"].ToString().ToLower();
+					return route.Defaults["controller"].ToLower();
 				}
 
 				return "general";
@@ -108,12 +108,12 @@ namespace DFM.MVC.Helpers.Global
 			    ?? headerLanguage();
 		}
 
-		private string sessionLanguage()
+		private String sessionLanguage()
 		{
-			return context?.Session?.GetString("Language");
+			return context?.Session.GetString("Language");
 		}
 
-		private string headerLanguage()
+		private String headerLanguage()
 		{
 			return context.Request
 				.Headers["Accept-Language"].ToString()

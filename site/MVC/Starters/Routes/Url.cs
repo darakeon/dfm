@@ -40,7 +40,7 @@ namespace DFM.MVC.Starters.Routes
 		private readonly IList<UrlPart> children =
 			new List<UrlPart>();
 
-		public String Translate(object parameters)
+		public String Translate(Object parameters)
 		{
 			var values = parameters.GetType()
 				.GetProperties()

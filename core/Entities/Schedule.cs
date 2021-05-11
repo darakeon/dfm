@@ -278,7 +278,7 @@ namespace DFM.Entities
 			}
 		}
 
-		public override string ToString()
+		public override String ToString()
 		{
 			return $"[{ID}] {Frequency} x {Description}";
 		}

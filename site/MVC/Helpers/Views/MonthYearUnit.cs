@@ -46,7 +46,7 @@ namespace DFM.MVC.Helpers.Views
 			return new(Year, Month, 1);
 		}
 
-		public override string ToString()
+		public override String ToString()
 		{
 			return Label;
 		}

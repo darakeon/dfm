@@ -22,7 +22,7 @@ namespace DFM.Entities
 			Token = token.New();
 		}
 
-		public override string ToString()
+		public override String ToString()
 		{
 			return $"[{ID}] {Token}";
 		}

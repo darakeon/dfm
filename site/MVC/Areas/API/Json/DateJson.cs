@@ -8,7 +8,7 @@ namespace DFM.MVC.Areas.Api.Json
 		public Int16 Month { get; set; }
 		public Int16 Day { get; set; }
 
-		public int CompareTo(DateJson obj)
+		public Int32 CompareTo(DateJson obj)
 		{
 			var year = Year.CompareTo(obj.Year);
 
@@ -23,7 +23,7 @@ namespace DFM.MVC.Areas.Api.Json
 			return Day.CompareTo(obj.Day);
 		}
 
-		public override string ToString()
+		public override String ToString()
 		{
 			var year = Year.ToString("0000");
 			var month = Month.ToString("00");

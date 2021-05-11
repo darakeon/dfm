@@ -11,9 +11,14 @@ namespace DFM.Generic
 				.Replace("\n", "<br />");
 		}
 
-		public static String Format(this String format, params object[] args)
+		public static String Format(this String format, params Object[] args)
 		{
 			return String.Format(format, args);
+		}
+
+		public static String ToLower(this Object obj)
+		{
+			return obj.ToString()?.ToLower();
 		}
 	}
 }

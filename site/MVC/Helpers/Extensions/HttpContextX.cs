@@ -55,7 +55,7 @@ namespace DFM.MVC.Helpers.Extensions
 			return context.GetTranslator().GetMonthName(month);
 		}
 
-		public static Dictionary<String, object> GetRoute(this HttpContext context)
+		public static Dictionary<String, Object> GetRoute(this HttpContext context)
 		{
 			return context.GetRouteData().Values
 				.ToDictionary(v => v.Key, v => v.Value);

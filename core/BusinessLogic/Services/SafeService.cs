@@ -123,7 +123,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			var ticket = repos.Ticket.GetByKey(ticketKey);
 
-			if (ticket == null || !ticket.Active)
+			if (ticket is not {Active: true})
 				throw Error.Uninvited.Throw();
 
 			if (!ticket.User.Control.Active)

@@ -9,5 +9,6 @@ trim_trailing_whitespace = true
 dotnet_naming_rule.private_symbols.severity = suggestion
 dotnet_naming_rule.private_symbols.symbols = locals_and_parameters
 dotnet_naming_rule.private_symbols.style = camel_case_style
-dotnet_naming_symbols.locals_and_parameters.applicable_kinds = parameter, local
+dotnet_naming_symbols.locals_and_parameters.applicable_kinds = parameter, local, field, method, property
+dotnet_naming_symbols.locals_and_parameters.applicable_accessibilities = private, protected, protected_internal, private_protected
 dotnet_naming_style.camel_case_style.capitalization = camel_case

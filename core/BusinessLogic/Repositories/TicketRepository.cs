@@ -50,7 +50,10 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal void Disable(Ticket ticket)
 		{
-			ticket.Key += DateTime.UtcNow.ToString("yyyyMMddHHmmssffffff");
+			// ReSharper disable once StringLiteralTypo
+			var dateFormat = "yyyyMMddHHmmssffffff";
+
+			ticket.Key += DateTime.UtcNow.ToString(dateFormat);
 			ticket.Active = false;
 			ticket.Expiration = DateTime.UtcNow;
 

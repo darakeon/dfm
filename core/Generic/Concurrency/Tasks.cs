@@ -11,7 +11,7 @@ namespace DFM.Generic.Concurrency
 		public Tasks(Int32 minutes)
 		{
 			this.minutes = minutes;
-			dic = new ConcurrentDictionary<string, TaskInfo>();
+			dic = new ConcurrentDictionary<String, TaskInfo>();
 		}
 
 		public Boolean AddIfNotExists(String key)
