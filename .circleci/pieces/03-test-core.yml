@@ -5,12 +5,36 @@
       - checkout
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "core/Authentication/Authentication.csproj" }}-{{ checksum "core/BusinessLogic/BusinessLogic.csproj" }}-{{ checksum "core/Email/Email.csproj" }}-{{ checksum "core/Entities/Entities.csproj" }}-{{ checksum "core/Generic/Generic.csproj" }}-{{ checksum "core/Language/Language.csproj" }}-{{ checksum "core/Tests/BusinessLogic/BusinessLogic.Tests.csproj" }}-{{ checksum "core/Tests/Email/Email.Tests.csproj" }}-{{ checksum "core/Tests/Language/Language.Tests.csproj" }}
+            - >
+                dotnet
+                -{{ checksum "core/Authentication/Authentication.csproj" }}
+                -{{ checksum "core/BusinessLogic/BusinessLogic.csproj" }}
+                -{{ checksum "core/Email/Email.csproj" }}
+                -{{ checksum "core/Entities/Entities.csproj" }}
+                -{{ checksum "core/Generic/Generic.csproj" }}
+                -{{ checksum "core/Language/Language.csproj" }}
+                -{{ checksum "core/Exchange/Exchange.csproj" }}
+                -{{ checksum "core/Tests/BusinessLogic/BusinessLogic.Tests.csproj" }}
+                -{{ checksum "core/Tests/Email/Email.Tests.csproj" }}
+                -{{ checksum "core/Tests/Language/Language.Tests.csproj" }}
+                -{{ checksum "core/Tests/Exchange/Exchange.Tests.csproj" }}
       - run:
           name: dependencies
           command: dotnet restore core/Core.sln
       - save_cache:
-          key: dotnet-{{ checksum "core/Authentication/Authentication.csproj" }}-{{ checksum "core/BusinessLogic/BusinessLogic.csproj" }}-{{ checksum "core/Email/Email.csproj" }}-{{ checksum "core/Entities/Entities.csproj" }}-{{ checksum "core/Generic/Generic.csproj" }}-{{ checksum "core/Language/Language.csproj" }}-{{ checksum "core/Tests/BusinessLogic/BusinessLogic.Tests.csproj" }}-{{ checksum "core/Tests/Email/Email.Tests.csproj" }}-{{ checksum "core/Tests/Language/Language.Tests.csproj" }}
+          key: >
+            dotnet
+            -{{ checksum "core/Authentication/Authentication.csproj" }}
+            -{{ checksum "core/BusinessLogic/BusinessLogic.csproj" }}
+            -{{ checksum "core/Email/Email.csproj" }}
+            -{{ checksum "core/Entities/Entities.csproj" }}
+            -{{ checksum "core/Generic/Generic.csproj" }}
+            -{{ checksum "core/Language/Language.csproj" }}
+            -{{ checksum "core/Exchange/Exchange.csproj" }}
+            -{{ checksum "core/Tests/BusinessLogic/BusinessLogic.Tests.csproj" }}
+            -{{ checksum "core/Tests/Email/Email.Tests.csproj" }}
+            -{{ checksum "core/Tests/Language/Language.Tests.csproj" }}
+            -{{ checksum "core/Tests/Exchange/Exchange.Tests.csproj" }}
           paths:
             - ~/.nuget/packages
       - run:
@@ -23,6 +47,10 @@
       - run:
           path: core/Tests/Email
           name: tests_email
+          command: dotnet test -v m --no-build
+      - run:
+          path: core/Tests/Exchange
+          name: tests_exchange
           command: dotnet test -v m --no-build
       - run:
           path: core/Tests/BusinessLogic

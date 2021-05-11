@@ -14,4 +14,3 @@
 - [x] zerar contador de warnings quando se logar
 - [ ] adicionar link do contrato no e-mail
 - [ ] adicionar motivo da exclusão no contrato?
-- [ ] remove "all others have signed"

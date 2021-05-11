@@ -349,17 +349,6 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			db.Execute(() =>
 				repos.Contract.SaveOrUpdate(contract)
 			);
-
-			var users = repos.User.Where(
-				u => u.Email != userEmail
-			);
-
-			db.Execute(() => {
-				foreach (var user in users)
-				{
-					repos.Acceptance.Accept(user, contract);
-				}
-			});
 		}
 
 		[Given(@"the user creation was (\d+) days before")]
@@ -430,27 +419,13 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		[Then(@"there will be an export file with this content")]
 		public void ThenThereWillBeAnExportFileWithThisContent(Table table)
 		{
-			var expected = new[] {table.Header}
-				.Union(
-					table.Rows.Select(row => row.Values)
-				)
-				.Select(csvLine);
+			var expected = table.ToCsv();
 
 			var path = $"{scenarioCode}_dontflymoney.com.csv";
 			Assert.IsTrue(File.Exists(path));
 
 			var actual = File.ReadAllLines(path);
 			Assert.AreEqual(expected, actual);
-		}
-
-		private static String csvLine(ICollection<string> fields)
-		{
-			return String.Join(
-				",",
-				fields.Select(v =>
-					v.Replace("\"", "\\\"")
-				)
-			);
 		}
 
 		#endregion
@@ -554,6 +529,5 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			Assert.AreEqual(lastRun, schedule.LastRun);
 		}
 		#endregion
-
 	}
 }

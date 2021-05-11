@@ -231,21 +231,16 @@ namespace DFM.Entities
 			return move;
 		}
 
-		public virtual Boolean CanRun()
-		{
-			return canRun(false);
-		}
-
 		public virtual Boolean CanRunNow()
 		{
-			return canRun(true);
+			return CanRun(User.Now());
 		}
 
-		private Boolean canRun(Boolean tryNow)
+		public virtual Boolean CanRun(DateTime? limitDate = null)
 		{
 			return Active
 				&& (Boundless || LastRun < Times)
-				&& (!tryNow || LastDateRun() < User.Now());
+				&& (!limitDate.HasValue || LastDateRun() < limitDate);
 		}
 
 		public virtual DateTime LastDateRun()

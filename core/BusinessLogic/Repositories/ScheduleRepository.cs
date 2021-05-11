@@ -216,5 +216,13 @@ namespace DFM.BusinessLogic.Repositories
 				);
 			}
 		}
+
+		public IList<Schedule> ByAccount(Account account)
+		{
+			return Where(
+				m => (m.In != null && m.In.ID == account.ID)
+					|| (m.Out != null && m.Out.ID == account.ID)
+			);
+		}
 	}
 }
