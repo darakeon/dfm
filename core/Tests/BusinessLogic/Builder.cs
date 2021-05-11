@@ -118,22 +118,6 @@ namespace DFM.BusinessLogic.Tests
 			var accountIn = accountFor(user, "in");
 			var accountOut = accountFor(user, "out");
 
-			repos.Move.SaveOrUpdate(
-				new Move
-				{
-					Guid = Guid.NewGuid(),
-					Description = $"Move {code}",
-					Year = 2021,
-					Month = 5,
-					Day = 7,
-					Category = category,
-					Nature = MoveNature.Transfer,
-					In = accountIn,
-					Out = accountOut,
-					ValueCents = 27,
-				}
-			);
-
 			var move = repos.Move.SaveOrUpdate(
 				new Move
 				{
@@ -154,11 +138,8 @@ namespace DFM.BusinessLogic.Tests
 			return move;
 		}
 
-		private void detailFor(Int32 count, IMove parent)
+		private void detailFor(Int32 count, Move move)
 		{
-			var move = parent as Move;
-			var schedule = parent as Schedule;
-
 			for (var d = 0; d < count; d++)
 			{
 				repos.Detail.SaveOrUpdate(
@@ -166,8 +147,7 @@ namespace DFM.BusinessLogic.Tests
 					{
 						Guid = Guid.NewGuid(),
 						Move = move,
-						Schedule = schedule,
-						Description = $"Detail {parent.Description} {d+1}",
+						Description = $"Detail {d+1}",
 						Amount = 3,
 						ValueCents = 9,
 					}
@@ -181,15 +161,14 @@ namespace DFM.BusinessLogic.Tests
 			var accountIn = accountFor(user, "in");
 			var accountOut = accountFor(user, "out");
 
-			var today = user.Now().Date;
-			var firstSch = new DateTime(today.Year, today.Month - 2, 27);
-			var secondSch = new DateTime(today.Year, today.Month - 1, 7);
-
-			var schedule = repos.Schedule.SaveOrUpdate(
+			return repos.Schedule.SaveOrUpdate(
 				new Schedule
 				{
 					Guid = Guid.NewGuid(),
 					Description = $"Schedule {code}",
+					Year = 3000,
+					Month = 3,
+					Day = 27,
 					Category = category,
 					Nature = MoveNature.Transfer,
 					In = accountIn,
@@ -198,27 +177,8 @@ namespace DFM.BusinessLogic.Tests
 					Boundless = false,
 					Times = 10,
 					User = user,
-				}.SetDate(firstSch)
+				}
 			);
-
-			detailFor(3, schedule);
-
-			schedule = repos.Schedule.SaveOrUpdate(
-				new Schedule
-				{
-					Guid = Guid.NewGuid(),
-					Description = $"Schedule {code}",
-					Category = category,
-					Nature = MoveNature.Transfer,
-					In = accountIn,
-					Out = accountOut,
-					ValueCents = 27,
-					Boundless = true,
-					User = user,
-				}.SetDate(secondSch)
-			);
-
-			return schedule;
 		}
 	}
 }

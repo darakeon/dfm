@@ -31,7 +31,7 @@ namespace DFM.Exchange
 		{
 			foreach (var schedule in schedulesDB)
 			{
-				if (moves.Any(m => m.Equals(schedule)))
+				if (schedules.Any(s => s.Guid == schedule.Guid))
 					continue;
 
 				schedules.Add(schedule);
@@ -43,25 +43,42 @@ namespace DFM.Exchange
 			if (!moves.Any() && !schedules.Any())
 				return;
 
-			var path = user.Email.Replace("@", "_") + ".csv";
-
-			using TextWriter writer = new StreamWriter(path);
-
-			var csv = new CsvWriter(writer, CultureInfo.CurrentCulture);
-
 			if (schedules.Any())
-			{
-				var maxDate = schedules
-					.Where(s => !s.Boundless)
-					.Max(s => s.LastDateShouldRun());
+				addSchedules();
 
-				moves.AddRange(
-					schedules.SelectMany(
-						s => MoveCsv.Convert(s, maxDate)
-					)
+			if (moves.Any())
+				write(user);
+		}
+
+		private void addSchedules()
+		{
+			var bounded = schedules
+				.Where(s => !s.Boundless)
+				.ToList();
+
+			if (bounded.Any())
+			{
+				var maxDate = bounded.Max(
+					s => s.LastDateShouldRun()
 				);
+
+				var movesFromSchedules = schedules
+					.SelectMany(
+						s => MoveCsv.Convert(s, maxDate)
+					);
+
+				moves.AddRange(movesFromSchedules);
 			}
 
+
+			schedules.Clear();
+		}
+
+		private void write(User user)
+		{
+			var path = user.Email.Replace("@", "_") + ".csv";
+			using var writer = new StreamWriter(path);
+			using var csv = new CsvWriter(writer, CultureInfo.CurrentCulture);
 			csv.WriteRecords(moves.OrderBy(s => s.Date));
 		}
 	}

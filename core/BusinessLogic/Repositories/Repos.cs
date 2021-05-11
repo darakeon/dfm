@@ -51,13 +51,8 @@ namespace DFM.BusinessLogic.Repositories
 
 			foreach (var account in accounts)
 			{
-				csv.Add(
-					Move.Where(m => m.In == account || m.Out == account)
-				);
-
-				csv.Add(
-					Schedule.Where(m => m.In == account || m.Out == account)
-				);
+				csv.Add(Move.ByAccount(account));
+				csv.Add(Schedule.ByAccount(account));
 			}
 
 			csv.Create(user);

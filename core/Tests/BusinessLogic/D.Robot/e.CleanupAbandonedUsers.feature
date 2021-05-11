@@ -495,91 +495,28 @@ Scenario: De48. Remove User with admin data
 		And the user won't exist
 		And the count of warnings sent will be 0
 
-Scenario: De49. Remove User with moves
-	Given the user last access was 578 days before
-		And the user have being warned twice
-		And the user have
-			| System Stuff |
-			| Move         |
-	When robot user login
-		And call cleanup abandoned users
-	Then I will receive no core error
-		And the user won't exist
-		And the count of warnings sent will be 0
-		And there will be an export file with this content
-			| Description | Date       | Category           | Nature   | In              | Out              | Value | Details                                                                                 |
-			| Move de49   | 2021-05-07 | Category de49 move | Transfer | Account de49 in | Account de49 out | 0.27  |                                                                                         |
-			| Move de49   | 2021-05-07 | Category de49 move | Transfer | Account de49 in | Account de49 out |       | Detail Move de49 1 (3x0.09) + Detail Move de49 2 (3x0.09) + Detail Move de49 3 (3x0.09) |
-
-Scenario: De50. Remove User without moves but with schedules
-	Given the user last access was 578 days before
-		And the user have being warned twice
-		And the user have
-			| System Stuff |
-			| Schedule     |
-		And robot run the scheduler
-	When robot user login
-		And call cleanup abandoned users
-	Then I will receive no core error
-		And the user won't exist
-		And the count of warnings sent will be 0
-		And there will be an export file with this content
-			| Description   | Date       | Category               | Nature   | In              | Out              | Value | Details                                                                                             |
-			| Schedule de50 | 2021-03-27 | Category de50 schedule | Transfer | Account de50 in | Account de50 out |       | Detail Schedule de50 1 (3x0.09) + Detail Schedule de50 2 (3x0.09) + Detail Schedule de50 3 (3x0.09) |
-			| Schedule de50 | 2021-04-07 | Category de50 schedule | Transfer | Account de50 in | Account de50 out | 0.27  |                                                                                                     |
-			| Schedule de50 | 2021-04-27 | Category de50 schedule | Transfer | Account de50 in | Account de50 out |       | Detail Schedule de50 1 (3x0.09) + Detail Schedule de50 2 (3x0.09) + Detail Schedule de50 3 (3x0.09) |
-			| Schedule de50 | 2021-05-07 | Category de50 schedule | Transfer | Account de50 in | Account de50 out | 0.27  |                                                                                                     |
-			| Schedule de50 | 2021-05-27 | Category de50 schedule | Transfer | Account de50 in | Account de50 out |       | Detail Schedule de50 1 (3x0.09) + Detail Schedule de50 2 (3x0.09) + Detail Schedule de50 3 (3x0.09) |
-			| Schedule de50 | 2021-06-07 | Category de50 schedule | Transfer | Account de50 in | Account de50 out | 0.27  |                                                                                                     |
-			| Schedule de50 | 2021-06-27 | Category de50 schedule | Transfer | Account de50 in | Account de50 out |       | Detail Schedule de50 1 (3x0.09) + Detail Schedule de50 2 (3x0.09) + Detail Schedule de50 3 (3x0.09) |
-			| Schedule de50 | 2021-07-07 | Category de50 schedule | Transfer | Account de50 in | Account de50 out | 0.27  |                                                                                                     |
-			| Schedule de50 | 2021-07-27 | Category de50 schedule | Transfer | Account de50 in | Account de50 out |       | Detail Schedule de50 1 (3x0.09) + Detail Schedule de50 2 (3x0.09) + Detail Schedule de50 3 (3x0.09) |
-			| Schedule de50 | 2021-08-07 | Category de50 schedule | Transfer | Account de50 in | Account de50 out | 0.27  |                                                                                                     |
-			| Schedule de50 | 2021-08-27 | Category de50 schedule | Transfer | Account de50 in | Account de50 out |       | Detail Schedule de50 1 (3x0.09) + Detail Schedule de50 2 (3x0.09) + Detail Schedule de50 3 (3x0.09) |
-			| Schedule de50 | 2021-09-07 | Category de50 schedule | Transfer | Account de50 in | Account de50 out | 0.27  |                                                                                                     |
-			| Schedule de50 | 2021-09-27 | Category de50 schedule | Transfer | Account de50 in | Account de50 out |       | Detail Schedule de50 1 (3x0.09) + Detail Schedule de50 2 (3x0.09) + Detail Schedule de50 3 (3x0.09) |
-			| Schedule de50 | 2021-10-07 | Category de50 schedule | Transfer | Account de50 in | Account de50 out | 0.27  |                                                                                                     |
-			| Schedule de50 | 2021-10-27 | Category de50 schedule | Transfer | Account de50 in | Account de50 out |       | Detail Schedule de50 1 (3x0.09) + Detail Schedule de50 2 (3x0.09) + Detail Schedule de50 3 (3x0.09) |
-			| Schedule de50 | 2021-11-07 | Category de50 schedule | Transfer | Account de50 in | Account de50 out | 0.27  |                                                                                                     |
-			| Schedule de50 | 2021-11-27 | Category de50 schedule | Transfer | Account de50 in | Account de50 out |       | Detail Schedule de50 1 (3x0.09) + Detail Schedule de50 2 (3x0.09) + Detail Schedule de50 3 (3x0.09) |
-			| Schedule de50 | 2021-12-07 | Category de50 schedule | Transfer | Account de50 in | Account de50 out | 0.27  |                                                                                                     |
-			| Schedule de50 | 2021-12-27 | Category de50 schedule | Transfer | Account de50 in | Account de50 out |       | Detail Schedule de50 1 (3x0.09) + Detail Schedule de50 2 (3x0.09) + Detail Schedule de50 3 (3x0.09) |
-			| Schedule de50 | 2022-01-07 | Category de50 schedule | Transfer | Account de50 in | Account de50 out | 0.27  |                                                                                                     |
-
-Scenario: De51. Remove User with moves and schedules
+Scenario: De49. Remove User with moves and schedules
 	Given the user last access was 578 days before
 		And the user have being warned twice
 		And the user have
 			| System Stuff |
 			| Move         |
 			| Schedule     |
-		And robot run the scheduler
 	When robot user login
 		And call cleanup abandoned users
 	Then I will receive no core error
 		And the user won't exist
 		And the count of warnings sent will be 0
 		And there will be an export file with this content
-			| Description   | Date       | Category               | Nature   | In              | Out              | Value | Details                                                                                             |
-			| Schedule de51 | 2021-03-27 | Category de51 schedule | Transfer | Account de51 in | Account de51 out |       | Detail Schedule de51 1 (3x0.09) + Detail Schedule de51 2 (3x0.09) + Detail Schedule de51 3 (3x0.09) |
-			| Schedule de51 | 2021-04-07 | Category de51 schedule | Transfer | Account de51 in | Account de51 out | 0.27  |                                                                                                     |
-			| Schedule de51 | 2021-04-27 | Category de51 schedule | Transfer | Account de51 in | Account de51 out |       | Detail Schedule de51 1 (3x0.09) + Detail Schedule de51 2 (3x0.09) + Detail Schedule de51 3 (3x0.09) |
-			| Move de51     | 2021-05-07 | Category de51 move     | Transfer | Account de51 in | Account de51 out | 0.27  |                                                                                                     |
-			| Move de51     | 2021-05-07 | Category de51 move     | Transfer | Account de51 in | Account de51 out |       | Detail Move de51 1 (3x0.09) + Detail Move de51 2 (3x0.09) + Detail Move de51 3 (3x0.09)             |
-			| Schedule de51 | 2021-05-07 | Category de51 schedule | Transfer | Account de51 in | Account de51 out | 0.27  |                                                                                                     |
-			| Schedule de51 | 2021-05-27 | Category de51 schedule | Transfer | Account de51 in | Account de51 out |       | Detail Schedule de51 1 (3x0.09) + Detail Schedule de51 2 (3x0.09) + Detail Schedule de51 3 (3x0.09) |
-			| Schedule de51 | 2021-06-07 | Category de51 schedule | Transfer | Account de51 in | Account de51 out | 0.27  |                                                                                                     |
-			| Schedule de51 | 2021-06-27 | Category de51 schedule | Transfer | Account de51 in | Account de51 out |       | Detail Schedule de51 1 (3x0.09) + Detail Schedule de51 2 (3x0.09) + Detail Schedule de51 3 (3x0.09) |
-			| Schedule de51 | 2021-07-07 | Category de51 schedule | Transfer | Account de51 in | Account de51 out | 0.27  |                                                                                                     |
-			| Schedule de51 | 2021-07-27 | Category de51 schedule | Transfer | Account de51 in | Account de51 out |       | Detail Schedule de51 1 (3x0.09) + Detail Schedule de51 2 (3x0.09) + Detail Schedule de51 3 (3x0.09) |
-			| Schedule de51 | 2021-08-07 | Category de51 schedule | Transfer | Account de51 in | Account de51 out | 0.27  |                                                                                                     |
-			| Schedule de51 | 2021-08-27 | Category de51 schedule | Transfer | Account de51 in | Account de51 out |       | Detail Schedule de51 1 (3x0.09) + Detail Schedule de51 2 (3x0.09) + Detail Schedule de51 3 (3x0.09) |
-			| Schedule de51 | 2021-09-07 | Category de51 schedule | Transfer | Account de51 in | Account de51 out | 0.27  |                                                                                                     |
-			| Schedule de51 | 2021-09-27 | Category de51 schedule | Transfer | Account de51 in | Account de51 out |       | Detail Schedule de51 1 (3x0.09) + Detail Schedule de51 2 (3x0.09) + Detail Schedule de51 3 (3x0.09) |
-			| Schedule de51 | 2021-10-07 | Category de51 schedule | Transfer | Account de51 in | Account de51 out | 0.27  |                                                                                                     |
-			| Schedule de51 | 2021-10-27 | Category de51 schedule | Transfer | Account de51 in | Account de51 out |       | Detail Schedule de51 1 (3x0.09) + Detail Schedule de51 2 (3x0.09) + Detail Schedule de51 3 (3x0.09) |
-			| Schedule de51 | 2021-11-07 | Category de51 schedule | Transfer | Account de51 in | Account de51 out | 0.27  |                                                                                                     |
-			| Schedule de51 | 2021-11-27 | Category de51 schedule | Transfer | Account de51 in | Account de51 out |       | Detail Schedule de51 1 (3x0.09) + Detail Schedule de51 2 (3x0.09) + Detail Schedule de51 3 (3x0.09) |
-			| Schedule de51 | 2021-12-07 | Category de51 schedule | Transfer | Account de51 in | Account de51 out | 0.27  |                                                                                                     |
-			| Schedule de51 | 2021-12-27 | Category de51 schedule | Transfer | Account de51 in | Account de51 out |       | Detail Schedule de51 1 (3x0.09) + Detail Schedule de51 2 (3x0.09) + Detail Schedule de51 3 (3x0.09) |
-			| Schedule de51 | 2022-01-07 | Category de51 schedule | Transfer | Account de51 in | Account de51 out | 0.27  |                                                                                                     |
+			| Description   | Date       | Category               | Nature   | In              | Out              | Value | Details                                                   |
+			| Move de49     | 2021-05-07 | Category de49 move     | Transfer | Account de49 in | Account de49 out |       | Detail 1 (3x0.09) + Detail 2 (3x0.09) + Detail 3 (3x0.09) |
+			| Schedule de49 | 3000-03-27 | Category de49 schedule | Transfer | Account de49 in | Account de49 out | 0.27  |                                                           |
+			| Schedule de49 | 3000-04-27 | Category de49 schedule | Transfer | Account de49 in | Account de49 out | 0.27  |                                                           |
+			| Schedule de49 | 3000-05-27 | Category de49 schedule | Transfer | Account de49 in | Account de49 out | 0.27  |                                                           |
+			| Schedule de49 | 3000-06-27 | Category de49 schedule | Transfer | Account de49 in | Account de49 out | 0.27  |                                                           |
+			| Schedule de49 | 3000-07-27 | Category de49 schedule | Transfer | Account de49 in | Account de49 out | 0.27  |                                                           |
+			| Schedule de49 | 3000-08-27 | Category de49 schedule | Transfer | Account de49 in | Account de49 out | 0.27  |                                                           |
+			| Schedule de49 | 3000-09-27 | Category de49 schedule | Transfer | Account de49 in | Account de49 out | 0.27  |                                                           |
+			| Schedule de49 | 3000-10-27 | Category de49 schedule | Transfer | Account de49 in | Account de49 out | 0.27  |                                                           |
+			| Schedule de49 | 3000-11-27 | Category de49 schedule | Transfer | Account de49 in | Account de49 out | 0.27  |                                                           |
+			| Schedule de49 | 3000-12-27 | Category de49 schedule | Transfer | Account de49 in | Account de49 out | 0.27  |                                                           |

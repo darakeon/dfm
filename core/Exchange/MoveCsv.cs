@@ -15,8 +15,8 @@ namespace DFM.Exchange
 			Date = move.GetDate().ToString("yyyy-MM-dd");
 			Category = move.Category?.Name;
 			Nature = move.Nature.ToString();
-			In = move.In.Name;
-			Out = move.Out.Name;
+			In = move.In?.Name;
+			Out = move.Out?.Name;
 			Value = move.Value == 0 ? "" : move.Value.ToString("F2");
 
 			Details = DetailCsv.Convert(move.DetailList);
@@ -27,13 +27,17 @@ namespace DFM.Exchange
 			return new(move);
 		}
 
-		public static IEnumerable<MoveCsv> Convert(Schedule schedule, DateTime maxDate)
+		public static IEnumerable<MoveCsv> Convert(Schedule schedule, DateTime? maxDate)
 		{
-			while (schedule.CanRun() && schedule.LastDateRun() < maxDate)
+			while (schedule.CanRun(maxDate))
 			{
-				var move = schedule.CreateMove();
-				yield return new(move);
+				yield return Convert(schedule);
 			}
+		}
+
+		public static MoveCsv Convert(Schedule schedule)
+		{
+			return new(schedule.CreateMove());
 		}
 
 		private Guid guid { get; }

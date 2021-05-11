@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using TechTalk.SpecFlow;
 
@@ -11,6 +12,11 @@ namespace DFM.Tests.Util
 			return exists(key)
 				? (T)context[key]
 				: default;
+		}
+
+		protected static IEnumerable<T> getList<T>(String key)
+		{
+			return get<IEnumerable<T>>(key) ?? Array.Empty<T>();
 		}
 
 		protected static Boolean exists(String key)
