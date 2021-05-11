@@ -364,7 +364,7 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 
 		[Given(@"the user creation was (\d+) days before")]
 		public void GivenTheUserCreationWas(Int32 days)
-		{	
+		{
 			var user = repos.User.GetByEmail(userEmail);
 			var control = user.Control;
 			control.Creation = DateTime.UtcNow.AddDays(-days);

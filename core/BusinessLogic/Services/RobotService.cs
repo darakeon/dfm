@@ -154,7 +154,7 @@ namespace DFM.BusinessLogic.Services
 
 			var user = parent.Safe.GetCurrent();
 
-			inTransaction("DisableSchedule", () => 
+			inTransaction("DisableSchedule", () =>
 				repos.Schedule.Disable(guid, user)
 			);
 		}
@@ -192,7 +192,7 @@ namespace DFM.BusinessLogic.Services
 						|| c.LastAccess < WarnHelper.Limit1()
 				)
 				.List;
-				
+
 			foreach (var user in users)
 			{
 				var control = user.Control;

@@ -109,7 +109,7 @@ namespace DFM.BusinessLogic.Services
 
 			move.Check(nature, check);
 
-			inTransaction("ToggleMoveCheck", () => 
+			inTransaction("ToggleMoveCheck", () =>
 				repos.Move.SaveCheck(move)
 			);
 
