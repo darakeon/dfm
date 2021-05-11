@@ -18,3 +18,8 @@
 	list-style-type: lower-alpha;
 	margin-top: 5px;
 }
+
+.contract > ol > li > ol > li > ol > li {
+	list-style-type: upper-roman;
+	margin-top: 5px;
+}
