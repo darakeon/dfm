@@ -31,7 +31,7 @@ namespace DFM.MVC.Areas.Api.Helpers
 			);
 		}
 
-		public static IList<SelectItem<string, int>> SelectItem<TEnum>(
+		public static IList<SelectItem<String, Int32>> SelectItem<TEnum>(
 			Translator translator, ServiceAccess service
 		) where TEnum : IConvertible
 		{

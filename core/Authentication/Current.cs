@@ -36,9 +36,9 @@ namespace DFM.Authentication
 
 		public Boolean IsVerified => userService.VerifyTicketTFA();
 
-		private IDictionary<String, SessionInfo> sessions =
+		private readonly IDictionary<String, SessionInfo> sessions =
 			new Dictionary<String, SessionInfo>();
-		private Random random = new();
+		private readonly Random random = new();
 
 		private SessionInfo session => getSession(0);
 
@@ -89,8 +89,13 @@ namespace DFM.Authentication
 		private static Int64 nowKey()
 		{
 			var date = DateTime.UtcNow;
-			var text = date.ToString("yyyyMMddHHmmss");
+
+			// ReSharper disable once StringLiteralTypo
+			var dateFormat = "yyyyMMddHHmmss";
+
+			var text = date.ToString(dateFormat);
 			var factor = Int64.Parse(text);
+
 			return factor / 2;
 		}
 

@@ -1,0 +1,33 @@
+SET UTF-8
+FLAG UTF-8
+TRY áàãâéêíóõôúüçesianrtolcdugmphbyfvkwjqxz
+
+# CRIADO A PARTIR DE:
+# #   VERO - Verificador Ortográfico Livre - Versão 3.2
+# #   Copyright (C) 2006 - 2013  por Raimundo Santos Moura
+# #   <raimundo.smoura@gmail.com>
+# #   Brasil - outubro 2013
+# #   Este é um dicionário para correção ortográfica da língua Portuguesa
+# #   para o Hunspell.
+# #   Este programa é livre e pode ser redistribuído e/ou modificado nos
+# #   termos Licença Pública Geral Menor versão 3 (LGPLv3), como publicado
+# #   pela Free Software Foundation e pela Mozilla Public License como
+# #   publicado pela Mozilla Foundation.
+
+MAP 0
+
+BREAK 0
+
+MAXNGRAMSUGS 3
+
+NOSUGGEST Ý
+
+FORBIDDENWORD ý
+
+MAXDIFF 10
+
+ONLYMAXDIFF
+
+WARN ~
+
+REP 0

@@ -42,12 +42,12 @@ namespace DfM.Logs
 
 		public ExceptionData InnerException { get; set; }
 
-		public override Boolean Equals(object obj)
+		public override Boolean Equals(Object obj)
 		{
 			return obj?.GetHashCode() == GetHashCode();
 		}
 
-		public override int GetHashCode()
+		public override Int32 GetHashCode()
 		{
 			return HashCode.Combine(
 				ClassName,

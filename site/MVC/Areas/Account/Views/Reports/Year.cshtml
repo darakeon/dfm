@@ -32,33 +32,33 @@
 
 @section TableHeader{
 	<tr class="row">
-		<th class="col text-center" rowspan="2">
+		<th class="text-center" rowspan="2">
 			@Context.Translate("Month")
 		</th>
-		<th class="col text-center" colspan="3">
+		<th class="text-center" colspan="3">
 			@Context.Translate("Current")
 		</th>
-		<th class="col text-center foreseen" colspan="3">
+		<th class="text-center foreseen" colspan="3">
 			@Context.Translate("Foreseen")
 		</th>
 	</tr>
 	<tr class="row">
-		<th class="col text-center">
+		<th class="text-center">
 			@Context.Translate("In")
 		</th>
-		<th class="col text-center">
+		<th class="text-center">
 			@Context.Translate("Out")
 		</th>
-		<th class="col text-center">
+		<th class="text-center">
 			@Context.Translate("Total")
 		</th>
-		<th class="col text-center foreseen">
+		<th class="text-center foreseen">
 			@Context.Translate("In")
 		</th>
-		<th class="col text-center foreseen">
+		<th class="text-center foreseen">
 			@Context.Translate("Out")
 		</th>
-		<th class="col text-center foreseen">
+		<th class="text-center foreseen">
 			@Context.Translate("Total")
 		</th>
 	</tr>
@@ -75,27 +75,27 @@
 	var foreseenTotal = new ValueWithSign(month.ForeseenTotal, Model.Language);
 
 	<tr class="row">
-		<td class="col">
+		<td>
 			<a href="@Url.Action("Month", new {id = month.Number})">
 				@Context.GetMonthName(month.Number % 100)
 			</a>
 		</td>
-		<td class="col text-right">
+		<td class="text-right">
 			@await Html.PartialAsync("Extensions/ValueWithSign", currentIn)
 		</td>
-		<td class="col text-right">
+		<td class="text-right">
 			@await Html.PartialAsync("Extensions/ValueWithSign", currentOut)
 		</td>
-		<td class="col text-right">
+		<td class="text-right">
 			@await Html.PartialAsync("Extensions/ValueWithSign", currentTotal)
 		</td>
-		<td class="col text-right foreseen">
+		<td class="text-right foreseen">
 			@await Html.PartialAsync("Extensions/ValueWithSign", foreseenIn)
 		</td>
-		<td class="col text-right foreseen">
+		<td class="text-right foreseen">
 			@await Html.PartialAsync("Extensions/ValueWithSign", foreseenOut)
 		</td>
-		<td class="col text-right foreseen">
+		<td class="text-right foreseen">
 			@await Html.PartialAsync("Extensions/ValueWithSign", foreseenTotal)
 		</td>
 	</tr>
@@ -111,25 +111,25 @@
 	var yearForeseenTotal = new ValueWithSign(Model.Year.ForeseenTotal, Model.Language);
 
 	<tr class="row">
-		<td class="col">
+		<td>
 			@Model.Year.Time
 		</td>
-		<td class="col text-right">
+		<td class="text-right">
 			@await Html.PartialAsync("Extensions/ValueWithSign", yearCurrentIn)
 		</td>
-		<td class="col text-right">
+		<td class="text-right">
 			@await Html.PartialAsync("Extensions/ValueWithSign", yearCurrentOut)
 		</td>
-		<td class="col text-right">
+		<td class="text-right">
 			@await Html.PartialAsync("Extensions/ValueWithSign", yearCurrentTotal)
 		</td>
-		<td class="col text-right foreseen">
+		<td class="text-right foreseen">
 			@await Html.PartialAsync("Extensions/ValueWithSign", yearForeseenIn)
 		</td>
-		<td class="col text-right foreseen">
+		<td class="text-right foreseen">
 			@await Html.PartialAsync("Extensions/ValueWithSign", yearForeseenOut)
 		</td>
-		<td class="col text-right foreseen">
+		<td class="text-right foreseen">
 			@await Html.PartialAsync("Extensions/ValueWithSign", yearForeseenTotal)
 		</td>
 	</tr>

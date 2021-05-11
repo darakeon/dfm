@@ -52,19 +52,19 @@ namespace DFM.Generic.Pages
 		}
 
 		#region Equality Members
-		protected bool equals(OperatorBox other)
+		protected Boolean equals(OperatorBox other)
 		{
 			return Item.Equals(other.Item);
 		}
 
-		public override Boolean Equals(object obj)
+		public override Boolean Equals(Object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
 			return obj.GetType() == GetType() && equals((OperatorBox)obj);
 		}
 
-		public override int GetHashCode()
+		public override Int32 GetHashCode()
 		{
 			return Item.GetHashCode();
 		}

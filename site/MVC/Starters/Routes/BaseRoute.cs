@@ -18,7 +18,7 @@ namespace DFM.MVC.Starters.Routes
 		public abstract String Area { get; }
 		public abstract String Path { get; }
 
-		public object Defaults { get; }
+		public Object Defaults { get; }
 
 		public String Name => getName(GetType());
 
@@ -32,7 +32,7 @@ namespace DFM.MVC.Starters.Routes
 				);
 		}
 
-		public override Boolean Equals(object obj)
+		public override Boolean Equals(Object obj)
 		{
 			return obj is BaseRoute @base && @base.Name == Name;
 		}

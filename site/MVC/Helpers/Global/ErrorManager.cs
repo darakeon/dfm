@@ -61,13 +61,15 @@ namespace DFM.MVC.Helpers.Global
 
 			var urlReferrer = request.Headers["Referer"].ToString();
 
+			var authenticated = user?.IsAuthenticated ?? false;
+
 			EmailSent = Error.SendReport(
 				exception,
 				request.GetDisplayUrl(),
 				urlReferrer,
 				request.Method,
 				parameters,
-				user.IsAuthenticated ? user.Name : "Off"
+				authenticated ? user.Name : "Off"
 			);
 		}
 

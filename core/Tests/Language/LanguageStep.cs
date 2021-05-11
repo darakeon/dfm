@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using DFM.BusinessLogic.Exceptions;
-using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Language.Emails;
 using DFM.Language.Extensions;
@@ -55,7 +54,11 @@ namespace DFM.Language.Tests
 				if (!String.IsNullOrEmpty(path))
 					@namespace += $".{path}";
 
-				var @enum = assembly.GetType(@namespace + "." + type);
+				var fullname = @namespace + "." + type;
+				var @enum = assembly.GetType(fullname);
+
+				if (@enum == null)
+					throw new InvalidEnumArgumentException(fullname);
 
 				Enum.GetNames(@enum)
 					.Select(m => new Pair(section, m))

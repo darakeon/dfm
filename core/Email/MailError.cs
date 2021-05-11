@@ -9,12 +9,12 @@ namespace DFM.Email
 
 		public static MailError WithMessage(EmailStatus type)
 		{
-			throw new MailError(type);
+			return new(type);
 		}
 
 		public static MailError WithMessage(Exception exception)
 		{
-			throw new MailError(exception);
+			return new(exception);
 		}
 
 

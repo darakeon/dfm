@@ -18,7 +18,7 @@ namespace DFM.Tests.Util
 			return context.ContainsKey(key);
 		}
 
-		protected static void set(String key, object value)
+		protected static void set(String key, Object value)
 		{
 			context[key] = value;
 		}

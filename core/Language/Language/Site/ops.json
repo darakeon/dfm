@@ -13,7 +13,7 @@
 		"InternalMessageNotSent": "An internal error occurred. Please, contact us.",
 		"CommunicationError": "An internal error occurred. Please, contact us.",
 
-		"DontHack": "Please, don't hack me!",
+		"DoNotHack": "Please, don't hack me!",
 		"ImageBy": "image by",
 		"Help": "Help me! =)",
 	},
@@ -31,7 +31,7 @@
 		"InternalMessageNotSent": "Ocorreu um erro interno. Por favor, entre em contato conosco.",
 		"CommunicationError": "Ocorreu um erro interno. Por favor, entre em contato conosco.",
 
-		"DontHack": "Please, don't hack me!",
+		"DoNotHack": "Please, don't hack me!",
 		"ImageBy": "imagem de",
 		"Help": "Help me! =)",
 	},

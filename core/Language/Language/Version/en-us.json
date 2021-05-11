@@ -19,7 +19,7 @@
 		"Fix website accessibility for screen readers and website+app accessibility at colors"
 	],
 	"4.6.3.6": [
-		"Fix accessibilitity version size, to show the real importance of it"
+		"Fix accessibility version size, to show the real importance of it"
 	],
 	"4.6.3.5": [
 		"Reduce money spent with site hosting"
@@ -105,7 +105,7 @@
 		"Search by moves and details",
 		"Fix android tests",
 		"Fix settings footer at android",
-		"Add browser signup contract modal test",
+		"Add browser sign up contract modal test",
 		"Make cookie warning more showy",
 		"Fix zero error code problem"
 	],
@@ -129,10 +129,10 @@
 	"4.1.5.0": [
 		"Add all contact types",
 		"Improve accounts screen link to account area",
-		"Add + and - at mobile for accessibility",
+		"Add + and - at mobile for accessibility"
 	],
 	"4.1.4.6": [
-		"Reorganize e reprioritize task list"
+		"Reorganize e re-prioritize task list"
 	],
 	"4.1.4.5": [
 		"Change business logic automated tests to run at Linux"

@@ -21,8 +21,8 @@ namespace DFM.BusinessLogic.Response
 		public String OutUrl { get; set; }
 		public String InUrl { get; set; }
 		public String CategoryName { get; set; }
-		public String OutName { get; private set; }
-		public String InName { get; private set; }
+		public String OutName { get; private init; }
+		public String InName { get; private init; }
 
 		public String Description { get; set; }
 

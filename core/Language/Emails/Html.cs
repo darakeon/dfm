@@ -38,7 +38,7 @@ namespace DFM.Language.Emails
 			}
 		}
 
-		private static string getContent(string filePath)
+		private static String getContent(String filePath)
 		{
 			if (!File.Exists(filePath))
 				return "";

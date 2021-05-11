@@ -59,16 +59,16 @@ namespace DFM.Email
 		public void Send()
 		{
 			if (Cfg.ForceEmailError)
-				MailError.WithMessage(EmailStatus.EmailNotSent);
+				throw MailError.WithMessage(EmailStatus.EmailNotSent);
 
 			if (String.IsNullOrEmpty(subject))
-				MailError.WithMessage(EmailStatus.InvalidSubject);
+				throw MailError.WithMessage(EmailStatus.InvalidSubject);
 
 			if (String.IsNullOrEmpty(body))
-				MailError.WithMessage(EmailStatus.InvalidBody);
+				throw MailError.WithMessage(EmailStatus.InvalidBody);
 
 			if (String.IsNullOrEmpty(to))
-				MailError.WithMessage(EmailStatus.InvalidAddress);
+				throw MailError.WithMessage(EmailStatus.InvalidAddress);
 
 			var config = Cfg.Smtp;
 
@@ -106,7 +106,7 @@ namespace DFM.Email
 			catch (Exception exception)
 			{
 				exception.TryLog();
-				MailError.WithMessage(exception);
+				throw MailError.WithMessage(exception);
 			}
 		}
 	}

@@ -12,7 +12,7 @@ namespace DFM.Generic.Datetime
 		public Int32 Hour => sign * HourDiff;
 		public Int32 Minute => sign * MinuteDiff;
 
-		public override string ToString()
+		public override String ToString()
 		{
 			return $"UTC{Hour:+00;-00; 00}:{Minute:00;00;00}";
 		}
