@@ -2,11 +2,11 @@
 
 Scenario: Ar01. With empty secret key
 	Given I have this user created
-			| Email                  | Password | Active |
-			| Ar001@dontflymoney.com | password | true   |
+			| Email                 | Password | Active |
+			| Ar01@dontflymoney.com | password | true   |
 		And I login this user
-			| Email                  | Password |
-			| Ar001@dontflymoney.com | password |
+			| Email                 | Password |
+			| Ar01@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code        | Password |
 			|        | {generated} | password |
@@ -16,11 +16,11 @@ Scenario: Ar01. With empty secret key
 
 Scenario: Ar02. With wrong code
 	Given I have this user created
-			| Email                  | Password | Active |
-			| Ar002@dontflymoney.com | password | true   |
+			| Email                 | Password | Active |
+			| Ar02@dontflymoney.com | password | true   |
 		And I login this user
-			| Email                  | Password |
-			| Ar002@dontflymoney.com | password |
+			| Email                 | Password |
+			| Ar02@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code  | Password |
 			| 123    | wrong | password |
@@ -30,11 +30,11 @@ Scenario: Ar02. With wrong code
 
 Scenario: Ar03. With wrong password
 	Given I have this user created
-			| Email                  | Password | Active |
-			| Ar003@dontflymoney.com | password | true   |
+			| Email                 | Password | Active |
+			| Ar03@dontflymoney.com | password | true   |
 		And I login this user
-			| Email                  | Password |
-			| Ar003@dontflymoney.com | password |
+			| Email                 | Password |
+			| Ar03@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | wrong    |
@@ -44,11 +44,11 @@ Scenario: Ar03. With wrong password
 
 Scenario: Ar04. With all info right
 	Given I have this user created
-			| Email                  | Password | Active |
-			| Ar004@dontflymoney.com | password | true   |
+			| Email                 | Password | Active |
+			| Ar04@dontflymoney.com | password | true   |
 		And I login this user
-			| Email                  | Password |
-			| Ar004@dontflymoney.com | password |
+			| Email                 | Password |
+			| Ar04@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
@@ -58,11 +58,11 @@ Scenario: Ar04. With all info right
 
 Scenario: Ar05. Update two-factor
 	Given I have this user created
-			| Email                  | Password | Active |
-			| Ar005@dontflymoney.com | password | true   |
+			| Email                 | Password | Active |
+			| Ar05@dontflymoney.com | password | true   |
 		And I login this user
-			| Email                  | Password |
-			| Ar005@dontflymoney.com | password |
+			| Email                 | Password |
+			| Ar05@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
@@ -76,11 +76,11 @@ Scenario: Ar05. Update two-factor
 
 Scenario: Ar06. With empty password
 	Given I have this user created
-			| Email                  | Password | Active |
-			| Ar003@dontflymoney.com | password | true   |
+			| Email                 | Password | Active |
+			| Ar06@dontflymoney.com | password | true   |
 		And I login this user
-			| Email                  | Password |
-			| Ar003@dontflymoney.com | password |
+			| Email                 | Password |
+			| Ar06@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} |          |
@@ -90,11 +90,11 @@ Scenario: Ar06. With empty password
 
 Scenario: Ar07. With null password
 	Given I have this user created
-			| Email                  | Password | Active |
-			| Ar003@dontflymoney.com | password | true   |
+			| Email                 | Password | Active |
+			| Ar03@dontflymoney.com | password | true   |
 		And I login this user
-			| Email                  | Password |
-			| Ar003@dontflymoney.com | password |
+			| Email                 | Password |
+			| Ar03@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | {null}   |
