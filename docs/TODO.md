@@ -11,7 +11,7 @@ This is the task list for the project.
 - Dependency: which other task it depends on (if it exists)
 - Issue: github issue about the task (if it exists)
 
-| Task (52)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (55)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
 | Delete user on demand                                                          | :sheep:  |  2  |  4  |  6  |                |       |
 | Login after create account, disable if not confirm e-mail in 1 week            | :sheep:  |  2  |  4  |  6  |                |       |
@@ -57,6 +57,9 @@ This is the task list for the project.
 | Link account and category (combo)                                              | :sheep:  |  2  |  1  |  3  |                |       |
 | Check entire account moves                                                     | :whale:  |  2  |  1  |  3  |                |       |
 | Transform Error Logs notification into widget                                  | :ant:    |  2  |  1  |  3  |                |       |
+| Distribute tests of operations with not signed contract                        | :ant:    |  2  |  1  |  3  |                |       |
+| Remove "Then I", "When I", "Given I" of tests                                  | :ant:    |  2  |  1  |  3  |                |       |
+| Replace hardcoded scenario codes from tests                                    | :ant:    |  2  |  1  |  3  |                |       |
 | OCR to add values to system                                                    | :dragon: |  4  |  2  |  2  |                |       |
 | Add [gherkin jest]                                                             | :ant:    |  4  |  2  |  2  |                |       |
 | Data import and export (csv, json) (with max request length)                   | :dragon: |  3  |  1  |  2  |                |       |
