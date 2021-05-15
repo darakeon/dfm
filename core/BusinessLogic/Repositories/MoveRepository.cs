@@ -216,7 +216,7 @@ namespace DFM.BusinessLogic.Repositories
 			return byAccount(account)
 				.Where(
 					m => m.Year == dateYear
-					     && m.Month == dateMonth
+						&& m.Month == dateMonth
 				)
 				.OrderBy(m => m.Day)
 				.List;
@@ -227,7 +227,7 @@ namespace DFM.BusinessLogic.Repositories
 			return NewQuery()
 				.Where(
 					m => (m.In != null && m.In.ID == account.ID)
-					     || (m.Out != null && m.Out.ID == account.ID)
+						|| (m.Out != null && m.Out.ID == account.ID)
 				);
 		}
 

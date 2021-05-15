@@ -766,10 +766,10 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 					: userPassword;
 
 				var active = userData.ContainsKey("Active")
-				    && userData["Active"] == "true";
+					&& userData["Active"] == "true";
 
 				var signed = userData.ContainsKey("Signed")
-				    && userData["Signed"] == "true";
+					&& userData["Signed"] == "true";
 
 				var timezone = userData.ContainsKey("Timezone")
 					? Int32.Parse(userData["Timezone"])
@@ -970,13 +970,13 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		[Given(@"there is a new contract")]
 		public void GivenICreateANewContract()
 		{
-            var contract = new Contract
-            {
-	            BeginDate = current.Now,
-	            Version = scenarioCode,
-            };
+			var contract = new Contract
+			{
+				BeginDate = current.Now,
+				Version = scenarioCode,
+			};
 
-            repos.Contract.SaveOrUpdate(contract);
+			repos.Contract.SaveOrUpdate(contract);
 		}
 
 		[When(@"I try to get the contract")]

@@ -126,7 +126,7 @@ namespace DFM.Entities
 		public override Boolean Equals(Object obj)
 		{
 			return obj is Move move
-			       && move.ID == ID;
+				&& move.ID == ID;
 		}
 
 		public override Int32 GetHashCode()

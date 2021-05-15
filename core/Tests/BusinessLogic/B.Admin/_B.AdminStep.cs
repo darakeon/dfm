@@ -970,7 +970,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			try
 			{
 				service.Admin.ChangeTheme(theme);
-            }
+			}
 			catch (CoreError e)
 			{
 				error = e;

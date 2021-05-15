@@ -157,10 +157,10 @@ namespace DFM.BusinessLogic.Repositories
 		private Decimal getForeseenAt(Account account, Int16 dateYear, Int16 dateMonth, PrimalMoveNature nature)
 		{
 			return getRunnable(account, nature).Sum(
-				       s => s.PreviewSumAt(
-					       account, dateYear, dateMonth
-				       )
-			       ) / 100m;
+				s => s.PreviewSumAt(
+					account, dateYear, dateMonth
+				)
+			) / 100m;
 		}
 
 		private IList<Schedule> getRunnable(Account account, PrimalMoveNature? nature = null)

@@ -30,7 +30,7 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			return NewQuery().Where(
 					s => s.User.ID == user.ID
-					    && s.Action == action
+						&& s.Action == action
 						&& s.Active
 						&& s.Expire >= user.Now()
 				).FirstOrDefault ?? create(user, action);
@@ -87,8 +87,8 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			var others = Where(
 				s => s.ID != security.ID
-				     && s.User.ID == security.User.ID
-				     && s.Active
+					&& s.User.ID == security.User.ID
+					&& s.Active
 			);
 
 			foreach (var other in others)
@@ -103,7 +103,7 @@ namespace DFM.BusinessLogic.Repositories
 			var security = SingleOrDefault(s => s.Token == token);
 
 			var canBeUsed = security is {Active: true}
-			    && security.Expire >= security.User.Now();
+				&& security.Expire >= security.User.Now();
 
 			return canBeUsed ? security : null;
 		}

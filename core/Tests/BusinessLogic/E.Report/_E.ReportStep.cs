@@ -279,8 +279,8 @@ namespace DFM.BusinessLogic.Tests.E.Report
 					m => m.Description == description
 						&& m.GetDate() == moveDate
 						&& (
-							 detail == "" ||
-							 m.DetailList.FirstOrDefault()?.Description == detail
+							detail == "" ||
+							m.DetailList.FirstOrDefault()?.Description == detail
 						)
 				);
 
