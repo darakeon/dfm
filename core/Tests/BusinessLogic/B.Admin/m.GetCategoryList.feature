@@ -6,8 +6,8 @@ Background:
 
 Scenario: Bm01. Get all active categories
 	Given I have this category
-        | Name            |
-        | Category Bm01.1 |
+			| Name            |
+			| Category Bm01.1 |
 		And I have this category
 			| Name            |
 			| Category Bm01.2 |

@@ -70,7 +70,7 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			return Where(
 				s => s.Account.ID == account.ID
-				     && s.Time == time
+					&& s.Time == time
 			);
 		}
 
@@ -104,9 +104,9 @@ namespace DFM.BusinessLogic.Repositories
 			var months = NewQuery()
 				.Where(
 					s => s.Account.ID == account.ID
-					     && s.Nature == SummaryNature.Month
-					     && s.Time >= yearBegin.ToMonthYear()
-					     && s.Time <= yearEnd.ToMonthYear()
+						&& s.Nature == SummaryNature.Month
+						&& s.Time >= yearBegin.ToMonthYear()
+						&& s.Time <= yearEnd.ToMonthYear()
 				)
 				.TransformResult<monthItem>()
 				.GroupBy(s => s.Time, m => m.Number)

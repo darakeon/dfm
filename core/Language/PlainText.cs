@@ -130,8 +130,8 @@ namespace DFM.Language
 				if (result == null && name == siteName)
 				{
 					result = tryGetText("error", language, phrase)
-					    ?? tryGetText("wizard", language, phrase)
-					    ?? tryGetText("email", language, phrase);
+						?? tryGetText("wizard", language, phrase)
+						?? tryGetText("email", language, phrase);
 				}
 
 				return result ?? notFound(section, language, phrase);

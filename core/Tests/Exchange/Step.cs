@@ -32,7 +32,7 @@ namespace DFM.Exchange.Tests
 			get
 			{
 				return (IMove) moves.SingleOrDefault(m => m.Description == description)
-				    ?? schedules.Single(m => m.Description == description);
+					?? schedules.Single(m => m.Description == description);
 			}
 		}
 

@@ -53,7 +53,7 @@ namespace DFM.Entities
 		public override Boolean Equals(Object obj)
 		{
 			return obj is Detail detail
-			       && detail.ID == ID;
+				&& detail.ID == ID;
 		}
 
 		public override Int32 GetHashCode()

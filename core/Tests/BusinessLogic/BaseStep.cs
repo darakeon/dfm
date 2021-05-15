@@ -82,9 +82,9 @@ namespace DFM.BusinessLogic.Tests
 
 			return repos.Security.Where(
 				s => s.User.ID == user.ID
-				     && s.Action == action
-				     && s.Active
-				     && s.Expire >= current.Now
+					&& s.Action == action
+					&& s.Active
+					&& s.Expire >= current.Now
 			).FirstOrDefault()?.Token;
 		}
 

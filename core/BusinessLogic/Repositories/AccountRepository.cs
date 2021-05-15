@@ -98,7 +98,7 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			var accountList = Where(
 				a => a.Url == url.ToLower()
-				     && a.User.ID == user.ID
+					&& a.User.ID == user.ID
 			);
 
 			if (accountList.Count > 1)

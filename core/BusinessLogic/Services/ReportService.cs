@@ -35,7 +35,7 @@ namespace DFM.BusinessLogic.Services
 
 			var foreseenTotal = repos.Schedule
 				.GetForeseenTotal(account, dateYear, dateMonth)
-			    + total;
+					+ total;
 			var foreseenSign = account.GetSign(foreseenTotal);
 
 			var foreseenList = repos.Schedule
