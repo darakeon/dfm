@@ -43,7 +43,7 @@ Scenario: Bh03. Change the name to empty
 Scenario: Bh04. Change the name of another user category
 	Given I have this category
 			| Name          |
-			| Category Bh01 |
+			| Category Bh04 |
 		But there is a bad person logged in
 			And I enable Categories use
 		And I make this changes to the category

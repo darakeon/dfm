@@ -30,7 +30,7 @@ Scenario: Am02. E-mail change with empty new e-mail
 Scenario: Am03. E-mail change with info all right
 	Given I pass this new e-mail and password
 			| New E-mail             | Current Password |
-			| Am99_@dontflymoney.com | password         |
+			| Am03_@dontflymoney.com | password         |
 	When I try to change the e-mail
 	Then I will receive no core error
 		And the e-mail will be changed

@@ -2,11 +2,11 @@
 
 Scenario: As01. With wrong password
 	Given I have this user created
-			| Email                  | Password | Active |
-			| As001@dontflymoney.com | password | true   |
+			| Email                           | Password | Active |
+			| {scenarioCode}@dontflymoney.com | password | true   |
 		And I login this user
-			| Email                  | Password |
-			| As001@dontflymoney.com | password |
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
@@ -20,11 +20,11 @@ Scenario: As01. With wrong password
 
 Scenario: As02. With all info right
 	Given I have this user created
-			| Email                  | Password | Active |
-			| As002@dontflymoney.com | password | true   |
+			| Email                           | Password | Active |
+			| {scenarioCode}@dontflymoney.com | password | true   |
 		And I login this user
-			| Email                  | Password |
-			| As002@dontflymoney.com | password |
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
@@ -38,11 +38,11 @@ Scenario: As02. With all info right
 
 Scenario: As03. With empty password
 	Given I have this user created
-			| Email                  | Password | Active |
-			| As001@dontflymoney.com | password | true   |
+			| Email                           | Password | Active |
+			| {scenarioCode}@dontflymoney.com | password | true   |
 		And I login this user
-			| Email                  | Password |
-			| As001@dontflymoney.com | password |
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
@@ -56,11 +56,11 @@ Scenario: As03. With empty password
 
 Scenario: As04. With null password
 	Given I have this user created
-			| Email                  | Password | Active |
-			| As001@dontflymoney.com | password | true   |
+			| Email                           | Password | Active |
+			| {scenarioCode}@dontflymoney.com | password | true   |
 		And I login this user
-			| Email                  | Password |
-			| As001@dontflymoney.com | password |
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |

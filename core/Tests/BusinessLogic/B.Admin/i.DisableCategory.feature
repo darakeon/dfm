@@ -17,7 +17,7 @@ Scenario: Bi02. Disable a Category already disabled
 	Then I will receive this core error: DisabledCategory
 
 Scenario: Bi03. Disable a Category with info all right
-	Given I give the enabled category Bi99
+	Given I give the enabled category Bi03
 	When I try to disable the category
 	Then I will receive no core error
 		And the category will be disabled
