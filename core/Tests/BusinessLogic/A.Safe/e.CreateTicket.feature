@@ -1,7 +1,5 @@
 ﻿Feature: Ae. Create ticket
 
-Background:
-
 Scenario: Ae01. Validate without e-mail
 	Given I have this user created
 			| Email                           | Password |
