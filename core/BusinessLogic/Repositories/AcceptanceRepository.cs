@@ -25,24 +25,32 @@ namespace DFM.BusinessLogic.Repositories
 			if (user == null || contract == null)
 				return null;
 
-			var acceptance = NewQuery()
-				.Where(a => a.User.ID == user.ID && a.Contract.ID == contract.ID)
+			return get(user, contract)
+				?? create(user, contract);
+		}
+
+		private Acceptance get(User user, Contract contract)
+		{
+			return NewQuery()
+				.Where(
+					a => a.User.ID == user.ID
+						&& a.Contract.ID == contract.ID
+				)
 				.SingleOrDefault;
+		}
 
-			if (acceptance == null)
+		private Acceptance create(User user, Contract contract)
+		{
+			var acceptance = new Acceptance
 			{
-				acceptance = new Acceptance
-				{
-					Contract = contract,
-					User = user,
-					CreateDate = user.Now()
-				};
+				Contract = contract,
+				User = user,
+				CreateDate = user.Now()
+			};
 
-				SaveOrUpdate(acceptance);
-			}
+			SaveOrUpdate(acceptance);
 
 			return acceptance;
 		}
-
 	}
 }
