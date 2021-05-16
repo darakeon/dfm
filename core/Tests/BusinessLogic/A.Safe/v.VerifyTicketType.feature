@@ -28,3 +28,9 @@ Scenario: Av03. Verify ticket as local
 	When I try to verify the ticket type to be local
 	Then I will receive no core error
 		And the ticket will be verified
+
+Scenario: Av04. Not verify if user is marked for deletion
+	Given I have a ticket key
+		But the user is marked for deletion
+	When I try to verify the ticket type to be local
+	Then I will receive this core error: UserDeleted

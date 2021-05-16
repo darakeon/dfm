@@ -21,3 +21,9 @@ Scenario: Bj03. Enable a Category with info all right
 	When I try to enable the category
 	Then I will receive no core error
 		And the category will be enabled
+
+Scenario: Bj04. Not enable Category if user is marked for deletion
+	Given I give the disabled category Bj03
+		But the user is marked for deletion
+	When I try to enable the category
+	Then I will receive this core error: UserDeleted

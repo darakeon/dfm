@@ -5,7 +5,7 @@
 - [x] Fazer logs serem guardados no host
 
 # Robot for delete user
-- [ ] mark the user for deletion
+- [x] mark the user for deletion
 - [ ] upload data to S3 when delete user
 - [x] anticipate schedules until the month after last bounded schedule run
 - [x] delete users not logged in for 90 days

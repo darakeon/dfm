@@ -181,3 +181,12 @@ Scenario: Ea10. Get report with scheduled moves and foreseen balance at the mont
 			| Schedule Ea10 3 [19/20] | 2220-10-26 | In     | 7     |
 			| Schedule Ea10 3 [20/20] | 2220-10-27 | In     | 7     |
 		And the foreseen future value part will be -139
+
+Scenario: Ea11. Not get report if user is marked for deletion
+	Given I pass a valid account url
+		And I pass this date
+			| Month | Year |
+			| 4     | 2012 |
+		But the user is marked for deletion
+	When I try to get the month report
+	Then I will receive this core error: UserDeleted

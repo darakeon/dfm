@@ -114,3 +114,10 @@ Scenario: Ce10. Delete another user's Move
 	Given test user login
 	Then the move will not be deleted
 		And the accountOut value will not change
+
+Scenario: Ce11. Not delete if user is marked for deletion
+	Given I have a move
+		And I pass valid Move ID
+		But the user is marked for deletion
+	When I try to delete the move
+	Then I will receive this core error: UserDeleted

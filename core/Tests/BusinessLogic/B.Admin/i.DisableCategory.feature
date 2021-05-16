@@ -21,3 +21,9 @@ Scenario: Bi03. Disable a Category with info all right
 	When I try to disable the category
 	Then I will receive no core error
 		And the category will be disabled
+
+Scenario: Bi04. Not disable Category if user is marked for deletion
+	Given I give the enabled category Bi04
+		But the user is marked for deletion
+	When I try to disable the category
+	Then I will receive this core error: UserDeleted

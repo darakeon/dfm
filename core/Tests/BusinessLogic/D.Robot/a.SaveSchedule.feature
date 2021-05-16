@@ -601,3 +601,15 @@ Scenario: Da38. Save with details with same description
 		And the accountOut value will not change
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
+
+Scenario: Da39. Not save if user is marked for deletion
+	Given I have this schedule to create
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da91   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		But the user is marked for deletion
+	When I try to save the schedule
+	Then I will receive this core error: UserDeleted

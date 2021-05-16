@@ -43,3 +43,9 @@ Scenario: Bn07. Change system Theme to None
 	Given a theme None
 	When I try to change the Theme
 	Then I will receive this core error: InvalidTheme
+
+Scenario: Bn08. Not change system Theme if user is marked for deletion
+	Given a theme DarkMagic
+		But the user is marked for deletion
+	When I try to change the Theme
+	Then I will receive this core error: UserDeleted

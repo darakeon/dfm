@@ -24,6 +24,14 @@ Scenario: Bo03. Reopen an Account with info all right
 
 Scenario: Bo04. Reopen an Account logged out
 	Given I give a url of the account Bo04 with moves
+		And I already have closed the account
 		And I have no logged user (logoff)
 	When I try to reopen the account
 	Then I will receive this core error: Uninvited
+
+Scenario: Bo05. Not reopen an Account if user is marked for deletion
+	Given I give a url of the account Bo05 with moves
+		And I already have closed the account
+		But the user is marked for deletion
+	When I try to reopen the account
+	Then I will receive this core error: UserDeleted

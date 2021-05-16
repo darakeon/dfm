@@ -194,6 +194,8 @@ namespace DFM.BusinessLogic.Services
 
 		public void UpdateCategory(CategoryInfo info)
 		{
+			parent.Safe.VerifyUser();
+
 			var category = GetCategoryEntity(info.OriginalName);
 
 			saveCategory(info, category);
@@ -318,10 +320,13 @@ namespace DFM.BusinessLogic.Services
 		#region Theme
 		public void ChangeTheme(Theme theme)
 		{
+			parent.Safe.VerifyUser();
+
 			if (theme == Theme.None)
 				throw Error.InvalidTheme.Throw();
 
 			var user = parent.Safe.GetCurrent();
+
 			var config = user.Config;
 			config.Theme = theme;
 

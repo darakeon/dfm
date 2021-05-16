@@ -62,3 +62,11 @@ Scenario: Bf06. Save Category with same name in another user
 	When I try to save the category
 	Then I will receive no core error
 		And the category will be saved
+
+Scenario: Bf07. Not save Category if user is marked for deletion
+	Given I have this category to create
+			| Name          |
+			| Category Bf07 |
+		But the user is marked for deletion
+	When I try to save the category
+	Then I will receive this core error: UserDeleted

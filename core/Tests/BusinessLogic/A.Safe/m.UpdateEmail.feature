@@ -35,3 +35,11 @@ Scenario: Am03. E-mail change with info all right
 	Then I will receive no core error
 		And the e-mail will be changed
 		And the user will not be activated
+
+Scenario: Am04. Not update if user is marked for deletion
+	Given I pass this new e-mail and password
+			| New E-mail             | Current Password |
+			| Am04_@dontflymoney.com | password         |
+		But the user is marked for deletion
+	When I try to change the e-mail
+	Then I will receive this core error: UserDeleted

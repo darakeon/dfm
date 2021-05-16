@@ -90,6 +90,7 @@
 		"MoveCheckWrongNature": "A move In cannot be checked as Out, neither a move Out can be checked as In",
 		"OpenedAccount": "The account is already opened",
 		"UserEmailRequired": "E-mail cannot be empty, it is used to identify you and communicate when needed",
+		"UserDeleted": "This user data is being deleted due to lack of interaction, not accepting new contract or the owner asking to",
 	},
 	"pt-BR": {
 		"Unknown": "ZERO",
@@ -182,5 +183,6 @@
 		"MoveCheckWrongNature": "Uma Movimentação de Entrada nao pode ser verificada como Saída, nem uma de Saída pode ser verificada como Entrada",
 		"OpenedAccount": "A conta já está aberta",
 		"UserEmailRequired": "E-mail não pode ficar em branco, é usado para identificar você e para comunicações quando necessário",
+		"UserDeleted": "Os dados estão sendo deletados devido a falta de interação com o sistema, não aceitação de novos termos de uso ou pedido da Pessoa a quem esses dados pertencem",
 	},
 }

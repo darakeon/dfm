@@ -37,3 +37,9 @@ Scenario: Au03. Check ticket without two factor
 	When I try to verify the ticket
 	Then I will receive no core error
 		And the ticket will be verified
+
+Scenario: Au04. Not check ticket if user is marked for deletion
+	Given I have a ticket key
+		But the user is marked for deletion
+	When I try to verify the ticket
+	Then I will receive this core error: UserDeleted

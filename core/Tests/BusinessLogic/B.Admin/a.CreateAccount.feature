@@ -155,3 +155,11 @@ Scenario: Ba17. Save Account with same name and url in another user
 	When I try to save the account
 	Then I will receive no core error
 		And the account will be saved
+
+Scenario: Ba18. Not save account if user is marked for deletion
+	Given I have this account to create
+			| Name         | Url  | Yellow | Red |
+			| Account Ba18 | ba18 |        |     |
+		But the user is marked for deletion
+	When I try to save the account
+	Then I will receive this core error: UserDeleted

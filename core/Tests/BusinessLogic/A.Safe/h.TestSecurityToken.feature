@@ -43,3 +43,10 @@ Scenario: Ah06. Test with token of PS with action PS
 		And I pass a token of PasswordReset with action PasswordReset
 	When I test the token
 	Then I will receive no core error
+
+Scenario: Ah07. Not test if user is marked for deletion
+	Given I have a token for its password reset
+		And I pass a token of PasswordReset with action PasswordReset
+		But the user is marked for deletion
+	When I test the token
+	Then I will receive this core error: UserDeleted

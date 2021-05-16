@@ -26,6 +26,9 @@ namespace DFM.BusinessLogic.Services
 				if (user == null)
 					return;
 
+				if (user.Control.ProcessingDeletion)
+					throw Error.UserDeleted.Throw();
+
 				repos.Security.CreateAndSendToken(
 					user, SecurityAction.PasswordReset
 				);
@@ -60,6 +63,9 @@ namespace DFM.BusinessLogic.Services
 				if (user == null)
 					throw Error.InvalidUser.Throw();
 
+				if (user.Control.ProcessingDeletion)
+					throw Error.UserDeleted.Throw();
+
 				sendUserVerify(user);
 			});
 		}
@@ -75,7 +81,12 @@ namespace DFM.BusinessLogic.Services
 		{
 			inTransaction("ActivateUser", () =>
 			{
-				var security = repos.Security.ValidateAndGet(token, SecurityAction.UserVerification);
+				var security = repos.Security.ValidateAndGet(
+					token, SecurityAction.UserVerification
+				);
+
+				if (security.User.Control.ProcessingDeletion)
+					throw Error.UserDeleted.Throw();
 
 				repos.Control.Activate(security.User);
 
@@ -94,9 +105,14 @@ namespace DFM.BusinessLogic.Services
 					SecurityAction.PasswordReset
 				);
 
-				security.User.Password = reset.Password;
+				var user = security.User;
 
-				repos.User.ChangePassword(security.User);
+				if (user.Control.ProcessingDeletion)
+					throw Error.UserDeleted.Throw();
+
+				user.Password = reset.Password;
+
+				repos.User.ChangePassword(user);
 
 				repos.Security.Disable(reset.Token);
 			});
@@ -104,19 +120,27 @@ namespace DFM.BusinessLogic.Services
 
 		public void TestSecurityToken(String token, SecurityAction securityAction)
 		{
-			repos.Security.ValidateAndGet(token, securityAction);
+			var security = repos.Security.ValidateAndGet(token, securityAction);
+
+			if (security.User.Control.ProcessingDeletion)
+				throw Error.UserDeleted.Throw();
 		}
 
 		public void DisableToken(String token)
 		{
-			inTransaction("DisableToken", () => repos.Security.Disable(token));
+			inTransaction("DisableToken",
+				() => repos.Security.Disable(token)
+			);
 		}
 
 		public SessionInfo GetSession(String ticketKey)
 		{
-			return new(
-				getUserByTicket(ticketKey)
-			);
+			var user = getUserByTicket(ticketKey);
+
+			if (user.Control.ProcessingDeletion)
+				throw Error.UserDeleted.Throw();
+
+			return new(user);
 		}
 
 		private User getUserByTicket(String ticketKey)
@@ -126,10 +150,12 @@ namespace DFM.BusinessLogic.Services
 			if (ticket is not {Active: true})
 				throw Error.Uninvited.Throw();
 
-			if (!ticket.User.Control.Active)
+			var user = ticket.User;
+
+			if (!user.Control.Active)
 				throw Error.DisabledUser.Throw();
 
-			return ticket.User;
+			return user;
 		}
 
 		public String CreateTicket(SignInInfo info)
@@ -144,6 +170,9 @@ namespace DFM.BusinessLogic.Services
 		{
 			var auth = repos.User.ValidateAndGet(info.Email, info.Password);
 			var user = auth.User;
+
+			if (user.Control.ProcessingDeletion)
+				throw Error.UserDeleted.Throw();
 
 			if (String.IsNullOrEmpty(info.TicketKey))
 				info.TicketKey = Token.New();
@@ -204,7 +233,10 @@ namespace DFM.BusinessLogic.Services
 
 				if (ticket == null) return;
 
-				if (ticket.User.ID != user.ID)
+				if (ticket.User.Control.ProcessingDeletion)
+					throw Error.UserDeleted.Throw();
+
+				if (ticket.User?.ID != user?.ID)
 					throw Error.Uninvited.Throw();
 
 				if (ticket.Active)
@@ -308,6 +340,9 @@ namespace DFM.BusinessLogic.Services
 
 		internal Boolean IsLastContractAccepted(User user)
 		{
+			if (user.Control.ProcessingDeletion)
+				throw Error.UserDeleted.Throw();
+
 			var contract = getContract();
 
 			if (contract == null)
@@ -329,6 +364,9 @@ namespace DFM.BusinessLogic.Services
 
 		private void acceptContract(User user)
 		{
+			if (user.Control.ProcessingDeletion)
+				throw Error.UserDeleted.Throw();
+
 			var contract = getContract();
 			var acceptedNow = repos.Acceptance.Accept(user, contract);
 
@@ -353,6 +391,9 @@ namespace DFM.BusinessLogic.Services
 				if (!repos.User.VerifyPassword(user, info.Password))
 					throw Error.TFAWrongPassword.Throw();
 
+				if (user.Control.ProcessingDeletion)
+					throw Error.UserDeleted.Throw();
+
 				repos.User.SaveTFA(user, info.Secret);
 			});
 		}
@@ -362,6 +403,9 @@ namespace DFM.BusinessLogic.Services
 			inTransaction("RemoveTFA", () =>
 			{
 				var user = GetCurrent();
+
+				if (user.Control.ProcessingDeletion)
+					throw Error.UserDeleted.Throw();
 
 				if (!repos.User.VerifyPassword(user, currentPassword))
 					throw Error.TFAWrongPassword.Throw();
@@ -374,10 +418,14 @@ namespace DFM.BusinessLogic.Services
 		{
 			inTransaction("ValidateTicketTFA", () =>
 			{
-				var secret = GetCurrent().TFASecret;
+				var user = GetCurrent();
+				var secret = user.TFASecret;
 
 				if (secret == null)
 					throw Error.TFANotConfigured.Throw();
+
+				if (user.Control.ProcessingDeletion)
+					throw Error.UserDeleted.Throw();
 
 				if (!repos.User.IsValid(secret, code))
 					throw Error.TFAWrongCode.Throw();
@@ -394,6 +442,9 @@ namespace DFM.BusinessLogic.Services
 			if (ticket == null)
 				throw Error.Uninvited.Throw();
 
+			if (ticket.User.Control.ProcessingDeletion)
+				throw Error.UserDeleted.Throw();
+
 			return String.IsNullOrEmpty(ticket.User.TFASecret)
 				|| ticket.ValidTFA;
 		}
@@ -405,14 +456,14 @@ namespace DFM.BusinessLogic.Services
 			if (ticket == null)
 				throw Error.Uninvited.Throw();
 
+			if (ticket.User.Control.ProcessingDeletion)
+				throw Error.UserDeleted.Throw();
+
 			return ticket.Type == type;
 		}
 
 		internal User GetCurrent()
 		{
-			if (!parent.Current.IsAuthenticated)
-				return null;
-
 			return getUserByTicket(parent.Current.TicketKey);
 		}
 
@@ -424,12 +475,17 @@ namespace DFM.BusinessLogic.Services
 			if (ticket == null)
 				return;
 
+			var user = ticket.User;
+
+			if (user.Control.ProcessingDeletion)
+				throw Error.UserDeleted.Throw();
+
 			inTransaction("SaveAccess", () =>
 			{
 				ticket.LastAccess = DateTime.UtcNow;
 				repos.Ticket.SaveOrUpdate(ticket);
 
-				repos.Control.SaveAccess(ticket.User.Control);
+				repos.Control.SaveAccess(user.Control);
 			});
 		}
 
@@ -438,6 +494,10 @@ namespace DFM.BusinessLogic.Services
 			inTransaction("UseTFAAsPassword", () =>
 			{
 				var user = GetCurrent();
+
+				if (user.Control.ProcessingDeletion)
+					throw Error.UserDeleted.Throw();
+
 				repos.User.UseTFAAsPassword(user, use);
 			});
 		}

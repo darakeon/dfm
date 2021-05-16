@@ -56,3 +56,9 @@ Scenario: Af07. Has no TFA
 	Then I will receive no core error
 		And I will receive the session
 		And the TFA will not be enabled
+
+Scenario: Af08. Not get session if user is marked for deletion
+	Given I pass a ticket that exist
+		But the user is marked for deletion
+	When I try to get the session
+	Then I will receive this core error: UserDeleted

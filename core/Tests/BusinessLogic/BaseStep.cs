@@ -375,6 +375,12 @@ namespace DFM.BusinessLogic.Tests
 			set => set("Token", value);
 		}
 
+		protected static String email
+		{
+			get => get<String>("Email");
+			set => set("Email", value);
+		}
+
 		protected static DateTime entityDate =>
 			moveInfo?.GetDate() ??
 			scheduleInfo?.GetDate() ??

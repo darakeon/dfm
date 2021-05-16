@@ -88,3 +88,14 @@ Scenario: Bc07. Change the url to repeated
 		And I try to update the account
 	Then I will receive this core error: AccountUrlAlreadyExists
 		And the account will not be changed
+
+Scenario: Bc08. Not change if user is marked for deletion
+	Given I already have this account
+			| Name           | Url            |
+			| Account Bc07.1 | account_bc07_1 |
+		But the user is marked for deletion
+	When I make this changes to the account
+			| Name           | Url            |
+			| Account Bc07.2 | account_bc07_1 |
+		And I try to update the account
+	Then I will receive this core error: UserDeleted

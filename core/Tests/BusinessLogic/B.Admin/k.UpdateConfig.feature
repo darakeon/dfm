@@ -153,3 +153,9 @@ Scenario: Bk21. Enable wizard
 	Given I disable wizard
 	When I try to enable wizard
 	Then I will receive no core error
+
+Scenario: Bk22. Not update if user is marked for deletion
+	Given I disable wizard
+		But the user is marked for deletion
+	When I try to enable wizard
+	Then I will receive this core error: UserDeleted

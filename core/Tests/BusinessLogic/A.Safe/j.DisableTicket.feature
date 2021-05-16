@@ -35,3 +35,9 @@ Scenario: Aj05. Disable with empty ticket
 	Given I pass an empty ticket
 	When I try to disable the ticket
 	Then I will receive no core error
+
+Scenario: Aj06. Not disable if user is marked for deletion
+	Given I pass a ticket that exist
+		But the user is marked for deletion
+	When I try to disable the ticket
+	Then I will receive this core error: UserDeleted

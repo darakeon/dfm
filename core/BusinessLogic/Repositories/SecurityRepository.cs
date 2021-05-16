@@ -115,6 +115,9 @@ namespace DFM.BusinessLogic.Repositories
 			if (security == null)
 				throw Error.InvalidToken.Throw();
 
+			if (security.User.Control.ProcessingDeletion)
+				throw Error.UserDeleted.Throw();
+
 			security.Active = false;
 			SaveOrUpdate(security);
 		}

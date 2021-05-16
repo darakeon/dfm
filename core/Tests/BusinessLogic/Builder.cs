@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
-using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using Keon.Util.DB;
 using Keon.Util.Extensions;

@@ -44,3 +44,11 @@ Scenario: Al04. Password change with info all right
 	Then I will receive no core error
 		And the password will be changed
 		And only the last login will be active
+
+Scenario: Al05. Not change if user is marked for deletion
+	Given I pass this password
+			| Current Password | Password     | Retype Password |
+			| password         | new_password | new_password    |
+		But the user is marked for deletion
+	When I try to change the password
+	Then I will receive this core error: UserDeleted

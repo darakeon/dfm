@@ -334,3 +334,13 @@ Scenario: Db20. Run scheduler after add schedule
 			| Email                         | Password |
 			| new_schedule@dontflymoney.com | password |
 	Then the accountOut value will change in -16
+
+Scenario: Db21. Not run scheduler if user is marked for deletion
+	Given I have this user created
+			| Email                    | Password | Active | Signed |
+			| deleted@dontflymoney.com | password | true   | true   |
+		And a schedule is created by deleted@dontflymoney.com
+		But the user is marked for deletion
+	When robot user login
+		And run the scheduler
+	Then the user will still have no moves

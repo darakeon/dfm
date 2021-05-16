@@ -51,3 +51,14 @@ Scenario: Bh04. Change the name of another user category
 			| Bh04 - new name |
 	When I try to update the category
 	Then I will receive this core error: InvalidCategory
+
+Scenario: Bh05. Not update if user is marked for deletion
+	Given I have this category
+			| Name          |
+			| Category Bh05 |
+		And I make this changes to the category
+			| Name            |
+			| Bh05 - new name |
+		But the user is marked for deletion
+	When I try to update the category
+	Then I will receive this core error: UserDeleted

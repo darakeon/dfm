@@ -19,12 +19,6 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 	public class SafeStep : BaseStep
 	{
 		#region Variables
-		private static String email
-		{
-			get => get<String>("Email");
-			set => set("Email", value);
-		}
-
 		private static String newEmail
 		{
 			get => get<String>("NewEmail");
