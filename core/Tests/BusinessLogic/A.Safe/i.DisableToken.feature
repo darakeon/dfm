@@ -26,3 +26,10 @@ Scenario: Ai03. Disable PR with info all right
 	When I try do disable the token
 	Then I will receive no core error
 		And the token will not be valid anymore
+
+Scenario: Ai04. Not disable if user is marked for deletion
+	Given I have a token for its activation
+		And I pass a valid UserVerification token
+		But the user is marked for deletion
+	When I try do disable the token
+	Then I will receive this core error: UserDeleted

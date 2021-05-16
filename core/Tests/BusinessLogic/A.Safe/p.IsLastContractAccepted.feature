@@ -22,3 +22,9 @@ Scenario: Ap03. Get accepted if previous is not accepted
 	When I try to get the acceptance
 	Then I will receive no core error
 		And the contract status will be accepted
+
+Scenario: Ap04. Not get accepted contract if user is marked for deletion
+	Given test user login
+		But the user is marked for deletion
+	When I try to get the acceptance
+	Then I will receive this core error: UserDeleted

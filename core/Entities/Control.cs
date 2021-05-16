@@ -25,6 +25,7 @@ namespace DFM.Entities
 		public virtual Int32 WrongLogin { get; set; }
 
 		public virtual Int32 RemovalWarningSent { get; set; }
+		public virtual Boolean ProcessingDeletion { get; set; }
 
 		public virtual DateTime RobotCheck { get; set; }
 

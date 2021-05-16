@@ -260,3 +260,6 @@ set sql_safe_updates = 0;
 update control
 	set LastAccess = NOW();
 set sql_safe_updates = 1;
+
+alter table control
+	add ProcessingDeletion bit not null default 0;

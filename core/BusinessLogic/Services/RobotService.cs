@@ -262,6 +262,11 @@ namespace DFM.BusinessLogic.Services
 			if (shouldRemove)
 			{
 				inTransaction(
+					"MarkUserDeletion",
+					() => repos.Control.MarkDeletion(user)
+				);
+
+				inTransaction(
 					"DeleteUser",
 					() => repos.Purge(user)
 				);

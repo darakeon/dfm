@@ -67,3 +67,12 @@ Scenario: Ag06. Password reset with token already used
 	# Same token
 	When I try to reset the password
 	Then I will receive this core error: InvalidToken
+
+Scenario: Ag07. Not reset if user is marked for deletion
+	Given I pass a valid PasswordReset token
+		And I pass this password
+			| Password     | Retype Password |
+			| new_password | new_password    |
+		But the user is marked for deletion
+	When I try to reset the password
+	Then I will receive this core error: UserDeleted

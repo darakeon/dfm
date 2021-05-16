@@ -2,11 +2,11 @@
 
 Background:
 	Given I have this user created
-			| Email               | Password | Active |
-			| At@dontflymoney.com | password | true   |
+			| Email                           | Password | Active |
+			| {scenarioCode}@dontflymoney.com | password | true   |
 		And I login this user
-			| Email               | Password |
-			| At@dontflymoney.com | password |
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
@@ -40,3 +40,15 @@ Scenario: At03. Validate with valid code
 	When I try to validate the ticket two factor
 	Then I will receive no core error
 		And the ticket will be valid
+
+Scenario: At04. Not validate if user is marked for deletion
+	Given I have this two-factor data
+			| Secret | Code        | Password |
+			| 456    | {generated} | password |
+		And I set two-factor
+		And I have this two-factor data
+			| Secret | Code        |
+			| 456    | {generated} |
+		But the user is marked for deletion
+	When I try to validate the ticket two factor
+	Then I will receive this core error: UserDeleted

@@ -62,3 +62,9 @@ Scenario: Be09. Delete an Account with detailed schedule
 	When I try to delete the account
 	Then I will receive no core error
 		And the account will be deleted
+
+Scenario: Be10. Not delete Account if user is marked for deletion
+	Given I give a url of the account Be10 without moves
+		But the user is marked for deletion
+	When I try to delete the account
+	Then I will receive this core error: UserDeleted

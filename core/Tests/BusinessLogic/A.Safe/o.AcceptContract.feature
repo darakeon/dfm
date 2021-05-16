@@ -20,3 +20,8 @@ Scenario: Ao03. Accept contract clear warning counting
 	When I try to accept the contract
 	Then I will receive no core error
 		And and the user warning count will be 0
+
+Scenario: Ao04. Not accept contract if user is marked for deletion
+	Given the user is marked for deletion
+	When I try to accept the contract
+	Then I will receive this core error: UserDeleted

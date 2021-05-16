@@ -124,3 +124,15 @@ Scenario: Ae10. Enable user resets the password trial times
 	When I try to get the ticket
 	Then I will receive no core error
 		And I will receive the ticket
+
+Scenario: Ae11. Not validate if user is marked for deletion
+	Given I have this user created
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
+		And I have this user data
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
+		And I activate the user
+		But the user is marked for deletion
+	When I try to get the ticket
+	Then I will receive this core error: UserDeleted

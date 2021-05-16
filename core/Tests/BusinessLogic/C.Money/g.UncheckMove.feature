@@ -90,3 +90,9 @@ Scenario: Cg11. Mark a move as checked in closed account
 	When I try to mark it as not checked for account Out
 	Then I will receive no core error
 		And the move will not be checked for account Out
+
+Scenario: Cg12. Not mark as not checked if user is marked for deletion
+	Given I have a move with value 10 (Out)
+		But the user is marked for deletion
+	When I try to mark it as not checked for account Out
+	Then I will receive this core error: UserDeleted

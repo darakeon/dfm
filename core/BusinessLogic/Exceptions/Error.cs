@@ -27,6 +27,7 @@ namespace DFM.BusinessLogic.Exceptions
 		TFANotVerified = 215,
 		TooLargeUserEmail = 216,
 		UserEmailRequired = 217,
+		UserDeleted = 218,
 
 		AccountNameRequired = 301,
 		AccountUrlRequired = 302,

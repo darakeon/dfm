@@ -83,5 +83,11 @@ namespace DFM.BusinessLogic.Repositories
 			control.RobotCheck = DateTime.UtcNow;
 			SaveOrUpdate(control);
 		}
+
+		public void MarkDeletion(User user)
+		{
+			user.Control.ProcessingDeletion = true;
+			SaveOrUpdate(user.Control);
+		}
 	}
 }

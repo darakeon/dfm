@@ -16,3 +16,8 @@ Scenario: Ab01. Send with email that doesn't exist
 Scenario: Ab02. Send with info all right
 	When I try to send the e-mail of user verify
 	Then I will receive no core error
+
+Scenario: Ab03. Not send if user is marked for deletion
+	Given the user is marked for deletion
+	When I try to send the e-mail of user verify
+	Then I will receive this core error: UserDeleted

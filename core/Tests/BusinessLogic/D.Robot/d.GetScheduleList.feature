@@ -56,3 +56,8 @@ Scenario: Dd02. Get all schedules after delete one
 		And the schedule list will not have this
 			| Name            |
 			| Schedule Dd02.2 |
+
+Scenario: Dd03. Not get schedules if user is marked for deletion
+	Given the user is marked for deletion
+	When ask for the schedule list
+	Then I will receive this core error: UserDeleted

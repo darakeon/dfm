@@ -24,6 +24,9 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 
 			if (!IsTest)
 				robot.Not.Update();
+
+			mapping.Map(u => u.ProcessingDeletion)
+				.Default("0");
 		}
 	}
 }

@@ -16,3 +16,9 @@ Scenario: Bg02. Get the Category by Name
 	When I try to get the category by its name
 	Then I will receive no core error
 		And I will receive the category
+
+Scenario: Bg03. Not get category if user is marked for deletion
+	Given I pass a valid category name
+		But the user is marked for deletion
+	When I try to get the category by its name
+	Then I will receive this core error: UserDeleted

@@ -53,3 +53,11 @@ Scenario: Bl03. Get all not active accounts after close one
 		And the account list will not have this
 			| Name           | Url            |
 			| Account Bl03.1 | account_bl03_1 |
+
+Scenario: Bl04. Not get accounts if user is marked for deletion
+	Given I have this account
+			| Name         | Url          | Yellow | Red |
+			| Account Bl04 | account_bl04 |        |     |
+		But the user is marked for deletion
+	When ask for the not active account list
+	Then I will receive this core error: UserDeleted

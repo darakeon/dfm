@@ -101,3 +101,17 @@ Scenario: Ar07. With null password
 	When I try to set two-factor
 	Then I will receive this core error: TFAWrongPassword
 		And the two-factor will be empty
+
+Scenario: Ar08. Not update if user is marked for deletion
+	Given I have this user created
+			| Email                 | Password | Active |
+			| ar08@dontflymoney.com | password | true   |
+		And I login this user
+			| Email                 | Password |
+			| ar08@dontflymoney.com | password |
+		And I have this two-factor data
+			| Secret | Code        | Password |
+			| 123    | {generated} | password |
+		But the user is marked for deletion
+	When I try to set two-factor
+	Then I will receive this core error: UserDeleted

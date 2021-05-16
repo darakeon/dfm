@@ -724,3 +724,15 @@ Scenario: Ca45. Save move fix account begin date
 	Then I will receive no core error
 		And the accountOut begin date will be 1986-05-04
 		And the accountIn begin date will be 1986-05-04
+
+Scenario: Ca46. Not save if user is marked for deletion
+	Given I have this move to create
+			| Description | Date       | Nature | Value |
+			| Move Ca30   | 2012-03-31 | Out    | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		But the user is marked for deletion
+	When I try to save the move
+	Then I will receive this core error: UserDeleted

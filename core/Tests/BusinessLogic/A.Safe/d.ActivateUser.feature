@@ -46,3 +46,9 @@ Scenario: Ad05. Activate user with token already used
 	When I try to activate the user
 	Then I will receive this core error: InvalidToken
 		And the user will not be activated
+
+Scenario: Ad06. Not activate if user is marked for deletion
+	Given I pass a valid UserVerification token
+		But the user is marked for deletion
+	When I try to activate the user
+	Then I will receive this core error: UserDeleted

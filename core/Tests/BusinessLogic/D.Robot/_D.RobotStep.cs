@@ -143,6 +143,8 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		[Given(@"a schedule is created by (.+)")]
 		public void GivenTheCreatedUserHasASchedule(String email)
 		{
+			email = email.Replace("{scenarioCode}", scenarioCode);
+
 			resetTicket();
 			current.Set(email, userPassword, false);
 
@@ -236,6 +238,19 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			}
 
 			ConfigHelper.DeactivateMoveEmailForUser(service);
+		}
+
+		[Then(@"the user will still have no moves")]
+		public void ThenTheUserWillStillHaveNoMoves()
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			var accounts = repos.Account.Get(user, true);
+
+			foreach (var account in accounts)
+			{
+				var moves = repos.Move.ByAccount(account);
+				Assert.IsEmpty(moves);
+			}
 		}
 		#endregion
 

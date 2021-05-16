@@ -314,3 +314,10 @@ Scenario: Cb21. Update move date not changing its position at schedule
 		And I change the move date in -2 months
 	When I update the move
 	Then the description will still be Schedule Cb21 [1/5]
+
+Scenario: Cb22. Not update if user is marked for deletion
+	Given I have a move with value 10 (Out)
+		But the user is marked for deletion
+	When I change the move value to 20
+		And I update the move
+	Then I will receive this core error: UserDeleted

@@ -66,3 +66,8 @@ Scenario: Ec08. Search logged off
 	Given I have no logged user (logoff)
 	When I try to search by description Choco
 	Then I will receive this core error: Uninvited
+
+Scenario: Ec09. Not search if user is marked for deletion
+	Given the user is marked for deletion
+	When I try to search by description Choco
+	Then I will receive this core error: UserDeleted

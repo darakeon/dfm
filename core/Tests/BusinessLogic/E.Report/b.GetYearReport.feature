@@ -96,3 +96,12 @@ Scenario: Eb04. Get foreseen ins, outs and balances
 		And the year report sums will be
 			| Current In | Current Out | Current Total | Foreseen In | Foreseen Out | Foreseen Total |
 			| 0          | 0           | 0             | 296         | 736          | -440           |
+
+Scenario: Eb05. Not get year report if user is marked for deletion
+	Given I pass a valid account url
+		And I pass this date
+			| Year |
+			| 2021 |
+		But the user is marked for deletion
+	When I try to get the year report
+	Then I will receive this core error: UserDeleted

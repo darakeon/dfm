@@ -66,3 +66,18 @@ Scenario: Dc05. Disable a Schedule with details
 	When I try to disable the Schedule
 	Then I will receive no core error
 		And the schedule will be disabled
+
+Scenario: Dc06. Not disable a Schedule if user is marked for deletion
+	Given I have this schedule to create
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Db91   | 2012-03-31 | Out    |       | 1     | False     | Monthly   | False           |
+		And the schedule has this details
+			| Description | Amount | Value |
+			| Detail      | 1      | 10    |
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
+		But the user is marked for deletion
+	When I try to disable the Schedule
+	Then I will receive this core error: UserDeleted

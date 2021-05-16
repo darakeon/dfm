@@ -15,3 +15,9 @@ Scenario: Bb02. Get the Account by Url
 	When I try to get the account by its url
 	Then I will receive no core error
 		And I will receive the account
+
+Scenario: Bb03. Not get account if user is marked for deletion
+	Given I pass a valid account url
+		But the user is marked for deletion
+	When I try to get the account by its url
+	Then I will receive this core error: UserDeleted

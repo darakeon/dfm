@@ -66,3 +66,11 @@ Scenario: Bm04. Get all categories after close one
 			| Name            |
 			| Category Bm04.2 |
 			| Category Bm04.1 |
+
+Scenario: Bm05. Not get categories if user is marked for deletion
+	Given I have this category
+			| Name          |
+			| Category Bm05 |
+		But the user is marked for deletion
+	When ask for all the category list
+	Then I will receive this core error: UserDeleted

@@ -29,3 +29,13 @@ Scenario: Ax02. Deactivate TFA as password
 	Then I will receive no core error
 		And the TFA can not be used as password
 		And the TFA will be asked
+
+Scenario: Ax03. Not activate if user is marked for deletion
+	Given the user is marked for deletion
+	When I set to use TFA as password
+	Then I will receive this core error: UserDeleted
+
+Scenario: Ax04. Not deactivate if user is marked for deletion
+	Given the user is marked for deletion
+	When I set to not use TFA as password
+	Then I will receive this core error: UserDeleted

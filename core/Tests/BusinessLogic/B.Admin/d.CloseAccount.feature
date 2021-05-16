@@ -54,3 +54,9 @@ Scenario: Bd07. Close an Account with schedule that has details
 		And the account will be closed
 		And the account will have an end date
 		And the schedule will be disabled
+
+Scenario: Bd08. Not close Account if user is marked for deletion
+	Given I give a url of the account Bd08 with moves
+		But the user is marked for deletion
+	When I try to close the account
+	Then I will receive this core error: UserDeleted
