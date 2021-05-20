@@ -165,7 +165,7 @@
 	"4.1.3.8": [
 		"Ajustes da documentação do sistema no github",
 		"Lista de atualizações incorporada ao sistema (evitar rastreamento de twitter)",
-		"Usado hora do browser para pegar configuração de hora ao criar usuário",
+		"Usado hora do browser para pegar configuração de hora ao criar registro",
 		"Adicionadas especificações de privacidade no contrato",
 		"Arrumada troca de versão do sistema",
 		"Ajustes no teste automatizado do site"
@@ -327,14 +327,14 @@
 		"Correção de atraso ao exibir contas e categorias novas, assim que eram criadas"
 	],
 	"2.1.4.3": [
-		"Correção para usuário novo"
+		"Correção para registro novo"
 	],
 	"2.1.4.2": [
 		"Correção de ícone do site"
 	],
 	"2.1.4.1": [
 		"Corrigido bug no app mobile ao tentar entrar",
-		"Corrigido bug no site para usuário novo"
+		"Corrigido bug no site para registro novo"
 	],
 	"2.1.4.0": [
 		"Atualização da API do android e mudanças estruturais"
@@ -422,10 +422,10 @@
 		"No more yellow screen, guys! Também consertei para ser possível colocar zero como valor nos sinais vermelho e amarelo da conta"
 	],
 	"1.0.0.3": [
-		"News! Links da lista de contas trocados, confirmação de usuário via e-mail, e agora dá para recuperar a senha (foi mal o atraso nessa)"
+		"News! Links da lista de contas trocados, confirmação de registro via e-mail, e agora dá para recuperar a senha (foi mal o atraso nessa)"
 	],
 	"1.0.0.2": [
-		"Também foi implementada a confirmação de senha na criação de usuário, para evitar o risco de erros de digitação impedirem o acesso posterior",
+		"Também foi implementada a confirmação de senha na criação de registro, para evitar o risco de erros de digitação impedirem o acesso posterior",
 		"Problema da data resolvido. Foi mal a demora, a semana foi cheia. Implementado um datepicker"
 	],
 	"1.0.0.1": [

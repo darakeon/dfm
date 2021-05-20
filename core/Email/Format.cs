@@ -40,10 +40,18 @@ namespace DFM.Email
 
 			Subject = PlainText.Email[layoutName, language, "Subject"];
 
-			var replaces = PlainText.Email[layoutName, language]
-				.ToDictionary(p => p.Name, p => p.Text);
+			var replaces = getReplaces(type.ToString(), layoutName, language);
 
 			Layout = FormatEmail(theme, type, replaces);
+		}
+
+		private static Dictionary<String, String> getReplaces(
+			String type, String subtype, String language
+		)
+		{
+			var sections = new[] {type, subtype};
+			var replaces = PlainText.Email[sections, language];
+			return replaces.ToDictionary(p => p.Name, p => p.Text);
 		}
 
 		public static String FormatEmail<T>(Theme theme, EmailType type, IDictionary<String, T> replaces)

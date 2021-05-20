@@ -48,10 +48,10 @@
 		"Code": "Code",
 		"ContractAccept": "I understood and agree with the {0}",
 		"ContractBeginDate": "Effective Date",
-		"CookiesWarning": "Cookies are used to control logon and security of forms of this site",
+		"CookiesWarning": "Cookies are used to control logon and security of forms of this website",
 		"EnableWizard": "Enable Wizard",
 		"TFAVerification": "Use the code of the app registered before",
-		"ThemeInstruction": "Chose colors style and verify the examples below. Save to use the chosen colors at the site for now on.",
+		"ThemeInstruction": "Chose colors style and verify the examples below. Save to use the chosen colors at the website for now on.",
 		"ThemeLink": "These themes are based on {{link}}.",
 
 		"None": "OUCH!",

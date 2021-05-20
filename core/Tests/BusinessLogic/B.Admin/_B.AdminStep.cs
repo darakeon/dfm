@@ -9,8 +9,10 @@ using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Language;
+using DFM.Tests.Util;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Tests.B.Admin
 {
@@ -1038,11 +1040,11 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		{
 			var regex = new Regex("UnsubscribeMoveMail>(\\w+)");
 
-			var email1 = Email.GetByPosition(-1);
+			var email1 = EmlHelper.ByPosition(-1);
 			var match1 = regex.Match(email1.Body);
 			var token1 = match1.Groups[1].Value;
 
-			var email2 = Email.GetByPosition(-2);
+			var email2 = EmlHelper.ByPosition(-2);
 			var match2 = regex.Match(email2.Body);
 			var token2 = match2.Groups[1].Value;
 

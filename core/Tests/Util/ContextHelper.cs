@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using TechTalk.SpecFlow;
 
 namespace DFM.Tests.Util
@@ -42,6 +43,33 @@ namespace DFM.Tests.Util
 		protected Boolean isCurrent(ScenarioBlock block)
 		{
 			return context.CurrentScenarioBlock == block;
+		}
+
+		protected static Boolean match(String text, String pattern)
+		{
+			var match = Regex.IsMatch(text, pattern);
+
+			if (match)
+				return true;
+
+			for (var l = 1; l < pattern.Length; l++)
+			{
+				try
+				{
+					var subPattern = pattern.Substring(0, l);
+
+					if (subPattern.EndsWith("{"))
+						continue;
+
+					if (!Regex.IsMatch(text, subPattern))
+					{
+						throw new Exception($"Wrong match of \n\t{subPattern}\n\tinto\n\t{text}");
+					}
+				}
+				catch (RegexParseException) { }
+			}
+
+			return false;
 		}
 	}
 }

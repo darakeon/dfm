@@ -32,12 +32,18 @@ namespace DFM.MVC.Controllers
 
 			var languages = PlainText.AcceptedLanguages();
 
-			var result =
+			var fakeUsers =
 				from language in languages
 				from theme in themes
-				select getLayout(Format.MoveNotification(fakeUser(language, theme)))
-				       + getLayout(Format.SecurityAction(fakeUser(language, theme), SecurityAction.PasswordReset))
-				       + getLayout(Format.SecurityAction(fakeUser(language, theme), SecurityAction.UserVerification));
+				select fakeUser(language, theme);
+
+			var result =
+				from fakeUser in fakeUsers
+				select getLayout(Format.MoveNotification(fakeUser))
+				       + getLayout(Format.SecurityAction(fakeUser, SecurityAction.PasswordReset))
+				       + getLayout(Format.SecurityAction(fakeUser, SecurityAction.UserVerification))
+				       + getLayout(Format.UserRemoval(fakeUser, RemovalReason.NoInteraction))
+				       + getLayout(Format.UserRemoval(fakeUser, RemovalReason.NotSignedContract));
 
 			return View(result);
 		}
@@ -52,6 +58,14 @@ namespace DFM.MVC.Controllers
 					Theme = theme,
 				}
 			};
+		}
+
+		private String getLayout(Format format)
+		{
+			return format.Layout.Replace(
+				"{{Url}}",
+				Request.Scheme + "://" + Request.Host
+			);
 		}
 
 		[HttpGetAndHead]
@@ -75,14 +89,6 @@ namespace DFM.MVC.Controllers
 			}
 
 			return Content(message, "text/html");
-		}
-
-		private String getLayout(Format format)
-		{
-			return format.Layout.Replace(
-				"{{Url}}",
-				Request.Scheme + "://" + Request.Host
-			);
 		}
 
 		[HttpGetAndHead]

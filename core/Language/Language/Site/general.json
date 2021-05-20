@@ -114,7 +114,7 @@
 		"Contact_Project": "About Project",
 		"Contact_Releases": "Things done and doing",
 		"Contact_TODO": "What we see for future",
-		"Contact_PS": "",
+		"Contact_PS": " ",
 
 		"Search_Title": "Search",
 		"Search_Text": "The terms will be searched at moves and its details",
@@ -199,7 +199,7 @@
 		"Daily": "Diária",
 		"Monthly": "Mensal",
 		"Yearly": "Anual",
-		"UserVerification": "Verificação de Usuário",
+		"UserVerification": "Verificação de Registro",
 		"PasswordReset": "Redefinição de Senha",
 		"UnsubscribeMoveMail": "Cancelar e-mails de Movimentações",
 		"Creation": "Criação",

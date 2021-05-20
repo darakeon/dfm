@@ -8,11 +8,11 @@ using DFM.Generic;
 using DFM.Language;
 using DFM.Language.Emails;
 
-namespace DFM.BusinessLogic.Tests
+namespace DFM.Tests.Util
 {
-	class Email
+	public class EmlHelper
 	{
-		private Email(String receiver, String subject, String body, DateTime creation, EmailType? type)
+		private EmlHelper(String receiver, String subject, String body, DateTime creation, EmailType? type)
 		{
 			Receiver = receiver;
 			Subject = subject;
@@ -66,7 +66,7 @@ namespace DFM.BusinessLogic.Tests
 			return types;
 		}
 
-		public static Email GetByPosition(Int32 position)
+		public static EmlHelper ByPosition(Int32 position)
 		{
 			// cannot have -0 and +0
 			if (position == 0) return null;
@@ -95,7 +95,7 @@ namespace DFM.BusinessLogic.Tests
 			return dir.EnumerateFiles("*.eml");
 		}
 
-		private static Email fillEmail(FileInfo emailFile)
+		private static EmlHelper fillEmail(FileInfo emailFile)
 		{
 			var content = File.ReadAllLines(emailFile.FullName);
 
@@ -152,7 +152,7 @@ namespace DFM.BusinessLogic.Tests
 				t => t.Key == subject
 			).Value;
 
-			return new Email(receiver, subject, body, creation, type);
+			return new EmlHelper(receiver, subject, body, creation, type);
 		}
 
 		private static String convert(String text)
@@ -167,6 +167,23 @@ namespace DFM.BusinessLogic.Tests
 				.Where(f => f.CreationTimeUtc > datetime)
 				.Select(fillEmail)
 				.Count(e => e.Receiver == email && e.Type == type);
+		}
+
+
+		public static EmlHelper ByEmail(String emailAddress)
+		{
+			EmlHelper email;
+			var e = 0;
+
+			do
+			{
+				email = ByPosition(--e);
+			} while (
+				emailAddress != email.Receiver
+				&& -e < getEmailFiles().Count()
+			);
+
+			return email;
 		}
 	}
 }

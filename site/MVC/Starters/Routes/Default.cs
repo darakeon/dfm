@@ -26,6 +26,12 @@ namespace DFM.MVC.Starters.Routes
 			public override String Path => "@{activity}";
 		}
 
+		public class Contract : Default
+		{
+			public Contract() : base("Users", "Contract") { }
+			public override String Path => "contract";
+		}
+
 		public class Mail : Default
 		{
 			public Mail() : base("Tokens", "Mail") { }

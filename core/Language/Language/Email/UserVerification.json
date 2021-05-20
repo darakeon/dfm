@@ -3,14 +3,12 @@
 		"DisableText": "If your user is already activated, please, disable the Token. Won't be necessary give any information.",
 		"Subject": "User Verification",
 		"Title": "Verification",
-		"TokenText": "If you prefer, go to the site, click in the link 'Token received by e-mail' and type the token below.",
 		"UrlText": "Your user in Don't fly Money is waiting for a confirm to be activated. To proceed, click the link below.",
 	},
 	"pt-BR": {
-		"DisableText": "Se seu usuário já está ativado, por favor, desative o Token. Não será necessário passar qualquer informação.",
-		"Subject": "Verificação de Usuário",
+		"DisableText": "Se seu registro já está ativado, por favor, desative o Token. Não será necessário passar qualquer informação.",
+		"Subject": "Verificação de Registro",
 		"Title": "Verificação",
-		"TokenText": "Se preferir, vá até o site, clique no link 'Token recebido via e-mail' e cole o Token.",
-		"UrlText": "Seu usuário no Don't fly Money aguarda confirmação para ser ativado. Para prosseguir, clique no link abaixo.",
+		"UrlText": "Seu registro no Don't fly Money aguarda confirmação para ser ativado. Para prosseguir, clique no link abaixo.",
 	},
 }
