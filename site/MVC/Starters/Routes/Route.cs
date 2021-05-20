@@ -26,6 +26,7 @@ namespace DFM.MVC.Starters.Routes
 			addUrl<Accounts>();
 			addUrl<Apis.Accounts>();
 			addUrl<Apis.Main>();
+			addUrl<Default.Contract>();
 			addUrl<Default.Mail>();
 			addUrl<Default.Mobile>();
 			addUrl<Default.Main>();

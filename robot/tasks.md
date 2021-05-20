@@ -12,5 +12,4 @@
 - [x] delete users not accepted contract after 90 days
 - [x] send warnings of no interaction
 - [x] zerar contador de warnings quando se logar
-- [ ] adicionar link do contrato no e-mail
-- [ ] adicionar motivo da exclusão no contrato?
+- [x] adicionar link do contrato no e-mail

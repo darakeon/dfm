@@ -37,10 +37,14 @@ namespace DFM.BusinessLogic.Repositories
 
 		public void WarnRemoval(User user, DateTime dateTime, RemovalReason removalReason)
 		{
+			var diff = dateTime.AddDays(90) - DateTime.UtcNow;
+			var count = (Int32) diff.TotalDays;
+
 			var dic = new Dictionary<String, String>
 			{
 				{ "Url", getUrl() },
 				{ "Date", dateTime.ToShortDateString() },
+				{ "Count", count.ToString() },
 			};
 
 			var format = Format.UserRemoval(user, removalReason);

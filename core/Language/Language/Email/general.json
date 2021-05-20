@@ -1,14 +1,10 @@
 {
 	"en-US": {
-		"DisableToken": "Disable Token",
-		"TokenValid": "Token valid to",
 		"NoLink": "We have NO link with financial institutions.",
 		"NoReply": "Don't reply this e-mail.",
-		"OurContact": "Our contact: dfm@dontflymoney.com"
+		"OurContact": "Our contact: dfm@dontflymoney.com",
 	},
 	"pt-BR": {
-		"DisableToken": "Desativar Token",
-		"TokenValid": "Token válido até",
 		"NoLink": "Não temos vínculos com instituições financeiras.",
 		"NoReply": "Não responda este e-mail.",
 		"OurContact": "Nosso contato: dfm@dontflymoney.com",

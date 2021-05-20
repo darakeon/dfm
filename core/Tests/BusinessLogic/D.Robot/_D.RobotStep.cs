@@ -416,7 +416,7 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		[Then(@"the count of warnings sent will be (\d+)")]
 		public void ThenTheCountOfWarningsSendWillBe(Int32 expectedCount)
 		{
-			var actualCount = Email.CountEmails(
+			var actualCount = EmlHelper.CountEmails(
 				userEmail,
 				EmailType.RemovalReason,
 				testStart

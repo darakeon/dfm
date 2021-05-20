@@ -40,9 +40,6 @@ namespace DFM.Language.Emails
 
 		private static String getContent(String filePath)
 		{
-			if (!File.Exists(filePath))
-				return "";
-
 			return File.ReadAllText(filePath);
 		}
 	}

@@ -150,12 +150,12 @@ namespace DFM.Language.Tests
 
 			foreach (var section in dic.SectionList)
 			{
-				foreach (var langOrigin in section.LanguageList)
+				foreach (var lang in section.LanguageList)
 				{
-					foreach (var phrase in langOrigin.PhraseList)
+					foreach (var phrase in lang.PhraseList)
 					{
 						var langToTest = languages
-							.Where(l => l != langOrigin.Name);
+							.Where(l => l != lang.Name);
 
 						foreach (var language in langToTest)
 						{
@@ -165,7 +165,9 @@ namespace DFM.Language.Tests
 								phrase.Name
 							];
 
-							Assert.IsNotNull(text);
+							var id = $"{section.Name} > {lang} > {phrase.Name}";
+							Assert.IsNotNull(text, $"{id} not found");
+							Assert.IsNotEmpty(text, $"{id} is empty");
 						}
 					}
 				}

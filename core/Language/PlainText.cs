@@ -102,6 +102,23 @@ namespace DFM.Language
 			=> SectionList[section][language].PhraseList
 				.Union(SectionList["general"][language].PhraseList);
 
+		public DicList<Phrase> this[String[] sections, String language]
+		{
+			get
+			{
+				var result = SectionList["general"][language].PhraseList;
+
+				foreach (var section in sections.Distinct())
+				{
+					result = result.Union(
+						SectionList[section][language].PhraseList
+					);
+				}
+
+				return result;
+			}
+		}
+
 		public String this[String section, String language, params String[] phrase]
 		{
 			get
