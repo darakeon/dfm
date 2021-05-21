@@ -14,4 +14,4 @@
 - [x] zerar contador de warnings quando se logar
 - [x] adicionar link do contrato no e-mail
 - [x] register user deleted: when, why, s3 address, password and tfa
-- [ ] call clean users at robot
+- [x] call clean users at robot
