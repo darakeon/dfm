@@ -14,4 +14,4 @@ ENV ASPNETCORE_ENVIRONMENT=amazon
 
 WORKDIR /var/robot
 
-CMD cp /var/cfg/* . && ./DFM.Robot
+CMD cp /var/cfg/* . && ./DFM.Robot $TASK

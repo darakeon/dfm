@@ -1,47 +1,26 @@
 ﻿using System;
-using DFM.Authentication;
-using DFM.BusinessLogic;
-using DFM.Entities.Enums;
-using DFM.Generic;
-using DFM.Generic.Datetime;
-using DfM.Logs;
+using System.Linq;
 
 namespace DFM.Robot
 {
 	class Program
 	{
-		public static void Main()
+		public static void Main(String[] args)
 		{
-			Connection.Run(execute);
-		}
+			var arg = args.FirstOrDefault();
 
-		private static void execute()
-		{
-			TZ.Init(false);
+			if (arg == null)
+				throw new ArgumentException("Not task passed");
 
-			var services = new ServiceAccess(getTicket, getSite);
+			Console.WriteLine($"Starting {arg}");
 
-			services.Current.Set(Cfg.RobotEmail, Cfg.RobotPassword, false);
-
-			var userErrors = services.Robot.RunSchedule();
-
-			foreach (var (email, errors) in userErrors)
+			Connection.Run(() =>
 			{
-				foreach (var error in errors)
-				{
-					error.TryLogHandled($"User: {email}");
-				}
-			}
-		}
+				var service = new Service(arg);
+				service.Execute();
+			});
 
-		private static ClientTicket getTicket(Boolean remember)
-		{
-			return new("ROBOT", TicketType.Local);
-		}
-
-		private static string getSite()
-		{
-			return "https://dontflymoney.com";
+			Console.WriteLine($"Ended {arg}");
 		}
 	}
 }
