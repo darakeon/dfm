@@ -37,8 +37,8 @@ Scenario: Aa04. Save user with repeated e-mail
 
 Scenario: Aa05. Save user too large e-mail
 	Given I have this user data
-			| Email                                               | Password | Retype Password |
-			| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefgh@dontflymoney.com | password | password        |
+			| Password | Retype Password | Email                                                                                                                                                                                                                                                                                                                              |
+			| password | password        | D.F.M.ABCDEFGHIJKLMNOPQRSTUVWXYZ-abcdefghijklmnopqrstuvwxyz_D.F.M.ABCDEFGHIJKLMNOPQRSTUVWXYZ-abcdefghijklmnopqrstuvwxyz_D.F.M.ABCDEFGHIJKLMNOPQRSTUVWXYZ-abcdefghijklmnopqrstuvwxyz_D.F.M.ABCDEFGHIJKLMNOPQRSTUVWXYZ-abcdefghijklmnopqrstuvwxyz_D.F.M.ABCDEFGHIJKLMNOPQRSTUVWXYZ-abcdefghijklmnopqrstuvwxyz_D.F.M@dontflymoney.com |
 	When I try to save the user
 	Then I will receive this core error: TooLargeUserEmail
 		And the user will not be saved

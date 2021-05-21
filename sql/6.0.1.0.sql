@@ -263,3 +263,6 @@ set sql_safe_updates = 1;
 
 alter table control
 	add ProcessingDeletion bit not null default 0;
+
+alter table user
+	modify column Email varchar(320) not null;
