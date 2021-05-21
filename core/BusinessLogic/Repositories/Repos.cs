@@ -42,20 +42,23 @@ namespace DFM.BusinessLogic.Repositories
 			User = new UserRepository();
 		}
 
-
-		public void Purge(User user)
+		public void Purge(User user, Action<String> upload)
 		{
 			var accounts = Account.Where(a => a.User.ID == user.ID);
 
-			var csv = new CSV();
-
-			foreach (var account in accounts)
+			using (var csv = new CSV())
 			{
-				csv.Add(Move.ByAccount(account));
-				csv.Add(Schedule.ByAccount(account));
-			}
+				foreach (var account in accounts)
+				{
+					csv.Add(Move.ByAccount(account));
+					csv.Add(Schedule.ByAccount(account));
+				}
 
-			csv.Create(user);
+				csv.Create(user);
+
+				if (csv.Path != null)
+					upload(csv.Path);
+			}
 
 			purge(Ticket, t => t.User, u => u.ID == user.ID);
 			purge(Security, s => s.User, u => u.ID == user.ID);

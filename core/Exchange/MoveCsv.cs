@@ -12,12 +12,12 @@ namespace DFM.Exchange
 			guid = move.Guid;
 
 			Description = move.Description;
-			Date = move.GetDate().ToString("yyyy-MM-dd");
+			Date = move.GetDate().ToCsv();
 			Category = move.Category?.Name;
 			Nature = move.Nature.ToString();
 			In = move.In?.Name;
 			Out = move.Out?.Name;
-			Value = move.Value == 0 ? "" : move.Value.ToString("F2");
+			Value = move.Value.ToCsv();
 
 			Details = DetailCsv.Convert(move.DetailList);
 		}

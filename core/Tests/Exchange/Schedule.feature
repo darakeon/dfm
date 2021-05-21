@@ -5,7 +5,7 @@ Scenario: B01. Already runned create no file
 			| Description | Date       | CategoryName | Nature   | InName | OutName | Value | Times | Frequency | Boundless | LastRun |
 			| Schedule 1  | 1986-03-27 | Cat          | Transfer | In     | Out     | 10    | 7     | Monthly   | False     | 10      |
 	When convert to csv
-	Then there will be no file
+	Then there will be no file generation
 
 Scenario: B02. Partially runned add only future part
 	Given this schedule data
@@ -76,7 +76,7 @@ Scenario: B06. Just boundless don't add moves, because scheduler have runned it 
 			| Description | Date       | CategoryName | Nature   | InName | OutName | Value | Times | Frequency | Boundless |
 			| Schedule 7  | 2021-05-13 | Cat          | Transfer | In     | Out     | 10    |       | Daily     | True      |
 	When convert to csv
-	Then there will be no file
+	Then there will be no file generation
 
 Scenario: B07. Duplicated schedule
 	Given this schedule data
