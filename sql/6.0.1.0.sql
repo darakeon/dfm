@@ -266,3 +266,26 @@ alter table control
 
 alter table user
 	modify column Email varchar(320) not null;
+
+create table `purge` (
+	ID bigint auto_increment,
+	Email varchar(320) not null,
+	When_ datetime not null,
+	Why int not null,
+	S3 varchar(500) null,
+	Password varchar(60) not null,
+	TFA varchar(32) null,
+	primary key (ID)
+)
+
+create trigger no_update_purge
+	before update
+	on `purge` for each row
+		signal sqlstate '45000'
+			set message_text = 'cannot update purge';
+
+create trigger no_delete_purge
+	before delete
+	on `purge` for each row
+		signal sqlstate '45000'
+			set message_text = 'cannot delete purge';

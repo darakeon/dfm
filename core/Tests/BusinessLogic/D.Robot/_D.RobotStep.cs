@@ -11,6 +11,7 @@ using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Language.Emails;
 using DFM.Tests.Util;
+using Keon.Util.Crypto;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -36,6 +37,12 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		{
 			get => get<IList<String>>("csv");
 			set => set("csv", value);
+		}
+
+		private static String tfa
+		{
+			get => get<String>("tfa");
+			set => set("tfa", value);
 		}
 		#endregion
 
@@ -370,6 +377,8 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			db.Execute(() =>
 				repos.Contract.SaveOrUpdate(contract)
 			);
+
+
 		}
 
 		[Given(@"the user creation was (\d+) days before")]
@@ -390,6 +399,13 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			{
 				createFor(user, row["System Stuff"]);
 			}
+		}
+
+		[Given(@"the user has TFA")]
+		public void GivenTheUserHasTFA()
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			user.TFASecret = tfa = "123";
 		}
 
 		[When(@"call cleanup abandoned users")]
@@ -444,6 +460,43 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		public void ThenThereWillBeAnExportFileWithThisContent(Table table)
 		{
 			Assert.AreEqual(table.ToCsv(), csv);
+		}
+
+		[Then(@"it will be registered at purge table with reason (\w+)")]
+		public void ThenItWillBeRegisteredAtPurgeTable(RemovalReason reason)
+		{
+			var purge = repos.Purge.NewQuery()
+				.Where(p => p.Email == userEmail)
+				.SingleOrDefault;
+
+			Assert.NotNull(purge);
+
+			Assert.Less(testStart, purge.When.ToUniversalTime());
+			Assert.AreEqual(reason, purge.Why);
+
+			if (csv != null)
+			{
+				Assert.NotNull(purge.S3);
+				Assert.True(purge.S3.StartsWith(userEmail));
+			}
+			else
+			{
+				Assert.Null(purge.S3);
+			}
+
+			Assert.True(Crypt.Check("password", purge.Password));
+
+			Assert.AreEqual(tfa, purge.TFA);
+		}
+
+		[Then(@"it will not be registered at purge table")]
+		public void ThenItWillNotBeRegisteredAtPurgeTable()
+		{
+			var purged = repos.Purge.NewQuery()
+				.Where(p => p.Email == userEmail)
+				.Any;
+
+			Assert.False(purged);
 		}
 		#endregion
 
