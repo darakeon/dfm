@@ -11,6 +11,7 @@ using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Generic;
+using DFM.Generic.Datetime;
 using DFM.Tests.Util;
 using Keon.Util.Extensions;
 using TechTalk.SpecFlow;
@@ -30,7 +31,7 @@ namespace DFM.BusinessLogic.Tests
 
 		protected static void setLogName()
 		{
-			var logDate = $"{DateTime.UtcNow:yyyy-MM-dd-HH-mm-ss}";
+			var logDate = DateTime.UtcNow.UntilSecond();
 
 			var path =
 				Path.Combine(

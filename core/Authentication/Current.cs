@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using DFM.Entities.Bases;
 using DFM.Generic;
+using DFM.Generic.Datetime;
 using Keon.Util.Exceptions;
 
 namespace DFM.Authentication
@@ -88,12 +89,7 @@ namespace DFM.Authentication
 
 		private static Int64 nowKey()
 		{
-			var date = DateTime.UtcNow;
-
-			// ReSharper disable once StringLiteralTypo
-			var dateFormat = "yyyyMMddHHmmss";
-
-			var text = date.ToString(dateFormat);
+			var text = DateTime.UtcNow.UntilSecond();
 			var factor = Int64.Parse(text);
 
 			return factor / 2;
