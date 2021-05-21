@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities;
 using DFM.Entities.Enums;
+using DFM.Generic.Datetime;
 
 namespace DFM.BusinessLogic.Repositories
 {
@@ -50,10 +51,7 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal void Disable(Ticket ticket)
 		{
-			// ReSharper disable once StringLiteralTypo
-			var dateFormat = "yyyyMMddHHmmssffffff";
-
-			ticket.Key += DateTime.UtcNow.ToString(dateFormat);
+			ticket.Key += DateTime.UtcNow.UntilNanosecond();
 			ticket.Active = false;
 			ticket.Expiration = DateTime.UtcNow;
 

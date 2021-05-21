@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DFM.Generic.Datetime;
 using DfM.Logs;
 using Keon.Util.Exceptions;
 
@@ -81,7 +82,7 @@ namespace DFM.Email
 			";
 		}
 
-		private static String subject => DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss´fff");
+		private static String subject => DateTime.UtcNow.UntilMillisecond();
 
 
 		public enum Status

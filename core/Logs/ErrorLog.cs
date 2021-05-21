@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using DFM.Generic.Datetime;
 using Newtonsoft.Json;
 
 namespace DfM.Logs
@@ -16,16 +17,13 @@ namespace DfM.Logs
 		public Int32 Hash => GetHashCode();
 		private IList<ErrorLog> children;
 
-		// ReSharper disable once StringLiteralTypo
-		private const String dateFormat = "yyyyMMddHHmmssffffff";
-
 		// this is for serialization
 		public ErrorLog() { }
 
 		public ErrorLog(Exception exception, Boolean handled)
 		{
 			Date = DateTime.UtcNow;
-			ID = Date.ToString(dateFormat);
+			ID = Date.UntilNanosecond();
 			Exception = new ExceptionData(exception);
 			Handled = handled;
 		}
