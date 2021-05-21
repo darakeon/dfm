@@ -36,10 +36,10 @@ namespace DFM.Exchange.Tests
 			}
 		}
 
-		private String filename
+		private IList<String> csv
 		{
-			get => get<String>("filename");
-			set => set("filename", value);
+			get => get<IList<String>>("csv");
+			set => set("csv", value);
 		}
 
 		[Given(@"this move data")]
@@ -66,27 +66,38 @@ namespace DFM.Exchange.Tests
 		[When(@"convert to csv")]
 		public void WhenConvertToCsv()
 		{
-			var csv = new CSV();
+			using var csv = new CSV();
+
 			csv.Add(moves);
 			csv.Add(schedules);
 
-			filename = Token.New();
-			csv.Create(new User { Email = filename });
+			var email = $"{scenarioCode}@dontflymoney.com";
+			csv.Create(new User { Email = email });
+
+			var filename = Directory
+				.GetFiles(
+					Directory.GetCurrentDirectory(),
+					$"{email}*.csv"
+				)
+				.OrderByDescending(s => s)
+				.FirstOrDefault();
+
+			if (filename != null)
+				this.csv = File.ReadAllLines(filename);
 		}
 
 		[Then(@"the file will have these lines")]
 		public void ThenTheFileWillHaveTheseLines(Table table)
 		{
 			var expected = table.Rows.Select(r => r["File"]);
-			var actual = File.ReadAllLines($"{filename}.csv");
 
-			Assert.AreEqual(expected, actual);
+			Assert.AreEqual(expected, csv);
 		}
 
-		[Then(@"there will be no file")]
-		public void ThenThereWillBeNoFile()
+		[Then(@"there will be no file generation")]
+		public void ThenThereWillBeNoFileGeneration()
 		{
-			Assert.False(File.Exists($"{filename}.csv"));
+			Assert.Null(csv);
 		}
 	}
 }

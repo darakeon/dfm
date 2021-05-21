@@ -1,20 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using CsvHelper;
 using DFM.Entities;
+using DFM.Generic.Datetime;
 
 namespace DFM.Exchange
 {
-	public class CSV
+	public class CSV : IDisposable
 	{
-		/*
-		 * | Description | Date | Category | Nature | In | Out | Value | Details |
-		 */
-
 		private readonly List<MoveCsv> moves = new();
 		private readonly List<Schedule> schedules = new();
+
+		public String Path { get; private set; }
 
 		public void Add(IEnumerable<Move> movesDB)
 		{
@@ -76,10 +76,20 @@ namespace DFM.Exchange
 
 		private void write(User user)
 		{
-			var path = user.Email.Replace("@", "_") + ".csv";
-			using var writer = new StreamWriter(path);
+			var email = user.Email;
+			var now = DateTime.UtcNow.UntilSecond();
+			Path = $"{email}_{now}.csv";
+
+			using var writer = new StreamWriter(Path);
+
 			using var csv = new CsvWriter(writer, CultureInfo.CurrentCulture);
 			csv.WriteRecords(moves.OrderBy(s => s.Date));
+		}
+
+		public void Dispose()
+		{
+			try { File.Delete(Path); }
+			catch { /* ignored */ }
 		}
 	}
 }

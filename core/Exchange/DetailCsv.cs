@@ -11,7 +11,7 @@ namespace DFM.Exchange
 		{
 			description = detail.Description;
 			amount = detail.Amount.ToString();
-			value = detail.Value.ToString("F2");
+			value = detail.Value.ToCsv();
 		}
 
 		private String description { get; }

@@ -173,17 +173,18 @@ namespace DFM.BusinessLogic.Services
 				.ToList();
 		}
 
-		public void CleanupAbandonedUsers()
+		public void CleanupAbandonedUsers(Action<String> upload)
 		{
 			if (!parent.Current.IsRobot)
 				throw Error.Uninvited.Throw();
 
 			var ignoreUsers = new List<User>();
-			cleanupByLastAccess(ignoreUsers);
-			cleanupByNotSignedContract(ignoreUsers);
+
+			cleanupByLastAccess(ignoreUsers, upload);
+			cleanupByNotSignedContract(ignoreUsers, upload);
 		}
 
-		private void cleanupByLastAccess(IList<User> ignoreUsers)
+		private void cleanupByLastAccess(IList<User> ignoreUsers, Action<String> upload)
 		{
 			var users = repos.User.NewQuery()
 				.Where(
@@ -198,7 +199,8 @@ namespace DFM.BusinessLogic.Services
 				var control = user.Control;
 				var date = control.LastInteraction();
 				var didSomething = warnOrDelete(
-					date, user, RemovalReason.NoInteraction
+					user, date, upload,
+					RemovalReason.NoInteraction
 				);
 
 				if (didSomething)
@@ -208,7 +210,7 @@ namespace DFM.BusinessLogic.Services
 			}
 		}
 
-		private void cleanupByNotSignedContract(IList<User> ignoreUsers)
+		private void cleanupByNotSignedContract(IList<User> ignoreUsers, Action<String> upload)
 		{
 			var contract = repos.Contract.GetContract();
 
@@ -239,8 +241,7 @@ namespace DFM.BusinessLogic.Services
 						: contractDate;
 
 				var didSomething = warnOrDelete(
-					newestDate,
-					user,
+					user, newestDate, upload,
 					RemovalReason.NotSignedContract
 				);
 
@@ -251,7 +252,12 @@ namespace DFM.BusinessLogic.Services
 			}
 		}
 
-		private Boolean warnOrDelete(DateTime date, User user, RemovalReason reason)
+		private Boolean warnOrDelete(
+			User user,
+			DateTime date,
+			Action<String> upload,
+			RemovalReason reason
+		)
 		{
 			var sent = user.Control.RemovalWarningSent;
 
@@ -260,31 +266,37 @@ namespace DFM.BusinessLogic.Services
 			var shouldRemove = date.PassedRemoval() && sent >= 2;
 
 			if (shouldRemove)
-			{
-				inTransaction(
-					"MarkUserDeletion",
-					() => repos.Control.MarkDeletion(user)
-				);
-
-				inTransaction(
-					"DeleteUser",
-					() => repos.Purge(user)
-				);
-
-				return true;
-			}
+				return delete(user, upload);
 
 			if (shouldWarn1 || shouldWarn2)
-			{
-				inTransaction(
-					"SaveWarning",
-					() => repos.Control.WarnRemoval(user, date, reason)
-				);
-
-				return true;
-			}
+				return warn(date, user, reason);
 
 			return false;
+		}
+
+		private Boolean delete(User user, Action<String> upload)
+		{
+			inTransaction(
+				"MarkUserDeletion",
+				() => repos.Control.MarkDeletion(user)
+			);
+
+			inTransaction(
+				"DeleteUser",
+				() => repos.Purge(user, upload)
+			);
+
+			return true;
+		}
+
+		private Boolean warn(DateTime date, User user, RemovalReason reason)
+		{
+			inTransaction(
+				"SaveWarning",
+				() => repos.Control.WarnRemoval(user, date, reason)
+			);
+
+			return true;
 		}
 	}
 }

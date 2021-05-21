@@ -31,6 +31,12 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			get => get<IList<ScheduleInfo>>("scheduleList");
 			set => set("scheduleList", value);
 		}
+
+		private static IList<String> csv
+		{
+			get => get<IList<String>>("csv");
+			set => set("csv", value);
+		}
 		#endregion
 
 		#region SaveSchedule
@@ -391,7 +397,10 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		{
 			try
 			{
-				service.Robot.CleanupAbandonedUsers();
+				service.Robot.CleanupAbandonedUsers(path =>
+				{
+					csv = File.ReadAllLines(path);
+				});
 			}
 			catch (CoreError e)
 			{
@@ -434,15 +443,8 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		[Then(@"there will be an export file with this content")]
 		public void ThenThereWillBeAnExportFileWithThisContent(Table table)
 		{
-			var expected = table.ToCsv();
-
-			var path = $"{scenarioCode}_dontflymoney.com.csv";
-			Assert.IsTrue(File.Exists(path));
-
-			var actual = File.ReadAllLines(path);
-			Assert.AreEqual(expected, actual);
+			Assert.AreEqual(table.ToCsv(), csv);
 		}
-
 		#endregion
 
 		#region MoreThanOne
