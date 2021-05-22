@@ -1,4 +1,9 @@
 {
+	"6.0.1.0": [
+		"Automation of cleanup users that do not use the system anymore",
+		"Add move schedules without user needing to access the site",
+		"Fix problem of closing account with schedules"
+	],
 	"6.0.0.0": [
 		"Fix calendar selected day color for light theme",
 		"Add link to create account at login app screen",
