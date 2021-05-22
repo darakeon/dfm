@@ -3,7 +3,7 @@ use std::io::{stdin,stdout,Write};
 use crate::file::{get_path, get_content, set_content};
 use crate::version::Version;
 
-fn path() -> String { get_path(vec!["..", "site", "Language", "Language", "Version"]) }
+fn path() -> String { get_path(vec!["..", "core", "Language", "Language", "Version"]) }
 static EXT: &str = r".json";
 
 pub fn update_notes(version: &Version) {

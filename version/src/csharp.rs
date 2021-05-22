@@ -2,22 +2,28 @@ use crate::file::{get_path, get_content, set_content};
 use crate::version::Version;
 
 pub fn update_csharp(version: &Version) {
-	update_csharp_file(&version, vec!["Authentication", "Authentication.csproj"]);
-	update_csharp_file(&version, vec!["BusinessLogic", "BusinessLogic.csproj"]);
-	update_csharp_file(&version, vec!["Email", "Email.csproj"]);
-	update_csharp_file(&version, vec!["Entities", "Entities.csproj"]);
-	update_csharp_file(&version, vec!["Generic", "Generic.csproj"]);
-	update_csharp_file(&version, vec!["Language", "Language.csproj"]);
-	update_csharp_file(&version, vec!["MVC", "MVC.csproj"]);
-	update_csharp_file(&version, vec!["Tests", "BusinessLogic", "BusinessLogic.Tests.csproj"]);
-	update_csharp_file(&version, vec!["Tests", "Email", "Email.Tests.csproj"]);
-	update_csharp_file(&version, vec!["Tests", "Language", "Language.Tests.csproj"]);
-	update_csharp_file(&version, vec!["Tests", "MVC", "MVC.Tests.csproj"]);
-	update_csharp_file(&version, vec!["Tests", "Util", "Tests.Util.csproj"]);
+	update_csharp_file(&version, vec!["core", "Authentication", "Authentication.csproj"]);
+	update_csharp_file(&version, vec!["core", "BusinessLogic", "BusinessLogic.csproj"]);
+	update_csharp_file(&version, vec!["core", "Email", "Email.csproj"]);
+	update_csharp_file(&version, vec!["core", "Entities", "Entities.csproj"]);
+	update_csharp_file(&version, vec!["core", "Exchange", "Exchange.csproj"]);
+	update_csharp_file(&version, vec!["core", "Generic", "Generic.csproj"]);
+	update_csharp_file(&version, vec!["core", "Language", "Language.csproj"]);
+	update_csharp_file(&version, vec!["core", "Logs", "Logs.csproj"]);
+	update_csharp_file(&version, vec!["core", "Tests", "BusinessLogic", "BusinessLogic.Tests.csproj"]);
+	update_csharp_file(&version, vec!["core", "Tests", "Email", "Email.Tests.csproj"]);
+	update_csharp_file(&version, vec!["core", "Tests", "Exchange", "Exchange.Tests.csproj"]);
+	update_csharp_file(&version, vec!["core", "Tests", "Language", "Language.Tests.csproj"]);
+	update_csharp_file(&version, vec!["core", "Tests", "Util", "Tests.Util.csproj"]);
+
+	update_csharp_file(&version, vec!["robot", "Robot", "Robot.csproj"]);
+
+	update_csharp_file(&version, vec!["site", "MVC", "MVC.csproj"]);
+	update_csharp_file(&version, vec!["site", "Tests", "MVC", "MVC.Tests.csproj"]);
 }
 
 fn update_csharp_file(version: &Version, file_relative: Vec<&str>) {
-	let mut path = vec!["..", "site"];
+	let mut path = vec![".."];
 
 	for step in file_relative {
 		path.push(step);
