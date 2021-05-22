@@ -14,7 +14,9 @@ pub fn set_lines(path: String, lines: Vec<String>) {
 }
 
 pub fn get_content(path: String) -> String {
-	fs::read_to_string(path).unwrap()
+	let path_borrowed = &path;
+	fs::read_to_string(path_borrowed)
+		.expect(path_borrowed)
 }
 
 pub fn set_content(path: String, content: String) {
