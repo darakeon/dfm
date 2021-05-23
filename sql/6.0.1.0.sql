@@ -1,15 +1,13 @@
+/**********************\
+ *                    *
+ *     PRE-DEPLOY     *
+ *                    *
+\**********************/
+
 alter table user
 	add IsRobot bit not null default 0,
     add RobotCheck datetime null,
     add RemovalWarningSent int not null default 0;
-
-set sql_safe_updates = 0;
-update user
-	set RobotCheck = NOW();
-set sql_safe_updates = 1;
-    
-alter table user
-    modify RobotCheck datetime not null;
 
 create trigger no_update_contract
 	before update
@@ -223,6 +221,52 @@ create table control (
     primary key (ID)
 );
 
+alter table control
+	add LastAccess datetime null;
+
+alter table control
+	add ProcessingDeletion bit not null default 0;
+
+alter table user
+	modify column Email varchar(320) not null;
+
+create table `purge` (
+	ID bigint auto_increment,
+	Email varchar(320) not null,
+	When_ datetime not null,
+	Why int not null,
+	S3 varchar(500) null,
+	Password varchar(60) not null,
+	TFA varchar(32) null,
+	primary key (ID)
+)
+
+create trigger no_update_purge
+	before update
+	on `purge` for each row
+		signal sqlstate '45000'
+			set message_text = 'cannot update purge';
+
+create trigger no_delete_purge
+	before delete
+	on `purge` for each row
+		signal sqlstate '45000'
+			set message_text = 'cannot delete purge';
+
+/**********************\
+ *                    *
+ *     POS-DEPLOY     *
+ *                    *
+\**********************/
+
+set sql_safe_updates = 0;
+update user
+	set RobotCheck = NOW();
+set sql_safe_updates = 1;
+
+alter table user
+    modify RobotCheck datetime not null;
+
 insert into control
 	(Creation, Active, IsAdm, IsRobot, WrongLogin, RemovalWarningSent, RobotCheck, TempUser_ID)
 	select Creation, Active, IsAdm, IsRobot, WrongLogin, RemovalWarningSent, RobotCheck, ID
@@ -253,39 +297,7 @@ alter table user
 alter table control
 	drop TempUser_ID;
 
-alter table control
-	add LastAccess datetime null;
-
 set sql_safe_updates = 0;
 update control
 	set LastAccess = NOW();
 set sql_safe_updates = 1;
-
-alter table control
-	add ProcessingDeletion bit not null default 0;
-
-alter table user
-	modify column Email varchar(320) not null;
-
-create table `purge` (
-	ID bigint auto_increment,
-	Email varchar(320) not null,
-	When_ datetime not null,
-	Why int not null,
-	S3 varchar(500) null,
-	Password varchar(60) not null,
-	TFA varchar(32) null,
-	primary key (ID)
-)
-
-create trigger no_update_purge
-	before update
-	on `purge` for each row
-		signal sqlstate '45000'
-			set message_text = 'cannot update purge';
-
-create trigger no_delete_purge
-	before delete
-	on `purge` for each row
-		signal sqlstate '45000'
-			set message_text = 'cannot delete purge';
