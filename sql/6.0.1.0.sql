@@ -4,11 +4,6 @@
  *                    *
 \**********************/
 
-alter table user
-	add IsRobot bit not null default 0,
-    add RobotCheck datetime null,
-    add RemovalWarningSent int not null default 0;
-
 create trigger no_update_contract
 	before update
 	on contract for each row
@@ -218,14 +213,10 @@ create table control (
     RemovalWarningSent int not null,
     RobotCheck datetime not null,
     TempUser_ID int not null,
+	LastAccess datetime null,
+	ProcessingDeletion bit not null,
     primary key (ID)
 );
-
-alter table control
-	add LastAccess datetime null;
-
-alter table control
-	add ProcessingDeletion bit not null default 0;
 
 alter table user
 	modify column Email varchar(320) not null;
@@ -239,7 +230,7 @@ create table `purge` (
 	Password varchar(60) not null,
 	TFA varchar(32) null,
 	primary key (ID)
-)
+);
 
 create trigger no_update_purge
 	before update
@@ -259,17 +250,12 @@ create trigger no_delete_purge
  *                    *
 \**********************/
 
-set sql_safe_updates = 0;
-update user
-	set RobotCheck = NOW();
-set sql_safe_updates = 1;
-
-alter table user
-    modify RobotCheck datetime not null;
-
-insert into control
-	(Creation, Active, IsAdm, IsRobot, WrongLogin, RemovalWarningSent, RobotCheck, TempUser_ID)
-	select Creation, Active, IsAdm, IsRobot, WrongLogin, RemovalWarningSent, RobotCheck, ID
+insert into control (
+	TempUser_ID, Creation, Active, IsAdm, WrongLogin,
+	IsRobot, RemovalWarningSent, ProcessingDeletion, RobotCheck, LastAccess
+)
+	select ID, Creation, Active, IsAdm, WrongLogin,
+			0, 0, 0, NOW(), NOW()
 		from user;
 
 alter table user
@@ -289,15 +275,7 @@ alter table user
     drop Creation,
     drop Active,
     drop IsAdm,
-    drop IsRobot,
-    drop WrongLogin,
-    drop RemovalWarningSent,
-    drop RobotCheck;
+    drop WrongLogin;
 
 alter table control
 	drop TempUser_ID;
-
-set sql_safe_updates = 0;
-update control
-	set LastAccess = NOW();
-set sql_safe_updates = 1;
