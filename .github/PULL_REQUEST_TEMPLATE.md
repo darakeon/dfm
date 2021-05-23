@@ -10,10 +10,11 @@
 
 - [ ] Upgrade version and create new release
 - [ ] Execute non-destructive Sql
-- [ ] Update Site
+- [ ] Deploy Site
+- [ ] Deploy Robot
 - [ ] Test Site
 - [ ] Test error handler
-- [ ] Upload APKs
+- [ ] Deploy APKs
 - [ ] Execute destructive Sql
 - [ ] Upload new mobile prints
 - [ ] Merge PR
