@@ -656,7 +656,10 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		public void ThenTheTicketAccessWillBeAfterTestStartTime(Boolean after)
 		{
 			var ticketList = repos.Ticket.NewQuery()
-				.Where(t => t.User, u => u.Email == userEmail)
+				.Where(
+					t => t.User,
+					User.Compare(userEmail)
+				)
 				.List;
 
 			Assert.AreNotEqual(0, ticketList.Count, $"no login for {userEmail}");

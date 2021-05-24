@@ -243,7 +243,10 @@ namespace DFM.BusinessLogic.Repositories
 			var userRelation = getUserRelation(nature);
 
 			var query = NewQuery()
-				.Where(userRelation, u => u.Email == userEmail);
+				.Where(
+					userRelation,
+					User.Compare(userEmail)
+				);
 
 			terms.ToList().ForEach(
 				term => query = query.Like(d => d.Description, term)
