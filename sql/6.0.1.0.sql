@@ -270,8 +270,12 @@ update user u
 	set u.Control_ID = c.ID;
 set sql_safe_updates = 1;
 
+set foreign_key_checks = 0;
 alter table user
-	modify Control_ID bigint not null,
+	modify Control_ID bigint not null;
+set foreign_key_checks = 1;
+
+alter table user
     drop Creation,
     drop Active,
     drop IsAdm,
@@ -279,3 +283,32 @@ alter table user
 
 alter table control
 	drop TempUser_ID;
+
+/**********************\
+ *                    *
+ *   EMERGENCY  FIX   *
+ *                    *
+\**********************/
+
+alter table `purge`
+	modify column Why smallint not null;
+
+/* CANNOT USE varchar(320) */
+alter table user
+	add column Username varchar(64),
+	add column Domain varchar(255);
+
+set sql_safe_updates = 0;
+update user
+	set Username = SUBSTRING_INDEX(Email, '@', 1),
+		Domain   = SUBSTRING_INDEX(Email, '@', -1);
+set sql_safe_updates = 1;
+
+alter table user
+	modify column Username varchar(64) not null,
+	modify column Domain varchar(255) not null,
+    add unique UK_Email (Username, Domain),
+    drop column Email;
+
+alter table user
+	add unique UK_Control (Control_ID);

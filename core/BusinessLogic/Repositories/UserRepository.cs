@@ -15,7 +15,7 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal User GetByEmail(String email)
 		{
-			return SingleOrDefault(u => u.Email == email);
+			return SingleOrDefault(User.Compare(email));
 		}
 
 		internal Authentication ValidateAndGet(String email, String password)
@@ -88,12 +88,12 @@ namespace DFM.BusinessLogic.Repositories
 			if (String.IsNullOrEmpty(user.Email))
 				throw Error.UserEmailRequired.Throw();
 
-			if (user.Email.Length > MaxLen.UserEmail)
+			if (user.Username.Length > MaxLen.UserEmailUsername || user.Domain.Length > MaxLen.UserEmailDomain)
 				throw Error.TooLargeUserEmail.Throw();
 
 			var regex = new Regex(emailPattern, RegexOptions.IgnoreCase);
 
-			if (!regex.Match(user.Email).Success)
+			if (!regex.IsMatch(user.Email))
 				throw Error.UserEmailInvalid.Throw();
 
 			var userByEmail = GetByEmail(user.Email);

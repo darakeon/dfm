@@ -1,5 +1,4 @@
 const sqlite = require('sqlite3')
-const util = require('util')
 const { v4: uuid } = require('uuid')
 const { bytesToGuid } = require('./guid')
 
@@ -51,14 +50,24 @@ async function createUserIfNotExists(email, props) {
 }
 
 async function getUser(email) {
+	const { username, domain } = splitEmail(email);
+
 	return execute(
-		`select id from user where email='${email}'`
+		`select id
+			from user
+			where username='${username}'
+				and domain='${domain}'`
 	)
 }
 
 async function changeUserState(email, active, wizard) {
+	const { username, domain } = splitEmail(email);
+
 	const user = await execute(
-		`select config_id, control_ID from user where email='${email}'`
+		`select config_id, control_ID
+			from user
+			where username='${username}'
+				and domain='${domain}'`
 	)
 
 	if (active != undefined) {
@@ -101,23 +110,31 @@ async function createUser(email, active, wizard) {
 		`select id from control order by id desc limit 1`
 	)
 
+	const { username, domain } = splitEmail(email);
+
 	const result = await execute(
-		`insert into user`
-			+ ` (password, email, config_id, tfaPassword, control_id)`
-		+ ` values`
-			+ `('${password.encrypted}', '${email}', ${config[0].ID}, 0, ${control[0].ID})`
+		`insert into user (
+				password, username, domain,
+				config_id, tfaPassword, control_id
+			) values (
+				'${password.encrypted}', '${username}', '${domain}',
+				${config[0].ID}, 0, ${control[0].ID}
+			)`
 	)
 
 	return { ID: result.lastID }
 }
 
 async function acceptLastContract(email) {
+	const { username, domain } = splitEmail(email)
+
 	const queryAccepted =
-		'select a.contract_id'
-		+ ' from acceptance a'
-			+ ' inner join user u'
-				+ ' on a.user_id = u.id'
-		+ ` where u.email = '${email}'`;
+		`select a.contract_id
+			from acceptance a
+				inner join user u
+					on a.user_id = u.id
+			where u.username = '${username}'
+				and u.domain = '${domain}'`
 
 	const queryContracts =
 		'select id from contract'
@@ -131,10 +148,12 @@ async function acceptLastContract(email) {
 	if (contracts.length == 0) return;
 
 	await execute(
-		'insert into acceptance'
-		+ ' (createDate, accepted, acceptDate, user_ID, contract_ID)'
-		+ ` select datetime('now'), 1, datetime('now'), id, ${contracts[0].ID}`
-			+ ` from user where email='${email}'`
+		`insert into acceptance
+				(createDate, accepted, acceptDate, user_ID, contract_ID)
+			select datetime('now'), 1, datetime('now'), id, ${contracts[0].ID}
+				from user
+				where username='${username}'
+					and domain='${domain}'`
 	)
 }
 
@@ -306,13 +325,16 @@ async function checkMove(description, year, month, day, nature) {
 }
 
 async function checkTicket(email, ticket) {
+	const { username, domain } = splitEmail(email)
+
 	const result = await execute(
-		`select count(*) as occurences `
-			+ `from ticket `
-				+ `inner join user `
-					+ `on user_id = user.id `
-			+ `where user.email='${email}' `
-				+ `and ticket.key_='${ticket}'`
+		`select count(*) as occurences
+			from ticket t
+				inner join user u
+					on user_id = u.id
+			where u.username = '${username}'
+				and u.domain = '${domain}'
+				and t.key_ = '${ticket}'`
 	)
 
 	const occurences = result[0]["occurences"]
@@ -321,12 +343,15 @@ async function checkTicket(email, ticket) {
 }
 
 async function getLastAccess(email) {
+	const { username, domain } = splitEmail(email)
+
 	const result = await execute(
-		`select lastAccess `
-			+ `from ticket `
-				+ `inner join user `
-					+ `on user_id = user.id `
-			+ `where user.email='${email}'`
+		`select lastAccess
+			from ticket t
+				inner join user u
+					on user_id = u.id
+			where u.username = '${username}'
+				and u.domain = '${domain}'`
 	)
 
 	const field = result[0]["LastAccess"]
@@ -347,10 +372,13 @@ async function getLastUnsubscribeMoveMailToken(user) {
 }
 
 async function setSecret(email, secret) {
+	const { username, domain } = splitEmail(email)
+
 	return await execute(
-		`update user `
-			+ `set tfaSecret='${secret}' `
-			+ `where email='${email}' `
+		`update user
+			set tfaSecret='${secret}'
+			where username = '${username}'
+				and domain = '${domain}'`
 	)
 }
 
@@ -407,6 +435,17 @@ function delay(time, val) {
            resolve(val);
        }, time);
    });
+}
+
+function splitEmail(email) {
+	if (!email) return;
+
+	const parts = email.split('@');
+
+	return {
+		username: parts[0],
+		domain: parts[1],
+	}
 }
 
 module.exports = {
