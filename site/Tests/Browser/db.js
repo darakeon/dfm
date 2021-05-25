@@ -89,10 +89,13 @@ async function changeUserState(email, active, wizard) {
 
 async function createUser(email, active, wizard) {
 	await execute(
-		`insert into config`
-			+ ` (language, timezone, sendMoveEmail, useCategories, moveCheck, theme, wizard)`
-		+ ` values`
-			+ ` ('pt-BR', 'UTC-03:00', 0, 1, 1, 1, ${wizard?1:0})`
+		`insert into config (
+				language, timezone, sendMoveEmail,
+				useCategories, moveCheck, theme, wizard
+			) values (
+				'pt-BR', 'UTC-03:00', 0,
+				1, 1, 1, ${wizard?1:0}
+			)`
 	)
 
 	const config = await execute(
@@ -100,10 +103,13 @@ async function createUser(email, active, wizard) {
 	)
 
 	await execute(
-		`insert into control`
-			+ ` (creation, active, isAdm, isRobot, wrongLogin, removalWarningSent, robotCheck)`
-		+ ` values`
-			+ ` (datetime('now'), ${active?1:0}, 0, 0, 0, 0, datetime('now'))`
+		`insert into control (
+				creation, active, isAdm, isRobot,
+				wrongLogin, removalWarningSent, robotCheck
+			) values (
+				datetime('now'), ${active?1:0}, 0, 0,
+				0, 0, datetime('now')
+			)`
 	)
 
 	const control = await execute(
@@ -137,11 +143,10 @@ async function acceptLastContract(email) {
 				and u.domain = '${domain}'`
 
 	const queryContracts =
-		'select id from contract'
-		+ ' where id not in ('
-			+ queryAccepted
-		+ ')'
-		+ ' order by id desc limit 1'
+		`select id
+			from contract
+			where id not in (${queryAccepted})
+			order by id desc limit 1`
 
 	const contracts = await execute(queryContracts)
 
@@ -159,10 +164,10 @@ async function acceptLastContract(email) {
 
 async function cleanupTickets() {
 	await execute(
-		'update ticket set'
-			+ ` key_ = key_ || strftime('%Y%m%d%H%M%f','now'),`
-			+ '	active = 0'
-		+ '	where active = 1 and id <> 0'
+		`update ticket
+			set key_ = key_ || strftime('%Y%m%d%H%M%f','now'),
+				active = 0
+			where active = 1 and id <> 0`
 	)
 }
 
@@ -172,10 +177,10 @@ async function createToken(email, action) {
 	const guid = uuid().replace(/\-/g, '').toUpperCase()
 
 	await execute(
-		`insert into security`
-			+ ` (token, active, expire, action, sent, user_id)`
-		+ ` values`
-			+ ` ('${guid}', 1, datetime('now','+1 hour'), ${action}, 0, ${users[0].ID})`
+		`insert into security
+			(token, active, expire, action, sent, user_id)
+		values
+			('${guid}', 1, datetime('now','+1 hour'), ${action}, 0, ${users[0].ID})`
 	)
 
 	return guid
@@ -203,10 +208,10 @@ async function getAccount(url, user) {
 
 async function createAccount(name, url, user) {
 	return execute(
-		`insert into account `
-			+ `(name, url, beginDate, open, user_id)`
-		+ ` values`
-			+ ` ('${name}', '${url}', datetime('now'), 1, ${user.ID})`
+		`insert into account
+			(name, url, beginDate, open, user_id)
+		values
+			('${name}', '${url}', datetime('now'), 1, ${user.ID})`
 	)
 }
 
@@ -234,18 +239,19 @@ async function getCategory(name, user) {
 
 async function createCategory(name, user, active) {
 	return execute(
-		`insert into category `
-			+ `(name, user_id, active)`
-		+ ` values`
-			+ ` ('${name}', ${user.ID}, ${active})`
+		`insert into category
+				(name, user_id, active)
+			values
+				('${name}', ${user.ID}, ${active})`
 	)
 }
 
 async function updateCategory(name, user, active) {
 	return execute(
-		`update category set`
-			+ ` active=${active}`
-		+ ` where name='${name}' and user_id=${user.ID}`
+		`update category
+			set active=${active}
+			where name='${name}'
+				and user_id=${user.ID}`
 	)
 }
 
@@ -271,14 +277,15 @@ async function createSchedule(
 	const externalId = random()
 
 	const query =
-		`insert into schedule `
-				+ `(externalId, times, boundless, showInstallment, frequency, `
-				+ `description, year, month, day, nature, valueCents, `
-				+ `category_id, out_id, in_id, user_id, lastRun, deleted) `
-			+ `values `
-				+ `(?, ${times}, ${boundless}, ${showInstallment}, ${frequency}, `
-				+ `'${description}', ${year}, ${month}, ${day}, '${nature}', ${value}, `
-				+ `${categoryId}, ${accountOutId}, ${accountInId}, ${user.ID}, 1, 0);`
+		`insert into schedule (
+				externalId, times, boundless, showInstallment, frequency,
+				description, year, month, day, nature, valueCents,
+				category_id, out_id, in_id, user_id, lastRun, deleted
+			) values (
+				?, ${times}, ${boundless}, ${showInstallment}, ${frequency},
+				'${description}', ${year}, ${month}, ${day}, '${nature}', ${value},
+				${categoryId}, ${accountOutId}, ${accountInId}, ${user.ID}, 1, 0
+			);`
 
 	const inserted = await execute(query, [externalId])
 
@@ -300,13 +307,14 @@ function random() {
 
 async function getMoveId(description, year, month, day) {
 	const result = await execute(
-		`select externalId from move `
-			+ `where description='${description}' `
-				+ `and year=${year} `
-				+ `and month=${month} `
-				+ `and day=${day} `
-		+ `order by id desc `
-		+ `limit 1`
+		`select externalId
+			from move
+			where description='${description}'
+				and year=${year}
+				and month=${month}
+				and day=${day}
+			order by id desc
+			limit 1`
 	)
 
 	const id = result[0].ExternalId
@@ -316,11 +324,12 @@ async function getMoveId(description, year, month, day) {
 
 async function checkMove(description, year, month, day, nature) {
 	const result = await execute(
-		`update move set checked${nature}=1 `
-			+ `where description='${description}' `
-				+ `and year=${year} `
-				+ `and month=${month} `
-				+ `and day=${day}`
+		`update move
+			set checked${nature} = 1
+			where description = '${description}'
+				and year = ${year}
+				and month = ${month}
+				and day = ${day}`
 	)
 }
 
@@ -361,11 +370,11 @@ async function getLastAccess(email) {
 
 async function getLastUnsubscribeMoveMailToken(user) {
 	const result = await execute(
-		`select token `
-			+ `from security `
-			+ `where user_id=${user.ID} `
-				+ `and action = 2 `
-			+ `order by id desc`
+		`select token
+			from security
+			where user_id=${user.ID}
+				and action = 2
+			order by id desc`
 	)
 
 	return result[0]["Token"]
@@ -384,7 +393,10 @@ async function setSecret(email, secret) {
 
 async function getEndDate(url, user) {
 	const result = await execute(
-		`select endDate from account where url='${url}' and user_id=${user.ID}`
+		`select endDate
+			from account
+			where url='${url}'
+				and user_id=${user.ID}`
 	)
 	return result[0]["EndDate"]
 }
