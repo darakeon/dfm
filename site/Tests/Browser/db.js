@@ -337,7 +337,7 @@ async function checkTicket(email, ticket) {
 	const { username, domain } = splitEmail(email)
 
 	const result = await execute(
-		`select count(*) as occurences
+		`select count(*) as occurrences
 			from ticket t
 				inner join user u
 					on user_id = u.id
@@ -346,9 +346,9 @@ async function checkTicket(email, ticket) {
 				and t.key_ = '${ticket}'`
 	)
 
-	const occurences = result[0]["occurences"]
+	const occurrences = result[0]["occurrences"]
 
-	return occurences > 0
+	return occurrences > 0
 }
 
 async function getLastAccess(email) {
