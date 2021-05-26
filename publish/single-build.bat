@@ -6,6 +6,6 @@ set push=%~2
 
 docker build .. -t darakeon/dfm-%machine% -f "%dir%dfm-%machine%.dockerfile"
 
-if "%push%" neq "" (
-	docker %push% darakeon/dfm-%machine%
+if "%push%" == "push" (
+	docker push darakeon/dfm-%machine%
 )
