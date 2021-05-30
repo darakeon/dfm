@@ -61,7 +61,7 @@ namespace DFM.Language
 			SectionList.Add(section);
 		}
 
-		public static void Initialize(String path)
+		public static void Initialize(String path = "")
 		{
 			if (CurrentPath != null)
 				return;
