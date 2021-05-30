@@ -340,7 +340,7 @@ Scenario: Db21. Not run scheduler if user is marked for deletion
 			| Email                    | Password | Active | Signed |
 			| deleted@dontflymoney.com | password | true   | true   |
 		And a schedule is created by deleted@dontflymoney.com
-		But the user is marked for deletion
+		But the user deleted@dontflymoney.com is marked for deletion
 	When robot user login
 		And run the scheduler
-	Then the user will still have no moves
+	Then the user deleted@dontflymoney.com will still have no moves

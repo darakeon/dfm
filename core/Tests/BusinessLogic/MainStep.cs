@@ -70,10 +70,16 @@ namespace DFM.BusinessLogic.Tests
 			testStart = DateTime.UtcNow;
 		}
 
-		[Given(@"the user is marked for deletion")]
-		public void GivenTheUserIsMarkedForDeletion()
+		[Given(@"the user(.*) is marked for deletion")]
+		public void GivenTheUserIsMarkedForDeletion(String passedEmail)
 		{
-			var user = repos.User.GetByEmail(email ?? userEmail);
+			if (passedEmail == "")
+				passedEmail = null;
+
+			var user = repos.User.GetByEmail(
+				passedEmail?.Trim() ?? email ?? userEmail
+			);
+
 			db.Execute(() => repos.Control.MarkDeletion(user));
 		}
 
