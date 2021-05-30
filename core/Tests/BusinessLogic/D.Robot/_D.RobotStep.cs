@@ -253,10 +253,10 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			ConfigHelper.DeactivateMoveEmailForUser(service);
 		}
 
-		[Then(@"the user will still have no moves")]
-		public void ThenTheUserWillStillHaveNoMoves()
+		[Then(@"the user (.+) will still have no moves")]
+		public void ThenTheUserWillStillHaveNoMoves(String email)
 		{
-			var user = repos.User.GetByEmail(userEmail);
+			var user = repos.User.GetByEmail(email);
 			var accounts = repos.Account.Get(user, true);
 
 			foreach (var account in accounts)
