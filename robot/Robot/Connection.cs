@@ -2,6 +2,7 @@
 using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.Entities;
 using DFM.Generic;
+using DFM.Language;
 using Keon.NHibernate.Schema;
 using Keon.NHibernate.Sessions;
 
@@ -18,6 +19,7 @@ namespace DFM.Robot
 		public static void Run(Action action)
 		{
 			Cfg.Init(name);
+			PlainText.Initialize();
 
 			sessionFactory(() => session(action));
 		}

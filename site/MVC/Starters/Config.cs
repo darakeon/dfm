@@ -10,7 +10,7 @@ namespace DFM.MVC.Starters
 		public static void Initialize(IWebHostEnvironment env)
 		{
 			Directory.SetCurrentDirectory(env.ContentRootPath);
-			
+
 			var name = env.IsDevelopment()
 				? null
 				: env.EnvironmentName;
