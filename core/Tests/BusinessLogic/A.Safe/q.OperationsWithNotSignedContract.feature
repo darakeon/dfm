@@ -227,23 +227,6 @@ Scenario: Aq30. Save Schedule
 	When I try to save the schedule
 	Then I will receive this core error: NotSignedLastContract
 
-Scenario: Aq31. Run Schedule
-	Given I have a category
-		And I have two accounts
-		And I have this schedule to create
-			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Db94   |      | Out    | 10    | 7     | False     | Daily     | False           |
-		And its Date is 5 days ago
-		And it has no Details
-		And it has a Category
-		And it has an Account Out
-		And it has no Account In
-		And I save the schedule
-	But there is a new contract
-	When robot user login
-		And run the scheduler
-	Then I will receive this core error: NotSignedLastContract
-
 Scenario: Aq32. Disable Schedule
 	Given I enable Categories use
 		And I have two accounts

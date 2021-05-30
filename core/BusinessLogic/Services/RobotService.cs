@@ -48,7 +48,9 @@ namespace DFM.BusinessLogic.Services
 			}
 			catch (CoreError e)
 			{
-				errors.Add(user.Email, e);
+				if (e.Type != Error.NotSignedLastContract)
+					errors.Add(user.Email, e);
+
 				return;
 			}
 
