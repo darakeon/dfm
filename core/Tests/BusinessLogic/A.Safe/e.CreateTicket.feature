@@ -11,7 +11,7 @@ Scenario: Ae01. Validate without e-mail
 	Then I will receive this core error: InvalidUser
 		And I will receive no ticket
 
-Scenario: Ae02. Validate without password
+Scenario: Ae02. Validate with empty password
 	Given I have this user created
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |
@@ -22,7 +22,18 @@ Scenario: Ae02. Validate without password
 	Then I will receive this core error: InvalidUser
 		And I will receive no ticket
 
-Scenario: Ae03. Validate with wrong e-mail
+Scenario: Ae03. Validate with null password
+	Given I have this user created
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
+		And I have this user data
+			| Email                           |
+			| {scenarioCode}@dontflymoney.com |
+	When I try to get the ticket
+	Then I will receive this core error: InvalidUser
+		And I will receive no ticket
+
+Scenario: Ae04. Validate with wrong e-mail
 	Given I have this user data
 			| Email                       | Password |
 			| dont_exist@dontflymoney.com | password |
@@ -30,7 +41,7 @@ Scenario: Ae03. Validate with wrong e-mail
 	Then I will receive this core error: InvalidUser
 		And I will receive no ticket
 
-Scenario: Ae04. Validate with wrong password
+Scenario: Ae05. Validate with wrong password
 	Given I have this user created
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |
@@ -41,7 +52,7 @@ Scenario: Ae04. Validate with wrong password
 	Then I will receive this core error: InvalidUser
 		And I will receive no ticket
 
-Scenario: Ae05. Validate user disabled
+Scenario: Ae06. Validate user disabled
 	Given I have this user created
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |
@@ -52,7 +63,7 @@ Scenario: Ae05. Validate user disabled
 	Then I will receive this core error: DisabledUser
 		And I will receive no ticket
 
-Scenario: Ae06. Disable user by excessive trying
+Scenario: Ae07. Disable user by excessive trying
 	Given I have this user created
 			| Email                           | Password | Active |
 			| {scenarioCode}@dontflymoney.com | password | true   |
@@ -63,7 +74,7 @@ Scenario: Ae06. Disable user by excessive trying
 	Then I will receive this core error: DisabledUser
 		And I will receive no ticket
 
-Scenario: Ae07. Validate disabled with wrong password
+Scenario: Ae08. Validate disabled with wrong password
 	Given I have this user created
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |
@@ -74,7 +85,7 @@ Scenario: Ae07. Validate disabled with wrong password
 	Then I will receive this core error: InvalidUser
 		And I will receive no ticket
 
-Scenario: Ae08. Validate with info all right
+Scenario: Ae09. Validate with info all right
 	Given I have this user created
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |
@@ -86,7 +97,7 @@ Scenario: Ae08. Validate with info all right
 	Then I will receive no core error
 		And I will receive the ticket
 
-Scenario: Ae09. Enable user let login again
+Scenario: Ae10. Enable user let login again
 	Given I have this user created
 			| Email                           | Password | Active |
 			| {scenarioCode}@dontflymoney.com | password | true   |
@@ -102,7 +113,7 @@ Scenario: Ae09. Enable user let login again
 	Then I will receive no core error
 		And I will receive the ticket
 
-Scenario: Ae10. Enable user resets the password trial times
+Scenario: Ae11. Enable user resets the password trial times
 	Given I have this user created
 			| Email                           | Password | Active |
 			| {scenarioCode}@dontflymoney.com | password | true   |
@@ -125,7 +136,7 @@ Scenario: Ae10. Enable user resets the password trial times
 	Then I will receive no core error
 		And I will receive the ticket
 
-Scenario: Ae11. Not validate if user is marked for deletion
+Scenario: Ae12. Not validate if user is marked for deletion
 	Given I have this user created
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |
