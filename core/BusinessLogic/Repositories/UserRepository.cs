@@ -20,6 +20,9 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal Authentication ValidateAndGet(String email, String password)
 		{
+			if (password == null)
+				throw Error.InvalidUser.Throw();
+
 			var user = GetByEmail(email);
 
 			if (user == null)
