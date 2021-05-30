@@ -344,3 +344,14 @@ Scenario: Db21. Not run scheduler if user is marked for deletion
 	When robot user login
 		And run the scheduler
 	Then the user deleted@dontflymoney.com will still have no moves
+
+Scenario: Db22. Not run scheduler if user has not signed last contract
+	Given I have this user created
+			| Email                       | Password | Active | Signed |
+			| not_signed@dontflymoney.com | password | true   | true   |
+		And a schedule is created by not_signed@dontflymoney.com
+		And I have a contract
+	When robot user login
+		And run the scheduler
+	Then I will receive no core error
+		But the user not_signed@dontflymoney.com will still have no moves
