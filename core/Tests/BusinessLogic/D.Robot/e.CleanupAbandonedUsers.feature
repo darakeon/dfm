@@ -579,3 +579,13 @@ Scenario: De50. User with tfa
 	Then I will receive no core error
 		And the user won't exist
 		And it will be registered at purge table with reason NoInteraction
+
+Scenario: De51. Send e-mail using user language
+	Given the user last access was 748 days before
+		And user language is pt-BR
+	When robot user login
+		And user robot language is en-US
+		And call cleanup abandoned users
+	Then I will receive no core error
+		And the e-mail subject will be "Parece que você não está mais usando o sistema"
+		And the e-mail body will contain "estão para ser excluídos"

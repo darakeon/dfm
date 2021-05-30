@@ -408,6 +408,28 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			user.TFASecret = tfa = "123";
 		}
 
+		[Given(@"user(.*) language is (pt-BR|en-US)")]
+		[When(@"user(.*) language is (pt-BR|en-US)")]
+		public void GivenUserLanguageIsPt_BR(String email, String language)
+		{
+			email = email.Trim();
+
+			if (email == "")
+				email = userEmail;
+
+			if (email == "robot")
+			{
+				createLogoffLoginRobot();
+				email = robotEmail;
+			}
+
+			var user = repos.User.GetByEmail(email);
+
+			user.Config.Language = language;
+
+			db.Execute(() => repos.Config.Update(user.Config));
+		}
+
 		[When(@"call cleanup abandoned users")]
 		public void WhenRobotCleanupAbandonedUsers()
 		{
@@ -497,6 +519,30 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 				.Any;
 
 			Assert.False(purged);
+		}
+
+		[Then(@"the e-mail subject will be ""(.*)""")]
+		public void ThenTheE_MailSubjectWillBe(String subject)
+		{
+			var email = EmlHelper.ByEmail(userEmail);
+			Assert.AreEqual(subject, email.Subject);
+		}
+
+		[Then(@"the e-mail body will contain ""(.*)""")]
+		public void ThenTheE_MailBodyWillContain(String bodyPart)
+		{
+			var email = EmlHelper.ByEmail(userEmail);
+			var body = email.Body
+				.Replace("\n", "")
+				.Replace("\t", "");
+
+			Assert.True(
+				body.Contains(bodyPart),
+				@$"
+					Expected: {bodyPart}
+					Actual: {body}
+				"
+			);
 		}
 		#endregion
 
