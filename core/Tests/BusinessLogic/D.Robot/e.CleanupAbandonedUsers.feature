@@ -589,3 +589,10 @@ Scenario: De51. Send e-mail using user language
 	Then I will receive no core error
 		And the e-mail subject will be "Parece que você não está mais usando o sistema"
 		And the e-mail body will contain "estão para ser excluídos"
+
+Scenario: De52. Check days counting
+	Given the user last access was 63 days before
+	When robot user login
+		And call cleanup abandoned users
+	Then I will receive no core error
+		And the e-mail body will contain "27</h1>dias"
