@@ -3,6 +3,7 @@ using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.Entities;
 using DFM.Generic;
 using DFM.Language;
+using DfM.Logs;
 using Keon.NHibernate.Schema;
 using Keon.NHibernate.Sessions;
 
@@ -21,7 +22,15 @@ namespace DFM.Robot
 			Cfg.Init(name);
 			PlainText.Initialize();
 
-			sessionFactory(() => session(action));
+			try
+			{
+				sessionFactory(() => session(action));
+			}
+			catch (Exception e)
+			{
+				e.TryLog();
+				throw;
+			}
 		}
 
 		private static void sessionFactory(Action action)
