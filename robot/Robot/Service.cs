@@ -24,12 +24,11 @@ namespace DFM.Robot
 
 			service = new ServiceAccess(getTicket, getSite);
 
-			service.Current.Set(Cfg.RobotEmail, Cfg.RobotPassword, false);
+			if (this.task != Task.Check)
+				service.Current.Set(Cfg.RobotEmail, Cfg.RobotPassword, false);
 
 			if (this.task == Task.Purge)
-			{
 				s3 = new S3();
-			}
 		}
 
 		private static ClientTicket getTicket(Boolean remember)
@@ -46,6 +45,10 @@ namespace DFM.Robot
 		{
 			switch (task)
 			{
+				case Task.Check:
+					Console.WriteLine("Sunariom");
+					break;
+
 				case Task.Schedules:
 					var userErrors = service.Robot.RunSchedule();
 					handleScheduleErrors(userErrors);

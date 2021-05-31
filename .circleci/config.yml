@@ -241,6 +241,8 @@ jobs:
   test_build_robot:
     docker:
       - image: darakeon/netcore
+    environment:
+      ASPNETCORE_ENVIRONMENT: circleCI
     steps:
       - checkout
       - restore_cache:
@@ -255,7 +257,12 @@ jobs:
             - ~/.nuget/packages
       - run:
           name: build
-          command: dotnet build -c Release robot/Robot.sln --no-restore
+          path: robot/Robot
+          command: dotnet publish -c Release Robot.csproj -o /var/robot --no-restore
+      - run:
+          name: build
+          path: /var/robot
+          command: ./DFM.Robot check
       - store_artifacts:
           path: inbox
 
