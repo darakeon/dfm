@@ -60,9 +60,9 @@ namespace DFM.BusinessLogic.Repositories
 			{
 				sender.Send();
 			}
-			catch (MailError)
+			catch (MailError e)
 			{
-				throw Error.FailOnEmailSend.Throw();
+				throw Error.FailOnEmailSend.Throw(e);
 			}
 
 			var control = user.Control;
