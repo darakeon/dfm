@@ -9,6 +9,8 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 	{
 		public void Override(AutoMapping<Purge> mapping)
 		{
+			mapping.Table($"`{nameof(Purge).ToLower()}`");
+
 			mapping.Map(p => p.When)
 				.Column("When_");
 
