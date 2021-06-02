@@ -1,23 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using DFM.BusinessLogic.Exceptions;
+using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Exchange;
 using Keon.Util.DB;
+using Keon.Util.Extensions;
+using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Repositories
 {
 	internal class PurgeRepository : Repo<Purge>
 	{
-		public PurgeRepository(Repos repos)
+		public PurgeRepository(Repos repos, Current.GetUrl getUrl)
 		{
 			this.repos = repos;
+			this.getUrl = getUrl;
 		}
 
 		private readonly Repos repos;
+		private readonly Current.GetUrl getUrl;
 
-		public void Execute(User user, RemovalReason reason, Action<String> upload)
+		public void Execute(User user, DateTime date, RemovalReason reason, Action<String> upload)
 		{
 			var accounts = repos.Account.Where(a => a.User.ID == user.ID);
 			String s3 = null;
@@ -51,6 +58,8 @@ namespace DFM.BusinessLogic.Repositories
 
 			SaveOrUpdate(purge);
 
+			notifyPurge(user, date, reason);
+
 			purgeAll(repos.Ticket, t => t.User, u => u.ID == user.ID);
 			purgeAll(repos.Security, s => s.User, u => u.ID == user.ID);
 			purgeAll(repos.Acceptance, a => a.User, u => u.ID == user.ID);
@@ -72,6 +81,34 @@ namespace DFM.BusinessLogic.Repositories
 			repos.User.Delete(user);
 			repos.Config.Delete(user.Config);
 			repos.Control.Delete(user.Control);
+		}
+
+		private void notifyPurge(User user, DateTime dateTime, RemovalReason removalReason)
+		{
+			var dic = new Dictionary<String, String>
+			{
+				{ "Url", getUrl() },
+				{ "Date", dateTime.ToShortDateString() },
+				{ "UserEmail", user.Email },
+			};
+
+			var format = Format.PurgeNotice(user, removalReason);
+
+			var fileContent = format.Layout.Format(dic);
+
+			var sender = new Sender()
+				.To(user.Email)
+				.Subject(format.Subject)
+				.Body(fileContent);
+
+			try
+			{
+				sender.Send();
+			}
+			catch (MailError e)
+			{
+				throw Error.FailOnEmailSend.Throw(e);
+			}
 		}
 
 		private void purgeAll<E, P>(

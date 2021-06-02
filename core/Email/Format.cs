@@ -30,6 +30,11 @@ namespace DFM.Email
 			return new(user, EmailType.RemovalReason, removalReason);
 		}
 
+		public static Format PurgeNotice(User user, RemovalReason removalReason)
+		{
+			return new(user, EmailType.PurgeNotice, removalReason);
+		}
+
 		private Format(User user, EmailType type, Object layoutType)
 		{
 			var config = user.Config;
@@ -37,11 +42,9 @@ namespace DFM.Email
 			var theme = config.Theme;
 
 			var layoutName = layoutType.ToString();
-
-			Subject = PlainText.Email[layoutName, language, "Subject"];
-
 			var replaces = getReplaces(type.ToString(), layoutName, language);
 
+			Subject = replaces["Subject"];
 			Layout = FormatEmail(theme, type, replaces);
 		}
 

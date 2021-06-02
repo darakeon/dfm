@@ -596,3 +596,14 @@ Scenario: De52. Check days counting
 		And call cleanup abandoned users
 	Then I will receive no core error
 		And the e-mail body will contain "27</h1>dias"
+
+Scenario: De53. Check purge notice
+	Given the user last access was 105 days before
+		And the user have being warned twice
+	When robot user login
+		And call cleanup abandoned users
+	Then I will receive no core error
+		And the user won't exist
+		And the count of warnings sent will be 0
+		And there will be a purge notice sent
+		And it will be registered at purge table with reason NoInteraction

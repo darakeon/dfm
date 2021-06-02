@@ -48,6 +48,11 @@ namespace DFM.Tests.Util
 					rr => types.Add(rr.ToString(), EmailType.RemovalReason)
 				);
 
+			types.Add(
+				EmailType.PurgeNotice.ToString(),
+				EmailType.PurgeNotice
+			);
+
 			var langs = PlainText.AcceptedLanguages();
 			var keys = types.Keys.ToList();
 
@@ -120,8 +125,18 @@ namespace DFM.Tests.Util
 
 			var receiver = headers["X-Receiver"];
 
-			var base64 = headers["Content-Transfer-Encoding"] == "base64";
 			var subject = headers["Subject"];
+
+			if (subject.Contains("utf-8"))
+			{
+				subject = String.Join("",
+					subject
+						.Split(" ")
+						.Select(s => convert(s[10..^2]))
+				);
+			}
+
+			var base64 = headers["Content-Transfer-Encoding"] == "base64";
 
 			content = content.Skip(l).ToArray();
 
@@ -137,15 +152,7 @@ namespace DFM.Tests.Util
 			var body = String.Join("", content);
 
 			if (base64)
-			{
-				subject = String.Join("",
-					subject
-						.Split(" ")
-						.Select(s => convert(s[10..^2]))
-				);
-
 				body = convert(body);
-			}
 
 			var creation = emailFile.CreationTimeUtc;
 			var type = emailTypes.FirstOrDefault(

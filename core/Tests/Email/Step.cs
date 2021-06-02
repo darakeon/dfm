@@ -76,15 +76,21 @@ namespace DFM.Email.Tests
 		}
 
 		[When(@"a security action is formatted to (\w+)")]
-		public void WhenASecurityActionIsFormattedToUserVerification(SecurityAction action)
+		public void WhenASecurityActionIsFormattedTo(SecurityAction action)
 		{
 			format = Format.SecurityAction(user, action);
 		}
 
 		[When(@"a user removal is formatted because of (\w+)")]
-		public void WhenAUserRemovalIsFormattedBecauseOfNoInteraction(RemovalReason reason)
+		public void WhenAUserRemovalIsFormattedBecauseOf(RemovalReason reason)
 		{
 			format = Format.UserRemoval(user, reason);
+		}
+
+		[When(@"a purge notice is formatted because of (\w+)")]
+		public void WhenAPurgeNoticeIsFormattedBecauseOf(RemovalReason reason)
+		{
+			format = Format.PurgeNotice(user, reason);
 		}
 
 		[When(@"the e-mail is sent")]
