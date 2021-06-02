@@ -1,6 +1,6 @@
 ﻿{
 	"en-US": {
-		"DeleteWarning": "Your user and data inserted in Don't fly Money system are about to be deleted",
+		"DeleteWarning": "Your user and data inserted in Don't fly Money system are about to be deleted.",
 		"DeleteTimeout": "The deletion is not immediate. There are a deadline of 90 days. So the time remaining for the deletion is:",
 		"Days": "days",
 		"ReadTerms": "Read the terms of use at the website",

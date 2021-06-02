@@ -30,7 +30,7 @@ namespace DFM.BusinessLogic.Repositories
 			Control = new ControlRepository(getUrl);
 			Detail = new DetailRepository();
 			Move = new MoveRepository(getUrl);
-			Purge = new PurgeRepository(this);
+			Purge = new PurgeRepository(this, getUrl);
 			Schedule = new ScheduleRepository();
 			Security = new SecurityRepository(getUrl);
 			Summary = new SummaryRepository();

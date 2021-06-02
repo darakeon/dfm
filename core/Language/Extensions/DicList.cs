@@ -11,8 +11,7 @@ namespace DFM.Language.Extensions
 		{
 			get
 			{
-				var item = this.FirstOrDefault(t => t.Name
-					.Equals(name, StringComparison.InvariantCultureIgnoreCase));
+				var item = get(name);
 
 				if (item == null)
 					throw new DicException($"No {typeof (T)} {name}");
@@ -21,11 +20,22 @@ namespace DFM.Language.Extensions
 			}
 		}
 
+		private T get(String name)
+		{
+			return this.FirstOrDefault(t => t.Name
+				.Equals(name, StringComparison.InvariantCultureIgnoreCase));
+		}
+
+		private Boolean available(T other)
+		{
+			return get(other.Name) == null;
+		}
+
 		public DicList<T> Union(DicList<T> other)
 		{
 			var union = new DicList<T>();
 			union.AddRange(this);
-			union.AddRange(other);
+			union.AddRange(other.Where(available));
 			return union;
 		}
 	}

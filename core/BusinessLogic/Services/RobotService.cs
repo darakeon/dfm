@@ -268,15 +268,15 @@ namespace DFM.BusinessLogic.Services
 			var shouldRemove = date.PassedRemoval() && sent >= 2;
 
 			if (shouldRemove)
-				return delete(user, reason, upload);
+				return delete(user, date, reason, upload);
 
 			if (shouldWarn1 || shouldWarn2)
-				return warn(date, user, reason);
+				return warn(user, date, reason);
 
 			return false;
 		}
 
-		private Boolean delete(User user, RemovalReason reason, Action<String> upload)
+		private Boolean delete(User user, DateTime date, RemovalReason reason, Action<String> upload)
 		{
 			inTransaction(
 				"MarkUserDeletion",
@@ -285,13 +285,13 @@ namespace DFM.BusinessLogic.Services
 
 			inTransaction(
 				"DeleteUser",
-				() => repos.Purge.Execute(user, reason, upload)
+				() => repos.Purge.Execute(user, date, reason, upload)
 			);
 
 			return true;
 		}
 
-		private Boolean warn(DateTime date, User user, RemovalReason reason)
+		private Boolean warn(User user, DateTime date, RemovalReason reason)
 		{
 			inTransaction(
 				"SaveWarning",

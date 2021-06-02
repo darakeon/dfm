@@ -471,6 +471,17 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			Assert.AreEqual(expectedCount, actualCount);
 		}
 
+		[Then(@"there will be a purge notice sent")]
+		public void ThenThereWillBeAPurgeNoticeSent()
+		{
+			var actualCount = EmlHelper.CountEmails(
+				userEmail,
+				EmailType.PurgeNotice,
+				testStart
+			);
+			Assert.AreEqual(1, actualCount);
+		}
+
 		[Then(@"and the user warning count will be (\d+)")]
 		public void ThenAndTheUserWarningCountWillBe(Int32 count)
 		{
