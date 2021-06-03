@@ -20,7 +20,7 @@ Legend:
 - [x] `210603>210603` Clarify that only moves are exported in case of purge
 
 ## <a name="6.0.1.0"></a>6.0.1.0 :sheep: <sup>`3`</sup>
-- [x] `210430>210530` Robot to delete not accessed users [#49]
+- [x] `210430>210602` Robot to delete not accessed users [#49]
 - [x] `210421>210530` Run robot each 15 minutes and remove it from request
 - [x] `210421>210421` Fix problem closing account (one of the locals is not closing)
 
