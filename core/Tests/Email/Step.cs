@@ -87,10 +87,10 @@ namespace DFM.Email.Tests
 			format = Format.UserRemoval(user, reason);
 		}
 
-		[When(@"a purge notice is formatted because of (\w+)")]
-		public void WhenAPurgeNoticeIsFormattedBecauseOf(RemovalReason reason)
+		[When(@"a wipe notice is formatted because of (\w+)")]
+		public void WhenAWipeNoticeIsFormattedBecauseOf(RemovalReason reason)
 		{
-			format = Format.PurgeNotice(user, reason);
+			format = Format.WipeNotice(user, reason);
 		}
 
 		[When(@"the e-mail is sent")]

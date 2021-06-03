@@ -175,7 +175,7 @@ namespace DFM.BusinessLogic.Services
 				.ToList();
 		}
 
-		public void CleanupAbandonedUsers(Action<String> upload)
+		public void WipeUsers(Action<String> upload)
 		{
 			if (!parent.Current.IsRobot)
 				throw Error.Uninvited.Throw();
@@ -285,7 +285,7 @@ namespace DFM.BusinessLogic.Services
 
 			inTransaction(
 				"DeleteUser",
-				() => repos.Purge.Execute(user, date, reason, upload)
+				() => repos.Wipe.Execute(user, date, reason, upload)
 			);
 
 			return true;

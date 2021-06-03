@@ -30,9 +30,9 @@ namespace DFM.Email
 			return new(user, EmailType.RemovalReason, removalReason);
 		}
 
-		public static Format PurgeNotice(User user, RemovalReason removalReason)
+		public static Format WipeNotice(User user, RemovalReason removalReason)
 		{
-			return new(user, EmailType.PurgeNotice, removalReason);
+			return new(user, EmailType.WipeNotice, removalReason);
 		}
 
 		private Format(User user, EmailType type, Object layoutType)

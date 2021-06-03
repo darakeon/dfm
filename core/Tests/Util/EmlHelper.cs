@@ -49,8 +49,8 @@ namespace DFM.Tests.Util
 				);
 
 			types.Add(
-				EmailType.PurgeNotice.ToString(),
-				EmailType.PurgeNotice
+				EmailType.WipeNotice.ToString(),
+				EmailType.WipeNotice
 			);
 
 			var langs = PlainText.AcceptedLanguages();

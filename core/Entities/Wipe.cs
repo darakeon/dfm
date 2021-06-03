@@ -4,7 +4,7 @@ using Keon.Util.DB;
 
 namespace DFM.Entities
 {
-	public class Purge : IEntityLong
+	public class Wipe : IEntityLong
 	{
 		public virtual Int64 ID { get; set; }
 		public virtual String Email { get; set; }

@@ -5,11 +5,11 @@ using FluentNHibernate.Automapping.Alterations;
 namespace DFM.BusinessLogic.Repositories.Mappings
 {
 	// ReSharper disable once UnusedMember.Global
-	public class PurgeMap : IAutoMappingOverride<Purge>
+	public class WipeMap : IAutoMappingOverride<Wipe>
 	{
-		public void Override(AutoMapping<Purge> mapping)
+		public void Override(AutoMapping<Wipe> mapping)
 		{
-			mapping.Table($"`{nameof(Purge).ToLower()}`");
+			mapping.Table($"`{nameof(Wipe).ToLower()}`");
 
 			mapping.Map(p => p.When)
 				.Column("When_");

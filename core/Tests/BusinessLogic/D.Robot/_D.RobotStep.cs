@@ -430,12 +430,12 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			db.Execute(() => repos.Config.Update(user.Config));
 		}
 
-		[When(@"call cleanup abandoned users")]
-		public void WhenRobotCleanupAbandonedUsers()
+		[When(@"call wipe users")]
+		public void WhenRobotWipeUsers()
 		{
 			try
 			{
-				service.Robot.CleanupAbandonedUsers(path =>
+				service.Robot.WipeUsers(path =>
 				{
 					csv = File.ReadAllLines(path);
 				});
@@ -471,12 +471,12 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			Assert.AreEqual(expectedCount, actualCount);
 		}
 
-		[Then(@"there will be a purge notice sent")]
-		public void ThenThereWillBeAPurgeNoticeSent()
+		[Then(@"there will be a wipe notice sent")]
+		public void ThenThereWillBeAWipeNoticeSent()
 		{
 			var actualCount = EmlHelper.CountEmails(
 				userEmail,
-				EmailType.PurgeNotice,
+				EmailType.WipeNotice,
 				testStart
 			);
 			Assert.AreEqual(1, actualCount);
@@ -495,41 +495,41 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			Assert.AreEqual(table.ToCsv(), csv);
 		}
 
-		[Then(@"it will be registered at purge table with reason (\w+)")]
-		public void ThenItWillBeRegisteredAtPurgeTable(RemovalReason reason)
+		[Then(@"it will be registered at wipe table with reason (\w+)")]
+		public void ThenItWillBeRegisteredAtWipeTable(RemovalReason reason)
 		{
-			var purge = repos.Purge.NewQuery()
+			var wipe = repos.Wipe.NewQuery()
 				.Where(p => p.Email == userEmail)
 				.SingleOrDefault;
 
-			Assert.NotNull(purge);
+			Assert.NotNull(wipe);
 
-			Assert.Less(testStart, purge.When.ToUniversalTime());
-			Assert.AreEqual(reason, purge.Why);
+			Assert.Less(testStart, wipe.When.ToUniversalTime());
+			Assert.AreEqual(reason, wipe.Why);
 
 			if (csv != null)
 			{
-				Assert.NotNull(purge.S3);
-				Assert.True(purge.S3.StartsWith(userEmail));
+				Assert.NotNull(wipe.S3);
+				Assert.True(wipe.S3.StartsWith(userEmail));
 			}
 			else
 			{
-				Assert.Null(purge.S3);
+				Assert.Null(wipe.S3);
 			}
 
-			Assert.True(Crypt.Check("password", purge.Password));
+			Assert.True(Crypt.Check("password", wipe.Password));
 
-			Assert.AreEqual(tfa, purge.TFA);
+			Assert.AreEqual(tfa, wipe.TFA);
 		}
 
-		[Then(@"it will not be registered at purge table")]
-		public void ThenItWillNotBeRegisteredAtPurgeTable()
+		[Then(@"it will not be registered at wipe table")]
+		public void ThenItWillNotBeRegisteredAtWipeTable()
 		{
-			var purged = repos.Purge.NewQuery()
+			var wipe = repos.Wipe.NewQuery()
 				.Where(p => p.Email == userEmail)
 				.Any;
 
-			Assert.False(purged);
+			Assert.False(wipe);
 		}
 
 		[Then(@"the e-mail subject will be ""(.*)""")]

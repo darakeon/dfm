@@ -6,6 +6,6 @@ namespace DFM.Language.Emails
 		MoveNotification = 2,
 		Detail = -1,
 		RemovalReason = 3,
-		PurgeNotice = 4,
+		WipeNotice = 4,
 	}
 }
