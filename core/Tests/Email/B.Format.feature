@@ -28,12 +28,12 @@ Scenario: B05. Format removal by not signed contract
 		And the e-mail is sent
 	Then there will be a removal-reason-not-signed-contract e-mail sent
 
-Scenario: B06. Format purge by no interaction notice
-	When a purge notice is formatted because of NoInteraction
+Scenario: B06. Format wipe by no interaction notice
+	When a wipe notice is formatted because of NoInteraction
 		And the e-mail is sent
-	Then there will be a purge-notice-no-interaction e-mail sent
+	Then there will be a wipe-notice-no-interaction e-mail sent
 
-Scenario: B07. Format purge by not signed contract notice
-	When a purge notice is formatted because of NotSignedContract
+Scenario: B07. Format wipe by not signed contract notice
+	When a wipe notice is formatted because of NotSignedContract
 		And the e-mail is sent
-	Then there will be a purge-notice-not-signed-contract e-mail sent
+	Then there will be a wipe-notice-not-signed-contract e-mail sent

@@ -12,10 +12,10 @@
     <None Remove="Email\Base.htm" />
     <None Remove="Email\Detail.htm" />
     <None Remove="Email\MoveNotification.htm" />
-    <None Remove="Email\PurgeNotice.htm" />
     <None Remove="Email\RemovalReason.htm" />
     <None Remove="Email\SecurityAction.htm" />
     <None Remove="Email\theme.json" />
+    <None Remove="Email\WipeNotice.htm" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,7 +28,7 @@
     <Content Include="Email\MoveNotification.htm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Email\PurgeNotice.htm">
+    <Content Include="Email\WipeNotice.htm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Email\RemovalReason.htm">

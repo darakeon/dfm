@@ -13,7 +13,7 @@ namespace DFM.BusinessLogic.Repositories
 		internal ControlRepository Control;
 		internal DetailRepository Detail;
 		internal MoveRepository Move;
-		internal PurgeRepository Purge;
+		internal WipeRepository Wipe;
 		internal ScheduleRepository Schedule;
 		internal SecurityRepository Security;
 		internal SummaryRepository Summary;
@@ -30,7 +30,7 @@ namespace DFM.BusinessLogic.Repositories
 			Control = new ControlRepository(getUrl);
 			Detail = new DetailRepository();
 			Move = new MoveRepository(getUrl);
-			Purge = new PurgeRepository(this, getUrl);
+			Wipe = new WipeRepository(this, getUrl);
 			Schedule = new ScheduleRepository();
 			Security = new SecurityRepository(getUrl);
 			Summary = new SummaryRepository();

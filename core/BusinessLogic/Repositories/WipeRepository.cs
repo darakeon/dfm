@@ -13,9 +13,9 @@ using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class PurgeRepository : Repo<Purge>
+	internal class WipeRepository : Repo<Wipe>
 	{
-		public PurgeRepository(Repos repos, Current.GetUrl getUrl)
+		public WipeRepository(Repos repos, Current.GetUrl getUrl)
 		{
 			this.repos = repos;
 			this.getUrl = getUrl;
@@ -46,7 +46,7 @@ namespace DFM.BusinessLogic.Repositories
 				}
 			}
 
-			var purge = new Purge
+			var wipe = new Wipe
 			{
 				Email = user.Email,
 				When = DateTime.UtcNow,
@@ -56,34 +56,34 @@ namespace DFM.BusinessLogic.Repositories
 				TFA = user.TFASecret,
 			};
 
-			SaveOrUpdate(purge);
+			SaveOrUpdate(wipe);
 
-			notifyPurge(user, date, reason);
+			notifyWipe(user, date, reason);
 
-			purgeAll(repos.Ticket, t => t.User, u => u.ID == user.ID);
-			purgeAll(repos.Security, s => s.User, u => u.ID == user.ID);
-			purgeAll(repos.Acceptance, a => a.User, u => u.ID == user.ID);
+			wipeAll(repos.Ticket, t => t.User, u => u.ID == user.ID);
+			wipeAll(repos.Security, s => s.User, u => u.ID == user.ID);
+			wipeAll(repos.Acceptance, a => a.User, u => u.ID == user.ID);
 
 			foreach (var account in accounts)
 			{
-				purgeAll(repos.Summary, m => m.Account, a => a.ID == account.ID);
+				wipeAll(repos.Summary, m => m.Account, a => a.ID == account.ID);
 
-				purgeAll(repos.Move, m => m.In, a => a.ID == account.ID);
-				purgeAll(repos.Move, m => m.Out, a => a.ID == account.ID);
+				wipeAll(repos.Move, m => m.In, a => a.ID == account.ID);
+				wipeAll(repos.Move, m => m.Out, a => a.ID == account.ID);
 
-				purgeAll(repos.Schedule, m => m.In, a => a.ID == account.ID);
-				purgeAll(repos.Schedule, m => m.Out, a => a.ID == account.ID);
+				wipeAll(repos.Schedule, m => m.In, a => a.ID == account.ID);
+				wipeAll(repos.Schedule, m => m.Out, a => a.ID == account.ID);
 			}
 
-			purgeAll(repos.Account, a => a.User, u => u.ID == user.ID);
-			purgeAll(repos.Category, c => c.User, u => u.ID == user.ID);
+			wipeAll(repos.Account, a => a.User, u => u.ID == user.ID);
+			wipeAll(repos.Category, c => c.User, u => u.ID == user.ID);
 
 			repos.User.Delete(user);
 			repos.Config.Delete(user.Config);
 			repos.Control.Delete(user.Control);
 		}
 
-		private void notifyPurge(User user, DateTime dateTime, RemovalReason removalReason)
+		private void notifyWipe(User user, DateTime dateTime, RemovalReason removalReason)
 		{
 			var dic = new Dictionary<String, String>
 			{
@@ -92,7 +92,7 @@ namespace DFM.BusinessLogic.Repositories
 				{ "UserEmail", user.Email },
 			};
 
-			var format = Format.PurgeNotice(user, removalReason);
+			var format = Format.WipeNotice(user, removalReason);
 
 			var fileContent = format.Layout.Format(dic);
 
@@ -111,7 +111,7 @@ namespace DFM.BusinessLogic.Repositories
 			}
 		}
 
-		private void purgeAll<E, P>(
+		private void wipeAll<E, P>(
 			Repo<E> repo,
 			Expression<Func<E, P>> parent,
 			Expression<Func<P, Boolean>> condition

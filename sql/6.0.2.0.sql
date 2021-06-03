@@ -181,3 +181,6 @@ insert into terms
  *     POS-DEPLOY     *
  *                    *
 \**********************/
+
+alter table `purge` rename to wipe;
+

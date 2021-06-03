@@ -27,7 +27,7 @@ namespace DFM.Robot
 			if (this.task != Task.Check)
 				service.Current.Set(Cfg.RobotEmail, Cfg.RobotPassword, false);
 
-			if (this.task == Task.Purge)
+			if (this.task == Task.Wipe)
 				s3 = new S3();
 		}
 
@@ -54,8 +54,8 @@ namespace DFM.Robot
 					handleScheduleErrors(userErrors);
 					break;
 
-				case Task.Purge:
-					service.Robot.CleanupAbandonedUsers(s3.Upload);
+				case Task.Wipe:
+					service.Robot.WipeUsers(s3.Upload);
 					break;
 			}
 		}
