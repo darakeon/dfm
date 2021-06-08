@@ -89,6 +89,9 @@ set @PT = replace(replace('
 			]
 		},
 		{
+			"Text": "Quando os dados são removidos do Sistema, o endereço de e-mail registrado é guardado para caso seja necessário consultar motivo e/ou data da remoção dos dados",
+		},
+		{
 			"Text": "Estes termos podem ser alterados a qualquer momento:",
 			"Items": [
 				{ "Text": "Em caso de alteração, a Pessoa precisa aceitar os novos termos para continuar usando o Sistema;" },
@@ -174,6 +177,9 @@ set @EN = replace(replace('
 				{ "Text": "In this case - the Person asking the data deletion - the moves are not recorded in a file;" },
 				{ "Text": "After the removal there is no way to the Person to recover the data through the System." }
 			]
+		},
+		{
+			"Text": "When the data is removed from the System, the registered e-mail address is kept in case the information of reason and/or date of data removal is needed.",
 		},
 		{
 			"Text": "These terms can be changed any time in the future:",
