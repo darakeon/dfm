@@ -501,5 +501,16 @@ namespace DFM.BusinessLogic.Services
 				repos.User.UseTFAAsPassword(user, use);
 			});
 		}
+
+		public void AskWipe()
+		{
+			VerifyUser();
+
+			inTransaction("AskWipe", () =>
+			{
+				var user = GetCurrent();
+				repos.Control.RequestWipe(user);
+			});
+		}
 	}
 }

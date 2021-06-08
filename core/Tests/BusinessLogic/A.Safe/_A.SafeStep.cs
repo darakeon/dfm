@@ -1199,5 +1199,46 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			Assert.AreEqual(valid, recordedValidated);
 		}
 		#endregion TFA
+
+
+		#region AskWipe
+		[Given(@"the user not active")]
+		public void GivenTheUserNotActive()
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			db.Execute(() => repos.Control.Deactivate(user));
+		}
+
+		[Given(@"data wipe was asked")]
+		public void GivenDataWipeWasAsked()
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			db.Execute(() => repos.Control.RequestWipe(user));
+		}
+
+		[When(@"ask data wipe")]
+		public void WhenAskDataWipe()
+		{
+			try
+			{
+				service.Safe.AskWipe();
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[Then(@"the user will (not )?be marked for deletion")]
+		public void ThenTheUserWillBeMarkedForDeletion(Boolean marked)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+
+			if (marked)
+				Assert.NotNull(user.Control.WipeRequest);
+			else
+				Assert.Null(user.Control.WipeRequest);
+		}
+		#endregion
 	}
 }
