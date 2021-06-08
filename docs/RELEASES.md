@@ -16,7 +16,7 @@ Legend:
 
 ## <a name="6.0.2.0"></a>6.0.2.0 :sheep: <sup>`3`</sup>
 - [ ] Login after create account, disable if not confirm e-mail in 1 week
-- [ ] Delete user on demand
+- [ ] `210603>......` Delete user on demand
 - [x] `210603>210603` Clarify that only moves are exported in case of purge
 
 ## <a name="6.0.1.0"></a>6.0.1.0 :sheep: <sup>`3`</sup>
