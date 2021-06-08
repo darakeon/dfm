@@ -95,5 +95,11 @@ namespace DFM.BusinessLogic.Repositories
 			user.Control.ProcessingDeletion = true;
 			SaveOrUpdate(user.Control);
 		}
+
+		public void RequestWipe(User user)
+		{
+			user.Control.WipeRequest = DateTime.UtcNow;
+			SaveOrUpdate(user.Control);
+		}
 	}
 }

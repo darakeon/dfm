@@ -206,3 +206,5 @@ insert into terms
 
 alter table `purge` rename to wipe;
 
+alter table control
+	add WipeRequest datetime null;
