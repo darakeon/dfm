@@ -81,6 +81,14 @@ set @PT = replace(replace('
 			]
 		},
 		{
+			"Text": "Existe um botão dentro das configurações no site para a Pessoa poder excluir seus dados do Sistema:",
+			"Items": [
+				{ "Text": "Os dados não são excluídos instantaneamente;" },
+				{ "Text": "Nesse caso - a exclusão ser uma requisição da Pessoa - as movimentações não são gravadas em um arquivo;" },
+				{ "Text": "Após a remoção, não existe uma forma de a Pessoa recuperar os dados via sistema." }
+			]
+		},
+		{
 			"Text": "Estes termos podem ser alterados a qualquer momento:",
 			"Items": [
 				{ "Text": "Em caso de alteração, a Pessoa precisa aceitar os novos termos para continuar usando o Sistema;" },
@@ -157,6 +165,14 @@ set @EN = replace(replace('
 				{ "Text": "the Person can request the permanent deletion of the file sending e-mail to {{support_address}} using same e-mail registered at the System;" },
 				{ "Text": "if the Person request the data file and/or its permanent deletion it will be made as soon possible after the request is seen;" },
 				{ "Text": "the creation of the file is not a guarantee of its existence forever: the file can be deleted any time after System data removal, without prior check with the Person." },
+			]
+		},
+		{
+			"Text": "There is button inside system settings at the website to the Person delete their data from the System:",
+			"Items": [
+				{ "Text": "The data is not removed instantly;" },
+				{ "Text": "In this case - the Person asking the data deletion - the moves are not recorded in a file;" },
+				{ "Text": "After the removal there is no way to the Person to recover the data through the System." }
 			]
 		},
 		{
