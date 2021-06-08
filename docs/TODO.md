@@ -13,7 +13,7 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then Type.
 
-| Task (54)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (55)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
 | Add misc to users                                                              | :dragon: |  2  |  3  |  5  |                |       |
 | Reset Misc on password change and send e-mail                                  | :sheep:  |  1  |  3  |  6  | misc           |       |
@@ -61,6 +61,7 @@ The tasks are ordered by: Points then Importance then Type.
 | Distribute tests of operations with not signed contract                        | :ant:    |  2  |  1  |  3  |                |       |
 | Remove "Then I", "When I", "Given I" of tests                                  | :ant:    |  2  |  1  |  3  |                |       |
 | Replace hardcoded scenario codes from tests                                    | :ant:    |  2  |  1  |  3  |                |       |
+| Inject ServiceAccess with AddScoped at MVC (because of Session NH)             | :ant:    |  2  |  1  |  3  |                |       |
 | OCR to add values to system                                                    | :dragon: |  4  |  2  |  2  |                |       |
 | Add [gherkin jest]                                                             | :ant:    |  4  |  2  |  2  |                |       |
 | Data import and export (csv, json) (with max request length)                   | :dragon: |  3  |  1  |  2  |                |       |
