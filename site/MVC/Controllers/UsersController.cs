@@ -113,7 +113,7 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpPost, ValidateAntiForgeryToken, Auth]
-		public IActionResult ConfigOptions(UsersConfigModel model)
+		public IActionResult ConfigMain(UsersConfigModel model)
 		{
 			return config(model, () => model.Main.Save());
 		}

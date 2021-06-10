@@ -206,7 +206,7 @@ Scenario: 08. Get translate of Interface (users)
 			| Users   | EmailToChange           |
 			| Users   | EmailUpdated            |
 			| Users   | PasswordChanged         |
-			| Users   | OptionsSettings         |
+			| Users   | MainSettings            |
 			| Users   | PasswordSettings        |
 			| Users   | EmailSettings           |
 	When I try get the translate
