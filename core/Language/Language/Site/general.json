@@ -124,8 +124,10 @@
 		"Aria_AndroidLink": "link to android app",
 
 		"ContractTitle": "Terms of Use",
+
 		"NoInteraction": "Lack of interaction",
-		"NotSignedContract": "Did not signed contract",
+		"NotSignedContract": "Not signed contract",
+		"PersonAsked": "Person asked",
 	},
 	"pt-BR": {
 		"CurrentLanguage": "português",
@@ -252,7 +254,9 @@
 		"Aria_AndroidLink": "link para o aplicativo android",
 
 		"ContractTitle": "Termos de Uso",
-		"NoInteraction": "Parece que você não está mais usando o sistema",
-		"NotSignedContract": "Mudanças no contrato de uso do sistema",
+
+		"NoInteraction": "Falta de interação",
+		"NotSignedContract": "Contrato não aceito",
+		"PersonAsked": "Pessoa requisitou", 
 	},
 }

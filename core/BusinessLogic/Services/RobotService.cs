@@ -180,13 +180,14 @@ namespace DFM.BusinessLogic.Services
 			if (!parent.Current.IsRobot)
 				throw Error.Uninvited.Throw();
 
-			var ignoreUsers = new List<User>();
+			var ignoreUserIDs = new List<Int64>();
 
-			cleanupByLastAccess(ignoreUsers, upload);
-			cleanupByNotSignedContract(ignoreUsers, upload);
+			wipeBecauseNoInteraction(ignoreUserIDs, upload);
+			wipeBecauseNotSignedContract(ignoreUserIDs, upload);
+			wipeBecausePersonAsked(ignoreUserIDs, upload);
 		}
 
-		private void cleanupByLastAccess(IList<User> ignoreUsers, Action<String> upload)
+		private void wipeBecauseNoInteraction(IList<Int64> ignoreUserIDs, Action<String> upload)
 		{
 			var users = repos.User.NewQuery()
 				.Where(
@@ -194,6 +195,7 @@ namespace DFM.BusinessLogic.Services
 					c => c.LastAccess == null
 						|| c.LastAccess < WarnHelper.Limit1()
 				)
+				.NotIn(u => u.ID, ignoreUserIDs)
 				.List;
 
 			foreach (var user in users)
@@ -207,12 +209,12 @@ namespace DFM.BusinessLogic.Services
 
 				if (didSomething)
 				{
-					ignoreUsers.Add(user);
+					ignoreUserIDs.Add(user.ID);
 				}
 			}
 		}
 
-		private void cleanupByNotSignedContract(IList<User> ignoreUsers, Action<String> upload)
+		private void wipeBecauseNotSignedContract(IList<Int64> ignoreUserIDs, Action<String> upload)
 		{
 			var contract = repos.Contract.GetContract();
 
@@ -224,12 +226,9 @@ namespace DFM.BusinessLogic.Services
 				.Select(a => a.User.ID)
 				.ToArray();
 
-			var alreadyDidSomething = ignoreUsers
-				.Select(s => s.ID).ToArray();
-
 			var notAccepted = repos.User.NewQuery()
-				.NotIn(c => c.ID, accepted)
-				.NotIn(c => c.ID, alreadyDidSomething)
+				.NotIn(u => u.ID, accepted)
+				.NotIn(u => u.ID, ignoreUserIDs)
 				.List;
 
 			foreach (var user in notAccepted)
@@ -249,8 +248,26 @@ namespace DFM.BusinessLogic.Services
 
 				if (didSomething)
 				{
-					ignoreUsers.Add(user);
+					ignoreUserIDs.Add(user.ID);
 				}
+			}
+		}
+
+		private void wipeBecausePersonAsked(IList<Int64> ignoreUserIDs, Action<String> upload)
+		{
+			var users = repos.User.NewQuery()
+				.NotIn(u => u.ID, ignoreUserIDs)
+				.Where(u => u.Control, c => c.WipeRequest != null)
+				.List;
+
+			foreach (var user in users)
+			{
+				// ReSharper disable once PossibleInvalidOperationException
+				var date = user.Control.WipeRequest.Value;
+
+				delete(user, date, upload, RemovalReason.PersonAsked);
+
+				ignoreUserIDs.Add(user.ID);
 			}
 		}
 
@@ -268,27 +285,17 @@ namespace DFM.BusinessLogic.Services
 			var shouldRemove = date.PassedRemoval() && sent >= 2;
 
 			if (shouldRemove)
-				return delete(user, date, reason, upload);
+			{
+				delete(user, date, upload, reason);
+				return true;
+			}
 
 			if (shouldWarn1 || shouldWarn2)
+			{
 				return warn(user, date, reason);
+			}
 
 			return false;
-		}
-
-		private Boolean delete(User user, DateTime date, RemovalReason reason, Action<String> upload)
-		{
-			inTransaction(
-				"MarkUserDeletion",
-				() => repos.Control.MarkDeletion(user)
-			);
-
-			inTransaction(
-				"DeleteUser",
-				() => repos.Wipe.Execute(user, date, reason, upload)
-			);
-
-			return true;
 		}
 
 		private Boolean warn(User user, DateTime date, RemovalReason reason)
@@ -299,6 +306,23 @@ namespace DFM.BusinessLogic.Services
 			);
 
 			return true;
+		}
+
+		private void delete(User user,
+			DateTime date,
+			Action<String> upload,
+			RemovalReason reason
+		)
+		{
+			inTransaction(
+				"MarkUserDeletion",
+				() => repos.Control.MarkDeletion(user)
+			);
+
+			inTransaction(
+				"DeleteUser",
+				() => repos.Wipe.Execute(user, date, upload, reason)
+			);
 		}
 	}
 }

@@ -24,7 +24,7 @@ namespace DFM.BusinessLogic.Repositories
 		private readonly Repos repos;
 		private readonly Current.GetUrl getUrl;
 
-		public void Execute(User user, DateTime date, RemovalReason reason, Action<String> upload)
+		public void Execute(User user, DateTime date, Action<String> upload, RemovalReason reason)
 		{
 			var accounts = repos.Account.Where(a => a.User.ID == user.ID);
 			String s3 = null;

@@ -4,5 +4,6 @@
 	{
 		NoInteraction = 1,
 		NotSignedContract = 2,
+		PersonAsked = 3,
 	}
 }
