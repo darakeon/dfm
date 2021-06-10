@@ -40,14 +40,14 @@ namespace DFM.MVC.Controllers
 			var result =
 				from fakeUser in fakeUsers
 				select getLayout(Format.MoveNotification(fakeUser))
-				       + getLayout(Format.SecurityAction(fakeUser, SecurityAction.PasswordReset))
-				       + getLayout(Format.SecurityAction(fakeUser, SecurityAction.UserVerification))
-				       + getLayout(Format.UserRemoval(fakeUser, RemovalReason.NoInteraction))
-				       + getLayout(Format.UserRemoval(fakeUser, RemovalReason.NotSignedContract))
-				       + getLayout(Format.WipeNotice(fakeUser, RemovalReason.NoInteraction))
-					   + getLayout(Format.WipeNotice(fakeUser, RemovalReason.NotSignedContract))
-					   + getLayout(Format.WipeNotice(fakeUser, RemovalReason.PersonAsked))
-				       ;
+					+ getLayout(Format.SecurityAction(fakeUser, SecurityAction.PasswordReset))
+					+ getLayout(Format.SecurityAction(fakeUser, SecurityAction.UserVerification))
+					+ getLayout(Format.UserRemoval(fakeUser, RemovalReason.NoInteraction))
+					+ getLayout(Format.UserRemoval(fakeUser, RemovalReason.NotSignedContract))
+					+ getLayout(Format.WipeNotice(fakeUser, RemovalReason.NoInteraction))
+					+ getLayout(Format.WipeNotice(fakeUser, RemovalReason.NotSignedContract))
+					+ getLayout(Format.WipeNotice(fakeUser, RemovalReason.PersonAsked))
+					;
 
 			return View(result);
 		}
