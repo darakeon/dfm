@@ -18,7 +18,7 @@ Scenario: 02. Get translations of Enums
 			| Section   | Project       | Path       | Enum              |
 			| Moves     | Entities      | Enums      | MoveNature        |
 			| Schedules | Entities      | Enums      | ScheduleFrequency |
-			| Schedules | Entities      | Enums      | RemovalReason     |
+			| Users     | Entities      | Enums      | RemovalReason     |
 			| Tokens    | Entities      | Enums      | SecurityAction    |
 			| General   | Entities      | Enums      | OperationType     |
 			| Users     | Generic       |            | Theme             |

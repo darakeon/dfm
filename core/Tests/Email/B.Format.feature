@@ -37,3 +37,8 @@ Scenario: B07. Format wipe by not signed contract notice
 	When a wipe notice is formatted because of NotSignedContract
 		And the e-mail is sent
 	Then there will be a wipe-notice-not-signed-contract e-mail sent
+
+Scenario: B08. Format wipe by person asked
+	When a wipe notice is formatted because of PersonAsked
+		And the e-mail is sent
+	Then there will be a wipe-notice-person-asked e-mail sent

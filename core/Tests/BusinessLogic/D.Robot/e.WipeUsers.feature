@@ -607,3 +607,12 @@ Scenario: De53. Check wipe notice
 		And the count of warnings sent will be 0
 		And there will be a wipe notice sent
 		And it will be registered at wipe table with reason NoInteraction
+
+Scenario: De54. Wipe when user asks too
+	Given data wipe was asked
+	When robot user login
+		And call wipe users
+	Then I will receive no core error
+		And the user won't exist
+		And there will be a wipe notice sent
+		And it will be registered at wipe table with reason PersonAsked
