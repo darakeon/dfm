@@ -31,7 +31,7 @@ namespace DFM.MVC.Models
 		// ReSharper disable once UnusedMember.Global
 		public enum Form
 		{
-			Options,
+			Main,
 			Password,
 			Email,
 			Theme,
