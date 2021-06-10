@@ -37,7 +37,9 @@ namespace DFM.BusinessLogic.Repositories
 
 		public void WarnRemoval(User user, DateTime dateTime, RemovalReason removalReason)
 		{
-			var diff = dateTime.AddDays(90).Date - DateTime.UtcNow.Date;
+			var wipeDate = dateTime.AddDays(90).ToUniversalTime().Date;
+			var now = DateTime.UtcNow.Date;
+			var diff = wipeDate - now;
 			var count = (Int32) diff.TotalDays;
 
 			var dic = new Dictionary<String, String>
