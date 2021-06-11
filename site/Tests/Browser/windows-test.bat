@@ -7,6 +7,10 @@ IF EXIST node_modules_windows (
 	MOVE node_modules_windows node_modules
 )
 
+IF NOT EXIST node_modules (
+	call npm install
+)
+
 cd %~dp0
 
 taskkill /IM "DFM.MVC.exe"
