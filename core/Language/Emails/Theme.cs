@@ -22,7 +22,6 @@ namespace DFM.Language.Emails
 		public static IDictionary<String, String> Get(String json, Theme theme)
 		{
 			var themes = JsonConvert.DeserializeObject<Brightnesses>(json);
-			Console.WriteLine(themes);
 
 			var brightness = theme.Brightness();
 			var color = theme.Color();
