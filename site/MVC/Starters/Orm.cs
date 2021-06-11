@@ -4,6 +4,7 @@ using DFM.Entities;
 using DFM.Generic;
 using DfM.Logs;
 using DFM.MVC.Helpers;
+using DFM.MVC.Helpers.Extensions;
 using Keon.NHibernate.Schema;
 using Keon.NHibernate.Sessions;
 using Microsoft.AspNetCore.Builder;
@@ -21,9 +22,7 @@ namespace DFM.MVC.Starters
 
 				app.Use<Orm>(async (context, next) =>
 				{
-					var path = context.Request.Path.Value;
-
-					if (path != null && path.StartsWith("/Assets"))
+					if (context.IsAsset())
 						return;
 
 					SessionManager.Init(

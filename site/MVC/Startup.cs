@@ -35,6 +35,8 @@ namespace DFM.MVC
 		// ReSharper disable once UnusedMember.Global
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime life)
 		{
+			AppLog.ShowLogOnError(app);
+
 			BaseModel.IsDev = env.IsDevelopment();
 			TZ.Init(env.IsDevelopment());
 
