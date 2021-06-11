@@ -21,10 +21,11 @@ dotnet.exe publish -c Release -o ..\Tests\Browser\server
 cd ..\Tests\Browser
 
 SET ASPNETCORE_ENVIRONMENT=CircleCI
+SET ASPNETCORE_URLS=http://+:2709
 
 cd server
 del tests.db
-start DFM.MVC.exe p2709
+start DFM.MVC.exe
 cd ..
 timeout 10
 
