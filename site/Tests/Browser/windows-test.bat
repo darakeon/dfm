@@ -13,8 +13,6 @@ IF NOT EXIST node_modules (
 
 cd %~dp0
 
-taskkill /IM "DFM.MVC.exe"
-
 cd ..\..\MVC
 libman restore
 dotnet.exe publish -c Release -o ..\Tests\Browser\server
@@ -25,6 +23,7 @@ SET ASPNETCORE_URLS=http://+:2709
 
 cd server
 del tests.db
+taskkill /IM "DFM.MVC.exe"
 start DFM.MVC.exe
 cd ..
 timeout 10
