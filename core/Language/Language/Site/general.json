@@ -26,6 +26,7 @@
 		"Close": "Close",
 		"Accept": "Accept",
 		"Reopen": "Reopen",
+		"EnableWizard": "Enable Wizard",
 
 		"Status": "Status",
 		"Available": "Available",
@@ -47,6 +48,7 @@
 		"NoneLimit": "No limit",
 		"Zero": "Zero",
 		"Settings": "Settings",
+		"Code": "Code",
 
 		"Language": "Language",
 		"LanguageEnUs": "English",
@@ -73,6 +75,7 @@
 		"Yearly": "Yearly",
 		"UserVerification": "User Verification",
 		"PasswordReset": "Password Reset",
+		"RetypePassword": "Retype password",
 		"UnsubscribeMoveMail": "Unsubscribe Move Mail",
 		"Creation": "Creation",
 		"Edition": "Edition",
@@ -164,6 +167,7 @@
 		"Close": "Fechar",
 		"Accept": "Aceitar",
 		"Reopen": "Reabrir",
+		"EnableWizard": "Habilitar Tutorial",
 
 		"Status": "Status",
 		"Available": "Disponível",
@@ -185,6 +189,7 @@
 		"NoneLimit": "Sem limites",
 		"Zero": "Zero",
 		"Settings": "Configurações",
+		"Code": "Código",
 
 		"Language": "Língua",
 		"LanguageEnUs": "Inglês",
@@ -211,6 +216,7 @@
 		"Yearly": "Anual",
 		"UserVerification": "Verificação de Registro",
 		"PasswordReset": "Redefinição de Senha",
+		"RetypePassword": "Redigite a senha",
 		"UnsubscribeMoveMail": "Cancelar e-mails de Movimentações",
 		"Creation": "Criação",
 		"Edition": "Edição",

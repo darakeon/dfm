@@ -11,7 +11,7 @@ using DFM.MVC.Helpers.Global;
 using Keon.MVC.Forms;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace DFM.MVC.Models.UserConfig
+namespace DFM.MVC.Models.Configs
 {
 	public class MainConfig : ConfigInfo
 	{

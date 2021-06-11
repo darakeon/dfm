@@ -3,9 +3,9 @@ using DFM.BusinessLogic.Exceptions;
 
 namespace DFM.MVC.Models
 {
-	public class UsersEndWizardModel : BaseSiteModel
+	public class ConfigsEndWizardModel : BaseSiteModel
 	{
-		public UsersEndWizardModel()
+		public ConfigsEndWizardModel()
 		{
 			try
 			{

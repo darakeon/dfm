@@ -1,4 +1,4 @@
-﻿@model UsersEndWizardModel
+﻿@model ConfigsEndWizardModel
 
 @{
 	Layout = Model.HasError
@@ -19,12 +19,6 @@
 }
 else
 {
-	var menus = new List<WizardMenu>
-	{
-		new(Context.Translate("Wizard_EndTextMenuSettings"), "Skeleton/MenuSettings"),
-		new(Context.Translate("Wizard_EndTextMenuContact"), "Skeleton/MenuContact"),
-	};
-
 	<p class="text-center">
 		@Html.Raw(Context.Translate("Wizard_EndTextThanks").BreakLines())
 	</p>
@@ -34,17 +28,34 @@ else
 	</p>
 
 	<div class="well well-sm">
-		@foreach (var menu in menus)
-		{
-			<div class="row">
-				<div class="col-md-9 col-md-push-1">
-					@menu.Resource
-				</div>
-				<div class="col-md-2 text-right">
-					@await Html.PartialAsync(menu.Partial)
-				</div>
+		<div class="row">
+			<div class="col-md-9 col-md-push-1">
+				@Context.Translate("Wizard_EndTextMenuSettings")
 			</div>
-		}
+			<div class="col-md-2 text-right">
+				@{
+					var settingsRoute = new Default.Main();
+					var settingsParams = new
+					{
+						action = "Config",
+						controller = "Users",
+						area = settingsRoute.Area
+					};
+				}
+
+				<a href="@Url.RouteUrl(settingsRoute.Name, settingsParams)" role="button">
+					<span class="glyphicon glyphicon-cog" title="@Context.Translate("Settings")"></span>
+				</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-9 col-md-push-1">
+				@Context.Translate("Wizard_EndTextMenuContact")
+			</div>
+			<div class="col-md-2 text-right">
+				@await Html.PartialAsync("Skeleton/MenuContact")
+			</div>
+		</div>
 	</div>
 
 	<p class="text-center">

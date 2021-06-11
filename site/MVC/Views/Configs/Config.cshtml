@@ -1,10 +1,10 @@
-﻿@model UsersConfigModel
+﻿@model ConfigsConfigModel
 @{
 	ViewBag.Title = Context.Translate("Settings");
 	ViewBag.WizardMessage = "Settings";
 	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
 
-	var tabs = Enum.GetValues(typeof (UsersConfigModel.Form));
+	var tabs = Enum.GetValues(typeof (ConfigsConfigModel.Form));
 
 	ViewBag.FormSizeSm = 8;
 	ViewBag.FormSizeLg = 6;
@@ -26,14 +26,14 @@
 }
 
 <ul class="nav nav-tabs">
-	@foreach (UsersConfigModel.Form tab in tabs)
+	@foreach (ConfigsConfigModel.Form tab in tabs)
 	{
 		var name = tab.ToString();
 		var lower = name.ToLower();
 
 		var button = Context.Translate("Save", $"{name}Settings");
 
-		if (tab == UsersConfigModel.Form.TFA && Model.TFA.IsActive)
+		if (tab == ConfigsConfigModel.Form.TFA && Model.TFA.IsActive)
 		{
 			button = Context.Translate("TFARemove");
 		}
@@ -71,7 +71,7 @@
 
 		<small>
 			<a class="pull-left text-left"
-					href="@Url.Action(action, "Users")">
+					href="@Url.Action(action, "Configs")">
 				@Html.Raw(Context.Translate(action).Replace("\n", "<br />"))
 			</a>
 		</small>

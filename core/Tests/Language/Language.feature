@@ -21,9 +21,9 @@ Scenario: 02. Get translations of Enums
 			| Users     | Entities      | Enums      | RemovalReason     |
 			| Tokens    | Entities      | Enums      | SecurityAction    |
 			| General   | Entities      | Enums      | OperationType     |
-			| Users     | Generic       |            | Theme             |
-			| Users     | Generic       |            | ThemeBrightness   |
-			| Users     | Generic       |            | ThemeColor        |
+			| Configs   | Generic       |            | Theme             |
+			| Configs   | Generic       |            | ThemeBrightness   |
+			| Configs   | Generic       |            | ThemeColor        |
 			| General   | BusinessLogic | Exceptions | Error             |
 			| Email     | Email         |            | EmailStatus       |
 	When I try get the translate
