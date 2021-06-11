@@ -20,9 +20,7 @@ function timeFactor() {
 }
 
 function count30secs() {
-	const now = new Date()
-	const start = new Date(1970, 0, 1)
-	const milliseconds = (now - start)
+	const milliseconds = Date.now()
 	const seconds = milliseconds / 1000
 	return Math.floor(seconds / 30)
 }
