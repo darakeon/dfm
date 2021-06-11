@@ -33,5 +33,26 @@ namespace DFM.MVC.Helpers.Extensions
 					return new KeyValuePair<String, StringValues>[0];
 			}
 		}
+
+		public static Boolean IsAsset(this HttpContext context)
+		{
+			var path = context.Request.Path.Value;
+			return path != null && path.StartsWith("/Assets");
+		}
+
+		public static void InitLog(this HttpContext context)
+		{
+			context.Items.Add("Logs", new List<String>());
+		}
+
+		public static void AddLog(this HttpContext context, String log)
+		{
+			GetLogs(context).Add(log);
+		}
+
+		public static List<String> GetLogs(this HttpContext context)
+		{
+			return context.Items["Logs"] as List<String>;
+		}
 	}
 }

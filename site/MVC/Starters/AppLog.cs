@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using DFM.MVC.Helpers.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 
@@ -70,10 +72,28 @@ namespace DFM.MVC.Starters
 			if (!String.IsNullOrEmpty(specific))
 				specific = $"[{specific}] ";
 
-			Console.WriteLine(
+			context.AddLog(
 				$"{state} {typeof(T).Name} {specific}" +
 				$"at ${context.Request.Path}"
 			);
+		}
+
+		public static void ShowLogOnError(IApplicationBuilder app)
+		{
+			app.Use(async (context, next) =>
+			{
+				context.InitLog();
+
+				try
+				{
+					await next();
+				}
+				catch
+				{
+					context.GetLogs().ForEach(Console.WriteLine);
+					throw;
+				}
+			});
 		}
 	}
 }
