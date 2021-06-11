@@ -27,6 +27,7 @@ taskkill /IM "DFM.MVC.exe"
 start DFM.MVC.exe
 cd ..
 timeout 10
+curl http://localhost:2709 > NUL
 
 call node contract.js
 
