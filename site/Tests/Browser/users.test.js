@@ -1,4 +1,3 @@
-const puppeteer = require('puppeteer')
 const db = require('./db')
 const puppy = require('./puppy')
 const tfa = require('./tfa')

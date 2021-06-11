@@ -1,7 +1,3 @@
-const puppeteer = require('puppeteer')
-const fs = require('fs')
-
-const db = require('./db.js')
 const puppy = require('./puppy.js')
 
 describe('Logins', () => {
