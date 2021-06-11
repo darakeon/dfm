@@ -1,8 +1,6 @@
 const { get } = require('axios')
 const db = require('./db')
 
-const { setDefaultOptions } = require('expect-puppeteer')
-
 let initialized = false;
 
 async function init() {
