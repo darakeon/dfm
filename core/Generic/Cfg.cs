@@ -18,8 +18,6 @@ namespace DFM.Generic
 				.AddJsonFile("s3.json", true)
 				;
 
-			Console.WriteLine($"ENV: [{environment}]");
-
 			if (environment != null)
 			{
 				builder
