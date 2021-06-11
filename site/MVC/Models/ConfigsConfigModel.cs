@@ -1,11 +1,11 @@
 ﻿using System;
-using DFM.MVC.Models.UserConfig;
+using DFM.MVC.Models.Configs;
 
 namespace DFM.MVC.Models
 {
-	public class UsersConfigModel : BaseSiteModel
+	public class ConfigsConfigModel : BaseSiteModel
 	{
-		public UsersConfigModel()
+		public ConfigsConfigModel()
 		{
 			Main = new MainConfig(admin, current, translator, errorAlert);
 			Info = new UserInfo(safe, translator, errorAlert);
@@ -21,12 +21,12 @@ namespace DFM.MVC.Models
 		public Form ActiveForm { get; set; }
 
 		public String LanguageFieldName =>
-			getName<UsersConfigModel>(m => m.Main.Language);
+			getName<ConfigsConfigModel>(m => m.Main.Language);
 
 		public String BackTo { get; set; }
 
 		public String BackFieldName =>
-			getName<UsersConfigModel>(m => m.BackTo);
+			getName<ConfigsConfigModel>(m => m.BackTo);
 
 		// ReSharper disable once UnusedMember.Global
 		public enum Form

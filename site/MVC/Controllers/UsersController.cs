@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
 using DFM.MVC.Helpers.Extensions;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Controllers
@@ -106,56 +104,6 @@ namespace DFM.MVC.Controllers
 				: View(model);
 		}
 
-		[HttpGetAndHead, Auth]
-		public IActionResult Config()
-		{
-			return View(new UsersConfigModel());
-		}
-
-		[HttpPost, ValidateAntiForgeryToken, Auth]
-		public IActionResult ConfigMain(UsersConfigModel model)
-		{
-			return config(model, () => model.Main.Save());
-		}
-
-		[HttpPost, ValidateAntiForgeryToken, Auth]
-		public IActionResult ConfigPassword(UsersConfigModel model)
-		{
-			return config(model, () => model.Info.ChangePassword());
-		}
-
-		[HttpPost, ValidateAntiForgeryToken, Auth]
-		public IActionResult ConfigEmail(UsersConfigModel model)
-		{
-			return config(model, () => model.Info.UpdateEmail());
-		}
-
-		[HttpPost, ValidateAntiForgeryToken, Auth]
-		public IActionResult ConfigTheme(UsersConfigModel model)
-		{
-			return config(model, () => model.ThemeOpt.Change());
-		}
-
-		[HttpPost, ValidateAntiForgeryToken, Auth]
-		public IActionResult ConfigTFA(UsersConfigModel model)
-		{
-			return config(model, () => model.TFA.Change());
-		}
-
-		private IActionResult config(UsersConfigModel model, Func<IList<String>> save)
-		{
-			if (ModelState.IsValid)
-				addErrors(save());
-
-			if (!ModelState.IsValid)
-				return View("Config", model);
-
-			if (!String.IsNullOrEmpty(model.BackTo))
-				return Redirect(model.BackTo);
-
-			return RedirectToAction("Index", "Accounts");
-		}
-
 		[HttpGetAndHead]
 		public IActionResult Contract()
 		{
@@ -173,13 +121,6 @@ namespace DFM.MVC.Controllers
 				return RedirectToAction("Index", "Accounts");
 			}
 
-			return View(model);
-		}
-
-		[HttpPost, ValidateAntiForgeryToken, Auth]
-		public IActionResult EndWizard()
-		{
-			var model = new UsersEndWizardModel();
 			return View(model);
 		}
 
@@ -201,29 +142,6 @@ namespace DFM.MVC.Controllers
 			}
 
 			return View(model);
-		}
-
-		[HttpPost, ValidateAntiForgeryToken]
-		public IActionResult ChangeLanguageOffline(UsersConfigModel model)
-		{
-			HttpContext.Session.SetString("Language", model.Main.Language);
-			return Redirect(model.BackTo);
-		}
-
-		[HttpGetAndHead]
-		public IActionResult TFAPasswordEnable()
-		{
-			var model = new UsersTFAModel();
-			model.UseAsPassword(true);
-			return RedirectToAction("Config");
-		}
-
-		[HttpGetAndHead]
-		public IActionResult TFAPasswordDisable()
-		{
-			var model = new UsersTFAModel();
-			model.UseAsPassword(false);
-			return RedirectToAction("Config");
 		}
 	}
 }

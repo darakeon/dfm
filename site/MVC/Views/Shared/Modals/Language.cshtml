@@ -1,11 +1,11 @@
 ﻿@model BaseModel
 
 @{
-	var configModel = new UsersConfigModel();
+	var configModel = new ConfigsConfigModel();
 	var defaultRoute = new Default.Main();
 	var routeValues = new
 	{
-		controller = "Users",
+		controller = "Configs",
 		action = configModel.IsAuthenticated
 			? "ConfigMain"
 			: "ChangeLanguageOffline"

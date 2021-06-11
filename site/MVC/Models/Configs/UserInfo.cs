@@ -5,7 +5,7 @@ using DFM.BusinessLogic.Response;
 using DFM.BusinessLogic.Services;
 using DFM.MVC.Helpers.Global;
 
-namespace DFM.MVC.Models.UserConfig
+namespace DFM.MVC.Models.Configs
 {
 	public class UserInfo
 	{

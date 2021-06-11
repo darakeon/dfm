@@ -7,7 +7,7 @@ using DFM.BusinessLogic.Services;
 using DFM.MVC.Helpers.Global;
 using Keon.TwoFactorAuth;
 
-namespace DFM.MVC.Models.UserConfig
+namespace DFM.MVC.Models.Configs
 {
 	public class TFAForm
 	{

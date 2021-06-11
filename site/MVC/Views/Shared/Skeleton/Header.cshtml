@@ -89,7 +89,13 @@
 					</li>
 
 					<li>
-						@await Html.PartialAsync("Skeleton/MenuSettings")
+						@{
+							var settingsRoute = new Default.Main();
+						}
+
+						<a href="@Url.RouteUrl(settingsRoute.Name, new {action = "Config", controller = "Configs", area = settingsRoute.Area})" role="button">
+							<span class="glyphicon glyphicon-cog" title="@Context.Translate("Settings")"></span>
+						</a>
 					</li>
 
 					<li>
