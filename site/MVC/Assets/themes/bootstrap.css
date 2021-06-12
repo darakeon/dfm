@@ -321,6 +321,18 @@ td, th {
 	font-size: 1.5em;
 }
 
+.btn:after {
+	font-family: 'Glyphicons Halflings';
+	font-size: 1em;
+	margin: 0 0 -6px 10px;
+	display: inline-block;
+	overflow-y: hidden;
+}
+
+	.btn.no-glyph:after {
+		content: none;
+	}
+
 .glyphicon-asterisk:before {
 	content: "\002a"
 }
@@ -670,11 +682,13 @@ td, th {
 }
 
 .alert-danger:before,
+.btn-danger:after,
 .glyphicon-remove-sign:before {
 	content: "\e083"
 }
 
 .alert-success:before,
+.btn-success:after,
 .glyphicon-ok-sign:before {
 	content: "\e084"
 }
@@ -684,6 +698,7 @@ td, th {
 }
 
 .alert-info:before,
+.btn-info:after,
 .glyphicon-info-sign:before {
 	content: "\e086"
 }
@@ -733,6 +748,7 @@ td, th {
 }
 
 .alert-warning:before,
+.btn-warning:after,
 .glyphicon-exclamation-sign:before {
 	content: "\e101"
 }
