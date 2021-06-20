@@ -10,7 +10,6 @@
 		"ConfirmDeleteSchedule": "Do you really want to DELETE Schedule '{0}'?",
 		"Run": "Run",
 		"Deleted": "Deleted",
-		"ScheduleRobotInterval": "Schedules are run periodically.\nIn case your schedule should have run today and the move is not created yet wait half an hour.\nIf it still does not happen contact us.",
 	},
 	"pt-BR": {
 		"Amount": "Qte",
@@ -23,6 +22,5 @@
 		"ConfirmDeleteSchedule": "Realmente deseja APAGAR o Agendamento '{0}'?",
 		"Run": "Rodadas",
 		"Deleted": "Excluídas",
-		"ScheduleRobotInterval": "Agendamentos são executados periodicamente.\nCaso seu agendamento seja para hoje e a movimentação não tenha sido criada ainda, aguarde meia hora.\nSe ainda não tiver sido executado, entre em contato conosco.",
 	},
 }
