@@ -1,12 +1,11 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace DFM.MVC.Helpers.Authorize
 {
 	public class JsonAuthAttribute : AuthAttribute
 	{
-		public JsonAuthAttribute(Boolean needAdmin = false)
-			: base(needAdmin) { }
+		public JsonAuthAttribute(AuthParams mandatory = AuthParams.None)
+			: base(mandatory) { }
 
 		protected override void goToContractPage(AuthorizationFilterContext filterContext)
 		{

@@ -46,7 +46,7 @@ namespace DFM.MVC.Areas.Api.Controllers
 			return json(model.Save);
 		}
 
-		[HttpPost, ApiAuth(false)]
+		[HttpPost, ApiAuth(AuthParams.IgnoreTFA)]
 		public IActionResult TFA(String code)
 		{
 			var model = new UserTFAModel(code);

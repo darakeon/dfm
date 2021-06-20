@@ -111,7 +111,7 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
-		[HttpPost, ValidateAntiForgeryToken, Auth(ignoreContract: true)]
+		[HttpPost, ValidateAntiForgeryToken, Auth(AuthParams.IgnoreContract)]
 		public IActionResult Contract(UsersContractModel model)
 		{
 			model.AcceptContract(ModelState.AddModelError);
@@ -124,14 +124,14 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
-		[HttpGetAndHead, Auth(ignoreContract: true, ignoreTFA: true)]
+		[HttpGetAndHead, Auth(AuthParams.IgnoreContract | AuthParams.IgnoreTFA)]
 		public IActionResult TFA()
 		{
 			var model = new UsersTFAModel();
 			return View(model);
 		}
 
-		[HttpPost, ValidateAntiForgeryToken, Auth(ignoreContract: true, ignoreTFA: true)]
+		[HttpPost, ValidateAntiForgeryToken, Auth(AuthParams.IgnoreContract | AuthParams.IgnoreTFA)]
 		public IActionResult TFA(UsersTFAModel model)
 		{
 			model.Validate(ModelState.AddModelError);

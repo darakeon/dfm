@@ -7,22 +7,22 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Areas.Api.Controllers
 {
-	[Area(Route.ApiArea)]
+	[Area(Route.ApiArea), Auth(AuthParams.Admin)]
 	public class LogController : BaseJsonController
 	{
-		[HttpGetAndHead, Auth(needAdmin:true)]
+		[HttpGetAndHead]
 		public IActionResult Count()
 		{
 			return json(() => new LogFile(false));
 		}
 
-		[HttpGetAndHead, Auth(needAdmin: true)]
+		[HttpGetAndHead]
 		public IActionResult List()
 		{
 			return json(() => new LogFile(true));
 		}
 
-		[HttpPost, HttpGet, Auth(needAdmin: true)]
+		[HttpPost, HttpGetAndHead]
 		public IActionResult Archive(Int32 id)
 		{
 			return json(() => new LogFile(true).Archive(id));

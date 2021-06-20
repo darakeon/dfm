@@ -11,32 +11,29 @@ namespace DFM.MVC.Helpers.Authorize
 {
 	public class AuthAttribute : Attribute, IAuthorizationFilter
 	{
-		private readonly Boolean needAdmin;
-		private readonly Boolean ignoreContract;
-		private readonly Boolean ignoreTFA;
-		private readonly Boolean isMobile;
+		private readonly AuthParams mandatory;
 
-		public AuthAttribute(
-			Boolean needAdmin = false,
-			Boolean ignoreContract = false,
-			Boolean ignoreTFA = false,
-			Boolean isMobile = false
-		)
+		public AuthAttribute(AuthParams mandatory = AuthParams.None)
 		{
-			this.ignoreContract = ignoreContract;
-			this.needAdmin = needAdmin;
-			this.ignoreTFA = ignoreTFA;
-			this.isMobile = isMobile;
+			this.mandatory = mandatory;
 		}
 
 		private Service service;
 		private Current current => service.Current;
 		private ServiceAccess access => service.Access;
 		private Boolean isAuthenticated => current.IsAuthenticated;
-		private Boolean denyByAdmin => needAdmin && !current.IsAdm;
-		private Boolean denyByContract => !ignoreContract && !access.Safe.IsLastContractAccepted();
-		private Boolean denyByTFA => !ignoreTFA && !access.Safe.VerifyTicketTFA();
-		private Boolean denyByMobile => isMobile && !access.Safe.VerifyTicketType(TicketType.Mobile);
+
+		private Boolean denyByAdmin    => mandatory.HasFlag(AuthParams.Admin)
+		                                  && !current.IsAdm;
+
+		private Boolean denyByContract => !mandatory.HasFlag(AuthParams.IgnoreContract)
+		                                  && !access.Safe.IsLastContractAccepted();
+		
+		private Boolean denyByTFA      => !mandatory.HasFlag(AuthParams.IgnoreTFA)
+		                                  && !access.Safe.VerifyTicketTFA();
+		
+		private Boolean denyByMobile   => mandatory.HasFlag(AuthParams.Mobile)
+		                                  && !access.Safe.VerifyTicketType(TicketType.Mobile);
 
 		public void OnAuthorization(AuthorizationFilterContext context)
 		{
