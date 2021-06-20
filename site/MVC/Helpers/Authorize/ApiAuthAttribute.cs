@@ -1,13 +1,12 @@
-﻿using System;
-using DFM.MVC.Starters.Routes;
+﻿using DFM.MVC.Starters.Routes;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace DFM.MVC.Helpers.Authorize
 {
 	public class ApiAuthAttribute : AuthAttribute
 	{
-		public ApiAuthAttribute(Boolean needTFA = true, Boolean needAdmin = false)
-			: base(needAdmin: needAdmin, needTFA: needTFA, isMobile: true) { }
+		public ApiAuthAttribute(AuthParams mandatory = AuthParams.None)
+			: base(mandatory | AuthParams.Mobile) { }
 
 		protected override void goToContractPage(AuthorizationFilterContext filterContext)
 		{
