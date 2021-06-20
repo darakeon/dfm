@@ -1,5 +1,6 @@
 {
 	"en-US": {
+		"None": "No errors found",
 		"EmailDisabled": "E-mail sender system disabled",
 		"EmailSent": "E-mail successfully sent",
 		"InvalidSubject": "The subject is required",
@@ -8,6 +9,7 @@
 		"EmailNotSent": "There is a problem on e-mail sender system",
 	},
 	"pt-BR": {
+		"None": "Não foram encontrados erros",
 		"EmailDisabled": "Sistema de envio de e-mails desabilitado",
 		"EmailSent": "E-mail enviado com sucesso",
 		"InvalidSubject": "Assunto em branco",
