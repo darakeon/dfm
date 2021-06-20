@@ -12,20 +12,20 @@ namespace DFM.MVC.Helpers.Authorize
 	public class AuthAttribute : Attribute, IAuthorizationFilter
 	{
 		private readonly Boolean needAdmin;
-		private readonly Boolean needContract;
-		private readonly Boolean needTFA;
+		private readonly Boolean ignoreContract;
+		private readonly Boolean ignoreTFA;
 		private readonly Boolean isMobile;
 
 		public AuthAttribute(
 			Boolean needAdmin = false,
-			Boolean needContract = true,
-			Boolean needTFA = true,
+			Boolean ignoreContract = false,
+			Boolean ignoreTFA = false,
 			Boolean isMobile = false
 		)
 		{
-			this.needContract = needContract;
+			this.ignoreContract = ignoreContract;
 			this.needAdmin = needAdmin;
-			this.needTFA = needTFA;
+			this.ignoreTFA = ignoreTFA;
 			this.isMobile = isMobile;
 		}
 
@@ -34,8 +34,8 @@ namespace DFM.MVC.Helpers.Authorize
 		private ServiceAccess access => service.Access;
 		private Boolean isAuthenticated => current.IsAuthenticated;
 		private Boolean denyByAdmin => needAdmin && !current.IsAdm;
-		private Boolean denyByContract => needContract && !access.Safe.IsLastContractAccepted();
-		private Boolean denyByTFA => needTFA && !access.Safe.VerifyTicketTFA();
+		private Boolean denyByContract => !ignoreContract && !access.Safe.IsLastContractAccepted();
+		private Boolean denyByTFA => !ignoreTFA && !access.Safe.VerifyTicketTFA();
 		private Boolean denyByMobile => isMobile && !access.Safe.VerifyTicketType(TicketType.Mobile);
 
 		public void OnAuthorization(AuthorizationFilterContext context)
