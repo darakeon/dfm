@@ -1,3 +1,4 @@
+cd ..
 clear
 
 if [ -d "node_modules_linux" ]; then

@@ -2,20 +2,21 @@
 
 cls
 
+SET TESTS_PATH=%~dp0..\
+cd %TESTS_PATH%
+
 IF EXIST node_modules_windows (
 	MOVE node_modules node_modules_linux
 	MOVE node_modules_windows node_modules
 )
 
 IF NOT EXIST node_modules (
-	call npm install > %~dp0\log\node.log
+	call npm install > %TESTS_PATH%\log\node.log
 )
 
-cd %~dp0
-
 cd ..\..\MVC
-libman restore > %~dp0\log\libman.log
-dotnet.exe publish -c Release -o ..\Tests\Browser\server > %~dp0\log\dotnet.log
+libman restore > %TESTS_PATH%\log\libman.log
+dotnet.exe publish -c Release -o ..\Tests\Browser\server > %TESTS_PATH%\log\dotnet.log
 cd ..\Tests\Browser
 
 SET ASPNETCORE_ENVIRONMENT=CircleCI
@@ -26,8 +27,8 @@ del tests.db 2> NUL
 taskkill /IM "DFM.MVC.exe" 2> NUL
 start DFM.MVC.exe
 cd ..
-timeout 10
-curl -s http://localhost:2709 > %~dp0\log\site.log
+
+call %TESTS_PATH%\scripts\check-server.bat .
 
 call node contract.js
 
