@@ -3902,7 +3902,7 @@ tbody.collapse.in {
 	list-style: none;
 	font-size: 15px;
 	text-align: left;
-	background-color: var(--neutral-0);
+	background-color: var(--primary-0);
 	border: 1px solid var(--neutral-3);
 	border: 1px solid var(--transparent-0-4);
 	border-radius: 4px;
@@ -3930,8 +3930,9 @@ tbody.collapse.in {
 		clear: both;
 		font-weight: normal;
 		line-height: 1.42857143;
-		color: var(--neutral-4);
-		white-space: nowrap
+		color: var(--neutral-2);
+		white-space: nowrap;
+		cursor: pointer;
 	}
 
 		.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {

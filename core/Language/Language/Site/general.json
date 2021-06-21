@@ -139,6 +139,12 @@
 		"NoInteraction": "Lack of interaction",
 		"NotSignedContract": "Not signed contract",
 		"PersonAsked": "Person asked",
+
+		"MainSettings": "Main",
+		"PasswordSettings": "Password",
+		"EmailSettings": "E-mail",
+		"ThemeSettings": "Colors",
+		"TFASettings": "Safer login",
 	},
 	"pt-BR": {
 		"CurrentLanguage": "português",
@@ -280,5 +286,11 @@
 		"NoInteraction": "Falta de interação",
 		"NotSignedContract": "Contrato não aceito",
 		"PersonAsked": "Pessoa requisitou", 
+
+		"MainSettings": "Geral",
+		"PasswordSettings": "Senha",
+		"EmailSettings": "E-mail",
+		"ThemeSettings": "Cores",
+		"TFASettings": "Login mais seguro",
 	},
 }
