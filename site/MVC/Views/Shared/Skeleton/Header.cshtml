@@ -88,14 +88,38 @@
 						</a>
 					</li>
 
-					<li>
+					<li class="dropdown">
 						@{
 							var settingsRoute = new Default.Main();
+							var url = Url.RouteUrl(
+								settingsRoute.Name,
+								new
+								{
+									action = "Config",
+									controller = "Configs",
+									area = settingsRoute.Area
+								}
+							);
+							var tabs = Enum.GetValues(typeof (ConfigsConfigModel.Form));
 						}
 
-						<a href="@Url.RouteUrl(settingsRoute.Name, new {action = "Config", controller = "Configs", area = settingsRoute.Area})" role="button">
+						<a class="dropdown-toggle" data-toggle="dropdown" role="button">
 							<span class="glyphicon glyphicon-cog" title="@Context.Translate("Settings")"></span>
 						</a>
+
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+							@foreach (ConfigsConfigModel.Form tab in tabs)
+							{
+								var name = tab.ToString();
+								var lower = name.ToLower();
+
+								<li>
+									<a href="@url#@lower" class="text-right">
+										@Context.Translate($"{name}Settings")
+									</a>
+								</li>
+							}
+						</ul>
 					</li>
 
 					<li>

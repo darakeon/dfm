@@ -1,11 +1,6 @@
 {
 	"en-US": {
 		"Save": "Save",
-		"MainSettings": "Main",
-		"PasswordSettings": "Password",
-		"EmailSettings": "E-mail",
-		"ThemeSettings": "Colors",
-		"TFASettings": "Safer login",
 		"TimeZone": "Time zone",
 		"UseCategories": "Use categories",
 		"SendMoveEmail": "Send e-mail when record move",
@@ -52,11 +47,6 @@
 	},
 	"pt-BR": {
 		"Save": "Salvar",
-		"MainSettings": "Geral",
-		"PasswordSettings": "Senha",
-		"EmailSettings": "E-mail",
-		"ThemeSettings": "Cores",
-		"TFASettings": "Login mais seguro",
 		"TimeZone": "Fuso horário",
 		"UseCategories": "Usar categorias",
 		"SendMoveEmail": "Enviar e-mail ao gravar movimentação",

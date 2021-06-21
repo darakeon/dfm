@@ -249,3 +249,12 @@ tr.sum-factor {
 	bottom: 2em;
 	right: 2em;
 }
+
+.dropdown-menu {
+	margin-top: -10px !important;
+	background: var(--primary-0);
+}
+
+.dropdown-menu a {
+	color: var(--neutral-2);
+}
