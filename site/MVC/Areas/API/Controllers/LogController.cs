@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Areas.Api.Controllers
 {
-	[Area(Route.ApiArea), Auth(AuthParams.Admin)]
+	[Auth(AuthParams.Admin), Area(Route.ApiArea)]
 	public class LogController : BaseJsonController
 	{
 		[HttpGetAndHead]

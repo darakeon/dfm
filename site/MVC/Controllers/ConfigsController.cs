@@ -10,37 +10,37 @@ namespace DFM.MVC.Controllers
 {
 	public class ConfigsController : BaseController
 	{
-		[HttpGetAndHead, Auth]
+		[Auth, HttpGetAndHead]
 		public IActionResult Config()
 		{
 			return View(new ConfigsConfigModel());
 		}
 
-		[HttpPost, ValidateAntiForgeryToken, Auth]
+		[Auth, HttpPost, ValidateAntiForgeryToken]
 		public IActionResult ConfigMain(ConfigsConfigModel model)
 		{
 			return config(model, () => model.Main.Save());
 		}
 
-		[HttpPost, ValidateAntiForgeryToken, Auth]
+		[Auth, HttpPost, ValidateAntiForgeryToken]
 		public IActionResult ConfigPassword(ConfigsConfigModel model)
 		{
 			return config(model, () => model.Info.ChangePassword());
 		}
 
-		[HttpPost, ValidateAntiForgeryToken, Auth]
+		[Auth, HttpPost, ValidateAntiForgeryToken]
 		public IActionResult ConfigEmail(ConfigsConfigModel model)
 		{
 			return config(model, () => model.Info.UpdateEmail());
 		}
 
-		[HttpPost, ValidateAntiForgeryToken, Auth]
+		[Auth, HttpPost, ValidateAntiForgeryToken]
 		public IActionResult ConfigTheme(ConfigsConfigModel model)
 		{
 			return config(model, () => model.ThemeOpt.Change());
 		}
 
-		[HttpPost, ValidateAntiForgeryToken, Auth]
+		[Auth, HttpPost, ValidateAntiForgeryToken]
 		public IActionResult ConfigTFA(ConfigsConfigModel model)
 		{
 			return config(model, () => model.TFA.Change());
@@ -60,8 +60,7 @@ namespace DFM.MVC.Controllers
 			return RedirectToAction("Index", "Accounts");
 		}
 
-
-		[HttpGetAndHead]
+		[Auth, HttpGetAndHead]
 		public IActionResult TFAPasswordEnable()
 		{
 			var model = new ConfigsTFAModel();
@@ -69,7 +68,7 @@ namespace DFM.MVC.Controllers
 			return RedirectToAction("Config");
 		}
 
-		[HttpGetAndHead]
+		[Auth, HttpGetAndHead]
 		public IActionResult TFAPasswordDisable()
 		{
 			var model = new ConfigsTFAModel();
@@ -84,7 +83,7 @@ namespace DFM.MVC.Controllers
 			return Redirect(model.BackTo);
 		}
 
-		[HttpPost, ValidateAntiForgeryToken, Auth]
+		[Auth, HttpPost, ValidateAntiForgeryToken]
 		public IActionResult EndWizard()
 		{
 			var model = new ConfigsEndWizardModel();

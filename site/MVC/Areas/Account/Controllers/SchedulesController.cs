@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Areas.Account.Controllers
 {
-	[Area(Route.AccountArea), Auth]
+	[Auth, Area(Route.AccountArea)]
 	public class SchedulesController : BaseAccountsController
 	{
 		[HttpGetAndHead]
