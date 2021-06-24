@@ -1,13 +1,13 @@
 ﻿@model BaseModel
 
 @{
-	var configModel = new ConfigsConfigModel();
+	var configModel = new ConfigsIndexModel();
 	var defaultRoute = new Default.Main();
 	var routeValues = new
 	{
 		controller = "Configs",
 		action = configModel.IsAuthenticated
-			? "ConfigMain"
+			? "Index"
 			: "ChangeLanguageOffline"
 	};
 }
@@ -28,7 +28,7 @@
 					defaultRoute.Name,
 					routeValues
 				)) {
-					var langList = configModel.Main
+					var langList = configModel
 						.LanguageList
 						.OrderByDescending(l => l.Value);
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,15 +12,21 @@ namespace DFM.MVC.Controllers
 	public class ConfigsController : BaseController
 	{
 		[Auth, HttpGetAndHead]
-		public IActionResult Config()
+		public IActionResult Index()
 		{
-			return View(new ConfigsConfigModel());
+			return View(new ConfigsIndexModel());
 		}
 
 		[Auth, HttpPost, ValidateAntiForgeryToken]
-		public IActionResult ConfigMain(ConfigsConfigModel model)
+		public IActionResult Index(ConfigsIndexModel model)
 		{
-			return config(model, () => model.Main.Save());
+			return config(model, "Index");
+		}
+
+		[HttpGetAndHead, Auth]
+		public IActionResult Config()
+		{
+			return View(new ConfigsConfigModel());
 		}
 
 		[Auth, HttpPost, ValidateAntiForgeryToken]
@@ -46,13 +53,27 @@ namespace DFM.MVC.Controllers
 			return config(model, () => model.TFA.Change());
 		}
 
+		private IActionResult config(ConfigsModel model, [AspMvcView] String view)
+		{
+			if (ModelState.IsValid)
+				addErrors(model.Save());
+
+			if (!ModelState.IsValid)
+				return View(view, model);
+
+			if (!String.IsNullOrEmpty(model.BackTo))
+				return Redirect(model.BackTo);
+
+			return RedirectToAction("Index", "Accounts");
+		}
+
 		private IActionResult config(ConfigsConfigModel model, Func<IList<String>> save)
 		{
 			if (ModelState.IsValid)
 				addErrors(save());
 
 			if (!ModelState.IsValid)
-				return View("Config", model);
+				return View(model);
 
 			if (!String.IsNullOrEmpty(model.BackTo))
 				return Redirect(model.BackTo);
@@ -77,9 +98,9 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
-		public IActionResult ChangeLanguageOffline(ConfigsConfigModel model)
+		public IActionResult ChangeLanguageOffline(ConfigsIndexModel model)
 		{
-			HttpContext.Session.SetString("Language", model.Main.Language);
+			HttpContext.Session.SetString("Language", model.NewLanguage);
 			return Redirect(model.BackTo);
 		}
 

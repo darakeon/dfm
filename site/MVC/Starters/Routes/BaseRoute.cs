@@ -1,5 +1,7 @@
 ﻿using System;
 using JetBrains.Annotations;
+using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DFM.MVC.Starters.Routes
 {
@@ -30,6 +32,21 @@ namespace DFM.MVC.Starters.Routes
 						? "_" + getName(type.DeclaringType)
 						: ""
 				);
+		}
+
+		public IHtmlContent MakeUrl(IHtmlHelper html,
+			String text,
+			[AspMvcAction] String action,
+			[AspMvcController] String controller,
+			Object htmlAttributes
+		)
+		{
+			return html.RouteLink(
+				text,
+				Name,
+				new {action, controller, area = Area},
+				htmlAttributes
+			);
 		}
 
 		public override Boolean Equals(Object obj)
