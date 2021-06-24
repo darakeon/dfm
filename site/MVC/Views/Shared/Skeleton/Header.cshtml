@@ -1,4 +1,5 @@
-﻿@model BaseSiteModel
+﻿@using JetBrains.Annotations
+@model BaseSiteModel
 
 @{
 	var accountArea = Model as BaseAccountModel;
@@ -88,18 +89,9 @@
 						</a>
 					</li>
 
-					<li class="dropdown">
+					<li class="dropdown" id="settings">
 						@{
 							var settingsRoute = new Default.Main();
-							var url = Url.RouteUrl(
-								settingsRoute.Name,
-								new
-								{
-									action = "Config",
-									controller = "Configs",
-									area = settingsRoute.Area
-								}
-							);
 							var tabs = Enum.GetValues(typeof (ConfigsConfigModel.Form));
 						}
 
@@ -108,15 +100,23 @@
 						</a>
 
 						<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+							<li id="settings_main">
+								@settingsRoute.MakeUrl(
+									Html, 
+									Context.Translate("MainSettings"),
+									"Index", "Configs",
+									new { @class = "text-right" }
+								)
+							</li>
 							@foreach (ConfigsConfigModel.Form tab in tabs)
 							{
-								var name = tab.ToString();
-								var lower = name.ToLower();
-
 								<li>
-									<a href="@url#@lower" class="text-right">
-										@Context.Translate($"{name}Settings")
-									</a>
+									@settingsRoute.MakeUrl(
+										Html, 
+										Context.Translate($"{tab}Settings"),
+										"Config", "Configs",
+										new { @class = "text-right" }
+									)
 								</li>
 							}
 						</ul>
