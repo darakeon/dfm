@@ -23,16 +23,22 @@ namespace DFM.MVC.Controllers
 			return config(model, "Index");
 		}
 
+		[Auth, HttpGetAndHead]
+		public IActionResult Password()
+		{
+			return View(new ConfigsPasswordModel());
+		}
+
+		[Auth, HttpPost, ValidateAntiForgeryToken]
+		public IActionResult Password(ConfigsPasswordModel model)
+		{
+			return config(model, "Password");
+		}
+
 		[HttpGetAndHead, Auth]
 		public IActionResult Config()
 		{
 			return View(new ConfigsConfigModel());
-		}
-
-		[Auth, HttpPost, ValidateAntiForgeryToken]
-		public IActionResult ConfigPassword(ConfigsConfigModel model)
-		{
-			return config(model, () => model.Info.ChangePassword());
 		}
 
 		[Auth, HttpPost, ValidateAntiForgeryToken]
