@@ -35,7 +35,7 @@
 		"RowTransfer": "Transfer Value",
 
 		"EmailUpdated": "E-mail successfully updated. New user activation is required.",
-		"PasswordChanged": "Password successfully updated. System logged out for safety.",
+		"PasswordChanged": "Password successfully updated.",
 
 		"TFAWhy": "Why to use this?",
 		"TFATitle": "This Configuration makes your account safer",
@@ -81,7 +81,7 @@
 		"RowTransfer": "Valor Transferência",
 
 		"EmailUpdated": "E-mail atualizado com sucesso. Será necessária nova ativação no sistema.",
-		"PasswordChanged": "Senha atualizada com sucesso. Sistema deslogado por segurança.",
+		"PasswordChanged": "Senha atualizada com sucesso.",
 
 		"TFAWhy": "Por que usar?",
 		"TFATitle": "Esta configuração mantém sua conta mais segura",

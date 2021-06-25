@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using DFM.MVC.Models.Configs;
 
 namespace DFM.MVC.Models
@@ -24,7 +23,6 @@ namespace DFM.MVC.Models
 		// ReSharper disable once UnusedMember.Global
 		public enum Form
 		{
-			Password,
 			Email,
 			Theme,
 			TFA,

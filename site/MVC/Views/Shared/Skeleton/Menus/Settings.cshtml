@@ -20,6 +20,15 @@
 			)
 		</li>
 
+		<li id="settings_password">
+			@settingsRoute.MakeUrl(
+				Html,
+				Context.Translate("PasswordSettings"),
+				"Password", "Configs",
+				new { @class = "text-right" }
+			)
+		</li>
+
 		@foreach (ConfigsConfigModel.Form tab in tabs)
 		{
 			<li>
