@@ -7,7 +7,7 @@ if errorlevel 1 (
 	if "%1" == ".........." (
 		exit 1
 	) else (
-		check-server %1.
+		call %~dp0\check-server %1.
 	)
 ) else (
 	echo "Woke up!"
