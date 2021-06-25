@@ -2,7 +2,7 @@
 
 namespace DFM.MVC.Models
 {
-	public class ConfigsTFAModel : BaseSiteModel
+	public class ConfigsTFAPasswordModel : BaseSiteModel
 	{
 		public String Code { get; set; }
 

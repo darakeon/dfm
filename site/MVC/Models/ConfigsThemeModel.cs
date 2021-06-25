@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Generic;
-using DFM.MVC.Models.Configs;
 
 namespace DFM.MVC.Models
 {

@@ -2,7 +2,6 @@
 
 @{
 	var settingsRoute = new Default.Main();
-	var tabs = Enum.GetValues(typeof (ConfigsConfigModel.Form));
 }
 
 <li class="dropdown" id="settings">
@@ -47,16 +46,13 @@
 			)
 		</li>
 
-		@foreach (ConfigsConfigModel.Form tab in tabs)
-		{
-			<li>
-				@settingsRoute.MakeUrl(
-					Html,
-					Context.Translate($"{tab}Settings"),
-					"Config", "Configs",
-					new { @class = "text-right" }
-				)
-			</li>
-		}
+		<li id="settings_tfa">
+			@settingsRoute.MakeUrl(
+				Html,
+				Context.Translate("TFASettings"),
+				"TFA", "Configs",
+				new { @class = "text-right" }
+			)
+		</li>
 	</ul>
 </li>

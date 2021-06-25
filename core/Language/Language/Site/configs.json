@@ -43,7 +43,7 @@
 		"TFARemove": "Remove safer login",
 		"TFAPasswordEnable": "Use safer login\ncode as password",
 		"TFAPasswordDisable": "Stop using safer login\ncode as password",
-		"TFAAuthenticated": "Login mais seguro configurado!"
+		"TFAAuthenticated": "Safer login set!",
 	},
 	"pt-BR": {
 		"Save": "Salvar",
@@ -89,6 +89,6 @@
 		"TFARemove": "Remover login mais seguro",
 		"TFAPasswordEnable": "Usar o código de login\nmais seguro como senha",
 		"TFAPasswordDisable": "Deixar de usar o código de\nlogin mais seguro como senha",
-		"TFAAuthenticated": "Safer login set!"
+		"TFAAuthenticated": "Login mais seguro configurado!",
 	}
 }

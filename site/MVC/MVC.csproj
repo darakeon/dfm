@@ -37,7 +37,6 @@
     <None Remove="Assets\scripts\qrcode.js" />
     <None Remove="Assets\scripts\sign-up.js" />
     <None Remove="Assets\scripts\suggest.js" />
-    <None Remove="Assets\scripts\tab-forms.js" />
     <None Remove="Assets\scripts\toggle.js" />
     <None Remove="Assets\styles\android.css" />
     <None Remove="Assets\styles\contract.css" />
@@ -91,9 +90,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\scripts\suggest.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\scripts\tab-forms.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\scripts\table-sum.js">
