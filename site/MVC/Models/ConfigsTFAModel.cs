@@ -1,23 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
-using DFM.BusinessLogic.Services;
-using DFM.MVC.Helpers.Global;
 using Keon.TwoFactorAuth;
 
-namespace DFM.MVC.Models.Configs
+namespace DFM.MVC.Models
 {
-	public class TFAForm
+	public class ConfigsTFAModel : BaseSiteModel, ConfigsModel
 	{
-		public TFAForm(SafeService safe, Current current, Translator translator, ErrorAlert errorAlert)
+		public ConfigsTFAModel()
 		{
-			this.safe = safe;
-			this.current = current;
-			this.translator = translator;
-			this.errorAlert = errorAlert;
-
 			TFA = new TFAInfo
 			{
 				Secret = Secret.Generate()
@@ -25,11 +17,6 @@ namespace DFM.MVC.Models.Configs
 
 			IsActive = current.HasTFA;
 		}
-
-		private readonly SafeService safe;
-		private readonly Current current;
-		private readonly Translator translator;
-		private readonly ErrorAlert errorAlert;
 
 		public TFAInfo TFA { get; set; }
 
@@ -39,7 +26,7 @@ namespace DFM.MVC.Models.Configs
 		public Boolean IsActive { get; set; }
 		public Boolean TFAPassword => current.TFAPassword;
 
-		public IList<String> Change()
+		public IList<String> Save()
 		{
 			var errors = new List<String>();
 
@@ -59,5 +46,7 @@ namespace DFM.MVC.Models.Configs
 
 			return errors;
 		}
+
+		public String BackTo { get; set; }
 	}
 }

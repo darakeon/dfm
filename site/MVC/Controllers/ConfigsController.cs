@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
@@ -59,16 +58,16 @@ namespace DFM.MVC.Controllers
 			return config(model, "Theme");
 		}
 
-		[HttpGetAndHead, Auth]
-		public IActionResult Config()
+		[Auth, HttpGetAndHead]
+		public IActionResult TFA()
 		{
-			return View(new ConfigsConfigModel());
+			return View(new ConfigsTFAModel());
 		}
 
 		[Auth, HttpPost, ValidateAntiForgeryToken]
-		public IActionResult ConfigTFA(ConfigsConfigModel model)
+		public IActionResult TFA(ConfigsTFAModel model)
 		{
-			return config(model, () => model.TFA.Change());
+			return config(model, "TFA");
 		}
 
 		private IActionResult config(ConfigsModel model, [AspMvcView] String view)
@@ -85,26 +84,12 @@ namespace DFM.MVC.Controllers
 			return RedirectToAction("Index", "Accounts");
 		}
 
-		private IActionResult config(ConfigsConfigModel model, Func<IList<String>> save)
-		{
-			if (ModelState.IsValid)
-				addErrors(save());
-
-			if (!ModelState.IsValid)
-				return View("Config", model);
-
-			if (!String.IsNullOrEmpty(model.BackTo))
-				return Redirect(model.BackTo);
-
-			return RedirectToAction("Index", "Accounts");
-		}
-
 		[Auth, HttpGetAndHead]
 		public IActionResult TFAPasswordEnable()
 		{
 			var model = new ConfigsTFAPasswordModel();
 			model.UseAsPassword(true);
-			return RedirectToAction("Config");
+			return RedirectToAction("TFA");
 		}
 
 		[Auth, HttpGetAndHead]
@@ -112,7 +97,7 @@ namespace DFM.MVC.Controllers
 		{
 			var model = new ConfigsTFAPasswordModel();
 			model.UseAsPassword(false);
-			return RedirectToAction("Config");
+			return RedirectToAction("TFA");
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
