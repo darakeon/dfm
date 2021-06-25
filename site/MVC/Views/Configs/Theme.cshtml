@@ -1,6 +1,22 @@
-﻿@model ConfigsConfigModel
+﻿@model ConfigsThemeModel
+@{
+	ViewBag.Title = Context.Translate("ThemeSettings");
+	ViewBag.WizardMessage = "SettingsTheme";
+	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
 
-@Html.HiddenFor(m => m.ThemeOpt.Theme, new { @class = "theme-changer-hidden" })
+	ViewBag.FormSizeSm = 8;
+	ViewBag.FormSizeLg = 6;
+}
+
+@section Scripts {
+	<script type="text/javascript" src="~/Assets/scripts/dynamic-theme-change.js?v=@Cfg.Version"></script>
+	<script type="text/javascript">
+		window.currentBrightness = '@Model.Brightness';
+		window.currentColor = '@Model.Color';
+	</script>
+}
+
+@Html.HiddenFor(m => m.NewTheme, new { @class = "theme-changer-hidden" })
 
 <div class="well well-sm text-center">
 	@Context.Translate("ThemeInstruction")<br /><br />
@@ -15,7 +31,7 @@
 
 <div class="text-center">
 	<div class="btn-group pull-left">
-		@foreach (var brightness in Model.ThemeOpt.BrightnessList)
+		@foreach (var brightness in Model.BrightnessList)
 		{
 			<button class="btn btn-sm btn-default theme-changer @(brightness == Model.Brightness ? "active" : "")"
 					data-choice="@brightness" data-type="brightness" type="button">
@@ -25,7 +41,7 @@
 	</div>
 
 	<div class="btn-group pull-right">
-		@foreach (var color in Model.ThemeOpt.ColorList)
+		@foreach (var color in Model.ColorList)
 		{
 			<button class="btn btn-sm btn-default theme-changer @(color == Model.Color ? "active" : "")"
 					data-choice="@color" data-type="color" type="button">
@@ -97,3 +113,10 @@
 	<div class="alert alert-danger">@Context.Translate("Alert")</div>
 
 </div>
+
+@section Footer {
+	<button type="submit"
+			class="btn btn-success tab-submit">
+		@Context.Translate("Save")
+	</button>
+}

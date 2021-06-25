@@ -47,16 +47,22 @@ namespace DFM.MVC.Controllers
 			return config(model, "Email");
 		}
 
+		[Auth, HttpGetAndHead]
+		public IActionResult Theme()
+		{
+			return View(new ConfigsThemeModel());
+		}
+
+		[Auth, HttpPost, ValidateAntiForgeryToken]
+		public IActionResult Theme(ConfigsThemeModel model)
+		{
+			return config(model, "Theme");
+		}
+
 		[HttpGetAndHead, Auth]
 		public IActionResult Config()
 		{
 			return View(new ConfigsConfigModel());
-		}
-
-		[Auth, HttpPost, ValidateAntiForgeryToken]
-		public IActionResult ConfigTheme(ConfigsConfigModel model)
-		{
-			return config(model, () => model.ThemeOpt.Change());
 		}
 
 		[Auth, HttpPost, ValidateAntiForgeryToken]

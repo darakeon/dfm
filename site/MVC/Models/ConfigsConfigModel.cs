@@ -8,11 +8,9 @@ namespace DFM.MVC.Models
 		public ConfigsConfigModel()
 		{
 			TFA = new TFAForm(safe, current, translator, errorAlert);
-			ThemeOpt = new ThemeOptions(admin, Theme, translator, errorAlert);
 		}
 
 		public TFAForm TFA { get; set; }
-		public ThemeOptions ThemeOpt { get; set; }
 
 		public Form ActiveForm { get; set; }
 
@@ -21,7 +19,6 @@ namespace DFM.MVC.Models
 		// ReSharper disable once UnusedMember.Global
 		public enum Form
 		{
-			Theme,
 			TFA,
 		}
 	}
