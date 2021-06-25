@@ -102,7 +102,7 @@ namespace DFM.MVC.Controllers
 		[Auth, HttpGetAndHead]
 		public IActionResult TFAPasswordEnable()
 		{
-			var model = new ConfigsTFAModel();
+			var model = new ConfigsTFAPasswordModel();
 			model.UseAsPassword(true);
 			return RedirectToAction("Config");
 		}
@@ -110,7 +110,7 @@ namespace DFM.MVC.Controllers
 		[Auth, HttpGetAndHead]
 		public IActionResult TFAPasswordDisable()
 		{
-			var model = new ConfigsTFAModel();
+			var model = new ConfigsTFAPasswordModel();
 			model.UseAsPassword(false);
 			return RedirectToAction("Config");
 		}
