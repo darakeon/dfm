@@ -1,0 +1,35 @@
+﻿@model BaseSiteModel
+
+@{
+	var settingsRoute = new Default.Main();
+	var tabs = Enum.GetValues(typeof (ConfigsConfigModel.Form));
+}
+
+<li class="dropdown" id="settings">
+	<a class="dropdown-toggle" data-toggle="dropdown" role="button">
+		<span class="glyphicon glyphicon-cog" title="@Context.Translate("Settings")"></span>
+	</a>
+
+	<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+		<li id="settings_main">
+			@settingsRoute.MakeUrl(
+				Html,
+				Context.Translate("MainSettings"),
+				"Index", "Configs",
+				new { @class = "text-right" }
+			)
+		</li>
+
+		@foreach (ConfigsConfigModel.Form tab in tabs)
+		{
+			<li>
+				@settingsRoute.MakeUrl(
+					Html,
+					Context.Translate($"{tab}Settings"),
+					"Config", "Configs",
+					new { @class = "text-right" }
+				)
+			</li>
+		}
+	</ul>
+</li>

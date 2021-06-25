@@ -1,0 +1,28 @@
+﻿@model BaseSiteModel
+
+@{
+	var lang = Model.Language.ToLower();
+}
+
+<ul class="nav navbar-nav navbar-right">
+	@await Html.PartialAsync("Skeleton/Menus/Now")
+
+	<li class="flag @lang" title="@Context.Translate("Aria_OpenLanguage")" data-toggle='modal' data-target='#language-modal'>
+		<a role='button' class="@lang" title="@Context.Translate("Aria_OpenLanguage")">
+			@await Html.PartialAsync($"Flags/{lang}")
+		</a>
+	</li>
+
+	<li>
+		@await Html.PartialAsync("Skeleton/Menus/MenuContact")
+	</li>
+
+	@if (Model.IsAuthenticated)
+	{
+		@await Html.PartialAsync("Skeleton/Menus/LoggedIn")
+	}
+	else
+	{
+		@await Html.PartialAsync("Skeleton/Menus/LoggedOff")
+	}
+</ul>

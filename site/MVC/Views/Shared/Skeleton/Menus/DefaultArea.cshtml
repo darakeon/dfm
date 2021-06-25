@@ -1,0 +1,11 @@
+﻿@model BaseSiteModel
+
+<li>@Html.ActionLink(Context.Translate("Accounts"), "Index", "Accounts")</li>
+
+@if (Model.IsUsingCategories)
+{
+	<li>@Html.ActionLink(Context.Translate("Categories"), "Index", "Categories")</li>
+}
+
+<li>@Html.ActionLink(Context.Translate("Schedules"), "Index", "Schedules")</li>
+<li>@Html.ActionLink(Context.Translate("Logins"), "Index", "Logins")</li>

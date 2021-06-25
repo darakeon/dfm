@@ -1,16 +1,9 @@
-﻿@using JetBrains.Annotations
-@model BaseSiteModel
-
-@{
-	var accountArea = Model as BaseAccountModel;
-	var defaultRoute = new Default.Main();
-	var lang = Model.Language.ToLower();
-}
+﻿@model BaseSiteModel
 
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#dfm-navigation">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
@@ -26,110 +19,8 @@
 			}
 		</div>
 
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-			<ul class="nav navbar-nav navbar-right">
-				@await Html.PartialAsync("Skeleton/Now")
-
-				<li class="flag @lang" title="@Context.Translate("Aria_OpenLanguage")" data-toggle='modal' data-target='#language-modal'>
-					<a role='button' class="@lang" title="@Context.Translate("Aria_OpenLanguage")">
-						@await Html.PartialAsync($"Flags/{lang}")
-					</a>
-				</li>
-
-				<li>
-					@await Html.PartialAsync("Skeleton/MenuContact")
-				</li>
-
-				@if (!Model.IsAuthenticated)
-				{
-					<li>@Html.ActionLink(Context.Translate("Login"), "LogOn", "Users")</li>
-					<li>@Html.ActionLink(Context.Translate("SignUp"), "SignUp", "Users")</li>
-					<li>@Html.ActionLink(Context.Translate("TokenReceivedByEmail"), "Index", "Tokens")</li>
-				}
-				else
-				{
-					if (Model.IsExternal)
-					{
-						<li>@Html.ActionLink(Context.Translate("Enter"), "Index", "Accounts")</li>
-					}
-					else if (accountArea == null)
-					{
-						<li>@Html.ActionLink(Context.Translate("Accounts"), "Index", "Accounts")</li>
-
-						if (Model.IsUsingCategories)
-						{
-							<li>@Html.ActionLink(Context.Translate("Categories"), "Index", "Categories")</li>
-						}
-
-						<li>@Html.ActionLink(Context.Translate("Schedules"), "Index", "Schedules")</li>
-						<li>@Html.ActionLink(Context.Translate("Logins"), "Index", "Logins")</li>
-					}
-					else
-					{
-						if (accountArea.Account.IsOpen)
-						{
-							<li>@Html.ActionLink(Context.Translate("ToMove"), "Create", "Moves")</li>
-							<li>@Html.ActionLink(Context.Translate("Schedule"), "Create", "Schedules")</li>
-						}
-
-						<li>@Html.ActionLink(Context.Translate("MonthMoves"), "Month", "Reports")</li>
-						<li>@Html.ActionLink(Context.Translate("YearMoves"), "Year", "Reports")</li>
-
-						<li>
-							<a href="@Url.RouteUrl(defaultRoute.Name, new {action = "Index", controller = "Accounts", area = defaultRoute.Area})">
-								<span class="glyphicon glyphicon-home" title="@Context.Translate("Home")"></span>
-							</a>
-						</li>
-					}
-
-					<li>
-						<a role='button' data-toggle='modal' data-target='#search-modal'>
-							<span class="glyphicon glyphicon-search"
-							      title="@Context.Translate("Search_Title")"></span>
-						</a>
-					</li>
-
-					<li class="dropdown" id="settings">
-						@{
-							var settingsRoute = new Default.Main();
-							var tabs = Enum.GetValues(typeof (ConfigsConfigModel.Form));
-						}
-
-						<a class="dropdown-toggle" data-toggle="dropdown" role="button">
-							<span class="glyphicon glyphicon-cog" title="@Context.Translate("Settings")"></span>
-						</a>
-
-						<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-							<li id="settings_main">
-								@settingsRoute.MakeUrl(
-									Html, 
-									Context.Translate("MainSettings"),
-									"Index", "Configs",
-									new { @class = "text-right" }
-								)
-							</li>
-							@foreach (ConfigsConfigModel.Form tab in tabs)
-							{
-								<li>
-									@settingsRoute.MakeUrl(
-										Html, 
-										Context.Translate($"{tab}Settings"),
-										"Config", "Configs",
-										new { @class = "text-right" }
-									)
-								</li>
-							}
-						</ul>
-					</li>
-
-					<li>
-						@await Html.PartialAsync("Extensions/MicroForm",
-							MicroForm.WithGlyph(Context, "off", "Logoff")
-								.AddRouteUrl<Default.Main>("Users", "LogOff")
-						)
-					</li>
-				}
-			</ul>
+		<div class="collapse navbar-collapse" id="dfm-navigation">
+			@await Html.PartialAsync("Skeleton/Menus/Navigation")
 		</div>
 	</div>
 
