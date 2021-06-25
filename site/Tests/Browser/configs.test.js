@@ -55,4 +55,18 @@ describe('Configs', () => {
 		const message = await puppy.content('.alert')
 		await expect(message).toContain('Senha errada para acesso atual')
 	})
+
+	test('Theme', async () => {
+		await puppy.call('')
+		await page.click('#settings')
+		await page.click('#settings_theme', { visible: true })
+
+		const header = await puppy.content('.panel .header')
+		await expect(header).toContain('Cores')
+
+		await puppy.submit(`/Configs/Theme`)
+
+		const message = await puppy.content('.alert')
+		await expect(message).toContain('Configurações alteradas')
+	})
 })

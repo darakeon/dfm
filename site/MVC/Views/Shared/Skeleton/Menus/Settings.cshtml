@@ -38,6 +38,15 @@
 			)
 		</li>
 
+		<li id="settings_theme">
+			@settingsRoute.MakeUrl(
+				Html,
+				Context.Translate("ThemeSettings"),
+				"Theme", "Configs",
+				new { @class = "text-right" }
+			)
+		</li>
+
 		@foreach (ConfigsConfigModel.Form tab in tabs)
 		{
 			<li>
