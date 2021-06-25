@@ -1,0 +1,26 @@
+﻿@model ConfigsEmailModel
+@{
+	ViewBag.Title = Context.Translate("EmailSettings");
+	ViewBag.WizardMessage = "SettingsEmail";
+	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
+
+	ViewBag.FormSizeSm = 8;
+	ViewBag.FormSizeLg = 6;
+}
+
+<div class="form-group">
+	@Html.LabelFor(m => m.Email, Context.Translate("EmailToChange"), new { @class = "control-label" })
+	@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+</div>
+
+<div class="form-group">
+	@Html.LabelFor(m => m.CurrentPassword, Context.Translate("CurrentPassword"), new { @class = "control-label" })
+	@Html.PasswordFor(m => m.CurrentPassword, new { @class = "form-control" })
+</div>
+
+@section Footer {
+	<button type="submit"
+			class="btn btn-success tab-submit">
+		@Context.Translate("Save")
+	</button>
+}
