@@ -7,12 +7,10 @@ namespace DFM.MVC.Models
 	{
 		public ConfigsConfigModel()
 		{
-			Info = new UserInfo(safe, translator, errorAlert);
 			TFA = new TFAForm(safe, current, translator, errorAlert);
 			ThemeOpt = new ThemeOptions(admin, Theme, translator, errorAlert);
 		}
 
-		public UserInfo Info { get; set; }
 		public TFAForm TFA { get; set; }
 		public ThemeOptions ThemeOpt { get; set; }
 
@@ -23,7 +21,6 @@ namespace DFM.MVC.Models
 		// ReSharper disable once UnusedMember.Global
 		public enum Form
 		{
-			Email,
 			Theme,
 			TFA,
 		}

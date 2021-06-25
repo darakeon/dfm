@@ -29,6 +29,15 @@
 			)
 		</li>
 
+		<li id="settings_email">
+			@settingsRoute.MakeUrl(
+				Html,
+				Context.Translate("EmailSettings"),
+				"Email", "Configs",
+				new { @class = "text-right" }
+			)
+		</li>
+
 		@foreach (ConfigsConfigModel.Form tab in tabs)
 		{
 			<li>

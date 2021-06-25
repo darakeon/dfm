@@ -35,16 +35,22 @@ namespace DFM.MVC.Controllers
 			return config(model, "Password");
 		}
 
+		[Auth, HttpGetAndHead]
+		public IActionResult Email()
+		{
+			return View(new ConfigsEmailModel());
+		}
+
+		[Auth, HttpPost, ValidateAntiForgeryToken]
+		public IActionResult Email(ConfigsEmailModel model)
+		{
+			return config(model, "Email");
+		}
+
 		[HttpGetAndHead, Auth]
 		public IActionResult Config()
 		{
 			return View(new ConfigsConfigModel());
-		}
-
-		[Auth, HttpPost, ValidateAntiForgeryToken]
-		public IActionResult ConfigEmail(ConfigsConfigModel model)
-		{
-			return config(model, () => model.Info.UpdateEmail());
 		}
 
 		[Auth, HttpPost, ValidateAntiForgeryToken]
@@ -79,7 +85,7 @@ namespace DFM.MVC.Controllers
 				addErrors(save());
 
 			if (!ModelState.IsValid)
-				return View(model);
+				return View("Config", model);
 
 			if (!String.IsNullOrEmpty(model.BackTo))
 				return Redirect(model.BackTo);
