@@ -28,7 +28,7 @@ taskkill /IM "DFM.MVC.exe" 2> NUL
 start DFM.MVC.exe
 cd ..
 
-call %TESTS_PATH%\scripts\check-server.bat .
+call %TESTS_PATH%\scripts\check-server .
 
 call node contract.js
 
