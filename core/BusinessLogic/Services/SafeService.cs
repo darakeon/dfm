@@ -8,6 +8,7 @@ using DFM.Entities.Enums;
 using DFM.Authentication;
 using DFM.BusinessLogic.Response;
 using DFM.Entities.Bases;
+using Keon.Util.Crypto;
 using Keon.Util.Extensions;
 
 namespace DFM.BusinessLogic.Services
@@ -502,13 +503,20 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
-		public void AskWipe()
+		public void AskWipe(String password)
 		{
 			VerifyUser();
 
 			inTransaction("AskWipe", () =>
 			{
 				var user = GetCurrent();
+
+				var validPassword = password != null
+					&& Crypt.Check(password, user.Password);
+
+				if (!validPassword)
+					throw Error.WrongPassword.Throw();
+
 				repos.Control.RequestWipe(user);
 			});
 		}

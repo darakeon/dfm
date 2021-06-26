@@ -1216,12 +1216,18 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			db.Execute(() => repos.Control.RequestWipe(user));
 		}
 
+		[When(@"pass a password that is( not)? right")]
+		public void PassAPasswordThatIs(Boolean rightPassword)
+		{
+			password = rightPassword ? userPassword : "wrong";
+		}
+
 		[When(@"ask data wipe")]
 		public void WhenAskDataWipe()
 		{
 			try
 			{
-				service.Safe.AskWipe();
+				service.Safe.AskWipe(password);
 			}
 			catch (CoreError e)
 			{
