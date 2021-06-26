@@ -76,4 +76,27 @@ describe('Configs', () => {
 		const message = await puppy.content('.alert')
 		await expect(message).toContain('Código inválido')
 	})
+
+	test('Wipe', async () => {
+		await puppy.call('')
+		await page.click('#settings')
+		await page.click('#settings_wipe', { visible: true })
+
+		const header = await puppy.content('.panel .header')
+		await expect(header).toContain('Remover meus dados')
+
+		await puppy.submit(`/Configs/Wipe`)
+
+		const alertError = await puppy.content('.alert')
+		await expect(alertError).toContain('Senha errada para acesso atual')
+
+		await page.type('#Password', 'password')
+		await puppy.submit(`/Configs/Wipe`)
+
+		const alertSuccess = await puppy.content('.alert')
+		await expect(alertSuccess).toContain('Agradecemos por ter usado nosso sistema.')
+
+		const menu = await puppy.content('.navbar-nav')
+		await expect(menu).toContain('/Users/LogOn')
+	})
 })

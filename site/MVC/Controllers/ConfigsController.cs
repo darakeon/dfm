@@ -59,6 +59,18 @@ namespace DFM.MVC.Controllers
 		}
 
 		[Auth, HttpGetAndHead]
+		public IActionResult Wipe()
+		{
+			return View(new ConfigsWipeModel());
+		}
+
+		[Auth, HttpPost, ValidateAntiForgeryToken]
+		public IActionResult Wipe(ConfigsWipeModel model)
+		{
+			return config(model, "Wipe");
+		}
+
+		[Auth, HttpGetAndHead]
 		public IActionResult TFA()
 		{
 			return View(new ConfigsTFAModel());

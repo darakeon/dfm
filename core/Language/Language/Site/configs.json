@@ -44,6 +44,16 @@
 		"TFAPasswordEnable": "Use safer login\ncode as password",
 		"TFAPasswordDisable": "Stop using safer login\ncode as password",
 		"TFAAuthenticated": "Safer login set!",
+
+		"Wipe_Title": "Watch out, there is no way back!",
+		"Wipe_What": "Here you can ask the removal of your data from the system.",
+		"Wipe_NoLogin": "After that, this is not possible to login at the system anymore.",
+		"Wipe_Deadline": "The permanent removal will take effect in a period of 24 hours.",
+		"Wipe_NoWayBack": "There is no way to recover your data after the removal.",
+		"Wipe_ReadTerms": "To know more, read our",
+		"Wipe_GoAhead": "If you really want to proceed, type your password below and press the button.",
+		"Wipe": "remove ALL my data and NEVER see it again",
+		"Wipe_RequestSent": "The removal request was sent. In some hours your data will be wiped. Thank you for using our system.",
 	},
 	"pt-BR": {
 		"Save": "Salvar",
@@ -90,5 +100,15 @@
 		"TFAPasswordEnable": "Usar o código de login\nmais seguro como senha",
 		"TFAPasswordDisable": "Deixar de usar o código de\nlogin mais seguro como senha",
 		"TFAAuthenticated": "Login mais seguro configurado!",
-	}
+
+		"Wipe_Title": "Cuidado, esse passo não tem volta!",
+		"Wipe_What": "Aqui você pode pedir a remoção de seus dados do sistema.",
+		"Wipe_NoLogin": "Após fazer isso, não é mais possível se logar no sistema.",
+		"Wipe_Deadline": "A remoção permanente ocorrerá dentro de 24h.",
+		"Wipe_NoWayBack": "Não haverá forma de recuperar os dados após a remoção.",
+		"Wipe_ReadTerms": "Para entender mais, leia nossos",
+		"Wipe_GoAhead": "Caso deseje de fato prosseguir, digite sua senha abaixo e aperte o botão.",
+		"Wipe": "apagar TODOS os meus dados e NUNCA MAIS ver eles de novo",
+		"Wipe_RequestSent": "A requisição de remoção foi enviada. Em algumas horas, seus dados serão removidos. Agradecemos por ter usado nosso sistema.",
+	},
 }

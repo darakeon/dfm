@@ -81,11 +81,12 @@ set @PT = replace(replace('
 			]
 		},
 		{
-			"Text": "Existe um botão dentro das configurações no site para a Pessoa poder excluir seus dados do Sistema:",
+			"Text": "Existe um menu dentro das configurações no site para a Pessoa poder excluir seus dados do Sistema:",
 			"Items": [
 				{ "Text": "Os dados não são excluídos instantaneamente;" },
 				{ "Text": "Nesse caso - a exclusão ser uma requisição da Pessoa - as movimentações não são gravadas em um arquivo;" },
-				{ "Text": "Após a remoção, não existe uma forma de a Pessoa recuperar os dados via sistema." }
+				{ "Text": "Após a remoção, não existe uma forma de a Pessoa recuperar os dados via sistema." },
+				{ "Text": "É pedida a senha da Pessoa para registrar o pedido de exclusão." }
 			]
 		},
 		{
@@ -171,11 +172,12 @@ set @EN = replace(replace('
 			]
 		},
 		{
-			"Text": "There is button inside system settings at the website to the Person delete their data from the System:",
+			"Text": "There is menu inside system settings at the website to the Person delete their data from the System:",
 			"Items": [
 				{ "Text": "The data is not removed instantly;" },
 				{ "Text": "In this case - the Person asking the data deletion - the moves are not recorded in a file;" },
-				{ "Text": "After the removal there is no way to the Person to recover the data through the System." }
+				{ "Text": "After the removal there is no way to the Person to recover the data through the System." },
+				{ "Text": "The Person\'s password is asked to register the data deletion request." }
 			]
 		},
 		{
