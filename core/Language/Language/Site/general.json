@@ -140,11 +140,11 @@
 		"NotSignedContract": "Not signed contract",
 		"PersonAsked": "Person asked",
 
-		"MainSettings": "Main",
-		"PasswordSettings": "Password",
+		"MainSettings": "Main Options",
 		"EmailSettings": "E-mail",
-		"ThemeSettings": "Colors",
+		"PasswordSettings": "Password",
 		"TFASettings": "Safer login",
+		"ThemeSettings": "Colors",
 	},
 	"pt-BR": {
 		"CurrentLanguage": "português",
@@ -287,10 +287,10 @@
 		"NotSignedContract": "Contrato não aceito",
 		"PersonAsked": "Pessoa requisitou", 
 
-		"MainSettings": "Geral",
-		"PasswordSettings": "Senha",
+		"MainSettings": "Opções Gerais",
 		"EmailSettings": "E-mail",
-		"ThemeSettings": "Cores",
+		"PasswordSettings": "Senha",
 		"TFASettings": "Login mais seguro",
+		"ThemeSettings": "Cores",
 	},
 }
