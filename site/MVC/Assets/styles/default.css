@@ -120,7 +120,7 @@ dd {
 	font-size: 1.5em;
 }
 
-.modal-body h2 {
+.modal-body h2, .panel-body h2 {
 	font-size: 1.3em;
 }
 

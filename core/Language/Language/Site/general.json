@@ -145,6 +145,7 @@
 		"PasswordSettings": "Password",
 		"TFASettings": "Safer login",
 		"ThemeSettings": "Colors",
+		"WipeSettings": "Remove my data",
 	},
 	"pt-BR": {
 		"CurrentLanguage": "português",
@@ -292,5 +293,6 @@
 		"PasswordSettings": "Senha",
 		"TFASettings": "Login mais seguro",
 		"ThemeSettings": "Cores",
+		"WipeSettings": "Remover meus dados",
 	},
 }
