@@ -27,24 +27,10 @@ namespace DFM.BusinessLogic.Repositories
 		public void Execute(User user, DateTime date, Action<String> upload, RemovalReason reason)
 		{
 			var accounts = repos.Account.Where(a => a.User.ID == user.ID);
-			String s3 = null;
 
-			using (var csv = new CSV())
-			{
-				foreach (var account in accounts)
-				{
-					csv.Add(repos.Move.ByAccount(account));
-					csv.Add(repos.Schedule.ByAccount(account));
-				}
-
-				csv.Create(user);
-
-				if (csv.Path != null)
-				{
-					upload(csv.Path);
-					s3 = csv.Path;
-				}
-			}
+			var s3 = reason == RemovalReason.PersonAsked
+				? null
+				: extractToFile(user, accounts, upload);
 
 			var wipe = new Wipe
 			{
@@ -81,6 +67,29 @@ namespace DFM.BusinessLogic.Repositories
 			repos.User.Delete(user);
 			repos.Config.Delete(user.Config);
 			repos.Control.Delete(user.Control);
+		}
+
+		private String extractToFile(User user, IList<Account> accounts, Action<String> upload)
+		{
+			String s3 = null;
+
+			using var csv = new CSV();
+
+			foreach (var account in accounts)
+			{
+				csv.Add(repos.Move.ByAccount(account));
+				csv.Add(repos.Schedule.ByAccount(account));
+			}
+
+			csv.Create(user);
+
+			if (csv.Path != null)
+			{
+				upload(csv.Path);
+				s3 = csv.Path;
+			}
+
+			return s3;
 		}
 
 		private void notifyWipe(User user, DateTime dateTime, RemovalReason removalReason)

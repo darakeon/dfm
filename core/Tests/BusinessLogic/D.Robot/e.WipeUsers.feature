@@ -609,10 +609,15 @@ Scenario: De53. Check wipe notice
 		And it will be registered at wipe table with reason NoInteraction
 
 Scenario: De54. Wipe when user asks too
-	Given data wipe was asked
+	Given the user have
+			| System Stuff |
+			| Move         |
+			| Schedule     |
+		And data wipe was asked
 	When robot user login
 		And call wipe users
 	Then I will receive no core error
 		And the user won't exist
 		And there will be a wipe notice sent
 		And it will be registered at wipe table with reason PersonAsked
+		And there will no be an export file
