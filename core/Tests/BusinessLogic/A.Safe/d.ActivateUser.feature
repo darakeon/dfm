@@ -52,3 +52,9 @@ Scenario: Ad06. Not activate if user is marked for deletion
 		But the user is marked for deletion
 	When I try to activate the user
 	Then I will receive this core error: UserDeleted
+
+Scenario: Ad07. Not activate if user requested wipe
+	Given I pass a valid UserVerification token
+		But the user asked data wipe
+	When I try to activate the user
+	Then I will receive this core error: UserAskedWipe

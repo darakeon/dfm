@@ -25,3 +25,8 @@ Scenario: Ao04. Not accept contract if user is marked for deletion
 	Given the user is marked for deletion
 	When I try to accept the contract
 	Then I will receive this core error: UserDeleted
+
+Scenario: Ao05. Not accept contract if user requested wipe
+	Given the user asked data wipe
+	When I try to accept the contract
+	Then I will receive this core error: UserAskedWipe

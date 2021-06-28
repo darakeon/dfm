@@ -21,3 +21,9 @@ Scenario: Bb03. Not get account if user is marked for deletion
 		But the user is marked for deletion
 	When I try to get the account by its url
 	Then I will receive this core error: UserDeleted
+
+Scenario: Bb04. Not get account if user requested wipe
+	Given I pass a valid account url
+		But the user asked data wipe
+	When I try to get the account by its url
+	Then I will receive this core error: UserAskedWipe

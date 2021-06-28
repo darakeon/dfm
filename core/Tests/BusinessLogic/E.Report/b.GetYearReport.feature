@@ -105,3 +105,12 @@ Scenario: Eb05. Not get year report if user is marked for deletion
 		But the user is marked for deletion
 	When I try to get the year report
 	Then I will receive this core error: UserDeleted
+
+Scenario: Eb06. Not get year report if user requested wipe
+	Given I pass a valid account url
+		And I pass this date
+			| Year |
+			| 2021 |
+		But the user asked data wipe
+	When I try to get the year report
+	Then I will receive this core error: UserAskedWipe

@@ -60,3 +60,9 @@ Scenario: Bd08. Not close Account if user is marked for deletion
 		But the user is marked for deletion
 	When I try to close the account
 	Then I will receive this core error: UserDeleted
+
+Scenario: Bd09. Not close Account if user requested wipe
+	Given I give a url of the account Bd09 with moves
+		But the user asked data wipe
+	When I try to close the account
+	Then I will receive this core error: UserAskedWipe

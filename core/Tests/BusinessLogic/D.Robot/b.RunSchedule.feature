@@ -355,3 +355,13 @@ Scenario: Db22. Not run scheduler if user has not signed last contract
 		And run the scheduler
 	Then I will receive no core error
 		But the user not_signed@dontflymoney.com will still have no moves
+
+Scenario: Db23. Not run scheduler if user requested wipe
+	Given I have this user created
+			| Email                      | Password | Active | Signed |
+			| askedwipe@dontflymoney.com | password | true   | true   |
+		And a schedule is created by askedwipe@dontflymoney.com
+		But the user askedwipe@dontflymoney.com asked data wipe
+	When robot user login
+		And run the scheduler
+	Then the user askedwipe@dontflymoney.com will still have no moves

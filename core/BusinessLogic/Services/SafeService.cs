@@ -30,6 +30,9 @@ namespace DFM.BusinessLogic.Services
 				if (user.Control.ProcessingDeletion)
 					throw Error.UserDeleted.Throw();
 
+				if (user.Control.WipeRequest != null)
+					throw Error.UserAskedWipe.Throw();
+
 				repos.Security.CreateAndSendToken(
 					user, SecurityAction.PasswordReset
 				);
@@ -67,6 +70,9 @@ namespace DFM.BusinessLogic.Services
 				if (user.Control.ProcessingDeletion)
 					throw Error.UserDeleted.Throw();
 
+				if (user.Control.WipeRequest != null)
+					throw Error.UserAskedWipe.Throw();
+
 				sendUserVerify(user);
 			});
 		}
@@ -88,6 +94,9 @@ namespace DFM.BusinessLogic.Services
 
 				if (security.User.Control.ProcessingDeletion)
 					throw Error.UserDeleted.Throw();
+
+				if (security.User.Control.WipeRequest != null)
+					throw Error.UserAskedWipe.Throw();
 
 				repos.Control.Activate(security.User);
 
@@ -111,6 +120,9 @@ namespace DFM.BusinessLogic.Services
 				if (user.Control.ProcessingDeletion)
 					throw Error.UserDeleted.Throw();
 
+				if (user.Control.WipeRequest != null)
+					throw Error.UserAskedWipe.Throw();
+
 				user.Password = reset.Password;
 
 				repos.User.ChangePassword(user);
@@ -125,6 +137,9 @@ namespace DFM.BusinessLogic.Services
 
 			if (security.User.Control.ProcessingDeletion)
 				throw Error.UserDeleted.Throw();
+
+			if (security.User.Control.WipeRequest != null)
+				throw Error.UserAskedWipe.Throw();
 		}
 
 		public void DisableToken(String token)
@@ -140,6 +155,9 @@ namespace DFM.BusinessLogic.Services
 
 			if (user.Control.ProcessingDeletion)
 				throw Error.UserDeleted.Throw();
+
+			if (user.Control.WipeRequest != null)
+				throw Error.UserAskedWipe.Throw();
 
 			return new(user);
 		}
@@ -174,6 +192,9 @@ namespace DFM.BusinessLogic.Services
 
 			if (user.Control.ProcessingDeletion)
 				throw Error.UserDeleted.Throw();
+
+			if (user.Control.WipeRequest != null)
+				throw Error.UserAskedWipe.Throw();
 
 			if (String.IsNullOrEmpty(info.TicketKey))
 				info.TicketKey = Token.New();
@@ -234,11 +255,14 @@ namespace DFM.BusinessLogic.Services
 
 				if (ticket == null) return;
 
+				if (ticket.User.ID != user?.ID)
+					throw Error.Uninvited.Throw();
+
 				if (ticket.User.Control.ProcessingDeletion)
 					throw Error.UserDeleted.Throw();
 
-				if (ticket.User?.ID != user?.ID)
-					throw Error.Uninvited.Throw();
+				if (ticket.User.Control.WipeRequest != null)
+					throw Error.UserAskedWipe.Throw();
 
 				if (ticket.Active)
 					repos.Ticket.Disable(ticket);
@@ -248,6 +272,9 @@ namespace DFM.BusinessLogic.Services
 		internal void VerifyUser()
 		{
 			VerifyUser(GetCurrent());
+
+			if (!parent.Current.IsVerified)
+				throw Error.TFANotVerified.Throw();
 		}
 
 		internal void VerifyUser(User user)
@@ -255,8 +282,11 @@ namespace DFM.BusinessLogic.Services
 			if (user == null || !user.Control.Active)
 				throw Error.Uninvited.Throw();
 
-			if (!parent.Current.IsVerified)
-				throw Error.TFANotVerified.Throw();
+			if (user.Control.ProcessingDeletion)
+				throw Error.UserDeleted.Throw();
+
+			if (user.Control.WipeRequest != null)
+				throw Error.UserAskedWipe.Throw();
 
 			if (!IsLastContractAccepted(user))
 				throw Error.NotSignedLastContract.Throw();
@@ -336,14 +366,19 @@ namespace DFM.BusinessLogic.Services
 
 		public Boolean IsLastContractAccepted()
 		{
-			return IsLastContractAccepted(GetCurrent());
+			var user = GetCurrent();
+
+			if (user.Control.ProcessingDeletion)
+				throw Error.UserDeleted.Throw();
+
+			if (user.Control.WipeRequest != null)
+				throw Error.UserAskedWipe.Throw();
+
+			return IsLastContractAccepted(user);
 		}
 
 		internal Boolean IsLastContractAccepted(User user)
 		{
-			if (user.Control.ProcessingDeletion)
-				throw Error.UserDeleted.Throw();
-
 			var contract = getContract();
 
 			if (contract == null)
@@ -367,6 +402,9 @@ namespace DFM.BusinessLogic.Services
 		{
 			if (user.Control.ProcessingDeletion)
 				throw Error.UserDeleted.Throw();
+
+			if (user.Control.WipeRequest != null)
+				throw Error.UserAskedWipe.Throw();
 
 			var contract = getContract();
 			var acceptedNow = repos.Acceptance.Accept(user, contract);
@@ -395,6 +433,9 @@ namespace DFM.BusinessLogic.Services
 				if (user.Control.ProcessingDeletion)
 					throw Error.UserDeleted.Throw();
 
+				if (user.Control.WipeRequest != null)
+					throw Error.UserAskedWipe.Throw();
+
 				repos.User.SaveTFA(user, info.Secret);
 			});
 		}
@@ -407,6 +448,9 @@ namespace DFM.BusinessLogic.Services
 
 				if (user.Control.ProcessingDeletion)
 					throw Error.UserDeleted.Throw();
+
+				if (user.Control.WipeRequest != null)
+					throw Error.UserAskedWipe.Throw();
 
 				if (!repos.User.VerifyPassword(user, currentPassword))
 					throw Error.TFAWrongPassword.Throw();
@@ -428,6 +472,9 @@ namespace DFM.BusinessLogic.Services
 				if (user.Control.ProcessingDeletion)
 					throw Error.UserDeleted.Throw();
 
+				if (user.Control.WipeRequest != null)
+					throw Error.UserAskedWipe.Throw();
+
 				if (!repos.User.IsValid(secret, code))
 					throw Error.TFAWrongCode.Throw();
 
@@ -446,6 +493,9 @@ namespace DFM.BusinessLogic.Services
 			if (ticket.User.Control.ProcessingDeletion)
 				throw Error.UserDeleted.Throw();
 
+			if (ticket.User.Control.WipeRequest != null)
+				throw Error.UserAskedWipe.Throw();
+
 			return String.IsNullOrEmpty(ticket.User.TFASecret)
 				|| ticket.ValidTFA;
 		}
@@ -459,6 +509,9 @@ namespace DFM.BusinessLogic.Services
 
 			if (ticket.User.Control.ProcessingDeletion)
 				throw Error.UserDeleted.Throw();
+
+			if (ticket.User.Control.WipeRequest != null)
+				throw Error.UserAskedWipe.Throw();
 
 			return ticket.Type == type;
 		}
@@ -481,6 +534,9 @@ namespace DFM.BusinessLogic.Services
 			if (user.Control.ProcessingDeletion)
 				throw Error.UserDeleted.Throw();
 
+			if (user.Control.WipeRequest != null)
+				throw Error.UserAskedWipe.Throw();
+
 			inTransaction("SaveAccess", () =>
 			{
 				ticket.LastAccess = DateTime.UtcNow;
@@ -498,6 +554,9 @@ namespace DFM.BusinessLogic.Services
 
 				if (user.Control.ProcessingDeletion)
 					throw Error.UserDeleted.Throw();
+
+				if (user.Control.WipeRequest != null)
+					throw Error.UserAskedWipe.Throw();
 
 				repos.User.UseTFAAsPassword(user, use);
 			});

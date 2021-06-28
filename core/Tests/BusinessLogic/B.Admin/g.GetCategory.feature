@@ -22,3 +22,9 @@ Scenario: Bg03. Not get category if user is marked for deletion
 		But the user is marked for deletion
 	When I try to get the category by its name
 	Then I will receive this core error: UserDeleted
+
+Scenario: Bg04. Not get category if user requested wipe
+	Given I pass a valid category name
+		But the user asked data wipe
+	When I try to get the category by its name
+	Then I will receive this core error: UserAskedWipe

@@ -163,3 +163,11 @@ Scenario: Ba18. Not save account if user is marked for deletion
 		But the user is marked for deletion
 	When I try to save the account
 	Then I will receive this core error: UserDeleted
+
+Scenario: Ba19. Not save account if user requested wipe
+	Given I have this account to create
+			| Name         | Url  | Yellow | Red |
+			| Account Ba19 | ba19 |        |     |
+		But the user asked data wipe
+	When I try to save the account
+	Then I will receive this core error: UserAskedWipe

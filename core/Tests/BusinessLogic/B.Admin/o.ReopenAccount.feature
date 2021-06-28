@@ -35,3 +35,10 @@ Scenario: Bo05. Not reopen an Account if user is marked for deletion
 		But the user is marked for deletion
 	When I try to reopen the account
 	Then I will receive this core error: UserDeleted
+
+Scenario: Bo06. Not reopen an Account if user requested wipe
+	Given I give a url of the account Bo06 with moves
+		And I already have closed the account
+		But the user asked data wipe
+	When I try to reopen the account
+	Then I will receive this core error: UserAskedWipe

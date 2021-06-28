@@ -61,3 +61,8 @@ Scenario: Dd03. Not get schedules if user is marked for deletion
 	Given the user is marked for deletion
 	When ask for the schedule list
 	Then I will receive this core error: UserDeleted
+
+Scenario: Dd04. Not get schedules if user requested wipe
+	Given the user asked data wipe
+	When ask for the schedule list
+	Then I will receive this core error: UserAskedWipe

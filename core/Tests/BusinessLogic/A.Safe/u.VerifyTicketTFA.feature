@@ -43,3 +43,9 @@ Scenario: Au04. Not check ticket if user is marked for deletion
 		But the user is marked for deletion
 	When I try to verify the ticket
 	Then I will receive this core error: UserDeleted
+
+Scenario: Au05. Not check ticket if user requested wipe
+	Given I have a ticket key
+		But the user asked data wipe
+	When I try to verify the ticket
+	Then I will receive this core error: UserAskedWipe

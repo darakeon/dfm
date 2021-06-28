@@ -27,3 +27,8 @@ Scenario: Aw04. Not save access if user is marked for deletion
 	Given the user is marked for deletion
 	When I try to save the access
 	Then I will receive this core error: UserDeleted
+
+Scenario: Aw05. Not save access if user requested wipe
+	Given the user asked data wipe
+	When I try to save the access
+	Then I will receive this core error: UserAskedWipe

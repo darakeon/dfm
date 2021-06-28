@@ -84,7 +84,7 @@ Scenario: Da05. Save with Description too large
 Scenario: Da06. Save with (Nature: Out) (AccountOut:No) (AccountIn:No)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da11   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+			| Move Da06   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has no Account Out
@@ -96,7 +96,7 @@ Scenario: Da06. Save with (Nature: Out) (AccountOut:No) (AccountIn:No)
 Scenario: Da07. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da12   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+			| Move Da07   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has an Account Out
@@ -114,7 +114,7 @@ Scenario: Da07. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes)
 Scenario: Da08. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da13   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+			| Move Da08   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has no Account Out
@@ -129,7 +129,7 @@ Scenario: Da08. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes)
 Scenario: Da09. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da14   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+			| Move Da09   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has an unknown Account Out
@@ -141,7 +141,7 @@ Scenario: Da09. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No)
 Scenario: Da10. Save with (Nature: In) (AccountOut:No) (AccountIn:No)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da21   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
+			| Move Da10   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has no Account Out
@@ -153,7 +153,7 @@ Scenario: Da10. Save with (Nature: In) (AccountOut:No) (AccountIn:No)
 Scenario: Da11. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da22   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
+			| Move Da11   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has an Account Out
@@ -171,7 +171,7 @@ Scenario: Da11. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes)
 Scenario: Da12. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da23   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
+			| Move Da12   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has an Account Out
@@ -186,7 +186,7 @@ Scenario: Da12. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No)
 Scenario: Da13. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da24   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
+			| Move Da13   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has no Account Out
@@ -198,7 +198,7 @@ Scenario: Da13. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown)
 Scenario: Da14. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:No)
 	Given I have this schedule to create
 			| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da31   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
+			| Move Da14   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has no Account Out
@@ -210,7 +210,7 @@ Scenario: Da14. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:No)
 Scenario: Da15. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes)
 	Given I have this schedule to create
 			| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da32   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
+			| Move Da15   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has no Account Out
@@ -225,7 +225,7 @@ Scenario: Da15. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes)
 Scenario: Da16. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No)
 	Given I have this schedule to create
 			| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da33   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
+			| Move Da16   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has an Account Out
@@ -240,7 +240,7 @@ Scenario: Da16. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No)
 Scenario: Da17. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown)
 	Given I have this schedule to create
 			| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da34   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
+			| Move Da17   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has an Account Out
@@ -255,7 +255,7 @@ Scenario: Da17. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown
 Scenario: Da18. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes)
 	Given I have this schedule to create
 			| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da35   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
+			| Move Da18   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has an unknown Account Out
@@ -270,7 +270,7 @@ Scenario: Da18. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes
 Scenario: Da19. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out)
 	Given I have this schedule to create
 			| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da36   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
+			| Move Da19   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has an Account Out
@@ -288,7 +288,7 @@ Scenario: Da19. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal t
 Scenario: Da20. Save without Value or Details
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da41   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
+			| Move Da20   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has an Account Out
@@ -303,7 +303,7 @@ Scenario: Da20. Save without Value or Details
 Scenario: Da21. Save with Value zero and no Details
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da42   | 2012-03-31 | Out    | 0     | 10    | False     | Monthly   | False           |
+			| Move Da21   | 2012-03-31 | Out    | 0     | 10    | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has an Account Out
@@ -318,7 +318,7 @@ Scenario: Da21. Save with Value zero and no Details
 Scenario: Da22. Save without value and without Description in Detail
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da43   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
+			| Move Da22   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
 		And the schedule has this details
 			| Description | Amount | Value |
 			|             | 1      | 10    |
@@ -336,7 +336,7 @@ Scenario: Da22. Save without value and without Description in Detail
 Scenario: Da23. Save without value and with Amount zero in Detail
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da44   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
+			| Move Da23   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
 		And the schedule has this details
 			| Description | Amount | Value |
 			| Detail 1    | 0      | 10    |
@@ -354,7 +354,7 @@ Scenario: Da23. Save without value and with Amount zero in Detail
 Scenario: Da24. Save without value and with Value zero in Detail
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da45   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
+			| Move Da24   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
 		And the schedule has this details
 			| Description | Amount | Value |
 			| Detail 1    | 1      | 0     |
@@ -372,7 +372,7 @@ Scenario: Da24. Save without value and with Value zero in Detail
 Scenario: Da25. Save with Description too large in Detail
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da46   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
+			| Move Da25   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
 		And the schedule has this details
 			| Description                                         | Amount | Value |
 			| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy | 1      | 10    |
@@ -401,7 +401,7 @@ Scenario: Da26. Save without Schedule
 Scenario: Da27. Save with Schedule Times zero and bounded
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da52   | 2012-03-31 | Out    | 10    | 0     | False     | Monthly   | False           |
+			| Move Da27   | 2012-03-31 | Out    | 10    | 0     | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has an Account Out
@@ -416,7 +416,7 @@ Scenario: Da27. Save with Schedule Times zero and bounded
 Scenario: Da28. Save with info all right (Out)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da91   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+			| Move Da28   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has an Account Out
@@ -431,7 +431,7 @@ Scenario: Da28. Save with info all right (Out)
 Scenario: Da29. Save with info all right (In)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da92   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
+			| Move Da29   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has no Account Out
@@ -447,7 +447,7 @@ Scenario: Da29. Save with info all right (In)
 Scenario: Da30. Save with info all right (Transfer)
 	Given I have this schedule to create
 			| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da93   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
+			| Move Da30   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has an Account Out
@@ -466,7 +466,7 @@ Scenario: Da30. Save with info all right (Transfer)
 Scenario: Da31. Save with info all right (value)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da94   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+			| Move Da31   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has an Account Out
@@ -483,7 +483,7 @@ Scenario: Da31. Save with info all right (value)
 Scenario: Da32. Save with info all right (details)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da95   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
+			| Move Da32   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
 		And the schedule has this details
 			| Description | Amount | Value |
 			| Detail 1    | 1      | 10    |
@@ -502,7 +502,7 @@ Scenario: Da32. Save with info all right (details)
 Scenario: Da33. Save negative (value)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da96   | 2012-03-31 | Out    | -10   | 10    | False     | Monthly   | False           |
+			| Move Da33   | 2012-03-31 | Out    | -10   | 10    | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has an Account Out
@@ -518,7 +518,7 @@ Scenario: Da33. Save negative (value)
 Scenario: Da34. Save negative (details)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da97   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
+			| Move Da34   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
 		And the schedule has this details
 			| Description | Amount | Value |
 			| Detail 1    | 1      | -10   |
@@ -537,7 +537,7 @@ Scenario: Da34. Save negative (details)
 Scenario: Da35. Save with future Date
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da98   | 2099-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+			| Move Da35   | 2099-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has an Account Out
@@ -553,7 +553,7 @@ Scenario: Da35. Save with future Date
 Scenario: Da36. Save with exactly length in Description of Detail
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da99   | 2010-03-31 | Out    |       | 10    | False     | Monthly   | False           |
+			| Move Da36   | 2010-03-31 | Out    |       | 10    | False     | Monthly   | False           |
 		And the schedule has this details
 			| Description                                        | Amount | Value |
 			| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx | 1      | 10    |
@@ -587,10 +587,10 @@ Scenario: Da37. Save with exactly length in Description
 Scenario: Da38. Save with details with same description
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da9D   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
+			| Move Da38   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
 		And the schedule has this details
 			| Description | Amount | Value |
-			| Move Da9D   | 1      | 10    |
+			| Move Da38   | 1      | 10    |
 		And it has a Category
 		And it has an Account Out
 		And it has no Account In
@@ -605,7 +605,7 @@ Scenario: Da38. Save with details with same description
 Scenario: Da39. Not save if user is marked for deletion
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-			| Move Da91   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+			| Move Da39   | 2021-05-16 | Out    | 10    | 10    | False     | Monthly   | False           |
 		And it has no Details
 		And it has a Category
 		And it has an Account Out
@@ -613,3 +613,15 @@ Scenario: Da39. Not save if user is marked for deletion
 		But the user is marked for deletion
 	When I try to save the schedule
 	Then I will receive this core error: UserDeleted
+
+Scenario: Da40. Not save if user requested wipe
+	Given I have this schedule to create
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da40   | 2021-06-26 | Out    | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		But the user asked data wipe
+	When I try to save the schedule
+	Then I will receive this core error: UserAskedWipe

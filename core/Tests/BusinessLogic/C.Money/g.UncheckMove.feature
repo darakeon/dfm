@@ -96,3 +96,9 @@ Scenario: Cg12. Not mark as not checked if user is marked for deletion
 		But the user is marked for deletion
 	When I try to mark it as not checked for account Out
 	Then I will receive this core error: UserDeleted
+
+Scenario: Cg13. Not mark as not checked if user requested wipe
+	Given I have a move with value 10 (Out)
+		But the user asked data wipe
+	When I try to mark it as not checked for account Out
+	Then I will receive this core error: UserAskedWipe

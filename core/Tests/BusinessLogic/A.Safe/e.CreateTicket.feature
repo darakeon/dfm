@@ -147,3 +147,15 @@ Scenario: Ae12. Not validate if user is marked for deletion
 		But the user is marked for deletion
 	When I try to get the ticket
 	Then I will receive this core error: UserDeleted
+
+Scenario: Ae13. Not validate if user requested wipe
+	Given I have this user created
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
+		And I have this user data
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
+		And I activate the user
+		But the user asked data wipe
+	When I try to get the ticket
+	Then I will receive this core error: UserAskedWipe

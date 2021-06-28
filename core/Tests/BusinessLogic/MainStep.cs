@@ -83,6 +83,19 @@ namespace DFM.BusinessLogic.Tests
 			db.Execute(() => repos.Control.MarkDeletion(user));
 		}
 
+		[Given(@"the user(.*) asked data wipe")]
+		public void GivenTheUserAskedDataWipe(String passedEmail)
+		{
+			if (passedEmail == "")
+				passedEmail = null;
+
+			var user = repos.User.GetByEmail(
+				passedEmail?.Trim() ?? email ?? userEmail
+			);
+
+			db.Execute(() => repos.Control.RequestWipe(user));
+		}
+
 		[When(@"test user login")]
 		public void WhenTestUserLogin()
 		{

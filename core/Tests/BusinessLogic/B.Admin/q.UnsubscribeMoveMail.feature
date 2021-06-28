@@ -65,8 +65,14 @@ Scenario: Bq09. Stop sending move mail reuse token
 		And I have a move with value 300 (In) at account Bq08
 	Then the last two e-mails will have same unsubscribe token
 
-Scenario: Bq10. Stop sending move mail even if user is marked for deletion
+Scenario: Bq10. Error on stop sending move mail if user is marked for deletion
 	Given I pass a valid UnsubscribeMoveMail token
 		But the user is marked for deletion
 	When I unsubscribe move mail
 	Then I will receive this core error: UserDeleted
+
+Scenario: Bq11. Error on stop sending move mail if user requested wipe
+	Given I pass a valid UnsubscribeMoveMail token
+		But the user asked data wipe
+	When I unsubscribe move mail
+	Then I will receive this core error: UserAskedWipe

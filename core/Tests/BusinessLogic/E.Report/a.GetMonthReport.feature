@@ -186,7 +186,16 @@ Scenario: Ea11. Not get report if user is marked for deletion
 	Given I pass a valid account url
 		And I pass this date
 			| Month | Year |
-			| 4     | 2012 |
+			| 5     | 2021 |
 		But the user is marked for deletion
 	When I try to get the month report
 	Then I will receive this core error: UserDeleted
+
+Scenario: Ea12. Not get report if user requested wipe
+	Given I pass a valid account url
+		And I pass this date
+			| Month | Year |
+			| 6     | 2021 |
+		But the user asked data wipe
+	When I try to get the month report
+	Then I will receive this core error: UserAskedWipe

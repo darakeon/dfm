@@ -49,3 +49,9 @@ Scenario: Bn08. Not change system Theme if user is marked for deletion
 		But the user is marked for deletion
 	When I try to change the Theme
 	Then I will receive this core error: UserDeleted
+
+Scenario: Bn09. Not change system Theme if user requested wipe
+	Given a theme DarkMagic
+		But the user asked data wipe
+	When I try to change the Theme
+	Then I will receive this core error: UserAskedWipe

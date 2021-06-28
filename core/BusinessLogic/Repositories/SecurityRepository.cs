@@ -118,6 +118,9 @@ namespace DFM.BusinessLogic.Repositories
 			if (security.User.Control.ProcessingDeletion)
 				throw Error.UserDeleted.Throw();
 
+			if (security.User.Control.WipeRequest != null)
+				throw Error.UserAskedWipe.Throw();
+
 			security.Active = false;
 			SaveOrUpdate(security);
 		}
