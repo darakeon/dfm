@@ -28,3 +28,9 @@ Scenario: Ap04. Not get accepted contract if user is marked for deletion
 		But the user is marked for deletion
 	When I try to get the acceptance
 	Then I will receive this core error: UserDeleted
+
+Scenario: Ap05. Not get accepted contract if user requested wipe
+	Given test user login
+		But the user asked data wipe
+	When I try to get the acceptance
+	Then I will receive this core error: UserAskedWipe

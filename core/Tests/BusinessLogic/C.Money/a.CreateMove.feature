@@ -728,7 +728,7 @@ Scenario: Ca45. Save move fix account begin date
 Scenario: Ca46. Not save if user is marked for deletion
 	Given I have this move to create
 			| Description | Date       | Nature | Value |
-			| Move Ca30   | 2012-03-31 | Out    | 10    |
+			| Move Ca46   | 2021-05-16 | Out    | 10    |
 		And it has no Details
 		And it has a Category
 		And it has an Account Out
@@ -736,3 +736,15 @@ Scenario: Ca46. Not save if user is marked for deletion
 		But the user is marked for deletion
 	When I try to save the move
 	Then I will receive this core error: UserDeleted
+
+Scenario: Ca47. Not save if user requested wipe
+	Given I have this move to create
+			| Description | Date       | Nature | Value |
+			| Move Ca47   | 2021-06-26 | Out    | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		But the user asked data wipe
+	When I try to save the move
+	Then I will receive this core error: UserAskedWipe

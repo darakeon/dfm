@@ -62,3 +62,9 @@ Scenario: Af08. Not get session if user is marked for deletion
 		But the user is marked for deletion
 	When I try to get the session
 	Then I will receive this core error: UserDeleted
+
+Scenario: Af09. Not get session if user requested wipe
+	Given I pass a ticket that exist
+		But the user asked data wipe
+	When I try to get the session
+	Then I will receive this core error: UserAskedWipe

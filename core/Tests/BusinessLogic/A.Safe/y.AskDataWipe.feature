@@ -21,8 +21,7 @@ Scenario: Ay03. Ask user already marked for deletion
 	Given data wipe was asked
 	When pass a password that is right
 		And ask data wipe
-	Then I will receive no core error
-		And the user will be marked for deletion
+	Then I will receive this core error: UserAskedWipe
 
 Scenario: Ay04. Ask with all right
 	When pass a password that is right

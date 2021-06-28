@@ -52,3 +52,11 @@ Scenario: Al05. Not change if user is marked for deletion
 		But the user is marked for deletion
 	When I try to change the password
 	Then I will receive this core error: UserDeleted
+
+Scenario: Al06. Not change if user requested wipe
+	Given I pass this password
+			| Current Password | Password     | Retype Password |
+			| password         | new_password | new_password    |
+		But the user asked data wipe
+	When I try to change the password
+	Then I will receive this core error: UserAskedWipe

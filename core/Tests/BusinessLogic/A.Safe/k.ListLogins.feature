@@ -16,3 +16,10 @@ Scenario: Ak02. Not list if user is marked for deletion
 		But the user is marked for deletion
 	When I ask for current active logins
 	Then I will receive this core error: UserDeleted
+
+Scenario: Ak03. Not list if user requested wipe
+	Given test user login
+		And I login the user
+		But the user asked data wipe
+	When I ask for current active logins
+	Then I will receive this core error: UserAskedWipe

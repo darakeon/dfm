@@ -28,6 +28,7 @@ namespace DFM.BusinessLogic.Exceptions
 		TooLargeUserEmail = 216,
 		UserEmailRequired = 217,
 		UserDeleted = 218,
+		UserAskedWipe = 219,
 
 		AccountNameRequired = 301,
 		AccountUrlRequired = 302,

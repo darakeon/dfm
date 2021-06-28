@@ -74,3 +74,11 @@ Scenario: Bm05. Not get categories if user is marked for deletion
 		But the user is marked for deletion
 	When ask for all the category list
 	Then I will receive this core error: UserDeleted
+
+Scenario: Bm06. Not get categories if user requested wipe
+	Given I have this category
+			| Name          |
+			| Category Bm06 |
+		But the user asked data wipe
+	When ask for all the category list
+	Then I will receive this core error: UserAskedWipe

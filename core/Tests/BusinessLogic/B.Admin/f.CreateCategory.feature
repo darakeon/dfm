@@ -70,3 +70,11 @@ Scenario: Bf07. Not save Category if user is marked for deletion
 		But the user is marked for deletion
 	When I try to save the category
 	Then I will receive this core error: UserDeleted
+
+Scenario: Bf08. Not save Category if user requested wipe
+	Given I have this category to create
+			| Name          |
+			| Category Bf08 |
+		But the user asked data wipe
+	When I try to save the category
+	Then I will receive this core error: UserAskedWipe

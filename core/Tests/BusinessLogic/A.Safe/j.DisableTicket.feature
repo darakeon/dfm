@@ -2,11 +2,11 @@
 
 Background:
 	Given I have this user created
-			| Email                          | Password | Active |
-			| disableticket@dontflymoney.com | password | true   |
+			| Email                           | Password | Active |
+			| {scenarioCode}@dontflymoney.com | password | true   |
 		And I have this user data
-			| Email                          | Password |
-			| disableticket@dontflymoney.com | password |
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 		And I have a ticket of this user
 
 Scenario: Aj01. Disable with info all right
@@ -41,3 +41,9 @@ Scenario: Aj06. Not disable if user is marked for deletion
 		But the user is marked for deletion
 	When I try to disable the ticket
 	Then I will receive this core error: UserDeleted
+
+Scenario: Aj07. Not disable if user requested wipe
+	Given I pass a ticket that exist
+		But the user asked data wipe
+	When I try to disable the ticket
+	Then I will receive this core error: UserAskedWipe

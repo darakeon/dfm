@@ -62,3 +62,14 @@ Scenario: Bh05. Not update if user is marked for deletion
 		But the user is marked for deletion
 	When I try to update the category
 	Then I will receive this core error: UserDeleted
+
+Scenario: Bh06. Not update if user requested wipe
+	Given I have this category
+			| Name          |
+			| Category Bh06 |
+		And I make this changes to the category
+			| Name            |
+			| Bh06 - new name |
+		But the user asked data wipe
+	When I try to update the category
+	Then I will receive this core error: UserAskedWipe

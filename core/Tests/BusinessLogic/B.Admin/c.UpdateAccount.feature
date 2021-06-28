@@ -92,10 +92,21 @@ Scenario: Bc07. Change the url to repeated
 Scenario: Bc08. Not change if user is marked for deletion
 	Given I already have this account
 			| Name           | Url            |
-			| Account Bc07.1 | account_bc07_1 |
+			| Account Bc08.1 | account_bc08_1 |
 		But the user is marked for deletion
 	When I make this changes to the account
 			| Name           | Url            |
-			| Account Bc07.2 | account_bc07_1 |
+			| Account Bc08.2 | account_bc08_1 |
 		And I try to update the account
 	Then I will receive this core error: UserDeleted
+
+Scenario: Bc09. Not change if user requested wipe
+	Given I already have this account
+			| Name           | Url            |
+			| Account Bc09.1 | account_bc09_1 |
+		But the user asked data wipe
+	When I make this changes to the account
+			| Name           | Url            |
+			| Account Bc09.2 | account_bc09_1 |
+		And I try to update the account
+	Then I will receive this core error: UserAskedWipe

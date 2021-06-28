@@ -159,3 +159,9 @@ Scenario: Bk22. Not update if user is marked for deletion
 		But the user is marked for deletion
 	When I try to enable wizard
 	Then I will receive this core error: UserDeleted
+
+Scenario: Bk23. Not update if user requested wipe
+	Given I disable wizard
+		But the user asked data wipe
+	When I try to enable wizard
+	Then I will receive this core error: UserAskedWipe

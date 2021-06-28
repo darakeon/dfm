@@ -61,3 +61,11 @@ Scenario: Bl04. Not get accounts if user is marked for deletion
 		But the user is marked for deletion
 	When ask for the not active account list
 	Then I will receive this core error: UserDeleted
+
+Scenario: Bl05. Not get accounts if user requested wipe
+	Given I have this account
+			| Name         | Url          | Yellow | Red |
+			| Account Bl05 | account_bl05 |        |     |
+		But the user asked data wipe
+	When ask for the not active account list
+	Then I will receive this core error: UserAskedWipe

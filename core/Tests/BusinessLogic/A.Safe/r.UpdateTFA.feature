@@ -115,3 +115,17 @@ Scenario: Ar08. Not update if user is marked for deletion
 		But the user is marked for deletion
 	When I try to set two-factor
 	Then I will receive this core error: UserDeleted
+
+Scenario: Ar09. Not update if user requested wipe
+	Given I have this user created
+			| Email                 | Password | Active |
+			| ar09@dontflymoney.com | password | true   |
+		And I login this user
+			| Email                 | Password |
+			| ar09@dontflymoney.com | password |
+		And I have this two-factor data
+			| Secret | Code        | Password |
+			| 123    | {generated} | password |
+		But the user asked data wipe
+	When I try to set two-factor
+	Then I will receive this core error: UserAskedWipe

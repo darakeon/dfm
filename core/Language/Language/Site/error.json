@@ -91,6 +91,7 @@
 		"OpenedAccount": "The account is already opened",
 		"UserEmailRequired": "E-mail cannot be empty, it is used to identify you and communicate when needed",
 		"UserDeleted": "This user data is being deleted due to lack of interaction, not accepting new contract or the owner asking to",
+		"UserAskedWipe": "The owner of this data requested the deletion of it",
 	},
 	"pt-BR": {
 		"Unknown": "ZERO",
@@ -184,5 +185,6 @@
 		"OpenedAccount": "A conta já está aberta",
 		"UserEmailRequired": "E-mail não pode ficar em branco, é usado para identificar você e para comunicações quando necessário",
 		"UserDeleted": "Os dados estão sendo deletados devido a falta de interação com o sistema, não aceitação de novos termos de uso ou pedido da Pessoa a quem esses dados pertencem",
+		"UserAskedWipe": "A pessoa a quem esses dados pertencem solicitou a remoção dos mesmos",
 	},
 }

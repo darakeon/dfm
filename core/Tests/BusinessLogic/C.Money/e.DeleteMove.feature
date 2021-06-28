@@ -121,3 +121,10 @@ Scenario: Ce11. Not delete if user is marked for deletion
 		But the user is marked for deletion
 	When I try to delete the move
 	Then I will receive this core error: UserDeleted
+
+Scenario: Ce12. Not delete if user requested wipe
+	Given I have a move
+		And I pass valid Move ID
+		But the user asked data wipe
+	When I try to delete the move
+	Then I will receive this core error: UserAskedWipe

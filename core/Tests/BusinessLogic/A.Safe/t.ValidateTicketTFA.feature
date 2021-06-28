@@ -52,3 +52,15 @@ Scenario: At04. Not validate if user is marked for deletion
 		But the user is marked for deletion
 	When I try to validate the ticket two factor
 	Then I will receive this core error: UserDeleted
+
+Scenario: At05. Not validate if user requested wipe
+	Given I have this two-factor data
+			| Secret | Code        | Password |
+			| 789    | {generated} | password |
+		And I set two-factor
+		And I have this two-factor data
+			| Secret | Code        |
+			| 789    | {generated} |
+		But the user asked data wipe
+	When I try to validate the ticket two factor
+	Then I will receive this core error: UserAskedWipe

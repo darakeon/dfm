@@ -46,3 +46,9 @@ Scenario: Cc05. Not get the Move if user is marked for deletion
 		But the user is marked for deletion
 	When I try to get the move
 	Then I will receive this core error: UserDeleted
+
+Scenario: Cc06. Not get the Move if user requested wipe
+	Given I pass valid Move ID
+		But the user asked data wipe
+	When I try to get the move
+	Then I will receive this core error: UserAskedWipe

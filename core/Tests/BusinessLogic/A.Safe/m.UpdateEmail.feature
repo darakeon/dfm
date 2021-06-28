@@ -43,3 +43,11 @@ Scenario: Am04. Not update if user is marked for deletion
 		But the user is marked for deletion
 	When I try to change the e-mail
 	Then I will receive this core error: UserDeleted
+
+Scenario: Am05. Not update if user requested wipe
+	Given I pass this new e-mail and password
+			| New E-mail             | Current Password |
+			| Am05_@dontflymoney.com | password         |
+		But the user asked data wipe
+	When I try to change the e-mail
+	Then I will receive this core error: UserAskedWipe

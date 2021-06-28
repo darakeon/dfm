@@ -76,3 +76,12 @@ Scenario: Ag07. Not reset if user is marked for deletion
 		But the user is marked for deletion
 	When I try to reset the password
 	Then I will receive this core error: UserDeleted
+
+Scenario: Ag08. Not reset if user requested wipe
+	Given I pass a valid PasswordReset token
+		And I pass this password
+			| Password     | Retype Password |
+			| new_password | new_password    |
+		But the user asked data wipe
+	When I try to reset the password
+	Then I will receive this core error: UserAskedWipe

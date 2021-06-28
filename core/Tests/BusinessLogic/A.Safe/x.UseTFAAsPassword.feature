@@ -39,3 +39,13 @@ Scenario: Ax04. Not deactivate if user is marked for deletion
 	Given the user is marked for deletion
 	When I set to not use TFA as password
 	Then I will receive this core error: UserDeleted
+
+Scenario: Ax05. Not activate if user requested wipe
+	Given the user asked data wipe
+	When I set to use TFA as password
+	Then I will receive this core error: UserAskedWipe
+
+Scenario: Ax06. Not deactivate if user requested wipe
+	Given the user asked data wipe
+	When I set to not use TFA as password
+	Then I will receive this core error: UserAskedWipe

@@ -321,3 +321,10 @@ Scenario: Cb22. Not update if user is marked for deletion
 	When I change the move value to 20
 		And I update the move
 	Then I will receive this core error: UserDeleted
+
+Scenario: Cb23. Not update if user requested wipe
+	Given I have a move with value 10 (Out)
+		But the user asked data wipe
+	When I change the move value to 20
+		And I update the move
+	Then I will receive this core error: UserAskedWipe
