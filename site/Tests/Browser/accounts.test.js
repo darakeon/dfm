@@ -120,7 +120,7 @@ describe('Accounts', () => {
 		await puppy.call('Accounts/ListClosed')
 		await puppy.submit(`/Accounts/Reopen/${url}`)
 
-		body = await puppy.content('#body')
+		const body = await puppy.content('#body')
 
 		await puppy.call('Accounts')
 
