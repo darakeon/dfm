@@ -495,6 +495,12 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			Assert.AreEqual(table.ToCsv(), csv);
 		}
 
+		[Then(@"there will no be an export file")]
+		public void ThenThereWillNoBeAnExportFile()
+		{
+			Assert.Null(csv);
+		}
+
 		[Then(@"it will be registered at wipe table with reason (\w+)")]
 		public void ThenItWillBeRegisteredAtWipeTable(RemovalReason reason)
 		{
