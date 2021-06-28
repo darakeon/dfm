@@ -621,3 +621,22 @@ Scenario: De54. Wipe when user asks too
 		And there will be a wipe notice sent
 		And it will be registered at wipe table with reason PersonAsked
 		And there will no be an export file
+
+Scenario: De55. Wipe just the right user
+	Given the user have
+			| System Stuff |
+			| Move         |
+			| Schedule     |
+		And data wipe was asked
+		And I have this user created
+			| Email                         | Signed | Active |
+			| dont_wipe_me@dontflymoney.com | true   | true   |
+		And the user dont_wipe_me@dontflymoney.com have
+			| System Stuff |
+			| Move         |
+			| Schedule     |
+	When robot user login
+		And call wipe users
+	Then I will receive no core error
+		And the user won't exist
+		But the user dont_wipe_me@dontflymoney.com will still exist
