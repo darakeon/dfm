@@ -97,7 +97,7 @@ async function submit(action) {
 	const selector = `form[action="${action}"] button[type="submit"]`
 
 	try {
-		const button = await page.waitForSelector(selector, { visible: true })
+		await page.waitForSelector(selector, { visible: true })
 		await page.click(selector)
 		await page.waitForSelector('footer')
 	} catch (e) {
