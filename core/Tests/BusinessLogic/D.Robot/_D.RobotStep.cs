@@ -391,10 +391,14 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			db.Execute(() => repos.Control.SaveOrUpdate(control));
 		}
 
-		[Given(@"the user have")]
-		public void GivenTheUserHave(Table table)
+		[Given(@"the user (.*)have")]
+		public void GivenTheUserHave(String email, Table table)
 		{
-			var user = repos.User.GetByEmail(userEmail);
+			email = String.IsNullOrWhiteSpace(email)
+				? userEmail
+				: email.Trim();
+
+			var user = repos.User.GetByEmail(email);
 			foreach (var row in table.Rows)
 			{
 				createFor(user, row["System Stuff"]);
@@ -446,10 +450,14 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			}
 		}
 
-		[Then(@"the user will still exist")]
-		public void ThenTheUserWillStillExists()
+		[Then(@"the user (.*)will still exist")]
+		public void ThenTheUserWillStillExists(String email)
 		{
-			var user = repos.User.GetByEmail(userEmail);
+			email = String.IsNullOrWhiteSpace(email)
+				? userEmail
+				: email.Trim();
+
+			var user = repos.User.GetByEmail(email);
 			Assert.IsNotNull(user);
 		}
 
