@@ -13,6 +13,10 @@ namespace DfM.Logs
 			try
 			{
 				var path = Cfg.LogErrorsFile(error.ID);
+
+				if (!Directory.Exists(Cfg.LogErrorsPath))
+					Directory.CreateDirectory(Cfg.LogErrorsPath);
+
 				File.WriteAllText(path, textError);
 			}
 			catch (Exception e)
