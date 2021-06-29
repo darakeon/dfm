@@ -123,13 +123,6 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			}
 		}
 
-		[Then(@"the user will not be saved")]
-		public void ThenTheUserWillNotBeSaved()
-		{
-			var user = repos.User.GetByEmail(email);
-			Assert.IsNull(user);
-		}
-
 		[Then(@"the user will not be changed")]
 		public void ThenTheUserWillNotBeChanged()
 		{
@@ -140,21 +133,22 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			Assert.IsTrue(rightPassword);
 		}
 
-		[Then(@"the user will be saved")]
-		public void ThenTheUserWillBeSaved()
+		[Then(@"the user will (not )?be saved")]
+		public void ThenTheUserWillBeSaved(Boolean saved)
 		{
-			var tokenActivate = getLastTokenForUser(
-				email,
-				SecurityAction.UserVerification
-			);
-
-			service.Safe.ActivateUser(tokenActivate);
-
 			var savedUser = repos.User.GetByEmail(email);
-			Assert.IsNotNull(savedUser);
 
-			var rightPassword = Crypt.Check(password, savedUser.Password);
-			Assert.IsTrue(rightPassword);
+			if (saved)
+			{
+				Assert.IsNotNull(savedUser);
+
+				var rightPassword = Crypt.Check(password, savedUser.Password);
+				Assert.IsTrue(rightPassword);
+			}
+			else
+			{
+				Assert.IsNull(savedUser);
+			}
 		}
 		#endregion
 
