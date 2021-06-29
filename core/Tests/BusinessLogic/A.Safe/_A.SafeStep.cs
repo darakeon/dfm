@@ -298,20 +298,21 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			}
 		}
 
-		[Then(@"I will receive no ticket")]
-		public void ThenIWillReceiveNoTicket()
+		[Then(@"I will (not )?receive the ticket")]
+		public void ThenIWillReceiveTheTicket(Boolean receive)
 		{
-			Assert.IsNull(ticket);
-		}
+			if (receive)
+			{
+				Assert.IsNotNull(ticket);
 
-		[Then(@"I will receive the ticket")]
-		public void ThenIWillReceiveTheTicket()
-		{
-			Assert.IsNotNull(ticket);
+				var expectedSession = service.Safe.GetSession(ticket);
 
-			var expectedSession = service.Safe.GetSession(ticket);
-
-			Assert.IsNotNull(expectedSession);
+				Assert.IsNotNull(expectedSession);
+			}
+			else
+			{
+				Assert.IsNull(ticket);
+			}
 		}
 		#endregion
 
