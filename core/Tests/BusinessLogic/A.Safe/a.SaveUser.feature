@@ -10,27 +10,27 @@ Scenario: Aa01. Save user with empty e-mail
 
 Scenario: Aa02. Save user with empty password
 	Given I have this user data
-			| Email                     | Password | Retype Password |
-			| saveuser@dontflymoney.com |          |                 |
+			| Email                           | Password | Retype Password |
+			| {scenarioCode}@dontflymoney.com |          |                 |
 	When I try to save the user
 	Then I will receive this core error: UserPasswordRequired
 		And the user will not be saved
 
 Scenario: Aa03. Save user with invalid e-mail
 	Given I have this user data
-			| Email    | Password | Retype Password |
-			| saveuser | password | password        |
+			| Email          | Password | Retype Password |
+			| {scenarioCode} | password | password        |
 	When I try to save the user
 	Then I will receive this core error: UserEmailInvalid
 		And the user will not be saved
 
 Scenario: Aa04. Save user with repeated e-mail
 	Given I have this user created
-			| Email                     | Password |
-			| repeated@dontflymoney.com | password |
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 		And I have this user data
-			| Email                     | Password | Retype Password |
-			| repeated@dontflymoney.com | password | password        |
+			| Email                           | Password | Retype Password |
+			| {scenarioCode}@dontflymoney.com | password | password        |
 	When I try to save the user
 	Then I will receive this core error: UserAlreadyExists
 		And the user will not be changed
@@ -45,8 +45,8 @@ Scenario: Aa05. Save user too large e-mail
 
 Scenario: Aa06. Save user wrong retype
 	Given I have this user data
-			| Email                  | Password | Retype Password |
-			| email@dontflymoney.com | password | password_wrong  |
+			| Email                           | Password | Retype Password |
+			| {scenarioCode}@dontflymoney.com | password | password_wrong  |
 	When I try to save the user
 	Then I will receive this core error: RetypeWrong
 		And the user will not be saved
@@ -61,8 +61,8 @@ Scenario: Aa07. Save user with exactly length e-mail
 
 Scenario: Aa08. Save user with info all right
 	Given I have this user data
-			| Email                     | Password | Retype Password |
-			| saveuser@dontflymoney.com | password | password        |
+			| Email                           | Password | Retype Password |
+			| {scenarioCode}@dontflymoney.com | password | password        |
 	When I try to save the user
 	Then I will receive no core error
 		And the user will be saved
@@ -77,16 +77,16 @@ Scenario: Aa09. Save user without e-mail
 
 Scenario: Aa10. Save user without password
 	Given I have this user data
-			| Email                    | Retype Password |
-			| notpass@dontflymoney.com | password        |
+			| Email                           | Retype Password |
+			| {scenarioCode}@dontflymoney.com | password        |
 	When I try to save the user
 	Then I will receive this core error: UserPasswordRequired
 		And the user will not be saved
 
 Scenario: Aa11. Save user without retype password
 	Given I have this user data
-			| Email                     | Password |
-			| noretype@dontflymoney.com | password |
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 	When I try to save the user
 	Then I will receive this core error: RetypeWrong
 		And the user will not be saved
