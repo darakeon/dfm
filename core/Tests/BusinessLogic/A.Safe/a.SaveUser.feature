@@ -35,15 +35,7 @@ Scenario: Aa04. Save user with repeated e-mail
 	Then I will receive this core error: UserAlreadyExists
 		And the user will not be changed
 
-Scenario: Aa05. Save user too large e-mail
-	Given I have this user data
-			| Password | Retype Password | Email                                                                                                                                                                                                                                                                                                                              |
-			| password | password        | D.F.M.ABCDEFGHIJKLMNOPQRSTUVWXYZ-abcdefghijklmnopqrstuvwxyz_D.F.M.ABCDEFGHIJKLMNOPQRSTUVWXYZ-abcdefghijklmnopqrstuvwxyz_D.F.M.ABCDEFGHIJKLMNOPQRSTUVWXYZ-abcdefghijklmnopqrstuvwxyz_D.F.M.ABCDEFGHIJKLMNOPQRSTUVWXYZ-abcdefghijklmnopqrstuvwxyz_D.F.M.ABCDEFGHIJKLMNOPQRSTUVWXYZ-abcdefghijklmnopqrstuvwxyz_D.F.M@dontflymoney.com |
-	When I try to save the user
-	Then I will receive this core error: TooLargeUserEmail
-		And the user will not be saved
-
-Scenario: Aa06. Save user wrong retype
+Scenario: Aa05. Save user wrong retype
 	Given I have this user data
 			| Email                           | Password | Retype Password |
 			| {scenarioCode}@dontflymoney.com | password | password_wrong  |
@@ -51,15 +43,7 @@ Scenario: Aa06. Save user wrong retype
 	Then I will receive this core error: RetypeWrong
 		And the user will not be saved
 
-Scenario: Aa07. Save user with exactly length e-mail
-	Given I have this user data
-			| Email                                              | Password | Retype Password |
-			| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefg@dontflymoney.com | password | password        |
-	When I try to save the user
-	Then I will receive no core error
-		And the user will be saved
-
-Scenario: Aa08. Save user with info all right
+Scenario: Aa06. Save user with info all right
 	Given I have this user data
 			| Email                           | Password | Retype Password |
 			| {scenarioCode}@dontflymoney.com | password | password        |
@@ -67,7 +51,7 @@ Scenario: Aa08. Save user with info all right
 	Then I will receive no core error
 		And the user will be saved
 
-Scenario: Aa09. Save user without e-mail
+Scenario: Aa07. Save user without e-mail
 	Given I have this user data
 			| Password | Retype Password |
 			| password | password        |
@@ -75,7 +59,7 @@ Scenario: Aa09. Save user without e-mail
 	Then I will receive this core error: UserEmailRequired
 		And the user will not be saved
 
-Scenario: Aa10. Save user without password
+Scenario: Aa08. Save user without password
 	Given I have this user data
 			| Email                           | Retype Password |
 			| {scenarioCode}@dontflymoney.com | password        |
@@ -83,10 +67,34 @@ Scenario: Aa10. Save user without password
 	Then I will receive this core error: UserPasswordRequired
 		And the user will not be saved
 
-Scenario: Aa11. Save user without retype password
+Scenario: Aa09. Save user without retype password
 	Given I have this user data
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |
 	When I try to save the user
 	Then I will receive this core error: RetypeWrong
 		And the user will not be saved
+
+Scenario: Aa10. Too large e-mail username (65)
+	Given I have this user data
+			| Password | Retype Password | Email                                                                              |
+			| password | password        | ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLM@dontflymoney.com |
+	When I try to save the user
+	Then I will receive this core error: TooLargeUserEmail
+		And the user will not be saved
+
+Scenario: Aa11. Too large e-mail domain (256)
+	Given I have this user data
+			| Password | Retype Password | Email                                                                                                                                                                                                                                                                                       |
+			| password | password        | ABCDEFGHIJKLMNOPQRSTUVWXYZ@dontflymoney.comdontflymoney.comdontflymoney.comdontflymoney.comdontflymoney.comdontflymoney.comdontflymoney.comdontflymoney.comdontflymoney.comdontflymoney.comdontflymoney.comdontflymoney.comdontflymoney.comdontflymoney.comdontflymoney.comdontflymoney.com |
+	When I try to save the user
+	Then I will receive this core error: TooLargeUserEmail
+		And the user will not be saved
+
+Scenario: Aa12. Exactly length username (64) and domain (255)
+	Given I have this user data
+			| Password | Retype Password | Email                                                                                                                                                                                            |
+			| password | password        | ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKL@dontflymoney.comdontflymoney.comdontflymoney.comdontflymoney.comdontflymoney.comdontflymoney.comdontflymoney.comdontflymoney.co |
+	When I try to save the user
+	Then I will receive no core error
+		And the user will be saved
