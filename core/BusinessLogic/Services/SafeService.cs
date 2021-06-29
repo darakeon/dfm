@@ -50,9 +50,7 @@ namespace DFM.BusinessLogic.Services
 				user = repos.User.Save(user);
 
 				if (info.AcceptedContract)
-				{
 					acceptContract(user);
-				}
 
 				sendUserVerify(user);
 			});
@@ -202,18 +200,12 @@ namespace DFM.BusinessLogic.Services
 			var ticket = repos.Ticket.GetByKey(info.TicketKey);
 
 			if (ticket == null)
-			{
 				ticket = repos.Ticket.Create(user, info.TicketKey, info.TicketType);
-			}
 			else if (ticket.User.Email != info.Email)
-			{
 				throw Error.Uninvited.Throw();
-			}
 
 			if (auth.UsedTFAPassword)
-			{
 				repos.Ticket.ValidateTFA(ticket);
-			}
 
 			return ticket.Key;
 		}
