@@ -1,4 +1,4 @@
-﻿Feature: y. Ask data wipe
+﻿Feature: Ay. Ask data wipe
 
 Background:
 	Given test user login
