@@ -52,7 +52,7 @@ namespace DFM.MVC.Models
 
 		public Int32 TimeZoneOffset { get; set; }
 
-		internal IList<String> ValidateAndSendVerify()
+		internal IList<String> SaveUser()
 		{
 			var errors = new List<String>();
 
@@ -61,6 +61,8 @@ namespace DFM.MVC.Models
 				Info.Language = Language;
 				Info.TimeZone = TZ.GetTimeZone(TimeZoneOffset);
 				safe.SaveUser(Info);
+
+				current.Set(Info.Email, Info.Password, true);
 			}
 			catch (CoreError e)
 			{

@@ -31,13 +31,12 @@ namespace DFM.MVC.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var errors = model.ValidateAndSendVerify();
-
+				var errors = model.SaveUser();
 				addErrors(errors);
 			}
 
 			return ModelState.IsValid
-				? baseModelView("SignUpSuccess")
+				? RedirectToAction("Index", "Accounts")
 				: View(model);
 		}
 

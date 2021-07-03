@@ -15,10 +15,9 @@ describe('Users', () => {
 		await page.type('#Password', db.password.plain)
 		await page.type('#RetypePassword', db.password.plain)
 		await page.click('#Accept')
-		await page.click('#body form button[type="submit"]')
+		await puppy.submit('/Users/SignUp')
 
-		const message = await puppy.content('.alert')
-		await expect(message).toContain('Cadastro efetuado com sucesso.')
+		await expect(page.title()).resolves.toMatch('DfM - Contas')
 	})
 
 	test('SignUp - contract modal', async () => {

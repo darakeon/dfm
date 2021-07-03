@@ -2,7 +2,6 @@
 	"en-US": {
 		"Email": "E-mail",
 		"Password": "Password",
-		"SignUpSuccess": "Sign up succeeded.",
 		"LogonDisabled": "Your user is not active.",
 		"RememberMe": "Remember",
 		"ForgotPassword": "Forgot my password",
@@ -20,7 +19,6 @@
 	"pt-BR": {
 		"Email": "E-mail",
 		"Password": "Senha",
-		"SignUpSuccess": "Cadastro efetuado com sucesso.",
 		"LogonDisabled": "Seu acesso ao sistema não foi ativado ainda.",
 		"RememberMe": "Lembrar",
 		"ForgotPassword": "Esqueci minha senha",
