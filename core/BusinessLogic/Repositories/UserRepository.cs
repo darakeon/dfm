@@ -34,7 +34,7 @@ namespace DFM.BusinessLogic.Repositories
 			if (!validPass && !validCode)
 				throw Error.InvalidUser.Throw();
 
-			if (!user.Control.Active)
+			if (!user.Control.ActiveOrAllowedPeriod())
 				throw Error.DisabledUser.Throw();
 
 			return new Authentication(user, validCode);

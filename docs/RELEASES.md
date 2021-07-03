@@ -15,7 +15,7 @@ Legend:
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="6.0.2.0"></a>6.0.2.0 :sheep: <sup>`3`</sup>
-- [ ] Login after create account, disable if not confirm e-mail in 1 week
+- [ ] `210629>......` Login after create account, disable if not confirm e-mail in 1 week
 - [x] `210603>210628` Delete user on demand
 - [x] `210603>210603` Clarify that only moves are exported in case of purge
 

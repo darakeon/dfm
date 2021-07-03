@@ -39,5 +39,13 @@ namespace DFM.Entities
 		{
 			return LastAccess ?? Creation;
 		}
+
+		public static DateTime AllowedPeriod =>
+			DateTime.UtcNow.AddDays(-7);
+
+		public virtual Boolean ActiveOrAllowedPeriod()
+		{
+			return Active || Creation >= AllowedPeriod;
+		}
 	}
 }

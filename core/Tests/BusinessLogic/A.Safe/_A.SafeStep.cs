@@ -767,7 +767,11 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 					? Int32.Parse(userData["Timezone"])
 					: default(Int32?);
 
-				createUserIfNotExists(email, password, active, signed, timezone);
+				var days = userData.ContainsKey("Days")
+					? Int32.Parse(userData["Days"])
+					: default(Int32?);
+
+				createUserIfNotExists(email, password, active, signed, timezone, days);
 			}
 		}
 
@@ -1197,11 +1201,14 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 
 
 		#region AskWipe
-		[Given(@"the user not active")]
-		public void GivenTheUserNotActive()
+		[Given(@"the user not active after (\d+) days")]
+		public void GivenTheUserNotActiveAfter(Int32 days)
 		{
 			var user = repos.User.GetByEmail(userEmail);
 			db.Execute(() => repos.Control.Deactivate(user));
+
+			user.Control.Creation = DateTime.UtcNow.AddDays(-days);
+			db.Execute(() => repos.Control.SaveOrUpdate(user.Control));
 		}
 
 		[Given(@"data wipe was asked")]
