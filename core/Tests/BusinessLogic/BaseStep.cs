@@ -120,7 +120,8 @@ namespace DFM.BusinessLogic.Tests
 			String password,
 			Boolean shouldActivateUser = false,
 			Boolean shouldSignContract = false,
-			Int32? timezone = null
+			Int32? timezone = null,
+			Int32? days = null
 		)
 		{
 			var user = repos.User.GetByEmail(email);
@@ -162,9 +163,14 @@ namespace DFM.BusinessLogic.Tests
 			if (shouldSignContract)
 			{
 				var contract = repos.Contract.GetContract();
-				db.Execute(
-					() => repos.Acceptance.Accept(user, contract)
-				);
+				db.Execute(() => repos.Acceptance.Accept(user, contract));
+			}
+
+			if (days.HasValue)
+			{
+				var control = user.Control;
+				control.Creation = DateTime.UtcNow.AddDays(days.Value);
+				db.Execute(() => repos.Control.SaveOrUpdate(control));
 			}
 		}
 

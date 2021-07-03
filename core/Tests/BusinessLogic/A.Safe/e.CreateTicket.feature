@@ -54,8 +54,8 @@ Scenario: Ae05. Validate with wrong password
 
 Scenario: Ae06. Validate user disabled
 	Given I have this user created
-			| Email                           | Password |
-			| {scenarioCode}@dontflymoney.com | password |
+			| Email                           | Password | Days |
+			| {scenarioCode}@dontflymoney.com | password | -7   |
 		And I have this user data
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |
@@ -159,3 +159,14 @@ Scenario: Ae13. Not validate if user requested wipe
 		But the user asked data wipe
 	When I try to get the ticket
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Ae14. Let user login within 7 days after creation
+	Given I have this user created
+			| Email                           | Password | Active | Days |
+			| {scenarioCode}@dontflymoney.com | password | true   | -6   |
+		And I have this user data
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
+	When I try to get the ticket
+	Then I will receive no core error
+		And I will receive the ticket

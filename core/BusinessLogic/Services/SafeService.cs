@@ -169,7 +169,7 @@ namespace DFM.BusinessLogic.Services
 
 			var user = ticket.User;
 
-			if (!user.Control.Active)
+			if (!user.Control.ActiveOrAllowedPeriod())
 				throw Error.DisabledUser.Throw();
 
 			return user;
@@ -271,7 +271,7 @@ namespace DFM.BusinessLogic.Services
 
 		internal void VerifyUser(User user)
 		{
-			if (user == null || !user.Control.Active)
+			if (user == null || !user.Control.ActiveOrAllowedPeriod())
 				throw Error.Uninvited.Throw();
 
 			if (user.Control.ProcessingDeletion)

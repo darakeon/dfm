@@ -36,12 +36,13 @@ async function createUserIfNotExists(email, props) {
 	if (!props) props = {}
 	active = props.active
 	wizard = props.wizard
+	creation = props.creation
 
 	if (exist) {
-		await changeUserState(email, active, wizard)
+		await changeUserState(email, active, wizard, creation)
 		user = { ID: users[0].ID }
 	} else {
-		user = await createUser(email, active, wizard)
+		user = await createUser(email, active, wizard, creation)
 	}
 
 	await acceptLastContract(email)
@@ -60,7 +61,7 @@ async function getUser(email) {
 	)
 }
 
-async function changeUserState(email, active, wizard) {
+async function changeUserState(email, active, wizard, creation) {
 	const { username, domain } = splitEmail(email);
 
 	const user = await execute(
@@ -80,14 +81,22 @@ async function changeUserState(email, active, wizard) {
 
 	if (wizard != undefined) {
 		await execute(
-			`update config as c
+			`update config
 				set wizard=${wizard?1:0}
+				where id=${user[0].Config_ID}`
+		)
+	}
+
+	if (creation != undefined) {
+		await execute(
+			`update config
+				set creation=datetime('now','${creation} day')
 				where id=${user[0].Config_ID}`
 		)
 	}
 }
 
-async function createUser(email, active, wizard) {
+async function createUser(email, active, wizard, creation) {
 	await execute(
 		`insert into config (
 				language, timezone, sendMoveEmail,
@@ -107,7 +116,7 @@ async function createUser(email, active, wizard) {
 				creation, active, isAdm, isRobot,
 				wrongLogin, removalWarningSent, robotCheck
 			) values (
-				datetime('now'), ${active?1:0}, 0, 0,
+				datetime('now','${creation??0} day'), ${active?1:0}, 0, 0,
 				0, 0, datetime('now')
 			)`
 	)

@@ -50,7 +50,7 @@ describe('Users', () => {
 
 	test('Logon not active', async () => {
 		const email = 'logon_not_active@dontflymoney.com'
-		await db.createUserIfNotExists(email)
+		await db.createUserIfNotExists(email, { creation: -27 })
 
 		await puppy.call('Users/Logon')
 		await page.waitForSelector('#body form')
