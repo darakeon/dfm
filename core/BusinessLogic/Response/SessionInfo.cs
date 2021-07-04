@@ -29,6 +29,8 @@ namespace DFM.BusinessLogic.Response
 			SendMoveEmail = user.Config.SendMoveEmail;
 
 			Wizard = user.Config.Wizard;
+
+			ActivateWarning = !user.Control.Active;
 		}
 
 		public Boolean IsAdm { get; }
@@ -48,5 +50,7 @@ namespace DFM.BusinessLogic.Response
 		public Boolean SendMoveEmail { get; }
 
 		public Boolean Wizard { get; }
+
+		public Boolean ActivateWarning { get; }
 	}
 }

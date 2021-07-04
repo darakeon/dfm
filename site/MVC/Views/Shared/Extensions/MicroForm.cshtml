@@ -1,11 +1,7 @@
 ﻿@model MicroForm
 
 @{
-	// it confuses closing brackets if it goes together the other statements
 	var @class = Model.Class ?? "btn-clear";
-}
-
-@{
 	String action = Url.RouteUrl(Model.RouteName, Model.RouteValues);
 }
 

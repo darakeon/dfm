@@ -117,6 +117,7 @@ namespace DFM.Authentication
 		public DateTime Now => session?.Now ?? DateTime.UtcNow;
 		public String TimeZone => session?.TimeZone;
 		public String Language => session?.Language;
+
 		public Theme Theme => session?.Theme ?? Defaults.DefaultTheme;
 
 		public Boolean UseCategories => session?.UseCategories ?? Defaults.ConfigUseCategories;
@@ -124,6 +125,8 @@ namespace DFM.Authentication
 		public Boolean SendMoveEmail => session?.SendMoveEmail ?? Defaults.ConfigSendMoveEmail;
 
 		public Boolean Wizard => session?.Wizard ?? false;
+
+		public Boolean ActivateWarning => session?.ActivateWarning ?? false;
 
 		public CultureInfo Culture => new(Language);
 

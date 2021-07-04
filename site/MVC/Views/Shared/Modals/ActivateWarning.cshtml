@@ -1,0 +1,29 @@
+﻿@model BaseSiteModel
+
+<div class="modal" id="activate-warning">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="modal-title">
+					@Context.Translate("ActivateWarning_Title")
+				</span>
+				@await Html.PartialAsync("Modals/Close")
+			</div>
+
+			<div class="modal-body text-center">
+				<p>@Context.Translate("ActivateWarning_Why")</p>
+				<hr />
+				<p>@Context.Translate("ActivateWarning_Week")</p>
+				<hr />
+				<p>@Context.Translate("ActivateWarning_Schedules")</p>
+			</div>
+
+			<div class="modal-footer text-right">
+				@await Html.PartialAsync(
+					"Extensions/MicroForm",
+					MicroForm.WithText(Context, "ActivateWarning_Send", "btn btn-info")
+						.AddRouteUrl<Default.Main>("Users", "Verification"))
+			</div>
+		</div>
+	</div>
+</div>

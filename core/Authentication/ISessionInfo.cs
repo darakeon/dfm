@@ -15,6 +15,7 @@ namespace DFM.Authentication
 		DateTime Now { get; }
 		String TimeZone { get; }
 		String Language { get; }
+
 		Theme Theme { get; }
 
 		Boolean UseCategories { get; }
@@ -22,5 +23,7 @@ namespace DFM.Authentication
 		Boolean SendMoveEmail { get; }
 
 		Boolean Wizard { get; }
+
+		Boolean ActivateWarning { get; }
 	}
 }

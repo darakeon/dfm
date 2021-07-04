@@ -52,6 +52,8 @@
 	@await Html.PartialAsync("Skeleton/Header")
 
 	<div id="body" class="container" role="main">
+		@await Html.PartialAsync("Skeleton/ActivateWarning")
+
 		@await Html.PartialAsync("Skeleton/Wizard")
 		@RenderBody()
 	</div>

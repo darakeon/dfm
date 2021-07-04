@@ -15,6 +15,8 @@
 		"CookiesWarning": "Cookies are used to control logon and security of forms of this website",
 		"TFAVerification": "Use the code of the app registered before",
 		"TFAContactUs": "I don't have the code",
+
+		"UserVerificationSent": "Code sent",
 	},
 	"pt-BR": {
 		"Email": "E-mail",
@@ -32,5 +34,7 @@
 		"CookiesWarning": "Cookies são usados para controlar seu acesso a informações e a segurança dos formulários deste site",
 		"TFAVerification": "Use o código gerado pelo aplicativo cadastrado anteriormente",
 		"TFAContactUs": "não sei o código",
+
+		"UserVerificationSent": "Código enviado",
 	}
 }
