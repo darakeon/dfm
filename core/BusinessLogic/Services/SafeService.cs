@@ -56,6 +56,11 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
+		public void SendUserVerify()
+		{
+			SendUserVerify(parent.Current.Email);
+		}
+
 		public void SendUserVerify(String email)
 		{
 			inTransaction("SendUserVerify", () =>

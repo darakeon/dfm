@@ -1,0 +1,19 @@
+﻿@model BaseSiteModel
+
+@if (Model.ShowActivateWarning)
+{
+	foreach (var vertical in new[] { "top", "bottom" })
+	{
+		foreach (var horizontal in new [] { "left", "right" })
+		{
+			<button class="btn btn-warning activate-warning activate-warning-@vertical activate-warning-@horizontal"
+		        data-toggle='modal'
+		        data-target='#activate-warning'
+		        role='button'
+		        title="@Context.Translate("ActivateWarning_Title")">
+			</button>
+		}
+	}
+
+	@await Html.PartialAsync("Modals/ActivateWarning")
+}

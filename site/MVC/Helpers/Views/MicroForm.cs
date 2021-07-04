@@ -24,9 +24,9 @@ namespace DFM.MVC.Helpers.Views
 			HiddenList = new Dictionary<String, Object>();
 		}
 
-		public static MicroForm WithGlyph(HttpContext context, String glyphicon, String text)
+		public static MicroForm WithGlyph(HttpContext context, String glyphicon, String text, String @class = null)
 		{
-			return new(context, glyphicon, text, null, null);
+			return new(context, glyphicon, text, null, @class);
 		}
 
 		public static MicroForm WithText(HttpContext context, String text, String @class = null)

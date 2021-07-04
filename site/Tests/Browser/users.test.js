@@ -18,6 +18,13 @@ describe('Users', () => {
 		await puppy.submit('/Users/SignUp')
 
 		await expect(page.title()).resolves.toMatch('DfM - Contas')
+
+		await page.click('.activate-warning')
+		await page.waitForSelector('#activate-warning.modal', { visible: true })
+
+		await puppy.submit('/Users/Verification')
+		const alert = await puppy.content('.alert')
+		expect(alert).toContain('Código enviado')
 	})
 
 	test('SignUp - contract modal', async () => {

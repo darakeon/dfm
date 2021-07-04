@@ -142,5 +142,12 @@ namespace DFM.MVC.Controllers
 
 			return View(model);
 		}
+
+		[Auth, HttpPost, ValidateAntiForgeryToken]
+		public IActionResult Verification(UsersVerificationModel model)
+		{
+			model.Send(ModelState.AddModelError);
+			return View(model);
+		}
 	}
 }

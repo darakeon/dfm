@@ -23,6 +23,8 @@ namespace DFM.MVC.Models
 
 		public Boolean ShowWizard => wizard;
 
+		public Boolean ShowActivateWarning => current.ActivateWarning;
+
 		public DateTime Now => current.Now;
 
 		public String ActionName => route?["action"];

@@ -146,6 +146,12 @@
 		"TFASettings": "Safer login",
 		"ThemeSettings": "Colors",
 		"WipeSettings": "Remove my data",
+
+		"ActivateWarning_Title": "Activate your register",
+		"ActivateWarning_Why": "Your e-mail address is the way we can contact you. That's why we sent an activation token to it.",
+		"ActivateWarning_Week": "For one week you will be able to use the system without activating. After that your login will not work anymore until you activate it.",
+		"ActivateWarning_Schedules": "PS: scheduled moves are not inserted until your register is activated by the e-mail token.",
+		"ActivateWarning_Send": "send activation token again",
 	},
 	"pt-BR": {
 		"CurrentLanguage": "português",
@@ -294,5 +300,11 @@
 		"TFASettings": "Login mais seguro",
 		"ThemeSettings": "Cores",
 		"WipeSettings": "Remover meus dados",
+
+		"ActivateWarning_Title": "Ative seu registro",
+		"ActivateWarning_Why": "Seu endereço de e-mail é a forma como podemos te contatar. Por isso, enviamos um e-mail com um token de ativação para ele.",
+		"ActivateWarning_Week": "Por uma semana, você poderá usar o sistema sem a ativação. Depois disso seu login irá parar de funcionar até que seja ativado.",
+		"ActivateWarning_Schedules": "OBS: movimentações agendadas não são inseridas até que seu registro esteja ativado pelo token no e-mail.",
+		"ActivateWarning_Send": "enviar ativação novamente",
 	},
 }
