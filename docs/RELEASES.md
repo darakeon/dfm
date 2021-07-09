@@ -4,15 +4,20 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#6.0.1.0)
-- [go to version in development](#6.0.2.0)
-- [dev version state](../../6.0.2.0/docs/RELEASES.md#6.0.2.0)
+- [go to published version](#6.0.2.0)
+- [go to version in development](#7.0.0.0)
+- [dev version state](../../7.0.0.0/docs/RELEASES.md#7.0.0.0)
 
 Legend:
 - :dragon:: at least one huge change (increases first number)
 - :whale:: at least one big change, like a new feature (increases second number)
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="7.0.0.0"></a>7.0.0.0 :dragon: <sup>`3`</sup>
+- [ ] Add Misc reset manually
+- [ ] Reset Misc on password change and send e-mail
+- [ ] Add misc to users
 
 ## <a name="6.0.2.0"></a>6.0.2.0 :sheep: <sup>`3`</sup>
 - [x] `210629>210703` Login after create account, disable if not confirm e-mail in 1 week

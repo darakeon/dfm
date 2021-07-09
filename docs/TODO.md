@@ -13,11 +13,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then Type.
 
-| Task (56)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (53)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
-| Add misc to users                                                              | :dragon: |  2  |  3  |  5  |                |       |
-| Reset Misc on password change and send e-mail                                  | :sheep:  |  1  |  3  |  6  | misc           |       |
-| Add Misc reset manually                                                        | :sheep:  |  1  |  3  |  6  | misc           |       |
 | Cache account/category at login + refresh button at app                        | :whale:  |  3  |  3  |  4  |                |       |
 | Year and Month report by category [chart]                                      | :whale:  |  3  |  3  |  4  |                |       |
 | Feature to unify Categories                                                    | :whale:  |  3  |  3  |  4  |                |       |
