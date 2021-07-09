@@ -1,4 +1,9 @@
 {
+	"6.0.2.0": [
+		"Permitir login assim que se cadastra",
+		"Permitir exclusão do cadastro pela própria pessoa",
+		"Melhoria dos termos de uso na parte de deleção de cadastro"
+	],
 	"6.0.1.0": [
 		"Automatização da retirada de cadastros de pessoas que não usam o sistema mais",
 		"Movimentações agora são adicionadas sem que a pessoa tenha que acessar o sistema",

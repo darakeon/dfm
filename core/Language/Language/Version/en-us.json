@@ -1,4 +1,9 @@
 {
+	"6.0.2.0": [
+		"Allow login right after register",
+		"Allow one to delete its register at system",
+		"Improve terms of use at deletion of register part"
+	],
 	"6.0.1.0": [
 		"Automation of cleanup users that do not use the system anymore",
 		"Add move schedules without user needing to access the site",
