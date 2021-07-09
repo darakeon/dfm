@@ -54,7 +54,7 @@ fn process_tasks(mut numbers: Vec<usize>) -> (Vec<String>, Vec<String>) {
 
 	let new_size = todo_list.len();
 
-	if let Some(title) = todo_list.get_mut(13) {
+	if let Some(title) = todo_list.get_mut(15) {
 		let old_count = extract_count(title);
 		let new_count = old_count - (old_size - new_size);
 
@@ -96,7 +96,6 @@ fn extract_task(text: &str) -> Option<(String, String, String)> {
 
 fn extract_count(text: &str) -> usize {
 	let pattern = r#"^\| Task \((\d+)\)"#;
-
 	let regex = Regex::new(pattern).unwrap();
 
 	if !regex.is_match(text) {
