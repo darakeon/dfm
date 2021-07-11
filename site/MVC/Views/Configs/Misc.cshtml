@@ -1,0 +1,20 @@
+﻿@model BaseSiteModel
+@{
+	ViewBag.Title = Context.Translate("MiscSettings");
+	ViewBag.WizardMessage = "SettingsMisc";
+	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
+
+	ViewBag.FormSizeSm = 8;
+	ViewBag.FormSizeLg = 6;
+}
+
+@section Styles {
+	<link rel="stylesheet" type="text/css" href="~/Assets/styles/misc.css?v=@Cfg.Version" />
+}
+
+<div class="text-center">
+	@await Html.PartialAsync("MiscImage", Model.Misc)
+</div>
+<div class="text-center">
+	@Context.Translate("MiscExplanation")
+</div>

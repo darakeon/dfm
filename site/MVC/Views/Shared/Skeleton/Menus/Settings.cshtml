@@ -52,7 +52,16 @@
 				Context.Translate("ThemeSettings"),
 				"Theme", "Configs",
 				new { @class = "text-right" }
-				)
+			)
+		</li>
+
+		<li id="settings_misc">
+			@settingsRoute.MakeUrl(
+				Html,
+				Context.Translate("MiscSettings"),
+				"Misc", "Configs",
+				new { @class = "text-right" }
+			)
 		</li>
 
 		<li id="settings_wipe">

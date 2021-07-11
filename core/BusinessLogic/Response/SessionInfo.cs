@@ -31,6 +31,8 @@ namespace DFM.BusinessLogic.Response
 			Wizard = user.Config.Wizard;
 
 			ActivateWarning = !user.Control.Active;
+
+			Misc = user.Control.Misc;
 		}
 
 		public Boolean IsAdm { get; }
@@ -52,5 +54,7 @@ namespace DFM.BusinessLogic.Response
 		public Boolean Wizard { get; }
 
 		public Boolean ActivateWarning { get; }
+
+		public Misc Misc { get; }
 	}
 }

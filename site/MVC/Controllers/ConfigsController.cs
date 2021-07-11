@@ -125,5 +125,11 @@ namespace DFM.MVC.Controllers
 			var model = new ConfigsEndWizardModel();
 			return View(model);
 		}
+
+		[Auth, HttpGetAndHead]
+		public IActionResult Misc()
+		{
+			return View(new BaseSiteModel());
+		}
 	}
 }

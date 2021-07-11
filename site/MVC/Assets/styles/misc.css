@@ -1,0 +1,46 @@
+.misc {
+	position: relative;
+	width: 134px;
+	height: 163px;
+	display: inline-block;
+}
+
+.misc * {
+	position: absolute;
+	background-size: cover;
+}
+
+.body {
+	width: 100px;
+	height: 98px;
+	left: 17px;
+	top: 33px;
+}
+
+.ant {
+	width: 66px;
+	height: 47px;
+	left: 34px;
+	top: 0px;
+}
+
+.eye {
+	width: 34px;
+	height: 24px;
+	left: 50px;
+	top: 62px;
+}
+
+.arm {
+	width: 134px;
+	height: 52px;
+	left: 0px;
+	top: 80px;
+}
+
+.leg {
+	width: 80px;
+	height: 45px;
+	left: 27px;
+	top: 118px;
+}
