@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
+using DFM.Entities;
 using DFM.Generic;
 using DFM.MVC.Controllers;
 using Keon.Util.Collection;
@@ -24,6 +25,8 @@ namespace DFM.MVC.Models
 		public Boolean ShowWizard => wizard;
 
 		public Boolean ShowActivateWarning => current.ActivateWarning;
+
+		public Misc Misc => current.Misc;
 
 		public DateTime Now => current.Now;
 

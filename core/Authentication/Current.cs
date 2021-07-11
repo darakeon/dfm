@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Generic;
 using DFM.Generic.Datetime;
@@ -127,6 +128,8 @@ namespace DFM.Authentication
 		public Boolean Wizard => session?.Wizard ?? false;
 
 		public Boolean ActivateWarning => session?.ActivateWarning ?? false;
+
+		public Misc Misc => session?.Misc;
 
 		public CultureInfo Culture => new(Language);
 

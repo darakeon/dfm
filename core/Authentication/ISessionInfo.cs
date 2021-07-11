@@ -1,4 +1,5 @@
 ﻿using System;
+using DFM.Entities;
 using DFM.Generic;
 
 namespace DFM.Authentication
@@ -25,5 +26,7 @@ namespace DFM.Authentication
 		Boolean Wizard { get; }
 
 		Boolean ActivateWarning { get; }
+
+		Misc Misc { get; }
 	}
 }

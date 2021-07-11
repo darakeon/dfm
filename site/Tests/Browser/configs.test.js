@@ -77,6 +77,15 @@ describe('Configs', () => {
 		await expect(message).toContain('Código inválido')
 	})
 
+	test('Misc', async () => {
+		await puppy.call('')
+		await page.click('#settings')
+		await page.click('#settings_misc', { visible: true })
+
+		const header = await puppy.content('.panel .header')
+		await expect(header).toContain('Imagem de segurança')
+	})
+
 	test('Wipe', async () => {
 		await puppy.call('')
 		await page.click('#settings')

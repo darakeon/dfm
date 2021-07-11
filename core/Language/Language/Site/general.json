@@ -146,6 +146,7 @@
 		"TFASettings": "Safer login",
 		"ThemeSettings": "Colors",
 		"WipeSettings": "Remove my data",
+		"MiscSettings": "Security Image",
 
 		"ActivateWarning_Title": "Activate your register",
 		"ActivateWarning_Why": "Your e-mail address is the way we can contact you. That's why we sent an activation token to it.",
@@ -300,6 +301,7 @@
 		"TFASettings": "Login mais seguro",
 		"ThemeSettings": "Cores",
 		"WipeSettings": "Remover meus dados",
+		"MiscSettings": "Imagem de segurança",
 
 		"ActivateWarning_Title": "Ative seu registro",
 		"ActivateWarning_Why": "Seu endereço de e-mail é a forma como podemos te contatar. Por isso, enviamos um e-mail com um token de ativação para ele.",
