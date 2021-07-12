@@ -43,7 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Keon.Util" Version="2.0.2" />
+    <PackageReference Include="Keon.Util" Version="2.0.3" />
   </ItemGroup>
 
   <ItemGroup>
