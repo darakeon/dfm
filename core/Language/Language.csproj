@@ -127,6 +127,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Entities\Entities.csproj" />
     <ProjectReference Include="..\Generic\Generic.csproj" />
   </ItemGroup>
 

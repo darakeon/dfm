@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using DFM.Generic;
 using TechTalk.SpecFlow;
 
 namespace DFM.Tests.Util
@@ -57,13 +58,27 @@ namespace DFM.Tests.Util
 				try
 				{
 					var subPattern = pattern.Substring(0, l);
+					var numberCounter = new Regex(@"\{\d*$");
 
-					if (subPattern.EndsWith("{"))
+					if (numberCounter.IsMatch(subPattern))
 						continue;
 
 					if (!Regex.IsMatch(text, subPattern))
 					{
-						throw new Exception($"Wrong match of \n\t{subPattern}\n\tinto\n\t{text}");
+						var subPatternOut = subPattern
+							.ReplaceRegex(@"\\([\/\}\{])", "$1");
+
+						var textOut = text
+							.ReplaceRegex(@" style=""[^\""]+""", @" style=""[^\""]+""");
+
+						throw new Exception(
+							@$"
+								Wrong match of
+								{subPatternOut}
+								into
+								{textOut}
+							".ReplaceRegex(@"\t{8}", "\t")
+						);
 					}
 				}
 				catch (RegexParseException) { }

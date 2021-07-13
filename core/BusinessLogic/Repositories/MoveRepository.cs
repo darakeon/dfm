@@ -116,8 +116,10 @@ namespace DFM.BusinessLogic.Repositories
 				return null;
 
 			var details = new StringBuilder();
-			var config = GetUser(move).Config;
+			var user = GetUser(move);
+			var config = user.Config;
 			var language = config.Language;
+			var misc = user.Control.Misc;
 
 			foreach (var detail in move.DetailList)
 			{
@@ -130,7 +132,8 @@ namespace DFM.BusinessLogic.Repositories
 						{ "Amount", detail.Amount },
 						{ "Value", detail.Value.ToMoney(language) },
 						{ "Total", detail.GetTotal().ToMoney(language) }
-					}
+					},
+					misc
 				);
 
 				details.AppendLine(email);

@@ -60,7 +60,11 @@ namespace DFM.MVC.Controllers
 				{
 					Language = language,
 					Theme = theme,
-				}
+				},
+				Control = new Control
+				{
+					MiscDna = Misc.RandomDNA()
+				},
 			};
 		}
 

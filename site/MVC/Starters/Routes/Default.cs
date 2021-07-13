@@ -38,6 +38,12 @@ namespace DFM.MVC.Starters.Routes
 			public override String Path => ">{path}>{token}";
 		}
 
+		public class Misc : Default
+		{
+			public Misc() : base("Configs", "Misc") { }
+			public override String Path => "Misc";
+		}
+
 		public class Robots : Default
 		{
 			public Robots() : base("Generic", "Robots") { }

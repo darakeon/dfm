@@ -40,12 +40,25 @@ namespace DFM.Email
 			var config = user.Config;
 			var language = config.Language;
 			var theme = config.Theme;
+			var misc = user.Control.Misc;
 
 			var layoutName = layoutType.ToString();
 			var replaces = getReplaces(type.ToString(), layoutName, language);
 
+			replaces.Add("MiscColor", misc.Color);
+			replaces.Add("MiscAntenna", misc.Antenna);
+			replaces.Add("MiscEye", misc.Eye);
+			replaces.Add("MiscArm", misc.Arm);
+			replaces.Add("MiscLeg", misc.Leg);
+
+			var background = misc.Color.Replace("0", "6").Replace("1", "3");
+			replaces.Add("MiscBackground", background);
+
+			var border = misc.Color.Replace("1", "F");
+			replaces.Add("MiscBorder", border);
+
 			Subject = replaces["Subject"];
-			Layout = FormatEmail(theme, type, replaces);
+			Layout = FormatEmail(theme, type, replaces, misc);
 		}
 
 		private static Dictionary<String, String> getReplaces(
@@ -57,9 +70,9 @@ namespace DFM.Email
 			return replaces.ToDictionary(p => p.Name, p => p.Text);
 		}
 
-		public static String FormatEmail<T>(Theme theme, EmailType type, IDictionary<String, T> replaces)
+		public static String FormatEmail<T>(Theme theme, EmailType type, IDictionary<String, T> replaces, Misc misc)
 		{
-			return PlainText.Html[theme, type]
+			return PlainText.Html[theme, type, misc]
 				.Format(
 					replaces.ToDictionary(
 						p => p.Key,

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text.RegularExpressions;
+using JetBrains.Annotations;
 
 namespace DFM.Generic
 {
@@ -19,6 +21,15 @@ namespace DFM.Generic
 		public static String ToLower(this Object obj)
 		{
 			return obj.ToString()?.ToLower();
+		}
+
+		public static String ReplaceRegex(
+			this String text,
+			[RegexPattern] String pattern,
+			String replacement
+		)
+		{
+			return Regex.Replace(text, pattern, replacement);
 		}
 	}
 }

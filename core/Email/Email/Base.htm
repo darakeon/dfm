@@ -11,7 +11,7 @@
 		background-color: {{neutral-0}};
 		border: 1px solid {{neutral-1}};
 		margin: 20px auto;
-		width: 400px;
+		width: 420px;
 		border-radius: 4px;
 	">
 
@@ -43,14 +43,29 @@
 		<div style="
 			color: {{primary-0}};
 			background-color: {{neutral-1}};
-			padding: 10px 15px;
+			padding: 20px 15px;
 			border-bottom: 1px solid {{neutral-1}};
 			border-radius: 0 0 3px 3px;
-			text-align: center;
+			text-align: left;
 		">
+			<a href="{{Url}}/Misc"
+				target="_blank"
+				style="
+					float: right;
+					padding: 5px;
+					background: #{{MiscBackground}};
+					border: 2px dashed #{{MiscBorder}};
+					border-radius: 10px;
+					margin: -6px 0 0 0;
+				"
+			>
+				{{Misc}}
+			</a>
+
 			{{NoLink}}<br />
 			{{NoReply}}<br />
 			{{OurContact}}
+
 			<span style="display: none">{{TokenToNotHide}}</span>
 		</div>
 	</div>
