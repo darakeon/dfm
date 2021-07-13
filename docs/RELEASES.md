@@ -18,7 +18,7 @@ Legend:
 - [ ] Add commit linter
 - [ ] Add Misc reset manually
 - [ ] Reset Misc on password change and send e-mail
-- [ ] `210710>......` Add misc to users
+- [x] `210710>210713` Add misc to users
 
 ## <a name="6.0.2.0"></a>6.0.2.0 :sheep: <sup>`3`</sup>
 - [x] `210629>210703` Login after create account, disable if not confirm e-mail in 1 week

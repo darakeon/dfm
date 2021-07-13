@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using DFM.Entities;
 using DFM.Generic;
 using Keon.Util.Extensions;
 
@@ -9,7 +10,7 @@ namespace DFM.Language.Emails
 	{
 		private static readonly String path = Path.Combine(PlainText.CurrentPath, "Email");
 
-		public String this[Theme theme, EmailType emailType]
+		public String this[Theme theme, EmailType emailType, Misc misc]
 		{
 			get
 			{
@@ -22,8 +23,12 @@ namespace DFM.Language.Emails
 				var basePath = Path.Combine(path, "Base.htm");
 				var baseContent = getContent(basePath);
 
+				var miscPath = Path.Combine(path, "Misc.htm");
+				var miscContent = getContent(miscPath);
+
 				var html = baseContent
 					.Replace("{{Body}}", mainContent)
+					.Replace("{{Misc}}", miscContent)
 					.Replace("{{TokenToNotHide}}", Token.New());
 
 				var themePath = Path.Combine(path, "theme.json");

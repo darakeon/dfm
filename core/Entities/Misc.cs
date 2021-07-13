@@ -32,9 +32,7 @@ namespace DFM.Entities
 		public String Arm { get; }
 		public String Leg { get; }
 
-		public static Misc Random()
-		{
-			return new(new Random().Next() * 511);
-		}
+		public static Int32 RandomDNA() => new Random().Next(0, 511);
+		public static Misc Random() => new(RandomDNA());
 	}
 }

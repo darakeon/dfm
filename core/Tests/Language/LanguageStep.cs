@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using DFM.Entities;
 using DFM.Generic;
 using DFM.Language.Emails;
 using DFM.Language.Extensions;
@@ -121,7 +122,7 @@ namespace DFM.Language.Tests
 				{
 					try
 					{
-						var layout = PlainText.Html[theme, emailType];
+						var layout = PlainText.Html[theme, emailType, Misc.Random()];
 
 						if (String.IsNullOrEmpty(layout))
 							errors.AppendLine($"Null at {theme} {emailType}");
