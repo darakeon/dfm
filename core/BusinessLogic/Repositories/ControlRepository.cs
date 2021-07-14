@@ -101,5 +101,11 @@ namespace DFM.BusinessLogic.Repositories
 			user.Control.WipeRequest = DateTime.UtcNow;
 			SaveOrUpdate(user.Control);
 		}
+
+		public void ReMisc(User user)
+		{
+			user.Control.MiscDna = Misc.RandomDNA();
+			SaveOrUpdate(user.Control);
+		}
 	}
 }

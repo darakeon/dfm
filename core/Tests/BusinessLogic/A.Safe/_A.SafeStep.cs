@@ -84,6 +84,12 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			get => get<Boolean?>("ticketVerified");
 			set => set("ticketVerified", value);
 		}
+
+		private static Misc misc
+		{
+			get => get<Misc>("Misc");
+			set => set("Misc", value);
+		}
 		#endregion
 
 
@@ -1246,6 +1252,38 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 				Assert.NotNull(user.Control.WipeRequest);
 			else
 				Assert.Null(user.Control.WipeRequest);
+		}
+		#endregion
+
+		#region Misc
+		[Given(@"it has a Misc")]
+		public void GivenItHasAMisc()
+		{
+			misc = current.Misc;
+		}
+
+		[When(@"regenerate misc")]
+		public void WhenRegenerateMisc()
+		{
+			try
+			{
+				service.Safe.ReMisc(password);
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[Then(@"the user will (not )?have changed misc")]
+		public void ThenTheUserWillHaveChangedMisc(Boolean changed)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+
+			if (changed)
+				Assert.AreNotEqual(misc, user.Control.Misc);
+			else
+				Assert.AreEqual(misc, user.Control.Misc);
 		}
 		#endregion
 	}
