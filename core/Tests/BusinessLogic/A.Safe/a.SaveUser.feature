@@ -50,6 +50,7 @@ Scenario: Aa06. Save user with info all right
 	When I try to save the user
 	Then I will receive no core error
 		And the user will be saved
+		And it will have a misc
 
 Scenario: Aa07. Save user without e-mail
 	Given I have this user data
@@ -98,3 +99,4 @@ Scenario: Aa12. Exactly length username (64) and domain (255)
 	When I try to save the user
 	Then I will receive no core error
 		And the user will be saved
+		And it will have a misc

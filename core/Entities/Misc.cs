@@ -8,7 +8,7 @@ namespace DFM.Entities
 		{
 			DNA = dna;
 
-			var dnaBinary = Convert.ToString(dna, 2)
+			var dnaBinary = Convert.ToString(dna - 1, 2)
 				.PadLeft(9, '0')
 				.Substring(0, 9);
 
@@ -32,7 +32,7 @@ namespace DFM.Entities
 		public String Arm { get; }
 		public String Leg { get; }
 
-		public static Int32 RandomDNA() => new Random().Next(0, 511);
+		public static Int32 RandomDNA() => new Random().Next(1, 512);
 		public static Misc Random() => new(RandomDNA());
 
 		public override Boolean Equals(Object other)

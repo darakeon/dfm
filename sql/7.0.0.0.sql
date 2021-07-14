@@ -15,8 +15,8 @@ alter table control
 
 set sql_safe_updates = 0;
 update control
-	set MiscDna =
-		round(rand(), 0) * pow(2,0)
+	set MiscDna = 1
+		+ round(rand(), 0) * pow(2,0)
 		+ round(rand(), 0) * pow(2,1)
 		+ round(rand(), 0) * pow(2,2)
 		+ round(rand(), 0) * pow(2,3)
