@@ -46,6 +46,7 @@ namespace DFM.BusinessLogic.Services
 				info.VerifyPassword();
 
 				var user = info.GetEntity();
+				user.Control.MiscDna = Misc.RandomDNA();
 
 				user = repos.User.Save(user);
 

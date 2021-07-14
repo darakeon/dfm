@@ -156,6 +156,14 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 				Assert.IsNull(savedUser);
 			}
 		}
+
+		[Then(@"it will have a misc")]
+		public void ThenItWillHaveAMisc()
+		{
+			var savedUser = repos.User.GetByEmail(email);
+			Assert.NotNull(savedUser);
+			Assert.NotZero(savedUser.Control.MiscDna);
+		}
 		#endregion
 
 		#region SendUserVerify
