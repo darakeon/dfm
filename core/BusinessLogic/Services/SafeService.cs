@@ -568,12 +568,30 @@ namespace DFM.BusinessLogic.Services
 				var user = GetCurrent();
 
 				var validPassword = password != null
-					&& Crypt.Check(password, user.Password);
+				                    && Crypt.Check(password, user.Password);
 
 				if (!validPassword)
 					throw Error.WrongPassword.Throw();
 
 				repos.Control.RequestWipe(user);
+			});
+		}
+
+		public void ReMisc(String password)
+		{
+			VerifyUser();
+
+			inTransaction("ReMisc", () =>
+			{
+				var user = GetCurrent();
+
+				var validPassword = password != null
+					&& Crypt.Check(password, user.Password);
+
+				if (!validPassword)
+					throw Error.WrongPassword.Throw();
+
+				repos.Control.ReMisc(user);
 			});
 		}
 	}

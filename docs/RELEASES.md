@@ -16,7 +16,7 @@ Legend:
 
 ## <a name="7.0.0.0"></a>7.0.0.0 :dragon: <sup>`4`</sup>
 - [ ] Add commit linter
-- [ ] Add Misc reset manually
+- [x] `210710>210714` Add Misc reset manually
 - [ ] Reset Misc on password change and send e-mail
 - [x] `210710>210713` Add misc to users
 

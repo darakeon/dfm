@@ -93,7 +93,7 @@ namespace DFM.MVC.Controllers
 			if (!String.IsNullOrEmpty(model.BackTo))
 				return Redirect(model.BackTo);
 
-			return RedirectToAction("Index", "Accounts");
+			return RedirectToAction();
 		}
 
 		[Auth, HttpGetAndHead]
@@ -129,7 +129,13 @@ namespace DFM.MVC.Controllers
 		[Auth, HttpGetAndHead]
 		public IActionResult Misc()
 		{
-			return View(new BaseSiteModel());
+			return View(new ConfigsMiscModel());
+		}
+
+		[Auth, HttpPost, ValidateAntiForgeryToken]
+		public IActionResult Misc(ConfigsMiscModel model)
+		{
+			return config(model, "Misc");
 		}
 	}
 }

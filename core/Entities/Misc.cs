@@ -34,5 +34,21 @@ namespace DFM.Entities
 
 		public static Int32 RandomDNA() => new Random().Next(0, 511);
 		public static Misc Random() => new(RandomDNA());
+
+		public override Boolean Equals(Object other)
+		{
+			return other is Misc otherMisc
+			    && otherMisc.DNA == DNA;
+		}
+
+		public override Int32 GetHashCode()
+		{
+			return DNA;
+		}
+
+		public override String ToString()
+		{
+			return $"C{Color}.A{Antenna}.E{Eye}.H{Arm}.F{Leg}";
+		}
 	}
 }

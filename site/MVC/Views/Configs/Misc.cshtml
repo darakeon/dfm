@@ -1,4 +1,4 @@
-﻿@model BaseSiteModel
+﻿@model ConfigsMiscModel
 @{
 	ViewBag.Title = Context.Translate("MiscSettings");
 	ViewBag.WizardMessage = "SettingsMisc";
@@ -15,6 +15,26 @@
 <div class="text-center">
 	@await Html.PartialAsync("MiscImage", Model.Misc)
 </div>
+<hr />
+
 <div class="text-center">
 	@Context.Translate("MiscExplanation")
 </div>
+<hr />
+
+<div class="text-center">
+	@Context.Translate("ReMiscText")
+</div>
+<hr />
+
+<div class="form-group">
+	@Html.LabelFor(m => m.Password, Context.Translate("CurrentPassword"), new { @class = "control-label" })
+	@Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+</div>
+
+@section Footer {
+	<button type="submit"
+	        class="btn btn-success tab-submit">
+		@Context.Translate("ReMisc")
+	</button>
+}
