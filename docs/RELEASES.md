@@ -14,10 +14,9 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="7.0.0.0"></a>7.0.0.0 :dragon: <sup>`4`</sup>
+## <a name="7.0.0.0"></a>7.0.0.0 :dragon: <sup>`3`</sup>
 - [ ] Add commit linter
 - [x] `210710>210714` Add Misc reset manually
-- [ ] Reset Misc on password change and send e-mail
 - [x] `210710>210713` Add misc to users
 
 ## <a name="6.0.2.0"></a>6.0.2.0 :sheep: <sup>`3`</sup>
