@@ -24,17 +24,20 @@ pub fn update_notes_for_language(version: &Version, language: &str) {
 	let mut tasks_json = "".to_string();
 	let mut tasks = version.tasks.clone();
 
-	if let Some(first_task) = tasks.pop_front() {
-		tasks_json = translate_and_format(&first_task).unwrap();
-
-		while let Some(task) = tasks.pop_front() {
-			if let Some(translated) = translate_and_format(&task) {
+	while let Some(task) = tasks.pop_front() {
+		if let Some(translated) = translate_and_format(&task) {
+			if tasks_json.len() > 0 {
 				tasks_json = format!(
-					"{},\n{}",
+					"{},\n",
 					tasks_json,
-					translated
 				);
 			}
+
+			tasks_json = format!(
+				"{}{}",
+				tasks_json,
+				translated,
+			);
 		}
 	}
 
