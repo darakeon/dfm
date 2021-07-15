@@ -1,0 +1,66 @@
+name: 'Commit Message Check'
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+  pull_request_target:
+    types: [opened, edited, reopened, synchronize]
+
+jobs:
+  check-commit-message:
+    name: Check Commit Message
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Title Length
+        uses: gsactions/commit-message-checker@v1
+        with:
+          pattern: '^[^\n]{7,50}$'
+          error: '
+            The title is too long, 50 characters are just enough.
+            If you have more to say, put it at the message body.
+            
+            For more explanations:
+            https://github.com/darakeon/dfm/blob/main/CONTRIBUTING.md
+            '
+          # For PR
+          excludeTitle: 'true' # PR title
+          excludeDescription: 'true' # PR description
+          checkAllCommitMessages: 'true'
+          accessToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check Commit Scope
+        uses: gsactions/commit-message-checker@v1
+        with:
+          pattern: '^(safe|admin|money|report|robot|site|android|chore|version|docs|tests|tools|security|db|ci|mail|language|publish|accessibility|legal): .+'
+          error: '
+            The title of the commit message must have the format
+            "{scope}: {message in infinitive tense}".
+            The valid scopes are: `safe`, `admin`, `money`, `report`,
+            `robot`, `site`, `android`, `chore`, `version`, `docs`,
+            `tests`, `tools`, `security`, `db`, `ci`, `mail`,
+            `language`, `publish`, `accessibility`, `legal`
+            
+            For more explanations:
+            https://github.com/darakeon/dfm/blob/main/CONTRIBUTING.md
+            '
+          # For PR
+          excludeTitle: 'true' # PR title
+          excludeDescription: 'true' # PR description
+          checkAllCommitMessages: 'true'
+          accessToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check Description Length
+        uses: gsactions/commit-message-checker@v1
+        with:
+          pattern: '^[^\n]{7,50}(?:\n(?:\n[^\n]{0,72})+)?$'
+          flags: g
+          error: '
+            The body can have a longer description than the subject,
+            but if you break it in lines with 72 characters,
+            it will be easier to read.
+            
+            For more explanations:
+            https://github.com/darakeon/dfm/blob/main/CONTRIBUTING.md
+            '
+          # For PR
+          excludeTitle: 'true' # PR title
+          excludeDescription: 'true' # PR description
+          checkAllCommitMessages: 'true'
+          accessToken: ${{ secrets.GITHUB_TOKEN }}
