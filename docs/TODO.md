@@ -13,9 +13,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then Type.
 
-| Task (53)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (52)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
-| Cache account/category at login + refresh button at app                        | :whale:  |  3  |  3  |  4  |                |       |
 | Year and Month report by category [chart]                                      | :whale:  |  3  |  3  |  4  |                |       |
 | Feature to unify Categories                                                    | :whale:  |  3  |  3  |  4  |                |       |
 | Report with date filters                                                       | :whale:  |  3  |  3  |  4  |                |       |

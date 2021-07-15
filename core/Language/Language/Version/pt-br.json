@@ -1,4 +1,7 @@
 {
+	"6.1.0.0": [
+		"Adicionada imagem para garantir a segurança dos e-mails enviados pelo sistema"
+	],
 	"6.0.2.0": [
 		"Permitir login assim que se cadastra",
 		"Permitir exclusão do cadastro pela própria pessoa",
