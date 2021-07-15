@@ -1,4 +1,7 @@
 {
+	"6.1.0.0": [
+		"Add image to ensure security of system e-mails"
+	],
 	"6.0.2.0": [
 		"Allow login right after register",
 		"Allow one to delete its register at system",
