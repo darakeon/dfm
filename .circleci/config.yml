@@ -192,6 +192,8 @@ jobs:
           path: inbox
       - store_artifacts:
           path: /root/.npm/_logs/
+      - store_artifacts:
+          path: /root/.npm/eresolve-report.txt
 
   test_android:
     docker:
