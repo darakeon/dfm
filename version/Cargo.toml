@@ -5,7 +5,7 @@ authors = ["Dara Keon <lc.sales.duarte@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-dirs = "3"
-git2 = "0"
-regex = "1"
-reqwest = { version = "0", features = ["blocking"] }
+dirs = "*"
+git2 = "*"
+regex = "*"
+reqwest = { version = "*", features = ["blocking"] }
