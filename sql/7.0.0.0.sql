@@ -5,7 +5,7 @@
 \**********************/
 
 alter table control
-	add MiscDna int not null;
+	add MiscDna int null;
 
 /**********************\
  *                    *
@@ -29,4 +29,4 @@ update control
 set sql_safe_updates = 1;
 
 alter table control
-	modify MiscDna int;
+	modify MiscDna int not null;
