@@ -11,7 +11,6 @@
 	"devDependencies": {
 		"jest": "27.0.6",
 		"jest-puppeteer": "5.0.4",
-		"puppeteer": "10.1.0",
 		"babel-core": "6.26.3"
 	},
 	"scripts": {
