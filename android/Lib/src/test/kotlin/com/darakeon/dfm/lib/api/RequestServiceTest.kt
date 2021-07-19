@@ -176,27 +176,6 @@ class RequestServiceTest: BaseTest() {
 		assertThat(environment.theme, `is`(Theme.DarkMagic))
 
 		val data = body.data!!
-		assertThat(data.isUsingCategories, `is`(true))
-
-		val natureList = data.natureList
-		assertThat(natureList.size, `is`(3))
-		assertThat(natureList[0].text, `is`("Out"))
-		assertThat(natureList[0].value, `is`("0"))
-		assertThat(natureList[1].text, `is`("In"))
-		assertThat(natureList[1].value, `is`("1"))
-		assertThat(natureList[2].text, `is`("Transfer"))
-		assertThat(natureList[2].value, `is`("2"))
-
-		val accountList = data.accountList
-		assertThat(accountList.size, `is`(1))
-		assertThat(accountList[0].text, `is`("Account"))
-		assertThat(accountList[0].value, `is`("account"))
-
-		val categoryList = data.categoryList
-		assertThat(categoryList.size, `is`(1))
-		assertThat(categoryList[0].text, `is`("Category"))
-		assertThat(categoryList[0].value, `is`("category"))
-
 		val move = data.move!!
 		assertThat(move.guid, `is`(guid))
 		assertThat(move.description, `is`("move"))
@@ -227,27 +206,6 @@ class RequestServiceTest: BaseTest() {
 		assertThat(environment.theme, `is`(Theme.DarkMagic))
 
 		val data = body.data!!
-		assertThat(data.isUsingCategories, `is`(true))
-
-		val natureList = data.natureList
-		assertThat(natureList.size, `is`(3))
-		assertThat(natureList[0].text, `is`("Out"))
-		assertThat(natureList[0].value, `is`("0"))
-		assertThat(natureList[1].text, `is`("In"))
-		assertThat(natureList[1].value, `is`("1"))
-		assertThat(natureList[2].text, `is`("Transfer"))
-		assertThat(natureList[2].value, `is`("2"))
-
-		val accountList = data.accountList
-		assertThat(accountList.size, `is`(1))
-		assertThat(accountList[0].text, `is`("Account"))
-		assertThat(accountList[0].value, `is`("account"))
-
-		val categoryList = data.categoryList
-		assertThat(categoryList.size, `is`(1))
-		assertThat(categoryList[0].text, `is`("Category"))
-		assertThat(categoryList[0].value, `is`("category"))
-
 		val move = data.move!!
 		assertThat(move.guid, `is`(guid))
 		assertThat(move.description, `is`("move"))

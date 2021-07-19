@@ -15,9 +15,8 @@ import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.lib.api.entities.ComboItem
 import com.darakeon.dfm.lib.api.entities.Date
 import com.darakeon.dfm.lib.api.entities.moves.Move
-import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
-import com.darakeon.dfm.lib.api.entities.moves.MoveForm
 import com.darakeon.dfm.lib.api.entities.moves.Nature
+import com.darakeon.dfm.lib.auth.setValueTyped
 import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.api.guid
 import com.darakeon.dfm.testutils.api.readBundle
@@ -78,6 +77,12 @@ class MovesActivityTest: BaseTest() {
 	fun setup() {
 		mocker = ActivityMock(MovesActivity::class)
 		activity = mocker.get()
+
+		activity.setValueTyped("isUsingCategories", true)
+		val categoryCombo = arrayListOf(ComboItem("My Category", "category"))
+		activity.setValueTyped("categoryCombo", categoryCombo)
+		val accountCombo = arrayListOf(ComboItem("My Out", "out"),ComboItem("My In", "in"))
+		activity.setValueTyped("accountCombo", accountCombo)
 	}
 
 	@After
@@ -156,36 +161,8 @@ class MovesActivityTest: BaseTest() {
 	}
 
 	@Test
-	fun onCreateFromApiForm() {
-		activity.intent.putExtra("accountUrl", "url")
-		activity.simulateNetwork()
-		mocker.server.enqueue("move_get")
-
-		activity.onCreate(null, null)
-		activity.waitTasks(mocker.server)
-
-		val form = activity
-			.getPrivate<MoveForm>("moveForm")
-
-		assertTrue(form.isUsingCategories)
-
-		assertThat(form.categoryList.size, `is`(1))
-		assertThat(form.categoryList[0], `is`(ComboItem("Category", "category")))
-
-		assertThat(form.natureList.size, `is`(3))
-		assertThat(form.natureList[0], `is`(ComboItem("Out", "0")))
-		assertThat(form.natureList[1], `is`(ComboItem("In", "1")))
-		assertThat(form.natureList[2], `is`(ComboItem("Transfer", "2")))
-
-		assertThat(form.accountList.size, `is`(1))
-		assertThat(form.accountList[0], `is`(ComboItem("Account", "account")))
-	}
-
-	@Test
 	fun onCreateFromApiMoveNew() {
-		activity.intent.putExtra("accountUrl", "url")
-		activity.simulateNetwork()
-		mocker.server.enqueue("move_get_new")
+		activity.intent.putExtra("accountUrl", "out")
 
 		activity.onCreate(null, null)
 		activity.waitTasks(mocker.server)
@@ -194,7 +171,7 @@ class MovesActivityTest: BaseTest() {
 		assertNull(move.guid)
 		assertThat(move.date, `is`(Date()))
 		assertNull(move.inUrl)
-		assertThat(move.outUrl, `is`("url"))
+		assertThat(move.outUrl, `is`("out"))
 
 		assertTrue(activity.nature_out.isChecked)
 		assertFalse(activity.nature_in.isChecked)
@@ -204,9 +181,9 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun onCreateFromApiMoveEdit() {
 		activity.intent.putExtra("accountUrl", "url")
-		activity.intent.putExtra("id", 27)
+		activity.intent.putExtra("id", guid)
 		activity.simulateNetwork()
-		mocker.server.enqueue("move_get_edit")
+		mocker.server.enqueue("move_get")
 
 		activity.onCreate(null, null)
 		activity.waitTasks(mocker.server)
@@ -234,25 +211,8 @@ class MovesActivityTest: BaseTest() {
 	fun onCreateWithSavedState() {
 		val saved = Bundle()
 		saved.putString("move", readBundle("move"))
-		saved.putString("moveForm", readBundle("move_form"))
 
 		activity.onCreate(saved, null)
-
-		val form = activity.getPrivate<MoveForm>("moveForm")
-
-		assertTrue(form.isUsingCategories)
-
-		assertThat(form.categoryList.size, `is`(1))
-		assertThat(form.categoryList[0], `is`(ComboItem("My Category", "category")))
-
-		assertThat(form.natureList.size, `is`(3))
-		assertThat(form.natureList[0], `is`(ComboItem("Out", "0")))
-		assertThat(form.natureList[1], `is`(ComboItem("In", "1")))
-		assertThat(form.natureList[2], `is`(ComboItem("Transfer", "2")))
-
-		assertThat(form.accountList.size, `is`(2))
-		assertThat(form.accountList[0], `is`(ComboItem("My Out", "out")))
-		assertThat(form.accountList[1], `is`(ComboItem("My In", "in")))
 
 		val move = activity.getPrivate<Move>("move")
 
@@ -277,13 +237,11 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun populateResponseMoveNotAllowedByAccounts() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form_no_accounts"))
+
+		activity.setValueTyped("accountCombo", emptyArray<ComboItem>())
 
 		activity.onCreate(saved, null)
 
-		val form = activity.getPrivate<MoveForm>("moveForm")
-
-		assertTrue(form.blockedByAccounts())
 		assertThat(activity.no_accounts.visibility, `is`(VISIBLE))
 
 		assertThat(activity.form.visibility, `is`(GONE))
@@ -293,13 +251,11 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun populateResponseMoveNotAllowedByCategories() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form_no_categories"))
+
+		activity.setValueTyped("categoryCombo", emptyArray<ComboItem>())
 
 		activity.onCreate(saved, null)
 
-		val form = activity.getPrivate<MoveForm>("moveForm")
-
-		assertTrue(form.blockedByCategories())
 		assertThat(activity.no_categories.visibility, `is`(VISIBLE))
 
 		assertThat(activity.form.visibility, `is`(GONE))
@@ -309,7 +265,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun populateResponseMoveCheckedWarning() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		saved.putString("move", readBundle("move_checked"))
 
 		activity.onCreate(saved, null)
@@ -320,7 +275,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun populateResponseDescription() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		saved.putString("move", readBundle("move"))
 
 		activity.onCreate(saved, null)
@@ -336,7 +290,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun populateResponseDate() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		saved.putString("move", readBundle("move"))
 
 		activity.onCreate(saved, null)
@@ -350,12 +303,9 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun populateResponseUsingCategories() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		saved.putString("move", readBundle("move_with_category"))
 
 		activity.onCreate(saved, null)
-
-		assertThat(activity.category.text.toString(), `is`("My Category"))
 
 		val categoryButton = shadowOf(
 			activity.category_picker
@@ -366,8 +316,9 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun populateResponseNotUsingCategories() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form_not_using_categories"))
 		saved.putString("move", readBundle("move_without_category"))
+
+		activity.setValueTyped("isUsingCategories", false)
 
 		activity.onCreate(saved, null)
 
@@ -378,8 +329,9 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun populateResponseWarnCategoryLose() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form_not_using_categories"))
 		saved.putString("move", readBundle("move_with_category"))
+
+		activity.setValueTyped("isUsingCategories", false)
 
 		activity.onCreate(saved, null)
 
@@ -394,7 +346,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun populateResponseNatureOut() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		saved.putString("move", readBundle("move_out"))
 
 		activity.onCreate(saved, null)
@@ -412,7 +363,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun populateResponseNatureTransfer() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		saved.putString("move", readBundle("move"))
 
 		activity.onCreate(saved, null)
@@ -433,7 +383,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun populateResponseNatureIn() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		saved.putString("move", readBundle("move_in"))
 
 		activity.onCreate(saved, null)
@@ -451,7 +400,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun populateResponseAccounts() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		saved.putString("move", readBundle("move"))
 
 		activity.onCreate(saved, null)
@@ -463,7 +411,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun populateResponseDetails() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		saved.putString("move", readBundle("move_detailed"))
 
 		activity.onCreate(saved, null)
@@ -493,7 +440,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun populateResponseValue() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		saved.putString("move", readBundle("move_single_value"))
 
 		activity.onCreate(saved, null)
@@ -520,14 +466,8 @@ class MovesActivityTest: BaseTest() {
 			Move::class.java
 		)
 
-		val originalForm = Gson().fromJson(
-			readBundle("move_form"),
-			MoveCreation::class.java
-		)
-
 		val originalState = Bundle()
 		originalState.putJson("move", originalMove)
-		originalState.putJson("moveForm", originalForm)
 
 		activity.onCreate(originalState, null)
 
@@ -536,15 +476,11 @@ class MovesActivityTest: BaseTest() {
 
 		val newMove = newState.getFromJson("move", Move())
 		assertThat(newMove, `is`(originalMove))
-
-		val newForm = newState.getFromJson("moveForm", MoveCreation())
-		assertThat(newForm, `is`(originalForm))
 	}
 
 	@Test
 	fun dateDialog() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		activity.onCreate(saved, null)
 
 		assertThat(activity.date.text.toString(), `is`(""))
@@ -562,7 +498,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun dateTyping() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		activity.onCreate(saved, null)
 
 		assertThat(activity.date.text.toString(), `is`(""))
@@ -576,7 +511,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun categoryDialog() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		activity.onCreate(saved, null)
 
 		val move = activity.getPrivate<Move>("move")
@@ -594,7 +528,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun categoryTyping() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		activity.onCreate(saved, null)
 
 		val suggestions = activity.category.adapter
@@ -614,8 +547,10 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun warnLoseCategory() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form_not_using_categories"))
 		saved.putString("move", readBundle("move_with_category"))
+
+		activity.setValueTyped("isUsingCategories", false)
+
 		activity.onCreate(saved, null)
 
 		activity.category_picker.performClick()
@@ -631,7 +566,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun accountOutDialog() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		activity.onCreate(saved, null)
 
 		val move = activity.getPrivate<Move>("move")
@@ -653,7 +587,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun accountOutTyping() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		activity.onCreate(saved, null)
 
 		val move = activity.getPrivate<Move>("move")
@@ -673,7 +606,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun accountInDialog() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		activity.onCreate(saved, null)
 
 		val move = activity.getPrivate<Move>("move")
@@ -695,7 +627,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun accountInTyping() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		activity.onCreate(saved, null)
 
 		val move = activity.getPrivate<Move>("move")
@@ -715,7 +646,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun accountOutAndInDialog() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		activity.onCreate(saved, null)
 
 		val move = activity.getPrivate<Move>("move")
@@ -743,7 +673,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun accountOutAndInTyping() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		activity.onCreate(saved, null)
 
 		val move = activity.getPrivate<Move>("move")
@@ -765,7 +694,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun useDetailed() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		activity.onCreate(saved, null)
 
 		val move = activity.getPrivate<Move>("move")
@@ -780,7 +708,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun useSimple() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		activity.onCreate(saved, null)
 
 		val move = activity.getPrivate<Move>("move")
@@ -793,7 +720,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun addDetail() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		activity.onCreate(saved, null)
 
 		val move = activity.getPrivate<Move>("move")
@@ -824,7 +750,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun addDetailNoDescription() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		activity.onCreate(saved, null)
 
 		val move = activity.getPrivate<Move>("move")
@@ -850,7 +775,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun addDetailNoAmount() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		activity.onCreate(saved, null)
 
 		val move = activity.getPrivate<Move>("move")
@@ -876,7 +800,6 @@ class MovesActivityTest: BaseTest() {
 	@Test
 	fun addDetailNoValue() {
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		activity.onCreate(saved, null)
 
 		val move = activity.getPrivate<Move>("move")
@@ -910,7 +833,6 @@ class MovesActivityTest: BaseTest() {
 		activity.intent.putExtra("id", guid)
 
 		val saved = Bundle()
-		saved.putString("moveForm", readBundle("move_form"))
 		saved.putString("move", readBundle("move"))
 		activity.onCreate(saved, null)
 
@@ -940,7 +862,6 @@ class MovesActivityTest: BaseTest() {
 			WelcomeActivity::class.java
 		)
 
-		mocker.server.enqueue("move_get")
 		activity.onCreate(null, null)
 
 		mocker.server.enqueue("empty")

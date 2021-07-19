@@ -17,30 +17,10 @@ namespace DFM.MVC.Areas.Api.Models
 			{
 				Move = money.GetMove(guid.Value);
 			}
-
-			AccountList = admin.GetAccountList(true)
-				.Select(a => new SelectItem<String, String>(a.Name, a.Url))
-				.ToList();
-
-			if (isUsingCategories)
-			{
-				CategoryList = admin.GetCategoryList(true)
-					.Select(a => new SelectItem<String, String>(a.Name, a.Name))
-					.ToList();
-			}
-
-			NatureList = AccountList.Count > 1
-				? SelectItemEnum.SelectItem<MoveNature>(translator, service)
-				: SelectItemEnum.SelectItem<PrimalMoveNature>(translator, service);
 		}
 
 		public Boolean IsUsingCategories { get; }
-
 		public MoveInfo Move { get; set; }
-
-		public IList<SelectItem<String, String>> AccountList { get; set; }
-		public IList<SelectItem<String, String>> CategoryList { get; set; }
-		public IList<SelectItem<String, Int32>> NatureList { get; set; }
 
 		public void Save(MoveInfo info)
 		{

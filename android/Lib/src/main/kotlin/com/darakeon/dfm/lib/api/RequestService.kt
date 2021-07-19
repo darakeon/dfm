@@ -4,6 +4,7 @@ import com.darakeon.dfm.lib.api.entities.Body
 import com.darakeon.dfm.lib.api.entities.accounts.AccountList
 import com.darakeon.dfm.lib.api.entities.extract.Extract
 import com.darakeon.dfm.lib.api.entities.login.Login
+import com.darakeon.dfm.lib.api.entities.moves.Lists
 import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
 import com.darakeon.dfm.lib.api.entities.moves.Nature
@@ -110,4 +111,7 @@ interface RequestService {
 	fun archiveErrors(
 		@Path("id") id: Int
 	): Call<Body<Any>>
+
+	@GET("api/moves/lists")
+	fun listsForMoves(): Call<Body<Lists>>
 }

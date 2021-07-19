@@ -5,6 +5,7 @@ import com.darakeon.dfm.lib.api.entities.Body
 import com.darakeon.dfm.lib.api.entities.accounts.AccountList
 import com.darakeon.dfm.lib.api.entities.extract.Extract
 import com.darakeon.dfm.lib.api.entities.login.Login
+import com.darakeon.dfm.lib.api.entities.moves.Lists
 import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
 import com.darakeon.dfm.lib.api.entities.moves.Nature
@@ -169,5 +170,9 @@ class Api<C>(
 
 	fun archiveErrors(id: Int, onSuccess: () -> Unit) {
 		service.archiveErrors(id).call { onSuccess() }
+	}
+
+	fun listsForMoves(onSuccess: (Lists) -> Unit) {
+		service.listsForMoves().call { onSuccess(it) }
 	}
 }

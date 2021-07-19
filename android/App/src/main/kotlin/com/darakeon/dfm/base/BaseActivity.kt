@@ -20,8 +20,13 @@ import com.darakeon.dfm.extensions.logout
 import com.darakeon.dfm.extensions.logoutLocal
 import com.darakeon.dfm.lib.api.Api
 import com.darakeon.dfm.lib.api.ApiCaller
+import com.darakeon.dfm.lib.api.entities.ComboItem
 import com.darakeon.dfm.lib.auth.Authentication
+import com.darakeon.dfm.lib.auth.getValue
+import com.darakeon.dfm.lib.auth.getValueTyped
 import com.darakeon.dfm.lib.auth.recoverEnvironment
+import com.darakeon.dfm.lib.auth.setValue
+import com.darakeon.dfm.lib.auth.setValueTyped
 import com.darakeon.dfm.lib.extensions.applyGlyphicon
 import com.darakeon.dfm.lib.extensions.composeErrorApi
 import com.darakeon.dfm.lib.extensions.composeErrorEmail
@@ -76,6 +81,34 @@ abstract class BaseActivity: Activity(), ApiCaller {
 		get() = title != 0
 
 	val query = HashMap<String, String>()
+
+	private var cachedCombos: Boolean
+		get() = this.getValue("cachedCombos").toBoolean()
+		set(value) = this.setValue("cachedCombos", value.toString())
+
+	protected var accountCombo: Array<ComboItem>
+		get() = this.getValueTyped("accountCombo") ?: emptyArray()
+		private set(value) = this.setValueTyped("accountCombo", value)
+
+	protected var categoryCombo: Array<ComboItem>
+		get() = this.getValueTyped("categoryCombo") ?: emptyArray()
+		private set(value) = this.setValueTyped("categoryCombo", value)
+
+	protected var isUsingCategories: Boolean
+		get() = this.getValueTyped("isUsingCategories") ?: false
+		private set(value) = this.setValueTyped("isUsingCategories", value)
+
+	protected fun populateCache(refresh: Boolean = false) {
+		if (cachedCombos && !refresh) return
+
+		callApi { api ->
+			api.listsForMoves {
+				isUsingCategories = it.isUsingCategories
+				accountCombo = it.accountList
+				categoryCombo = it.categoryList
+			}
+		}
+	}
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		recoverEnvironment()

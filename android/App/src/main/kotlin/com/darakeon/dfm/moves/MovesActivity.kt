@@ -19,7 +19,6 @@ import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.lib.api.entities.Date
 import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
-import com.darakeon.dfm.lib.api.entities.moves.MoveForm
 import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.setCombo
 import com.darakeon.dfm.lib.extensions.applyGlyphicon
@@ -60,7 +59,7 @@ class MovesActivity : BaseActivity() {
 
 	private var move = Move()
 	private val moveKey = "move"
-	private var moveForm: MoveForm = MoveCreation()
+	private var moveForm = MoveCreation()
 	private val moveFormKey = "moveForm"
 	private var offlineHash = 0
 	private val offlineHashKey = "offlineHash"
@@ -98,7 +97,12 @@ class MovesActivity : BaseActivity() {
 		detail_amount.setText(amountDefault)
 
 		if (savedInstanceState == null) {
-			callApi { it.getMove(this.id, this::populateScreen) }
+			if (this.id != null) {
+				callApi { it.getMove(this.id, this::populateScreen) }
+			} else {
+				move.date = Date()
+				populateResponse()
+			}
 		} else {
 			move = savedInstanceState.getFromJson(moveKey, Move())
 			moveForm = savedInstanceState.getFromJson(moveFormKey, MoveCreation())
@@ -145,7 +149,7 @@ class MovesActivity : BaseActivity() {
 	}
 
 	private fun populateResponse() {
-		move.setDefaultData(accountUrl, moveForm.isUsingCategories)
+		move.setDefaultData(accountUrl, isUsingCategories)
 
 		if (!isMoveAllowed())
 			return
@@ -171,12 +175,12 @@ class MovesActivity : BaseActivity() {
 	private fun isMoveAllowed(): Boolean {
 		var canMove = true
 
-		if (moveForm.blockedByAccounts()) {
+		if (blockedByAccounts()) {
 			canMove = false
 			no_accounts.visibility = VISIBLE
 		}
 
-		if (moveForm.blockedByCategories()) {
+		if (blockedByCategories()) {
 			canMove = false
 			no_categories.visibility = VISIBLE
 		}
@@ -188,6 +192,12 @@ class MovesActivity : BaseActivity() {
 
 		return canMove
 	}
+
+	private fun blockedByAccounts() =
+		accountCombo.isEmpty()
+
+	private fun blockedByCategories() =
+		isUsingCategories && categoryCombo.isEmpty()
 
 	private fun populateDate() {
 		date.addMask("####-##-##")
@@ -206,7 +216,7 @@ class MovesActivity : BaseActivity() {
 
 	private fun populateCategory() {
 		when {
-			moveForm.isUsingCategories -> {
+			isUsingCategories -> {
 				populateCategoryCombo()
 			}
 			move.warnCategory -> {
@@ -219,7 +229,7 @@ class MovesActivity : BaseActivity() {
 	}
 
 	private fun populateCategoryCombo() {
-		moveForm.categoryList.setCombo(
+		categoryCombo.setCombo(
 			category,
 			category_picker,
 			move::categoryName,
@@ -228,7 +238,7 @@ class MovesActivity : BaseActivity() {
 	}
 
 	fun changeCategory() {
-		showChangeList(moveForm.categoryList, R.string.category) {
+		showChangeList(categoryCombo, R.string.category) {
 			text, _ -> category.setText(text)
 		}
 	}
@@ -255,7 +265,7 @@ class MovesActivity : BaseActivity() {
 	}
 
 	private fun populateAccounts() {
-		moveForm.accountList.setCombo(
+		accountCombo.setCombo(
 			account_out,
 			account_out_picker,
 			move::outUrl,
@@ -265,7 +275,7 @@ class MovesActivity : BaseActivity() {
 			setNatureFromAccounts()
 		}
 
-		moveForm.accountList.setCombo(
+		accountCombo.setCombo(
 			account_in,
 			account_in_picker,
 			move::inUrl,
@@ -277,13 +287,13 @@ class MovesActivity : BaseActivity() {
 	}
 
 	fun changeAccountOut() {
-		showChangeList(moveForm.accountList, R.string.account) { text, _ ->
+		showChangeList(accountCombo, R.string.account) { text, _ ->
 			account_out.setText(text)
 		}
 	}
 
 	fun changeAccountIn() {
-		showChangeList(moveForm.accountList, R.string.account) { text, _ ->
+		showChangeList(accountCombo, R.string.account) { text, _ ->
 			account_in.setText(text)
 		}
 	}

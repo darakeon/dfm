@@ -55,5 +55,11 @@ namespace DFM.MVC.Areas.Api.Controllers
 		{
 			return json(() => new MovesModel().Uncheck(id, nature));
 		}
+
+		[HttpGetAndHead]
+		public IActionResult Lists()
+		{
+			return json(() => new MovesListsModel());
+		}
 	}
 }
