@@ -27,6 +27,8 @@ class WelcomeActivity : BaseActivity() {
 			action_close.applyGlyphicon()
 
 			MovesService.start(this)
+
+			populateCache()
 		} else {
 			redirect<LoginActivity>()
 		}
