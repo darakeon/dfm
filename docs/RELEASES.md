@@ -14,7 +14,9 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="6.2.0.0"></a>6.2.0.0 :whale: <sup>`1`</sup>
+## <a name="6.2.0.0"></a>6.2.0.0 :whale: <sup>`3`</sup>
+- [ ] Fix ssl certificate
+- [ ] Fix nature color at mobile
 - [ ] `210716>......` Cache account/category at login + refresh button at app
 
 ## <a name="6.1.0.0"></a>6.1.0.0 :dragon: <sup>`3`</sup>
