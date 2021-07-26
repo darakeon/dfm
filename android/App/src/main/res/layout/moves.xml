@@ -16,6 +16,14 @@
 		android:orientation="vertical"
 		>
 
+		<Button
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/update_cache"
+			android:onClick="updateCache"
+			android:gravity="end|top"
+			style="@style/Link" />
+
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="0dp"

@@ -98,7 +98,10 @@ abstract class BaseActivity: Activity(), ApiCaller {
 		get() = this.getValueTyped("isUsingCategories") ?: false
 		private set(value) = this.setValueTyped("isUsingCategories", value)
 
-	protected fun populateCache(refresh: Boolean = false) {
+	protected fun populateCache(
+		refresh: Boolean = false,
+		execute: (() -> Unit)? = null
+	) {
 		if (cachedCombos && !refresh) return
 
 		callApi { api ->
@@ -106,8 +109,16 @@ abstract class BaseActivity: Activity(), ApiCaller {
 				isUsingCategories = it.isUsingCategories
 				accountCombo = it.accountList
 				categoryCombo = it.categoryList
+				cachedCombos = true
+
+				if (execute != null) execute()
 			}
 		}
+	}
+
+	@Suppress(ON_CLICK)
+	fun updateCache(view: View) {
+		populateCache(true, this::refresh)
 	}
 
 	override fun onCreate(savedInstanceState: Bundle?) {
