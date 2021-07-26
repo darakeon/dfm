@@ -17,7 +17,7 @@ Legend:
 ## <a name="6.2.0.0"></a>6.2.0.0 :whale: <sup>`3`</sup>
 - [ ] Fix ssl certificate
 - [x] `210724>210724` Fix nature color at mobile
-- [ ] `210716>......` Cache account/category at login + refresh button at app
+- [x] `210716>210728` Cache account/category at login + refresh button at app
 
 ## <a name="6.1.0.0"></a>6.1.0.0 :dragon: <sup>`3`</sup>
 - [x] `210714>210715` Add commit linter
