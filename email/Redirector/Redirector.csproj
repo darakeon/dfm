@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="if $(ConfigurationName) == Release (&#xD;&#xA;del $(OutDir)$(ProjectName).exe&#xD;&#xA;del $(OutDir)example.json&#xD;&#xA;del $(OutDir)$(ProjectName).runtimeconfig.dev.json&#xD;&#xA;powershell Compress-Archive -Path '$(OutDir)*' -DestinationPath '$(OutDir)lambda.zip' -Force&#xD;&#xA;)" />
+    <Exec Command="if $(ConfigurationName) == Release (&#xD;&#xA;del $(OutDir)$(ProjectName).exe&#xD;&#xA;del $(OutDir)example.json&#xD;&#xA;del $(OutDir)$(ProjectName).runtimeconfig.dev.json&#xD;&#xA;powershell Compress-Archive -Path '$(OutDir)*' -DestinationPath '$(SolutionDir)lambda.zip' -Force&#xD;&#xA;)" />
   </Target>
 
 </Project>
