@@ -87,6 +87,7 @@ namespace Redirector
 			try
 			{
 				var content = s3.GetFile(messageId);
+				Console.WriteLine($"{messageId}: {content}");
 				s3EmailFileExists = true;
 				return content;
 			}
