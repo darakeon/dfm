@@ -13,9 +13,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then Type.
 
-| Task (52)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (51)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
-| Year and Month report by category [chart]                                      | :whale:  |  3  |  3  |  4  |                |       |
 | Feature to unify Categories                                                    | :whale:  |  3  |  3  |  4  |                |       |
 | Report with date filters                                                       | :whale:  |  3  |  3  |  4  |                |       |
 | Add system tips (user "age" = times accessed) (disable: unsubscribe or config) | :whale:  |  3  |  3  |  4  |                |       |
@@ -72,6 +71,5 @@ The tasks are ordered by: Points then Importance then Type.
 [password rules]: https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#implement-proper-password-strength-controls
 [gherkin jest]: https://www.npmjs.com/package/gherkin-jest
 [Lint C#]: https://medium.com/@michaelparkerdev/linting-c-in-2019-stylecop-sonar-resharper-and-roslyn-73e88af57ebd
-[chart]: https://www.highcharts.com/demo/pie-legend
 [#28]: https://github.com/darakeon/dfm/issues/28
 [#50]: https://github.com/darakeon/dfm/issues/50
