@@ -6,6 +6,8 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Redirector</RootNamespace>
 	<GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <AssemblyVersion>7.0.0.0</AssemblyVersion>
+    <FileVersion>7.0.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
