@@ -1,4 +1,8 @@
 {
+	"7.0.0.0": [
+		"Fix nature at move creation app screen",
+		"Store accounts and categories at device for creating moves"
+	],
 	"6.1.0.0": [
 		"Add image to ensure security of system e-mails"
 	],

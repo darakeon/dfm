@@ -1,4 +1,8 @@
 {
+	"7.0.0.0": [
+		"Corrigida natureza na tela de criação da movimentação do aplicativo",
+		"Guardada lista de contas e categorias no celular para criar movimentações"
+	],
 	"6.1.0.0": [
 		"Adicionada imagem para garantir a segurança dos e-mails enviados pelo sistema"
 	],
