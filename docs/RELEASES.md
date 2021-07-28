@@ -15,7 +15,7 @@ Legend:
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="6.2.0.0"></a>6.2.0.0 :whale: <sup>`3`</sup>
-- [ ] Fix ssl certificate
+- [x] `210726>210727` Fix ssl certificate
 - [x] `210724>210724` Fix nature color at mobile
 - [x] `210716>210728` Cache account/category at login + refresh button at app
 
