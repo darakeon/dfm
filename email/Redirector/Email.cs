@@ -72,8 +72,9 @@ namespace Redirector
 
 			if (received.ContainsKey("text/html"))
 				return received["text/html"].ToString()
-					.Replace("=3D", "=")
-					.Replace($"={newLine}", "");
+					.Replace($"={newLine}", "")
+					.Replace("=0A", "<br />")
+					.Replace("=3D", "=");
 
 			if (received.ContainsKey("text/plain"))
 				return received["text/plain"].ToString();
