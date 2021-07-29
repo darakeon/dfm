@@ -20,8 +20,6 @@ pub fn update_csharp(version: &Version) {
 
 	update_csharp_file(&version, vec!["site", "MVC", "MVC.csproj"]);
 	update_csharp_file(&version, vec!["site", "Tests", "MVC", "MVC.Tests.csproj"]);
-
-	update_csharp_file(&version, vec!["email", "Redirector", "Redirector.csproj"]);
 }
 
 fn update_csharp_file(version: &Version, file_relative: Vec<&str>) {
