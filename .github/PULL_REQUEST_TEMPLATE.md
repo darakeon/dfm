@@ -19,6 +19,3 @@
 - [ ] Upload new mobile prints
 - [ ] Merge PR
 - [ ] Create branch of new dev version and tag of prod version
-- [ ] Upload video
-- [ ] Post Twitter
-- [ ] Post Facebook
