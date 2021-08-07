@@ -13,13 +13,13 @@ namespace DFM.MVC.Areas.Api.Models
 			var monthDate = DateFromInt.GetDateMonth(id, now);
 			var yearDate = DateFromInt.GetDateYear(id, now);
 
-			var month = report.GetMonthReport(accountUrl, monthDate, yearDate);
+			var month = report.GetMonthReport(accountUrl, yearDate, monthDate);
 
 			MoveList = month.MoveList.Reverse()
 				.Select(m => new SimpleMoveJson(m, accountUrl))
 				.ToList();
 
-			var account = 
+			var account =
 				admin.GetAccountList(true)
 					.SingleOrDefault(a => a.Url == accountUrl)
 				?? admin.GetAccountList(false)
@@ -34,6 +34,5 @@ namespace DFM.MVC.Areas.Api.Models
 		public String Title { get; }
 		public Decimal Total { get; }
 		public Boolean CanCheck { get; }
-
 	}
 }

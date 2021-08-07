@@ -11,7 +11,7 @@ namespace DFM.BusinessLogic.Services
 		internal ReportService(ServiceAccess serviceAccess, Repos repos)
 			: base(serviceAccess, repos) { }
 
-		public MonthReport GetMonthReport(String accountUrl, Int16 dateMonth, Int16 dateYear)
+		public MonthReport GetMonthReport(String accountUrl, Int16 dateYear, Int16 dateMonth)
 		{
 			parent.Safe.VerifyUser();
 
