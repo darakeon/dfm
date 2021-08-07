@@ -15,7 +15,7 @@ namespace DFM.MVC.Areas.Account.Models
 			var dateMonth = DateFromInt.GetDateMonth(id, now);
 			var dateYear = DateFromInt.GetDateYear(id, now);
 
-			var month = report.GetMonthReport(CurrentAccountUrl, dateMonth, dateYear);
+			var month = report.GetMonthReport(CurrentAccountUrl, dateYear, dateMonth);
 
 			MoveList = month.MoveList
 				.Select(getSubModel)

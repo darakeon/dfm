@@ -51,7 +51,7 @@ namespace DFM.BusinessLogic.Tests.E.Report
 		{
 			try
 			{
-				monthReport = service.Report.GetMonthReport(accountUrl, month, year);
+				monthReport = service.Report.GetMonthReport(accountUrl, year, month);
 			}
 			catch (CoreError e)
 			{

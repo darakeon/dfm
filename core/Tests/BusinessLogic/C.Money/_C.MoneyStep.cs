@@ -604,8 +604,8 @@ namespace DFM.BusinessLogic.Tests.C.Money
 		{
 			var report = service.Report.GetMonthReport(
 				moveInfo.OutUrl,
-				moveInfo.Month,
-				moveInfo.Year
+				moveInfo.Year,
+				moveInfo.Month
 			);
 
 			var move = report.MoveList
