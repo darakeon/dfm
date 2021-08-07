@@ -2,29 +2,27 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Language;
 using DFM.Language.Emails;
+using Keon.Eml;
 
 namespace DFM.Tests.Util
 {
-	public class EmlHelper
+	public class EmlHelper : EmlReader
 	{
-		private EmlHelper(String receiver, String subject, String body, DateTime creation, EmailType? type)
+		private EmlHelper(FileInfo emailFile)
+			: base(File.ReadAllLines(emailFile.FullName), emailFile.CreationTimeUtc)
 		{
-			Receiver = receiver;
-			Subject = subject;
-			Body = body;
-			Creation = creation;
-			Type = type;
+			Receiver = Headers["X-Receiver"];
+
+			Type = emailTypes
+				.FirstOrDefault(t => t.Key == Subject)
+				.Value;
 		}
 
 		public String Receiver { get; }
-		public String Subject { get; }
-		public String Body { get; }
-		public DateTime Creation { get; }
 		public EmailType? Type { get; }
 
 		private static IDictionary<String, EmailType> emailTypesField;
@@ -78,7 +76,7 @@ namespace DFM.Tests.Util
 
 			var emailFile = getEmailFile(position);
 
-			return fillEmail(emailFile);
+			return new EmlHelper(emailFile);
 		}
 
 		private static FileInfo getEmailFile(Int32 position)
@@ -100,79 +98,11 @@ namespace DFM.Tests.Util
 			return dir.EnumerateFiles("*.eml");
 		}
 
-		private static EmlHelper fillEmail(FileInfo emailFile)
-		{
-			var content = File.ReadAllLines(emailFile.FullName);
-
-			var headers = new Dictionary<String, String>();
-
-			var l = 0;
-			for (; l < content.Length && content[l] != ""; l++)
-			{
-				var line = content[l];
-
-				if (line.StartsWith(" "))
-				{
-					var key = headers.Keys.Last();
-					headers[key] += line;
-				}
-				else
-				{
-					var parts = line.Split(": ", 2);
-					headers.Add(parts[0], parts[1]);
-				}
-			}
-
-			var receiver = headers["X-Receiver"];
-
-			var subject = headers["Subject"];
-
-			if (subject.Contains("utf-8"))
-			{
-				subject = String.Join("",
-					subject
-						.Split(" ")
-						.Select(s => convert(s[10..^2]))
-				);
-			}
-
-			var base64 = headers["Content-Transfer-Encoding"] == "base64";
-
-			content = content.Skip(l).ToArray();
-
-			if (!base64)
-			{
-				content = content
-					.Where(c => !String.IsNullOrEmpty(c))
-					.Select(
-						c => c.Substring(0, c.Length - 1)
-					).ToArray();
-			}
-
-			var body = String.Join("", content);
-
-			if (base64)
-				body = convert(body);
-
-			var creation = emailFile.CreationTimeUtc;
-			var type = emailTypes.FirstOrDefault(
-				t => t.Key == subject
-			).Value;
-
-			return new EmlHelper(receiver, subject, body, creation, type);
-		}
-
-		private static String convert(String text)
-		{
-			var bytes = Convert.FromBase64String(text);
-			return Encoding.UTF8.GetString(bytes);
-		}
-
 		public static Int32 CountEmails(String email, EmailType type, DateTime datetime)
 		{
 			return getEmailFiles()
 				.Where(f => f.CreationTimeUtc > datetime)
-				.Select(fillEmail)
+				.Select(f => new EmlHelper(f))
 				.Count(e => e.Receiver == email && e.Type == type);
 		}
 
