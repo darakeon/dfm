@@ -13,8 +13,9 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then Type.
 
-| Task (51)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (52)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
+| Add edit move button to search result                                          | :sheep:  |  1  |  3  |  6  |                |       |
 | Feature to unify Categories                                                    | :whale:  |  3  |  3  |  4  |                |       |
 | Report with date filters                                                       | :whale:  |  3  |  3  |  4  |                |       |
 | Add system tips (user "age" = times accessed) (disable: unsubscribe or config) | :whale:  |  3  |  3  |  4  |                |       |
