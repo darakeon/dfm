@@ -31,5 +31,13 @@ namespace DFM.MVC.Areas.Account.Controllers
 
 			return View(model);
 		}
+
+		[HttpGetAndHead]
+		public IActionResult Categories(Int32? id)
+		{
+			var model = new ReportsCategoriesModel(id);
+
+			return View(model);
+		}
 	}
 }

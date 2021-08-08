@@ -1,4 +1,6 @@
 /* ReSharper disable RequiresFallbackColor */
+/* if change success, info, warning or danger, change into colors-dark.js */
+
 :root {
 	--neutral-0: #111;
 	--neutral-1: #222;

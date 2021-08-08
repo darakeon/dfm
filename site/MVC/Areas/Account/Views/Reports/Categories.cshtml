@@ -1,0 +1,120 @@
+﻿@using System.Globalization
+@model ReportsCategoriesModel
+
+@{
+	ViewBag.Title = Model.Date;
+
+	ViewBag.WizardMessage =
+		Model.ChartData.Any()
+			? "MonthFilled"
+			: "MonthEmpty";
+
+	Layout = "~/Views/Shared/Layouts/_Clean.cshtml";
+
+	var drawCharts = Model.ChartData.Any();
+
+	ViewBag.HasContent = drawCharts;
+	ViewBag.NoContentText = Context.Translate("NoMonthMoves");
+	ViewBag.SmSize = 12;
+	ViewBag.LgSize = 10;
+
+	var start = Model.Account.Start;
+	var date = new DateTime(Model.Year, Model.Month, 1);
+	var end = Model.Account.End ??
+		(date < start ? start : date).AddMonths(4);
+
+	var startPage = new MonthYearUnit(start);
+	var endPage = new MonthYearUnit(end);
+	var currentPage = new MonthYearUnit(date);
+
+	var pages = new Pages(startPage, endPage, currentPage, 5);
+
+	var jsFormat = new NumberFormatInfo
+	{
+		NumberDecimalSeparator = "."
+	};
+
+	var culture = new CultureInfo(Model.Language);
+	var format = culture.NumberFormat;
+	var thousands = format.CurrencyGroupSeparator;
+	var decimals = format.CurrencyDecimalSeparator;
+}
+
+<div class="row clearfix">
+	<div class="col-sm-6">
+		<figure class="highcharts-figure">
+			<div id="container-out"></div>
+		</figure>
+	</div>
+	<div class="col-sm-6">
+		<figure class="highcharts-figure">
+			<div id="container-in"></div>
+		</figure>
+	</div>
+</div>
+
+<div class="text-center">
+	<label id="patterns-enabled-label">
+		<input type="checkbox" id="patterns-enabled" checked>
+		@Context.Translate("EnableColorPatterns")
+	</label>
+</div>
+
+@section Footer {
+	<div class="row">
+		<div class="col-lg-2 col-sm-2"></div>
+
+		<div class="col-lg-8 col-sm-8 text-center">
+			@await Html.PartialAsync("Extensions/Pagination", pages)
+		</div>
+	</div>
+}
+
+@section Scripts {
+	@if (drawCharts)
+	{
+		<script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+		<script type="text/javascript" src="https://code.highcharts.com/modules/exporting.js"></script>
+		<script type="text/javascript" src="https://code.highcharts.com/modules/export-data.js"></script>
+		<script type="text/javascript" src="https://code.highcharts.com/modules/accessibility.js"></script>
+		<script type="text/javascript" src="https://code.highcharts.com/modules/pattern-fill.js"></script>
+		<script type="text/javascript" src="https://code.highcharts.com/themes/high-contrast-light.js"></script>
+
+		<script type="text/javascript" src="~/Assets/scripts/chart.js?v=@Cfg.Version"></script>
+
+		<script type="text/javascript">
+			$(document).ready(function () {
+				chart.init('@decimals', '@thousands')
+
+				chart.draw(
+					'container-out',
+					'@Context.Translate("Out")',
+					'@Context.Translate("Value")',
+					[
+						@foreach (var data in Model.ChartDataOut)
+						{
+							@Html.Raw($"{{ name: '{data.Category}', y: {data.Out.ToString(jsFormat)} }},")
+						}
+					]
+				)
+
+				chart.draw(
+					'container-in',
+					'@Context.Translate("In")',
+					'@Context.Translate("Value")',
+					[
+						@foreach (var data in Model.ChartDataIn)
+						{
+							@Html.Raw($"{{ name: '{data.Category}', y: {data.In.ToString(jsFormat)} }},")
+						}
+					]
+				)
+			})
+		</script>
+
+	}
+}
+
+@section Styles {
+	<link type="text/css" rel="stylesheet" href="~/Assets/styles/chart.css??v=@Cfg.Version" />
+}

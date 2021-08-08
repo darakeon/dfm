@@ -10,6 +10,7 @@
 		"ForeseenMove": "Foreseen moves",
 		"Foreseen": "Foreseen",
 		"Current": "Current",
+		"EnableColorPatterns": "Enable color patterns",
 	},
 	"pt-BR": {
 		"NoMonthMoves": "Não há Movimentações para este mês.",
@@ -22,5 +23,6 @@
 		"ForeseenMove": "Movimentações futuras",
 		"Foreseen": "Previsto",
 		"Current": "Atual",
+		"EnableColorPatterns": "Ativar desenhos nas cores",
 	},
 }

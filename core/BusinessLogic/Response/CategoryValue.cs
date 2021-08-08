@@ -16,6 +16,9 @@ namespace DFM.BusinessLogic.Response
 		public Int32 OutCents { get; }
 		public Int32 InCents { get; }
 
+		public Decimal Out => OutCents / 100m;
+		public Decimal In => InCents / 100m;
+
 		public override String ToString()
 		{
 			return $"{Category}: {InCents}-{OutCents}";

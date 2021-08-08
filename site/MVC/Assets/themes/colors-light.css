@@ -1,4 +1,6 @@
 /* ReSharper disable RequiresFallbackColor */
+/* if change success, info, warning or danger, change into colors-light.js */
+
 :root {
 	--neutral-0: #EEE;
 	--neutral-1: #DDD;
