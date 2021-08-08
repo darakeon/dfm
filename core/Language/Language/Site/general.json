@@ -97,6 +97,7 @@
 
 		"MonthMoves": "Extract",
 		"YearMoves": "Year Summary",
+		"CategorySummary": "Expenses by Category",
 		"ToMove": "Move",
 		"NoAccountsMove": "There are no accounts.\nWithout accounts, you cannot create Moves.",
 		"NoCategoriesMove": "There is no categories.\nYou can create a Move without Category, but you need to go to Settings and disable categories use.",
@@ -252,6 +253,7 @@
 
 		"MonthMoves": "Extrato",
 		"YearMoves": "Resumo Anual",
+		"CategorySummary": "Gastos por Categoria", 
 		"ToMove": "Mover",
 		"NoAccountsMove": "Não há contas.\nSem contas, não é possível criar Movimentações.",
 		"NoCategoriesMove": "Não há categorias.\nVocê pode criar Movimentações sem Categorias, mas precisa desabilitar o uso de Categorias nas Configurações.",

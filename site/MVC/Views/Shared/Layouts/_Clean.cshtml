@@ -1,0 +1,52 @@
+﻿@model BaseSiteModel
+
+@{
+	Layout = "_Base.cshtml";
+}
+
+@await Html.PartialAsync("Skeleton/ValidationSummary")
+
+<h1 class="header">
+	@ViewBag.Title
+	<em>@ViewBag.Subtitle</em>
+</h1>
+<hr />
+
+@if (!ViewBag.HasContent)
+{
+	<div class="alert alert-warning text-center">
+		@ViewBag.NoContentText
+	</div>
+}
+else
+{
+	var lgSize = ViewBag.LgSize ?? 12;
+	if (lgSize % 2 == 1) { lgSize++; }
+	var pushLg = 6 - lgSize / 2;
+
+	var smSize = ViewBag.SmSize ?? 12;
+	if (smSize % 2 == 1) { smSize++; }
+	var pushSm = 6 - smSize / 2;
+
+	<div class="row">
+		<div class="col-lg-@lgSize col-lg-push-@pushLg col-sm-@smSize col-sm-push-@pushSm">
+
+			<div class="well-sm">
+				@RenderBody()
+			</div>
+
+		</div>
+	</div>
+}
+
+@await RenderSectionAsync("Footer", false)
+
+@section Styles
+{
+	@await RenderSectionAsync("Styles", false)
+}
+
+@section Scripts
+{
+	@await RenderSectionAsync("Scripts", false)
+}
