@@ -16,7 +16,7 @@ Legend:
 
 ## <a name="7.1.0.0"></a>7.1.0.0 :whale: <sup>`2`</sup>
 - [ ] Fix buttons with two icons
-- [ ] Year and Month report by category [chart]
+- [ ] `210807>......` Year and Month report by category [chart]
 
 ## <a name="7.0.0.0"></a>7.0.0.0 :dragon: <sup>`3`</sup>
 - [x] `210726>210727` Fix ssl certificate

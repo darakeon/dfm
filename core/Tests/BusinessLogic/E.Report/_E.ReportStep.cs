@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
@@ -7,6 +8,7 @@ using DFM.Entities.Enums;
 using DFM.Generic;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace DFM.BusinessLogic.Tests.E.Report
 {
@@ -42,6 +44,12 @@ namespace DFM.BusinessLogic.Tests.E.Report
 		{
 			get => get<SearchResult>("SearchResult");
 			set => set("SearchResult", value);
+		}
+
+		private static CategoryReport categoryReport
+		{
+			get => get<CategoryReport>("CategoryReport");
+			set => set("CategoryReport", value);
 		}
 		#endregion
 
@@ -291,6 +299,57 @@ namespace DFM.BusinessLogic.Tests.E.Report
 		}
 		#endregion
 
+		#region GetCategoryReport
+		[When(@"I try to get the category report")]
+		public void WhenITryToGetTheCategoryReport()
+		{
+			try
+			{
+				categoryReport = service.Report
+					.GetCategoryReport(
+						accountUrl, year, month
+					);
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[Then(@"I will receive no category report")]
+		public void ThenIWillReceiveNoCategoryReport()
+		{
+			Assert.IsNull(categoryReport);
+		}
+
+		[Then(@"I will receive empty category report")]
+		public void ThenIWillReceiveTheCategoryReport()
+		{
+			Assert.IsNotNull(categoryReport);
+			Assert.IsEmpty(categoryReport.List);
+		}
+
+		[Then(@"I will receive this category report")]
+		public void ThenIWillReceiveThisCategoryReport(Table table)
+		{
+			Assert.IsNotNull(categoryReport);
+			Assert.IsNotEmpty(categoryReport.List);
+
+			Assert.AreEqual(table.Rows.Count, categoryReport.List.Count);
+
+			for (var r = 0; r < table.Rows.Count; r++)
+			{
+				var row = table.Rows[r];
+				var item = categoryReport.List[r];
+				var category = row["Category"];
+
+				Assert.AreEqual(category, item.Category);
+				Assert.AreEqual(row["Out"], (item.OutCents / 100).ToString(), $"For {category}");
+				Assert.AreEqual(row["In"], (item.InCents / 100).ToString(), $"For {category}");
+			}
+		}
+		#endregion
+
 		#region MoreThanOne
 		[Given(@"I have moves of")]
 		public void GivenIHaveMovesOf(Table table)
@@ -306,12 +365,33 @@ namespace DFM.BusinessLogic.Tests.E.Report
 						? row["Description"]
 						: "Description";
 
+				var category =
+					row.ContainsKey("Category")
+						? row["Category"]
+						: categoryInfo.Name;
+
+				var nature =
+					row.ContainsKey("Nature") && row["Nature"] == "In"
+						? MoveNature.In
+						: MoveNature.Out;
+
+				var accountOut =
+					nature == MoveNature.Out
+						? accountInfo.Url
+						: null;
+
+				var accountIn =
+					nature == MoveNature.In
+						? accountInfo.Url
+						: null;
+
 				var move = new MoveInfo
 				{
 					Description = description,
-					Nature = MoveNature.Out,
-					OutUrl = accountInfo.Url,
-					CategoryName = categoryInfo.Name,
+					Nature = nature,
+					OutUrl = accountOut,
+					InUrl = accountIn,
+					CategoryName = category,
 				};
 
 				if (row.ContainsKey("Detail") && row["Detail"] != "")
@@ -323,6 +403,10 @@ namespace DFM.BusinessLogic.Tests.E.Report
 						Value = 10,
 					};
 					move.DetailList.Add(detail);
+				}
+				else if (row.ContainsKey("Value"))
+				{
+					move.Value = Int32.Parse(row["Value"]);
 				}
 				else
 				{
