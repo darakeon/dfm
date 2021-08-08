@@ -12,6 +12,7 @@ using DFM.Language;
 using DFM.Tests.Util;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Tests.B.Admin
@@ -564,16 +565,16 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 
 		#region UpdateCategory
 		[Given(@"I have this category")]
-		public void GivenIHaveThisCategory(Table table)
+		[Given(@"I have these categories")]
+		public void GivenIHaveTheseCategories(Table table)
 		{
-			var categoryData = table.Rows[0];
+			var categories = table.CreateSet<CategoryInfo>();
 
-			categoryInfo = new CategoryInfo
+			foreach (var category in categories)
 			{
-				Name = categoryData["Name"],
-			};
-
-			service.Admin.CreateCategory(categoryInfo);
+				categoryInfo = category;
+				service.Admin.CreateCategory(category);
+			}
 		}
 
 		[Given(@"I make this changes to the category")]

@@ -92,5 +92,31 @@ namespace DFM.BusinessLogic.Services
 
 			return new SearchResult(moves);
 		}
+
+		public CategoryReport GetCategoryReport(String accountUrl, Int16 dateYear, Int16 dateMonth)
+		{
+			parent.Safe.VerifyUser();
+
+			if (dateYear <= 0)
+				throw Error.InvalidYear.Throw();
+
+			if (dateMonth <= 0 || dateMonth >= 13)
+				throw Error.InvalidMonth.Throw();
+
+			var user = parent.Safe.GetCurrent();
+			var account = repos.Account.GetByUrl(accountUrl, user);
+
+			if (account == null)
+				throw Error.InvalidAccount.Throw();
+
+			var report = new CategoryReport();
+
+			var summaryList = repos.Summary
+				.Get(account, dateYear * 100 + dateMonth);
+
+			report.Add(summaryList);
+
+			return report;
+		}
 	}
 }
