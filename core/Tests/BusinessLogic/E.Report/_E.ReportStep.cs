@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
@@ -8,7 +7,6 @@ using DFM.Entities.Enums;
 using DFM.Generic;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
 
 namespace DFM.BusinessLogic.Tests.E.Report
 {
@@ -20,6 +18,12 @@ namespace DFM.BusinessLogic.Tests.E.Report
 		{
 			get => get<Int16>("Month");
 			set => set("Month", value);
+		}
+
+		private static Int16? optionalMonth
+		{
+			get => get<Int16?>("OptionalMonth");
+			set => set("OptionalMonth", value);
 		}
 
 		private static Int16 year
@@ -59,7 +63,8 @@ namespace DFM.BusinessLogic.Tests.E.Report
 		{
 			try
 			{
-				monthReport = service.Report.GetMonthReport(accountUrl, year, month);
+				monthReport = service.Report
+					.GetMonthReport(accountUrl, year, month);
 			}
 			catch (CoreError e)
 			{
@@ -307,7 +312,7 @@ namespace DFM.BusinessLogic.Tests.E.Report
 			{
 				categoryReport = service.Report
 					.GetCategoryReport(
-						accountUrl, year, month
+						accountUrl, year, optionalMonth
 					);
 			}
 			catch (CoreError e)
@@ -450,6 +455,8 @@ namespace DFM.BusinessLogic.Tests.E.Report
 				{
 					month = (Int16) current.Now.AddMonths(month).Month;
 				}
+
+				optionalMonth = month;
 			}
 
 			var yearString = dateData["Year"];
