@@ -93,14 +93,14 @@ namespace DFM.BusinessLogic.Services
 			return new SearchResult(moves);
 		}
 
-		public CategoryReport GetCategoryReport(String accountUrl, Int16 dateYear, Int16 dateMonth)
+		public CategoryReport GetCategoryReport(String accountUrl, Int16 dateYear, Int16? dateMonth = null)
 		{
 			parent.Safe.VerifyUser();
 
 			if (dateYear <= 0)
 				throw Error.InvalidYear.Throw();
 
-			if (dateMonth <= 0 || dateMonth >= 13)
+			if (dateMonth is <= 0 or >= 13)
 				throw Error.InvalidMonth.Throw();
 
 			var user = parent.Safe.GetCurrent();
@@ -111,8 +111,12 @@ namespace DFM.BusinessLogic.Services
 
 			var report = new CategoryReport();
 
+			var date = dateMonth.HasValue
+				? dateYear * 100 + dateMonth.Value
+				: dateYear;
+
 			var summaryList = repos.Summary
-				.Get(account, dateYear * 100 + dateMonth);
+				.Get(account, date);
 
 			report.Add(summaryList);
 

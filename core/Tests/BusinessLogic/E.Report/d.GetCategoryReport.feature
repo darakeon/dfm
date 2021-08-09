@@ -11,6 +11,9 @@ Background:
 			| CatReport RFB |
 		And I have moves of
 			| Date       | Value | Category      | Detail | Nature |
+			| 1986-03-27 | 27    | CatReport LZN |        | Out    |
+			| 1986-03-27 | 3     | CatReport USC |        | In     |
+			| 1986-03-27 | 1986  | CatReport RFB |        | Out    |
 			| 2021-07-30 | 1     | CatReport LZN |        | Out    |
 			| 2021-07-31 | 2     | CatReport USC |        | Out    |
 			| 2021-08-01 | 3     | CatReport RFB |        | Out    |
@@ -69,7 +72,7 @@ Scenario: Ed05. Get with next year date
 	Then I will receive no core error
 		And I will receive empty category report
 
-Scenario: Ed06. Get with info all right
+Scenario: Ed06. Get with info all right for month
 	Given I pass a valid account url
 		And I pass this date
 			| Month | Year |
@@ -99,3 +102,16 @@ Scenario: Ed08. Not get report if user requested wipe
 		But the user asked data wipe
 	When I try to get the category report
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Ed09. Get with info all right for year
+	Given I pass a valid account url
+		And I pass this date
+			| Year |
+			| 2021 |
+	When I try to get the category report
+	Then I will receive no core error
+		And I will receive this category report
+			| Category      | Out | In |
+			| CatReport LZN | 11  | 4  |
+			| CatReport RFB | 13  | 6  |
+			| CatReport USC | 12  | 5  |
