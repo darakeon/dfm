@@ -14,7 +14,8 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="7.1.0.0"></a>7.1.0.0 :whale: <sup>`2`</sup>
+## <a name="7.1.0.0"></a>7.1.0.0 :whale: <sup>`3`</sup>
+- [ ] Fix misc at e-mails - the parts are coming misplaced
 - [ ] Fix buttons with two icons
 - [ ] `210807>......` Year and Month report by category [chart]
 
