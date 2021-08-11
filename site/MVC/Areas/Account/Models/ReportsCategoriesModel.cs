@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Response;
+using DFM.Entities.Enums;
 using DFM.MVC.Helpers.Models;
 
 namespace DFM.MVC.Areas.Account.Models
@@ -10,17 +11,23 @@ namespace DFM.MVC.Areas.Account.Models
 	{
 		public ReportsCategoriesModel(Int32? id)
 		{
-			var dateMonth = DateFromInt.GetDateMonth(id, now);
-			var dateYear = DateFromInt.GetDateYear(id, now);
+			if (id is < 10000)
+			{
+				Year = (Int16) id.Value;
+			}
+			else
+			{
+				Month = DateFromInt.GetDateMonth(id, now);
+				Year = DateFromInt.GetDateYear(id, now);
+			}
 
-			var data = report.GetCategoryReport(CurrentAccountUrl, dateYear, dateMonth);
+			var data = report.GetCategoryReport(CurrentAccountUrl, Year, Month);
 
+			SummaryNature = data.Nature;
 			ChartData = data.List;
-
-			Month = dateMonth;
-			Year = dateYear;
 		}
 
+		public SummaryNature SummaryNature { get; }
 		public IList<CategoryValue> ChartData { get; }
 
 		public IList<CategoryValue> ChartDataOut =>
@@ -29,14 +36,16 @@ namespace DFM.MVC.Areas.Account.Models
 		public IList<CategoryValue> ChartDataIn =>
 			ChartData.Where(d => d.In > 0).ToList();
 
-		public Int32 Month { get; }
-		public Int32 Year { get; }
+		public Int16? Month { get; }
+		public Int16 Year { get; }
 
 		public String Date =>
-			String.Format(
-				translator["ShortDateFormat"],
-				translator.GetMonthName(Month),
-				Year
-			);
+			Month.HasValue
+				? String.Format(
+					translator["ShortDateFormat"],
+					translator.GetMonthName(Month.Value),
+					Year
+				)
+				: Year.ToString();
 	}
 }
