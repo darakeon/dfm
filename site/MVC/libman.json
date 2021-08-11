@@ -54,7 +54,8 @@
 				"modules/export-data.js",
 				"modules/accessibility.js",
 				"modules/pattern-fill.js",
-				"themes/high-contrast-light.js"
+				"themes/high-contrast-light.js",
+				"themes/high-contrast-dark.js"
 			]
 		}
 	]

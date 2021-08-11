@@ -18,7 +18,7 @@
 
 .highcharts-data-table table {
 	border-collapse: collapse;
-	border: 1px solid #EBEBEB;
+	border: 1px solid var(--neutral-0);
 	margin: 10px auto;
 	text-align: center;
 	width: 100%;
@@ -28,7 +28,7 @@
 .highcharts-data-table caption {
 	padding: 1em 0;
 	font-size: 1.2em;
-	color: #555;
+	color: var(--default-0);
 }
 
 .highcharts-data-table th {
@@ -41,9 +41,9 @@
 }
 
 .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
-	background: #f8f8f8;
+	background: var(--neutral-0);
 }
 
 .highcharts-data-table tr:hover {
-	background: #f1f7ff;
+	background: var(--neutral-2);
 }
