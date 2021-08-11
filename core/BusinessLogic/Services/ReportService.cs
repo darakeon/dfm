@@ -3,6 +3,7 @@ using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
+using DFM.Entities.Enums;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -109,7 +110,10 @@ namespace DFM.BusinessLogic.Services
 			if (account == null)
 				throw Error.InvalidAccount.Throw();
 
-			var report = new CategoryReport();
+
+			var nature = dateMonth.HasValue
+				? SummaryNature.Month
+				: SummaryNature.Year;
 
 			var date = dateMonth.HasValue
 				? dateYear * 100 + dateMonth.Value
@@ -118,9 +122,7 @@ namespace DFM.BusinessLogic.Services
 			var summaryList = repos.Summary
 				.Get(account, date);
 
-			report.Add(summaryList);
-
-			return report;
+			return new CategoryReport(nature, summaryList);
 		}
 	}
 }

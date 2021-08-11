@@ -4,30 +4,55 @@
 @{
 	ViewBag.Title = Model.Date;
 
+	/*
 	ViewBag.WizardMessage =
 		Model.ChartData.Any()
-			? "MonthFilled"
-			: "MonthEmpty";
+			? "CategoriesFilled"
+			: "CategoriesEmpty";
+	*/
 
 	Layout = "~/Views/Shared/Layouts/_Clean.cshtml";
 
 	var drawCharts = Model.ChartData.Any();
 
 	ViewBag.HasContent = drawCharts;
-	ViewBag.NoContentText = Context.Translate("NoMonthMoves");
+	
+	ViewBag.NoContentText = 
+		Model.SummaryNature == SummaryNature.Year
+			? Context.Translate("NoYearMoves")
+			: Context.Translate("NoMonthMoves");
+
 	ViewBag.SmSize = 12;
 	ViewBag.LgSize = 10;
 
-	var start = Model.Account.Start;
-	var date = new DateTime(Model.Year, Model.Month, 1);
-	var end = Model.Account.End ??
-		(date < start ? start : date).AddMonths(4);
+	Pages pages;
 
-	var startPage = new MonthYearUnit(start);
-	var endPage = new MonthYearUnit(end);
-	var currentPage = new MonthYearUnit(date);
+	if (Model.Month.HasValue)
+	{
+		var start = Model.Account.Start;
+		var date = new DateTime(Model.Year, Model.Month.Value, 1);
+		var end = Model.Account.End ??
+		          (date < start ? start : date).AddMonths(4);
 
-	var pages = new Pages(startPage, endPage, currentPage, 5);
+		var startPage = new MonthYearUnit(start);
+		var endPage = new MonthYearUnit(end);
+		var currentPage = new MonthYearUnit(date);
+
+		pages = new Pages(startPage, endPage, currentPage, 5);
+	}
+	else
+	{
+		var start = Model.Account.Start;
+		var date = new DateTime(Model.Year, 1, 1);
+		var end = Model.Account.End ??
+		          (date < start ? start : date).AddYears(4);
+
+		var startPage = new YearUnit(start);
+		var endPage = new YearUnit(end);
+		var currentPage = new YearUnit(date);
+
+		pages = new Pages(startPage, endPage, currentPage, 5);
+	}
 
 	var jsFormat = new NumberFormatInfo
 	{

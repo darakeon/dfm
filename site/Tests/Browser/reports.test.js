@@ -18,7 +18,7 @@ describe('Reports', () => {
 		await puppy.call(url)
 		const alert = await puppy.content('#body .alert')
 		expect(alert).toContain(
-			`Não há Movimentações para este mês.`
+			`Não há movimentações para este mês.`
 		)
 	})
 
@@ -28,7 +28,7 @@ describe('Reports', () => {
 		await puppy.call(url)
 		const alert = await puppy.content('#body .alert')
 		expect(alert).toContain(
-			`Não há Movimentações para este mês.`
+			`Não há movimentações para este mês.`
 		)
 
 		const id = await puppy.createMove(
@@ -55,7 +55,7 @@ describe('Reports', () => {
 		await puppy.call(url)
 		const alert = await puppy.content('#body .alert')
 		expect(alert).toContain(
-			`Não há Movimentações para este ano.`
+			`Não há movimentações para este ano.`
 		)
 
 		await puppy.createMove(
@@ -105,38 +105,53 @@ describe('Reports', () => {
 	})
 
 	test('Categories', async () => {
-		const url = `Account/${account}/Reports/Categories/202108`
+		const yearUrl = `Account/${account}/Reports/Categories/2021`
+		const monthUrl = `${yearUrl}08`
 
-		await puppy.call(url)
-		const alert = await puppy.content('#body .alert')
-		expect(alert).toContain(
-			`Não há Movimentações para este mês.`
-		)
+		await puppy.call(monthUrl)
+		const monthAlert = await puppy.content('#body .alert')
+		expect(monthAlert).toContain(`Não há movimentações para este mês.`)
+
+		await puppy.call(yearUrl)
+		const yearAlert = await puppy.content('#body .alert')
+		expect(yearAlert).toContain(`Não há movimentações para este ano.`)
 
 		const valueOut = '19,86'
 		await puppy.createMove(
-			db,
-			'Move for Categories Out', '2021-08-08', valueOut,
-			category, account, null,
-			user
+			db, 'Move for Categories Out', '2021-08-08', valueOut,
+			category, account, null, user
 		)
-
-		await puppy.call(url)
-		let chartOut = await puppy.content('#body #container-out')
-		chartOut = chartOut.replace('<tspan dy="14" x="5">​</tspan>', ' ')
-		expect(chartOut).toContain(`${category}: ${valueOut}`)
 
 		const valueIn = '27,03'
 		await puppy.createMove(
-			db,
-			'Move for Categories In', '2021-08-08', valueIn,
-			category, null, account,
-			user
+			db, 'Move for Categories In', '2021-08-08', valueIn,
+			category, null, account, user
 		)
 
-		await puppy.call(url)
-		let chartIn = await puppy.content('#body #container-in')
-		chartIn = chartIn.replace('<tspan dy="14" x="5">​</tspan>', ' ')
-		expect(chartIn).toContain(`${category}: ${valueIn}`)
+		await puppy.call(monthUrl)
+
+		let monthTitle = await puppy.content("h1")
+		expect(monthTitle).toContain(`Agosto de 2021`)
+
+		let monthChartOut = await puppy.content('#body #container-out')
+		monthChartOut = monthChartOut.replace('<tspan dy="14" x="5">​</tspan>', ' ')
+		expect(monthChartOut).toContain(`${category}: ${valueOut}`)
+
+		let monthChartIn = await puppy.content('#body #container-in')
+		monthChartIn = monthChartIn.replace('<tspan dy="14" x="5">​</tspan>', ' ')
+		expect(monthChartIn).toContain(`${category}: ${valueIn}`)
+
+		await puppy.call(yearUrl)
+
+		let yearTitle = await puppy.content("h1")
+		expect(yearTitle).toContain(`2021`)
+
+		let yearChartOut = await puppy.content('#body #container-out')
+		yearChartOut = yearChartOut.replace('<tspan dy="14" x="5">​</tspan>', ' ')
+		expect(yearChartOut).toContain(`${category}: ${valueOut}`)
+
+		let yearChartIn = await puppy.content('#body #container-in')
+		yearChartIn = yearChartIn.replace('<tspan dy="14" x="5">​</tspan>', ' ')
+		expect(yearChartIn).toContain(`${category}: ${valueIn}`)
 	})
 })

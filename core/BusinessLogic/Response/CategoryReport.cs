@@ -1,24 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities;
+using DFM.Entities.Enums;
 
 namespace DFM.BusinessLogic.Response
 {
 	public class CategoryReport
 	{
-		public CategoryReport()
+		public CategoryReport(SummaryNature nature, IList<Summary> summaryList)
 		{
-			List = new List<CategoryValue>();
-		}
-
-		public IList<CategoryValue> List { get; set; }
-
-		public void Add(IList<Summary> summaryList)
-		{
+			Nature = nature;
 			List = summaryList
 				.Select(s => new CategoryValue(s))
 				.OrderBy(i => i.Category)
 				.ToList();
 		}
+
+		public IList<CategoryValue> List { get; }
+		public SummaryNature Nature { get; }
 	}
 }
