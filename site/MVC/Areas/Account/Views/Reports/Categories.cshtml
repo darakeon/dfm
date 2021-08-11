@@ -63,6 +63,8 @@
 	var format = culture.NumberFormat;
 	var thousands = format.CurrencyGroupSeparator;
 	var decimals = format.CurrencyDecimalSeparator;
+
+	var theme = Model.Theme.Brightness().ToLower();
 }
 
 <div class="row clearfix">
@@ -103,7 +105,7 @@
 		<script type="text/javascript" src="~/Assets/libs/highcharts/modules/export-data.js"></script>
 		<script type="text/javascript" src="~/Assets/libs/highcharts/modules/accessibility.js"></script>
 		<script type="text/javascript" src="~/Assets/libs/highcharts/modules/pattern-fill.js"></script>
-		<script type="text/javascript" src="~/Assets/libs/highcharts/themes/high-contrast-light.js"></script>
+		<script type="text/javascript" src="~/Assets/libs/highcharts/themes/high-contrast-@(theme).js"></script>
 
 		<script type="text/javascript" src="~/Assets/scripts/chart.js?v=@Cfg.Version"></script>
 

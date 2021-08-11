@@ -8,6 +8,7 @@
 
 	colors: [],
 	patterns: [],
+	style: {},
 
 	plotOptions: function () {
 		return {
@@ -15,11 +16,10 @@
 				animation: false,
 				dataLabels: {
 					enabled: true,
-					connectorColor: '#777',
 					format: this.format
 				},
 				cursor: 'pointer',
-				borderWidth: 3
+				borderWidth: 3,
 			}
 		}
 	},
@@ -57,13 +57,17 @@
 		}
 	},
 
+	cssVar: function(name) {
+		return this.style.getPropertyValue(`--${name}`)
+	},
+
 	init: function(decimal, thousand) {
-		const style = getComputedStyle(document.documentElement);
+		this.style = getComputedStyle(document.documentElement)
 
 		for (let p = 0; p < 4; p++) {
 			for (let n = 0; n < this.colorNames.length; n++) {
-				const color = style.getPropertyValue(
-					`--${this.colorNames[n]}-${p}`
+				const color = this.cssVar(
+					`${this.colorNames[n]}-${p}`
 				)
 
 				this.colors.push(color)
@@ -77,8 +81,8 @@
 		Highcharts.setOptions({
 			chart: {
 				style: {
-					fontFamily: style.getPropertyValue('--font-general'),
-				}
+					fontFamily: this.cssVar('--font-general'),
+				},
 			},
 			lang: {
 				decimalPoint: decimal,
@@ -92,7 +96,12 @@
 			id,
 			{
 				chart: { type: 'pie' },
-				title: { text: title },
+				title: {
+					text: title,
+					style: {
+						color: this.cssVar('primary-0'),
+					}
+				},
 				colors: this.patterns,
 				plotOptions: this.plotOptions(),
 				series: [{ name: seriesName, data: data }],
