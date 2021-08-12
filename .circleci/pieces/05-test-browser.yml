@@ -23,7 +23,7 @@
       - save_cache:
           key: dotnet-libman-{{ checksum "site/MVC/libman.json" }}
           paths:
-            - /site/MVC/Assets/Libs
+            - site/MVC/Assets/libs
       - run:
           name: publish_site
           path: site/MVC
