@@ -6,7 +6,7 @@
 [![commit-lint](https://github.com/darakeon/dfm/actions/workflows/github-actions-commit-checker.yml/badge.svg)](https://github.com/darakeon/dfm/actions/workflows/github-actions-commit-checker.yml)
 
 This is a project that was been build in private Hg repository on
-bitbucket since 2010. Inspired by just wonderful people, in the middle
+bitbucket. It was born at 2010 and versioned at 2011. Inspired by just wonderful people, in the middle
 of 2017 I decided to change this situation.
 
 On September 5th, 2017, 2:07am (UTC-03:00), it became OPEN SOURCE.
