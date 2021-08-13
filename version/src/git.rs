@@ -4,6 +4,7 @@ use git2::{
 	BranchType,
 	CredentialType,
 	Cred,
+	Delta,
 	DiffFile,
 	DiffOptions,
 	Error,
@@ -44,15 +45,16 @@ pub fn list_changes_main() -> Vec<String> {
 	list_changes(
 		repo().find_branch("origin/main", BranchType::Remote)
 			.unwrap()
-			.get()
+			.get(),
+		false
 	)
 }
 
-fn list_changes_head() -> Vec<String> {
-	list_changes(&repo().head().unwrap())
+fn list_stashable_changes_head() -> Vec<String> {
+	list_changes(&repo().head().unwrap(), true)
 }
 
-fn list_changes(reference: &Reference) -> Vec<String> {
+fn list_changes(reference: &Reference, stashable_only: bool) -> Vec<String> {
 	let tree = reference.peel_to_tree().unwrap();
 
 	let repo = repo();
@@ -69,6 +71,10 @@ fn list_changes(reference: &Reference) -> Vec<String> {
 	let mut result: Vec<String> = Vec::new();
 
 	for delta in deltas {
+		if stashable_only && delta.status() == Delta::Untracked {
+			continue;
+		}
+
 		let old = get_path(delta.old_file());
 		if !result.contains(&old) {
 			result.push(old);
@@ -248,7 +254,7 @@ static mut STASHED: bool = false;
 
 pub fn stash(message: &str) {
 	unsafe {
-		STASHED = list_changes_head().len() != 0;
+		STASHED = list_stashable_changes_head().len() != 0;
 
 		if STASHED {
 			repo().stash_save(&signature(), message, None).unwrap();
