@@ -1,7 +1,11 @@
-﻿<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+﻿@{
+	var close = Context.Translate("Close");
+}
+
+<button type="button" class="close" data-dismiss="modal" aria-label="@close">
 	<span
 		aria-hidden="true"
 		class="glyphicon glyphicon-remove"
-		title="@Context.Translate("Close")"
+		title="@close"
 	></span>
 </button>
