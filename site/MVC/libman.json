@@ -44,6 +44,18 @@
 			"files": [
 				"umd/popper.min.js"
 			]
+		},
+		{
+			"library": "highcharts@9.1.2",
+			"destination": "Assets/libs/highcharts/",
+			"files": [
+				"highcharts.js",
+				"modules/exporting.js",
+				"modules/export-data.js",
+				"modules/accessibility.js",
+				"modules/pattern-fill.js",
+				"themes/high-contrast-light.js"
+			]
 		}
 	]
 }
