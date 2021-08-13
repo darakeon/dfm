@@ -16,7 +16,7 @@ Legend:
 
 ## <a name="7.1.0.0"></a>7.1.0.0 :whale: <sup>`3`</sup>
 - [ ] Fix misc at e-mails - the parts are coming misplaced
-- [ ] Fix buttons with two icons
+- [x] `210813>210813` Fix buttons with two icons
 - [x] `210807>210813` Year and Month report by category [chart]
 
 ## <a name="7.0.0.0"></a>7.0.0.0 :dragon: <sup>`3`</sup>

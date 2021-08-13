@@ -16,9 +16,11 @@
 	<div class="col-sm-4 btn-group-vertical btn-group-sm">
 		@foreach (var natureUI in natureUiList)
 		{
+			var nature = await Html.PartialAsync("Extensions/NatureColor", natureUI.Nature);
+
 			<button type="button"
 				id="Nature_@natureUI.Nature"
-			    class="btn btn-sm btn-@await Html.PartialAsync("Extensions/NatureColor", natureUI.Nature)
+				class="btn btn-sm btn-@nature btn-glyph
 					col-sm-4 button-toggle value-setter
 					@(Model.Nature == natureUI.Nature ? "active" : "")"
 			    data-to-enable="@natureUI.Enable"

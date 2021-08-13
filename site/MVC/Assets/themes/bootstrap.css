@@ -329,7 +329,7 @@ td, th {
 	text-align: center;
 }
 
-.btn:after {
+.btn:not(.btn-glyph):after {
 	font-family: var(--font-icon);
 	font-size: 1em;
 	margin: 0 0 -6px 10px;
@@ -337,9 +337,9 @@ td, th {
 	overflow-y: hidden;
 }
 
-	.btn.no-glyph:after {
-		content: none;
-	}
+.btn-glyph {
+	height: 45px;
+}
 
 .glyphicon-asterisk:before {
 	content: "\002a"
@@ -690,13 +690,13 @@ td, th {
 }
 
 .alert-danger:before,
-.btn-danger:after,
+.btn-danger:not(.btn-glyph):after,
 .glyphicon-remove-sign:before {
 	content: "\e083"
 }
 
 .alert-success:before,
-.btn-success:after,
+.btn-success:not(.btn-glyph):after,
 .glyphicon-ok-sign:before {
 	content: "\e084"
 }
@@ -706,7 +706,7 @@ td, th {
 }
 
 .alert-info:before,
-.btn-info:after,
+.btn-info:not(.btn-glyph):after,
 .glyphicon-info-sign:before {
 	content: "\e086"
 }
@@ -756,7 +756,7 @@ td, th {
 }
 
 .alert-warning:before,
-.btn-warning:after,
+.btn-warning:not(.btn-glyph):after,
 .glyphicon-exclamation-sign:before {
 	content: "\e101"
 }

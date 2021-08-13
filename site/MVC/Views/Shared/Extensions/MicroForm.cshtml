@@ -1,8 +1,13 @@
 ﻿@model MicroForm
 
 @{
-	var @class = Model.Class ?? "btn-clear";
-	String action = Url.RouteUrl(Model.RouteName, Model.RouteValues);
+	var classes = Model.Class ?? "btn-clear";
+	if (Model.Class != null && Model.Glyphicon != null)
+	{
+		classes += " btn-glyph";
+	}
+
+	var action = Url.RouteUrl(Model.RouteName, Model.RouteValues);
 }
 
 @* tag <a> put here to simulate same color used for links *@
@@ -23,7 +28,7 @@
 			<input type="hidden" name="@hidden.Key" value="@hidden.Value" />
 		}
 
-		<button type="submit" class="@(@class)" title="@Model.Text" role='button'>
+		<button type="submit" class="@classes" title="@Model.Text" role='button'>
 			@if (Model.Glyphicon == null)
 			{
 				@Model.Text
