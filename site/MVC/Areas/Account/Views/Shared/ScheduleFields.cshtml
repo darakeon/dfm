@@ -6,7 +6,7 @@
 
 @if (scheduleModel != null)
 {
-	@await Html.PartialAsync("ScheduleRobotInterval")
+	@await Html.PartialAsync("Modals/ScheduleRobotInterval")
 
 	@await Html.PartialAsync("../Schedules/ExclusiveFields", scheduleModel)
 	<hr/>
