@@ -14,7 +14,9 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="7.2.0.0"></a>7.2.0.0 :whale: <sup>`3`</sup>
+## <a name="7.2.0.0"></a>7.2.0.0 :whale: <sup>`5`</sup>
+- [ ] Fix moving tasks from TODO to RELEASE
+- [ ] Fix search with diacritics [#107]
 - [ ] Feature to unify Categories
 - [ ] Hide warning about being inactive in the first three days
 - [ ] Add edit move button to search result
@@ -888,3 +890,4 @@ Legend:
 [accessibilitity]: https://chrome.google.com/webstore/detail/axe-coconut-web-accessibi/iobddmbdndbbbfjopjdgadphaoihpojp?hl=en
 [#49]: https://github.com/darakeon/dfm/issues/49
 [chart]: https://www.highcharts.com/demo/pie-legend
+[#107]: https://github.com/darakeon/dfm/issues/107
