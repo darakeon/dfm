@@ -13,11 +13,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then Type.
 
-| Task (53)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (50)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
-| Add edit move button to search result                                          | :sheep:  |  1  |  3  |  6  |                |       |
-| Hide warning about being inactive in the first three days                      | :sheep:  |  1  |  2  |  5  |                |       |
-| Feature to unify Categories                                                    | :whale:  |  3  |  3  |  4  |                |       |
 | Report with date filters                                                       | :whale:  |  3  |  3  |  4  |                |       |
 | Add system tips (user "age" = times accessed) (disable: unsubscribe or config) | :whale:  |  3  |  3  |  4  |                |       |
 | Add spendable value - how much one can spend by day                            | :whale:  |  3  |  3  |  4  |                | [#28] |

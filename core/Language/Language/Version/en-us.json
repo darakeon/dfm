@@ -1,4 +1,9 @@
 {
+	"7.1.0.0": [
+		"Fix security image at e-mails",
+		"Fix buttons with doubled icons",
+		"Chart by Category at Account"
+	],
 	"7.0.0.0": [
 		"Fix nature at move creation app screen",
 		"Store accounts and categories at device for creating moves"

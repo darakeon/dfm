@@ -1,4 +1,9 @@
 {
+	"7.1.0.0": [
+		"Corrigida imagem de segurança nos e-mails",
+		"Corrigidos botões com dois ícones",
+		"Gráfico por Categoria na Conta"
+	],
 	"7.0.0.0": [
 		"Corrigida natureza na tela de criação da movimentação do aplicativo",
 		"Guardada lista de contas e categorias no celular para criar movimentações"
