@@ -880,7 +880,11 @@ Legend:
 [#46]: https://github.com/darakeon/dfm/issues/46
 [#32]: https://github.com/darakeon/dfm/issues/32
 [#42]: https://github.com/darakeon/dfm/issues/42
-[#21]: https://github.com/darakeon/dfm/issues/21
 [sitemap]: https://support.google.com/webmasters/answer/7451001
+[#21]: https://github.com/darakeon/dfm/issues/21
+[#44]: https://github.com/darakeon/dfm/issues/44
+[#84]: https://github.com/darakeon/dfm/issues/84
+[#83]: https://github.com/darakeon/dfm/issues/83
 [accessibilitity]: https://chrome.google.com/webstore/detail/axe-coconut-web-accessibi/iobddmbdndbbbfjopjdgadphaoihpojp?hl=en
+[#49]: https://github.com/darakeon/dfm/issues/49
 [chart]: https://www.highcharts.com/demo/pie-legend
