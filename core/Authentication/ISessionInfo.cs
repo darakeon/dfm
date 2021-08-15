@@ -25,7 +25,7 @@ namespace DFM.Authentication
 
 		Boolean Wizard { get; }
 
-		Boolean ActivateWarning { get; }
+		ActivateWarningLevel ActivateWarning { get; }
 
 		Misc Misc { get; }
 	}

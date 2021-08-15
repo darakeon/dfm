@@ -127,7 +127,8 @@ namespace DFM.Authentication
 
 		public Boolean Wizard => session?.Wizard ?? false;
 
-		public Boolean ActivateWarning => session?.ActivateWarning ?? false;
+		public ActivateWarningLevel ActivateWarning =>
+			session?.ActivateWarning ?? ActivateWarningLevel.None;
 
 		public Misc Misc => session?.Misc;
 
