@@ -30,7 +30,18 @@ namespace DFM.BusinessLogic.Response
 
 			Wizard = user.Config.Wizard;
 
-			ActivateWarning = !user.Control.Active;
+			var age = DateTime.UtcNow - user.Control.Creation;
+			Age = (Int32)age.TotalDays;
+
+			if (!user.Control.Active)
+			{
+				ActivateWarning = Age switch
+				{
+					> 4 => ActivateWarningLevel.High,
+					> 2 => ActivateWarningLevel.Low,
+					_ => ActivateWarningLevel.None
+				};
+			}
 
 			Misc = user.Control.Misc;
 		}
@@ -53,7 +64,8 @@ namespace DFM.BusinessLogic.Response
 
 		public Boolean Wizard { get; }
 
-		public Boolean ActivateWarning { get; }
+		public Int32 Age { get; }
+		public ActivateWarningLevel ActivateWarning { get; }
 
 		public Misc Misc { get; }
 	}

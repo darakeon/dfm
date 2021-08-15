@@ -24,7 +24,7 @@ namespace DFM.MVC.Models
 
 		public Boolean ShowWizard => wizard;
 
-		public Boolean ShowActivateWarning => current.ActivateWarning;
+		public ActivateWarningLevel ActivateWarning => current.ActivateWarning;
 
 		public Misc Misc => current.Misc;
 

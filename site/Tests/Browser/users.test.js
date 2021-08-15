@@ -18,13 +18,6 @@ describe('Users', () => {
 		await puppy.submit('/Users/SignUp')
 
 		await expect(page.title()).resolves.toMatch('DfM - Contas')
-
-		await page.click('.activate-warning')
-		await page.waitForSelector('#activate-warning.modal', { visible: true })
-
-		await puppy.submit('/Users/Verification')
-		const alert = await puppy.content('.alert')
-		expect(alert).toContain('Código enviado')
 	})
 
 	test('SignUp - contract modal', async () => {
@@ -37,6 +30,100 @@ describe('Users', () => {
 		await page.click(termsLink)
 
 		await page.waitForSelector('#contract-modal', { visible: true })
+	})
+
+	test('Not active first day', async () => {
+		const email = 'user_first_day@dontflymoney.com'
+		await puppy.logon(email, { creation: 0 })
+
+		await puppy.call()
+
+		const body = await puppy.content('#body')
+		expect(body).not.toContain('activate-warning')
+	})
+
+	test('Not active second day', async () => {
+		const email = 'user_second_day@dontflymoney.com'
+		await puppy.logon(email, { creation: -1 })
+
+		await puppy.call()
+
+		const body = await puppy.content('#body')
+		expect(body).not.toContain('activate-warning')
+	})
+
+	test('Not active third day', async () => {
+		const email = 'user_third_day@dontflymoney.com'
+		await puppy.logon(email, { creation: -2 })
+
+		await puppy.call()
+
+		const body = await puppy.content('#body')
+		expect(body).not.toContain('activate-warning')
+	})
+
+	test('Not active fourth day', async () => {
+		const email = 'user_fourth_day@dontflymoney.com'
+		await puppy.logon(email, { creation: -3 })
+
+		await puppy.call()
+
+		await page.click('.activate-warning-low')
+		await page.waitForSelector('#activate-warning.modal', { visible: true })
+
+		await puppy.submit('/Users/Verification')
+		const alert = await puppy.content('.alert')
+		expect(alert).toContain('Código enviado')
+	})
+
+	test('Not active fifth day', async () => {
+		const email = 'user_fifth_day@dontflymoney.com'
+		await puppy.logon(email, { creation: -4 })
+
+		await puppy.call()
+
+		await page.click('.activate-warning-low')
+		await page.waitForSelector('#activate-warning.modal', { visible: true })
+
+		await puppy.submit('/Users/Verification')
+		const alert = await puppy.content('.alert')
+		expect(alert).toContain('Código enviado')
+	})
+
+	test('Not active sixth day', async () => {
+		const email = 'user_sixth_day@dontflymoney.com'
+		await puppy.logon(email, { creation: -5 })
+
+		await puppy.call()
+
+		await page.click('.activate-warning-high')
+		await page.waitForSelector('#activate-warning.modal', { visible: true })
+
+		await puppy.submit('/Users/Verification')
+		const alert = await puppy.content('.alert')
+		expect(alert).toContain('Código enviado')
+	})
+
+	test('Not active seventh day', async () => {
+		const email = 'user_seventh_day@dontflymoney.com'
+		await puppy.logon(email, { creation: -6 })
+
+		await puppy.call()
+
+		await page.click('.activate-warning-high')
+		await page.waitForSelector('#activate-warning.modal', { visible: true })
+
+		await puppy.submit('/Users/Verification')
+		const alert = await puppy.content('.alert')
+		expect(alert).toContain('Código enviado')
+	})
+
+	test('Not active eighth day', async () => {
+		const email = 'user_eighth_day@dontflymoney.com'
+		await puppy.logon(email, { creation: -7 })
+
+		const alert = await puppy.content('.alert')
+		expect(alert).toContain('Seu acesso ao sistema não foi ativado ainda.')
 	})
 
 	test('Logon', async () => {

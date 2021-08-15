@@ -261,10 +261,17 @@ tr.sum-factor {
 
 .activate-warning {
 	position: fixed;
-	background: var(--primary-0);
 	border: 0;
 	border-radius: 0;
 }
+
+	.activate-warning.activate-warning-low {
+		background: var(--primary-0);
+	}
+
+	.activate-warning.activate-warning-high {
+		background: var(--highlight-0);
+	}
 
 	.activate-warning.activate-warning-top {
 		top: 60px;
@@ -318,9 +325,16 @@ tr.sum-factor {
 				margin-right: -5px;
 			}
 
-	.activate-warning:hover,
-	.activate-warning:active,
-	.activate-warning:active:focus,
-	.activate-warning:focus {
-		background: var(--primary-0);
+	.activate-warning-low:hover,
+	.activate-warning-low:active,
+	.activate-warning-low:active:focus,
+	.activate-warning-low:focus {
+		background: var(--primary-1);
+	}
+
+	.activate-warning-high:hover,
+	.activate-warning-high:active,
+	.activate-warning-high:active:focus,
+	.activate-warning-high:focus {
+		background: var(--highlight-1);
 	}

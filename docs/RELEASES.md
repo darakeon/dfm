@@ -18,7 +18,7 @@ Legend:
 - [ ] Fix moving tasks from TODO to RELEASE
 - [ ] Fix search with diacritics [#107]
 - [ ] Feature to unify Categories
-- [ ] Hide warning about being inactive in the first three days
+- [x] `210815>210816` Hide warning about being inactive in the first three days
 - [x] `210814>210815` Add edit move button to search result
 
 ## <a name="7.1.0.0"></a>7.1.0.0 :whale: <sup>`3`</sup>

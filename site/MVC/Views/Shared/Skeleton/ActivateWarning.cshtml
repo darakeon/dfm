@@ -1,12 +1,23 @@
 ﻿@model BaseSiteModel
 
-@if (Model.ShowActivateWarning)
+@{
+	var warning = Model.ActivateWarning;
+	var subClass = warning.ToString().ToLower();
+}
+
+@if (warning != ActivateWarningLevel.None)
 {
 	foreach (var vertical in new[] { "top", "bottom" })
 	{
 		foreach (var horizontal in new [] { "left", "right" })
 		{
-			<button class="btn btn-warning activate-warning activate-warning-@vertical activate-warning-@horizontal"
+			<button class="
+					btn btn-warning
+					activate-warning
+					activate-warning-@subClass
+					activate-warning-@vertical
+					activate-warning-@horizontal
+				"
 		        data-toggle='modal'
 		        data-target='#activate-warning'
 		        role='button'
