@@ -13,7 +13,7 @@
 
 @section TableHeader
 {
-	@{ var descriptionSize = 4 + (Model.IsUsingCategories ? 0 : 2); }
+	@{ var descriptionSize = 3 + (Model.IsUsingCategories ? 0 : 2); }
 
 	<tr class="row">
 		<th class="col-sm-@descriptionSize">
@@ -35,7 +35,7 @@
 			@Context.Translate("Value")
 		</th>
 
-		<th class="col-sm-2 text-center">
+		<th class="col-sm-3 text-center" colspan="3">
 			@Context.Translate("TODO")
 		</th>
 	</tr>
@@ -48,7 +48,7 @@
 	var accountUrl = move.OutUrl ?? move.InUrl;
 	var accountName = move.OutName ?? move.InName;
 
-	var routeValues = new
+	var reportRoute = new
 	{
 		area = route.Area,
 		accountUrl,
@@ -57,8 +57,19 @@
 		id = move.Year * 100 + move.Month
 	};
 
-	var title = Context.Translate("GoToReport")
+	var reportTitle = Context.Translate("GoToReport")
 		.Format(accountName, move.Month, move.Year);
+
+	var editRoute = new
+	{
+		area = route.Area,
+		accountUrl,
+		controller = "Moves",
+		action = "Edit",
+		id = move.Guid
+	};
+
+	var editTitle = $"{Context.Translate("Edit")} {move.Description}";
 
 	<tr class="row" id="m@(move.Guid)">
 		<td>@move.Description</td>
@@ -82,11 +93,30 @@
 		</td>
 
 		<td class="text-center">
-			<a href="@Url.RouteUrl(route.Name, routeValues)" title="@title">
+			<a href="@Url.RouteUrl(route.Name, reportRoute)" title="@reportTitle">
 				<span class="glyphicon glyphicon-th-list"
-					title="@title">
+					title="@reportTitle"
+					role='button'>
 				</span>
 			</a>
+		</td>
+
+		<td class="text-center">
+			<a href="@Url.RouteUrl(route.Name, editRoute)" title="@editTitle">
+				<span class="glyphicon glyphicon-edit"
+					title="@editTitle"
+					role='button'>
+				</span>
+			</a>
+		</td>
+
+		<td class="text-center">
+			@await Html.PartialAsync(
+				"Extensions/MicroForm",
+				MicroForm.WithGlyph(Context, "trash", "Delete")
+					.AddRouteIdUrl(route.Name, route.Area, "Moves", "Delete", move.Guid)
+					.EntityName(move.Description)
+			)
 		</td>
 	</tr>
 }

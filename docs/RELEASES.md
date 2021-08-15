@@ -19,7 +19,7 @@ Legend:
 - [ ] Fix search with diacritics [#107]
 - [ ] Feature to unify Categories
 - [ ] Hide warning about being inactive in the first three days
-- [ ] Add edit move button to search result
+- [x] `210814>210815` Add edit move button to search result
 
 ## <a name="7.1.0.0"></a>7.1.0.0 :whale: <sup>`3`</sup>
 - [x] `210813>210813` Fix misc at e-mails - the parts are coming misplaced
