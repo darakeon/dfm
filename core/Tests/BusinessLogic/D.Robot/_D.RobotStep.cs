@@ -637,6 +637,9 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 
 				scheduleInfo.SetDate(DateTime.Parse(row["Date"]));
 
+				if (row.ContainsKey("Category"))
+					scheduleInfo.CategoryName = row["Category"];
+
 				var scenarioAccountUrl = $"{mainAccountUrl}_{scenarioCode}";
 
 				if (scheduleInfo.Nature != MoveNature.In)

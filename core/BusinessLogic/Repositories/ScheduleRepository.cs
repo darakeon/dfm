@@ -220,9 +220,20 @@ namespace DFM.BusinessLogic.Repositories
 		public IList<Schedule> ByAccount(Account account)
 		{
 			return Where(
-				m => (m.In != null && m.In.ID == account.ID)
-					|| (m.Out != null && m.Out.ID == account.ID)
+				s => (s.In != null && s.In.ID == account.ID)
+					|| (s.Out != null && s.Out.ID == account.ID)
 			);
+		}
+
+		public IList<Schedule> ByCategory(Category category)
+		{
+			return Where(s => s.Category.ID == category.ID);
+		}
+
+		public void UpdateCategory(Schedule schedule, Category category)
+		{
+			schedule.Category = category;
+			SaveOrUpdate(schedule);
 		}
 	}
 }

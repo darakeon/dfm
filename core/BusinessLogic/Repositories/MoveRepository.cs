@@ -270,5 +270,10 @@ namespace DFM.BusinessLogic.Repositories
 					throw new ArgumentOutOfRangeException();
 			}
 		}
+
+		public IList<Move> ByCategory(Category category)
+		{
+			return Where(m => m.Category.ID == category.ID);
+		}
 	}
 }

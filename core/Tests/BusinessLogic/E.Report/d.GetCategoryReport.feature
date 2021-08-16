@@ -4,7 +4,7 @@ Background:
 	Given test user login
 		And I enable Categories use
 		And I have an account
-		And I have this category
+		And I have these categories
 			| Name          |
 			| CatReport LZN |
 			| CatReport USC |

@@ -568,12 +568,16 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		[Given(@"I have these categories")]
 		public void GivenIHaveTheseCategories(Table table)
 		{
-			var categories = table.CreateSet<CategoryInfo>();
-
-			foreach (var category in categories)
+			foreach (var row in table.Rows)
 			{
-				categoryInfo = category;
-				service.Admin.CreateCategory(category);
+				var name = row["Name"];
+				categoryInfo = new CategoryInfo {Name = name};
+				service.Admin.CreateCategory(categoryInfo);
+
+				if (row.ContainsKey("Enabled") && !Boolean.Parse(row["Enabled"]))
+				{
+					service.Admin.DisableCategory(name);
+				}
 			}
 		}
 
@@ -796,6 +800,73 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			}
 		}
 		#endregion
+
+		#region UnifyCategories
+		[Given(@"category (.+) has a defective summary")]
+		public void GivenCatBHasADefectiveSummary(String categoryName)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			var category = repos.Category.GetByName(categoryName, user);
+			var account = repos.Account.GetByUrl(accountInfo.Url, user);
+
+			var summary = new Summary
+			{
+				Account = account,
+				Category = category,
+				In = 27,
+				Nature = SummaryNature.Month,
+				Time = 198603,
+			};
+
+			repos.Summary.SaveOrUpdate(summary);
+		}
+
+		[When(@"unify categories (.+) to (.+)")]
+		public void WhenUnifyCategoriesCatAAndCatB(String categoryToDelete, String categoryToKeep)
+		{
+			try
+			{
+				service.Admin.UnifyCategory(categoryToKeep, categoryToDelete);
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[Then(@"category (.+) will( not)? exist")]
+		public void ThenCategoryCatBWillNotExist(String categoryName, Boolean exist)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			var category = repos.Category.GetByName(categoryName, user);
+
+			if (exist)
+				Assert.IsNotNull(category);
+			else
+				Assert.IsNull(category);
+		}
+
+		[Then(@"category (.+) will have (\d+) moves")]
+		public void ThenCatAWillHaveMoves(String categoryName, Int32 count)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			var category = repos.Category.GetByName(categoryName, user);
+			var moves = repos.Move.ByCategory(category);
+
+			Assert.AreEqual(count, moves.Count);
+		}
+
+		[Then(@"category (.+) will have (\d+) schedules")]
+		public void ThenCatAWillHaveSchedules(String categoryName, Int32 count)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			var category = repos.Category.GetByName(categoryName, user);
+			var schedules = repos.Schedule.ByCategory(category);
+
+			Assert.AreEqual(count, schedules.Count);
+		}
+		#endregion Unify Categories
+
 		#endregion Category
 
 		#region UpdateConfig

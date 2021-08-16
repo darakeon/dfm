@@ -244,6 +244,62 @@ namespace DFM.BusinessLogic.Services
 			if (!parent.Current.UseCategories)
 				throw Error.CategoriesDisabled.Throw();
 		}
+
+		public void UnifyCategory(String categoryToKeep, String categoryToDelete)
+		{
+			parent.Safe.VerifyUser();
+			verifyCategoriesEnabled();
+
+			if (categoryToKeep == categoryToDelete)
+				throw Error.CannotMergeSameCategory.Throw();
+
+			var keep = GetCategoryEntity(categoryToKeep);
+			var delete = GetCategoryEntity(categoryToDelete);
+
+			if (!keep.Active)
+				throw Error.DisabledCategory.Throw();
+
+			inTransaction("UnifyCategory_MoveChildren", () =>
+			{
+				var movesFromDeleted = repos.Move.ByCategory(delete);
+
+				foreach (var move in movesFromDeleted)
+				{
+					move.Category = keep;
+
+					if (move.DetailList.Any())
+						move.Value = 0;
+
+					parent.BaseMove.SaveMove(move, OperationType.Edition);
+				}
+
+				var schedulesFromDeleted = repos.Schedule.ByCategory(delete);
+
+				foreach (var schedule in schedulesFromDeleted)
+				{
+					repos.Schedule.UpdateCategory(schedule, keep);
+				}
+			});
+
+			var user = parent.Safe.GetCurrent();
+			parent.BaseMove.FixSummaries(user);
+
+			var summaries = repos.Summary.ByCategory(delete);
+
+			foreach (var summary in summaries)
+			{
+				if (summary.Out > 0 || summary.In > 0)
+					throw Error.CategoryUnifyFail.Throw();
+			}
+
+			inTransaction("UnifyCategory_Delete", () =>
+			{
+				summaries.ToList()
+					.ForEach(repos.Summary.Delete);
+
+				repos.Category.Delete(delete);
+			});
+		}
 		#endregion Category
 
 		#region Config

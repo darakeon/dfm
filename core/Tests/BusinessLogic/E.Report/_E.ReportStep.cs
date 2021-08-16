@@ -399,23 +399,24 @@ namespace DFM.BusinessLogic.Tests.E.Report
 					CategoryName = category,
 				};
 
+				var value = row.ContainsKey("Value")
+						&& row["Value"] != String.Empty
+					? Int32.Parse(row["Value"])
+					: 10;
+
 				if (row.ContainsKey("Detail") && row["Detail"] != "")
 				{
 					var detail = new DetailInfo
 					{
 						Description = row["Detail"],
 						Amount = 1,
-						Value = 10,
+						Value = value,
 					};
 					move.DetailList.Add(detail);
 				}
-				else if (row.ContainsKey("Value"))
-				{
-					move.Value = Int32.Parse(row["Value"]);
-				}
 				else
 				{
-					move.Value = 10;
+					move.Value = value;
 				}
 
 				var dateString = row["Date"];
