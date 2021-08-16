@@ -55,6 +55,8 @@ namespace DFM.BusinessLogic.Exceptions
 		InvalidCategory = 406,
 		CategoriesDisabled = 407,
 		TooLargeCategoryName = 408,
+		CategoryUnifyFail = 409,
+		CannotMergeSameCategory = 410,
 
 		InMoveWrong = 501,
 		OutMoveWrong = 502,

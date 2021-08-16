@@ -116,5 +116,10 @@ namespace DFM.BusinessLogic.Repositories
 
 			return months;
 		}
+
+		public IList<Summary> ByCategory(Category category)
+		{
+			return Where(s => s.Category.ID == category.ID);
+		}
 	}
 }
