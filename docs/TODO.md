@@ -16,8 +16,8 @@ The tasks are ordered by: Points then Importance then Type.
 | Task (50)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
 | Report with date filters                                                       | :whale:  |  3  |  3  |  4  |                |       |
-| Add system tips (user "age" = times accessed) (disable: unsubscribe or config) | :whale:  |  3  |  3  |  4  |                |       |
 | Add spendable value - how much one can spend by day                            | :whale:  |  3  |  3  |  4  |                | [#28] |
+| Add system tips (user "age" = times accessed) (disable: unsubscribe or config) | :whale:  |  3  |  3  |  4  |                |       |
 | Put tip that you can disable mobile login if your cellphone is stolen          | :sheep:  |  3  |  3  |  4  | tips           |       |
 | Separate validators from service/repository                                    | :ant:    |  3  |  3  |  4  |                |       |
 | Enable Copy Move (web+mobile)                                                  | :whale:  |  2  |  2  |  4  |                |       |
