@@ -90,5 +90,38 @@ namespace DFM.MVC.Controllers
 
 			return RedirectToAction("Index");
 		}
+
+		[HttpGetAndHead]
+		public IActionResult Unify(String id)
+		{
+			if (String.IsNullOrEmpty(id))
+				return RedirectToAction("Index");
+
+			var model = new CategoriesUnifyModel(id);
+
+			return View(model);
+		}
+
+		[HttpPost, ValidateAntiForgeryToken]
+		public IActionResult Unify(String id, CategoriesUnifyModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				var error = model.Unify();
+
+				if (error != null)
+					ModelState.AddModelError(
+						"CategoryToKeep",
+						HttpContext.Translate(error)
+					);
+			}
+
+			if (ModelState.IsValid)
+			{
+				return RedirectToAction("Index");
+			}
+
+			return View(model);
+		}
 	}
 }

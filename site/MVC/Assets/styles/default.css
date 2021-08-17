@@ -342,3 +342,8 @@ tr.sum-factor {
 	.activate-warning-high:focus {
 		background: var(--highlight-1);
 	}
+
+table a.link-glyphicon,
+.table a.link-glyphicon {
+	text-decoration: none;
+}
