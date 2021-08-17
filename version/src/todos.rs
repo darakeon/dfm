@@ -73,7 +73,7 @@ fn process_tasks(mut numbers: Vec<usize>) -> (Vec<String>, Vec<String>) {
 
 fn extract_task(text: &str) -> Option<(String, String, String)> {
 	let pattern =
-		r#"^\| ([^|]+) +\| :(ant|sheep|whale|dragon): +\|  \d  \|  \d  \|  \d  \| .+ \|(?: +|( \[\#\d+\])\(.+\)) \|$"#;
+		r#"^\| ([^|]+) +\| :(ant|sheep|whale|dragon): +\|  \d  \|  \d  \|  \d  \| .+ \|(?: {6}|( \[\#\d+\])) \|$"#;
 
 	let regex = Regex::new(pattern).unwrap();
 

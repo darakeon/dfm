@@ -15,7 +15,7 @@ Legend:
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="7.2.0.0"></a>7.2.0.0 :whale: <sup>`4`</sup>
-- [ ] Fix moving tasks from TODO to RELEASE
+- [x] `210817>210817` Fix moving tasks from TODO to RELEASE
 - [x] `210815>210717` Feature to unify Categories
 - [x] `210815>210816` Hide warning about being inactive in the first three days
 - [x] `210814>210815` Add edit move button to search result
