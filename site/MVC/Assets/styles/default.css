@@ -305,6 +305,10 @@ tr.sum-factor {
 			border-top-left-radius: 30px;
 		}
 
+			.activate-warning::after {
+				height: 19px;
+			}
+
 			.activate-warning.activate-warning-top::after {
 				margin-top: -6px;
 				margin-bottom: -3px;
