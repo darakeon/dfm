@@ -1,0 +1,37 @@
+﻿@model CategoriesUnifyModel
+
+@{
+	ViewBag.Title = Context.Translate("MergeTitle");
+
+	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
+}
+
+@Html.HiddenFor(m => m.CategoryToDelete)
+
+<div class="text-center">
+	@Html.Raw(
+		Context.Translate("MergeExplanation")
+			.Format("<strong>" + Model.CategoryToDelete + "</strong>")
+	)
+</div>
+
+<div class="form-group">
+	@Html.LabelFor(
+		m => m.CategoryToKeep,
+		Context.Translate("Category"),
+		new { @class = "control-label" }
+	)
+	
+	@Html.DropDownListFor(
+		m => m.CategoryToKeep, Model.OtherCategoriesSelectList,
+		"-- " + Context.Translate("Select") + " --", new { @class = "form-control" }
+	)
+	
+	@Html.ValidationMessageFor(m => m.CategoryToKeep, null, new { @class = "text-danger" })
+</div>
+
+@section Footer {
+	<button type="submit" class="btn btn-success">
+		@Context.Translate("Merge")
+	</button>
+}
