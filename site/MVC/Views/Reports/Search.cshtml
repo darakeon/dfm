@@ -1,7 +1,9 @@
 ﻿@model ReportsSearchModel
 
 @{
-	ViewBag.Title = Context.Translate("Search_Title");
+	ViewBag.Title = Context.Translate("Search_For")
+		.Format(Model.Terms);
+
 	ViewBag.HasContent = Model.MoveList.Any();
 	ViewBag.NoContentText = String.Format(
 		Context.Translate("Search_Empty"),
