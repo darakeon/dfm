@@ -1,4 +1,9 @@
 {
+	"7.2.0.0": [
+		"Unificação de categorias",
+		"Mudado aviso de registro inativo no sistema",
+		"Adicionados botões de editar e excluir no resultado da busca"
+	],
 	"7.1.0.0": [
 		"Corrigida imagem de segurança nos e-mails",
 		"Corrigidos botões com dois ícones",

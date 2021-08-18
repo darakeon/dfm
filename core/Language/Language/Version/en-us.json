@@ -1,4 +1,9 @@
 {
+	"7.2.0.0": [
+		"Categories unification",
+		"Change not active user warning",
+		"Add edit and delete button to search result"
+	],
 	"7.1.0.0": [
 		"Fix security image at e-mails",
 		"Fix buttons with doubled icons",
