@@ -4,15 +4,19 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#7.1.0.0)
-- [go to version in development](#7.2.0.0)
-- [dev version state](../../7.2.0.0/docs/RELEASES.md#7.2.0.0)
+- [go to published version](#7.2.0.0)
+- [go to version in development](#7.3.0.0)
+- [dev version state](../../7.3.0.0/docs/RELEASES.md#7.3.0.0)
 
 Legend:
 - :dragon:: at least one huge change (increases first number)
 - :whale:: at least one big change, like a new feature (increases second number)
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="7.3.0.0"></a>7.3.0.0 :whale: <sup>`2`</sup>
+- [ ] Put tip that you can disable mobile login if your cellphone is stolen
+- [ ] Add system tips (user "age" = times accessed) (disable: unsubscribe or config)
 
 ## <a name="7.2.0.0"></a>7.2.0.0 :whale: <sup>`4`</sup>
 - [x] `210817>210817` Fix moving tasks from TODO to RELEASE
