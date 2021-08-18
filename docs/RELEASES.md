@@ -5,8 +5,8 @@
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
 - [go to published version](#7.2.0.0)
-- [go to version in development](#7.3.0.0)
-- [dev version state](../../7.3.0.0/docs/RELEASES.md#7.3.0.0)
+- [go to version in development](#7.2.0.1)
+- [dev version state](../../7.2.0.1/docs/RELEASES.md#7.2.0.1)
 
 Legend:
 - :dragon:: at least one huge change (increases first number)
@@ -17,6 +17,9 @@ Legend:
 ## <a name="7.3.0.0"></a>7.3.0.0 :whale: <sup>`2`</sup>
 - [ ] Put tip that you can disable mobile login if your cellphone is stolen
 - [ ] Add system tips (user "age" = times accessed) (disable: unsubscribe or config)
+
+## <a name="7.2.0.1"></a>7.2.0.0 :ant: <sup>`1`</sup>
+- [x] `210818>210818` Fix chart in dark theme
 
 ## <a name="7.2.0.0"></a>7.2.0.0 :whale: <sup>`4`</sup>
 - [x] `210817>210817` Fix moving tasks from TODO to RELEASE

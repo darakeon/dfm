@@ -651,6 +651,9 @@
     <None Update="Assets\libs\highcharts\modules\pattern-fill.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Assets\libs\highcharts\themes\high-contrast-dark.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Assets\libs\highcharts\themes\high-contrast-light.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
