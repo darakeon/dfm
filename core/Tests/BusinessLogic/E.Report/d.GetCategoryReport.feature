@@ -115,3 +115,12 @@ Scenario: Ed09. Get with info all right for year
 			| CatReport LZN | 11  | 4  |
 			| CatReport RFB | 13  | 6  |
 			| CatReport USC | 12  | 5  |
+
+Scenario: Ed10. Not get report if user logoff
+	Given I pass a valid account url
+		And I pass this date
+			| Month | Year |
+			| 8     | 2021 |
+		But I logoff the user
+	When I try to get the category report
+	Then I will receive this core error: Uninvited
