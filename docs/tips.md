@@ -1,9 +1,2 @@
-- Dicas aparecem aleatoriamente
-- Acesso a mesmo device muda o contador de dicas para aquele device
-- Cada dica aparece a cada 27 acessos no mesmo tipo de device
-- Dica aparece por 3 vezes ou até ser dado dismiss
-- Quando dá dismiss, começa a contar de novo
-- Se não houver mais dicas, limpar registro de dicas dadas e iniciar com 81 ao invés de 27
 - Animação de balão surgindo de trás do porquinho
 - Quando der dismiss, orelhas no porquinho ficam aparecendo para a pessoa abrir de novo se quiser
-- Não sugerir coisas que a pessoa já usou
