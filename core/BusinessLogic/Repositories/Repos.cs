@@ -18,6 +18,7 @@ namespace DFM.BusinessLogic.Repositories
 		internal SecurityRepository Security;
 		internal SummaryRepository Summary;
 		internal TicketRepository Ticket;
+		internal TipsRepository Tips;
 		internal UserRepository User;
 
 		internal Repos(Current<SignInInfo, SessionInfo>.GetUrl getUrl)
@@ -35,6 +36,7 @@ namespace DFM.BusinessLogic.Repositories
 			Security = new SecurityRepository(getUrl);
 			Summary = new SummaryRepository();
 			Ticket = new TicketRepository();
+			Tips = new TipsRepository();
 			User = new UserRepository();
 		}
 	}

@@ -55,6 +55,18 @@ namespace DFM.BusinessLogic.Tests.E.Report
 			get => get<CategoryReport>("CategoryReport");
 			set => set("CategoryReport", value);
 		}
+
+		private static String tip
+		{
+			get => get<String>("Tip");
+			set => set("Tip", value);
+		}
+
+		private static String otherTip
+		{
+			get => get<String>("OtherTip");
+			set => set("OtherTip", value);
+		}
 		#endregion
 
 		#region GetMonthReport
@@ -355,6 +367,139 @@ namespace DFM.BusinessLogic.Tests.E.Report
 		}
 		#endregion
 
+		#region ShowTip
+		[Given(@"asked for tip (\d+) times")]
+		public void GivenAskedForTipTimes(Int32 times)
+		{
+			for(var i = 0; i < times; i++)
+			{
+				service.Report.ShowTip();
+			}
+		}
+
+		[Given(@"dismissed tip")]
+		public void GivenDismissedTip()
+		{
+			service.Report.DismissTip();
+		}
+
+		[Given(@"disabled tip (.+)")]
+		public void GivenDisabledTip(TipTests tip)
+		{
+			service.Report.DisableTip(tip);
+		}
+
+		[When(@"show a tip")]
+		public void WhenShowATip()
+		{
+			try
+			{
+				tip = service.Report.ShowTip();
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[When(@"show a tip again")]
+		public void WhenShowATipAgain()
+		{
+			try
+			{
+				otherTip = service.Report.ShowTip();
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[When(@"disable tip (.+)")]
+		public void WhenDisableTip(TipTests tip)
+		{
+			try
+			{
+				service.Report.DisableTip(tip);
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[When(@"dismiss tip")]
+		public void WhenDismissTip()
+		{
+			try
+			{
+				service.Report.DismissTip();
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[Then(@"tip will (not )?be shown")]
+		public void ThenTipWillBeShown(Boolean shown)
+		{
+			if (shown)
+				Assert.NotNull(tip);
+			else
+				Assert.Null(tip);
+		}
+
+		[Then(@"tip shown will (not )?be equal to last one")]
+		public void ThenTipShownWillBeEqualToLastOne(Boolean equal)
+		{
+			if (equal)
+				Assert.AreEqual(tip, otherTip);
+			else
+				Assert.AreNotEqual(tip, otherTip);
+		}
+
+		[Then(@"the tips will not be the first ones")]
+		public void ThenTheTipsWillNotBeTheFirstOnes()
+		{
+			Assert.False(
+				TipTests.TestTip1.ToString() == tip
+				&& TipTests.TestTip2.ToString() == otherTip
+			);
+		}
+
+		[Then(@"the (.+) will be disabled")]
+		public void ThenTheTipWillBeDisabled(TipTests tip)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			var tips = repos.Tips.By(user, TipType.Tests);
+			Assert.NotNull(tips);
+
+			var isPermanent = tips.IsPermanent(tip);
+			Assert.True(isPermanent);
+		}
+
+		[Then(@"the next tip will shown after (\d+) requests")]
+		public void ThenTheNextTipWillShownAfterXRequests(Int32 counter)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			var tips = repos.Tips.By(user, TipType.Tests);
+			Assert.NotNull(tips);
+
+			Assert.AreEqual(counter - 1, tips.Countdown);
+		}
+
+		[Then(@"tip will be one of")]
+		public void ThenTipWillBeOneOf(Table table)
+		{
+			var validTips = table.Rows
+				.Select(r => r["Tip"])
+				.ToList();
+
+			Assert.Contains(tip, validTips);
+		}
+		#endregion ShowTip
+
 		#region MoreThanOne
 		[Given(@"I have moves of")]
 		public void GivenIHaveMovesOf(Table table)
@@ -469,11 +614,10 @@ namespace DFM.BusinessLogic.Tests.E.Report
 			}
 		}
 
-		#endregion
-
 		private Boolean isRelative(String dateText)
 		{
 			return dateText.StartsWith("+") || dateText.StartsWith("-");
 		}
+		#endregion
 	}
 }

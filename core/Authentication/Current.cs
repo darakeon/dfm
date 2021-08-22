@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using DFM.Entities;
 using DFM.Entities.Bases;
+using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Generic.Datetime;
 using Keon.Util.Exceptions;
@@ -30,6 +31,7 @@ namespace DFM.Authentication
 
 		private ClientTicket ticket => getTicket(false);
 		public String TicketKey => ticket?.Key;
+		public TipType TipType => (TipType)(ticket?.Type??TicketType.None);
 
 		private ClientTicket getTicket(Boolean remember)
 		{
