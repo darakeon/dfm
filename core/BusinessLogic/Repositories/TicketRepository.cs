@@ -51,7 +51,7 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal void Disable(Ticket ticket)
 		{
-			ticket.Key += DateTime.UtcNow.UntilNanosecond();
+			ticket.Key += DateTime.UtcNow.UntilMicrosecond();
 			ticket.Active = false;
 			ticket.Expiration = DateTime.UtcNow;
 
