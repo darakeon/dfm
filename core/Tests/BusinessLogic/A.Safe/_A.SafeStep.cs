@@ -268,7 +268,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 					Email = email,
 					Password = password,
 					TicketKey = ticketKey,
-					TicketType = TicketType.Local,
+					TicketType = TicketType.Tests,
 				};
 
 				ticket = service.Safe.CreateTicket(info);
@@ -290,7 +290,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 				Email = email,
 				Password = password,
 				TicketKey = ticketKey,
-				TicketType = TicketType.Local
+				TicketType = TicketType.Tests
 			};
 
 			for (var t = 1; t < times; t++)
@@ -721,7 +721,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 					Email = email,
 					Password = code,
 					TicketKey = ticket,
-					TicketType = TicketType.Local
+					TicketType = TicketType.Tests
 				};
 
 				service.Safe.CreateTicket(info);
@@ -751,7 +751,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 				Email = email,
 				Password = password,
 				TicketKey = ticket,
-				TicketType = TicketType.Local,
+				TicketType = TicketType.Tests,
 			};
 
 			ticket = service.Safe.CreateTicket(info);
@@ -863,7 +863,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 				Email = email,
 				Password = password,
 				TicketKey = ticketKey,
-				TicketType = TicketType.Local,
+				TicketType = TicketType.Tests,
 			};
 
 			ticket = service.Safe.CreateTicket(info);
@@ -909,7 +909,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 				Email = email,
 				Password = password,
 				TicketKey = ticketKey,
-				TicketType = TicketType.Local,
+				TicketType = TicketType.Tests,
 			};
 
 			ticket = service.Safe.CreateTicket(info);
@@ -1065,7 +1065,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 				),
 				Password = userTable.Password,
 				TicketKey = ticketKey,
-				TicketType = TicketType.Local,
+				TicketType = TicketType.Tests,
 			};
 
 			ticket = service.Safe.CreateTicket(info);
@@ -1149,7 +1149,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 				Email = email,
 				Password = password,
 				TicketKey = ticketKey,
-				TicketType = TicketType.Local,
+				TicketType = TicketType.Tests,
 			};
 
 			ticket = service.Safe.CreateTicket(info);
