@@ -23,7 +23,7 @@ namespace DfM.Logs
 		public ErrorLog(Exception exception, Boolean handled)
 		{
 			Date = DateTime.UtcNow;
-			ID = Date.UntilNanosecond();
+			ID = Date.UntilMicrosecond();
 			Exception = new ExceptionData(exception);
 			Handled = handled;
 		}

@@ -31,10 +31,10 @@ namespace DFM.Generic.Datetime
 			return value.ToString(untilMillisecond);
 		}
 
-		private const String untilNanosecond = untilMillisecond + "fff";
-		public static String UntilNanosecond(this DateTime value)
+		private const String untilMicrosecond = untilMillisecond + "fff";
+		public static String UntilMicrosecond(this DateTime value)
 		{
-			return value.ToString(untilNanosecond);
+			return value.ToString(untilMicrosecond);
 		}
 
 		private const String universal = "yyyy-MM-dd";
