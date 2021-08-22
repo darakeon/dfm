@@ -5,7 +5,6 @@ using System.Linq;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Tests.Util;
-using Keon.Util.Extensions;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;

@@ -12,7 +12,6 @@ using DFM.Language;
 using DFM.Tests.Util;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Tests.B.Admin
