@@ -16,6 +16,7 @@ namespace DFM.Generic
 				.AddJsonFile("smtp.json", true)
 				.AddJsonFile("login.json", true)
 				.AddJsonFile("s3.json", true)
+				.AddJsonFile("tips.json", true)
 				;
 
 			if (environment != null)
@@ -25,6 +26,7 @@ namespace DFM.Generic
 					.AddJsonFile($"smtp.{environment}.json", true)
 					.AddJsonFile($"login.{environment}.json", true)
 					.AddJsonFile($"s3.{environment}.json", true)
+					.AddJsonFile($"tips.{environment}.json", true)
 					;
 			}
 
@@ -65,8 +67,9 @@ namespace DFM.Generic
 			Path.Combine(LogErrorsPath, $"{name}.log");
 
 		private static IConfiguration robot => dic.GetSection("Robot");
-
 		public static String RobotEmail => robot["Email"];
 		public static String RobotPassword => robot["Password"];
+
+		public static Tips Tips => new Tips(dic.GetSection("Tips"));
 	}
 }

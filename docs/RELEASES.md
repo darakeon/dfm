@@ -16,7 +16,7 @@ Legend:
 
 ## <a name="7.3.0.0"></a>7.3.0.0 :whale: <sup>`2`</sup>
 - [ ] Put tip that you can disable mobile login if your cellphone is stolen
-- [ ] `210819>......` Add system tips (user "age" = times accessed) (disable: unsubscribe or config)
+- [x] `210819>210823` Add system tips (user "age" = times accessed)
 
 ## <a name="7.2.0.1"></a>7.2.0.0 :ant: <sup>`1`</sup>
 - [x] `210818>210818` Fix chart in dark theme

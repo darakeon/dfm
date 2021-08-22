@@ -3,7 +3,9 @@ using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
+using DFM.Entities;
 using DFM.Entities.Enums;
+using DFM.Generic;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -123,6 +125,118 @@ namespace DFM.BusinessLogic.Services
 				.Get(account, date);
 
 			return new CategoryReport(nature, summaryList);
+		}
+
+		private static Int16 countdown = (Int16)(Cfg.Tips.Countdown - 1);
+		private static Int16 repeat = Cfg.Tips.Repeat;
+		private static Int16 reset = (Int16)(Cfg.Tips.Reset - 1);
+
+		public String ShowTip()
+		{
+			var tips = getTips();
+			String result = null;
+
+			if (tips.Countdown > 0)
+			{
+				tips.Countdown--;
+			}
+			else
+			{
+				if (tips.Repeat > 0)
+				{
+					tips.Repeat--;
+					result = tips.LastGiven() ?? tips.Random();
+				}
+
+				if (tips.Repeat == 0)
+				{
+					resetTip(tips);
+				}
+			}
+
+			inTransaction(
+				"ShowTip",
+				() => repos.Tips.SaveOrUpdate(tips)
+			);
+
+			return result;
+		}
+
+		private Tips getTips()
+		{
+			var user = parent.Safe.VerifyUser();
+			var type = parent.Current.TipType;
+
+			return repos.Tips.By(user, type)
+			    ?? createTip(user, type);
+		}
+
+		private static Tips createTip(User user, TipType type)
+		{
+			return new()
+			{
+				User = user,
+				Type = type,
+				Countdown = countdown,
+				Repeat = repeat,
+			};
+		}
+
+		private static void resetTip(Tips tips)
+		{
+			tips.Repeat = repeat;
+			tips.Last = 0;
+
+			if (tips.IsFull())
+			{
+				tips.Temporary = 0;
+				tips.Countdown = reset;
+			}
+			else
+			{
+				tips.Countdown = countdown;
+			}
+		}
+
+		public void DismissTip()
+		{
+			var tips = getTips();
+
+			if (tips == null || tips.Last == 0)
+				return;
+
+			resetTip(tips);
+			inTransaction(
+				"DismissTip",
+				() => repos.Tips.SaveOrUpdate(tips)
+			);
+		}
+
+		public void DisableTip(TipTests tip)
+		{
+			DisableTip((UInt64)tip);
+		}
+
+		public void DisableTip(TipBrowser tip)
+		{
+			DisableTip((UInt64)tip);
+		}
+
+		public void DisableTip(TipMobile tip)
+		{
+			DisableTip((UInt64)tip);
+		}
+
+		internal void DisableTip(UInt64 tip)
+		{
+			var tips = getTips();
+
+			tips.Permanent += tip;
+
+			inTransaction(
+				"DisableTip",
+				() => repos.Tips.SaveOrUpdate(tips)
+			);
 		}
 	}
 }

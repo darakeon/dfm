@@ -267,12 +267,15 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
-		internal void VerifyUser()
+		internal User VerifyUser()
 		{
-			VerifyUser(GetCurrent());
+			var user = GetCurrent();
+			VerifyUser(user);
 
 			if (!parent.Current.IsVerified)
 				throw Error.TFANotVerified.Throw();
+
+			return user;
 		}
 
 		internal void VerifyUser(User user)
