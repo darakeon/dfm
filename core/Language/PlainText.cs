@@ -99,8 +99,7 @@ namespace DFM.Language
 		}
 
 		public DicList<Phrase> this[String section, String language]
-			=> SectionList[section][language].PhraseList
-				.Union(SectionList["general"][language].PhraseList);
+			=> this[new [] {section}, language];
 
 		public DicList<Phrase> this[String[] sections, String language]
 		{
@@ -148,7 +147,8 @@ namespace DFM.Language
 				{
 					result = tryGetText("error", language, phrase)
 						?? tryGetText("wizard", language, phrase)
-						?? tryGetText("email", language, phrase);
+						?? tryGetText("email", language, phrase)
+						?? tryGetText("tips", language, phrase);
 				}
 
 				return result ?? notFound(section, language, phrase);

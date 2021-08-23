@@ -150,6 +150,7 @@
     <None Remove="Assets\styles\default.css" />
     <None Remove="Assets\styles\language.css" />
     <None Remove="Assets\styles\qrcode.css" />
+    <None Remove="Assets\styles\tip.css" />
     <None Remove="Assets\styles\updates.css" />
     <None Remove="Assets\themes\bootstrap.min.css" />
     <None Remove="Assets\themes\colors-dark.css" />
@@ -527,6 +528,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\styles\contract.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\styles\tip.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\styles\default.css">

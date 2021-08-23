@@ -21,6 +21,7 @@ Scenario: 02. Get translations of Enums
 			| Users     | Entities      | Enums      | RemovalReason     |
 			| Tokens    | Entities      | Enums      | SecurityAction    |
 			| General   | Entities      | Enums      | OperationType     |
+			| Tips      | Entities      | Enums      | TipBrowser        |
 			| Configs   | Generic       |            | Theme             |
 			| Configs   | Generic       |            | ThemeBrightness   |
 			| Configs   | Generic       |            | ThemeColor        |
