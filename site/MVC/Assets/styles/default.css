@@ -347,30 +347,3 @@ table a.link-glyphicon,
 .table a.link-glyphicon {
 	text-decoration: none;
 }
-
-.blink-invert {
-	animation: blink-invert 3000ms ease-out;
-}
-@keyframes blink-invert {
-	0% {
-		filter: invert(0%);
-	}
-	15% {
-		filter: invert(100%);
-	}
-	30% {
-		filter: invert(0%);
-	}
-	45% {
-		filter: invert(100%);
-	}
-	60% {
-		filter: invert(0%);
-	}
-	75% {
-		filter: invert(100%);
-	}
-	90% {
-		filter: invert(0%);
-	}
-}

@@ -24,6 +24,7 @@ namespace DFM.Entities.Enums
 	public enum TipBrowser : UInt64
 	{
 		None = 0,
+		DeleteLogins = 1UL << 0,
 	}
 
 	[Flags]

@@ -1,0 +1,23 @@
+﻿@model BaseSiteModel
+
+@{
+	var tip = Model.Tip;
+
+	var mainRoute = new Default.Main();
+
+	var links = new Dictionary<String, String>
+	{
+		{ 
+			TipBrowser.DeleteLogins.ToString(),
+			Url.RouteUrl(mainRoute.Name, new { controller = "Logins", action = "Index" })
+		}
+	};
+}
+
+@if (tip != null)
+{
+	<aside class="tip">
+		<img src="~/Assets/images/pig.svg" />
+		<a href="@links[tip]">@Context.Translate(tip)</a>
+	</aside>
+}
