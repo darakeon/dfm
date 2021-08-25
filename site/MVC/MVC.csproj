@@ -135,6 +135,7 @@
     <None Remove="Assets\images\pig.svg" />
     <None Remove="Assets\scripts\chart.js" />
     <None Remove="Assets\scripts\table-sum.js" />
+    <None Remove="Assets\scripts\tip.js" />
     <None Remove="Assets\styles\chart.css" />
     <None Remove="Assets\styles\misc.css" />
     <None Remove="Assets\styles\reports.css" />
@@ -495,6 +496,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\scripts\chart.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\scripts\tip.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\scripts\default.js">
