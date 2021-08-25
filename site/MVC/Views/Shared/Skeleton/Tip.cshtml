@@ -17,7 +17,17 @@
 @if (tip != null)
 {
 	<aside class="tip">
-		<img src="~/Assets/images/pig.svg" />
-		<a href="@links[tip]">@Context.Translate(tip)</a>
+		<img src="~/Assets/images/pig.svg" 
+		    alt="@Context.Translate(tip)"
+		    title="@Context.Translate(tip)" />
+
+		<div class="baloon">
+			<a href="@links[tip]">
+				@Context.Translate(tip)
+			</a>
+			<button class="tip-close">
+				@Context.Translate("Close")
+			</button>
+		</div>
 	</aside>
 }

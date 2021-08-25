@@ -50,17 +50,39 @@
 		z-index: 2;
 	}
 
-	.tip a {
+		.tip.hidden-tip img {
+			bottom: -100px;
+			left: -100px;
+		}
+
+	.tip .baloon {
 		background: var(--primary-0);
 		color: var(--neutral-0);
 		border: 3px dotted var(--neutral-3);
 		width: 300px;
 		display: inline-block;
-		padding: 30px;
-		border-radius: 30% / 50%;
+		padding: 15px 20px;
+		border-radius: 50px / 40px;
 		border-bottom-left-radius: 0;
 		bottom: 30px;
 		left: -50px;
 		text-align: justify;
 		z-index: 1;
 	}
+
+		.tip .baloon a {
+			color: var(--neutral-0);
+		}
+
+		.tip .baloon button.tip-close {
+			color: var(--neutral-0);
+			background: none;
+			border: none;
+			bottom: 4px;
+			right: 28px;
+			position: absolute;
+		}
+
+		.tip.hidden-tip .baloon {
+			display: none;
+		}
