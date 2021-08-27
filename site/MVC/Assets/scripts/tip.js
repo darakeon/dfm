@@ -3,6 +3,10 @@
 	$('.tip img').click(toggleTip)
 })
 
-function toggleTip() {
+function toggleTip(obj) {
 	$('.tip').toggleClass('hidden-tip')
+
+	const url = $(obj.target).data('url')
+
+	if (url) { $.post(url) }
 }
