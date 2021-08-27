@@ -2,7 +2,7 @@
 
 # Don't fly Money
 
-[![darakeon](https://circleci.com/gh/darakeon/dfm.svg?style=svg)](.circleci/config.yml)
+[![darakeon](https://circleci.com/gh/darakeon/dfm.svg?style=shield)](.circleci/config.yml)
 [![commit-lint](https://github.com/darakeon/dfm/actions/workflows/github-actions-commit-checker.yml/badge.svg)](https://github.com/darakeon/dfm/actions/workflows/github-actions-commit-checker.yml)
 
 This is a project that was been build in private Hg repository on
