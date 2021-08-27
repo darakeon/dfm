@@ -410,6 +410,16 @@ async function getEndDate(url, user) {
 	return result[0]["EndDate"]
 }
 
+async function getTipPermanent(user) {
+	const result = await execute(
+		`select Permanent
+			from tips
+			where type=1
+				and user_id=${user.ID}`
+	)
+	return result[0]["Permanent"]
+}
+
 async function execute(query, params) {
 	let done = false;
 	let result;
@@ -486,4 +496,5 @@ module.exports = {
 	getLastUnsubscribeMoveMailToken,
 	setSecret,
 	getEndDate,
+	getTipPermanent,
 }
