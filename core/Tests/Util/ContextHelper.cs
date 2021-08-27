@@ -53,38 +53,38 @@ namespace DFM.Tests.Util
 			if (match)
 				return true;
 
-			for (var l = 1; l < pattern.Length; l++)
+			var patternOut = pattern
+				.ReplaceRegex(@"\\([\/\}\{])", "$1");
+
+			var textOut = text
+				.ReplaceRegex(@"style=""[^\""]+""", @"style=""[^\""]+""")
+				.ReplaceRegex("[0-9A-F]{32}", @"[0-9A-F]{32}");
+
+			for (var l = 1; l < patternOut.Length; l++)
 			{
-				try
+				if (patternOut[l] != textOut[l])
 				{
-					var subPattern = pattern.Substring(0, l);
-					var numberCounter = new Regex(@"\{\d*$");
-
-					if (numberCounter.IsMatch(subPattern))
-						continue;
-
-					if (!Regex.IsMatch(text, subPattern))
-					{
-						var subPatternOut = subPattern
-							.ReplaceRegex(@"\\([\/\}\{])", "$1");
-
-						var textOut = text
-							.ReplaceRegex(@" style=""[^\""]+""", @" style=""[^\""]+""");
-
-						throw new Exception(
-							@$"
-								Wrong match of
-								{subPatternOut}
-								into
-								{textOut}
-							".ReplaceRegex(@"\t{8}", "\t")
-						);
-					}
+					throw new Exception(
+						@$"
+							Wrong match of
+							{interval(patternOut, l, 20)}
+							into
+							{interval(textOut, l, 20)}
+						".ReplaceRegex(@"\t{8}", "\t")
+					);
 				}
-				catch (RegexParseException) { }
 			}
 
 			return false;
+		}
+
+		private static String interval(String text, Int32 position, Int32 around)
+		{
+			return text[
+				Math.Max(position - around, 0)
+				..
+				Math.Min(position + around, text.Length)
+			];
 		}
 	}
 }
