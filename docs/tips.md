@@ -1,2 +1,2 @@
-- Animação de balão surgindo de trás do porquinho
-- Quando der dismiss, orelhas no porquinho ficam aparecendo para a pessoa abrir de novo se quiser
+- Ao fechar dica, fazer post para não mostrar mais
+- Ocultar dica de logins se a pessoa já tiver usado o delete de login
