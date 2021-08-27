@@ -1,6 +1,7 @@
   version_check:
     docker:
       - image: rust
+    resource_class: small
     environment:
       RUST_BACKTRACE: 1
     steps:

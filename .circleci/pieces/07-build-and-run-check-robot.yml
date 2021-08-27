@@ -1,6 +1,7 @@
   test_build_robot:
     docker:
       - image: darakeon/netcore
+    resource_class: small
     environment:
       ASPNETCORE_ENVIRONMENT: circleCI
     steps:
