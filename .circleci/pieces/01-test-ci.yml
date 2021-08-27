@@ -1,6 +1,7 @@
   test_ci:
     docker:
       - image: darakeon/ubuntu
+    resource_class: small
     steps:
       - checkout
       - run:

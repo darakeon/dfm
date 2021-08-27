@@ -13,6 +13,7 @@ jobs:
   test_ci:
     docker:
       - image: darakeon/ubuntu
+    resource_class: small
     steps:
       - checkout
       - run:
@@ -30,6 +31,7 @@ jobs:
   version_check:
     docker:
       - image: rust
+    resource_class: small
     environment:
       RUST_BACKTRACE: 1
     steps:
@@ -245,6 +247,7 @@ jobs:
   test_build_robot:
     docker:
       - image: darakeon/netcore
+    resource_class: small
     environment:
       ASPNETCORE_ENVIRONMENT: circleCI
     steps:
