@@ -16,6 +16,5 @@ namespace DFM.MVC.Models
 				errorAlert.Add(e.Type);
 			}
 		}
-
 	}
 }
