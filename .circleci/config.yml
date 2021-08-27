@@ -110,6 +110,10 @@ jobs:
           path: core/Tests/BusinessLogic
           name: tests_business_logic
           command: dotnet test -v m --no-build
+      - run:
+          path: inbox
+          name: zip_mails
+          command: zip inbox.zip *.eml && rm *.eml
       - store_artifacts:
           path: inbox
       - store_artifacts:
