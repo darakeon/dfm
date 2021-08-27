@@ -1,4 +1,5 @@
 const puppy = require('./puppy.js')
+const db = require('./db.js')
 
 describe('Logins', () => {
 	let user = {};
@@ -19,5 +20,9 @@ describe('Logins', () => {
 		expect(page.url()).toEqual(
 			'http://localhost:2709/Users/LogOn'
 		)
+
+		const permanent = await db.getTipPermanent(user)
+
+		expect(permanent).toEqual(1)
 	})
 })

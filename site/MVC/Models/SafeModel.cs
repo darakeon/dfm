@@ -43,6 +43,7 @@ namespace DFM.MVC.Models
 
 		internal void DisableLogin(String key)
 		{
+			report.DisableTip(TipBrowser.DeleteLogins);
 			safe.DisableTicket(key);
 		}
 	}
