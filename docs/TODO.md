@@ -13,13 +13,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then Type.
 
-| Task (57)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (52)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
-| Change password field name to "create your password"                           | :sheep:  |  1  |  4  |  7  |                |       |
-| Button to create move when there are no moves                                  | :sheep:  |  1  |  4  |  7  |                |       |
-| Change info / warning icon                                                     | :sheep:  |  2  |  4  |  6  |                |       |
-| Look for "account" words at system to check ambiguity                          | :ant:    |  2  |  4  |  6  |                |       |
-| Add "back to home" button at wizard end                                        | :sheep:  |  1  |  3  |  6  |                |       |
 | Add configuration for use account sign                                         | :whale:  |  3  |  4  |  5  |                |       |
 | Remove account url field (calculate no diacritics - take care equal url)       | :sheep:  |  2  |  3  |  5  |                |       |
 | Tooltip of "just numbers" in just numbers fields                               | :sheep:  |  2  |  3  |  5  |                |       |

@@ -4,15 +4,22 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#7.2.0.1)
-- [go to version in development](#7.3.0.0)
-- [dev version state](../../7.3.0.0/docs/RELEASES.md#7.3.0.0)
+- [go to published version](#7.3.0.0)
+- [go to version in development](#7.3.1.0)
+- [dev version state](../../7.3.1.0/docs/RELEASES.md#7.3.1.0)
 
 Legend:
 - :dragon:: at least one huge change (increases first number)
 - :whale:: at least one big change, like a new feature (increases second number)
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="7.3.1.0"></a>7.3.1.0 :sheep: <sup>`5`</sup>
+- [ ] Add "back to home" button at wizard end
+- [ ] Look for "account" words at system to check ambiguity
+- [ ] Change info / warning icon
+- [ ] Button to create move when there are no moves
+- [ ] Change password field name to "create your password"
 
 ## <a name="7.3.0.0"></a>7.3.0.0 :whale: <sup>`2`</sup>
 - [x] `210822>210828` Put tip that you can disable mobile login if your cellphone is stolen
