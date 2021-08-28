@@ -55,7 +55,7 @@
 			left: -100px;
 		}
 
-	.tip .baloon {
+	.tip .balloon {
 		background: var(--primary-0);
 		color: var(--neutral-0);
 		border: 3px dotted var(--neutral-3);
@@ -70,11 +70,11 @@
 		z-index: 1;
 	}
 
-		.tip .baloon a {
+		.tip .balloon a {
 			color: var(--neutral-0);
 		}
 
-		.tip .baloon button.tip-close {
+		.tip .balloon button.tip-close {
 			color: var(--neutral-0);
 			background: none;
 			border: none;
@@ -83,6 +83,6 @@
 			position: absolute;
 		}
 
-		.tip.hidden-tip .baloon {
+		.tip.hidden-tip .balloon {
 			display: none;
 		}

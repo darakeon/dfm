@@ -15,7 +15,7 @@ Legend:
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="7.3.0.0"></a>7.3.0.0 :whale: <sup>`2`</sup>
-- [x] `210822>210827` Put tip that you can disable mobile login if your cellphone is stolen
+- [x] `210822>210828` Put tip that you can disable mobile login if your cellphone is stolen
 - [x] `210819>210823` Add system tips (user "age" = times accessed)
 
 ## <a name="7.2.0.1"></a>7.2.0.0 :ant: <sup>`1`</sup>
