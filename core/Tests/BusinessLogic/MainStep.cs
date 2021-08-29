@@ -210,11 +210,17 @@ namespace DFM.BusinessLogic.Tests
 		}
 
 		// ReSharper disable once UnusedMember.Global
-		[StepArgumentTransformation(@"( not)?")]
-		[StepArgumentTransformation(@"(not )?")]
+		[StepArgumentTransformation(@"( not|not )?")]
 		public Boolean NotToBoolTransform(String not)
 		{
 			return not.Trim() != "not";
+		}
+
+		// ReSharper disable once UnusedMember.Global
+		[StepArgumentTransformation(@"(dis|en)?")]
+		public Boolean DisEnToBoolTransform(String prefix)
+		{
+			return prefix == "en";
 		}
 
 		// ReSharper disable once UnusedMember.Global
