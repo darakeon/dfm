@@ -36,6 +36,8 @@ namespace DFM.MVC.Areas.Account.Models
 
 			Month = dateMonth;
 			Year = dateYear;
+
+			AccountHasMoves = month.AccountHasMoves;
 		}
 
 		private MoveLineModel getSubModel(MoveInfo move)
@@ -68,5 +70,6 @@ namespace DFM.MVC.Areas.Account.Models
 			);
 
 		public Boolean CanCheck => moveCheckingEnabled;
+		public Boolean AccountHasMoves { get; }
 	}
 }

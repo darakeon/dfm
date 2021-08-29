@@ -18,7 +18,7 @@ Legend:
 - [ ] Add "back to home" button at wizard end
 - [ ] Look for "account" words at system to check ambiguity
 - [ ] Change info / warning icon
-- [ ] Button to create move when there are no moves
+- [x] `210828>210828` Button to create move when there are no moves
 - [x] `210828>210828` Change password field name to "create your password"
 
 ## <a name="7.3.0.0"></a>7.3.0.0 :whale: <sup>`2`</sup>

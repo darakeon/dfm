@@ -28,6 +28,11 @@
 		.Union(Model.ForeseenList)
 		.Select(m => m.Move)
 		.ToList();
+
+	ViewBag.Buttons = new List<Button>
+	{
+		new(Context.Translate("Create", "Move"), "Create")
+	};
 }
 
 @section TableHeader {
@@ -117,18 +122,21 @@
 			schedule
 		)
 	}
+	
+	@if (Model.AccountHasMoves)
+	{
+		<div class="row">
+			<div class="col-lg-2 col-sm-2"></div>
 
-	<div class="row">
-		<div class="col-lg-2 col-sm-2"></div>
+			<div class="col-lg-8 col-sm-8 text-center">
+				@await Html.PartialAsync("Extensions/Pagination", pages)
+			</div>
 
-		<div class="col-lg-8 col-sm-8 text-center">
-			@await Html.PartialAsync("Extensions/Pagination", pages)
+			<div class="col-lg-2 col-sm-2">
+				@await Html.PartialAsync("Total")
+			</div>
 		</div>
-
-		<div class="col-lg-2 col-sm-2">
-			@await Html.PartialAsync("Total")
-		</div>
-	</div>
+	}
 }
 
 @section Styles {
