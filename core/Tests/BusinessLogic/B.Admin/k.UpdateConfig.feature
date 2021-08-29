@@ -165,3 +165,28 @@ Scenario: Bk23. Not update if user requested wipe
 		But the user asked data wipe
 	When I try to enable wizard
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Bk24. Disable accounts signs
+	Given have enabled accounts signs
+		And I have this account
+			| Name         | Url          | Yellow | Red |
+			| Disable Sign | disable_sign | 20     | 10  |
+	When disable accounts signs
+	Then I will receive no core error
+		And account sign will not be available
+		And the account list will not have sign
+		And the year report will not have sign
+		And the month report will not have sign
+
+Scenario: Bk25. Enable accounts signs
+	Given have enabled accounts signs
+		And I have this account
+			| Name         | Url          | Yellow | Red |
+			| Disable Sign | disable_sign | 20     | 10  |
+		And have disabled accounts signs
+	When enable accounts signs
+	Then I will receive no core error
+		And account sign will be available
+		And the account list will have sign
+		And the year report will have sign
+		And the month report will have sign

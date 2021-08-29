@@ -8,9 +8,10 @@ namespace DFM.Entities.Bases
 		public const String ConfigLanguage = "pt-BR";
 		public const String ConfigTimeZone = "E. South America Standard Time";
 
-		public const Boolean ConfigSendMoveEmail = false;
 		public const Boolean ConfigUseCategories = false;
+		public const Boolean ConfigUseAccountsSigns = false;
 		public const Boolean ConfigMoveCheck = false;
+		public const Boolean ConfigSendMoveEmail = false;
 
 		public const Theme DefaultTheme = Theme.LightSober;
 

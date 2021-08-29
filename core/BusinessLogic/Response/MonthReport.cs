@@ -9,23 +9,24 @@ namespace DFM.BusinessLogic.Response
 	public class MonthReport
 	{
 		public MonthReport(
-			String accountUrl,
+			Account account,
 			Decimal accountTotal, Decimal foreseenTotal,
-			AccountSign accountSign, AccountSign foreseenSign,
 			IList<Move> moveList, IList<Move> foreseenList,
 			Boolean accountHasMoves
 		)
 		{
 			AccountTotal = accountTotal;
-			AccountTotalSign = accountSign;
+			if (account.User.Config.UseAccountsSigns)
+				AccountTotalSign = account.GetSign(accountTotal);
 			MoveList = moveList
-				.Select(m => MoveInfo.Convert4Report(m, accountUrl, false))
+				.Select(m => MoveInfo.Convert4Report(m, account.Url, false))
 				.ToList();
 
 			ForeseenTotal = foreseenTotal;
-			ForeseenTotalSign = foreseenSign;
+			if (account.User.Config.UseAccountsSigns)
+				ForeseenTotalSign = account.GetSign(foreseenTotal);
 			ForeseenList = foreseenList
-				.Select(m => MoveInfo.Convert4Report(m, accountUrl, true))
+				.Select(m => MoveInfo.Convert4Report(m, account.Url, true))
 				.ToList();
 
 			AccountHasMoves = accountHasMoves;

@@ -20,6 +20,7 @@ namespace DFM.Authentication
 		Theme Theme { get; }
 
 		Boolean UseCategories { get; }
+		Boolean UseAccountsSigns { get; }
 		Boolean MoveCheck { get; }
 		Boolean SendMoveEmail { get; }
 

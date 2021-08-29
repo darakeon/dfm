@@ -329,14 +329,17 @@ namespace DFM.BusinessLogic.Services
 			if (!String.IsNullOrEmpty(info.TimeZone))
 				config.TimeZone = info.TimeZone;
 
-			if (info.SendMoveEmail.HasValue)
-				config.SendMoveEmail = info.SendMoveEmail.Value;
-
 			if (info.UseCategories.HasValue)
 				config.UseCategories = info.UseCategories.Value;
 
+			if (info.UseAccountsSigns.HasValue)
+				config.UseAccountsSigns = info.UseAccountsSigns.Value;
+
 			if (info.MoveCheck.HasValue)
 				config.MoveCheck = info.MoveCheck.Value;
+
+			if (info.SendMoveEmail.HasValue)
+				config.SendMoveEmail = info.SendMoveEmail.Value;
 
 			if (info.Wizard.HasValue)
 				config.Wizard = info.Wizard.Value;

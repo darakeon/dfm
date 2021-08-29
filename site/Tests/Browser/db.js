@@ -100,10 +100,10 @@ async function createUser(email, active, wizard, creation) {
 	await execute(
 		`insert into config (
 				language, timezone, sendMoveEmail,
-				useCategories, moveCheck, theme, wizard
+				useCategories, useAccountsSigns, moveCheck, theme, wizard
 			) values (
 				'pt-BR', 'UTC-03:00', 0,
-				1, 1, 1, ${wizard?1:0}
+				1, 1, 1, 1, ${wizard?1:0}
 			)`
 	)
 

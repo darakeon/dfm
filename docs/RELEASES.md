@@ -20,7 +20,7 @@ Legend:
 - [ ] Change "tudo bem" by "saudável" in portuguese translation
 - [ ] Tooltip of "just numbers" in just numbers fields
 - [ ] Remove account url field (calculate no diacritics - take care equal url)
-- [ ] Add configuration for use account sign
+- [ ] `210829>......` Add configuration for use account sign
 
 ## <a name="7.3.1.1"></a>7.3.1.1 :ant: <sup>`1`</sup>
 - [x] `210902>210902` Fix robot deleting itself

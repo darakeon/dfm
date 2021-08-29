@@ -25,6 +25,7 @@ namespace DFM.BusinessLogic.Response
 			Theme = user.Config.Theme;
 
 			UseCategories = user.Config.UseCategories;
+			UseAccountsSigns = user.Config.UseAccountsSigns;
 			MoveCheck = user.Config.MoveCheck;
 			SendMoveEmail = user.Config.SendMoveEmail;
 
@@ -59,6 +60,7 @@ namespace DFM.BusinessLogic.Response
 		public Theme Theme { get; }
 
 		public Boolean UseCategories { get; }
+		public Boolean UseAccountsSigns { get; }
 		public Boolean MoveCheck { get; }
 		public Boolean SendMoveEmail { get; }
 
