@@ -4,15 +4,23 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#7.3.0.0)
-- [go to version in development](#7.3.1.0)
-- [dev version state](../../7.3.1.0/docs/RELEASES.md#7.3.1.0)
+- [go to published version](#7.3.1.0)
+- [go to version in development](#7.4.0.0)
+- [dev version state](../../7.4.0.0/docs/RELEASES.md#7.4.0.0)
 
 Legend:
 - :dragon:: at least one huge change (increases first number)
 - :whale:: at least one big change, like a new feature (increases second number)
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="7.4.0.0"></a>7.4.0.0 :whale: <sup>`6`</sup>
+- [ ] Hide closed accounts if there are no closed accounts
+- [ ] When there are accounts, show "create another account" (and category)
+- [ ] Change "tudo bem" by "saudável" in portuguese translation
+- [ ] Tooltip of "just numbers" in just numbers fields
+- [ ] Remove account url field (calculate no diacritics - take care equal url)
+- [ ] Add configuration for use account sign
 
 ## <a name="7.3.1.0"></a>7.3.1.0 :sheep: <sup>`5`</sup>
 - [x] `210828>210828` Add "back to home" button at wizard end

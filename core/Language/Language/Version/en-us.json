@@ -1,4 +1,11 @@
 {
+	"7.3.1.0": [
+		"Improve end wizard screen",
+		"Fix misuse of account word",
+		"Update icons of information and warning",
+		"Button to create move when there are no moves",
+		"Improve signup and recover password forms"
+	],
 	"7.3.0.0": [
 		"Tip about delete your logins",
 		"Tips system"
