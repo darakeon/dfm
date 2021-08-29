@@ -870,13 +870,19 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 
 		#region UpdateConfig
 
-		[Given(@"I disable Categories use")]
-		[When(@"I try to disable Categories use")]
-		public void GivenIDisableCategoriesUse()
+		[Given(@"I (dis|en)able Categories use")]
+		public void GivenIDisableCategoriesUse(Boolean enable)
+		{
+			var mainConfig = new ConfigInfo { UseCategories = enable };
+			service.Admin.UpdateConfig(mainConfig);
+		}
+
+		[When(@"I try to (dis|en)able Categories use")]
+		public void WhenEnableCategoriesUse(Boolean enable)
 		{
 			try
 			{
-				var mainConfig = new ConfigInfo { UseCategories = false };
+				var mainConfig = new ConfigInfo { UseCategories = enable };
 				service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (CoreError e)
@@ -885,13 +891,19 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			}
 		}
 
-		[Given(@"I enable Categories use")]
-		[When(@"I try to enable Categories use")]
-		public void GivenIEnableCategoriesUse()
+		[Given(@"I (dis|en)able move check")]
+		public void GivenIDisableMoveCheck(Boolean enable)
+		{
+			var mainConfig = new ConfigInfo { MoveCheck = enable };
+			service.Admin.UpdateConfig(mainConfig);
+		}
+
+		[When(@"I try to (dis|en)able move check")]
+		public void GivenIEnableMoveCheck(Boolean enable)
 		{
 			try
 			{
-				var mainConfig = new ConfigInfo { UseCategories = true };
+				var mainConfig = new ConfigInfo { MoveCheck = enable };
 				service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (CoreError e)
@@ -900,58 +912,19 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			}
 		}
 
-		[Given(@"I disable move check")]
-		[When(@"I try to disable move check")]
-		public void GivenIDisableMoveCheck()
+		[Given(@"I (dis|en)able wizard")]
+		public void GivenIDisableWizard(Boolean enable)
 		{
-			try
-			{
-				var mainConfig = new ConfigInfo { MoveCheck = false };
-				service.Admin.UpdateConfig(mainConfig);
-			}
-			catch (CoreError e)
-			{
-				error = e;
-			}
+			var mainConfig = new ConfigInfo { Wizard = enable };
+			service.Admin.UpdateConfig(mainConfig);
 		}
 
-		[Given(@"I enable move check")]
-		[When(@"I try to enable move check")]
-		public void GivenIEnableMoveCheck()
+		[When(@"I try to (dis|en)able wizard")]
+		public void WhenEnableWizard(Boolean enable)
 		{
 			try
 			{
-				var mainConfig = new ConfigInfo { MoveCheck = true };
-				service.Admin.UpdateConfig(mainConfig);
-			}
-			catch (CoreError e)
-			{
-				error = e;
-			}
-		}
-
-		[Given(@"I disable wizard")]
-		[When(@"I try to disable wizard")]
-		public void GivenIDisableWizard()
-		{
-			try
-			{
-				var mainConfig = new ConfigInfo { Wizard = false };
-				service.Admin.UpdateConfig(mainConfig);
-			}
-			catch (CoreError e)
-			{
-				error = e;
-			}
-		}
-
-		[Given(@"I enable wizard")]
-		[When(@"I try to enable wizard")]
-		public void GivenIEnableWizard()
-		{
-			try
-			{
-				var mainConfig = new ConfigInfo { Wizard = true };
+				var mainConfig = new ConfigInfo { Wizard = enable };
 				service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (CoreError e)
@@ -998,13 +971,19 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			}
 		}
 
-		[Given(@"I disable move send e-mail")]
-		[When(@"I try to disable move send e-mail")]
-		public void GivenIDisableMoveSendEmail()
+		[Given(@"I (dis|en)able move send e-mail")]
+		public void GivenEnableMoveSendEmail(Boolean enable)
+		{
+			var mainConfig = new ConfigInfo { SendMoveEmail = enable };
+			service.Admin.UpdateConfig(mainConfig);
+		}
+
+		[When(@"I try to (dis|en)able move send e-mail")]
+		public void WhenEnableMoveSendEmail(Boolean enable)
 		{
 			try
 			{
-				var mainConfig = new ConfigInfo { SendMoveEmail = false };
+				var mainConfig = new ConfigInfo { SendMoveEmail = enable };
 				service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (CoreError e)
@@ -1012,22 +991,6 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 				error = e;
 			}
 		}
-
-		[Given(@"I enable move send e-mail")]
-		[When(@"I try to enable move send e-mail")]
-		public void GivenIEnableMoveSendEmail()
-		{
-			try
-			{
-				var mainConfig = new ConfigInfo { SendMoveEmail = true };
-				service.Admin.UpdateConfig(mainConfig);
-			}
-			catch (CoreError e)
-			{
-				error = e;
-			}
-		}
-
 		#endregion
 
 		#region ChangeTheme
