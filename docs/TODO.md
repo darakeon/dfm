@@ -13,14 +13,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then Type.
 
-| Task (53)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (47)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
-| Add configuration for use account sign                                         | :whale:  |  3  |  4  |  5  |                |       |
-| Remove account url field (calculate no diacritics - take care equal url)       | :sheep:  |  2  |  3  |  5  |                |       |
-| Tooltip of "just numbers" in just numbers fields                               | :sheep:  |  2  |  3  |  5  |                |       |
-| Change "tudo bem" by "saudável" in portuguese translation                      | :sheep:  |  1  |  2  |  5  |                |       |
-| When there are accounts, show "create another account" (and category)          | :sheep:  |  1  |  2  |  5  |                |       |
-| Hide closed accounts if there are no closed accounts                           | :ant:    |  1  |  2  |  5  |                |       |
 | Make wizard interactive                                                        | :dragon: |  4  |  4  |  4  |                |       |
 | Add nickname field - show it at every screen and e-mail                        | :whale:  |  3  |  3  |  4  |                |       |
 | Separate validators from service/repository                                    | :ant:    |  3  |  3  |  4  |                |       |

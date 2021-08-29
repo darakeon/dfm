@@ -1,4 +1,11 @@
 {
+	"7.3.1.0": [
+		"Melhoria da tela de finalização do tutorial",
+		"Corrigidos usos da palavra conta",
+		"Atualizados ícones de informação e aviso",
+		"Botão para criar movimentações quando não existem movimentações",
+		"Melhoradas telas de se cadastrar e recuperar senha"
+	],
 	"7.3.0.0": [
 		"Dica sobre remover logins",
 		"Sistema de dicas"
