@@ -2,6 +2,7 @@
 	"en-US": {
 		"Email": "E-mail",
 		"Password": "Password",
+		"CreatePassword": "Create a password",
 		"LogonDisabled": "Your user is not active.",
 		"RememberMe": "Remember",
 		"ForgotPassword": "Forgot my password",
@@ -21,6 +22,7 @@
 	"pt-BR": {
 		"Email": "E-mail",
 		"Password": "Senha",
+		"CreatePassword": "Crie uma senha",
 		"LogonDisabled": "Seu acesso ao sistema não foi ativado ainda.",
 		"RememberMe": "Lembrar",
 		"ForgotPassword": "Esqueci minha senha",
