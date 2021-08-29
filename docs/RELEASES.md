@@ -17,7 +17,7 @@ Legend:
 ## <a name="7.3.1.0"></a>7.3.1.0 :sheep: <sup>`5`</sup>
 - [ ] Add "back to home" button at wizard end
 - [ ] Look for "account" words at system to check ambiguity
-- [ ] Change info / warning icon
+- [x] `210828>210828` Change info / warning icon
 - [x] `210828>210828` Button to create move when there are no moves
 - [x] `210828>210828` Change password field name to "create your password"
 
