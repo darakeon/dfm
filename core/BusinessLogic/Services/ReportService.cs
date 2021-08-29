@@ -44,11 +44,14 @@ namespace DFM.BusinessLogic.Services
 			var foreseenList = repos.Schedule
 				.SimulateMoves(account, dateYear, dateMonth);
 
+			var accountHasMoves = repos.Move.AccountHasMoves(account);
+
 			return new MonthReport(
 				accountUrl,
 				total, foreseenTotal,
 				sign, foreseenSign,
-				moveList, foreseenList
+				moveList, foreseenList,
+				accountHasMoves
 			);
 		}
 

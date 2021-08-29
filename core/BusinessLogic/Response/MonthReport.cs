@@ -12,7 +12,8 @@ namespace DFM.BusinessLogic.Response
 			String accountUrl,
 			Decimal accountTotal, Decimal foreseenTotal,
 			AccountSign accountSign, AccountSign foreseenSign,
-			IList<Move> moveList, IList<Move> foreseenList
+			IList<Move> moveList, IList<Move> foreseenList,
+			Boolean accountHasMoves
 		)
 		{
 			AccountTotal = accountTotal;
@@ -26,6 +27,8 @@ namespace DFM.BusinessLogic.Response
 			ForeseenList = foreseenList
 				.Select(m => MoveInfo.Convert4Report(m, accountUrl, true))
 				.ToList();
+
+			AccountHasMoves = accountHasMoves;
 		}
 
 		public Decimal AccountTotal { get; }
@@ -36,5 +39,7 @@ namespace DFM.BusinessLogic.Response
 
 		public IList<MoveInfo> MoveList { get; }
 		public IList<MoveInfo> ForeseenList { get; }
+
+		public Boolean AccountHasMoves { get; }
 	}
 }
