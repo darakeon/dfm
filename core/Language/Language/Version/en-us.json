@@ -217,7 +217,7 @@
 	"4.1.3.5": [
 		"Bug fixes when trying to register and in the language in which the site's terms of use are displayed",
 		"Site Authentication Adjustment",
-		"Account logout icon in login list changed to default logout icon"
+		"Logout icon in login list changed to default logout icon"
 	],
 	"4.1.3.4": [
 		"Site call adjustments",

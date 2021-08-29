@@ -217,7 +217,7 @@
 	"4.1.3.5": [
 		"Ajuste em bug ao tentar se cadastrar e na língua em que são exibidos os termos de uso do site",
 		"Ajuste de autenticação no site",
-		"Ícone de deslogar conta na lista de logins alterado para o ícone padrão de deslogar"
+		"Ícone de deslogar na lista de logins alterado para o ícone padrão de deslogar"
 	],
 	"4.1.3.4": [
 		"Ajustes nas chamadas do site",
