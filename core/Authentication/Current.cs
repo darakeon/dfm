@@ -124,6 +124,7 @@ namespace DFM.Authentication
 		public Theme Theme => session?.Theme ?? Defaults.DefaultTheme;
 
 		public Boolean UseCategories => session?.UseCategories ?? Defaults.ConfigUseCategories;
+		public Boolean UseAccountsSigns => session?.UseAccountsSigns ?? Defaults.ConfigUseAccountsSigns;
 		public Boolean MoveCheck => session?.MoveCheck ?? Defaults.ConfigMoveCheck;
 		public Boolean SendMoveEmail => session?.SendMoveEmail ?? Defaults.ConfigSendMoveEmail;
 

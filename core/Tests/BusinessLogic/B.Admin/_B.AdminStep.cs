@@ -186,6 +186,12 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 				Url = accountData["Url"],
 			};
 
+			if (accountData.ContainsKey("Yellow") && accountData["Yellow"] != "")
+				accountInfo.YellowLimit = Decimal.Parse(accountData["Yellow"]);
+
+			if (accountData.ContainsKey("Yellow") && accountData["Red"] != "")
+				accountInfo.RedLimit = Decimal.Parse(accountData["Red"]);
+
 			service.Admin.CreateAccount(accountInfo);
 		}
 
@@ -989,6 +995,86 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			catch (CoreError e)
 			{
 				error = e;
+			}
+		}
+
+		[Given(@"have (dis|en)abled accounts signs")]
+		public void GivenIDisableAccountsSign(Boolean enable)
+		{
+			var mainConfig = new ConfigInfo { UseAccountsSigns = enable };
+			service.Admin.UpdateConfig(mainConfig);
+		}
+
+		[When(@"(dis|en)able accounts signs")]
+		public void WhenEnableAccountsSign(Boolean enable)
+		{
+			try
+			{
+				var mainConfig = new ConfigInfo { UseAccountsSigns = enable };
+				service.Admin.UpdateConfig(mainConfig);
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[Then(@"account sign will( not)? be available")]
+		public void ThenAccountSignWillBeAvailable(Boolean available)
+		{
+			var accountSign = service.Current.UseAccountsSigns;
+			Assert.AreEqual(available, accountSign);
+		}
+
+		[Then(@"the account list will( not)? have sign")]
+		public void ThenTheAccountListWillNotHaveSign(Boolean hasSign)
+		{
+			var accountList = service.Admin.GetAccountList(true);
+			var url = accountInfo.Url;
+			var account = accountList.Single(a => a.Url == url);
+
+			if (hasSign)
+				Assert.AreNotEqual(AccountSign.None, account.Sign);
+			else
+				Assert.AreEqual(AccountSign.None, account.Sign);
+		}
+
+		[Then(@"the year report will( not)? have sign")]
+		public void ThenTheYearReportWillNotHaveSign(Boolean hasSign)
+		{
+			var url = accountInfo.Url;
+			var year = (Int16) current.Now.Year;
+			var yearReport = service.Report.GetYearReport(url, year);
+
+			if (hasSign)
+			{
+				Assert.AreNotEqual(AccountSign.None, yearReport.AccountSign);
+				Assert.AreNotEqual(AccountSign.None, yearReport.AccountForeseenSign);
+			}
+			else
+			{
+				Assert.AreEqual(AccountSign.None, yearReport.AccountSign);
+				Assert.AreEqual(AccountSign.None, yearReport.AccountForeseenSign);
+			}
+		}
+
+		[Then(@"the month report will( not)? have sign")]
+		public void ThenTheMonthReportWillNotHaveSign(Boolean hasSign)
+		{
+			var url = accountInfo.Url;
+			var year = (Int16)current.Now.Year;
+			var month = (Int16)current.Now.Month;
+			var monthReport = service.Report.GetMonthReport(url, year, month);
+
+			if (hasSign)
+			{
+				Assert.AreNotEqual(AccountSign.None, monthReport.AccountTotalSign);
+				Assert.AreNotEqual(AccountSign.None, monthReport.ForeseenTotalSign);
+			}
+			else
+			{
+				Assert.AreEqual(AccountSign.None, monthReport.AccountTotalSign);
+				Assert.AreEqual(AccountSign.None, monthReport.ForeseenTotalSign);
 			}
 		}
 		#endregion

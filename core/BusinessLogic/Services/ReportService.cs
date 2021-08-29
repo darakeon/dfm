@@ -31,7 +31,6 @@ namespace DFM.BusinessLogic.Services
 				throw Error.InvalidAccount.Throw();
 
 			var total = repos.Summary.GetTotal(account);
-			var sign = account.GetSign(total);
 
 			var moveList = repos.Move
 				.ByAccountAndTime(account, dateYear, dateMonth);
@@ -39,7 +38,6 @@ namespace DFM.BusinessLogic.Services
 			var foreseenTotal = repos.Schedule
 				.GetForeseenTotal(account, dateYear, dateMonth)
 					+ total;
-			var foreseenSign = account.GetSign(foreseenTotal);
 
 			var foreseenList = repos.Schedule
 				.SimulateMoves(account, dateYear, dateMonth);
@@ -47,9 +45,8 @@ namespace DFM.BusinessLogic.Services
 			var accountHasMoves = repos.Move.AccountHasMoves(account);
 
 			return new MonthReport(
-				accountUrl,
+				account,
 				total, foreseenTotal,
-				sign, foreseenSign,
 				moveList, foreseenList,
 				accountHasMoves
 			);
