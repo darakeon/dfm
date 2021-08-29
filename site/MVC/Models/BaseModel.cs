@@ -38,6 +38,7 @@ namespace DFM.MVC.Models
 		protected Boolean wizard => current.Wizard;
 
 		protected Boolean isUsingCategories => current.UseCategories;
+		protected Boolean isUsingAccountsSigns => current.UseAccountsSigns;
 		protected Boolean moveCheckingEnabled => current.MoveCheck;
 
 		protected String login(String email, String password, Boolean rememberMe)

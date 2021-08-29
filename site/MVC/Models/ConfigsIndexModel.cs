@@ -24,6 +24,7 @@ namespace DFM.MVC.Models
 			Info = new ConfigInfo
 			{
 				UseCategories = current.UseCategories,
+				UseAccountsSigns = current.UseAccountsSigns,
 				SendMoveEmail = current.SendMoveEmail,
 				MoveCheck = current.MoveCheck,
 				Wizard = current.Wizard,
@@ -54,6 +55,12 @@ namespace DFM.MVC.Models
 		{
 			get => Info.UseCategories.HasValue && Info.UseCategories.Value;
 			set => Info.UseCategories = value;
+		}
+
+		public Boolean UseAccountsSignsCheck
+		{
+			get => Info.UseAccountsSigns.HasValue && Info.UseAccountsSigns.Value;
+			set => Info.UseAccountsSigns = value;
 		}
 
 		public Boolean SendMoveEmailCheck

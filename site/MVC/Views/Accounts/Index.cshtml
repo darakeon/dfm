@@ -50,9 +50,12 @@
 
 		<td class="col-sm-1"></td>
 		<td class="col-sm-2 text-right">
-			<span class="pull-left">
-				@await Html.PartialAsync("AccountSign", account.Sign)
-			</span>
+			@if (Model.IsUsingAccountsSigns)
+			{
+				<span class="pull-left">
+					@await Html.PartialAsync("AccountSign", account.Sign)
+				</span>
+			}
 
 			@await Html.PartialAsync("Extensions/ValueWithSign",
 				new ValueWithSign(account.Total, Model.Language))

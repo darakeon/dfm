@@ -16,6 +16,7 @@ namespace DFM.MVC.Models
 		public Boolean IsLastContractAccepted => safe.IsLastContractAccepted();
 
 		public Boolean IsUsingCategories => isUsingCategories;
+		public Boolean IsUsingAccountsSigns => isUsingAccountsSigns;
 
 		public Theme Theme => theme;
 		public ThemeColor Color => theme.Color();
