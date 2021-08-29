@@ -29,10 +29,13 @@
 		.Select(m => m.Move)
 		.ToList();
 
-	ViewBag.Buttons = new List<Button>
+	if (!Model.AccountHasMoves)
 	{
-		new(Context.Translate("Create", "Move"), "Create")
-	};
+		ViewBag.Buttons = new List<Button>
+		{
+			new(Context.Translate("Create", "Move"), "Create")
+		};
+	}
 }
 
 @section TableHeader {
