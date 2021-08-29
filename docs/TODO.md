@@ -13,7 +13,7 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then Type.
 
-| Task (52)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (53)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
 | Add configuration for use account sign                                         | :whale:  |  3  |  4  |  5  |                |       |
 | Remove account url field (calculate no diacritics - take care equal url)       | :sheep:  |  2  |  3  |  5  |                |       |
@@ -54,6 +54,7 @@ The tasks are ordered by: Points then Importance then Type.
 | Add category url calculate by diacritics                                       | :sheep:  |  2  |  1  |  3  |                |       |
 | Create tests of sendreport                                                     | :ant:    |  2  |  1  |  3  |                |       |
 | Transform Error Logs notification into widget                                  | :ant:    |  2  |  1  |  3  |                |       |
+| Remove unused/duplicated errors                                                | :ant:    |  2  |  1  |  3  |                |       |
 | Check tests of inactive user                                                   | :ant:    |  2  |  1  |  3  |                |       |
 | Distribute tests of operations with not signed contract                        | :ant:    |  2  |  1  |  3  |                |       |
 | Remove "Then I", "When I", "Given I" of tests                                  | :ant:    |  2  |  1  |  3  |                |       |
