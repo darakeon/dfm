@@ -332,15 +332,18 @@ td, th {
 .btn:not(.btn-glyph):after {
 	font-family: var(--font-icon);
 	font-size: 1em;
-	margin: 0 0 -6px 10px;
+	margin: 0 -4px -6px 7px;
 	display: inline-block;
 	overflow-y: hidden;
+	width: 20px;
 }
 
 .btn-glyph {
 	height: 45px;
 }
 
+.alert-info:before,
+.btn-info:not(.btn-glyph):after,
 .glyphicon-asterisk:before {
 	content: "\002a"
 }
@@ -705,8 +708,6 @@ td, th {
 	content: "\e085"
 }
 
-.alert-info:before,
-.btn-info:not(.btn-glyph):after,
 .glyphicon-info-sign:before {
 	content: "\e086"
 }
@@ -755,8 +756,6 @@ td, th {
 	content: "\e097"
 }
 
-.alert-warning:before,
-.btn-warning:not(.btn-glyph):after,
 .glyphicon-exclamation-sign:before {
 	content: "\e101"
 }
@@ -1173,6 +1172,8 @@ td, th {
 	content: "\e206"
 }
 
+.alert-warning:before,
+.btn-warning:not(.btn-glyph):after,
 .glyphicon-alert:before {
 	content: "\e209"
 }
