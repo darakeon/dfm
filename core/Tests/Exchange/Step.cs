@@ -14,6 +14,9 @@ namespace DFM.Exchange.Tests
 	[Binding]
 	class Step : ContextHelper
 	{
+		public Step(ScenarioContext context)
+			: base(context) { }
+
 		private IEnumerable<TestMove> moves
 		{
 			get => getList<TestMove>("moves");

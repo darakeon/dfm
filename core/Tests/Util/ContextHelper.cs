@@ -7,26 +7,33 @@ using TechTalk.SpecFlow;
 
 namespace DFM.Tests.Util
 {
-	public class ContextHelper
+	public abstract class ContextHelper
 	{
-		protected static T get<T>(String key)
+		protected readonly ScenarioContext context;
+
+		protected ContextHelper(ScenarioContext context)
+		{
+			this.context = context;
+		}
+
+		protected T get<T>(String key)
 		{
 			return exists(key)
 				? (T)context[key]
 				: default;
 		}
 
-		protected static IEnumerable<T> getList<T>(String key)
+		protected IEnumerable<T> getList<T>(String key)
 		{
 			return get<IEnumerable<T>>(key) ?? Array.Empty<T>();
 		}
 
-		protected static Boolean exists(String key)
+		protected Boolean exists(String key)
 		{
 			return context.ContainsKey(key);
 		}
 
-		protected static void set(String key, Object value)
+		protected void set(String key, Object value)
 		{
 			context[key] = value;
 		}
@@ -34,11 +41,7 @@ namespace DFM.Tests.Util
 		protected static String runPath =>
 			Path.GetDirectoryName(typeof(ContextHelper).Assembly.Location);
 
-		#pragma warning disable 618
-		protected static ScenarioContext context => ScenarioContext.Current;
-		#pragma warning restore 618
-
-		protected static String scenarioTitle => context?.ScenarioInfo?.Title;
+		protected String scenarioTitle => context?.ScenarioInfo?.Title;
 		protected String scenarioCode => scenarioTitle?.ToLower().Substring(0, 4);
 
 		protected Boolean isCurrent(ScenarioBlock block)

@@ -20,26 +20,29 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 	[Binding]
 	public class RobotStep : BaseStep
 	{
+		public RobotStep(ScenarioContext context)
+			: base(context) { }
+
 		#region Variables
-		private static Guid guid
+		private Guid guid
 		{
 			get => get<Guid>("ID");
 			set => set("ID", value);
 		}
 
-		private static IList<ScheduleInfo> scheduleList
+		private IList<ScheduleInfo> scheduleList
 		{
 			get => get<IList<ScheduleInfo>>("scheduleList");
 			set => set("scheduleList", value);
 		}
 
-		private static IList<String> csv
+		private IList<String> csv
 		{
 			get => get<IList<String>>("csv");
 			set => set("csv", value);
 		}
 
-		private static String tfa
+		private String tfa
 		{
 			get => get<String>("tfa");
 			set => set("tfa", value);

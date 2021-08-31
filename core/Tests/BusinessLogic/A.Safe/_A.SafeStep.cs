@@ -18,74 +18,77 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 	[Binding]
 	public class SafeStep : BaseStep
 	{
+		public SafeStep(ScenarioContext context)
+			: base(context) { }
+
 		#region Variables
-		private static String newEmail
+		private String newEmail
 		{
 			get => get<String>("NewEmail");
 			set => set("NewEmail", value);
 		}
 
-		private static String ticket
+		private String ticket
 		{
 			get => get<String>("ticket");
 			set => set("ticket", value);
 		}
 
-		private static String password
+		private String password
 		{
 			get => get<String>("Password");
 			set => set("Password", value);
 		}
 
-		private static String retypePassword
+		private String retypePassword
 		{
 			get => get<String>("RetypePassword");
 			set => set("RetypePassword", value);
 		}
 
-		private static String newPassword
+		private String newPassword
 		{
 			get => get<String>("NewPassword");
 			set => set("NewPassword", value);
 		}
 
-		private static String currentPassword
+		private String currentPassword
 		{
 			get => get<String>("CurrentPassword");
 			set => set("CurrentPassword", value);
 		}
 
-		private static SecurityAction action
+		private SecurityAction action
 		{
 			get => get<SecurityAction>("Action");
 			set => set("Action", value);
 		}
 
-		private static IList<TicketInfo> logins
+		private IList<TicketInfo> logins
 		{
 			get => get<IList<TicketInfo>>("logins");
 			set => set("logins", value);
 		}
 
-		private static Boolean? accepted
+		private Boolean? accepted
 		{
 			get => get<Boolean?>("accepted");
 			set => set("accepted", value);
 		}
 
-		private static TFAInfo tfa
+		private TFAInfo tfa
 		{
 			get => get<TFAInfo>("tfa");
 			set => set("tfa", value);
 		}
 
-		private static Boolean? ticketVerified
+		private Boolean? ticketVerified
 		{
 			get => get<Boolean?>("ticketVerified");
 			set => set("ticketVerified", value);
 		}
 
-		private static Misc misc
+		private Misc misc
 		{
 			get => get<Misc>("Misc");
 			set => set("Misc", value);

@@ -19,26 +19,29 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 	[Binding]
 	public class AdminStep : BaseStep
 	{
+		public AdminStep(ScenarioContext context)
+			: base(context) { }
+
 		#region Variables
-		private static AccountInfo oldAccount
+		private AccountInfo oldAccount
 		{
 			get => get<AccountInfo>("oldAccount");
 			set => set("oldAccount", value);
 		}
 
-		private static Decimal accountTotal
+		private Decimal accountTotal
 		{
 			get => get<Decimal>("accountTotal");
 			set => set("accountTotal", value);
 		}
 
-		private static IList<AccountListItem> accountList
+		private IList<AccountListItem> accountList
 		{
 			get => get<IList<AccountListItem>>("accountList");
 			set => set("accountList", value);
 		}
 
-		private static IList<CategoryListItem> categoryList
+		private IList<CategoryListItem> categoryList
 		{
 			get => get<IList<CategoryListItem>>("categoryList");
 			set => set("categoryList", value);
@@ -46,14 +49,14 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 
 
 
-		private static CategoryInfo oldCategory
+		private CategoryInfo oldCategory
 		{
 			get => get<CategoryInfo>("oldCategory");
 			set => set("oldCategory", value);
 		}
 
 
-		private static Theme theme
+		private Theme theme
 		{
 			get => get<Theme>("theme");
 			set => set("theme", value);

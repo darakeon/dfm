@@ -13,32 +13,35 @@ namespace DFM.BusinessLogic.Tests.E.Report
 	[Binding]
 	public class ReportStep : BaseStep
 	{
+		public ReportStep(ScenarioContext context)
+			: base(context) { }
+
 		#region Variables
-		private static Int16 month
+		private Int16 month
 		{
 			get => get<Int16>("Month");
 			set => set("Month", value);
 		}
 
-		private static Int16? optionalMonth
+		private Int16? optionalMonth
 		{
 			get => get<Int16?>("OptionalMonth");
 			set => set("OptionalMonth", value);
 		}
 
-		private static Int16 year
+		private Int16 year
 		{
 			get => get<Int16>("Year");
 			set => set("Year", value);
 		}
 
-		private static MonthReport monthReport
+		private MonthReport monthReport
 		{
 			get => get<MonthReport>("MonthReport");
 			set => set("MonthReport", value);
 		}
 
-		private static YearReport yearReport
+		private YearReport yearReport
 		{
 			get => get<YearReport>("YearReport");
 			set => set("YearReport", value);
@@ -50,19 +53,19 @@ namespace DFM.BusinessLogic.Tests.E.Report
 			set => set("SearchResult", value);
 		}
 
-		private static CategoryReport categoryReport
+		private CategoryReport categoryReport
 		{
 			get => get<CategoryReport>("CategoryReport");
 			set => set("CategoryReport", value);
 		}
 
-		private static String tip
+		private String tip
 		{
 			get => get<String>("Tip");
 			set => set("Tip", value);
 		}
 
-		private static String otherTip
+		private String otherTip
 		{
 			get => get<String>("OtherTip");
 			set => set("OtherTip", value);
