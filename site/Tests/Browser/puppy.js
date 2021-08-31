@@ -42,8 +42,8 @@ function url(path) {
 	return `http://localhost:2709/${path}`
 }
 
-async function content(selector) {
-	await page.waitForSelector(selector)
+async function content(selector, options) {
+	await page.waitForSelector(selector, options)
 	return await page.$eval(selector, n => n.innerHTML)
 }
 

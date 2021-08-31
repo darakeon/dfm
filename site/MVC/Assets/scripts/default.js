@@ -19,6 +19,23 @@
 			thousands,
 			decimal
 		})
+
+		$(this).keyup(function (event) {
+			const key = event.key
+
+			const isNumber = key >= '0' && key <= '9'
+			const punctuation = key === thousands || key === decimal
+			const controlKeys = event.key.length > 1
+
+			const showWarning = !isNumber && !punctuation && !controlKeys;
+
+			$(this).siblings('.number-error').remove()
+
+			if (showWarning) {
+				const error = $('#body .number-error').clone()
+				$(this).parent().append(error)
+			}
+		})
 	})
 
 	$('.nav-tabs li').click(function () {

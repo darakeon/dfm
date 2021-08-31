@@ -186,4 +186,15 @@ describe('Moves', () => {
 		const checkUrl = `/Account/${accountOut}/Moves/Check/${id}`
 		expect(tr).toContain(checkUrl)
 	})
+
+	test('Just numbers field', async () => {
+		const form = `Account/${accountOut}/Moves/Create`
+		await puppy.call(form)
+		await page.waitForSelector('#body form')
+
+		await page.type('#Value', 'A')
+
+		const error = await puppy.content('#Value ~ .number-error', { visible: true })
+		expect(error).toContain(`digite apenas números neste campo`)
+	})
 })
