@@ -13,6 +13,9 @@ namespace DFM.BusinessLogic.Tests
 	[Binding]
 	public class MoneyRobotStep : BaseStep
 	{
+		public MoneyRobotStep(ScenarioContext context)
+			: base(context) { }
+
 		[Given(@"I have two accounts")]
 		public void GivenIHaveTwoAccounts()
 		{

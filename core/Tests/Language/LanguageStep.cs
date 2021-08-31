@@ -17,7 +17,7 @@ namespace DFM.Language.Tests
 	[Binding]
 	public class LanguageStep : ContextHelper
 	{
-		public LanguageStep()
+		public LanguageStep(ScenarioContext context) : base(context)
 		{
 			errors = new StringBuilder();
 		}
@@ -214,31 +214,31 @@ namespace DFM.Language.Tests
 		}
 
 
-		private static StringBuilder errors
+		private StringBuilder errors
 		{
 			get => get<StringBuilder>("errors");
 			set => set("errors", value);
 		}
 
-		private static IList<String> languages
+		private IList<String> languages
 		{
 			get => get<IList<String>>("languages");
 			set => set("languages", value);
 		}
 
-		private static IList<Pair> keys
+		private IList<Pair> keys
 		{
 			get => get<IList<Pair>>("keys");
 			set => set("keys", value);
 		}
 
-		private static IList<EmailType> emailTypes
+		private IList<EmailType> emailTypes
 		{
 			get => get<IList<EmailType>>("emailTypes");
 			set => set("emailTypes", value);
 		}
 
-		private static IList<Theme> themes
+		private IList<Theme> themes
 		{
 			get => get<IList<Theme>>("themes");
 			set => set("themes", value);

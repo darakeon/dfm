@@ -20,20 +20,23 @@ namespace DFM.BusinessLogic.Tests.C.Money
 	[Binding]
 	public class MoneyStep : BaseStep
 	{
+		public MoneyStep(ScenarioContext context)
+			: base(context) { }
+
 		#region Variables
-		private static Guid guid
+		private Guid guid
 		{
 			get => get<Guid>("guid");
 			set => set("guid", value);
 		}
 
-		private static List<Guid> guids
+		private List<Guid> guids
 		{
 			get => get<List<Guid>>("guids");
 			set => set("guids", value);
 		}
 
-		private static DateTime oldDate
+		private DateTime oldDate
 		{
 			get => get<DateTime>("OldDate");
 			set => set("OldDate", value);
@@ -45,37 +48,37 @@ namespace DFM.BusinessLogic.Tests.C.Money
 
 		private static String newCategoryName => "new " + mainCategoryName;
 
-		private static Decimal newAccountOutTotal
+		private Decimal newAccountOutTotal
 		{
 			get => get<Decimal>("NewAccountOutTotal");
 			set => set("NewAccountOutTotal", value);
 		}
 
-		private static Decimal newYearCategoryAccountOutTotal
+		private Decimal newYearCategoryAccountOutTotal
 		{
 			get => get<Decimal>("NewYearCategoryAccountOutTotal");
 			set => set("NewYearCategoryAccountOutTotal", value);
 		}
 
-		private static Decimal newMonthCategoryAccountOutTotal
+		private Decimal newMonthCategoryAccountOutTotal
 		{
 			get => get<Decimal>("NewMonthCategoryAccountOutTotal");
 			set => set("NewMonthCategoryAccountOutTotal", value);
 		}
 
-		private static Decimal newAccountInTotal
+		private Decimal newAccountInTotal
 		{
 			get => get<Decimal>("NewAccountInTotal");
 			set => set("NewAccountInTotal", value);
 		}
 
-		private static Decimal newYearCategoryAccountInTotal
+		private Decimal newYearCategoryAccountInTotal
 		{
 			get => get<Decimal>("NewYearCategoryAccountInTotal");
 			set => set("NewYearCategoryAccountInTotal", value);
 		}
 
-		private static Decimal newMonthCategoryAccountInTotal
+		private Decimal newMonthCategoryAccountInTotal
 		{
 			get => get<Decimal>("NewMonthCategoryAccountInTotal");
 			set => set("NewMonthCategoryAccountInTotal", value);
@@ -251,7 +254,7 @@ namespace DFM.BusinessLogic.Tests.C.Money
 			}
 		}
 
-		private static void setAccountOutNewTotals(Account account, Category category, MoveInfo move)
+		private void setAccountOutNewTotals(Account account, Category category, MoveInfo move)
 		{
 			newAccountOutTotal = repos.Summary.GetTotal(account);
 
@@ -266,7 +269,7 @@ namespace DFM.BusinessLogic.Tests.C.Money
 				)?.Out ?? 0;
 		}
 
-		private static void setAccountInNewTotals(Account account, Category category, MoveInfo move)
+		private void setAccountInNewTotals(Account account, Category category, MoveInfo move)
 		{
 			newAccountInTotal = repos.Summary.GetTotal(account);
 

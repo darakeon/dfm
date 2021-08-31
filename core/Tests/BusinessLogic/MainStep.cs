@@ -18,6 +18,9 @@ namespace DFM.BusinessLogic.Tests
 	[Binding]
 	public class MainStep : BaseStep
 	{
+		public MainStep(ScenarioContext context)
+			: base(context) { }
+
 		[Given(@"test user login")]
 		public void GivenIHaveACompleteUserLoggedIn()
 		{
@@ -136,7 +139,7 @@ namespace DFM.BusinessLogic.Tests
 
 			setRepositories();
 
-			log("BeforeTestRun");
+			log("General", "BeforeTestRun");
 
 			TZ.Init(false);
 
@@ -153,13 +156,13 @@ namespace DFM.BusinessLogic.Tests
 		[AfterTestRun]
 		public static void End()
 		{
-			log("End");
+			log("General", "End");
 			SessionFactoryManager.End();
 		}
 
 		// ReSharper disable once UnusedMember.Global
 		[BeforeScenario]
-		public static void RegisterRun()
+		public void RegisterRun()
 		{
 			log("Before scenario");
 			testStart = DateTime.UtcNow;
@@ -167,10 +170,9 @@ namespace DFM.BusinessLogic.Tests
 
 		// ReSharper disable once UnusedMember.Global
 		[AfterScenarioBlock]
-		public static void CloseSession()
+		public void CloseSession()
 		{
 			log("After scenario block");
-
 			SessionManager.Close();
 		}
 

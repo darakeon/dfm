@@ -13,7 +13,7 @@ namespace DFM.Email.Tests
 	[Binding]
 	public class Step : ContextHelper
 	{
-		public Step()
+		public Step(ScenarioContext context) : base(context)
 		{
 			Cfg.Init();
 			PlainText.Initialize(runPath);
@@ -138,25 +138,25 @@ namespace DFM.Email.Tests
 			Assert.True(match(body, pattern));
 		}
 
-		private static MailError error
+		private MailError error
 		{
 			get => get<MailError>("error");
 			set => set("error", value);
 		}
 
-		private static Sender sender
+		private Sender sender
 		{
 			get => get<Sender>("sender");
 			set => set("sender", value);
 		}
 
-		private static User user
+		private User user
 		{
 			get => get<User>("user");
 			set => set("user", value);
 		}
 
-		private static Format format
+		private Format format
 		{
 			get => get<Format>("format");
 			set => set("format", value);

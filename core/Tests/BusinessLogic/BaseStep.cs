@@ -20,6 +20,12 @@ namespace DFM.BusinessLogic.Tests
 {
 	public abstract class BaseStep : ContextHelper
 	{
+		protected BaseStep(ScenarioContext context)
+			: base(context)
+		{
+			instance = this;
+		}
+
 		protected static ServiceAccess service;
 		protected static Current current => service.Current;
 
@@ -56,9 +62,14 @@ namespace DFM.BusinessLogic.Tests
 			return "https://dontflymoney.com";
 		}
 
-		protected static void log(String text)
+		protected void log(String text)
 		{
-			var log = $"{DateTime.UtcNow:HH:mm:ss-fff}\t{scenarioTitle}\t{text}\n";
+			log(scenarioTitle, text);
+		}
+
+		protected static void log(String title, String text)
+		{
+			var log = $"{DateTime.UtcNow:HH:mm:ss-fff}\t{title}\t{text}\n";
 			File.AppendAllText(logFileName, log);
 		}
 
@@ -206,14 +217,16 @@ namespace DFM.BusinessLogic.Tests
 		#endregion
 
 		#region Context
+		protected static BaseStep instance;
+
 		protected static ClientTicket getTicket(Boolean remember)
 		{
-			return new(ticketKey, TicketType.Tests);
+			return new(instance.ticketKey, TicketType.Tests);
 		}
 
 		protected static String getTicketKey()
 		{
-			return mainTicket ??= Token.New();
+			return instance.mainTicket ??= Token.New();
 		}
 
 		protected void resetTicket()
@@ -221,174 +234,174 @@ namespace DFM.BusinessLogic.Tests
 			mainTicket = null;
 		}
 
-		protected static String ticketKey => getTicketKey();
+		protected String ticketKey => getTicketKey();
 
-		private static String mainTicket
+		private String mainTicket
 		{
 			get => get<String>("mainTicket");
 			set => set("mainTicket", value);
 		}
 
-		protected static CoreError error
+		protected CoreError error
 		{
 			get => get<CoreError>("error");
 			set => set("error", value);
 		}
 
-		protected static SessionInfo session
+		protected SessionInfo session
 		{
 			get => get<SessionInfo>("Session");
 			set => set("Session", value);
 		}
 
-		protected static AccountInfo accountInfo
+		protected AccountInfo accountInfo
 		{
 			get => get<AccountInfo>("AccountInfo");
 			set => set("AccountInfo", value);
 		}
 
-		protected static CategoryInfo categoryInfo
+		protected CategoryInfo categoryInfo
 		{
 			get => get<CategoryInfo>("CategoryInfo");
 			set => set("CategoryInfo", value);
 		}
 
 
-		protected static Account accountOut
+		protected Account accountOut
 		{
 			get => get<Account>("AccountOut");
 			set => set("AccountOut", value);
 		}
 
-		protected static Decimal accountOutTotal
+		protected Decimal accountOutTotal
 		{
 			get => get<Decimal>("AccountOutTotal");
 			set => set("AccountOutTotal", value);
 		}
 
-		protected static Decimal yearAccountOutTotal
+		protected Decimal yearAccountOutTotal
 		{
 			get => get<Decimal>("YearAccountOutTotal");
 			set => set("YearAccountOutTotal", value);
 		}
 
-		protected static Decimal monthAccountOutTotal
+		protected Decimal monthAccountOutTotal
 		{
 			get => get<Decimal>("MonthAccountOutTotal");
 			set => set("MonthAccountOutTotal", value);
 		}
 
-		protected static Decimal yearCategoryAccountOutTotal
+		protected Decimal yearCategoryAccountOutTotal
 		{
 			get => get<Decimal>("YearCategoryAccountOutTotal");
 			set => set("YearCategoryAccountOutTotal", value);
 		}
 
-		protected static Decimal monthCategoryAccountOutTotal
+		protected Decimal monthCategoryAccountOutTotal
 		{
 			get => get<Decimal>("MonthCategoryAccountOutTotal");
 			set => set("MonthCategoryAccountOutTotal", value);
 		}
 
 
-		protected static Account accountIn
+		protected Account accountIn
 		{
 			get => get<Account>("AccountIn");
 			set => set("AccountIn", value);
 		}
 
-		protected static Decimal accountInTotal
+		protected Decimal accountInTotal
 		{
 			get => get<Decimal>("AccountInTotal");
 			set => set("AccountInTotal", value);
 		}
 
-		protected static Decimal yearAccountInTotal
+		protected Decimal yearAccountInTotal
 		{
 			get => get<Decimal>("YearAccountInTotal");
 			set => set("YearAccountInTotal", value);
 		}
 
-		protected static Decimal monthAccountInTotal
+		protected Decimal monthAccountInTotal
 		{
 			get => get<Decimal>("MonthAccountInTotal");
 			set => set("MonthAccountInTotal", value);
 		}
 
-		protected static Decimal yearCategoryAccountInTotal
+		protected Decimal yearCategoryAccountInTotal
 		{
 			get => get<Decimal>("YearCategoryAccountInTotal");
 			set => set("YearCategoryAccountInTotal", value);
 		}
 
-		protected static Decimal monthCategoryAccountInTotal
+		protected Decimal monthCategoryAccountInTotal
 		{
 			get => get<Decimal>("MonthCategoryAccountInTotal");
 			set => set("MonthCategoryAccountInTotal", value);
 		}
 
 
-		protected static String accountUrl
+		protected String accountUrl
 		{
 			get => get<String>("AccountUrl");
 			set => set("AccountUrl", value);
 		}
 
-		protected static String categoryName
+		protected String categoryName
 		{
 			get => get<String>("CategoryName");
 			set => set("CategoryName", value);
 		}
 
-		protected static EmailStatus? currentEmailStatus
+		protected EmailStatus? currentEmailStatus
 		{
 			get => get<EmailStatus?>("CurrentEmailStatus");
 			set => set("CurrentEmailStatus", value);
 		}
 
-		protected static MoveInfo moveInfo
+		protected MoveInfo moveInfo
 		{
 			get => get<MoveInfo>("MoveInfo");
 			set => set("MoveInfo", value);
 		}
 
-		protected static MoveResult moveResult
+		protected MoveResult moveResult
 		{
 			get => get<MoveResult>("MoveResult");
 			set => set("MoveResult", value);
 		}
 
-		protected static ScheduleInfo scheduleInfo
+		protected ScheduleInfo scheduleInfo
 		{
 			get => get<ScheduleInfo>("ScheduleInfo");
 			set => set("ScheduleInfo", value);
 		}
 
-		protected static ScheduleResult scheduleResult
+		protected ScheduleResult scheduleResult
 		{
 			get => get<ScheduleResult>("ScheduleResult");
 			set => set("ScheduleResult", value);
 		}
 
-		protected static DateTime testStart
+		protected DateTime testStart
 		{
 			get => get<DateTime>("testStart");
 			set => set("testStart", value);
 		}
 
-		protected static String token
+		protected String token
 		{
 			get => get<String>("Token");
 			set => set("Token", value);
 		}
 
-		protected static String email
+		protected String email
 		{
 			get => get<String>("Email");
 			set => set("Email", value);
 		}
 
-		protected static DateTime entityDate =>
+		protected DateTime entityDate =>
 			moveInfo?.GetDate() ??
 			scheduleInfo?.GetDate() ??
 			DateTime.MinValue;
