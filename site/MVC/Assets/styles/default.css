@@ -347,3 +347,7 @@ table a.link-glyphicon,
 .table a.link-glyphicon {
 	text-decoration: none;
 }
+
+#body > .number-error {
+	display: none;
+}

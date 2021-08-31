@@ -18,7 +18,7 @@ Legend:
 - [ ] Hide closed accounts if there are no closed accounts
 - [ ] When there are accounts, show "create another account" (and category)
 - [ ] Change "tudo bem" by "saudável" in portuguese translation
-- [ ] Tooltip of "just numbers" in just numbers fields
+- [x] `210831>210831` Warning of "just numbers" in just numbers fields
 - [x] `210829>210831` Remove account url field (calculate no diacritics - take care equal url)
 - [x] `210829>210831` Add configuration for use account sign
 
