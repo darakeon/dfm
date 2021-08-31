@@ -342,6 +342,10 @@ td, th {
 	height: 45px;
 }
 
+.btn-glyph.btn-sm {
+	height: 35px;
+}
+
 .alert-info:before,
 .btn-info:not(.btn-glyph):after,
 .glyphicon-asterisk:before {
