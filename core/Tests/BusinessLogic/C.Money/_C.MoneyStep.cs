@@ -823,7 +823,7 @@ namespace DFM.BusinessLogic.Tests.C.Money
 			if (moveAccountUrl != null)
 				getOrCreateAccount(moveAccountUrl);
 
-			makeMove(value, nature, moveAccountUrl);
+			makeMove(value, nature, moveAccountUrl?.IntoUrl());
 		}
 
 		private void makeMove(Table details, MoveNature nature)

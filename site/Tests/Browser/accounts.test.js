@@ -20,7 +20,6 @@ describe('Accounts', () => {
 		await page.waitForSelector('#body form')
 
 		await page.type('#Account_Name', 'Account Create')
-		await page.type('#Account_Url', '')
 		await page.click('#body form button[type="submit"]')
 
 		const table = await puppy.content('#body .table')
@@ -42,7 +41,7 @@ describe('Accounts', () => {
 
 		const table = await puppy.content('#body .table')
 		expect(table).toContain(
-			'<a href="/Account/account_edit" title="Movimentações de Account 2">Account 2</a>'
+			'<a href="/Account/account_2" title="Movimentações de Account 2">Account 2</a>'
 		)
 	})
 

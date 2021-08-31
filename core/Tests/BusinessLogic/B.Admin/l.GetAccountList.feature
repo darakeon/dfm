@@ -6,25 +6,25 @@ Background:
 
 Scenario: Bl01. Get all active accounts
 	Given I have this account
-			| Name           | Url            | Yellow | Red |
-			| Account Bl01.1 | account_bl01_1 |        |     |
+			| Name           |
+			| Account Bl01.1 |
 		And I have this account
-			| Name           | Url            | Yellow | Red |
-			| Account Bl01.2 | account_bl01_2 |        |     |
+			| Name           |
+			| Account Bl01.2 |
 	When ask for the active account list
 	Then I will receive no core error
 		And the account list will have this
-			| Name           | Url            | Yellow | Red |
-			| Account Bl01.1 | account_bl01_1 |        |     |
-			| Account Bl01.2 | account_bl01_2 |        |     |
+			| Name           | Url            |
+			| Account Bl01.1 | account_bl01_1 |
+			| Account Bl01.2 | account_bl01_2 |
 
 Scenario: Bl02. Get all active accounts after close one
 	Given I have this account
-			| Name           | Url            | Yellow | Red |
-			| Account Bl02.1 | account_bl02_1 |        |     |
+			| Name           |
+			| Account Bl02.1 |
 		And I have this account
-			| Name           | Url            | Yellow | Red |
-			| Account Bl02.2 | account_bl02_2 |        |     |
+			| Name           |
+			| Account Bl02.2 |
 		And this account has moves
 		And I close the account account_bl02_2
 	When ask for the active account list
@@ -38,11 +38,11 @@ Scenario: Bl02. Get all active accounts after close one
 
 Scenario: Bl03. Get all not active accounts after close one
 	Given I have this account
-			| Name           | Url            | Yellow | Red |
-			| Account Bl03.1 | account_bl03_1 |        |     |
+			| Name           |
+			| Account Bl03.1 |
 		And I have this account
-			| Name           | Url            | Yellow | Red |
-			| Account Bl03.2 | account_bl03_2 |        |     |
+			| Name           |
+			| Account Bl03.2 |
 		And this account has moves
 		And I close the account account_bl03_2
 	When ask for the not active account list
@@ -56,16 +56,16 @@ Scenario: Bl03. Get all not active accounts after close one
 
 Scenario: Bl04. Not get accounts if user is marked for deletion
 	Given I have this account
-			| Name         | Url          | Yellow | Red |
-			| Account Bl04 | account_bl04 |        |     |
+			| Name         |
+			| Account Bl04 |
 		But the user is marked for deletion
 	When ask for the not active account list
 	Then I will receive this core error: UserDeleted
 
 Scenario: Bl05. Not get accounts if user requested wipe
 	Given I have this account
-			| Name         | Url          | Yellow | Red |
-			| Account Bl05 | account_bl05 |        |     |
+			| Name         |
+			| Account Bl05 |
 		But the user asked data wipe
 	When ask for the not active account list
 	Then I will receive this core error: UserAskedWipe

@@ -10,10 +10,11 @@ namespace DFM.BusinessLogic.Response
 		private AccountInfo(Account account)
 		{
 			Name = account.Name;
-			Url = account.Url;
 			OriginalUrl = account.Url;
+
 			YellowLimit = account.YellowLimit;
 			RedLimit = account.RedLimit;
+
 			IsOpen = account.Open;
 			Start = account.BeginDate;
 			End = account.EndDate;
@@ -25,7 +26,6 @@ namespace DFM.BusinessLogic.Response
 		internal void Update(Account account)
 		{
 			account.Name = Name;
-			account.Url = Url;
 			account.YellowLimit = YellowLimit;
 			account.RedLimit = RedLimit;
 		}
@@ -33,7 +33,6 @@ namespace DFM.BusinessLogic.Response
 		public String OriginalUrl { get; set; }
 
 		public String Name { get; set; }
-		public String Url { get; set; }
 		public Decimal? YellowLimit { get; set; }
 		public Decimal? RedLimit { get; set; }
 		public Boolean IsOpen { get; set; }

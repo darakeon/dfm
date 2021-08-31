@@ -19,7 +19,7 @@ Legend:
 - [ ] When there are accounts, show "create another account" (and category)
 - [ ] Change "tudo bem" by "saudável" in portuguese translation
 - [ ] Tooltip of "just numbers" in just numbers fields
-- [ ] `210829>......` Remove account url field (calculate no diacritics - take care equal url)
+- [x] `210829>210831` Remove account url field (calculate no diacritics - take care equal url)
 - [x] `210829>210831` Add configuration for use account sign
 
 ## <a name="7.3.1.1"></a>7.3.1.1 :ant: <sup>`1`</sup>

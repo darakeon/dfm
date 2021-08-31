@@ -4,6 +4,7 @@ using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
+using DFM.Generic;
 using DFM.Generic.Datetime;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -109,12 +110,11 @@ namespace DFM.BusinessLogic.Tests
 		[Given(@"it has a closed Account Out")]
 		public void GivenItHasAClosedAccountOut()
 		{
-			var url = makeUrlFromName("closed out");
+			var url = "closed out".IntoUrl();
 
 			var account = new AccountInfo
 			{
 				Name = "closed out",
-				Url = url,
 			};
 
 			service.Admin.CreateAccount(account);
@@ -180,12 +180,11 @@ namespace DFM.BusinessLogic.Tests
 		[Given(@"it has a closed Account In")]
 		public void GivenItHasAClosedAccountIn()
 		{
-			var url = makeUrlFromName("closed in");
+			var url = "closed in".IntoUrl();
 
 			var account = new AccountInfo
 			{
 				Name = "closed in",
-				Url = url,
 			};
 
 			service.Admin.CreateAccount(account);

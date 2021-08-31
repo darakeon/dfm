@@ -18,6 +18,7 @@
                 -{{ checksum "core/Tests/Email/Email.Tests.csproj" }}
                 -{{ checksum "core/Tests/Language/Language.Tests.csproj" }}
                 -{{ checksum "core/Tests/Exchange/Exchange.Tests.csproj" }}
+                -{{ checksum "core/Tests/Generic/Generic.Tests.csproj" }}
       - run:
           name: dependencies
           command: dotnet restore core/Core.sln
@@ -35,11 +36,16 @@
             -{{ checksum "core/Tests/Email/Email.Tests.csproj" }}
             -{{ checksum "core/Tests/Language/Language.Tests.csproj" }}
             -{{ checksum "core/Tests/Exchange/Exchange.Tests.csproj" }}
+            -{{ checksum "core/Tests/Generic/Generic.Tests.csproj" }}
           paths:
             - ~/.nuget/packages
       - run:
           name: build
           command: dotnet build -c Debug core/Core.sln --no-restore
+      - run:
+          path: core/Tests/Generic
+          name: tests_generic
+          command: dotnet test -v m --no-build
       - run:
           path: core/Tests/Language
           name: tests_language

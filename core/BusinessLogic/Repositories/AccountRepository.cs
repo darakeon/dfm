@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Bases;
+using DFM.Generic;
 
 namespace DFM.BusinessLogic.Repositories
 {
@@ -18,7 +18,6 @@ namespace DFM.BusinessLogic.Repositories
 		private void validate(Account account)
 		{
 			checkName(account);
-			checkUrl(account);
 			checkLimits(account);
 		}
 
@@ -40,29 +39,6 @@ namespace DFM.BusinessLogic.Repositories
 				throw Error.AccountNameAlreadyExists.Throw();
 		}
 
-		private void checkUrl(Account account)
-		{
-			if (String.IsNullOrEmpty(account.Url))
-				throw Error.AccountUrlRequired.Throw();
-
-			if (account.Url.Length > MaxLen.AccountUrl)
-				throw Error.TooLargeAccountUrl.Throw();
-
-			var regex = new Regex(@"^[a-z0-9_]*$");
-
-			if (!regex.IsMatch(account.Url))
-				throw Error.AccountUrlInvalid.Throw();
-
-			var otherAccount = GetByUrl(account.Url, account.User);
-
-			var accountUrlExistsForUser =
-				otherAccount != null
-					&& otherAccount.ID != account.ID;
-
-			if (accountUrlExistsForUser)
-				throw Error.AccountUrlAlreadyExists.Throw();
-		}
-
 		private static void checkLimits(Account account)
 		{
 			if (account.RedLimit == null || account.YellowLimit == null)
@@ -74,11 +50,32 @@ namespace DFM.BusinessLogic.Repositories
 
 		private void complete(Account account)
 		{
-			if (!String.IsNullOrEmpty(account.Url))
-				account.Url = account.Url.ToLower();
+			if (account.Name != null)
+			{
+				account.Url = generateUniqueUrl(account);
+			}
 
 			if (account.ID == 0)
 				account.BeginDate = account.User.Now();
+		}
+
+		private String generateUniqueUrl(Account account)
+		{
+			var url = account.Name.IntoUrl();
+			for (var a = 2; getOtherAccount(url, account) != null; a++)
+			{
+				url = $"{account.Name.IntoUrl()}_{a}";
+			}
+			return url;
+		}
+
+		private Account getOtherAccount(String url, Account account)
+		{
+			var otherAccount = GetByUrl(url, account.User);
+
+			return otherAccount?.ID == account.ID
+				? null
+				: otherAccount;
 		}
 
 		private Account getByName(String name, User user)
@@ -96,15 +93,10 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal Account GetByUrl(String url, User user)
 		{
-			var accountList = Where(
-				a => a.Url == url.ToLower()
+			return SingleOrDefault(
+				a => a.Url == url
 					&& a.User.ID == user.ID
 			);
-
-			if (accountList.Count > 1)
-				throw Error.DuplicatedAccountUrl.Throw();
-
-			return accountList.SingleOrDefault();
 		}
 
 		internal void Close(Account account)

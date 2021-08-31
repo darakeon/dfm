@@ -103,7 +103,7 @@ namespace DFM.BusinessLogic.Tests.E.Report
 		public void ThenItsSumValueWillBeEqualToItsMovesSumValue()
 		{
 			var user = repos.User.GetByEmail(current.Email);
-			var account = repos.Account.GetByUrl(accountInfo.Url, user);
+			var account = repos.Account.GetByUrl(accountInfo.Name.IntoUrl(), user);
 
 			var time = year * 100 + month;
 			var expected = repos.Summary
@@ -223,7 +223,7 @@ namespace DFM.BusinessLogic.Tests.E.Report
 			var expected = yearReport.MonthList.Sum(m => m.CurrentTotal);
 
 			var user = repos.User.GetByEmail(current.Email);
-			var account = repos.Account.GetByUrl(accountInfo.Url, user);
+			var account = repos.Account.GetByUrl(accountInfo.Name.IntoUrl(), user);
 
 			var actual = repos.Move
 				.ByAccount(account)
@@ -530,12 +530,12 @@ namespace DFM.BusinessLogic.Tests.E.Report
 
 				var accountOut =
 					nature == MoveNature.Out
-						? accountInfo.Url
+						? accountInfo.Name.IntoUrl()
 						: null;
 
 				var accountIn =
 					nature == MoveNature.In
-						? accountInfo.Url
+						? accountInfo.Name.IntoUrl()
 						: null;
 
 				var move = new MoveInfo
