@@ -80,14 +80,6 @@ namespace DFM.BusinessLogic.Tests
 				: Int32.Parse(str);
 		}
 
-		protected static String makeUrlFromName(String name)
-		{
-			var regex = new Regex("[^A-Za-z0-9_]");
-			var url = regex.Replace(name, "");
-
-			return url;
-		}
-
 		protected String getLastTokenForUser(String email, SecurityAction action)
 		{
 			var user = repos.User.GetByEmail(email);
@@ -188,15 +180,11 @@ namespace DFM.BusinessLogic.Tests
 		protected Account getOrCreateAccount(String url)
 		{
 			var user = repos.User.GetByEmail(current.Email);
-			var account = repos.Account.GetByUrl(url, user);
+			var account = repos.Account.GetByUrl(url.IntoUrl(), user);
 			if (account != null) return account;
 
 			service.Admin.CreateAccount(
-				new AccountInfo
-				{
-					Name = url,
-					Url = url,
-				}
+				new AccountInfo {Name = url}
 			);
 
 			return repos.Account.GetByUrl(url, user);
@@ -420,8 +408,8 @@ namespace DFM.BusinessLogic.Tests
 
 		protected const String accountOutName = "Account Out";
 		protected const String accountInName = "Account In";
-		protected static String accountOutUrl = makeUrlFromName(accountOutName);
-		protected static String accountInUrl = makeUrlFromName(accountInName);
+		protected static String accountOutUrl = accountOutName.IntoUrl();
+		protected static String accountInUrl = accountInName.IntoUrl();
 
 		#region Helpers
 		protected DetailInfo getDetailFromTable(TableRow detailData)

@@ -64,7 +64,7 @@ namespace DFM.BusinessLogic.Tests
 		[Given(@"I pass a valid account url")]
 		public void GivenIPassValidAccountUrl()
 		{
-			accountUrl = accountInfo.Url;
+			accountUrl = accountInfo.Name.IntoUrl();
 		}
 
 		[Given(@"I set test start date here")]

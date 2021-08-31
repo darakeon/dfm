@@ -169,8 +169,8 @@ Scenario: Bk23. Not update if user requested wipe
 Scenario: Bk24. Disable accounts signs
 	Given have enabled accounts signs
 		And I have this account
-			| Name         | Url          | Yellow | Red |
-			| Disable Sign | disable_sign | 20     | 10  |
+			| Name         | Yellow | Red |
+			| Disable Sign | 20     | 10  |
 	When disable accounts signs
 	Then I will receive no core error
 		And account sign will not be available
@@ -181,8 +181,8 @@ Scenario: Bk24. Disable accounts signs
 Scenario: Bk25. Enable accounts signs
 	Given have enabled accounts signs
 		And I have this account
-			| Name         | Url          | Yellow | Red |
-			| Disable Sign | disable_sign | 20     | 10  |
+			| Name         | Yellow | Red |
+			| Disable Sign | 20     | 10  |
 		And have disabled accounts signs
 	When enable accounts signs
 	Then I will receive no core error

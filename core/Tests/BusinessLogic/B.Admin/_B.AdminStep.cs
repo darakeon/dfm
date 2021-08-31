@@ -74,7 +74,6 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			accountInfo = new AccountInfo
 			{
 				Name = accountData["Name"],
-				Url = accountData["Url"],
 				RedLimit = getInt(accountData["Red"]),
 				YellowLimit = getInt(accountData["Yellow"]),
 			};
@@ -88,7 +87,6 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			oldAccount = new AccountInfo
 			{
 				Name = accountData["Name"],
-				Url = accountData["Url"],
 			};
 
 			if (accountData.ContainsKey("Red"))
@@ -116,10 +114,9 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		[Then(@"the account will not be changed")]
 		public void ThenTheAccountWillNotBeChanged()
 		{
-			var account = service.Admin.GetAccount(oldAccount.Url);
+			var account = service.Admin.GetAccount(oldAccount.Name.IntoUrl());
 
 			Assert.AreEqual(oldAccount.Name, account.Name);
-			Assert.AreEqual(oldAccount.Url.ToLower(), account.Url);
 			Assert.AreEqual(oldAccount.RedLimit, account.RedLimit);
 			Assert.AreEqual(oldAccount.YellowLimit, account.YellowLimit);
 		}
@@ -128,7 +125,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		public void ThenTheAccountWillNotBeSaved()
 		{
 			error = null;
-			var url = accountInfo.Url;
+			var url = accountInfo.Name.IntoUrl();
 			accountInfo = null;
 
 			try
@@ -148,9 +145,17 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		[Then(@"the account will be saved")]
 		public void ThenTheAccountWillBeSaved()
 		{
-			accountInfo = service.Admin.GetAccount(accountInfo.Url);
+			accountInfo = service.Admin.GetAccount(accountInfo.Name.IntoUrl());
 
 			Assert.IsNotNull(accountInfo);
+		}
+
+		[Then(@"the account url will be (.+)")]
+		public void ThenTheAccountUrlWillBe(String url)
+		{
+			var newAccount = service.Admin.GetAccount(url);
+
+			Assert.IsNotNull(accountInfo.Name, newAccount.Name);
 		}
 		#endregion
 
@@ -186,7 +191,6 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			accountInfo = new AccountInfo
 			{
 				Name = accountData["Name"],
-				Url = accountData["Url"],
 			};
 
 			if (accountData.ContainsKey("Yellow") && accountData["Yellow"] != "")
@@ -205,7 +209,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			{
 				Description = "Description",
 				Nature = MoveNature.Out,
-				OutUrl = accountInfo.Url,
+				OutUrl = accountInfo.Name.IntoUrl(),
 			};
 
 			moveInfo.SetDate(current.Now);
@@ -222,7 +226,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			service.Money.SaveMove(moveInfo);
 
 			var user = repos.User.GetByEmail(current.Email);
-			var account = repos.Account.GetByUrl(accountInfo.Url, user);
+			var account = repos.Account.GetByUrl(accountInfo.Name.IntoUrl(), user);
 			accountTotal = repos.Summary.GetTotal(account);
 		}
 
@@ -233,10 +237,15 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 
 			accountInfo = new AccountInfo
 			{
-				OriginalUrl = (accountInfo ?? oldAccount).Url,
-				Url = accountData["Url"],
+				OriginalUrl = (accountInfo ?? oldAccount).Name.IntoUrl(),
 				Name = accountData["Name"],
 			};
+
+			if (accountData.ContainsKey("Red"))
+				accountInfo.RedLimit = getInt(accountData["Red"]);
+
+			if (accountData.ContainsKey("Yellow"))
+				accountInfo.YellowLimit = getInt(accountData["Yellow"]);
 		}
 
 		[When(@"I try to update the account")]
@@ -258,27 +267,10 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			AccountInfo account = null;
 			error = null;
 
-			if (accountInfo.Url != accountInfo.OriginalUrl)
-			{
-				try
-				{
-					account = service.Admin.GetAccount(accountInfo.OriginalUrl);
-				}
-				catch (CoreError e)
-				{
-					error = e;
-				}
-
-				Assert.IsNull(account);
-				Assert.IsNotNull(error);
-				Assert.AreEqual(error.Type, Error.InvalidAccount);
-
-				error = null;
-			}
-
 			try
 			{
-				account = service.Admin.GetAccount(accountInfo.Url);
+				var url = accountInfo.Name.IntoUrl();
+				account = service.Admin.GetAccount(url);
 			}
 			catch (CoreError e)
 			{
@@ -288,14 +280,17 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			Assert.IsNotNull(account);
 			Assert.IsNull(error);
 
-			Assert.AreEqual(accountInfo.Url, account.Url);
+			Assert.AreEqual(accountInfo.Name, account.Name);
+			Assert.AreEqual(accountInfo.HasLimit, account.HasLimit);
+			Assert.AreEqual(accountInfo.RedLimit, account.RedLimit);
+			Assert.AreEqual(accountInfo.YellowLimit, account.YellowLimit);
 		}
 
 		[Then(@"the account value will not change")]
 		public void TheAccountValueWillNotChange()
 		{
 			var user = repos.User.GetByEmail(current.Email);
-			var account = repos.Account.GetByUrl(accountInfo.Url, user);
+			var account = repos.Account.GetByUrl(accountInfo.Name.IntoUrl(), user);
 			var total = repos.Summary.GetTotal(account);
 			Assert.AreEqual(accountTotal, total);
 		}
@@ -349,7 +344,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		public void GivenIDeleteTheMovesOf(String givenAccountUrl)
 		{
 			var user = repos.User.GetByEmail(current.Email);
-			var account = repos.Account.GetByUrl(givenAccountUrl, user);
+			var account = repos.Account.GetByUrl(givenAccountUrl.IntoUrl(), user);
 			var moveList = repos.Move.ByAccount(account);
 
 			foreach (var move in moveList)
@@ -383,7 +378,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		public void ThenTheAccountWillBeDeleted()
 		{
 			error = null;
-			var url = accountInfo.Url;
+			var url = accountInfo.Name.IntoUrl();
 			accountInfo = null;
 
 			try
@@ -405,7 +400,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		[Given(@"I close the account (.+)")]
 		public void GivenICloseTheAccount(String url)
 		{
-			service.Admin.CloseAccount(url);
+			service.Admin.CloseAccount(url.IntoUrl());
 		}
 
 		[When(@"ask for the (not )?active account list")]
@@ -422,7 +417,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		}
 
 		[Then(@"the account list will (not )?have this")]
-		public void ThenTheAccountListsWillBeThis(Boolean has, Table table)
+		public void ThenTheAccountListWillHaveThis(Boolean has, Table table)
 		{
 			var expectedList = new List<Account>();
 
@@ -473,7 +468,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		[Then(@"the account will be open")]
 		public void ThenTheAccountWillBeOpen()
 		{
-			var url = accountUrl ?? accountInfo?.Url;
+			var url = accountUrl ?? accountInfo?.Name.IntoUrl();
 			var account = service.Admin.GetAccount(url);
 			Assert.IsTrue(account.IsOpen);
 		}
@@ -815,7 +810,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		{
 			var user = repos.User.GetByEmail(userEmail);
 			var category = repos.Category.GetByName(categoryName, user);
-			var account = repos.Account.GetByUrl(accountInfo.Url, user);
+			var account = repos.Account.GetByUrl(accountInfo.Name.IntoUrl(), user);
 
 			var summary = new Summary
 			{
@@ -1030,10 +1025,10 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		}
 
 		[Then(@"the account list will( not)? have sign")]
-		public void ThenTheAccountListWillNotHaveSign(Boolean hasSign)
+		public void ThenTheAccountListWillHaveSign(Boolean hasSign)
 		{
 			var accountList = service.Admin.GetAccountList(true);
-			var url = accountInfo.Url;
+			var url = accountInfo.Name.IntoUrl();
 			var account = accountList.Single(a => a.Url == url);
 
 			if (hasSign)
@@ -1045,7 +1040,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		[Then(@"the year report will( not)? have sign")]
 		public void ThenTheYearReportWillNotHaveSign(Boolean hasSign)
 		{
-			var url = accountInfo.Url;
+			var url = accountInfo.Name.IntoUrl();
 			var year = (Int16) current.Now.Year;
 			var yearReport = service.Report.GetYearReport(url, year);
 
@@ -1064,7 +1059,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		[Then(@"the month report will( not)? have sign")]
 		public void ThenTheMonthReportWillNotHaveSign(Boolean hasSign)
 		{
-			var url = accountInfo.Url;
+			var url = accountInfo.Name.IntoUrl();
 			var year = (Int16)current.Now.Year;
 			var month = (Int16)current.Now.Month;
 			var monthReport = service.Report.GetMonthReport(url, year, month);
@@ -1194,12 +1189,10 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			accountInfo = new AccountInfo
 			{
 				Name = givenAccountUrl,
-				Url = givenAccountUrl,
 			};
 
 			service.Admin.CreateAccount(accountInfo);
-
-			accountUrl = accountInfo.Url;
+			accountUrl = givenAccountUrl.IntoUrl();
 		}
 
 		[Given(@"I give a url of the account ([\w]+) with moves")]
@@ -1208,25 +1201,24 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			accountInfo = new AccountInfo
 			{
 				Name = givenAccountUrl,
-				Url = givenAccountUrl,
 			};
 
 			service.Admin.CreateAccount(accountInfo);
+
+			accountUrl = givenAccountUrl.IntoUrl();
 
 			var move = new MoveInfo
 			{
 				Description = "Move for account test",
 				Nature = MoveNature.Out,
 				Value = 10,
-				OutUrl = accountInfo.Url,
+				OutUrl = accountUrl,
 				CategoryName = categoryInfo?.Name,
 			};
 
 			move.SetDate(current.Now);
 
 			service.Money.SaveMove(move);
-
-			accountUrl = accountInfo.Url;
 		}
 
 		[Given(@"the account has a schedule( with details)?")]
@@ -1239,7 +1231,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 				Frequency = ScheduleFrequency.Daily,
 				Boundless = false,
 				Times = 1,
-				OutUrl = accountInfo.Url,
+				OutUrl = accountInfo.Name.IntoUrl(),
 				CategoryName = categoryInfo?.Name,
 			};
 
@@ -1275,7 +1267,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 				Frequency = ScheduleFrequency.Daily,
 				Boundless = false,
 				Times = 1,
-				OutUrl = accountInfo.Url,
+				OutUrl = accountInfo.Name.IntoUrl(),
 			};
 
 			scheduleInfo.SetDate(current.Now.AddDays(1));
@@ -1315,7 +1307,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 
 			if (accountUrl != null)
 			{
-				Assert.AreEqual(accountUrl, accountInfo.Url);
+				Assert.AreEqual(accountUrl, accountInfo.Name.IntoUrl());
 			}
 			else
 			{
@@ -1326,7 +1318,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		[Then(@"the account will (not )?have an end date")]
 		public void ThenTheAccountWillHaveAnEndDate(Boolean hasEndDate)
 		{
-			var url = accountUrl ?? accountInfo?.Url;
+			var url = accountUrl ?? accountInfo?.Name.IntoUrl();
 			var account = service.Admin.GetAccount(url);
 
 			if (hasEndDate)

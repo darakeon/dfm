@@ -26,16 +26,6 @@
 @Html.HiddenFor(m => m.Type)
 @Html.HiddenFor(m => m.Account.OriginalUrl)
 
-<div class="form-group">
-	@Html.LabelFor(m => m.Account.Url, Context.Translate("Url"), new { @class = "control-label" })
-	<span class="glyphicon glyphicon-info-sign control-label"
-		  title="@String.Format(Context.Translate("AcceptedUrlCharacters"), MaxLen.AccountUrl)">
-	</span>
-
-	@Html.TextBoxFor(m => m.Account.Url, new { maxlength = MaxLen.AccountUrl, @class = "form-control suggest-target" })
-	<small class="control-label">@String.Format(Context.Translate("CharactersMax"), MaxLen.AccountUrl)</small>
-</div>
-
 @if (Model.IsUsingAccountsSigns)
 {
 	<div class="form-group text-center">

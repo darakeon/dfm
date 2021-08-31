@@ -31,8 +31,8 @@ Scenario: Aq03. Update E-mail
 
 Scenario: Aq04. Save Account
 	Given I have this account to create
-			| Name          | Url           | Yellow | Red |
-			| Account Aq101 | account_aq101 |        |     |
+			| Name          | Yellow | Red |
+			| Account Aq101 |        |     |
 	But there is a new contract
 	When I try to save the account
 	Then I will receive this core error: NotSignedLastContract
@@ -46,12 +46,12 @@ Scenario: Aq05. Select Account
 
 Scenario: Aq06. Update Account
 	Given I have this account
-			| Name          | Url           | Yellow | Red |
-			| Account Aq103 | account_aq103 |        |     |
+			| Name          | Yellow | Red |
+			| Account Aq103 |        |     |
 	But there is a new contract
 	When I make this changes to the account
-			| Name             | Url           | Yellow | Red |
-			| Aq103 - new name | account_aq103 |        |     |
+			| Name             | Yellow | Red |
+			| Aq103 - new name |        |     |
 		And I try to update the account
 	Then I will receive this core error: NotSignedLastContract
 
