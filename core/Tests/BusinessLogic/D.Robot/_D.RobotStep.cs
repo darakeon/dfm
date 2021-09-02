@@ -190,7 +190,15 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			});
 		}
 
-		[Given(@"(.+) is a robot")]
+		[Given(@"the user is a robot")]
+		public void GivenTheUserIsARobot()
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			user.Control.IsRobot = true;
+			db.Execute(() => repos.Control.SaveOrUpdate(user.Control));
+		}
+
+		[Given(@"(.+\@.+) is a robot")]
 		public void GivenIsARobot(String email)
 		{
 			var user = repos.User.GetByEmail(email);

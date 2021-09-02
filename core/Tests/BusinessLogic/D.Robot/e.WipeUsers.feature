@@ -640,3 +640,58 @@ Scenario: De55. Wipe just the right user
 	Then I will receive no core error
 		And the user won't exist
 		But the user dont_wipe_me@dontflymoney.com will still exist
+
+Scenario: De56. Do not warn robots without activity
+	Given the user last access was 90 days before
+		But the user is a robot
+	When robot user login
+		And call wipe users
+	Then I will receive no core error
+		And the user will still exist
+		And the count of warnings sent will be 0
+		And and the user warning count will be 0
+
+Scenario: De57. Do not wipe robots without activity
+	Given the user last access was 90 days before
+		And the user have being warned twice
+		But the user is a robot
+	When robot user login
+		And call wipe users
+	Then I will receive no core error
+		And the user will still exist
+		And it will not be registered at wipe table
+
+Scenario: De58. Do not warn robots which did not accepted last contract
+	Given a contract from 90 days before
+		And the user creation was 100 days before
+		And the user last access was 0 days before
+		But the user is a robot
+	When robot user login
+		And call wipe users
+	Then I will receive no core error
+		And the user will still exist
+		And the count of warnings sent will be 0
+		And and the user warning count will be 0
+
+Scenario: De59. Do not wipe robots which did not accepted last contract
+	Given a contract from 90 days before
+		And the user creation was 100 days before
+		And the user last access was 0 days before
+		And the user have being warned twice
+		But the user is a robot
+	When robot user login
+		And call wipe users
+	Then I will receive no core error
+		And the user will still exist
+		And it will not be registered at wipe table
+
+# it is a robot, should not "ask" this
+# need to be protected, just in case
+Scenario: De60. Do not wipe robots even if it "asks" too
+	Given data wipe was asked
+		But the user is a robot
+	When robot user login
+		And call wipe users
+	Then I will receive no core error
+		And the user will still exist
+		And it will not be registered at wipe table

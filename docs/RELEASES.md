@@ -5,8 +5,8 @@
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
 - [go to published version](#7.3.1.0)
-- [go to version in development](#7.4.0.0)
-- [dev version state](../../7.4.0.0/docs/RELEASES.md#7.4.0.0)
+- [go to version in development](#7.3.1.1)
+- [dev version state](../../7.3.1.1/docs/RELEASES.md#7.3.1.1)
 
 Legend:
 - :dragon:: at least one huge change (increases first number)
@@ -21,6 +21,9 @@ Legend:
 - [ ] Tooltip of "just numbers" in just numbers fields
 - [ ] Remove account url field (calculate no diacritics - take care equal url)
 - [ ] Add configuration for use account sign
+
+## <a name="7.3.1.1"></a>7.3.1.1 :ant: <sup>`1`</sup>
+- [x] `210902>210902` Fix robot deleting itself
 
 ## <a name="7.3.1.0"></a>7.3.1.0 :sheep: <sup>`5`</sup>
 - [x] `210828>210828` Add "back to home" button at wizard end
