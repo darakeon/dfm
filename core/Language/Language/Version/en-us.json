@@ -1,4 +1,7 @@
 {
+	"7.3.1.1": [
+		"Solved problem at running schedules"
+	],
 	"7.3.1.0": [
 		"Improve end wizard screen",
 		"Fix misuse of account word",
