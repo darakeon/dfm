@@ -3,19 +3,25 @@
 @{
 	ViewBag.Title = Context.Translate("Accounts");
 
+	var anyAccount = Model.AccountList.Any();
+
+	var createAccountLabel = anyAccount
+		? Context.Translate("CreateAnotherAccount")
+		: Context.Translate("Create", "Account");
+
 	ViewBag.WizardMessage =
-		Model.AccountList.Any()
+		anyAccount
 			? "AccountsIndexFilled"
 			: "AccountsIndexEmpty";
 
 	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 
-	ViewBag.HasContent = Model.AccountList.Any();
+	ViewBag.HasContent = anyAccount;
 	ViewBag.NoContentText = Context.Translate("NoAccounts");
 	ViewBag.Buttons = new List<Button>
 	{
 		new(Context.Translate("ClosedAccounts"), "ListClosed", true),
-		new(Context.Translate("Create", "Account"), "Create")
+		new(createAccountLabel, "Create")
 	};
 
 	var route = new Accounts();

@@ -13,6 +13,23 @@ describe('Accounts', () => {
 
 		const warning = await puppy.content('.alert')
 		expect(warning).toContain('Não há Contas ainda.')
+
+		const buttons = await puppy.content('#table-buttons')
+		expect(buttons).toContain('Criar Conta')
+	})
+
+	test('Filled List', async () => {
+		const name = 'Account One'
+		const url = await db.createAccountIfNotExists(name, user)
+
+		await puppy.call('Accounts')
+
+		const table = await puppy.content('table')
+		expect(table).toContain(name)
+		expect(table).toContain(url)
+
+		const buttons = await puppy.content('#table-buttons')
+		expect(buttons).toContain('Criar outra Conta')
 	})
 
 	test('Create', async () => {
