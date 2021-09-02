@@ -14,6 +14,7 @@
 		"Url": "Url",
 		"AcceptedUrlCharacters": "Use just letters (without accents), numbers and underlines (&quot;_&quot;)",
 		"AccountMoves": "{0} Moves",
+		"CreateAnotherAccount": "Create another Account",
 	},
 	"pt-BR": {
 		"NoAccounts": "Não há Contas ainda.",
@@ -29,6 +30,7 @@
 		"AccountHasLimit": "Mostrar sinalização na Conta",
 		"Url": "Url",
 		"AcceptedUrlCharacters": "Use apenas letras (sem acentos), números e underlines (&quot;_&quot;)",
-		"AccountMoves": "Movimentações de {0}"
+		"AccountMoves": "Movimentações de {0}",
+		"CreateAnotherAccount": "Criar outra Conta",
 	},
 }

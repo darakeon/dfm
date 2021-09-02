@@ -21,7 +21,7 @@
 
 	if (buttonList != null)
 	{
-		<div class="text-center">
+		<div id="table-buttons" class="text-center">
 			@foreach (var button in buttonList.OrderByDescending(b => b.PullLeft))
 			{
 				@Html.ActionLink(
@@ -71,7 +71,7 @@ else
 
 	if (buttonList != null)
 	{
-		<div class="text-right">
+		<div id="table-buttons" class="text-right">
 			@foreach (var button in buttonList)
 			{
 				@Html.ActionLink(
