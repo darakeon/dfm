@@ -1,4 +1,3 @@
-const { get } = require('axios')
 const db = require('./db')
 
 let initialized = false;
@@ -33,8 +32,8 @@ async function call(path) {
 }
 
 async function callPlain(path) {
-	const response = await get(url(path))
-	return response.data
+	const result = await page.goto(url(path))
+	return await result.text()
 }
 
 function url(path) {
