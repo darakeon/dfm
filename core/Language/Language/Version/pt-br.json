@@ -1,4 +1,7 @@
 {
+	"7.3.1.1": [
+		"Resolvido problema ao rodar agendamentos"
+	],
 	"7.3.1.0": [
 		"Melhoria da tela de finalização do tutorial",
 		"Corrigidos usos da palavra conta",

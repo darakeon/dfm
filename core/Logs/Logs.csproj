@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>DfM.Logs</RootNamespace>
-    <AssemblyVersion>7.3.1.0</AssemblyVersion>
-    <FileVersion>7.3.1.0</FileVersion>
+    <AssemblyVersion>7.3.1.1</AssemblyVersion>
+    <FileVersion>7.3.1.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
