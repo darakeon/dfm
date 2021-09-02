@@ -200,6 +200,9 @@ namespace DFM.BusinessLogic.Services
 
 			foreach (var user in users)
 			{
+				if (user.Control.IsRobot)
+					continue;
+
 				var control = user.Control;
 				var date = control.LastInteraction();
 				var didSomething = warnOrDelete(
@@ -233,6 +236,9 @@ namespace DFM.BusinessLogic.Services
 
 			foreach (var user in notAccepted)
 			{
+				if (user.Control.IsRobot)
+					continue;
+
 				var userDate = user.Control.Creation;
 				var contractDate = contract.BeginDate;
 
@@ -262,6 +268,9 @@ namespace DFM.BusinessLogic.Services
 
 			foreach (var user in users)
 			{
+				if (user.Control.IsRobot)
+					continue;
+
 				// ReSharper disable once PossibleInvalidOperationException
 				var date = user.Control.WipeRequest.Value;
 
