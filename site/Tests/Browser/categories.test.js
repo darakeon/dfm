@@ -13,6 +13,23 @@ describe('Categories', () => {
 
 		const warning = await puppy.content('.alert')
 		expect(warning).toContain('Não há Categorias ainda.')
+
+		const buttons = await puppy.content('#table-buttons')
+		expect(buttons).toContain('Criar Categoria')
+	})
+
+	test('Filled List', async () => {
+		const name = 'Category One'
+		const url = await db.createCategoryIfNotExists(name, user)
+
+		await puppy.call('Categories')
+
+		const table = await puppy.content('table')
+		expect(table).toContain(name)
+		expect(table).toContain(url)
+
+		const buttons = await puppy.content('#table-buttons')
+		expect(buttons).toContain('Criar outra Categoria')
 	})
 
 	test('Create', async () => {
