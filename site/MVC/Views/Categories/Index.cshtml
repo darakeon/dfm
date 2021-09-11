@@ -5,12 +5,17 @@
 	ViewBag.WizardMessage = "Categories";
 	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 
-	ViewBag.HasContent = Model.CategoryList.Any();
+	var anyCategory = Model.CategoryList.Any();
+	var createCategoryLabel = anyCategory
+		? Context.Translate("CreateAnotherCategory")
+		: Context.Translate("Create", "Category");
+
+	ViewBag.HasContent = anyCategory;
 	ViewBag.NoContentText = Context.Translate("NoCategories");
 
 	ViewBag.Buttons = new List<Button>
 	{
-		new(Context.Translate("Create", "Category"), "Create")
+		new(createCategoryLabel, "Create")
 	};
 }
 
