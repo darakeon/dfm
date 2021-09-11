@@ -18,11 +18,21 @@
 
 	ViewBag.HasContent = anyAccount;
 	ViewBag.NoContentText = Context.Translate("NoAccounts");
-	ViewBag.Buttons = new List<Button>
+
+	var buttons = new List<Button>
 	{
-		new(Context.Translate("ClosedAccounts"), "ListClosed", true),
 		new(createAccountLabel, "Create")
 	};
+
+	if (Model.HasClosed)
+	{
+		buttons.Add(new(
+			Context.Translate("ClosedAccounts"),
+			"ListClosed", true
+		));
+	}
+
+	ViewBag.Buttons = buttons;
 
 	var route = new Accounts();
 }

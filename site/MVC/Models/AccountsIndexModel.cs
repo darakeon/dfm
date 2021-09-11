@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DFM.BusinessLogic.Response;
 
 namespace DFM.MVC.Models
@@ -9,8 +10,10 @@ namespace DFM.MVC.Models
 		public AccountsIndexModel(Boolean open = true)
 		{
 			AccountList = admin.GetAccountList(open);
+			HasClosed = admin.GetAccountList(false).Any();
 		}
 
 		public IList<AccountListItem> AccountList { get; set; }
+		public Boolean HasClosed { get; set; }
 	}
 }
