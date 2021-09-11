@@ -14,7 +14,7 @@ namespace DFM.MVC.Areas.Api.Helpers
 			add("Reports", "Year", "Summary");
 			add("Moves", "Create", "MovesCreate");
 			add("Moves", "Edit", "MovesCreate");
-			add("Configs", "Config", "Settings");
+			add("Configs", "Index", "Settings");
 		}
 
 		private const String @default = "Welcome";
