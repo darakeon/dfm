@@ -15,7 +15,7 @@ Legend:
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="7.4.0.0"></a>7.4.0.0 :whale: <sup>`6`</sup>
-- [ ] Hide closed accounts if there are no closed accounts
+- [x] `210911>210911` Hide closed accounts button if there are no closed accounts
 - [x] `210901>210911` When there are accounts, show "create another account" (and category)
 - [x] `210831>210831` Change "tudo bem" by "saudável" in portuguese translation
 - [x] `210831>210831` Warning of "just numbers" in just numbers fields

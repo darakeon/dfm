@@ -16,6 +16,7 @@ describe('Accounts', () => {
 
 		const buttons = await puppy.content('#table-buttons')
 		expect(buttons).toContain('Criar Conta')
+		expect(buttons).not.toContain('Contas Fechadas')
 	})
 
 	test('Filled List', async () => {
@@ -30,6 +31,7 @@ describe('Accounts', () => {
 
 		const buttons = await puppy.content('#table-buttons')
 		expect(buttons).toContain('Criar outra Conta')
+		expect(buttons).not.toContain('Contas Fechadas')
 	})
 
 	test('Create', async () => {
@@ -113,6 +115,11 @@ describe('Accounts', () => {
 		expect(body).toContain(
 			`<a href="/Account/account_close/Reports/Month/${report}" title="Movimentações de Account Close">Account Close</a>`
 		)
+
+		await puppy.call('Accounts')
+
+		const buttons = await puppy.content('#table-buttons')
+		expect(buttons).toContain('Contas Fechadas')
 	})
 
 	test('Reopen', async () => {
