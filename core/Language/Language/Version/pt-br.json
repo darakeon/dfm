@@ -1,4 +1,12 @@
 {
+	"7.4.0.0": [
+		"Ocultado botão sem uso",
+		"Melhorados textos de botões",
+		"Melhorado texto de sinal da conta",
+		"Aviso em campos numéricos",
+		"Url da conta auto-calculada",
+		"Ativação/desativação de sinais na conta"
+	],
 	"7.3.1.1": [
 		"Resolvido problema ao rodar agendamentos"
 	],

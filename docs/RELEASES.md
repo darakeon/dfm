@@ -4,15 +4,18 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#7.3.1.1)
-- [go to version in development](#7.4.0.0)
-- [dev version state](../../7.4.0.0/docs/RELEASES.md#7.4.0.0)
+- [go to published version](#7.4.0.0)
+- [go to version in development](#8.0.0.0)
+- [dev version state](../../8.0.0.0/docs/RELEASES.md#8.0.0.0)
 
 Legend:
 - :dragon:: at least one huge change (increases first number)
 - :whale:: at least one big change, like a new feature (increases second number)
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="8.0.0.0"></a>8.0.0.0 :dragon: <sup>`1`</sup>
+- [ ] Make wizard interactive
 
 ## <a name="7.4.0.0"></a>7.4.0.0 :whale: <sup>`6`</sup>
 - [x] `210911>210911` Hide closed accounts button if there are no closed accounts

@@ -13,9 +13,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then Type.
 
-| Task (47)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (46)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
-| Make wizard interactive                                                        | :dragon: |  4  |  4  |  4  |                |       |
 | Add nickname field - show it at every screen and e-mail                        | :whale:  |  3  |  3  |  4  |                |       |
 | Separate validators from service/repository                                    | :ant:    |  3  |  3  |  4  |                |       |
 | Enable Copy Move (web+mobile)                                                  | :whale:  |  2  |  2  |  4  |                |       |

@@ -1,4 +1,12 @@
 {
+	"7.4.0.0": [
+		"Hide useless button",
+		"Improve buttons texts",
+		"Improve account sign label",
+		"Warn about just number fields",
+		"Auto-calculate account url",
+		"Toggle account sign use"
+	],
 	"7.3.1.1": [
 		"Solved problem at running schedules"
 	],
