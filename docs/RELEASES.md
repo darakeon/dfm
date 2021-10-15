@@ -5,8 +5,8 @@
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
 - [go to published version](#7.4.0.4)
-- [go to version in development](#8.0.0.0)
-- [dev version state](../../8.0.0.0/docs/RELEASES.md#8.0.0.0)
+- [go to version in development](#7.4.0.5)
+- [dev version state](../../7.4.0.5/docs/RELEASES.md#7.4.0.5)
 
 Legend:
 - :dragon:: at least one huge change (increases first number)
@@ -16,6 +16,9 @@ Legend:
 
 ## <a name="8.0.0.0"></a>8.0.0.0 :dragon: <sup>`1`</sup>
 - [ ] Make wizard interactive
+
+## <a name="7.4.0.5"></a>7.4.0.5 :ant: <sup>`1`</sup>
+- [ ] Add service interruption clause
 
 ## <a name="7.4.0.4"></a>7.4.0.4 :ant: <sup>`1`</sup>
 - [x] `220426>220426` Upgrade .NET version
