@@ -14,7 +14,8 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="8.0.0.0"></a>8.0.0.0 :dragon: <sup>`1`</sup>
+## <a name="8.0.0.0"></a>8.0.0.0 :dragon: <sup>`2`</sup>
+- [ ] Add service interruption clause
 - [ ] Make wizard interactive
 
 ## <a name="7.4.0.4"></a>7.4.0.4 :ant: <sup>`1`</sup>
