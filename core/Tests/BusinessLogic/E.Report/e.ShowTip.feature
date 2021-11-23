@@ -114,8 +114,7 @@ Scenario: Ee10. Not show tip if user requested wipe
 		And tip will not be shown
 
 Scenario: Ee11. Not show tip if user logoff
-	Given asked for tip 4 times
-		And I logoff the user
+	Given I logoff the user
 	When show a tip
 	Then I will receive this core error: Uninvited
 		And tip will not be shown
@@ -128,3 +127,9 @@ Scenario: Ee12. Tip return valid value
 			| TestTip1 |
 			| TestTip2 |
 			| TestTip3 |
+
+Scenario: Ee13. Not show tip if user has not signed last contract
+	Given there is a new contract
+	When show a tip
+	Then I will receive this core error: NotSignedLastContract
+		And tip will not be shown
