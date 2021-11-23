@@ -35,9 +35,11 @@ namespace DFM.MVC.Models
 		public String ControllerName => route?["controller"];
 
 		public String Tip =>
-			current.IsAuthenticated && current.IsVerified
-				? service.Report.ShowTip()
-				: null;
+			current.IsAuthenticated
+				&& current.IsVerified
+				&& IsLastContractAccepted
+			? service.Report.ShowTip()
+			: null;
 
 		public Boolean IsExternal
 		{
