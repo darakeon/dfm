@@ -185,5 +185,20 @@ describe('Reports', () => {
 		const bodyNoTip = await puppy.content('body')
 		expect(bodyNoTip).not.toContain(tipContainer)
 
+		// call some times again to reactivate tip
+		for(let i = 2; i < 27; i++) {
+			await puppy.call()
+			const body = await puppy.content('body')
+			expect(body).not.toContain(tipContainer)
+		}
+
+		// new contract
+		await db.createContract();
+
+		await puppy.call();
+
+		const bodyAfterContract = await puppy.content('body')
+		expect(bodyAfterContract).not.toContain(tipContainer)
+
 	}, 40000)
 })
