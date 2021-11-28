@@ -17,7 +17,8 @@ Legend:
 ## <a name="8.0.0.0"></a>8.0.0.0 :dragon: <sup>`1`</sup>
 - [ ] Make wizard interactive
 
-## <a name="7.4.0.1"></a>7.4.0.1 :ant: <sup>`1`</sup>
+## <a name="7.4.0.1"></a>7.4.0.1 :ant: <sup>`2`</sup>
+- [ ] Add change version to CI ([how to commit ci])
 - [x] `211123>211127` Fix ops page to ignore contract
 
 ## <a name="7.4.0.0"></a>7.4.0.0 :whale: <sup>`6`</sup>
@@ -921,3 +922,4 @@ Legend:
 [#49]: https://github.com/darakeon/dfm/issues/49
 [chart]: https://www.highcharts.com/demo/pie-legend
 [#107]: https://github.com/darakeon/dfm/issues/107
+[how to commit ci]: https://support.circleci.com/hc/en-us/articles/360018860473-How-to-push-a-commit-back-to-the-same-repository-as-part-of-the-CircleCI-job?utm_source=google&utm_medium=sem&utm_campaign=sem-google-dg--latam-en-dsa-maxConv-auth-nb&utm_term=g_b-_m__dsa_&utm_content=&gclid=EAIaIQobChMIvaiowOO59AIVChCRCh0rgA0SEAAYASAAEgLqdvD_BwE
