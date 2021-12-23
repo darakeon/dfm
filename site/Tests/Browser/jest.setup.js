@@ -1,4 +1,4 @@
-jest.setTimeout(6000)
+jest.setTimeout(process.env.JEST_TIMEOUT || 6000)
 
 process.on('unhandledRejection', err => {
 	throw err
