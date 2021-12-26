@@ -161,10 +161,13 @@ describe('Reports', () => {
 		user = await puppy.logon('reports-tips@dontflymoney.com')
 		const tipContainer = '<aside class="tip">'
 
+		const bodyInitial = await puppy.content('body')
+		expect(bodyInitial).not.toContain(tipContainer)
+
 		for(let i = 2; i < 27; i++) {
 			await puppy.call()
-			const body = await puppy.content('body')
-			expect(body).not.toContain(tipContainer)
+			const bodyFor = await puppy.content('body')
+			expect(bodyFor).not.toContain(tipContainer)
 		}
 
 		// show tip first time
@@ -200,5 +203,5 @@ describe('Reports', () => {
 		const bodyAfterContract = await puppy.content('body')
 		expect(bodyAfterContract).not.toContain(tipContainer)
 
-	}, 40000)
+	}, 60000)
 })
