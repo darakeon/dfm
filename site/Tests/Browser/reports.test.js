@@ -58,7 +58,7 @@ describe('Reports', () => {
 			expect(alert).toContain(
 				`Não há movimentações para este ano.`
 			)
-	
+
 			await puppy.createMove(
 				db,
 				'Move for Year', '2018-11-16', '1,00',
