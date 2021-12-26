@@ -22,7 +22,8 @@ use git2::{
 
 use reqwest::blocking::Client;
 
-use crate::file::get_content;
+use std::env;
+
 use crate::regex::replace;
 
 pub fn current_branch() -> Option<String> {
@@ -151,7 +152,8 @@ fn git_credentials_callback(
 	private.push(".ssh");
 	private.push("id_rsa");
 
-	let password = get_content("password".to_string());
+	let password = env::var("GIT_PASSWORD")
+		.expect("No GIT_EMAIL environment variable found");
 
 	return Cred::ssh_key(
 		username.unwrap(),
@@ -284,8 +286,12 @@ pub fn stash_pop() {
 }
 
 fn signature() -> Signature<'static> {
-	let name = get_content("name".to_string());
-	let email = get_content("email".to_string());
+	let name = env::var("GIT_NAME")
+		.expect("No GIT_NAME environment variable found");
+
+	let email = env::var("GIT_EMAIL")
+		.expect("No GIT_EMAIL environment variable found");
+
 	return Signature::now(&name, &email).unwrap();
 }
 
