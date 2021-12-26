@@ -152,8 +152,9 @@ async function createMove(
 	return db.getMoveId(description, year, month, day)
 }
 
-async function imageLog(name) {
-	console.log(`Recording ${name}`)
+async function imageLog(name, silent) {
+	if (!silent)
+		console.log(`Recording ${name}`)
 
 	await page.setViewport({
 		width: 1024,
@@ -165,7 +166,8 @@ async function imageLog(name) {
 		path: 'log/' + name + '.png'
 	})
 
-	console.log(`${name} recorded`)
+	if (!silent)
+		console.log(`${name} recorded`)
 }
 
 module.exports = {
