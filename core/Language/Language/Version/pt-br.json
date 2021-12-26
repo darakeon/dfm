@@ -1,4 +1,7 @@
 {
+	"7.4.0.1": [
+		"Corrigido problema com página que avisa de erro no site"
+	],
 	"7.4.0.0": [
 		"Ocultado botão sem uso",
 		"Melhorados textos de botões",
