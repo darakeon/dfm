@@ -1,0 +1,10 @@
+{
+    "en-US": {
+        "Add change version to CI ([how to commit ci])": "-",
+        "Fix ops page to ignore contract": "Fix problem with site error page"
+    },
+    "pt-BR": {
+        "Add change version to CI ([how to commit ci])": "-",
+        "Fix ops page to ignore contract": "Corrigido problema com página que avisa de erro no site"
+    }
+}

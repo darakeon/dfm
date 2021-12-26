@@ -1,4 +1,5 @@
-use std::io::{stdin,stdout,Write};
+use json;
+use json::JsonValue;
 
 use crate::file::{get_path, get_content, set_content};
 use crate::version::Version;
@@ -24,8 +25,12 @@ pub fn update_notes_for_language(version: &Version, language: &str) {
 	let mut tasks_json = "".to_string();
 	let mut tasks = version.tasks.clone();
 
+	let translations_file = get_content("..\\docs\\translations.json".to_string());
+	let translations = json::parse(&translations_file).unwrap();
+
 	while let Some(task) = tasks.pop_front() {
-		if let Some(translated) = translate_and_format(&task) {
+		let translated = &translations[language][&task];
+		if let Some(formatted) = format(&task, translated) {
 			if tasks_json.len() > 0 {
 				tasks_json = format!(
 					"{},\n",
@@ -36,7 +41,7 @@ pub fn update_notes_for_language(version: &Version, language: &str) {
 			tasks_json = format!(
 				"{}{}",
 				tasks_json,
-				translated,
+				formatted,
 			);
 		}
 	}
@@ -53,21 +58,17 @@ pub fn update_notes_for_language(version: &Version, language: &str) {
 	set_content(path, new_content);
 }
 
-fn translate_and_format(task: &str) -> Option<String> {
-	print!("\"{}\": ", task);
-	stdout().flush().unwrap();
+fn format(task: &str, translation: &JsonValue) -> Option<String> {
+	let mut result = translation.to_string().trim().to_string();
+	print!("\"{}\": {}", task, result);
 
-	let mut translation = String::new();
-	stdin().read_line(&mut translation).unwrap();
-	translation = translation.trim().to_string();
-
-	if translation == "-" {
+	if result == "-" {
 		return None;
 	}
 
-	if translation == "=" {
-		translation = task.to_string()
+	if result == "=" {
+		result = task.to_string()
 	}
 
-	return Some(format!("\t\t\"{}\"", translation));
+	return Some(format!("\t\t\"{}\"", result));
 }
