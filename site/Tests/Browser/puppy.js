@@ -27,7 +27,8 @@ async function call(path) {
 	if (status == 200)
 		return result
 
-	await imageLog('error')
+	const logPath = path.replace(/\//g, '_')
+	await imageLog(`error_${logPath}`)
 	throw status
 }
 
