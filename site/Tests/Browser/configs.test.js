@@ -85,14 +85,14 @@ describe('Configs', () => {
 		const header = await puppy.content('.panel .header')
 		await expect(header).toContain('Imagem de segurança')
 
-		await puppy.imageLog('misc-original')
+		await puppy.imageLog('misc-original', true)
 
 		await puppy.submit(`/Configs/Misc`)
 
 		const alertError = await puppy.content('.alert')
 		await expect(alertError).toContain('Senha errada para acesso atual')
 
-		await puppy.imageLog('misc-wrong-pass')
+		await puppy.imageLog('misc-wrong-pass', true)
 
 		await page.type('#Password', 'password')
 		await puppy.submit(`/Configs/Misc`)
@@ -100,7 +100,7 @@ describe('Configs', () => {
 		const alertSuccess = await puppy.content('.alert')
 		await expect(alertSuccess).toContain('Configurações alteradas')
 
-		await puppy.imageLog('misc-changed')
+		await puppy.imageLog('misc-changed', true)
 	})
 
 	test('Wipe', async () => {
