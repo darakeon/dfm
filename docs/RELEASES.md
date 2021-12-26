@@ -18,7 +18,7 @@ Legend:
 - [ ] Make wizard interactive
 
 ## <a name="7.4.0.1"></a>7.4.0.1 :ant: <sup>`2`</sup>
-- [ ] `211226>......` Add change version to CI ([how to commit ci])
+- [x] `211226>211226` Add change version to CI ([how to commit ci])
 - [x] `211123>211226` Fix ops page to ignore contract
 
 ## <a name="7.4.0.0"></a>7.4.0.0 :whale: <sup>`6`</sup>

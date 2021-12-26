@@ -25,7 +25,8 @@ workflows:
           requires:
             - test_ci
             - test_core
-      - version_change:
+      - approve_version_change:
+          type: approval
           requires:
             - test_ci
             - test_core
@@ -33,3 +34,6 @@ workflows:
             - test_browser
             - test_android
             - test_build_robot
+      - version_change:
+          requires:
+            - approve_version_change

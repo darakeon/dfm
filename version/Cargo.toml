@@ -9,3 +9,4 @@ dirs = "*"
 git2 = "*"
 regex = "*"
 reqwest = { version = "*", features = ["blocking"] }
+json = "*"
