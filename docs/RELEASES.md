@@ -19,7 +19,7 @@ Legend:
 
 ## <a name="7.4.0.1"></a>7.4.0.1 :ant: <sup>`2`</sup>
 - [ ] Add change version to CI ([how to commit ci])
-- [x] `211123>211225` Fix ops page to ignore contract
+- [x] `211123>211226` Fix ops page to ignore contract
 
 ## <a name="7.4.0.0"></a>7.4.0.0 :whale: <sup>`6`</sup>
 - [x] `210911>210911` Hide closed accounts button if there are no closed accounts

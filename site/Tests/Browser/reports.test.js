@@ -182,6 +182,7 @@ describe('Reports', () => {
 
 		// dismiss tip
 		await page.click('.tip .balloon .tip-close')
+		await page.waitForSelector('.tip.hidden-tip');
 
 		// third should not show
 		await puppy.call()
