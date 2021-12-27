@@ -313,6 +313,9 @@ workflows:
     jobs:
       - test_ci
       - version_check:
+          filters:
+            branches:
+              only: /^\d+\.\d+\.\d+\.\d+$/
           requires:
             - test_ci
       - test_core:
@@ -336,6 +339,9 @@ workflows:
             - test_core
       - approve_version_change:
           type: approval
+          filters:
+            branches:
+              only: /^\d+\.\d+\.\d+\.\d+$/
           requires:
             - test_ci
             - test_core
@@ -344,5 +350,8 @@ workflows:
             - test_android
             - test_build_robot
       - version_change:
+          filters:
+            branches:
+              only: /^\d+\.\d+\.\d+\.\d+$/
           requires:
             - approve_version_change
