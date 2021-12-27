@@ -153,7 +153,7 @@ fn git_credentials_callback(
 	private.push("dk");
 
 	let password = env::var("GIT_PASSWORD")
-		.expect("No GIT_EMAIL environment variable found");
+		.expect("No GIT_PASSWORD environment variable found");
 
 	return Cred::ssh_key(
 		username.unwrap(),
