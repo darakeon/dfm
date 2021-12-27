@@ -344,6 +344,7 @@ workflows:
               only: /^\d+\.\d+\.\d+\.\d+$/
           requires:
             - test_ci
+            - version_check
             - test_core
             - test_site
             - test_browser
