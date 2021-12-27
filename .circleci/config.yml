@@ -283,6 +283,30 @@ jobs:
       - store_artifacts:
           path: inbox
 
+  version_change:
+    docker:
+      - image: rust
+    resource_class: small
+    environment:
+      RUST_BACKTRACE: 1
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - rust-{{ checksum "version/Cargo.toml" }}
+      - run:
+          name: build
+          path: version
+          command: cargo build
+      - save_cache:
+          key: rust-{{ checksum "version/Cargo.toml" }}
+          paths:
+            - /usr/local/cargo/registry/
+      - run:
+          name: version_change
+          path: version
+          command: cargo run -q -- -q $NEW_TASKS
+
 workflows:
   version: 2.1
   build_all:
@@ -310,3 +334,11 @@ workflows:
           requires:
             - test_ci
             - test_core
+      - version_change:
+          requires:
+            - test_ci
+            - test_core
+            - test_site
+            - test_browser
+            - test_android
+            - test_build_robot

@@ -25,3 +25,11 @@ workflows:
           requires:
             - test_ci
             - test_core
+      - version_change:
+          requires:
+            - test_ci
+            - test_core
+            - test_site
+            - test_browser
+            - test_android
+            - test_build_robot
