@@ -145,12 +145,12 @@ fn git_credentials_callback(
 ) -> Result<Cred, Error> {
 	let mut public = home_dir().unwrap();
 	public.push(".ssh");
-	public.push("id_rsa");
+	public.push("dk");
 	public.set_extension("pub");
 
 	let mut private = home_dir().unwrap();
 	private.push(".ssh");
-	private.push("id_rsa");
+	private.push("dk");
 
 	let password = env::var("GIT_PASSWORD")
 		.expect("No GIT_EMAIL environment variable found");
