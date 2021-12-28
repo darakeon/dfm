@@ -18,7 +18,7 @@ Legend:
 - [ ] Make wizard interactive
 
 ## <a name="7.4.0.5"></a>7.4.0.5 :ant: <sup>`1`</sup>
-- [ ] Add service interruption clause
+- [x] `211228>211228` Add service interruption clause
 
 ## <a name="7.4.0.4"></a>7.4.0.4 :ant: <sup>`1`</sup>
 - [x] `220426>220426` Upgrade .NET version
