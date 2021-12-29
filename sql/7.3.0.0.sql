@@ -18,4 +18,4 @@ create table tips (
 	constraint FK_tips_user
 		foreign key (User_ID)
 		references user (ID)
-)
+);
