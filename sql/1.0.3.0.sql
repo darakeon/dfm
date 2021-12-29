@@ -32,10 +32,12 @@ Update Detail D
 			from Schedule s
 				inner join FutureMove f
 					on s.ID = f.Schedule_ID
+			group by s.ID
 	) sf
 		on D.FutureMove_ID = sf.FID
 	set D.Schedule_ID = sf.SID,
-		D.FutureMove_ID = null;
+		D.FutureMove_ID = null
+	where D.ID <> 0;
 
 Update Schedule s
 	inner join (
@@ -43,6 +45,7 @@ Update Schedule s
 			from Schedule s
 				inner join FutureMove f
 					on s.ID = f.Schedule_ID
+			group by s.ID
 	) sf
 		on s.ID = sf.SID
 	inner join FutureMove f
@@ -51,7 +54,8 @@ Update Schedule s
 		S.Nature = F.Nature,
 		S.In_ID = F.In_ID,
 		S.Out_ID = F.Out_ID,
-		S.Category_ID = F.Category_ID;
+		S.Category_ID = F.Category_ID
+	where S.ID <> 0;
 
 Update Schedule s
 	inner join (
@@ -94,4 +98,4 @@ CREATE TABLE ticket (
 	CONSTRAINT FK_Ticket_User
 		FOREIGN KEY (User_ID)
 		REFERENCES user (ID)
-)
+);
