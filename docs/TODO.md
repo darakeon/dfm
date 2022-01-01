@@ -13,8 +13,12 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then Type.
 
-| Task (46)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (50)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
+| warning about contract being only with who signs, not related people           | :sheep:  |  1  |  4  |  7  |                |       |
+| warning about schedules not running if not active                              | :sheep:  |  1  |  4  |  7  |                |       |
+| warning mobile and browser logins stay active                                  | :sheep:  |  1  |  3  |  6  |                |       |
+| warning about 15 minutes windows for runnings schedules                        | :sheep:  |  1  |  2  |  5  |                |       |
 | Add nickname field - show it at every screen and e-mail                        | :whale:  |  3  |  3  |  4  |                |       |
 | Separate validators from service/repository                                    | :ant:    |  3  |  3  |  4  |                |       |
 | Enable Copy Move (web+mobile)                                                  | :whale:  |  2  |  2  |  4  |                |       |
