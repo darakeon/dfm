@@ -33,6 +33,11 @@
 	<link href="~/Assets/styles/misc.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
 	<link href="~/Assets/styles/tip.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
 
+	@if (Model.ShowWizard)
+	{
+		<link href="~/Assets/styles/wizard.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
+	}
+
 	@await RenderSectionAsync("Styles", false)
 
 	<script src="~/Assets/libs/jquery/jquery.min.js?v=@Cfg.Version" type="text/javascript"></script>
@@ -50,6 +55,11 @@
 
 	<script src="~/Assets/libs/jquery/jquery.unobtrusive-ajax.min.js?v=@Cfg.Version"></script>
 
+	@if (Model.ShowWizard)
+	{
+		<script src="~/Assets/scripts/wizard.js?v=@Cfg.Version"></script>
+	}
+
 	@await RenderSectionAsync("Scripts", false)
 </head>
 <body>
@@ -58,7 +68,11 @@
 	<div id="body" class="container" role="main">
 		@await Html.PartialAsync("Skeleton/ActivateWarning")
 
-		@await Html.PartialAsync("Skeleton/Wizard")
+		@if (Model.ShowWizard)
+		{
+			@await Html.PartialAsync("Skeleton/Wizard")
+		}
+
 		@RenderBody()
 	</div>
 

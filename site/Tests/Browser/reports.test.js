@@ -17,7 +17,7 @@ describe('Reports', () => {
 			const url = `Account/${account}/Reports`
 	
 			await puppy.call(url)
-			const alert = await puppy.content('#body .alert')
+			const alert = await puppy.content('#body .well')
 			expect(alert).toContain(
 				`Não há movimentações para este mês.`
 			)
@@ -27,7 +27,7 @@ describe('Reports', () => {
 			const url = `Account/${account}/Reports/Month/201911`
 	
 			await puppy.call(url)
-			const alert = await puppy.content('#body .alert')
+			const alert = await puppy.content('#body .well')
 			expect(alert).toContain(
 				`Não há movimentações para este mês.`
 			)
@@ -54,7 +54,7 @@ describe('Reports', () => {
 			const url = `Account/${account}/Reports/Year/2018`
 	
 			await puppy.call(url)
-			const alert = await puppy.content('#body .alert')
+			const alert = await puppy.content('#body .well')
 			expect(alert).toContain(
 				`Não há movimentações para este ano.`
 			)
@@ -110,11 +110,11 @@ describe('Reports', () => {
 			const monthUrl = `${yearUrl}08`
 	
 			await puppy.call(monthUrl)
-			const monthAlert = await puppy.content('#body .alert')
+			const monthAlert = await puppy.content('#body .well')
 			expect(monthAlert).toContain(`Não há movimentações para este mês.`)
 	
 			await puppy.call(yearUrl)
-			const yearAlert = await puppy.content('#body .alert')
+			const yearAlert = await puppy.content('#body .well')
 			expect(yearAlert).toContain(`Não há movimentações para este ano.`)
 	
 			const valueOut = '19,86'

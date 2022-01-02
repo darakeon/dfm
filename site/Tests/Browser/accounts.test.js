@@ -11,7 +11,7 @@ describe('Accounts', () => {
 	test('Empty List', async () => {
 		await puppy.call('Accounts')
 
-		const warning = await puppy.content('.alert')
+		const warning = await puppy.content('#body .well')
 		expect(warning).toContain('Não há Contas ainda.')
 
 		const buttons = await puppy.content('#table-buttons')

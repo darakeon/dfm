@@ -1,8 +1,12 @@
 {
 	"en-US": {
+		"Wizard_AccountsIndexEmpty_0": "Accounts are where you put and where you spent the money from.",
+		"Wizard_AccountsIndexEmpty_1": "For example: bank account, credit card, money you keep home.",
+		"Wizard_AccountsIndexEmpty_2": "You didn't create any account yet.",
+		"Wizard_AccountsIndexEmpty_3": "Click the 'Create Account' button.",
+
 		"Wizard_AccountsClosed": "Here you see a list of closed Accounts. For these Accounts you cannot create or edit Moves, but you can still see the reports.",
 		"Wizard_AccountsCreate": "Each Account has Name and Url. The Name is used to identify the Account on the screen, and the Url is part of the web address of the Account Area. Choose a Name, use the suggested Url or pickup another one, then click at Create.",
-		"Wizard_AccountsIndexEmpty": "This is the starting point, where the Accounts are listed. Accounts are where you put and where you spent the money from: bank account, credit card, money you keep home. Here you can access the screen to create Accounts.",
 		"Wizard_AccountsIndexFilled": "With the Account created, its details are listed here. The Account options are edit and delete. If an Account has Moves, it can't be deleted, just closed. When you click at Account's name, you enter at the Account Area.",
 		"Wizard_Categories": "Categories are types of Moves, like: Recreation, Health, Feeding, Donation. It make it simpler to say on quick looking where did you spent the money.",
 		"Wizard_End": "stop seeing this",
@@ -29,9 +33,13 @@
 		"Wizard_Title": "Wizard",
 	},
 	"pt-BR": {
+		"Wizard_AccountsIndexEmpty_0": "Contas são onde você guarda e de onde você gasta o dinheiro.",
+		"Wizard_AccountsIndexEmpty_1": "Por exemplo: conta de banco, cartão de crédito, dinheiro em casa, bilhete de transporte.",
+		"Wizard_AccountsIndexEmpty_2": "Você ainda não criou nenhuma conta.",
+		"Wizard_AccountsIndexEmpty_3": "Clique em 'Criar Conta'.",
+
 		"Wizard_AccountsClosed": "Nesta tela são listadas as Contas fechadas. Para essas Contas não é possível criar ou editar Movimentações, mas ainda é possível ver os relatórios.",
 		"Wizard_AccountsCreate": "Cada Conta tem um Nome e uma Url. O Nome é para identificar a Conta, a Url é parte do endereço da área da Conta. Escolha um Nome e use a Url sugerida ou escolha outra Url, então clique no botão Criar.",
-		"Wizard_AccountsIndexEmpty": "Esta é a tela inicial, onde aparecem as Contas. Contas são onde você guarda e de onde você gasta o dinheiro: conta de banco, cartão de crédito, dinheiro em casa, bilhete de transporte. Nesta tela é possível acessar a tela de criação de Contas.",
 		"Wizard_AccountsIndexFilled": "Com a Conta criada, os detalhes dela são listados na tela. As opções da Conta são editar e deletar. Caso uma Conta possua Movimentações, não pode ser deletada, apenas fechada. Clicando no nome da Conta você entra na Área da Conta.",
 		"Wizard_Categories": "Categorias são usadas para dizer o tipo de Movimentação, por exemplo: Lazer, Saúde, Alimentação, Doação. Assim fica mais simples uma olhada rápida no Relatório Mensal dizer onde o dinheiro mais foi gasto.",
 		"Wizard_End": "parar de ver isso",

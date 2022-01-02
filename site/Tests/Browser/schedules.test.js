@@ -17,7 +17,7 @@ describe('Schedules', () => {
 	test('Index', async () => {
 		await puppy.call('Schedules')
 
-		const warning = await puppy.content('.alert')
+		const warning = await puppy.content('#body .well')
 		expect(warning).toContain('Não há Agendamentos ainda.')
 	})
 
