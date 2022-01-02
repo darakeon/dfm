@@ -14,14 +14,20 @@
 			? "AccountsIndexFilled"
 			: "AccountsIndexEmpty";
 
+	ViewBag.WizardCount =
+		anyAccount
+			? 0
+			: 4;
+
 	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 
 	ViewBag.HasContent = anyAccount;
 	ViewBag.NoContentText = Context.Translate("NoAccounts");
+	ViewBag.NoContentClass = "wizard-highlight-2";
 
 	var buttons = new List<Button>
 	{
-		new(createAccountLabel, "Create")
+		new(createAccountLabel, "Create", "wizard-highlight-3")
 	};
 
 	if (Model.HasClosed)
