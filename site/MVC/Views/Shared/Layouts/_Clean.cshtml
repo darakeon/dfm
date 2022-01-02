@@ -14,7 +14,7 @@
 
 @if (!ViewBag.HasContent)
 {
-	<div class="alert alert-warning text-center">
+	<div class="well text-center @ViewBag.NoContentClass">
 		@ViewBag.NoContentText
 	</div>
 }

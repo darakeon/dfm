@@ -16,7 +16,7 @@ This is the list of project releases, past and current. To see tasks that are st
 
 ## <a name="8.0.0.0"></a>8.0.0.0 :dragon: <sup>`2`</sup>
 - [ ] Hide tips while in wizard
-- [ ] Make wizard interactive
+- [ ] `211228>......` Make wizard interactive
 
 ## <a name="7.4.0.6"></a>7.4.0.6 :ant: <sup>`1`</sup>
 - [x] `220623>220624` Fix robot mysql failure

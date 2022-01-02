@@ -27,6 +27,7 @@
 		"Accept": "Accept",
 		"Reopen": "Reopen",
 		"EnableWizard": "Enable Wizard",
+		"Continue": "Continue",
 
 		"Status": "Status",
 		"Available": "Available",
@@ -185,6 +186,7 @@
 		"Accept": "Aceitar",
 		"Reopen": "Reabrir",
 		"EnableWizard": "Habilitar Tutorial",
+		"Continue": "Continuar",
 
 		"Status": "Status",
 		"Available": "Disponível",

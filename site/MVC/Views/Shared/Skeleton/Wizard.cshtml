@@ -2,6 +2,12 @@
 
 @if (Model.ShowWizard && ViewBag.WizardMessage != null)
 {
+	var count = ViewBag.WizardCount ?? 0;
+
+	<script>
+		var wizardMax = @count || 1
+	</script>
+
 	<div class="panel panel-default">
 
 		<div class="panel-heading">
@@ -11,15 +17,34 @@
 		<div class="panel-body">
 
 			<div class="row">
-				<div class="col-lg-8 col-sm-12 col-lg-push-2 text-center">
-					@Context.Translate($"Wizard_{ViewBag.WizardMessage}")
+				<div class="col-lg-8 col-sm-12 col-lg-push-2 text-center" onClick="printAll()">
+					@if (count == 0)
+					{
+						var text = Context.Translate($"Wizard_{ViewBag.WizardMessage}");
+						<span class="interactive" id="wizard-text-0" data-text="@text"></span>
+					}
+					else
+					{
+						@for (var t = 0; t < count; t++)
+						{
+							var text = Context.Translate($"Wizard_{ViewBag.WizardMessage}_{t}");
+							<span class="interactive" id="wizard-text-@t" data-text="@text"></span>
+						}
+					}
 				</div>
 			</div>
-			
+
 			@await Html.PartialAsync("Extensions/MicroForm",
-				MicroForm.WithResource(Context, Context.Translate("Wizard_End"), "btn btn-sm btn-info pull-right")
-					.AddRouteUrl<Default.Main>("Configs", "EndWizard")
+				MicroForm.WithResource(
+					Context,
+					Context.Translate("Wizard_End"),
+					"btn btn-sm btn-danger pull-left"
+				).AddRouteUrl<Default.Main>("Configs", "EndWizard")
 			)
+
+			<button class="btn btn-sm btn-success pull-right" onClick="nextWizard()">
+				@Context.Translate("Continue")
+			</button>
 		</div>
 
 	</div>
