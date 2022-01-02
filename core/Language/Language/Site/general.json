@@ -82,7 +82,7 @@
 		"Deletion": "Deletion",
 		"Scheduling": "Scheduled Creation",
 		"Amount": "Amount",
-		"JustNumbers": "type just numbers at this field", 
+		"JustNumbers": "type just numbers at this field",
 
 		"BeginDate": "Begin",
 		"EndDate": "End",
@@ -240,7 +240,7 @@
 		"Deletion": "Deleção",
 		"Scheduling": "Criação Agendada",
 		"Amount": "Qte",
-		"JustNumbers": "digite apenas números neste campo", 
+		"JustNumbers": "digite apenas números neste campo",
 
 		"BeginDate": "Início",
 		"EndDate": "Fim",
@@ -256,7 +256,7 @@
 
 		"MonthMoves": "Extrato",
 		"YearMoves": "Resumo Anual",
-		"CategorySummary": "Gastos por Categoria", 
+		"CategorySummary": "Gastos por Categoria",
 		"ToMove": "Mover",
 		"NoAccountsMove": "Não há contas.\nSem contas, não é possível criar Movimentações.",
 		"NoCategoriesMove": "Não há categorias.\nVocê pode criar Movimentações sem Categorias, mas precisa desabilitar o uso de Categorias nas Configurações.",
@@ -299,7 +299,7 @@
 
 		"NoInteraction": "Falta de interação",
 		"NotSignedContract": "Contrato não aceito",
-		"PersonAsked": "Pessoa requisitou", 
+		"PersonAsked": "Pessoa requisitou",
 
 		"MainSettings": "Opções Gerais",
 		"EmailSettings": "E-mail",
