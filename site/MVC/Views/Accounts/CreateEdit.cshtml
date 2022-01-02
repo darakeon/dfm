@@ -2,11 +2,16 @@
 
 @{
 	ViewBag.Title = Context.Translate(Model.ActionName, "Account");
-	ViewBag.WizardMessage = "AccountsCreate";
 
 	if (Model.Type == OperationType.Edition)
 	{
 		ViewBag.Title += $" [{Model.Account.Name}]";
+	}
+
+	if (Model.Type == OperationType.Creation)
+	{
+		ViewBag.WizardMessage = "AccountsCreate";
+		ViewBag.WizardCount = 2;
 	}
 
 	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
@@ -19,7 +24,7 @@
 
 <div class="form-group">
 	@Html.LabelFor(m => m.Account.Name, Context.Translate("Name"), new { @class = "control-label" })
-	@Html.TextBoxFor(m => m.Account.Name, new { maxlength = MaxLen.AccountName, @class = "form-control suggest-field", data_target = ".suggest-target" })
+	@Html.TextBoxFor(m => m.Account.Name, new { maxlength = MaxLen.AccountName, @class = "form-control suggest-field wizard-highlight-0", data_target = ".suggest-target" })
 	<small>@String.Format(Context.Translate("CharactersMax"), MaxLen.AccountName)</small>
 </div>
 
@@ -58,7 +63,7 @@
 }
 
 @section Footer {
-	<button class="btn btn-success" type="submit">
+	<button class="btn btn-success wizard-highlight-1" type="submit">
 		@Context.Translate(Model.ActionName)
 	</button>
 }
