@@ -14,6 +14,7 @@ function nextWizard() {
 	if (current.length === 0 || current.html() === current.data('text')) {
 
 		if (wizardCount + 1 < wizardMax) {
+			wizardCount++
 			changeMessage(current)
 		}
 
@@ -25,8 +26,6 @@ function nextWizard() {
 }
 
 function changeMessage(current) {
-	wizardCount++
-
 	current.html('')
 
 	var element = $('#wizard-text-' + wizardCount)
@@ -43,17 +42,9 @@ function addText(element, text, chars) {
 			addText(element, text, ++chars)
 		} else {
 			addHighlight()
+			disableContinueIfLastMessage()
 		}
 	}, showLetterTime)
-}
-
-function clearHighlight() {
-	$('.wizard-highlight-' + (wizardCount - 1)).each(
-		function (_, obj) {
-			$(obj).css('borderColor', $(obj).data('borderColor'))
-			$(obj).css('borderWidth', $(obj).data('borderWidth'))
-		}
-	)
 }
 
 function addHighlight() {
@@ -70,6 +61,21 @@ function addHighlight() {
 				$(obj).data('borderWidth', $(obj).css('borderWidth'))
 				$(obj).css('borderWidth', borderWidth)
 			})
+		}
+	)
+}
+
+function disableContinueIfLastMessage() {
+	if (wizardCount + 1 === wizardMax) {
+		$("#wizard-continue").addClass("disabled")
+	}
+}
+
+function clearHighlight() {
+	$('.wizard-highlight-' + (wizardCount - 1)).each(
+		function (_, obj) {
+			$(obj).css('borderColor', $(obj).data('borderColor'))
+			$(obj).css('borderWidth', $(obj).data('borderWidth'))
 		}
 	)
 }
