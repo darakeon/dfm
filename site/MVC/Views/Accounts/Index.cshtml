@@ -14,10 +14,13 @@
 			? "AccountsIndexFilled"
 			: "AccountsIndexEmpty";
 
+	var accountsIndexFilledCount = 5;
+	var accountsIndexEmptyCount = 5;
+
 	ViewBag.WizardCount =
 		anyAccount
-			? 0
-			: 5;
+			? accountsIndexFilledCount
+			: accountsIndexEmptyCount;
 
 	ViewBag.WizardButtonClass =
 		anyAccount
@@ -68,8 +71,8 @@
 		controller = String.Empty,
 	};
 
-	<tr class="row">
-		<td class="col-sm-5">
+	<tr class="row wizard-highlight-0">
+		<td class="col-sm-5 wizard-highlight-4">
 			@Html.RouteLink(name, route.Name, reports,
 				new { title = Context.Translate("AccountMoves").Format(name) }
 			)
@@ -89,14 +92,14 @@
 		</td>
 		<td class="col-sm-1"></td>
 
-		<td class="col-sm-1 text-center">
+		<td class="col-sm-1 text-center wizard-highlight-4">
 			<a href="@Url.RouteUrl(route.Name, reports)">
 				<span class="glyphicon glyphicon-th-list"
 					  title="@Context.Translate("AccountMoves").Format(name)"></span>
 			</a>	
 		</td>
 
-		<td class="col-sm-1 text-center">
+		<td class="col-sm-1 text-center wizard-highlight-1">
 			<a href="@Url.Action("Edit", "Accounts", new {id = account.Url})">
 				<span
 					class="glyphicon glyphicon-pencil"
@@ -105,7 +108,7 @@
 			</a>
 		</td>
 
-		<td class="col-sm-1 text-center">
+		<td class="col-sm-1 text-center wizard-highlight-2">
 			@if (account.HasMoves)
 			{
 				@await Html.PartialAsync("Extensions/MicroForm",
