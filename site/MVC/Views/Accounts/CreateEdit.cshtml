@@ -24,7 +24,7 @@
 
 <div class="form-group">
 	@Html.LabelFor(m => m.Account.Name, Context.Translate("Name"), new { @class = "control-label" })
-	@Html.TextBoxFor(m => m.Account.Name, new { maxlength = MaxLen.AccountName, @class = "form-control suggest-field wizard-highlight-0", data_target = ".suggest-target" })
+	@Html.TextBoxFor(m => m.Account.Name, new { maxlength = MaxLen.AccountName, @class = "form-control suggest-field wizard-highlight-1", data_target = ".suggest-target" })
 	<small>@String.Format(Context.Translate("CharactersMax"), MaxLen.AccountName)</small>
 </div>
 
@@ -63,7 +63,7 @@
 }
 
 @section Footer {
-	<button class="btn btn-success wizard-highlight-1" type="submit">
+	<button class="btn btn-success wizard-highlight-2" type="submit">
 		@Context.Translate(Model.ActionName)
 	</button>
 }

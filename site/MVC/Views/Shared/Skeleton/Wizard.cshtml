@@ -42,7 +42,7 @@
 				).AddRouteUrl<Default.Main>("Configs", "EndWizard")
 			)
 
-			<button class="btn btn-sm btn-success pull-right" onClick="nextWizard()">
+			<button class="btn btn-sm btn-success pull-right @ViewBag.WizardButtonClass" onClick="nextWizard()">
 				@Context.Translate("Continue")
 			</button>
 		</div>

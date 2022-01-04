@@ -1,9 +1,10 @@
 {
 	"en-US": {
-		"Wizard_AccountsIndexEmpty_0": "Accounts are where you put and where you spent the money from.",
-		"Wizard_AccountsIndexEmpty_1": "For example: bank account, credit card, money you keep home.",
-		"Wizard_AccountsIndexEmpty_2": "You didn't create any account yet.",
-		"Wizard_AccountsIndexEmpty_3": "Click the 'Create Account' button.",
+		"Wizard_AccountsIndexEmpty_0": "Welcome to Don't fly Money System. Click Continue to follow the Wizard.",
+		"Wizard_AccountsIndexEmpty_1": "Accounts are where you put and where you spent the money from.",
+		"Wizard_AccountsIndexEmpty_2": "For example: bank account, credit card, money you keep home.",
+		"Wizard_AccountsIndexEmpty_3": "You didn't create any account yet.",
+		"Wizard_AccountsIndexEmpty_4": "Click the 'Create Account' button.",
 		"Wizard_AccountsCreate_0": "Each Account has Name. For example: bank account.",
 		"Wizard_AccountsCreate_1": "Type a Name then click at Create.",
 
@@ -34,10 +35,11 @@
 		"Wizard_Title": "Wizard",
 	},
 	"pt-BR": {
-		"Wizard_AccountsIndexEmpty_0": "Contas são onde você guarda e de onde você gasta o dinheiro.",
-		"Wizard_AccountsIndexEmpty_1": "Por exemplo: conta de banco, cartão de crédito, dinheiro em casa, bilhete de transporte.",
-		"Wizard_AccountsIndexEmpty_2": "Você ainda não criou nenhuma conta.",
-		"Wizard_AccountsIndexEmpty_3": "Clique em 'Criar Conta'.",
+		"Wizard_AccountsIndexEmpty_0": "Boas vindas ao Sistema Don't fly Money. Clique em 'Continuar' para seguir o tutorial.",
+		"Wizard_AccountsIndexEmpty_1": "Contas são onde você guarda e de onde você gasta o dinheiro.",
+		"Wizard_AccountsIndexEmpty_2": "Por exemplo: conta de banco, cartão de crédito, dinheiro em casa, bilhete de transporte.",
+		"Wizard_AccountsIndexEmpty_3": "Você ainda não criou nenhuma conta.",
+		"Wizard_AccountsIndexEmpty_4": "Clique em 'Criar Conta'.",
 		"Wizard_AccountsCreate_0": "Cada Conta tem um Nome. Por exemplo: conta do banco.",
 		"Wizard_AccountsCreate_1": "Escolha um Nome então clique no botão Criar.",
 
