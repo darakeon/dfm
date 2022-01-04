@@ -6,13 +6,25 @@
 
 @if (Model.Account.IsOpen)
 {
-	<li>@Html.ActionLink(Context.Translate("ToMove"), "Create", "Moves")</li>
-	<li>@Html.ActionLink(Context.Translate("Schedule"), "Create", "Schedules")</li>
+	<li>
+		@Html.ActionLink(Context.Translate("ToMove"), "Create", "Moves", null, new { @class = @ViewBag.MoveMenuClass })
+	</li>
+	<li>
+		@Html.ActionLink(Context.Translate("Schedule"), "Create", "Schedules")
+	</li>
 }
 
-<li>@Html.ActionLink(Context.Translate("CategorySummary"), "Categories", "Reports")</li>
-<li>@Html.ActionLink(Context.Translate("MonthMoves"), "Month", "Reports")</li>
-<li>@Html.ActionLink(Context.Translate("YearMoves"), "Year", "Reports")</li>
+<li>
+	@Html.ActionLink(Context.Translate("CategorySummary"), "Categories", "Reports")
+</li>
+
+<li>
+	@Html.ActionLink(Context.Translate("MonthMoves"), "Month", "Reports")
+</li>
+
+<li>
+	@Html.ActionLink(Context.Translate("YearMoves"), "Year", "Reports")
+</li>
 
 <li>
 	<a href="@Url.RouteUrl(defaultRoute.Name, new {action = "Index", controller = "Accounts", area = defaultRoute.Area})">

@@ -3,14 +3,26 @@
 @{
 	ViewBag.Title = Model.Date;
 
+	var hasMoves = Model.MoveList.Any();
+
 	ViewBag.WizardMessage =
-		Model.MoveList.Any()
+		hasMoves
 			? "MonthFilled"
 			: "MonthEmpty";
 
+	ViewBag.WizardCount =
+		hasMoves
+			? 0
+			: 3;
+
+	ViewBag.MoveMenuClass =
+		hasMoves
+			? ""
+			: "wizard-highlight-2 adjust-padding";
+
 	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 
-	ViewBag.HasContent = Model.MoveList.Any() || Model.ForeseenList.Any();
+	ViewBag.HasContent = hasMoves || Model.ForeseenList.Any();
 	ViewBag.NoContentText = Context.Translate("NoMonthMoves");
 
 	var start = Model.Account.Start;
@@ -33,7 +45,7 @@
 	{
 		ViewBag.Buttons = new List<Button>
 		{
-			new(Context.Translate("Create", "Move"), "Create")
+			new(Context.Translate("Create", "Move"), "Create", "wizard-highlight-2")
 		};
 	}
 }
