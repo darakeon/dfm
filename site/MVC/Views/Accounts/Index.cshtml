@@ -17,17 +17,22 @@
 	ViewBag.WizardCount =
 		anyAccount
 			? 0
-			: 4;
+			: 5;
+
+	ViewBag.WizardButtonClass =
+		anyAccount
+			? ""
+			: "wizard-highlight-0";
 
 	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 
 	ViewBag.HasContent = anyAccount;
 	ViewBag.NoContentText = Context.Translate("NoAccounts");
-	ViewBag.NoContentClass = "wizard-highlight-2";
+	ViewBag.NoContentClass = "wizard-highlight-3";
 
 	var buttons = new List<Button>
 	{
-		new(createAccountLabel, "Create", "wizard-highlight-3")
+		new(createAccountLabel, "Create", "wizard-highlight-4")
 	};
 
 	if (Model.HasClosed)
