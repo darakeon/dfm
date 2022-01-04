@@ -31,9 +31,16 @@ function nextWizard() {
 		$('.wizard-highlight-' + wizardCount).each(
 			function (_, obj) {
 				$(obj).data('borderColor', $(obj).css('borderColor'))
-				$(obj).data('borderWidth', $(obj).css('borderWidth'))
 				$(obj).css('borderColor', 'var(--highlight-0)')
-				$(obj).css('borderWidth', '5px')
+
+				var borderWidth = '7px'
+
+				$(obj).animate({
+					borderWidth: borderWidth,
+				}, 500, 'swing', function() {
+					$(obj).data('borderWidth', $(obj).css('borderWidth'))
+					$(obj).css('borderWidth', borderWidth)
+				})
 			}
 		)
 	} else {
