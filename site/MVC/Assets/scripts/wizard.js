@@ -53,12 +53,16 @@ function addHighlight() {
 			$(obj).data('borderColor', $(obj).css('borderColor'))
 			$(obj).css('borderColor', 'var(--highlight-0)')
 
+			$(obj).data('borderStyle', $(obj).css('borderStyle'))
+			$(obj).css('borderStyle', 'solid')
+
+			$(obj).data('borderWidth', $(obj).css('borderWidth'))
+
 			var borderWidth = '7px'
 
 			$(obj).animate({
 				borderWidth: borderWidth,
 			}, animateHighlightTime, 'swing', function () {
-				$(obj).data('borderWidth', $(obj).css('borderWidth'))
 				$(obj).css('borderWidth', borderWidth)
 			})
 		}
@@ -75,6 +79,7 @@ function clearHighlight() {
 	$('.wizard-highlight-' + (wizardCount - 1)).each(
 		function (_, obj) {
 			$(obj).css('borderColor', $(obj).data('borderColor'))
+			$(obj).css('borderStyle', $(obj).data('borderStyle'))
 			$(obj).css('borderWidth', $(obj).data('borderWidth'))
 		}
 	)
