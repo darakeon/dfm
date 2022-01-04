@@ -1,5 +1,8 @@
 ﻿var wizardCount = -1;
 
+var showLetterTime = 50
+var animateHighlightTime = 500
+
 function printAll() {
 	var current = $('#wizard-text-' + wizardCount)
 	current.html(current.data('text'))
@@ -41,7 +44,7 @@ function addText(element, text, chars) {
 		} else {
 			addHighlight()
 		}
-	}, 50)
+	}, showLetterTime)
 }
 
 function clearHighlight() {
@@ -63,7 +66,7 @@ function addHighlight() {
 
 			$(obj).animate({
 				borderWidth: borderWidth,
-			}, 500, 'swing', function () {
+			}, animateHighlightTime, 'swing', function () {
 				$(obj).data('borderWidth', $(obj).css('borderWidth'))
 				$(obj).css('borderWidth', borderWidth)
 			})
