@@ -1,7 +1,7 @@
 ﻿var wizardCount = -1;
 
 var showLetterTime = 50
-var animateHighlightTime = 500
+var animateHighlightTime = 50
 
 function printAll() {
 	var current = $('#wizard-text-' + wizardCount)
@@ -57,16 +57,49 @@ function addHighlight() {
 			$(obj).css('borderStyle', 'solid')
 
 			$(obj).data('borderWidth', $(obj).css('borderWidth'))
+			$(obj).css('borderWidth', '0')
 
-			var borderWidth = '7px'
+			var sizeChange = 7
 
-			$(obj).animate({
-				borderWidth: borderWidth,
-			}, animateHighlightTime, 'swing', function () {
-				$(obj).css('borderWidth', borderWidth)
-			})
+			if ($(obj).hasClass('adjust-padding')) {
+				resizeCssDimension(obj, 'paddingTop', false, sizeChange)
+				resizeCssDimension(obj, 'paddingBottom', false, sizeChange)
+				resizeCssDimension(obj, 'paddingLeft', false, sizeChange)
+				resizeCssDimension(obj, 'paddingRight', false, sizeChange)
+			}
+
+			resizeCssDimension(obj, 'borderTopWidth', true, sizeChange)
+			resizeCssDimension(obj, 'borderBottomWidth', true, sizeChange)
+			resizeCssDimension(obj, 'borderLeftWidth', true, sizeChange)
+			resizeCssDimension(obj, 'borderRightWidth', true, sizeChange)
 		}
 	)
+}
+
+function resizeCssDimension(obj, property, increase, maxDiff) {
+	var current = $(obj).css(property)
+	var original = $(obj).data(property)
+
+	if (!original) {
+		$(obj).data(property, current)
+		original = current
+	}
+
+	var currentValue = current.replace('px', '') * 1
+	var originalValue = original.replace('px', '') * 1
+	var newValue = currentValue + (increase ? +1 : -1)
+
+	var changeValue = increase
+		? newValue < originalValue + maxDiff
+		: newValue > originalValue - maxDiff
+
+	if (changeValue) {
+		$(obj).css(property, `${newValue}px`)
+
+		setTimeout(() => {
+			resizeCssDimension(obj, property, increase, maxDiff)
+		}, animateHighlightTime)
+	}
 }
 
 function disableContinueIfLastMessage() {
@@ -81,6 +114,13 @@ function clearHighlight() {
 			$(obj).css('borderColor', $(obj).data('borderColor'))
 			$(obj).css('borderStyle', $(obj).data('borderStyle'))
 			$(obj).css('borderWidth', $(obj).data('borderWidth'))
+
+			if ($(obj).hasClass('adjust-padding')) {
+				$(obj).css('paddingTop', $(obj).data('paddingTop'))
+				$(obj).css('paddingBottom', $(obj).data('paddingBottom'))
+				$(obj).css('paddingLeft', $(obj).data('paddingLeft'))
+				$(obj).css('paddingRight', $(obj).data('paddingRight'))
+			}
 		}
 	)
 }

@@ -4795,9 +4795,10 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
 		}
 
 			.navbar-nav > li > a {
-				padding-top: 19.5px;
-				padding-bottom: 19.5px;
+				padding-top: 21px;
+				padding-bottom: 21px;
 				max-height: 18px;
+				box-sizing: content-box;
 			}
 }
 
