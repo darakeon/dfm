@@ -6,9 +6,11 @@
 	var hasDetails = move.DetailList.Any();
 	var hasSchedule = move.Schedule != null;
 	var editTitle = $"{Context.Translate("Edit")} {move.Description}";
+	var wizardHighlightRow = move.Foreseen ? "" : "wizard-highlight-0";
+	var wizardHighlightCell = move.Foreseen ? "" : "wizard-highlight-1";
 }
 
-<tr class="row @foreseen sum-factor" data-parent="table" id="m@(move.Guid)">
+<tr class="row @foreseen sum-factor @wizardHighlightRow" data-parent="table" id="m@(move.Guid)">
 	<td>@move.Description</td>
 
 	<td class="text-center">
@@ -82,7 +84,7 @@
 			</td>
 		}
 	
-		<td class="col-sm-1 text-center">
+		<td class="col-sm-1 text-center @wizardHighlightCell">
 			<a href="@Url.Action("Edit", "Moves", new {id = move.Guid})"
 			   title="@editTitle">
 				<span class="glyphicon glyphicon-pencil"
@@ -92,7 +94,7 @@
 			</a>
 		</td>
 
-		<td class="col-sm-1 text-center">
+		<td class="col-sm-1 text-center @wizardHighlightCell">
 			@await Html.PartialAsync(
 				"Extensions/MicroForm",
 				MicroForm.WithGlyph(Context, "trash", "Delete")
