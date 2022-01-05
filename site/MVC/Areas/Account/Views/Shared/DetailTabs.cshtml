@@ -4,7 +4,7 @@
 	var detailedTabUiList = new List<BaseMovesModel.DetailTabUI>
 	{
 		new("JustOneValue", "just-value", false),
-		new("Detailed", "detailed", true)
+		new("Detailed", "detailed", true, "wizard-highlight-2 adjust-padding")
 	};
 }
 
@@ -13,11 +13,13 @@
 <ul class="nav nav-tabs">
 	@foreach (var detailedTabUi in detailedTabUiList)
 	{
-		<li class="@(Model.IsDetailed == detailedTabUi.IsDetailed ? "active" : "") value-setter"
+		var active = Model.IsDetailed == detailedTabUi.IsDetailed ? "active" : "";
+
+		<li class="@active value-setter"
 			id="Detailed_@detailedTabUi.IsDetailed.ToString()"
 			data-target-id="@Html.IdFor(m => m.IsDetailed)"
 			data-target-value="@detailedTabUi.IsDetailed">
-			<a href="#@detailedTabUi.TargetId" data-toggle="tab">
+			<a href="#@detailedTabUi.TargetId" data-toggle="tab" class=" @detailedTabUi.Class">
 				@Context.Translate(detailedTabUi.ResourceKey)
 			</a>
 		</li>

@@ -258,16 +258,18 @@ namespace DFM.MVC.Areas.Account.Models
 
 		public class DetailTabUI
 		{
-			public DetailTabUI(String resourceKey, String targetId, Boolean isDetailed)
+			public DetailTabUI(String resourceKey, String targetId, Boolean isDetailed, String @class = "")
 			{
 				ResourceKey = resourceKey;
 				TargetId = targetId;
 				IsDetailed = isDetailed;
+				Class = @class;
 			}
 
 			public String ResourceKey { get; }
 			public String TargetId { get; }
 			public Boolean IsDetailed { get; }
+			public String Class { get; set; }
 		}
 
 		public class DetailUI

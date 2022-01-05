@@ -48,6 +48,8 @@ function addText(element, text, chars) {
 }
 
 function addHighlight() {
+	var highlights = []
+
 	$('.wizard-highlight-' + wizardCount).each(
 		function (_, obj) {
 			$(obj).data('borderColor', $(obj).css('borderColor'))
@@ -72,6 +74,13 @@ function addHighlight() {
 			resizeCssDimension(obj, 'borderBottomWidth', true, sizeChange)
 			resizeCssDimension(obj, 'borderLeftWidth', true, sizeChange)
 			resizeCssDimension(obj, 'borderRightWidth', true, sizeChange)
+
+			highlights.push(obj)
+		}
+	)
+	highlights.reverse().forEach(
+		function (obj) {
+			$(obj).focus()
 		}
 	)
 }
@@ -96,10 +105,23 @@ function resizeCssDimension(obj, property, increase, maxDiff) {
 	if (changeValue) {
 		$(obj).css(property, `${newValue}px`)
 
-		setTimeout(() => {
-			resizeCssDimension(obj, property, increase, maxDiff)
-		}, animateHighlightTime)
+		setTimeout(
+			() => {
+				resizeCssDimension(obj, property, increase, maxDiff)
+			},
+			animateHighlightTime
+		)
 	}
+}
+
+function isOffScreen(obj) {
+	var rect = obj.getBoundingClientRect()
+	var isBefore = rect.y < rect.height
+	var isAfter = rect.y > window.innerHeight
+
+	return isBefore || isAfter
+		? Math.floor(rect.y + rect.width - window.innerHeight)
+		: 0;
 }
 
 function disableContinueIfLastMessage() {
