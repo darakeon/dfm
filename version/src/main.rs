@@ -12,6 +12,7 @@ mod tasks;
 mod todos;
 mod version;
 
+use crate::end::throw;
 use android::update_android;
 use arguments::{parse_arguments,ProgramOption};
 use browser::update_node;
@@ -68,12 +69,17 @@ fn update_git(version: Version) {
 }
 
 fn update_version(version: Version) {
+	let update_notes_result = update_notes(&version);
+
+	if update_notes_result.is_err() {
+		throw::<()>(31, "errors while translating release");
+	}
+
 	update_task_list(&version);
 	update_android(&version);
 	update_csharp(&version);
 	update_rust(&version);
 	update_node(&version);
-	update_notes(&version);
 
 	commit(&format!("version: update to {}", &version.code));
 }

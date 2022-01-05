@@ -7,19 +7,29 @@ use crate::version::Version;
 fn path() -> String { get_path(vec!["..", "core", "Language", "Language", "Version"]) }
 static EXT: &str = r".json";
 
-pub fn update_notes(version: &Version) {
-	update_notes_for_language(version, "en-us");
-	update_notes_for_language(version, "pt-br");
+pub fn update_notes(version: &Version) -> Result<(), ()> {
+	let errors =
+		update_notes_for_language(version, "pt-br")
+		+
+		update_notes_for_language(version, "en-us");
+
+	if errors == 0 {
+		return Ok(());
+	}
+
+	return Err(());
 }
 
-pub fn update_notes_for_language(version: &Version, language: &str) {
-	print!("\n\n{} file:\n", language);
+pub fn update_notes_for_language(version: &Version, language: &str) -> i32 {
+	println!("\n{} file:", language);
 
 	let path = get_path(vec![&path(), &format!("{}{}", language, EXT)]);
 	let mut content = get_content(path.clone());
 
+	let mut errors = 0;
+
 	if content.contains(&version.code) {
-		return;
+		return errors;
 	}
 
 	let mut tasks_json = "".to_string();
@@ -31,45 +41,69 @@ pub fn update_notes_for_language(version: &Version, language: &str) {
 
 	while let Some(task) = tasks.pop_front() {
 		let translated = &translations[language][&task];
-		if let Some(formatted) = format(&task, translated) {
-			if tasks_json.len() > 0 {
-				tasks_json = format!(
-					"{},\n",
-					tasks_json,
-				);
-			}
 
-			tasks_json = format!(
-				"{}{}",
-				tasks_json,
-				formatted,
-			);
+		match format(language, &task, translated) {
+			Ok(format_ok) => {
+				if let Some(formatted) = format_ok {
+					if tasks_json.len() > 0 {
+						tasks_json = format!(
+							"{},\n",
+							tasks_json,
+						);
+					}
+		
+					tasks_json = format!(
+						"{}{}",
+						tasks_json,
+						formatted,
+					);
+				}
+			},
+			Err(()) => {
+				errors += 1;
+			},
 		}
 	}
 
-	let new_release = format!(
-		"{{\n\t\"{}\": [\n{}\n\t],",
-		&version.code,
-		tasks_json
-	);
+	if errors == 0 {
+		let new_release = format!(
+			"{{\n\t\"{}\": [\n{}\n\t],",
+			&version.code,
+			tasks_json
+		);
+	
+		content.remove(0);
+		let new_content = format!("{}{}", new_release, content);
+	
+		set_content(path, new_content);
+	}
 
-	content.remove(0);
-	let new_content = format!("{}{}", new_release, content);
+	println!();
 
-	set_content(path, new_content);
+	return errors;
 }
 
-fn format(task: &str, translation: &JsonValue) -> Option<String> {
+fn format(language: &str, task: &str, translation: &JsonValue) -> Result<Option<String>, ()> {
+	if translation.is_null() {
+		eprintln!(
+			"task \"{}\" not translated to lang {}",
+			task, language
+		);
+
+		return Err(());
+	}
+
 	let mut result = translation.to_string().trim().to_string();
-	print!("\"{}\": {}", task, result);
+
+	println!("\"{}\": {}", task, result);
 
 	if result == "-" {
-		return None;
+		return Ok(None);
 	}
 
 	if result == "=" {
 		result = task.to_string()
 	}
 
-	return Some(format!("\t\t\"{}\"", result));
+	return Ok(Some(format!("\t\t\"{}\"", result)));
 }
