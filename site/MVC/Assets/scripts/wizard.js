@@ -58,9 +58,6 @@ function addHighlight() {
 			$(obj).data('borderStyle', $(obj).css('borderStyle'))
 			$(obj).css('borderStyle', 'solid')
 
-			$(obj).data('borderWidth', $(obj).css('borderWidth'))
-			$(obj).css('borderWidth', '0')
-
 			var sizeChange = 7
 
 			if ($(obj).hasClass('adjust-padding')) {
@@ -135,7 +132,6 @@ function clearHighlight() {
 		function (_, obj) {
 			$(obj).css('borderColor', $(obj).data('borderColor'))
 			$(obj).css('borderStyle', $(obj).data('borderStyle'))
-			$(obj).css('borderWidth', $(obj).data('borderWidth'))
 
 			if ($(obj).hasClass('adjust-padding')) {
 				$(obj).css('paddingTop', $(obj).data('paddingTop'))
@@ -143,6 +139,11 @@ function clearHighlight() {
 				$(obj).css('paddingLeft', $(obj).data('paddingLeft'))
 				$(obj).css('paddingRight', $(obj).data('paddingRight'))
 			}
+
+			$(obj).css('borderTopWidth', $(obj).data('borderTopWidth'))
+			$(obj).css('borderBottomWidth', $(obj).data('borderBottomWidth'))
+			$(obj).css('borderLeftWidth', $(obj).data('borderLeftWidth'))
+			$(obj).css('borderRightWidth', $(obj).data('borderRightWidth'))
 		}
 	)
 }
