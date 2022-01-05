@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>DFM.Tests.Util</AssemblyName>
     <RootNamespace>DFM.Tests.Util</RootNamespace>
     <AssemblyVersion>7.4.0.3</AssemblyVersion>
