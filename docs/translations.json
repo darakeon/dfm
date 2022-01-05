@@ -2,11 +2,13 @@
     "en-us": {
         "Add change version to CI ([how to commit ci])": "-",
         "Fix ops page to ignore contract": "Fix problem with site error page",
-        "Fix dependabot issues": "Fix security issues"
+        "Fix dependabot issues": "Fix security issues",
+        "Fix wizard of misc": "Fix page Security Image page (problem happened if wizard was active)"
     },
     "pt-br": {
         "Add change version to CI ([how to commit ci])": "-",
         "Fix ops page to ignore contract": "Corrigido problema com página que avisa de erro no site",
-        "Fix dependabot issues": "Corrigidos problemas de segurança"
+        "Fix dependabot issues": "Corrigidos problemas de segurança",
+        "Fix wizard of misc": "Corrigida página de Imagem de segurança (problema acontecia se tutorial estivesse ativo)"
     }
 }
