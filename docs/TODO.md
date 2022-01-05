@@ -13,13 +13,14 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (59)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (60)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
 | warning about contract being only with who signs, not related people           | :sheep:  |  1  |  4  |  7  |                |       |
 | warning about schedules not running if not active                              | :sheep:  |  1  |  4  |  7  |                |       |
 | Focus to input when open search                                                | :ant:    |  1  |  4  |  7  |                |       |
 | Move API token to body                                                         | :ant:    |  2  |  4  |  6  |                |       |
 | warning mobile and browser logins stay active                                  | :sheep:  |  1  |  3  |  6  |                |       |
+| Add build step and make the others depend on it, not on tests step             | :ant:    |  1  |  3  |  6  |                |       |
 | Add monitoring with Grafana and Prometheus ([.NET Lib])                        | :dragon: |  3  |  4  |  5  |                |       |
 | Add schedule anticipation                                                      | :whale:  |  2  |  3  |  5  |                |       |
 | Add weekly scheduling                                                          | :sheep:  |  2  |  3  |  5  |                |       |
