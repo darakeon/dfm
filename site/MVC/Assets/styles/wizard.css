@@ -15,3 +15,30 @@
 		border-color: var(--sober-primary-0);
 	}
 }
+
+.wizard-box {
+	position: fixed;
+	z-index: 20;
+}
+
+.move-down {
+	margin-top: 125px;
+}
+
+@media (min-width:768px) {
+	.wizard-box {
+		width: 750px
+	}
+}
+
+@media (min-width:992px) {
+	.wizard-box {
+		width: 970px
+	}
+}
+
+@media (min-width:1200px) {
+	.wizard-box {
+		width: 1170px
+	}
+}

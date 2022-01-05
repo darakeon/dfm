@@ -8,7 +8,7 @@
 		var wizardMax = @count || 1
 	</script>
 
-	<div class="panel panel-default">
+	<div class="panel panel-default wizard-box">
 
 		<div class="panel-heading">
 			<h3 class="panel-title">@Context.Translate("Wizard_Title")</h3>
@@ -17,7 +17,18 @@
 		<div class="panel-body">
 
 			<div class="row">
-				<div class="col-lg-8 col-sm-12 col-lg-push-2 text-center" onClick="printAll()">
+
+				<div class="col-lg-2 col-sm-2 text-left">
+					@await Html.PartialAsync("Extensions/MicroForm",
+						MicroForm.WithResource(
+							Context,
+							Context.Translate("Wizard_End"),
+							"btn btn-sm btn-danger pull-left"
+							).AddRouteUrl<Default.Main>("Configs", "EndWizard")
+						)
+				</div>
+
+				<div class="col-lg-8 col-sm-8 text-center" onClick="printAll()">
 					@if (count == 0)
 					{
 						var text = Context.Translate($"Wizard_{ViewBag.WizardMessage}");
@@ -32,22 +43,17 @@
 						}
 					}
 				</div>
+
+				<div class="col-lg-2 col-sm-2 text-right">
+					<button id="wizard-continue"
+					        class="btn btn-sm btn-success pull-right @ViewBag.WizardButtonClass"
+					        onClick="nextWizard()">
+						@Context.Translate("Continue")
+					</button>
+				</div>
+
 			</div>
 
-			@await Html.PartialAsync("Extensions/MicroForm",
-				MicroForm.WithResource(
-					Context,
-					Context.Translate("Wizard_End"),
-					"btn btn-sm btn-danger pull-left"
-				).AddRouteUrl<Default.Main>("Configs", "EndWizard")
-			)
-
-			<button id="wizard-continue"
-					class="btn btn-sm btn-success pull-right @ViewBag.WizardButtonClass"
-					onClick="nextWizard()">
-				@Context.Translate("Continue")
-			</button>
 		</div>
-
 	</div>
 }
