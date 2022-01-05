@@ -1,0 +1,11 @@
+services:
+  mysql:
+    image: mysql
+    container_name: dfm-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - ~/mysql/data:/var/lib/mysql
+      - .:/var/script/
+    ports:
+      - 3306:3306
