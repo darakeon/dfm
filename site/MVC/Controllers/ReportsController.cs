@@ -15,7 +15,7 @@ namespace DFM.MVC.Controllers
 		public IActionResult DismissTip()
 		{
 			ReportsModel.DismissTip();
-			return new EmptyResult();
+			return new JsonResult(new {});
 		}
 	}
 }
