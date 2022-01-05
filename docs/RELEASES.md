@@ -18,7 +18,7 @@ Legend:
 - [ ] Make wizard interactive
 
 ## <a name="7.4.0.3"></a>7.4.0.3 :ant: <sup>`1`</sup>
-- [ ] Fix wizard of misc
+- [x] `220326>220326` Fix wizard of misc
 
 ## <a name="7.4.0.2"></a>7.4.0.2 :ant: <sup>`1`</sup>
 - [x] `220220>220220` Fix dependabot issues
