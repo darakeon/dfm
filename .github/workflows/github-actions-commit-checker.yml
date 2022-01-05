@@ -1,7 +1,7 @@
 name: Lint commit
 on:
   pull_request:
-    types: [opened, edited, reopened, synchronize]
+    types: [opened, reopened, synchronize]
 
 jobs:
   check-commit-message:
