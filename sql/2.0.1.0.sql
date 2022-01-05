@@ -1,5 +1,5 @@
 /* before publish */
-alter table Detail
+alter table detail
 	add ValueCents int null;
 
 update detail
@@ -9,30 +9,30 @@ update detail
 alter table detail
 	modify ValueCents int not null;
 
-alter table Summary
+alter table summary
 	add InCents int null;
 
-update Summary
+update summary
 	set InCents = In_ * 100
 	where id <> 0;
 
-alter table Summary
+alter table summary
 	modify InCents int not null;
 
-alter table Summary
+alter table summary
 	add OutCents int null;
 
-update Summary
+update summary
 	set OutCents = Out_ * 100
 	where id <> 0;
 
-alter table Summary
+alter table summary
 	modify OutCents int not null;
 
-alter table Move
+alter table move
 	add ValueCents int null;
 
-alter table Schedule
+alter table schedule
 	add ValueCents int null;
 
 update move m
@@ -64,8 +64,8 @@ set sql_safe_updates = 1;
 alter table detail
 	drop Value;
 
-alter table Summary
+alter table summary
 	drop In_;
 
-alter table Summary
+alter table summary
 	drop Out_;

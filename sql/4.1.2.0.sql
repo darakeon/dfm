@@ -1,8 +1,8 @@
-alter table Config
+alter table config
 	add Wizard bit not null;
 
-alter table User
+alter table user
 	add TFASecret varchar(32) null;
 
-alter table Ticket
+alter table ticket
 	add ValidTFA bit not null;
