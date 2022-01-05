@@ -67,13 +67,13 @@ function addHighlight() {
 			hl.width(rect.width)
 			hl.height(rect.height)
 
-			const borderRadius = Math.min(rect.width, rect.height) / 2
+			const borderRadius = Math.min(rect.width, rect.height) / 2 + 20
 
 			const animationDuration = `${index + 1}s`
 
 			hl.css({
-				top: rect.top - 3 + window.scrollY,
-				left: rect.left - 3 + window.scrollX,
+				top: rect.top - 20 + window.scrollY,
+				left: rect.left - 20 + window.scrollX,
 				zIndex: getZIndex(obj),
 				borderRadius,
 				animationDuration
