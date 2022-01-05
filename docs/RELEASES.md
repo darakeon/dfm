@@ -14,7 +14,8 @@ This is the list of project releases, past and current. To see tasks that are st
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="8.0.0.0"></a>8.0.0.0 :dragon: <sup>`3`</sup>
+## <a name="8.0.0.0"></a>8.0.0.0 :dragon: <sup>`4`</sup>
+- [ ] Fix version program option `-g`
 - [x] `201228>201228` Add service interruption clause
 - [ ] Hide tips while in wizard
 - [ ] `201228>......` Make wizard interactive
