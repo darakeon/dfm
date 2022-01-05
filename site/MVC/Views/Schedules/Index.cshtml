@@ -4,11 +4,6 @@
 @{
 	ViewBag.Title = Context.Translate("Schedules");
 
-	ViewBag.WizardMessage =
-		Model.ScheduleList.Any()
-			? "SchedulesIndexFilled"
-			: "SchedulesIndexEmpty";
-
 	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 
 	ViewBag.HasContent = Model.ScheduleList.Any();

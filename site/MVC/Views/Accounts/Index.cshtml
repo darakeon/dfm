@@ -9,11 +9,6 @@
 		? Context.Translate("CreateAnotherAccount")
 		: Context.Translate("Create", "Account");
 
-	ViewBag.WizardMessage =
-		anyAccount
-			? "AccountsIndexFilled"
-			: "AccountsIndexEmpty";
-
 	ViewBag.WizardButtonClass =
 		anyAccount
 			? ""

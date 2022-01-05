@@ -3,14 +3,6 @@
 
 @{
 	ViewBag.Title = Model.Date;
-
-	/*
-	ViewBag.WizardMessage =
-		Model.ChartData.Any()
-			? "CategoriesFilled"
-			: "CategoriesEmpty";
-	*/
-
 	Layout = "~/Views/Shared/Layouts/_Clean.cshtml";
 
 	var drawCharts = Model.ChartData.Any();

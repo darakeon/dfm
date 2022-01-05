@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Language.Extensions;
 using DFM.MVC.Helpers.Global;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -43,6 +44,18 @@ namespace DFM.MVC.Helpers.Extensions
 		public static String Translate(this HttpContext context, params String[] text)
 		{
 			return context.GetTranslator()[text];
+		}
+
+		public static String TryTranslate(this HttpContext context, params String[] text)
+		{
+			try
+			{
+				return context.Translate(text);
+			}
+			catch (DicException)
+			{
+				return null;
+			}
 		}
 
 		public static String Translate(this HttpContext context, Error error)

@@ -1,7 +1,14 @@
-﻿@model BaseSiteModel
+﻿
+@model BaseSiteModel
 
 @{
 	Layout = "_Base.cshtml";
+
+	ViewBag.WizardSuffix =
+		ViewBag.HasContent
+			? "Filled"
+			: "Empty";
+
 	var buttonList = (List<Button>)ViewBag.Buttons;
 }
 
