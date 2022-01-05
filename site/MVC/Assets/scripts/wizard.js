@@ -81,6 +81,10 @@ function addHighlight() {
 
 			hl.addClass(`wl${wizardCount}`)
 
+			if ($(obj).hasClass('wl-other-color')) {
+				hl.addClass('wl-other-color')
+			}
+
 			$(document.body).append(hl)
 
 			highlights.push(obj)

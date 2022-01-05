@@ -11,6 +11,9 @@
 			area = defaultRoute.Area
 		}
 	);
+
+	var moveClass = ViewBag.MoveMenuClass + " wl-other-color";
+	var summaryClass = ViewBag.SummaryMenuClass + " wl-other-color";
 }
 
 @if (Model.Account.IsOpen)
@@ -19,7 +22,7 @@
 		@Html.ActionLink(
 			Context.Translate("ToMove"),
 			"Create", "Moves",
-			null, new { @class = ViewBag.MoveMenuClass }
+			null, new { @class = moveClass }
 		)
 	</li>
 	<li>
@@ -48,7 +51,7 @@
 	@Html.ActionLink(
 		Context.Translate("YearMoves"),
 		"Year", "Reports",
-		null, new { @class = ViewBag.SummaryMenuClass }
+		null, new { @class = summaryClass }
 	)
 </li>
 
