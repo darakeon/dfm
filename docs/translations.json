@@ -1,10 +1,10 @@
 {
-    "en-US": {
+    "en-us": {
         "Add change version to CI ([how to commit ci])": "-",
         "Fix ops page to ignore contract": "Fix problem with site error page",
         "Fix dependabot issues": "Fix security issues"
     },
-    "pt-BR": {
+    "pt-br": {
         "Add change version to CI ([how to commit ci])": "-",
         "Fix ops page to ignore contract": "Corrigido problema com página que avisa de erro no site",
         "Fix dependabot issues": "Corrigidos problemas de segurança"
