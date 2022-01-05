@@ -2,12 +2,6 @@
 
 @{
 	ViewBag.Title = Context.Translate(Model.ActionName, Model.ControllerName);
-
-	ViewBag.WizardMessage =
-		Model.Type == OperationType.Scheduling
-			? "SchedulesCreate"
-			: "MovesCreate";
-
 	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
 	ViewBag.FormSizeSm = 10;
 	ViewBag.FormSizeLg = 6;

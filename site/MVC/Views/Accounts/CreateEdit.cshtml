@@ -8,11 +8,6 @@
 		ViewBag.Title += $" [{Model.Account.Name}]";
 	}
 
-	if (Model.Type == OperationType.Creation)
-	{
-		ViewBag.WizardMessage = "AccountsCreate";
-	}
-
 	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
 }
 
