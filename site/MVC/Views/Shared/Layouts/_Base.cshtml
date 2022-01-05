@@ -63,6 +63,11 @@
 	@await RenderSectionAsync("Scripts", false)
 </head>
 <body>
+	@if (Model.ShowWizard)
+	{
+		<span id="wh" class="wh"><span></span></span>
+	}
+
 	@await Html.PartialAsync("Skeleton/Header")
 
 	<div id="body" class="container" role="main">

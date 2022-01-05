@@ -48,67 +48,40 @@ function addText(element, text, chars) {
 		if (element.html() !== text) {
 			addText(element, text, ++chars)
 		} else {
-			backupPreHighlight()
 			addHighlight()
 			disableContinueIfLastMessage()
 		}
 	}, showLetterTime)
 }
 
-function backupPreHighlight() {
-	$(`.wizard-highlight-${wizardCount}`).each(
-		function (_, obj) {
-			backupObjPreHighlight(obj, 'borderColor')
-			backupObjPreHighlight(obj, 'borderStyle')
-
-			let maxChange = 7;
-
-			if ($(obj).hasClass('adjust-padding')) {
-				sides.forEach((side) => {
-					const originalValue =
-						backupObjPreHighlight(obj, `padding${side}`)
-
-					const maxAllowed = originalValue.replace('px', '') * 1
-
-					if (maxChange > maxAllowed)
-						maxChange = maxAllowed
-				});
-			}
-
-			$(obj).data('maxChange', maxChange)
-
-			sides.forEach((side) => {
-				backupObjPreHighlight(obj, `border${side}Width`)
-			});
-		}
-	)
-}
-
-function backupObjPreHighlight(obj, key) {
-	const value = $(obj).css(key)
-	$(obj).data(key, value)
-	return value
-}
-
 function addHighlight() {
 	var highlights = []
 
 	$('.wizard-highlight-' + wizardCount).each(
-		function (_, obj) {
-			$(obj).css('borderColor', 'var(--highlight-0)')
-			$(obj).css('borderStyle', 'solid')
+		function (index, obj) {
+			const hl = $('#wh').clone()
+			hl.prop('id', null)
 
-			var sizeChange = $(obj).data('maxChange') * 1
+			const rect = obj.getBoundingClientRect()
 
-			if ($(obj).hasClass('adjust-padding')) {
-				sides.forEach((side) => {
-					resizeCssDimension(obj, `padding${side}`, false, sizeChange)
-				})
-			}
+			hl.width(rect.width)
+			hl.height(rect.height)
 
-			sides.forEach((side) => {
-				resizeCssDimension(obj, `border${side}Width`, true, sizeChange)
+			const borderRadius = Math.min(rect.width, rect.height) / 2
+
+			const animationDuration = `${index + 1}s`
+
+			hl.css({
+				top: rect.top - 3 + window.scrollY,
+				left: rect.left - 3 + window.scrollX,
+				zIndex: getZIndex(obj),
+				borderRadius,
+				animationDuration
 			})
+
+			hl.addClass(`wl${wizardCount}`)
+
+			$(document.body).append(hl)
 
 			highlights.push(obj)
 		}
@@ -120,63 +93,27 @@ function addHighlight() {
 	)
 }
 
-function resizeCssDimension(obj, property, increase, maxDiff) {
-	const current = $(obj).css(property);
-	const original = $(obj).data(property);
+function getZIndex(obj) {
+	let zOwner = $(obj)
+	let zIndex
 
-	const currentValue = current.replace('px', '') * 1;
-	const originalValue = original.replace('px', '') * 1;
-	const newValue = currentValue + (increase ? +1 : -1);
+	do {
+		zIndex = zOwner.css('z-index')
+		zOwner = zOwner.parent()
+	} while (zIndex === 'auto' && zOwner[0] && zOwner[0] !== document)
 
-	const changeValue = increase
-		? newValue < originalValue + maxDiff
-		: newValue > originalValue - maxDiff;
-
-	if (changeValue) {
-		$(obj).css(property, `${newValue}px`)
-
-		setTimeout(
-			() => {
-				resizeCssDimension(obj, property, increase, maxDiff)
-			},
-			animateHighlightTime
-		)
-	}
-}
-
-function isOffScreen(obj) {
-	const rect = obj.getBoundingClientRect();
-	const isBefore = rect.y < rect.height;
-	const isAfter = rect.y > window.innerHeight;
-
-	return isBefore || isAfter
-		? Math.floor(rect.y + rect.width - window.innerHeight)
-		: 0;
+	return zIndex
 }
 
 function disableContinueIfLastMessage() {
 	if (wizardCount + 1 === wizardMax) {
 		$("#wizard-continue").addClass("disabled")
+		$("#wizard-continue")[0].disabled = true
 	}
 }
 
 function clearHighlight() {
-	$('.wizard-highlight-' + (wizardCount - 1)).each(
-		function (_, obj) {
-			restoreObjPostHighlight(obj, 'borderColor')
-			restoreObjPostHighlight(obj, 'borderStyle')
-
-			if ($(obj).hasClass('adjust-padding')) {
-				sides.forEach((side) => {
-					restoreObjPostHighlight(obj, `padding${side}`)
-				});
-			}
-
-			sides.forEach((side) => {
-				restoreObjPostHighlight(obj, `border${side}Width`)
-			});
-		}
-	)
+	$(`.wl${wizardCount - 1}`).remove()
 }
 
 function restoreObjPostHighlight(obj, property) {
