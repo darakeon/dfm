@@ -15,6 +15,16 @@
 			? ""
 			: "wizard-highlight-2 adjust-padding";
 
+	ViewBag.SummaryMenuClass =
+		hasMoves
+			? "wizard-highlight-5 adjust-padding"
+			: "";
+
+	ViewBag.TitleClass =
+		hasMoves
+			? "wizard-highlight-2"
+			: "";
+
 	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 
 	ViewBag.HasContent = hasMoves || Model.ForeseenList.Any();
@@ -138,11 +148,11 @@
 		<div class="row">
 			<div class="col-lg-2 col-sm-2"></div>
 
-			<div class="col-lg-8 col-sm-8 text-center">
+			<div class="col-lg-8 col-sm-8 text-center wizard-highlight-3">
 				@await Html.PartialAsync("Extensions/Pagination", pages)
 			</div>
 
-			<div class="col-lg-2 col-sm-2">
+			<div class="col-lg-2 col-sm-2 wizard-highlight-4">
 				@await Html.PartialAsync("Total")
 			</div>
 		</div>
