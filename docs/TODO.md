@@ -13,7 +13,7 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (59)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (60)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
 | warning about contract being only with who signs, not related people           | :sheep:  |  1  |  4  |  7  |                |       |
 | warning about schedules not running if not active                              | :sheep:  |  1  |  4  |  7  |                |       |
@@ -28,6 +28,7 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Add account names into search                                                  | :sheep:  |  1  |  2  |  5  |                |       |
 | Add nickname field - show it at every screen and e-mail                        | :whale:  |  3  |  3  |  4  |                |       |
 | Separate validators from service/repository                                    | :ant:    |  3  |  3  |  4  |                |       |
+| Make ci ignore steps if nothing is changed                                     | :ant:    |  3  |  3  |  4  |                |       |
 | Enable Copy Move (web+mobile)                                                  | :whale:  |  2  |  2  |  4  |                |       |
 | Add account creation (mobile)                                                  | :whale:  |  2  |  2  |  4  |                |       |
 | Add category creation (mobile)                                                 | :whale:  |  2  |  2  |  4  |                |       |
