@@ -7,7 +7,7 @@ COPY site /var/dfm/site
 RUN cd /var/dfm/site/MVC \
 	&& libman restore \
 	&& dotnet publish MVC.csproj -o /var/www \
-	&& apt remove -y dotnet-sdk-5.0 \
+	&& apt-get remove -y dotnet-sdk-5.0 \
 	&& maintain \
 	&& rm -r /var/dfm
 
