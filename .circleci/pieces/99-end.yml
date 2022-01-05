@@ -22,8 +22,7 @@ workflows:
           requires:
             - test_ci
             - test_core
-      - approve_version_change:
-          type: approval
+      - version_change:
           filters:
             branches:
               only: /^\d+\.\d+\.\d+\.\d+$/
@@ -34,9 +33,3 @@ workflows:
             - test_browser
             - test_android
             - test_build_robot
-      - version_change:
-          filters:
-            branches:
-              only: /^\d+\.\d+\.\d+\.\d+$/
-          requires:
-            - approve_version_change
