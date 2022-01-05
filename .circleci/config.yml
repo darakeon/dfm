@@ -28,30 +28,6 @@ jobs:
           path: .circleci
           command: if [[ $(diff config.yml config_old.yml) != '' ]]; then echo 'outdated ci config'; exit 1; fi
 
-  version_check:
-    docker:
-      - image: rust
-    resource_class: small
-    environment:
-      RUST_BACKTRACE: 1
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - rust-{{ checksum "version/Cargo.toml" }}
-      - run:
-          name: build
-          path: version
-          command: cargo build
-      - save_cache:
-          key: rust-{{ checksum "version/Cargo.toml" }}
-          paths:
-            - /usr/local/cargo/registry/
-      - run:
-          name: check_version_changed
-          path: version
-          command: cargo run -q -- -c
-
   test_core:
     docker:
       - image: darakeon/netcore
@@ -303,21 +279,29 @@ jobs:
           paths:
             - /usr/local/cargo/registry/
       - run:
-          name: version_change
+          name: version change
           path: version
-          command: cargo run -q -- -q $NEW_TASKS
+          command: |
+            if [ "$VERSION" == "$CIRCLE_BRANCH" ] ; then
+
+              if [ "$NEW_TASKS" == "0" ] ; then
+                cargo run -q -- -e
+              else
+                cargo run -q -- -q $NEW_TASKS
+              fi
+
+              git log -2
+              git push -u origin $CIRCLE_BRANCH
+
+            else
+              cargo run -q -- -c
+            fi
 
 workflows:
   version: 2.1
   build_all:
     jobs:
       - test_ci
-      - version_check:
-          filters:
-            branches:
-              only: /^\d+\.\d+\.\d+\.\d+$/
-          requires:
-            - test_ci
       - test_core:
           requires:
             - test_ci
@@ -344,7 +328,6 @@ workflows:
               only: /^\d+\.\d+\.\d+\.\d+$/
           requires:
             - test_ci
-            - version_check
             - test_core
             - test_site
             - test_browser

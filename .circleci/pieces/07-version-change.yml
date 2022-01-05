@@ -18,7 +18,21 @@
           paths:
             - /usr/local/cargo/registry/
       - run:
-          name: version_change
+          name: version change
           path: version
-          command: cargo run -q -- -q $NEW_TASKS
+          command: |
+            if [ "$VERSION" == "$CIRCLE_BRANCH" ] ; then
+
+              if [ "$NEW_TASKS" == "0" ] ; then
+                cargo run -q -- -e
+              else
+                cargo run -q -- -q $NEW_TASKS
+              fi
+
+              git log -2
+              git push -u origin $CIRCLE_BRANCH
+
+            else
+              cargo run -q -- -c
+            fi
 

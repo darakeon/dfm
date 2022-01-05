@@ -3,12 +3,6 @@ workflows:
   build_all:
     jobs:
       - test_ci
-      - version_check:
-          filters:
-            branches:
-              only: /^\d+\.\d+\.\d+\.\d+$/
-          requires:
-            - test_ci
       - test_core:
           requires:
             - test_ci
@@ -35,7 +29,6 @@ workflows:
               only: /^\d+\.\d+\.\d+\.\d+$/
           requires:
             - test_ci
-            - version_check
             - test_core
             - test_site
             - test_browser
