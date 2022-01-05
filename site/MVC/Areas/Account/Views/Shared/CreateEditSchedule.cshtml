@@ -52,8 +52,17 @@ else
 	@await Html.PartialAsync("ValueAndDetail")
 
 	@section Footer {
-		<button type="submit" class="btn btn-success">
-			@Context.Translate(Model.ActionName)
-		</button>
+		<div class="row">
+			<div class="col-lg-9 text-left small">
+				@Context.Translate("NoLinkReminder1")<br/>
+				@Context.Translate("NoLinkReminder2")<br/>
+				@Context.Translate("NoLinkReminder3")
+			</div>
+			<div class="col-lg-3">
+				<button type="submit" class="btn btn-success">
+					@Context.Translate(Model.ActionName)
+				</button>
+			</div>
+		</div>
 	}
 }

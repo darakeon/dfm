@@ -157,6 +157,10 @@
 		"ActivateWarning_Week": "For one week you will be able to use the system without activating. After that your login will not work anymore until you activate it.",
 		"ActivateWarning_Schedules": "PS: scheduled moves are not inserted until your register is activated by the e-mail token.",
 		"ActivateWarning_Send": "send activation token again",
+
+		"NoLinkReminder1": "THE SYSTEM HAS NO CONNECTION TO ANY FINANCIAL INSTITUTION,",
+		"NoLinkReminder2": "SO ANY MOVES MADE HERE ARE MADE JUST HERE,",
+		"NoLinkReminder3": "BEING MERELY REGISTERS IN THIS SYSTEM."
 	},
 	"pt-BR": {
 		"CurrentLanguage": "português",
@@ -316,5 +320,9 @@
 		"ActivateWarning_Week": "Por uma semana, você poderá usar o sistema sem a ativação. Depois disso seu login irá parar de funcionar até que seja ativado.",
 		"ActivateWarning_Schedules": "OBS: movimentações agendadas não são inseridas até que seu registro esteja ativado pelo token no e-mail.",
 		"ActivateWarning_Send": "enviar ativação novamente",
+
+		"NoLinkReminder1": "O SISTEMA NÃO POSSUI LIGAÇÃO COM NENHUMA INSTITUIÇÃO,",
+		"NoLinkReminder2": "PORTANTO MOVIMENTAÇÕES FEITAS AQUI SÃO APENAS FEITAS AQUI,",
+		"NoLinkReminder3": "SENDO MERAMENTE REGISTRADOS NESTE SISTEMA."
 	},
 }
