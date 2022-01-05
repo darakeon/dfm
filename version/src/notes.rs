@@ -25,7 +25,8 @@ pub fn update_notes_for_language(version: &Version, language: &str) {
 	let mut tasks_json = "".to_string();
 	let mut tasks = version.tasks.clone();
 
-	let translations_file = get_content("..\\docs\\translations.json".to_string());
+	let translations_path = get_path(vec!["..", "docs", "translations.json"]);
+	let translations_file = get_content(translations_path);
 	let translations = json::parse(&translations_file).unwrap();
 
 	while let Some(task) = tasks.pop_front() {
