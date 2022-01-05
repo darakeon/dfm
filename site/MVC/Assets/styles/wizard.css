@@ -49,7 +49,7 @@
 
 .wh {
 	position: absolute;
-	border-color: var(--highlight-0);
+	border-color: var(--primary-0);
 	border-width: 10px;
 	padding: 10px;
 	border-style: solid;
