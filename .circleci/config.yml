@@ -162,15 +162,19 @@ jobs:
           command: dotnet publish -c Release MVC.csproj -o ../Tests/Browser/server --no-restore
       - restore_cache:
           keys:
-            - node-{{ checksum "site/Tests/Browser/package.json" }}
+            - node-{{ checksum "site/Tests/Browser/package.json" }}-{{ checksum "site/Tests/Browser/package-lock.json" }}
       - run:
           name: dependencies_node
           path: site/Tests/Browser
           command: npm install
       - save_cache:
-          key: node-{{ checksum "site/Tests/Browser/package.json" }}
+          key: node-{{ checksum "site/Tests/Browser/package.json" }}-{{ checksum "site/Tests/Browser/package-lock.json" }}
           paths:
             - site/Tests/Browser/node_modules
+      - run:
+          name: check_dependencies_node
+          path: site/Tests/Browser
+          command: npm audit
       - run:
           name: tests_browser
           command: .circleci/browser/run-tests.sh
