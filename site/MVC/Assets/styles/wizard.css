@@ -21,8 +21,8 @@
 	z-index: 20;
 }
 
-.move-down {
-	margin-top: 125px;
+.below-wizard-box {
+	height: 100px;
 }
 
 @media (min-width:768px) {
