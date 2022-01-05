@@ -23,7 +23,7 @@ describe('Moves', () => {
 
 	test('Create Out', async () => {
 		await puppy.call(`Account/${accountOut}/Moves/Create`)
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		await page.type('#Description', 'Move Create Out')
 		await puppy.setValue('#Date', '2019-11-16')
@@ -41,7 +41,7 @@ describe('Moves', () => {
 
 	test('Create In', async () => {
 		await puppy.call(`Account/${accountIn}/Moves/Create`)
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		await page.type('#Description', 'Move Create In')
 		await puppy.setValue('#Date', '2019-11-16')
@@ -60,7 +60,7 @@ describe('Moves', () => {
 
 	test('Create Transfer', async () => {
 		await puppy.call(`Account/${accountOut}/Moves/Create`)
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		await page.type('#Description', 'Move Create Transfer')
 		await puppy.setValue('#Date', '2019-11-16')
@@ -80,7 +80,7 @@ describe('Moves', () => {
 
 	test('Create Detailed', async () => {
 		await puppy.call(`Account/${accountOut}/Moves/Create`)
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		await page.type('#Description', 'Move Create Detailed')
 		await puppy.setValue('#Date', '2019-11-16')
@@ -111,7 +111,7 @@ describe('Moves', () => {
 
 		const form = `Account/${accountOut}/Moves/Edit/${id}`
 		await puppy.call(form)
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		await puppy.clear('#Description')
 		await page.type('#Description', 'Move Edited')
@@ -130,7 +130,7 @@ describe('Moves', () => {
 		)
 
 		await puppy.call(`Account/${accountOut}/Reports/Month/201911`)
-		await page.waitForSelector('#body .table')
+		await puppy.waitFor('#body .table')
 
 		const deleteUrl = `/Account/${accountOut}/Moves/Delete/${id}`
 		await puppy.submit(deleteUrl)
@@ -149,7 +149,7 @@ describe('Moves', () => {
 		)
 
 		await puppy.call(`Account/${accountOut}/Reports/Month/201911`)
-		await page.waitForSelector('#body .table')
+		await puppy.waitFor('#body .table')
 
 		const checkUrl = `/Account/${accountOut}/Moves/Check/${id}`
 		await puppy.submit(checkUrl)
@@ -173,7 +173,7 @@ describe('Moves', () => {
 		await db.checkMove('Move Uncheck', 2019, 11, 16, 'Out')
 
 		await puppy.call(`Account/${accountOut}/Reports/Month/201911`)
-		await page.waitForSelector('#body .table')
+		await puppy.waitFor('#body .table')
 
 		const uncheckUrl = `/Account/${accountOut}/Moves/Uncheck/${id}`
 		await puppy.submit(uncheckUrl)
@@ -190,7 +190,7 @@ describe('Moves', () => {
 	test('Just numbers field', async () => {
 		const form = `Account/${accountOut}/Moves/Create`
 		await puppy.call(form)
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		await page.type('#Value', 'A')
 

@@ -90,7 +90,7 @@ describe('Reports', () => {
 			await puppy.call()
 	
 			await page.click('ul.nav li:nth-child(4) a')
-			await page.waitForSelector(
+			await puppy.waitFor(
 				'#search-modal',
 				{ visible: true }
 			)
@@ -182,7 +182,7 @@ describe('Reports', () => {
 
 		// dismiss tip
 		await page.click('.tip .balloon .tip-close')
-		await page.waitForSelector('.tip.hidden-tip');
+		await puppy.waitFor('.tip.hidden-tip');
 
 		// third should not show
 		await puppy.call()

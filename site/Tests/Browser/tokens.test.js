@@ -30,7 +30,7 @@ describe('Users', () => {
 		const token = await db.createToken(email, 0)
 
 		await puppy.call('Tokens')
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		await page.type('#Token', token)
 		await page.click('#body form button[type="submit"]')
@@ -45,7 +45,7 @@ describe('Users', () => {
 		const token = await db.createToken(email, 1)
 
 		await puppy.call(`Tokens/PasswordReset/${token}`)
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		await page.type('#Password', db.password.plain)
 		await page.type('#RetypePassword', db.password.plain)
@@ -61,12 +61,12 @@ describe('Users', () => {
 		const token = await db.createToken(email, 1)
 
 		await puppy.call('Tokens')
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		await page.type('#Token', token)
 		await page.select('#SecurityAction', "PasswordReset")
 		await page.click('#body form button[type="submit"]')
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		await page.type('#Password', db.password.plain)
 		await page.type('#RetypePassword', db.password.plain)
@@ -102,7 +102,7 @@ describe('Users', () => {
 		const token = await db.getLastUnsubscribeMoveMailToken(user)
 
 		await puppy.call('Tokens')
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		await page.type('#Token', token)
 		await page.select('#SecurityAction', "UnsubscribeMoveMail")
