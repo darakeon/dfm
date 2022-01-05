@@ -14,14 +14,6 @@
 			? "AccountsIndexFilled"
 			: "AccountsIndexEmpty";
 
-	var accountsIndexFilledCount = 5;
-	var accountsIndexEmptyCount = 5;
-
-	ViewBag.WizardCount =
-		anyAccount
-			? accountsIndexFilledCount
-			: accountsIndexEmptyCount;
-
 	ViewBag.WizardButtonClass =
 		anyAccount
 			? ""
