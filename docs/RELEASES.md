@@ -18,7 +18,7 @@ Legend:
 - [ ] Make wizard interactive
 
 ## <a name="7.4.0.4"></a>7.4.0.4 :ant: <sup>`1`</sup>
-- [ ] Upgrade .NET version
+- [x] `220426>220426` Upgrade .NET version
 
 ## <a name="7.4.0.3"></a>7.4.0.3 :ant: <sup>`1`</sup>
 - [x] `220326>220326` Fix wizard of misc
