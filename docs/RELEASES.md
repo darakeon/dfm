@@ -18,7 +18,7 @@ Legend:
 - [ ] Make wizard interactive
 
 ## <a name="7.4.0.2"></a>7.4.0.2 :ant: <sup>`1`</sup>
-- [ ] Fix dependabot issues
+- [x] `220220>220220` Fix dependabot issues
 
 ## <a name="7.4.0.1"></a>7.4.0.1 :ant: <sup>`2`</sup>
 - [x] `211226>211226` Add change version to CI ([how to commit ci])
