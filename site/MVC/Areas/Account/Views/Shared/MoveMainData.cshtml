@@ -8,7 +8,7 @@
 <div class="form-group">
 	@Html.LabelFor(m => m.Description, Context.Translate("Description"), new { @class = "control-label" })
 	@Html.ValidationMessageFor(m => m.Description)<br />
-	@Html.TextBoxFor(m => m.Description, new { maxlength = MaxLen.MoveDescription, @class = "form-control" })
+	@Html.TextBoxFor(m => m.Description, new { maxlength = MaxLen.MoveDescription, @class = "form-control wizard-highlight-1" })
 	<small>@String.Format(Context.Translate("CharactersMax"), MaxLen.MoveDescription)</small>
 </div>
 
@@ -16,7 +16,7 @@
 	<div class="col-sm-@(rowWidths) form-group">
 		@Html.LabelFor(m => m.Date, Context.Translate("Date"), new { @class = "control-label" })
 		@Html.ValidationMessageFor(m => m.Date)<br />
-		@Html.TextBoxFor(m => m.Date, new { type = "date", @class = "form-control" })
+		@Html.TextBoxFor(m => m.Date, new { type = "date", @class = "form-control wizard-highlight-1" })
 	</div>
 
 	@if (useCategories)
