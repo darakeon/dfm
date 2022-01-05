@@ -1,4 +1,4 @@
-name: 'commit-lint'
+name: Lint commit
 on:
   pull_request:
     types: [opened, edited, reopened, synchronize]
