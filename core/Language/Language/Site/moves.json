@@ -7,7 +7,6 @@
 		"ScheduleRequired": "Schedule not found",
 		"MoveSave": "Move: {0}, but the data was saved successfully",
 		"MoveDeletedWithoutEmail": "{1}, but move '{0}' deleted successfully",
-
 	},
 	"pt-BR": {
 		"JustOneValue": "Valor único",
