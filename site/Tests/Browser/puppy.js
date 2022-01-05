@@ -21,7 +21,7 @@ async function call(path) {
 	await init()
 
 	const result = await page.goto(url(path))
-	await page.waitForSelector('body')
+	await waitFor('body')
 
 	const status = result.status()
 	if (status == 200)
@@ -43,8 +43,22 @@ function url(path) {
 }
 
 async function content(selector, options) {
-	await page.waitForSelector(selector, options)
+	await waitFor(selector, options)
 	return await page.$eval(selector, n => n.innerHTML)
+}
+
+async function waitFor(selector, options) {
+	try {
+		return await page.waitForSelector(selector, options)
+	} catch (error) {
+		const now = new Date()
+		const logName = selector.replace(/[^\w]/g, '') +
+			now.toISOString().replace(/[^\d]/g, '')
+
+		await imageLog(logName)
+		
+		throw error
+	}
 }
 
 async function clear(selector) {
@@ -87,7 +101,7 @@ async function callLogonPage(email) {
 	await db.cleanupTickets()
 
 	await call('Users/Logon')
-	await page.waitForSelector('#body form')
+	await waitFor('#body form')
 
 	await page.type('#Email', email)
 	await page.type('#Password', db.password.plain)
@@ -100,9 +114,9 @@ async function submit(action) {
 	const selector = `form[action="${action}"] button[type="submit"]`
 
 	try {
-		await page.waitForSelector(selector, { visible: true })
+		await waitFor(selector, { visible: true })
 		await page.click(selector)
-		await page.waitForSelector('footer')
+		await waitFor('footer')
 	} catch (e) {
 		const logPath = action.replace(/\//g, '_')
 		await imageLog('submit_' + logPath)
@@ -117,7 +131,7 @@ async function createMove(
 	const accountUrl = accountOutUrl || accountInUrl
 
 	await call(`Account/${accountUrl}/Moves/Create`)
-	await page.waitForSelector('#body form')
+	await waitFor('#body form')
 
 	await page.type('#Description', description)
 
@@ -143,7 +157,7 @@ async function createMove(
 	await page.type('#Value', value)
 
 	await page.click('#body form button[type="submit"]')
-	await page.waitForSelector('#body')
+	await waitFor('#body')
 
 	const dateParts = date.split('-')
 	const year = dateParts[0]
@@ -181,4 +195,5 @@ module.exports = {
 	submit,
 	createMove,
 	imageLog,
+	waitFor,
 }

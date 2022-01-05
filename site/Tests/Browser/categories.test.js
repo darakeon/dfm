@@ -36,7 +36,7 @@ describe('Categories', () => {
 		const name = 'Category Create'
 
 		await puppy.call('Categories/Create')
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		await page.type('#Category_Name', name)
 		await page.click('#body form button[type="submit"]')
@@ -53,7 +53,7 @@ describe('Categories', () => {
 		await db.createCategoryIfNotExists(name, user)
 
 		await puppy.call(`Categories/Edit/${name}`)
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		name = 'Category 2'
 		await puppy.clear('#Category_Name')

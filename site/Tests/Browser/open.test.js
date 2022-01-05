@@ -12,7 +12,7 @@ describe('Open site', () => {
 
 		await page.click('ul.nav li:nth-child(2) a')
 
-		await page.waitForSelector(
+		await puppy.waitFor(
 			'#contact-modal',
 			{ visible: true }
 		)
@@ -33,34 +33,34 @@ describe('Open site', () => {
 		const email = 'language@dontflymoney.com'
 		await puppy.logon(email)
 
-		await page.waitForSelector('ul.nav a.pt-br')
+		await puppy.waitFor('ul.nav a.pt-br')
 		await page.click('ul.nav a.pt-br')
 
-		await page.waitForSelector(
+		await puppy.waitFor(
 			'#language-modal',
 			{ visible: true }
 		)
 
 		await page.click('#language-modal #language-en-us')
 
-		await page.waitForSelector('ul.nav a.en-us')
+		await puppy.waitFor('ul.nav a.en-us')
 	})
 
 	it('should have a modal to change language (LOGGED OUT)', async () => {
 		await db.cleanupTickets()
 		await puppy.call()
 
-		await page.waitForSelector('ul.nav a.pt-br')
+		await puppy.waitFor('ul.nav a.pt-br')
 		await page.click('ul.nav a.pt-br')
 
-		await page.waitForSelector(
+		await puppy.waitFor(
 			'#language-modal',
 			{ visible: true }
 		)
 
 		await page.click('#language-modal #language-en-us')
 
-		await page.waitForSelector('ul.nav a.en-us')
+		await puppy.waitFor('ul.nav a.en-us')
 	})
 
 	it('should have a robots', async () => {

@@ -36,7 +36,7 @@ describe('Accounts', () => {
 
 	test('Create', async () => {
 		await puppy.call('Accounts/Create')
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		await page.type('#Account_Name', 'Account Create')
 		await page.click('#body form button[type="submit"]')
@@ -52,7 +52,7 @@ describe('Accounts', () => {
 		const url = await db.createAccountIfNotExists(name, user)
 
 		await puppy.call(`Accounts/Edit/${url}`)
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		await puppy.clear('#Account_Name')
 		await page.type('#Account_Name', 'Account 2')
