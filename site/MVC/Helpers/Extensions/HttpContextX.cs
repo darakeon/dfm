@@ -30,7 +30,12 @@ namespace DFM.MVC.Helpers.Extensions
 		private static readonly ContextDic<Translator> translators =
 			new(c => new Translator(c));
 
-		public static Translator GetTranslator(this HttpContext context)
+		public static void StartTranslator(this HttpContext context)
+		{
+			context.GetTranslator();
+		}
+
+		internal static Translator GetTranslator(this HttpContext context)
 		{
 			return translators[context];
 		}
@@ -53,6 +58,11 @@ namespace DFM.MVC.Helpers.Extensions
 		public static String GetMonthName(this HttpContext context, Int32 month)
 		{
 			return context.GetTranslator().GetMonthName(month);
+		}
+
+		public static Int32 CountTranslations(this HttpContext context, String sectionToCount, String phrasePrefix)
+		{
+			return context.GetTranslator().CountTranslations(sectionToCount, phrasePrefix);
 		}
 
 		public static Dictionary<String, Object> GetRoute(this HttpContext context)

@@ -181,5 +181,10 @@ namespace DFM.Language
 		{
 			return CultureInfo.GetCultureInfo(language).NumberFormat;
 		}
+
+		public Int32 CountTranslations(String section, String language, String phrasePrefix)
+		{
+			return SectionList[section][language].CountTranslations(phrasePrefix);
+		}
 	}
 }

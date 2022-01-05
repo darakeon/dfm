@@ -53,7 +53,7 @@ namespace DFM.MVC.Starters
 					CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
 					CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
-					context.GetTranslator();
+					context.StartTranslator();
 				}
 
 				await next();

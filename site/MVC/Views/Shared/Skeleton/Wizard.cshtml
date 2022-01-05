@@ -2,7 +2,8 @@
 
 @if (Model.ShowWizard && ViewBag.WizardMessage != null)
 {
-	var count = ViewBag.WizardCount ?? 0;
+	var wizardKey = $"Wizard_{ViewBag.WizardMessage}";
+	var count = Context.CountTranslations("wizard", wizardKey);
 
 	<script>
 		var wizardMax = @count || 1
@@ -31,14 +32,14 @@
 				<div class="col-lg-8 col-sm-8 text-center" onClick="printAll()">
 					@if (count == 0)
 					{
-						var text = Context.Translate($"Wizard_{ViewBag.WizardMessage}");
+						var text = Context.Translate(wizardKey);
 						<span class="interactive" id="wizard-text-0" data-text="@text"></span>
 					}
 					else
 					{
 						@for (var t = 0; t < count; t++)
 						{
-							var text = Context.Translate($"Wizard_{ViewBag.WizardMessage}_{t}");
+							var text = Context.Translate($"{wizardKey}_{t}");
 							<span class="interactive" id="wizard-text-@t" data-text="@text"></span>
 						}
 					}
