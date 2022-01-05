@@ -214,7 +214,7 @@ fn create_branch_if_not_exists(repo: &Repository, branch_name: &str) {
 		}
 	}
 
-	print!("... Branch {} already exists ...", &branch_name);
+	println!("... Branch {} already exists ...", &branch_name);
 }
 
 pub fn remove_branch(name: &str) {
