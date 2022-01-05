@@ -285,6 +285,10 @@ jobs:
           name: version change
           path: version
           command: |
+            echo "Version: $VERSION"
+            echo "Circle branch: $CIRCLE_BRANCH"
+            echo "New tasks: $NEW_TASKS"
+
             if [ "$VERSION" == "$CIRCLE_BRANCH" ] ; then
 
               if [ "$NEW_TASKS" == "0" ] ; then
