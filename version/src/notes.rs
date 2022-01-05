@@ -8,8 +8,8 @@ fn path() -> String { get_path(vec!["..", "core", "Language", "Language", "Versi
 static EXT: &str = r".json";
 
 pub fn update_notes(version: &Version) {
-	update_notes_for_language(version, "en-US");
-	update_notes_for_language(version, "pt-BR");
+	update_notes_for_language(version, "en-us");
+	update_notes_for_language(version, "pt-br");
 }
 
 pub fn update_notes_for_language(version: &Version, language: &str) {
