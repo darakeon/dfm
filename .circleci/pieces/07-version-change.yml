@@ -6,6 +6,9 @@
       RUST_BACKTRACE: 1
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "15:78:d5:ca:e6:7d:80:e6:2d:1f:35:a1:f3:9d:1b:48"
       - restore_cache:
           keys:
             - rust-{{ checksum "version/Cargo.toml" }}
