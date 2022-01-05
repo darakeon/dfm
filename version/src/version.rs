@@ -110,7 +110,7 @@ fn start_of_current_tasks(task_list: &Vec<String>, branch: String) -> usize {
 
 fn end_not_done() -> Option<Version> {
 	if has_pull_request() {
-		return throw(11, "Version is not done");
+		return throw(11, "There is an opened pull request and the version is not done");
 	}
 
 	return success();
