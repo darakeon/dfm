@@ -60,6 +60,9 @@
 	opacity: 0.75;
 	animation-name: mark;
 }
+	.wh.wl-other-color {
+		border-color: var(--highlight-0)
+	}
 
 @keyframes mark {
 	0% {
