@@ -1,4 +1,4 @@
-CREATE TABLE Contract
+CREATE TABLE contract
 (
 	ID INT NOT NULL AUTO_INCREMENT,
 	BeginDate DATETIME NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE Contract
 		UNIQUE KEY (Version)
 );
 
-CREATE TABLE Acceptance
+CREATE TABLE acceptance
 (
 	ID INT NOT NULL AUTO_INCREMENT,
 	Accepted BIT NOT NULL,
@@ -25,24 +25,24 @@ CREATE TABLE Acceptance
 
 	CONSTRAINT FK_Acceptance_Contract
 		FOREIGN KEY (Contract_ID)
-		REFERENCES Contract (ID),
+		REFERENCES contract (ID),
 
 	CONSTRAINT FK_Acceptance_User
 		FOREIGN KEY (User_ID)
-		REFERENCES User (ID),
+		REFERENCES user (ID),
 
 	CONSTRAINT UK_Acceptance
 		UNIQUE KEY (User_ID, Contract_ID)
 );
 
-INSERT INTO Contract (BeginDate, Version) VALUES (now(), '003000000000');
+INSERT INTO contract (BeginDate, Version) VALUES (now(), '003000000000');
 
-ALTER TABLE Config
+ALTER TABLE config
 	ADD COLUMN Theme SMALLINT;
 
 SET SQL_SAFE_UPDATES = 0;
 
-UPDATE Config
+UPDATE config
 	SET Theme = 2;
 
 SET SQL_SAFE_UPDATES = 1;

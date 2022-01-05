@@ -32,14 +32,14 @@ update move x
 
 alter table move
 	add column Day smallint not null,
-	add column Month smallint not null,
-	add column Year smallint not null,
+	add column month smallint not null,
+	add column year smallint not null,
 	modify column Date datetime null;
 
 update move
 	set Day = day(Date),
-		Month = month(Date),
-		Year = year(Date)
+		month = month(Date),
+		year = year(Date)
 	where id <> 0;
 
 alter table summary
@@ -101,12 +101,12 @@ insert into terms
 
 alter table schedule
 	add column Day smallint not null,
-	add column Month smallint not null,
-	add column Year smallint not null,
+	add column month smallint not null,
+	add column year smallint not null,
 	modify column Date datetime null;
 
 update schedule
 	set Day = day(Date),
-		Month = month(Date),
-		Year = year(Date)
+		month = month(Date),
+		year = year(Date)
 	where id <> 0;

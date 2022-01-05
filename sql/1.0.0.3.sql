@@ -1,7 +1,7 @@
-ALTER TABLE User
+ALTER TABLE user
 	ADD COLUMN Active bit not null default 0;
 
-CREATE TABLE Security (
+CREATE TABLE security (
 	ID INTEGER NOT NULL AUTO_INCREMENT,
 	Active BIT NOT NULL,
 	Expire datetime NOT NULL,

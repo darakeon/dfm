@@ -1,4 +1,4 @@
-create table Account (
+create table account (
 	ID INTEGER NOT NULL AUTO_INCREMENT,
 	Name VARCHAR(20) not null,
 	EndDate DATETIME,
@@ -9,7 +9,7 @@ create table Account (
 	primary key (ID)
 );
 
-create table Category (
+create table category (
 	ID INTEGER NOT NULL AUTO_INCREMENT,
 	Name VARCHAR(20) not null,
 	Active BIT default 1 not null,
@@ -17,7 +17,7 @@ create table Category (
 	primary key (ID)
 );
 
-create table Detail (
+create table detail (
 	ID INTEGER NOT NULL AUTO_INCREMENT,
 	Description VARCHAR(50) not null,
 	Amount SMALLINT default 1 not null,
@@ -26,14 +26,14 @@ create table Detail (
 	primary key (ID)
 );
 
-create table Month (
+create table month (
 	ID INTEGER NOT NULL AUTO_INCREMENT,
 	Time SMALLINT not null,
 	Year_ID INTEGER not null,
 	primary key (ID)
 );
 
-create table Move (
+create table move (
 	ID INTEGER NOT NULL AUTO_INCREMENT,
 	Description VARCHAR(50) not null,
 	Date DATETIME not null,
@@ -45,7 +45,7 @@ create table Move (
 	primary key (ID)
 );
 
-create table Schedule (
+create table schedule (
 	ID INTEGER NOT NULL AUTO_INCREMENT,
 	Active BIT default 1 not null,
 	Times SMALLINT not null,
@@ -57,7 +57,7 @@ create table Schedule (
 	primary key (ID)
 );
 
-create table Summary (
+create table summary (
 	ID INTEGER NOT NULL AUTO_INCREMENT,
 	In_ DOUBLE not null,
 	Out_ DOUBLE not null,
@@ -69,7 +69,7 @@ create table Summary (
 	unique (Month_ID, Year_ID, Category_ID)
 );
 
-create table User (
+create table user (
 	ID INTEGER NOT NULL AUTO_INCREMENT,
 	Password VARCHAR(50) not null,
 	Email VARCHAR(50) not null unique,
@@ -77,87 +77,87 @@ create table User (
 	primary key (ID)
 );
 
-create table Year (
+create table year (
 	ID INTEGER NOT NULL AUTO_INCREMENT,
 	Time SMALLINT not null,
 	Account_ID INTEGER not null,
 	primary key (ID)
 );
 
-alter table Account
+alter table account
 	add index (User_ID),
 	add constraint FK_Account_User
 	foreign key (User_ID)
-	references User (ID);
+	references user (ID);
 
-alter table Category
+alter table category
 	add index (User_ID),
 	add constraint FK_Category_User
 	foreign key (User_ID)
-	references User (ID);
+	references user (ID);
 
-alter table Detail
+alter table detail
 	add index (Move_ID),
 	add constraint FK_Detail_Move
 	foreign key (Move_ID)
-	references Move (ID);
+	references move (ID);
 
-alter table Month
+alter table month
 	add index (Year_ID),
 	add constraint FK_Month_Year
 	foreign key (Year_ID)
-	references Year (ID);
+	references year (ID);
 
-alter table Move
+alter table move
 	add index (In_ID),
 	add constraint FK_Move_InMonth
 	foreign key (In_ID)
-	references Month (ID);
+	references month (ID);
 
-alter table Move
+alter table move
 	add index (Out_ID),
 	add constraint FK_Move_OutMonth
 	foreign key (Out_ID)
-	references Month (ID);
+	references month (ID);
 
-alter table Move
+alter table move
 	add index (Schedule_ID),
 	add constraint FK_Move_Schedule
 	foreign key (Schedule_ID)
-	references Schedule (ID);
+	references schedule (ID);
 
-alter table Move
+alter table move
 	add index (Category_ID),
 	add constraint FK_Move_Category
 	foreign key (Category_ID)
-	references Category (ID);
+	references category (ID);
 
-alter table Schedule
+alter table schedule
 	add index (User_ID),
 	add constraint FK_Schedule_User
 	foreign key (User_ID)
-	references User (ID);
+	references user (ID);
 
-alter table Summary
+alter table summary
 	add index (Month_ID),
 	add constraint FK_Summary_Month
 	foreign key (Month_ID)
-	references Month (ID);
+	references month (ID);
 
-alter table Summary
+alter table summary
 	add index (Year_ID),
 	add constraint FK_Summary_Year
 	foreign key (Year_ID)
-	references Year (ID);
+	references year (ID);
 
-alter table Summary
+alter table summary
 	add index (Category_ID),
 	add constraint FK_Summary_Category
 	foreign key (Category_ID)
-	references Category (ID);
+	references category (ID);
 
-alter table Year
+alter table year
 	add index (Account_ID),
 	add constraint FK_Year_Account
 	foreign key (Account_ID)
-	references Account (ID);
+	references account (ID);
