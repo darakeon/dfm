@@ -9,7 +9,7 @@ describe('Users', () => {
 
 	test('SignUp', async () => {
 		await puppy.call('Users/SignUp')
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		await page.type('#Email', 'signup@dontflymoney.com')
 		await page.type('#Password', db.password.plain)
@@ -22,14 +22,14 @@ describe('Users', () => {
 
 	test('SignUp - contract modal', async () => {
 		await puppy.call('Users/SignUp')
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
-		await page.waitForSelector('#contract-modal', { visible: false })
+		await puppy.waitFor('#contract-modal', { visible: false })
 
 		const termsLink = '#body form a[role="button"]'
 		await page.click(termsLink)
 
-		await page.waitForSelector('#contract-modal', { visible: true })
+		await puppy.waitFor('#contract-modal', { visible: true })
 	})
 
 	test('Not active first day', async () => {
@@ -69,7 +69,7 @@ describe('Users', () => {
 		await puppy.call()
 
 		await page.click('.activate-warning-low')
-		await page.waitForSelector('#activate-warning.modal', { visible: true })
+		await puppy.waitFor('#activate-warning.modal', { visible: true })
 
 		await puppy.submit('/Users/Verification')
 		const alert = await puppy.content('.alert')
@@ -83,7 +83,7 @@ describe('Users', () => {
 		await puppy.call()
 
 		await page.click('.activate-warning-low')
-		await page.waitForSelector('#activate-warning.modal', { visible: true })
+		await puppy.waitFor('#activate-warning.modal', { visible: true })
 
 		await puppy.submit('/Users/Verification')
 		const alert = await puppy.content('.alert')
@@ -97,7 +97,7 @@ describe('Users', () => {
 		await puppy.call()
 
 		await page.click('.activate-warning-high')
-		await page.waitForSelector('#activate-warning.modal', { visible: true })
+		await puppy.waitFor('#activate-warning.modal', { visible: true })
 
 		await puppy.submit('/Users/Verification')
 		const alert = await puppy.content('.alert')
@@ -111,7 +111,7 @@ describe('Users', () => {
 		await puppy.call()
 
 		await page.click('.activate-warning-high')
-		await page.waitForSelector('#activate-warning.modal', { visible: true })
+		await puppy.waitFor('#activate-warning.modal', { visible: true })
 
 		await puppy.submit('/Users/Verification')
 		const alert = await puppy.content('.alert')
@@ -131,7 +131,7 @@ describe('Users', () => {
 		await db.createUserIfNotExists(email, {active:true})
 
 		await puppy.call('Users/Logon')
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		await page.type('#Email', email)
 		await page.type('#Password', db.password.plain)
@@ -146,7 +146,7 @@ describe('Users', () => {
 		await db.createUserIfNotExists(email, { creation: -27 })
 
 		await puppy.call('Users/Logon')
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		await page.type('#Email', email)
 		await page.type('#Password', db.password.plain)
@@ -162,7 +162,7 @@ describe('Users', () => {
 		await db.createUserIfNotExists(email)
 
 		await puppy.call('Users/ForgotPassword')
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		await page.type('#Email', email)
 		await page.click('#body form button[type="submit"]')
@@ -174,7 +174,7 @@ describe('Users', () => {
 		const email = 'not_existente@dontflymoney.com'
 
 		await puppy.call('Users/ForgotPassword')
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		await page.type('#Email', email)
 		await page.click('#body form button[type="submit"]')
@@ -188,14 +188,14 @@ describe('Users', () => {
 		await db.createUserIfNotExists(email, {active:true})
 
 		await puppy.call('Users/Logon')
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		await page.type('#Email', email)
 		await page.type('#Password', db.password.plain)
 		await page.click('#RememberMe')
 		await page.click('#body form button[type="submit"]')
 
-		await page.waitForSelector('.nav')
+		await puppy.waitFor('.nav')
 		await page.click('.nav form button[type="submit"]')
 
 		const nav = await puppy.content('.nav')
@@ -208,14 +208,14 @@ describe('Users', () => {
 		await db.createUserIfNotExists(email, {active:true, wizard:true})
 
 		await puppy.call('Users/Logon')
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		await page.type('#Email', email)
 		await page.type('#Password', db.password.plain)
 		await page.click('#RememberMe')
 		await page.click('#body form button[type="submit"]')
 
-		await page.waitForSelector('.panel')
+		await puppy.waitFor('.panel')
 		await page.click('.panel form button[type="submit"]')
 
 		const panelBody = await puppy.content('.panel-body')
@@ -227,7 +227,7 @@ describe('Users', () => {
 		await db.createUserIfNotExists(email, {active:true, wizard:true})
 
 		await puppy.call('Users/Contract')
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		const acceptLabel = await puppy.content('.panel-heading')
 		await expect(acceptLabel).toContain('Termos de Uso')
@@ -241,18 +241,18 @@ describe('Users', () => {
 		await db.setSecret(email, secret)
 
 		await puppy.call('Accounts')
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 		await expect(page.title()).resolves.toMatch('DfM - Login mais seguro')
 
 		await page.click('#body form a.btn-info')
-		await page.waitForSelector('#contact-modal', { visible: true })
+		await puppy.waitFor('#contact-modal', { visible: true })
 		await page.click('#contact-modal .close')
-		await page.waitForSelector('#contact-modal', { visible: false })
+		await puppy.waitFor('#contact-modal', { visible: false })
 
 		await page.type('#Code', tfa.code(secret))
 		await page.click('#body form button[type="submit"]')
 
-		await page.waitForSelector('#body')
+		await puppy.waitFor('#body')
 		await expect(page.title()).resolves.toMatch('DfM - Contas')
 	})
 })

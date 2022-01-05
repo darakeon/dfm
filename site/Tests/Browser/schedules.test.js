@@ -23,7 +23,7 @@ describe('Schedules', () => {
 
 	test('Create', async () => {
 		await puppy.call(`Account/${accountOut}/Schedules/Create`)
-		await page.waitForSelector('#body form')
+		await puppy.waitFor('#body form')
 
 		await page.click('#ShowInstallment', category)
 		await page.type('#Description', 'Schedule Create')
