@@ -28,7 +28,11 @@ namespace DFM.MVC.Areas.Account.Models
 			Current = month.AccountTotal;
 			CurrentSign = month.AccountTotalSign;
 
-			if (month.ForeseenTotal != 0)
+			var showForeseen =
+				month.ForeseenTotal != month.AccountTotal ||
+				month.ForeseenTotalSign != month.AccountTotalSign;
+
+			if (showForeseen)
 			{
 				Foreseen = month.ForeseenTotal;
 				ForeseenSign = month.ForeseenTotalSign;
