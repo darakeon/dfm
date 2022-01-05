@@ -42,3 +42,41 @@
 		width: 1140px
 	}
 }
+
+#wh {
+	display: none;
+}
+
+.wh {
+	position: absolute;
+	border-color: var(--highlight-0);
+	border-width: 3px;
+	border-style: solid;
+	display: block;
+	pointer-events: none;
+	top: -20px;
+	box-sizing: content-box;
+	opacity: 0.9;
+	animation-name: mark;
+}
+
+	.wh span {
+		border-color: var(--primary-3);
+		border-width: inherit;
+		border-style: inherit;
+		border-radius: inherit;
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		display: block;
+		animation-name: mark;
+	}
+
+@keyframes mark {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0.9;
+	}
+}
