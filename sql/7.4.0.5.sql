@@ -202,3 +202,46 @@ insert into terms
 	values
 		(@PT, 'pt-BR', @contract_id),
         (@EN, 'en-US', @contract_id);
+
+-- migrations
+
+create table migrations (
+	id int not null auto_increment primary key,
+	name varchar(15) not null unique,
+	executed datetime not null default(now())
+);
+
+insert into migrations (name, executed) values ('0.0.0.0', '2011-07-13 16:28:54');
+insert into migrations (name, executed) values ('1.0.0.0', '2011-09-22 01:43:09');
+insert into migrations (name, executed) values ('1.0.0.2', '2011-10-01 20:24:54');
+insert into migrations (name, executed) values ('1.0.0.3', '2011-10-15 00:24:29');
+insert into migrations (name, executed) values ('1.0.0.4', '2011-11-11 21:08:49');
+insert into migrations (name, executed) values ('1.0.2.0', '2012-03-17 00:52:35');
+insert into migrations (name, executed) values ('1.0.2.3', '2013-03-07 21:03:36');
+insert into migrations (name, executed) values ('1.0.3.0', '2013-08-22 04:03:24');
+insert into migrations (name, executed) values ('2.0.0.0', '2014-05-31 06:46:45');
+insert into migrations (name, executed) values ('2.0.0.3', '2014-11-26 07:42:38');
+insert into migrations (name, executed) values ('2.0.1.0', '2014-12-25 21:34:18');
+insert into migrations (name, executed) values ('2.0.1.1', '2015-01-03 12:33:44');
+insert into migrations (name, executed) values ('2.0.4.0', '2016-07-18 23:00:31');
+insert into migrations (name, executed) values ('2.1.0.0', '2017-01-13 04:01:11');
+insert into migrations (name, executed) values ('2.1.2.0', '2017-01-15 17:21:31');
+insert into migrations (name, executed) values ('3.0.0.0', '2017-04-03 02:06:44');
+insert into migrations (name, executed) values ('4.0.0.0', '2017-09-05 02:23:17');
+insert into migrations (name, executed) values ('4.1.2.0', '2018-03-03 17:31:44');
+insert into migrations (name, executed) values ('4.1.2.2', '2018-11-24 22:18:40');
+insert into migrations (name, executed) values ('4.1.2.8', '2019-03-04 21:07:47');
+insert into migrations (name, executed) values ('4.1.3.0', '2019-08-25 04:25:42');
+insert into migrations (name, executed) values ('4.1.3.2', '2019-09-05 00:21:53');
+insert into migrations (name, executed) values ('4.1.3.3', '2019-09-08 03:40:20');
+insert into migrations (name, executed) values ('4.1.3.4', '2019-09-11 17:53:11');
+insert into migrations (name, executed) values ('4.1.3.6', '2019-09-25 23:43:30');
+insert into migrations (name, executed) values ('4.1.3.7', '2019-11-16 12:31:35');
+insert into migrations (name, executed) values ('4.1.3.9', '2019-12-08 22:23:14');
+insert into migrations (name, executed) values ('4.1.4.5', '2020-06-09 18:51:32');
+insert into migrations (name, executed) values ('4.4.0.0', '2020-10-17 01:22:26');
+insert into migrations (name, executed) values ('4.5.0.1', '2020-11-28 03:00:13');
+insert into migrations (name, executed) values ('6.1.0.0', '2021-07-16 01:25:41');
+insert into migrations (name, executed) values ('7.4.0.0', '2021-09-11 15:05:50');
+
+insert into migrations (name) values ('7.4.0.5');
