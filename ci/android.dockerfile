@@ -2,7 +2,7 @@ FROM darakeon/ubuntu
 LABEL maintainer="Dara Keon <laboon@darakeon.com>"
 RUN maintain
 
-RUN apt install -y default-jdk
+RUN apt-get install -y default-jdk
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 
 RUN curl -sL https://services.gradle.org/distributions/gradle-6.8.3-bin.zip > /tmp/gradle.zip \
@@ -14,7 +14,7 @@ ENV GRADLE_USER_HOME=/var/cache/gradle
 
 ENV ANDROID_SDK_ROOT=/usr/lib/android-sdk
 ENV PATH=${ANDROID_SDK_ROOT}/cmdline-tools/bin/:${PATH}
-RUN apt install -y android-sdk \
+RUN apt-get install -y android-sdk \
 	&& curl -sL https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip > /tmp/sdkmanager.zip \
 	&& unzip -d $ANDROID_SDK_ROOT /tmp/sdkmanager.zip \
 	&& rm /tmp/sdkmanager.zip \

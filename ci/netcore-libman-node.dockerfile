@@ -3,4 +3,4 @@ LABEL maintainer="Dara Keon <laboon@darakeon.com>"
 RUN maintain
 
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
-RUN apt install -y nodejs
+RUN apt-get install -y nodejs
