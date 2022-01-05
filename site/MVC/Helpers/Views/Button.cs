@@ -7,6 +7,7 @@ namespace DFM.MVC.Helpers.Views
 	{
 		public String Text { get; }
 		public String Action { get; }
+		public String Controller { get; }
 		public String Class { get; }
 		public Boolean PullLeft { get; }
 
@@ -21,6 +22,12 @@ namespace DFM.MVC.Helpers.Views
 			: this(text, action, pullLeft)
 		{
 			Class = @class;
+		}
+
+		public Button(String text, [AspMvcController] String controller, [AspMvcAction] String action, String @class, Boolean pullLeft = false)
+			: this(text, action, @class, pullLeft)
+		{
+			Controller = controller;
 		}
 	}
 }
