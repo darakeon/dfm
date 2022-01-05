@@ -63,6 +63,11 @@
 		controller = String.Empty,
 	};
 
+	var deleteCloseHighlight =
+		account.HasMoves
+			? "wizard-highlight-3"
+			: "wizard-highlight-2";
+
 	<tr class="row wizard-highlight-0">
 		<td class="col-sm-5 wizard-highlight-4">
 			@Html.RouteLink(name, route.Name, reports,
@@ -100,7 +105,7 @@
 			</a>
 		</td>
 
-		<td class="col-sm-1 text-center wizard-highlight-2">
+		<td class="col-sm-1 text-center @deleteCloseHighlight">
 			@if (account.HasMoves)
 			{
 				@await Html.PartialAsync("Extensions/MicroForm",

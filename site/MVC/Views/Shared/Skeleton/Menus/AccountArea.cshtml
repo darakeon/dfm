@@ -7,7 +7,7 @@
 @if (Model.Account.IsOpen)
 {
 	<li>
-		@Html.ActionLink(Context.Translate("ToMove"), "Create", "Moves", null, new { @class = @ViewBag.MoveMenuClass })
+		@Html.ActionLink(Context.Translate("ToMove"), "Create", "Moves", null, new { @class = ViewBag.MoveMenuClass })
 	</li>
 	<li>
 		@Html.ActionLink(Context.Translate("Schedule"), "Create", "Schedules")
@@ -23,7 +23,7 @@
 </li>
 
 <li>
-	@Html.ActionLink(Context.Translate("YearMoves"), "Year", "Reports")
+	@Html.ActionLink(Context.Translate("YearMoves"), "Year", "Reports", null, new { @class = ViewBag.SummaryMenuClass })
 </li>
 
 <li>
