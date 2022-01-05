@@ -8,11 +8,6 @@
 			? "SchedulesCreate"
 			: "MovesCreate";
 
-	ViewBag.WizardCount =
-		Model.Type == OperationType.Creation
-			? 4
-			: 0;
-
 	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
 	ViewBag.FormSizeSm = 10;
 	ViewBag.FormSizeLg = 6;

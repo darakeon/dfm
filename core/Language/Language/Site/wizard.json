@@ -1,5 +1,8 @@
 {
 	"en-US": {
+		"Wizard_Test_0": "-",
+		"Wizard_Test_1": "-",
+		"Wizard_Test_2": "-",
 		"Wizard_AccountsIndexEmpty_0": "Welcome to Don't fly Money System. Click Continue to follow the Wizard.",
 		"Wizard_AccountsIndexEmpty_1": "Accounts are where you put and where you spent the money from.",
 		"Wizard_AccountsIndexEmpty_2": "For example: bank account, credit card, money you keep home.",
@@ -44,6 +47,9 @@
 		"Wizard_Title": "Wizard",
 	},
 	"pt-BR": {
+		"Wizard_Test_0": "-",
+		"Wizard_Test_1": "-",
+		"Wizard_Test_2": "-",
 		"Wizard_AccountsIndexEmpty_0": "Boas vindas ao Sistema Don't fly Money. Clique em 'Continuar' para seguir o tutorial.",
 		"Wizard_AccountsIndexEmpty_1": "Contas são onde você guarda e de onde você gasta o dinheiro.",
 		"Wizard_AccountsIndexEmpty_2": "Por exemplo: conta de banco, cartão de crédito, dinheiro em casa, bilhete de transporte.",

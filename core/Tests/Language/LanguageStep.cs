@@ -198,6 +198,28 @@ namespace DFM.Language.Tests
 			}
 		}
 
+		[When(@"count the occurrences of (.+) in (.+)/(.+)")]
+		public void WhenCountTheOccurrencesOfIn(String key, String module, String sectionName)
+		{
+			var dic = getDic(module);
+			var section = dic.SectionList.Single(s => s.Name == sectionName);
+
+			translationsCounters = new List<Int32>();
+			foreach (var language in section.LanguageList)
+			{
+				translationsCounters.Add(language.CountTranslations(key));
+			}
+		}
+
+		[Then(@"it will return (\d+)")]
+		public void ThenItWillReturn(Int32 number)
+		{
+			foreach (var translationsCounter in translationsCounters)
+			{
+				Assert.AreEqual(number, translationsCounter);
+			}
+		}
+
 		private PlainText getDic(String name)
 		{
 			name = name.ToLower();
@@ -242,6 +264,12 @@ namespace DFM.Language.Tests
 		{
 			get => get<IList<Theme>>("themes");
 			set => set("themes", value);
+		}
+
+		private IList<Int32> translationsCounters
+		{
+			get => get<IList<Int32>>("translationsCounters");
+			set => set("translationsCounters", value);
 		}
 
 

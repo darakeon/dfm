@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using DFM.Language.Extensions;
 
 namespace DFM.Language.Entities
@@ -31,6 +33,13 @@ namespace DFM.Language.Entities
 		public override String ToString()
 		{
 			return Name;
+		}
+
+		public Int32 CountTranslations(String phrasePrefix)
+		{
+			return PhraseList.Count(
+				p => Regex.IsMatch(p.Name, $"{phrasePrefix}_\\d+")
+			);
 		}
 	}
 }
