@@ -86,3 +86,7 @@
 		.tip.hidden-tip .balloon {
 			display: none;
 		}
+
+	.tip.hiding-tip {
+		opacity: 0.5;
+	}

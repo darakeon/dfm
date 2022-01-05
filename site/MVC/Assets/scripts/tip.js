@@ -4,9 +4,14 @@
 })
 
 function toggleTip(obj) {
-	$('.tip').toggleClass('hidden-tip')
-
 	const url = $(obj.target).data('url')
 
-	if (url) { $.post(url) }
+	if (url) {
+		$('.tip').addClass('hiding-tip')
+		$.post(url, function () {
+			$('.tip').addClass('hidden-tip')
+		}).always(function () {
+			$('.tip').removeClass('hiding-tip')
+		})
+	}
 }
