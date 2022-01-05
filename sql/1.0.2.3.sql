@@ -1,15 +1,15 @@
-Alter table Account
+Alter table account
 	add column Url VARCHAR(20) null;
 
-Update Account
+Update account
 	set Url = Replace(Replace(Name, " ", "_"), "-", "_")
 where ID > 0;
 
-Alter table Account
+Alter table account
 	change Url Url VARCHAR(20) not null;
 
-Alter table Year
+Alter table year
 	change Account_ID Account_ID Int Null;
 
-Alter table Month
+Alter table month
 	change Year_ID Year_ID Int Null;

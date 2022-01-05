@@ -1,5 +1,5 @@
 /*PRE-PUBLISH*/
-CREATE TABLE Config
+CREATE TABLE config
 (
 	ID INT NOT NULL AUTO_INCREMENT,
 	Language VARCHAR(5) DEFAULT 'pt-BR' NOT NULL,
@@ -11,48 +11,48 @@ CREATE TABLE Config
 	UNIQUE (User_ID)
 );
 
-INSERT INTO Config (Language, TimeZone, SendMoveEmail, User_ID)
+INSERT INTO config (Language, TimeZone, SendMoveEmail, User_ID)
 	SELECT Language, 'E. South America Standard Time', SendMoveEmail, ID
-		FROM User;
+		FROM user;
 
-ALTER TABLE User
+ALTER TABLE user
 	ADD Config_ID INTEGER NULL,
 	ADD UNIQUE (Config_ID);
 
-UPDATE User
-	INNER JOIN Config
-	SET User.Config_ID = Config.ID
-	WHERE User.ID = Config.User_ID
-		AND User.Config_ID IS NULL;
+UPDATE user
+	INNER JOIN config
+	SET user.Config_ID = config.ID
+	WHERE user.ID = config.User_ID
+		AND user.Config_ID IS NULL;
 
-ALTER TABLE User
+ALTER TABLE user
 	MODIFY COLUMN Config_ID INTEGER NOT NULL;
 
-ALTER TABLE User
+ALTER TABLE user
 	ADD INDEX (Config_ID),
 	ADD CONSTRAINT FK_User_Config
 	FOREIGN KEY (Config_ID)
-	REFERENCES Config (ID);
+	REFERENCES config (ID);
 
-ALTER TABLE Config
+ALTER TABLE config
 	DROP COLUMN User_ID,
 	DROP INDEX User_ID;
 
-ALTER TABLE Ticket
+ALTER TABLE ticket
 	ADD COLUMN Type INTEGER NOT NULL DEFAULT 0;
 
 /*POS-PUBLISH*/
-ALTER TABLE User
+ALTER TABLE user
 	DROP Language,
 	DROP SendMoveEmail;
 
-ALTER TABLE Move
+ALTER TABLE move
 	MODIFY COLUMN Category_ID INTEGER NULL;
 
-ALTER TABLE Summary
+ALTER TABLE summary
 	MODIFY COLUMN Category_ID INTEGER NULL;
 
-ALTER TABLE Schedule
+ALTER TABLE schedule
 	MODIFY COLUMN Category_ID INTEGER NULL;
 
 /*FIX FKS*/
@@ -70,13 +70,13 @@ SELECT table_name, column_name,REPLACE(column_name, '_ID', '') as parent_entity,
 			CASE REPLACE(column_name, '_ID', '')
 				WHEN 'In' THEN
 					(CASE table_name
-						WHEN 'Schedule' THEN 'Account'
-						WHEN 'Move' THEN 'Month'
+						WHEN 'schedule' THEN 'account'
+						WHEN 'move' THEN 'month'
 					END)
 				WHEN 'Out' THEN
 					(CASE table_name
-						WHEN 'Schedule' THEN 'Account'
-						WHEN 'Move' THEN 'Month'
+						WHEN 'schedule' THEN 'account'
+						WHEN 'move' THEN 'month'
 					END)
 				ELSE REPLACE(column_name, '_ID', '')
 			END,
