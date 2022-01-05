@@ -5,8 +5,8 @@
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
 - [go to published version](#7.4.0.1)
-- [go to version in development](#8.0.0.0)
-- [dev version state](../../8.0.0.0/docs/RELEASES.md#8.0.0.0)
+- [go to version in development](#7.4.0.2)
+- [dev version state](../../7.4.0.2/docs/RELEASES.md#7.4.0.2)
 
 Legend:
 - :dragon:: at least one huge change (increases first number)
@@ -16,6 +16,9 @@ Legend:
 
 ## <a name="8.0.0.0"></a>8.0.0.0 :dragon: <sup>`1`</sup>
 - [ ] Make wizard interactive
+
+## <a name="7.4.0.2"></a>7.4.0.2 :ant: <sup>`1`</sup>
+- [ ] Fix dependabot issues
 
 ## <a name="7.4.0.1"></a>7.4.0.1 :ant: <sup>`2`</sup>
 - [x] `211226>211226` Add change version to CI ([how to commit ci])
