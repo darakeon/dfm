@@ -2,32 +2,58 @@
 
 @{
 	var defaultRoute = new Default.Main();
+	var home = Url.RouteUrl(
+		defaultRoute.Name,
+		new
+		{
+			action = "Index",
+			controller = "Accounts",
+			area = defaultRoute.Area
+		}
+	);
 }
 
 @if (Model.Account.IsOpen)
 {
 	<li>
-		@Html.ActionLink(Context.Translate("ToMove"), "Create", "Moves", null, new { @class = ViewBag.MoveMenuClass })
+		@Html.ActionLink(
+			Context.Translate("ToMove"),
+			"Create", "Moves",
+			null, new { @class = ViewBag.MoveMenuClass }
+		)
 	</li>
 	<li>
-		@Html.ActionLink(Context.Translate("Schedule"), "Create", "Schedules")
+		@Html.ActionLink(
+			Context.Translate("Schedule"),
+			"Create", "Schedules"
+		)
 	</li>
 }
 
 <li>
-	@Html.ActionLink(Context.Translate("CategorySummary"), "Categories", "Reports")
+	@Html.ActionLink(
+		Context.Translate("CategorySummary"),
+		"Categories", "Reports"
+	)
 </li>
 
 <li>
-	@Html.ActionLink(Context.Translate("MonthMoves"), "Month", "Reports")
+	@Html.ActionLink(
+		Context.Translate("MonthMoves"),
+		"Month", "Reports"
+	)
 </li>
 
 <li>
-	@Html.ActionLink(Context.Translate("YearMoves"), "Year", "Reports", null, new { @class = ViewBag.SummaryMenuClass })
+	@Html.ActionLink(
+		Context.Translate("YearMoves"),
+		"Year", "Reports",
+		null, new { @class = ViewBag.SummaryMenuClass }
+	)
 </li>
 
 <li>
-	<a href="@Url.RouteUrl(defaultRoute.Name, new {action = "Index", controller = "Accounts", area = defaultRoute.Area})">
+	<a href="@home">
 		<span class="glyphicon glyphicon-home" title="@Context.Translate("Home")"></span>
 	</a>
 </li>
