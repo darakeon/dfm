@@ -1,4 +1,7 @@
 {
+	"7.4.0.2": [
+		"Fix security issues"
+	],
 	"7.4.0.1": [
 		"Fix problem with site error page"
 	],

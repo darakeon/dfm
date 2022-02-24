@@ -6,8 +6,8 @@
     <RootNamespace>DFM.MVC</RootNamespace>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <AssemblyVersion>7.4.0.1</AssemblyVersion>
-    <FileVersion>7.4.0.1</FileVersion>
+    <AssemblyVersion>7.4.0.2</AssemblyVersion>
+    <FileVersion>7.4.0.2</FileVersion>
     <ApplicationIcon>Assets\images\pig.ico</ApplicationIcon>
   </PropertyGroup>
 
