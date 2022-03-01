@@ -13,11 +13,12 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then Type.
 
-| Task (51)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (52)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
 | warning about contract being only with who signs, not related people           | :sheep:  |  1  |  4  |  7  |                |       |
 | warning about schedules not running if not active                              | :sheep:  |  1  |  4  |  7  |                |       |
 | warning mobile and browser logins stay active                                  | :sheep:  |  1  |  3  |  6  |                |       |
+| Add schedule anticipation                                                      | :whale:  |  2  |  3  |  5  |                |       |
 | Add weekly scheduling                                                          | :sheep:  |  2  |  3  |  5  |                |       |
 | warning about 15 minutes windows for runnings schedules                        | :sheep:  |  1  |  2  |  5  |                |       |
 | Add nickname field - show it at every screen and e-mail                        | :whale:  |  3  |  3  |  4  |                |       |
