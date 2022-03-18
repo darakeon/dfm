@@ -8,7 +8,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [go to version in development](#7.4.0.5)
 - [dev version state](../../7.4.0.5/docs/RELEASES.md#7.4.0.5)
 
-Legend:
+## Legend
 - :dragon:: at least one huge change (increases first number)
 - :whale:: at least one big change, like a new feature (increases second number)
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
