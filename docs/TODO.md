@@ -11,14 +11,15 @@ This is the task list for the project.
 - Dependency: which other task it depends on (if it exists)
 - Issue: github issue about the task (if it exists)
 
-The tasks are ordered by: Points then Importance then Type.
+The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (54)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (55)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
 | warning about contract being only with who signs, not related people           | :sheep:  |  1  |  4  |  7  |                |       |
 | warning about schedules not running if not active                              | :sheep:  |  1  |  4  |  7  |                |       |
 | Focus to input when open search                                                | :ant:    |  1  |  4  |  7  |                |       |
 | warning mobile and browser logins stay active                                  | :sheep:  |  1  |  3  |  6  |                |       |
+| Add monitoring with Grafana and Prometheus ([.NET Lib])                        | :dragon: |  3  |  4  |  5  |                |       |
 | Add schedule anticipation                                                      | :whale:  |  2  |  3  |  5  |                |       |
 | Add weekly scheduling                                                          | :sheep:  |  2  |  3  |  5  |                |       |
 | warning about 15 minutes windows for runnings schedules                        | :sheep:  |  1  |  2  |  5  |                |       |
@@ -75,3 +76,4 @@ The tasks are ordered by: Points then Importance then Type.
 [gherkin jest]: https://www.npmjs.com/package/gherkin-jest
 [Lint C#]: https://medium.com/@michaelparkerdev/linting-c-in-2019-stylecop-sonar-resharper-and-roslyn-73e88af57ebd
 [OCR]: https://developers.google.com/ml-kit/vision/text-recognition/android
+[.NET Lib]:https://github.com/prometheus-net/prometheus-net
