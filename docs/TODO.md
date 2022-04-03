@@ -13,7 +13,7 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (56)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (57)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
 | warning about contract being only with who signs, not related people           | :sheep:  |  1  |  4  |  7  |                |       |
 | warning about schedules not running if not active                              | :sheep:  |  1  |  4  |  7  |                |       |
@@ -63,6 +63,7 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Remove "Then I", "When I", "Given I" of tests                                  | :ant:    |  2  |  1  |  3  |                |       |
 | Replace hardcoded scenario codes from tests                                    | :ant:    |  2  |  1  |  3  |                |       |
 | Inject ServiceAccess with AddScoped at MVC (because of Session NH)             | :ant:    |  2  |  1  |  3  |                |       |
+| [Reduce Docker Images]                                                         | :ant:    |  2  |  1  |  3  |                |       |
 | [OCR] to add values to system                                                  | :dragon: |  4  |  2  |  2  |                |       |
 | Dependent users                                                                | :dragon: |  4  |  2  |  2  |                |       |
 | Add [gherkin jest]                                                             | :ant:    |  4  |  2  |  2  |                |       |
@@ -78,3 +79,4 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 [Lint C#]: https://medium.com/@michaelparkerdev/linting-c-in-2019-stylecop-sonar-resharper-and-roslyn-73e88af57ebd
 [OCR]: https://developers.google.com/ml-kit/vision/text-recognition/android
 [.NET Lib]:https://github.com/prometheus-net/prometheus-net
+[Reduce Docker Images]:https://www.ecloudcontrol.com/best-practices-to-reduce-docker-images-size/
