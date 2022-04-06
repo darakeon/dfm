@@ -13,11 +13,12 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (57)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (59)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
 | warning about contract being only with who signs, not related people           | :sheep:  |  1  |  4  |  7  |                |       |
 | warning about schedules not running if not active                              | :sheep:  |  1  |  4  |  7  |                |       |
 | Focus to input when open search                                                | :ant:    |  1  |  4  |  7  |                |       |
+| Move API token to body                                                         | :ant:    |  2  |  4  |  6  |                |       |
 | Fix version program option `-g`                                                | :ant:    |  2  |  4  |  6  |                |       |
 | warning mobile and browser logins stay active                                  | :sheep:  |  1  |  3  |  6  |                |       |
 | Add monitoring with Grafana and Prometheus ([.NET Lib])                        | :dragon: |  3  |  4  |  5  |                |       |
@@ -64,6 +65,7 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Replace hardcoded scenario codes from tests                                    | :ant:    |  2  |  1  |  3  |                |       |
 | Inject ServiceAccess with AddScoped at MVC (because of Session NH)             | :ant:    |  2  |  1  |  3  |                |       |
 | [Reduce Docker Images]                                                         | :ant:    |  2  |  1  |  3  |                |       |
+| Avoid token duplication error                                                  | :ant:    |  2  |  1  |  3  |                |       |
 | [OCR] to add values to system                                                  | :dragon: |  4  |  2  |  2  |                |       |
 | Dependent users                                                                | :dragon: |  4  |  2  |  2  |                |       |
 | Add [gherkin jest]                                                             | :ant:    |  4  |  2  |  2  |                |       |
