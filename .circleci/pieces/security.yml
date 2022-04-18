@@ -1,0 +1,2 @@
+#gradle dependencyCheckAggregate
+#https://jeremylong.github.io/DependencyCheck/dependency-check-gradle/configuration-aggregate.html
