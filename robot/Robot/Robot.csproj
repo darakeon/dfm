@@ -5,8 +5,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>DFM.Robot</AssemblyName>
     <RootNamespace>DFM.Robot</RootNamespace>
-    <AssemblyVersion>7.4.0.3</AssemblyVersion>
-    <FileVersion>7.4.0.3</FileVersion>
+    <AssemblyVersion>7.4.0.4</AssemblyVersion>
+    <FileVersion>7.4.0.4</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

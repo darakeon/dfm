@@ -1,4 +1,7 @@
 {
+	"7.4.0.4": [
+		"Atualização de ferramentas internas"
+	],
 	"7.4.0.3": [
 		"Corrigida página de Imagem de segurança (problema acontecia se tutorial estivesse ativo)"
 	],
