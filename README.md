@@ -1,4 +1,4 @@
-<img src="site/MVC/Assets/images/pig.svg" width="85" align="right"/>
+<img src="site/MVC/Assets/images/pig.svg" height="85" align="right"/>
 
 # Don't fly Money
 
