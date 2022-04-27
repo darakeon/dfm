@@ -1,4 +1,7 @@
 {
+	"7.4.0.4": [
+		"Upgrade internal tools"
+	],
 	"7.4.0.3": [
 		"Fix page Security Image page (problem happened if wizard was active)"
 	],
