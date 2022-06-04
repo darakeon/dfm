@@ -18,7 +18,9 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Hide tips while in wizard
 - [ ] Make wizard interactive
 
-## <a name="7.4.0.5"></a>7.4.0.5 :ant: <sup>`1`</sup>
+## <a name="7.4.0.5"></a>7.4.0.5 :ant: <sup>`3`</sup>
+- [ ] Fix .NET vulnerable dependencies
+- [ ] `220529>......` Fix Node vulnerable dependencies
 - [x] `211228>211228` Add service interruption clause
 
 ## <a name="7.4.0.4"></a>7.4.0.4 :ant: <sup>`1`</sup>
