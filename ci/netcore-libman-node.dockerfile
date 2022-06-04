@@ -13,3 +13,14 @@ RUN echo "echo -----------------------------------------------------------------
 RUN echo "printf '\e[38;5;51m'" >> ~/.bashrc
 RUN echo "node --version" >> ~/.bashrc
 RUN echo "printf '\e[38;5;253m'" >> ~/.bashrc
+
+RUN npm install --location=global npm@latest
+
+RUN echo "echo" >> ~/.bashrc
+RUN echo "printf '\e[38;5;46m'" >> ~/.bashrc
+RUN echo "echo --------------------------------------------------------------------------------" >> ~/.bashrc
+RUN echo "echo ----------------------------- NPM: PACKAGE MANAGER -----------------------------" >> ~/.bashrc
+RUN echo "echo --------------------------------------------------------------------------------" >> ~/.bashrc
+RUN echo "printf '\e[38;5;51m'" >> ~/.bashrc
+RUN echo "npm --version" >> ~/.bashrc
+RUN echo "printf '\e[38;5;253m'" >> ~/.bashrc
