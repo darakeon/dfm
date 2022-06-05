@@ -68,7 +68,18 @@ jobs:
       - run:
           path: core
           name: check_vulnerability
-          command: dotnet list package --vulnerable --include-transitive
+          command: |
+            RESULT=$(dotnet list package --vulnerable --include-transitive)
+
+            echo "$RESULT"
+
+            NUMBER_OF_PROJECTS=14
+            EXPECTED=$(expr $NUMBER_OF_PROJECTS + 4)
+            CURRENT=$(echo "$RESULT" | wc -l)
+
+            if [ $CURRENT != $EXPECTED ]; then
+                exit 1
+            fi
       - run:
           path: core/Tests/Generic
           name: tests_generic
@@ -117,6 +128,21 @@ jobs:
       - run:
           name: build
           command: dotnet build -c Debug site/Site.sln --no-restore
+      - run:
+          path: site
+          name: check_vulnerability
+          command: |
+            RESULT=$(dotnet list package --vulnerable --include-transitive)
+
+            echo "$RESULT"
+
+            NUMBER_OF_PROJECTS=8
+            EXPECTED=$(expr $NUMBER_OF_PROJECTS + 4)
+            CURRENT=$(echo "$RESULT" | wc -l)
+
+            if [ $CURRENT != $EXPECTED ]; then
+                exit 1
+            fi
       - run:
           path: site/Tests/MVC
           name: tests_mvc
@@ -253,6 +279,21 @@ jobs:
           name: build
           path: robot/Robot
           command: dotnet publish -c Release Robot.csproj -o /var/robot --no-restore
+      - run:
+          path: robot
+          name: check_vulnerability
+          command: |
+            RESULT=$(dotnet list package --vulnerable --include-transitive)
+
+            echo "$RESULT"
+
+            NUMBER_OF_PROJECTS=7
+            EXPECTED=$(expr $NUMBER_OF_PROJECTS + 4)
+            CURRENT=$(echo "$RESULT" | wc -l)
+
+            if [ $CURRENT != $EXPECTED ]; then
+                exit 1
+            fi
       - run:
           name: build
           path: /var/robot
