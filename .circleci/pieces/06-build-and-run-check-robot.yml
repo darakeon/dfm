@@ -21,6 +21,21 @@
           path: robot/Robot
           command: dotnet publish -c Release Robot.csproj -o /var/robot --no-restore
       - run:
+          path: robot
+          name: check_vulnerability
+          command: |
+            RESULT=$(dotnet list package --vulnerable --include-transitive)
+
+            echo "$RESULT"
+
+            NUMBER_OF_PROJECTS=9
+            EXPECTED=$(expr $NUMBER_OF_PROJECTS + 4)
+            CURRENT=$(echo "$RESULT" | wc -l)
+
+            if [ $CURRENT != $EXPECTED ]; then
+                exit 1
+            fi
+      - run:
           name: build
           path: /var/robot
           command: ./DFM.Robot check
