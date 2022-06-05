@@ -73,6 +73,10 @@ jobs:
           name: build
           command: dotnet build -c Debug core/Core.sln --no-restore
       - run:
+          path: core
+          name: check_vulnerability
+          command: dotnet list package --vulnerable --include-transitive
+      - run:
           path: core/Tests/Generic
           name: tests_generic
           command: dotnet test -v m --no-build
