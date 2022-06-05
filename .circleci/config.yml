@@ -136,7 +136,7 @@ jobs:
 
             echo "$RESULT"
 
-            NUMBER_OF_PROJECTS=8
+            NUMBER_OF_PROJECTS=11
             EXPECTED=$(expr $NUMBER_OF_PROJECTS + 4)
             CURRENT=$(echo "$RESULT" | wc -l)
 

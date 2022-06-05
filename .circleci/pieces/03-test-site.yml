@@ -17,6 +17,21 @@
           name: build
           command: dotnet build -c Debug site/Site.sln --no-restore
       - run:
+          path: site
+          name: check_vulnerability
+          command: |
+            RESULT=$(dotnet list package --vulnerable --include-transitive)
+
+            echo "$RESULT"
+
+            NUMBER_OF_PROJECTS=11
+            EXPECTED=$(expr $NUMBER_OF_PROJECTS + 4)
+            CURRENT=$(echo "$RESULT" | wc -l)
+
+            if [ $CURRENT != $EXPECTED ]; then
+                exit 1
+            fi
+      - run:
           path: site/Tests/MVC
           name: tests_mvc
           command: dotnet test -v m --no-build
