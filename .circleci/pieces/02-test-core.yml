@@ -38,7 +38,18 @@
       - run:
           path: core
           name: check_vulnerability
-          command: dotnet list package --vulnerable --include-transitive
+          command: |
+            RESULT=$(dotnet list package --vulnerable --include-transitive)
+
+            echo "$RESULT"
+
+            NUMBER_OF_PROJECTS=14
+            EXPECTED=$(expr $NUMBER_OF_PROJECTS + 4)
+            CURRENT=$(echo "$RESULT" | wc -l)
+
+            if [ $CURRENT != $EXPECTED ]; then
+                exit 1
+            fi
       - run:
           path: core/Tests/Generic
           name: tests_generic
