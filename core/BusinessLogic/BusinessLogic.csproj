@@ -10,10 +10,10 @@
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="27.2.1" />
-    <PackageReference Include="Keon.NHibernate" Version="2.3.2" />
-    <PackageReference Include="Keon.TwoFactorAuth" Version="1.0.4" />
+    <PackageReference Include="Keon.NHibernate" Version="3.0.0" />
+    <PackageReference Include="Keon.TwoFactorAuth" Version="2.0.0" />
     <PackageReference Include="sqlite" Version="3.13.0" />
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.115.5" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.116" />
   </ItemGroup>
 
   <ItemGroup>
