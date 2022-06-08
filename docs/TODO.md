@@ -13,7 +13,7 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (61)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (62)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
 | warning about contract being only with who signs, not related people           | :sheep:  |  1  |  4  |  7  |                |       |
 | warning about schedules not running if not active                              | :sheep:  |  1  |  4  |  7  |                |       |
@@ -25,6 +25,7 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Add monitoring with Grafana and Prometheus ([.NET Lib])                        | :dragon: |  3  |  4  |  5  |                |       |
 | Add schedule anticipation                                                      | :whale:  |  2  |  3  |  5  |                |       |
 | Add weekly scheduling                                                          | :sheep:  |  2  |  3  |  5  |                |       |
+| Handle split screen layout at android app                                      | :sheep:  |  2  |  3  |  5  |                |       |
 | warning about 15 minutes windows for runnings schedules                        | :sheep:  |  1  |  2  |  5  |                |       |
 | Add account names into search                                                  | :sheep:  |  1  |  2  |  5  |                |       |
 | Add nickname field - show it at every screen and e-mail                        | :whale:  |  3  |  3  |  4  |                |       |
