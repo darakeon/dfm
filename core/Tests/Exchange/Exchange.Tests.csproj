@@ -5,8 +5,8 @@
     <IsPackable>false</IsPackable>
     <AssemblyName>DFM.Exchange.Tests</AssemblyName>
     <RootNamespace>DFM.Exchange.Tests</RootNamespace>
-    <AssemblyVersion>7.4.0.4</AssemblyVersion>
-    <FileVersion>7.4.0.4</FileVersion>
+    <AssemblyVersion>7.4.0.5</AssemblyVersion>
+    <FileVersion>7.4.0.5</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

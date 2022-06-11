@@ -1,4 +1,9 @@
 {
+	"7.4.0.5": [
+		"Upgrade internal tools used in core system",
+		"Upgrade internal tools used in site",
+		"Update contract"
+	],
 	"7.4.0.4": [
 		"Upgrade internal tools"
 	],
