@@ -5,6 +5,10 @@
         "Fix dependabot issues": "Fix security issues",
         "Fix wizard of misc": "Fix page Security Image page (problem happened if wizard was active)",
         "Upgrade .NET version": "Upgrade internal tools",
+        "Add security policy to repository": "-",
+        "Fix .NET vulnerable dependencies": "Upgrade internal tools used in core system",
+        "Fix Node vulnerable dependencies": "Upgrade internal tools used in site",
+        "Add service interruption clause": "Update contract",
         "": null
     },
     "pt-br": {
@@ -13,6 +17,10 @@
         "Fix dependabot issues": "Corrigidos problemas de segurança",
         "Fix wizard of misc": "Corrigida página de Imagem de segurança (problema acontecia se tutorial estivesse ativo)",
         "Upgrade .NET version": "Atualização de ferramentas internas",
+        "Add security policy to repository": "-",
+        "Fix .NET vulnerable dependencies": "Atualizadas ferramentas internas usadas no sistema central",
+        "Fix Node vulnerable dependencies": "Atualizadas ferramentas internas usadas no site",
+        "Add service interruption clause": "Atualizado de contrato",
         "": null
     }
 }
