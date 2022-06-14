@@ -3,7 +3,7 @@
 	"defaultProvider": "cdnjs",
 	"libraries": [
 		{
-			"library": "jquery@3.5.0",
+			"library": "jquery@3.6.0",
 			"destination": "Assets/libs/jquery/",
 			"files": [
 				"jquery.min.js"
@@ -39,14 +39,14 @@
 			]
 		},
 		{
-			"library": "popper.js@2.3.3",
+			"library": "popper.js@2.11.5",
 			"destination": "Assets/libs/bootstrap/",
 			"files": [
 				"umd/popper.min.js"
 			]
 		},
 		{
-			"library": "highcharts@9.1.2",
+			"library": "highcharts@10.1.0",
 			"destination": "Assets/libs/highcharts/",
 			"files": [
 				"highcharts.js",
