@@ -31,7 +31,7 @@ fn main() {
 		if let Some(version) = create_version(&option, numbers) {
 			match option {
 				ProgramOption::Check =>
-					success().unwrap(),
+					success(),
 				ProgramOption::Git =>
 					update_git(version),
 				_ =>
@@ -72,7 +72,7 @@ fn update_version(version: Version) {
 	let update_notes_result = update_notes(&version);
 
 	if update_notes_result.is_err() {
-		throw::<()>(31, "errors while translating release");
+		throw(31, "errors while translating release");
 	}
 
 	update_task_list(&version);

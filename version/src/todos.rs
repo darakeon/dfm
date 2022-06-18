@@ -120,7 +120,7 @@ fn get_next(sizes: Vec<String>, current: String) -> Option<(String, String)> {
 		return Some((format!("{}{}{}", start, change + 1, end), icon));
 	}
 
-	return throw(21, "Unknown version size");
+	throw(21, "Unknown version size");
 }
 
 fn get_new_version(sizes: Vec<String>) -> Option<(String, String, String)> {

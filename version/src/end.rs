@@ -2,27 +2,27 @@ use std::process::exit;
 
 use crate::git::stash_pop;
 
-pub fn success<T>() -> Option<T> {
+pub fn success() -> ! {
 	stop(0)
 }
 
-pub fn throw<T>(code: i32, text: &str) -> Option<T> {
+pub fn throw(code: i32, text: &str) -> ! {
 	eprintln!("{}", text);
 	stop(code)
 }
 
-pub fn throw_format<T>(code: i32, text: String) -> Option<T> {
+pub fn throw_format(code: i32, text: String) -> ! {
 	throw(code, &text)
 }
 
-pub fn throw_multiple<T>(code: i32, texts: Vec<&str>) -> Option<T> {
+pub fn throw_multiple(code: i32, texts: Vec<&str>) -> ! {
 	for text in texts {
 		eprintln!("{}", text);
 	}
 	stop(code)
 }
 
-fn stop<T>(code: i32) -> Option<T> {
+fn stop(code: i32) -> ! {
 	stash_pop();
 	exit(code)
 }

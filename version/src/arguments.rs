@@ -22,7 +22,7 @@ pub fn parse_arguments() -> Option<(ProgramOption, Vec<usize>)> {
 }
 
 fn stop_program() -> Option<(ProgramOption, Vec<usize>)> {
-	return throw_multiple(1, vec![
+	throw_multiple(1, vec![
 		"",
 		"    |-----------------------------------------------------------------------------|",
 		"    |                                                                             |",
@@ -74,7 +74,7 @@ fn parse_quantity(args: Vec<String>) -> Option<(ProgramOption, Vec<usize>)> {
 }
 
 fn quantity_error() -> Option<(ProgramOption, Vec<usize>)> {
-	return throw(2, "-q must have one argument and it must be a number greater than zero");
+	throw(2, "-q must have one argument and it must be a number greater than zero");
 }
 
 fn parse_numbers(args: Vec<String>) -> Option<(ProgramOption, Vec<usize>)> {
@@ -101,7 +101,7 @@ fn parse_numbers(args: Vec<String>) -> Option<(ProgramOption, Vec<usize>)> {
 }
 
 fn numbers_error() -> Option<(ProgramOption, Vec<usize>)> {
-	return throw(3, "-n must have at least one argument and they all must be numbers greater than zero");
+	throw(3, "-n must have at least one argument and they all must be numbers greater than zero");
 }
 
 fn empty(option: ProgramOption) -> Option<(ProgramOption, Vec<usize>)> {
