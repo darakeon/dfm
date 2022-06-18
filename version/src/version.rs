@@ -38,11 +38,11 @@ pub fn create_version(option: &ProgramOption, numbers: Vec<usize>) -> Option<Ver
 
 	let compare = if just_check { prod } else { dev };
 	if branch != "main" && branch != compare {
-		return throw_format(12, format!("Branch is '{}', but release is of '{}'", branch, compare));
+		throw_format(12, format!("Branch is '{}', but release is of '{}'", branch, compare));
 	}
 
 	if version.tasks.len() == 0 {
-		return throw(13, "Version without tasks");
+		throw(13, "Version without tasks");
 	}
 
 	Some(version)
@@ -110,10 +110,10 @@ fn start_of_current_tasks(task_list: &Vec<String>, branch: String) -> usize {
 
 fn end_not_done() -> Option<Version> {
 	if has_pull_request() {
-		return throw(11, "There is an opened pull request and the version is not done");
+		throw(11, "There is an opened pull request and the version is not done");
 	}
 
-	return success();
+	success();
 }
 
 pub struct Version {
