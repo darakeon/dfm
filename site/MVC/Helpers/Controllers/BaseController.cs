@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Helpers.Controllers
 {
-	public class BaseController : Controller
+	public abstract class BaseController : Controller
 	{
 		protected Current current => HttpContext.GetService().Current;
 
