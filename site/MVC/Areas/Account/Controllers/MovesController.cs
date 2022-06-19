@@ -11,7 +11,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 	[Area(Route.AccountArea)]
 	public class MovesController : BaseAccountsController
 	{
-		[Auth, HttpGetAndHead]
+		[Auth, HttpGetAndHead, NoWizard]
 		public IActionResult Index()
 		{
 			return RedirectToAction("Create");
@@ -53,7 +53,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 			return createEditSchedule(model);
 		}
 
-		[Auth, HttpPost, ValidateAntiForgeryToken]
+		[Auth, HttpPost, ValidateAntiForgeryToken, NoWizard]
 		public IActionResult Delete(Guid id)
 		{
 			var model = new MoneyModel();
@@ -63,7 +63,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 			return RedirectToAction("Month", "Reports", new { id = model.ReportUrl });
 		}
 
-		[JsonAuth, HttpPost, ValidateAntiForgeryToken]
+		[JsonAuth, HttpPost, ValidateAntiForgeryToken, NoWizard]
 		public IActionResult Check(Guid id, PrimalMoveNature nature)
 		{
 			var model = new MoneyModel();
@@ -73,7 +73,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 			return PartialView("../Reports/MoveLine", line);
 		}
 
-		[JsonAuth, HttpPost, ValidateAntiForgeryToken]
+		[JsonAuth, HttpPost, ValidateAntiForgeryToken, NoWizard]
 		public IActionResult Uncheck(Guid id, PrimalMoveNature nature)
 		{
 			var model = new MoneyModel();

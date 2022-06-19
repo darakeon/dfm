@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Controllers
 {
+	[NoWizard]
 	public class TokensController : BaseController
 	{
 		[HttpGetAndHead]
@@ -42,7 +43,7 @@ namespace DFM.MVC.Controllers
 			return RedirectToAction(getAction(path), new {id = token});
 		}
 
-		private  String getAction(PathType pathType)
+		private String getAction(PathType pathType)
 		{
 			return pathType switch
 			{

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Controllers
 {
+	[NoWizard]
 	public class GenericController : Controller
 	{
 		[HttpGetAndHead]

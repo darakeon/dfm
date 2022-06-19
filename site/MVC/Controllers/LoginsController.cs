@@ -15,7 +15,7 @@ namespace DFM.MVC.Controllers
 			return View(new LoginsIndexModel());
 		}
 
-		[HttpPost, ValidateAntiForgeryToken]
+		[HttpPost, ValidateAntiForgeryToken, NoWizard]
 		public IActionResult Delete(String id)
 		{
 			var model = new SafeModel();
