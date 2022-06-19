@@ -27,9 +27,14 @@
 		"Wizard_ReportsMonthFilled_0": "Here is the move you created.",
 		"Wizard_ReportsMonthFilled_1": "The actions you can take are edit or delete.",
 		"Wizard_ReportsMonthFilled_2": "This is a month report.",
-		"Wizard_ReportsMonthFilled_3": "If you want to change the month, use below navigation.",
+		"Wizard_ReportsMonthFilled_3": "If you want to change the month, use the navigation below.",
 		"Wizard_ReportsMonthFilled_4": "Here you can see the account balance too.",
 		"Wizard_ReportsMonthFilled_5": "Let's check 'Year Summary' clicking at top menu.",
+		"Wizard_ReportsYearFilled_0": "Here you can see the year totals by month.",
+		"Wizard_ReportsYearFilled_1": "You can have a general comparative year view.",
+		"Wizard_ReportsYearFilled_2": "If you want to change the year, use the navigation below.",
+		"Wizard_ReportsYearFilled_3": "Here you can see the account balance too.",
+		"Wizard_ReportsYearEmpty_0": "",
 
 		"Wizard_AccountsClosed": "Here you see a list of closed Accounts. For these Accounts you cannot create or edit Moves, but you can still see the reports.",
 		"Wizard_Categories": "Categories are types of Moves, like: Recreation, Health, Feeding, Donation. It make it simpler to say on quick looking where did you spent the money.",
@@ -50,7 +55,6 @@
 		"Wizard_SettingsTheme": "The website and mobile app colors can be changed between three main colors and between light or dark theme. To make a better decision, at this screen you can see the controls used through the website. When you click at the buttons the colors change just so you can check and decide, to effective change one needs to click the Save button.",
 		"Wizard_SettingsTFA": "This page is about adding one more security layer to protect your login at the system. Click at 'Why to use this?' below the image to read more about this.",
 		"Wizard_SettingsMisc": "This is one more layer to guarantee the e-mails you receive really came from us.",
-		"Wizard_Year": "Here you can see the year totals by month so you can have a general comparative year view.###This report can be viewed clicking at 'Extract' menu.",
 		"Wizard_Title": "Wizard",
 	},
 	"pt-BR": {
@@ -84,6 +88,11 @@
 		"Wizard_ReportsMonthFilled_3": "Quando quiser mudar o mês, use a navegação abaixo.",
 		"Wizard_ReportsMonthFilled_4": "Nesta tela também é visível o Saldo atual da conta.",
 		"Wizard_ReportsMonthFilled_5": "Vamos ver agora o 'Resumo Anual', clicando no menu to topo.",
+		"Wizard_ReportsYearFilled_0": "Aqui são mostradas as somas do ano divididas por mês.",
+		"Wizard_ReportsYearFilled_1": "É possível ter uma visão mais geral e comparativa do ano.",
+		"Wizard_ReportsYearFilled_2": "Quando quiser mudar o ano, use a navegação abaixo.",
+		"Wizard_ReportsYearFilled_3": "Nesta tela também é visível o Saldo atual da conta.",
+		"Wizard_ReportsYearEmpty_0": "",
 
 		"Wizard_AccountsClosed": "Nesta tela são listadas as Contas fechadas. Para essas Contas não é possível criar ou editar Movimentações, mas ainda é possível ver os relatórios.",
 		"Wizard_Categories": "Categorias são usadas para dizer o tipo de Movimentação, por exemplo: Lazer, Saúde, Alimentação, Doação. Assim fica mais simples uma olhada rápida no Relatório Mensal dizer onde o dinheiro mais foi gasto.",
@@ -104,7 +113,6 @@
 		"Wizard_SettingsTheme": "As cores do site e do aplicativo podem ser alteradas entre três cores principais e se prefere um tema claro ou escuro. Para melhor decisão, nesta tela são mostradas os principais items usados pelo site. Ao clicar nos botões as cores mudam para visualização apenas, para manter a alteração é necessário clicar no botão de salvar.",
 		"Wizard_SettingsTFA": "Esta página serve para adicionar uma camada a mais de segurança ao seu cadastro no sistema. Clique em 'Por que usar?' abaixo da imagem para ler mais sobre.",
 		"Wizard_SettingsMisc": "Esta é mais uma camada para garantir que os e-mails que você recebe realmente vêm de nós.",
-		"Wizard_Year": "Aqui são mostradas as somas do ano divididas por mês, assim é possível ter uma visão mais geral e comparativa do ano.",
 		"Wizard_Title": "Tutorial",
 	},
 }
