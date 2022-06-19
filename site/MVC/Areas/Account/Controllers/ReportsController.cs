@@ -10,7 +10,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 	[Auth, Area(Route.AccountArea)]
 	public class ReportsController : BaseAccountsController
 	{
-		[HttpGetAndHead, NoWizard]
+		[HttpGetAndHead, Wizard.Avoid]
 		public IActionResult Index()
 		{
 			return RedirectToAction("Month");

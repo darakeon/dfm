@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace DFM.MVC.Areas.Api.Controllers
 {
-	[NoWizard]
+	[Wizard.Avoid]
 	public class BaseJsonController : BaseController
 	{
 		protected JsonResult json(Action action)

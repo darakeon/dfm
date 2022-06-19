@@ -96,7 +96,7 @@ namespace DFM.MVC.Controllers
 			return RedirectToAction();
 		}
 
-		[Auth, HttpGetAndHead, NoWizard]
+		[Auth, HttpGetAndHead, Wizard.Avoid]
 		public IActionResult TFAPasswordEnable()
 		{
 			var model = new ConfigsTFAPasswordModel();
@@ -104,7 +104,7 @@ namespace DFM.MVC.Controllers
 			return RedirectToAction("TFA");
 		}
 
-		[Auth, HttpGetAndHead, NoWizard]
+		[Auth, HttpGetAndHead, Wizard.Avoid]
 		public IActionResult TFAPasswordDisable()
 		{
 			var model = new ConfigsTFAPasswordModel();
@@ -112,27 +112,27 @@ namespace DFM.MVC.Controllers
 			return RedirectToAction("TFA");
 		}
 
-		[HttpPost, ValidateAntiForgeryToken, NoWizard]
+		[HttpPost, ValidateAntiForgeryToken, Wizard.Avoid]
 		public IActionResult ChangeLanguageOffline(ConfigsIndexModel model)
 		{
 			HttpContext.Session.SetString("Language", model.NewLanguage);
 			return Redirect(model.BackTo);
 		}
 
-		[Auth, HttpPost, ValidateAntiForgeryToken, NoWizard]
+		[Auth, HttpPost, ValidateAntiForgeryToken, Wizard.Avoid]
 		public IActionResult EndWizard()
 		{
 			var model = new ConfigsEndWizardModel();
 			return View(model);
 		}
 
-		[Auth, HttpGetAndHead, NoWizard]
+		[Auth, HttpGetAndHead, Wizard.Avoid]
 		public IActionResult Misc()
 		{
 			return View(new ConfigsMiscModel());
 		}
 
-		[Auth, HttpPost, ValidateAntiForgeryToken, NoWizard]
+		[Auth, HttpPost, ValidateAntiForgeryToken, Wizard.Avoid]
 		public IActionResult Misc(ConfigsMiscModel model)
 		{
 			return config(model, "Misc");

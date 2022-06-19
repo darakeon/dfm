@@ -157,7 +157,7 @@ namespace DFM.MVC.Tests
 
 				var actionNames = controller
 					.GetMethods(isAction)
-					.Where(shouldHaveWizard)
+					.Where(a => a.ShouldHaveWizard())
 					.Select(a => a.Name)
 					.Distinct();
 
@@ -192,16 +192,11 @@ namespace DFM.MVC.Tests
 			}
 		}
 
-		private static bool shouldHaveWizard(Type type)
+		private Boolean shouldHaveWizard(Type type)
 		{
 			return typeof(Controller).IsAssignableFrom(type)
 			       && !type.IsAbstract
-			       && shouldHaveWizard(type);
-		}
-
-		private static bool shouldHaveWizard(MemberInfo member)
-		{
-			return !member.GetCustomAttributes<NoWizardAttribute>().Any();
+			       && type.ShouldHaveWizard();
 		}
 
 		private static String tryGetWizardPtBr(String phrase)
