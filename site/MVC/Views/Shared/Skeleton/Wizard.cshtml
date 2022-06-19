@@ -8,12 +8,6 @@
 	var count = Context.CountTranslations("wizard", wizardKey);
 	var simpleText = Context.TryTranslate(wizardKey);
 
-	if (count == 0 && simpleText == null)
-	{
-		<!-- Missing @wizardKey -->
-		return;
-	}
-
 	<script>
 		var wizardMax = @count || 1
 	</script>

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Controllers
 {
+	[NoWizard]
 	public class OpsController : Controller
 	{
 		[HttpGetAndHead]

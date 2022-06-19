@@ -13,7 +13,7 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
-		[HttpPost]
+		[HttpPost, NoWizard]
 		public IActionResult DismissTip()
 		{
 			ReportsModel.DismissTip();
