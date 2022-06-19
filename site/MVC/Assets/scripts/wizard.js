@@ -55,45 +55,87 @@ function addText(element, text, chars) {
 }
 
 function addHighlight() {
-	var highlights = []
-
 	$('.wizard-highlight-' + wizardCount).each(
 		function (index, obj) {
-			const hl = $('#wh').clone()
-			hl.prop('id', null)
+			const fixed = checkFixed(obj)
 
-			const rect = obj.getBoundingClientRect()
+			addHighlightTo(index, obj, fixed)
 
-			hl.width(rect.width)
-			hl.height(rect.height)
-
-			const borderRadius = Math.min(rect.width, rect.height) / 2 + 20
-
-			const animationDuration = `${index + 1}s`
-
-			hl.css({
-				top: rect.top - 20 + window.scrollY,
-				left: rect.left - 20 + window.scrollX,
-				zIndex: getZIndex(obj),
-				borderRadius,
-				animationDuration
-			})
-
-			hl.addClass(`wl${wizardCount}`)
-
-			if ($(obj).hasClass('wl-other-color')) {
-				hl.addClass('wl-other-color')
+			if (!fixed) {
+				scrollTo(obj, fixed)
 			}
-
-			$(document.body).append(hl)
-
-			highlights.push(obj)
 		}
 	)
-	highlights.reverse().forEach(
-		function (obj) {
-			$(obj).focus()
+}
+
+function checkFixed(obj) {
+	let check = $(obj);
+	const maxParent = $(document.documentElement)
+
+	while (check[0] !== maxParent[0]) {
+		if (check.css('position') === 'fixed') {
+			return true
 		}
+		check = check.parent()
+	}
+
+	return false
+}
+
+function addHighlightTo(index, obj, fixed) {
+	const hl = $('#wh').clone()
+	hl.prop('id', null)
+
+	const rect = obj.getBoundingClientRect()
+
+	hl.width(rect.width)
+	hl.height(rect.height)
+
+	const borderRadius = getBorderRadius(rect)
+
+	const borderAnimationDuration = `${index + 1}s`
+
+	let top = rect.top - 20
+	let left = rect.left - 20
+
+	if (!fixed) {
+		top += window.scrollY
+		left += window.scrollX
+	}
+
+	const zIndex = getZIndex(obj)
+
+	hl.css({
+		top,
+		left,
+		zIndex,
+		borderRadius,
+		borderAnimationDuration
+	})
+
+	hl.addClass(`wl${wizardCount}`)
+
+	if ($(obj).hasClass('wl-other-color')) {
+		hl.addClass('wl-other-color')
+	}
+
+	$(document.body).append(hl)
+
+	if (fixed) {
+		$(hl).css('position', 'fixed')
+	}
+}
+
+function getBorderRadius(rect) {
+	return Math.round(
+		Math.min(
+			Math.min(
+				rect.width,
+				rect.height
+			)
+			/ 2 + 20,
+			50
+		)
 	)
 }
 
@@ -109,6 +151,16 @@ function getZIndex(obj) {
 	return zIndex
 }
 
+function scrollTo(obj) {
+	const objTop = Math.round($(obj).offset().top)
+	const objPageTop = objTop - 220
+
+	const body = [document.documentElement, document.body]
+	$(body).animate(
+		{ scrollTop: objPageTop }, 1000
+	)
+}
+
 function disableContinueIfLastMessage() {
 	if (wizardCount + 1 === wizardMax) {
 		$("#wizard-continue").addClass("disabled")
@@ -118,11 +170,6 @@ function disableContinueIfLastMessage() {
 
 function clearHighlight() {
 	$(`.wl${wizardCount - 1}`).remove()
-}
-
-function restoreObjPostHighlight(obj, property) {
-	$(obj).css(property, $(obj).data(property))
-	$(obj).data(property, '')
 }
 
 $(document).ready(function () {
