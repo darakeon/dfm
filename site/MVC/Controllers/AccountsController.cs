@@ -77,7 +77,7 @@ namespace DFM.MVC.Controllers
 			return View("CreateEdit", model);
 		}
 
-		[HttpPost, ValidateAntiForgeryToken, NoWizard]
+		[HttpPost, ValidateAntiForgeryToken, Wizard.Avoid]
 		public IActionResult Close(String id)
 		{
 			var model = new AdminModel();
@@ -87,7 +87,7 @@ namespace DFM.MVC.Controllers
 			return RedirectToAction("Index");
 		}
 
-		[HttpPost, ValidateAntiForgeryToken, NoWizard]
+		[HttpPost, ValidateAntiForgeryToken, Wizard.Avoid]
 		public IActionResult Delete(String id)
 		{
 			var model = new AdminModel();
@@ -97,7 +97,7 @@ namespace DFM.MVC.Controllers
 			return RedirectToAction("Index");
 		}
 
-		[HttpPost, ValidateAntiForgeryToken, NoWizard]
+		[HttpPost, ValidateAntiForgeryToken, Wizard.Avoid]
 		public IActionResult Reopen(String id)
 		{
 			var model = new AdminModel();

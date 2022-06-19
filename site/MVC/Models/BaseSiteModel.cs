@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using DFM.Entities;
 using DFM.Generic;
 using DFM.MVC.Controllers;
+using DFM.MVC.Helpers.Controllers;
 using Keon.Util.Collection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
@@ -33,6 +35,24 @@ namespace DFM.MVC.Models
 
 		public String ActionName => route?["action"];
 		public String ControllerName => route?["controller"];
+
+		public Boolean HasWizard()
+		{
+			var controllerName = $"{ControllerName}Controller";
+			var areaNamespace = GetType().Namespace?.Replace("Model", "Controller");
+			var controller =
+				GetType().Assembly.DefinedTypes.Single(
+					t => t.Name == controllerName
+						&& t.Namespace == areaNamespace
+				);
+
+			var action =
+				controller.GetMethods()
+					.Single(m => m.Name == ActionName);
+
+			return controller.ShouldHaveWizard()
+				&& action.ShouldHaveWizard();
+		}
 
 		public String Tip =>
 			current.IsAuthenticated

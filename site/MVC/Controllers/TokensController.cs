@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Controllers
 {
-	[NoWizard]
+	[Wizard.Avoid]
 	public class TokensController : BaseController
 	{
 		[HttpGetAndHead]

@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Controllers
 {
-	[Auth(AuthParams.Admin), NoWizard]
+	[Auth(AuthParams.Admin), Wizard.Avoid]
 	public class TestController : Controller
 	{
 		[HttpGetAndHead]

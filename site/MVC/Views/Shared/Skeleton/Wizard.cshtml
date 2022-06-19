@@ -1,12 +1,11 @@
 ﻿@model BaseSiteModel
 
-@if (Model.ShowWizard)
+@if (Model.ShowWizard && Model.HasWizard())
 {
 	var prefix = Model.ControllerName + Model.ActionName;
 	var suffix = ViewBag.WizardSuffix;
 	var wizardKey = $"Wizard_{prefix}{suffix}";
 	var count = Context.CountTranslations("wizard", wizardKey);
-	var simpleText = Context.TryTranslate(wizardKey);
 
 	<script>
 		var wizardMax = @count || 1
@@ -35,6 +34,7 @@
 				<div class="col-lg-8 col-sm-8 text-center" onClick="printAll()">
 					@if (count == 0)
 					{
+						var simpleText = Context.TryTranslate(wizardKey);
 						<span class="interactive" id="wizard-text-0" data-text="@simpleText"></span>
 					}
 					else
