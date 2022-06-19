@@ -6,7 +6,7 @@ end_of_line = lf
 trim_trailing_whitespace = true
 
 # private stuff starts with lower case
-dotnet_naming_rule.private_symbols.severity = suggestion
+dotnet_naming_rule.private_symbols.severity = error
 dotnet_naming_rule.private_symbols.symbols = locals_and_parameters
 dotnet_naming_rule.private_symbols.style = camel_case_style
 dotnet_naming_symbols.locals_and_parameters.applicable_kinds = parameter, local, field, method, property
