@@ -16,6 +16,7 @@
 	ViewBag.NoContentText = Context.Translate("NoYearMoves");
 	ViewBag.TableLgSize = 8;
 	ViewBag.TableSmSize = 10;
+	ViewBag.TableClass = "wizard-highlight-0";
 
 	var start = Model.Account.Start;
 	var date = new DateTime(Model.Year.Time, 1, 1);
@@ -138,11 +139,11 @@
 	<div class="row">
 		<div class="col-lg-2 col-sm-2"></div>
 
-		<div class="col-lg-8 col-sm-8 text-center">
+		<div class="col-lg-8 col-sm-8 text-center wizard-highlight-2">
 			@await Html.PartialAsync("Extensions/Pagination", pages)
 		</div>
 
-		<div class="col-lg-2 col-sm-2">
+		<div class="col-lg-2 col-sm-2 wizard-highlight-3">
 			@await Html.PartialAsync("Total")
 		</div>
 	</div>
