@@ -48,10 +48,10 @@ namespace DFM.MVC.Models
 
 			var action =
 				controller.GetMethods()
-					.Single(m => m.Name == ActionName);
+					.Where(m => m.Name == ActionName);
 
 			return controller.ShouldHaveWizard()
-				&& action.ShouldHaveWizard();
+				&& action.Any(a => a.ShouldHaveWizard());
 		}
 
 		public String Tip =>
