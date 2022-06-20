@@ -8,15 +8,23 @@
 		.OrderBy(m => m.Number)
 		.ToList();
 
-	ViewBag.HasContent = monthList.Any(
-			m => m.CurrentIn != 0 || m.CurrentOut != 0
-				|| m.ForeseenIn != 0 || m.ForeseenOut != 0
-		);
+	var hasMonths = monthList.Any(
+		m => m.CurrentIn != 0 || m.CurrentOut != 0
+		     || m.ForeseenIn != 0 || m.ForeseenOut != 0
+	);
+
+	ViewBag.HasContent = hasMonths;
 
 	ViewBag.NoContentText = Context.Translate("NoYearMoves");
 	ViewBag.TableLgSize = 8;
 	ViewBag.TableSmSize = 10;
 	ViewBag.TableClass = "wizard-highlight-0";
+	ViewBag.NoContentClass = "wizard-highlight-0";
+
+	ViewBag.CategoriesMenuClass =
+		hasMonths
+			? "wizard-highlight-4"
+			: "wizard-highlight-3";
 
 	var start = Model.Account.Start;
 	var date = new DateTime(Model.Year.Time, 1, 1);
@@ -136,14 +144,25 @@
 }
 
 @section Footer {
+	@{
+		var paginationClass =
+			hasMonths
+				? "wizard-highlight-2"
+				: "wizard-highlight-1";
+
+		var totalClass =
+			hasMonths
+				? "wizard-highlight-3"
+				: "wizard-highlight-2";
+	}
 	<div class="row">
 		<div class="col-lg-2 col-sm-2"></div>
 
-		<div class="col-lg-8 col-sm-8 text-center wizard-highlight-2">
+		<div class="col-lg-8 col-sm-8 text-center @paginationClass">
 			@await Html.PartialAsync("Extensions/Pagination", pages)
 		</div>
 
-		<div class="col-lg-2 col-sm-2 wizard-highlight-3">
+		<div class="col-lg-2 col-sm-2 @totalClass">
 			@await Html.PartialAsync("Total")
 		</div>
 	</div>
