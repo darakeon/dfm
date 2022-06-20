@@ -7,7 +7,7 @@ namespace DFM.BusinessLogic.Response
 	{
 		public CategoryValue(Summary summary)
 		{
-			Category = summary.Category.Name;
+			Category = summary.Category?.Name;
 			OutCents = summary.OutCents;
 			InCents = summary.InCents;
 		}
