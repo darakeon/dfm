@@ -14,6 +14,7 @@
 
 	var moveClass = ViewBag.MoveMenuClass + " wl-other-color";
 	var summaryClass = ViewBag.SummaryMenuClass + " wl-other-color";
+	var categoriesClass = ViewBag.CategoriesMenuClass + " wl-other-color";
 }
 
 @if (Model.Account.IsOpen)
@@ -36,7 +37,8 @@
 <li>
 	@Html.ActionLink(
 		Context.Translate("CategorySummary"),
-		"Categories", "Reports"
+		"Categories", "Reports",
+		null, new { @class = categoriesClass }
 	)
 </li>
 
