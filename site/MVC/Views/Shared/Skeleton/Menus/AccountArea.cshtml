@@ -12,9 +12,12 @@
 		}
 	);
 
-	var moveClass = ViewBag.MoveMenuClass + " wl-other-color";
-	var summaryClass = ViewBag.SummaryMenuClass + " wl-other-color";
-	var categoriesClass = ViewBag.CategoriesMenuClass + " wl-other-color";
+	const String menuHL = " wl-other-color";
+	var moveClass = ViewBag.MoveMenuClass + menuHL;
+	var scheduleClass = ViewBag.ScheduleMenuClass + menuHL;
+	var categoriesClass = ViewBag.CategoriesMenuClass + menuHL;
+	var extractClass = ViewBag.ExtractMenuClass + menuHL;
+	var summaryClass = ViewBag.SummaryMenuClass + menuHL;
 }
 
 @if (Model.Account.IsOpen)
@@ -29,23 +32,28 @@
 	<li>
 		@Html.ActionLink(
 			Context.Translate("Schedule"),
-			"Create", "Schedules"
+			"Create", "Schedules",
+			null, new { @class = scheduleClass }
+		)
+	</li>
+}
+
+@if (Model.IsUsingCategories)
+{
+	<li>
+		@Html.ActionLink(
+			Context.Translate("CategorySummary"),
+			"Categories", "Reports",
+			null, new { @class = categoriesClass }
 		)
 	</li>
 }
 
 <li>
 	@Html.ActionLink(
-		Context.Translate("CategorySummary"),
-		"Categories", "Reports",
-		null, new { @class = categoriesClass }
-	)
-</li>
-
-<li>
-	@Html.ActionLink(
 		Context.Translate("MonthMoves"),
-		"Month", "Reports"
+		"Month", "Reports",
+		null, new { @class = extractClass }
 	)
 </li>
 
