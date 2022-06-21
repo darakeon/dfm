@@ -154,13 +154,13 @@ namespace DFM.BusinessLogic.Repositories
 			) / 100m;
 		}
 
-		private Decimal getForeseenAt(Account account, Int16 dateYear, Int16 dateMonth, PrimalMoveNature nature)
+		private Int32 getForeseenAt(Account account, Int16 dateYear, Int16 dateMonth, PrimalMoveNature nature)
 		{
 			return getRunnable(account, nature).Sum(
 				s => s.PreviewSumAt(
 					account, dateYear, dateMonth
 				)
-			) / 100m;
+			);
 		}
 
 		private IList<Schedule> getRunnable(Account account, PrimalMoveNature? nature = null)
@@ -207,11 +207,11 @@ namespace DFM.BusinessLogic.Repositories
 
 				var dateMonth = (Int16)n;
 
-				month.ForeseenIn = getForeseenAt(
+				month.ForeseenInCents = getForeseenAt(
 					account, dateYear, dateMonth, PrimalMoveNature.In
 				);
 
-				month.ForeseenOut = getForeseenAt(
+				month.ForeseenOutCents = getForeseenAt(
 					account, dateYear, dateMonth, PrimalMoveNature.Out
 				);
 			}
