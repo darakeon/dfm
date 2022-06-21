@@ -49,8 +49,11 @@ namespace DFM.BusinessLogic.Response
 			public Decimal CurrentOut => CurrentOutCents / 100m;
 			public Decimal CurrentTotal => CurrentIn - CurrentOut;
 
-			public Decimal ForeseenIn { get; set; }
-			public Decimal ForeseenOut { get; set; }
+			public Decimal ForeseenInCents { get; set; }
+			public Decimal ForeseenOutCents { get; set; }
+
+			public Decimal ForeseenIn => ForeseenInCents / 100m;
+			public Decimal ForeseenOut => ForeseenOutCents / 100m;
 			public Decimal ForeseenTotal => ForeseenIn - ForeseenOut;
 		}
 	}
