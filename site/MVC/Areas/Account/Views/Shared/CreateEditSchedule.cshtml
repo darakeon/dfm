@@ -5,6 +5,14 @@
 	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
 	ViewBag.FormSizeSm = 10;
 	ViewBag.FormSizeLg = 6;
+
+	var buttonHL =
+		Model.Type switch
+		{
+			OperationType.Creation => " wizard-highlight-5",
+			OperationType.Scheduling => " wizard-highlight-5",
+			_ => null
+		};
 }
 
 @if (Model.BlockScreen)
@@ -53,7 +61,7 @@ else
 				@Context.Translate("NoLinkReminder3")
 			</div>
 			<div class="col-lg-3">
-				<button type="submit" class="btn btn-success wizard-highlight-5">
+				<button type="submit" class="btn btn-success @buttonHL">
 					@Context.Translate(Model.ActionName)
 				</button>
 			</div>
