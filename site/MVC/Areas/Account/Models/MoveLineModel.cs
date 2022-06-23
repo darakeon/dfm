@@ -10,13 +10,15 @@ namespace DFM.MVC.Areas.Account.Models
 			Boolean isUsingCategories,
 			String currentAccountUrl,
 			String language,
-			Boolean canCheck)
+			Boolean canCheck,
+			Boolean canHighlight)
 		{
 			Move = move;
 			IsUsingCategories = isUsingCategories;
 			CurrentAccountUrl = currentAccountUrl;
 			Language = language;
 			CanCheck = canCheck;
+			CanHighlight = canHighlight;
 
 			// to open modals of foreseen moves correctly
 			if (Move.Guid == Guid.Empty)
@@ -28,5 +30,7 @@ namespace DFM.MVC.Areas.Account.Models
 		public String CurrentAccountUrl { get; }
 		public String Language { get; }
 		public Boolean CanCheck { get; }
+
+		public Boolean CanHighlight { get; }
 	}
 }

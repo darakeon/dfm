@@ -18,6 +18,7 @@ namespace DFM.MVC.Areas.Account.Models
 		public AccountSign CurrentSign => Year.AccountSign;
 		public Decimal? Foreseen => Year.AccountForeseen;
 		public AccountSign ForeseenSign => Year.AccountForeseenSign;
+		public String ForeseenClass { get; set; }
 
 		public YearReport Year { get; set; }
 

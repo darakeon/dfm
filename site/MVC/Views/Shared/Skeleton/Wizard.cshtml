@@ -3,7 +3,10 @@
 @if (Model.ShowWizard && Model.HasWizard())
 {
 	var prefix = Model.ControllerName + Model.ActionName;
-	var suffix = ViewBag.WizardSuffix;
+	var suffix = 
+		ViewBag.WizardPlus != null && ViewBag.WizardPlus
+			? "Plus"
+			: ViewBag.WizardSuffix;
 	var wizardKey = $"Wizard_{prefix}{suffix}";
 	var count = Context.CountTranslations("wizard", wizardKey);
 
