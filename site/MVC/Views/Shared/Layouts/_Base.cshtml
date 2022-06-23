@@ -63,7 +63,7 @@
 	@await RenderSectionAsync("Scripts", false)
 </head>
 <body>
-	@if (Model.ShowWizard)
+	@if (Model.ShowWizard && Model.HasWizard())
 	{
 		<span id="wh" class="wh"><span></span></span>
 	}
@@ -73,7 +73,7 @@
 	<div id="body" class="container" role="main">
 		@await Html.PartialAsync("Skeleton/ActivateWarning")
 
-		@if (Model.ShowWizard)
+		@if (Model.ShowWizard && Model.HasWizard())
 		{
 			@await Html.PartialAsync("Skeleton/Wizard")
 		}

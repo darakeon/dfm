@@ -1,7 +1,6 @@
 ﻿@model BaseSiteModel
 
-@if (Model.ShowWizard && Model.HasWizard())
-{
+@{
 	var prefix = Model.ControllerName + Model.ActionName;
 	var suffix = 
 		ViewBag.WizardPlus != null && ViewBag.WizardPlus
@@ -9,59 +8,59 @@
 			: ViewBag.WizardSuffix;
 	var wizardKey = $"Wizard_{prefix}{suffix}";
 	var count = Context.CountTranslations("wizard", wizardKey);
+}
 
-	<script>
-		var wizardMax = @count || 1
-	</script>
+<script>
+	var wizardMax = @count || 1
+</script>
 
-	<div class="panel panel-default wizard-box">
+<div class="panel panel-default wizard-box">
 
-		<div class="panel-heading">
-			<h3 class="panel-title">@Context.Translate("Wizard_Title")</h3>
-		</div>
+	<div class="panel-heading">
+		<h3 class="panel-title">@Context.Translate("Wizard_Title")</h3>
+	</div>
 
-		<div class="panel-body">
+	<div class="panel-body">
 
-			<div class="row">
+		<div class="row">
 
-				<div class="col-lg-2 col-sm-2 text-left">
-					@await Html.PartialAsync("Extensions/MicroForm",
-						MicroForm.WithResource(
-							Context,
-							Context.Translate("Wizard_End"),
-							"btn btn-sm btn-danger pull-left"
-						).AddRouteUrl<Default.Main>("Configs", "EndWizard")
-					)
-				</div>
+			<div class="col-lg-2 col-sm-2 text-left">
+				@await Html.PartialAsync("Extensions/MicroForm",
+					MicroForm.WithResource(
+						Context,
+						Context.Translate("Wizard_End"),
+						"btn btn-sm btn-danger pull-left"
+					).AddRouteUrl<Default.Main>("Configs", "EndWizard")
+				)
+			</div>
 
-				<div class="col-lg-8 col-sm-8 text-center" onClick="printAll()">
-					@if (count == 0)
+			<div class="col-lg-8 col-sm-8 text-center" onClick="printAll()">
+				@if (count == 0)
+				{
+					var simpleText = Context.TryTranslate(wizardKey);
+					<span class="interactive" id="wizard-text-0" data-text="@simpleText"></span>
+				}
+				else
+				{
+					@for (var t = 0; t < count; t++)
 					{
-						var simpleText = Context.TryTranslate(wizardKey);
-						<span class="interactive" id="wizard-text-0" data-text="@simpleText"></span>
+						var text = Context.Translate($"{wizardKey}_{t}");
+						<span class="interactive" id="wizard-text-@t" data-text="@text"></span>
 					}
-					else
-					{
-						@for (var t = 0; t < count; t++)
-						{
-							var text = Context.Translate($"{wizardKey}_{t}");
-							<span class="interactive" id="wizard-text-@t" data-text="@text"></span>
-						}
-					}
-				</div>
+				}
+			</div>
 
-				<div class="col-lg-2 col-sm-2 text-right">
-					<button id="wizard-continue"
-					        class="btn btn-sm btn-success pull-right @ViewBag.WizardButtonClass"
-					        onClick="nextWizard()">
-						@Context.Translate("Continue")
-					</button>
-				</div>
-
+			<div class="col-lg-2 col-sm-2 text-right">
+				<button id="wizard-continue"
+				        class="btn btn-sm btn-success pull-right @ViewBag.WizardButtonClass"
+				        onClick="nextWizard()">
+					@Context.Translate("Continue")
+				</button>
 			</div>
 
 		</div>
-	</div>
 
-	<div class="below-wizard-box"></div>
-}
+	</div>
+</div>
+
+<div class="below-wizard-box"></div>
