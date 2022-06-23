@@ -4,25 +4,33 @@
 	ViewBag.Title = Model.Date;
 
 	var hasMoves = Model.MoveList.Any();
+	var hasForeseenMoves = Model.ForeseenList.Any();
 
 	ViewBag.MoveMenuClass =
-		hasMoves
+		hasMoves || hasForeseenMoves
 			? ""
 			: "wizard-highlight-2";
 
 	ViewBag.SummaryMenuClass =
-		hasMoves
+		hasMoves && !hasForeseenMoves
 			? "wizard-highlight-5"
 			: "";
 
+	ViewBag.SettingsMenuClass =
+		hasForeseenMoves
+			? "wizard-highlight-4"
+			: "";
+
 	ViewBag.TitleClass =
-		hasMoves
+		hasMoves && !hasForeseenMoves
 			? "wizard-highlight-2"
 			: "";
 
+	ViewBag.WizardPlus = hasForeseenMoves;
+
 	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 
-	ViewBag.HasContent = hasMoves || Model.ForeseenList.Any();
+	ViewBag.HasContent = hasMoves || hasForeseenMoves;
 	ViewBag.NoContentText = Context.Translate("NoMonthMoves");
 
 	var start = Model.Account.Start;
@@ -89,7 +97,7 @@
 	@await Html.PartialAsync("MoveLine", subModel)
 }
 
-@if (Model.ForeseenList.Any())
+@if (hasForeseenMoves)
 {
 	var colspanTitle = Model.IsUsingCategories ? 6 : 5;
 	var colspanLateral = Model.CanCheck ? 4 : 2;
@@ -140,14 +148,29 @@
 	
 	@if (Model.AccountHasMoves)
 	{
+		var wizardHighlightPagination =
+			!hasForeseenMoves
+				? "wizard-highlight-3"
+				: "";
+
+		var wizardHighlightTotal =
+			!hasForeseenMoves
+				? "wizard-highlight-4"
+				: "wizard-highlight-2";
+
+		Model.ForeseenClass =
+			hasForeseenMoves
+				? "wizard-highlight-3"
+				: "";
+
 		<div class="row">
 			<div class="col-lg-2 col-sm-2"></div>
 
-			<div class="col-lg-8 col-sm-8 text-center wizard-highlight-3">
+			<div class="col-lg-8 col-sm-8 text-center @wizardHighlightPagination">
 				@await Html.PartialAsync("Extensions/Pagination", pages)
 			</div>
 
-			<div class="col-lg-2 col-sm-2 wizard-highlight-4">
+			<div class="col-lg-2 col-sm-2 @wizardHighlightTotal">
 				@await Html.PartialAsync("Total")
 			</div>
 		</div>

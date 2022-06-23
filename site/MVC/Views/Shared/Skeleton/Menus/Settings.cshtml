@@ -2,10 +2,13 @@
 
 @{
 	var settingsRoute = new Default.Main();
+
+	const String menuHL = " wl-other-color";
+	var settingsClass = ViewBag.SettingsMenuClass + menuHL;
 }
 
 <li class="dropdown" id="settings">
-	<a class="dropdown-toggle" data-toggle="dropdown" role="button">
+	<a class="dropdown-toggle @settingsClass" data-toggle="dropdown" role="button">
 		<span class="glyphicon glyphicon-cog" title="@Context.Translate("Settings")"></span>
 	</a>
 

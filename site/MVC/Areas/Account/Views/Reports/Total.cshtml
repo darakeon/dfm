@@ -13,7 +13,7 @@
 
 	@if (Model.Foreseen.HasValue)
 	{
-		<div class="foreseen foreseen-total well">
+		<div class="foreseen foreseen-total well @Model.ForeseenClass">
 			@await Html.PartialAsync("Subtotal",
 				new Subtotal(
 					Model.Language,

@@ -46,6 +46,11 @@
 		"Wizard_SchedulesCreate_4": "It is possible to show the number of the Move inside the Schedule.",
 		"Wizard_SchedulesCreate_5": "When clicking in 'Create' the Moves will be created in the expected dates.",
 		"Wizard_SchedulesCreate_6": "Create a schedule so we can follow the wizard.",
+		"Wizard_ReportsMonthPlus_0": "Now you have a scheduled move.",
+		"Wizard_ReportsMonthPlus_1": "It will become a move in the set date.",
+		"Wizard_ReportsMonthPlus_2": "You can notice that there are two totals now.",
+		"Wizard_ReportsMonthPlus_3": "The second one is the foreseen amount after add the scheduled move.",
+		"Wizard_ReportsMonthPlus_4": "We have more options in the system, let's check the Settings > Main Options.",
 
 		"Wizard_AccountsClosed": "Here you see a list of closed Accounts. For these Accounts you cannot create or edit Moves, but you can still see the reports.",
 		"Wizard_Categories": "Categories are types of Moves, like: Recreation, Health, Feeding, Donation. It make it simpler to say on quick looking where did you spent the money.",
@@ -114,6 +119,11 @@
 		"Wizard_SchedulesCreate_4": "Também é possível exibir o número da Movimentação no Agendamento.",
 		"Wizard_SchedulesCreate_5": "Ao clicar em 'Criar', as movimentações serão criadas nas datas esperadas.",
 		"Wizard_SchedulesCreate_6": "Crie um agendamento para podermos seguir o tutorial.",
+		"Wizard_ReportsMonthPlus_0": "Agora você possui um agendamento.",
+		"Wizard_ReportsMonthPlus_1": "Vai se tornar uma movimentação na data apontada.",
+		"Wizard_ReportsMonthPlus_2": "Também existem agora dois totais.",
+		"Wizard_ReportsMonthPlus_3": "O segundo é o valor previsto após acontecer a movimentação.",
+		"Wizard_ReportsMonthPlus_4": "Existem mais opções no sistema, vamos olhar as Configurações > Opções Gerais.",
 
 		"Wizard_AccountsClosed": "Nesta tela são listadas as Contas fechadas. Para essas Contas não é possível criar ou editar Movimentações, mas ainda é possível ver os relatórios.",
 		"Wizard_Categories": "Categorias são usadas para dizer o tipo de Movimentação, por exemplo: Lazer, Saúde, Alimentação, Doação. Assim fica mais simples uma olhada rápida no Relatório Mensal dizer onde o dinheiro mais foi gasto.",

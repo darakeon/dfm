@@ -9,6 +9,7 @@ namespace DFM.MVC.Areas.Account.Models.SubModels
  		AccountSign CurrentSign { get; }
 		Decimal? Foreseen { get; }
 		AccountSign ForeseenSign { get; }
+		String ForeseenClass { get; }
 		String Language { get; }
 	}
 }
