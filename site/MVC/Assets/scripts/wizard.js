@@ -148,6 +148,9 @@ function getZIndex(obj) {
 		zOwner = zOwner.parent()
 	} while (zIndex === 'auto' && zOwner[0] && zOwner[0] !== document)
 
+	if (zIndex === 'auto')
+		return 2
+
 	return zIndex
 }
 
