@@ -13,7 +13,7 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (65)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (66)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
 | warning about contract being only with who signs, not related people           | :sheep:  |  1  |  4  |  7  |                |       |
 | warning about schedules not running if not active                              | :sheep:  |  1  |  4  |  7  |                |       |
@@ -71,6 +71,7 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Replace hardcoded scenario codes from tests                                    | :ant:    |  2  |  1  |  3  |                |       |
 | Inject ServiceAccess with AddScoped at MVC (because of Session NH)             | :ant:    |  2  |  1  |  3  |                |       |
 | [Reduce Docker Images]                                                         | :ant:    |  2  |  1  |  3  |                |       |
+| Use multistaged container                                                      | :ant:    |  2  |  1  |  3  |                |       |
 | Avoid token duplication error                                                  | :ant:    |  2  |  1  |  3  |                |       |
 | [OCR] to add values to system                                                  | :dragon: |  4  |  2  |  2  |                |       |
 | Dependent users                                                                | :dragon: |  4  |  2  |  2  |                |       |
