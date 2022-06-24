@@ -1,4 +1,7 @@
 {
+	"7.4.0.6": [
+		"Fix scheduler running"
+	],
 	"7.4.0.5": [
 		"Upgrade internal tools used in core system",
 		"Upgrade internal tools used in site",
