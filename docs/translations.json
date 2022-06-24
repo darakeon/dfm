@@ -9,6 +9,7 @@
         "Fix .NET vulnerable dependencies": "Upgrade internal tools used in core system",
         "Fix Node vulnerable dependencies": "Upgrade internal tools used in site",
         "Add service interruption clause": "Update contract",
+        "Fix robot mysql failure": "Fix scheduler running",
         "": null
     },
     "pt-br": {
@@ -21,6 +22,7 @@
         "Fix .NET vulnerable dependencies": "Atualizadas ferramentas internas usadas no sistema central",
         "Fix Node vulnerable dependencies": "Atualizadas ferramentas internas usadas no site",
         "Add service interruption clause": "Atualizado de contrato",
+        "Fix robot mysql failure": "Corrigido problema para rodar o agendador",
         "": null
     }
 }
