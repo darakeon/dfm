@@ -1,4 +1,7 @@
 {
+	"7.4.0.6": [
+		"Corrigido problema para rodar o agendador"
+	],
 	"7.4.0.5": [
 		"Atualizadas ferramentas internas usadas no sistema central",
 		"Atualizadas ferramentas internas usadas no site",
