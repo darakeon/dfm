@@ -5,8 +5,8 @@
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
 - [go to published version](#7.4.0.5)
-- [go to version in development](#8.0.0.0)
-- [dev version state](../../8.0.0.0/docs/RELEASES.md#8.0.0.0)
+- [go to version in development](#7.4.0.6)
+- [dev version state](../../7.4.0.6/docs/RELEASES.md#7.4.0.6)
 
 ## Legend
 - :dragon:: at least one huge change (increases first number)
@@ -17,6 +17,9 @@ This is the list of project releases, past and current. To see tasks that are st
 ## <a name="8.0.0.0"></a>8.0.0.0 :dragon: <sup>`2`</sup>
 - [ ] Hide tips while in wizard
 - [ ] Make wizard interactive
+
+## <a name="7.4.0.6"></a>7.4.0.6 :ant: <sup>`1`</sup>
+- [x] `220623>220624` Fix robot mysql failure
 
 ## <a name="7.4.0.5"></a>7.4.0.5 :ant: <sup>`4`</sup>
 - [x] `220604>220604` Add security policy to repository
