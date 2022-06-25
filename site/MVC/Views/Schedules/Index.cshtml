@@ -10,7 +10,7 @@
 	ViewBag.NoContentText = Context.Translate("NoSchedules");
 
 	var useCategories = Context.GetService().Current.UseCategories;
-	var descriptionSize = useCategories ? 2 : 4;
+	var descriptionSize = useCategories ? 2 : 3;
 
 	/* ADD WARNING TO SCHEDULES THAT WON'T RUN BECAUSE OF CATEGORY-USE PROBLEM */
 }
@@ -47,7 +47,7 @@
 	var @in = schedule.InName;
 	var @out = schedule.OutName;
 
-	<tr class="row">
+	<tr class="row wizard-highlight-0">
 		<td>
 			@schedule.Description
 		</td>
@@ -73,15 +73,15 @@
 			@Context.Translate(schedule.Frequency.ToString())
 		</td>
 
-		<td class="text-center">
+		<td class="text-center wizard-highlight-1">
 			@(schedule.Boundless ? "" : $"{schedule.Times}x")
 		</td>
 
-		<td class="text-center">
+		<td class="text-center wizard-highlight-2">
 			@schedule.Run
 		</td>
 
-		<td class="text-center">
+		<td class="text-center wizard-highlight-2">
 			@schedule.Deleted
 		</td>
 
@@ -96,7 +96,7 @@
 			@schedule.Value.ToMoney(Model.Language)
 		</td>
 
-		<td class="text-center">
+		<td class="text-center wizard-highlight-3">
 			@await Html.PartialAsync("Extensions/MicroForm",
 				MicroForm.WithGlyph(Context, "trash", "Delete")
 					.AddIdUrl("Delete", schedule.Guid)
