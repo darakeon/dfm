@@ -13,7 +13,7 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (67)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (68)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
 | warning about contract being only with who signs, not related people           | :sheep:  |  1  |  4  |  7  |                |       |
 | warning about schedules not running if not active                              | :sheep:  |  1  |  4  |  7  |                |       |
@@ -51,6 +51,7 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Add error for schedule with 0 times                                            | :ant:    |  1  |  1  |  4  |                |       |
 | Add tests to moves order at report                                             | :ant:    |  1  |  1  |  4  |                |       |
 | Change putJson to putSerializable/Parcelable at extras in android              | :ant:    |  1  |  1  |  4  |                |       |
+| Refactor Core Steps to improve their division to entities and given/when/then  | :ant:    |  1  |  1  |  4  |                |       |
 | Add all android missing tests                                                  | :ant:    |  4  |  3  |  3  |                |       |
 | Replace XML at UI android by [compose jetpack]                                 | :ant:    |  4  |  3  |  3  |                |       |
 | Add accessibility to automated tests                                           | :ant:    |  4  |  3  |  3  |                |       |
