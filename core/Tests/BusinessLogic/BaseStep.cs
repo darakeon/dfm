@@ -411,7 +411,6 @@ namespace DFM.BusinessLogic.Tests
 		protected static String accountOutUrl = accountOutName.IntoUrl();
 		protected static String accountInUrl = accountInName.IntoUrl();
 
-		#region Helpers
 		protected DetailInfo getDetailFromTable(TableRow detailData)
 		{
 			var newDetail = new DetailInfo { Description = detailData["Description"] };
@@ -423,7 +422,6 @@ namespace DFM.BusinessLogic.Tests
 				newDetail.Amount = Int16.Parse(detailData["Amount"]);
 			return newDetail;
 		}
-		#endregion
 
 		protected void createFor(User user, String entityName)
 		{
