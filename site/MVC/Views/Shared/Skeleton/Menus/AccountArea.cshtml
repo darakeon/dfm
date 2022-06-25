@@ -18,6 +18,7 @@
 	var categoriesClass = ViewBag.CategoriesMenuClass + menuHL;
 	var extractClass = ViewBag.ExtractMenuClass + menuHL;
 	var summaryClass = ViewBag.SummaryMenuClass + menuHL;
+	var homeClass = ViewBag.HomeMenuClass + menuHL;
 }
 
 @if (Model.Account.IsOpen)
@@ -66,7 +67,7 @@
 </li>
 
 <li>
-	<a href="@home">
+	<a href="@home" class="@homeClass">
 		<span class="glyphicon glyphicon-home" title="@Context.Translate("Home")"></span>
 	</a>
 </li>
