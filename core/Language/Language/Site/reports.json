@@ -16,7 +16,7 @@
 	"pt-BR": {
 		"NoMonthMoves": "Não há movimentações para este mês.",
 		"NoYearMoves": "Não há movimentações para este ano.",
-		"ConfirmDeleteMove": "Realmente deseja APAGAR a Movimentação '{0}'?",
+		"ConfirmDeleteMove": "Realmente deseja EXCLUIR a Movimentação '{0}'?",
 		"ShortDateFormat": "{0} de {1}",
 		"Month": "Mês",
 		"Summary": "Resumo",

@@ -20,7 +20,7 @@
 		"Repeat": "Repetir",
 		"ShowInstallment": "Exibir número da parcela na descrição da Movimentação",
 		"NoSchedules": "Não há Agendamentos ainda.",
-		"ConfirmDeleteSchedule": "Realmente deseja APAGAR o Agendamento '{0}'?",
+		"ConfirmDeleteSchedule": "Realmente deseja EXCLUIR o Agendamento '{0}'?",
 		"Run": "Rodadas",
 		"Deleted": "Excluídas",
 		"": null
