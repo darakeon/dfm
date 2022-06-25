@@ -15,5 +15,10 @@ namespace DFM.MVC.Models
 
 		public IList<AccountListItem> AccountList { get; set; }
 		public Boolean HasClosed { get; set; }
+
+		public Boolean AnySchedule()
+		{
+			return service.Robot.HasSchedule();
+		}
 	}
 }

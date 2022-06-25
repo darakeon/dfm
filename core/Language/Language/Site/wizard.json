@@ -50,7 +50,8 @@
 		"Wizard_ReportsMonthPlus_1": "It will become a move in the set date.",
 		"Wizard_ReportsMonthPlus_2": "You can notice that there are two totals now.",
 		"Wizard_ReportsMonthPlus_3": "The second one is the foreseen amount after add the scheduled move.",
-		"Wizard_ReportsMonthPlus_4": "We have more options in the system, let's check the Settings > Main Options.",
+		"Wizard_ReportsMonthPlus_4": "We can see the list of schedules. First, go to the home...",
+		"Wizard_AccountsIndexPlus_0": "...now click into Schedules menu...",
 
 		"Wizard_AccountsClosed": "Here you see a list of closed Accounts. For these Accounts you cannot create or edit Moves, but you can still see the reports.",
 		"Wizard_Categories": "Categories are types of Moves, like: Recreation, Health, Feeding, Donation. It make it simpler to say on quick looking where did you spent the money.",
@@ -123,7 +124,8 @@
 		"Wizard_ReportsMonthPlus_1": "Vai se tornar uma movimentação na data apontada.",
 		"Wizard_ReportsMonthPlus_2": "Também existem agora dois totais.",
 		"Wizard_ReportsMonthPlus_3": "O segundo é o valor previsto após acontecer a movimentação.",
-		"Wizard_ReportsMonthPlus_4": "Existem mais opções no sistema, vamos olhar as Configurações > Opções Gerais.",
+		"Wizard_ReportsMonthPlus_4": "Podemos ver a lista de agendamentos. Primeiro, vamos para a página inicial...",
+		"Wizard_AccountsIndexPlus_0": "...clique no menu de Agendamentos...",
 
 		"Wizard_AccountsClosed": "Nesta tela são listadas as Contas fechadas. Para essas Contas não é possível criar ou editar Movimentações, mas ainda é possível ver os relatórios.",
 		"Wizard_Categories": "Categorias são usadas para dizer o tipo de Movimentação, por exemplo: Lazer, Saúde, Alimentação, Doação. Assim fica mais simples uma olhada rápida no Relatório Mensal dizer onde o dinheiro mais foi gasto.",
