@@ -7,6 +7,7 @@
 		"InvalidBody": "The e-mail body is required",
 		"InvalidAddress": "Invalid e-mail address",
 		"EmailNotSent": "There is a problem on e-mail sender system",
+		"": null
 	},
 	"pt-BR": {
 		"None": "Não foram encontrados erros",
@@ -16,5 +17,6 @@
 		"InvalidBody": "Corpo do e-mail em branco",
 		"InvalidAddress": "E-mail inválido",
 		"EmailNotSent": "Erro ao tentar enviar e-mail",
-	},
+		"": null
+	}
 }

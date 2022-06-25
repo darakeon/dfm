@@ -3,10 +3,12 @@
 		"Subject": "Terms of Use of Don't fly Money System",
 		"Title": "Not signed contract",
 		"DeleteReason": "The system terms of use guide who uses and keep safe the relation between the Person and the System. Some time ago a newer version of these terms was published. In case you do not agree with those, it is not possible to keep using the System. The effective date of the terms is:",
+		"": null
 	},
 	"pt-BR": {
 		"Subject": "Termos de uso do sistema Don't fly Money",
 		"Title": "Contrato não assinado",
 		"DeleteReason": "Os termos de uso do sistema servem para orientar quem usa e manter segura a relação entre a Pessoa e o Sistema. Faz algum tempo que foi instituída uma nova versão desses termos. Caso não sejam assinados, não é possível seguir usando o Sistema. A data de entrada em vigor dos novos termos foi:",
-	},
+		"": null
+	}
 }

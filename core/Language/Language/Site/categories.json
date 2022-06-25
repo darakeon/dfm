@@ -7,14 +7,16 @@
 		"MergeExplanation": "Merge one category to another will make {0} category disappear. The chosen category will inherit all the moves and schedules that was from the category {0}",
 		"Merge": "Merge",
 		"CreateAnotherCategory": "Create another Category",
+		"": null
 	},
 	"pt-BR": {
 		"CategoryEnabled": "Categoria '{0}' ativada.",
 		"CategoryDisabled": "Categoria '{0}' desativada.",
 		"NoCategories": "Não há Categorias ainda.",
-		"MergeTitle": "Juntar com outra categoria", 
+		"MergeTitle": "Juntar com outra categoria",
 		"MergeExplanation": "Juntar uma categoria com outra fará a categoria {0} desaparecer. A categoria escolhida irá herdar as movimentações e agendamentos que eram da categoria {0}.",
-		"Merge": "Juntar", 
+		"Merge": "Juntar",
 		"CreateAnotherCategory": "Criar outra Categoria",
-	},
+		"": null
+	}
 }

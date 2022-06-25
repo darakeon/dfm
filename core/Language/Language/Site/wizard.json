@@ -72,6 +72,7 @@
 		"Wizard_SettingsTFA": "This page is about adding one more security layer to protect your login at the system. Click at 'Why to use this?' below the image to read more about this.",
 		"Wizard_SettingsMisc": "This is one more layer to guarantee the e-mails you receive really came from us.",
 		"Wizard_Title": "Wizard",
+		"": null
 	},
 	"pt-BR": {
 		"Wizard_Test_0": "-",
@@ -146,5 +147,6 @@
 		"Wizard_SettingsTFA": "Esta página serve para adicionar uma camada a mais de segurança ao seu cadastro no sistema. Clique em 'Por que usar?' abaixo da imagem para ler mais sobre.",
 		"Wizard_SettingsMisc": "Esta é mais uma camada para garantir que os e-mails que você recebe realmente vêm de nós.",
 		"Wizard_Title": "Tutorial",
-	},
+		"": null
+	}
 }

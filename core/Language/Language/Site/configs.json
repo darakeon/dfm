@@ -59,7 +59,8 @@
 		"ReMiscText": "To generate another character, type your password and click the button.",
 		"ReMisc": "Generate another character",
 
-		"BackHome": "Back to Home", 
+		"BackHome": "Back to Home",
+		"": null
 	},
 	"pt-BR": {
 		"Save": "Salvar",
@@ -119,8 +120,9 @@
 
 		"MiscExplanation": "Esta é uma imagem para verificar se os e-mails que você recebe realmente vieram do nosso sistema. Ela é aleatoriamente gerada de 512 possíveis montagens deste personagem. Quando você receber um e-mail, verifique se este personagem está no e-mail, com as mesmas características apresentadas acima (olhos, antena, mãos, pés e cor).",
 		"ReMiscText": "Para gerar um personagem diferente, digite sua senha e clique no botão.",
-		"ReMisc": "Gerar outro personagem", 
+		"ReMisc": "Gerar outro personagem",
 
-		"BackHome": "Voltar para a página inicial", 
-	},
+		"BackHome": "Voltar para a página inicial",
+		"": null
+	}
 }

@@ -18,6 +18,8 @@
 		"TFAContactUs": "I don't have the code",
 
 		"UserVerificationSent": "Code sent",
+
+		"": null
 	},
 	"pt-BR": {
 		"Email": "E-mail",
@@ -38,5 +40,7 @@
 		"TFAContactUs": "não sei o código",
 
 		"UserVerificationSent": "Código enviado",
+
+		"": null
 	}
 }

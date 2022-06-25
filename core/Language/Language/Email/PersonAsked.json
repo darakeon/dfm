@@ -3,10 +3,12 @@
 		"Subject": "Data wiped from Don't fly Money",
 		"Title": "Data wiped",
 		"DeleteReason": "When you inserted data in our system, it did not stopped being YOUR data. So, when you ask to delete it, we need to do this. The request was made at:",
+		"": null
 	},
 	"pt-BR": {
 		"Subject": "Dados apagados de Don't fly Money'",
 		"Title": "Dados apagados",
 		"DeleteReason": "Quando você inseriu dados em no sistema, estes não deixaram de ser SEUS dados. Portanto, quando você pede que sejam removidos, nós temos que fazer isso. A requisição foi feita em:",
+		"": null
 	}
 }

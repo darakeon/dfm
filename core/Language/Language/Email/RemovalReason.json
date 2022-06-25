@@ -5,6 +5,7 @@
 		"Days": "days",
 		"ReadTerms": "Read the terms of use at the website",
 		"ToUnderstand": "to understand more about data deletion",
+		"": null
 	},
 	"pt-BR": {
 		"DeleteWarning": "Seu registro e os dados inseridos no sistema Don't fly Money estão para ser excluídos.",
@@ -12,5 +13,6 @@
 		"Days": "dias",
 		"ReadTerms": "Leia os termos de uso no site",
 		"ToUnderstand": "para entender mais sobre a exclusão de dados",
-	},
+		"": null
+	}
 }

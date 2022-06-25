@@ -15,6 +15,7 @@
 		"AcceptedUrlCharacters": "Use just letters (without accents), numbers and underlines (&quot;_&quot;)",
 		"AccountMoves": "{0} Moves",
 		"CreateAnotherAccount": "Create another Account",
+		"": null
 	},
 	"pt-BR": {
 		"NoAccounts": "Não há Contas ainda.",
@@ -32,5 +33,6 @@
 		"AcceptedUrlCharacters": "Use apenas letras (sem acentos), números e underlines (&quot;_&quot;)",
 		"AccountMoves": "Movimentações de {0}",
 		"CreateAnotherAccount": "Criar outra Conta",
-	},
+		"": null
+	}
 }
