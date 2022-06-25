@@ -8,6 +8,7 @@
 		"LoginRegister": "Login",
 		"NoLogins": "There is no active logins",
 		"LogOffLabel": "{0} started at {1}",
+		"": null
 	},
 	"pt-BR": {
 		"Expiration": "Expiração",
@@ -18,5 +19,6 @@
 		"LoginRegister": "Login",
 		"NoLogins": "Não há logins em uso",
 		"LogOffLabel": "de {0} iniciado em {1}",
-	},
+		"": null
+	}
 }

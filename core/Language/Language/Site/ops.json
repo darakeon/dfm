@@ -16,6 +16,7 @@
 		"DoNotHack": "Please, don't hack me!",
 		"ImageBy": "image by",
 		"Help": "Help me! =)",
+		"": null
 	},
 	"pt-BR": {
 		"Ops": "Ops!",
@@ -34,5 +35,6 @@
 		"DoNotHack": "Please, don't hack me!",
 		"ImageBy": "imagem de",
 		"Help": "Help me! =)",
-	},
+		"": null
+	}
 }

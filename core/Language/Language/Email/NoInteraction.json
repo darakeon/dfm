@@ -3,10 +3,12 @@
 		"Subject": "You seem to be not using the system anymore",
 		"Title": "No Interaction",
 		"DeleteReason": "The system using is free, but there are costs for whom maintains it online. There is some time that the inserted data at the System are not accessed or changed. So there is no meaning in keeping it, given they are not being used. The last access was at:",
+		"": null
 	},
 	"pt-BR": {
 		"Subject": "Parece que você não está mais usando o sistema",
 		"Title": "Sem interação",
 		"DeleteReason": "O sistema é de uso gratuito, porém gera custos para quem o mantém no ar. Faz algum tempo que os dados inseridos no Sistema não são acessados ou alterados. Sendo assim, não faz sentido mantê-los, já que não estão sendo usados. O último acesso foi em:",
+		"": null
 	}
 }

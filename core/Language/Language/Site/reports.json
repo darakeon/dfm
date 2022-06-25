@@ -11,6 +11,7 @@
 		"Foreseen": "Foreseen",
 		"Current": "Current",
 		"EnableColorPatterns": "Enable color patterns",
+		"": null
 	},
 	"pt-BR": {
 		"NoMonthMoves": "Não há movimentações para este mês.",
@@ -24,5 +25,6 @@
 		"Foreseen": "Previsto",
 		"Current": "Atual",
 		"EnableColorPatterns": "Ativar desenhos nas cores",
-	},
+		"": null
+	}
 }

@@ -10,6 +10,7 @@
 		"ConfirmDeleteSchedule": "Do you really want to DELETE Schedule '{0}'?",
 		"Run": "Run",
 		"Deleted": "Deleted",
+		"": null
 	},
 	"pt-BR": {
 		"Amount": "Qte",
@@ -22,5 +23,6 @@
 		"ConfirmDeleteSchedule": "Realmente deseja APAGAR o Agendamento '{0}'?",
 		"Run": "Rodadas",
 		"Deleted": "Excluídas",
-	},
+		"": null
+	}
 }
