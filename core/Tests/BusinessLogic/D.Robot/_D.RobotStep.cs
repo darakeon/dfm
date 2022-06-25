@@ -47,6 +47,12 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			get => get<String>("tfa");
 			set => set("tfa", value);
 		}
+
+		private Boolean hasSchedule
+		{
+			get => get<Boolean>("hasSchedule");
+			set => set("hasSchedule", value);
+		}
 		#endregion
 
 		#region SaveSchedule
@@ -579,6 +585,27 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 					Actual: {body}
 				"
 			);
+		}
+		#endregion
+
+		#region HasSchedules
+		[When(@"ask if the user has Schedules")]
+		public void WhenAskIfTheUserHasSchedules()
+		{
+			try
+			{
+				hasSchedule = service.Robot.HasSchedule();
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[Then(@"the answer is (Yes|No)")]
+		public void ThenTheAnswerIsYes(Boolean hasSchedule)
+		{
+			Assert.AreEqual(hasSchedule, this.hasSchedule);
 		}
 		#endregion
 

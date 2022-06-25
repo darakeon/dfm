@@ -247,7 +247,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		[Given(@"I deactivate the user")]
 		public void GivenIDeactivateTheUser()
 		{
-			var user = repos.User.GetByEmail(email);
+			var user = repos.User.GetByEmail(email ?? userEmail);
 			db.Execute(() => repos.Control.Deactivate(user));
 		}
 

@@ -333,5 +333,18 @@ namespace DFM.BusinessLogic.Services
 				() => repos.Wipe.Execute(user, date, upload, reason)
 			);
 		}
+
+		public Boolean HasSchedule()
+		{
+			var user = parent.Safe.VerifyUser();
+			var x = repos.Schedule.Where(
+				s => s.User.ID == user.ID
+				     && s.Active
+			);
+			return repos.Schedule.Any(
+				s => s.User.ID == user.ID
+				     && s.Active
+			);
+		}
 	}
 }
