@@ -62,8 +62,14 @@ function addHighlight() {
 			addHighlightTo(index, obj, fixed)
 
 			if (!fixed) {
-				scrollTo(obj, fixed)
+				scrollTo(obj)
 			}
+		}
+	)
+
+	$('.wizard-scroll-' + wizardCount).each(
+		function (index, obj) {
+			scrollTo(obj)
 		}
 	)
 }
