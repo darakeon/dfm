@@ -15,7 +15,7 @@
 		"Type": "Tipo",
 		"Mobile": "Mobile",
 		"Browser": "Web",
-		"ConfirmDeleteLogin": "Realmente deseja APAGAR o login de '{0}' ({1})? A sessão do login irá expirar.",
+		"ConfirmDeleteLogin": "Realmente deseja EXCLUIR o login de '{0}' ({1})? A sessão do login irá expirar.",
 		"LoginRegister": "Login",
 		"NoLogins": "Não há logins em uso",
 		"LogOffLabel": "de {0} iniciado em {1}",

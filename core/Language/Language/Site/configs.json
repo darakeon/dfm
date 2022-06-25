@@ -115,7 +115,7 @@
 		"Wipe_NoWayBack": "Não haverá forma de recuperar os dados após a remoção.",
 		"Wipe_ReadTerms": "Para entender mais, leia nossos",
 		"Wipe_GoAhead": "Caso deseje de fato prosseguir, digite sua senha abaixo e aperte o botão.",
-		"Wipe": "apagar TODOS os meus dados e NUNCA MAIS ver eles de novo",
+		"Wipe": "excluir TODOS os meus dados e NUNCA MAIS ver eles de novo",
 		"Wipe_RequestSent": "A requisição de remoção foi enviada. Em algumas horas, seus dados serão removidos. Agradecemos por ter usado nosso sistema.",
 
 		"MiscExplanation": "Esta é uma imagem para verificar se os e-mails que você recebe realmente vieram do nosso sistema. Ela é aleatoriamente gerada de 512 possíveis montagens deste personagem. Quando você receber um e-mail, verifique se este personagem está no e-mail, com as mesmas características apresentadas acima (olhos, antena, mãos, pés e cor).",

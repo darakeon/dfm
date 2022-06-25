@@ -34,7 +34,7 @@
    	<string name="no_extract">Não há movimentações neste mês</string>
    	<string name="no_summary">Não há movimentações neste ano</string>
  	<string name="change_date">mudar</string>
-	<string name="sure_to_delete">Realmente deseja APAGAR a Movimentação \'%s\'?</string>
+	<string name="sure_to_delete">Realmente deseja EXCLUIR a Movimentação \'%s\'?</string>
 	<string name="edit">editar</string>
 	<string name="delete">excluir</string>
 	<string name="check">marcar</string>

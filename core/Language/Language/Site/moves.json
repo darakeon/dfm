@@ -13,10 +13,10 @@
 		"JustOneValue": "Valor único",
 		"Detailed": "Detalhado",
 		"MoveNotFound": "Movimentação não encontrada",
-		"MoveDeleted": "Movimentação '{0}' apagada",
+		"MoveDeleted": "Movimentação '{0}' excluída",
 		"ScheduleRequired": "Agendamento não encontrado",
 		"MoveSave": "Movimentação: {0}, mas os dados foram salvos sucesso",
-		"MoveDeletedWithoutEmail": "{1}, mas a movimentação '{0}' foi apagada com sucesso",
+		"MoveDeletedWithoutEmail": "{1}, mas a movimentação '{0}' foi excluída com sucesso",
 		"": null
 	}
 }

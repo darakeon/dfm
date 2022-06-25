@@ -19,6 +19,9 @@ namespace DFM.Language.Entities
 
 			foreach (var sentence in sentences)
 			{
+				if (String.IsNullOrEmpty(sentence.Key))
+					continue;
+
 				var dicPhrase = new Phrase(
 					sentence.Key,
 					sentence.Value
