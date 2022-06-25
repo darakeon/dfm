@@ -13,7 +13,7 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (66)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
+| Task (67)                                                                      | Type     | Dif | Imp | Pts | Dependency     | Issue |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- | ----- |
 | warning about contract being only with who signs, not related people           | :sheep:  |  1  |  4  |  7  |                |       |
 | warning about schedules not running if not active                              | :sheep:  |  1  |  4  |  7  |                |       |
@@ -26,6 +26,7 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | warning mobile and browser logins stay active                                  | :sheep:  |  1  |  3  |  6  |                |       |
 | Add build step and make the others depend on it, not on tests step             | :ant:    |  1  |  3  |  6  |                |       |
 | Add monitoring with Grafana and Prometheus ([.NET Lib])                        | :dragon: |  3  |  4  |  5  |                |       |
+| add snyk/clair check to docker containers                                      | :ant:    |  3  |  4  |  5  |                |       |
 | Add schedule anticipation                                                      | :whale:  |  2  |  3  |  5  |                |       |
 | Add weekly scheduling                                                          | :sheep:  |  2  |  3  |  5  |                |       |
 | Handle split screen layout at android app                                      | :sheep:  |  2  |  3  |  5  |                |       |
