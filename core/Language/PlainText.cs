@@ -134,7 +134,7 @@ namespace DFM.Language
 			}
 		}
 
-		private String this[String section, String language, String phrase]
+		public Phrase this[String section, String language, String phrase]
 		{
 			get
 			{
@@ -155,13 +155,13 @@ namespace DFM.Language
 			}
 		}
 
-		private String tryGetText(String section, String language, String phrase)
+		private Phrase tryGetText(String section, String language, String phrase)
 		{
-			try { return SectionList[section][language][phrase].Text; }
+			try { return SectionList[section][language][phrase]; }
 			catch (DicException) { return null; }
 		}
 
-		private String notFound(String section, String language, String phrase)
+		private Phrase notFound(String section, String language, String phrase)
 		{
 			throw new DicException(
 				$"P: {name} /// S: {section} /// L: {language} /// P: {phrase}"
@@ -180,11 +180,6 @@ namespace DFM.Language
 		public static NumberFormatInfo GetNumberFormat(String language)
 		{
 			return CultureInfo.GetCultureInfo(language).NumberFormat;
-		}
-
-		public Int32 CountTranslations(String section, String language, String phrasePrefix)
-		{
-			return SectionList[section][language].CountTranslations(phrasePrefix);
 		}
 	}
 }

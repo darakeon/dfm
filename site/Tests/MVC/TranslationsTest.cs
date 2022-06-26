@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using DFM.Language;
+using DFM.Language.Entities;
 using DFM.Language.Extensions;
 using DFM.MVC.Helpers.Controllers;
 using Microsoft.AspNetCore.Mvc;
@@ -99,7 +100,7 @@ namespace DFM.MVC.Tests
 		{
 			var count = html.Split("Translate").Length - 1;
 
-			var regex = new Regex(@"Translate\(([^\)]+)\)");
+			var regex = new Regex(@"Translate(?:List)?\(([^\)]+)\)");
 			var matches = regex.Matches(html);
 
 			Assert.AreEqual(
@@ -118,7 +119,7 @@ namespace DFM.MVC.Tests
 
 			try
 			{
-				var translation = PlainText.Site[section, "pt-BR", phrase];
+				var translation = PlainText.Site[section, "pt-BR", phrase]?.Text;
 
 				Assert.NotNull(translation);
 				Assert.IsNotEmpty(translation);
@@ -171,15 +172,18 @@ namespace DFM.MVC.Tests
 
 					var phrase = $"Wizard_{controllerName}{actionName}";
 
-					var translation = tryGetWizardPtBr(phrase + "_0");
+					var translation = tryGetWizardPtBr(phrase);
 
-					if (translation != null)
+					if (translation?.Texts != null)
 						continue;
 
-					var translationEmpty = tryGetWizardPtBr(phrase + "Empty_0");
-					var translationFilled = tryGetWizardPtBr(phrase + "Filled_0");
+					var translationEmpty = tryGetWizardPtBr(phrase + "Empty");
+					var translationFilled = tryGetWizardPtBr(phrase + "Filled");
 
-					if (translationEmpty != null && translationFilled != null)
+					if (
+						translationEmpty?.Texts != null
+						&& translationFilled?.Texts != null
+					)
 						continue;
 
 					issues.Add(new Exception(errorMessage));
@@ -199,7 +203,7 @@ namespace DFM.MVC.Tests
 			       && type.ShouldHaveWizard();
 		}
 
-		private static String tryGetWizardPtBr(String phrase)
+		private static Phrase tryGetWizardPtBr(String phrase)
 		{
 			try
 			{

@@ -958,7 +958,9 @@ namespace DFM.BusinessLogic.Tests.C.Money
 			var user = repos.User.GetByEmail(current.Email);
 
 			var lang = user.Config.Language;
-			var subject = PlainText.Email["MoveNotification", lang, "Subject"];
+			var subject = PlainText.Email[
+				"MoveNotification", lang, "Subject"
+			].Text;
 			Assert.AreEqual(subject, email.Subject);
 
 			var token = repos.Security

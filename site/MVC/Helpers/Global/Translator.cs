@@ -131,9 +131,9 @@ namespace DFM.MVC.Helpers.Global
 			return Version.Get(Language);
 		}
 
-		public Int32 CountTranslations(String sectionToCount, String phrasePrefix)
+		public IList<String> List(String text)
 		{
-			return PlainText.Site.CountTranslations(sectionToCount, Language, phrasePrefix);
+			return PlainText.Site[section, Language, text].Texts;
 		}
 	}
 }

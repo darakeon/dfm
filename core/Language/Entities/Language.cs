@@ -11,22 +11,21 @@ namespace DFM.Language.Entities
 		public String Name { get; }
 		public DicList<Phrase> PhraseList { get; }
 
-		internal Language(String name, IDictionary<String, String> sentences)
+		internal Language(String name, IDictionary<String, Object> sentences)
 		{
 			PhraseList = new DicList<Phrase>();
 
 			Name = name.Replace("_", "-");
 
-			foreach (var sentence in sentences)
+			var validSentences = sentences
+				.Where(s => !String.IsNullOrEmpty(s.Key));
+
+			foreach (var (key, value) in validSentences)
 			{
-				if (String.IsNullOrEmpty(sentence.Key))
+				if (String.IsNullOrEmpty(key))
 					continue;
 
-				var dicPhrase = new Phrase(
-					sentence.Key,
-					sentence.Value
-				);
-
+				var dicPhrase = new Phrase(key, value);
 				PhraseList.Add(dicPhrase);
 			}
 		}
@@ -36,13 +35,6 @@ namespace DFM.Language.Entities
 		public override String ToString()
 		{
 			return Name;
-		}
-
-		public Int32 CountTranslations(String phrasePrefix)
-		{
-			return PhraseList.Count(
-				p => Regex.IsMatch(p.Name, $"{phrasePrefix}_\\d+")
-			);
 		}
 	}
 }

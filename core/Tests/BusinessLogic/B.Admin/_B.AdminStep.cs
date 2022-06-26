@@ -956,7 +956,9 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		{
 			foreach (var tableRow in table.Rows)
 			{
-				var translated = PlainText.Site["general", service.Current.Language, tableRow["Key"]];
+				var translated = PlainText.Site[
+					"general", service.Current.Language, tableRow["Key"]
+				].Text;
 				Assert.AreEqual(tableRow["Translated"], translated);
 			}
 		}

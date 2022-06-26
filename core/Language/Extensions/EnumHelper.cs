@@ -12,7 +12,9 @@ namespace DFM.Language.Extensions
 			foreach (var item in Enum.GetValues(typeof(TEnum)))
 			{
 				var key = (TEnum)item;
-				var value = PlainText.Site[section, language, item.ToString()];
+				var value = PlainText.Site[
+					section, language, item.ToString()
+				].Text;
 
 				natures.Add(key, value);
 			}
