@@ -61,7 +61,10 @@ namespace DFM.Tests.Util
 
 				foreach (var lang in langs)
 				{
-					var newKey = PlainText.Email[key, lang, "Subject"];
+					var newKey = PlainText.Email[
+						key, lang, "Subject"
+					].Text;
+
 					types.Add(newKey, value);
 				}
 			}

@@ -7,7 +7,8 @@
 			? "Plus"
 			: ViewBag.WizardSuffix;
 	var wizardKey = $"Wizard_{prefix}{suffix}";
-	var count = Context.CountTranslations("wizard", wizardKey);
+	var translations = Context.TranslateList(wizardKey);
+	var count = translations?.Count ?? 0;
 }
 
 <script>
@@ -42,10 +43,14 @@
 				}
 				else
 				{
-					@for (var t = 0; t < count; t++)
+					for (var t = 0; t < count; t++)
 					{
-						var text = Context.Translate($"{wizardKey}_{t}");
-						<span class="interactive" id="wizard-text-@t" data-text="@text"></span>
+						var translation = translations[t];
+						<span
+							class="interactive"
+							id="wizard-text-@t"
+							data-text="@translation">
+						</span>
 					}
 				}
 			</div>

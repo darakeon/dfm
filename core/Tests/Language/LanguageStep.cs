@@ -11,6 +11,7 @@ using DFM.Language.Extensions;
 using DFM.Tests.Util;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace DFM.Language.Tests
 {
@@ -68,15 +69,6 @@ namespace DFM.Language.Tests
 			}
 		}
 
-		[Given(@"I have these keys")]
-		public void GivenIHaveTheseKeys(Table table)
-		{
-			keys = table.Rows
-				.Select(r => new Pair(r["Section"], r["Phrase"]))
-				.ToList();
-		}
-
-
 		[Given(@"I have the e-mail types")]
 		public void GivenIHaveTheseEmailTypes()
 		{
@@ -88,6 +80,14 @@ namespace DFM.Language.Tests
 		{
 			themes = EnumX.AllValues<Theme>();
 		}
+
+		[Given(@"I have the phrase ([\w_]+) of (\w+) section")]
+		public void GivenIHaveTheKeyOfSection(String phrase, String section)
+		{
+			this.phrase = phrase;
+			this.section = section;
+		}
+
 
 		[When(@"I try get the translate")]
 		public void WhenITryGetTheTranslate()
@@ -111,8 +111,6 @@ namespace DFM.Language.Tests
 			}
 		}
 
-
-
 		[When(@"I try get the layout")]
 		public void WhenITryGetTheLayout()
 		{
@@ -135,6 +133,36 @@ namespace DFM.Language.Tests
 			}
 		}
 
+		[When(@"get the list of translations")]
+		public void WhenGetTheListOfTranslations()
+		{
+			translations = new Dictionary<String, Queue<String>>();
+
+			foreach (var language in languages)
+			{
+				translations.Add(language, new Queue<String>());
+
+				try
+				{
+					var translation = PlainText.Site[section, language, phrase];
+
+					if (translation == null)
+					{
+						errors.AppendLine($"Null at S: {section}, L: {language}, P:{phrase}");
+						continue;
+					}
+
+					translation.Texts.ToList().ForEach(
+						translations[language].Enqueue
+					);
+				}
+				catch (DicException e)
+				{
+					errors.AppendLine(e.Message);
+				}
+			}
+		}
+
 
 
 		[Then(@"I will receive no language error")]
@@ -142,7 +170,6 @@ namespace DFM.Language.Tests
 		{
 			Assert.IsEmpty(errors.ToString());
 		}
-
 
 		[Then(@"all keys should be available in all languages at (.+) dictionary")]
 		public void ThenAllKeysShouldBeAvailableInAllLanguages(String name)
@@ -160,13 +187,19 @@ namespace DFM.Language.Tests
 
 						foreach (var language in langToTest)
 						{
-							var text = dic[
+							var id = $"{section.Name} > {lang} > {phrase.Name}";
+
+							var translation = dic[
 								section.Name,
 								language,
 								phrase.Name
 							];
 
-							var id = $"{section.Name} > {lang} > {phrase.Name}";
+							Assert.IsNotNull(translation, $"{id} not found");
+
+							var text = translation.Text
+								?? String.Join(' ', translation.Texts);
+
 							Assert.IsNotNull(text, $"{id} not found");
 							Assert.IsNotEmpty(text, $"{id} is empty");
 						}
@@ -198,27 +231,26 @@ namespace DFM.Language.Tests
 			}
 		}
 
-		[When(@"count the occurrences of (.+) in (.+)/(.+)")]
-		public void WhenCountTheOccurrencesOfIn(String key, String module, String sectionName)
+		[Then(@"it will return these values")]
+		public void ThenItWillReturnTheseValues(Table table)
 		{
-			var dic = getDic(module);
-			var section = dic.SectionList.Single(s => s.Name == sectionName);
+			var expectedList = table.CreateSet<LangValue>().ToList();
 
-			translationsCounters = new List<Int32>();
-			foreach (var language in section.LanguageList)
+			Assert.AreEqual(
+				expectedList.Count,
+				translations.Sum(e => e.Value.Count)
+			);
+
+			foreach (var expected in expectedList)
 			{
-				translationsCounters.Add(language.CountTranslations(key));
+				var lang = expected.Language;
+				var value = expected.Value;
+
+				var translation = translations[lang].Dequeue();
+				Assert.AreEqual(value, translation);
 			}
 		}
 
-		[Then(@"it will return (\d+)")]
-		public void ThenItWillReturn(Int32 number)
-		{
-			foreach (var translationsCounter in translationsCounters)
-			{
-				Assert.AreEqual(number, translationsCounter);
-			}
-		}
 
 		private PlainText getDic(String name)
 		{
@@ -235,11 +267,10 @@ namespace DFM.Language.Tests
 			}
 		}
 
-
 		private StringBuilder errors
 		{
 			get => get<StringBuilder>("errors");
-			set => set("errors", value);
+			init => set("errors", value);
 		}
 
 		private IList<String> languages
@@ -266,15 +297,25 @@ namespace DFM.Language.Tests
 			set => set("themes", value);
 		}
 
-		private IList<Int32> translationsCounters
+		private String phrase
 		{
-			get => get<IList<Int32>>("translationsCounters");
-			set => set("translationsCounters", value);
+			get => get<String>("phrase");
+			set => set("phrase", value);
 		}
 
+		private String section
+		{
+			get => get<String>("section");
+			set => set("section", value);
+		}
 
+		private IDictionary<String, Queue<String>> translations
+		{
+			get => get<IDictionary<String, Queue<String>>>("translations");
+			set => set("translations", value);
+		}
 
-		class Pair
+		private class Pair
 		{
 			public Pair(String section, String phrase)
 			{
@@ -286,5 +327,16 @@ namespace DFM.Language.Tests
 			public String Phrase { get; }
 		}
 
+		private class LangValue
+		{
+			public LangValue(String language, String value)
+			{
+				Language = language;
+				Value = value;
+			}
+
+			public String Language { get; }
+			public String Value { get; }
+		}
 	}
 }

@@ -58,13 +58,17 @@ namespace DFM.BusinessLogic.Repositories
 			if (!config.SendMoveEmail)
 				return EmailStatus.EmailDisabled;
 
-			var operation = PlainText.Site["general", config.Language, operationType.ToString()];
+			var operation = PlainText.Site[
+				"general", config.Language, operationType.ToString()
+			].Text;
 
 			var accountInName = move.In?.Name ?? "---";
 			var accountOutName = move.Out?.Name ?? "---";
 			var categoryName = move.Category?.Name ?? "---";
 
-			var nature = PlainText.Site["general", config.Language, move.Nature.ToString()];
+			var nature = PlainText.Site[
+				"general", config.Language, move.Nature.ToString()
+			].Text;
 
 			var format = Format.MoveNotification(user);
 

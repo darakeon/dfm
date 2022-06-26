@@ -42,6 +42,15 @@ Scenario: 05. Keys should not be repeated (site)
 Scenario: 06. Keys should not be repeated (e-mail)
 	Then no keys should be repeated at e-mail dictionary
 
-Scenario: 07. Count translations
-	When count the occurrences of Wizard_Test in site/wizard
-	Then it will return 3
+Scenario: 07. List translations (e-mail)
+	Given I have the phrase Wizard_Test of Wizard section
+	When get the list of translations
+	Then I will receive no language error
+		And it will return these values
+			| Language | Value |
+			| pt-BR    | F1    |
+			| pt-BR    | F2    |
+			| pt-BR    | F3    |
+			| en-US    | P1    |
+			| en-US    | P2    |
+			| en-US    | P3    |

@@ -46,6 +46,11 @@ namespace DFM.MVC.Helpers.Extensions
 			return context.GetTranslator()[text];
 		}
 
+		public static IList<String> TranslateList(this HttpContext context, String text)
+		{
+			return context.GetTranslator().List(text);
+		}
+
 		public static String TryTranslate(this HttpContext context, params String[] text)
 		{
 			try
@@ -71,11 +76,6 @@ namespace DFM.MVC.Helpers.Extensions
 		public static String GetMonthName(this HttpContext context, Int32 month)
 		{
 			return context.GetTranslator().GetMonthName(month);
-		}
-
-		public static Int32 CountTranslations(this HttpContext context, String sectionToCount, String phrasePrefix)
-		{
-			return context.GetTranslator().CountTranslations(sectionToCount, phrasePrefix);
 		}
 
 		public static Dictionary<String, Object> GetRoute(this HttpContext context)
