@@ -1,15 +1,10 @@
 ﻿@model BaseMovesModel
 
 @{
-	var tabHL =
-		Model.Type == OperationType.Creation
-			? " wizard-highlight-4"
-			: null;
-
 	var detailedTabUiList = new List<BaseMovesModel.DetailTabUI>
 	{
 		new("JustOneValue", "just-value", false),
-		new("Detailed", "detailed", true, tabHL)
+		new("Detailed", "detailed", true, Model.HL["DetailTab"])
 	};
 }
 

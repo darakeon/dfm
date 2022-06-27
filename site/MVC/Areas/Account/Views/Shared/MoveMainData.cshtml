@@ -3,22 +3,12 @@
 @{
 	var useCategories = Context.GetService().Current.UseCategories;
 	var rowWidths = useCategories ? 6 : 12;
-
-	var descriptionHL =
-		Model.Type == OperationType.Creation
-			? " wizard-highlight-1"
-			: null;
-
-	var dateHL =
-		Model.Type == OperationType.Creation
-			? " wizard-highlight-2"
-			: null;
 }
 
 <div class="form-group">
 	@Html.LabelFor(m => m.Description, Context.Translate("Description"), new { @class = "control-label" })
 	@Html.ValidationMessageFor(m => m.Description)<br />
-	@Html.TextBoxFor(m => m.Description, new { maxlength = MaxLen.MoveDescription, @class = "form-control" + descriptionHL })
+	@Html.TextBoxFor(m => m.Description, new { maxlength = MaxLen.MoveDescription, @class = "form-control " + Model.HL["Description"] })
 	<small>@String.Format(Context.Translate("CharactersMax"), MaxLen.MoveDescription)</small>
 </div>
 
@@ -26,7 +16,7 @@
 	<div class="col-sm-@(rowWidths) form-group">
 		@Html.LabelFor(m => m.Date, Context.Translate("Date"), new { @class = "control-label" })
 		@Html.ValidationMessageFor(m => m.Date)<br />
-		@Html.TextBoxFor(m => m.Date, new { type = "date", @class = "form-control" + dateHL })
+		@Html.TextBoxFor(m => m.Date, new { type = "date", @class = "form-control " + Model.HL["Date"] })
 	</div>
 
 	@if (useCategories)

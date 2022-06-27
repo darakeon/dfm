@@ -1,5 +1,6 @@
 ﻿using System;
 using DFM.BusinessLogic.Response;
+using DFM.MVC.Helpers.Views;
 
 namespace DFM.MVC.Areas.Account.Models
 {
@@ -10,15 +11,13 @@ namespace DFM.MVC.Areas.Account.Models
 			Boolean isUsingCategories,
 			String currentAccountUrl,
 			String language,
-			Boolean canCheck,
-			Boolean canHighlight)
+			Boolean canCheck)
 		{
 			Move = move;
 			IsUsingCategories = isUsingCategories;
 			CurrentAccountUrl = currentAccountUrl;
 			Language = language;
 			CanCheck = canCheck;
-			CanHighlight = canHighlight;
 
 			// to open modals of foreseen moves correctly
 			if (Move.Guid == Guid.Empty)
@@ -31,6 +30,7 @@ namespace DFM.MVC.Areas.Account.Models
 		public String Language { get; }
 		public Boolean CanCheck { get; }
 
-		public Boolean CanHighlight { get; }
+		# nullable enable
+		public WizardHL? WizardHL { get; set; }
 	}
 }

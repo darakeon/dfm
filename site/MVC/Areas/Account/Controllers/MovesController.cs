@@ -64,21 +64,21 @@ namespace DFM.MVC.Areas.Account.Controllers
 		}
 
 		[JsonAuth, HttpPost, ValidateAntiForgeryToken, Wizard.Avoid]
-		public IActionResult Check(Guid id, PrimalMoveNature nature, Boolean canHighlight)
+		public IActionResult Check(Guid id, PrimalMoveNature nature)
 		{
 			var model = new MoneyModel();
 
-			var line = model.CheckMove(id, nature, canHighlight);
+			var line = model.CheckMove(id, nature);
 
 			return PartialView("../Reports/MoveLine", line);
 		}
 
 		[JsonAuth, HttpPost, ValidateAntiForgeryToken, Wizard.Avoid]
-		public IActionResult Uncheck(Guid id, PrimalMoveNature nature, Boolean canHighlight)
+		public IActionResult Uncheck(Guid id, PrimalMoveNature nature)
 		{
 			var model = new MoneyModel();
 
-			var line = model.UncheckMove(id, nature, canHighlight);
+			var line = model.UncheckMove(id, nature);
 
 			return PartialView("../Reports/MoveLine", line);
 		}

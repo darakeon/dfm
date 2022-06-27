@@ -7,20 +7,9 @@
 	var hasSchedule = move.Schedule != null;
 	var editTitle = $"{Context.Translate("Edit")} {move.Description}";
 
-	var wizardHighlightRow = 
-		Model.CanHighlight
-			? "wizard-highlight-0"
-			: null;
-
-	var wizardHighlightEditDelete = 
-		Model.CanHighlight && !move.Foreseen 
-			? "wizard-highlight-1" 
-			: null;
-
-	var wizardHighlightDate = 
-		Model.CanHighlight && move.Foreseen 
-			? "wizard-highlight-1" 
-			: null;
+	var wizardHighlightRow = Model.WizardHL?["MoveRow"];
+	var wizardHighlightEditDelete = Model.WizardHL?["MoveEditDelete"];
+	var wizardHighlightDate = Model.WizardHL?["MoveDate"];
 }
 
 <tr class="row @foreseen sum-factor @wizardHighlightRow" data-parent="table" id="m@(move.Guid)">
@@ -123,7 +112,6 @@
 			var nature = move.OutUrl == Model.CurrentAccountUrl
 				? PrimalMoveNature.Out
 				: PrimalMoveNature.In;
-			var canHighlight = Model.CanHighlight;
 
 			<td class="col-sm-1 text-center">
 				@await Html.PartialAsync(
@@ -131,7 +119,6 @@
 					MicroForm.WithGlyph(Context, glyph, action)
 						.AddIdUrl("Moves", action, move.Guid)
 						.AddHidden("nature", nature)
-						.AddHidden("canHighlight", canHighlight)
 						.AsAjax($"m{move.Guid}")
 						.EntityName(move.Description)
 				)
