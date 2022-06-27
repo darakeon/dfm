@@ -1,13 +1,13 @@
 ﻿@model SchedulesCreateModel
 
-<div class="form-group checkbox wizard-highlight-3">
+<div class="form-group checkbox @Model.HL["Boundless"]">
 	<label for="@Html.IdFor(m => m.Boundless)">
 		@Html.CheckBoxFor(m => m.Boundless, new { @class = "check-toggle", data_to_disable = ".boundless-disable" })
 		@Context.Translate("Boundless")
 	</label>
 </div>
 
-<div class="form-group form-group-sm wizard-highlight-2">
+<div class="form-group form-group-sm @Model.HL["Times"]">
 	<div class="input-group input-group-sm">
 		@Html.TextBoxFor(m => m.Times, new { @class = "form-control boundless-disable" })
 		<label class="input-group-addon" for="@Html.NameFor(m => m.Times)">

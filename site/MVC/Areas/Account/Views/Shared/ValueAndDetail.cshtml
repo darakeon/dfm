@@ -1,12 +1,5 @@
 ﻿@model BaseMovesModel
 
-@{
-	var valueHL =
-		Model.Type == OperationType.Creation
-			? " wizard-highlight-3"
-			: null;
-}
-
 @await Html.PartialAsync("DetailTabs")
 
 <div class="tab-content">
@@ -16,7 +9,7 @@
 			m => m.Value,
 			new
 			{
-				@class = "form-control number" + valueHL,
+				@class = "form-control number " + Model.HL["Value"],
 				aria_label = Context.Translate("Value"),
 			}
 		)

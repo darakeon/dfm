@@ -6,20 +6,28 @@
 	var anyAccount = Model.AccountList.Any();
 	var anySchedule = Model.AnySchedule();
 
-	ViewBag.WizardButtonClass =
-		anyAccount || anySchedule
-			? null
-			: "wizard-highlight-0";
+	var hl = new WizardHL(anySchedule, anyAccount)
+		.AddBox("WizardButton", null, null, 0)
+		.AddBox("SchedulesMenu", 0, null, null)
+		.AddBox("NoContent", null, null, 3)
+		.AddBox("CreateButton", null, 4, 4)
+		.AddBox("DeleteButton", null, 2, null)
+		.AddBox("CloseButton", null, 3, null)
+		.AddBox("Row", null, 0, null)
+		.AddBox("Name", null, 4, null)
+		.AddBox("Reports", null, 4, null)
+		.AddBox("Edit", null, 1, null)
+		.AddBox("TitleClass", null, null, 1);
+
+	ViewBag.WizardButtonClass = hl["WizardButton"];
 
 	ViewBag.WizardPlus =
 		anySchedule
 			? "Schedule"
 			: null;
 
-	ViewBag.SchedulesMenuClass =
-		anySchedule
-			? "wizard-highlight-0"
-			: null;
+	ViewBag.TitleClass = hl["TitleClass"];
+	ViewBag.SchedulesMenuClass = hl["SchedulesMenu"];
 
 	var createAccountLabel = anyAccount
 		? Context.Translate("CreateAnotherAccount")
@@ -29,15 +37,11 @@
 
 	ViewBag.HasContent = anyAccount;
 	ViewBag.NoContentText = Context.Translate("NoAccounts");
-	ViewBag.NoContentClass = "wizard-highlight-3";
-
-	var buttonClass = anySchedule
-		? null
-		: "wizard-highlight-4";
+	ViewBag.NoContentClass = hl["NoContent"];
 
 	var buttons = new List<Button>
 	{
-		new(createAccountLabel, "Create", buttonClass)
+		new(createAccountLabel, "Create", hl["CreateButton"])
 	};
 
 	if (Model.HasClosed)
@@ -73,15 +77,8 @@
 		controller = String.Empty,
 	};
 
-	var deleteCloseHighlight =
-		anySchedule
-			? null
-			: account.HasMoves
-				? "wizard-highlight-3"
-				: "wizard-highlight-2";
-
-	<tr class="row @(anySchedule ? null : "wizard-highlight-0")">
-		<td class="col-sm-5 @(anySchedule ? null : "wizard-highlight-4")">
+	<tr class="row @hl["Row"]">
+		<td class="col-sm-5 @hl["Name"]">
 			@Html.RouteLink(name, route.Name, reports,
 				new { title = Context.Translate("AccountMoves").Format(name) }
 			)
@@ -101,14 +98,14 @@
 		</td>
 		<td class="col-sm-1"></td>
 
-		<td class="col-sm-1 text-center @(anySchedule ? null : "wizard-highlight-4")">
+		<td class="col-sm-1 text-center @hl["Reports"]">
 			<a href="@Url.RouteUrl(route.Name, reports)">
 				<span class="glyphicon glyphicon-th-list"
 					  title="@Context.Translate("AccountMoves").Format(name)"></span>
 			</a>	
 		</td>
 
-		<td class="col-sm-1 text-center @(anySchedule ? null : "wizard-highlight-1")">
+		<td class="col-sm-1 text-center @hl["Edit"]">
 			<a href="@Url.Action("Edit", "Accounts", new {id = account.Url})">
 				<span
 					class="glyphicon glyphicon-pencil"
@@ -117,23 +114,25 @@
 			</a>
 		</td>
 
-		<td class="col-sm-1 text-center @deleteCloseHighlight">
-			@if (account.HasMoves)
-			{
+		@if (account.HasMoves)
+		{
+			<td class="col-sm-1 text-center @hl["CloseButton"]">
 				@await Html.PartialAsync("Extensions/MicroForm",
 					MicroForm.WithGlyph(Context, "eye-close", "Close")
 						.AddIdUrl("Close", account.Url)
 						.EntityName(name)
-				)
-			}
-			else
-			{
+					)
+			</td>
+		}
+		else
+		{
+			<td class="col-sm-1 text-center @hl["DeleteButton"]">
 				@await Html.PartialAsync("Extensions/MicroForm",
 					MicroForm.WithGlyph(Context, "trash", "Delete")
 						.AddIdUrl("Delete", account.Url)
 						.EntityName(name)
-				)
-			}
-		</td>
+					)
+			</td>
+		}
 	</tr>
 }

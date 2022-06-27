@@ -6,25 +6,30 @@
 	var hasMoves = Model.MoveList.Any();
 	var hasForeseenMoves = Model.ForeseenList.Any();
 
-	ViewBag.MoveMenuClass =
-		hasMoves || hasForeseenMoves
-			? null
-			: "wizard-highlight-2";
+	var hl = new WizardHL(hasForeseenMoves, hasMoves)
+		.AddBox("MoveMenuClass", null, null, 2)
+		.AddBox("SummaryMenuClass", null, 5, null)
+		.AddBox("HomeMenuClass", 4, null, null)
+		.AddBox("TitleClass", null, 2, null)
+		.AddBox("Pagination", null, 3, null)
+		.AddBox("Total", 2, 4, null)
+		.AddBox("Foreseen", 3, null, null)
+		.AddBox("Button", null, null, 2);
 
-	ViewBag.SummaryMenuClass =
-		hasMoves && !hasForeseenMoves
-			? "wizard-highlight-5"
-			: null;
+	var hlPastMove = new WizardHL(hasForeseenMoves)
+		.AddBox("MoveRow", null, 0)
+		.AddBox("MoveEditDelete", null, 1)
+		.AddBox("MoveDate", null, null);
 
-	ViewBag.HomeMenuClass =
-		hasForeseenMoves
-			? "wizard-highlight-4"
-			: null;
+	var hlFutureMove = new WizardHL(hasForeseenMoves)
+		.AddBox("MoveRow", 0, null)
+		.AddBox("MoveEditDelete", null, null)
+		.AddBox("MoveDate", 1, null);
 
-	ViewBag.TitleClass =
-		hasMoves && !hasForeseenMoves
-			? "wizard-highlight-2"
-			: null;
+	ViewBag.MoveMenuClass = hl["MoveMenuClass"];
+	ViewBag.SummaryMenuClass = hl["SummaryMenuClass"];
+	ViewBag.HomeMenuClass = hl["HomeMenuClass"];
+	ViewBag.TitleClass = hl["TitleClass"];
 
 	ViewBag.WizardPlus = 
 		hasForeseenMoves
@@ -56,7 +61,11 @@
 	{
 		ViewBag.Buttons = new List<Button>
 		{
-			new(Context.Translate("Create", "Move"), "Moves", "Create", "wizard-highlight-2")
+			new(
+				Context.Translate("Create", "Move"),
+				"Moves", "Create",
+				hl["Button"]
+			)
 		};
 	}
 }
@@ -97,6 +106,7 @@
 
 @foreach (var subModel in Model.MoveList)
 {
+	subModel.WizardHL = hlPastMove;
 	@await Html.PartialAsync("MoveLine", subModel)
 }
 
@@ -117,6 +127,7 @@
 
 @foreach (var subModel in Model.ForeseenList)
 {
+	subModel.WizardHL = hlFutureMove;
 	@await Html.PartialAsync("MoveLine", subModel)
 }
 
@@ -151,29 +162,16 @@
 	
 	@if (Model.AccountHasMoves)
 	{
-		var wizardHighlightPagination =
-			!hasForeseenMoves
-				? "wizard-highlight-3"
-				: null;
-
-		var wizardHighlightTotal =
-			!hasForeseenMoves
-				? "wizard-highlight-4"
-				: "wizard-highlight-2";
-
-		Model.ForeseenClass =
-			hasForeseenMoves
-				? "wizard-highlight-3"
-				: null;
+		Model.ForeseenClass = hl["Foreseen"];
 
 		<div class="row">
 			<div class="col-lg-2 col-sm-2"></div>
 
-			<div class="col-lg-8 col-sm-8 text-center @wizardHighlightPagination">
+			<div class="col-lg-8 col-sm-8 text-center @hl["Pagination"]">
 				@await Html.PartialAsync("Extensions/Pagination", pages)
 			</div>
 
-			<div class="col-lg-2 col-sm-2 @wizardHighlightTotal">
+			<div class="col-lg-2 col-sm-2 @hl["Total"]">
 				@await Html.PartialAsync("Total")
 			</div>
 		</div>

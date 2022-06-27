@@ -6,6 +6,13 @@
 
 	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 
+	var hl = new WizardHL()
+		.AddBox("Row", 0)
+		.AddBox("Times", 1)
+		.AddBox("Run", 2)
+		.AddBox("Deleted", 2)
+		.AddBox("Delete", 3);
+
 	ViewBag.HasContent = Model.ScheduleList.Any();
 	ViewBag.NoContentText = Context.Translate("NoSchedules");
 
@@ -47,7 +54,7 @@
 	var @in = schedule.InName;
 	var @out = schedule.OutName;
 
-	<tr class="row wizard-highlight-0">
+	<tr class="row @hl["Row"]">
 		<td>
 			@schedule.Description
 		</td>
@@ -73,15 +80,15 @@
 			@Context.Translate(schedule.Frequency.ToString())
 		</td>
 
-		<td class="text-center wizard-highlight-1">
+		<td class="text-center @hl["Times"]">
 			@(schedule.Boundless ? null : $"{schedule.Times}x")
 		</td>
 
-		<td class="text-center wizard-highlight-2">
+		<td class="text-center @hl["Run"]">
 			@schedule.Run
 		</td>
 
-		<td class="text-center wizard-highlight-2">
+		<td class="text-center @hl["Deleted"]">
 			@schedule.Deleted
 		</td>
 
@@ -96,7 +103,7 @@
 			@schedule.Value.ToMoney(Model.Language)
 		</td>
 
-		<td class="text-center wizard-highlight-3">
+		<td class="text-center @hl["Delete"]">
 			@await Html.PartialAsync("Extensions/MicroForm",
 				MicroForm.WithGlyph(Context, "trash", "Delete")
 					.AddIdUrl("Delete", schedule.Guid)

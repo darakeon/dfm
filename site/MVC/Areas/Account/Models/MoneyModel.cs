@@ -39,21 +39,20 @@ namespace DFM.MVC.Areas.Account.Models
 			ReportUrl = move.ToMonthYear();
 		}
 
-		public MoveLineModel CheckMove(Guid guid, PrimalMoveNature nature, Boolean canHighlight)
+		public MoveLineModel CheckMove(Guid guid, PrimalMoveNature nature)
 		{
-			return toggleCheck(guid, nature, money.CheckMove, canHighlight);
+			return toggleCheck(guid, nature, money.CheckMove);
 		}
 
-		public MoveLineModel UncheckMove(Guid guid, PrimalMoveNature nature, Boolean canHighlight)
+		public MoveLineModel UncheckMove(Guid guid, PrimalMoveNature nature)
 		{
-			return toggleCheck(guid, nature, money.UncheckMove, canHighlight);
+			return toggleCheck(guid, nature, money.UncheckMove);
 		}
 
 		private MoveLineModel toggleCheck(
 			Guid guid,
 			PrimalMoveNature nature,
-			Func<Guid, PrimalMoveNature, MoveInfo> toggleCheck,
-			Boolean canHighlight
+			Func<Guid, PrimalMoveNature, MoveInfo> toggleCheck
 		)
 		{
 			return new(
@@ -61,8 +60,7 @@ namespace DFM.MVC.Areas.Account.Models
 				isUsingCategories,
 				CurrentAccountUrl,
 				language,
-				moveCheckingEnabled,
-				canHighlight
+				moveCheckingEnabled
 			);
 		}
 

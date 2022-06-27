@@ -20,11 +20,11 @@ namespace DFM.MVC.Areas.Account.Models
 			var hasForeseen = month.ForeseenList.Any();
 
 			MoveList = month.MoveList
-				.Select(m => getSubModel(m, !hasForeseen))
+				.Select(getSubModel)
 				.ToList();
 
 			ForeseenList = month.ForeseenList
-				.Select(m => getSubModel(m, hasForeseen))
+				.Select(getSubModel)
 				.ToList();
 
 			Current = month.AccountTotal;
@@ -46,15 +46,14 @@ namespace DFM.MVC.Areas.Account.Models
 			AccountHasMoves = month.AccountHasMoves;
 		}
 
-		private MoveLineModel getSubModel(MoveInfo move, Boolean canHighlight)
+		private MoveLineModel getSubModel(MoveInfo move)
 		{
 			return new(
 				move,
 				isUsingCategories,
 				CurrentAccountUrl,
 				language,
-				CanCheck,
-				canHighlight
+				CanCheck
 			);
 		}
 
