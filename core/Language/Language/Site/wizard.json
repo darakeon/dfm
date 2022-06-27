@@ -77,7 +77,7 @@
 			"I will help you to delete it after.",
 			null
 		],
-		"Wizard_ReportsMonthPlus": [
+		"Wizard_ReportsMonthSchedule": [
 			"Now you have a scheduled move.",
 			"It will become a move in the set date.",
 			"You can notice that there are two totals now.",
@@ -85,7 +85,7 @@
 			"We can see the list of schedules. First, go to the home...",
 			null
 		],
-		"Wizard_AccountsIndexPlus": [
+		"Wizard_AccountsIndexSchedule": [
 			"...now click into Schedules menu...",
 			null
 		],
@@ -195,7 +195,7 @@
 			"Vou te ajudar a excluir o agendamento depois.",
 			null
 		],
-		"Wizard_ReportsMonthPlus": [
+		"Wizard_ReportsMonthSchedule": [
 			"Agora você possui um agendamento.",
 			"Vai se tornar uma movimentação na data apontada.",
 			"Também existem agora dois totais.",
@@ -203,7 +203,7 @@
 			"Podemos ver a lista de agendamentos. Primeiro, vamos para a página inicial...",
 			null
 		],
-		"Wizard_AccountsIndexPlus": [
+		"Wizard_AccountsIndexSchedule": [
 			"...clique no menu de Agendamentos...",
 			null
 		],

@@ -11,7 +11,10 @@
 			? null
 			: "wizard-highlight-0";
 
-	ViewBag.WizardPlus = anySchedule;
+	ViewBag.WizardPlus =
+		anySchedule
+			? "Schedule"
+			: null;
 
 	ViewBag.SchedulesMenuClass =
 		anySchedule
