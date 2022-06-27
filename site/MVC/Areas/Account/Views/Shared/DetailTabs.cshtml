@@ -18,7 +18,7 @@
 <ul class="nav nav-tabs">
 	@foreach (var detailedTabUi in detailedTabUiList)
 	{
-		var active = Model.IsDetailed == detailedTabUi.IsDetailed ? "active" : "";
+		var active = Model.IsDetailed == detailedTabUi.IsDetailed ? "active" : null;
 
 		<li class="@active value-setter"
 			id="Detailed_@detailedTabUi.IsDetailed.ToString()"

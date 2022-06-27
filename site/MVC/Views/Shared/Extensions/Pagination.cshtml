@@ -2,7 +2,7 @@
 
 <ul class="pagination">
 
-	<li class="@(Model.HasMoreBack ? "" : "disabled")">
+	<li class="@(Model.HasMoreBack ? null : "disabled")">
 		@Html.ActionLink("«", null, new { id = Model.MoreBack.Url })
 	</li>
 
@@ -10,12 +10,12 @@
 	{
 		String label = page.Label;
 
-		<li class="@(page.Same(Model.Current) ? "active" : "")">
+		<li class="@(page.Same(Model.Current) ? "active" : null)">
 			@Html.ActionLink(label, null, new { id = page.Url })
 		</li>
 	}
 
-	<li class="@(Model.HasMoreForward ? "" : "disabled")">
+	<li class="@(Model.HasMoreForward ? null : "disabled")">
 		@Html.ActionLink("»", null, new { id = Model.MoreForward.Url })
 	</li>
 </ul>

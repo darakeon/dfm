@@ -11,7 +11,7 @@
 
 <div class="tab-content">
 
-	<div class="tab-pane @(Model.IsDetailed ? "": "active")" id="just-value">
+	<div class="tab-pane @(Model.IsDetailed ? null : "active")" id="just-value">
 		@Html.TextBoxFor(
 			m => m.Value,
 			new
@@ -22,7 +22,7 @@
 		)
 	</div>
 
-	<div class="tab-pane @(Model.IsDetailed ? "active" : "") form-group form-group-sm" id="detailed">
+	<div class="tab-pane @(Model.IsDetailed ? "active" : null) form-group form-group-sm" id="detailed">
 		<table class="table table-condensed">
 			@await Html.PartialAsync("DetailHeader")
 			@await Html.PartialAsync("DetailBody")

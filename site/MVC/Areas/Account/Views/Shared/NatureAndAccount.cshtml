@@ -22,7 +22,7 @@
 				id="Nature_@natureUI.Nature"
 				class="btn btn-sm btn-@nature btn-glyph
 					col-sm-4 button-toggle value-setter
-					@(Model.Nature == natureUI.Nature ? "active" : "")"
+					@(Model.Nature == natureUI.Nature ? "active" : null)"
 			    data-to-enable="@natureUI.Enable"
 			    data-to-disable="@natureUI.Disable"
 			    data-target-id="@Html.IdFor(m => m.Nature)"

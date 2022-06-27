@@ -3,7 +3,7 @@
 <tbody>
 	@for (var d = 0; d < Model.DetailList.Count; d++)
 	{
-		<tr class="row @(Model.DetailList[d].Send ? "" : "hidden")">
+		<tr class="row @(Model.DetailList[d].Send ? null : "hidden")">
 			<td class="col-sm-6 form-group">
 				@Html.TextBoxFor(
 					m => m.DetailList[d].Detail.Description,

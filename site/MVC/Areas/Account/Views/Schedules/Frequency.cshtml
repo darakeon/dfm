@@ -8,7 +8,7 @@
 		{
 			<button type="button"
 					class="btn btn-sm btn-warning col-sm-4 button-toggle value-setter
-								@(Model.Frequency == frequency ? "active" : "")"
+								@(Model.Frequency == frequency ? "active" : null)"
 					data-target-id="@Html.IdFor(m => m.Frequency)"
 					data-target-value="@frequency">
 
