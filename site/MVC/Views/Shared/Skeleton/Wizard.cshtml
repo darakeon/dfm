@@ -3,8 +3,8 @@
 @{
 	var prefix = Model.ControllerName + Model.ActionName;
 	var suffix = 
-		ViewBag.WizardPlus != null && ViewBag.WizardPlus
-			? "Plus"
+		ViewBag.WizardPlus != null
+			? ViewBag.WizardPlus
 			: ViewBag.WizardSuffix;
 	var wizardKey = $"Wizard_{prefix}{suffix}";
 	var translations = Context.TranslateList(wizardKey);

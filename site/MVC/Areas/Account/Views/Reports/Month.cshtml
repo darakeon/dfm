@@ -26,7 +26,10 @@
 			? "wizard-highlight-2"
 			: null;
 
-	ViewBag.WizardPlus = hasForeseenMoves;
+	ViewBag.WizardPlus = 
+		hasForeseenMoves
+			? "Schedule"
+			: null;
 
 	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 
