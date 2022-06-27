@@ -18,7 +18,7 @@
 	<link href="~/Assets/styles/contract.css?v=@Cfg.Version" type="text/css" rel="stylesheet"/>
 }
 
-<div class="">
+<div>
 
 	<div class="contract">
 		@await Html.PartialAsync("Clause", Model.Contract[Model.Language])
@@ -40,7 +40,7 @@
 
 
 @section Footer {
-	<span class="@(canSign ? "pull-left text-left" : "")">
+	<span class="@(canSign ? "pull-left text-left" : null)">
 		@Context.Translate("ContractBeginDate")<br />
 		@beginDate
 	</span>

@@ -8,23 +8,23 @@
 
 	ViewBag.MoveMenuClass =
 		hasMoves || hasForeseenMoves
-			? ""
+			? null
 			: "wizard-highlight-2";
 
 	ViewBag.SummaryMenuClass =
 		hasMoves && !hasForeseenMoves
 			? "wizard-highlight-5"
-			: "";
+			: null;
 
 	ViewBag.HomeMenuClass =
 		hasForeseenMoves
 			? "wizard-highlight-4"
-			: "";
+			: null;
 
 	ViewBag.TitleClass =
 		hasMoves && !hasForeseenMoves
 			? "wizard-highlight-2"
-			: "";
+			: null;
 
 	ViewBag.WizardPlus = hasForeseenMoves;
 
@@ -151,7 +151,7 @@
 		var wizardHighlightPagination =
 			!hasForeseenMoves
 				? "wizard-highlight-3"
-				: "";
+				: null;
 
 		var wizardHighlightTotal =
 			!hasForeseenMoves
@@ -161,7 +161,7 @@
 		Model.ForeseenClass =
 			hasForeseenMoves
 				? "wizard-highlight-3"
-				: "";
+				: null;
 
 		<div class="row">
 			<div class="col-lg-2 col-sm-2"></div>

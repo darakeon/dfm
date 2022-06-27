@@ -5,7 +5,7 @@
 		? "~/Views/Shared/Layouts/_Result.cshtml"
 		: "~/Views/Shared/Layouts/_Form.cshtml";
 
-	ViewBag.Style = Model.HasError ? "danger" : "";
+	ViewBag.Style = Model.HasError ? "danger" : null;
 	ViewBag.Title = Context.Translate("Wizard_Title");
 	ViewBag.FormSizeSm = 10;
 	ViewBag.FormSizeLg = 6;

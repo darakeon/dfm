@@ -2,7 +2,7 @@
 
 @{
 	var hasSign = Model.Sign != AccountSign.None;
-	var valueClass = hasSign ? "pull-right" : "";
+	var valueClass = hasSign ? "pull-right" : null;
 }
 
 <h2>@Context.Translate(Model.Key)</h2>

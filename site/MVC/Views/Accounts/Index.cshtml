@@ -8,13 +8,15 @@
 
 	ViewBag.WizardButtonClass =
 		anyAccount || anySchedule
-			? ""
+			? null
 			: "wizard-highlight-0";
 
 	ViewBag.WizardPlus = anySchedule;
 
 	ViewBag.SchedulesMenuClass =
-		anySchedule ? "wizard-highlight-0" : "";
+		anySchedule
+			? "wizard-highlight-0"
+			: null;
 
 	var createAccountLabel = anyAccount
 		? Context.Translate("CreateAnotherAccount")
@@ -26,7 +28,10 @@
 	ViewBag.NoContentText = Context.Translate("NoAccounts");
 	ViewBag.NoContentClass = "wizard-highlight-3";
 
-	var buttonClass = anySchedule ? "" : "wizard-highlight-4";
+	var buttonClass = anySchedule
+		? null
+		: "wizard-highlight-4";
+
 	var buttons = new List<Button>
 	{
 		new(createAccountLabel, "Create", buttonClass)
@@ -67,13 +72,13 @@
 
 	var deleteCloseHighlight =
 		anySchedule
-			? ""
+			? null
 			: account.HasMoves
 				? "wizard-highlight-3"
 				: "wizard-highlight-2";
 
-	<tr class="row @(anySchedule ? "" : "wizard-highlight-0")">
-		<td class="col-sm-5 @(anySchedule ? "" : "wizard-highlight-4")">
+	<tr class="row @(anySchedule ? null : "wizard-highlight-0")">
+		<td class="col-sm-5 @(anySchedule ? null : "wizard-highlight-4")">
 			@Html.RouteLink(name, route.Name, reports,
 				new { title = Context.Translate("AccountMoves").Format(name) }
 			)
@@ -93,14 +98,14 @@
 		</td>
 		<td class="col-sm-1"></td>
 
-		<td class="col-sm-1 text-center @(anySchedule ? "" : "wizard-highlight-4")">
+		<td class="col-sm-1 text-center @(anySchedule ? null : "wizard-highlight-4")">
 			<a href="@Url.RouteUrl(route.Name, reports)">
 				<span class="glyphicon glyphicon-th-list"
 					  title="@Context.Translate("AccountMoves").Format(name)"></span>
 			</a>	
 		</td>
 
-		<td class="col-sm-1 text-center @(anySchedule ? "" : "wizard-highlight-1")">
+		<td class="col-sm-1 text-center @(anySchedule ? null : "wizard-highlight-1")">
 			<a href="@Url.Action("Edit", "Accounts", new {id = account.Url})">
 				<span
 					class="glyphicon glyphicon-pencil"

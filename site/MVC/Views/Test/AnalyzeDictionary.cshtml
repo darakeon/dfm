@@ -52,7 +52,7 @@
 						{
 							var key = phrase.Key + "_" + language.Key;
 
-							<td class="@(phrases.Contains(key) ? "text-danger" : "")">
+							<td class="@(phrases.Contains(key) ? "text-danger" : null)">
 								@language.Value
 							</td>
 
