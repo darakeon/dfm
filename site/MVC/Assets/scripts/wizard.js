@@ -45,7 +45,7 @@ function addText(element, text, chars) {
 	element.html(text.substring(0, chars))
 
 	setTimeout(() => {
-		if (element.html() !== text) {
+		if (element.text() !== text) {
 			addText(element, text, ++chars)
 		} else {
 			addHighlight()
@@ -126,6 +126,13 @@ function addHighlightTo(index, obj, fixed) {
 	}
 
 	$(document.body).append(hl)
+
+	if ($(obj).hasClass('hide-whl-after-click')) {
+		$(obj).click(function() {
+			hl.remove()
+			return true
+		})
+	}
 
 	if (fixed) {
 		$(hl).css('position', 'fixed')

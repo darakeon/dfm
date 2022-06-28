@@ -6,15 +6,26 @@
 
 	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 
-	var hl = new WizardHL()
-		.AddBox("Row", 0)
-		.AddBox("Times", 1)
-		.AddBox("Run", 2)
-		.AddBox("Deleted", 2)
-		.AddBox("Delete", 3);
+	var anySchedules = Model.ScheduleList.Any();
 
-	ViewBag.HasContent = Model.ScheduleList.Any();
+	var hl = new WizardHL(anySchedules)
+		.AddBox("Row", 0, null)
+		.AddBox("Times", 1, null)
+		.AddBox("Run", 2, null)
+		.AddBox("Deleted", 2, null)
+		.AddBox("Delete", 3, null)
+		.AddBox("NoContent", null, 0)
+		.AddBox("Accounts", null, 1)
+		.AddBox("Settings", null, 2)
+		.AddBox("SettingsMain", null, 2);
+
+	ViewBag.HasContent = anySchedules;
 	ViewBag.NoContentText = Context.Translate("NoSchedules");
+	ViewBag.NoContentClass = hl["NoContent"];
+	
+	ViewBag.AccountsMenuClass = hl["Accounts"];
+	ViewBag.SettingsMenuClass = hl["Settings"];
+	ViewBag.SettingsMainMenuClass = hl["SettingsMain"];
 
 	var useCategories = Context.GetService().Current.UseCategories;
 	var descriptionSize = useCategories ? 2 : 3;

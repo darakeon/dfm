@@ -5,10 +5,11 @@
 
 	const String menuHL = " wl-other-color";
 	var settingsClass = ViewBag.SettingsMenuClass + menuHL;
+	var settingsMainClass = ViewBag.SettingsMainMenuClass + menuHL;
 }
 
 <li class="dropdown" id="settings">
-	<a class="dropdown-toggle @settingsClass" data-toggle="dropdown" role="button">
+	<a class="dropdown-toggle @settingsClass hide-whl-after-click" data-toggle="dropdown" role="button">
 		<span class="glyphicon glyphicon-cog" title="@Context.Translate("Settings")"></span>
 	</a>
 
@@ -18,7 +19,7 @@
 				Html,
 				Context.Translate("MainSettings"),
 				"Index", "Configs",
-				new { @class = "text-right" }
+				new { @class = "text-right " + settingsMainClass }
 			)
 		</li>
 
