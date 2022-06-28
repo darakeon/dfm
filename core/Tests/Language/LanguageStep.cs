@@ -251,6 +251,45 @@ namespace DFM.Language.Tests
 			}
 		}
 
+		[Then(@"all lists should be same size in all languages at (.+) dictionary")]
+		public void ThenAllListsShouldBeSameSizeInAllLanguagesAtSiteDictionary(String name)
+		{
+			var dic = getDic(name);
+
+			foreach (var section in dic.SectionList)
+			{
+				foreach (var lang in section.LanguageList)
+				{
+					var multiplePhraseList =
+						lang.PhraseList.Where(p => p.Texts != null);
+
+					foreach (var phrase in multiplePhraseList)
+					{
+						var langToTest = languages
+							.Where(l => l != lang.Name);
+
+						foreach (var language in langToTest)
+						{
+							var id = $"{section.Name} > {lang} > {phrase.Name}";
+
+							var translation = dic[
+								section.Name,
+								language,
+								phrase.Name
+							];
+
+							Assert.IsNotNull(translation, $"{id} not found");
+
+							var texts = translation.Texts;
+
+							Assert.IsNotNull(texts, $"{id} has no list");
+							Assert.AreEqual(phrase.Texts.Count, texts.Count, $"{id} has a different size");
+						}
+					}
+				}
+			}
+		}
+
 
 		private PlainText getDic(String name)
 		{

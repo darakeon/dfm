@@ -42,7 +42,7 @@ Scenario: 05. Keys should not be repeated (site)
 Scenario: 06. Keys should not be repeated (e-mail)
 	Then no keys should be repeated at e-mail dictionary
 
-Scenario: 07. List translations (e-mail)
+Scenario: 07. List translations
 	Given I have the phrase Wizard_Test of Wizard section
 	When get the list of translations
 	Then I will receive no language error
@@ -54,3 +54,7 @@ Scenario: 07. List translations (e-mail)
 			| en-US    | P1    |
 			| en-US    | P2    |
 			| en-US    | P3    |
+
+Scenario: 08. List translations equal for languages
+	Then all lists should be same size in all languages at site dictionary
+	Then all lists should be same size in all languages at e-mail dictionary
