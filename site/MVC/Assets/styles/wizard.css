@@ -72,3 +72,11 @@
 		opacity: 0.75;
 	}
 }
+
+.dropdown-menu li .wl-other-color {
+	background: var(--highlight-0);
+}
+
+	.dropdown-menu li .wl-other-color:hover {
+		background: var(--highlight-0);
+	}

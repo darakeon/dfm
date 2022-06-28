@@ -3,12 +3,14 @@
 @{
 	const String menuHL = " wl-other-color";
 	var schedulesClass = ViewBag.SchedulesMenuClass + menuHL;
+	var accountsClass = ViewBag.AccountsMenuClass + menuHL;
 }
 
 <li>
 	@Html.ActionLink(
 		Context.Translate("Accounts"),
-		"Index", "Accounts"
+		"Index", "Accounts",
+		null, new { @class = accountsClass }
 	)
 </li>
 

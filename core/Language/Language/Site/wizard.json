@@ -96,6 +96,12 @@
 			"Delete the Schedule so it won't create Moves anymore.",
 			null
 		],
+		"Wizard_SchedulesIndexEmpty": [
+			"Now you have no schedules to be run.",
+			"To make more in another time go to Accounts screen and enter in the account where you want them.",
+			"We have more options in the system, let's check Settings > Main Options.",
+			null
+		],
 
 		"Wizard_AccountsClosed": "Here you see a list of closed Accounts. For these Accounts you cannot create or edit Moves, but you can still see the reports.",
 		"Wizard_Categories": "Categories are types of Moves, like: Recreation, Health, Feeding, Donation. It make it simpler to say on quick looking where did you spent the money.",
@@ -107,7 +113,6 @@
 		"Wizard_EndTextMenuContact": "Contact us and see more about the project at 'Contact'",
 		"Wizard_EndTextThanks": "Thanks for reading our wizard messages.\nWe hope now you know Don't fly Money better.",
 		"Wizard_Logins": "Here is a security area: you can see and disable system logins, accesses to your registries. If something seems suspect or some device logged in was accessed by other people without authorization, we suggest you take down the Logins, and the next request will need to know the login credentials to enter again.",
-		"Wizard_SchedulesIndexEmpty": "Here will be listed the Schedules created inside the Account Areas. Enter in one Account to create Schedules, it's in the Area top menu.",
 		"Wizard_SettingsMain": "Here you can change language, timezone and can enable/disable features. The enabled features make the system more complex, but give you more tools to control the money flow.",
 		"Wizard_SettingsPassword": "To change your password you need to remember the current one. In case you don't, click at Log off button at the top of the screen in the right at menu, go to login screen and click at 'Forgot my password'.",
 		"Wizard_SettingsEmail": "Here you can change your e-mail address at the system. Your e-mail is the only way we can contact you in case of problems or for notifications. Kept it up to date and be sure to have access to it.",
@@ -214,6 +219,12 @@
 			"Exclua o Agendamento, para não inserir mais Movimentações.",
 			null
 		],
+		"Wizard_SchedulesIndexEmpty": [
+			"Agora não há mais agendamentos para rodar.",
+			"Para fazer mais, vá outra hora até a tela de Contas e entre na conta onde quer agendamentos.",
+			"Existem mais opções no sistema, vamos até Configurações > Opções Gerais.",
+			null
+		],
 
 		"Wizard_AccountsClosed": "Nesta tela são listadas as Contas fechadas. Para essas Contas não é possível criar ou editar Movimentações, mas ainda é possível ver os relatórios.",
 		"Wizard_Categories": "Categorias são usadas para dizer o tipo de Movimentação, por exemplo: Lazer, Saúde, Alimentação, Doação. Assim fica mais simples uma olhada rápida no Relatório Mensal dizer onde o dinheiro mais foi gasto.",
@@ -225,7 +236,6 @@
 		"Wizard_EndTextMenuContact": "Fale conosco e veja mais sobre o projeto em 'Contato'",
 		"Wizard_EndTextThanks": "Agradecemos por ler as mensagens do Tutorial.\nEsperamos que agora conheça melhor o sistema Don't fly Money.",
 		"Wizard_Logins": "Aqui você pode ver e desabilitar Logins feitos no sistema. Se desconfiar de algum acesso, ou algum dispositivo logado tenha sido acessado por pessoas não autorizadas, é sugerido que os Logins sejam excluídos. Isso impedirá novo acesso sem uso de senha.",
-		"Wizard_SchedulesIndexEmpty": "Aqui são mostrados os Agendamentos feitos dentro da Área da Conta. Entre em uma Conta para criar um Agendamento, clicando em Agendar.",
 		"Wizard_SettingsMain": "Nesta tela é possível alterar idioma, fuso horário e habilitar e desabilitar funcionalidades. As funcionalidades habilitadas tornam o sistema mais complexo, mas fornecem mais ferramentas de controle do fluxo de dinheiro.",
 		"Wizard_SettingsPassword": "Para trocar sua senha por este formulário, é necessário lembrar a senha atual. Caso não se lembre, clique no botão de Sair no topo a direita no menu, vá a tela de login e clique em 'Esqueci minha senha'.",
 		"Wizard_SettingsEmail": "Aqui é possível trocar seu endereço de e-mail cadastrado no sistema. Seu e-mail é a única forma que podemos contatar você no caso de problemas ou para notificações. Mantenha ele atualizado e tenha certeza de ter acesso a ele.",
