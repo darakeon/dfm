@@ -160,7 +160,7 @@
 		)
 	}
 	
-	@if (Model.AccountHasMoves)
+	@if (Model.AccountHasMoves || Model.Foreseen.HasValue)
 	{
 		Model.ForeseenClass = hl["Foreseen"];
 
