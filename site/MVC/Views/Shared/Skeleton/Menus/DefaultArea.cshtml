@@ -4,6 +4,7 @@
 	const String menuHL = " wl-other-color";
 	var schedulesClass = ViewBag.SchedulesMenuClass + menuHL;
 	var accountsClass = ViewBag.AccountsMenuClass + menuHL;
+	var categoriesClass = ViewBag.CategoriesMenuClass + menuHL;
 }
 
 <li>
@@ -19,7 +20,8 @@
 	<li>
 		@Html.ActionLink(
 			Context.Translate("Categories"),
-			"Index", "Categories"
+			"Index", "Categories",
+			null, new { @class = categoriesClass }
 		)
 	</li>
 }

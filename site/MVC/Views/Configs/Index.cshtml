@@ -5,56 +5,78 @@
 
 	ViewBag.FormSizeSm = 8;
 	ViewBag.FormSizeLg = 6;
+
+	var hl = new WizardHL(Model.IsUsingCategories)
+		.AddBox("Language", null, 0)
+		.AddBox("Timezone", null, 1)
+		.AddBox("Features", null, 2)
+		.AddBox("Categories", null, 3)
+		.AddBox("AccountSigns", null, 4)
+		.AddBox("MoveEmail", null, 5)
+		.AddBox("MoveCheck", null, 6)
+		.AddBox("Wizard", null, 7)
+		.AddBox("EnableCategories", null, 8)
+		.AddBox("Save", null, 8)
+		.AddBox("CategoriesMenu", 0, null);
+
+	ViewBag.CategoriesMenuClass = hl["CategoriesMenu"];
+
+	if (Model.IsUsingCategories)
+	{
+		ViewBag.WizardPlus = "Category";
+	}
 }
 
-<div class="form-group">
+<div class="form-group @hl["Language"]">
 	@Html.LabelFor(m => m.NewLanguage, Context.Translate("Language"), new { @class = "control-label" })
 	@Html.DropDownListFor(m => m.NewLanguage, Model.LanguageList, new { @class = "form-control" })
 </div>
 
-<div class="form-group">
+<div class="form-group @hl["Timezone"]">
 	@Html.LabelFor(m => m.NewTimeZone, Context.Translate("TimeZone"), new { @class = "control-label" })
 	@Html.DropDownListFor(m => m.NewTimeZone, Model.TimeZoneList, new { @class = "form-control" })
 </div>
 
-<div class="checkbox row">
-	@Html.LabelFor(m => m.UseCategoriesCheck, Context.Translate("UseCategories"), new { @class = "col-sm-10 control-label" })
-	<span class="col-sm-2 text-right">
-		@Html.CheckBoxFor(m => m.UseCategoriesCheck)
-	</span>
-</div>
+<div class="@hl["Features"]">
+	<div class="checkbox row @hl["Categories"]">
+		@Html.LabelFor(m => m.UseCategoriesCheck, Context.Translate("UseCategories"), new { @class = "col-sm-10 control-label" })
+		<span class="col-sm-2 text-right">
+			@Html.CheckBoxFor(m => m.UseCategoriesCheck, new { @class =  hl["EnableCategories"] })
+		</span>
+	</div>
 
-<div class="checkbox row">
-	@Html.LabelFor(m => m.UseAccountsSignsCheck, Context.Translate("UseAccountsSigns"), new { @class = "col-sm-10 control-label" })
-	<span class="col-sm-2 text-right">
-		@Html.CheckBoxFor(m => m.UseAccountsSignsCheck)
-	</span>
-</div>
+	<div class="checkbox row @hl["AccountSigns"]">
+		@Html.LabelFor(m => m.UseAccountsSignsCheck, Context.Translate("UseAccountsSigns"), new { @class = "col-sm-10 control-label" })
+		<span class="col-sm-2 text-right">
+			@Html.CheckBoxFor(m => m.UseAccountsSignsCheck)
+		</span>
+	</div>
 
-<div class="checkbox row">
-	@Html.LabelFor(m => m.SendMoveEmailCheck, Context.Translate("SendMoveEmail"), new { @class = "col-sm-10 control-label" })
-	<span class="col-sm-2 text-right">
-		@Html.CheckBoxFor(m => m.SendMoveEmailCheck)
-	</span>
-</div>
+	<div class="checkbox row @hl["MoveEmail"]">
+		@Html.LabelFor(m => m.SendMoveEmailCheck, Context.Translate("SendMoveEmail"), new { @class = "col-sm-10 control-label" })
+		<span class="col-sm-2 text-right">
+			@Html.CheckBoxFor(m => m.SendMoveEmailCheck)
+		</span>
+	</div>
 
-<div class="checkbox row">
-	@Html.LabelFor(m => m.MoveCheckCheck, Context.Translate("MoveCheck"), new { @class = "col-sm-10 control-label" })
-	<span class="col-sm-2 text-right">
-		@Html.CheckBoxFor(m => m.MoveCheckCheck)
-	</span>
-</div>
+	<div class="checkbox row @hl["MoveCheck"]">
+		@Html.LabelFor(m => m.MoveCheckCheck, Context.Translate("MoveCheck"), new { @class = "col-sm-10 control-label" })
+		<span class="col-sm-2 text-right">
+			@Html.CheckBoxFor(m => m.MoveCheckCheck)
+		</span>
+	</div>
 
-<div class="checkbox row">
-	@Html.LabelFor(m => m.WizardCheck, Context.Translate("EnableWizard"), new { @class = "col-sm-10 control-label" })
-	<span class="col-sm-2 text-right">
-		@Html.CheckBoxFor(m => m.WizardCheck)
-	</span>
+	<div class="checkbox row @hl["Wizard"]">
+		@Html.LabelFor(m => m.WizardCheck, Context.Translate("EnableWizard"), new { @class = "col-sm-10 control-label" })
+		<span class="col-sm-2 text-right">
+			@Html.CheckBoxFor(m => m.WizardCheck)
+		</span>
+	</div>
 </div>
 
 @section Footer {
 	<button type="submit"
-			class="btn btn-success tab-submit">
+			class="btn btn-success tab-submit @hl["Save"]">
 		@Context.Translate("Save")
 	</button>
 }
