@@ -27,7 +27,7 @@
 	ViewBag.SettingsMenuClass = hl["Settings"];
 	ViewBag.SettingsMainMenuClass = hl["SettingsMain"];
 
-	var useCategories = Context.GetService().Current.UseCategories;
+	var useCategories = Model.IsUsingCategories;
 	var descriptionSize = useCategories ? 2 : 3;
 
 	/* ADD WARNING TO SCHEDULES THAT WON'T RUN BECAUSE OF CATEGORY-USE PROBLEM */

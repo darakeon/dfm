@@ -15,7 +15,7 @@ namespace DFM.MVC.Helpers.Extensions
 		private static readonly ContextDic<Service> services =
 			new(c => new Service(() => c));
 
-		public static Service GetService(this HttpContext context)
+		internal static Service GetService(this HttpContext context)
 		{
 			return services[context];
 		}
