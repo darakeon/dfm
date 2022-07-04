@@ -24,7 +24,7 @@
 		<div class="col-sm-@(rowWidths) form-group">
 			@Html.LabelFor(m => m.CategoryName, Context.Translate("Category"), new {@class = "control-label"})
 			@Html.ValidationMessageFor(m => m.CategoryName)<br/>
-			@Html.DropDownListFor(m => m.CategoryName, Model.CategorySelectList, "-- " + Context.Translate("Select") + " --", new {@class = "form-control"})
+			@Html.DropDownListFor(m => m.CategoryName, Model.CategorySelectList, "-- " + Context.Translate("Select") + " --", new {@class = "form-control " + Model.HL["Category"]})
 		</div>
 	}
 </div>

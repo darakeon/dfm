@@ -138,6 +138,35 @@
 			"Let's check the difference in the moves, go to accounts screen...",
 			null
 		],
+		"Wizard_AccountsIndexCategory": [
+			"...click in the account name or reports button...",
+			null
+		],
+		"Wizard_ReportsMonthCategoryEdit": [
+			"The move did not have a category before, so it is empty now.",
+			"Let's edit the move to add a category.",
+			null
+		],
+		"Wizard_MovesEditCategory": [
+			"Now there is a field for Category.",
+			"Try to add a category to the move to see the result.",
+			null
+		],
+		"Wizard_ReportsMonthCategoryCreate": [
+			"The move did not have a category before.",
+			"Let's create a move to add a category.",
+			null
+		],
+		"Wizard_MovesCreateCategory": [
+			"Now there is a field for Category.",
+			"Try to add a move with category to see the result.",
+			null
+		],
+		"Wizard_ReportsMonthCategoryDone": [
+			"Now the move has a category.",
+			"We can see the categories report.",
+			null
+		],
 
 		"Wizard_AccountsClosed": "Here you see a list of closed Accounts. For these Accounts you cannot create or edit Moves, but you can still see the reports.",
 		"Wizard_End": "stop seeing this",
@@ -293,6 +322,35 @@
 			"...desabilitar ela, para não aparecer mais no sistema, ...",
 			"...e você pode unificar com outra categoria.",
 			"Vamos ver qual a diferença nas movimentações, vá até a tela de contas...",
+			null
+		],
+		"Wizard_AccountsIndexCategory": [
+			"...clique no nome da conta ou no botão de relatórios...",
+			null
+		],
+		"Wizard_ReportsMonthCategoryEdit": [
+			"A movimentação não tinha categoria antes, então está vazia esta parte.",
+			"Vamos editar a movimentação para adicionar a categoria.",
+			null
+		],
+		"Wizard_MovesEditCategory": [
+			"Agora há um campo para a Categoria.",
+			"Adicione uma categoria à movimentação para ver nos relatórios.",
+			null
+		],
+		"Wizard_ReportsMonthCategoryCreate": [
+			"A movimentação não tinha categoria antes.",
+			"Vamos criar uma movimentação para adicionar a categoria.",
+			null
+		],
+		"Wizard_MovesCreateCategory": [
+			"Agora há um campo para a Categoria.",
+			"Adicione uma movimentação com categoria para ver nos relatórios.",
+			null
+		],
+		"Wizard_ReportsMonthCategoryDone": [
+			"Agora a movimentação possui uma categoria.",
+			"Podemos ver o relatório de categorias.",
 			null
 		],
 

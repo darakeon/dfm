@@ -8,8 +8,10 @@
 	var editTitle = $"{Context.Translate("Edit")} {move.Description}";
 
 	var wizardHighlightRow = Model.WizardHL?["MoveRow"];
-	var wizardHighlightEditDelete = Model.WizardHL?["MoveEditDelete"];
+	var wizardHighlightEdit = Model.WizardHL?["MoveEdit"];
+	var wizardHighlightDelete = Model.WizardHL?["MoveDelete"];
 	var wizardHighlightDate = Model.WizardHL?["MoveDate"];
+	var wizardHighlightCategory = Model.WizardHL?["MoveCategory"];
 }
 
 <tr class="row @foreseen sum-factor @wizardHighlightRow" data-parent="table" id="m@(move.Guid)">
@@ -42,7 +44,9 @@
 
 	@if (Model.IsUsingCategories)
 	{
-		<td class="text-center">@(move.CategoryName ?? "---")</td>
+		<td class="text-center @wizardHighlightCategory">
+			@(move.CategoryName ?? "---")
+		</td>
 	}
 
 	<td class="text-center @wizardHighlightDate">
@@ -86,7 +90,7 @@
 			</td>
 		}
 	
-		<td class="col-sm-1 text-center @wizardHighlightEditDelete">
+		<td class="col-sm-1 text-center @wizardHighlightEdit">
 			<a href="@Url.Action("Edit", "Moves", new {id = move.Guid})"
 			   title="@editTitle">
 				<span class="glyphicon glyphicon-pencil"
@@ -96,7 +100,7 @@
 			</a>
 		</td>
 
-		<td class="col-sm-1 text-center @wizardHighlightEditDelete">
+		<td class="col-sm-1 text-center @wizardHighlightDelete">
 			@await Html.PartialAsync(
 				"Extensions/MicroForm",
 				MicroForm.WithGlyph(Context, "trash", "Delete")

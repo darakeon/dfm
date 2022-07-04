@@ -5,26 +5,27 @@
 
 	var anyAccount = Model.AccountList.Any();
 	var anySchedule = Model.AnySchedule();
+	var isUsingCategories = Model.IsUsingCategories;
 
-	var hl = new WizardHL(anySchedule, anyAccount)
-		.AddBox("WizardButton", null, null, 0)
-		.AddBox("SchedulesMenu", 0, null, null)
-		.AddBox("NoContent", null, null, 3)
-		.AddBox("CreateButton", null, 4, 4)
-		.AddBox("DeleteButton", null, 2, null)
-		.AddBox("CloseButton", null, 3, null)
-		.AddBox("Row", null, 0, null)
-		.AddBox("Name", null, 4, null)
-		.AddBox("Reports", null, 4, null)
-		.AddBox("Edit", null, 1, null)
-		.AddBox("TitleClass", null, null, 1);
+	var hl = new WizardHL(isUsingCategories, anySchedule, anyAccount)
+		.AddBox("WizardButton", null, null, null, 0)
+		.AddBox("SchedulesMenu", null, 0, null, null)
+		.AddBox("NoContent", null, null, null, 3)
+		.AddBox("CreateButton", null, null, 4, 4)
+		.AddBox("DeleteButton", null, null, 2, null)
+		.AddBox("CloseButton", null, null, 3, null)
+		.AddBox("Row", null, null, 0, null)
+		.AddBox("Name", null, null, 4, null)
+		.AddBox("Reports", 0, null, 4, null)
+		.AddBox("Edit", null, null, 1, null)
+		.AddBox("TitleClass", null, null, null, 1);
 
 	ViewBag.WizardButtonClass = hl["WizardButton"];
 
 	ViewBag.WizardPlus =
-		anySchedule
-			? "Schedule"
-			: null;
+		isUsingCategories ? "Category" :
+		anySchedule ? "Schedule" :
+			null;
 
 	ViewBag.TitleClass = hl["TitleClass"];
 	ViewBag.SchedulesMenuClass = hl["SchedulesMenu"];
