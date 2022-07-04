@@ -9,11 +9,16 @@
 	}
 
 	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
+
+	var hl = new WizardHL()
+		.AddBox("Name", 1)
+		.AddBox("Save", 2);
+
 }
 
 @Html.HiddenFor(m => m.Category.OriginalName)
 
-<div class="form-group">
+<div class="form-group @hl["Name"]">
 	@Html.LabelFor(m => m.Category.Name, Context.Translate("Category"), new { @class = "control-label" })
 	@Html.TextBoxFor(m => m.Category.Name, new { maxlength = MaxLen.CategoryName, @class = "form-control" })
 	@Html.ValidationMessageFor(m => m.Category.Name, null, new { @class = "text-danger" })
@@ -21,7 +26,7 @@
 </div>
 
 @section Footer {
-	<button type="submit" class="btn btn-success">
+	<button type="submit" class="btn btn-success @hl["Save"]">
 		@Context.Translate(Model.ActionName)
 	</button>
 }
