@@ -130,6 +130,14 @@
 			"...then you save it.",
 			null
 		],
+		"Wizard_CategoriesIndexFilled": [
+			"Now you can see the category created.",
+			"You can edit the category, ...",
+			"...disable it, so it does not show all over the system, ...",
+			"...and you can unify it with another category.",
+			"Let's check the difference in the moves, go to accounts screen...",
+			null
+		],
 
 		"Wizard_AccountsClosed": "Here you see a list of closed Accounts. For these Accounts you cannot create or edit Moves, but you can still see the reports.",
 		"Wizard_End": "stop seeing this",
@@ -277,6 +285,14 @@
 			"A tela de criação de categoria se parece com a de criação de conta.",
 			"Você dá um nome a categoria...",
 			"... e salva ela.",
+			null
+		],
+		"Wizard_CategoriesIndexFilled": [
+			"Agora você vê a categoria criada.",
+			"Você pode editar a categoria, ...",
+			"...desabilitar ela, para não aparecer mais no sistema, ...",
+			"...e você pode unificar com outra categoria.",
+			"Vamos ver qual a diferença nas movimentações, vá até a tela de contas...",
 			null
 		],
 
