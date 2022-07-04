@@ -12,9 +12,12 @@
 	ViewBag.HasContent = anyCategory;
 	ViewBag.NoContentText = Context.Translate("NoCategories");
 
+	var hl = new WizardHL()
+		.AddBox("New", 2);
+
 	ViewBag.Buttons = new List<Button>
 	{
-		new(createCategoryLabel, "Create")
+		new(createCategoryLabel, "Create", hl["New"])
 	};
 }
 
