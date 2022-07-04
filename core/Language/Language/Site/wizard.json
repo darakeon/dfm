@@ -8,6 +8,9 @@
 		],
 		"Wizard_AccountsIndexEmpty": [
 			"Welcome to Don't fly Money System. Click Continue to follow the Wizard.",
+			"While you are following this wizard please follow all the steps.",
+			"We will show all the system but you can stop this wizard any time you want.",
+			"Let's meet the system now!",
 			"Accounts are where you put and where you spent the money from.",
 			"For example: bank account, credit card, money you keep home.",
 			"You didn't create any account yet.",
@@ -194,6 +197,9 @@
 		],
 		"Wizard_AccountsIndexEmpty": [
 			"Boas vindas ao Sistema Don't fly Money. Clique em 'Continuar' para seguir o tutorial.",
+			"Enquanto você estiver seguindo o tutorial, por favor siga todos os passos.",
+			"Vamos te mostrar todo o sistema, mas você pode parar o tutorial a qualquer momento.",
+			"Agora vamos ao sistema!",
 			"Contas são onde você guarda e de onde você gasta o dinheiro.",
 			"Por exemplo: conta de banco, cartão de crédito, dinheiro em casa, bilhete de transporte.",
 			"Você ainda não criou nenhuma conta.",

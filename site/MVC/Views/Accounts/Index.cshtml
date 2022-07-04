@@ -9,18 +9,21 @@
 
 	var hl = new WizardHL(isUsingCategories, anySchedule, anyAccount)
 		.AddBox("WizardButton", null, null, null, 0)
-		.AddBox("SchedulesMenu", null, 0, null, null)
-		.AddBox("NoContent", null, null, null, 3)
-		.AddBox("CreateButton", null, null, 4, 4)
+		.AddBox("StopButton", null, null, null, 2)
+		.AddBox("TitleClass", null, null, null, 4)
+		.AddBox("NoContent", null, null, null, 6)
+		.AddBox("CreateButton", null, null, null, 7)
+		.AddBox("Row", null, null, 0, null)
+		.AddBox("Edit", null, null, 1, null)
 		.AddBox("DeleteButton", null, null, 2, null)
 		.AddBox("CloseButton", null, null, 3, null)
-		.AddBox("Row", null, null, 0, null)
-		.AddBox("Name", null, null, 4, null)
+		.AddBox("Name", 0, null, 4, null)
 		.AddBox("Reports", 0, null, 4, null)
-		.AddBox("Edit", null, null, 1, null)
-		.AddBox("TitleClass", null, null, null, 1);
+		.AddBox("SchedulesMenu", null, 0, null, null)
+		;
 
 	ViewBag.WizardButtonClass = hl["WizardButton"];
+	ViewBag.StopButtonClass = hl["StopButton"];
 
 	ViewBag.WizardPlus =
 		isUsingCategories ? "Category" :
