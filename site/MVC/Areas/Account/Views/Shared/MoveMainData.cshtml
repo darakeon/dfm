@@ -1,7 +1,7 @@
 ﻿@model BaseMovesModel
 
 @{
-	var useCategories = Context.GetService().Current.UseCategories;
+	var useCategories = Model.IsUsingCategories;
 	var rowWidths = useCategories ? 6 : 12;
 }
 
