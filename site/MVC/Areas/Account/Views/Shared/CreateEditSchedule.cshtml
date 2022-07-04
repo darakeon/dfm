@@ -8,19 +8,30 @@
 
 	ViewBag.TitleClass = "wizard-scroll-6";
 
+	var categoriesWizard =
+		Model.Type != OperationType.Scheduling
+			&& Model.IsUsingCategories;
+
+	if (categoriesWizard)
+	{
+		ViewBag.WizardPlus = "Category";
+	}
+
 	Model.HL = new WizardHL(
+		categoriesWizard,
 		Model.Type == OperationType.Creation,
 		Model.Type == OperationType.Scheduling 
 	)
-		.AddBox("Button", 5, 5, null)
-		.AddBox("Installment", null, 4, null)
-		.AddBox("Frequency", null, 1, null)
-		.AddBox("Boundless", null, 3, null)
-		.AddBox("Times", null, 2, null)
-		.AddBox("DetailTab", 4, null, null)
-		.AddBox("Description", 1, null, null)
-		.AddBox("Date", 2, null, null)
-		.AddBox("Value", 3, null, null);
+		.AddBox("Button", null, 5, 5, null)
+		.AddBox("Installment", null, null, 4, null)
+		.AddBox("Frequency", null, null, 1, null)
+		.AddBox("Boundless", null, null, 3, null)
+		.AddBox("Times", null, null, 2, null)
+		.AddBox("DetailTab", null, 4, null, null)
+		.AddBox("Description", null, 1, null, null)
+		.AddBox("Date", null, 2, null, null)
+		.AddBox("Value", null, 3, null, null)
+		.AddBox("Category", 0, null, null, null);
 }
 
 @if (Model.BlockScreen)

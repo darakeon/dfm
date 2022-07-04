@@ -5,36 +5,52 @@
 
 	var hasMoves = Model.MoveList.Any();
 	var hasForeseenMoves = Model.ForeseenList.Any();
+	var isUsingCategories = Model.IsUsingCategories;
+	var useCatAndEdit = isUsingCategories && hasMoves;
+	var hasCategory = isUsingCategories
+		&& Model.MoveList.Any(m => m.Move.CategoryName != null);
 
-	var hl = new WizardHL(hasForeseenMoves, hasMoves)
-		.AddBox("MoveMenuClass", null, null, 2)
-		.AddBox("SummaryMenuClass", null, 5, null)
-		.AddBox("HomeMenuClass", 4, null, null)
-		.AddBox("TitleClass", null, 2, null)
-		.AddBox("Pagination", null, 3, null)
-		.AddBox("Total", 2, 4, null)
-		.AddBox("Foreseen", 3, null, null)
-		.AddBox("Button", null, null, 2);
+	var hl = new WizardHL(hasCategory, useCatAndEdit, isUsingCategories, hasForeseenMoves, hasMoves)
+		.AddBox("MoveMenuClass", null, null, null, null, null, 2)
+		.AddBox("SummaryMenuClass", null, null, null, null, 5, null)
+		.AddBox("HomeMenuClass", null, null, null, 4, null, null)
+		.AddBox("TitleClass", null, null, null, null, 2, null)
+		.AddBox("Pagination", null, null, null, null, 3, null)
+		.AddBox("Total", null, null, null, 2, 4, null)
+		.AddBox("Foreseen", null, null, null, 3, null, null)
+		.AddBox("Button", null, null, 1, null, null, 2)
+		.AddBox("CategoriesMenuClass", 1, null, null, null, null, null);
 
-	var hlPastMove = new WizardHL(hasForeseenMoves)
-		.AddBox("MoveRow", null, 0)
-		.AddBox("MoveEditDelete", null, 1)
-		.AddBox("MoveDate", null, null);
+	var hlPastMove = new WizardHL(hasCategory, useCatAndEdit, isUsingCategories, hasForeseenMoves)
+		.AddBox("MoveRow", null, null, null, null, 0)
+		.AddBox("MoveEdit", null, 1, null, null, 1)
+		.AddBox("MoveDelete", null, null, null, null, 1)
+		.AddBox("MoveDate", null, null, null, null, null)
+		.AddBox("MoveCategory", 0, 0, null, null, null);
 
-	var hlFutureMove = new WizardHL(hasForeseenMoves)
-		.AddBox("MoveRow", 0, null)
-		.AddBox("MoveEditDelete", null, null)
-		.AddBox("MoveDate", 1, null);
+	var hlFutureMove = new WizardHL(hasCategory, useCatAndEdit, isUsingCategories, hasForeseenMoves)
+		.AddBox("MoveRow", null, null, null, 0, null)
+		.AddBox("MoveEdit", null, null, null, null, null)
+		.AddBox("MoveDelete", null, null, null, null, null)
+		.AddBox("MoveDate", null, null, null, 1, null)
+		.AddBox("MoveCategory", null, null, null, null, null);
 
 	ViewBag.MoveMenuClass = hl["MoveMenuClass"];
 	ViewBag.SummaryMenuClass = hl["SummaryMenuClass"];
 	ViewBag.HomeMenuClass = hl["HomeMenuClass"];
+	ViewBag.CategoriesMenuClass = hl["CategoriesMenuClass"];
 	ViewBag.TitleClass = hl["TitleClass"];
 
-	ViewBag.WizardPlus = 
-		hasForeseenMoves
-			? "Schedule"
-			: null;
+	var catSuffix = hasMoves 
+		? hasCategory
+			? "Done"
+			: "Edit"
+		: "Create";
+
+	ViewBag.WizardPlus =
+		isUsingCategories ? "Category" + catSuffix:
+		hasForeseenMoves ? "Schedule" :
+			null;
 
 	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 
