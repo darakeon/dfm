@@ -85,14 +85,15 @@ else
 		<div id="table-buttons" class="text-right">
 			@foreach (var button in buttonList)
 			{
-				var classes = "btn btn-info"
-					+ (button.PullLeft ? " pull-left" : null);
+				var classes = "btn btn-info "
+					+ (button.PullLeft ? "pull-left " : null)
+					+ button.Class;
 
 				@Html.ActionLink(
 					button.Text,
 					button.Action,
 					null, null,
-					new { @class = classes}
+					new { @class = classes }
 				)
 			}
 		</div>
