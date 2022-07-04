@@ -118,9 +118,14 @@
 			"Go to Categories screen.",
 			null
 		],
+		"Wizard_CategoriesIndexEmpty": [
+			"Categories are types for the Moves, like: Health, Feeding, Donation, Recreation.",
+			"Their role is to make it easier to know where you are spending the money.",
+			"Click at the button to create a new category.",
+			null
+		],
 
 		"Wizard_AccountsClosed": "Here you see a list of closed Accounts. For these Accounts you cannot create or edit Moves, but you can still see the reports.",
-		"Wizard_Categories": "Categories are types of Moves, like: Recreation, Health, Feeding, Donation. It make it simpler to say on quick looking where did you spent the money.",
 		"Wizard_End": "stop seeing this",
 		"Wizard_EndTextAndroid": "Don't fly Money has an android app available at Play Store:",
 		"Wizard_EndTextContact": "If you have something to tell us, you also can send an e-mail to {0}. We will answer as soon as possible.",
@@ -256,9 +261,14 @@
 			"Vá a tela de Categorias.",
 			null
 		],
+		"Wizard_CategoriesIndexEmpty": [
+			"Categorias são tipo para as Movimentação, por exemplo: Saúde, Alimentação, Doação, Lazer.",
+			"Servem para facilitar você saber onde está gastando o seu dinheiro.",
+			"Clique no botão para criar uma nova categoria.",
+			null
+		],
 
 		"Wizard_AccountsClosed": "Nesta tela são listadas as Contas fechadas. Para essas Contas não é possível criar ou editar Movimentações, mas ainda é possível ver os relatórios.",
-		"Wizard_Categories": "Categorias são usadas para dizer o tipo de Movimentação, por exemplo: Lazer, Saúde, Alimentação, Doação. Assim fica mais simples uma olhada rápida no Relatório Mensal dizer onde o dinheiro mais foi gasto.",
 		"Wizard_End": "parar de ver isso",
 		"Wizard_EndTextAndroid": "Don't fly Money tem um aplicativo android na Play Store:",
 		"Wizard_EndTextContact": "Se tiver algo a nos dizer, também pode entrar em contato pelo e-mail {0}. Responderemos assim que possível.",
