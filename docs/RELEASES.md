@@ -14,7 +14,8 @@ This is the list of project releases, past and current. To see tasks that are st
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="8.0.0.0"></a>8.0.0.0 :dragon: <sup>`7`</sup>
+## <a name="8.0.0.0"></a>8.0.0.0 :dragon: <sup>`8`</sup>
+- [ ] Change 'Configs' to 'Settings' in the whole system
 - [ ] Remove social media from contact modal
 - [ ] Add footer link warning to terms
 - [ ] Add clause about rights of image to terms
