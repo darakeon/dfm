@@ -528,6 +528,13 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			current.Set(userEmail, userPassword, false);
 		}
 
+		[Given(@"I login the user again")]
+		public void GivenILoginTheUserAgain()
+		{
+			resetTicket();
+			current.Set(userEmail, userPassword, false);
+		}
+
 		[Given(@"I logoff the user")]
 		public void GivenILogoffTheUser()
 		{
@@ -547,13 +554,16 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			}
 		}
 
+		[Then(@"there will be (\d+) logins")]
+		public void ThenThereWillBeCountLogins(Int32 count)
+		{
+			Assert.AreEqual(count, logins.Count);
+		}
+
 		[Then(@"they will be active")]
 		public void ThenTheyWillBeActive()
 		{
-			var currentTicket = repos.Ticket.GetByKey(
-				service.Current.TicketKey
-			);
-			var user = currentTicket.User;
+			var user = service.Safe.GetCurrent();
 
 			foreach (var login in logins)
 			{
@@ -571,6 +581,23 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			foreach (var login in logins)
 			{
 				Assert.AreEqual(Defaults.TicketShowedPart, login.Key.Length);
+			}
+		}
+
+		[Then(@"the current login and only it will have current flag")]
+		public void ThenTheCurrentLoginAndOnlyItWillHaveCurrentFlag()
+		{
+			var user = service.Safe.GetCurrent();
+
+			foreach (var login in logins)
+			{
+				var loginDb = repos.Ticket
+					.GetByPartOfKey(user, login.Key);
+
+				if (loginDb.Key == service.Current.TicketKey)
+					Assert.IsTrue(login.Current);
+				else
+					Assert.IsFalse(login.Current);
 			}
 		}
 		#endregion
