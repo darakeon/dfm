@@ -16,6 +16,7 @@
 	var settingsTFAClass = hlClass(ViewBag.SettingsTFAMenuClass);
 	var settingsThemeClass = hlClass(ViewBag.SettingsThemeMenuClass);
 	var settingsMiscClass = hlClass(ViewBag.SettingsMiscMenuClass);
+	var settingsWipeClass = hlClass(ViewBag.SettingsWipeMenuClass);
 }
 
 <li class="dropdown" id="settings">
@@ -83,7 +84,7 @@
 				Html,
 				Context.Translate("WipeSettings"),
 				"Wipe", "Configs",
-				new { @class = "text-right" }
+				new { @class = "text-right " + settingsWipeClass }
 			)
 		</li>
 	</ul>
