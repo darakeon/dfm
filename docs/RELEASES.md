@@ -14,12 +14,13 @@ This is the list of project releases, past and current. To see tasks that are st
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="8.0.0.0"></a>8.0.0.0 :dragon: <sup>`6`</sup>
+## <a name="8.0.0.0"></a>8.0.0.0 :dragon: <sup>`7`</sup>
 - [ ] Remove social media from contact modal
 - [ ] Add footer link warning to terms
 - [ ] Add clause about rights of image to terms
 - [ ] Add clause about no invalidation of terms because of one clause or one exception made
 - [ ] Hide tips while in wizard
+- [x] `220704>220704` Improve categories chart accessibility for ADHD
 - [ ] `211228>......` Make wizard interactive
 
 ## <a name="7.4.0.6"></a>7.4.0.6 :ant: <sup>`1`</sup>

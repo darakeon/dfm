@@ -64,6 +64,12 @@
 	init: function(decimal, thousand) {
 		this.style = getComputedStyle(document.documentElement)
 
+		this.setFills()
+		this.setOptions(decimal, thousand)
+		this.setModeChanger()
+	},
+
+	setFills: function() {
 		for (let p = 0; p < 4; p++) {
 			for (let n = 0; n < this.colorNames.length; n++) {
 				const color = this.cssVar(
@@ -77,7 +83,9 @@
 		this.patterns = this.colors.map(
 			(_, index, array) => this.getPattern(index, array)
 		)
+	},
 
+	setOptions: function (decimal, thousand) {
 		Highcharts.setOptions({
 			chart: {
 				style: {
@@ -91,7 +99,46 @@
 		});
 	},
 
-	draw: function(id, title, seriesName, data) {
+	setModeChanger: function() {
+		$('#patterns-enabled').click(() => {
+			this.changeAccessibilityMode()
+		})
+
+		$('#patterns-enabled').prop(
+			"checked",
+			this.isPatternsEnabled()
+		)
+	},
+
+	changeAccessibilityMode: function () {
+		const patternEnabled = $('#patterns-enabled').is(':checked')
+
+		this.setFill(patternEnabled)
+
+		this.charts.forEach(
+			c => c.update({
+				colors: this.getFill()
+			})
+		)
+	},
+
+	setFill: function (patternEnabled) {
+		localStorage.setItem('patterns-enabled', patternEnabled ? 1 : 0)
+	},
+
+	getFill: function () {
+		return this.isPatternsEnabled()
+			? this.patterns
+			: this.colors
+	},
+
+	isPatternsEnabled: function () {
+		return localStorage.getItem('patterns-enabled') === '1'
+	},
+
+	charts: [],
+
+	draw: function (id, title, seriesName, data) {
 		const chart = Highcharts.chart(
 			id,
 			{
@@ -102,19 +149,13 @@
 						color: this.cssVar('primary-0'),
 					}
 				},
-				colors: this.patterns,
+				colors: this.getFill(),
 				plotOptions: this.plotOptions(),
 				series: [{ name: seriesName, data: data }],
 				responsive: { rules: [this.rule()] },
 			}
 		)
 
-		const that = this
-
-		$('#patterns-enabled').click(function () {
-			chart.update({
-				colors: this.checked ? that.patterns : that.colors
-			})
-		})
+		this.charts.push(chart)
 	},
 }

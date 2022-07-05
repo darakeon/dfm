@@ -10,7 +10,7 @@
 		"ForeseenMove": "Foreseen moves",
 		"Foreseen": "Foreseen",
 		"Current": "Current",
-		"EnableColorPatterns": "Enable color patterns",
+		"EnableColorPatterns": "enable color patterns for color blind accessibility",
 		"": null
 	},
 	"pt-BR": {
@@ -24,7 +24,7 @@
 		"ForeseenMove": "Movimentações futuras",
 		"Foreseen": "Previsto",
 		"Current": "Atual",
-		"EnableColorPatterns": "Ativar desenhos nas cores",
+		"EnableColorPatterns": "ativar desenhos nas cores - acessibilidade para daltonismo",
 		"": null
 	}
 }
