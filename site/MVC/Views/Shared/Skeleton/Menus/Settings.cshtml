@@ -10,6 +10,8 @@
 	if (settingsMainClass != null) settingsMainClass += menuHL;
 	var settingsEmailClass = ViewBag.SettingsEmailMenuClass;
 	if (settingsEmailClass != null) settingsEmailClass += menuHL;
+	var settingsPasswordClass = ViewBag.SettingsPasswordMenuClass;
+	if (settingsPasswordClass != null) settingsPasswordClass += menuHL;
 }
 
 <li class="dropdown" id="settings">
@@ -41,7 +43,7 @@
 				Html,
 				Context.Translate("PasswordSettings"),
 				"Password", "Configs",
-				new { @class = "text-right" }
+				new { @class = "text-right " + settingsPasswordClass }
 			)
 		</li>
 

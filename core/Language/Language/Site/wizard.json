@@ -180,6 +180,14 @@
 			"Now let's check what we have in Settings > Email.",
 			null
 		],
+		"Wizard_ConfigsEmail": [
+			"Here you can change your email address at the system.",
+			"You will need to know your current password to change the email.",
+			"Your email is the only way we can contact you in case of problems or for notifications.",
+			"Keep your email up to date and be sure to have access to it.",
+			"Now go to Settings > Password",
+			null
+		],
 
 		"Wizard_AccountsClosed": "Here you see a list of closed Accounts. For these Accounts you cannot create or edit Moves, but you can still see the reports.",
 		"Wizard_End": "stop seeing this",
@@ -191,7 +199,6 @@
 		"Wizard_EndTextThanks": "Thanks for reading our wizard messages.\nWe hope now you know Don't fly Money better.",
 		"Wizard_Logins": "Here is a security area: you can see and disable system logins, accesses to your registries. If something seems suspect or some device logged in was accessed by other people without authorization, we suggest you take down the Logins, and the next request will need to know the login credentials to enter again.",
 		"Wizard_SettingsPassword": "To change your password you need to remember the current one. In case you don't, click at Log off button at the top of the screen in the right at menu, go to login screen and click at 'Forgot my password'.",
-		"Wizard_SettingsEmail": "Here you can change your e-mail address at the system. Your e-mail is the only way we can contact you in case of problems or for notifications. Kept it up to date and be sure to have access to it.",
 		"Wizard_SettingsTheme": "The website and mobile app colors can be changed between three main colors and between light or dark theme. To make a better decision, at this screen you can see the controls used through the website. When you click at the buttons the colors change just so you can check and decide, to effective change one needs to click the Save button.",
 		"Wizard_SettingsTFA": "This page is about adding one more security layer to protect your login at the system. Click at 'Why to use this?' below the image to read more about this.",
 		"Wizard_SettingsMisc": "This is one more layer to guarantee the e-mails you receive really came from us.",
@@ -379,6 +386,14 @@
 			"Agora vamos olhar o que temos em Configurações > E-mail.",
 			null
 		],
+		"Wizard_ConfigsEmail": [
+			"Aqui é possível trocar seu endereço de e-mail cadastrado no sistema.",
+			"Você precisa saber sua senha atual para trocar seu e-mail.",
+			"Seu e-mail é a única forma que podemos contatar você em caso de problemas ou para notificações.",
+			"Mantenha seu e-mail atualizado e tenha certeza de ter acesso a ele.",
+			"Agora vá até Configurações > Senha",
+			null
+		], 
 
 		"Wizard_AccountsClosed": "Nesta tela são listadas as Contas fechadas. Para essas Contas não é possível criar ou editar Movimentações, mas ainda é possível ver os relatórios.",
 		"Wizard_End": "parar de ver isso",
@@ -390,7 +405,6 @@
 		"Wizard_EndTextThanks": "Agradecemos por ler as mensagens do Tutorial.\nEsperamos que agora conheça melhor o sistema Don't fly Money.",
 		"Wizard_Logins": "Aqui você pode ver e desabilitar Logins feitos no sistema. Se desconfiar de algum acesso, ou algum dispositivo logado tenha sido acessado por pessoas não autorizadas, é sugerido que os Logins sejam excluídos. Isso impedirá novo acesso sem uso de senha.",
 		"Wizard_SettingsPassword": "Para trocar sua senha por este formulário, é necessário lembrar a senha atual. Caso não se lembre, clique no botão de Sair no topo a direita no menu, vá a tela de login e clique em 'Esqueci minha senha'.",
-		"Wizard_SettingsEmail": "Aqui é possível trocar seu endereço de e-mail cadastrado no sistema. Seu e-mail é a única forma que podemos contatar você no caso de problemas ou para notificações. Mantenha ele atualizado e tenha certeza de ter acesso a ele.",
 		"Wizard_SettingsTheme": "As cores do site e do aplicativo podem ser alteradas entre três cores principais e se prefere um tema claro ou escuro. Para melhor decisão, nesta tela são mostradas os principais items usados pelo site. Ao clicar nos botões as cores mudam para visualização apenas, para manter a alteração é necessário clicar no botão de salvar.",
 		"Wizard_SettingsTFA": "Esta página serve para adicionar uma camada a mais de segurança ao seu cadastro no sistema. Clique em 'Por que usar?' abaixo da imagem para ler mais sobre.",
 		"Wizard_SettingsMisc": "Esta é mais uma camada para garantir que os e-mails que você recebe realmente vêm de nós.",
