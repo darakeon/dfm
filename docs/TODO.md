@@ -13,8 +13,9 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (68)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (69)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
+| Encrypt email (using encrypted password) after wipe in the wipe history table  | :whale:  |  1  |  4  |  7  |                |
 | warning about contract being only with who signs, not related people           | :sheep:  |  1  |  4  |  7  |                |
 | warning about schedules not running if not active                              | :sheep:  |  1  |  4  |  7  |                |
 | Focus to input when open search                                                | :ant:    |  1  |  4  |  7  |                |
