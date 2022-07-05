@@ -59,6 +59,13 @@
 	var theme = Model.Theme.Brightness().ToLower();
 }
 
+<div class="text-center">
+	<label id="patterns-enabled-label">
+		<input type="checkbox" id="patterns-enabled">
+		@Context.Translate("EnableColorPatterns")
+	</label>
+</div>
+
 <div class="row clearfix">
 	<div class="col-sm-6">
 		<figure class="highcharts-figure">
@@ -70,13 +77,6 @@
 			<div id="container-in"></div>
 		</figure>
 	</div>
-</div>
-
-<div class="text-center">
-	<label id="patterns-enabled-label">
-		<input type="checkbox" id="patterns-enabled" checked>
-		@Context.Translate("EnableColorPatterns")
-	</label>
 </div>
 
 @section Footer {
