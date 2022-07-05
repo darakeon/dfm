@@ -3,17 +3,18 @@
 @{
 	var settingsRoute = new Default.Main();
 
-	const String menuHL = " wl-other-color";
-	var settingsClass = ViewBag.SettingsMenuClass;
-	if (settingsClass != null) settingsClass += menuHL;
-	var settingsMainClass = ViewBag.SettingsMainMenuClass;
-	if (settingsMainClass != null) settingsMainClass += menuHL;
-	var settingsEmailClass = ViewBag.SettingsEmailMenuClass;
-	if (settingsEmailClass != null) settingsEmailClass += menuHL;
-	var settingsPasswordClass = ViewBag.SettingsPasswordMenuClass;
-	if (settingsPasswordClass != null) settingsPasswordClass += menuHL;
-	var settingsTFAClass = ViewBag.SettingsTFAMenuClass;
-	if (settingsTFAClass != null) settingsTFAClass += menuHL;
+	String hlClass(dynamic viewBag)
+	{
+		if (viewBag == null) return null;
+		return viewBag + " wl-other-color";
+	}
+
+	var settingsClass = hlClass(ViewBag.SettingsMenuClass);
+	var settingsMainClass = hlClass(ViewBag.SettingsMainMenuClass);
+	var settingsEmailClass = hlClass(ViewBag.SettingsEmailMenuClass);
+	var settingsPasswordClass = hlClass(ViewBag.SettingsPasswordMenuClass);
+	var settingsTFAClass = hlClass(ViewBag.SettingsTFAMenuClass);
+	var settingsThemeClass = hlClass(ViewBag.SettingsThemeMenuClass);
 }
 
 <li class="dropdown" id="settings">
@@ -63,7 +64,7 @@
 				Html,
 				Context.Translate("ThemeSettings"),
 				"Theme", "Configs",
-				new { @class = "text-right" }
+				new { @class = "text-right " + settingsThemeClass }
 			)
 		</li>
 

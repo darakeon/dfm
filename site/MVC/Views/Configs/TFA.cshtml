@@ -5,6 +5,15 @@
 
 	ViewBag.FormSizeSm = 8;
 	ViewBag.FormSizeLg = 6;
+
+	var hl = new WizardHL()
+		.AddBox("Why", 2)
+		.AddBox("Settings", 3)
+		.AddBox("SettingsTheme", 3)
+		;
+
+	ViewBag.SettingsMenuClass = hl["Settings"];
+	ViewBag.SettingsThemeMenuClass = hl["SettingsTheme"];
 }
 
 @section Styles {
@@ -34,7 +43,7 @@ else
 		@Html.HiddenFor(m => m.TFA.Secret)
 
 		<br/>
-		<small>
+		<small class="@hl["Why"]">
 			<a href="#" role='button' data-toggle='modal' data-target='#tfa-modal'>
 				@Context.Translate("TFAWhy")
 			</a>
