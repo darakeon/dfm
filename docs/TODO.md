@@ -13,7 +13,7 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (69)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (70)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
 | Encrypt email (using encrypted password) after wipe in the wipe history table  | :whale:  |  1  |  4  |  7  |                |
 | warning about contract being only with who signs, not related people           | :sheep:  |  1  |  4  |  7  |                |
@@ -27,6 +27,7 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | warning mobile and browser logins stay active                                  | :sheep:  |  1  |  3  |  6  |                |
 | Add build step and make the others depend on it, not on tests step             | :ant:    |  1  |  3  |  6  |                |
 | Add monitoring with Grafana and Prometheus ([.NET Lib])                        | :dragon: |  3  |  4  |  5  |                |
+| Expire tickets with more than 30 without access (add to contract)              | :sheep:  |  3  |  4  |  5  |                |
 | add snyk/clair check to docker containers                                      | :ant:    |  3  |  4  |  5  |                |
 | Add schedule anticipation                                                      | :whale:  |  2  |  3  |  5  |                |
 | Add weekly scheduling                                                          | :sheep:  |  2  |  3  |  5  |                |
