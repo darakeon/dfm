@@ -252,7 +252,7 @@ namespace DFM.Language.Tests
 		}
 
 		[Then(@"all lists should be same size in all languages at (.+) dictionary")]
-		public void ThenAllListsShouldBeSameSizeInAllLanguagesAtSiteDictionary(String name)
+		public void ThenAllListsShouldBeSameSizeInAllLanguagesAtDictionary(String name)
 		{
 			var dic = getDic(name);
 

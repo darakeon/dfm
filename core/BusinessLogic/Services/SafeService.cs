@@ -298,10 +298,13 @@ namespace DFM.BusinessLogic.Services
 			VerifyUser();
 
 			var user = GetCurrent();
+			var currentTicket = parent.Current.TicketKey;
 			var tickets = repos.Ticket.List(user);
 
 			return tickets
-				.Select(TicketInfo.Convert)
+				.Select(
+					t => TicketInfo.Convert(t, currentTicket)
+				)
 				.ToList();
 		}
 
