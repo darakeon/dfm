@@ -170,6 +170,16 @@
 			"We can see the categories report.",
 			null
 		],
+		"Wizard_ReportsCategories": [
+			"This is the categories report.",
+			"At the header the report time period is shown.",
+			"The chart has a color blind accessibility mode.",
+			"Below you can see two charts: one for money getting out...",
+			"... and another for money getting in, according to categories used in moves.",
+			"It is possible to change the time period seen using the navigation.",
+			"Now let's check what we have in Settings > Email.",
+			null
+		],
 
 		"Wizard_AccountsClosed": "Here you see a list of closed Accounts. For these Accounts you cannot create or edit Moves, but you can still see the reports.",
 		"Wizard_End": "stop seeing this",
@@ -357,6 +367,16 @@
 		"Wizard_ReportsMonthCategoryDone": [
 			"Agora a movimentação possui uma categoria.",
 			"Podemos ver o relatório de categorias.",
+			null
+		],
+		"Wizard_ReportsCategories": [
+			"Este é o relatório de categorias.",
+			"No cabeçalho aparece o período de tempo exibido.",
+			"O gráfico possui o modo de acessibilidade para daltonismo.",
+			"Abaixo você vê dois gráficos, um de saídas de dinheiro...",
+			"... e outro de entradas, de acordo com as categorias usadas nas movimentações.",
+			"É possível mudar o período de tempo sendo visto na navegação.",
+			"Agora vamos olhar o que temos em Configurações > E-mail.",
 			null
 		],
 
