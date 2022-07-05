@@ -1,5 +1,12 @@
 ﻿@model BaseSiteModel
 
+@{
+	const String menuHL = " wl-other-color";
+	var logoutClass = ViewBag.LogoutClass;
+	if (logoutClass != null) logoutClass += menuHL;
+
+}
+
 @if (Model.IsExternal)
 {
 	@await Html.PartialAsync("Skeleton/Menus/ExternalArea")
@@ -23,7 +30,7 @@ else
 
 @await Html.PartialAsync("Skeleton/Menus/Settings")
 
-<li>
+<li class="@logoutClass">
 	@await Html.PartialAsync(
 		"Extensions/MicroForm",
 		MicroForm.WithGlyph(Context, "off", "Logoff")
