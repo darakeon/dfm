@@ -5,18 +5,28 @@
 
 	ViewBag.FormSizeSm = 8;
 	ViewBag.FormSizeLg = 6;
+
+	var hl = new WizardHL()
+		.AddBox("Misc", 0)
+		.AddBox("Explanation", 1)
+		.AddBox("Settings", 2)
+		.AddBox("SettingsWipe", 2)
+		;
+
+	ViewBag.SettingsMenuClass = hl["Settings"];
+	ViewBag.SettingsWipeMenuClass = hl["SettingsWipe"];
 }
 
 @section Styles {
 	<link rel="stylesheet" type="text/css" href="~/Assets/styles/misc.css?v=@Cfg.Version" />
 }
 
-<div class="text-center">
+<div class="text-center @hl["Misc"]">
 	@await Html.PartialAsync("MiscImage", Model.Misc)
 </div>
 <hr />
 
-<div class="text-center">
+<div class="text-center @hl["Explanation"]">
 	@Context.Translate("MiscExplanation")
 </div>
 <hr />

@@ -126,13 +126,13 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
-		[Auth, HttpGetAndHead, Wizard.Avoid]
+		[Auth, HttpGetAndHead]
 		public IActionResult Misc()
 		{
 			return View(new ConfigsMiscModel());
 		}
 
-		[Auth, HttpPost, ValidateAntiForgeryToken, Wizard.Avoid]
+		[Auth, HttpPost, ValidateAntiForgeryToken]
 		public IActionResult Misc(ConfigsMiscModel model)
 		{
 			return config(model, "Misc");
