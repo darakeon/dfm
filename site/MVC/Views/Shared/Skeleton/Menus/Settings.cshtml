@@ -12,6 +12,8 @@
 	if (settingsEmailClass != null) settingsEmailClass += menuHL;
 	var settingsPasswordClass = ViewBag.SettingsPasswordMenuClass;
 	if (settingsPasswordClass != null) settingsPasswordClass += menuHL;
+	var settingsTFAClass = ViewBag.SettingsTFAMenuClass;
+	if (settingsTFAClass != null) settingsTFAClass += menuHL;
 }
 
 <li class="dropdown" id="settings">
@@ -52,7 +54,7 @@
 				Html,
 				Context.Translate("TFASettings"),
 				"TFA", "Configs",
-				new { @class = "text-right" }
+				new { @class = "text-right " + settingsTFAClass }
 			)
 		</li>
 
