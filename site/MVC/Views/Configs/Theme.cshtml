@@ -5,6 +5,18 @@
 
 	ViewBag.FormSizeSm = 8;
 	ViewBag.FormSizeLg = 6;
+
+	var hl = new WizardHL()
+		.AddBox("MainColors", 1)
+		.AddBox("DarkLight", 2)
+		.AddBox("Controls", 3)
+		.AddBox("Save", 5)
+		.AddBox("Settings", 6)
+		.AddBox("SettingsMisc", 6)
+		;
+
+	ViewBag.SettingsMenuClass = hl["Settings"];
+	ViewBag.SettingsMiscMenuClass = hl["SettingsMisc"];
 }
 
 @section Scripts {
@@ -29,7 +41,7 @@
 </div>
 
 <div class="text-center">
-	<div class="btn-group pull-left">
+	<div class="btn-group pull-left @hl["DarkLight"]">
 		@foreach (var brightness in Model.BrightnessList)
 		{
 			<button class="btn btn-sm btn-default theme-changer @(brightness == Model.Brightness ? "active" : null)"
@@ -39,7 +51,7 @@
 		}
 	</div>
 
-	<div class="btn-group pull-right">
+	<div class="btn-group pull-right @hl["MainColors"]">
 		@foreach (var color in Model.ColorList)
 		{
 			<button class="btn btn-sm btn-default theme-changer @(color == Model.Color ? "active" : null)"
@@ -48,10 +60,12 @@
 			</button>
 		}
 	</div>
+</div>
 
-	<br class="clearfix"/>
-	<hr />
+<br class="clearfix"/>
+<hr />
 
+<div class="text-center @hl["Controls"]">
 	<table class="table table-striped table-hover table-responsive">
 		<thead>
 			<tr class="row">
@@ -115,7 +129,7 @@
 
 @section Footer {
 	<button type="submit"
-			class="btn btn-success tab-submit">
+			class="btn btn-success tab-submit @hl["Save"]">
 		@Context.Translate("Save")
 	</button>
 }

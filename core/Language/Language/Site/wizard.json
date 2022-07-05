@@ -201,6 +201,16 @@
 			"We may proceed to Settings > Colors",
 			null
 		],
+		"Wizard_ConfigsTheme": [
+			"The website and mobile app colors can be changed.",
+			"There are three main colors...",
+			"... and you can choose between light or dark theme.",
+			"To make a better decision, you can see below the controls used through the website.",
+			"When you click at the buttons the colors change just so you can check and decide.",
+			"To effective change one needs to click the Save button.",
+			"Let's take a look at Settings > Security Image",
+			null
+		],
 
 		"Wizard_AccountsClosed": "Here you see a list of closed Accounts. For these Accounts you cannot create or edit Moves, but you can still see the reports.",
 		"Wizard_End": "stop seeing this",
@@ -211,7 +221,6 @@
 		"Wizard_EndTextMenuContact": "Contact us and see more about the project at 'Contact'",
 		"Wizard_EndTextThanks": "Thanks for reading our wizard messages.\nWe hope now you know Don't fly Money better.",
 		"Wizard_Logins": "Here is a security area: you can see and disable system logins, accesses to your registries. If something seems suspect or some device logged in was accessed by other people without authorization, we suggest you take down the Logins, and the next request will need to know the login credentials to enter again.",
-		"Wizard_SettingsTheme": "The website and mobile app colors can be changed between three main colors and between light or dark theme. To make a better decision, at this screen you can see the controls used through the website. When you click at the buttons the colors change just so you can check and decide, to effective change one needs to click the Save button.",
 		"Wizard_SettingsMisc": "This is one more layer to guarantee the e-mails you receive really came from us.",
 		"Wizard_Title": "Wizard",
 		"": null
@@ -418,6 +427,16 @@
 			"Podemos seguir para Configurações > Cores",
 			null
 		],
+		"Wizard_ConfigsTheme": [
+			"As cores do site e do aplicativo podem ser alteradas.",
+			"Há três cores principais...",
+			"... e pode-se escolher entre um tema claro ou escuro.",
+			"Para melhor decisão, são mostrados os principais items usados pelo site.",
+			"Ao clicar nos botões as cores mudam para visualização apenas.",
+			"Para manter a alteração é necessário clicar no botão de salvar.",
+			"Vamos olhar agora para Configurações > Imagem de segurança",
+			null
+		],
 
 		"Wizard_AccountsClosed": "Nesta tela são listadas as Contas fechadas. Para essas Contas não é possível criar ou editar Movimentações, mas ainda é possível ver os relatórios.",
 		"Wizard_End": "parar de ver isso",
@@ -428,7 +447,6 @@
 		"Wizard_EndTextMenuContact": "Fale conosco e veja mais sobre o projeto em 'Contato'",
 		"Wizard_EndTextThanks": "Agradecemos por ler as mensagens do Tutorial.\nEsperamos que agora conheça melhor o sistema Don't fly Money.",
 		"Wizard_Logins": "Aqui você pode ver e desabilitar Logins feitos no sistema. Se desconfiar de algum acesso, ou algum dispositivo logado tenha sido acessado por pessoas não autorizadas, é sugerido que os Logins sejam excluídos. Isso impedirá novo acesso sem uso de senha.",
-		"Wizard_SettingsTheme": "As cores do site e do aplicativo podem ser alteradas entre três cores principais e se prefere um tema claro ou escuro. Para melhor decisão, nesta tela são mostradas os principais items usados pelo site. Ao clicar nos botões as cores mudam para visualização apenas, para manter a alteração é necessário clicar no botão de salvar.",
 		"Wizard_SettingsMisc": "Esta é mais uma camada para garantir que os e-mails que você recebe realmente vêm de nós.",
 		"Wizard_Title": "Tutorial",
 		"": null
