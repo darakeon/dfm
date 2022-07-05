@@ -5,6 +5,7 @@
 	var schedulesClass = ViewBag.SchedulesMenuClass + menuHL;
 	var accountsClass = ViewBag.AccountsMenuClass + menuHL;
 	var categoriesClass = ViewBag.CategoriesMenuClass + menuHL;
+	var loginsClass = ViewBag.LoginsMenuClass + menuHL;
 }
 
 <li>
@@ -37,6 +38,7 @@
 <li>
 	@Html.ActionLink(
 		Context.Translate("Logins"),
-		"Index", "Logins"
+		"Index", "Logins",
+		null, new { @class = loginsClass }
 	)
 </li>
