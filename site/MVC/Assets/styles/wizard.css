@@ -77,6 +77,13 @@
 	background: var(--highlight-0);
 }
 
-	.dropdown-menu li .wl-other-color:hover {
+	.dropdown-menu li .wl-other-color:hover,
+	.dropdown-menu li .wl-other-color:focus {
 		background: var(--highlight-0);
+		text-shadow: 
+		    2px 0 var(--highlight-1),
+		    0 2px var(--highlight-1),
+		    0 -2px var(--highlight-1),
+		    -2px 0 var(--highlight-1)
+			;
 	}
