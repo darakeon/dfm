@@ -4,8 +4,12 @@
 	var settingsRoute = new Default.Main();
 
 	const String menuHL = " wl-other-color";
-	var settingsClass = ViewBag.SettingsMenuClass + menuHL;
-	var settingsMainClass = ViewBag.SettingsMainMenuClass + menuHL;
+	var settingsClass = ViewBag.SettingsMenuClass;
+	if (settingsClass != null) settingsClass += menuHL;
+	var settingsMainClass = ViewBag.SettingsMainMenuClass;
+	if (settingsMainClass != null) settingsMainClass += menuHL;
+	var settingsEmailClass = ViewBag.SettingsEmailMenuClass;
+	if (settingsEmailClass != null) settingsEmailClass += menuHL;
 }
 
 <li class="dropdown" id="settings">
@@ -28,7 +32,7 @@
 				Html,
 				Context.Translate("EmailSettings"),
 				"Email", "Configs",
-				new { @class = "text-right" }
+				new { @class = "text-right " + settingsEmailClass }
 			)
 		</li>
 

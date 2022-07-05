@@ -57,22 +57,37 @@
 	var decimals = format.CurrencyDecimalSeparator;
 
 	var theme = Model.Theme.Brightness().ToLower();
+
+	var hl = new WizardHL()
+		.AddBox("Title", 1)
+		.AddBox("Accessibility", 2)
+		.AddBox("Out", 3)
+		.AddBox("In", 4)
+		.AddBox("Pagination", 5)
+		.AddBox("Settings", 6)
+		.AddBox("SettingsEmail", 6)
+	;
+
+	ViewBag.TitleClass = hl["Title"];
+
+	ViewBag.SettingsMenuClass = hl["Settings"];
+	ViewBag.SettingsEmailMenuClass = hl["SettingsEmail"];
 }
 
 <div class="text-center">
-	<label id="patterns-enabled-label">
+	<label id="patterns-enabled-label" class="@hl["Accessibility"]">
 		<input type="checkbox" id="patterns-enabled">
 		@Context.Translate("EnableColorPatterns")
 	</label>
 </div>
 
 <div class="row clearfix">
-	<div class="col-sm-6">
+	<div class="col-sm-6 @hl["Out"]">
 		<figure class="highcharts-figure">
 			<div id="container-out"></div>
 		</figure>
 	</div>
-	<div class="col-sm-6">
+	<div class="col-sm-6 @hl["In"]">
 		<figure class="highcharts-figure">
 			<div id="container-in"></div>
 		</figure>
@@ -83,7 +98,7 @@
 	<div class="row">
 		<div class="col-lg-2 col-sm-2"></div>
 
-		<div class="col-lg-8 col-sm-8 text-center">
+		<div class="col-lg-8 col-sm-8 text-center @hl["Pagination"]">
 			@await Html.PartialAsync("Extensions/Pagination", pages)
 		</div>
 	</div>

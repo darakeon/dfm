@@ -7,7 +7,9 @@
 @await Html.PartialAsync("Skeleton/ValidationSummary")
 
 <h1 class="header">
-	@ViewBag.Title
+	<span class="@ViewBag.TitleClass">
+		@ViewBag.Title
+	</span>
 	<em>@ViewBag.Subtitle</em>
 </h1>
 <hr />
