@@ -1,37 +1,48 @@
 ﻿@model ConfigsWipeModel
-@{ ViewBag.Title = Context.Translate("WipeSettings");
+@{ 
+	ViewBag.Title = Context.Translate("WipeSettings");
 	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
 
 	ViewBag.FormSizeSm = 8;
-	ViewBag.FormSizeLg = 6; }
+	ViewBag.FormSizeLg = 6;
 
-<h2 class="text-danger text-center">
-	@Context.Translate("Wipe_Title")
-</h2>
+	var hl = new WizardHL()
+		.AddBox("Explanation", 5)
+		.AddBox("LoginsMenu", 6)
+		;
 
-<p class="text-center">
-	@Context.Translate("Wipe_What")
-</p>
-<p class="text-center">
-	@Context.Translate("Wipe_NoLogin")
-</p>
-<p class="text-center">
-	@Context.Translate("Wipe_Deadline")
-</p>
-<p class="text-center text-uppercase">
-	@Context.Translate("Wipe_NoWayBack")
-</p>
-<p class="text-center">
-	@Context.Translate("Wipe_ReadTerms")
-	@Html.ActionLink(
-		Context.Translate("ContractTitle"),
-		"Contract", "Users",
-		null, new { target = "_blank" }
-	).
-</p>
-<p class="text-center">
-	@Context.Translate("Wipe_GoAhead")
-</p>
+	ViewBag.LoginsMenuClass = hl["LoginsMenu"];
+}
+
+<article class="@hl["Explanation"]">
+	<h2 class="text-danger text-center">
+		@Context.Translate("Wipe_Title")
+	</h2>
+
+	<p class="text-center">
+		@Context.Translate("Wipe_What")
+	</p>
+	<p class="text-center">
+		@Context.Translate("Wipe_NoLogin")
+	</p>
+	<p class="text-center">
+		@Context.Translate("Wipe_Deadline")
+	</p>
+	<p class="text-center text-uppercase">
+		@Context.Translate("Wipe_NoWayBack")
+	</p>
+	<p class="text-center">
+		@Context.Translate("Wipe_ReadTerms")
+		@Html.ActionLink(
+			Context.Translate("ContractTitle"),
+			"Contract", "Users",
+			null, new { target = "_blank" }
+		).
+	</p>
+	<p class="text-center">
+		@Context.Translate("Wipe_GoAhead")
+	</p>
+</article>
 
 <div class="form-group">
 	@Html.LabelFor(m => m.Password, Context.Translate("CurrentPassword"), new { @class = "control-label" })

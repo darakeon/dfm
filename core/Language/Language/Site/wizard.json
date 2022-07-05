@@ -217,6 +217,16 @@
 			"Now a dangerous menu: Settings > Remove my data",
 			null
 		],
+		"Wizard_ConfigsWipe": [
+			"DONT'T LEAVE ME! NOOO!!!",
+			"Just kidding... But this screen is really dangerous.",
+			"Everyone should be the owner of their own information.",
+			"So they should have the right of erasing it.",
+			"That's the reason why in this screen you can choose to wipe your data from the system.",
+			"If you really want it, you can find more explanations below.",
+			"But if you will keep with us, let's check the Logins screen.",
+			null
+		],
 
 		"Wizard_AccountsClosed": "Here you see a list of closed Accounts. For these Accounts you cannot create or edit Moves, but you can still see the reports.",
 		"Wizard_End": "stop seeing this",
@@ -446,6 +456,16 @@
 			"Esta é mais uma camada para garantir que os e-mails que você recebe realmente vêm de nós.",
 			"Os detalhes disso estão explicados abaixo.",
 			"Agora, um menu perigoso: Configurações > Remover meus dados",
+			null
+		],
+		"Wizard_ConfigsWipe": [
+			"NÃO ME ABANDONE! NÃO!!!",
+			"Brincadeira... Mas esta tela de fato é perigosa.",
+			"Toda pessoa deve ser dona de suas próprias informações.",
+			"Então ela deve ter o direito de decidir se apaga elas.",
+			"Por isso, nesta tela, você pode escolher excluir seus dados do sistema.",
+			"Se de fato quer fazer isso, veja maiores explicações abaixo.",
+			"Mas se for continuar conosco, vamos dar uma olhada na tela de Logins.",
 			null
 		],
 
