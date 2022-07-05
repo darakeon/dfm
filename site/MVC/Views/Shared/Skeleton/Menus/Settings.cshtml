@@ -15,6 +15,7 @@
 	var settingsPasswordClass = hlClass(ViewBag.SettingsPasswordMenuClass);
 	var settingsTFAClass = hlClass(ViewBag.SettingsTFAMenuClass);
 	var settingsThemeClass = hlClass(ViewBag.SettingsThemeMenuClass);
+	var settingsMiscClass = hlClass(ViewBag.SettingsMiscMenuClass);
 }
 
 <li class="dropdown" id="settings">
@@ -73,7 +74,7 @@
 				Html,
 				Context.Translate("MiscSettings"),
 				"Misc", "Configs",
-				new { @class = "text-right" }
+				new { @class = "text-right " + settingsMiscClass }
 			)
 		</li>
 
