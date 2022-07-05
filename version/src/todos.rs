@@ -27,27 +27,27 @@ fn process_tasks(mut numbers: Vec<usize>) -> (Vec<String>, Vec<String>) {
 	let mut sizes: Vec<String> = Vec::new();
 
 	let mut todo_list = get_lines(path_todo());
-	let mut l = 15;
+	let mut line_number = 15;
 
 	let old_size = todo_list.len();
 
-	while numbers.len() > 0 && l <= todo_list.len() {
-		let line = todo_list.get(l).unwrap();
-		l += 1;
+	while numbers.len() > 0 && line_number <= todo_list.len() {
+		let line = todo_list.get(line_number).unwrap();
+		line_number += 1;
 
-		if let Some((todo, size, issue)) = extract_task(&line) {
+		if let Some((todo, size)) = extract_task(&line) {
 			count += 1;
 
 			if let Some(n) = numbers.iter().position(|&x| x == count) {
-				let task = format!("- [ ] {}{}", todo.trim(), issue);
+				let task = format!("- [ ] {}", todo.trim());
 				new_tasks.push(task);
 
 				sizes.push(size);
 
 				numbers.remove(n);
 
-				l -= 1;
-				todo_list.remove(l);
+				line_number -= 1;
+				todo_list.remove(line_number);
 			}
 		}
 	}
@@ -71,9 +71,9 @@ fn process_tasks(mut numbers: Vec<usize>) -> (Vec<String>, Vec<String>) {
 	return (new_tasks, sizes);
 }
 
-fn extract_task(text: &str) -> Option<(String, String, String)> {
+fn extract_task(text: &str) -> Option<(String, String)> {
 	let pattern =
-		r#"^\| ([^|]+) +\| :(ant|sheep|whale|dragon): +\|  \d  \|  \d  \|  \d  \| .+ \|(?: {6}|( \[\#\d+\])) \|$"#;
+		r#"^\| ([^|]+) +\| :(ant|sheep|whale|dragon): +\|  \d  \|  \d  \|  \d  \| .+ \|$"#;
 
 	let regex = Regex::new(pattern).unwrap();
 
@@ -85,13 +85,8 @@ fn extract_task(text: &str) -> Option<(String, String, String)> {
 
 	let task = captures.get(1).unwrap().as_str().to_string();
 	let size = captures.get(2).unwrap().as_str().to_string();
-	let mut issue: String = "".to_string();
 
-	if let Some(i) = captures.get(3) {
-		issue = i.as_str().to_string();
-	}
-
-	Some((task, size, issue))
+	Some((task, size))
 }
 
 fn extract_count(text: &str) -> usize {
