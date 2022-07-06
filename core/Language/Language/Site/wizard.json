@@ -227,6 +227,21 @@
 			"But if you will keep with us, let's check the Logins screen.",
 			null
 		],
+		"Wizard_LoginsIndexFilled": [
+			"Here you can see and disable system logins.",
+			"For example when a cellphone is stolen, you can disconnect it from the system.",
+			"Another example is when you use another person computer and forget to logout.",
+			"In these cases the logins can be deleted.",
+			"It will stop another person from looking into your expenses without having your credentials.",
+			"We also recommend that you delete all logins if you notice something strange in your data inside the system.",
+			"This is your current login. If you disconnect this, you will have to login again.",
+			null
+		],
+		"Wizard_LoginsIndexEmpty": [
+			"If you are seeing this screen something is wrong.",
+			"Please contact us.",
+			null
+		],
 
 		"Wizard_AccountsClosed": "Here you see a list of closed Accounts. For these Accounts you cannot create or edit Moves, but you can still see the reports.",
 		"Wizard_End": "stop seeing this",
@@ -236,7 +251,6 @@
 		"Wizard_EndTextMenuSettings": "Re-enable the Wizard at 'Settings' > 'Main'",
 		"Wizard_EndTextMenuContact": "Contact us and see more about the project at 'Contact'",
 		"Wizard_EndTextThanks": "Thanks for reading our wizard messages.\nWe hope now you know Don't fly Money better.",
-		"Wizard_Logins": "Here is a security area: you can see and disable system logins, accesses to your registries. If something seems suspect or some device logged in was accessed by other people without authorization, we suggest you take down the Logins, and the next request will need to know the login credentials to enter again.",
 		"Wizard_Title": "Wizard",
 		"": null
 	},
@@ -468,6 +482,21 @@
 			"Mas se for continuar conosco, vamos dar uma olhada na tela de Logins.",
 			null
 		],
+		"Wizard_LoginsIndexFilled": [
+			"Aqui você pode ver e desabilitar Logins feitos no sistema.",
+			"Por exemplo, quando um celular é roubado, você consegue desconectar o celular do sistema.",
+			"Outro exemplo é esquecer o sistema conectado no computador de outra pessoa.",
+			"Nesses casos, os logins podem ser excluídos.",
+			"Isso impedirá que a outra pessoa olhe seus gastos sem saber sua senha.",
+			"Também recomendamos que tire todos os acessos se notar algo que você não fez nos seus dados.",
+			"Este é seu login atual. Se desconectar esse, terá que entrar novamente no sistema.",
+			null
+		],
+		"Wizard_LoginsIndexEmpty": [
+			"Se você está vendo esta tela, algo está errado.",
+			"Por favor, entre em contato conosco.",
+			null
+		],
 
 		"Wizard_AccountsClosed": "Nesta tela são listadas as Contas fechadas. Para essas Contas não é possível criar ou editar Movimentações, mas ainda é possível ver os relatórios.",
 		"Wizard_End": "parar de ver isso",
@@ -477,7 +506,6 @@
 		"Wizard_EndTextMenuSettings": "Reabilite o Tutorial em 'Configurações' > 'Geral'",
 		"Wizard_EndTextMenuContact": "Fale conosco e veja mais sobre o projeto em 'Contato'",
 		"Wizard_EndTextThanks": "Agradecemos por ler as mensagens do Tutorial.\nEsperamos que agora conheça melhor o sistema Don't fly Money.",
-		"Wizard_Logins": "Aqui você pode ver e desabilitar Logins feitos no sistema. Se desconfiar de algum acesso, ou algum dispositivo logado tenha sido acessado por pessoas não autorizadas, é sugerido que os Logins sejam excluídos. Isso impedirá novo acesso sem uso de senha.",
 		"Wizard_Title": "Tutorial",
 		"": null
 	}

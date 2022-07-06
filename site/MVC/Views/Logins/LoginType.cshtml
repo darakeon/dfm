@@ -1,9 +1,10 @@
-﻿@model TicketType
-@switch (Model)
+﻿@model DFM.BusinessLogic.Response.TicketInfo
+@if (Model.Current)
 {
-	case TicketType.Local:
-		@("warning")
-		break;
+	@("warning")
+}
+else switch (Model.Type)
+{
 	case TicketType.Browser:
 		@("info")
 		break;

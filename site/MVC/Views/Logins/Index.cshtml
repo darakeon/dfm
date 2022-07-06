@@ -4,9 +4,18 @@
 	ViewBag.Title = Context.Translate("Logins");
 	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 
-	ViewBag.HasContent = Model.LoginsList.Any();
+	var anyLogin = Model.LoginsList.Any();
+
+	ViewBag.HasContent = anyLogin;
 	ViewBag.NoContentText = Context.Translate("NoLogins");
 	ViewBag.TableLgSize = 8;
+
+	var hl = new WizardHL(anyLogin)
+		.AddBox("ChatMenu", null, 1)
+		.AddBox("Delete", 3, null)
+		.AddBox("Current", 6, null);
+
+	ViewBag.ContactMenuClass = hl["ChatMenu"];
 }
 
 @section TableHeader {
@@ -20,15 +29,21 @@
 @foreach (var login in Model.LoginsList)
 {
 	var date = login.Creation;
-	var type = Context.Translate(login.Type.ToString());
+	
+	var type = login.Current
+		? "Current"
+		: login.Type.ToString();
+
 	var label = Context.Translate("LogOffLabel").Format(type, date);
 
-	<tr class="row">
+	var hlRow = login.Current ? hl["Current"] : null;
+
+	<tr class="row @hlRow">
 		<td class="col-sm-4">@date</td>
 
 		<td class="col-sm-4 text-center">
-			<span class="label label-@await Html.PartialAsync("LoginType", login.Type)">
-				@type
+			<span class="label label-@await Html.PartialAsync("LoginType", login)">
+				@Context.Translate(type)
 			</span>
 		</td>
 
@@ -41,7 +56,7 @@
 				);
 		}*@
 
-		<td class="col-sm-4 text-center">
+		<td class="col-sm-4 text-center @hl["Delete"]">
 			@await Html.PartialAsync("Extensions/MicroForm",
 				MicroForm.WithGlyph(Context, "off", "LogOff")
 					.AddIdUrl("Delete", login.Key)
