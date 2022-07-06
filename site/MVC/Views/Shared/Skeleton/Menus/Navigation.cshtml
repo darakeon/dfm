@@ -2,6 +2,9 @@
 
 @{
 	var lang = Model.Language.ToLower();
+
+	const String menuHL = " wl-other-color";
+	var contactClass = ViewBag.ContactMenuClass + menuHL;
 }
 
 <ul class="nav navbar-nav navbar-right">
@@ -13,7 +16,7 @@
 		</a>
 	</li>
 
-	<li>
+	<li class="@contactClass">
 		@await Html.PartialAsync("Skeleton/Menus/MenuContact")
 	</li>
 

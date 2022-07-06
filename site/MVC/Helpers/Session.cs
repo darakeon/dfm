@@ -45,9 +45,6 @@ namespace DFM.MVC.Helpers
 				TicketType.Mobile =>
 					request.Headers["ticket"],
 
-				TicketType.Local =>
-					throw new NotImplementedException(),
-
 				_ => throw new NotImplementedException()
 			};
 		}
