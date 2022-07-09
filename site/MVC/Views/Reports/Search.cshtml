@@ -13,6 +13,7 @@
 		.AddBox("Delete", 2, null)
 		.AddBox("NoContent", null, 1)
 		.AddBox("SearchMenu", null, 2)
+		.AddBox("StopButton", 6, null)
 		;
 
 	ViewBag.TableClass = hl["Content"];
@@ -25,6 +26,7 @@
 	);
 
 	ViewBag.SearchMenuClass = hl["SearchMenu"];
+	ViewBag.StopButtonClass = hl["StopButton"];
 
 	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 }
