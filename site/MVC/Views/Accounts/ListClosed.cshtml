@@ -5,10 +5,20 @@
 	ViewBag.Title = Context.Translate("ClosedAccounts");
 	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 
-	ViewBag.HasContent = Model.AccountList.Any();
+	var anyClosedAccount = Model.AccountList.Any();
+
+	ViewBag.HasContent = anyClosedAccount;
 	ViewBag.NoContentText = Context.Translate("NoClosedAccounts");
 
 	var route = new Accounts();
+
+	var hl = new WizardHL(anyClosedAccount)
+		.AddBox("Reports", 2, null)
+		.AddBox("Reopen", 3, null)
+		.AddBox("Accounts", 4, 3)
+		;
+
+	ViewBag.AccountsMenuClass = hl["Accounts"];
 }
 
 @section TableHeader {
@@ -65,14 +75,14 @@
 		</td>
 		<td class="col-sm-1"></td>
 
-		<td class="col-sm-1 text-center">
+		<td class="col-sm-1 text-center @hl["Reports"]">
 			<a href="@Url.RouteUrl(route.Name, reports)">
 				<span class="glyphicon glyphicon-th-list"
 				      title="@Context.Translate("AccountMoves").Format(name)"></span>
 			</a>
 		</td>
 
-		<td class="col-sm-1 text-center">
+		<td class="col-sm-1 text-center @hl["Reopen"]">
 			@await Html.PartialAsync("Extensions/MicroForm",
 				MicroForm.WithGlyph(Context, "eye-open", "Reopen")
 					.AddIdUrl("Reopen", account.Url)

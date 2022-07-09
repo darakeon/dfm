@@ -30,6 +30,21 @@
 			"Click at Account's name, or at the report button, to enter into the Account Area.",
 			null
 		],
+		"Wizard_AccountsListClosedFilled": [
+			"Here you see a list of closed Accounts.",
+			"For these Accounts you cannot create or edit Moves...",
+			"...but you can still see the reports.",
+			"You can reopen the account to the moves to be available again.",
+			"Let's go back to accounts screen.",
+			null
+		],
+		"Wizard_AccountsListClosedEmpty": [
+			"Here you will see a list of closed Accounts.",
+			"For these Accounts you won't be able to create or edit Moves...",
+			"...but you will still be able to see the reports.",
+			"You can close accounts in their listing screen.",
+			null
+		],
 		"Wizard_ReportsMonthEmpty": [
 			"At this Area, you can see and create Moves.",
 			"Moves are the money that comes in and out of the Accounts.",
@@ -243,7 +258,6 @@
 			null
 		],
 
-		"Wizard_AccountsClosed": "Here you see a list of closed Accounts. For these Accounts you cannot create or edit Moves, but you can still see the reports.",
 		"Wizard_End": "stop seeing this",
 		"Wizard_EndTextAndroid": "Don't fly Money has an android app available at Play Store:",
 		"Wizard_EndTextContact": "If you have something to tell us, you also can send an e-mail to {0}. We will answer as soon as possible.",
@@ -283,6 +297,21 @@
 			"Você pode excluir a Conta clicando na lixeira.",
 			"Caso uma Conta possua Movimentações, não pode ser excluída, apenas fechada.",
 			"Clique no nome da Conta ou no botão de relatório para ir para a Área da Conta.",
+			null
+		],
+		"Wizard_AccountsListClosedFilled": [
+			"Nesta tela são listadas as Contas fechadas.",
+			"Para essas Contas não é possível criar ou editar Movimentações...",
+			"...mas ainda é possível ver os relatórios.",
+			"Você pode reabrir a conta para as movimentações ficarem disponíveis novamente.",
+			"Vamos voltar a tela de Contas.",
+			null
+		],
+		"Wizard_AccountsListClosedEmpty": [
+			"Nesta tela serão listadas as Contas fechadas.",
+			"Para essas Contas não será possível criar ou editar Movimentações...",
+			"...mas ainda será possível ver os relatórios.",
+			"Você pode fechar as contas na tela de listagem delas.",
 			null
 		],
 		"Wizard_ReportsMonthEmpty": [
@@ -498,7 +527,6 @@
 			null
 		],
 
-		"Wizard_AccountsClosed": "Nesta tela são listadas as Contas fechadas. Para essas Contas não é possível criar ou editar Movimentações, mas ainda é possível ver os relatórios.",
 		"Wizard_End": "parar de ver isso",
 		"Wizard_EndTextAndroid": "Don't fly Money tem um aplicativo android na Play Store:",
 		"Wizard_EndTextContact": "Se tiver algo a nos dizer, também pode entrar em contato pelo e-mail {0}. Responderemos assim que possível.",
