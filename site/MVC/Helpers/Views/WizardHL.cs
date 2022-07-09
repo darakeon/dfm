@@ -10,10 +10,12 @@ namespace DFM.MVC.Helpers.Views
 		{
 			this.conditions = conditions;
 			boxes = new Dictionary<String, String[]>();
+			names = new List<String>();
 		}
 
 		private readonly Boolean[] conditions;
 		private readonly IDictionary<String, String[]> boxes;
+		private readonly IList<String> names;
 
 		public WizardHL AddBox(String name, params Int32?[] hlNumbers)
 		{
@@ -26,6 +28,7 @@ namespace DFM.MVC.Helpers.Views
 				);
 			}
 
+			names.Add(name);
 			boxes.Add(
 				name, hlNumbers.Select(toClass).ToArray()
 			);
@@ -40,17 +43,29 @@ namespace DFM.MVC.Helpers.Views
 				: null;
 		}
 
-		public String this[String box]
+		public String this[String name]
 		{
 			get
 			{
+				if (!names.Contains(name))
+					throw new ArgumentException(
+						$"No box for {name}",
+						nameof(name)
+					);
+
+				if (!boxes.ContainsKey(name))
+					return null;
+
+				var box = boxes[name];
+				boxes.Remove(name);
+
 				for (var c = 0; c < conditions.Length; c++)
 				{
 					if (conditions[c])
-						return boxes[box][c];
+						return box[c];
 				}
 
-				return boxes[box].Last();
+				return box.Last();
 			}
 		}
 	}
