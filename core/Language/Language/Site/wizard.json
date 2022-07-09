@@ -30,6 +30,13 @@
 			"Click at Account's name, or at the report button, to enter into the Account Area.",
 			null
 		],
+		"Wizard_AccountsEdit": [
+			"The screen to edit an account is the same as to create...",
+			"...except that it is already filled with the data.",
+			"Editing the account data won't remove the moves from it.",
+			"Let's go back to accounts screen.",
+			null
+		],
 		"Wizard_AccountsListClosedFilled": [
 			"Here you see a list of closed Accounts.",
 			"For these Accounts you cannot create or edit Moves...",
@@ -297,6 +304,13 @@
 			"Você pode excluir a Conta clicando na lixeira.",
 			"Caso uma Conta possua Movimentações, não pode ser excluída, apenas fechada.",
 			"Clique no nome da Conta ou no botão de relatório para ir para a Área da Conta.",
+			null
+		],
+		"Wizard_AccountsEdit": [
+			"A tela para editar contas é a mesma de criar...",
+			"...exceto por já ter os dados preenchidos.",
+			"Editar os dados da conta não remove suas movimentações.",
+			"Vamos voltar a tela de Contas.",
 			null
 		],
 		"Wizard_AccountsListClosedFilled": [
