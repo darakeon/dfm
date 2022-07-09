@@ -287,6 +287,10 @@
 			"Here you can see moves that have the terms you searched.",
 			"You have access to go to the report where the move is, ...",
 			"...to edit and to delete the move.",
+			"In this screen we finish the wizard.",
+			"All the system screen have these instructions.",
+			"You can keep clicking and see the explanations again...",
+			"...or you can finish the wizard here.",
 			null
 		],
 		"Wizard_ReportsSearchEmpty": [
@@ -594,6 +598,10 @@
 			"Aqui você pode ver as movimentações que possuem os termos que você buscou.",
 			"Você pode acessar ao relatório onde a movimentação aparece, ...",
 			"...editar ou excluir a movimentação.",
+			"Nesta tela terminamos o tutorial.",
+			"Todas as telas do sistema possuem essas instruções.",
+			"Você pode continuar clicando e rever explicações...",
+			"...ou pode finalizar o tutorial aqui.",
 			null
 		],
 		"Wizard_ReportsSearchEmpty": [
