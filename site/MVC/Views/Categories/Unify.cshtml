@@ -4,11 +4,17 @@
 	ViewBag.Title = Context.Translate("MergeTitle");
 
 	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
+
+	var hl = new WizardHL()
+		.AddBox("Explanation", 0)
+		.AddBox("Categories", 1);
+
+	ViewBag.CategoriesMenuClass = hl["Categories"];
 }
 
 @Html.HiddenFor(m => m.CategoryToDelete)
 
-<div class="text-center">
+<div class="text-center @hl["Explanation"]">
 	@Html.Raw(
 		Context.Translate("MergeExplanation")
 			.Format("<strong>" + Model.CategoryToDelete + "</strong>")
