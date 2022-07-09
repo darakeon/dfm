@@ -76,6 +76,12 @@
 			"Let's check 'Year Summary' clicking at top menu.",
 			null
 		],
+		"Wizard_MovesEdit": [
+			"The screen to edit a move is the same as to create...",
+			"...except that it is already filled with the data.",
+			"Let's go back to the report screen.",
+			null
+		],
 		"Wizard_ReportsYearFilled": [
 			"Here you can see the year totals by month.",
 			"You can have a general comparative year view.",
@@ -357,6 +363,12 @@
 			"Quando quiser mudar o mês, use a navegação abaixo.",
 			"Nesta tela também é visível o Saldo atual da conta.",
 			"Vamos ver agora o 'Resumo Anual', clicando no menu to topo.",
+			null
+		],
+		"Wizard_MovesEdit": [
+			"A tela para editar movimentações é a mesma de criar...",
+			"...exceto por já ter os dados preenchidos.",
+			"Vamos voltar a tela do relatório.",
 			null
 		],
 		"Wizard_ReportsYearFilled": [
