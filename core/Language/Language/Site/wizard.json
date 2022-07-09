@@ -163,6 +163,13 @@
 			"Let's check the difference in the moves, go to accounts screen...",
 			null
 		],
+		"Wizard_CategoriesEdit": [
+			"The screen to edit a category is the same as to create...",
+			"...except that it is already filled with the data.",
+			"Editing the category data won't remove the moves from it.",
+			"Let's go back to categories screen.",
+			null
+		],
 		"Wizard_AccountsIndexCategory": [
 			"...click in the account name or reports button...",
 			null
@@ -437,6 +444,13 @@
 			"...desabilitar ela, para não aparecer mais no sistema, ...",
 			"...e você pode unificar com outra categoria.",
 			"Vamos ver qual a diferença nas movimentações, vá até a tela de contas...",
+			null
+		],
+		"Wizard_CategoriesEdit": [
+			"A tela para editar categorias é a mesma de criar...",
+			"...exceto por já ter os dados preenchidos.",
+			"Editar os dados da categoria não remove suas movimentações.",
+			"Vamos voltar a tela de Categorias.",
 			null
 		],
 		"Wizard_AccountsIndexCategory": [
