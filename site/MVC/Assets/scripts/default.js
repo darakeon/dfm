@@ -44,6 +44,10 @@
 		})
 		$(this).addClass('active')
 	})
+
+	$('.modal').on('shown.bs.modal', function () {
+		$(this).find('input').first().trigger('focus')
+	})
 })
 
 function checkIfReload(response) {
