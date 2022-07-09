@@ -176,6 +176,11 @@
 			"Let's go back to categories screen.",
 			null
 		],
+		"Wizard_CategoriesUnify": [
+			"This screen is for when we have two categories that we want to join.",
+			"Let's go back to categories screen.",
+			null
+		],
 		"Wizard_AccountsIndexCategory": [
 			"...click in the account name or reports button...",
 			null
@@ -462,6 +467,11 @@
 			"A tela para editar categorias é a mesma de criar...",
 			"...exceto por já ter os dados preenchidos.",
 			"Editar os dados da categoria não remove suas movimentações.",
+			"Vamos voltar a tela de Categorias.",
+			null
+		],
+		"Wizard_CategoriesUnify": [
+			"Esta tela serve para quando temos duas categorias que queremos unir.",
 			"Vamos voltar a tela de Categorias.",
 			null
 		],
