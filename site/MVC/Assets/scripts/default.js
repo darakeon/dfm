@@ -48,6 +48,8 @@
 	$('.modal').on('shown.bs.modal', function () {
 		$(this).find('input').first().trigger('focus')
 	})
+
+	$('input[type="text"]').first().trigger('focus')
 })
 
 function checkIfReload(response) {
