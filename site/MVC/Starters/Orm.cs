@@ -25,9 +25,8 @@ namespace DFM.MVC.Starters
 					if (context.IsAsset())
 						return;
 
-					SessionManager.Init(
-						() => Session.GetKey(() => context)
-					);
+					var key = Session.GetKey(() => context);
+					SessionManager.Init(() => key);
 
 					await next();
 
