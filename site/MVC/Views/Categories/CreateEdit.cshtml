@@ -3,17 +3,22 @@
 @{
 	ViewBag.Title = Context.Translate(Model.ActionName, "Category");
 
-	if (Model.Type == OperationType.Edition)
+	var isEdit = Model.Type == OperationType.Edition;
+
+	if (isEdit)
 	{
 		ViewBag.Title += $" [{Model.Category.OriginalName}]";
 	}
 
 	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
 
-	var hl = new WizardHL()
-		.AddBox("Name", 1)
-		.AddBox("Save", 2);
-
+	var hl = new WizardHL(isEdit)
+		.AddBox("Name", null, 1)
+		.AddBox("Save", null, 2)
+		.AddBox("Categories", 3, null)
+		;
+		
+	ViewBag.CategoriesMenuClass = hl["Categories"];
 }
 
 @Html.HiddenFor(m => m.Category.OriginalName)
