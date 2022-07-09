@@ -132,6 +132,7 @@
 
 		"Search_Title": "Search",
 		"Search_Text": "The terms will be searched at moves and its details",
+		"Search_Placeholder": "type here something to search...",
 		"Search_Empty": "The terms '{0}' was not found at any move description or details",
 		"Search_For": "Search for '{0}'",
 
@@ -296,6 +297,7 @@
 
 		"Search_Title": "Busca",
 		"Search_Text": "Os termos serão buscados nas movimentações e em seus detalhes",
+		"Search_Placeholder": "digite aqui algo para buscar...",
 		"Search_Empty": "Os termos '{0}' não foram encontrados em quaisquer movimentações ou seus detalhes",
 		"Search_For": "Busca por '{0}'",
 
