@@ -3,16 +3,22 @@
 @{
 	ViewBag.Title = Context.Translate(Model.ActionName, "Account");
 
-	if (Model.Type == OperationType.Edition)
+	var isEdit = Model.Type == OperationType.Edition;
+
+	if (isEdit)
 	{
 		ViewBag.Title += $" [{Model.Account.Name}]";
 	}
 
 	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
 
-	var hl = new WizardHL()
-		.AddBox("Name", 1)
-		.AddBox("Button", 2);
+	var hl = new WizardHL(isEdit)
+		.AddBox("Name", null, 1)
+		.AddBox("Button", null, 2)
+		.AddBox("Accounts", 3, null)
+		;
+
+	ViewBag.AccountsMenuClass = hl["Accounts"];
 }
 
 @section Scripts {
