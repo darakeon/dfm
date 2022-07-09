@@ -4,11 +4,27 @@
 	ViewBag.Title = Context.Translate("Search_For")
 		.Format(Model.Terms);
 
-	ViewBag.HasContent = Model.MoveList.Any();
+	var anyMoves = Model.MoveList.Any();
+
+	var hl = new WizardHL(anyMoves)
+		.AddBox("Content", 0, null)
+		.AddBox("Report", 1, null)
+		.AddBox("Edit", 2, null)
+		.AddBox("Delete", 2, null)
+		.AddBox("NoContent", null, 1)
+		.AddBox("SearchMenu", null, 2)
+		;
+
+	ViewBag.TableClass = hl["Content"];
+	ViewBag.NoContentClass = hl["NoContent"];
+
+	ViewBag.HasContent = anyMoves;
 	ViewBag.NoContentText = String.Format(
 		Context.Translate("Search_Empty"),
 		Model.Terms
 	);
+
+	ViewBag.SearchMenuClass = hl["SearchMenu"];
 
 	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 }
@@ -94,7 +110,7 @@
 			)
 		</td>
 
-		<td class="text-center">
+		<td class="text-center @hl["Report"]">
 			<a href="@Url.RouteUrl(route.Name, reportRoute)" title="@reportTitle">
 				<span class="glyphicon glyphicon-th-list"
 					title="@reportTitle"
@@ -103,7 +119,7 @@
 			</a>
 		</td>
 
-		<td class="text-center">
+		<td class="text-center @hl["Edit"]">
 			<a href="@Url.RouteUrl(route.Name, editRoute)" title="@editTitle">
 				<span class="glyphicon glyphicon-pencil"
 					title="@editTitle"
@@ -112,7 +128,7 @@
 			</a>
 		</td>
 
-		<td class="text-center">
+		<td class="text-center @hl["Delete"]">
 			@await Html.PartialAsync(
 				"Extensions/MicroForm",
 				MicroForm.WithGlyph(Context, "trash", "Delete")

@@ -2,9 +2,12 @@
 
 @{
 	const String menuHL = " wl-other-color";
+
 	var logoutClass = ViewBag.LogoutClass;
 	if (logoutClass != null) logoutClass += menuHL;
 
+	var searchClass = ViewBag.SearchMenuClass;
+	if (searchClass != null) searchClass += menuHL;
 }
 
 @if (Model.IsExternal)
@@ -20,7 +23,7 @@ else
 	@await Html.PartialAsync("Skeleton/Menus/DefaultArea")
 }
 
-<li>
+<li class="@searchClass">
 	<a role='button' data-toggle='modal' data-target='#search-modal'>
 		<span class="glyphicon glyphicon-search"
 		      title="@Context.Translate("Search_Title")">

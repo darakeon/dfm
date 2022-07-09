@@ -275,11 +275,24 @@
 			"It will stop another person from looking into your expenses without having your credentials.",
 			"We also recommend that you delete all logins if you notice something strange in your data inside the system.",
 			"This is your current login. If you disconnect this, you will have to login again.",
+			"Now click in the magnifier to search some move you created before.",
 			null
 		],
 		"Wizard_LoginsIndexEmpty": [
 			"If you are seeing this screen something is wrong.",
 			"Please contact us.",
+			null
+		],
+		"Wizard_ReportsSearchFilled": [
+			"Here you can see moves that have the terms you searched.",
+			"You have access to go to the report where the move is, ...",
+			"...to edit and to delete the move.",
+			null
+		],
+		"Wizard_ReportsSearchEmpty": [
+			"Here you will see moves that have the terms you searched.",
+			"Given it was not found moves, the screen will be empty.",
+			"Make a new search to see moves.",
 			null
 		],
 
@@ -569,11 +582,24 @@
 			"Isso impedirá que a outra pessoa olhe seus gastos sem saber sua senha.",
 			"Também recomendamos que tire todos os acessos se notar algo que você não fez nos seus dados.",
 			"Este é seu login atual. Se desconectar esse, terá que entrar novamente no sistema.",
+			"Agora clique na lupa para buscar alguma movimentação criada antes.",
 			null
 		],
 		"Wizard_LoginsIndexEmpty": [
 			"Se você está vendo esta tela, algo está errado.",
 			"Por favor, entre em contato conosco.",
+			null
+		],
+		"Wizard_ReportsSearchFilled": [
+			"Aqui você pode ver as movimentações que possuem os termos que você buscou.",
+			"Você pode acessar ao relatório onde a movimentação aparece, ...",
+			"...editar ou excluir a movimentação.",
+			null
+		],
+		"Wizard_ReportsSearchEmpty": [
+			"Aqui você verá as movimentações que possuem os termos que você buscou.",
+			"Como não foram encontradas movimentações, a tela fica vazia.",
+			"Faça uma nova busca para ver movimentações.",
 			null
 		],
 
