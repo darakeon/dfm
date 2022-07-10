@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using DFM.Generic;
 using DFM.Language;
 using DFM.Language.Entities;
 using DFM.Language.Extensions;
@@ -213,6 +214,141 @@ namespace DFM.MVC.Tests
 			{
 				return null;
 			}
+		}
+
+
+		[Test]
+		public void AllWizardPlusHaveTranslations()
+		{
+			var siteDir = Directory
+				.GetParent(FilePath.Get())!
+				.Parent!.Parent!.FullName;
+
+			var mvcDir = Path.Combine(siteDir, "MVC");
+			var viewsParents = new[] {mvcDir}.ToList();
+
+			var areasDir = Path.Combine(mvcDir, "Areas");
+			var areas = Directory.GetDirectories(areasDir);
+
+			foreach (var area in areas)
+			{
+				viewsParents.Add(area);
+			}
+
+			var views = new List<String>();
+
+			foreach (var viewsParent in viewsParents)
+			{
+				var viewsFolder = Path.Combine(viewsParent, "Views");
+
+				if (Directory.Exists(viewsFolder))
+				{
+					views.AddRange(getViews(viewsFolder));
+				}
+			}
+
+			var wizardPlusList = new List<String>();
+
+			foreach (var view in views)
+			{
+				var name = view.Replace(mvcDir, "");
+
+				var isWizardPlus = 
+					new Regex("WizardPlus =(?: \"([^\"]+)\")?;(?: // (.+))?");
+
+				var wizardPlusLines = File
+					.ReadAllLines(view)
+					.Where(l => isWizardPlus.IsMatch(l))
+					.Select(l => isWizardPlus.Match(l).Groups);
+
+				foreach (var groups in wizardPlusLines)
+				{
+					Assert.GreaterOrEqual(
+						groups.Count, 2,
+						$"Wizard Plus values not found for {name}"
+					);
+
+					var plus = groups[1].Value;
+					var actionName = groups[2].Value;
+
+					if (String.IsNullOrEmpty(actionName))
+					{
+						var wizardPlusParts = view
+							.Split(Path.DirectorySeparatorChar, '.')
+							.ToArray()
+							[^3..^1];
+
+						var regexWords = new Regex("([A-Z][a-z]+)");
+						var words = regexWords.Matches(wizardPlusParts[1]);
+
+						foreach (Match word in words)
+						{
+							var wizardPlus = wizardPlusParts[0] + word + plus;
+
+							if (!wizardPlusList.Contains(wizardPlus))
+								wizardPlusList.Add(wizardPlus);
+						}
+					}
+					else
+					{
+						var actions = actionName.Split(',');
+
+						foreach (var action in actions)
+						{
+							var wizardPlus = action + plus;
+
+							if (!wizardPlusList.Contains(wizardPlus))
+								wizardPlusList.Add(wizardPlus);
+						}
+					}
+
+				}
+			}
+
+			var issues = new List<Exception>();
+
+			foreach (var wizardPlus in wizardPlusList)
+			{
+				var errorMessage =
+					$"Could not find wizard for '{wizardPlus}'";
+
+				var phrase = $"Wizard_{wizardPlus}";
+
+				var translation = tryGetWizardPtBr(phrase);
+
+				if (translation?.Texts != null)
+					continue;
+
+				var translationEmpty = tryGetWizardPtBr(phrase + "Empty");
+				var translationFilled = tryGetWizardPtBr(phrase + "Filled");
+
+				if (
+					translationEmpty?.Texts != null
+					&& translationFilled?.Texts != null
+				)
+					continue;
+
+				issues.Add(new Exception(errorMessage));
+			}
+
+			if (issues.Any())
+			{
+				throw new AggregateException($"Problems: {issues.Count}", issues);
+			}
+		}
+
+		private IList<String> getViews(String viewsFolder)
+		{
+			var views = Directory
+				.GetFiles(viewsFolder, "*.cshtml")
+				.ToList();
+
+			foreach (var viewsSubfolder in Directory.GetDirectories(viewsFolder))
+			{
+				views.AddRange(getViews(viewsSubfolder));
+			}
+
+			return views;
 		}
 	}
 }

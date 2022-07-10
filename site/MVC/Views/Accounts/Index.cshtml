@@ -25,10 +25,14 @@
 	ViewBag.WizardButtonClass = hl["WizardButton"];
 	ViewBag.StopButtonClass = hl["StopButton"];
 
-	ViewBag.WizardPlus =
-		isUsingCategories ? "Category" :
-		anySchedule ? "Schedule" :
-			null;
+	if (isUsingCategories)
+	{
+		ViewBag.WizardPlus = "Category";
+	}
+	else if (anySchedule)
+	{
+		ViewBag.WizardPlus = "Schedule";
+	}
 
 	ViewBag.TitleClass = hl["TitleClass"];
 	ViewBag.SchedulesMenuClass = hl["SchedulesMenu"];
