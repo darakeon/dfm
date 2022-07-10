@@ -103,7 +103,6 @@ namespace DFM.MVC.Models
 
 		public String BackTo { get; set; }
 
-		public String BackFieldName =>
-			getName<ConfigsIndexModel>(m => m.BackTo);
+		public String BackFieldName => nameof(BackTo);
 	}
 }
