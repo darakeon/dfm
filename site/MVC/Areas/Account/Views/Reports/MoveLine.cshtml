@@ -12,6 +12,8 @@
 	var wizardHighlightDelete = Model.WizardHL?["MoveDelete"];
 	var wizardHighlightDate = Model.WizardHL?["MoveDate"];
 	var wizardHighlightCategory = Model.WizardHL?["MoveCategory"];
+	var wizardHighlightStatus = Model.WizardHL?["MoveStatus"];
+	var wizardHighlightCheck = Model.WizardHL?["MoveCheck"];
 }
 
 <tr class="row @foreseen sum-factor @wizardHighlightRow" data-parent="table" id="m@(move.Guid)">
@@ -83,7 +85,7 @@
 		{
 			var glyph = move.Checked ? "exclamation-sign text-success" : "question-sign text-danger";
 
-			<td class="text-center">
+			<td class="text-center @wizardHighlightStatus">
 				<span class="glyphicon glyphicon-@(glyph)"
 					title="@Context.Translate(move.Checked ? "Checked" : "Unchecked")">
 				</span>
@@ -117,7 +119,7 @@
 				? PrimalMoveNature.Out
 				: PrimalMoveNature.In;
 
-			<td class="col-sm-1 text-center">
+			<td class="col-sm-1 text-center @wizardHighlightCheck">
 				@await Html.PartialAsync(
 					"Extensions/MicroForm",
 					MicroForm.WithGlyph(Context, glyph, action)
