@@ -5,6 +5,11 @@ PROJECT=${PROJECTS}/keon/dfm
 DKDROID=docker exec -it dkdroid
 GRADLE=docker exec -it dkdroid gradle
 
+REBUILD=./gradle clean && ./gradle assembleRelease
+IMAGE=darakeon/dfm-app
+DOCKERFILE=../publish/dfm-app.dockerfile
+
+
 start:
 	@docker run -d --rm \
 		-v ${PWD}:/var/android \
@@ -75,3 +80,12 @@ ci-configure:
 	@${GRADLE} configure
 
 ci: ci-keystore ci-androidDeps ci-robolectric ci-build ci-configure
+
+docker-build: base
+	@docker build -t ${IMAGE} -f ${DOCKERFILE} .
+
+gradle-build: base
+	@docker run -it --rm -v "${PWD}":/var/build ${IMAGE} sh -c "${REBUILD}"
+
+base:
+	@set -xeu pipefail
