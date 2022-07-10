@@ -266,6 +266,42 @@
 			"Let's go again to Settings > Main Options.",
 			null
 		],
+		"Wizard_ConfigsIndexMoveGet": [
+			"As said before, this configuration makes the system send emails to you.",
+			"It happens when a move is created, edited or deleted.",
+			"This does not change any aspect of the web system.",
+			"But the fourth one does: check/uncheck the moves.",
+			"It was created to make it easier to compare the accounts with external extracts.",
+			"Activate this option and save the configuration.",
+			null
+		],
+		"Wizard_ConfigsIndexMovePost": [
+			"Now go to accounts.",
+			null
+		],
+		"Wizard_AccountsIndexMoveCheck": [
+			"Open one of the accounts reports.",
+			null
+		],
+		"Wizard_ReportsMonthMoveCheckCreate": [
+			"For this part we need at a move to demonstrate.",
+			"You can either create a new move...",
+			"...or go to a month that has moves.",
+			null
+		],
+		"Wizard_MovesCreateCheck": [
+			"Create a move to see the checking move part.",
+			null
+		],
+		"Wizard_ReportsMonthMoveCheckEdit": [
+			"Now there is one more symbol in the move.",
+			"The idea is to check with an external extract.",
+			"For example to compare with your bank extract...",
+			"...to check if you've really annotated all the moves here.",
+			"This way you can mark the move as checked.",
+			"Now let's check what we have in Settings > Email.",
+			null
+		],
 		"Wizard_ConfigsEmail": [
 			"Here you can change your email address at the system.",
 			"You will need to know your current password to change the email.",
@@ -621,6 +657,42 @@
 			"Agora a imagem de saúde foi alterada.",
 			"Isto é interessante para ajudar a acompanhar nossos limites financeiros.",
 			"Vamos de novo às Configurações > Opções Gerais.",
+			null
+		],
+		"Wizard_ConfigsIndexMoveGet": [
+			"Como dito antes, esta configuração faz o sistema te enviar e-mails.",
+			"Eles são enviados quando uma movimentação é criada, editada ou excluída.",
+			"Isso não muda qualquer aspecto aqui no site.",
+			"Mas a quarta opção muda: verificar movimentações.",
+			"Isto foi criado para tornar mais fácil a comparação das contas com extratos externos.",
+			"Ative esta opção de salve as configurações.",
+			null
+		],
+		"Wizard_ConfigsIndexMovePost": [
+			"Agora vá até as contas.",
+			null
+		],
+		"Wizard_AccountsIndexMoveCheck": [
+			"Abra o relatório de uma das contas.",
+			null
+		],
+		"Wizard_ReportsMonthMoveCheckCreate": [
+			"Para estar parte precisamos de uma movimentação para seguir.",
+			"Você pode ou criar uma movimentação...",
+			"...ou ir para um mês que tenha movimentações.",
+			null
+		],
+		"Wizard_MovesCreateCheck": [
+			"Crie uma movimentação para poder ver a parte de verificação.",
+			null
+		],
+		"Wizard_ReportsMonthMoveCheckEdit": [
+			"Agora aparece um sinal a mais na movimentação.",
+			"A ideia é poder conferir com um extrato externo.",
+			"Por exemplo comparar com o extrato do banco...",
+			"...para ver se anotou de fato todas as movimentações aqui.",
+			"Assim você pode marcar que a movimentação foi conferida.",
+			"Agora vamos olhar o que temos em Configurações > E-mail.",
 			null
 		],
 		"Wizard_ConfigsEmail": [
