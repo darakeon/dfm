@@ -6,25 +6,54 @@
 	ViewBag.FormSizeSm = 8;
 	ViewBag.FormSizeLg = 6;
 
-	var hl = new WizardHL(Model.IsUsingCategories)
-		.AddBox("Language", null, 0)
-		.AddBox("Timezone", null, 1)
-		.AddBox("Features", null, 2)
-		.AddBox("Categories", null, 3)
-		.AddBox("AccountSigns", null, 4)
-		.AddBox("MoveEmail", null, 5)
-		.AddBox("MoveCheck", null, 6)
-		.AddBox("Wizard", null, 7)
-		.AddBox("EnableCategories", null, 8)
-		.AddBox("Save", null, 8)
-		.AddBox("CategoriesMenu", 0, null);
+	var postUsingCategories =
+		Context.Request.Query["wizard"] == "post"
+			&& Model.UseCategoriesCheck;
+
+	var getAccountSigns = 
+		Context.Request.Query["wizard"] != "post"
+			&& Model.UseCategoriesCheck;
+
+	var postAccountSigns =
+		Context.Request.Query["wizard"] == "post"
+			&& Model.UseAccountsSignsCheck;
+
+	var hl = new WizardHL(postAccountSigns, getAccountSigns, postUsingCategories)
+		.AddBox("Language", null, null, null, 0)
+		.AddBox("Timezone", null, null, null, 1)
+		.AddBox("Features", null, null, null, 2)
+		.AddBox("Categories", null, null, null, 3)
+		.AddBox("AccountSigns", null, 0, null, 4)
+		.AddBox("MoveEmail", null, null, null, 5)
+		.AddBox("MoveCheck", null, null, null, 6)
+		.AddBox("Wizard", null, null, null, 7)
+		.AddBox("EnableCategories", null, null, null, 8)
+		.AddBox("Save", null, 1, null, 8)
+		.AddBox("CategoriesMenu", null, null, 0, null)
+		.AddBox("AccountsMenu", 0, null, null, null);
 
 	ViewBag.CategoriesMenuClass = hl["CategoriesMenu"];
+	ViewBag.AccountsMenuClass = hl["AccountsMenu"];
 
-	if (Model.IsUsingCategories)
+	if (postAccountSigns)
+	{
+		ViewBag.WizardPlus = "AccountPost";
+	}
+	else if (getAccountSigns)
+	{
+		ViewBag.WizardPlus = "AccountGet";
+	}
+	else if (postUsingCategories)
 	{
 		ViewBag.WizardPlus = "Category";
 	}
+}
+
+@if (Model.ShowWizard)
+{
+	<input type="hidden"
+	       name="@Model.BackFieldName"
+	       value="@Context.Request.Path?wizard=post" />
 }
 
 <div class="form-group @hl["Language"]">
