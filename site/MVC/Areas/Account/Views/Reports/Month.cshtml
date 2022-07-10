@@ -41,16 +41,21 @@
 	ViewBag.CategoriesMenuClass = hl["CategoriesMenuClass"];
 	ViewBag.TitleClass = hl["TitleClass"];
 
-	var catSuffix = hasMoves 
-		? hasCategory
-			? "Done"
-			: "Edit"
-		: "Create";
+	if (isUsingCategories)
+	{
+		if (!hasMoves)
+			ViewBag.WizardPlus = "CategoryCreate";
 
-	ViewBag.WizardPlus =
-		isUsingCategories ? "Category" + catSuffix:
-		hasForeseenMoves ? "Schedule" :
-			null;
+		else if (hasCategory)
+			ViewBag.WizardPlus = "CategoryDone";
+
+		else
+			ViewBag.WizardPlus = "CategoryEdit";
+	}
+	else if (hasForeseenMoves)
+	{
+		ViewBag.WizardPlus = "Schedule";
+	}
 
 	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
 
