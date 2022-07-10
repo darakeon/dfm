@@ -217,7 +217,53 @@
 			"Below you can see two charts: one for money getting out...",
 			"... and another for money getting in, according to categories used in moves.",
 			"It is possible to change the time period seen using the navigation.",
-			"Now let's check what we have in Settings > Email.",
+			"Let's go back to Settings > Main Options",
+			null
+		],
+		"Wizard_ConfigsIndexAccountGet": [
+			"This time enable the account signs option...",
+			"...and save to test.",
+			null
+		],
+		"Wizard_ConfigsIndexAccountPost": [
+			"Go back to accounts screen",
+			null
+		],
+		"Wizard_AccountsIndexSign": [
+			"Now there is a health indicator at the accounts.",
+			"Click at the button to create a new account.",
+			null
+		],
+		"Wizard_AccountsCreateSign": [
+			"There is a new part at the screen.",
+			"You can enable signs for the accounts.",
+			"Doing this you need to define two values.",
+			"Over which value the account should go on alert...",
+			"...and which value turns the account health dangerous.",
+			"If the account has no sign this symbols show up.",
+			"In case it had sign but the value is over \"Watch out\", this will be the symbol.",
+			"Below \"Watch out\" but above \"Danger\", you will have this symbol.",
+			"Below \"Danger\", this is what you will see.",
+			"Create an account activating the signing and give values to it.",
+			null
+		],
+		"Wizard_AccountsEditSign": [
+			"There is a new part at the screen.",
+			"You can enable signs for the accounts.",
+			"Doing this you need to define two values.",
+			"Over which value the account should go on alert...",
+			"...and which value turns the account health dangerous.",
+			"If the account has no sign this symbols show up.",
+			"In case it had sign but the value is over \"Watch out\", this will be the symbol.",
+			"Below \"Watch out\" but above \"Danger\", you will have this symbol.",
+			"Below \"Danger\", this is what you will see.",
+			"Edit the account activating the signing and give values to it.",
+			null
+		],
+		"Wizard_AccountsIndexSignSet": [
+			"Now the health symbol was changed.",
+			"This is interesting to help follow up your financial limites.",
+			"Let's go again to Settings > Main Options.",
 			null
 		],
 		"Wizard_ConfigsEmail": [
@@ -528,7 +574,53 @@
 			"Abaixo você vê dois gráficos, um de saídas de dinheiro...",
 			"... e outro de entradas, de acordo com as categorias usadas nas movimentações.",
 			"É possível mudar o período de tempo sendo visto na navegação.",
-			"Agora vamos olhar o que temos em Configurações > E-mail.",
+			"Vamos voltar a Configurações > Opções Gerais",
+			null
+		],
+		"Wizard_ConfigsIndexAccountGet": [
+			"Habilite desta vez a opção de sinalização nas contas...",
+			"...e salve para testar.",
+			null
+		],
+		"Wizard_ConfigsIndexAccountPost": [
+			"Volte para a tela de contas.",
+			null
+		],
+		"Wizard_AccountsIndexSign": [
+			"Agora existe um indicador de saúde nas contas.",
+			"Clique no botão para criar uma nova conta.",
+			null
+		],
+		"Wizard_AccountsCreateSign": [
+			"Apareceu agora uma nova parte da tela.",
+			"Podemos habilitar aqui uma sinalização das contas.",
+			"Ao fazer isso, precisamos definir dois valores.",
+			"Abaixo de que valor da conta você deve começar a entrar em alerta...",
+			"...e qual valor torna a saúde da conta preocupante.",
+			"Se a conta não tiver sinalização, esse símbolo aparece nela.",
+			"Caso tenha e o valor esteja acima do valor de \"Atenção\", será este outro símbolo.",
+			"Abaixo do \"Atenção\" mas acima do \"Cuidado\", teremos este terceiro símbolo.",
+			"Abaixo do valor de \"Cuidado\", o símbolo será este quarto.",
+			"Crie a conta ativando a sinalização e dando valores a ela.",
+			null
+		],
+		"Wizard_AccountsEditSign": [
+			"Apareceu agora uma nova parte da tela.",
+			"Podemos habilitar aqui uma sinalização das contas.",
+			"Ao fazer isso, precisamos definir dois valores.",
+			"Abaixo de que valor da conta você deve começar a entrar em alerta...",
+			"...e qual valor torna a saúde da conta preocupante.",
+			"Se a conta não tiver sinalização, esse símbolo aparece nela.",
+			"Caso tenha e o valor esteja acima do valor de \"Atenção\", será este outro símbolo.",
+			"Abaixo do \"Atenção\" mas acima do \"Cuidado\", teremos este terceiro símbolo.",
+			"Abaixo do valor de \"Cuidado\", o símbolo será este quarto.",
+			"Edite a conta ativando a sinalização e dando valores a ela.",
+			null
+		],
+		"Wizard_AccountsIndexSignSet": [
+			"Agora a imagem de saúde foi alterada.",
+			"Isto é interessante para ajudar a acompanhar nossos limites financeiros.",
+			"Vamos de novo às Configurações > Opções Gerais.",
 			null
 		],
 		"Wizard_ConfigsEmail": [

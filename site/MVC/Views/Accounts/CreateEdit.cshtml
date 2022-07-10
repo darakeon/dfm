@@ -12,13 +12,29 @@
 
 	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
 
-	var hl = new WizardHL(isEdit)
-		.AddBox("Name", null, 1)
-		.AddBox("Button", null, 2)
-		.AddBox("Accounts", 3, null)
+	var isAccountsSign = Model.IsUsingAccountsSigns;
+
+	var hl = new WizardHL(isAccountsSign, isEdit)
+		.AddBox("Name", null, null, 1)
+		.AddBox("Button", null, null, 2)
+		.AddBox("Accounts", null, 3, null)
+		.AddBox("SignsBlock", 0, null, null)
+		.AddBox("SignEnable", 1, null, null)
+		.AddBox("SignAttentionValue", 3, null, null)
+		.AddBox("SignDangerValue", 4, null, null)
+		.AddBox("SignNone", 5, null, null)
+		.AddBox("SignHealthy", 6, null, null)
+		.AddBox("SignAttention", 7, null, null)
+		.AddBox("SignDanger", 8, null, null)
 		;
 
 	ViewBag.AccountsMenuClass = hl["Accounts"];
+	ViewBag.TitleClass = "wizard-scroll-9";
+
+	if (isAccountsSign)
+	{
+		ViewBag.WizardPlus = "Sign";
+	}
 }
 
 @section Scripts {
@@ -37,32 +53,85 @@
 
 @if (Model.IsUsingAccountsSigns)
 {
-	<div class="form-group text-center">
-		@Html.CheckBoxFor(m => m.HasLimit, new { @class = "check-toggle", data_to_enable = ".limit" })
-		@Html.LabelFor(m => m.HasLimit, Context.Translate("AccountHasLimit"), new { @class = "control-label" })
-		<span
-			class="glyphicon glyphicon-info-sign"
-			title="@Context.Translate("LimitExplanation")"
-		></span>
+	<div class="@hl["SignsBlock"]">
 
-		<br />
-		@Context.Translate("GreenLimit") =
-		(@await Html.PartialAsync("AccountSign", AccountSign.Green))
-		//
-		@Context.Translate("NoneLimit") =
-		(@await Html.PartialAsync("AccountSign", AccountSign.None))
-	</div>
+		<div class="form-group text-center">
+			@Html.CheckBoxFor(m => m.HasLimit, 
+				new
+				{
+					@class = "check-toggle " + hl["SignEnable"], 
+					data_to_enable = ".limit"
+				}
+			)
+		
+			@Html.LabelFor(m => m.HasLimit,
+				Context.Translate("AccountHasLimit"),
+				new { @class = "control-label" }
+			)
+		
+			<span
+				class="glyphicon glyphicon-info-sign"
+				title="@Context.Translate("LimitExplanation")"
+			></span>
 
-	<div class="form-group">
-		@Html.LabelFor(m => m.YellowLimit, Context.Translate("YellowLimit"), new { @class = "control-label" })
-		(@await Html.PartialAsync("AccountSign", AccountSign.Yellow))
-		@Html.TextBoxFor(m => m.YellowLimit, new { @class = "form-control limit number", data_allow_negative = 1, data_allow_zero = 1 })
-	</div>
+			<br />
+			
+			@Context.Translate("GreenLimit") =
+			<span class="@hl["SignHealthy"]">
+				(@await Html.PartialAsync("AccountSign", AccountSign.Green))
+			</span>
+			
+			//
 
-	<div class="form-group">
-		@Html.LabelFor(m => m.RedLimit, Context.Translate("RedLimit"), new { @class = "control-label" })
-		(@await Html.PartialAsync("AccountSign", AccountSign.Red))
-		@Html.TextBoxFor(m => m.RedLimit, new { @class = "form-control limit number", data_allow_negative = 1, data_allow_zero = 1 })
+			@Context.Translate("NoneLimit") =
+			<span class="@hl["SignNone"]">
+				(@await Html.PartialAsync("AccountSign", AccountSign.None))
+			</span>
+		</div>
+
+		<div class="form-group @hl["SignAttentionValue"]">
+			@Html.LabelFor(
+				m => m.YellowLimit, 
+				Context.Translate("YellowLimit"), 
+				new { @class = "control-label" }
+			)
+
+			<span class="@hl["SignAttention"]">
+				(@await Html.PartialAsync("AccountSign", AccountSign.Yellow))
+			</span>
+			
+			@Html.TextBoxFor(
+				m => m.YellowLimit, 
+				new
+				{
+					@class = "form-control limit number", 
+					data_allow_negative = 1, 
+					data_allow_zero = 1
+				}
+			)
+		</div>
+
+		<div class="form-group @hl["SignDangerValue"]">
+			@Html.LabelFor(
+				m => m.RedLimit, 
+				Context.Translate("RedLimit"), 
+				new { @class = "control-label" }
+			)
+			
+			<span class="@hl["SignDanger"]">
+				(@await Html.PartialAsync("AccountSign", AccountSign.Red))
+			</span>
+			
+			@Html.TextBoxFor(
+				m => m.RedLimit, 
+				new
+				{
+					@class = "form-control limit number", 
+					data_allow_negative = 1, 
+					data_allow_zero = 1
+				}
+			)
+		</div>
 	</div>
 }
 
