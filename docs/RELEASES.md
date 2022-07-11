@@ -23,7 +23,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Hide tips while in wizard
 - [x] `220709>220709` Focus to input when open search
 - [x] `220704>220704` Improve categories chart accessibility for ADHD
-- [ ] `211228>......` Make wizard interactive
+- [x] `211228>220710` Make wizard interactive
 
 ## <a name="7.4.0.6"></a>7.4.0.6 :ant: <sup>`1`</sup>
 - [x] `220623>220624` Fix robot mysql failure

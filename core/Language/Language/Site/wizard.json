@@ -121,7 +121,7 @@
 			null
 		],
 		"Wizard_SchedulesIndexFilled": [
-			"Below are the Schedules made in all the Account.",
+			"Below are the Schedules made in all the Accounts.",
 			"It is possible to check the number of times was scheduled to run...",
 			"... as well as how many times it was run and if some move was deleted.",
 			"Delete the Schedule so it won't create Moves anymore.",
