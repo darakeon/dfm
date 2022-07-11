@@ -19,7 +19,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Remove social media from contact modal
 - [ ] Add footer link warning to terms
 - [ ] Add clause about rights of image to terms
-- [ ] Add clause about no invalidation of terms because of one clause or one exception made
+- [x] `220711>220711` Add clause about no invalidation of terms because of one clause or one exception made
 - [x] `220711>220711` Hide tips while in wizard
 - [x] `220709>220709` Focus to input when open search
 - [x] `220704>220704` Improve categories chart accessibility for ADHD
