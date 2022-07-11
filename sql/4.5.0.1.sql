@@ -1,7 +1,7 @@
 insert into contract
 	(BeginDate, Version)
-    values
-    (now(), '4.5.0.1');
+	values
+	(now(), '4.5.0.1');
 
 insert into terms
 	(Language, Contract_ID, Json)

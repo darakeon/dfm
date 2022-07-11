@@ -3,8 +3,8 @@ insert into contract (beginDate, version)
 
 select @contract_id := id
 	from contract
-    order by id desc
-    limit 1;
+	order by id desc
+	limit 1;
 
 set @PT = replace(replace('
 {
@@ -201,7 +201,7 @@ insert into terms
 		(Json, Language, Contract_ID)
 	values
 		(@PT, 'pt-BR', @contract_id),
-        (@EN, 'en-US', @contract_id);
+		(@EN, 'en-US', @contract_id);
 
 -- migrations
 

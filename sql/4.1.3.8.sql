@@ -1,7 +1,7 @@
 insert into contract
 	(BeginDate, Version)
-    values
-    (now(), '4.1.3.8');
+	values
+	(now(), '4.1.3.8');
 
 alter table terms
 	modify column Json varchar(5000) not null,

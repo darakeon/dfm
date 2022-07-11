@@ -25,7 +25,7 @@ update control
 		+ round(rand(), 0) * pow(2,6)
 		+ round(rand(), 0) * pow(2,7)
 		+ round(rand(), 0) * pow(2,8)
-    where MiscDna is null;
+	where MiscDna is null;
 set sql_safe_updates = 1;
 
 alter table control

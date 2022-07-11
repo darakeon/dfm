@@ -6,13 +6,13 @@ alter table move
 
 alter table move
 	add column In_ID bigint null,
-    add constraint FK_Move_In
+	add constraint FK_Move_In
 		foreign key (In_ID)
-        references account(ID),
+		references account(ID),
 	add column Out_ID bigint null,
-    add constraint FK_Move_Out
+	add constraint FK_Move_Out
 		foreign key (Out_ID)
-        references account(ID);
+		references account(ID);
 
 update move x
 	inner join month m
@@ -20,7 +20,7 @@ update move x
 	inner join year y
 		on m.year_id = y.id
 	set x.in_id = y.account_ID
-    where x.id <> 0;
+	where x.id <> 0;
 
 update move x
 	inner join month m
@@ -28,7 +28,7 @@ update move x
 	inner join year y
 		on m.year_id = y.id
 	set x.out_id = y.account_ID
-    where x.id <> 0;
+	where x.id <> 0;
 
 alter table move
 	add column Day smallint not null,
@@ -48,9 +48,9 @@ alter table summary
 
 alter table summary
 	add column Account_ID bigint null,
-    add constraint FK_Summary_Account
+	add constraint FK_Summary_Account
 		foreign key (Account_ID)
-        references account(ID),
+		references account(ID),
 	add column Time int not null;
 
 update summary s
@@ -78,16 +78,16 @@ alter table summary
 
 update contract
 	set version = '3.0.0.0'
-    where version = '003000000000';
-    
+	where version = '003000000000';
+
 update contract
 	set version = '4.0.0.0'
-    where version = '004000000000';
+	where version = '004000000000';
 
 insert into contract
 	(BeginDate, Version)
-    values
-    (now(), '4.1.3.6');
+	values
+	(now(), '4.1.3.6');
 
 insert into terms
 	(Language, Contract_ID, Json)

@@ -13,8 +13,8 @@ update move m
 						and b.ID < m.ID
 			group by s.ID, m.ID
 			order by s.ID, m.ID
-    ) p
+	) p
 		on m.id = p.id
 	set m.position = p.position
-    where m.position is null;
+	where m.position is null;
 set sql_safe_updates = 1;

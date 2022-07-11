@@ -8,7 +8,7 @@ update detail
 		' "amount": ', amount, ',',
 		' "value_cents": ', valueCents,
 	'}')
-    where id <> 0
+	where id <> 0
 		and json is null;
 
 alter table move
@@ -23,7 +23,7 @@ update move
 			, concat('[', json, ']')
 			, concat(left(details, length(details) - 1), ',', json, ']')
 		)
-    where move.id <> 0
+	where move.id <> 0
 		and (
 			details is null
 			or details not like concat('%', json, '%')
@@ -46,7 +46,7 @@ update schedule
 			, concat('[', json, ']')
 			, concat(left(details, length(details) - 1), ',', json, ']')
 		)
-    where schedule.id <> 0
+	where schedule.id <> 0
 		and (
 			details is null
 			or details not like concat('%', json, '%')
