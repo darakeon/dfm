@@ -2,7 +2,7 @@ create temporary table initial_moves
 	select in_id, out_id,
 		cast(
 			concat(year, "-", month, "-", day)
-            as Date
+		    as Date
 		) as date
 	from move;
 

@@ -36,8 +36,8 @@ insert into contract (beginDate, version)
 
 select @contract_id := id
 	from contract
-    order by id desc
-    limit 1;
+	order by id desc
+	limit 1;
 
 set @PT = replace(replace('
 {
@@ -201,21 +201,21 @@ insert into terms
 		(Json, Language, Contract_ID)
 	values
 		(@PT, 'pt-BR', @contract_id),
-        (@EN, 'en-US', @contract_id);
+		(@EN, 'en-US', @contract_id);
 
 create table control (
 	ID bigint auto_increment not null,
-    Creation datetime not null,
-    Active bit not null,
-    IsAdm bit not null,
-    IsRobot bit not null,
-    WrongLogin int not null,
-    RemovalWarningSent int not null,
-    RobotCheck datetime not null,
-    TempUser_ID int not null,
+	Creation datetime not null,
+	Active bit not null,
+	IsAdm bit not null,
+	IsRobot bit not null,
+	WrongLogin int not null,
+	RemovalWarningSent int not null,
+	RobotCheck datetime not null,
+	TempUser_ID int not null,
 	LastAccess datetime null,
 	ProcessingDeletion bit not null,
-    primary key (ID)
+	primary key (ID)
 );
 
 alter table user
@@ -260,7 +260,7 @@ insert into control (
 
 alter table user
 	add Control_ID bigint,
-    add foreign key (Control_ID)
+	add foreign key (Control_ID)
 		references control (ID);
 
 set sql_safe_updates = 0;
@@ -276,10 +276,10 @@ alter table user
 set foreign_key_checks = 1;
 
 alter table user
-    drop Creation,
-    drop Active,
-    drop IsAdm,
-    drop WrongLogin;
+	drop Creation,
+	drop Active,
+	drop IsAdm,
+	drop WrongLogin;
 
 alter table control
 	drop TempUser_ID;
@@ -307,8 +307,8 @@ set sql_safe_updates = 1;
 alter table user
 	modify column Username varchar(64) not null,
 	modify column Domain varchar(255) not null,
-    add unique UK_Email (Username, Domain),
-    drop column Email;
+	add unique UK_Email (Username, Domain),
+	drop column Email;
 
 alter table user
 	add unique UK_Control (Control_ID);

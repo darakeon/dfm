@@ -3,7 +3,7 @@ create table terms (
 	Json varchar(2500),
 	Language varchar(5),
 	Contract_ID bigint not null,
-    constraint PK_Terms
+	constraint PK_Terms
 		primary key (ID),
 	constraint FK_Terms_Contract
 		foreign key (Contract_ID)
