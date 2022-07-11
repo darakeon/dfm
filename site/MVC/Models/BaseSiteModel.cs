@@ -59,6 +59,7 @@ namespace DFM.MVC.Models
 			current.IsAuthenticated
 				&& current.IsVerified
 				&& IsLastContractAccepted
+				&& !ShowWizard
 			? service.Report.ShowTip()
 			: null;
 
