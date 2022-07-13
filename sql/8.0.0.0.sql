@@ -128,6 +128,9 @@ set @PT = replace(replace('
 				{ "Text": "Uma cláusula ser invalidada;" },
 				{ "Text": "Qualquer exceção a qualquer caso que ocorra." }
 			]
+		},
+		{
+			"Text": "Estes termos podem ser encontrados a qualquer momento em que o site esteja disponível; o link está no rodapé da página."
 		}
 	]
 }
@@ -243,6 +246,9 @@ set @EN = replace(replace('
 				{ "Text": "One clause being invalid;" },
 				{ "Text": "Any exception made in any case." }
 			]
+		},
+		{
+			"Text": "These terms can be found whenever the website is available; the link is at the footer of the page."
 		}
 	]
 }
