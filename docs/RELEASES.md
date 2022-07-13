@@ -16,7 +16,7 @@ This is the list of project releases, past and current. To see tasks that are st
 
 ## <a name="8.0.0.0"></a>8.0.0.0 :dragon: <sup>`9`</sup>
 - [ ] Change 'Configs' to 'Settings' in the whole system
-- [ ] Remove social media from contact modal
+- [x] `220713>220713` Remove social media from contact modal
 - [x] `220713>220713` Add footer link warning to terms
 - [x] `220711>220711` Add clause about rights of image to terms
 - [x] `220711>220711` Add clause about no invalidation of terms because of one clause or one exception made
