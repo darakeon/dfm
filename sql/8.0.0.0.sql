@@ -102,6 +102,20 @@ set @PT = replace(replace('
 			"Text": "O Sistema, considerando Site e Aplicativo de celular, é mantido como aqui apresentado, e pode ficar indisponível. Não há garantias de o Sistema estar online, ou de permanecer online, não cabendo ônus a quem o mantém em caso de indisponibilidade, seja esta temporária ou permanente;",
 		},
 		{
+			"Text": "As imagens do site possuem seus direitos resguardados:",
+			"Items": [
+				{
+					"Text": "A imagem logo do site - porquinho - e a imagem de segurança tiveram sua autoria registrada na Biblioteca Nacional Brasileira;",
+					"Items": [
+						{
+							"Text": "Seu uso só pode ser feito mediante autorização através do e-mail {{support_address}}.",
+						}
+					]
+				},
+				{ "Text": "O robô Android é modificado a partir de trabalhos criados e compartilhados pela Google e usado de acordo com os termos descritos na Licença de atribuição Creative Commons 3.0." }
+			],
+		},
+		{
 			"Text": "Estes termos podem ser alterados a qualquer momento:",
 			"Items": [
 				{ "Text": "Em caso de alteração, a Pessoa precisa aceitar os novos termos para continuar usando o Sistema;" },
@@ -201,6 +215,20 @@ set @EN = replace(replace('
 		},
 		{
 			"Text": "The System (considering website and mobile app) is kept as here presented and can be unavailable. There are no guarantees of the System being online or to stay online, and there will be no onus for the System maintainer in case of unavailability, this one being temporary or permanent;",
+		},
+		{
+			"Text": "Site images have the rights protected as follows:",
+			"Items": [
+				{
+					"Text": "The logo image - the pig - and the safety image had their authorship registered at Biblioteca Nacional (National Library) in Brazil;",
+					"Items": [
+						{
+							"Text": "They only can be used with authorization via the email {{support_address}}.",
+						}
+					]
+				},
+				{ "Text": "The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License." }
+			],
 		},
 		{
 			"Text": "These terms can be changed any time in the future:",
