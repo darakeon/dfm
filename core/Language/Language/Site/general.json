@@ -123,8 +123,6 @@
 
 		"Contact_Title": "Contact",
 		"Contact_Email": "E-mail: {0}",
-		"Contact_Twitter": "Twitter: {0} (posts are in portuguese)",
-		"Contact_Facebook": "Facebook: {0} (posts are in portuguese)",
 		"Contact_Project": "About Project",
 		"Contact_Releases": "Things done and doing",
 		"Contact_TODO": "What we see for future",
@@ -288,8 +286,6 @@
 
 		"Contact_Title": "Formas de contato",
 		"Contact_Email": "E-mail: {0}",
-		"Contact_Twitter": "Twitter: {0}",
-		"Contact_Facebook": "Facebook: {0}",
 		"Contact_Project": "Projeto",
 		"Contact_Releases": "Itens terminados e em desenvolvimento",
 		"Contact_TODO": "O que temos para o futuro",
