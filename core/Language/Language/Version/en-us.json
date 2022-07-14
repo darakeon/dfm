@@ -1,4 +1,13 @@
 {
+	"8.0.0.0": [
+		"Remove social media from contact modal",
+		"Add to terms footer link warning",
+		"Add to terms clause about site images",
+		"Add to terms clause about no invalidation of terms",
+		"Improve search box",
+		"Improve Categories chart accessibility",
+		"Improve site wizard"
+	],
 	"7.4.0.6": [
 		"Fix scheduler running"
 	],
