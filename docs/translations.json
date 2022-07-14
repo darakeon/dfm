@@ -10,6 +10,15 @@
 		"Fix Node vulnerable dependencies": "Upgrade internal tools used in site",
 		"Add service interruption clause": "Update contract",
 		"Fix robot mysql failure": "Fix scheduler running",
+		"Change 'Configs' to 'Settings' in the whole system": "-",
+		"Remove social media from contact modal": "Remove social media from contact modal",
+		"Add footer link warning to terms": "Add to terms footer link warning",
+		"Add clause about rights of image to terms": "Add to terms clause about site images",
+		"Add clause about no invalidation of terms because of one clause or one exception made": "Add to terms clause about no invalidation of terms",
+		"Hide tips while in wizard": "-",
+		"Focus to input when open search": "Improve search box",
+		"Improve categories chart accessibility for ADHD": "Improve Categories chart accessibility",
+		"Make wizard interactive": "Improve site wizard",
 		"": null
 	},
 	"pt-br": {
@@ -23,6 +32,15 @@
 		"Fix Node vulnerable dependencies": "Atualizadas ferramentas internas usadas no site",
 		"Add service interruption clause": "Atualizado de contrato",
 		"Fix robot mysql failure": "Corrigido problema para rodar o agendador",
+		"Change 'Configs' to 'Settings' in the whole system": "-",
+		"Remove social media from contact modal": "Removidas medias sociais das formas de contato",
+		"Add footer link warning to terms": "Adicionado aos termos aviso sobre link dos termos no rodapé",
+		"Add clause about rights of image to terms": "Adicionado aos termos cláusula sobre imagens do site",
+		"Add clause about no invalidation of terms because of one clause or one exception made": "Adicionado aos termos cláusula de não anulação",
+		"Hide tips while in wizard": "-",
+		"Focus to input when open search": "Melhorias na caixa de busca",
+		"Improve categories chart accessibility for ADHD": "Melhorias de acessibilidade no gráfico de categorias",
+		"Make wizard interactive": "Melhorias no tutorial",
 		"": null
 	}
 }
