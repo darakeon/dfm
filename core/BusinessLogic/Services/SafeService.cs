@@ -574,8 +574,8 @@ namespace DFM.BusinessLogic.Services
 			{
 				var user = GetCurrent();
 
-				var validPassword = password != null
-				                    && Crypt.Check(password, user.Password);
+				var validPassword =
+					repos.User.VerifyPassword(user, password);
 
 				if (!validPassword)
 					throw Error.WrongPassword.Throw();
@@ -592,8 +592,8 @@ namespace DFM.BusinessLogic.Services
 			{
 				var user = GetCurrent();
 
-				var validPassword = password != null
-					&& Crypt.Check(password, user.Password);
+				var validPassword =
+					repos.User.VerifyPassword(user, password);
 
 				if (!validPassword)
 					throw Error.WrongPassword.Throw();

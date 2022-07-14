@@ -28,7 +28,7 @@ namespace DFM.BusinessLogic.Repositories
 			if (user == null)
 				throw Error.InvalidUser.Throw();
 
-			var validPass = Crypt.Check(password, user.Password);
+			var validPass = VerifyPassword(user, password);
 			var validCode = user.TFAPassword && IsValid(user.TFASecret, password);
 
 			if (!validPass && !validCode)
