@@ -29,7 +29,7 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 			mapping.Map(u => u.TFASecret)
 				.Nullable();
 
-			mapping.References(u => u.Config)
+			mapping.References(u => u.Settings)
 				.Cascade.All();
 
 			mapping.References(u => u.Control)

@@ -96,7 +96,7 @@ namespace DFM.MVC.Helpers.Global
 				var language = userLanguage ?? browserLanguage();
 
 				if (language == null || !PlainText.AcceptLanguage(language))
-					language = Defaults.ConfigLanguage;
+					language = Defaults.SettingsLanguage;
 
 				return language;
 			}

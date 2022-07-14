@@ -262,3 +262,12 @@ insert into terms
 	values
 		(@PT, 'pt-BR', @contract_id),
 		(@EN, 'en-US', @contract_id);
+
+rename table config to settings;
+
+alter table user
+	rename column Config_ID to Settings_ID,
+    drop foreign key FK_User_Config,
+    add constraint FK_User_Settings
+		foreign key (Settings_ID)
+        references settings(ID);

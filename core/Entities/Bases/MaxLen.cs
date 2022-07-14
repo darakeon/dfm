@@ -18,7 +18,7 @@ namespace DFM.Entities.Bases
 		public const Int16 UserEmailDomain = 255;
 		public const Int16 UserEmail = UserEmailUsername + 1 + UserEmailDomain;
 
-		public const Int16 ConfigLanguage = 5;
+		public const Int16 SettingsLanguage = 5;
 
 	}
 }

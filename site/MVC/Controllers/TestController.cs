@@ -56,7 +56,7 @@ namespace DFM.MVC.Controllers
 		{
 			return new()
 			{
-				Config = new Config
+				Settings = new Settings
 				{
 					Language = language,
 					Theme = theme,

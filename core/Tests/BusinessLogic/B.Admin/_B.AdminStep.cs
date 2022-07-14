@@ -872,13 +872,13 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 
 		#endregion Category
 
-		#region UpdateConfig
+		#region UpdateSettings
 
 		[Given(@"I (dis|en)able Categories use")]
 		public void GivenIDisableCategoriesUse(Boolean enable)
 		{
-			var mainConfig = new ConfigInfo { UseCategories = enable };
-			service.Admin.UpdateConfig(mainConfig);
+			var mainSettings = new SettingsInfo { UseCategories = enable };
+			service.Admin.UpdateSettings(mainSettings);
 		}
 
 		[When(@"I try to (dis|en)able Categories use")]
@@ -886,8 +886,8 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		{
 			try
 			{
-				var mainConfig = new ConfigInfo { UseCategories = enable };
-				service.Admin.UpdateConfig(mainConfig);
+				var mainSettings = new SettingsInfo { UseCategories = enable };
+				service.Admin.UpdateSettings(mainSettings);
 			}
 			catch (CoreError e)
 			{
@@ -898,8 +898,8 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		[Given(@"I (dis|en)able move check")]
 		public void GivenIDisableMoveCheck(Boolean enable)
 		{
-			var mainConfig = new ConfigInfo { MoveCheck = enable };
-			service.Admin.UpdateConfig(mainConfig);
+			var mainSettings = new SettingsInfo { MoveCheck = enable };
+			service.Admin.UpdateSettings(mainSettings);
 		}
 
 		[When(@"I try to (dis|en)able move check")]
@@ -907,8 +907,8 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		{
 			try
 			{
-				var mainConfig = new ConfigInfo { MoveCheck = enable };
-				service.Admin.UpdateConfig(mainConfig);
+				var mainSettings = new SettingsInfo { MoveCheck = enable };
+				service.Admin.UpdateSettings(mainSettings);
 			}
 			catch (CoreError e)
 			{
@@ -919,8 +919,8 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		[Given(@"I (dis|en)able wizard")]
 		public void GivenIDisableWizard(Boolean enable)
 		{
-			var mainConfig = new ConfigInfo { Wizard = enable };
-			service.Admin.UpdateConfig(mainConfig);
+			var mainSettings = new SettingsInfo { Wizard = enable };
+			service.Admin.UpdateSettings(mainSettings);
 		}
 
 		[When(@"I try to (dis|en)able wizard")]
@@ -928,8 +928,8 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		{
 			try
 			{
-				var mainConfig = new ConfigInfo { Wizard = enable };
-				service.Admin.UpdateConfig(mainConfig);
+				var mainSettings = new SettingsInfo { Wizard = enable };
+				service.Admin.UpdateSettings(mainSettings);
 			}
 			catch (CoreError e)
 			{
@@ -942,8 +942,8 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		{
 			try
 			{
-				var mainConfig = new ConfigInfo { Language = language };
-				service.Admin.UpdateConfig(mainConfig);
+				var mainSettings = new SettingsInfo { Language = language };
+				service.Admin.UpdateSettings(mainSettings);
 			}
 			catch (CoreError e)
 			{
@@ -968,8 +968,8 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		{
 			try
 			{
-				var mainConfig = new ConfigInfo { TimeZone = timeZone };
-				service.Admin.UpdateConfig(mainConfig);
+				var mainSettings = new SettingsInfo { TimeZone = timeZone };
+				service.Admin.UpdateSettings(mainSettings);
 			}
 			catch (CoreError e)
 			{
@@ -980,8 +980,8 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		[Given(@"I (dis|en)able move send e-mail")]
 		public void GivenEnableMoveSendEmail(Boolean enable)
 		{
-			var mainConfig = new ConfigInfo { SendMoveEmail = enable };
-			service.Admin.UpdateConfig(mainConfig);
+			var mainSettings = new SettingsInfo { SendMoveEmail = enable };
+			service.Admin.UpdateSettings(mainSettings);
 		}
 
 		[When(@"I try to (dis|en)able move send e-mail")]
@@ -989,8 +989,8 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		{
 			try
 			{
-				var mainConfig = new ConfigInfo { SendMoveEmail = enable };
-				service.Admin.UpdateConfig(mainConfig);
+				var mainSettings = new SettingsInfo { SendMoveEmail = enable };
+				service.Admin.UpdateSettings(mainSettings);
 			}
 			catch (CoreError e)
 			{
@@ -1001,8 +1001,8 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		[Given(@"have (dis|en)abled accounts signs")]
 		public void GivenIDisableAccountsSign(Boolean enable)
 		{
-			var mainConfig = new ConfigInfo { UseAccountsSigns = enable };
-			service.Admin.UpdateConfig(mainConfig);
+			var mainSettings = new SettingsInfo { UseAccountsSigns = enable };
+			service.Admin.UpdateSettings(mainSettings);
 		}
 
 		[When(@"(dis|en)able accounts signs")]
@@ -1010,8 +1010,8 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		{
 			try
 			{
-				var mainConfig = new ConfigInfo { UseAccountsSigns = enable };
-				service.Admin.UpdateConfig(mainConfig);
+				var mainSettings = new SettingsInfo { UseAccountsSigns = enable };
+				service.Admin.UpdateSettings(mainSettings);
 			}
 			catch (CoreError e)
 			{
@@ -1152,7 +1152,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		public void ThenTheMoveMailWill_BeEnabled(Boolean enabled)
 		{
 			var user = repos.User.GetByEmail(userEmail);
-			Assert.AreEqual(enabled, user.Config.SendMoveEmail);
+			Assert.AreEqual(enabled, user.Settings.SendMoveEmail);
 		}
 
 		[Then(@"the last two e-mails will have same unsubscribe token")]

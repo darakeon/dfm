@@ -14,7 +14,7 @@ namespace DFM.MVC.Starters
 {
 	class Orm
 	{
-		public static void Config(IApplicationBuilder app, IHostApplicationLifetime life)
+		public static void Configure(IApplicationBuilder app, IHostApplicationLifetime life)
 		{
 			try
 			{

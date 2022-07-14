@@ -22,9 +22,9 @@ Scenario: 02. Get translations of Enums
 			| Tokens    | Entities      | Enums      | SecurityAction    |
 			| General   | Entities      | Enums      | OperationType     |
 			| Tips      | Entities      | Enums      | TipBrowser        |
-			| Configs   | Generic       |            | Theme             |
-			| Configs   | Generic       |            | ThemeBrightness   |
-			| Configs   | Generic       |            | ThemeColor        |
+			| Settings  | Generic       |            | Theme             |
+			| Settings  | Generic       |            | ThemeBrightness   |
+			| Settings  | Generic       |            | ThemeColor        |
 			| General   | BusinessLogic | Exceptions | Error             |
 			| Email     | Email         |            | EmailStatus       |
 	When I try get the translate

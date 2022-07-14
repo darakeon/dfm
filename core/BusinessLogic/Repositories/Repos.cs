@@ -8,7 +8,7 @@ namespace DFM.BusinessLogic.Repositories
 		internal AcceptanceRepository Acceptance;
 		internal AccountRepository Account;
 		internal CategoryRepository Category;
-		internal ConfigRepository Config;
+		internal SettingsRepository Settings;
 		internal ContractRepository Contract;
 		internal ControlRepository Control;
 		internal DetailRepository Detail;
@@ -26,7 +26,7 @@ namespace DFM.BusinessLogic.Repositories
 			Acceptance = new AcceptanceRepository();
 			Account = new AccountRepository();
 			Category = new CategoryRepository();
-			Config = new ConfigRepository();
+			Settings = new SettingsRepository();
 			Contract = new ContractRepository();
 			Control = new ControlRepository(getUrl);
 			Detail = new DetailRepository();

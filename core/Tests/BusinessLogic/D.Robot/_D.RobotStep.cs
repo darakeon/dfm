@@ -237,8 +237,8 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		[When(@"run the scheduler with e-mail system out")]
 		public void WhenITryToRunTheSchedulerWithEMailSystemOut()
 		{
-			ConfigHelper.ActivateMoveEmailForUser(service);
-			ConfigHelper.BreakTheEmailSystem();
+			TestSettings.ActivateMoveEmailForUser(service);
+			TestSettings.BreakTheEmailSystem();
 
 			try
 			{
@@ -249,14 +249,14 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 				error = e;
 			}
 
-			ConfigHelper.FixTheEmailSystem();
-			ConfigHelper.DeactivateMoveEmailForUser(service);
+			TestSettings.FixTheEmailSystem();
+			TestSettings.DeactivateMoveEmailForUser(service);
 		}
 
 		[When(@"run the scheduler with e-mail system ok")]
 		public void WhenITryToRunTheSchedulerWithEMailSystemOk()
 		{
-			ConfigHelper.ActivateMoveEmailForUser(service);
+			TestSettings.ActivateMoveEmailForUser(service);
 
 			try
 			{
@@ -267,7 +267,7 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 				error = e;
 			}
 
-			ConfigHelper.DeactivateMoveEmailForUser(service);
+			TestSettings.DeactivateMoveEmailForUser(service);
 		}
 
 		[Then(@"the user (.+) will still have no moves")]
@@ -446,9 +446,9 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 
 			var user = repos.User.GetByEmail(email);
 
-			user.Config.Language = language;
+			user.Settings.Language = language;
 
-			db.Execute(() => repos.Config.Update(user.Config));
+			db.Execute(() => repos.Settings.Update(user.Settings));
 		}
 
 		[When(@"call wipe users")]

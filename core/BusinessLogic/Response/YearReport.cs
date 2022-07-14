@@ -11,11 +11,11 @@ namespace DFM.BusinessLogic.Response
 		public YearReport(Account account, Decimal total, Decimal foreseen, Int32 time, IList<MonthItem> months)
 		{
 			AccountTotal = total;
-			if (account.User.Config.UseAccountsSigns)
+			if (account.User.Settings.UseAccountsSigns)
 				AccountSign = account.GetSign(total);
 
 			AccountForeseen = total + foreseen;
-			if (account.User.Config.UseAccountsSigns)
+			if (account.User.Settings.UseAccountsSigns)
 				AccountForeseenSign = account.GetSign(total + foreseen);
 
 			Time = time;

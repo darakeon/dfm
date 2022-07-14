@@ -9,7 +9,7 @@ namespace DFM.Entities
 	{
 		public User()
 		{
-			Config = new Config();
+			Settings = new Settings();
 			Control = new Control();
 		}
 
@@ -53,12 +53,12 @@ namespace DFM.Entities
 		public virtual String TFASecret { get; set; }
 		public virtual Boolean TFAPassword { get; set; }
 
-		public virtual Config Config { get; set; }
+		public virtual Settings Settings { get; set; }
 		public virtual Control Control { get; set; }
 
 		public virtual DateTime Now()
 		{
-			return TZ.Now(Config.TimeZone);
+			return TZ.Now(Settings.TimeZone);
 		}
 
 		public virtual void SetRobotCheckDay()

@@ -133,7 +133,7 @@
 			"We have more options in the system, let's check Settings > Main Options.",
 			null
 		],
-		"Wizard_ConfigsIndex": [
+		"Wizard_SettingsIndex": [
 			"Here you can change language, ...",
 			"...change the timezone...",
 			"...and enable or disable features.",
@@ -145,7 +145,7 @@
 			"Let's enable the categories to see the effect into the system.",
 			null
 		],
-		"Wizard_ConfigsIndexCategory": [
+		"Wizard_SettingsIndexCategory": [
 			"Go to Categories screen.",
 			null
 		],
@@ -220,12 +220,12 @@
 			"Let's go back to Settings > Main Options",
 			null
 		],
-		"Wizard_ConfigsIndexAccountGet": [
+		"Wizard_SettingsIndexAccountGet": [
 			"This time enable the account signs option...",
 			"...and save to test.",
 			null
 		],
-		"Wizard_ConfigsIndexAccountPost": [
+		"Wizard_SettingsIndexAccountPost": [
 			"Go back to accounts screen",
 			null
 		],
@@ -266,16 +266,16 @@
 			"Let's go again to Settings > Main Options.",
 			null
 		],
-		"Wizard_ConfigsIndexMoveGet": [
-			"As said before, this configuration makes the system send emails to you.",
+		"Wizard_SettingsIndexMoveGet": [
+			"As said before, these settings makes the system send emails to you.",
 			"It happens when a move is created, edited or deleted.",
 			"This does not change any aspect of the web system.",
 			"But the fourth one does: check/uncheck the moves.",
 			"It was created to make it easier to compare the accounts with external extracts.",
-			"Activate this option and save the configuration.",
+			"Activate this option and save the settings.",
 			null
 		],
-		"Wizard_ConfigsIndexMovePost": [
+		"Wizard_SettingsIndexMovePost": [
 			"Now go to accounts.",
 			null
 		],
@@ -302,7 +302,7 @@
 			"Now let's check what we have in Settings > Email.",
 			null
 		],
-		"Wizard_ConfigsEmail": [
+		"Wizard_SettingsEmail": [
 			"Here you can change your email address at the system.",
 			"You will need to know your current password to change the email.",
 			"Your email is the only way we can contact you in case of problems or for notifications.",
@@ -310,20 +310,20 @@
 			"Now go to Settings > Password",
 			null
 		],
-		"Wizard_ConfigsPassword": [
+		"Wizard_SettingsPassword": [
 			"To change your password you need to remember the current one.",
 			"In case you don't, click at Log off, go to login screen and click at 'Forgot my password'.",
 			"Let's go to Settings > Safer login",
 			null
 		],
-		"Wizard_ConfigsTFA": [
+		"Wizard_SettingsTFA": [
 			"This page is about adding one more security layer to protect your login at the system.",
 			"You need to have a specific app in a mobile device to use this.",
 			"Click at 'Why to use this?' below the image to read more about this.",
 			"We may proceed to Settings > Colors",
 			null
 		],
-		"Wizard_ConfigsTheme": [
+		"Wizard_SettingsTheme": [
 			"The website and mobile app colors can be changed.",
 			"There are three main colors...",
 			"... and you can choose between light or dark theme.",
@@ -333,13 +333,13 @@
 			"Let's take a look at Settings > Security Image",
 			null
 		],
-		"Wizard_ConfigsMisc": [
+		"Wizard_SettingsMisc": [
 			"This is one more layer to guarantee the e-mails you receive really came from us.",
 			"The details about it are explained below.",
 			"Now a dangerous menu: Settings > Remove my data",
 			null
 		],
-		"Wizard_ConfigsWipe": [
+		"Wizard_SettingsWipe": [
 			"DONT'T LEAVE ME! NOOO!!!",
 			"Just kidding... But this screen is really dangerous.",
 			"Everyone should be the owner of their own information.",
@@ -526,7 +526,7 @@
 			"Existem mais opções no sistema, vamos até Configurações > Opções Gerais.",
 			null
 		],
-		"Wizard_ConfigsIndex": [
+		"Wizard_SettingsIndex": [
 			"Nesta tela é possível alterar idioma, ...",
 			"...mudar o fuso horário...",
 			"...e habilitar ou desabilitar funcionalidades.",
@@ -538,7 +538,7 @@
 			"Vamos habilitar as categorias, para vermos o efeito no resto do sistema.",
 			null
 		],
-		"Wizard_ConfigsIndexCategory": [
+		"Wizard_SettingsIndexCategory": [
 			"Vá a tela de Categorias.",
 			null
 		],
@@ -613,12 +613,12 @@
 			"Vamos voltar a Configurações > Opções Gerais",
 			null
 		],
-		"Wizard_ConfigsIndexAccountGet": [
+		"Wizard_SettingsIndexAccountGet": [
 			"Habilite desta vez a opção de sinalização nas contas...",
 			"...e salve para testar.",
 			null
 		],
-		"Wizard_ConfigsIndexAccountPost": [
+		"Wizard_SettingsIndexAccountPost": [
 			"Volte para a tela de contas.",
 			null
 		],
@@ -659,7 +659,7 @@
 			"Vamos de novo às Configurações > Opções Gerais.",
 			null
 		],
-		"Wizard_ConfigsIndexMoveGet": [
+		"Wizard_SettingsIndexMoveGet": [
 			"Como dito antes, esta configuração faz o sistema te enviar e-mails.",
 			"Eles são enviados quando uma movimentação é criada, editada ou excluída.",
 			"Isso não muda qualquer aspecto aqui no site.",
@@ -668,7 +668,7 @@
 			"Ative esta opção de salve as configurações.",
 			null
 		],
-		"Wizard_ConfigsIndexMovePost": [
+		"Wizard_SettingsIndexMovePost": [
 			"Agora vá até as contas.",
 			null
 		],
@@ -695,7 +695,7 @@
 			"Agora vamos olhar o que temos em Configurações > E-mail.",
 			null
 		],
-		"Wizard_ConfigsEmail": [
+		"Wizard_SettingsEmail": [
 			"Aqui é possível trocar seu endereço de e-mail cadastrado no sistema.",
 			"Você precisa saber sua senha atual para trocar seu e-mail.",
 			"Seu e-mail é a única forma que podemos contatar você em caso de problemas ou para notificações.",
@@ -703,20 +703,20 @@
 			"Agora vá até Configurações > Senha",
 			null
 		],
-		"Wizard_ConfigsPassword": [
+		"Wizard_SettingsPassword": [
 			"Para trocar sua senha por este formulário, é necessário lembrar a senha atual.",
 			"Caso não se lembre, clique no botão de Sair, vá a tela de login e clique em 'Esqueci minha senha'.",
 			"Vamos em Configurações > Login mais seguro",
 			null
 		],
-		"Wizard_ConfigsTFA": [
+		"Wizard_SettingsTFA": [
 			"Esta página serve para adicionar uma camada a mais de segurança ao seu cadastro no sistema.",
 			"Você precisa ter um aplicativo específico para isso em um celular ou tablet para usar essa opção.",
 			"Clique em 'Por que usar?' abaixo da imagem para ler mais sobre.",
 			"Podemos seguir para Configurações > Cores",
 			null
 		],
-		"Wizard_ConfigsTheme": [
+		"Wizard_SettingsTheme": [
 			"As cores do site e do aplicativo podem ser alteradas.",
 			"Há três cores principais...",
 			"... e pode-se escolher entre um tema claro ou escuro.",
@@ -726,13 +726,13 @@
 			"Vamos olhar agora para Configurações > Imagem de segurança",
 			null
 		],
-		"Wizard_ConfigsMisc": [
+		"Wizard_SettingsMisc": [
 			"Esta é mais uma camada para garantir que os e-mails que você recebe realmente vêm de nós.",
 			"Os detalhes disso estão explicados abaixo.",
 			"Agora, um menu perigoso: Configurações > Remover meus dados",
 			null
 		],
-		"Wizard_ConfigsWipe": [
+		"Wizard_SettingsWipe": [
 			"NÃO ME ABANDONE! NÃO!!!",
 			"Brincadeira... Mas esta tela de fato é perigosa.",
 			"Toda pessoa deve ser dona de suas próprias informações.",

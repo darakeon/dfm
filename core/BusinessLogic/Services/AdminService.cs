@@ -302,20 +302,20 @@ namespace DFM.BusinessLogic.Services
 		}
 		#endregion Category
 
-		#region Config
+		#region Settings
 
-		public void UpdateConfig(ConfigInfo info)
+		public void UpdateSettings(SettingsInfo info)
 		{
 			parent.Safe.VerifyUser();
 
-			inTransaction("UpdateConfig", () =>
+			inTransaction("UpdateSettings", () =>
 			{
 				var user = parent.Safe.GetCurrent();
-				updateConfig(info, user.Config);
+				updateSettings(info, user.Settings);
 			});
 		}
 
-		private void updateConfig(ConfigInfo info, Config config)
+		private void updateSettings(SettingsInfo info, Settings settings)
 		{
 			if (info.Language != null && !PlainText.AcceptLanguage(info.Language))
 				throw Error.LanguageUnknown.Throw();
@@ -324,27 +324,27 @@ namespace DFM.BusinessLogic.Services
 				throw Error.TimeZoneUnknown.Throw();
 
 			if (!String.IsNullOrEmpty(info.Language))
-				config.Language = info.Language;
+				settings.Language = info.Language;
 
 			if (!String.IsNullOrEmpty(info.TimeZone))
-				config.TimeZone = info.TimeZone;
+				settings.TimeZone = info.TimeZone;
 
 			if (info.UseCategories.HasValue)
-				config.UseCategories = info.UseCategories.Value;
+				settings.UseCategories = info.UseCategories.Value;
 
 			if (info.UseAccountsSigns.HasValue)
-				config.UseAccountsSigns = info.UseAccountsSigns.Value;
+				settings.UseAccountsSigns = info.UseAccountsSigns.Value;
 
 			if (info.MoveCheck.HasValue)
-				config.MoveCheck = info.MoveCheck.Value;
+				settings.MoveCheck = info.MoveCheck.Value;
 
 			if (info.SendMoveEmail.HasValue)
-				config.SendMoveEmail = info.SendMoveEmail.Value;
+				settings.SendMoveEmail = info.SendMoveEmail.Value;
 
 			if (info.Wizard.HasValue)
-				config.Wizard = info.Wizard.Value;
+				settings.Wizard = info.Wizard.Value;
 
-			repos.Config.Update(config);
+			repos.Settings.Update(settings);
 		}
 
 		public void EndWizard()
@@ -353,9 +353,9 @@ namespace DFM.BusinessLogic.Services
 
 			inTransaction("EndWizard", () =>
 			{
-				var config = parent.Safe.GetCurrent().Config;
-				config.Wizard = false;
-				repos.Config.Update(config);
+				var settings = parent.Safe.GetCurrent().Settings;
+				settings.Wizard = false;
+				repos.Settings.Update(settings);
 			});
 		}
 
@@ -367,14 +367,14 @@ namespace DFM.BusinessLogic.Services
 					token, SecurityAction.UnsubscribeMoveMail
 				);
 
-				var config = security.User.Config;
-				config.SendMoveEmail = false;
-				repos.Config.Update(config);
+				var settings = security.User.Settings;
+				settings.SendMoveEmail = false;
+				repos.Settings.Update(settings);
 
 				repos.Security.Disable(token);
 			});
 		}
-		#endregion Config
+		#endregion Settings
 
 		#region Theme
 		public void ChangeTheme(Theme theme)
@@ -386,12 +386,12 @@ namespace DFM.BusinessLogic.Services
 
 			var user = parent.Safe.GetCurrent();
 
-			var config = user.Config;
-			config.Theme = theme;
+			var settings = user.Settings;
+			settings.Theme = theme;
 
 			inTransaction("ChangeTheme", () =>
 			{
-				repos.Config.Update(config);
+				repos.Settings.Update(settings);
 			});
 		}
 		#endregion Theme

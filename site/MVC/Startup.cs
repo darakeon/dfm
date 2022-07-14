@@ -40,7 +40,7 @@ namespace DFM.MVC
 			BaseModel.IsDev = env.IsDevelopment();
 			TZ.Init(env.IsDevelopment());
 
-			Config.Initialize(env);
+			Settings.Initialize(env);
 
 			Security.DenyFrame(app);
 
@@ -54,7 +54,7 @@ namespace DFM.MVC
 
 			Error.AddHandlers(app, env);
 
-			Orm.Config(app, life);
+			Orm.Configure(app, life);
 
 			Context.SetLanguage(app, env);
 

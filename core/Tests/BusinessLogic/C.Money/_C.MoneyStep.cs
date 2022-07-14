@@ -133,8 +133,8 @@ namespace DFM.BusinessLogic.Tests.C.Money
 		[When(@"I try to save the move with e-mail system out")]
 		public void WhenITryToSaveTheMoveWithEMailSystemOut()
 		{
-			ConfigHelper.ActivateMoveEmailForUser(service);
-			ConfigHelper.BreakTheEmailSystem();
+			TestSettings.ActivateMoveEmailForUser(service);
+			TestSettings.BreakTheEmailSystem();
 
 			try
 			{
@@ -150,14 +150,14 @@ namespace DFM.BusinessLogic.Tests.C.Money
 				error = e;
 			}
 
-			ConfigHelper.FixTheEmailSystem();
-			ConfigHelper.DeactivateMoveEmailForUser(service);
+			TestSettings.FixTheEmailSystem();
+			TestSettings.DeactivateMoveEmailForUser(service);
 		}
 
 		[When(@"I try to save the move with e-mail system ok")]
 		public void WhenITryToSaveTheMoveWithEMailSystemOk()
 		{
-			ConfigHelper.ActivateMoveEmailForUser(service);
+			TestSettings.ActivateMoveEmailForUser(service);
 
 			try
 			{
@@ -173,7 +173,7 @@ namespace DFM.BusinessLogic.Tests.C.Money
 				error = e;
 			}
 
-			ConfigHelper.DeactivateMoveEmailForUser(service);
+			TestSettings.DeactivateMoveEmailForUser(service);
 		}
 
 		[Then(@"the move value will be (\d+\.?\d*)")]
@@ -398,8 +398,8 @@ namespace DFM.BusinessLogic.Tests.C.Money
 		[When(@"I update the move with e-mail system out")]
 		public void WhenIUpdateTheMoveWithEMailSystemOut()
 		{
-			ConfigHelper.ActivateMoveEmailForUser(service);
-			ConfigHelper.BreakTheEmailSystem();
+			TestSettings.ActivateMoveEmailForUser(service);
+			TestSettings.BreakTheEmailSystem();
 
 			try
 			{
@@ -415,14 +415,14 @@ namespace DFM.BusinessLogic.Tests.C.Money
 				error = e;
 			}
 
-			ConfigHelper.FixTheEmailSystem();
-			ConfigHelper.DeactivateMoveEmailForUser(service);
+			TestSettings.FixTheEmailSystem();
+			TestSettings.DeactivateMoveEmailForUser(service);
 		}
 
 		[When(@"I update the move with e-mail system ok")]
 		public void WhenIUpdateTheMoveWithEMailSystemOk()
 		{
-			ConfigHelper.ActivateMoveEmailForUser(service);
+			TestSettings.ActivateMoveEmailForUser(service);
 
 			try
 			{
@@ -438,7 +438,7 @@ namespace DFM.BusinessLogic.Tests.C.Money
 				error = e;
 			}
 
-			ConfigHelper.DeactivateMoveEmailForUser(service);
+			TestSettings.DeactivateMoveEmailForUser(service);
 		}
 
 		[Then(@"the old-accountOut value will change in (\-?\d+\.?\d*)")]
@@ -705,7 +705,7 @@ namespace DFM.BusinessLogic.Tests.C.Money
 		[When(@"I try to delete the move with e-mail system ok")]
 		public void WhenITryToDeleteTheMoveWithEMailSystemOk()
 		{
-			ConfigHelper.ActivateMoveEmailForUser(service);
+			TestSettings.ActivateMoveEmailForUser(service);
 
 			try
 			{
@@ -717,14 +717,14 @@ namespace DFM.BusinessLogic.Tests.C.Money
 				error = e;
 			}
 
-			ConfigHelper.DeactivateMoveEmailForUser(service);
+			TestSettings.DeactivateMoveEmailForUser(service);
 		}
 
 		[When(@"I try to delete the move with e-mail system out")]
 		public void WhenITryToDeleteTheMoveWithEMailSystemOut()
 		{
-			ConfigHelper.ActivateMoveEmailForUser(service);
-			ConfigHelper.BreakTheEmailSystem();
+			TestSettings.ActivateMoveEmailForUser(service);
+			TestSettings.BreakTheEmailSystem();
 
 			try
 			{
@@ -736,8 +736,8 @@ namespace DFM.BusinessLogic.Tests.C.Money
 				error = e;
 			}
 
-			ConfigHelper.FixTheEmailSystem();
-			ConfigHelper.DeactivateMoveEmailForUser(service);
+			TestSettings.FixTheEmailSystem();
+			TestSettings.DeactivateMoveEmailForUser(service);
 		}
 
 		[Then(@"the move will (not )?be deleted")]
@@ -957,7 +957,7 @@ namespace DFM.BusinessLogic.Tests.C.Money
 
 			var user = repos.User.GetByEmail(current.Email);
 
-			var lang = user.Config.Language;
+			var lang = user.Settings.Language;
 			var subject = PlainText.Email[
 				"MoveNotification", lang, "Subject"
 			].Text;

@@ -65,7 +65,7 @@ namespace DFM.BusinessLogic.Repositories
 			wipeAll(repos.Category, c => c.User, u => u.ID == user.ID);
 
 			repos.User.Delete(user);
-			repos.Config.Delete(user.Config);
+			repos.Settings.Delete(user.Settings);
 			repos.Control.Delete(user.Control);
 		}
 

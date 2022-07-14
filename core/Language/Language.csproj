@@ -21,7 +21,6 @@
     <None Remove="Language\Email\WipeNotice.json" />
     <None Remove="Language\Site\accounts.json" />
     <None Remove="Language\Site\categories.json" />
-    <None Remove="Language\Site\configs.json" />
     <None Remove="Language\Site\email.json" />
     <None Remove="Language\Site\error.json" />
     <None Remove="Language\Site\general.json" />
@@ -30,6 +29,7 @@
     <None Remove="Language\Site\ops.json" />
     <None Remove="Language\Site\reports.json" />
     <None Remove="Language\Site\schedules.json" />
+    <None Remove="Language\Site\settings.json" />
     <None Remove="Language\Site\tips.json" />
     <None Remove="Language\Site\tokens.json" />
     <None Remove="Language\Site\users.json" />
@@ -105,7 +105,7 @@
     <Content Include="Language\Site\tokens.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Language\Site\configs.json">
+    <Content Include="Language\Site\settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Language\Site\users.json">

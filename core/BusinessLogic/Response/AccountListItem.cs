@@ -18,7 +18,7 @@ namespace DFM.BusinessLogic.Response
 			Start = account.BeginDate;
 			End = account.EndDate;
 
-			if (account.User.Config.UseAccountsSigns)
+			if (account.User.Settings.UseAccountsSigns)
 				Sign = account.GetSign(total);
 
 			HasMoves = hasMoves;

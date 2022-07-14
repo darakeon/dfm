@@ -121,7 +121,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 					Email = email,
 					Password = password,
 					RetypePassword = retypePassword,
-					Language = Defaults.ConfigLanguage,
+					Language = Defaults.SettingsLanguage,
 				};
 
 				service.Safe.SaveUser(info);

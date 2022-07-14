@@ -1,0 +1,177 @@
+﻿@model SettingsIndexModel
+@{
+	ViewBag.Title = Context.Translate("Settings");
+	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
+
+	ViewBag.FormSizeSm = 8;
+	ViewBag.FormSizeLg = 6;
+
+	var postUsingCategories =
+		Context.Request.Query["wizard"] == "post"
+			&& Model.UseCategoriesCheck;
+
+	var getAccountSigns =
+		Context.Request.Query["wizard"] != "post"
+			&& Model.UseCategoriesCheck;
+
+	var postAccountSigns =
+		Context.Request.Query["wizard"] == "post"
+			&& Model.UseAccountsSignsCheck;
+
+	var getMovesCheck =
+		Context.Request.Query["wizard"] != "post"
+			&& Model.UseAccountsSignsCheck;
+
+	var postMovesCheck=
+		Context.Request.Query["wizard"] == "post"
+			&& Model.MoveCheckCheck;
+
+	var hl = new WizardHL(postMovesCheck, getMovesCheck, postAccountSigns, getAccountSigns, postUsingCategories)
+		.AddBox("Language", null, null, null, null, null, 0)
+		.AddBox("Timezone", null, null, null, null, null, 1)
+		.AddBox("Features", null, null, null, null, null, 2)
+		.AddBox("Categories", null, null, null, null, null, 3)
+		.AddBox("AccountSigns", null, null, null, 0, null, 4)
+		.AddBox("MoveEmail", null, 0, null, null, null, 5)
+		.AddBox("MoveCheck", null, 3, null, null, null, 6)
+		.AddBox("Wizard", null, null, null, null, null, 7)
+		.AddBox("EnableCategories", null, null, null, null, null, 8)
+		.AddBox("Save", null, null, null, 1, null, 8)
+		.AddBox("CategoriesMenu", null, null, null, null, 0, null)
+		.AddBox("AccountsMenu", 0, null, 0, null, null, null)
+		.AddBox("EnableMoveCheck", null, 5, null, null, null, null)
+		;
+
+	ViewBag.CategoriesMenuClass = hl["CategoriesMenu"];
+	ViewBag.AccountsMenuClass = hl["AccountsMenu"];
+
+	if (postMovesCheck)
+	{
+		ViewBag.WizardPlus = "MovePost";
+	}
+	else if (getMovesCheck)
+	{
+		ViewBag.WizardPlus = "MoveGet";
+	}
+	else if (postAccountSigns)
+	{
+		ViewBag.WizardPlus = "AccountPost";
+	}
+	else if (getAccountSigns)
+	{
+		ViewBag.WizardPlus = "AccountGet";
+	}
+	else if (postUsingCategories)
+	{
+		ViewBag.WizardPlus = "Category";
+	}
+}
+
+@if (Model.ShowWizard)
+{
+	<input type="hidden"
+	       name="@Model.BackFieldName"
+	       value="@Context.Request.Path?wizard=post" />
+}
+
+<div class="form-group @hl["Language"]">
+	@Html.LabelFor(
+		m => m.NewLanguage,
+		Context.Translate("Language"),
+		new { @class = "control-label" }
+	)
+	@Html.DropDownListFor(
+		m => m.NewLanguage,
+		Model.LanguageList,
+		new { @class = "form-control" }
+	)
+</div>
+
+<div class="form-group @hl["Timezone"]">
+	@Html.LabelFor(
+		m => m.NewTimeZone,
+		Context.Translate("TimeZone"),
+		new { @class = "control-label" }
+	)
+	@Html.DropDownListFor(
+		m => m.NewTimeZone,
+		Model.TimeZoneList,
+		new { @class = "form-control" }
+	)
+</div>
+
+<div class="@hl["Features"]">
+	<div class="checkbox row @hl["Categories"]">
+		@Html.LabelFor(
+			m => m.UseCategoriesCheck,
+			Context.Translate("UseCategories"),
+			new { @class = "col-sm-10 control-label" }
+		)
+		<span class="col-sm-2 text-right">
+			@Html.CheckBoxFor(
+				m => m.UseCategoriesCheck,
+				new { @class =  hl["EnableCategories"] }
+			)
+		</span>
+	</div>
+
+	<div class="checkbox row @hl["AccountSigns"]">
+		@Html.LabelFor(
+			m => m.UseAccountsSignsCheck,
+			Context.Translate("UseAccountsSigns"),
+			new { @class = "col-sm-10 control-label" }
+		)
+		<span class="col-sm-2 text-right">
+			@Html.CheckBoxFor(
+				m => m.UseAccountsSignsCheck
+			)
+		</span>
+	</div>
+
+	<div class="checkbox row @hl["MoveEmail"]">
+		@Html.LabelFor(
+			m => m.SendMoveEmailCheck,
+			Context.Translate("SendMoveEmail"),
+			new { @class = "col-sm-10 control-label" }
+		)
+		<span class="col-sm-2 text-right">
+			@Html.CheckBoxFor(
+				m => m.SendMoveEmailCheck
+			)
+		</span>
+	</div>
+
+	<div class="checkbox row @hl["MoveCheck"]">
+		@Html.LabelFor(
+			m => m.MoveCheckCheck,
+			Context.Translate("MoveCheck"),
+			new { @class = "col-sm-10 control-label" }
+		)
+		<span class="col-sm-2 text-right">
+			@Html.CheckBoxFor(
+				m => m.MoveCheckCheck,
+				new { @class =  hl["EnableMoveCheck"] }
+			)
+		</span>
+	</div>
+
+	<div class="checkbox row @hl["Wizard"]">
+		@Html.LabelFor(
+			m => m.WizardCheck,
+			Context.Translate("EnableWizard"),
+			new { @class = "col-sm-10 control-label" }
+		)
+		<span class="col-sm-2 text-right">
+			@Html.CheckBoxFor(
+				m => m.WizardCheck
+			)
+		</span>
+	</div>
+</div>
+
+@section Footer {
+	<button type="submit"
+			class="btn btn-success tab-submit @hl["Save"]">
+		@Context.Translate("Save")
+	</button>
+}
