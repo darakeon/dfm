@@ -53,13 +53,13 @@ namespace DFM.BusinessLogic.Repositories
 		internal EmailStatus SendEmail(Move move, OperationType operationType, Security security)
 		{
 			var user = GetUser(move);
-			var config = user.Config;
+			var settings = user.Settings;
 
-			if (!config.SendMoveEmail)
+			if (!settings.SendMoveEmail)
 				return EmailStatus.EmailDisabled;
 
 			var operation = PlainText.Site[
-				"general", config.Language, operationType.ToString()
+				"general", settings.Language, operationType.ToString()
 			].Text;
 
 			var accountInName = move.In?.Name ?? "---";
@@ -67,7 +67,7 @@ namespace DFM.BusinessLogic.Repositories
 			var categoryName = move.Category?.Name ?? "---";
 
 			var nature = PlainText.Site[
-				"general", config.Language, move.Nature.ToString()
+				"general", settings.Language, move.Nature.ToString()
 			].Text;
 
 			var format = Format.MoveNotification(user);
@@ -82,7 +82,7 @@ namespace DFM.BusinessLogic.Repositories
 				{ "Nature", nature },
 				{ "Category", categoryName },
 				{ "Description", move.Description },
-				{ "Value", move.Value.ToMoney(config.Language) },
+				{ "Value", move.Value.ToMoney(settings.Language) },
 				{ "Details", detailsHTML(move) },
 				{ "UnsubscribePath", security.Action.ToString() },
 				{ "UnsubscribeToken", security.Token },
@@ -121,15 +121,15 @@ namespace DFM.BusinessLogic.Repositories
 
 			var details = new StringBuilder();
 			var user = GetUser(move);
-			var config = user.Config;
-			var language = config.Language;
+			var settings = user.Settings;
+			var language = settings.Language;
 			var misc = user.Control.Misc;
 
 			foreach (var detail in move.DetailList)
 			{
 				var email = Format.FormatEmail
 				(
-					config.Theme,
+					settings.Theme,
 					EmailType.Detail,
 					new Dictionary<String, Object> {
 						{ "Description", detail.Description },

@@ -34,15 +34,15 @@ namespace DFM.MVC.Areas.Api.Controllers
 		}
 
 		[HttpGetAndHead, ApiAuth]
-		public IActionResult GetConfig()
+		public IActionResult GetSettings()
 		{
-			return json(() => new UserConfigModel());
+			return json(() => new UserSettingsModel());
 		}
 
 		[HttpPost, ApiAuth]
-		public IActionResult SaveConfig()
+		public IActionResult SaveSettings()
 		{
-			var model = getFromBody<UserConfigModel>();
+			var model = getFromBody<UserSettingsModel>();
 			return json(model.Save);
 		}
 

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using DFM.Generic.Configs;
+using DFM.Generic.Settings;
 using Microsoft.Extensions.Configuration;
 
 namespace DFM.Generic

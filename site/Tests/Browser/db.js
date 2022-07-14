@@ -65,7 +65,7 @@ async function changeUserState(email, active, wizard, creation) {
 	const { username, domain } = splitEmail(email);
 
 	const user = await execute(
-		`select config_id, control_ID
+		`select settings_id, control_ID
 			from user
 			where username='${username}'
 				and domain='${domain}'`
@@ -81,24 +81,24 @@ async function changeUserState(email, active, wizard, creation) {
 
 	if (wizard != undefined) {
 		await execute(
-			`update config
+			`update settings
 				set wizard=${wizard?1:0}
-				where id=${user[0].Config_ID}`
+				where id=${user[0].Settings_ID}`
 		)
 	}
 
 	if (creation != undefined) {
 		await execute(
-			`update config
+			`update settings
 				set creation=datetime('now','${creation} day')
-				where id=${user[0].Config_ID}`
+				where id=${user[0].Settings_ID}`
 		)
 	}
 }
 
 async function createUser(email, active, wizard, creation) {
 	await execute(
-		`insert into config (
+		`insert into settings (
 				language, timezone, sendMoveEmail,
 				useCategories, useAccountsSigns, moveCheck, theme, wizard
 			) values (
@@ -107,8 +107,8 @@ async function createUser(email, active, wizard, creation) {
 			)`
 	)
 
-	const config = await execute(
-		`select id from config order by id desc limit 1`
+	const settings = await execute(
+		`select id from settings order by id desc limit 1`
 	)
 
 	await execute(
@@ -130,10 +130,10 @@ async function createUser(email, active, wizard, creation) {
 	const result = await execute(
 		`insert into user (
 				password, username, domain,
-				config_id, tfaPassword, control_id
+				settings_id, tfaPassword, control_id
 			) values (
 				'${password.encrypted}', '${username}', '${domain}',
-				${config[0].ID}, 0, ${control[0].ID}
+				${settings[0].ID}, 0, ${control[0].ID}
 			)`
 	)
 

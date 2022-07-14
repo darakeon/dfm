@@ -106,32 +106,32 @@ Scenario: Aq13. Enable Category
 	When I try to enable the category
 	Then I will receive this core error: NotSignedLastContract
 
-Scenario: Aq14. Update Config - Categories Disable
+Scenario: Aq14. Update Settings - Categories Disable
 	Given there is a new contract
 	When I try to disable Categories use
 	Then I will receive this core error: NotSignedLastContract
 
-Scenario: Aq15. Update Config - Categories Enable
+Scenario: Aq15. Update Settings - Categories Enable
 	Given there is a new contract
 	When I try to enable Categories use
 	Then I will receive this core error: NotSignedLastContract
 
-Scenario: Aq16. Update Config - Move Send E-mail Disable
+Scenario: Aq16. Update Settings - Move Send E-mail Disable
 	Given there is a new contract
 	When I try to disable move send e-mail
 	Then I will receive this core error: NotSignedLastContract
 
-Scenario: Aq17. Update Config - Move Send E-mail Enable
+Scenario: Aq17. Update Settings - Move Send E-mail Enable
 	Given there is a new contract
 	When I try to enable move send e-mail
 	Then I will receive this core error: NotSignedLastContract
 
-Scenario: Aq18. Update Config - Change Language
+Scenario: Aq18. Update Settings - Change Language
 	Given there is a new contract
 	When I try to change the language to en-US
 	Then I will receive this core error: NotSignedLastContract
 
-Scenario: Aq19. Update Config - Change TimeZone
+Scenario: Aq19. Update Settings - Change TimeZone
 	Given there is a new contract
 	When I try to change the timezone to UTC-03:00
 	Then I will receive this core error: NotSignedLastContract

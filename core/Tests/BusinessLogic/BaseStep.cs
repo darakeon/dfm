@@ -136,7 +136,7 @@ namespace DFM.BusinessLogic.Tests
 				Email = email,
 				Password = password,
 				RetypePassword = password,
-				Language = Defaults.ConfigLanguage,
+				Language = Defaults.SettingsLanguage,
 			};
 
 			if (timezone != null)

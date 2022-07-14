@@ -103,7 +103,7 @@ namespace DFM.BusinessLogic.Bases
 
 		private void testCategory(T move)
 		{
-			if (GetUser(move).Config.UseCategories)
+			if (GetUser(move).Settings.UseCategories)
 			{
 				if (move.Category == null)
 					throw Error.InvalidCategory.Throw();

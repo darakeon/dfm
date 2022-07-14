@@ -70,21 +70,21 @@ namespace DFM.Email
 			if (String.IsNullOrEmpty(to))
 				throw MailError.WithMessage(EmailStatus.InvalidAddress);
 
-			var config = Cfg.Smtp;
+			var smtp = Cfg.Smtp;
 
 			var credentials = new NetworkCredential(
-				config.UserName,
-				config.Password
+				smtp.UserName,
+				smtp.Password
 			);
 
-			using var smtp = new SmtpClient(config.Host, config.Port)
+			using var client = new SmtpClient(smtp.Host, smtp.Port)
 			{
 				Timeout = 60000,
-				DeliveryMethod = config.DeliveryMethod,
-				EnableSsl = config.EnableSsl,
-				UseDefaultCredentials = config.DefaultCredentials,
+				DeliveryMethod = smtp.DeliveryMethod,
+				EnableSsl = smtp.EnableSsl,
+				UseDefaultCredentials = smtp.DefaultCredentials,
 				Credentials = credentials,
-				PickupDirectoryLocation = config.PickupDirectory
+				PickupDirectoryLocation = smtp.PickupDirectory
 			};
 
 			try
@@ -101,7 +101,7 @@ namespace DFM.Email
 					message.Attachments.Add(attachment);
 				}
 
-				smtp.Send(message);
+				client.Send(message);
 			}
 			catch (Exception exception)
 			{

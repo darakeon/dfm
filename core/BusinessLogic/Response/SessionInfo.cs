@@ -20,16 +20,16 @@ namespace DFM.BusinessLogic.Response
 			TFAPassword = user.TFAPassword;
 
 			Now = user.Now();
-			TimeZone = user.Config.TimeZone;
-			Language = user.Config.Language;
-			Theme = user.Config.Theme;
+			TimeZone = user.Settings.TimeZone;
+			Language = user.Settings.Language;
+			Theme = user.Settings.Theme;
 
-			UseCategories = user.Config.UseCategories;
-			UseAccountsSigns = user.Config.UseAccountsSigns;
-			MoveCheck = user.Config.MoveCheck;
-			SendMoveEmail = user.Config.SendMoveEmail;
+			UseCategories = user.Settings.UseCategories;
+			UseAccountsSigns = user.Settings.UseAccountsSigns;
+			MoveCheck = user.Settings.MoveCheck;
+			SendMoveEmail = user.Settings.SendMoveEmail;
 
-			Wizard = user.Config.Wizard;
+			Wizard = user.Settings.Wizard;
 
 			var age = DateTime.UtcNow - user.Control.Creation;
 			Age = (Int32)age.TotalDays;

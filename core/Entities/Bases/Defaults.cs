@@ -5,13 +5,13 @@ namespace DFM.Entities.Bases
 {
 	public static class Defaults
 	{
-		public const String ConfigLanguage = "pt-BR";
-		public const String ConfigTimeZone = "E. South America Standard Time";
+		public const String SettingsLanguage = "pt-BR";
+		public const String SettingsTimeZone = "E. South America Standard Time";
 
-		public const Boolean ConfigUseCategories = false;
-		public const Boolean ConfigUseAccountsSigns = false;
-		public const Boolean ConfigMoveCheck = false;
-		public const Boolean ConfigSendMoveEmail = false;
+		public const Boolean SettingsUseCategories = false;
+		public const Boolean SettingsUseAccountsSigns = false;
+		public const Boolean SettingsMoveCheck = false;
+		public const Boolean SettingsSendMoveEmail = false;
 
 		public const Theme DefaultTheme = Theme.LightSober;
 

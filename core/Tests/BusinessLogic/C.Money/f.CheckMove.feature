@@ -68,7 +68,7 @@ Scenario: Cf08. Remark a checked move as checked
 	Then I will receive this core error: MoveAlreadyChecked
 		And the move will be checked for account Out
 
-Scenario: Cf09. Mark a move as not checked with disabled config
+Scenario: Cf09. Mark a move as not checked with disabled setting
 	Given I have a move with value 10 (Out)
 		And the move is not checked for account Out
 		And I disable move check

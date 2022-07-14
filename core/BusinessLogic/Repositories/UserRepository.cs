@@ -109,13 +109,13 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			if (user.ID != 0) return;
 
-			user.Config.Language ??= Defaults.ConfigLanguage;
-			user.Config.TimeZone ??= Defaults.ConfigTimeZone;
-			user.Config.SendMoveEmail = Defaults.ConfigSendMoveEmail;
-			user.Config.UseCategories = Defaults.ConfigUseCategories;
-			user.Config.MoveCheck = Defaults.ConfigMoveCheck;
+			user.Settings.Language ??= Defaults.SettingsLanguage;
+			user.Settings.TimeZone ??= Defaults.SettingsTimeZone;
+			user.Settings.SendMoveEmail = Defaults.SettingsSendMoveEmail;
+			user.Settings.UseCategories = Defaults.SettingsUseCategories;
+			user.Settings.MoveCheck = Defaults.SettingsMoveCheck;
 
-			user.Config.Theme = Defaults.DefaultTheme;
+			user.Settings.Theme = Defaults.DefaultTheme;
 
 			user.Password = Crypt.Do(user.Password);
 

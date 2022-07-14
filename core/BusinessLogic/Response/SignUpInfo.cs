@@ -21,7 +21,7 @@ namespace DFM.BusinessLogic.Response
 			{
 				Email = Email,
 				Password = Password,
-				Config = new Config
+				Settings = new Settings
 				{
 					Language = Language,
 					Wizard = EnableWizard,

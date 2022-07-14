@@ -16,14 +16,14 @@ namespace DFM.BusinessLogic.Response
 		)
 		{
 			AccountTotal = accountTotal;
-			if (account.User.Config.UseAccountsSigns)
+			if (account.User.Settings.UseAccountsSigns)
 				AccountTotalSign = account.GetSign(accountTotal);
 			MoveList = moveList
 				.Select(m => MoveInfo.Convert4Report(m, account.Url, false))
 				.ToList();
 
 			ForeseenTotal = foreseenTotal;
-			if (account.User.Config.UseAccountsSigns)
+			if (account.User.Settings.UseAccountsSigns)
 				ForeseenTotalSign = account.GetSign(foreseenTotal);
 			ForeseenList = foreseenList
 				.Select(m => MoveInfo.Convert4Report(m, account.Url, true))

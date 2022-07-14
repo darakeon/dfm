@@ -37,9 +37,9 @@ namespace DFM.Email
 
 		private Format(User user, EmailType type, Object layoutType)
 		{
-			var config = user.Config;
-			var language = config.Language;
-			var theme = config.Theme;
+			var settings = user.Settings;
+			var language = settings.Language;
+			var theme = settings.Theme;
 			var misc = user.Control.Misc;
 
 			var layoutName = layoutType.ToString();

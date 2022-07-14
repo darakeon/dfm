@@ -1,12 +1,12 @@
 ﻿@model BaseModel
 
 @{
-	var configModel = new ConfigsIndexModel();
+	var settingsModel = new SettingsIndexModel();
 	var defaultRoute = new Default.Main();
 	var routeValues = new
 	{
-		controller = "Configs",
-		action = configModel.IsAuthenticated
+		controller = "Settings",
+		action = settingsModel.IsAuthenticated
 			? "Index"
 			: "ChangeLanguageOffline"
 	};
@@ -28,14 +28,14 @@
 					defaultRoute.Name,
 					routeValues
 				)) {
-					var langList = configModel
+					var langList = settingsModel
 						.LanguageList
 						.OrderByDescending(l => l.Value);
 
 					foreach (var lang in langList)
 					{
 						<button class="btn btn-primary @lang.Value"
-						        name="@configModel.LanguageFieldName"
+						        name="@settingsModel.LanguageFieldName"
 						        value="@(lang.Value)"
 						        title="@(lang.Text)"
 						        id="language-@(lang.Value)">
@@ -44,7 +44,7 @@
 					}
 
 					<input type="hidden"
-					       name="@configModel.BackFieldName"
+					       name="@settingsModel.BackFieldName"
 					       value="@Context.Request.Path" />
 				}
 			</div>

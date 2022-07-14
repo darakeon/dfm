@@ -1,0 +1,79 @@
+﻿@model SettingsEndWizardModel
+
+@{
+	Layout = Model.HasError
+		? "~/Views/Shared/Layouts/_Result.cshtml"
+		: "~/Views/Shared/Layouts/_Form.cshtml";
+
+	ViewBag.Style = Model.HasError ? "danger" : null;
+	ViewBag.Title = Context.Translate("Wizard_Title");
+	ViewBag.FormSizeSm = 10;
+	ViewBag.FormSizeLg = 6;
+}
+
+@if (Model.HasError)
+{
+	@Model.Error
+}
+else
+{
+	<p class="text-center">
+		@Html.Raw(Context.Translate("Wizard_EndTextThanks").BreakLines())
+	</p>
+
+	<p class="text-center">
+		@Context.Translate("Wizard_EndTextMenu")
+	</p>
+
+	<div class="well well-sm">
+		<div class="row">
+			<div class="col-md-9 col-md-push-1">
+				@Context.Translate("Wizard_EndTextMenuSettings")
+			</div>
+			<div class="col-md-2 text-right">
+				@{
+					var settingsRoute = new Default.Main();
+					var settingsParams = new
+					{
+						action = "Settings",
+						controller = "Users",
+						area = settingsRoute.Area
+					};
+				}
+
+				<a href="@Url.RouteUrl(settingsRoute.Name, settingsParams)" role="button">
+					<span class="glyphicon glyphicon-cog" title="@Context.Translate("Settings")"></span>
+				</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-9 col-md-push-1">
+				@Context.Translate("Wizard_EndTextMenuContact")
+			</div>
+			<div class="col-md-2 text-right">
+				@await Html.PartialAsync("Skeleton/Menus/MenuContact")
+			</div>
+		</div>
+	</div>
+
+	<p class="text-center">
+		@Context.Translate("Wizard_EndTextAndroid")
+	</p>
+
+	<p class="text-center">
+		<a href="@Cfg.GooglePlay"
+			title="@Context.Translate("Aria_AndroidLink")"
+			target="_blank" class="android-link"></a>
+	</p>
+
+	@section Footer {
+		<p class="text-center">
+			@Html.Raw(String.Format(
+				Context.Translate("Wizard_EndTextContact").BreakLines(),
+				"<a target='_blank' href='mailto:dfm@dontflymoney.com'>dfm@dontflymoney.com</a>"
+				))
+		</p>
+
+		@Html.ActionLink(Context.Translate("BackHome"), "Index", "Accounts")
+	}
+}

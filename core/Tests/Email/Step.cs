@@ -49,7 +49,7 @@ namespace DFM.Email.Tests
 			user = new User
 			{
 				Email = email,
-				Config = new Config
+				Settings = new Settings
 				{
 					Language = "pt-BR"
 				}

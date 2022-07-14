@@ -40,7 +40,7 @@ namespace DFM.MVC.Starters.Routes
 
 		public class Misc : Default
 		{
-			public Misc() : base("Configs", "Misc") { }
+			public Misc() : base("Settings", "Misc") { }
 			public override String Path => "Misc";
 		}
 
