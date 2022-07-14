@@ -13,13 +13,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (73)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (68)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
-| warning about contract being only with who signs, not related people           | :sheep:  |  1  |  4  |  7  |                |
-| warning about schedules not running if not active                              | :sheep:  |  1  |  4  |  7  |                |
-| Move API token to body                                                         | :ant:    |  2  |  4  |  6  |                |
-| Add Mono themes - Dark and Light - ACCESSIBILITY                               | :dragon: |  2  |  4  |  6  |                |
-| Fix version program option `-g`                                                | :ant:    |  2  |  4  |  6  |                |
 | Add android security check do CI                                               | :ant:    |  2  |  4  |  6  |                |
 | Add Rust security check do CI                                                  | :ant:    |  2  |  4  |  6  |                |
 | warning mobile and browser logins stay active                                  | :sheep:  |  1  |  3  |  6  |                |

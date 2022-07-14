@@ -1,4 +1,13 @@
 {
+	"8.0.0.0": [
+		"Removidas medias sociais das formas de contato",
+		"Adicionado aos termos aviso sobre link dos termos no rodapé",
+		"Adicionado aos termos cláusula sobre imagens do site",
+		"Adicionado aos termos cláusula de não anulação",
+		"Melhorias na caixa de busca",
+		"Melhorias de acessibilidade no gráfico de categorias",
+		"Melhorias no tutorial"
+	],
 	"7.4.0.6": [
 		"Corrigido problema para rodar o agendador"
 	],

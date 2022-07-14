@@ -4,15 +4,22 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#7.4.0.6)
-- [go to version in development](#8.0.0.0)
-- [dev version state](../../8.0.0.0/docs/RELEASES.md#8.0.0.0)
+- [go to published version](#8.0.0.0)
+- [go to version in development](#9.0.0.0)
+- [dev version state](../../9.0.0.0/docs/RELEASES.md#9.0.0.0)
 
 ## Legend
 - :dragon:: at least one huge change (increases first number)
 - :whale:: at least one big change, like a new feature (increases second number)
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="9.0.0.0"></a>9.0.0.0 :dragon: <sup>`5`</sup>
+- [ ] Fix version program option `-g`
+- [ ] Add Mono themes - Dark and Light - ACCESSIBILITY
+- [ ] Move API token to body
+- [ ] warning about schedules not running if not active
+- [ ] warning about contract being only with who signs, not related people
 
 ## <a name="8.0.0.0"></a>8.0.0.0 :dragon: <sup>`9`</sup>
 - [x] `220713>220713` Change 'Configs' to 'Settings' in the whole system
