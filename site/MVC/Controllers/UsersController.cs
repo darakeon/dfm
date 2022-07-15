@@ -56,9 +56,10 @@ namespace DFM.MVC.Controllers
 
 			if (logOnError == null)
 			{
-				return String.IsNullOrEmpty(returnUrl)
+				var saferReturnUrl = fixCWE601(returnUrl);
+				return String.IsNullOrEmpty(saferReturnUrl)
 					? RedirectToAction("Index", "Accounts")
-					: Redirect(returnUrl);
+					: Redirect(saferReturnUrl);
 			}
 
 			if (logOnError.Type == Error.DisabledUser)

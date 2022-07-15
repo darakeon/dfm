@@ -90,8 +90,9 @@ namespace DFM.MVC.Controllers
 			if (!ModelState.IsValid)
 				return View(view, model);
 
-			if (!String.IsNullOrEmpty(model.BackTo))
-				return Redirect(model.BackTo);
+			var saferBackTo = fixCWE601(model.BackTo);
+			if (!String.IsNullOrEmpty(saferBackTo))
+				return Redirect(saferBackTo);
 
 			return RedirectToAction();
 		}
@@ -115,8 +116,11 @@ namespace DFM.MVC.Controllers
 		[HttpPost, ValidateAntiForgeryToken, Wizard.Avoid]
 		public IActionResult ChangeLanguageOffline(SettingsIndexModel model)
 		{
-			HttpContext.Session.SetString("Language", model.NewLanguage);
-			return Redirect(model.BackTo);
+			HttpContext.Session.SetString(
+				"Language", model.NewLanguage
+			);
+			var saferBackTo = fixCWE601(model.BackTo);
+			return Redirect(saferBackTo ?? "/");
 		}
 
 		[Auth, HttpPost, ValidateAntiForgeryToken, Wizard.Avoid]

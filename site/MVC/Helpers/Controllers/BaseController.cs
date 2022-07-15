@@ -33,5 +33,8 @@ namespace DFM.MVC.Helpers.Controllers
 		{
 			return View(view, new BaseSiteModel());
 		}
+
+		protected String? fixCWE601(String url) =>
+			Url.IsLocalUrl(url) ? url : null;
 	}
 }
