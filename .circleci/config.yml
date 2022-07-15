@@ -28,6 +28,18 @@ jobs:
           path: .circleci
           command: if [[ $(diff config.yml config_old.yml) != '' ]]; then echo 'outdated ci config'; exit 1; fi
 
+  trufflehog:
+    docker:
+      - image: python:3-alpine
+    steps:
+      - checkout
+      - run:
+          name: install trufflehog
+          command: apk add --no-cache git && pip install gitdb2==3.0.0 trufflehog
+      - run:
+          name: run trufflehog
+          command: trufflehog --exclude_paths .circleci/trufflehog/exclude-patterns.txt --allow .circleci/trufflehog/allow.json .
+
   test_core:
     docker:
       - image: darakeon/netcore
@@ -351,25 +363,33 @@ workflows:
   build_all:
     jobs:
       - test_ci
+      - trufflehog:
+          requires:
+            - test_ci
       - test_core:
           requires:
             - test_ci
+            - trufflehog
       - test_site:
           requires:
             - test_ci
             - test_core
+            - trufflehog
       - test_browser:
           requires:
             - test_ci
             - test_core
             - test_site
+            - trufflehog
       - test_android:
           requires:
             - test_ci
+            - trufflehog
       - test_build_robot:
           requires:
             - test_ci
             - test_core
+            - trufflehog
       - version_change:
           filters:
             branches:
@@ -381,3 +401,4 @@ workflows:
             - test_browser
             - test_android
             - test_build_robot
+            - trufflehog
