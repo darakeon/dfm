@@ -14,10 +14,9 @@ This is the list of project releases, past and current. To see tasks that are st
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="9.0.0.0"></a>9.0.0.0 :dragon: <sup>`6`</sup>
+## <a name="9.0.0.0"></a>9.0.0.0 :dragon: <sup>`5`</sup>
 - [ ] Fix version program option `-g`
 - [ ] Add Mono themes - Dark and Light - ACCESSIBILITY
-- [ ] Move API token to body
 - [x] `220715>220715` warning about schedules not running if not active
 - [x] `220715>220715` warning about contract being only with who signs, not related people
 - [x] `220715>220715` highlight new or changed parts of terms
