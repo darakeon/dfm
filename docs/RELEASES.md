@@ -20,7 +20,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Move API token to body
 - [ ] warning about schedules not running if not active
 - [ ] warning about contract being only with who signs, not related people
-- [ ] highlight new or changed parts of terms
+- [x] `220715>220715` highlight new or changed parts of terms
 
 ## <a name="8.0.0.0"></a>8.0.0.0 :dragon: <sup>`9`</sup>
 - [x] `220713>220713` Change 'Configs' to 'Settings' in the whole system

@@ -19,8 +19,11 @@
 }
 
 <div>
-
 	<div class="contract">
+		<div class="new-clause new-clause-explain">
+			@Context.Translate("NewClausesHighlighted")
+		</div>
+
 		@await Html.PartialAsync("Clause", Model.Contract[Model.Language])
 	</div>
 

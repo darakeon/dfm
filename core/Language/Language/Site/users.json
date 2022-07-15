@@ -19,6 +19,8 @@
 
 		"UserVerificationSent": "Code sent",
 
+		"NewClausesHighlighted": "Newer clauses are highlighted to ease reading for whom have read older contracts",
+
 		"": null
 	},
 	"pt-BR": {
@@ -40,6 +42,8 @@
 		"TFAContactUs": "não sei o código",
 
 		"UserVerificationSent": "Código enviado",
+
+		"NewClausesHighlighted": "Cláusulas mais novas são destacadas, para facilitar a leitura para quem já leu contratos anteriores",
 
 		"": null
 	}

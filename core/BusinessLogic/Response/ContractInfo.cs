@@ -39,6 +39,7 @@ namespace DFM.BusinessLogic.Response
 
 			public String Text { get; set; }
 			public IList<Clause> Items { get; set; }
+			public Boolean New { get; set; }
 		}
 	}
 }
