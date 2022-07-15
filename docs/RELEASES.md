@@ -18,7 +18,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Fix version program option `-g`
 - [ ] Add Mono themes - Dark and Light - ACCESSIBILITY
 - [ ] Move API token to body
-- [ ] warning about schedules not running if not active
+- [x] `220715>220715` warning about schedules not running if not active
 - [x] `220715>220715` warning about contract being only with who signs, not related people
 - [x] `220715>220715` highlight new or changed parts of terms
 

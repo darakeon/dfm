@@ -69,6 +69,24 @@ set @PT = replace(replace('
 			]
 		},
 		{
+			"Text": "Quando a Pessoa se registra no Sistema existe um período de 7 dias para confirmar o endereço de e-mail:",
+			"Items": [
+				{
+					"Text": "Uma mensagem é enviada ao endereço de e-mail informado quando a pessoa se cadastra:",
+					"Items": [
+						{ "Text": "Ela contém um link - que a pessoa pode clicar - e um token - que pode ser usado no site seguindo as instruções descritas na mensagem de e-mail;" },
+						{ "Text": "Qualquer dos dois métodos pode ser usado para confirmar o endereço de e-mail;" },
+						{ "Text": "Ambos expiram em 3 dias;" },
+						{ "Text": "Você pode enviar uma nova confirmação clicando no aviso que começa a aparecer no site após dois dias de cadastro." },
+					]
+				},
+				{ "Text": "Se o período de confirmação terminar, a Pessoa não pode mais usar o Sistema;" },
+				{ "Text": "Cada vez que a pessoa tenta se conectar depois do período terminado, uma nova mensagem de confirmação é enviada para o endereço de e-mail;" },
+				{ "Text": "A funcionalidade de movimentações agendadas não está ativa enquanto o e-mail não for confirmado." }
+			],
+			"New": true
+		},
+		{
 			"Text": "Quando a Pessoa abandona o Sistema por 90 dias, seus dados podem ser removidos:",
 			"Items": [
 				{ "Text": "Para evitar isso, a Pessoa deve interagir com o Sistema (estando logada) pelo site e/ou pelo aplicativo;" },
@@ -199,6 +217,24 @@ set @EN = replace(replace('
 			]
 		},
 		{
+			"Text": "Once the Person register at the System there is a period of 7 days to confirm the email address:",
+			"Items": [
+				{
+					"Text": "A message is sent to the email address informed while registering:",
+					"Items": [
+						{ "Text": "It contains both a link - which the Person can click - and a token - that can be used at the site following the email message instructions;" },
+						{ "Text": "Any of the two methods can be used to confirm the Person email address;" },
+						{ "Text": "Both methods expire in 3 days;" },
+						{ "Text": "You can send a new confirmation message by clicking a warning that appears in the System after 2 days of registration." },
+					]
+				},
+				{ "Text": "If the period to confirm ends the Person cannot use the System anymore;" },
+				{ "Text": "Each time the Person try to login after the period a new email message is sent to confirm the email address;" },
+				{ "Text": "Scheduled moves feature will not be active while the email is not confirmed." }
+			],
+			"New": true
+		},
+		{
 			"Text": "When the Person abandons the System for 90 days, their data can be removed:",
 			"Items": [
 				{ "Text": "To avoid this, the Person should interact with the System (logged in) by website and/or android app;" },
@@ -265,6 +301,18 @@ set @EN = replace(replace('
 	]
 }
 ', '\n', ''), '\t', '');
+
+select @len := max(len) from (
+		select max(length(Json)) as len
+			from terms
+	union
+		select length(@PT)
+	union
+		select length(@EN)
+) as lens;
+
+alter table terms
+	modify column Json varchar(7568) not null;
 
 insert into terms
 		(Json, Language, Contract_ID)
