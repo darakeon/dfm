@@ -1,0 +1,13 @@
+{
+	"alphabet-upper": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+	"alphabet-lower": "abcdefghijklmnopqrstuvwxyz",
+	"alphabet-lower-24": "abcdefghijklmnopqrstuvwx",
+	"amazon-email-test-1": "bh=jX3F0bCAI7sIbkHyy3mLYO28ieDQz2R0P8HwQkklFj4=",
+	"amazon-email-test-2": "b=sQwJ+LMe9RjkesGu+vqU56asvMhrLRRYrWCbV",
+	"link-how-to-commit-ci": "gclid=EAIaIQobChMIvaiowOO59AIVChCRCh0rgA0SEAAYASAAEgLqdvD_BwE",
+	"first-commit": "244609bd05bd7dce4bc6f30a49f8ff99b6249c3b",
+	"gist-1": "https://gist.github.com/xian/05c4f27da6d4156b9827842217c2cd5c",
+	"gist-2": "https://gist.github.com/simtel12/13ff3e57c37e78e468502b51ebb0f4f2",
+	".net-libs": "PublicKeyToken=",
+	"just-a-test": "WhenITryToSaveTheMoveWithEMailSystemOkAndCategoriesUseDisabled"
+}

@@ -3,25 +3,33 @@ workflows:
   build_all:
     jobs:
       - test_ci
+      - trufflehog:
+          requires:
+            - test_ci
       - test_core:
           requires:
             - test_ci
+            - trufflehog
       - test_site:
           requires:
             - test_ci
             - test_core
+            - trufflehog
       - test_browser:
           requires:
             - test_ci
             - test_core
             - test_site
+            - trufflehog
       - test_android:
           requires:
             - test_ci
+            - trufflehog
       - test_build_robot:
           requires:
             - test_ci
             - test_core
+            - trufflehog
       - version_change:
           filters:
             branches:
@@ -33,3 +41,4 @@ workflows:
             - test_browser
             - test_android
             - test_build_robot
+            - trufflehog

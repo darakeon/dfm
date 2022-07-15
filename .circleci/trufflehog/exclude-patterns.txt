@@ -1,0 +1,7 @@
+.*package-lock\.json
+.*\.DotSettings
+email/Redirector/example.json
+core/respell
+site/MVC/Assets/themes/
+android/LVL/src/main/java/com/google/android/vending/licensing
+site/DFM.MVC/Assets/Bootstrap/Themes
