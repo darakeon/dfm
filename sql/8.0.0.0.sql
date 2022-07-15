@@ -271,3 +271,5 @@ alter table user
     add constraint FK_User_Settings
 		foreign key (Settings_ID)
         references settings(ID);
+
+insert into migrations (name) values ('8.0.0.0');
