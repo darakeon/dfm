@@ -34,9 +34,9 @@ namespace DFM.Language.Emails
 				var themePath = Path.Combine(path, "theme.json");
 				var themeJson = getContent(themePath);
 
-				foreach (var (name, hex) in ThemeColorize.Get(themeJson, theme))
+				foreach (var (name, value) in ThemeColorize.Get(themeJson, theme))
 				{
-					html = html.Replace($"{{{{{name}}}}}", $"#{hex}");
+					html = html.Replace($"{{{{{name}}}}}", $"{value}");
 				}
 
 				return html;

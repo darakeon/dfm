@@ -28,34 +28,64 @@
 	--transparent-2-1-0: rgba(255, 255, 255, 0.15) 25%;
 	--transparent-2-1-1: rgba(255, 255, 255, 0.15) 50%;
 	--transparent-2-1-2: rgba(255, 255, 255, 0.15) 75%;
-	--default-0: #555;
+	--default-0: #444;
 	--default-1: #333;
 	--default-2: #222;
 	--default-3: #111;
-	--success-0: #175;
-	--success-1: #164;
-	--success-2: #153;
-	--success-3: #142;
-	--success-4: #131;
-	--success-5: #120;
-	--info-0: #259;
-	--info-1: #248;
-	--info-2: #237;
-	--info-3: #226;
-	--info-4: #215;
-	--info-5: #204;
-	--warning-0: #952;
-	--warning-1: #852;
-	--warning-2: #741;
-	--warning-3: #641;
-	--warning-4: #530;
-	--warning-5: #430;
-	--danger-0: #b32;
-	--danger-1: #a32;
-	--danger-2: #921;
-	--danger-3: #821;
-	--danger-4: #710;
-	--danger-5: #610;
+}
+
+:root {
+	--on-success-0: #175;
+	--on-success-1: #164;
+	--on-success-2: #153;
+	--on-success-3: #142;
+	--on-success-4: #131;
+	--on-success-5: #120;
+	--on-info-0: #259;
+	--on-info-1: #248;
+	--on-info-2: #237;
+	--on-info-3: #226;
+	--on-info-4: #215;
+	--on-info-5: #204;
+	--on-warning-0: #952;
+	--on-warning-1: #852;
+	--on-warning-2: #741;
+	--on-warning-3: #641;
+	--on-warning-4: #530;
+	--on-warning-5: #430;
+	--on-danger-0: #b32;
+	--on-danger-1: #a32;
+	--on-danger-2: #921;
+	--on-danger-3: #821;
+	--on-danger-4: #710;
+	--on-danger-5: #610;
+}
+
+:root {
+	--off-success-0: #444;
+	--off-success-1: #444;
+	--off-success-2: #444;
+	--off-success-3: #444;
+	--off-success-4: #444;
+	--off-success-5: #444;
+	--off-info-0: #333;
+	--off-info-1: #333;
+	--off-info-2: #333;
+	--off-info-3: #333;
+	--off-info-4: #333;
+	--off-info-5: #333;
+	--off-warning-0: #222;
+	--off-warning-1: #222;
+	--off-warning-2: #222;
+	--off-warning-3: #222;
+	--off-warning-4: #222;
+	--off-warning-5: #222;
+	--off-danger-0: #111;
+	--off-danger-1: #111;
+	--off-danger-2: #111;
+	--off-danger-3: #111;
+	--off-danger-4: #111;
+	--off-danger-5: #111;
 }
 
 :root {
@@ -89,4 +119,15 @@
 	--nature-highlight-1: #840;
 	--nature-highlight-2: #730;
 	--nature-highlight-3: #620;
+}
+
+:root {
+	--mono-primary-0: #222;
+	--mono-primary-1: #222;
+	--mono-primary-2: #111;
+	--mono-primary-3: #111;
+	--mono-highlight-0: #000;
+	--mono-highlight-1: #000;
+	--mono-highlight-2: #000;
+	--mono-highlight-3: #000;
 }

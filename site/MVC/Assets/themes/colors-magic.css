@@ -1,3 +1,5 @@
+@import url("colors-on.css");
+
 :root {
 	--primary-0: var(--magic-primary-0);
 	--primary-1: var(--magic-primary-1);
