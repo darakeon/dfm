@@ -28,36 +28,65 @@
 	--transparent-2-1-0: rgba(0, 0, 0, 0.15) 25%;
 	--transparent-2-1-1: rgba(0, 0, 0, 0.15) 50%;
 	--transparent-2-1-2: rgba(0, 0, 0, 0.15) 75%;
-	--default-0: #AAA;
+	--default-0: #BBB;
 	--default-1: #CCC;
 	--default-2: #DDD;
 	--default-3: #EEE;
-	--success-0: #0b9;
-	--success-1: #0a8;
-	--success-2: #097;
-	--success-3: #086;
-	--success-4: #075;
-	--success-5: #064;
-	--info-0: #59f;
-	--info-1: #58e;
-	--info-2: #57d;
-	--info-3: #56c;
-	--info-4: #55b;
-	--info-5: #54a;
-	--warning-0: #fb3;
-	--warning-1: #ea3;
-	--warning-2: #d92;
-	--warning-3: #c82;
-	--warning-4: #b71;
-	--warning-5: #a61;
-	--danger-0: #f77;
-	--danger-1: #e77;
-	--danger-2: #d66;
-	--danger-3: #c66;
-	--danger-4: #b55;
-	--danger-5: #a55;
 }
 
+:root {
+	--on-success-0: #0b9;
+	--on-success-1: #0a8;
+	--on-success-2: #097;
+	--on-success-3: #086;
+	--on-success-4: #075;
+	--on-success-5: #064;
+	--on-info-0: #59f;
+	--on-info-1: #58e;
+	--on-info-2: #57d;
+	--on-info-3: #56c;
+	--on-info-4: #55b;
+	--on-info-5: #54a;
+	--on-warning-0: #fb3;
+	--on-warning-1: #ea3;
+	--on-warning-2: #d92;
+	--on-warning-3: #c82;
+	--on-warning-4: #b71;
+	--on-warning-5: #a61;
+	--on-danger-0: #f77;
+	--on-danger-1: #e77;
+	--on-danger-2: #d66;
+	--on-danger-3: #c66;
+	--on-danger-4: #b55;
+	--on-danger-5: #a55;
+}
+
+:root {
+	--off-success-0: #BBB;
+	--off-success-1: #BBB;
+	--off-success-2: #BBB;
+	--off-success-3: #BBB;
+	--off-success-4: #BBB;
+	--off-success-5: #BBB;
+	--off-info-0: #CCC;
+	--off-info-1: #CCC;
+	--off-info-2: #CCC;
+	--off-info-3: #CCC;
+	--off-info-4: #CCC;
+	--off-info-5: #CCC;
+	--off-warning-0: #DDD;
+	--off-warning-1: #DDD;
+	--off-warning-2: #DDD;
+	--off-warning-3: #DDD;
+	--off-warning-4: #DDD;
+	--off-warning-5: #DDD;
+	--off-danger-0: #EEE;
+	--off-danger-1: #EEE;
+	--off-danger-2: #EEE;
+	--off-danger-3: #EEE;
+	--off-danger-4: #EEE;
+	--off-danger-5: #EEE;
+}
 
 :root {
 	--magic-primary-0: #A9C;
@@ -90,4 +119,15 @@
 	--nature-highlight-1: #EB8;
 	--nature-highlight-2: #DA7;
 	--nature-highlight-3: #C96;
+}
+
+:root {
+	--mono-primary-0: #DDD;
+	--mono-primary-1: #DDD;
+	--mono-primary-2: #EEE;
+	--mono-primary-3: #EEE;
+	--mono-highlight-0: #FFF;
+	--mono-highlight-1: #FFF;
+	--mono-highlight-2: #FFF;
+	--mono-highlight-3: #FFF;
 }

@@ -13,6 +13,8 @@ namespace DFM.Generic
 		LightSober = ThemeBrightness.Light * ThemeColor.Sober,
 		DarkNature = ThemeBrightness.Dark * ThemeColor.Nature,
 		LightNature = ThemeBrightness.Light * ThemeColor.Nature,
+		DarkMono = ThemeBrightness.Dark * ThemeColor.Mono,
+		LightMono = ThemeBrightness.Light * ThemeColor.Mono,
 	}
 
 	public enum ThemeBrightness
@@ -28,6 +30,7 @@ namespace DFM.Generic
 		Magic = 1,
 		Sober = 2,
 		Nature = 3,
+		Mono = 4,
 	}
 
 	public static class ThemeX

@@ -1,0 +1,30 @@
+﻿:root {
+	--success-0: var(--off-success-0);
+	--success-1: var(--off-success-1);
+	--success-2: var(--off-success-2);
+	--success-3: var(--off-success-3);
+	--success-4: var(--off-success-4);
+	--success-5: var(--off-success-5);
+	--info-0: var(--off-info-0);
+	--info-1: var(--off-info-1);
+	--info-2: var(--off-info-2);
+	--info-3: var(--off-info-3);
+	--info-4: var(--off-info-4);
+	--info-5: var(--off-info-5);
+	--warning-0: var(--off-warning-0);
+	--warning-1: var(--off-warning-1);
+	--warning-2: var(--off-warning-2);
+	--warning-3: var(--off-warning-3);
+	--warning-4: var(--off-warning-4);
+	--warning-5: var(--off-warning-5);
+	--danger-0: var(--off-danger-0);
+	--danger-1: var(--off-danger-1);
+	--danger-2: var(--off-danger-2);
+	--danger-3: var(--off-danger-3);
+	--danger-4: var(--off-danger-4);
+	--danger-5: var(--off-danger-5);
+}
+
+.gray-for-off {
+	filter: grayscale(1);
+}

@@ -1,0 +1,12 @@
+@import url("colors-off.css");
+
+:root {
+	--primary-0: var(--mono-primary-0);
+	--primary-1: var(--mono-primary-1);
+	--primary-2: var(--mono-primary-2);
+	--primary-3: var(--mono-primary-3);
+	--highlight-0: var(--mono-highlight-0);
+	--highlight-1: var(--mono-highlight-1);
+	--highlight-2: var(--mono-highlight-2);
+	--highlight-3: var(--mono-highlight-3);
+}

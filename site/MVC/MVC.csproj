@@ -156,14 +156,19 @@
     <None Remove="Assets\themes\bootstrap.min.css" />
     <None Remove="Assets\themes\colors-dark.css" />
     <None Remove="Assets\themes\colors-darkmagic.css" />
+    <None Remove="Assets\themes\colors-darkmono.css" />
     <None Remove="Assets\themes\colors-darknature.css" />
     <None Remove="Assets\themes\colors-darksober.css" />
     <None Remove="Assets\themes\colors-light.css" />
     <None Remove="Assets\themes\colors-lightmagic.css" />
+    <None Remove="Assets\themes\colors-lightmono.css" />
     <None Remove="Assets\themes\colors-lightnature.css" />
     <None Remove="Assets\themes\colors-lightsober.css" />
     <None Remove="Assets\themes\colors-magic.css" />
+    <None Remove="Assets\themes\colors-mono.css" />
     <None Remove="Assets\themes\colors-nature.css" />
+    <None Remove="Assets\themes\colors-off.css" />
+    <None Remove="Assets\themes\colors-on.css" />
     <None Remove="Assets\themes\colors-sober.css" />
   </ItemGroup>
 
@@ -558,10 +563,25 @@
     <Content Include="Assets\themes\bootstrap.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\themes\colors-darkmono.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\themes\colors-darknature.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\themes\colors-lightmono.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\themes\colors-mono.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\themes\colors-nature.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\themes\colors-off.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\themes\colors-on.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\themes\colors-sober.css">
