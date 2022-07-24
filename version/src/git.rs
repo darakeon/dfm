@@ -1,3 +1,4 @@
+use std::path::PathBuf;
 use dirs::home_dir;
 
 use git2::{
@@ -143,14 +144,9 @@ fn git_credentials_callback(
 	username: Option<&str>,
 	_cred_type: CredentialType,
 ) -> Result<Cred, Error> {
-	let mut public = home_dir().unwrap();
-	public.push(".ssh");
-	public.push("dk");
-	public.set_extension("pub");
 
-	let mut private = home_dir().unwrap();
-	private.push(".ssh");
-	private.push("dk");
+	let public = get_key_path(Some("pub"));
+	let private = get_key_path(None);
 
 	let password = env::var("GIT_PASSWORD")
 		.expect("No GIT_PASSWORD environment variable found");
@@ -161,6 +157,18 @@ fn git_credentials_callback(
 		private.as_path(),
 		Some(&password),
 	);
+}
+
+fn get_key_path(extension: Option<&str>) -> PathBuf {
+	let mut path = home_dir().unwrap();
+	path.push(".ssh");
+	path.push("cargo");
+
+	if let Some(extension_value) = extension {
+		path.set_extension(extension_value);
+	}
+
+	return path;
 }
 
 pub fn go_to_main() {
