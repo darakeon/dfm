@@ -48,9 +48,11 @@ fn update_git(version: Version) {
 		return;
 	}
 
+	update_local();
+
+	go_to_main();
+
 	let tag = version.prev.clone();
-	let old_branch = version.prev;
-	let new_branch = version.code;
 	let mut tasks = "".to_string();
 
 	for task in version.tasks.iter() {
@@ -58,13 +60,17 @@ fn update_git(version: Version) {
 		tasks += "\n";
 	}
 
-	update_local();
-	go_to_main();
 	create_tag(&tag, &tasks);
+
+	let old_branch = version.prev;
+	let new_branch = version.code;
+
 	create_branch(&new_branch);
 	remove_branch(&old_branch);
+
 	update_remote(&tag, &new_branch);
 	remove_branch("main");
+
 	connect_local_and_remote_branch(&new_branch);
 }
 
