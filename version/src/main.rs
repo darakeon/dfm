@@ -27,20 +27,28 @@ use version::{create_version,Version};
 fn main() {
 	stash("running version");
 
-	if let Some((option, numbers)) = parse_arguments() {
-		if let Some(version) = create_version(&option, numbers) {
-			match option {
-				ProgramOption::Check =>
-					success(),
-				ProgramOption::Git =>
-					update_git(version),
-				_ =>
-					update_version(version),
+	let execution = || -> Result<(), ()> {
+		if let Some((option, numbers)) = parse_arguments() {
+			if let Some(version) = create_version(&option, numbers) {
+				match option {
+					ProgramOption::Check =>
+						success(),
+					ProgramOption::Git =>
+						update_git(version),
+					_ =>
+						update_version(version),
+				}
 			}
 		}
-	}
+
+		Ok(())
+	};
+
+	let result = execution();
 
 	stash_pop();
+
+	result.unwrap();
 }
 
 fn update_git(version: Version) {
