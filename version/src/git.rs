@@ -148,21 +148,21 @@ fn git_credentials_callback(
 	let public = get_key_path(Some("pub"));
 	let private = get_key_path(None);
 
-	let password = env::var("GIT_PASSWORD")
-		.expect("No GIT_PASSWORD environment variable found");
-
 	return Cred::ssh_key(
 		username.unwrap(),
 		Some(public.as_path()),
 		private.as_path(),
-		Some(&password),
+		None,
 	);
 }
 
 fn get_key_path(extension: Option<&str>) -> PathBuf {
+	let ssh_key = env::var("GIT_SSH_KEY_NAME")
+		.expect("No GIT_SSH_KEY_NAME environment variable found");
+
 	let mut path = home_dir().unwrap();
 	path.push(".ssh");
-	path.push("cargo");
+	path.push(ssh_key);
 
 	if let Some(extension_value) = extension {
 		path.set_extension(extension_value);
