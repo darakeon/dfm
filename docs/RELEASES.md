@@ -17,7 +17,7 @@ This is the list of project releases, past and current. To see tasks that are st
 ## <a name="9.0.0.0"></a>9.0.0.0 :dragon: <sup>`7`</sup>
 - [ ] Remove variable stuff from terms
 - [ ] Add term about where data is stored
-- [ ] `220719>......` Fix version program option `-g`
+- [x] `220719>220918` Fix version program option `-g`
 - [x] `220715>220718` Add Mono themes - Dark and Light - ACCESSIBILITY
 - [x] `220715>220715` warning about schedules not running if not active
 - [x] `220715>220715` warning about contract being only with who signs, not related people
