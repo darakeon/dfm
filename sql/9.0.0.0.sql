@@ -34,15 +34,15 @@ set @PT = replace(replace('
 		{
 			"Text": "Os meios de comunicação do Sistema com a Pessoa são:",
 			"Items": [
-				{ "Text": "E-mail cadastrado pela Pessoa ao se registrar em Sistema, cujo contato é feito somente pelos endereços {{noreply_address}} - apenas para alertas automatizados - e {{support_address}} - para suporte;" },
-				{ "Text": "Sistema web, registrado no domínio {{site_address}};" },
-				{ "Text": "Aplicativo para dispositivos android {{android_address}}, instalação via Play Store." }
+				{ "Text": "E-mail cadastrado pela Pessoa ao se registrar em Sistema, cujo contato é feito somente pelos endereços no-reply@dontflymoney.com - apenas para alertas automatizados - e <a target=\'_blank\' href=\'mailto:dfm@dontflymoney.com\'>dfm@dontflymoney.com</a> - para suporte;" },
+				{ "Text": "Sistema web, registrado no domínio <a href=\'https://dontflymoney.com\'>dontflymoney.com</a>;" },
+				{ "Text": "Aplicativo para dispositivos android <a target=\'_blank\' href=\'https://play.google.com/store/apps/details?id=com.dontflymoney.view\'>Don\'t fly Money</a>, instalação via Play Store." }
 			]
 		},
 		{
 			"Text": "O código fonte do Sistema - instruções para computador que regem o funcionamento do Sistema - está em um endereço web:",
 			"Items": [
-				{ "Text": "O endereço é público: {{github_address}};" },
+				{ "Text": "O endereço é público: <a target=\'_blank\' href=\'https://github.com/darakeon/dfm\'>GitHub</a>;" },
 				{ "Text": "O código fonte é ABERTO, podendo QUALQUER pessoa com acesso não-censurado a internet visualizá-lo e sugerir edições, usando uma conta do github." }
 			]
 		},
@@ -98,8 +98,8 @@ set @PT = replace(replace('
 		{
 			"Text": "Quando os dados são removidos do Sistema, não podem ser automaticamente recuperados. Dado que talvez a Pessoa queira manter os dados para si, mesmo sem usar o Sistema, as movimentações serão exportadas pelo Sistema para um arquivo antes da remoção:",
 			"Items": [
-				{ "Text": "a Pessoa pode requisitar o arquivo enviando um e-mail para {{support_address}}, usando o mesmo e-mail cadastrado no Sistema;" },
-				{ "Text": "a Pessoa pode requisitar a exclusão permanente desse arquivo enviando um e-mail para {{support_address}}, usando o mesmo e-mail cadastrado no Sistema;" },
+				{ "Text": "a Pessoa pode requisitar o arquivo enviando um e-mail para <a target=\'_blank\' href=\'mailto:dfm@dontflymoney.com\'>dfm@dontflymoney.com</a>, usando o mesmo e-mail cadastrado no Sistema;" },
+				{ "Text": "a Pessoa pode requisitar a exclusão permanente desse arquivo enviando um e-mail para <a target=\'_blank\' href=\'mailto:dfm@dontflymoney.com\'>dfm@dontflymoney.com</a>, usando o mesmo e-mail cadastrado no Sistema;" },
 				{ "Text": "se a Pessoa requisitar o arquivo e/ou sua exclusão permanente, isso será feito assim que possível após ser vista a requisição;" },
 				{ "Text": "a criação do arquivo não é uma garantia de sua existência para sempre: o arquivo pode ser apagado a qualquer momento após a remoção dos dados do Sistema, sem consulta prévia a Pessoa." },
 			]
@@ -126,7 +126,7 @@ set @PT = replace(replace('
 					"Text": "A imagem logo do site - porquinho - e a imagem de segurança tiveram sua autoria registrada na Biblioteca Nacional Brasileira;",
 					"Items": [
 						{
-							"Text": "Seu uso só pode ser feito mediante autorização através do e-mail {{support_address}}.",
+							"Text": "Seu uso só pode ser feito mediante autorização através do e-mail <a target=\'_blank\' href=\'mailto:dfm@dontflymoney.com\'>dfm@dontflymoney.com</a>.",
 						}
 					]
 				},
@@ -182,15 +182,15 @@ set @EN = replace(replace('
 		{
 			"Text": "Communication vehicles from System to the Person are:",
 			"Items": [
-				{ "Text": "E-mail informed by the Person on the registration at the System, which is only contacted by the addresses {{noreply_address}} - just for automated alerts - and {{support_address}} - for support;" },
-				{ "Text": "Web system, registered at site {{site_address}};" },
-				{ "Text": "Android app {{android_address}}, installed by Play Store." }
+				{ "Text": "E-mail informed by the Person on the registration at the System, which is only contacted by the addresses no-reply@dontflymoney.com - just for automated alerts - and <a target=\'_blank\' href=\'mailto:dfm@dontflymoney.com\'>dfm@dontflymoney.com</a> - for support;" },
+				{ "Text": "Web system, registered at site <a href=\'https://dontflymoney.com\'>dontflymoney.com</a>;" },
+				{ "Text": "Android app <a target=\'_blank\' href=\'https://play.google.com/store/apps/details?id=com.dontflymoney.view\'>Don\'t fly Money</a>, installed by Play Store." }
 			]
 		},
 		{
 			"Text": "The System source code - instructions to computer which rule the System - is hosted at a web address:",
 			"Items": [
-				{ "Text": "The address is public: {{github_address}};" },
+				{ "Text": "The address is public: <a target=\'_blank\' href=\'https://github.com/darakeon/dfm\'>GitHub</a>;" },
 				{ "Text": "The source code is OPEN and ANY person using uncensored internet access can see it and suggest changes, using a github login." }
 			]
 		},
@@ -246,8 +246,8 @@ set @EN = replace(replace('
 		{
 			"Text": "When the data is removed from the System, this cannot be automatically restored. Given maybe the Person wants to keep the data to itself even without using the System, the moves will be exported by the System to a file before removal:",
 			"Items": [
-				{ "Text": "the Person can request the file sending e-mail to {{support_address}} using same e-mail registered at the System;" },
-				{ "Text": "the Person can request the permanent deletion of the file sending e-mail to {{support_address}} using same e-mail registered at the System;" },
+				{ "Text": "the Person can request the file sending e-mail to <a target=\'_blank\' href=\'mailto:dfm@dontflymoney.com\'>dfm@dontflymoney.com</a> using same e-mail registered at the System;" },
+				{ "Text": "the Person can request the permanent deletion of the file sending e-mail to <a target=\'_blank\' href=\'mailto:dfm@dontflymoney.com\'>dfm@dontflymoney.com</a> using same e-mail registered at the System;" },
 				{ "Text": "if the Person request the data file and/or its permanent deletion it will be made as soon possible after the request is seen;" },
 				{ "Text": "the creation of the file is not a guarantee of its existence forever: the file can be deleted any time after System data removal, without prior check with the Person." },
 			]
@@ -274,7 +274,7 @@ set @EN = replace(replace('
 					"Text": "The logo image - the pig - and the safety image had their authorship registered at Biblioteca Nacional (National Library) in Brazil;",
 					"Items": [
 						{
-							"Text": "They only can be used with authorization via the email {{support_address}}.",
+							"Text": "They only can be used with authorization via the email <a target=\'_blank\' href=\'mailto:dfm@dontflymoney.com\'>dfm@dontflymoney.com</a>.",
 						}
 					]
 				},
@@ -312,7 +312,7 @@ select @len := max(len) from (
 ) as lens;
 
 alter table terms
-	modify column Json varchar(7568) not null;
+	modify column Json varchar(8000) not null;
 
 insert into terms
 		(Json, Language, Contract_ID)

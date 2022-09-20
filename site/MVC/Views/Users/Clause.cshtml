@@ -1,18 +1,6 @@
-@using Keon.Util.Extensions
 @model DFM.BusinessLogic.Response.ContractInfo.Clause
 
-@{
-	var replaces = new Dictionary<String, String>
-	{
-		{ "noreply_address", "no-reply@dontflymoney.com" },
-		{ "support_address", "<a target='_blank' href='mailto:dfm@dontflymoney.com'>dfm@dontflymoney.com</a>" },
-		{ "site_address", "<a href='https://dontflymoney.com'>dontflymoney.com</a>" },
-		{ "android_address", "<a target='_blank' href='https://play.google.com/store/apps/details?id=com.dontflymoney.view'>Don't fly Money</a>" },
-		{ "github_address", "<a target='_blank' href='https://github.com/darakeon/dfm'>GitHub</a>" },
-	};
-}
-
-@Html.Raw(Model.Text.Format(replaces))
+@Html.Raw(Model.Text)
 
 @if (Model.Items.Any())
 {
