@@ -36,7 +36,11 @@
 		@Html.ActionLink(
 			Context.Translate("ContractTitle"),
 			"Contract", "Users",
-			null, new { target = "_blank" }
+			null, new
+			{
+				target = "_blank",
+				rel="noopener noreferrer",
+			}
 		).
 	</p>
 	<p class="text-center">
