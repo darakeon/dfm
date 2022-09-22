@@ -47,7 +47,8 @@
 
 		<activity
 			android:name=".welcome.WelcomeActivity"
-			android:label="@string/app_short_name">
+			android:label="@string/app_short_name"
+			android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
@@ -67,7 +68,9 @@
 			<tools:validation testUrl="https://dontflymoney.com/@Welcome" />
 		</activity>
 
-		<activity android:name=".login.LoginActivity">
+		<activity
+			android:name=".login.LoginActivity"
+			android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
 
@@ -83,7 +86,9 @@
 			<tools:validation testUrl="https://dontflymoney.com/@Login" />
 		</activity>
 
-		<activity android:name=".accounts.AccountsActivity">
+		<activity
+			android:name=".accounts.AccountsActivity"
+			android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
 
@@ -99,7 +104,9 @@
 			<tools:validation testUrl="https://dontflymoney.com/@Accounts" />
 		</activity>
 
-		<activity android:name=".extract.ExtractActivity">
+		<activity
+			android:name=".extract.ExtractActivity"
+			android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
 
@@ -115,7 +122,9 @@
 			<tools:validation testUrl="https://dontflymoney.com/@Extract" />
 		</activity>
 
-		<activity android:name=".summary.SummaryActivity">
+		<activity
+			android:name=".summary.SummaryActivity"
+			android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
 
@@ -131,7 +140,9 @@
 			<tools:validation testUrl="https://dontflymoney.com/@Summary" />
 		</activity>
 
-		<activity android:name=".moves.MovesActivity">
+		<activity
+			android:name=".moves.MovesActivity"
+			android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
 
@@ -147,7 +158,9 @@
 			<tools:validation testUrl="https://dontflymoney.com/@MovesCreate" />
 		</activity>
 
-		<activity android:name=".settings.SettingsActivity">
+		<activity
+			android:name=".settings.SettingsActivity"
+			android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
 

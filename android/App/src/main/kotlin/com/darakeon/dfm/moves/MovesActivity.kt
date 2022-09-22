@@ -318,6 +318,7 @@ class MovesActivity : BaseActivity() {
 				Nature.Out -> nature_out.isChecked = true
 				Nature.Transfer -> nature_transfer.isChecked = true
 				Nature.In -> nature_in.isChecked = true
+				else -> {}
 			}
 		}
 	}
