@@ -2,13 +2,12 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-	compileSdkVersion 30
+	compileSdkVersion 32
 
 	defaultConfig {
-		versionName "$dfm_version"
 
 		minSdkVersion 21
-		targetSdkVersion 30
+		targetSdkVersion 32
 	}
 
 	buildTypes {
@@ -38,9 +37,10 @@ android {
 		jvmTarget = "$java_version"
 	}
 
-	lintOptions {
+	lint {
 		abortOnError true
 	}
+
 }
 
 dependencies {
