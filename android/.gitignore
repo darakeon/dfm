@@ -20,3 +20,5 @@ release
 
 */*/debug/res/values/site-address.xml
 */*/debug/res/xml/network_security_config.xml
+
+java_*.hprof
