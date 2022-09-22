@@ -62,16 +62,26 @@ else
 
 	<p class="text-center">
 		<a href="@Cfg.GooglePlay"
+			target="_blank"
+			rel="noopener noreferrer"
 			title="@Context.Translate("Aria_AndroidLink")"
-			target="_blank" class="android-link"></a>
+			class="android-link"
+		>
+
+		</a>
 	</p>
 
 	@section Footer {
 		<p class="text-center">
 			@Html.Raw(String.Format(
 				Context.Translate("Wizard_EndTextContact").BreakLines(),
-				"<a target='_blank' href='mailto:dfm@dontflymoney.com'>dfm@dontflymoney.com</a>"
-				))
+				"<a href='mailto:dfm@dontflymoney.com' " +
+					"rel='noopener noreferrer' " +
+					"target='_blank'" +
+				">" +
+					"dfm@dontflymoney.com" +
+				"</a>"
+			))
 		</p>
 
 		@Html.ActionLink(Context.Translate("BackHome"), "Index", "Accounts")

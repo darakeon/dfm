@@ -31,7 +31,7 @@
 						}
 						else
 						{
-							target = "target='_blank'";
+							target = "target='_blank' rel='noopener noreferrer'";
 						}
 
 						var a = $"<a href='{link}' {target}>{contact.Value}</a>";
@@ -45,7 +45,10 @@
 				<hr/>
 
 				<h2>
-					<a href="https://github.com/darakeon/dfm/" target="_blank">
+					<a href="https://github.com/darakeon/dfm/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
 						@Context.Translate("Contact_Project")
 					</a>
 					<em class="small">
@@ -55,12 +58,18 @@
 
 				<ul>
 					<li>
-						<a href="https://github.com/darakeon/dfm/blob/main/docs/RELEASES.md" target="_blank">
+						<a href="https://github.com/darakeon/dfm/blob/main/docs/RELEASES.md"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
 							@Context.Translate("Contact_Releases")
 						</a>
 					</li>
 					<li>
-						<a href="https://github.com/darakeon/dfm/blob/main/docs/TODO.md" target="_blank">
+						<a href="https://github.com/darakeon/dfm/blob/main/docs/TODO.md"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
 							@Context.Translate("Contact_TODO")
 						</a>
 					</li>
