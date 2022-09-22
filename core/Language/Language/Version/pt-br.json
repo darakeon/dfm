@@ -1,4 +1,11 @@
 {
+	"9.0.0.0": [
+		"Arrumada ferramenta de manutenção",
+		"Adicionado estilo monocromático",
+		"Adicionado aviso sobre agendamentos não rodarem se a conta não estiver ativa",
+		"Adicionado aviso sobre contrato do site ser acordado apenas com quem assina, não com pessoas relacionadas",
+		"Partes novas do contrato são destacadas para facilitar leitura"
+	],
 	"8.0.0.0": [
 		"Removidas medias sociais das formas de contato",
 		"Adicionado aos termos aviso sobre link dos termos no rodapé",

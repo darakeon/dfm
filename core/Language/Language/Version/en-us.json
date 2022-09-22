@@ -1,4 +1,11 @@
 {
+	"9.0.0.0": [
+		"Fix maintainance tools",
+		"Add monochromatic theme",
+		"Add warning about schedules not running for non active users",
+		"Add warning about contract being only with who signs, not related people",
+		"Highlight new or changed parts of terms"
+	],
 	"8.0.0.0": [
 		"Remove social media from contact modal",
 		"Add to terms footer link warning",
