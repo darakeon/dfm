@@ -13,13 +13,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (69)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (64)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
-| Add android security check do CI                                               | :ant:    |  2  |  4  |  6  |                |
-| Add Rust security check do CI                                                  | :ant:    |  2  |  4  |  6  |                |
-| warning mobile and browser logins stay active                                  | :sheep:  |  1  |  3  |  6  |                |
-| Add build step and make the others depend on it, not on tests step             | :ant:    |  1  |  3  |  6  |                |
-| Improve empty category chart (just a blank circle is confusing)                | :sheep:  |  1  |  3  |  6  |                |
 | Add monitoring with Grafana and Prometheus ([.NET Lib])                        | :dragon: |  3  |  4  |  5  |                |
 | Add django admin to search deleted accounts                                    | :sheep:  |  3  |  4  |  5  |                |
 | Hash email after wipe in the wipe history table                                | :sheep:  |  3  |  4  |  5  | django admin   |

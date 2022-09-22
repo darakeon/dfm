@@ -1,20 +1,8 @@
 {
 	"en-us": {
-		"Remove variable stuff from terms": "-",
-		"Fix version program option `-g`": "Fix maintainance tools",
-		"Add Mono themes - Dark and Light - ACCESSIBILITY": "Add monochromatic theme",
-		"warning about schedules not running if not active": "Add warning about schedules not running for non active users",
-		"warning about contract being only with who signs, not related people": "Add warning about contract being only with who signs, not related people",
-		"highlight new or changed parts of terms": "Highlight new or changed parts of terms",
 		"": null
 	},
 	"pt-br": {
-		"Remove variable stuff from terms": "-",
-		"Fix version program option `-g`": "Arrumada ferramenta de manutenção",
-		"Add Mono themes - Dark and Light - ACCESSIBILITY": "Adicionado estilo monocromático",
-		"warning about schedules not running if not active": "Adicionado aviso sobre agendamentos não rodarem se a conta não estiver ativa",
-		"warning about contract being only with who signs, not related people": "Adicionado aviso sobre contrato do site ser acordado apenas com quem assina, não com pessoas relacionadas",
-		"highlight new or changed parts of terms": "Partes novas do contrato são destacadas para facilitar leitura",
 		"": null
 	}
 }

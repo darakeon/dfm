@@ -5,8 +5,8 @@
     <IsPackable>false</IsPackable>
     <AssemblyName>DFM.Language.Tests</AssemblyName>
     <RootNamespace>DFM.Language.Tests</RootNamespace>
-    <AssemblyVersion>8.0.0.0</AssemblyVersion>
-    <FileVersion>8.0.0.0</FileVersion>
+    <AssemblyVersion>9.0.0.0</AssemblyVersion>
+    <FileVersion>9.0.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

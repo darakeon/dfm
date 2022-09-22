@@ -4,15 +4,22 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#8.0.0.0)
-- [go to version in development](#9.0.0.0)
-- [dev version state](../../9.0.0.0/docs/RELEASES.md#9.0.0.0)
+- [go to published version](#9.0.0.0)
+- [go to version in development](#9.0.1.0)
+- [dev version state](../../9.0.1.0/docs/RELEASES.md#9.0.1.0)
 
 ## Legend
 - :dragon:: at least one huge change (increases first number)
 - :whale:: at least one big change, like a new feature (increases second number)
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="9.0.1.0"></a>9.0.1.0 :sheep: <sup>`5`</sup>
+- [ ] Improve empty category chart (just a blank circle is confusing)
+- [ ] Add build step and make the others depend on it, not on tests step
+- [ ] warning mobile and browser logins stay active
+- [ ] Add Rust security check do CI
+- [ ] Add android security check do CI
 
 ## <a name="9.0.0.0"></a>9.0.0.0 :dragon: <sup>`6`</sup>
 - [x] `220919>220919` Remove variable stuff from terms
