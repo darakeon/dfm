@@ -31,31 +31,38 @@
 	</style>
 
 	<style name="Dark" parent="Material">
-		<item name="danger">@color/dark_danger_1</item>
-		<item name="success">@color/dark_success_1</item>
-		<item name="info">@color/dark_info_1</item>
 		<item name="neutral_0">@color/dark_neutral_0</item>
 		<item name="neutral_1">@color/dark_neutral_1</item>
 	</style>
-	<style name="DarkMagic" parent="Dark">
+	<style name="DarkOn" parent="Dark">
+		<item name="danger">@color/dark_on_danger_1</item>
+		<item name="success">@color/dark_on_success_1</item>
+		<item name="info">@color/dark_on_info_1</item>
+	</style>
+	<style name="DarkOff" parent="Dark">
+		<item name="danger">@color/dark_off_danger_1</item>
+		<item name="success">@color/dark_off_success_1</item>
+		<item name="info">@color/dark_off_info_1</item>
+	</style>
+	<style name="DarkMagic" parent="DarkOn">
 		<item name="light">@color/dark_magic_primary_0</item>
 		<item name="average">@color/dark_magic_primary_2</item>
 		<item name="heavy">@color/dark_magic_primary_3</item>
 		<item name="emphasis">@color/dark_magic_highlight_1</item>
 	</style>
-	<style name="DarkSober" parent="Dark">
+	<style name="DarkSober" parent="DarkOn">
 		<item name="light">@color/dark_sober_primary_0</item>
 		<item name="average">@color/dark_sober_primary_2</item>
 		<item name="heavy">@color/dark_sober_primary_3</item>
 		<item name="emphasis">@color/dark_sober_highlight_1</item>
 	</style>
-	<style name="DarkNature" parent="Dark">
+	<style name="DarkNature" parent="DarkOn">
 		<item name="light">@color/dark_nature_primary_0</item>
 		<item name="average">@color/dark_nature_primary_2</item>
 		<item name="heavy">@color/dark_nature_primary_3</item>
 		<item name="emphasis">@color/dark_nature_highlight_1</item>
 	</style>
-	<style name="DarkMono" parent="Dark">
+	<style name="DarkMono" parent="DarkOff">
 		<item name="light">@color/dark_mono_primary_0</item>
 		<item name="average">@color/dark_mono_primary_2</item>
 		<item name="heavy">@color/dark_mono_primary_3</item>
@@ -63,31 +70,38 @@
 	</style>
 
 	<style name="Light" parent="Material">
-		<item name="danger">@color/light_danger_1</item>
-		<item name="success">@color/light_success_1</item>
-		<item name="info">@color/light_info_1</item>
 		<item name="neutral_0">@color/light_neutral_0</item>
 		<item name="neutral_1">@color/light_neutral_1</item>
 	</style>
-	<style name="LightMagic" parent="Light">
+	<style name="LightOn" parent="Light">
+		<item name="danger">@color/light_on_danger_1</item>
+		<item name="success">@color/light_on_success_1</item>
+		<item name="info">@color/light_on_info_1</item>
+	</style>
+	<style name="LightOff" parent="Light">
+		<item name="danger">@color/light_off_danger_1</item>
+		<item name="success">@color/light_off_success_1</item>
+		<item name="info">@color/light_off_info_1</item>
+	</style>
+	<style name="LightMagic" parent="LightOn">
 		<item name="light">@color/light_magic_primary_0</item>
 		<item name="average">@color/light_magic_primary_2</item>
 		<item name="heavy">@color/light_magic_primary_3</item>
 		<item name="emphasis">@color/light_magic_highlight_1</item>
 	</style>
-	<style name="LightSober" parent="Light">
+	<style name="LightSober" parent="LightOn">
 		<item name="light">@color/light_sober_primary_0</item>
 		<item name="average">@color/light_sober_primary_2</item>
 		<item name="heavy">@color/light_sober_primary_3</item>
 		<item name="emphasis">@color/light_sober_highlight_1</item>
 	</style>
-	<style name="LightNature" parent="Light">
+	<style name="LightNature" parent="LightOn">
 		<item name="light">@color/light_nature_primary_0</item>
 		<item name="average">@color/light_nature_primary_2</item>
 		<item name="heavy">@color/light_nature_primary_3</item>
 		<item name="emphasis">@color/light_nature_highlight_1</item>
 	</style>
-	<style name="LightMono" parent="Light">
+	<style name="LightMono" parent="LightOff">
 		<item name="light">@color/light_mono_primary_0</item>
 		<item name="average">@color/light_mono_primary_2</item>
 		<item name="heavy">@color/light_mono_primary_3</item>
