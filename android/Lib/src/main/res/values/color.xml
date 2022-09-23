@@ -7,7 +7,7 @@
 	<color name="light_neutral_5">#333</color>
 	<color name="light_neutral_6">#111</color>
 
-	<color name="light_default_0">#555</color>
+	<color name="light_default_0">#444</color>
 	<color name="light_default_1">#333</color>
 	<color name="light_default_2">#222</color>
 	<color name="light_default_3">#111</color>
@@ -70,6 +70,16 @@
 	<color name="light_nature_highlight_2">#730</color>
 	<color name="light_nature_highlight_3">#620</color>
 
+	<color name="light_mono_primary_0">#222</color>
+	<color name="light_mono_primary_1">#222</color>
+	<color name="light_mono_primary_2">#111</color>
+	<color name="light_mono_primary_3">#111</color>
+
+	<color name="light_mono_highlight_0">#000</color>
+	<color name="light_mono_highlight_1">#000</color>
+	<color name="light_mono_highlight_2">#000</color>
+	<color name="light_mono_highlight_3">#000</color>
+
 	<color name="dark_neutral_0">#111</color>
 	<color name="dark_neutral_1">#222</color>
 	<color name="dark_neutral_2">#333</color>
@@ -78,7 +88,7 @@
 	<color name="dark_neutral_5">#CCC</color>
 	<color name="dark_neutral_6">#EEE</color>
 
-	<color name="dark_default_0">#AAA</color>
+	<color name="dark_default_0">#BBB</color>
 	<color name="dark_default_1">#CCC</color>
 	<color name="dark_default_2">#DDD</color>
 	<color name="dark_default_3">#EEE</color>
@@ -140,6 +150,16 @@
 	<color name="dark_nature_highlight_1">#EB8</color>
 	<color name="dark_nature_highlight_2">#DA7</color>
 	<color name="dark_nature_highlight_3">#C96</color>
+
+	<color name="dark_mono_primary_0">#DDD</color>
+	<color name="dark_mono_primary_1">#DDD</color>
+	<color name="dark_mono_primary_2">#EEE</color>
+	<color name="dark_mono_primary_3">#EEE</color>
+
+	<color name="dark_mono_highlight_0">#FFF</color>
+	<color name="dark_mono_highlight_1">#FFF</color>
+	<color name="dark_mono_highlight_2">#FFF</color>
+	<color name="dark_mono_highlight_3">#FFF</color>
 
 	<color name="nothing">#0FAA</color>
 	<color name="pig">#7FAA</color>
