@@ -21,29 +21,25 @@ class ResponseHandler<C, A>(
 {
 	init { logDebug("INIT") }
 
-	override fun onResponse(call: Call<Body<A>>, response: Response<Body<A>>?) {
+	override fun onResponse(call: Call<Body<A>>, response: Response<Body<A>>) {
 		logDebug("RESPONSE ${call.request().url()}")
 
-		if (response == null) {
-			onError(call, ApiException("Null response"))
-		} else {
-			val body = response.body()
+		val body = response.body()
 
-			logDebug("STATUS ${response.code()}")
+		logDebug("STATUS ${response.code()}")
 
-			if (body?.environment != null && caller is Activity) {
-				caller.setEnvironment(body.environment)
-			}
+		if (body?.environment != null && caller is Activity) {
+			caller.setEnvironment(body.environment)
+		}
 
-			when {
-				body == null ->
-					caller.error(R.string.body_null)
+		when {
+			body == null ->
+				caller.error(R.string.body_null)
 
-				body.data == null || body.code != null ->
-					assemblyResponse(body.code, body.error)
+			body.data == null || body.code != null ->
+				assemblyResponse(body.code, body.error)
 
-				else -> onSuccess(body.data)
-			}
+			else -> onSuccess(body.data)
 		}
 
 		caller.endWait()

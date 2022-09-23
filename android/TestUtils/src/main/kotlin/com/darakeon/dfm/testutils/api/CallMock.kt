@@ -1,6 +1,8 @@
 package com.darakeon.dfm.testutils.api
 
+import okhttp3.MediaType
 import okhttp3.Request
+import okhttp3.ResponseBody
 import okio.Timeout
 import retrofit2.Call
 import retrofit2.Callback
@@ -38,7 +40,7 @@ open class CallMock<Body>(
 		cancelled = true
 	}
 
-	override fun execute(): Response<Body>? {
+	override fun execute(): Response<Body> {
 		executed = true
 
 		if (result != null) {
@@ -57,7 +59,10 @@ open class CallMock<Body>(
 			}
 		}
 
-		return null
+		val errorBody = ResponseBody.create(
+			MediaType.get("text/plain"), error?.message ?: ""
+		)
+		return Response.error(500, errorBody)
 	}
 
 	override fun request(): Request {

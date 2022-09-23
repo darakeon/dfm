@@ -16,7 +16,6 @@ import com.darakeon.dfm.testutils.api.internetError
 import com.darakeon.dfm.testutils.api.internetSlow
 import com.darakeon.dfm.testutils.api.noBody
 import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.CoreMatchers.instanceOf
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
@@ -45,30 +44,6 @@ internal class ResponseHandlerTest: BaseTest() {
 		handler = ResponseHandler(activity) {
 			result = it
 		}
-	}
-
-	@Test(expected = ApiException::class)
-	fun onResponse_ResponseNullDebug() {
-		if (!BuildConfig.DEBUG) throw ApiException()
-
-		handler.onResponse(CallMock(), null)
-	}
-
-	@Test
-	fun onResponse_ResponseNullRelease() {
-		if (BuildConfig.DEBUG) return
-
-		handler.onResponse(CallMock(), null)
-
-		assertThat(activity.errorText, `is`(internetError))
-		assertThat(
-			activity.error,
-			`is`(instanceOf(ApiException::class.java))
-		)
-		assertThat(activity.error?.message, `is`("Null response"))
-
-		assertTrue(waitEnded)
-		assertNull(result)
 	}
 
 	@Test
