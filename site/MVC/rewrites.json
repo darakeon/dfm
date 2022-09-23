@@ -1,10 +1,12 @@
 ﻿{
-	"Assets/images/pig.ico": [
+	"Assets/images/pig-on.ico": [
+		"^Assets/images/pig.ico",
 		"^Assets/Images/pig.ico",
 		"^favicon.ico"
 	],
 
-	"Assets/images/face-pig.png": [
+	"Assets/images/face-pig-on.png": [
+		"^Assets/images/face-pig.png",
 		"^Assets/Images/face-pig.png",
 		"^Assets/Images/face-pig.svg"
 	],

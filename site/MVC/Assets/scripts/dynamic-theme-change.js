@@ -26,6 +26,23 @@ $(document).ready(function () {
 		const newHref = currentHref.replace(currentTheme, newTheme)
 		$('#bootstrap-theme').attr('href', newHref)
 
+		const colored = $(this).data('colored')
+		if (colored) {
+			$('img.image-decolorize').each(function () {
+				const src = $(this).attr('src')
+					.replace('on', colored)
+					.replace('off', colored)
+				$(this).attr('src', src)
+			})
+
+			$('link.image-decolorize').each(function () {
+				const href = $(this).attr('href')
+					.replace('on', colored)
+					.replace('off', colored)
+				$(this).attr('href', href)
+			})
+		}
+
 		window.currentColor = newColor
 		window.currentBrightness = newBrightness
 

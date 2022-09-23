@@ -3,6 +3,7 @@
 
 @{
 	var theme = Model.Theme.ToString().ToLower();
+	var colors = Model.Theme.Colors() ? "on" : "off";
 	var culture = new CultureInfo(Model.Language);
 	var format = culture.NumberFormat;
 	var thousands = format.CurrencyGroupSeparator;
@@ -15,8 +16,11 @@
 <head>
 	<title>@await Html.PartialAsync("Skeleton/Title")</title>
 
-	<link rel="shortcut icon" type="image/ico" href="~/Assets/images/pig.ico?v=@Cfg.Version" />
-	<meta property="og:image" content="https://dontflymoney.com/Assets/images/face-pig.png?v=@Cfg.Version" />
+	<link rel="shortcut icon" type="image/ico"
+		class="image-decolorize"
+	    href="~/Assets/images/pig-@(colors).ico?v=@Cfg.Version"  />
+	<meta property="og:image"
+	    content="https://dontflymoney.com/Assets/images/face-pig-@(colors).png?v=@Cfg.Version"/>
 
 	<environment include="Development">
 		<link href="~/Assets/themes/bootstrap.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />

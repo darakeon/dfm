@@ -1,5 +1,9 @@
 ﻿@model BaseSiteModel
 
+@{
+	var colors = Model.Theme.Colors() ? "on" : "off";
+}
+
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
@@ -13,7 +17,9 @@
 			@if (ViewBag.HideTopLogo == null)
 			{
 				<a href="/" class="navbar-brand">
-					<img src="~/Assets/images/pig.svg" title="Home" class="gray-for-off" />
+					<img src="~/Assets/images/pig-@(colors).svg"
+					    title="Home"
+					    class="image-decolorize" />
 					Don't fly Money
 				</a>
 			}

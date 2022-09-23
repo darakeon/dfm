@@ -8,7 +8,7 @@
 			"None": {
 				"primary-0": "#777",
 				"highlight-1": "#333",
-				"img-pig": "grayscale(1)",
+				"theme-colored": "off",
 				"img-misc": "contrast(1.5) grayscale(1)"
 			}
 		}
@@ -22,25 +22,25 @@
 			"Magic": {
 				"primary-0": "#A9C",
 				"highlight-1": "#EBB",
-				"img-pig": "",
+				"theme-colored": "on",
 				"img-misc": ""
 			},
 			"Sober": {
 				"primary-0": "#9AB",
 				"highlight-1": "#EEC",
-				"img-pig": "",
+				"theme-colored": "on",
 				"img-misc": ""
 			},
 			"Nature": {
 				"primary-0": "#9BA",
 				"highlight-1": "#EB8",
-				"img-pig": "",
+				"theme-colored": "on",
 				"img-misc": ""
 			},
 			"Mono": {
 				"primary-0": "#DDD",
 				"highlight-1": "#FFF",
-				"img-pig": "grayscale(1)",
+				"theme-colored": "off",
 				"img-misc": "contrast(1.5) grayscale(1)"
 			}
 		}
@@ -54,25 +54,25 @@
 			"Magic": {
 				"primary-0": "#436",
 				"highlight-1": "#600",
-				"img-pig": "",
+				"theme-colored": "on",
 				"img-misc": ""
 			},
 			"Sober": {
 				"primary-0": "#345",
 				"highlight-1": "#550",
-				"img-pig": "",
+				"theme-colored": "on",
 				"img-misc": ""
 			},
 			"Nature": {
 				"primary-0": "#354",
 				"highlight-1": "#840",
-				"img-pig": "",
+				"theme-colored": "on",
 				"img-misc": ""
 			},
 			"Mono": {
 				"primary-0": "#222",
 				"highlight-1": "#000",
-				"img-pig": "grayscale(1)",
+				"theme-colored": "off",
 				"img-misc": "contrast(1.5) grayscale(1);"
 			}
 		}

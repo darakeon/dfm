@@ -48,5 +48,10 @@ namespace DFM.Generic
 				? ThemeColor.None
 				: (ThemeColor)((Int32)theme / (Int32)theme.Brightness());
 		}
+
+		public static Boolean Colors(this Theme theme)
+		{
+			return theme.Color() != ThemeColor.Mono;
+		}
 	}
 }

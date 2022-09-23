@@ -4,6 +4,8 @@
 
 @if (tip != null)
 {
+	var colors = Model.Theme.Colors() ? "on" : "off";
+
 	var mainRoute = new Default.Main();
 
 	var links = new Dictionary<String, String>
@@ -17,10 +19,10 @@
 	var dismissUrl = Url.RouteUrl(mainRoute.Name, new {controller = "Reports", action = "DismissTip"});
 
 	<aside class="tip">
-		<img src="~/Assets/images/pig.svg" 
+		<img src="~/Assets/images/pig-@(colors).svg" 
 		    alt="@Context.Translate(tip)"
 		    title="@Context.Translate(tip)"
-		    class="gray-for-off" />
+		    class="image-decolorize" />
 
 		<div class="balloon">
 			<a href="@links[tip]">

@@ -24,3 +24,7 @@
 	--danger-4: var(--on-danger-4);
 	--danger-5: var(--on-danger-5);
 }
+
+:root {
+	--android-image: url('../images/android-on.png')
+}
