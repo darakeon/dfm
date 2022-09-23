@@ -12,33 +12,61 @@
 	<color name="light_default_2">#222</color>
 	<color name="light_default_3">#111</color>
 
-	<color name="light_success_0">#175</color>
-	<color name="light_success_1">#164</color>
-	<color name="light_success_2">#153</color>
-	<color name="light_success_3">#142</color>
-	<color name="light_success_4">#131</color>
-	<color name="light_success_5">#120</color>
+	<color name="light_on_success_0">#175</color>
+	<color name="light_on_success_1">#164</color>
+	<color name="light_on_success_2">#153</color>
+	<color name="light_on_success_3">#142</color>
+	<color name="light_on_success_4">#131</color>
+	<color name="light_on_success_5">#120</color>
 
-	<color name="light_info_0">#259</color>
-	<color name="light_info_1">#248</color>
-	<color name="light_info_2">#237</color>
-	<color name="light_info_3">#226</color>
-	<color name="light_info_4">#215</color>
-	<color name="light_info_5">#204</color>
+	<color name="light_on_info_0">#259</color>
+	<color name="light_on_info_1">#248</color>
+	<color name="light_on_info_2">#237</color>
+	<color name="light_on_info_3">#226</color>
+	<color name="light_on_info_4">#215</color>
+	<color name="light_on_info_5">#204</color>
 
-	<color name="light_warning_0">#952</color>
-	<color name="light_warning_1">#852</color>
-	<color name="light_warning_2">#741</color>
-	<color name="light_warning_3">#641</color>
-	<color name="light_warning_4">#530</color>
-	<color name="light_warning_5">#430</color>
+	<color name="light_on_warning_0">#952</color>
+	<color name="light_on_warning_1">#852</color>
+	<color name="light_on_warning_2">#741</color>
+	<color name="light_on_warning_3">#641</color>
+	<color name="light_on_warning_4">#530</color>
+	<color name="light_on_warning_5">#430</color>
 
-	<color name="light_danger_0">#b32</color>
-	<color name="light_danger_1">#a32</color>
-	<color name="light_danger_2">#921</color>
-	<color name="light_danger_3">#821</color>
-	<color name="light_danger_4">#710</color>
-	<color name="light_danger_5">#610</color>
+	<color name="light_on_danger_0">#b32</color>
+	<color name="light_on_danger_1">#a32</color>
+	<color name="light_on_danger_2">#921</color>
+	<color name="light_on_danger_3">#821</color>
+	<color name="light_on_danger_4">#710</color>
+	<color name="light_on_danger_5">#610</color>
+
+	<color name="light_off_success_0">#444</color>
+	<color name="light_off_success_1">#444</color>
+	<color name="light_off_success_2">#444</color>
+	<color name="light_off_success_3">#444</color>
+	<color name="light_off_success_4">#444</color>
+	<color name="light_off_success_5">#444</color>
+
+	<color name="light_off_info_0">#333</color>
+	<color name="light_off_info_1">#333</color>
+	<color name="light_off_info_2">#333</color>
+	<color name="light_off_info_3">#333</color>
+	<color name="light_off_info_4">#333</color>
+	<color name="light_off_info_5">#333</color>
+
+	<color name="light_off_warning_0">#222</color>
+	<color name="light_off_warning_1">#222</color>
+	<color name="light_off_warning_2">#222</color>
+	<color name="light_off_warning_3">#222</color>
+	<color name="light_off_warning_4">#222</color>
+	<color name="light_off_warning_5">#222</color>
+
+	<color name="light_off_danger_0">#111</color>
+	<color name="light_off_danger_1">#111</color>
+	<color name="light_off_danger_2">#111</color>
+	<color name="light_off_danger_3">#111</color>
+	<color name="light_off_danger_4">#111</color>
+	<color name="light_off_danger_5">#111</color>
 
 	<color name="light_magic_primary_0">#436</color>
 	<color name="light_magic_primary_1">#325</color>
@@ -93,33 +121,61 @@
 	<color name="dark_default_2">#DDD</color>
 	<color name="dark_default_3">#EEE</color>
 
-	<color name="dark_success_0">#0b9</color>
-	<color name="dark_success_1">#0a8</color>
-	<color name="dark_success_2">#097</color>
-	<color name="dark_success_3">#086</color>
-	<color name="dark_success_4">#075</color>
-	<color name="dark_success_5">#064</color>
+	<color name="dark_on_success_0">#0b9</color>
+	<color name="dark_on_success_1">#0a8</color>
+	<color name="dark_on_success_2">#097</color>
+	<color name="dark_on_success_3">#086</color>
+	<color name="dark_on_success_4">#075</color>
+	<color name="dark_on_success_5">#064</color>
 
-	<color name="dark_info_0">#59f</color>
-	<color name="dark_info_1">#58e</color>
-	<color name="dark_info_2">#57d</color>
-	<color name="dark_info_3">#56c</color>
-	<color name="dark_info_4">#55b</color>
-	<color name="dark_info_5">#54a</color>
+	<color name="dark_on_info_0">#59f</color>
+	<color name="dark_on_info_1">#58e</color>
+	<color name="dark_on_info_2">#57d</color>
+	<color name="dark_on_info_3">#56c</color>
+	<color name="dark_on_info_4">#55b</color>
+	<color name="dark_on_info_5">#54a</color>
 
-	<color name="dark_warning_0">#fb3</color>
-	<color name="dark_warning_1">#ea3</color>
-	<color name="dark_warning_2">#d92</color>
-	<color name="dark_warning_3">#c82</color>
-	<color name="dark_warning_4">#b71</color>
-	<color name="dark_warning_5">#a61</color>
+	<color name="dark_on_warning_0">#fb3</color>
+	<color name="dark_on_warning_1">#ea3</color>
+	<color name="dark_on_warning_2">#d92</color>
+	<color name="dark_on_warning_3">#c82</color>
+	<color name="dark_on_warning_4">#b71</color>
+	<color name="dark_on_warning_5">#a61</color>
 
-	<color name="dark_danger_0">#f77</color>
-	<color name="dark_danger_1">#e77</color>
-	<color name="dark_danger_2">#d66</color>
-	<color name="dark_danger_3">#c66</color>
-	<color name="dark_danger_4">#b55</color>
-	<color name="dark_danger_5">#a55</color>
+	<color name="dark_on_danger_0">#f77</color>
+	<color name="dark_on_danger_1">#e77</color>
+	<color name="dark_on_danger_2">#d66</color>
+	<color name="dark_on_danger_3">#c66</color>
+	<color name="dark_on_danger_4">#b55</color>
+	<color name="dark_on_danger_5">#a55</color>
+
+	<color name="dark_off_success_0">#BBB</color>
+	<color name="dark_off_success_1">#BBB</color>
+	<color name="dark_off_success_2">#BBB</color>
+	<color name="dark_off_success_3">#BBB</color>
+	<color name="dark_off_success_4">#BBB</color>
+	<color name="dark_off_success_5">#BBB</color>
+
+	<color name="dark_off_info_0">#CCC</color>
+	<color name="dark_off_info_1">#CCC</color>
+	<color name="dark_off_info_2">#CCC</color>
+	<color name="dark_off_info_3">#CCC</color>
+	<color name="dark_off_info_4">#CCC</color>
+	<color name="dark_off_info_5">#CCC</color>
+
+	<color name="dark_off_warning_0">#DDD</color>
+	<color name="dark_off_warning_1">#DDD</color>
+	<color name="dark_off_warning_2">#DDD</color>
+	<color name="dark_off_warning_3">#DDD</color>
+	<color name="dark_off_warning_4">#DDD</color>
+	<color name="dark_off_warning_5">#DDD</color>
+
+	<color name="dark_off_danger_0">#EEE</color>
+	<color name="dark_off_danger_1">#EEE</color>
+	<color name="dark_off_danger_2">#EEE</color>
+	<color name="dark_off_danger_3">#EEE</color>
+	<color name="dark_off_danger_4">#EEE</color>
+	<color name="dark_off_danger_5">#EEE</color>
 
 	<color name="dark_magic_primary_0">#A9C</color>
 	<color name="dark_magic_primary_1">#98B</color>
