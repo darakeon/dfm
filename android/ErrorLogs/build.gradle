@@ -51,6 +51,8 @@ android {
 		abortOnError true
 	}
 
+    namespace 'com.darakeon.dfm.error_logs'
+
 }
 
 dependencies {
