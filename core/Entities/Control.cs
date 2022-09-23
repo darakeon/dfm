@@ -31,7 +31,6 @@ namespace DFM.Entities
 		public virtual DateTime RobotCheck { get; set; }
 
 		public virtual Int32 MiscDna { get; set; }
-		public virtual Misc Misc => new(MiscDna);
 
 		public virtual Boolean WrongPassExceeded()
 		{

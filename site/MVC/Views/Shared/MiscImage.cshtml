@@ -1,9 +1,11 @@
 ﻿@model DFM.Entities.Misc
 
+@{ var colored = Model.Colors ? "on" : "off"; }
+
 <div class="misc">
-	<div class="arm" style="background-image: url('/Assets/images/miscs/@(Model.Color)-arm-@(Model.Arm).png')"></div>
-	<div class="leg" style="background-image: url('/Assets/images/miscs/@(Model.Color)-leg-@(Model.Leg).png') "></div>
-	<div class="body" style="background-image: url('/Assets/images/miscs/@(Model.Color)-body.png') "></div>
-	<div class="ant" style="background-image: url('/Assets/images/miscs/@(Model.Color)-ant-@(Model.Antenna).png') "></div>
-	<div class="eye" style="background-image: url('/Assets/images/miscs/@(Model.Color)-eye-@(Model.Eye).png') "></div>
+	<div class="arm" style="background-image: url('/Assets/images/miscs-@(colored)/@(Model.Color)-arm-@(Model.Arm).png')"></div>
+	<div class="leg" style="background-image: url('/Assets/images/miscs-@(colored)/@(Model.Color)-leg-@(Model.Leg).png') "></div>
+	<div class="body" style="background-image: url('/Assets/images/miscs-@(colored)/@(Model.Color)-body.png') "></div>
+	<div class="ant" style="background-image: url('/Assets/images/miscs-@(colored)/@(Model.Color)-ant-@(Model.Antenna).png') "></div>
+	<div class="eye" style="background-image: url('/Assets/images/miscs-@(colored)/@(Model.Color)-eye-@(Model.Eye).png') "></div>
 </div>

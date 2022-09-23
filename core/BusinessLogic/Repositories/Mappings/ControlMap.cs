@@ -30,8 +30,6 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 
 			mapping.Map(c => c.MiscDna)
 				.Default("347");
-
-			mapping.IgnoreProperty(c => c.Misc);
 		}
 	}
 }

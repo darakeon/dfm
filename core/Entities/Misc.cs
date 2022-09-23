@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Linq;
 
 namespace DFM.Entities
 {
 	public class Misc
 	{
-		internal Misc(Int32 dna)
+		internal Misc(Int32 dna, Boolean colors = false)
 		{
 			DNA = dna;
 
@@ -21,6 +22,26 @@ namespace DFM.Entities
 			Eye = dnaBinary.Substring(4, 2);
 			Arm = dnaBinary.Substring(7, 1);
 			Leg = dnaBinary.Substring(8, 1);
+
+			Colors = colors;
+
+			if (colors)
+			{
+				Background = Color.Replace("0", "6").Replace("1", "3");
+				Border = Color.Replace("1", "F");
+			}
+			// 000, 100, 010, 001
+			else if (Color.Count(c => c == '1') < 2)
+			{
+				Background = "666";
+				Border = "000";
+			}
+			// 111, 011, 101, 110
+			else
+			{
+				Background = "333";
+				Border = "FFF";
+			}
 		}
 
 		public Int32 DNA { get; }
@@ -31,6 +52,11 @@ namespace DFM.Entities
 		public String Eye { get; }
 		public String Arm { get; }
 		public String Leg { get; }
+
+		public String Background { get; }
+		public String Border { get; }
+
+		public Boolean Colors { get; }
 
 		public static Int32 RandomDNA() => new Random().Next(1, 512);
 		public static Misc Random() => new(RandomDNA());

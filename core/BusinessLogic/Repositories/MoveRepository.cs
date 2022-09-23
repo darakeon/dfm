@@ -9,6 +9,7 @@ using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
+using DFM.Generic;
 using DFM.Language;
 using DFM.Language.Emails;
 using DFM.Language.Extensions;
@@ -123,7 +124,7 @@ namespace DFM.BusinessLogic.Repositories
 			var user = GetUser(move);
 			var settings = user.Settings;
 			var language = settings.Language;
-			var misc = user.Control.Misc;
+			var misc = user.GenerateMisc();
 
 			foreach (var detail in move.DetailList)
 			{

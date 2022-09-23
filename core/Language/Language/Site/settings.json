@@ -58,7 +58,7 @@
 		"Wipe": "remove ALL my data and NEVER see it again",
 		"Wipe_RequestSent": "The removal request was sent. In some hours your data will be wiped. Thank you for using our system.",
 
-		"MiscExplanation": "This is an image to check if the e-mails you received really came from our system. It is randomly generated from 512 possible assemblies of this character. When you receive an e-mail, check to see if it has this character at the e-mail, with same characteristics presented above (eyes, antenna, hands, feet and color).",
+		"MiscExplanation": "This is an image to check if the e-mails you received really came from our system. It is randomly generated from 512 possible assemblies of this character. When you receive an e-mail, check to see if it has this character at the e-mail, with same characteristics presented above (eyes, antenna, hands, feet and color/stains).",
 		"ReMiscText": "To generate another character, type your password and click the button.",
 		"ReMisc": "Generate another character",
 
@@ -124,7 +124,7 @@
 		"Wipe": "excluir TODOS os meus dados e NUNCA MAIS ver eles de novo",
 		"Wipe_RequestSent": "A requisição de remoção foi enviada. Em algumas horas, seus dados serão removidos. Agradecemos por ter usado nosso sistema.",
 
-		"MiscExplanation": "Esta é uma imagem para verificar se os e-mails que você recebe realmente vieram do nosso sistema. Ela é aleatoriamente gerada de 512 possíveis montagens deste personagem. Quando você receber um e-mail, verifique se este personagem está no e-mail, com as mesmas características apresentadas acima (olhos, antena, mãos, pés e cor).",
+		"MiscExplanation": "Esta é uma imagem para verificar se os e-mails que você recebe realmente vieram do nosso sistema. Ela é aleatoriamente gerada de 512 possíveis montagens deste personagem. Quando você receber um e-mail, verifique se este personagem está no e-mail, com as mesmas características apresentadas acima (olhos, antena, mãos, pés e cor/manchas).",
 		"ReMiscText": "Para gerar um personagem diferente, digite sua senha e clique no botão.",
 		"ReMisc": "Gerar outro personagem",
 
