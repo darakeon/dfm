@@ -5,7 +5,6 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import com.darakeon.dfm.testutils.getPrivate
 import org.robolectric.Shadows.shadowOf
-import java.util.Locale
 
 @RequiresApi(Build.VERSION_CODES.M)
 fun Activity.waitTasks() {
@@ -34,7 +33,7 @@ private fun Any.getPrivate(name: String, count: Int?) =
 	if (count == null) {
 		this.getPrivate("wait$name") ?: true
 	} else {
-		val prop = name.toLowerCase(Locale.getDefault())
+		val prop = name.lowercase()
 		this.getPrivate<Int>("ui", prop) >= count
 	}
 
