@@ -32,6 +32,7 @@
 		android:autofillHints="emailAddress"
 		android:imeOptions="actionNext"
 		android:nextFocusDown="@id/password"
+		android:text="@string/test_user"
 		/>
 
 	<EditText
@@ -43,6 +44,7 @@
 		android:inputType="textPassword"
 		android:importantForAutofill="no"
 		android:imeOptions="actionDone"
+		android:text="@string/test_pass"
 		/>
 
 	<Button
