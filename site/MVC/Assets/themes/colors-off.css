@@ -25,6 +25,6 @@
 	--danger-5: var(--off-danger-5);
 }
 
-.gray-for-off {
-	filter: grayscale(1);
+:root {
+	--android-image: url('../images/android-off.png')
 }

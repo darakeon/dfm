@@ -3,7 +3,7 @@
 	width: 70px;
 	height: 80px;
 	display: inline-block;
-	background: url('../images/android.png');
+	background: var(--android-image);
 }
 
 	.android-link:hover

@@ -2,6 +2,7 @@
 
 @{
 	ViewBag.HideTopLogo = true;
+	var colors = Model.Theme.Colors() ? "on" : "off";
 }
 
 @section Styles {
@@ -9,7 +10,8 @@
 }
 
 <h1 class="logo">
-	<img src="~/Assets/images/pig.svg" title="@Context.Translate("Home")" class="gray-for-off" />
+	<img src="~/Assets/images/pig-@(colors).svg"
+	    title="@Context.Translate("Home")" />
 	Don't fly Money
 </h1>
 

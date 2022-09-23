@@ -59,8 +59,11 @@
 	<div class="btn-group pull-right @hl["MainColors"]">
 		@foreach (var color in Model.ColorList)
 		{
-			<button class="btn btn-sm btn-default theme-changer @(color == Model.Color ? "active" : null)"
-					data-choice="@color" data-type="color" type="button">
+			var active = color == Model.Color ? "active" : null;
+			var colored = color == ThemeColor.Mono ? "off" : "on";
+
+			<button class="btn btn-sm btn-default theme-changer @active"
+					data-choice="@color" data-type="color" data-colored="@colored" type="button">
 				<small>@Context.Translate(color.ToString())</small>
 			</button>
 		}

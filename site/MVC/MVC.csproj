@@ -8,7 +8,7 @@
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <AssemblyVersion>9.0.0.0</AssemblyVersion>
     <FileVersion>9.0.0.0</FileVersion>
-    <ApplicationIcon>Assets\images\pig.ico</ApplicationIcon>
+    <ApplicationIcon>Assets\images\pig-on.ico</ApplicationIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -25,8 +25,12 @@
   <ItemGroup>
     <None Remove=".gitignore" />
     <None Remove="Assets" />
-    <None Remove="Assets\images\face-pig.png" />
-    <None Remove="Assets\images\mail-pig.png" />
+    <None Remove="Assets\images\android-off.png" />
+    <None Remove="Assets\images\android-on.png" />
+    <None Remove="Assets\images\face-pig-off.png" />
+    <None Remove="Assets\images\face-pig-on.png" />
+    <None Remove="Assets\images\mail-pig-off.png" />
+    <None Remove="Assets\images\mail-pig-on.png" />
     <None Remove="Assets\images\miscs\000-ant-00.png" />
     <None Remove="Assets\images\miscs\000-ant-01.png" />
     <None Remove="Assets\images\miscs\000-ant-10.png" />
@@ -131,8 +135,10 @@
     <None Remove="Assets\images\miscs\111-eye-11.png" />
     <None Remove="Assets\images\miscs\111-leg-0.png" />
     <None Remove="Assets\images\miscs\111-leg-1.png" />
-    <None Remove="Assets\images\pig.ico" />
-    <None Remove="Assets\images\pig.svg" />
+    <None Remove="Assets\images\pig-off.ico" />
+    <None Remove="Assets\images\pig-off.svg" />
+    <None Remove="Assets\images\pig-on.ico" />
+    <None Remove="Assets\images\pig-on.svg" />
     <None Remove="Assets\scripts\chart.js" />
     <None Remove="Assets\scripts\table-sum.js" />
     <None Remove="Assets\scripts\tip.js" />
@@ -173,13 +179,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Assets\images\android.png">
+    <Content Include="Assets\images\android-off.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\face-pig.png">
+    <Content Include="Assets\images\android-on.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\mail-pig.png">
+    <Content Include="Assets\images\face-pig-off.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\face-pig-on.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\mail-pig-off.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\mail-pig-on.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\images\miscs\000-ant-00.png">
@@ -494,10 +509,16 @@
     <Content Include="Assets\images\miscs\111-leg-1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\pig.ico">
+    <Content Include="Assets\images\pig-off.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\pig.svg">
+    <Content Include="Assets\images\pig-off.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\pig-on.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\pig-on.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\scripts\chart.js">
