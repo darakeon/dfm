@@ -44,7 +44,7 @@ namespace DFM.BusinessLogic.Response
 				};
 			}
 
-			Misc = user.Control.Misc;
+			Misc = user.GenerateMisc();
 		}
 
 		public Boolean IsAdm { get; }

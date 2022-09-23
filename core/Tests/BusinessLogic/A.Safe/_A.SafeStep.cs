@@ -1319,9 +1319,9 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			var user = repos.User.GetByEmail(userEmail);
 
 			if (changed)
-				Assert.AreNotEqual(misc, user.Control.Misc);
+				Assert.AreNotEqual(misc, user.GenerateMisc());
 			else
-				Assert.AreEqual(misc, user.Control.Misc);
+				Assert.AreEqual(misc, user.GenerateMisc());
 		}
 		#endregion
 	}

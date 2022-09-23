@@ -31,110 +31,214 @@
     <None Remove="Assets\images\face-pig-on.png" />
     <None Remove="Assets\images\mail-pig-off.png" />
     <None Remove="Assets\images\mail-pig-on.png" />
-    <None Remove="Assets\images\miscs\000-ant-00.png" />
-    <None Remove="Assets\images\miscs\000-ant-01.png" />
-    <None Remove="Assets\images\miscs\000-ant-10.png" />
-    <None Remove="Assets\images\miscs\000-ant-11.png" />
-    <None Remove="Assets\images\miscs\000-arm-0.png" />
-    <None Remove="Assets\images\miscs\000-arm-1.png" />
-    <None Remove="Assets\images\miscs\000-body.png" />
-    <None Remove="Assets\images\miscs\000-eye-00.png" />
-    <None Remove="Assets\images\miscs\000-eye-01.png" />
-    <None Remove="Assets\images\miscs\000-eye-10.png" />
-    <None Remove="Assets\images\miscs\000-eye-11.png" />
-    <None Remove="Assets\images\miscs\000-leg-0.png" />
-    <None Remove="Assets\images\miscs\000-leg-1.png" />
-    <None Remove="Assets\images\miscs\001-ant-00.png" />
-    <None Remove="Assets\images\miscs\001-ant-01.png" />
-    <None Remove="Assets\images\miscs\001-ant-10.png" />
-    <None Remove="Assets\images\miscs\001-ant-11.png" />
-    <None Remove="Assets\images\miscs\001-arm-0.png" />
-    <None Remove="Assets\images\miscs\001-arm-1.png" />
-    <None Remove="Assets\images\miscs\001-body.png" />
-    <None Remove="Assets\images\miscs\001-eye-00.png" />
-    <None Remove="Assets\images\miscs\001-eye-01.png" />
-    <None Remove="Assets\images\miscs\001-eye-10.png" />
-    <None Remove="Assets\images\miscs\001-eye-11.png" />
-    <None Remove="Assets\images\miscs\001-leg-0.png" />
-    <None Remove="Assets\images\miscs\001-leg-1.png" />
-    <None Remove="Assets\images\miscs\010-ant-00.png" />
-    <None Remove="Assets\images\miscs\010-ant-01.png" />
-    <None Remove="Assets\images\miscs\010-ant-10.png" />
-    <None Remove="Assets\images\miscs\010-ant-11.png" />
-    <None Remove="Assets\images\miscs\010-arm-0.png" />
-    <None Remove="Assets\images\miscs\010-arm-1.png" />
-    <None Remove="Assets\images\miscs\010-body.png" />
-    <None Remove="Assets\images\miscs\010-eye-00.png" />
-    <None Remove="Assets\images\miscs\010-eye-01.png" />
-    <None Remove="Assets\images\miscs\010-eye-10.png" />
-    <None Remove="Assets\images\miscs\010-eye-11.png" />
-    <None Remove="Assets\images\miscs\010-leg-0.png" />
-    <None Remove="Assets\images\miscs\010-leg-1.png" />
-    <None Remove="Assets\images\miscs\011-ant-00.png" />
-    <None Remove="Assets\images\miscs\011-ant-01.png" />
-    <None Remove="Assets\images\miscs\011-ant-10.png" />
-    <None Remove="Assets\images\miscs\011-ant-11.png" />
-    <None Remove="Assets\images\miscs\011-arm-0.png" />
-    <None Remove="Assets\images\miscs\011-arm-1.png" />
-    <None Remove="Assets\images\miscs\011-body.png" />
-    <None Remove="Assets\images\miscs\011-eye-00.png" />
-    <None Remove="Assets\images\miscs\011-eye-01.png" />
-    <None Remove="Assets\images\miscs\011-eye-10.png" />
-    <None Remove="Assets\images\miscs\011-eye-11.png" />
-    <None Remove="Assets\images\miscs\011-leg-0.png" />
-    <None Remove="Assets\images\miscs\011-leg-1.png" />
-    <None Remove="Assets\images\miscs\100-ant-00.png" />
-    <None Remove="Assets\images\miscs\100-ant-01.png" />
-    <None Remove="Assets\images\miscs\100-ant-10.png" />
-    <None Remove="Assets\images\miscs\100-ant-11.png" />
-    <None Remove="Assets\images\miscs\100-arm-0.png" />
-    <None Remove="Assets\images\miscs\100-arm-1.png" />
-    <None Remove="Assets\images\miscs\100-body.png" />
-    <None Remove="Assets\images\miscs\100-eye-00.png" />
-    <None Remove="Assets\images\miscs\100-eye-01.png" />
-    <None Remove="Assets\images\miscs\100-eye-10.png" />
-    <None Remove="Assets\images\miscs\100-eye-11.png" />
-    <None Remove="Assets\images\miscs\100-leg-0.png" />
-    <None Remove="Assets\images\miscs\100-leg-1.png" />
-    <None Remove="Assets\images\miscs\101-ant-00.png" />
-    <None Remove="Assets\images\miscs\101-ant-01.png" />
-    <None Remove="Assets\images\miscs\101-ant-10.png" />
-    <None Remove="Assets\images\miscs\101-ant-11.png" />
-    <None Remove="Assets\images\miscs\101-arm-0.png" />
-    <None Remove="Assets\images\miscs\101-arm-1.png" />
-    <None Remove="Assets\images\miscs\101-body.png" />
-    <None Remove="Assets\images\miscs\101-eye-00.png" />
-    <None Remove="Assets\images\miscs\101-eye-01.png" />
-    <None Remove="Assets\images\miscs\101-eye-10.png" />
-    <None Remove="Assets\images\miscs\101-eye-11.png" />
-    <None Remove="Assets\images\miscs\101-leg-0.png" />
-    <None Remove="Assets\images\miscs\101-leg-1.png" />
-    <None Remove="Assets\images\miscs\110-ant-00.png" />
-    <None Remove="Assets\images\miscs\110-ant-01.png" />
-    <None Remove="Assets\images\miscs\110-ant-10.png" />
-    <None Remove="Assets\images\miscs\110-ant-11.png" />
-    <None Remove="Assets\images\miscs\110-arm-0.png" />
-    <None Remove="Assets\images\miscs\110-arm-1.png" />
-    <None Remove="Assets\images\miscs\110-body.png" />
-    <None Remove="Assets\images\miscs\110-eye-00.png" />
-    <None Remove="Assets\images\miscs\110-eye-01.png" />
-    <None Remove="Assets\images\miscs\110-eye-10.png" />
-    <None Remove="Assets\images\miscs\110-eye-11.png" />
-    <None Remove="Assets\images\miscs\110-leg-0.png" />
-    <None Remove="Assets\images\miscs\110-leg-1.png" />
-    <None Remove="Assets\images\miscs\111-ant-00.png" />
-    <None Remove="Assets\images\miscs\111-ant-01.png" />
-    <None Remove="Assets\images\miscs\111-ant-10.png" />
-    <None Remove="Assets\images\miscs\111-ant-11.png" />
-    <None Remove="Assets\images\miscs\111-arm-0.png" />
-    <None Remove="Assets\images\miscs\111-arm-1.png" />
-    <None Remove="Assets\images\miscs\111-body.png" />
-    <None Remove="Assets\images\miscs\111-eye-00.png" />
-    <None Remove="Assets\images\miscs\111-eye-01.png" />
-    <None Remove="Assets\images\miscs\111-eye-10.png" />
-    <None Remove="Assets\images\miscs\111-eye-11.png" />
-    <None Remove="Assets\images\miscs\111-leg-0.png" />
-    <None Remove="Assets\images\miscs\111-leg-1.png" />
+    <None Remove="Assets\images\miscs-off\000-ant-00.png" />
+    <None Remove="Assets\images\miscs-off\000-ant-01.png" />
+    <None Remove="Assets\images\miscs-off\000-ant-10.png" />
+    <None Remove="Assets\images\miscs-off\000-ant-11.png" />
+    <None Remove="Assets\images\miscs-off\000-arm-0.png" />
+    <None Remove="Assets\images\miscs-off\000-arm-1.png" />
+    <None Remove="Assets\images\miscs-off\000-body.png" />
+    <None Remove="Assets\images\miscs-off\000-eye-00.png" />
+    <None Remove="Assets\images\miscs-off\000-eye-01.png" />
+    <None Remove="Assets\images\miscs-off\000-eye-10.png" />
+    <None Remove="Assets\images\miscs-off\000-eye-11.png" />
+    <None Remove="Assets\images\miscs-off\000-leg-0.png" />
+    <None Remove="Assets\images\miscs-off\000-leg-1.png" />
+    <None Remove="Assets\images\miscs-off\001-ant-00.png" />
+    <None Remove="Assets\images\miscs-off\001-ant-01.png" />
+    <None Remove="Assets\images\miscs-off\001-ant-10.png" />
+    <None Remove="Assets\images\miscs-off\001-ant-11.png" />
+    <None Remove="Assets\images\miscs-off\001-arm-0.png" />
+    <None Remove="Assets\images\miscs-off\001-arm-1.png" />
+    <None Remove="Assets\images\miscs-off\001-body.png" />
+    <None Remove="Assets\images\miscs-off\001-eye-00.png" />
+    <None Remove="Assets\images\miscs-off\001-eye-01.png" />
+    <None Remove="Assets\images\miscs-off\001-eye-10.png" />
+    <None Remove="Assets\images\miscs-off\001-eye-11.png" />
+    <None Remove="Assets\images\miscs-off\001-leg-0.png" />
+    <None Remove="Assets\images\miscs-off\001-leg-1.png" />
+    <None Remove="Assets\images\miscs-off\010-ant-00.png" />
+    <None Remove="Assets\images\miscs-off\010-ant-01.png" />
+    <None Remove="Assets\images\miscs-off\010-ant-10.png" />
+    <None Remove="Assets\images\miscs-off\010-ant-11.png" />
+    <None Remove="Assets\images\miscs-off\010-arm-0.png" />
+    <None Remove="Assets\images\miscs-off\010-arm-1.png" />
+    <None Remove="Assets\images\miscs-off\010-body.png" />
+    <None Remove="Assets\images\miscs-off\010-eye-00.png" />
+    <None Remove="Assets\images\miscs-off\010-eye-01.png" />
+    <None Remove="Assets\images\miscs-off\010-eye-10.png" />
+    <None Remove="Assets\images\miscs-off\010-eye-11.png" />
+    <None Remove="Assets\images\miscs-off\010-leg-0.png" />
+    <None Remove="Assets\images\miscs-off\010-leg-1.png" />
+    <None Remove="Assets\images\miscs-off\011-ant-00.png" />
+    <None Remove="Assets\images\miscs-off\011-ant-01.png" />
+    <None Remove="Assets\images\miscs-off\011-ant-10.png" />
+    <None Remove="Assets\images\miscs-off\011-ant-11.png" />
+    <None Remove="Assets\images\miscs-off\011-arm-0.png" />
+    <None Remove="Assets\images\miscs-off\011-arm-1.png" />
+    <None Remove="Assets\images\miscs-off\011-body.png" />
+    <None Remove="Assets\images\miscs-off\011-eye-00.png" />
+    <None Remove="Assets\images\miscs-off\011-eye-01.png" />
+    <None Remove="Assets\images\miscs-off\011-eye-10.png" />
+    <None Remove="Assets\images\miscs-off\011-eye-11.png" />
+    <None Remove="Assets\images\miscs-off\011-leg-0.png" />
+    <None Remove="Assets\images\miscs-off\011-leg-1.png" />
+    <None Remove="Assets\images\miscs-off\100-ant-00.png" />
+    <None Remove="Assets\images\miscs-off\100-ant-01.png" />
+    <None Remove="Assets\images\miscs-off\100-ant-10.png" />
+    <None Remove="Assets\images\miscs-off\100-ant-11.png" />
+    <None Remove="Assets\images\miscs-off\100-arm-0.png" />
+    <None Remove="Assets\images\miscs-off\100-arm-1.png" />
+    <None Remove="Assets\images\miscs-off\100-body.png" />
+    <None Remove="Assets\images\miscs-off\100-eye-00.png" />
+    <None Remove="Assets\images\miscs-off\100-eye-01.png" />
+    <None Remove="Assets\images\miscs-off\100-eye-10.png" />
+    <None Remove="Assets\images\miscs-off\100-eye-11.png" />
+    <None Remove="Assets\images\miscs-off\100-leg-0.png" />
+    <None Remove="Assets\images\miscs-off\100-leg-1.png" />
+    <None Remove="Assets\images\miscs-off\101-ant-00.png" />
+    <None Remove="Assets\images\miscs-off\101-ant-01.png" />
+    <None Remove="Assets\images\miscs-off\101-ant-10.png" />
+    <None Remove="Assets\images\miscs-off\101-ant-11.png" />
+    <None Remove="Assets\images\miscs-off\101-arm-0.png" />
+    <None Remove="Assets\images\miscs-off\101-arm-1.png" />
+    <None Remove="Assets\images\miscs-off\101-body.png" />
+    <None Remove="Assets\images\miscs-off\101-eye-00.png" />
+    <None Remove="Assets\images\miscs-off\101-eye-01.png" />
+    <None Remove="Assets\images\miscs-off\101-eye-10.png" />
+    <None Remove="Assets\images\miscs-off\101-eye-11.png" />
+    <None Remove="Assets\images\miscs-off\101-leg-0.png" />
+    <None Remove="Assets\images\miscs-off\101-leg-1.png" />
+    <None Remove="Assets\images\miscs-off\110-ant-00.png" />
+    <None Remove="Assets\images\miscs-off\110-ant-01.png" />
+    <None Remove="Assets\images\miscs-off\110-ant-10.png" />
+    <None Remove="Assets\images\miscs-off\110-ant-11.png" />
+    <None Remove="Assets\images\miscs-off\110-arm-0.png" />
+    <None Remove="Assets\images\miscs-off\110-arm-1.png" />
+    <None Remove="Assets\images\miscs-off\110-body.png" />
+    <None Remove="Assets\images\miscs-off\110-eye-00.png" />
+    <None Remove="Assets\images\miscs-off\110-eye-01.png" />
+    <None Remove="Assets\images\miscs-off\110-eye-10.png" />
+    <None Remove="Assets\images\miscs-off\110-eye-11.png" />
+    <None Remove="Assets\images\miscs-off\110-leg-0.png" />
+    <None Remove="Assets\images\miscs-off\110-leg-1.png" />
+    <None Remove="Assets\images\miscs-off\111-ant-00.png" />
+    <None Remove="Assets\images\miscs-off\111-ant-01.png" />
+    <None Remove="Assets\images\miscs-off\111-ant-10.png" />
+    <None Remove="Assets\images\miscs-off\111-ant-11.png" />
+    <None Remove="Assets\images\miscs-off\111-arm-0.png" />
+    <None Remove="Assets\images\miscs-off\111-arm-1.png" />
+    <None Remove="Assets\images\miscs-off\111-body.png" />
+    <None Remove="Assets\images\miscs-off\111-eye-00.png" />
+    <None Remove="Assets\images\miscs-off\111-eye-01.png" />
+    <None Remove="Assets\images\miscs-off\111-eye-10.png" />
+    <None Remove="Assets\images\miscs-off\111-eye-11.png" />
+    <None Remove="Assets\images\miscs-off\111-leg-0.png" />
+    <None Remove="Assets\images\miscs-off\111-leg-1.png" />
+    <None Remove="Assets\images\miscs-on\000-ant-00.png" />
+    <None Remove="Assets\images\miscs-on\000-ant-01.png" />
+    <None Remove="Assets\images\miscs-on\000-ant-10.png" />
+    <None Remove="Assets\images\miscs-on\000-ant-11.png" />
+    <None Remove="Assets\images\miscs-on\000-arm-0.png" />
+    <None Remove="Assets\images\miscs-on\000-arm-1.png" />
+    <None Remove="Assets\images\miscs-on\000-body.png" />
+    <None Remove="Assets\images\miscs-on\000-eye-00.png" />
+    <None Remove="Assets\images\miscs-on\000-eye-01.png" />
+    <None Remove="Assets\images\miscs-on\000-eye-10.png" />
+    <None Remove="Assets\images\miscs-on\000-eye-11.png" />
+    <None Remove="Assets\images\miscs-on\000-leg-0.png" />
+    <None Remove="Assets\images\miscs-on\000-leg-1.png" />
+    <None Remove="Assets\images\miscs-on\001-ant-00.png" />
+    <None Remove="Assets\images\miscs-on\001-ant-01.png" />
+    <None Remove="Assets\images\miscs-on\001-ant-10.png" />
+    <None Remove="Assets\images\miscs-on\001-ant-11.png" />
+    <None Remove="Assets\images\miscs-on\001-arm-0.png" />
+    <None Remove="Assets\images\miscs-on\001-arm-1.png" />
+    <None Remove="Assets\images\miscs-on\001-body.png" />
+    <None Remove="Assets\images\miscs-on\001-eye-00.png" />
+    <None Remove="Assets\images\miscs-on\001-eye-01.png" />
+    <None Remove="Assets\images\miscs-on\001-eye-10.png" />
+    <None Remove="Assets\images\miscs-on\001-eye-11.png" />
+    <None Remove="Assets\images\miscs-on\001-leg-0.png" />
+    <None Remove="Assets\images\miscs-on\001-leg-1.png" />
+    <None Remove="Assets\images\miscs-on\010-ant-00.png" />
+    <None Remove="Assets\images\miscs-on\010-ant-01.png" />
+    <None Remove="Assets\images\miscs-on\010-ant-10.png" />
+    <None Remove="Assets\images\miscs-on\010-ant-11.png" />
+    <None Remove="Assets\images\miscs-on\010-arm-0.png" />
+    <None Remove="Assets\images\miscs-on\010-arm-1.png" />
+    <None Remove="Assets\images\miscs-on\010-body.png" />
+    <None Remove="Assets\images\miscs-on\010-eye-00.png" />
+    <None Remove="Assets\images\miscs-on\010-eye-01.png" />
+    <None Remove="Assets\images\miscs-on\010-eye-10.png" />
+    <None Remove="Assets\images\miscs-on\010-eye-11.png" />
+    <None Remove="Assets\images\miscs-on\010-leg-0.png" />
+    <None Remove="Assets\images\miscs-on\010-leg-1.png" />
+    <None Remove="Assets\images\miscs-on\011-ant-00.png" />
+    <None Remove="Assets\images\miscs-on\011-ant-01.png" />
+    <None Remove="Assets\images\miscs-on\011-ant-10.png" />
+    <None Remove="Assets\images\miscs-on\011-ant-11.png" />
+    <None Remove="Assets\images\miscs-on\011-arm-0.png" />
+    <None Remove="Assets\images\miscs-on\011-arm-1.png" />
+    <None Remove="Assets\images\miscs-on\011-body.png" />
+    <None Remove="Assets\images\miscs-on\011-eye-00.png" />
+    <None Remove="Assets\images\miscs-on\011-eye-01.png" />
+    <None Remove="Assets\images\miscs-on\011-eye-10.png" />
+    <None Remove="Assets\images\miscs-on\011-eye-11.png" />
+    <None Remove="Assets\images\miscs-on\011-leg-0.png" />
+    <None Remove="Assets\images\miscs-on\011-leg-1.png" />
+    <None Remove="Assets\images\miscs-on\100-ant-00.png" />
+    <None Remove="Assets\images\miscs-on\100-ant-01.png" />
+    <None Remove="Assets\images\miscs-on\100-ant-10.png" />
+    <None Remove="Assets\images\miscs-on\100-ant-11.png" />
+    <None Remove="Assets\images\miscs-on\100-arm-0.png" />
+    <None Remove="Assets\images\miscs-on\100-arm-1.png" />
+    <None Remove="Assets\images\miscs-on\100-body.png" />
+    <None Remove="Assets\images\miscs-on\100-eye-00.png" />
+    <None Remove="Assets\images\miscs-on\100-eye-01.png" />
+    <None Remove="Assets\images\miscs-on\100-eye-10.png" />
+    <None Remove="Assets\images\miscs-on\100-eye-11.png" />
+    <None Remove="Assets\images\miscs-on\100-leg-0.png" />
+    <None Remove="Assets\images\miscs-on\100-leg-1.png" />
+    <None Remove="Assets\images\miscs-on\101-ant-00.png" />
+    <None Remove="Assets\images\miscs-on\101-ant-01.png" />
+    <None Remove="Assets\images\miscs-on\101-ant-10.png" />
+    <None Remove="Assets\images\miscs-on\101-ant-11.png" />
+    <None Remove="Assets\images\miscs-on\101-arm-0.png" />
+    <None Remove="Assets\images\miscs-on\101-arm-1.png" />
+    <None Remove="Assets\images\miscs-on\101-body.png" />
+    <None Remove="Assets\images\miscs-on\101-eye-00.png" />
+    <None Remove="Assets\images\miscs-on\101-eye-01.png" />
+    <None Remove="Assets\images\miscs-on\101-eye-10.png" />
+    <None Remove="Assets\images\miscs-on\101-eye-11.png" />
+    <None Remove="Assets\images\miscs-on\101-leg-0.png" />
+    <None Remove="Assets\images\miscs-on\101-leg-1.png" />
+    <None Remove="Assets\images\miscs-on\110-ant-00.png" />
+    <None Remove="Assets\images\miscs-on\110-ant-01.png" />
+    <None Remove="Assets\images\miscs-on\110-ant-10.png" />
+    <None Remove="Assets\images\miscs-on\110-ant-11.png" />
+    <None Remove="Assets\images\miscs-on\110-arm-0.png" />
+    <None Remove="Assets\images\miscs-on\110-arm-1.png" />
+    <None Remove="Assets\images\miscs-on\110-body.png" />
+    <None Remove="Assets\images\miscs-on\110-eye-00.png" />
+    <None Remove="Assets\images\miscs-on\110-eye-01.png" />
+    <None Remove="Assets\images\miscs-on\110-eye-10.png" />
+    <None Remove="Assets\images\miscs-on\110-eye-11.png" />
+    <None Remove="Assets\images\miscs-on\110-leg-0.png" />
+    <None Remove="Assets\images\miscs-on\110-leg-1.png" />
+    <None Remove="Assets\images\miscs-on\111-ant-00.png" />
+    <None Remove="Assets\images\miscs-on\111-ant-01.png" />
+    <None Remove="Assets\images\miscs-on\111-ant-10.png" />
+    <None Remove="Assets\images\miscs-on\111-ant-11.png" />
+    <None Remove="Assets\images\miscs-on\111-arm-0.png" />
+    <None Remove="Assets\images\miscs-on\111-arm-1.png" />
+    <None Remove="Assets\images\miscs-on\111-body.png" />
+    <None Remove="Assets\images\miscs-on\111-eye-00.png" />
+    <None Remove="Assets\images\miscs-on\111-eye-01.png" />
+    <None Remove="Assets\images\miscs-on\111-eye-10.png" />
+    <None Remove="Assets\images\miscs-on\111-eye-11.png" />
+    <None Remove="Assets\images\miscs-on\111-leg-0.png" />
+    <None Remove="Assets\images\miscs-on\111-leg-1.png" />
     <None Remove="Assets\images\pig-off.ico" />
     <None Remove="Assets\images\pig-off.svg" />
     <None Remove="Assets\images\pig-on.ico" />
@@ -197,316 +301,628 @@
     <Content Include="Assets\images\mail-pig-on.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\000-ant-00.png">
+    <Content Include="Assets\images\miscs-off\000-ant-00.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\000-ant-01.png">
+    <Content Include="Assets\images\miscs-off\000-ant-01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\000-ant-10.png">
+    <Content Include="Assets\images\miscs-off\000-ant-10.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\000-ant-11.png">
+    <Content Include="Assets\images\miscs-off\000-ant-11.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\000-arm-0.png">
+    <Content Include="Assets\images\miscs-off\000-arm-0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\000-arm-1.png">
+    <Content Include="Assets\images\miscs-off\000-arm-1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\000-body.png">
+    <Content Include="Assets\images\miscs-off\000-body.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\000-eye-00.png">
+    <Content Include="Assets\images\miscs-off\000-eye-00.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\000-eye-01.png">
+    <Content Include="Assets\images\miscs-off\000-eye-01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\000-eye-10.png">
+    <Content Include="Assets\images\miscs-off\000-eye-10.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\000-eye-11.png">
+    <Content Include="Assets\images\miscs-off\000-eye-11.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\000-leg-0.png">
+    <Content Include="Assets\images\miscs-off\000-leg-0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\000-leg-1.png">
+    <Content Include="Assets\images\miscs-off\000-leg-1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\001-ant-00.png">
+    <Content Include="Assets\images\miscs-off\001-ant-00.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\001-ant-01.png">
+    <Content Include="Assets\images\miscs-off\001-ant-01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\001-ant-10.png">
+    <Content Include="Assets\images\miscs-off\001-ant-10.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\001-ant-11.png">
+    <Content Include="Assets\images\miscs-off\001-ant-11.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\001-arm-0.png">
+    <Content Include="Assets\images\miscs-off\001-arm-0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\001-arm-1.png">
+    <Content Include="Assets\images\miscs-off\001-arm-1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\001-body.png">
+    <Content Include="Assets\images\miscs-off\001-body.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\001-eye-00.png">
+    <Content Include="Assets\images\miscs-off\001-eye-00.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\001-eye-01.png">
+    <Content Include="Assets\images\miscs-off\001-eye-01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\001-eye-10.png">
+    <Content Include="Assets\images\miscs-off\001-eye-10.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\001-eye-11.png">
+    <Content Include="Assets\images\miscs-off\001-eye-11.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\001-leg-0.png">
+    <Content Include="Assets\images\miscs-off\001-leg-0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\001-leg-1.png">
+    <Content Include="Assets\images\miscs-off\001-leg-1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\010-ant-00.png">
+    <Content Include="Assets\images\miscs-off\010-ant-00.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\010-ant-01.png">
+    <Content Include="Assets\images\miscs-off\010-ant-01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\010-ant-10.png">
+    <Content Include="Assets\images\miscs-off\010-ant-10.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\010-ant-11.png">
+    <Content Include="Assets\images\miscs-off\010-ant-11.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\010-arm-0.png">
+    <Content Include="Assets\images\miscs-off\010-arm-0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\010-arm-1.png">
+    <Content Include="Assets\images\miscs-off\010-arm-1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\010-body.png">
+    <Content Include="Assets\images\miscs-off\010-body.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\010-eye-00.png">
+    <Content Include="Assets\images\miscs-off\010-eye-00.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\010-eye-01.png">
+    <Content Include="Assets\images\miscs-off\010-eye-01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\010-eye-10.png">
+    <Content Include="Assets\images\miscs-off\010-eye-10.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\010-eye-11.png">
+    <Content Include="Assets\images\miscs-off\010-eye-11.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\010-leg-0.png">
+    <Content Include="Assets\images\miscs-off\010-leg-0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\010-leg-1.png">
+    <Content Include="Assets\images\miscs-off\010-leg-1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\011-ant-00.png">
+    <Content Include="Assets\images\miscs-off\011-ant-00.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\011-ant-01.png">
+    <Content Include="Assets\images\miscs-off\011-ant-01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\011-ant-10.png">
+    <Content Include="Assets\images\miscs-off\011-ant-10.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\011-ant-11.png">
+    <Content Include="Assets\images\miscs-off\011-ant-11.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\011-arm-0.png">
+    <Content Include="Assets\images\miscs-off\011-arm-0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\011-arm-1.png">
+    <Content Include="Assets\images\miscs-off\011-arm-1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\011-body.png">
+    <Content Include="Assets\images\miscs-off\011-body.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\011-eye-00.png">
+    <Content Include="Assets\images\miscs-off\011-eye-00.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\011-eye-01.png">
+    <Content Include="Assets\images\miscs-off\011-eye-01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\011-eye-10.png">
+    <Content Include="Assets\images\miscs-off\011-eye-10.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\011-eye-11.png">
+    <Content Include="Assets\images\miscs-off\011-eye-11.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\011-leg-0.png">
+    <Content Include="Assets\images\miscs-off\011-leg-0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\011-leg-1.png">
+    <Content Include="Assets\images\miscs-off\011-leg-1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\100-ant-00.png">
+    <Content Include="Assets\images\miscs-off\100-ant-00.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\100-ant-01.png">
+    <Content Include="Assets\images\miscs-off\100-ant-01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\100-ant-10.png">
+    <Content Include="Assets\images\miscs-off\100-ant-10.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\100-ant-11.png">
+    <Content Include="Assets\images\miscs-off\100-ant-11.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\100-arm-0.png">
+    <Content Include="Assets\images\miscs-off\100-arm-0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\100-arm-1.png">
+    <Content Include="Assets\images\miscs-off\100-arm-1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\100-body.png">
+    <Content Include="Assets\images\miscs-off\100-body.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\100-eye-00.png">
+    <Content Include="Assets\images\miscs-off\100-eye-00.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\100-eye-01.png">
+    <Content Include="Assets\images\miscs-off\100-eye-01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\100-eye-10.png">
+    <Content Include="Assets\images\miscs-off\100-eye-10.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\100-eye-11.png">
+    <Content Include="Assets\images\miscs-off\100-eye-11.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\100-leg-0.png">
+    <Content Include="Assets\images\miscs-off\100-leg-0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\100-leg-1.png">
+    <Content Include="Assets\images\miscs-off\100-leg-1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\101-ant-00.png">
+    <Content Include="Assets\images\miscs-off\101-ant-00.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\101-ant-01.png">
+    <Content Include="Assets\images\miscs-off\101-ant-01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\101-ant-10.png">
+    <Content Include="Assets\images\miscs-off\101-ant-10.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\101-ant-11.png">
+    <Content Include="Assets\images\miscs-off\101-ant-11.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\101-arm-0.png">
+    <Content Include="Assets\images\miscs-off\101-arm-0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\101-arm-1.png">
+    <Content Include="Assets\images\miscs-off\101-arm-1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\101-body.png">
+    <Content Include="Assets\images\miscs-off\101-body.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\101-eye-00.png">
+    <Content Include="Assets\images\miscs-off\101-eye-00.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\101-eye-01.png">
+    <Content Include="Assets\images\miscs-off\101-eye-01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\101-eye-10.png">
+    <Content Include="Assets\images\miscs-off\101-eye-10.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\101-eye-11.png">
+    <Content Include="Assets\images\miscs-off\101-eye-11.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\101-leg-0.png">
+    <Content Include="Assets\images\miscs-off\101-leg-0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\101-leg-1.png">
+    <Content Include="Assets\images\miscs-off\101-leg-1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\110-ant-00.png">
+    <Content Include="Assets\images\miscs-off\110-ant-00.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\110-ant-01.png">
+    <Content Include="Assets\images\miscs-off\110-ant-01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\110-ant-10.png">
+    <Content Include="Assets\images\miscs-off\110-ant-10.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\110-ant-11.png">
+    <Content Include="Assets\images\miscs-off\110-ant-11.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\110-arm-0.png">
+    <Content Include="Assets\images\miscs-off\110-arm-0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\110-arm-1.png">
+    <Content Include="Assets\images\miscs-off\110-arm-1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\110-body.png">
+    <Content Include="Assets\images\miscs-off\110-body.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\110-eye-00.png">
+    <Content Include="Assets\images\miscs-off\110-eye-00.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\110-eye-01.png">
+    <Content Include="Assets\images\miscs-off\110-eye-01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\110-eye-10.png">
+    <Content Include="Assets\images\miscs-off\110-eye-10.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\110-eye-11.png">
+    <Content Include="Assets\images\miscs-off\110-eye-11.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\110-leg-0.png">
+    <Content Include="Assets\images\miscs-off\110-leg-0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\110-leg-1.png">
+    <Content Include="Assets\images\miscs-off\110-leg-1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\111-ant-00.png">
+    <Content Include="Assets\images\miscs-off\111-ant-00.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\111-ant-01.png">
+    <Content Include="Assets\images\miscs-off\111-ant-01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\111-ant-10.png">
+    <Content Include="Assets\images\miscs-off\111-ant-10.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\111-ant-11.png">
+    <Content Include="Assets\images\miscs-off\111-ant-11.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\111-arm-0.png">
+    <Content Include="Assets\images\miscs-off\111-arm-0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\111-arm-1.png">
+    <Content Include="Assets\images\miscs-off\111-arm-1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\111-body.png">
+    <Content Include="Assets\images\miscs-off\111-body.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\111-eye-00.png">
+    <Content Include="Assets\images\miscs-off\111-eye-00.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\111-eye-01.png">
+    <Content Include="Assets\images\miscs-off\111-eye-01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\111-eye-10.png">
+    <Content Include="Assets\images\miscs-off\111-eye-10.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\111-eye-11.png">
+    <Content Include="Assets\images\miscs-off\111-eye-11.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\111-leg-0.png">
+    <Content Include="Assets\images\miscs-off\111-leg-0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\miscs\111-leg-1.png">
+    <Content Include="Assets\images\miscs-off\111-leg-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\000-ant-00.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\000-ant-01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\000-ant-10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\000-ant-11.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\000-arm-0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\000-arm-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\000-body.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\000-eye-00.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\000-eye-01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\000-eye-10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\000-eye-11.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\000-leg-0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\000-leg-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\001-ant-00.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\001-ant-01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\001-ant-10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\001-ant-11.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\001-arm-0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\001-arm-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\001-body.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\001-eye-00.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\001-eye-01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\001-eye-10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\001-eye-11.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\001-leg-0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\001-leg-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\010-ant-00.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\010-ant-01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\010-ant-10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\010-ant-11.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\010-arm-0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\010-arm-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\010-body.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\010-eye-00.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\010-eye-01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\010-eye-10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\010-eye-11.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\010-leg-0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\010-leg-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\011-ant-00.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\011-ant-01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\011-ant-10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\011-ant-11.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\011-arm-0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\011-arm-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\011-body.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\011-eye-00.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\011-eye-01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\011-eye-10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\011-eye-11.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\011-leg-0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\011-leg-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\100-ant-00.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\100-ant-01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\100-ant-10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\100-ant-11.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\100-arm-0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\100-arm-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\100-body.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\100-eye-00.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\100-eye-01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\100-eye-10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\100-eye-11.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\100-leg-0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\100-leg-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\101-ant-00.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\101-ant-01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\101-ant-10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\101-ant-11.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\101-arm-0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\101-arm-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\101-body.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\101-eye-00.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\101-eye-01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\101-eye-10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\101-eye-11.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\101-leg-0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\101-leg-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\110-ant-00.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\110-ant-01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\110-ant-10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\110-ant-11.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\110-arm-0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\110-arm-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\110-body.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\110-eye-00.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\110-eye-01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\110-eye-10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\110-eye-11.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\110-leg-0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\110-leg-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\111-ant-00.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\111-ant-01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\111-ant-10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\111-ant-11.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\111-arm-0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\111-arm-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\111-body.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\111-eye-00.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\111-eye-01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\111-eye-10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\111-eye-11.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\111-leg-0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\miscs-on\111-leg-1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\images\pig-off.ico">

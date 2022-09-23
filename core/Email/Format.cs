@@ -40,7 +40,7 @@ namespace DFM.Email
 			var settings = user.Settings;
 			var language = settings.Language;
 			var theme = settings.Theme;
-			var misc = user.Control.Misc;
+			var misc = user.GenerateMisc();
 
 			var layoutName = layoutType.ToString();
 			var replaces = getReplaces(type.ToString(), layoutName, language);
@@ -50,12 +50,8 @@ namespace DFM.Email
 			replaces.Add("MiscEye", misc.Eye);
 			replaces.Add("MiscArm", misc.Arm);
 			replaces.Add("MiscLeg", misc.Leg);
-
-			var background = misc.Color.Replace("0", "6").Replace("1", "3");
-			replaces.Add("MiscBackground", background);
-
-			var border = misc.Color.Replace("1", "F");
-			replaces.Add("MiscBorder", border);
+			replaces.Add("MiscBackground", misc.Background);
+			replaces.Add("MiscBorder", misc.Border);
 
 			Subject = replaces["Subject"];
 			Layout = FormatEmail(theme, type, replaces, misc);

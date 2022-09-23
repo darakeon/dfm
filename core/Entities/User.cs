@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
+using DFM.Generic;
 using DFM.Generic.Datetime;
 using Keon.Util.DB;
 
@@ -72,6 +73,14 @@ namespace DFM.Entities
 
 			if (!firstTime)
 				Control.RobotCheck = Control.RobotCheck.AddDays(1);
+		}
+
+		public virtual Misc GenerateMisc()
+		{
+			return new Misc(
+				Control.MiscDna,
+				Settings.Theme.Colors()
+			);
 		}
 
 		public override String ToString()
