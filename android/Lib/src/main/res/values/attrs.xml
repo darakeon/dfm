@@ -28,4 +28,9 @@
 	<attr name="average" format="color" />
 	<attr name="heavy" format="color" />
 	<attr name="emphasis" format="color" />
+
+	<attr name="app" format="reference" />
+	<attr name="error" format="reference" />
+	<attr name="pig" format="reference" />
+	<attr name="pigs" format="reference" />
 </resources>
