@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="site_address" translatable="false">dontflymoney.com</string>
-	<string name="test_user" translatable="false" />
-	<string name="test_pass" translatable="false" />
 </resources>

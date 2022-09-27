@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="test_user" translatable="false" />
+	<string name="test_pass" translatable="false" />
+</resources>
