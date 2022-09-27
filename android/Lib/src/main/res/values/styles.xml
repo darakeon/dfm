@@ -28,6 +28,11 @@
 		<item name="main_highlight">?attr/average</item>
 		<item name="placeholder">?attr/heavy</item>
 		<item name="link">?attr/emphasis</item>
+
+		<item name="app">@drawable/app_on</item>
+		<item name="error">@drawable/error_on</item>
+		<item name="pig">@drawable/pig_on</item>
+		<item name="pigs">@drawable/pigs_on</item>
 	</style>
 
 	<style name="Dark" parent="Material">
@@ -43,6 +48,11 @@
 		<item name="danger">@color/dark_off_danger_1</item>
 		<item name="success">@color/dark_off_success_1</item>
 		<item name="info">@color/dark_off_info_1</item>
+
+		<item name="app">@drawable/app_off</item>
+		<item name="error">@drawable/error_off</item>
+		<item name="pig">@drawable/pig_off</item>
+		<item name="pigs">@drawable/pigs_off</item>
 	</style>
 	<style name="DarkMagic" parent="DarkOn">
 		<item name="light">@color/dark_magic_primary_0</item>
@@ -82,6 +92,11 @@
 		<item name="danger">@color/light_off_danger_1</item>
 		<item name="success">@color/light_off_success_1</item>
 		<item name="info">@color/light_off_info_1</item>
+
+		<item name="app">@drawable/app_off</item>
+		<item name="error">@drawable/error_off</item>
+		<item name="pig">@drawable/pig_off</item>
+		<item name="pigs">@drawable/pigs_off</item>
 	</style>
 	<style name="LightMagic" parent="LightOn">
 		<item name="light">@color/light_magic_primary_0</item>

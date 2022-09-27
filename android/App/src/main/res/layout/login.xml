@@ -16,7 +16,7 @@
 		android:layout_height="wrap_content"
 		android:layout_columnSpan="2"
 		android:layout_columnWeight="2"
-		android:src="@drawable/pig"
+		android:src="?attr/pig"
 		android:contentDescription="@string/app_name"
 		android:layout_marginBottom="@dimen/logo_margin_bottom"
 		android:layout_gravity="center_horizontal"
