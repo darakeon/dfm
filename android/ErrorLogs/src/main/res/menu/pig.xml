@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 	<item android:title="@string/app_name"
 		android:showAsAction="always"
-		android:icon="@drawable/error_icon"
+		android:icon="@drawable/error_logs_menu_icon"
 		android:enabled="false"
 		/>
 </menu>
