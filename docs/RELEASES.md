@@ -21,7 +21,8 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Add Rust security check do CI
 - [ ] Add android security check do CI
 
-## <a name="9.0.0.1"></a>9.0.0.1 :ant: <sup>`1`</sup>
+## <a name="9.0.0.1"></a>9.0.0.1 :ant: <sup>`2`</sup>
+- [x] `220928>220928` Fix android settings
 - [x] `220927>220928` Fix android app icon
 
 ## <a name="9.0.0.0"></a>9.0.0.0 :dragon: <sup>`6`</sup>

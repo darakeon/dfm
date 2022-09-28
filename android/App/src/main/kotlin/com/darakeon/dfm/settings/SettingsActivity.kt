@@ -33,7 +33,7 @@ class SettingsActivity : BaseActivity() {
 
 		if (savedInstanceState == null) {
 			callApi { api ->
-				api.getConfig {
+				api.getSettings {
 					this.populateScreen(it)
 				}
 			}
@@ -73,7 +73,7 @@ class SettingsActivity : BaseActivity() {
 
 	fun saveSettings(@Suppress(ON_CLICK) view: View) {
 		callApi {
-			it.saveConfig(settings, this::back)
+			it.saveSettings(settings, this::back)
 		}
 	}
 

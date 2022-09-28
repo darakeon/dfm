@@ -202,11 +202,11 @@ class ApiTest: BaseTest() {
 	}
 
 	@Test
-	fun getConfig() {
+	fun getSettings() {
 		server.enqueue("config_get")
 
 		var settings: Settings? = null
-		api.getConfig {
+		api.getSettings {
 			settings = it
 		}
 		activity.waitTasks()
@@ -215,11 +215,11 @@ class ApiTest: BaseTest() {
 	}
 
 	@Test
-	fun saveConfig() {
+	fun saveSettings() {
 		server.enqueue("empty")
 
 		var called = false
-		api.saveConfig(Settings()) {
+		api.saveSettings(Settings()) {
 			called = true
 		}
 		activity.waitTasks()

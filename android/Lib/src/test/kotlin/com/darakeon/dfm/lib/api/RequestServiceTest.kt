@@ -254,10 +254,10 @@ class RequestServiceTest: BaseTest() {
 	}
 
 	@Test
-	fun getConfig() {
+	fun getSettings() {
 		server.enqueue("config_get")
 
-		val response = service.getConfig().execute()
+		val response = service.getSettings().execute()
 		assertNotNull(response)
 		val body = response.body()!!
 
@@ -271,10 +271,10 @@ class RequestServiceTest: BaseTest() {
 	}
 
 	@Test
-	fun saveConfig() {
+	fun saveSettings() {
 		server.enqueue("empty")
 
-		val response = service.saveConfig(Settings()).execute()
+		val response = service.saveSettings(Settings()).execute()
 		assertNotNull(response)
 		val body = response.body()!!
 
