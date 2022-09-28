@@ -22,7 +22,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Add android security check do CI
 
 ## <a name="9.0.0.1"></a>9.0.0.1 :ant: <sup>`1`</sup>
-- [ ] Fix android app icon
+- [x] `220927>220928` Fix android app icon
 
 ## <a name="9.0.0.0"></a>9.0.0.0 :dragon: <sup>`6`</sup>
 - [x] `220919>220919` Remove variable stuff from terms

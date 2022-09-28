@@ -12,7 +12,7 @@
 	<application
 		android:allowBackup="false"
 		android:networkSecurityConfig="@xml/network_security_config"
-		android:icon="@drawable/error_icon"
+		android:icon="@drawable/error_logs_launcher_icon"
 		android:label="@string/app_name"
 		android:theme="@style/DarkMagic"
 		android:supportsRtl="true"
