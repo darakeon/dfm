@@ -128,17 +128,17 @@ class Api<C>(
 		).call { onSuccess() }
 	}
 
-	fun getConfig(
+	fun getSettings(
 		onSuccess: (Settings) -> Unit
 	) {
-		service.getConfig().call { onSuccess(it) }
+		service.getSettings().call { onSuccess(it) }
 	}
 
-	fun saveConfig(
+	fun saveSettings(
 		settings: Settings,
 		onSuccess: () -> Unit
 	) {
-		service.saveConfig(settings).call { onSuccess() }
+		service.saveSettings(settings).call { onSuccess() }
 	}
 
 	fun getSummary(

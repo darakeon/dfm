@@ -78,11 +78,11 @@ interface RequestService {
 		@RetrofitBody move: Move
 	): Call<Body<Any>>
 
-	@GET("api/users/getConfig")
-	fun getConfig(): Call<Body<Settings>>
+	@GET("api/users/getSettings")
+	fun getSettings(): Call<Body<Settings>>
 
-	@POST("api/users/saveConfig")
-	fun saveConfig(
+	@POST("api/users/saveSettings")
+	fun saveSettings(
 		@RetrofitBody settings: Settings
 	): Call<Body<Any>>
 
