@@ -103,7 +103,7 @@ task ipAddress(type: Copy) {
 	from ('src/main/res/values/site-address.xml')
 	into ('src/debug/res/values')
 	filter {
-		String line -> line.replaceAll("dontflymoney.com", getLocalIP())
+		String line -> line.replaceAll("dontflymoney.com", getLocalIP() + ":2409")
 	}
 }
 

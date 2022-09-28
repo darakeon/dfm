@@ -3,6 +3,7 @@ package com.darakeon.dfm.lib.api
 import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import com.darakeon.dfm.lib.BuildConfig
 import com.darakeon.dfm.lib.R
 import com.darakeon.dfm.lib.utils.mockContext
 import com.darakeon.dfm.testutils.BaseTest
@@ -14,7 +15,10 @@ import org.mockito.Mockito.mock
 
 class MainInfoTest: BaseTest() {
 	@Test
-	fun getSiteUrl_IP() {
+	fun getSiteUrlDebug() {
+		if (!BuildConfig.DEBUG)
+			return
+
 		val context = mockContext()
 			.mockResources()
 			.addStringResource(R.string.site_address, "127.0.0.1")
@@ -26,7 +30,10 @@ class MainInfoTest: BaseTest() {
 	}
 
 	@Test
-	fun getSiteUrl_Address() {
+	fun getSiteUrlRelease() {
+		if (BuildConfig.DEBUG)
+			return
+
 		val context = mockContext()
 			.mockResources()
 			.addStringResource(R.string.site_address, "site")
