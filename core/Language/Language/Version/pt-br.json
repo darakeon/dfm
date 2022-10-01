@@ -1,4 +1,8 @@
 {
+	"9.0.0.1": [
+		"Arrumado erro na tela de configuração do aplicativo",
+		"Arrumado ícone do aplicativo"
+	],
 	"9.0.0.0": [
 		"Arrumada ferramenta de manutenção",
 		"Adicionado estilo monocromático",

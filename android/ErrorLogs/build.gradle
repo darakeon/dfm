@@ -8,7 +8,7 @@ android {
 	defaultConfig {
 		applicationId "com.darakeon.dfm.error_logs"
 
-		versionCode 15
+		versionCode 16
 		versionName "$dfm_version"
 
 		minSdkVersion 21
