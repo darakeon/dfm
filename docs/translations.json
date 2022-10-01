@@ -1,8 +1,12 @@
 {
 	"en-us": {
+		"Fix android settings": "Fix android settings",
+		"Fix android app icon": "Fix android app icon",
 		"": null
 	},
 	"pt-br": {
+		"Fix android settings": "Arrumado erro na tela de configuração do aplicativo",
+		"Fix android app icon": "Arrumado ícone do aplicativo",
 		"": null
 	}
 }
