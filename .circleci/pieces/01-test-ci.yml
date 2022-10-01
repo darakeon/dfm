@@ -5,7 +5,7 @@
     steps:
       - checkout
       - run:
-          name: copy_old
+          name: copy old
           path: .circleci
           command: cp config.yml config_old.yml
       - run:

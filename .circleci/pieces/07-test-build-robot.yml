@@ -22,7 +22,7 @@
           command: dotnet publish -c Release Robot.csproj -o /var/robot --no-restore
       - run:
           path: robot
-          name: check_vulnerability
+          name: check vulnerability
           command: |
             RESULT=$(dotnet list package --vulnerable --include-transitive)
 

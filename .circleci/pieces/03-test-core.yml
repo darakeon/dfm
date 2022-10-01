@@ -4,7 +4,7 @@
     steps:
       - checkout
       - run:
-          name: set_checksums
+          name: set checksums
           command: |
             CS_AUTH=$(md5sum core/Authentication/Authentication.csproj | cut -d' ' -f1)
             CS_BUSI=$(md5sum core/BusinessLogic/BusinessLogic.csproj | cut -d' ' -f1)
@@ -37,7 +37,7 @@
           command: dotnet build -c Debug core/Core.sln --no-restore
       - run:
           path: core
-          name: check_vulnerability
+          name: check vulnerability
           command: |
             RESULT=$(dotnet list package --vulnerable --include-transitive)
 
@@ -52,27 +52,27 @@
             fi
       - run:
           path: core/Tests/Generic
-          name: tests_generic
+          name: tests generic
           command: dotnet test -v m --no-build
       - run:
           path: core/Tests/Language
-          name: tests_language
+          name: tests language
           command: dotnet test -v m --no-build
       - run:
           path: core/Tests/Email
-          name: tests_email
+          name: tests email
           command: dotnet test -v m --no-build
       - run:
           path: core/Tests/Exchange
-          name: tests_exchange
+          name: tests exchange
           command: dotnet test -v m --no-build
       - run:
           path: core/Tests/BusinessLogic
-          name: tests_business_logic
+          name: tests_business logic
           command: dotnet test -v m --no-build
       - run:
           path: inbox
-          name: zip_mails
+          name: zip mails
           command: zip inbox.zip *.eml && rm *.eml
       - store_artifacts:
           path: inbox

@@ -17,7 +17,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: copy_old
+          name: copy old
           path: .circleci
           command: cp config.yml config_old.yml
       - run:
@@ -46,7 +46,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: set_checksums
+          name: set checksums
           command: |
             CS_AUTH=$(md5sum core/Authentication/Authentication.csproj | cut -d' ' -f1)
             CS_BUSI=$(md5sum core/BusinessLogic/BusinessLogic.csproj | cut -d' ' -f1)
@@ -79,7 +79,7 @@ jobs:
           command: dotnet build -c Debug core/Core.sln --no-restore
       - run:
           path: core
-          name: check_vulnerability
+          name: check vulnerability
           command: |
             RESULT=$(dotnet list package --vulnerable --include-transitive)
 
@@ -94,27 +94,27 @@ jobs:
             fi
       - run:
           path: core/Tests/Generic
-          name: tests_generic
+          name: tests generic
           command: dotnet test -v m --no-build
       - run:
           path: core/Tests/Language
-          name: tests_language
+          name: tests language
           command: dotnet test -v m --no-build
       - run:
           path: core/Tests/Email
-          name: tests_email
+          name: tests email
           command: dotnet test -v m --no-build
       - run:
           path: core/Tests/Exchange
-          name: tests_exchange
+          name: tests exchange
           command: dotnet test -v m --no-build
       - run:
           path: core/Tests/BusinessLogic
-          name: tests_business_logic
+          name: tests_business logic
           command: dotnet test -v m --no-build
       - run:
           path: inbox
-          name: zip_mails
+          name: zip mails
           command: zip inbox.zip *.eml && rm *.eml
       - store_artifacts:
           path: inbox
@@ -142,7 +142,7 @@ jobs:
           command: dotnet build -c Debug site/Site.sln --no-restore
       - run:
           path: site
-          name: check_vulnerability
+          name: check vulnerability
           command: |
             RESULT=$(dotnet list package --vulnerable --include-transitive)
 
@@ -157,7 +157,7 @@ jobs:
             fi
       - run:
           path: site/Tests/MVC
-          name: tests_mvc
+          name: tests mvc
           command: dotnet test -v m --no-build
       - store_artifacts:
           path: inbox
@@ -174,7 +174,7 @@ jobs:
           keys:
             - dotnet-{{ checksum "core/Authentication/Authentication.csproj" }}-{{ checksum "core/BusinessLogic/BusinessLogic.csproj" }}-{{ checksum "core/Email/Email.csproj" }}-{{ checksum "core/Entities/Entities.csproj" }}-{{ checksum "core/Generic/Generic.csproj" }}-{{ checksum "core/Language/Language.csproj" }}-{{ checksum "site/MVC/MVC.csproj" }}-{{ checksum "site/Tests/MVC/MVC.Tests.csproj" }}
       - run:
-          name: dependencies_dotnet
+          name: dependencies dotnet
           command: dotnet restore site/Site.sln
       - save_cache:
           key: dotnet-{{ checksum "core/Authentication/Authentication.csproj" }}-{{ checksum "core/BusinessLogic/BusinessLogic.csproj" }}-{{ checksum "core/Email/Email.csproj" }}-{{ checksum "core/Entities/Entities.csproj" }}-{{ checksum "core/Generic/Generic.csproj" }}-{{ checksum "core/Language/Language.csproj" }}-{{ checksum "site/MVC/MVC.csproj" }}-{{ checksum "site/Tests/MVC/MVC.Tests.csproj" }}
@@ -184,7 +184,7 @@ jobs:
           keys:
             - dotnet-libman-{{ checksum "site/MVC/libman.json" }}
       - run:
-          name: dependencies_client
+          name: dependencies client
           path: site/MVC
           command: libman restore
       - save_cache:
@@ -192,14 +192,14 @@ jobs:
           paths:
             - site/MVC/Assets/libs
       - run:
-          name: publish_site
+          name: publish site
           path: site/MVC
           command: dotnet publish -c Release MVC.csproj -o ../Tests/Browser/server --no-restore
       - restore_cache:
           keys:
             - node-{{ checksum "site/Tests/Browser/package.json" }}-{{ checksum "site/Tests/Browser/package-lock.json" }}
       - run:
-          name: dependencies_node
+          name: dependencies node
           path: site/Tests/Browser
           command: npm install
       - save_cache:
@@ -207,11 +207,11 @@ jobs:
           paths:
             - site/Tests/Browser/node_modules
       - run:
-          name: check_dependencies_node
+          name: check_dependencies node
           path: site/Tests/Browser
           command: npm audit
       - run:
-          name: tests_browser
+          name: tests browser
           command: .circleci/browser/run-tests.sh
       - store_artifacts:
           path: site/Tests/Browser/log
@@ -231,15 +231,19 @@ jobs:
           name: create empty credentials file
           path: android
           command: echo "storeFile=\nstorePassword=\nkeyAlias=\nkeyPassword=" > keystore.properties
+      - run:
+          name: project dependencies
+          path: android
+          command: gradle androidDependencies
       - restore_cache:
           keys:
             - jars-{{ checksum "ci/android.dockerfile" }}-{{ checksum "android/build.gradle" }}-{{ checksum "android/TestUtils/build.gradle" }}-{{ checksum "android/Lib/build.gradle" }}-{{ checksum "android/App/build.gradle" }}-{{ checksum "android/ErrorLogs/build.gradle" }}
       - run:
-          name: project_dependencies
+          name: project dependencies
           path: android
           command: gradle androidDependencies
       - run:
-          name: robolectric_dependencies
+          name: robolectric dependencies
           path: android
           command: gradle robolectricSdkDownload
       - save_cache:
@@ -297,7 +301,7 @@ jobs:
           command: dotnet publish -c Release Robot.csproj -o /var/robot --no-restore
       - run:
           path: robot
-          name: check_vulnerability
+          name: check vulnerability
           command: |
             RESULT=$(dotnet list package --vulnerable --include-transitive)
 

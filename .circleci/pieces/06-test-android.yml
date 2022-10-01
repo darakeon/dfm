@@ -11,11 +11,11 @@
           keys:
             - jars-{{ checksum "ci/android.dockerfile" }}-{{ checksum "android/build.gradle" }}-{{ checksum "android/TestUtils/build.gradle" }}-{{ checksum "android/Lib/build.gradle" }}-{{ checksum "android/App/build.gradle" }}-{{ checksum "android/ErrorLogs/build.gradle" }}
       - run:
-          name: project_dependencies
+          name: project dependencies
           path: android
           command: gradle androidDependencies
       - run:
-          name: robolectric_dependencies
+          name: robolectric dependencies
           path: android
           command: gradle robolectricSdkDownload
       - save_cache:
