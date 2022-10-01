@@ -3,6 +3,10 @@
       - image: darakeon/android
     steps:
       - checkout
+      - run:
+          name: create empty credentials file
+          path: android
+          command: echo "storeFile=\nstorePassword=\nkeyAlias=\nkeyPassword=" > keystore.properties
       - restore_cache:
           keys:
             - jars-{{ checksum "ci/android.dockerfile" }}-{{ checksum "android/build.gradle" }}-{{ checksum "android/TestUtils/build.gradle" }}-{{ checksum "android/Lib/build.gradle" }}-{{ checksum "android/App/build.gradle" }}-{{ checksum "android/ErrorLogs/build.gradle" }}
