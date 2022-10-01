@@ -2,6 +2,10 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
 	compileSdkVersion 32
 
@@ -20,10 +24,10 @@ android {
 
 	signingConfigs {
 		release {
-			storeFile file("../../.circleci/android/ci.keystore")
-			storePassword "circle"
-			keyAlias "DFM"
-			keyPassword "circle"
+			storeFile file(keystoreProperties['storeFile'])
+			storePassword keystoreProperties['storePassword']
+			keyAlias keystoreProperties['keyAlias']
+			keyPassword keystoreProperties['keyPassword']
 		}
 	}
 
