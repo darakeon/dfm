@@ -7,7 +7,7 @@
           keys:
             - dotnet-{{ checksum "core/Authentication/Authentication.csproj" }}-{{ checksum "core/BusinessLogic/BusinessLogic.csproj" }}-{{ checksum "core/Email/Email.csproj" }}-{{ checksum "core/Entities/Entities.csproj" }}-{{ checksum "core/Generic/Generic.csproj" }}-{{ checksum "core/Language/Language.csproj" }}-{{ checksum "site/MVC/MVC.csproj" }}-{{ checksum "site/Tests/MVC/MVC.Tests.csproj" }}
       - run:
-          name: dependencies_dotnet
+          name: dependencies dotnet
           command: dotnet restore site/Site.sln
       - save_cache:
           key: dotnet-{{ checksum "core/Authentication/Authentication.csproj" }}-{{ checksum "core/BusinessLogic/BusinessLogic.csproj" }}-{{ checksum "core/Email/Email.csproj" }}-{{ checksum "core/Entities/Entities.csproj" }}-{{ checksum "core/Generic/Generic.csproj" }}-{{ checksum "core/Language/Language.csproj" }}-{{ checksum "site/MVC/MVC.csproj" }}-{{ checksum "site/Tests/MVC/MVC.Tests.csproj" }}
@@ -17,7 +17,7 @@
           keys:
             - dotnet-libman-{{ checksum "site/MVC/libman.json" }}
       - run:
-          name: dependencies_client
+          name: dependencies client
           path: site/MVC
           command: libman restore
       - save_cache:
@@ -25,14 +25,14 @@
           paths:
             - site/MVC/Assets/libs
       - run:
-          name: publish_site
+          name: publish site
           path: site/MVC
           command: dotnet publish -c Release MVC.csproj -o ../Tests/Browser/server --no-restore
       - restore_cache:
           keys:
             - node-{{ checksum "site/Tests/Browser/package.json" }}-{{ checksum "site/Tests/Browser/package-lock.json" }}
       - run:
-          name: dependencies_node
+          name: dependencies node
           path: site/Tests/Browser
           command: npm install
       - save_cache:
@@ -40,11 +40,11 @@
           paths:
             - site/Tests/Browser/node_modules
       - run:
-          name: check_dependencies_node
+          name: check_dependencies node
           path: site/Tests/Browser
           command: npm audit
       - run:
-          name: tests_browser
+          name: tests browser
           command: .circleci/browser/run-tests.sh
       - store_artifacts:
           path: site/Tests/Browser/log

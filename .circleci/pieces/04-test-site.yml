@@ -18,7 +18,7 @@
           command: dotnet build -c Debug site/Site.sln --no-restore
       - run:
           path: site
-          name: check_vulnerability
+          name: check vulnerability
           command: |
             RESULT=$(dotnet list package --vulnerable --include-transitive)
 
@@ -33,7 +33,7 @@
             fi
       - run:
           path: site/Tests/MVC
-          name: tests_mvc
+          name: tests mvc
           command: dotnet test -v m --no-build
       - store_artifacts:
           path: inbox
