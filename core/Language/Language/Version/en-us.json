@@ -1,4 +1,8 @@
 {
+	"9.0.0.1": [
+		"Fix android settings",
+		"Fix android app icon"
+	],
 	"9.0.0.0": [
 		"Fix maintainance tools",
 		"Add monochromatic theme",
