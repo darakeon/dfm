@@ -25,6 +25,10 @@ buildscript {
 	}
 }
 
+plugins {
+	id "org.owasp.dependencycheck" version "7.2.1"
+}
+
 allprojects {
 	repositories {
 		google()

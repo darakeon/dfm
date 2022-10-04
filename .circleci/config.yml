@@ -231,10 +231,6 @@ jobs:
           name: create empty credentials file
           path: android
           command: echo "storeFile=\nstorePassword=\nkeyAlias=\nkeyPassword=" > keystore.properties
-      - run:
-          name: project dependencies
-          path: android
-          command: gradle androidDependencies
       - restore_cache:
           keys:
             - jars-{{ checksum "ci/android.dockerfile" }}-{{ checksum "android/build.gradle" }}-{{ checksum "android/TestUtils/build.gradle" }}-{{ checksum "android/Lib/build.gradle" }}-{{ checksum "android/App/build.gradle" }}-{{ checksum "android/ErrorLogs/build.gradle" }}
@@ -246,6 +242,10 @@ jobs:
           name: robolectric dependencies
           path: android
           command: gradle robolectricSdkDownload
+      - run:
+          name: check vulnerability
+          path: android
+          command: gradle dependencyCheckAnalyze
       - save_cache:
           key: jars-{{ checksum "ci/android.dockerfile" }}-{{ checksum "android/build.gradle" }}-{{ checksum "android/TestUtils/build.gradle" }}-{{ checksum "android/Lib/build.gradle" }}-{{ checksum "android/App/build.gradle" }}-{{ checksum "android/ErrorLogs/build.gradle" }}
           paths:
