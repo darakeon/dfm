@@ -18,7 +18,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Improve empty category chart (just a blank circle is confusing)
 - [ ] Add build step and make the others depend on it, not on tests step
 - [ ] warning mobile and browser logins stay active
-- [ ] Add Rust security check do CI
+- [x] `221005>221005` Add Rust security check do CI
 - [x] `221001>221005` Add android security check do CI
 
 ## <a name="9.0.0.1"></a>9.0.0.1 :ant: <sup>`2`</sup>
