@@ -13,6 +13,10 @@
           keys:
             - rust-{{ checksum "version/Cargo.toml" }}
       - run:
+          name: audit
+          path: version
+          command: cargo install cargo-audit && cargo audit && echo "All OK!"
+      - run:
           name: build
           path: version
           command: cargo build
