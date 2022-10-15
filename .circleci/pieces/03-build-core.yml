@@ -1,4 +1,4 @@
-  test_core:
+  build_core:
     docker:
       - image: darakeon/netcore
     steps:
@@ -21,62 +21,22 @@
 
             CACHE_KEY=$CS_AUTH-$CS_BUSI-$CS_MAIL-$CS_ENTI-$CS_GENE-$CS_LANG-$CS_EXCH
             CACHE_KEY=$CACHE_KEY-$CS_TBUS-$CS_TMAI-$CS_TLAN-$CS_TEXC-$CS_TGEN
-            echo $CACHE_KEY > cache_key
+            echo $CACHE_KEY > core/cache_key
       - restore_cache:
           keys:
-            - 'dotnet-{{ checksum "cache_key" }}'
+            - 'dotnet-{{ checksum "core/cache_key" }}'
       - run:
           name: dependencies
           command: dotnet restore core/Core.sln
       - save_cache:
-          key: 'dotnet-{{ checksum "cache_key" }}'
+          key: 'dotnet-{{ checksum "core/cache_key" }}'
           paths:
             - ~/.nuget/packages
       - run:
           name: build
           command: dotnet build -c Debug core/Core.sln --no-restore
-      - run:
-          path: core
-          name: check vulnerability
-          command: |
-            RESULT=$(dotnet list package --vulnerable --include-transitive)
-
-            echo "$RESULT"
-
-            NUMBER_OF_PROJECTS=14
-            EXPECTED=$(expr $NUMBER_OF_PROJECTS + 4)
-            CURRENT=$(echo "$RESULT" | wc -l)
-
-            if [ $CURRENT != $EXPECTED ]; then
-                exit 1
-            fi
-      - run:
-          path: core/Tests/Generic
-          name: tests generic
-          command: dotnet test -v m --no-build
-      - run:
-          path: core/Tests/Language
-          name: tests language
-          command: dotnet test -v m --no-build
-      - run:
-          path: core/Tests/Email
-          name: tests email
-          command: dotnet test -v m --no-build
-      - run:
-          path: core/Tests/Exchange
-          name: tests exchange
-          command: dotnet test -v m --no-build
-      - run:
-          path: core/Tests/BusinessLogic
-          name: tests_business logic
-          command: dotnet test -v m --no-build
-      - run:
-          path: inbox
-          name: zip mails
-          command: zip inbox.zip *.eml && rm *.eml
-      - store_artifacts:
-          path: inbox
-      - store_artifacts:
-          path: core/Tests/log
-          destination: log
+      - persist_to_workspace:
+          root: .
+          paths:
+            - core
 
