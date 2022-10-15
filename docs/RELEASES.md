@@ -16,7 +16,7 @@ This is the list of project releases, past and current. To see tasks that are st
 
 ## <a name="9.0.1.0"></a>9.0.1.0 :sheep: <sup>`5`</sup>
 - [ ] Improve empty category chart (just a blank circle is confusing)
-- [ ] Add build step and make the others depend on it, not on tests step
+- [ ] `221015>......` Add build step and make the others depend on it, not on tests step
 - [x] `221013>221013` warning mobile and browser logins stay active
 - [x] `221005>221005` Add Rust security check do CI
 - [x] `221001>221005` Add android security check do CI

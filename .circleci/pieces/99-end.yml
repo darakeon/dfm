@@ -6,19 +6,22 @@ workflows:
       - trufflehog:
           requires:
             - test_ci
-      - test_core:
+      - build_core:
           requires:
             - test_ci
             - trufflehog
+      - test_core:
+          requires:
+            - build_core
       - test_site:
           requires:
             - test_ci
-            - test_core
+            - build_core
             - trufflehog
       - test_browser:
           requires:
             - test_ci
-            - test_core
+            - build_core
             - test_site
             - trufflehog
       - test_android:
@@ -28,7 +31,7 @@ workflows:
       - test_build_robot:
           requires:
             - test_ci
-            - test_core
+            - build_core
             - trufflehog
       - version_change:
           filters:
@@ -36,6 +39,7 @@ workflows:
               only: /^\d+\.\d+\.\d+\.\d+$/
           requires:
             - test_ci
+            - build_core
             - test_core
             - test_site
             - test_browser
