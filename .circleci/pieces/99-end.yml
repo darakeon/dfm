@@ -43,7 +43,7 @@ workflows:
           requires:
             - test_ci
             - trufflehog
-      - test_build_robot:
+      - build_robot:
           requires:
             - test_ci
             - build_core
@@ -64,5 +64,5 @@ workflows:
             - test_site
             - test_browser
             - test_android
-            - test_build_robot
+            - build_robot
             - trufflehog
