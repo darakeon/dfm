@@ -1,0 +1,29 @@
+  audit_robot:
+    docker:
+      - image: darakeon/netcore
+    resource_class: small
+    environment:
+      ASPNETCORE_ENVIRONMENT: circleCI
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - 'dotnet-{{ checksum "robot/cache_key" }}'
+      - run:
+          path: robot
+          name: check vulnerability
+          command: |
+            RESULT=$(dotnet list package --vulnerable --include-transitive)
+
+            echo "$RESULT"
+
+            NUMBER_OF_PROJECTS=9
+            EXPECTED=$(expr $NUMBER_OF_PROJECTS + 4)
+            CURRENT=$(echo "$RESULT" | wc -l)
+
+            if [ $CURRENT != $EXPECTED ]; then
+                exit 1
+            fi
+
