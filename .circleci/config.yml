@@ -215,14 +215,29 @@ jobs:
       - image: darakeon/netcore
     steps:
       - checkout
+      - run:
+          name: set checksums
+          command: |
+            CS_AUTH=$(md5sum core/Authentication/Authentication.csproj | cut -d' ' -f1)
+            CS_BUSI=$(md5sum core/BusinessLogic/BusinessLogic.csproj | cut -d' ' -f1)
+            CS_MAIL=$(md5sum core/Email/Email.csproj | cut -d' ' -f1)
+            CS_ENTI=$(md5sum core/Entities/Entities.csproj | cut -d' ' -f1)
+            CS_GENE=$(md5sum core/Generic/Generic.csproj | cut -d' ' -f1)
+            CS_LANG=$(md5sum core/Language/Language.csproj | cut -d' ' -f1)
+            CS_EXCH=$(md5sum core/Exchange/Exchange.csproj | cut -d' ' -f1)
+            CS_MVC_=$(md5sum site/MVC/MVC.csproj | cut -d' ' -f1)
+            CS_TMVC=$(md5sum site/Tests/MVC/MVC.Tests.csproj | cut -d' ' -f1)
+
+            CACHE_KEY=$CS_AUTH-$CS_BUSI-$CS_MAIL-$CS_ENTI-$CS_GENE-$CS_LANG-$CS_EXCH-$CS_MVC_-$CS_TMVC
+            echo $CACHE_KEY > site/cache_key
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "core/Authentication/Authentication.csproj" }}-{{ checksum "core/BusinessLogic/BusinessLogic.csproj" }}-{{ checksum "core/Email/Email.csproj" }}-{{ checksum "core/Entities/Entities.csproj" }}-{{ checksum "core/Generic/Generic.csproj" }}-{{ checksum "core/Language/Language.csproj" }}-{{ checksum "site/MVC/MVC.csproj" }}-{{ checksum "site/Tests/MVC/MVC.Tests.csproj" }}
+            - 'dotnet-{{ checksum "site/cache_key" }}'
       - run:
           name: dependencies
           command: dotnet restore site/Site.sln
       - save_cache:
-          key: dotnet-{{ checksum "core/Authentication/Authentication.csproj" }}-{{ checksum "core/BusinessLogic/BusinessLogic.csproj" }}-{{ checksum "core/Email/Email.csproj" }}-{{ checksum "core/Entities/Entities.csproj" }}-{{ checksum "core/Generic/Generic.csproj" }}-{{ checksum "core/Language/Language.csproj" }}-{{ checksum "site/MVC/MVC.csproj" }}-{{ checksum "site/Tests/MVC/MVC.Tests.csproj" }}
+          key: dotnet-{{ checksum "site/cache_key" }}
           paths:
             - ~/.nuget/packages
       - run:
