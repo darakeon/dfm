@@ -82,7 +82,7 @@ jobs:
           paths:
             - core
 
-  test_core:
+  audit_core:
     docker:
       - image: darakeon/netcore
     steps:
@@ -107,25 +107,98 @@ jobs:
             if [ $CURRENT != $EXPECTED ]; then
                 exit 1
             fi
+
+  test_core_generic:
+    docker:
+      - image: darakeon/netcore
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - 'dotnet-{{ checksum "core/cache_key" }}'
       - run:
           path: core/Tests/Generic
           name: tests generic
           command: dotnet test -v m --no-build
+      - store_artifacts:
+          path: core/Tests/log
+          destination: log
+
+  test_core_language:
+    docker:
+      - image: darakeon/netcore
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - 'dotnet-{{ checksum "core/cache_key" }}'
       - run:
           path: core/Tests/Language
           name: tests language
           command: dotnet test -v m --no-build
+      - store_artifacts:
+          path: core/Tests/log
+          destination: log
+
+  test_core_email:
+    docker:
+      - image: darakeon/netcore
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - 'dotnet-{{ checksum "core/cache_key" }}'
       - run:
           path: core/Tests/Email
           name: tests email
           command: dotnet test -v m --no-build
       - run:
+          path: inbox
+          name: zip mails
+          command: zip inbox.zip *.eml && rm *.eml
+      - store_artifacts:
+          path: inbox
+      - store_artifacts:
+          path: core/Tests/log
+          destination: log
+
+  test_core_exchange:
+    docker:
+      - image: darakeon/netcore
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - 'dotnet-{{ checksum "core/cache_key" }}'
+      - run:
           path: core/Tests/Exchange
           name: tests exchange
           command: dotnet test -v m --no-build
+      - store_artifacts:
+          path: core/Tests/log
+          destination: log
+
+  test_core_business_logic:
+    docker:
+      - image: darakeon/netcore
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - 'dotnet-{{ checksum "core/cache_key" }}'
       - run:
           path: core/Tests/BusinessLogic
-          name: tests_business logic
+          name: tests business logic
           command: dotnet test -v m --no-build
       - run:
           path: inbox
@@ -397,7 +470,22 @@ workflows:
           requires:
             - test_ci
             - trufflehog
-      - test_core:
+      - audit_core:
+          requires:
+            - build_core
+      - test_core_generic:
+          requires:
+            - build_core
+      - test_core_language:
+          requires:
+            - build_core
+      - test_core_email:
+          requires:
+            - build_core
+      - test_core_exchange:
+          requires:
+            - build_core
+      - test_core_business_logic:
           requires:
             - build_core
       - test_site:
@@ -427,7 +515,12 @@ workflows:
           requires:
             - test_ci
             - build_core
-            - test_core
+            - audit_core
+            - test_core_generic
+            - test_core_language
+            - test_core_email
+            - test_core_exchange
+            - test_core_business_logic
             - test_site
             - test_browser
             - test_android

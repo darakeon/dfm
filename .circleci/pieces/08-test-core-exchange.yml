@@ -1,0 +1,18 @@
+  test_core_exchange:
+    docker:
+      - image: darakeon/netcore
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - 'dotnet-{{ checksum "core/cache_key" }}'
+      - run:
+          path: core/Tests/Exchange
+          name: tests exchange
+          command: dotnet test -v m --no-build
+      - store_artifacts:
+          path: core/Tests/log
+          destination: log
+

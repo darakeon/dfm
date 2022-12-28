@@ -10,7 +10,22 @@ workflows:
           requires:
             - test_ci
             - trufflehog
-      - test_core:
+      - audit_core:
+          requires:
+            - build_core
+      - test_core_generic:
+          requires:
+            - build_core
+      - test_core_language:
+          requires:
+            - build_core
+      - test_core_email:
+          requires:
+            - build_core
+      - test_core_exchange:
+          requires:
+            - build_core
+      - test_core_business_logic:
           requires:
             - build_core
       - test_site:
@@ -40,7 +55,12 @@ workflows:
           requires:
             - test_ci
             - build_core
-            - test_core
+            - audit_core
+            - test_core_generic
+            - test_core_language
+            - test_core_email
+            - test_core_exchange
+            - test_core_business_logic
             - test_site
             - test_browser
             - test_android
