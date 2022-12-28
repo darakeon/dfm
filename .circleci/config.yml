@@ -365,7 +365,7 @@ jobs:
       - store_test_results:
           path: android/App/build/test-results
 
-  test_build_robot:
+  build_robot:
     docker:
       - image: darakeon/netcore
     resource_class: small
@@ -503,7 +503,7 @@ workflows:
           requires:
             - test_ci
             - trufflehog
-      - test_build_robot:
+      - build_robot:
           requires:
             - test_ci
             - build_core
@@ -524,5 +524,5 @@ workflows:
             - test_site
             - test_browser
             - test_android
-            - test_build_robot
+            - build_robot
             - trufflehog

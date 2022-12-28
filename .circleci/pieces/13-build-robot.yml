@@ -1,4 +1,4 @@
-  test_build_robot:
+  build_robot:
     docker:
       - image: darakeon/netcore
     resource_class: small
