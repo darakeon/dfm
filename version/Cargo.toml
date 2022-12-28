@@ -2,7 +2,7 @@
 name = "dfm-version"
 version = "900.0.1"
 authors = ["Dara Keon <lc.sales.duarte@gmail.com>"]
-edition = "2018"
+edition = "2021"
 
 [dependencies]
 dirs = "4.0.0"

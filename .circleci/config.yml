@@ -422,18 +422,28 @@ jobs:
             - "15:78:d5:ca:e6:7d:80:e6:2d:1f:35:a1:f3:9d:1b:48"
       - restore_cache:
           keys:
-            - rust-{{ checksum "version/Cargo.toml" }}
+            - cargo-version-{{ checksum "version/Cargo.toml" }}
+      - run:
+          name: install
+          path: version
+          command: |
+            if [ ! -f /usr/local/cargo/bin/cargo-audit ]; then
+              cargo install cargo-audit
+            else
+              echo "cargo audit already installed"
+            fi
       - run:
           name: audit
           path: version
-          command: cargo install cargo-audit && cargo audit && echo "All OK!"
+          command: cargo audit && echo "All OK!"
       - run:
           name: build
           path: version
           command: cargo build
       - save_cache:
-          key: rust-{{ checksum "version/Cargo.toml" }}
+          key: cargo-version-{{ checksum "version/Cargo.toml" }}
           paths:
+            - /usr/local/cargo/bin/
             - /usr/local/cargo/registry/
       - run:
           name: version change
