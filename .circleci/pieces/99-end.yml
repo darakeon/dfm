@@ -27,12 +27,18 @@ workflows:
       - test_core_business_logic:
           requires:
             - build_core
-      - test_site:
+      - build_site:
           requires:
             - build_core
+      - audit_site:
+          requires:
+            - build_site
+      - test_site:
+          requires:
+            - build_site
       - test_browser:
           requires:
-            - test_site
+            - build_site
       - test_android:
           requires:
             - test_ci
@@ -53,6 +59,8 @@ workflows:
             - test_core_email
             - test_core_exchange
             - test_core_business_logic
+            - build_site
+            - audit_site
             - test_site
             - test_browser
             - test_android

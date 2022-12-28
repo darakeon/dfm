@@ -210,11 +210,13 @@ jobs:
           path: core/Tests/log
           destination: log
 
-  test_site:
+  build_site:
     docker:
       - image: darakeon/netcore
     steps:
       - checkout
+      - attach_workspace:
+          at: ./
       - run:
           name: set checksums
           command: |
@@ -243,6 +245,22 @@ jobs:
       - run:
           name: build
           command: dotnet build -c Debug site/Site.sln --no-restore
+      - persist_to_workspace:
+          root: .
+          paths:
+            - core
+            - site
+
+  audit_site:
+    docker:
+      - image: darakeon/netcore
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - 'dotnet-{{ checksum "site/cache_key" }}'
       - run:
           path: site
           name: check vulnerability
@@ -258,6 +276,17 @@ jobs:
             if [ $CURRENT != $EXPECTED ]; then
                 exit 1
             fi
+
+  test_site:
+    docker:
+      - image: darakeon/netcore
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - 'dotnet-{{ checksum "site/cache_key" }}'
       - run:
           path: site/Tests/MVC
           name: tests mvc
@@ -512,15 +541,21 @@ workflows:
       - test_core_business_logic:
           requires:
             - build_core
-      - test_site:
+      - build_site:
           requires:
             - build_core
+      - audit_site:
+          requires:
+            - build_site
+      - test_site:
+          requires:
+            - build_site
       - test_browser:
           requires:
-            - test_site
+            - build_site
       - test_android:
           requires:
-            - trufflehog
+            - test_ci
       - build_robot:
           requires:
             - build_core
@@ -538,6 +573,8 @@ workflows:
             - test_core_email
             - test_core_exchange
             - test_core_business_logic
+            - build_site
+            - audit_site
             - test_site
             - test_browser
             - test_android

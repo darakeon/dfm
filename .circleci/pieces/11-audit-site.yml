@@ -1,0 +1,26 @@
+  audit_site:
+    docker:
+      - image: darakeon/netcore
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - 'dotnet-{{ checksum "site/cache_key" }}'
+      - run:
+          path: site
+          name: check vulnerability
+          command: |
+            RESULT=$(dotnet list package --vulnerable --include-transitive)
+
+            echo "$RESULT"
+
+            NUMBER_OF_PROJECTS=11
+            EXPECTED=$(expr $NUMBER_OF_PROJECTS + 4)
+            CURRENT=$(echo "$RESULT" | wc -l)
+
+            if [ $CURRENT != $EXPECTED ]; then
+                exit 1
+            fi
+

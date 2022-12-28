@@ -1,0 +1,20 @@
+  test_site:
+    docker:
+      - image: darakeon/netcore
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - 'dotnet-{{ checksum "site/cache_key" }}'
+      - run:
+          path: site/Tests/MVC
+          name: tests mvc
+          command: dotnet test -v m --no-build
+      - store_artifacts:
+          path: inbox
+      - store_artifacts:
+          path: site/Tests/log
+          destination: log
+

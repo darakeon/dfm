@@ -1,8 +1,10 @@
-  test_site:
+  build_site:
     docker:
       - image: darakeon/netcore
     steps:
       - checkout
+      - attach_workspace:
+          at: ./
       - run:
           name: set checksums
           command: |
@@ -31,28 +33,9 @@
       - run:
           name: build
           command: dotnet build -c Debug site/Site.sln --no-restore
-      - run:
-          path: site
-          name: check vulnerability
-          command: |
-            RESULT=$(dotnet list package --vulnerable --include-transitive)
-
-            echo "$RESULT"
-
-            NUMBER_OF_PROJECTS=11
-            EXPECTED=$(expr $NUMBER_OF_PROJECTS + 4)
-            CURRENT=$(echo "$RESULT" | wc -l)
-
-            if [ $CURRENT != $EXPECTED ]; then
-                exit 1
-            fi
-      - run:
-          path: site/Tests/MVC
-          name: tests mvc
-          command: dotnet test -v m --no-build
-      - store_artifacts:
-          path: inbox
-      - store_artifacts:
-          path: site/Tests/log
-          destination: log
+      - persist_to_workspace:
+          root: .
+          paths:
+            - core
+            - site
 
