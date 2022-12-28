@@ -2,14 +2,13 @@ workflows:
   version: 2.1
   build_all:
     jobs:
-      - test_ci
-      - trufflehog:
+      - trufflehog
+      - test_ci:
           requires:
-            - test_ci
+            - trufflehog
       - build_core:
           requires:
             - test_ci
-            - trufflehog
       - audit_core:
           requires:
             - build_core
@@ -30,30 +29,23 @@ workflows:
             - build_core
       - test_site:
           requires:
-            - test_ci
             - build_core
-            - trufflehog
       - test_browser:
           requires:
-            - test_ci
-            - build_core
             - test_site
-            - trufflehog
       - test_android:
           requires:
             - test_ci
-            - trufflehog
       - build_robot:
           requires:
-            - test_ci
             - build_core
-            - trufflehog
       - version_change:
           filters:
             branches:
               only: /^\d+\.\d+\.\d+\.\d+$/
           requires:
             - test_ci
+            - trufflehog
             - build_core
             - audit_core
             - test_core_generic
@@ -65,4 +57,3 @@ workflows:
             - test_browser
             - test_android
             - build_robot
-            - trufflehog
