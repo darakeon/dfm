@@ -1,0 +1,24 @@
+  test_core_business_logic:
+    docker:
+      - image: darakeon/netcore
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - 'dotnet-{{ checksum "core/cache_key" }}'
+      - run:
+          path: core/Tests/BusinessLogic
+          name: tests business logic
+          command: dotnet test -v m --no-build
+      - run:
+          path: inbox
+          name: zip mails
+          command: zip inbox.zip *.eml && rm *.eml
+      - store_artifacts:
+          path: inbox
+      - store_artifacts:
+          path: core/Tests/log
+          destination: log
+
