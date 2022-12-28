@@ -6,39 +6,39 @@
       ASPNETCORE_ENVIRONMENT: circleCI
     steps:
       - checkout
+      - attach_workspace:
+          at: ./
+      - run:
+          name: set checksums
+          command: |
+            CS_AUTH=$(md5sum core/Authentication/Authentication.csproj | cut -d' ' -f1)
+            CS_BUSI=$(md5sum core/BusinessLogic/BusinessLogic.csproj | cut -d' ' -f1)
+            CS_MAIL=$(md5sum core/Email/Email.csproj | cut -d' ' -f1)
+            CS_ENTI=$(md5sum core/Entities/Entities.csproj | cut -d' ' -f1)
+            CS_GENE=$(md5sum core/Generic/Generic.csproj | cut -d' ' -f1)
+            CS_LANG=$(md5sum core/Language/Language.csproj | cut -d' ' -f1)
+            CS_EXCH=$(md5sum core/Exchange/Exchange.csproj | cut -d' ' -f1)
+            CS_ROBT=$(md5sum robot/Robot/Robot.csproj | cut -d' ' -f1)
+
+            CACHE_KEY=$CS_AUTH-$CS_BUSI-$CS_MAIL-$CS_ENTI-$CS_GENE-$CS_LANG-$CS_EXCH-$CS_ROBT
+            echo $CACHE_KEY > robot/cache_key
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "core/Authentication/Authentication.csproj" }}-{{ checksum "core/BusinessLogic/BusinessLogic.csproj" }}-{{ checksum "core/Email/Email.csproj" }}-{{ checksum "core/Entities/Entities.csproj" }}-{{ checksum "core/Generic/Generic.csproj" }}-{{ checksum "core/Language/Language.csproj" }}-{{ checksum "robot/Robot/Robot.csproj" }}
+            - dotnet-{{ checksum "robot/cache_key" }}
       - run:
           name: dependencies
           command: dotnet restore robot/Robot.sln
       - save_cache:
-          key: dotnet-{{ checksum "core/Authentication/Authentication.csproj" }}-{{ checksum "core/BusinessLogic/BusinessLogic.csproj" }}-{{ checksum "core/Email/Email.csproj" }}-{{ checksum "core/Entities/Entities.csproj" }}-{{ checksum "core/Generic/Generic.csproj" }}-{{ checksum "core/Language/Language.csproj" }}-{{ checksum "robot/Robot/Robot.csproj" }}
+          key: dotnet-{{ checksum "robot/cache_key" }}
           paths:
             - ~/.nuget/packages
       - run:
           name: build
           path: robot/Robot
-          command: dotnet publish -c Release Robot.csproj -o /var/robot --no-restore
-      - run:
-          path: robot
-          name: check vulnerability
-          command: |
-            RESULT=$(dotnet list package --vulnerable --include-transitive)
-
-            echo "$RESULT"
-
-            NUMBER_OF_PROJECTS=9
-            EXPECTED=$(expr $NUMBER_OF_PROJECTS + 4)
-            CURRENT=$(echo "$RESULT" | wc -l)
-
-            if [ $CURRENT != $EXPECTED ]; then
-                exit 1
-            fi
-      - run:
-          name: build
-          path: /var/robot
-          command: ./DFM.Robot check
-      - store_artifacts:
-          path: inbox
+          command: dotnet publish -c Release Robot.csproj -o ../ --no-restore
+      - persist_to_workspace:
+          root: .
+          paths:
+            - core
+            - robot
 

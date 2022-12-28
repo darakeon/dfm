@@ -45,6 +45,12 @@ workflows:
       - build_robot:
           requires:
             - build_core
+      - audit_robot:
+          requires:
+            - build_robot
+      - check_robot:
+          requires:
+            - build_robot
       - version_change:
           filters:
             branches:
@@ -65,3 +71,5 @@ workflows:
             - test_browser
             - test_android
             - build_robot
+            - audit_robot
+            - check_robot

@@ -1,0 +1,20 @@
+  check_robot:
+    docker:
+      - image: darakeon/netcore
+    resource_class: small
+    environment:
+      ASPNETCORE_ENVIRONMENT: circleCI
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - 'dotnet-{{ checksum "robot/cache_key" }}'
+      - run:
+          name: check
+          path: robot
+          command: ./DFM.Robot check
+      - store_artifacts:
+          path: inbox
+
