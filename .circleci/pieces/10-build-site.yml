@@ -22,7 +22,7 @@
             echo $CACHE_KEY > site/cache_key
       - restore_cache:
           keys:
-            - 'dotnet-{{ checksum "site/cache_key" }}'
+            - dotnet-{{ checksum "site/cache_key" }}
       - run:
           name: dependencies
           command: dotnet restore site/Site.sln

@@ -66,12 +66,12 @@ jobs:
             echo $CACHE_KEY > core/cache_key
       - restore_cache:
           keys:
-            - 'dotnet-{{ checksum "core/cache_key" }}'
+            - dotnet-{{ checksum "core/cache_key" }}
       - run:
           name: dependencies
           command: dotnet restore core/Core.sln
       - save_cache:
-          key: 'dotnet-{{ checksum "core/cache_key" }}'
+          key: dotnet-{{ checksum "core/cache_key" }}
           paths:
             - ~/.nuget/packages
       - run:
@@ -91,7 +91,7 @@ jobs:
           at: ./
       - restore_cache:
           keys:
-            - 'dotnet-{{ checksum "core/cache_key" }}'
+            - dotnet-{{ checksum "core/cache_key" }}
       - run:
           path: core
           name: check vulnerability
@@ -117,7 +117,7 @@ jobs:
           at: ./
       - restore_cache:
           keys:
-            - 'dotnet-{{ checksum "core/cache_key" }}'
+            - dotnet-{{ checksum "core/cache_key" }}
       - run:
           path: core/Tests/Generic
           name: tests generic
@@ -135,7 +135,7 @@ jobs:
           at: ./
       - restore_cache:
           keys:
-            - 'dotnet-{{ checksum "core/cache_key" }}'
+            - dotnet-{{ checksum "core/cache_key" }}
       - run:
           path: core/Tests/Language
           name: tests language
@@ -153,7 +153,7 @@ jobs:
           at: ./
       - restore_cache:
           keys:
-            - 'dotnet-{{ checksum "core/cache_key" }}'
+            - dotnet-{{ checksum "core/cache_key" }}
       - run:
           path: core/Tests/Email
           name: tests email
@@ -177,7 +177,7 @@ jobs:
           at: ./
       - restore_cache:
           keys:
-            - 'dotnet-{{ checksum "core/cache_key" }}'
+            - dotnet-{{ checksum "core/cache_key" }}
       - run:
           path: core/Tests/Exchange
           name: tests exchange
@@ -195,7 +195,7 @@ jobs:
           at: ./
       - restore_cache:
           keys:
-            - 'dotnet-{{ checksum "core/cache_key" }}'
+            - dotnet-{{ checksum "core/cache_key" }}
       - run:
           path: core/Tests/BusinessLogic
           name: tests business logic
@@ -234,7 +234,7 @@ jobs:
             echo $CACHE_KEY > site/cache_key
       - restore_cache:
           keys:
-            - 'dotnet-{{ checksum "site/cache_key" }}'
+            - dotnet-{{ checksum "site/cache_key" }}
       - run:
           name: dependencies
           command: dotnet restore site/Site.sln
@@ -260,7 +260,7 @@ jobs:
           at: ./
       - restore_cache:
           keys:
-            - 'dotnet-{{ checksum "site/cache_key" }}'
+            - dotnet-{{ checksum "site/cache_key" }}
       - run:
           path: site
           name: check vulnerability
@@ -286,7 +286,7 @@ jobs:
           at: ./
       - restore_cache:
           keys:
-            - 'dotnet-{{ checksum "site/cache_key" }}'
+            - dotnet-{{ checksum "site/cache_key" }}
       - run:
           path: site/Tests/MVC
           name: tests mvc
@@ -460,7 +460,7 @@ jobs:
           at: ./
       - restore_cache:
           keys:
-            - 'dotnet-{{ checksum "robot/cache_key" }}'
+            - dotnet-{{ checksum "robot/cache_key" }}
       - run:
           path: robot
           name: check vulnerability
@@ -489,7 +489,7 @@ jobs:
           at: ./
       - restore_cache:
           keys:
-            - 'dotnet-{{ checksum "robot/cache_key" }}'
+            - dotnet-{{ checksum "robot/cache_key" }}
       - run:
           name: check
           path: robot

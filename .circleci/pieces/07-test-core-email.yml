@@ -7,7 +7,7 @@
           at: ./
       - restore_cache:
           keys:
-            - 'dotnet-{{ checksum "core/cache_key" }}'
+            - dotnet-{{ checksum "core/cache_key" }}
       - run:
           path: core/Tests/Email
           name: tests email
