@@ -349,7 +349,7 @@ jobs:
       - store_artifacts:
           path: /root/.npm/eresolve-report.txt
 
-  test_android:
+  build_android:
     docker:
       - image: darakeon/android
     steps:
@@ -393,26 +393,6 @@ jobs:
           name: configure
           path: android
           command: gradle configure
-      - run:
-          name: check vulnerability
-          path: android
-          command: gradle dependencyCheckAnalyze
-      - run:
-          name: tests app debug
-          path: android
-          command: gradle :App:testDebugUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
-      - run:
-          name: tests app release
-          path: android
-          command: gradle :App:testReleaseUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
-      - run:
-          name: tests lib debug
-          path: android
-          command: gradle :Lib:testDebugUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
-      - run:
-          name: tests lib release
-          path: android
-          command: gradle :Lib:testReleaseUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
       - store_artifacts:
           path: android/TestUtils/build/reports
           destination: reports/testUtils
@@ -425,14 +405,103 @@ jobs:
       - store_artifacts:
           path: android/ErrorLogs/build/reports
           destination: reports/errorLogs
+      - persist_to_workspace:
+          root: .
+          paths:
+            - android
+
+  audit_android:
+    docker:
+      - image: darakeon/android
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - kotlin-{{ checksum "android/cache_key" }}
+      - run:
+          name: check vulnerability
+          path: android
+          command: gradle dependencyCheckAnalyze
+
+  test_android_lib_debug:
+    docker:
+      - image: darakeon/android
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - kotlin-{{ checksum "android/cache_key" }}
+      - run:
+          name: tests lib debug
+          path: android
+          command: gradle :Lib:testDebugUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
       - store_artifacts:
           path: android/Lib/log
           destination: log/lib
+      - store_test_results:
+          path: android/Lib/build/test-results
+
+  test_android_lib_release:
+    docker:
+      - image: darakeon/android
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - kotlin-{{ checksum "android/cache_key" }}
+      - run:
+          name: tests lib release
+          path: android
+          command: gradle :Lib:testReleaseUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
+      - store_artifacts:
+          path: android/Lib/log
+          destination: log/lib
+      - store_test_results:
+          path: android/Lib/build/test-results
+
+  test_android_app_debug:
+    docker:
+      - image: darakeon/android
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - kotlin-{{ checksum "android/cache_key" }}
+      - run:
+          name: tests app debug
+          path: android
+          command: gradle :App:testDebugUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
       - store_artifacts:
           path: android/App/log
           destination: log/app
       - store_test_results:
-          path: android/Lib/build/test-results
+          path: android/App/build/test-results
+
+  test_android_app_release:
+    docker:
+      - image: darakeon/android
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - kotlin-{{ checksum "android/cache_key" }}
+      - run:
+          name: tests app release
+          path: android
+          command: gradle :App:testReleaseUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
+      - store_artifacts:
+          path: android/App/log
+          destination: log/app
       - store_test_results:
           path: android/App/build/test-results
 
@@ -629,9 +698,24 @@ workflows:
       - test_browser:
           requires:
             - build_site
-      - test_android:
+      - build_android:
           requires:
             - test_ci
+      - audit_android:
+          requires:
+            - build_android
+      - test_android_lib_debug:
+          requires:
+            - build_android
+      - test_android_lib_release:
+          requires:
+            - build_android
+      - test_android_app_debug:
+          requires:
+            - build_android
+      - test_android_app_release:
+          requires:
+            - build_android
       - build_robot:
           requires:
             - build_core
@@ -659,7 +743,12 @@ workflows:
             - audit_site
             - test_site
             - test_browser
-            - test_android
+            - build_android
+            - audit_android
+            - test_android_lib_debug
+            - test_android_lib_release
+            - test_android_app_debug
+            - test_android_app_release
             - build_robot
             - audit_robot
             - check_robot
