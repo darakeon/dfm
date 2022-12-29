@@ -3,16 +3,11 @@
       - image: darakeon/dfm-browser-tests
     steps:
       - checkout
+      - attach_workspace:
+          at: ./
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "core/Authentication/Authentication.csproj" }}-{{ checksum "core/BusinessLogic/BusinessLogic.csproj" }}-{{ checksum "core/Email/Email.csproj" }}-{{ checksum "core/Entities/Entities.csproj" }}-{{ checksum "core/Generic/Generic.csproj" }}-{{ checksum "core/Language/Language.csproj" }}-{{ checksum "site/MVC/MVC.csproj" }}-{{ checksum "site/Tests/MVC/MVC.Tests.csproj" }}
-      - run:
-          name: dependencies dotnet
-          command: dotnet restore site/Site.sln
-      - save_cache:
-          key: dotnet-{{ checksum "core/Authentication/Authentication.csproj" }}-{{ checksum "core/BusinessLogic/BusinessLogic.csproj" }}-{{ checksum "core/Email/Email.csproj" }}-{{ checksum "core/Entities/Entities.csproj" }}-{{ checksum "core/Generic/Generic.csproj" }}-{{ checksum "core/Language/Language.csproj" }}-{{ checksum "site/MVC/MVC.csproj" }}-{{ checksum "site/Tests/MVC/MVC.Tests.csproj" }}
-          paths:
-            - ~/.nuget/packages
+            - dotnet-{{ checksum "site/cache_key" }}
       - restore_cache:
           keys:
             - dotnet-libman-{{ checksum "site/MVC/libman.json" }}
