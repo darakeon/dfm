@@ -358,9 +358,21 @@ jobs:
           name: create empty credentials file
           path: android
           command: echo "storeFile=\nstorePassword=\nkeyAlias=\nkeyPassword=" > keystore.properties
+      - run:
+          name: set checksums
+          command: |
+            KT_DOCK=$(md5sum ci/android.dockerfile | cut -d' ' -f1)
+            KT_MAIN=$(md5sum android/build.gradle | cut -d' ' -f1)
+            KT_UTIL=$(md5sum android/TestUtils/build.gradle | cut -d' ' -f1)
+            KT_LIBR=$(md5sum android/Lib/build.gradle | cut -d' ' -f1)
+            KT_APPL=$(md5sum android/App/build.gradle | cut -d' ' -f1)
+            KT_ERRO=$(md5sum android/ErrorLogs/build.gradle | cut -d' ' -f1)
+
+            CACHE_KEY=$KT_DOCK-$KT_MAIN-$KT_UTIL-$KT_LIBR-$KT_APPL-$KT_ERRO
+            echo $CACHE_KEY > android/cache_key
       - restore_cache:
           keys:
-            - jars-{{ checksum "ci/android.dockerfile" }}-{{ checksum "android/build.gradle" }}-{{ checksum "android/TestUtils/build.gradle" }}-{{ checksum "android/Lib/build.gradle" }}-{{ checksum "android/App/build.gradle" }}-{{ checksum "android/ErrorLogs/build.gradle" }}
+            - kotlin-{{ checksum "android/cache_key" }}
       - run:
           name: project dependencies
           path: android
@@ -369,14 +381,14 @@ jobs:
           name: robolectric dependencies
           path: android
           command: gradle robolectricSdkDownload
+      - save_cache:
+          key: kotlin-{{ checksum "android/cache_key" }}
+          paths:
+            - /var/cache/gradle
       - run:
           name: check vulnerability
           path: android
           command: gradle dependencyCheckAnalyze
-      - save_cache:
-          key: jars-{{ checksum "ci/android.dockerfile" }}-{{ checksum "android/build.gradle" }}-{{ checksum "android/TestUtils/build.gradle" }}-{{ checksum "android/Lib/build.gradle" }}-{{ checksum "android/App/build.gradle" }}-{{ checksum "android/ErrorLogs/build.gradle" }}
-          paths:
-            - /var/cache/gradle
       - run:
           name: tests
           path: android
