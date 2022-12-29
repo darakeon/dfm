@@ -1,0 +1,20 @@
+  test_android_lib_debug:
+    docker:
+      - image: darakeon/android
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - kotlin-{{ checksum "android/cache_key" }}
+      - run:
+          name: tests lib debug
+          path: android
+          command: gradle :Lib:testDebugUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
+      - store_artifacts:
+          path: android/Lib/log
+          destination: log/lib
+      - store_test_results:
+          path: android/Lib/build/test-results
+

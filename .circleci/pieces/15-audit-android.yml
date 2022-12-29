@@ -1,0 +1,15 @@
+  audit_android:
+    docker:
+      - image: darakeon/android
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - kotlin-{{ checksum "android/cache_key" }}
+      - run:
+          name: check vulnerability
+          path: android
+          command: gradle dependencyCheckAnalyze
+

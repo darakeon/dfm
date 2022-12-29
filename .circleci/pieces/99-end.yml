@@ -39,9 +39,24 @@ workflows:
       - test_browser:
           requires:
             - build_site
-      - test_android:
+      - build_android:
           requires:
             - test_ci
+      - audit_android:
+          requires:
+            - build_android
+      - test_android_lib_debug:
+          requires:
+            - build_android
+      - test_android_lib_release:
+          requires:
+            - build_android
+      - test_android_app_debug:
+          requires:
+            - build_android
+      - test_android_app_release:
+          requires:
+            - build_android
       - build_robot:
           requires:
             - build_core
@@ -69,7 +84,12 @@ workflows:
             - audit_site
             - test_site
             - test_browser
-            - test_android
+            - build_android
+            - audit_android
+            - test_android_lib_debug
+            - test_android_lib_release
+            - test_android_app_debug
+            - test_android_app_release
             - build_robot
             - audit_robot
             - check_robot

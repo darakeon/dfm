@@ -1,4 +1,4 @@
-  test_android:
+  build_android:
     docker:
       - image: darakeon/android
     steps:
@@ -42,26 +42,6 @@
           name: configure
           path: android
           command: gradle configure
-      - run:
-          name: check vulnerability
-          path: android
-          command: gradle dependencyCheckAnalyze
-      - run:
-          name: tests app debug
-          path: android
-          command: gradle :App:testDebugUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
-      - run:
-          name: tests app release
-          path: android
-          command: gradle :App:testReleaseUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
-      - run:
-          name: tests lib debug
-          path: android
-          command: gradle :Lib:testDebugUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
-      - run:
-          name: tests lib release
-          path: android
-          command: gradle :Lib:testReleaseUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
       - store_artifacts:
           path: android/TestUtils/build/reports
           destination: reports/testUtils
@@ -74,14 +54,8 @@
       - store_artifacts:
           path: android/ErrorLogs/build/reports
           destination: reports/errorLogs
-      - store_artifacts:
-          path: android/Lib/log
-          destination: log/lib
-      - store_artifacts:
-          path: android/App/log
-          destination: log/app
-      - store_test_results:
-          path: android/Lib/build/test-results
-      - store_test_results:
-          path: android/App/build/test-results
+      - persist_to_workspace:
+          root: .
+          paths:
+            - android
 
