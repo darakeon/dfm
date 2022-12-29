@@ -386,13 +386,33 @@ jobs:
           paths:
             - /var/cache/gradle
       - run:
+          name: build
+          path: android
+          command: gradle build -x test -x androidDependencies -x packageRelease -x packageDebug
+      - run:
+          name: configure
+          path: android
+          command: gradle configure
+      - run:
           name: check vulnerability
           path: android
           command: gradle dependencyCheckAnalyze
       - run:
-          name: tests
+          name: tests app debug
           path: android
-          command: gradle test -x androidDependencies
+          command: gradle :App:testDebugUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
+      - run:
+          name: tests app release
+          path: android
+          command: gradle :App:testReleaseUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
+      - run:
+          name: tests lib debug
+          path: android
+          command: gradle :Lib:testDebugUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
+      - run:
+          name: tests lib release
+          path: android
+          command: gradle :Lib:testReleaseUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
       - store_artifacts:
           path: android/TestUtils/build/reports
           destination: reports/testUtils
