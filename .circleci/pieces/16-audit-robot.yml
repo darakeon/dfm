@@ -10,7 +10,7 @@
           at: ./
       - restore_cache:
           keys:
-            - 'dotnet-{{ checksum "robot/cache_key" }}'
+            - dotnet-{{ checksum "robot/cache_key" }}
       - run:
           path: robot
           name: check vulnerability

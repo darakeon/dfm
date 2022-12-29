@@ -7,7 +7,7 @@
           at: ./
       - restore_cache:
           keys:
-            - 'dotnet-{{ checksum "site/cache_key" }}'
+            - dotnet-{{ checksum "site/cache_key" }}
       - run:
           path: site/Tests/MVC
           name: tests mvc

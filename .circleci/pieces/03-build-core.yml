@@ -24,12 +24,12 @@
             echo $CACHE_KEY > core/cache_key
       - restore_cache:
           keys:
-            - 'dotnet-{{ checksum "core/cache_key" }}'
+            - dotnet-{{ checksum "core/cache_key" }}
       - run:
           name: dependencies
           command: dotnet restore core/Core.sln
       - save_cache:
-          key: 'dotnet-{{ checksum "core/cache_key" }}'
+          key: dotnet-{{ checksum "core/cache_key" }}
           paths:
             - ~/.nuget/packages
       - run:
