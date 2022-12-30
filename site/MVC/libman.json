@@ -3,7 +3,7 @@
 	"defaultProvider": "cdnjs",
 	"libraries": [
 		{
-			"library": "jquery@3.6.0",
+			"library": "jquery@3.6.3",
 			"destination": "Assets/libs/jquery/",
 			"files": [
 				"jquery.min.js"
@@ -32,21 +32,21 @@
 			]
 		},
 		{
-			"library": "twitter-bootstrap@4.4.1",
+			"library": "twitter-bootstrap@4.6.2",
 			"destination": "Assets/libs/bootstrap/",
 			"files": [
 				"js/bootstrap.min.js"
 			]
 		},
 		{
-			"library": "popper.js@2.11.5",
+			"library": "popper.js@2.11.6",
 			"destination": "Assets/libs/bootstrap/",
 			"files": [
 				"umd/popper.min.js"
 			]
 		},
 		{
-			"library": "highcharts@10.1.0",
+			"library": "highcharts@10.3.2",
 			"destination": "Assets/libs/highcharts/",
 			"files": [
 				"highcharts.js",
