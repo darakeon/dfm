@@ -1,4 +1,9 @@
 {
+	"9.0.1.0": [
+		"Melhoria no gráfico de categories quando não possui dados",
+		"Melhorias das ferramentas de desenvolvimento",
+		"Aviso nos termos de uso sobre login no aplicativo e no navegador ficarem ativos"
+	],
 	"9.0.0.1": [
 		"Arrumado erro na tela de configuração do aplicativo",
 		"Arrumado ícone do aplicativo"

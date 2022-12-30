@@ -4,15 +4,18 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#9.0.0.1)
-- [go to version in development](#9.0.1.0)
-- [dev version state](../../9.0.1.0/docs/RELEASES.md#9.0.1.0)
+- [go to published version](#9.0.1.0)
+- [go to version in development](#10.0.0.0)
+- [dev version state](../../10.0.0.0/docs/RELEASES.md#10.0.0.0)
 
 ## Legend
 - :dragon:: at least one huge change (increases first number)
 - :whale:: at least one big change, like a new feature (increases second number)
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="10.0.0.0"></a>10.0.0.0 :dragon: <sup>`1`</sup>
+- [ ] Add monitoring with Grafana and Prometheus ([.NET Lib])
 
 ## <a name="9.0.1.0"></a>9.0.1.0 :sheep: <sup>`5`</sup>
 - [x] `221229>221230` Improve empty category chart (just a blank circle is confusing)
