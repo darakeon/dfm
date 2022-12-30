@@ -310,6 +310,7 @@ set @EN = replace(replace('
 }
 ', '\n', ''), '\t', '');
 
+
 select @len := max(len) from (
 		select max(length(Json)) as len
 			from terms
@@ -319,8 +320,14 @@ select @len := max(len) from (
 		select length(@EN)
 ) as lens;
 
+set @alter_query = concat('
 alter table terms
-	modify column Json varchar(8000) not null;
+	modify column Json varchar(', @len, ') not null;
+');
+prepare alter_query from @alter_query;
+execute alter_query;
+deallocate prepare alter_query;
+
 
 insert into terms
 		(Json, Language, Contract_ID)
