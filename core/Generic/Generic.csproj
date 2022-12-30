@@ -4,8 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>DFM.Generic</AssemblyName>
     <RootNamespace>DFM.Generic</RootNamespace>
-    <AssemblyVersion>9.0.0.1</AssemblyVersion>
-    <FileVersion>9.0.0.1</FileVersion>
+    <AssemblyVersion>9.0.1.0</AssemblyVersion>
+    <FileVersion>9.0.1.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

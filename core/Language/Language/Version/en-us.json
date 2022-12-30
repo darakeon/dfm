@@ -1,4 +1,10 @@
 {
+	"9.0.1.0": [
+		"Improve empty category chart",
+		"Improvements on development tools",
+		"Warning in terms of use that mobile and browser logins stay active",
+		"Improvements in security"
+	],
 	"9.0.0.1": [
 		"Fix android settings",
 		"Fix android app icon"

@@ -13,9 +13,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (64)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (63)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
-| Add monitoring with Grafana and Prometheus ([.NET Lib])                        | :dragon: |  3  |  4  |  5  |                |
 | Add django admin to search deleted accounts                                    | :sheep:  |  3  |  4  |  5  |                |
 | Hash email after wipe in the wipe history table                                | :sheep:  |  3  |  4  |  5  | django admin   |
 | Use hexadecimal of hash email in deleted account CSV name                      | :sheep:  |  3  |  4  |  5  | django admin   |
