@@ -14,5 +14,5 @@ Tests/Core/log
 
 *.amazon.json
 
-MVC/Assets/Libs
+MVC/Assets/libs
 MVC/Assets/themes/bootstrap.min.css
