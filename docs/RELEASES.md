@@ -15,7 +15,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="9.0.1.0"></a>9.0.1.0 :sheep: <sup>`5`</sup>
-- [ ] Improve empty category chart (just a blank circle is confusing)
+- [x] `221229>221230` Improve empty category chart (just a blank circle is confusing)
 - [x] `221015>221229` Add build step and make the others depend on it, not on tests step
 - [x] `221013>221013` warning mobile and browser logins stay active
 - [x] `221005>221005` Add Rust security check do CI

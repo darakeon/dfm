@@ -112,6 +112,7 @@
 		<script type="text/javascript" src="~/Assets/libs/highcharts/modules/export-data.js"></script>
 		<script type="text/javascript" src="~/Assets/libs/highcharts/modules/accessibility.js"></script>
 		<script type="text/javascript" src="~/Assets/libs/highcharts/modules/pattern-fill.js"></script>
+		<script type="text/javascript" src="~/Assets/libs/highcharts/modules/no-data-to-display.js"></script>
 		<script type="text/javascript" src="~/Assets/libs/highcharts/themes/high-contrast-@(theme).js"></script>
 
 		<script type="text/javascript" src="~/Assets/scripts/chart.js?v=@Cfg.Version"></script>
@@ -129,7 +130,8 @@
 						{
 							@Html.Raw($"{{ name: '{data.Category}', y: {data.Out.ToString(jsFormat)} }},")
 						}
-					]
+					],
+					'@Context.Translate("NoData")'
 				)
 
 				chart.draw(
@@ -141,7 +143,8 @@
 						{
 							@Html.Raw($"{{ name: '{data.Category}', y: {data.In.ToString(jsFormat)} }},")
 						}
-					]
+					],
+					'@Context.Translate("NoData")'
 				)
 			})
 		</script>

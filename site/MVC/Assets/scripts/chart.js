@@ -138,7 +138,7 @@
 
 	charts: [],
 
-	draw: function (id, title, seriesName, data) {
+	draw: function (id, title, seriesName, data, noData) {
 		const chart = Highcharts.chart(
 			id,
 			{
@@ -153,6 +153,7 @@
 				plotOptions: this.plotOptions(),
 				series: [{ name: seriesName, data: data }],
 				responsive: { rules: [this.rule()] },
+				lang: { noData }
 			}
 		)
 
