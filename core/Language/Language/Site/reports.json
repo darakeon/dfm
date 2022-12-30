@@ -11,6 +11,7 @@
 		"Foreseen": "Foreseen",
 		"Current": "Current",
 		"EnableColorPatterns": "enable color patterns for color blind accessibility",
+		"NoData": "No data to display in this chart",
 		"": null
 	},
 	"pt-BR": {
@@ -25,6 +26,7 @@
 		"Foreseen": "Previsto",
 		"Current": "Atual",
 		"EnableColorPatterns": "ativar desenhos nas cores - acessibilidade para daltonismo",
+		"NoData": "Sem dados para exibir neste gráfico",
 		"": null
 	}
 }
