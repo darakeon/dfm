@@ -22,7 +22,8 @@ namespace DFM.MVC.Starters
 				app.UseStaticFiles(new StaticFileOptions
 				{
 					FileProvider = new PhysicalFileProvider(
-						Path.Combine(Directory.GetCurrentDirectory(), folder)),
+						Path.Combine(Directory.GetCurrentDirectory(), folder)
+					),
 					RequestPath = "/" + folder,
 				});
 			});
