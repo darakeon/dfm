@@ -19,7 +19,8 @@ namespace DFM.MVC
 
 		public IConfiguration Configuration { get; }
 
-		// This method gets called by the runtime. Use this method to add services to the container.
+		// This method gets called by the runtime.
+		// Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
 			Route.Configure(services);
@@ -31,8 +32,8 @@ namespace DFM.MVC
 			services.AddAntiforgery();
 		}
 
-		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		// ReSharper disable once UnusedMember.Global
+		// This method gets called by the runtime.
+		// Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime life)
 		{
 			AppLog.ShowLogOnError(app);
