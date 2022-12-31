@@ -36,4 +36,13 @@ check:
 	@cargo run -q -- -c
 
 create_old_tag_and_new_branch:
-	@cargo run -q -- -g
+	@git branch --show-current > branch.git
+	@git checkout main
+	@git branch -d $(cat branch.git)
+	@git pull --prune
+	@git tag -a $(cat branch.git)
+	@git push --tags
+	@head -n 8 ../docs/RELEASES.md | tail -n 1 | cut -d "#" -f 2 | cut -d ")" -f 1 > branch.git
+	@git checkout -b $(cat branch.git)
+	@git push -u origin $(cat branch.git)
+	@rm branch.git
