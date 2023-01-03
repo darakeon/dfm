@@ -14,8 +14,9 @@ This is the list of project releases, past and current. To see tasks that are st
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="10.0.0.0"></a>10.0.0.0 :dragon: <sup>`1`</sup>
+## <a name="10.0.0.0"></a>10.0.0.0 :dragon: <sup>`2`</sup>
 - [ ] Add monitoring with Grafana and Prometheus ([.NET Lib])
+- [x] `230103>230103` Fix date calculation problem
 
 ## <a name="9.0.1.0"></a>9.0.1.0 :sheep: <sup>`5`</sup>
 - [x] `221229>221230` Improve empty category chart (just a blank circle is confusing)
