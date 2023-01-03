@@ -15,7 +15,21 @@ namespace DFM.Entities.Bases
 		{
 			return date.Day == 0
 				? default
-				: new DateTime(date.Year, date.Month, date.Day);
+				: createDate(date);
+		}
+
+		private static DateTime createDate(IDate date)
+		{
+			var nextMonth = date.Month == 12
+				? new DateTime(date.Year + 1, 1, 1)
+				: new DateTime(date.Year, date.Month + 1, 1);
+
+			var lastDay = nextMonth.AddDays(-1);
+
+			if (date.Day > lastDay.Day)
+				date.Day = (Int16) lastDay.Day;
+
+			return new DateTime(date.Year, date.Month, date.Day);
 		}
 
 		public static DateParent SetDate<DateParent>(this DateParent date, DateTime value)

@@ -16,7 +16,7 @@
 
             echo "$RESULT"
 
-            NUMBER_OF_PROJECTS=14
+            NUMBER_OF_PROJECTS=15
             EXPECTED=$(expr $NUMBER_OF_PROJECTS + 4)
             CURRENT=$(echo "$RESULT" | wc -l)
 
