@@ -9,38 +9,54 @@ updates:
     directory: "/core/"
     schedule:
       interval: "weekly"
+    labels:
+      - internal
 
   - package-ecosystem: "nuget"
     directory: "/site/"
     schedule:
       interval: "weekly"
+    labels:
+      - site
 
   - package-ecosystem: "nuget"
     directory: "/robot/"
     schedule:
       interval: "weekly"
+    labels:
+      - robot
 
   - package-ecosystem: "npm"
     directory: "/site/Tests/Browser/"
     schedule:
       interval: "weekly"
+    labels:
+      - tests
 
   - package-ecosystem: "gradle"
     directory: "/android/"
     schedule:
       interval: "weekly"
+    labels:
+      - mobile
 
   - package-ecosystem: "docker"
     directory: "/ci/"
     schedule:
       interval: "weekly"
+    labels:
+      - tests
 
   - package-ecosystem: "docker"
     directory: "/publish/"
     schedule:
       interval: "weekly"
+    labels:
+      - internal
 
   - package-ecosystem: "cargo"
     directory: "/version/"
     schedule:
       interval: "weekly"
+    labels:
+      - version
