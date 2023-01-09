@@ -84,5 +84,4 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 [gherkin jest]: https://www.npmjs.com/package/gherkin-jest
 [Lint C#]: https://medium.com/@michaelparkerdev/linting-c-in-2019-stylecop-sonar-resharper-and-roslyn-73e88af57ebd
 [OCR]: https://developers.google.com/ml-kit/vision/text-recognition/android
-[.NET Lib]:https://github.com/prometheus-net/prometheus-net
 [Reduce Docker Images]:https://www.ecloudcontrol.com/best-practices-to-reduce-docker-images-size/
