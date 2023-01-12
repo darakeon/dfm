@@ -15,6 +15,8 @@ namespace DFM.MVC
 		public Startup(IConfiguration configuration)
 		{
 			Configuration = configuration;
+
+			PrometheusConfig.Start();
 		}
 
 		public IConfiguration Configuration { get; }
@@ -36,6 +38,8 @@ namespace DFM.MVC
 		// Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime life)
 		{
+			PrometheusConfig.UseMetrics(app);
+
 			AppLog.ShowLogOnError(app);
 
 			BaseModel.IsDev = env.IsDevelopment();
