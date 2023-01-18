@@ -15,7 +15,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="10.0.0.0"></a>10.0.0.0 :dragon: <sup>`2`</sup>
-- [ ] `230112>......` Add monitoring with Grafana and Prometheus ([.NET Lib])
+- [x] `230112>230120` Add monitoring with Grafana and Prometheus ([.NET Lib])
 - [x] `230103>230103` Fix date calculation problem
 
 ## <a name="9.0.1.0"></a>9.0.1.0 :sheep: <sup>`5`</sup>
