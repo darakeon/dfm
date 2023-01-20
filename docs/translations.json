@@ -1,18 +1,12 @@
 {
         "en-us": {
-                "Improve empty category chart (just a blank circle is confusing)": "Improve empty category chart",
-                "Add build step and make the others depend on it, not on tests step": "Improvements on development tools",
-                "warning mobile and browser logins stay active": "Warning in terms of use that mobile and browser logins stay active",
-                "Add Rust security check do CI": "Improvements in security",
-                "Add android security check do CI": "-",
+                "Add monitoring with Grafana and Prometheus ([.NET Lib])": "Add system health monitoring tools",
+                "Fix date calculation problem": "Fixed problem with schedule date calculation",
                 "": null
         },
         "pt-br": {
-                "Improve empty category chart (just a blank circle is confusing)": "Melhoria no gráfico de categories quando não possui dados",
-                "Add build step and make the others depend on it, not on tests step": "Melhorias das ferramentas de desenvolvimento",
-                "warning mobile and browser logins stay active": "Aviso nos termos de uso sobre login no aplicativo e no navegador ficarem ativos",
-                "Add Rust security check do CI": "-",
-                "Add android security check do CI": "-",
+                "Add monitoring with Grafana and Prometheus ([.NET Lib])": "Adicionadas ferramentas de monitoramente de saúde do sistema",
+                "Fix date calculation problem": "Arrumado problema com cálculo de datas nos agendamentos",
                 "": null
         }
 }
