@@ -13,12 +13,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (63)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (59)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
-| Add django admin to search deleted accounts                                    | :sheep:  |  3  |  4  |  5  |                |
-| Hash email after wipe in the wipe history table                                | :sheep:  |  3  |  4  |  5  | django admin   |
-| Use hexadecimal of hash email in deleted account CSV name                      | :sheep:  |  3  |  4  |  5  | django admin   |
-| zip deleted account CSV with e-mail as password                                | :sheep:  |  3  |  4  |  5  | django admin   |
 | Expire tickets with more than 30 without access (add to contract)              | :sheep:  |  3  |  4  |  5  |                |
 | add snyk/clair check to docker containers                                      | :ant:    |  3  |  4  |  5  |                |
 | Add schedule anticipation                                                      | :whale:  |  2  |  3  |  5  |                |

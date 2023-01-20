@@ -1,4 +1,8 @@
 {
+	"10.0.0.0": [
+		"Adicionadas ferramentas de monitoramente de saúde do sistema",
+		"Arrumado problema com cálculo de datas nos agendamentos"
+	],
 	"9.0.1.0": [
 		"Melhoria no gráfico de categories quando não possui dados",
 		"Melhorias das ferramentas de desenvolvimento",
