@@ -49,3 +49,13 @@ create_old_tag_and_new_branch:
 	@git push -u origin ${BRANCH}
 	@git branch -d main
 	@rm branch.git
+
+clear:
+	@git branch --show-current > branch.git
+	@git checkout main
+	@git branch -d ${BRANCH}
+	@git pull --prune
+	@head -n 8 ../docs/RELEASES.md | tail -n 1 | cut -d "#" -f 2 | cut -d ")" -f 1 > branch.git
+	@git checkout ${BRANCH}
+	@git branch -d main
+	@rm branch.git
