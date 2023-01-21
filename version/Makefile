@@ -1,3 +1,5 @@
+BRANCH:=$$(cat branch.git)
+
 help:
 	@echo
 	@echo "    |-----------------------------------------------------------------------------|"
@@ -38,11 +40,12 @@ check:
 create_old_tag_and_new_branch:
 	@git branch --show-current > branch.git
 	@git checkout main
-	@git branch -d $(cat branch.git)
+	@git branch -d ${BRANCH}
 	@git pull --prune
-	@git tag -a $(cat branch.git)
+	@git tag -a ${BRANCH}
 	@git push --tags
 	@head -n 8 ../docs/RELEASES.md | tail -n 1 | cut -d "#" -f 2 | cut -d ")" -f 1 > branch.git
-	@git checkout -b $(cat branch.git)
-	@git push -u origin $(cat branch.git)
+	@git checkout -b ${BRANCH}
+	@git push -u origin ${BRANCH}
+	@git branch -d main
 	@rm branch.git
