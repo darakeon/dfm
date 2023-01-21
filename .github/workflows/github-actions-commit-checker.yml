@@ -2,6 +2,7 @@ name: Lint commit
 on:
   pull_request:
     types: [opened, reopened, synchronize]
+    branches: [ "main", "[0-9]+.[0-9]+.[0-9]+.[0-9]+" ]
 
 jobs:
   check-commit-message:
