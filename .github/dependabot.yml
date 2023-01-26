@@ -76,3 +76,12 @@ updates:
       - version
     commit-message:
       prefix: tools
+
+  - package-ecosystem: "pip"
+    directory: "/midna/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - midna
+    commit-message:
+      prefix: tools
