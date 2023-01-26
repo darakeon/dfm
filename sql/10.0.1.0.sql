@@ -1,3 +1,5 @@
+insert into migrations (name) values ('9.0.0.0');
+insert into migrations (name) values ('9.0.1.0');
 insert into migrations (name) values ('10.0.1.0');
 
 create view deleted_users_wipe as
