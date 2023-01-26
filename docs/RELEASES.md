@@ -14,7 +14,8 @@ This is the list of project releases, past and current. To see tasks that are st
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="10.0.1.0"></a>10.0.1.0 :sheep: <sup>`5`</sup>
+## <a name="10.0.1.0"></a>10.0.1.0 :sheep: <sup>`6`</sup>
+- [ ] Add admin to nginx with production settings
 - [ ] Add send CSV to e-mail owner into django admin
 - [ ] Zip deleted account CSV with e-mail as password
 - [ ] Use hexadecimal of hash email in deleted account CSV name
