@@ -65,6 +65,7 @@ The allowed types are:
 - `publish`: automated publishing pieces;
 - `accessibility`: changes to make interface more accessible to everyone
 - `legal`: changes about laws
+- `midna`: changes in admin django project
 
 The body of the message is the part where the details go, if they are
 necessary. To make readability easier, it must have no more than 72
