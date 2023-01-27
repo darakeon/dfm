@@ -90,5 +90,7 @@ itself. Well, we are always our most demanding client.
 - [Docker](https://www.docker.com/)
 - [Axe Coconut Acessibility addon - Firefox](https://addons.mozilla.org/firefox/addon/axe-devtools/)
 - [Visual Studio Code](https://code.visualstudio.com/)
+- [Prometheus](https://prometheus.io/)
+- [Grafana](https://grafana.com/)
 - [Python](https://www.python.org/)
 - [Django](https://www.djangoproject.com/)
