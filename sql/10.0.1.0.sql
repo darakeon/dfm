@@ -2,20 +2,61 @@ insert into migrations (name) values ('9.0.0.0');
 insert into migrations (name) values ('9.0.1.0');
 insert into migrations (name) values ('10.0.1.0');
 
-create view deleted_users_wipe as
-	select id, email, when_ as `when`, why, s3, password, tfa from wipe;
-
-
 drop trigger no_update_purge;
+drop trigger no_delete_purge;
+
+
+alter table wipe
+	add HashedEmail varchar(72),
+	add UsernameStart varchar(2),
+	add DomainStart varchar(3),
+	modify Email varchar(320) null;
+
+set sql_safe_updates = 0;
+
+update wipe
+	set UsernameStart = left(Email, 2),
+		DomainStart = left(right(Email, length(Email) - position('@' in Email)), 3);
+
+set sql_safe_updates = 1;
+
+create view deleted_users_wipe as
+	select id,
+		HashedEmail as hashed_email,
+		UsernameStart as username_start,
+		DomainStart as domain_start,
+		when_ as `when`, why,
+		password, s3,
+		email
+	from wipe;
+
+
 create trigger no_update_wipe
 	before update
 	on `wipe` for each row
 		signal sqlstate '45000'
 			set message_text = 'cannot update wipe';
-
-drop trigger no_delete_purge;
 create trigger no_delete_wipe
 	before delete
 	on `wipe` for each row
 		signal sqlstate '45000'
 			set message_text = 'cannot delete wipe';
+
+delimiter //
+
+create procedure finish_wipe_table()
+begin
+	if exists(select * from wipe where HashedEmail is null) then
+		select "Run python script to fill HashedEmail";
+	else
+		alter table wipe
+			modify HashedEmail varchar(60) not null,
+			modify UsernameStart varchar(2) not null,
+			modify DomainStart varchar(3) not null,
+			drop Email;
+	end if;
+end //
+
+call finish_wipe_table;
+
+drop procedure finish_wipe_table;

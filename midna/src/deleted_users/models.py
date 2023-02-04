@@ -1,5 +1,7 @@
 from django.db import models
-from django.contrib import admin
+
+from utils.crypt import hash
+
 
 NO_INTERACTION = 1
 NOT_SIGNED_CONTRACT = 2
@@ -11,30 +13,30 @@ REASON_CHOICES = (
 	(PERSON_ASKED, "Person Asked"),
 )
 
+
 class Wipe(models.Model):
-	email = models.EmailField(max_length=320)
+	hashed_email = models.CharField(max_length=60)
+	username_start = models.CharField(max_length=2)
+	domain_start = models.CharField(max_length=3)
+
 	when = models.DateTimeField()
 	why = models.IntegerField(choices=REASON_CHOICES)
-	s3 = models.CharField(null=True, max_length=500)
+
 	password = models.CharField(max_length=60)
 	tfa = models.CharField(null=True, max_length=500)
 
-	@admin.display(description='Why')
-	def why_text(self):
-		reasons = [
-			"Error",
-			REASON_CHOICES[1],
-			REASON_CHOICES[2],
-			REASON_CHOICES[3]
-		]
+	s3 = models.CharField(null=True, max_length=500)
 
-		if self.why > len(reasons):
-			return reasons[0]
+	# remove
+	email = models.EmailField(max_length=320, null=True)
 
-		return reasons[self.why]
+	def encrypt_email(self):
+		self.hashed_email = hash(self.email)
+		self.email = None
+
 
 	def __str__(self):
-		return self.email
+		return f"{self.username_start}...@{self.domain_start}..."
 
 	class Meta:
 		managed = False
