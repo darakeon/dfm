@@ -4,8 +4,7 @@ from .models import Wipe
 
 
 class WipeAdmin(admin.ModelAdmin):
-	list_display = ['email', 'when', 'why']
-	search_fields = ['email']
+	list_display = ['masked_email', 'when', 'why']
 
 	def has_add_permission(self, request, obj=None):
 		return False
