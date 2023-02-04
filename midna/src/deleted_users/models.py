@@ -29,13 +29,16 @@ class Wipe(models.Model):
 	# remove
 	email = models.EmailField(max_length=320, null=True)
 
+	def masked_email(self):
+		return f"{self.username_start}...@{self.domain_start}..."
+
 	def encrypt_email(self):
 		self.hashed_email = hash(self.email)
 		self.email = None
 
 
 	def __str__(self):
-		return f"{self.username_start}...@{self.domain_start}..."
+		return self.masked_email()
 
 	class Meta:
 		managed = False
