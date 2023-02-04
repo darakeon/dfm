@@ -4,7 +4,9 @@ using System.IO;
 using System.Linq;
 using DFM.Entities;
 using DFM.Entities.Bases;
+using DFM.Generic;
 using DFM.Tests.Util;
+using Keon.Util.Crypto;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -74,12 +76,13 @@ namespace DFM.Exchange.Tests
 			csv.Add(schedules);
 
 			var email = $"{scenarioCode}@dontflymoney.com";
-			csv.Create(new User { Email = email });
+			var hashedEmail = Crypt.Do(email);
+			csv.Create(new Wipe { HashedEmail = hashedEmail });
 
 			var filename = Directory
 				.GetFiles(
 					Directory.GetCurrentDirectory(),
-					$"{email}*.csv"
+					$"{hashedEmail.ToBase64()}*.csv"
 				)
 				.OrderByDescending(s => s)
 				.FirstOrDefault();
