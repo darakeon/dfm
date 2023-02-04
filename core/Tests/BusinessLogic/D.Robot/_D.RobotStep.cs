@@ -42,12 +42,6 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			set => set("csv", value);
 		}
 
-		private String tfa
-		{
-			get => get<String>("tfa");
-			set => set("tfa", value);
-		}
-
 		private Boolean hasSchedule
 		{
 			get => get<Boolean>("hasSchedule");
@@ -422,13 +416,6 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			}
 		}
 
-		[Given(@"the user has TFA")]
-		public void GivenTheUserHasTFA()
-		{
-			var user = repos.User.GetByEmail(userEmail);
-			user.TFASecret = tfa = "123";
-		}
-
 		[Given(@"user(.*) language is (pt-BR|en-US)")]
 		[When(@"user(.*) language is (pt-BR|en-US)")]
 		public void GivenUserLanguageIsPt_BR(String email, String language)
@@ -549,8 +536,6 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			}
 
 			Assert.True(Crypt.Check("password", wipe.Password));
-
-			Assert.AreEqual(tfa, wipe.TFA);
 		}
 
 		[Then(@"it will not be registered at wipe table")]

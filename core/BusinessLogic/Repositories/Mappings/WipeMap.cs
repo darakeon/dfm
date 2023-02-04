@@ -16,9 +16,6 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 
 			mapping.Map(p => p.S3)
 				.Nullable();
-
-			mapping.Map(p => p.TFA)
-				.Nullable();
 		}
 	}
 }

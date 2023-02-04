@@ -12,6 +12,5 @@ namespace DFM.Entities
 		public virtual RemovalReason Why { get; set; }
 		public virtual String S3 { get; set; }
 		public virtual String Password { get; set; }
-		public virtual String TFA { get; set; }
 	}
 }
