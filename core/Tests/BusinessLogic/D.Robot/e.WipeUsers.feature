@@ -570,17 +570,7 @@ Scenario: De49. Remove User with moves and schedules
 			| Schedule de49 | 3000-12-27 | Category de49 schedule | Transfer | Account de49 in | Account de49 out | 0.27  |                                                           |
 		And it will be registered at wipe table with reason NoInteraction
 
-Scenario: De50. User with tfa
-	Given the user last access was 748 days before
-		And the user have being warned twice
-		And the user has TFA
-	When robot user login
-		And call wipe users
-	Then I will receive no core error
-		And the user won't exist
-		And it will be registered at wipe table with reason NoInteraction
-
-Scenario: De51. Send e-mail using user language
+Scenario: De50. Send e-mail using user language
 	Given the user last access was 748 days before
 		And user language is pt-BR
 	When robot user login
@@ -590,14 +580,14 @@ Scenario: De51. Send e-mail using user language
 		And the e-mail subject will be "Parece que você não está mais usando o sistema"
 		And the e-mail body will contain "estão para ser excluídos"
 
-Scenario: De52. Check days counting
+Scenario: De51. Check days counting
 	Given the user last access was 63 days before
 	When robot user login
 		And call wipe users
 	Then I will receive no core error
 		And the e-mail body will contain "27</h1>dias"
 
-Scenario: De53. Check wipe notice
+Scenario: De52. Check wipe notice
 	Given the user last access was 105 days before
 		And the user have being warned twice
 	When robot user login
@@ -608,7 +598,7 @@ Scenario: De53. Check wipe notice
 		And there will be a wipe notice sent
 		And it will be registered at wipe table with reason NoInteraction
 
-Scenario: De54. Wipe when user asks too
+Scenario: De53. Wipe when user asks too
 	Given the user have
 			| System Stuff |
 			| Move         |
@@ -622,7 +612,7 @@ Scenario: De54. Wipe when user asks too
 		And it will be registered at wipe table with reason PersonAsked
 		And there will no be an export file
 
-Scenario: De55. Wipe just the right user
+Scenario: De54. Wipe just the right user
 	Given the user have
 			| System Stuff |
 			| Move         |
@@ -641,7 +631,7 @@ Scenario: De55. Wipe just the right user
 		And the user won't exist
 		But the user dont_wipe_me@dontflymoney.com will still exist
 
-Scenario: De56. Do not warn robots without activity
+Scenario: De55. Do not warn robots without activity
 	Given the user last access was 90 days before
 		But the user is a robot
 	When robot user login
@@ -651,7 +641,7 @@ Scenario: De56. Do not warn robots without activity
 		And the count of warnings sent will be 0
 		And and the user warning count will be 0
 
-Scenario: De57. Do not wipe robots without activity
+Scenario: De56. Do not wipe robots without activity
 	Given the user last access was 90 days before
 		And the user have being warned twice
 		But the user is a robot
@@ -661,7 +651,7 @@ Scenario: De57. Do not wipe robots without activity
 		And the user will still exist
 		And it will not be registered at wipe table
 
-Scenario: De58. Do not warn robots which did not accepted last contract
+Scenario: De57. Do not warn robots which did not accepted last contract
 	Given a contract from 90 days before
 		And the user creation was 100 days before
 		And the user last access was 0 days before
@@ -673,7 +663,7 @@ Scenario: De58. Do not warn robots which did not accepted last contract
 		And the count of warnings sent will be 0
 		And and the user warning count will be 0
 
-Scenario: De59. Do not wipe robots which did not accepted last contract
+Scenario: De58. Do not wipe robots which did not accepted last contract
 	Given a contract from 90 days before
 		And the user creation was 100 days before
 		And the user last access was 0 days before
@@ -687,7 +677,7 @@ Scenario: De59. Do not wipe robots which did not accepted last contract
 
 # it is a robot, should not "ask" this
 # need to be protected, just in case
-Scenario: De60. Do not wipe robots even if it "asks" too
+Scenario: De59. Do not wipe robots even if it "asks" too
 	Given data wipe was asked
 		But the user is a robot
 	When robot user login

@@ -10,7 +10,8 @@ alter table wipe
 	add HashedEmail varchar(72),
 	add UsernameStart varchar(2),
 	add DomainStart varchar(3),
-	modify Email varchar(320) null;
+	modify Email varchar(320) null,
+	drop TFA;
 
 set sql_safe_updates = 0;
 

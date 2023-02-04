@@ -23,7 +23,6 @@ class Wipe(models.Model):
 	why = models.IntegerField(choices=REASON_CHOICES)
 
 	password = models.CharField(max_length=60)
-	tfa = models.CharField(null=True, max_length=500)
 
 	s3 = models.CharField(null=True, max_length=500)
 

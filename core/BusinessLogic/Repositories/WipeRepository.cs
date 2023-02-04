@@ -39,7 +39,6 @@ namespace DFM.BusinessLogic.Repositories
 				Why = reason,
 				S3 = s3,
 				Password = user.Password,
-				TFA = user.TFASecret,
 			};
 
 			SaveOrUpdate(wipe);
