@@ -14,8 +14,13 @@ Including another URLconf
 	2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.shortcuts import redirect
+from django.urls import path, include
+
+from midna.settings import ADMIN_URL
 
 urlpatterns = [
-	path('', admin.site.urls),
+	path('deleted-users/', include('deleted_users.urls')),
+	path(ADMIN_URL, admin.site.urls),
+	path('', lambda _: redirect('https://darakeon.github.io/flyaway/', permanent = False))
 ]

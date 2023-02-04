@@ -19,7 +19,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Add send CSV to e-mail owner into django admin
 - [ ] Zip deleted account CSV with e-mail as password
 - [ ] Use hexadecimal of hash email in deleted account CSV name
-- [ ] Hash email after wipe in the wipe history table
+- [ ] `230127>......` Hash email after wipe in the wipe history table
 - [x] `230124>230127` Add django admin to search deleted accounts
 
 ## <a name="10.0.0.0"></a>10.0.0.0 :dragon: <sup>`2`</sup>
