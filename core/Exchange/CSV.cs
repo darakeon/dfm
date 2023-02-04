@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using CsvHelper;
 using DFM.Entities;
+using DFM.Generic;
 using DFM.Generic.Datetime;
 
 namespace DFM.Exchange
@@ -38,7 +39,7 @@ namespace DFM.Exchange
 			}
 		}
 
-		public void Create(User user)
+		public void Create(Wipe wipe)
 		{
 			if (!moves.Any() && !schedules.Any())
 				return;
@@ -47,7 +48,7 @@ namespace DFM.Exchange
 				addSchedules();
 
 			if (moves.Any())
-				write(user);
+				write(wipe);
 		}
 
 		private void addSchedules()
@@ -74,11 +75,11 @@ namespace DFM.Exchange
 			schedules.Clear();
 		}
 
-		private void write(User user)
+		private void write(Wipe wipe)
 		{
-			var email = user.Email;
+			var hashedEmail = wipe.HashedEmail.ToBase64();
 			var now = DateTime.UtcNow.UntilSecond();
-			Path = $"{email}_{now}.csv";
+			Path = $"{hashedEmail}_{now}.csv";
 
 			using var writer = new StreamWriter(Path);
 

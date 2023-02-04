@@ -53,5 +53,12 @@ namespace DFM.Generic
 			return CharUnicodeInfo.GetUnicodeCategory(c)
 			    != UnicodeCategory.NonSpacingMark;
 		}
+
+		public static String ToBase64(this String text)
+		{
+			return Convert.ToBase64String(
+				Encoding.UTF8.GetBytes(text)
+			);
+		}
 	}
 }

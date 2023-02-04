@@ -517,10 +517,15 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		public void ThenItWillBeRegisteredAtWipeTable(RemovalReason reason)
 		{
 			var wipe = repos.Wipe.NewQuery()
-				.Where(p => p.Email == userEmail)
-				.SingleOrDefault;
+				.OrderBy(w => w.When, false)
+				.FirstOrDefault;
 
 			Assert.NotNull(wipe);
+
+			Assert.IsTrue(Crypt.Check(userEmail, wipe.HashedEmail));
+
+			Assert.AreEqual(userEmail.Substring(0, 2), wipe.UsernameStart);
+			Assert.AreEqual("don", wipe.DomainStart);
 
 			Assert.Less(testStart, wipe.When.ToUniversalTime());
 			Assert.AreEqual(reason, wipe.Why);
@@ -528,7 +533,11 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			if (csv != null)
 			{
 				Assert.NotNull(wipe.S3);
-				Assert.True(wipe.S3.StartsWith(userEmail));
+				Assert.True(
+					wipe.S3.StartsWith(
+						wipe.HashedEmail.ToBase64()
+					)
+				);
 			}
 			else
 			{
@@ -541,11 +550,14 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		[Then(@"it will not be registered at wipe table")]
 		public void ThenItWillNotBeRegisteredAtWipeTable()
 		{
-			var wipe = repos.Wipe.NewQuery()
-				.Where(p => p.Email == userEmail)
-				.Any;
+			var wipes = repos.Wipe.GetAll();
 
-			Assert.False(wipe);
+			foreach (var wipe in wipes)
+			{
+				Assert.IsFalse(
+					Crypt.Check(userEmail, wipe.HashedEmail)
+				);
+			}
 		}
 
 		[Then(@"the e-mail subject will be ""(.*)""")]

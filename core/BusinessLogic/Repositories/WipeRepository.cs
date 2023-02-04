@@ -7,6 +7,7 @@ using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Exchange;
+using Keon.Util.Crypto;
 using Keon.Util.DB;
 using Keon.Util.Extensions;
 using Error = DFM.BusinessLogic.Exceptions.Error;
@@ -28,18 +29,19 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			var accounts = repos.Account.Where(a => a.User.ID == user.ID);
 
-			var s3 = reason == RemovalReason.PersonAsked
-				? null
-				: extractToFile(user, accounts, upload);
-
 			var wipe = new Wipe
 			{
-				Email = user.Email,
+				HashedEmail = Crypt.Do(user.Email),
+				UsernameStart = user.Username.Substring(0, 2),
+				DomainStart = user.Domain.Substring(0, 3),
 				When = DateTime.UtcNow,
 				Why = reason,
-				S3 = s3,
 				Password = user.Password,
 			};
+
+			wipe.S3 = reason == RemovalReason.PersonAsked
+				? null
+				: extractToFile(wipe, accounts, upload);
 
 			SaveOrUpdate(wipe);
 
@@ -68,7 +70,7 @@ namespace DFM.BusinessLogic.Repositories
 			repos.Control.Delete(user.Control);
 		}
 
-		private String extractToFile(User user, IList<Account> accounts, Action<String> upload)
+		private String extractToFile(Wipe wipe, IList<Account> accounts, Action<String> upload)
 		{
 			String s3 = null;
 
@@ -80,7 +82,7 @@ namespace DFM.BusinessLogic.Repositories
 				csv.Add(repos.Schedule.ByAccount(account));
 			}
 
-			csv.Create(user);
+			csv.Create(wipe);
 
 			if (csv.Path != null)
 			{
