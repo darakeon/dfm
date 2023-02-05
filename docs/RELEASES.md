@@ -19,7 +19,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Add admin to nginx with production settings
 - [ ] Add send CSV to e-mail owner into django admin
 - [ ] Zip deleted account CSV with e-mail as password
-- [ ] `230203>......` Use hexadecimal of hash email in deleted account CSV name
+- [x] `230203>230207` Use hexadecimal of hash email in deleted account CSV name
 - [x] `230127>230205` Hash email after wipe in the wipe history table
 - [x] `230124>230127` Add django admin to search deleted accounts
 
