@@ -2,3 +2,4 @@ django
 mysqlclient
 bcrypt
 pytest
+boto3
