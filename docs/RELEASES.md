@@ -14,11 +14,10 @@ This is the list of project releases, past and current. To see tasks that are st
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="10.0.1.0"></a>10.0.1.0 :sheep: <sup>`7`</sup>
+## <a name="10.0.1.0"></a>10.0.1.0 :sheep: <sup>`6`</sup>
 - [ ] Fix menu not opening
 - [ ] Add admin to nginx with production settings
 - [ ] Add send CSV to e-mail owner into django admin
-- [ ] Zip deleted account CSV with e-mail as password
 - [x] `230203>230207` Use hexadecimal of hash email in deleted account CSV name
 - [x] `230127>230205` Hash email after wipe in the wipe history table
 - [x] `230124>230127` Add django admin to search deleted accounts
