@@ -1,3 +1,4 @@
+import base64
 from django.db import models
 
 from utils.crypt import hash
@@ -36,6 +37,10 @@ class Wipe(models.Model):
 		self.hashed_email = hash(self.email)
 		self.email = None
 
+	def hashed_email_base64(self):
+		hashed_email_bytes = self.hashed_email.encode('utf8')
+		base64_bytes = base64.b64encode(hashed_email_bytes)
+		return base64_bytes.decode('utf8')
 
 	def __str__(self):
 		return self.masked_email()
