@@ -9,7 +9,6 @@ using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
-using DFM.Generic;
 using DFM.Language;
 using DFM.Language.Emails;
 using DFM.Language.Extensions;

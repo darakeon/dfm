@@ -8,7 +8,6 @@ using DFM.Entities.Enums;
 using DFM.Authentication;
 using DFM.BusinessLogic.Response;
 using DFM.Entities.Bases;
-using Keon.Util.Crypto;
 using Keon.Util.Extensions;
 
 namespace DFM.BusinessLogic.Services
