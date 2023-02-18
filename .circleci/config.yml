@@ -616,6 +616,29 @@ jobs:
       - store_artifacts:
           path: inbox
 
+  audit_midna:
+    docker:
+      - image: python:3.11 # if change, remember to change save_cache
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - python-{{ checksum "midna/src/requirements.txt" }}
+      - run:
+          path: midna/src
+          name: dependencies
+          command: pip install -r requirements.txt
+      - save_cache:
+          key: python-{{ checksum "midna/src/requirements.txt" }}
+          paths:
+            - /usr/local/lib/python3.11/site-packages/
+      - run:
+          path: midna/src
+          name: check vulnerability
+          command: pip-audit
+
   version_change:
     docker:
       - image: rust
@@ -743,6 +766,9 @@ workflows:
       - check_robot:
           requires:
             - build_robot
+      - audit_midna:
+          requires:
+            - test_ci
       - version_change:
           filters:
             branches:
@@ -770,3 +796,4 @@ workflows:
             - build_robot
             - audit_robot
             - check_robot
+            - audit_midna
