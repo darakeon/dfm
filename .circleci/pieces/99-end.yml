@@ -66,9 +66,15 @@ workflows:
       - check_robot:
           requires:
             - build_robot
-      - audit_midna:
+      - build_midna:
           requires:
             - test_ci
+      - audit_midna:
+          requires:
+            - build_midna
+      - test_midna:
+          requires:
+            - build_midna
       - version_change:
           filters:
             branches:
@@ -96,4 +102,6 @@ workflows:
             - build_robot
             - audit_robot
             - check_robot
+            - build_midna
             - audit_midna
+            - test_midna
