@@ -4,7 +4,7 @@ using DFM.Entities;
 using DFM.Entities.Bases;
 using NUnit.Framework;
 
-namespace Entities.Tests
+namespace DFM.Generic.Tests
 {
 	public class ScheduleTests
 	{
