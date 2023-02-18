@@ -616,6 +616,27 @@ jobs:
       - store_artifacts:
           path: inbox
 
+  build_midna:
+    docker:
+      - image: python:3.11 # if change, remember to change save_cache
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - python-{{ checksum "midna/src/requirements.txt" }}
+      - run:
+          path: midna/src
+          name: dependencies
+          command: pip install -r requirements.txt
+      - save_cache:
+          key: python-{{ checksum "midna/src/requirements.txt" }}
+          paths:
+            - /usr/local/lib/python3.11/site-packages/
+      - persist_to_workspace:
+          root: .
+          paths:
+            - midna
+
   audit_midna:
     docker:
       - image: python:3.11 # if change, remember to change save_cache
@@ -628,16 +649,23 @@ jobs:
             - python-{{ checksum "midna/src/requirements.txt" }}
       - run:
           path: midna/src
-          name: dependencies
-          command: pip install -r requirements.txt
-      - save_cache:
-          key: python-{{ checksum "midna/src/requirements.txt" }}
-          paths:
-            - /usr/local/lib/python3.11/site-packages/
+          name: check vulnerability
+          command: python -m pip_audit
+
+  test_midna:
+    docker:
+      - image: python:3.11 # if change, remember to change save_cache
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - python-{{ checksum "midna/src/requirements.txt" }}
       - run:
           path: midna/src
-          name: check vulnerability
-          command: pip-audit
+          name: run tests
+          command: python manage.py test deleted_users
 
   version_change:
     docker:
@@ -766,9 +794,15 @@ workflows:
       - check_robot:
           requires:
             - build_robot
-      - audit_midna:
+      - build_midna:
           requires:
             - test_ci
+      - audit_midna:
+          requires:
+            - build_midna
+      - test_midna:
+          requires:
+            - build_midna
       - version_change:
           filters:
             branches:
@@ -796,4 +830,6 @@ workflows:
             - build_robot
             - audit_robot
             - check_robot
+            - build_midna
             - audit_midna
+            - test_midna

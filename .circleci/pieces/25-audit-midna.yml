@@ -10,14 +10,6 @@
             - python-{{ checksum "midna/src/requirements.txt" }}
       - run:
           path: midna/src
-          name: dependencies
-          command: pip install -r requirements.txt
-      - save_cache:
-          key: python-{{ checksum "midna/src/requirements.txt" }}
-          paths:
-            - /usr/local/lib/python3.11/site-packages/
-      - run:
-          path: midna/src
           name: check vulnerability
-          command: pip-audit
+          command: python -m pip_audit
 
