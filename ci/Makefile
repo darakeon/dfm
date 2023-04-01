@@ -19,6 +19,7 @@ single_build:
 
 	@if [ -e ${MACHINE}.dockerfile ]; then \
 		docker context use default; \
+		docker login; \
 		docker build . --pull -f ${MACHINE}.dockerfile -t darakeon/${MACHINE} --network=host; \
 		docker image prune -f > /dev/null; \
 		\
