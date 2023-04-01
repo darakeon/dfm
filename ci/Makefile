@@ -3,13 +3,14 @@ MAKEFLAGS += --no-print-directory
 ERROR=\033[0;31m
 CLEAR=\033[0m
 
-build_all:
+build_browser:
 	@make single_build MACHINE=netcore-libman PUSH=${PUSH}
 	@make single_build MACHINE=netcore-libman-node PUSH=${PUSH}
 	@make single_build MACHINE=netcore-libman-node-chrome PUSH=${PUSH}
 
 	@make single_build MACHINE=dfm-browser-tests PUSH=${PUSH}
 
+build_android:
 	@make single_build MACHINE=android PUSH=${PUSH}
 
 single_build:
