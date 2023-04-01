@@ -40,6 +40,25 @@ jobs:
           path: .circleci
           command: if [[ $(diff config.yml config_old.yml) != '' ]]; then echo 'outdated ci config'; exit 1; fi
 
+  push_docker_browser:
+    docker:
+      - image: docker
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.11
+          docker_layer_caching: true
+      - run:
+          name: Install make
+          command: apk add make
+      - run:
+          name: Login
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - run:
+          name: Build images
+          path: ci
+          command: make build_browser PUSH=1
+
   build_core:
     docker:
       - image: darakeon/netcore
@@ -734,6 +753,9 @@ workflows:
       - test_ci:
           requires:
             - trufflehog
+      - push_docker_browser:
+          requires:
+            - test_ci
       - build_core:
           requires:
             - test_ci
@@ -767,6 +789,7 @@ workflows:
       - test_browser:
           requires:
             - build_site
+            - push_docker_browser
       - build_android:
           requires:
             - test_ci
@@ -810,6 +833,7 @@ workflows:
           requires:
             - test_ci
             - trufflehog
+            - push_docker_browser
             - build_core
             - audit_core
             - test_core_generic
