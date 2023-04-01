@@ -9,6 +9,9 @@ workflows:
       - push_docker_browser:
           requires:
             - test_ci
+      - push_docker_android:
+          requires:
+            - test_ci
       - build_core:
           requires:
             - test_ci
@@ -46,6 +49,7 @@ workflows:
       - build_android:
           requires:
             - test_ci
+            - push_docker_android
       - audit_android:
           requires:
             - build_android
@@ -87,6 +91,7 @@ workflows:
             - test_ci
             - trufflehog
             - push_docker_browser
+            - push_docker_android
             - build_core
             - audit_core
             - test_core_generic
