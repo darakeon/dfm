@@ -59,6 +59,25 @@ jobs:
           path: ci
           command: make build_browser PUSH=1
 
+  push_docker_android:
+    docker:
+      - image: docker
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.11
+          docker_layer_caching: true
+      - run:
+          name: Install make
+          command: apk add make
+      - run:
+          name: Login
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - run:
+          name: Build images
+          path: ci
+          command: make build_android PUSH=1
+
   build_core:
     docker:
       - image: darakeon/netcore
@@ -756,6 +775,9 @@ workflows:
       - push_docker_browser:
           requires:
             - test_ci
+      - push_docker_android:
+          requires:
+            - test_ci
       - build_core:
           requires:
             - test_ci
@@ -793,6 +815,7 @@ workflows:
       - build_android:
           requires:
             - test_ci
+            - push_docker_android
       - audit_android:
           requires:
             - build_android
@@ -834,6 +857,7 @@ workflows:
             - test_ci
             - trufflehog
             - push_docker_browser
+            - push_docker_android
             - build_core
             - audit_core
             - test_core_generic
