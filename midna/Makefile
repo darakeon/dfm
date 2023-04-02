@@ -19,6 +19,8 @@ run: stop build db
 		--name midna \
 		-d --rm \
 		darakeon/midna
+	@echo
+	@echo "Site running. Go to http://localhost:8000/twilight/"
 
 push: build
 	@docker push darakeon/midna
