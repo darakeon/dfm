@@ -675,6 +675,10 @@ jobs:
             - python-{{ checksum "midna/src/requirements.txt" }}
       - run:
           path: midna/src
+          name: Upgrade pip
+          command: pip install --upgrade pip
+      - run:
+          path: midna/src
           name: dependencies
           command: pip install -r requirements.txt
       - save_cache:
