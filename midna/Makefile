@@ -9,7 +9,10 @@ build:
 	@docker login
 	@docker build . -t darakeon/midna
 
-run: stop build
+db:
+	@cd ../sql && docker-compose up -d
+
+run: stop build db
 	@docker run -v ${PWD}:/var/midna \
 		--env-file=.env \
 		-p 8000:8000 \
