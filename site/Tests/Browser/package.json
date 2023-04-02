@@ -4,7 +4,7 @@
 	"description": "DfM Site Tests",
 	"main": "index.js",
 	"dependencies": {
-		"sqlite3": "5.1.4",
+		"sqlite3": "5.1.6",
 		"uuid": "9.0.0"
 	},
 	"devDependencies": {
