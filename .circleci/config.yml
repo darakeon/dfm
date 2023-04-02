@@ -353,6 +353,33 @@ jobs:
           path: site/Tests/log
           destination: log
 
+  audit_test_browser:
+    docker:
+      - image: darakeon/dfm-browser-tests
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - node-{{ checksum "site/Tests/Browser/package.json" }}-{{ checksum "site/Tests/Browser/package-lock.json" }}
+      - run:
+          name: dependencies node
+          path: site/Tests/Browser
+          command: npm install
+      - save_cache:
+          key: node-{{ checksum "site/Tests/Browser/package.json" }}-{{ checksum "site/Tests/Browser/package-lock.json" }}
+          paths:
+            - site/Tests/Browser/node_modules
+      - run:
+          name: check_dependencies node
+          path: site/Tests/Browser
+          command: npm audit
+      - store_artifacts:
+          path: /root/.npm/_logs/
+      - store_artifacts:
+          path: /root/.npm/eresolve-report.txt
+
   test_browser:
     docker:
       - image: darakeon/dfm-browser-tests
@@ -382,28 +409,12 @@ jobs:
           keys:
             - node-{{ checksum "site/Tests/Browser/package.json" }}-{{ checksum "site/Tests/Browser/package-lock.json" }}
       - run:
-          name: dependencies node
-          path: site/Tests/Browser
-          command: npm install
-      - save_cache:
-          key: node-{{ checksum "site/Tests/Browser/package.json" }}-{{ checksum "site/Tests/Browser/package-lock.json" }}
-          paths:
-            - site/Tests/Browser/node_modules
-      - run:
-          name: check_dependencies node
-          path: site/Tests/Browser
-          command: npm audit
-      - run:
           name: tests browser
           command: .circleci/browser/run-tests.sh
       - store_artifacts:
           path: site/Tests/Browser/log
       - store_artifacts:
           path: inbox
-      - store_artifacts:
-          path: /root/.npm/_logs/
-      - store_artifacts:
-          path: /root/.npm/eresolve-report.txt
 
   build_android:
     docker:
@@ -808,8 +819,12 @@ workflows:
       - test_site:
           requires:
             - build_site
+      - audit_test_browser:
+          requires:
+            - test_ci
       - test_browser:
           requires:
+            - audit_test_browser
             - build_site
             - push_docker_browser
       - build_android:
@@ -868,6 +883,7 @@ workflows:
             - build_site
             - audit_site
             - test_site
+            - audit_test_browser
             - test_browser
             - build_android
             - audit_android

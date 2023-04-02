@@ -1,28 +1,10 @@
-  test_browser:
+  audit_test_browser:
     docker:
       - image: darakeon/dfm-browser-tests
     steps:
       - checkout
       - attach_workspace:
           at: ./
-      - restore_cache:
-          keys:
-            - dotnet-{{ checksum "site/cache_key" }}
-      - restore_cache:
-          keys:
-            - dotnet-libman-{{ checksum "site/MVC/libman.json" }}
-      - run:
-          name: dependencies client
-          path: site/MVC
-          command: libman restore
-      - save_cache:
-          key: dotnet-libman-{{ checksum "site/MVC/libman.json" }}
-          paths:
-            - site/MVC/Assets/libs
-      - run:
-          name: publish site
-          path: site/MVC
-          command: dotnet publish -c Release MVC.csproj -o ../Tests/Browser/server --no-restore
       - restore_cache:
           keys:
             - node-{{ checksum "site/Tests/Browser/package.json" }}-{{ checksum "site/Tests/Browser/package-lock.json" }}
@@ -38,13 +20,6 @@
           name: check_dependencies node
           path: site/Tests/Browser
           command: npm audit
-      - run:
-          name: tests browser
-          command: .circleci/browser/run-tests.sh
-      - store_artifacts:
-          path: site/Tests/Browser/log
-      - store_artifacts:
-          path: inbox
       - store_artifacts:
           path: /root/.npm/_logs/
       - store_artifacts:
