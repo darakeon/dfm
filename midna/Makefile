@@ -6,6 +6,7 @@ export
 EXEC=docker exec -it midna
 
 build:
+	@docker login
 	@docker build . -t darakeon/midna
 
 run: stop build
