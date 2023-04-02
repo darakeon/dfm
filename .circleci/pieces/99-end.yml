@@ -42,8 +42,12 @@ workflows:
       - test_site:
           requires:
             - build_site
+      - audit_test_browser:
+          requires:
+            - test_ci
       - test_browser:
           requires:
+            - audit_test_browser
             - build_site
             - push_docker_browser
       - build_android:
@@ -102,6 +106,7 @@ workflows:
             - build_site
             - audit_site
             - test_site
+            - audit_test_browser
             - test_browser
             - build_android
             - audit_android
