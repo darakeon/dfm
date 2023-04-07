@@ -1,4 +1,4 @@
-﻿Feature: At. Validate ticket two factor authentication
+﻿Feature: As. Validate ticket two factor authentication
 
 Background:
 	Given I have this user created
@@ -12,7 +12,7 @@ Background:
 			| 123    | {generated} | password |
 		And I set two-factor
 
-Scenario: At01. Validate with disabled two-factor
+Scenario: As01. Validate with disabled two-factor
 	Given I remove two-factor
 		And I have this two-factor data
 			| Code |
@@ -21,7 +21,7 @@ Scenario: At01. Validate with disabled two-factor
 	Then I will receive this core error: TFANotConfigured
 		And the ticket will be valid
 
-Scenario: At02. Validate with invalid code
+Scenario: As02. Validate with invalid code
 		But I have this two-factor data
 			| Code  |
 			| wrong |
@@ -29,7 +29,7 @@ Scenario: At02. Validate with invalid code
 	Then I will receive this core error: TFAWrongCode
 		And the ticket will not be valid
 
-Scenario: At03. Validate with valid code
+Scenario: As03. Validate with valid code
 	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 456    | {generated} | password |
@@ -41,7 +41,7 @@ Scenario: At03. Validate with valid code
 	Then I will receive no core error
 		And the ticket will be valid
 
-Scenario: At04. Not validate if user is marked for deletion
+Scenario: As04. Not validate if user is marked for deletion
 	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 456    | {generated} | password |
@@ -53,7 +53,7 @@ Scenario: At04. Not validate if user is marked for deletion
 	When I try to validate the ticket two factor
 	Then I will receive this core error: UserDeleted
 
-Scenario: At05. Not validate if user requested wipe
+Scenario: As05. Not validate if user requested wipe
 	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 789    | {generated} | password |

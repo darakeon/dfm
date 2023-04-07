@@ -1,4 +1,4 @@
-﻿Feature: Ax. Use TFA as Password
+﻿Feature: Aw. Use TFA as Password
 
 Background:
 	Given I have this user created
@@ -15,7 +15,7 @@ Background:
 			| 123    | {generated} | password |
 		And I set two-factor
 
-Scenario: Ax01. Activate TFA as password
+Scenario: Aw01. Activate TFA as password
 	When I set to use TFA as password
 	Then I will receive no core error
 		And the TFA can be used as password
@@ -23,29 +23,29 @@ Scenario: Ax01. Activate TFA as password
 		And I can still login using normal password
 		And the TFA will be asked
 
-Scenario: Ax02. Deactivate TFA as password
+Scenario: Aw02. Deactivate TFA as password
 	When I set to use TFA as password
 		But I set to not use TFA as password
 	Then I will receive no core error
 		And the TFA can not be used as password
 		And the TFA will be asked
 
-Scenario: Ax03. Not activate if user is marked for deletion
+Scenario: Aw03. Not activate if user is marked for deletion
 	Given the user is marked for deletion
 	When I set to use TFA as password
 	Then I will receive this core error: UserDeleted
 
-Scenario: Ax04. Not deactivate if user is marked for deletion
+Scenario: Aw04. Not deactivate if user is marked for deletion
 	Given the user is marked for deletion
 	When I set to not use TFA as password
 	Then I will receive this core error: UserDeleted
 
-Scenario: Ax05. Not activate if user requested wipe
+Scenario: Aw05. Not activate if user requested wipe
 	Given the user asked data wipe
 	When I set to use TFA as password
 	Then I will receive this core error: UserAskedWipe
 
-Scenario: Ax06. Not deactivate if user requested wipe
+Scenario: Aw06. Not deactivate if user requested wipe
 	Given the user asked data wipe
 	When I set to not use TFA as password
 	Then I will receive this core error: UserAskedWipe

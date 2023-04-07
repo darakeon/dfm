@@ -13,7 +13,7 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (60)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (59)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
 | Delete data on app (legal requirement)                                         | :whale:  |  2  |  4  |  6  |                |
 | Expire tickets with more than 30 without access (add to contract)              | :sheep:  |  3  |  4  |  5  |                |
@@ -60,7 +60,6 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Transform Error Logs notification into widget                                  | :ant:    |  2  |  1  |  3  |                |
 | Remove unused/duplicated errors                                                | :ant:    |  2  |  1  |  3  |                |
 | Check tests of inactive user                                                   | :ant:    |  2  |  1  |  3  |                |
-| Distribute tests of operations with not signed contract                        | :ant:    |  2  |  1  |  3  |                |
 | Remove "Then I", "When I", "Given I" of tests                                  | :ant:    |  2  |  1  |  3  |                |
 | Replace hardcoded scenario codes from tests                                    | :ant:    |  2  |  1  |  3  |                |
 | Inject ServiceAccess with AddScoped at MVC (because of Session NH)             | :ant:    |  2  |  1  |  3  |                |
