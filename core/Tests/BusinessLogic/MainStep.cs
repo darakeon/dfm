@@ -76,11 +76,12 @@ namespace DFM.BusinessLogic.Tests
 		[Given(@"the user(.*) is marked for deletion")]
 		public void GivenTheUserIsMarkedForDeletion(String passedEmail)
 		{
-			if (passedEmail == "")
-				passedEmail = null;
+			passedEmail = String.IsNullOrEmpty(passedEmail)
+				? null
+				: passedEmail.Trim().Replace("{scenarioCode}", scenarioCode);
 
 			var user = repos.User.GetByEmail(
-				passedEmail?.Trim() ?? email ?? userEmail
+				passedEmail ?? email ?? userEmail
 			);
 
 			db.Execute(() => repos.Control.MarkDeletion(user));
@@ -89,11 +90,12 @@ namespace DFM.BusinessLogic.Tests
 		[Given(@"the user(.*) asked data wipe")]
 		public void GivenTheUserAskedDataWipe(String passedEmail)
 		{
-			if (passedEmail == "")
-				passedEmail = null;
+			passedEmail = String.IsNullOrEmpty(passedEmail)
+				? null
+				: passedEmail.Trim().Replace("{scenarioCode}", scenarioCode);
 
 			var user = repos.User.GetByEmail(
-				passedEmail?.Trim() ?? email ?? userEmail
+				passedEmail ?? email ?? userEmail
 			);
 
 			db.Execute(() => repos.Control.RequestWipe(user));

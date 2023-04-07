@@ -619,9 +619,9 @@ Scenario: De54. Wipe just the right user
 			| Schedule     |
 		And data wipe was asked
 		And I have this user created
-			| Email                         | Signed | Active |
-			| dont_wipe_me@dontflymoney.com | true   | true   |
-		And the user dont_wipe_me@dontflymoney.com have
+			| Email                                        | Signed | Active |
+			| dont_wipe_me_{scenarioCode}@dontflymoney.com | true   | true   |
+		And the user dont_wipe_me_{scenarioCode}@dontflymoney.com have
 			| System Stuff |
 			| Move         |
 			| Schedule     |
@@ -629,7 +629,7 @@ Scenario: De54. Wipe just the right user
 		And call wipe users
 	Then I will receive no core error
 		And the user won't exist
-		But the user dont_wipe_me@dontflymoney.com will still exist
+		But the user dont_wipe_me_{scenarioCode}@dontflymoney.com will still exist
 
 Scenario: De55. Do not warn robots without activity
 	Given the user last access was 90 days before

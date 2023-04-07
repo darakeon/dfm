@@ -254,6 +254,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		[Given(@"I deactivate the user (.+)")]
 		public void GivenIDeactivateTheUser(String email)
 		{
+			email = email.Replace("{scenarioCode}", scenarioCode);
 			var user = repos.User.GetByEmail(email);
 			db.Execute(() => repos.Control.Deactivate(user));
 		}
@@ -639,7 +640,9 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		public void GivenIPassThisNewEmailAndPassword(Table table)
 		{
 			currentPassword = table.Rows[0]["Current Password"];
-			newEmail = table.Rows[0]["New E-mail"];
+
+			newEmail = table.Rows[0]["New E-mail"]
+				.Replace("{scenarioCode}", scenarioCode);
 		}
 
 		[When(@"I try to change the e-mail")]

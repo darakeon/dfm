@@ -259,109 +259,109 @@ Scenario: Db16. Run with normal user
 
 Scenario: Db17. Run only that timezone schedules
 	Given I have this user created
-			| Email                       | Password | Active | Signed | Timezone |
-			| tz_now@dontflymoney.com     | password | true   | true   | +0       |
-			| tz_not_now@dontflymoney.com | password | true   | true   | +1       |
-		And a schedule is created by tz_now@dontflymoney.com
-		And a schedule is created by tz_not_now@dontflymoney.com
-		But robot already ran for tz_not_now@dontflymoney.com
+			| Email                                      | Password | Active | Signed | Timezone |
+			| tz_now_{scenarioCode}@dontflymoney.com     | password | true   | true   | +0       |
+			| tz_not_now_{scenarioCode}@dontflymoney.com | password | true   | true   | +1       |
+		And a schedule is created by tz_now_{scenarioCode}@dontflymoney.com
+		And a schedule is created by tz_not_now_{scenarioCode}@dontflymoney.com
+		But robot already ran for tz_not_now_{scenarioCode}@dontflymoney.com
 	When robot user login
 		And run the scheduler
 	Given I logoff the user
 		And I login this user
-			| Email                   | Password |
-			| tz_now@dontflymoney.com | password |
+			| Email                                  | Password |
+			| tz_now_{scenarioCode}@dontflymoney.com | password |
 	Then the accountOut value will change in -8
 	Given I logoff the user
 		And I login this user
-			| Email                       | Password |
-			| tz_not_now@dontflymoney.com | password |
+			| Email                                      | Password |
+			| tz_not_now_{scenarioCode}@dontflymoney.com | password |
 	Then the accountOut value will not change
 
 Scenario: Db18. Run only active users
 	Given I have this user created
-			| Email                     | Password | Active | Signed |
-			| active@dontflymoney.com   | password | true   | true   |
-			| inactive@dontflymoney.com | password | true   | true   |
-		And a schedule is created by active@dontflymoney.com
-		And a schedule is created by inactive@dontflymoney.com
-		And I deactivate the user inactive@dontflymoney.com
+			| Email                                    | Password | Active | Signed |
+			| active_{scenarioCode}@dontflymoney.com   | password | true   | true   |
+			| inactive_{scenarioCode}@dontflymoney.com | password | true   | true   |
+		And a schedule is created by active_{scenarioCode}@dontflymoney.com
+		And a schedule is created by inactive_{scenarioCode}@dontflymoney.com
+		And I deactivate the user inactive_{scenarioCode}@dontflymoney.com
 	When robot user login
 		And run the scheduler
 	Given I logoff the user
 		And I login this user
-			| Email                   | Password |
-			| active@dontflymoney.com | password |
+			| Email                                  | Password |
+			| active_{scenarioCode}@dontflymoney.com | password |
 	Then the accountOut value will change in -8
 	Given I logoff the user
 		And I login this user
-			| Email                     | Password |
-			| inactive@dontflymoney.com | password |
+			| Email                                    | Password |
+			| inactive_{scenarioCode}@dontflymoney.com | password |
 	Then the accountOut value will not change
 
 Scenario: Db19. Do not run robots
 	Given I have this user created
-			| Email                   | Password | Active | Signed |
-			| common@dontflymoney.com | password | true   | true   |
-			| zb@dontflymoney.com     | password | true   | true   |
-		And a schedule is created by common@dontflymoney.com
-		And a schedule is created by zb@dontflymoney.com
-		But zb@dontflymoney.com is a robot
+			| Email                                  | Password | Active | Signed |
+			| common_{scenarioCode}@dontflymoney.com | password | true   | true   |
+			| zb_{scenarioCode}@dontflymoney.com     | password | true   | true   |
+		And a schedule is created by common_{scenarioCode}@dontflymoney.com
+		And a schedule is created by zb_{scenarioCode}@dontflymoney.com
+		But zb_{scenarioCode}@dontflymoney.com is a robot
 	When robot user login
 		And run the scheduler
 	Given I logoff the user
 		And I login this user
-			| Email                   | Password |
-			| common@dontflymoney.com | password |
+			| Email                                  | Password |
+			| common_{scenarioCode}@dontflymoney.com | password |
 	Then the accountOut value will change in -8
 	Given I logoff the user
 		And I login this user
-			| Email               | Password |
-			| zb@dontflymoney.com | password |
+			| Email                              | Password |
+			| zb_{scenarioCode}@dontflymoney.com | password |
 	Then the accountOut value will not change
 
 Scenario: Db20. Run scheduler after add schedule
 	Given I have this user created
-			| Email                         | Password | Active | Signed |
-			| new_schedule@dontflymoney.com | password | true   | true   |
-		And a schedule is created by new_schedule@dontflymoney.com
+			| Email                                        | Password | Active | Signed |
+			| new_schedule_{scenarioCode}@dontflymoney.com | password | true   | true   |
+		And a schedule is created by new_schedule_{scenarioCode}@dontflymoney.com
 		And robot run the scheduler
-		And a schedule is created by new_schedule@dontflymoney.com
+		And a schedule is created by new_schedule_{scenarioCode}@dontflymoney.com
 	When robot user login
 		And run the scheduler
 	Given I logoff the user
 		And I login this user
-			| Email                         | Password |
-			| new_schedule@dontflymoney.com | password |
+			| Email                                        | Password |
+			| new_schedule_{scenarioCode}@dontflymoney.com | password |
 	Then the accountOut value will change in -16
 
 Scenario: Db21. Not run scheduler if user is marked for deletion
 	Given I have this user created
-			| Email                    | Password | Active | Signed |
-			| deleted@dontflymoney.com | password | true   | true   |
-		And a schedule is created by deleted@dontflymoney.com
-		But the user deleted@dontflymoney.com is marked for deletion
+			| Email                                   | Password | Active | Signed |
+			| deleted_{scenarioCode}@dontflymoney.com | password | true   | true   |
+		And a schedule is created by deleted_{scenarioCode}@dontflymoney.com
+		But the user deleted_{scenarioCode}@dontflymoney.com is marked for deletion
 	When robot user login
 		And run the scheduler
-	Then the user deleted@dontflymoney.com will still have no moves
+	Then the user deleted_{scenarioCode}@dontflymoney.com will still have no moves
 
 Scenario: Db22. Not run scheduler if user has not signed last contract
 	Given I have this user created
-			| Email                       | Password | Active | Signed |
-			| not_signed@dontflymoney.com | password | true   | true   |
-		And a schedule is created by not_signed@dontflymoney.com
+			| Email                                      | Password | Active | Signed |
+			| not_signed_{scenarioCode}@dontflymoney.com | password | true   | true   |
+		And a schedule is created by not_signed_{scenarioCode}@dontflymoney.com
 		And I have a contract
 	When robot user login
 		And run the scheduler
 	Then I will receive no core error
-		But the user not_signed@dontflymoney.com will still have no moves
+		But the user not_signed_{scenarioCode}@dontflymoney.com will still have no moves
 
 Scenario: Db23. Not run scheduler if user requested wipe
 	Given I have this user created
-			| Email                      | Password | Active | Signed |
-			| askedwipe@dontflymoney.com | password | true   | true   |
-		And a schedule is created by askedwipe@dontflymoney.com
-		But the user askedwipe@dontflymoney.com asked data wipe
+			| Email                                     | Password | Active | Signed |
+			| askedwipe_{scenarioCode}@dontflymoney.com | password | true   | true   |
+		And a schedule is created by askedwipe_{scenarioCode}@dontflymoney.com
+		But the user askedwipe_{scenarioCode}@dontflymoney.com asked data wipe
 	When robot user login
 		And run the scheduler
-	Then the user askedwipe@dontflymoney.com will still have no moves
+	Then the user askedwipe_{scenarioCode}@dontflymoney.com will still have no moves

@@ -187,6 +187,7 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		{
 			db.Execute(() =>
 			{
+				email = email.Replace("{scenarioCode}", scenarioCode);
 				var user = repos.User.GetByEmail(email);
 				user.SetRobotCheckDay();
 				repos.User.SaveOrUpdate(user);
@@ -204,6 +205,7 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		[Given(@"(.+\@.+) is a robot")]
 		public void GivenIsARobot(String email)
 		{
+			email = email.Replace("{scenarioCode}", scenarioCode);
 			var user = repos.User.GetByEmail(email);
 			user.Control.IsRobot = true;
 			db.Execute(() => repos.Control.SaveOrUpdate(user.Control));
@@ -267,6 +269,7 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		[Then(@"the user (.+) will still have no moves")]
 		public void ThenTheUserWillStillHaveNoMoves(String email)
 		{
+			email = email.Replace("{scenarioCode}", scenarioCode);
 			var user = repos.User.GetByEmail(email);
 			var accounts = repos.Account.Get(user, true);
 
@@ -407,7 +410,7 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		{
 			email = String.IsNullOrWhiteSpace(email)
 				? userEmail
-				: email.Trim();
+				: email.Trim().Replace("{scenarioCode}", scenarioCode);
 
 			var user = repos.User.GetByEmail(email);
 			foreach (var row in table.Rows)
@@ -459,7 +462,7 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		{
 			email = String.IsNullOrWhiteSpace(email)
 				? userEmail
-				: email.Trim();
+				: email.Trim().Replace("{scenarioCode}", scenarioCode);
 
 			var user = repos.User.GetByEmail(email);
 			Assert.IsNotNull(user);

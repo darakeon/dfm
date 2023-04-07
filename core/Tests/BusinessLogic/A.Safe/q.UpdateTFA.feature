@@ -2,11 +2,11 @@
 
 Scenario: Aq01. With empty secret key
 	Given I have this user created
-			| Email                 | Password | Active |
-			| Ar01@dontflymoney.com | password | true   |
+			| Email                           | Password | Active |
+			| {scenarioCode}@dontflymoney.com | password | true   |
 		And I login this user
-			| Email                 | Password |
-			| Ar01@dontflymoney.com | password |
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code        | Password |
 			|        | {generated} | password |
@@ -16,11 +16,11 @@ Scenario: Aq01. With empty secret key
 
 Scenario: Aq02. With wrong code
 	Given I have this user created
-			| Email                 | Password | Active |
-			| Ar02@dontflymoney.com | password | true   |
+			| Email                           | Password | Active |
+			| {scenarioCode}@dontflymoney.com | password | true   |
 		And I login this user
-			| Email                 | Password |
-			| Ar02@dontflymoney.com | password |
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code  | Password |
 			| 123    | wrong | password |
@@ -30,11 +30,11 @@ Scenario: Aq02. With wrong code
 
 Scenario: Aq03. With wrong password
 	Given I have this user created
-			| Email                 | Password | Active |
-			| Ar03@dontflymoney.com | password | true   |
+			| Email                           | Password | Active |
+			| {scenarioCode}@dontflymoney.com | password | true   |
 		And I login this user
-			| Email                 | Password |
-			| Ar03@dontflymoney.com | password |
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | wrong    |
@@ -44,11 +44,11 @@ Scenario: Aq03. With wrong password
 
 Scenario: Aq04. With all info right
 	Given I have this user created
-			| Email                 | Password | Active |
-			| Ar04@dontflymoney.com | password | true   |
+			| Email                           | Password | Active |
+			| {scenarioCode}@dontflymoney.com | password | true   |
 		And I login this user
-			| Email                 | Password |
-			| Ar04@dontflymoney.com | password |
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
@@ -58,11 +58,11 @@ Scenario: Aq04. With all info right
 
 Scenario: Aq05. Update two-factor
 	Given I have this user created
-			| Email                 | Password | Active |
-			| Ar05@dontflymoney.com | password | true   |
+			| Email                           | Password | Active |
+			| {scenarioCode}@dontflymoney.com | password | true   |
 		And I login this user
-			| Email                 | Password |
-			| Ar05@dontflymoney.com | password |
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
@@ -76,11 +76,11 @@ Scenario: Aq05. Update two-factor
 
 Scenario: Aq06. With empty password
 	Given I have this user created
-			| Email                 | Password | Active |
-			| Ar06@dontflymoney.com | password | true   |
+			| Email                           | Password | Active |
+			| {scenarioCode}@dontflymoney.com | password | true   |
 		And I login this user
-			| Email                 | Password |
-			| Ar06@dontflymoney.com | password |
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} |          |
@@ -90,11 +90,11 @@ Scenario: Aq06. With empty password
 
 Scenario: Aq07. With null password
 	Given I have this user created
-			| Email                 | Password | Active |
-			| Ar03@dontflymoney.com | password | true   |
+			| Email                           | Password | Active |
+			| {scenarioCode}@dontflymoney.com | password | true   |
 		And I login this user
-			| Email                 | Password |
-			| Ar03@dontflymoney.com | password |
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | {null}   |
@@ -104,11 +104,11 @@ Scenario: Aq07. With null password
 
 Scenario: Aq08. Not update if user is marked for deletion
 	Given I have this user created
-			| Email                 | Password | Active |
-			| aq08@dontflymoney.com | password | true   |
+			| Email                           | Password | Active |
+			| {scenarioCode}@dontflymoney.com | password | true   |
 		And I login this user
-			| Email                 | Password |
-			| aq08@dontflymoney.com | password |
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
@@ -118,11 +118,11 @@ Scenario: Aq08. Not update if user is marked for deletion
 
 Scenario: Aq09. Not update if user requested wipe
 	Given I have this user created
-			| Email                 | Password | Active |
-			| aq09@dontflymoney.com | password | true   |
+			| Email                           | Password | Active |
+			| {scenarioCode}@dontflymoney.com | password | true   |
 		And I login this user
-			| Email                 | Password |
-			| aq09@dontflymoney.com | password |
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
