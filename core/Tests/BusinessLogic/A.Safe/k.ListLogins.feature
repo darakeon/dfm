@@ -27,3 +27,9 @@ Scenario: Ak03. Not list if user requested wipe
 		But the user asked data wipe
 	When I ask for current active logins
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Ak04. Uninvited if no user is logged in
+	Given test user login
+		And I logoff the user
+	When I ask for current active logins
+	Then I will receive this core error: Uninvited
