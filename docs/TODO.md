@@ -13,8 +13,9 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (59)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (60)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
+| Delete data on app (legal requirement)                                         | :whale:  |  2  |  4  |  6  |                |
 | Expire tickets with more than 30 without access (add to contract)              | :sheep:  |  3  |  4  |  5  |                |
 | add snyk/clair check to docker containers                                      | :ant:    |  3  |  4  |  5  |                |
 | Add schedule anticipation                                                      | :whale:  |  2  |  3  |  5  |                |
