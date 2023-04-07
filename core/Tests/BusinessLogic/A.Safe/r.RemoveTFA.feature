@@ -1,13 +1,15 @@
 ﻿Feature: Ar. Remove two factor authentication
 
-Scenario: Ar01. With wrong password
+Background:
 	Given I have this user created
-			| Email                           | Password | Active |
-			| {scenarioCode}@dontflymoney.com | password | true   |
+			| Email                           | Password | Active | Signed |
+			| {scenarioCode}@dontflymoney.com | password | true   | true   |
 		And I login this user
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |
-		And I have this two-factor data
+
+Scenario: Ar01. With wrong password
+	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
 		And I set two-factor
@@ -19,13 +21,7 @@ Scenario: Ar01. With wrong password
 		And the two-factor will be [123]
 
 Scenario: Ar02. With all info right
-	Given I have this user created
-			| Email                           | Password | Active |
-			| {scenarioCode}@dontflymoney.com | password | true   |
-		And I login this user
-			| Email                           | Password |
-			| {scenarioCode}@dontflymoney.com | password |
-		And I have this two-factor data
+	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
 		And I set two-factor
@@ -37,13 +33,7 @@ Scenario: Ar02. With all info right
 		And the two-factor will be empty
 
 Scenario: Ar03. With empty password
-	Given I have this user created
-			| Email                           | Password | Active |
-			| {scenarioCode}@dontflymoney.com | password | true   |
-		And I login this user
-			| Email                           | Password |
-			| {scenarioCode}@dontflymoney.com | password |
-		And I have this two-factor data
+	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
 		And I set two-factor
@@ -55,13 +45,7 @@ Scenario: Ar03. With empty password
 		And the two-factor will be [123]
 
 Scenario: Ar04. With null password
-	Given I have this user created
-			| Email                           | Password | Active |
-			| {scenarioCode}@dontflymoney.com | password | true   |
-		And I login this user
-			| Email                           | Password |
-			| {scenarioCode}@dontflymoney.com | password |
-		And I have this two-factor data
+	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
 		And I set two-factor
@@ -73,13 +57,7 @@ Scenario: Ar04. With null password
 		And the two-factor will be [123]
 
 Scenario: Ar05. Not remove if user is marked for deletion
-	Given I have this user created
-			| Email                           | Password | Active |
-			| {scenarioCode}@dontflymoney.com | password | true   |
-		And I login this user
-			| Email                           | Password |
-			| {scenarioCode}@dontflymoney.com | password |
-		And I have this two-factor data
+	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
 		And I set two-factor
@@ -91,13 +69,7 @@ Scenario: Ar05. Not remove if user is marked for deletion
 	Then I will receive this core error: UserDeleted
 
 Scenario: Ar06. Not remove if user requested wipe
-	Given I have this user created
-			| Email                           | Password | Active |
-			| {scenarioCode}@dontflymoney.com | password | true   |
-		And I login this user
-			| Email                           | Password |
-			| {scenarioCode}@dontflymoney.com | password |
-		And I have this two-factor data
+	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
 		And I set two-factor
@@ -107,3 +79,15 @@ Scenario: Ar06. Not remove if user requested wipe
 		But the user asked data wipe
 	When I try to remove two-factor
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Ar07. Not remove if not signed last contract
+	Given I have this two-factor data
+			| Secret | Code        | Password |
+			| 123    | {generated} | password |
+		And I set two-factor
+		And I have this two-factor data
+			| Password |
+			| password |
+		But there is a new contract
+	When I try to remove two-factor
+	Then I will receive this core error: NotSignedLastContract

@@ -4,31 +4,6 @@ Background:
 	Given test user login
 		And I enable Categories use
 
-Scenario: Zz01. List Logins
-	Given test user login
-		And I login the user
-		And I logoff the user
-		And I login the user
-		But there is a new contract
-	When I ask for current active logins
-	Then I will receive this core error: NotSignedLastContract
-
-Scenario: Zz02. Change Password
-	Given I pass this password
-			| Current Password | Password     | Retype Password |
-			| password         | new_password | new_password    |
-		But there is a new contract
-	When I try to change the password
-	Then I will receive this core error: NotSignedLastContract
-
-Scenario: Zz03. Update E-mail
-	Given I pass this new e-mail and password
-			| New E-mail              | Current Password |
-			| Aq003_@dontflymoney.com | password         |
-		But there is a new contract
-	When I try to change the e-mail
-	Then I will receive this core error: NotSignedLastContract
-
 Scenario: Zz04. Save Account
 	Given I have this account to create
 			| Name          | Yellow | Red |

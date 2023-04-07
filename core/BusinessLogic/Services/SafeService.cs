@@ -435,6 +435,9 @@ namespace DFM.BusinessLogic.Services
 				if (user.Control.WipeRequest != null)
 					throw Error.UserAskedWipe.Throw();
 
+				if (!IsLastContractAccepted(user))
+					throw Error.NotSignedLastContract.Throw();
+
 				repos.User.SaveTFA(user, info.Secret);
 			});
 		}
@@ -450,6 +453,9 @@ namespace DFM.BusinessLogic.Services
 
 				if (user.Control.WipeRequest != null)
 					throw Error.UserAskedWipe.Throw();
+
+				if (!IsLastContractAccepted(user))
+					throw Error.NotSignedLastContract.Throw();
 
 				if (!repos.User.VerifyPassword(user, currentPassword))
 					throw Error.TFAWrongPassword.Throw();
@@ -556,6 +562,9 @@ namespace DFM.BusinessLogic.Services
 
 				if (user.Control.WipeRequest != null)
 					throw Error.UserAskedWipe.Throw();
+
+				if (!IsLastContractAccepted(user))
+					throw Error.NotSignedLastContract.Throw();
 
 				repos.User.UseTFAAsPassword(user, use);
 			});
