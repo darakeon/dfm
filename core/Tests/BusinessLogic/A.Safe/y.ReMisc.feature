@@ -43,3 +43,10 @@ Scenario: Ay06. Ask with wrong password
 		And regenerate misc
 	Then I will receive this core error: WrongPassword
 		And the user will not have changed misc
+
+Scenario: Ay07. Ask not signed last contract
+	Given there is a new contract
+	When pass a password that is right
+		And regenerate misc
+	Then I will receive this core error: NotSignedLastContract
+		And the user will not have changed misc

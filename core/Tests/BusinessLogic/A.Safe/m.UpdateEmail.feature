@@ -51,3 +51,11 @@ Scenario: Am05. Not update if user requested wipe
 		But the user asked data wipe
 	When I try to change the e-mail
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Am06. Update E-mail without signing contract
+	Given I pass this new e-mail and password
+			| New E-mail                          | Current Password |
+			| new_{scenarioCode}@dontflymoney.com | password         |
+		But there is a new contract
+	When I try to change the e-mail
+	Then I will receive this core error: NotSignedLastContract

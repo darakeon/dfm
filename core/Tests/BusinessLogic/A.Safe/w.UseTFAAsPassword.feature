@@ -2,8 +2,8 @@
 
 Background:
 	Given I have this user created
-			| Email                           | Password | Active |
-			| {scenarioCode}@dontflymoney.com | password | true   |
+			| Email                           | Password | Active | Signed |
+			| {scenarioCode}@dontflymoney.com | password | true   | true   |
 		And I have this user data
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |
@@ -49,3 +49,13 @@ Scenario: Aw06. Not deactivate if user requested wipe
 	Given the user asked data wipe
 	When I set to not use TFA as password
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Aw07. Not activate if not signed last contract
+	Given there is a new contract
+	When I set to use TFA as password
+	Then I will receive this core error: NotSignedLastContract
+
+Scenario: Aw08. Not deactivate if not signed last contract
+	Given there is a new contract
+	When I set to not use TFA as password
+	Then I will receive this core error: NotSignedLastContract

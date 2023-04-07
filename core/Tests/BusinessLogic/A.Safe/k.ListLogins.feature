@@ -33,3 +33,12 @@ Scenario: Ak04. Uninvited if no user is logged in
 		And I logoff the user
 	When I ask for current active logins
 	Then I will receive this core error: Uninvited
+
+Scenario: Ak05. List logins without signing contract
+	Given test user login
+		And I login the user
+		And I logoff the user
+		And I login the user
+		But there is a new contract
+	When I ask for current active logins
+	Then I will receive this core error: NotSignedLastContract
