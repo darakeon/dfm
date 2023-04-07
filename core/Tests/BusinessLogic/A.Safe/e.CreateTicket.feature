@@ -35,8 +35,8 @@ Scenario: Ae03. Validate with null password
 
 Scenario: Ae04. Validate with wrong e-mail
 	Given I have this user data
-			| Email                       | Password |
-			| dont_exist@dontflymoney.com | password |
+			| Email                                      | Password |
+			| dont_exist_{scenarioCode}@dontflymoney.com | password |
 	When I try to get the ticket
 	Then I will receive this core error: InvalidUser
 		And I will not receive the ticket
