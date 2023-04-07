@@ -1,6 +1,6 @@
-﻿Feature: As. Remove two factor authentication
+﻿Feature: Ar. Remove two factor authentication
 
-Scenario: As01. With wrong password
+Scenario: Ar01. With wrong password
 	Given I have this user created
 			| Email                           | Password | Active |
 			| {scenarioCode}@dontflymoney.com | password | true   |
@@ -18,7 +18,7 @@ Scenario: As01. With wrong password
 	Then I will receive this core error: TFAWrongPassword
 		And the two-factor will be [123]
 
-Scenario: As02. With all info right
+Scenario: Ar02. With all info right
 	Given I have this user created
 			| Email                           | Password | Active |
 			| {scenarioCode}@dontflymoney.com | password | true   |
@@ -36,7 +36,7 @@ Scenario: As02. With all info right
 	Then I will receive no core error
 		And the two-factor will be empty
 
-Scenario: As03. With empty password
+Scenario: Ar03. With empty password
 	Given I have this user created
 			| Email                           | Password | Active |
 			| {scenarioCode}@dontflymoney.com | password | true   |
@@ -54,7 +54,7 @@ Scenario: As03. With empty password
 	Then I will receive this core error: TFAWrongPassword
 		And the two-factor will be [123]
 
-Scenario: As04. With null password
+Scenario: Ar04. With null password
 	Given I have this user created
 			| Email                           | Password | Active |
 			| {scenarioCode}@dontflymoney.com | password | true   |
@@ -72,7 +72,7 @@ Scenario: As04. With null password
 	Then I will receive this core error: TFAWrongPassword
 		And the two-factor will be [123]
 
-Scenario: As05. Not remove if user is marked for deletion
+Scenario: Ar05. Not remove if user is marked for deletion
 	Given I have this user created
 			| Email                           | Password | Active |
 			| {scenarioCode}@dontflymoney.com | password | true   |
@@ -90,7 +90,7 @@ Scenario: As05. Not remove if user is marked for deletion
 	When I try to remove two-factor
 	Then I will receive this core error: UserDeleted
 
-Scenario: As06. Not remove if user requested wipe
+Scenario: Ar06. Not remove if user requested wipe
 	Given I have this user created
 			| Email                           | Password | Active |
 			| {scenarioCode}@dontflymoney.com | password | true   |

@@ -1,6 +1,6 @@
-﻿Feature: Ar. Update two factor authentication
+﻿Feature: Aq. Update two factor authentication
 
-Scenario: Ar01. With empty secret key
+Scenario: Aq01. With empty secret key
 	Given I have this user created
 			| Email                 | Password | Active |
 			| Ar01@dontflymoney.com | password | true   |
@@ -14,7 +14,7 @@ Scenario: Ar01. With empty secret key
 	Then I will receive this core error: TFAEmptySecret
 		And the two-factor will be empty
 
-Scenario: Ar02. With wrong code
+Scenario: Aq02. With wrong code
 	Given I have this user created
 			| Email                 | Password | Active |
 			| Ar02@dontflymoney.com | password | true   |
@@ -28,7 +28,7 @@ Scenario: Ar02. With wrong code
 	Then I will receive this core error: TFAWrongCode
 		And the two-factor will be empty
 
-Scenario: Ar03. With wrong password
+Scenario: Aq03. With wrong password
 	Given I have this user created
 			| Email                 | Password | Active |
 			| Ar03@dontflymoney.com | password | true   |
@@ -42,7 +42,7 @@ Scenario: Ar03. With wrong password
 	Then I will receive this core error: TFAWrongPassword
 		And the two-factor will be empty
 
-Scenario: Ar04. With all info right
+Scenario: Aq04. With all info right
 	Given I have this user created
 			| Email                 | Password | Active |
 			| Ar04@dontflymoney.com | password | true   |
@@ -56,7 +56,7 @@ Scenario: Ar04. With all info right
 	Then I will receive no core error
 		And the two-factor will be [123]
 
-Scenario: Ar05. Update two-factor
+Scenario: Aq05. Update two-factor
 	Given I have this user created
 			| Email                 | Password | Active |
 			| Ar05@dontflymoney.com | password | true   |
@@ -74,7 +74,7 @@ Scenario: Ar05. Update two-factor
 	Then I will receive no core error
 		And the two-factor will be [456]
 
-Scenario: Ar06. With empty password
+Scenario: Aq06. With empty password
 	Given I have this user created
 			| Email                 | Password | Active |
 			| Ar06@dontflymoney.com | password | true   |
@@ -88,7 +88,7 @@ Scenario: Ar06. With empty password
 	Then I will receive this core error: TFAWrongPassword
 		And the two-factor will be empty
 
-Scenario: Ar07. With null password
+Scenario: Aq07. With null password
 	Given I have this user created
 			| Email                 | Password | Active |
 			| Ar03@dontflymoney.com | password | true   |
@@ -102,13 +102,13 @@ Scenario: Ar07. With null password
 	Then I will receive this core error: TFAWrongPassword
 		And the two-factor will be empty
 
-Scenario: Ar08. Not update if user is marked for deletion
+Scenario: Aq08. Not update if user is marked for deletion
 	Given I have this user created
 			| Email                 | Password | Active |
-			| ar08@dontflymoney.com | password | true   |
+			| aq08@dontflymoney.com | password | true   |
 		And I login this user
 			| Email                 | Password |
-			| ar08@dontflymoney.com | password |
+			| aq08@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
@@ -116,13 +116,13 @@ Scenario: Ar08. Not update if user is marked for deletion
 	When I try to set two-factor
 	Then I will receive this core error: UserDeleted
 
-Scenario: Ar09. Not update if user requested wipe
+Scenario: Aq09. Not update if user requested wipe
 	Given I have this user created
 			| Email                 | Password | Active |
-			| ar09@dontflymoney.com | password | true   |
+			| aq09@dontflymoney.com | password | true   |
 		And I login this user
 			| Email                 | Password |
-			| ar09@dontflymoney.com | password |
+			| aq09@dontflymoney.com | password |
 		And I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
