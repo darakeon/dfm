@@ -76,3 +76,9 @@ Scenario: Bq11. Error on stop sending move mail if user requested wipe
 		But the user asked data wipe
 	When I unsubscribe move mail
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Bq12. Error on stop sending move mail if not signed last contract
+	Given I pass a valid UnsubscribeMoveMail token
+		But there is a new contract
+	When I unsubscribe move mail
+	Then I will receive this core error: NotSignedLastContract

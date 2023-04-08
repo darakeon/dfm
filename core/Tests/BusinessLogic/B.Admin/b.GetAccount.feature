@@ -27,3 +27,10 @@ Scenario: Bb04. Not get account if user requested wipe
 		But the user asked data wipe
 	When I try to get the account by its url
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Bb05. Not get account without signing contract
+	Given I have an account
+		And I pass a valid account url
+		But there is a new contract
+	When I try to get the account by its url
+	Then I will receive this core error: NotSignedLastContract

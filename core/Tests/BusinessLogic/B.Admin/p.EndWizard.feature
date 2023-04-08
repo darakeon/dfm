@@ -22,3 +22,8 @@ Scenario: Bp04. Not end wizard if user requested wipe
 	Given the user asked data wipe
 	When I end wizard
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Bp05. Not end wizard if not signed last contract
+	Given there is a new contract
+	When I end wizard
+	Then I will receive this core error: NotSignedLastContract

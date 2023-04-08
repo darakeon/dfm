@@ -69,3 +69,13 @@ Scenario: Bl05. Not get accounts if user requested wipe
 		But the user asked data wipe
 	When ask for the not active account list
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Bl06. Not get active accounts without signing contract
+	Given there is a new contract
+	When ask for the active account list
+	Then I will receive this core error: NotSignedLastContract
+
+Scenario: Bl07. Not get not active accounts without signing contract
+	Given there is a new contract
+	When ask for the not active account list
+	Then I will receive this core error: NotSignedLastContract

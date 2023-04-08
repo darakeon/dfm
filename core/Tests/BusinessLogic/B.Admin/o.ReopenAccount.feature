@@ -42,3 +42,10 @@ Scenario: Bo06. Not reopen an Account if user requested wipe
 		But the user asked data wipe
 	When I try to reopen the account
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Bo07. Not reopen an Account if not signed last contract
+	Given I give a url of the account Bo07 with moves
+		And I already have closed the account
+		But there is a new contract
+	When I try to reopen the account
+	Then I will receive this core error: NotSignedLastContract

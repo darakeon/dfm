@@ -55,3 +55,9 @@ Scenario: Bn09. Not change system Theme if user requested wipe
 		But the user asked data wipe
 	When I try to change the Theme
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Bn10. Not change system Theme if not signed last contract
+	Given a theme DarkMagic
+		But there is a new contract
+	When I try to change the Theme
+	Then I will receive this core error: NotSignedLastContract

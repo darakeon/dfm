@@ -141,3 +141,14 @@ Scenario: Br12. Category to keep is disabled
 	Then I will receive this core error: DisabledCategory
 		And category CatA will exist
 		And category CatB will exist
+
+Scenario: Br13. New contract not signed
+	Given I have these categories
+			| Name |
+			| CatA |
+			| CatB |
+		But there is a new contract
+	When unify categories CatB to CatA
+	Then I will receive this core error: NotSignedLastContract
+		And category CatA will exist
+		And category CatB will exist

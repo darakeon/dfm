@@ -367,7 +367,11 @@ namespace DFM.BusinessLogic.Services
 					token, SecurityAction.UnsubscribeMoveMail
 				);
 
-				var settings = security.User.Settings;
+				var user = security.User;
+				if (!parent.Safe.IsLastContractAccepted(user))
+					throw Error.NotSignedLastContract.Throw();
+
+				var settings = user.Settings;
 				settings.SendMoveEmail = false;
 				repos.Settings.Update(settings);
 

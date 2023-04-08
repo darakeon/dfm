@@ -78,3 +78,11 @@ Scenario: Bf08. Not save Category if user requested wipe
 		But the user asked data wipe
 	When I try to save the category
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Bf09. Not save Category without signing contract
+	Given I have this category to create
+			| Name          |
+			| Category Bf09 |
+		But there is a new contract
+	When I try to save the category
+	Then I will receive this core error: NotSignedLastContract
