@@ -74,3 +74,9 @@ Scenario: Be11. Not delete Account if user requested wipe
 		But the user asked data wipe
 	When I try to delete the account
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Be12. Not delete Account without signing contract
+	Given I give a url of the account Be12 without moves
+		But there is a new contract
+	When I try to delete the account
+	Then I will receive this core error: NotSignedLastContract

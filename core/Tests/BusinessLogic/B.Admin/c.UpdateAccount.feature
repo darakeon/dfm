@@ -86,3 +86,14 @@ Scenario: Bc07. Not change if user requested wipe
 			| Account Bc07.2 |
 		And I try to update the account
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Bc08. Not change without signing contract
+	Given I have this account
+			| Name         | Yellow | Red |
+			| Account Bc08 |        |     |
+		But there is a new contract
+	When I make this changes to the account
+			| Name            | Yellow | Red |
+			| Bc08 - new name |        |     |
+		And I try to update the account
+	Then I will receive this core error: NotSignedLastContract

@@ -82,3 +82,11 @@ Scenario: Bm06. Not get categories if user requested wipe
 		But the user asked data wipe
 	When ask for all the category list
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Bm07. Not get categories without signing contract
+	Given I have this category
+			| Name          |
+			| Category Bm07 |
+		But there is a new contract
+	When ask for all the category list
+	Then I will receive this core error: NotSignedLastContract

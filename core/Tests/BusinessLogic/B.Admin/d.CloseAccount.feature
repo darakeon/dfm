@@ -66,3 +66,9 @@ Scenario: Bd09. Not close Account if user requested wipe
 		But the user asked data wipe
 	When I try to close the account
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Bd10. Not close Account without signing contract
+	Given I give a url of the account Bd10 with moves
+		But there is a new contract
+	When I try to close the account
+	Then I will receive this core error: NotSignedLastContract

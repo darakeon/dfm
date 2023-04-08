@@ -33,3 +33,9 @@ Scenario: Bj05. Not enable Category if user requested wipe
 		But the user asked data wipe
 	When I try to enable the category
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Bj06. Enable Category without signing contract
+	Given I give the disabled category Bj06
+		But there is a new contract
+	When I try to enable the category
+	Then I will receive this core error: NotSignedLastContract

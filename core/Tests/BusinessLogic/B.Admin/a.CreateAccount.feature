@@ -136,3 +136,11 @@ Scenario: Ba15. Not save account if user requested wipe
 		But the user asked data wipe
 	When I try to save the account
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Ba16. Not create account without signing contract
+	Given I have this account to create
+			| Name         | Yellow | Red |
+			| Account Ba16 |        |     |
+		But there is a new contract
+	When I try to save the account
+	Then I will receive this core error: NotSignedLastContract

@@ -73,3 +73,14 @@ Scenario: Bh06. Not update if user requested wipe
 		But the user asked data wipe
 	When I try to update the category
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Bh07. Not update without signing contract
+	Given I have this category
+			| Name          |
+			| Category Bh07 |
+		And I make this changes to the category
+			| Name            |
+			| Bh07 - new name |
+		But there is a new contract
+	When I try to update the category
+	Then I will receive this core error: NotSignedLastContract

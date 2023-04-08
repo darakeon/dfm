@@ -190,3 +190,33 @@ Scenario: Bk25. Enable accounts signs
 		And the account list will have sign
 		And the year report will have sign
 		And the month report will have sign
+
+Scenario: Bk26. Update Settings - Categories Disable without signing contract
+	Given there is a new contract
+	When I try to disable Categories use
+	Then I will receive this core error: NotSignedLastContract
+
+Scenario: Bk27. Update Settings - Categories Enable without signing contract
+	Given there is a new contract
+	When I try to enable Categories use
+	Then I will receive this core error: NotSignedLastContract
+
+Scenario: Bk28. Update Settings - Move Send E-mail Disable without signing contract
+	Given there is a new contract
+	When I try to disable move send e-mail
+	Then I will receive this core error: NotSignedLastContract
+
+Scenario: Bk29. Update Settings - Move Send E-mail Enable without signing contract
+	Given there is a new contract
+	When I try to enable move send e-mail
+	Then I will receive this core error: NotSignedLastContract
+
+Scenario: Bk30. Update Settings - Change Language without signing contract
+	Given there is a new contract
+	When I try to change the language to en-US
+	Then I will receive this core error: NotSignedLastContract
+
+Scenario: Bk31. Update Settings - Change TimeZone without signing contract
+	Given there is a new contract
+	When I try to change the timezone to UTC-03:00
+	Then I will receive this core error: NotSignedLastContract

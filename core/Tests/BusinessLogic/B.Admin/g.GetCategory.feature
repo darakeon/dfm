@@ -28,3 +28,9 @@ Scenario: Bg04. Not get category if user requested wipe
 		But the user asked data wipe
 	When I try to get the category by its name
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Bg05. Not get Category without signing contract
+	Given I pass a valid category name
+		But there is a new contract
+	When I try to get the category by its name
+	Then I will receive this core error: NotSignedLastContract
