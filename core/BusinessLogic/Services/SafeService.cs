@@ -387,11 +387,7 @@ namespace DFM.BusinessLogic.Services
 			if (contract == null)
 				return true;
 
-			var acceptance = inTransaction("CreateAcceptance", () =>
-				repos.Acceptance.GetOrCreate(user, contract)
-			);
-
-			return acceptance?.Accepted ?? false;
+			return repos.Acceptance.IsAccepted(user, contract);
 		}
 
 		public void AcceptContract()

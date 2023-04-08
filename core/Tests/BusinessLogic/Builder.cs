@@ -75,7 +75,16 @@ namespace DFM.BusinessLogic.Tests
 
 		private Acceptance acceptanceFor(User user)
 		{
-			return repos.Acceptance.GetOrCreate(user, contract());
+			var acceptance = new Acceptance
+			{
+				Contract = contract(),
+				User = user,
+				CreateDate = DateTime.Now
+			};
+
+			repos.Acceptance.SaveOrUpdate(acceptance);
+
+			return acceptance;
 		}
 
 		private Account accountFor(User user)

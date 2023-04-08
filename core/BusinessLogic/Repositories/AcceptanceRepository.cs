@@ -5,9 +5,15 @@ namespace DFM.BusinessLogic.Repositories
 {
 	internal class AcceptanceRepository : Repo<Acceptance>
 	{
+		internal Boolean IsAccepted(User user, Contract contract)
+		{
+			var acceptance = get(user, contract);
+			return acceptance is {Accepted: true};
+		}
+
 		internal Boolean Accept(User user, Contract contract)
 		{
-			var acceptance = GetOrCreate(user, contract);
+			var acceptance = getOrCreate(user, contract);
 
 			if (acceptance == null || acceptance.Accepted)
 				return false;
@@ -20,7 +26,7 @@ namespace DFM.BusinessLogic.Repositories
 			return true;
 		}
 
-		internal Acceptance GetOrCreate(User user, Contract contract)
+		private Acceptance getOrCreate(User user, Contract contract)
 		{
 			if (user == null || contract == null)
 				return null;
