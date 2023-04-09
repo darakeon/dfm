@@ -720,7 +720,7 @@ jobs:
           name: run tests
           command: python manage.py test deleted_users
 
-  version_change:
+  audit_version_changer:
     docker:
       - image: rust
     resource_class: small
@@ -733,7 +733,7 @@ jobs:
             - "15:78:d5:ca:e6:7d:80:e6:2d:1f:35:a1:f3:9d:1b:48"
       - restore_cache:
           keys:
-            - cargo-version-{{ checksum "version/Cargo.toml" }}
+            - cargo-version-{{ checksum "version/Cargo.toml" }}-{{ checksum "version/Cargo.lock" }}
       - run:
           name: install
           path: version
@@ -743,19 +743,37 @@ jobs:
             else
               echo "cargo audit already installed"
             fi
+      - save_cache:
+          key: cargo-version-{{ checksum "version/Cargo.toml" }}-{{ checksum "version/Cargo.lock" }}
+          paths:
+            - /usr/local/cargo/bin/
+            - /usr/local/cargo/registry/
       - run:
           name: audit
           path: version
           command: cargo audit && echo "All OK!"
+      - persist_to_workspace:
+          root: .
+          paths:
+            - version
+
+  change_version:
+    docker:
+      - image: rust
+    resource_class: small
+    environment:
+      RUST_BACKTRACE: 1
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - restore_cache:
+          keys:
+            - cargo-version-{{ checksum "version/Cargo.toml" }}-{{ checksum "version/Cargo.lock" }}
       - run:
           name: build
           path: version
           command: cargo build
-      - save_cache:
-          key: cargo-version-{{ checksum "version/Cargo.toml" }}
-          paths:
-            - /usr/local/cargo/bin/
-            - /usr/local/cargo/registry/
       - run:
           name: version change
           path: version
@@ -868,7 +886,10 @@ workflows:
       - test_midna:
           requires:
             - build_midna
-      - version_change:
+      - audit_version_changer:
+          requires:
+            - test_ci
+      - change_version:
           filters:
             branches:
               only: /^\d+\.\d+\.\d+\.\d+$/
@@ -901,3 +922,4 @@ workflows:
             - build_midna
             - audit_midna
             - test_midna
+            - audit_version_changer
