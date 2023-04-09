@@ -128,3 +128,10 @@ Scenario: Ce12. Not delete if user requested wipe
 		But the user asked data wipe
 	When I try to delete the move
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Ce13. Not delete if not signed last contract
+	Given I have a move
+		And I pass valid Move ID
+		But there is a new contract
+	When I try to delete the move
+	Then I will receive this core error: NotSignedLastContract

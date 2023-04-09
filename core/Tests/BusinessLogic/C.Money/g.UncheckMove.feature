@@ -102,3 +102,9 @@ Scenario: Cg13. Not mark as not checked if user requested wipe
 		But the user asked data wipe
 	When I try to mark it as not checked for account Out
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Cg14. Not mark as not checked if not signed last contract
+	Given I have a move with value 10 (Out)
+		But there is a new contract
+	When I try to mark it as not checked for account Out
+	Then I will receive this core error: NotSignedLastContract

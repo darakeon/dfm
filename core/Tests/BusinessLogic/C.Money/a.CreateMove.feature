@@ -748,3 +748,15 @@ Scenario: Ca47. Not save if user requested wipe
 		But the user asked data wipe
 	When I try to save the move
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Ca48. Not save if not signed last contract
+	Given I have this move to create
+			| Description | Date       | Nature | Value |
+			| Move Ca48   | 2012-03-31 | Out    | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		But there is a new contract
+	When I try to save the move
+	Then I will receive this core error: NotSignedLastContract
