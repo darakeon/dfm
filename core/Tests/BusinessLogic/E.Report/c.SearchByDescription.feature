@@ -76,3 +76,8 @@ Scenario: Ec10. Not search if user requested wipe
 	Given the user asked data wipe
 	When I try to search by description Choco
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Ec11. Not search if not signed last contract
+	Given there is a new contract
+	When I try to search by description Choco
+	Then I will receive this core error: NotSignedLastContract

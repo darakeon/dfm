@@ -18,7 +18,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Fix menu not opening
 - [ ] Add admin to nginx with production settings
 - [x] `230409>230409` Fix acceptance check bug for calling inside another transaction
-- [ ] `230407>......` Distribute tests of operations with not signed contract
+- [x] `230407>230409` Distribute tests of operations with not signed contract
 - [ ] `230407>......` Add option of sending CSV to user e-mail (+ add link to purge csv)
 - [x] `230203>230207` Use hexadecimal of hash email in deleted account CSV name
 - [x] `230127>230205` Hash email after wipe in the wipe history table
