@@ -4,68 +4,6 @@ Background:
 	Given test user login
 		And I enable Categories use
 
-Scenario: Zz23. Save Move
-	Given I have a category
-		And I have two accounts
-		And I have this move to create
-			| Description | Date       | Nature | Value |
-			| Move Ca94   | 2012-03-31 | Out    | 10    |
-		And it has no Details
-		And it has a Category
-		And it has an Account Out
-		And it has no Account In
-		But there is a new contract
-	When I try to save the move
-	Then I will receive this core error: NotSignedLastContract
-
-Scenario: Zz24. Update Move
-	Given I have a category
-		And I have two accounts
-		And I have a move with value 10 (Out)
-		And I change the move date in -1 day
-		But there is a new contract
-	When I update the move
-	Then I will receive this core error: NotSignedLastContract
-
-Scenario: Zz25. Select Move
-	Given I enable Categories use
-		And I have two accounts
-		And I have a category
-		And I have a move
-		And I pass valid Move ID
-		But there is a new contract
-	When I try to get the move
-	Then I will receive this core error: NotSignedLastContract
-
-Scenario: Zz27. Delete Move
-	Given I have a category
-		And I have two accounts
-		And I have a move with value 10 (In)
-		And I pass valid Move ID
-		But there is a new contract
-	When I try to delete the move
-	Then I will receive this core error: NotSignedLastContract
-
-Scenario: Zz28. Check Move
-	Given I have a category
-		And I have two accounts
-		And I enable move check
-		And I have a move with value 10 (Out)
-		And the move is checked for account Out
-		But there is a new contract
-	When I try to mark it as checked for account Out
-	Then I will receive this core error: NotSignedLastContract
-
-Scenario: Zz29. Uncheck Move
-	Given I have a category
-		And I have two accounts
-		And I enable move check
-		And I have a move with value 10 (Out)
-		And the move is checked for account Out
-		But there is a new contract
-	When I try to mark it as not checked for account Out
-	Then I will receive this core error: NotSignedLastContract
-
 Scenario: Zz30. Save Schedule
 	Given I have a category
 		And I have two accounts

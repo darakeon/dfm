@@ -328,3 +328,10 @@ Scenario: Cb23. Not update if user requested wipe
 	When I change the move value to 20
 		And I update the move
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Cb24. Not update if not signed last contract
+	Given I have a move with value 10 (Out)
+		But there is a new contract
+	When I change the move value to 20
+		And I update the move
+	Then I will receive this core error: NotSignedLastContract

@@ -104,3 +104,9 @@ Scenario: Cf13. Not mark as checked if user requested wipe
 		But the user asked data wipe
 	When I try to mark it as checked for account Out
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Cf14. Not mark as checked if not signed last contract
+	Given I have a move with value 10 (Out)
+		But there is a new contract
+	When I try to mark it as checked for account Out
+	Then I will receive this core error: NotSignedLastContract

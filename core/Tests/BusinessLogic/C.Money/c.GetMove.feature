@@ -52,3 +52,9 @@ Scenario: Cc06. Not get the Move if user requested wipe
 		But the user asked data wipe
 	When I try to get the move
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Cc07. Not get if not signed last contract
+	Given I pass valid Move ID
+		But there is a new contract
+	When I try to get the move
+	Then I will receive this core error: NotSignedLastContract
