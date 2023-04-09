@@ -199,3 +199,12 @@ Scenario: Ea12. Not get report if user requested wipe
 		But the user asked data wipe
 	When I try to get the month report
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Ea13. Not get report if not signed last contract
+	Given I pass a valid account url
+		And I pass this date
+			| Month | Year |
+			| 4     | 2023 |
+		But there is a new contract
+	When I try to get the month report
+	Then I will receive this core error: NotSignedLastContract

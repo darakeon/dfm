@@ -22,3 +22,8 @@ Scenario: Ef04. Not disable tip if user logoff
 	Given I logoff the user
 	When disable tip TestTip1
 	Then I will receive this core error: Uninvited
+
+Scenario: Ef05. Not disable tip if not signed last contract
+	Given there is a new contract
+	When disable tip TestTip1
+	Then I will receive this core error: NotSignedLastContract

@@ -124,3 +124,12 @@ Scenario: Ed10. Not get report if user logoff
 		But I logoff the user
 	When I try to get the category report
 	Then I will receive this core error: Uninvited
+
+Scenario: Ed11. Not get report if not signed last contract
+	Given I pass a valid account url
+		And I pass this date
+			| Month | Year |
+			| 4     | 2023 |
+		But there is a new contract
+	When I try to get the category report
+	Then I will receive this core error: NotSignedLastContract

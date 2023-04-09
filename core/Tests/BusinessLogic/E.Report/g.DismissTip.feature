@@ -29,3 +29,8 @@ Scenario: Eg05. Not dismiss tip if user logoff
 	Given I logoff the user
 	When dismiss tip
 	Then I will receive this core error: Uninvited
+
+Scenario: Eg06. Not dismiss tip if not signed last contract
+	Given there is a new contract
+	When dismiss tip
+	Then I will receive this core error: NotSignedLastContract

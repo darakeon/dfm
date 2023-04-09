@@ -114,3 +114,12 @@ Scenario: Eb06. Not get year report if user requested wipe
 		But the user asked data wipe
 	When I try to get the year report
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Eb07. Not get year report if not signed last contract
+	Given I pass a valid account url
+		And I pass this date
+			| Year |
+			| 2023 |
+		But there is a new contract
+	When I try to get the year report
+	Then I will receive this core error: NotSignedLastContract
