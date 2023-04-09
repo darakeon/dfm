@@ -1,4 +1,4 @@
-  version_change:
+  change_version:
     docker:
       - image: rust
     resource_class: small
@@ -6,34 +6,15 @@
       RUST_BACKTRACE: 1
     steps:
       - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - "15:78:d5:ca:e6:7d:80:e6:2d:1f:35:a1:f3:9d:1b:48"
+      - attach_workspace:
+          at: ./
       - restore_cache:
           keys:
-            - cargo-version-{{ checksum "version/Cargo.toml" }}
-      - run:
-          name: install
-          path: version
-          command: |
-            if [ ! -f /usr/local/cargo/bin/cargo-audit ]; then
-              cargo install cargo-audit
-            else
-              echo "cargo audit already installed"
-            fi
-      - run:
-          name: audit
-          path: version
-          command: cargo audit && echo "All OK!"
+            - cargo-version-{{ checksum "version/Cargo.toml" }}-{{ checksum "version/Cargo.lock" }}
       - run:
           name: build
           path: version
           command: cargo build
-      - save_cache:
-          key: cargo-version-{{ checksum "version/Cargo.toml" }}
-          paths:
-            - /usr/local/cargo/bin/
-            - /usr/local/cargo/registry/
       - run:
           name: version change
           path: version

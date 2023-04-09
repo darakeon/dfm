@@ -87,7 +87,10 @@ workflows:
       - test_midna:
           requires:
             - build_midna
-      - version_change:
+      - audit_version_changer:
+          requires:
+            - test_ci
+      - change_version:
           filters:
             branches:
               only: /^\d+\.\d+\.\d+\.\d+$/
@@ -120,3 +123,4 @@ workflows:
             - build_midna
             - audit_midna
             - test_midna
+            - audit_version_changer
