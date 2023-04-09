@@ -2,8 +2,8 @@
 
 Background:
 	Given I have this user created
-			| Email                           | Password | Active |
-			| {scenarioCode}@dontflymoney.com | password | true   |
+			| Email                           | Password | Active | Signed |
+			| {scenarioCode}@dontflymoney.com | password | true   | true   |
 		And I have this user data
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |
