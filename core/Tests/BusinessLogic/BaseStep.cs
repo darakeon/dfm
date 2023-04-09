@@ -213,7 +213,9 @@ namespace DFM.BusinessLogic.Tests
 
 		protected static String getTicketKey()
 		{
-			return instance.mainTicket ??= Token.New();
+			return instance == null
+				? null
+				: instance.mainTicket ??= Token.New();
 		}
 
 		protected void resetTicket()

@@ -152,7 +152,20 @@ namespace DFM.BusinessLogic.Tests
 
 			service = new ServiceAccess(getTicket, getSite);
 
+			createContract();
+
 			PlainText.Initialize(runPath);
+		}
+
+		private static void createContract()
+		{
+			var contract = new Contract
+			{
+				BeginDate = DateTime.UtcNow,
+				Version = "0.0.0.0",
+			};
+
+			repos.Contract.SaveOrUpdate(contract);
 		}
 
 		[AfterTestRun]
