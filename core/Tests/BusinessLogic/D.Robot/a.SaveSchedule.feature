@@ -625,3 +625,15 @@ Scenario: Da40. Not save if user requested wipe
 		But the user asked data wipe
 	When I try to save the schedule
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Da41. Not save if not signed last contract
+	Given I have this schedule to create
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da41   | 2023-04-09 | Out    | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		But there is a new contract
+	When I try to save the schedule
+	Then I will receive this core error: NotSignedLastContract

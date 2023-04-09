@@ -66,3 +66,8 @@ Scenario: Dd04. Not get schedules if user requested wipe
 	Given the user asked data wipe
 	When ask for the schedule list
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Dd05. Not get schedules if not signed last contract
+	Given there is a new contract
+	When ask for the schedule list
+	Then I will receive this core error: NotSignedLastContract
