@@ -95,9 +95,15 @@ namespace DFM.BusinessLogic.Tests
 		protected void robotRunSchedule()
 		{
 			createLogoffLoginRobot();
-
 			service.Robot.RunSchedule();
 			createLogoffLogin(userEmail);
+		}
+
+		protected void robotRunWipe(Action<String> action)
+		{
+			createLogoffLoginRobot();
+			service.Robot.WipeUsers(action);
+			resetTicket();
 		}
 
 		protected void createLogoffLoginRobot()

@@ -29,6 +29,9 @@ namespace DFM.BusinessLogic.Exceptions
 		UserEmailRequired = 217,
 		UserDeleted = 218,
 		UserAskedWipe = 219,
+		WipeInvalid = 220,
+		WipeUserAsked = 221,
+		WipeNoMoves = 222,
 
 		AccountNameRequired = 301,
 		AccountNameAlreadyExists = 302,

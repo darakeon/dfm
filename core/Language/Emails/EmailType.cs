@@ -7,5 +7,6 @@ namespace DFM.Language.Emails
 		Detail = -1,
 		RemovalReason = 3,
 		WipeNotice = 4,
+		CSVRecover = 5,
 	}
 }

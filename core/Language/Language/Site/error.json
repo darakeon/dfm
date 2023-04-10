@@ -94,6 +94,9 @@
 		"UserAskedWipe": "The owner of this data requested the deletion of it",
 		"CategoryUnifyFail": "Failed on unify categories, contact us",
 		"CannotMergeSameCategory": "To join two categories they must be different",
+		"WipeInvalid": "Email not found between wiped person data",
+		"WipeUserAsked": "Person asked for wipe, data was not kept",
+		"WipeNoMoves": "There was no moves to keep in the wipe moment",
 		"": null
 	},
 	"pt-BR": {
@@ -191,6 +194,9 @@
 		"UserAskedWipe": "A pessoa a quem esses dados pertencem solicitou a remoção dos mesmos",
 		"CategoryUnifyFail": "Falha ao unificar categorias, entre em contato conosco",
 		"CannotMergeSameCategory": "Para juntar duas categorias elas precisam ser diferentes",
+		"WipeInvalid": "E-mail não encontrado entre dados excluídos de pessoas",
+		"WipeUserAsked": "A pessoa pediu pela exclusão, os dados não foram mantidos",
+		"WipeNoMoves": "Não havia movimentações para serem mantidas no momento da exclusão",
 		"": null
 	}
 }

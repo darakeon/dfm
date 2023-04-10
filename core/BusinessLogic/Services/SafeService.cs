@@ -9,6 +9,7 @@ using DFM.Authentication;
 using DFM.BusinessLogic.Response;
 using DFM.Entities.Bases;
 using Keon.Util.Extensions;
+using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -604,6 +605,27 @@ namespace DFM.BusinessLogic.Services
 
 				repos.Control.ReMisc(user);
 			});
+		}
+
+		public void SendWipedUserCSV(String email, String password, Action<String> download)
+		{
+			var wipes = repos.Wipe.GetByUser(email, password);
+
+			wipes = wipes.Where(
+				w => w.Why != RemovalReason.PersonAsked
+			).ToList();
+
+			if (!wipes.Any())
+				throw Error.WipeUserAsked.Throw();
+
+			wipes = wipes.Where(
+				w => !String.IsNullOrEmpty(w.S3)
+			).ToList();
+
+			if (!wipes.Any())
+				throw Error.WipeNoMoves.Throw();
+
+			repos.Wipe.SendCSV(email, wipes, download);
 		}
 	}
 }

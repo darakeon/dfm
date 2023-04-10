@@ -133,5 +133,64 @@ namespace DFM.BusinessLogic.Repositories
 				.List.ToList()
 				.ForEach(repo.Delete);
 		}
+
+		public IList<Wipe> GetByUser(String email, String password)
+		{
+			var emailParts = email.Split("@");
+			if (emailParts.Length != 2)
+				throw Error.WipeInvalid.Throw();
+
+			var username = emailParts[0];
+			var domain = emailParts[1];
+			var usernameStart = username.Substring(0, 2);
+			var domainStart = domain.Substring(0, 3);
+
+			var wipes = Where(
+				w => w.UsernameStart == usernameStart
+					&& w.DomainStart == domainStart
+			).Where(
+				w => Crypt.Check(email, w.HashedEmail)
+					&& Crypt.Check(password, w.Password)
+			).ToList();
+
+			if (wipes.Count == 0)
+				throw Error.WipeInvalid.Throw();
+
+			return wipes;
+		}
+
+		public void SendCSV(String email, IList<Wipe> wipes, Action<String> download)
+		{
+			var dic = new Dictionary<String, String>
+			{
+				{ "Url", getUrl() },
+				{ "DateTime", DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm") },
+				{ "Count", wipes.Count.ToString() },
+			};
+
+			var format = Format.WipeCSVRecover();
+			var fileContent = format.Layout.Format(dic);
+
+			var sender = new Sender()
+				.To(email)
+				.Subject(format.Subject)
+				.Body(fileContent);
+
+			foreach (var wipe in wipes)
+			{
+				download(wipe.S3);
+				sender.Attach(wipe.S3);
+			}
+
+			try
+			{
+				sender.Send();
+			}
+			catch (MailError e)
+			{
+				throw Error.FailOnEmailSend.Throw(e);
+			}
+
+		}
 	}
 }

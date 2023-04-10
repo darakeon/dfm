@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
+using Keon.Eml;
 using Keon.TwoFactorAuth;
 using Keon.Util.Crypto;
 using NUnit.Framework;
@@ -93,6 +95,20 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			get => get<Misc>("Misc");
 			set => set("Misc", value);
 		}
+
+		private IDictionary<String, String> csvs
+		{
+			get
+			{
+				var dic = get<IDictionary<String, String>>("Misc");
+				if (dic != null) return dic;
+
+				dic = new Dictionary<String, String>();
+				set("Misc", dic);
+				return dic;
+			}
+		}
+
 		#endregion
 
 
@@ -791,6 +807,70 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		}
 		#endregion
 
+		#region SendWipedUserCSV
+
+		[Given(@"robot call wipe users")]
+		public void WhenRobotWipeUsers()
+		{
+			robotRunWipe(
+				path => csvs.Add(path, File.ReadAllText(path))
+			);
+		}
+
+		[When(@"ask wiped user csv")]
+		public void WhenAskWipedUserCsv(Table table)
+		{
+			var row = table.Rows[0];
+			var email = row["Email"]
+				.Replace("{scenarioCode}", scenarioCode);
+			var password = row["Password"];
+
+			try
+			{
+				service.Safe.SendWipedUserCSV(
+					email, password,
+					path => File.WriteAllText(path, csvs[path])
+				);
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[Then(@"the email with (\d+ )?csvs? will (not )?be sent")]
+		public void ThenCSVWill_BeSent(Int32 csvCount, Boolean csvSent)
+		{
+			var inboxPath = Path.Combine(
+				"..", "..", "..", "..", "..", "..", "inbox"
+			);
+			var inbox = new DirectoryInfo(inboxPath);
+
+			var emails = inbox.GetFiles("*.eml")
+				.Where(f => f.CreationTimeUtc >= testStart)
+				.Select(f => EmlReader.FromFile(f.FullName))
+				.Where(e => e.Headers["To"] == userEmail)
+				.Where(e => e.Subject == "Dados exportados")
+				.ToList();
+
+			if (csvSent)
+			{
+				Assert.AreEqual(1, emails.Count);
+
+				var countAttachments =
+					emails[0].Body
+						.Split("Content-Disposition: attachment")
+						.Length - 1;
+				Assert.AreEqual(csvCount, countAttachments);
+			}
+			else
+			{
+				Assert.AreEqual(0, emails.Count);
+			}
+		}
+
+		#endregion SendWipedUserCSV
+
 		#region MoreThanOne
 		[Given(@"I have (?:this user|these users) created")]
 		public void GivenIHaveThisUserCreated(Table table)
@@ -983,8 +1063,6 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 		}
 		#endregion
 
-
-
 		#region Contract
 		[Given(@"I have a contract")]
 		public void GivenIHaveAContract()
@@ -1069,8 +1147,6 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			Assert.AreEqual(expectAccepted, accepted);
 		}
 		#endregion Contract
-
-
 
 		#region TFA
 		public class UserTable
@@ -1245,7 +1321,6 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			Assert.AreEqual(valid, recordedValidated);
 		}
 		#endregion TFA
-
 
 		#region AskWipe
 		[Given(@"the user not active after (\d+) days")]
