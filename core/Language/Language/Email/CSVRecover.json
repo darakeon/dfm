@@ -1,0 +1,18 @@
+﻿{
+	"en-US": {
+		"Subject": "Data exported",
+		"Title": "Data exported",
+		"Notice": "As by requested at the website we are sending attached to this email the data exported from the system.",
+		"ReadTerms": "Read the terms of use at the website",
+		"ToUnderstand": "to understand more about data deletion",
+		"": null
+	},
+	"pt-BR": {
+		"Subject": "Dados exportados",
+		"Title": "Dados exportados",
+		"Notice": "Por requisição feita via site, estamos enviando em anexo dados exportados do sistema.",
+		"ReadTerms": "Leia os termos de uso no site",
+		"ToUnderstand": "para entender mais sobre a exclusão de dados",
+		"": null
+	}
+}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities;
+using DFM.Entities.Bases;
 using DFM.Language;
 using DFM.Language.Emails;
 using DFM.Entities.Enums;
@@ -35,13 +36,31 @@ namespace DFM.Email
 			return new(user, EmailType.WipeNotice, removalReason);
 		}
 
-		private Format(User user, EmailType type, Object layoutType)
+		public static Format WipeCSVRecover()
 		{
-			var settings = user.Settings;
-			var language = settings.Language;
-			var theme = settings.Theme;
-			var misc = user.GenerateMisc();
+			return new(
+				Defaults.SettingsLanguage,
+				Defaults.DefaultTheme,
+				Misc.Empty(),
+				EmailType.CSVRecover,
+				EmailType.CSVRecover
+			);
+		}
 
+		private Format(User user, EmailType type, Object layoutType)
+			: this(
+				user.Settings.Language,
+				user.Settings.Theme,
+				user.GenerateMisc(),
+				type,
+				layoutType
+			) { }
+
+		private Format(
+			String language, Theme theme, Misc misc,
+			EmailType type, Object layoutType
+		)
+		{
 			var layoutName = layoutType.ToString();
 			var replaces = getReplaces(type.ToString(), layoutName, language);
 

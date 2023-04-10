@@ -49,7 +49,6 @@ namespace DFM.Email
 			return this;
 		}
 
-		// ReSharper disable once UnusedMember.Global
 		public Sender Attach(String fileFullName)
 		{
 			files.Add(fileFullName);
@@ -94,7 +93,8 @@ namespace DFM.Email
 						{IsBodyHtml = true};
 
 				var attachments = files.Select(
-					fileFullName => new Attachment(fileFullName));
+					fileFullName => new Attachment(fileFullName)
+				);
 
 				foreach (var attachment in attachments)
 				{

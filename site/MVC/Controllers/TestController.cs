@@ -47,6 +47,7 @@ namespace DFM.MVC.Controllers
 					+ getLayout(Format.WipeNotice(fakeUser, RemovalReason.NoInteraction))
 					+ getLayout(Format.WipeNotice(fakeUser, RemovalReason.NotSignedContract))
 					+ getLayout(Format.WipeNotice(fakeUser, RemovalReason.PersonAsked))
+					+ getLayout(Format.WipeCSVRecover())
 					;
 
 			return View(result);

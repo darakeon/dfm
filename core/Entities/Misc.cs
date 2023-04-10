@@ -60,6 +60,7 @@ namespace DFM.Entities
 
 		public static Int32 RandomDNA() => new Random().Next(1, 512);
 		public static Misc Random() => new(RandomDNA());
+		public static Misc Empty() => new(0);
 
 		public override Boolean Equals(Object other)
 		{
