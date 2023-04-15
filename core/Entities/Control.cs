@@ -49,5 +49,15 @@ namespace DFM.Entities
 		{
 			return Active || Creation >= AllowedPeriod;
 		}
+
+		public override String ToString()
+		{
+			var kind =
+				IsAdm ? "adm" :
+				IsRobot ? "robot" :
+				"common";
+
+			return $"[{ID}] {kind}";
+		}
 	}
 }

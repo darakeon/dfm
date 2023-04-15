@@ -97,5 +97,10 @@ namespace DFM.Entities
 
 			return sum;
 		}
+
+		public override String ToString()
+		{
+			return $"[{ID}] [{Type}]";
+		}
 	}
 }

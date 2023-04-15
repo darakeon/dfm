@@ -137,7 +137,7 @@ namespace DFM.Entities
 
 		public override String ToString()
 		{
-			return Description;
+			return $"[{ID}] {Description}";
 		}
 	}
 }

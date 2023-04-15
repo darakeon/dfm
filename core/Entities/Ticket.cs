@@ -25,5 +25,9 @@ namespace DFM.Entities
 
 		public virtual User User { get; set; }
 
+		public override string ToString()
+		{
+			return $"[{ID}] ({User}) {Active}";
+		}
 	}
 }
