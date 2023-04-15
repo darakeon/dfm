@@ -13,9 +13,10 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (59)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (62)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
 | Delete data on app (legal requirement)                                         | :whale:  |  2  |  4  |  6  |                |
+| Add test for unifying categories used in closed accounts                       | :ant:    |  1  |  3  |  6  |                |
 | Expire tickets with more than 30 without access (add to contract)              | :sheep:  |  3  |  4  |  5  |                |
 | add snyk/clair check to docker containers                                      | :ant:    |  3  |  4  |  5  |                |
 | Add schedule anticipation                                                      | :whale:  |  2  |  3  |  5  |                |
@@ -44,6 +45,7 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Add tests to moves order at report                                             | :ant:    |  1  |  1  |  4  |                |
 | Change putJson to putSerializable/Parcelable at extras in android              | :ant:    |  1  |  1  |  4  |                |
 | Refactor Core Steps to improve their division to entities and given/when/then  | :ant:    |  1  |  1  |  4  |                |
+| Add transfer with conversion (value in/out)                                      :whale:  |  4  |  3  |  3  |                |
 | Add all android missing tests                                                  | :ant:    |  4  |  3  |  3  |                |
 | Replace XML at UI android by [compose jetpack]                                 | :ant:    |  4  |  3  |  3  |                |
 | Add accessibility to automated tests                                           | :ant:    |  4  |  3  |  3  |                |
@@ -57,6 +59,7 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Add auth by cellphone                                                          | :whale:  |  2  |  1  |  3  |                |
 | Add category url calculate by diacritics                                       | :sheep:  |  2  |  1  |  3  |                |
 | Create tests of sendreport                                                     | :ant:    |  2  |  1  |  3  |                |
+| Fix Update Settings tests that should be in other features                     | :ant:    |  2  |  1  |  3  |                |
 | Transform Error Logs notification into widget                                  | :ant:    |  2  |  1  |  3  |                |
 | Remove unused/duplicated errors                                                | :ant:    |  2  |  1  |  3  |                |
 | Check tests of inactive user                                                   | :ant:    |  2  |  1  |  3  |                |
