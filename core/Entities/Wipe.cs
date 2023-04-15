@@ -17,5 +17,10 @@ namespace DFM.Entities
 
 		public virtual String Password { get; set; }
 		public virtual String S3 { get; set; }
+
+		public override String ToString()
+		{
+			return $"[{ID}] {UsernameStart}...@{DomainStart}...";
+		}
 	}
 }

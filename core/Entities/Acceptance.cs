@@ -15,6 +15,9 @@ namespace DFM.Entities
 		public virtual User User { get; set; }
 		public virtual Contract Contract { get; set; }
 
-
+		public override String ToString()
+		{
+			return $"[{ID}] ({Contract}) by ({User}): {Accepted}";
+		}
 	}
 }

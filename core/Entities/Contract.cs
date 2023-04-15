@@ -12,5 +12,10 @@ namespace DFM.Entities
 		public virtual String Version { get; set; }
 
 		public virtual IList<Terms> TermsList { get; set; }
+
+		public override String ToString()
+		{
+			return $"[{ID}] {Version}";
+		}
 	}
 }

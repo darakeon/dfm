@@ -8,5 +8,10 @@ namespace DFM.Entities
 		public virtual Int64 ID { get; set; }
 		public virtual String Language { get; set; }
 		public virtual String Json { get; set; }
+
+		public override String ToString()
+		{
+			return $"[{ID}]";
+		}
 	}
 }
