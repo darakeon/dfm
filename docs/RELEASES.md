@@ -14,9 +14,10 @@ This is the list of project releases, past and current. To see tasks that are st
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="10.0.1.0"></a>10.0.1.0 :sheep: <sup>`8`</sup>
+## <a name="10.0.1.0"></a>10.0.1.0 :sheep: <sup>`9`</sup>
 - [ ] Fix menu not opening
 - [ ] Add admin to nginx with production settings
+- [ ] Fix terms to remove email contact and tell how to recover and delete csv
 - [x] `230409>230409` Fix acceptance check bug for calling inside another transaction
 - [x] `230407>230409` Distribute tests of operations with not signed contract
 - [ ] `230407>......` Add option of sending CSV to user e-mail (+ add link to purge csv)
