@@ -15,7 +15,7 @@ using DFM.Tests.Util;
 using Keon.Util.Extensions;
 using TechTalk.SpecFlow;
 
-namespace DFM.BusinessLogic.Tests
+namespace DFM.BusinessLogic.Tests.Steps
 {
 	public abstract class BaseStep : ContextHelper
 	{
@@ -189,7 +189,7 @@ namespace DFM.BusinessLogic.Tests
 			if (account != null) return account;
 
 			service.Admin.CreateAccount(
-				new AccountInfo {Name = url}
+				new AccountInfo { Name = url }
 			);
 
 			return repos.Account.GetByUrl(url, user);

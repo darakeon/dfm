@@ -15,7 +15,7 @@ using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using TK = Keon.Util.Extensions.Token;
 
-namespace DFM.BusinessLogic.Tests.A.Safe
+namespace DFM.BusinessLogic.Tests.Steps
 {
 	[Binding]
 	public class SafeStep : BaseStep
@@ -478,7 +478,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 			{
 				service.Safe.TestSecurityToken(token, action);
 			}
-			catch(CoreError e)
+			catch (CoreError e)
 			{
 				error = e;
 			}
@@ -1164,7 +1164,7 @@ namespace DFM.BusinessLogic.Tests.A.Safe
 
 			var user = repos.User.GetByEmail(userTable.Email);
 
-			if (user.Control is {Active: false})
+			if (user.Control is { Active: false })
 				repos.Control.Activate(user);
 
 			var info = new SignInInfo

@@ -9,7 +9,7 @@ using DFM.Generic.Datetime;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
-namespace DFM.BusinessLogic.Tests
+namespace DFM.BusinessLogic.Tests.Steps
 {
 	[Binding]
 	public class MoneyRobotStep : BaseStep

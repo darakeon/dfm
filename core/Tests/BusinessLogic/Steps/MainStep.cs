@@ -13,7 +13,7 @@ using NUnit.Framework;
 using TechTalk.SpecFlow;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
-namespace DFM.BusinessLogic.Tests
+namespace DFM.BusinessLogic.Tests.Steps
 {
 	[Binding]
 	public class MainStep : BaseStep
