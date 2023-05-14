@@ -15,7 +15,7 @@ using Keon.Util.Crypto;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
-namespace DFM.BusinessLogic.Tests.D.Robot
+namespace DFM.BusinessLogic.Tests.Steps
 {
 	[Binding]
 	public class RobotStep : BaseStep

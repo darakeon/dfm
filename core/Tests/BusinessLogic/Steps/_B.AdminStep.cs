@@ -14,7 +14,7 @@ using NUnit.Framework;
 using TechTalk.SpecFlow;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
-namespace DFM.BusinessLogic.Tests.B.Admin
+namespace DFM.BusinessLogic.Tests.Steps
 {
 	[Binding]
 	public class AdminStep : BaseStep
@@ -574,7 +574,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 			foreach (var row in table.Rows)
 			{
 				var name = row["Name"];
-				categoryInfo = new CategoryInfo {Name = name};
+				categoryInfo = new CategoryInfo { Name = name };
 				service.Admin.CreateCategory(categoryInfo);
 
 				if (row.ContainsKey("Enabled") && !Boolean.Parse(row["Enabled"]))
@@ -1043,7 +1043,7 @@ namespace DFM.BusinessLogic.Tests.B.Admin
 		public void ThenTheYearReportWillNotHaveSign(Boolean hasSign)
 		{
 			var url = accountInfo.Name.IntoUrl();
-			var year = (Int16) current.Now.Year;
+			var year = (Int16)current.Now.Year;
 			var yearReport = service.Report.GetYearReport(url, year);
 
 			if (hasSign)

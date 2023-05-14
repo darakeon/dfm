@@ -15,7 +15,7 @@ using DFM.Tests.Util;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
-namespace DFM.BusinessLogic.Tests.C.Money
+namespace DFM.BusinessLogic.Tests.Steps
 {
 	[Binding]
 	public class MoneyStep : BaseStep

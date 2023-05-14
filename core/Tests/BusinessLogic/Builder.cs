@@ -14,7 +14,7 @@ namespace DFM.BusinessLogic.Tests
 		private readonly Action<Action> inTransaction;
 		private readonly String code;
 
-		public Builder(Repos repos, Action<Action> inTransaction, string code)
+		public Builder(Repos repos, Action<Action> inTransaction, String code)
 		{
 			this.repos = repos;
 			this.inTransaction = inTransaction;

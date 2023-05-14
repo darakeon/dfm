@@ -8,7 +8,7 @@ using DFM.Generic;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
-namespace DFM.BusinessLogic.Tests.E.Report
+namespace DFM.BusinessLogic.Tests.Steps
 {
 	[Binding]
 	public class ReportStep : BaseStep
@@ -112,7 +112,7 @@ namespace DFM.BusinessLogic.Tests.E.Report
 
 			var actual = monthReport.MoveList.Sum(m =>
 					m.OutUrl == account.Url
-						? - m.Value
+						? -m.Value
 						: m.Value
 				);
 
@@ -374,7 +374,7 @@ namespace DFM.BusinessLogic.Tests.E.Report
 		[Given(@"asked for tip (\d+) times")]
 		public void GivenAskedForTipTimes(Int32 times)
 		{
-			for(var i = 0; i < times; i++)
+			for (var i = 0; i < times; i++)
 			{
 				service.Report.ShowTip();
 			}
@@ -602,7 +602,7 @@ namespace DFM.BusinessLogic.Tests.E.Report
 
 				if (isRelative(monthString))
 				{
-					month = (Int16) current.Now.AddMonths(month).Month;
+					month = (Int16)current.Now.AddMonths(month).Month;
 				}
 
 				optionalMonth = month;
@@ -613,7 +613,7 @@ namespace DFM.BusinessLogic.Tests.E.Report
 
 			if (isRelative(yearString))
 			{
-				year = (Int16) current.Now.AddYears(year).Year;
+				year = (Int16)current.Now.AddYears(year).Year;
 			}
 		}
 
