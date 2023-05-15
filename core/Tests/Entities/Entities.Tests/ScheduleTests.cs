@@ -1,10 +1,9 @@
 using System;
 using System.Linq;
-using DFM.Entities;
 using DFM.Entities.Bases;
 using NUnit.Framework;
 
-namespace DFM.Generic.Tests
+namespace DFM.Entities.Tests
 {
 	public class ScheduleTests
 	{

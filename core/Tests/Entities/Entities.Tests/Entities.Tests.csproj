@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <IsPackable>false</IsPackable>
-    <AssemblyName>DFM.Generic.Tests</AssemblyName>
-    <RootNamespace>DFM.Generic.Tests</RootNamespace>
+    <AssemblyName>DFM.Entities.Tests</AssemblyName>
+    <RootNamespace>DFM.Entities.Tests</RootNamespace>
     <AssemblyVersion>7.3.1.0</AssemblyVersion>
     <FileVersion>7.3.1.0</FileVersion>
     <Nullable>enable</Nullable>
