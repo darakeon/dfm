@@ -16,6 +16,7 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Task (62)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
 | Delete data on app (legal requirement)                                         | :whale:  |  2  |  4  |  6  |                |
+| Add transfer with conversion (value in/out) (NEEDED BY MAIN USER)              | :whale:  |  4  |  3  |  3  |                |
 | Add test for unifying categories used in closed accounts                       | :ant:    |  1  |  3  |  6  |                |
 | Expire tickets with more than 30 without access (add to contract)              | :sheep:  |  3  |  4  |  5  |                |
 | add snyk/clair check to docker containers                                      | :ant:    |  3  |  4  |  5  |                |
@@ -45,7 +46,6 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Add tests to moves order at report                                             | :ant:    |  1  |  1  |  4  |                |
 | Change putJson to putSerializable/Parcelable at extras in android              | :ant:    |  1  |  1  |  4  |                |
 | Refactor Core Steps to improve their division to entities and given/when/then  | :ant:    |  1  |  1  |  4  |                |
-| Add transfer with conversion (value in/out)                                      :whale:  |  4  |  3  |  3  |                |
 | Add all android missing tests                                                  | :ant:    |  4  |  3  |  3  |                |
 | Replace XML at UI android by [compose jetpack]                                 | :ant:    |  4  |  3  |  3  |                |
 | Add accessibility to automated tests                                           | :ant:    |  4  |  3  |  3  |                |
