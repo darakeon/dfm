@@ -1,4 +1,4 @@
-﻿Feature: Ar. Remove two factor authentication
+﻿Feature: Ai. Remove two factor authentication
 
 Background:
 	Given I have this user created
@@ -8,7 +8,7 @@ Background:
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |
 
-Scenario: Ar01. With wrong password
+Scenario: Ai01. With wrong password
 	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
@@ -20,7 +20,7 @@ Scenario: Ar01. With wrong password
 	Then I will receive this core error: TFAWrongPassword
 		And the two-factor will be [123]
 
-Scenario: Ar02. With all info right
+Scenario: Ai02. With all info right
 	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
@@ -32,7 +32,7 @@ Scenario: Ar02. With all info right
 	Then I will receive no core error
 		And the two-factor will be empty
 
-Scenario: Ar03. With empty password
+Scenario: Ai03. With empty password
 	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
@@ -44,7 +44,7 @@ Scenario: Ar03. With empty password
 	Then I will receive this core error: TFAWrongPassword
 		And the two-factor will be [123]
 
-Scenario: Ar04. With null password
+Scenario: Ai04. With null password
 	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
@@ -56,7 +56,7 @@ Scenario: Ar04. With null password
 	Then I will receive this core error: TFAWrongPassword
 		And the two-factor will be [123]
 
-Scenario: Ar05. Not remove if user is marked for deletion
+Scenario: Ai05. Not remove if user is marked for deletion
 	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
@@ -68,7 +68,7 @@ Scenario: Ar05. Not remove if user is marked for deletion
 	When I try to remove two-factor
 	Then I will receive this core error: UserDeleted
 
-Scenario: Ar06. Not remove if user requested wipe
+Scenario: Ai06. Not remove if user requested wipe
 	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
@@ -80,7 +80,7 @@ Scenario: Ar06. Not remove if user requested wipe
 	When I try to remove two-factor
 	Then I will receive this core error: UserAskedWipe
 
-Scenario: Ar07. Not remove if not signed last contract
+Scenario: Ai07. Not remove if not signed last contract
 	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |

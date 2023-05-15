@@ -1,4 +1,4 @@
-﻿Feature: Dd. Get schedule list
+﻿Feature: Ga. Get schedule list
 
 Background:
 	Given test user login
@@ -6,7 +6,7 @@ Background:
 		And I have two accounts
 		And I have a category
 
-Scenario: Dd01. Get all schedules
+Scenario: Ga01. Get all schedules
 	Given I have this schedule to create
 			| Description     | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Schedule Dd01.1 | 2017-02-23 | Out    | 10    | 1     | False     | Monthly   | False           |
@@ -30,7 +30,7 @@ Scenario: Dd01. Get all schedules
 			| Schedule Dd01.1 |
 			| Schedule Dd01.2 |
 
-Scenario: Dd02. Get all schedules after delete one
+Scenario: Ga02. Get all schedules after delete one
 	Given I have this schedule to create
 			| Description     | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Schedule Dd02.1 | 2017-02-23 | Out    | 10    | 1     | False     | Monthly   | False           |
@@ -57,17 +57,17 @@ Scenario: Dd02. Get all schedules after delete one
 			| Name            |
 			| Schedule Dd02.2 |
 
-Scenario: Dd03. Not get schedules if user is marked for deletion
+Scenario: Ga03. Not get schedules if user is marked for deletion
 	Given the user is marked for deletion
 	When ask for the schedule list
 	Then I will receive this core error: UserDeleted
 
-Scenario: Dd04. Not get schedules if user requested wipe
+Scenario: Ga04. Not get schedules if user requested wipe
 	Given the user asked data wipe
 	When ask for the schedule list
 	Then I will receive this core error: UserAskedWipe
 
-Scenario: Dd05. Not get schedules if not signed last contract
+Scenario: Ga05. Not get schedules if not signed last contract
 	Given there is a new contract
 	When ask for the schedule list
 	Then I will receive this core error: NotSignedLastContract

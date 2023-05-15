@@ -1,4 +1,4 @@
-﻿Feature: Db. Run schedule
+﻿Feature: Gd. Run schedule
 
 Background:
 	Given test user login
@@ -6,12 +6,12 @@ Background:
 		And I have two accounts
 		And I have a category
 
-Scenario: Db01. Run with unlogged user
+Scenario: Gd01. Run with unlogged user
 	Given I have no logged user (logoff)
 	When run the scheduler
 	Then I will receive this core error: Uninvited
 
-Scenario: Db02. Run with bounded schedule
+Scenario: Gd02. Run with bounded schedule
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Db02   | 2012-03-31 | Out    | 10    | 1     | False     | Monthly   | False           |
@@ -28,7 +28,7 @@ Scenario: Db02. Run with bounded schedule
 		And the schedule last run will be 1
 		And the schedule will be disabled
 
-Scenario: Db03. Run with boundless schedule
+Scenario: Gd03. Run with boundless schedule
 	Given I have this schedule to create
 			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Db03   |      | Out    | 10    |       | True      | Monthly   | False           |
@@ -46,7 +46,7 @@ Scenario: Db03. Run with boundless schedule
 		And the schedule last run will be 4
 		And the schedule will be enabled
 
-Scenario: Db04. Run schedule that will finish
+Scenario: Gd04. Run schedule that will finish
 	Given I have this schedule to create
 			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Db04   |      | Out    | 10    | 3     | False     | Daily     | False           |
@@ -64,7 +64,7 @@ Scenario: Db04. Run schedule that will finish
 		And the schedule last run will be 3
 		And the schedule will be disabled
 
-Scenario: Db05. Run schedule that wont finish
+Scenario: Gd05. Run schedule that wont finish
 	Given I have this schedule to create
 			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Db05   |      | Out    | 10    | 7     | False     | Daily     | False           |
@@ -82,7 +82,7 @@ Scenario: Db05. Run schedule that wont finish
 		And the schedule last run will be 6
 		And the schedule will be enabled
 
-Scenario: Db06. Run with daily schedule
+Scenario: Gd06. Run with daily schedule
 	Given I have this schedule to create
 			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Db06   |      | Out    | 10    | 10    | False     | Daily     | False           |
@@ -100,7 +100,7 @@ Scenario: Db06. Run with daily schedule
 		And the schedule last run will be 10
 		And the schedule will be disabled
 
-Scenario: Db07. Run with monthly schedule
+Scenario: Gd07. Run with monthly schedule
 	Given I have this schedule to create
 			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Db07   |      | Out    | 10    | 6     | False     | Monthly   | False           |
@@ -118,7 +118,7 @@ Scenario: Db07. Run with monthly schedule
 		And the schedule last run will be 6
 		And the schedule will be disabled
 
-Scenario: Db08. Run with yearly schedule
+Scenario: Gd08. Run with yearly schedule
 	Given I have this schedule to create
 			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Db08   |      | Out    | 10    | 2     | False     | Monthly   | False           |
@@ -136,7 +136,7 @@ Scenario: Db08. Run with yearly schedule
 		And the schedule last run will be 2
 		And the schedule will be disabled
 
-Scenario: Db09. Run with details in schedule
+Scenario: Gd09. Run with details in schedule
 	Given I have this schedule to create
 			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Db09   |      | Out    |       | 5     | False     | Daily     | False           |
@@ -157,7 +157,7 @@ Scenario: Db09. Run with details in schedule
 		And the schedule last run will be 5
 		And the schedule will be disabled
 
-Scenario: Db10. Run with e-mail system out
+Scenario: Gd10. Run with e-mail system out
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Db10   | 2014-03-22 | Out    | 10    | 1     | False     | Monthly   | False           |
@@ -174,7 +174,7 @@ Scenario: Db10. Run with e-mail system out
 		And the schedule last run will be 1
 		And the schedule will be disabled
 
-Scenario: Db11. Run with e-mail system ok
+Scenario: Gd11. Run with e-mail system ok
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Db11   | 2014-03-22 | Out    | 10    | 1     | False     | Monthly   | False           |
@@ -191,7 +191,7 @@ Scenario: Db11. Run with e-mail system ok
 		And the schedule last run will be 1
 		And the schedule will be disabled
 
-Scenario: Db12. Run with schedule start in past and end in future
+Scenario: Gd12. Run with schedule start in past and end in future
 	Given I have this schedule to create
 			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Db12   |      | Out    | 10    | 5     | False     | Monthly   | False           |
@@ -209,13 +209,13 @@ Scenario: Db12. Run with schedule start in past and end in future
 		And the schedule last run will be 3
 		And the schedule will be enabled
 
-Scenario: Db13. Run with bugged schedule
+Scenario: Gd13. Run with bugged schedule
 	Given I have a bugged schedule
 	When robot user login
 		And run the scheduler
 	Then I will receive a core error
 
-Scenario: Db14. Run schedule with category and categories use disabled
+Scenario: Gd14. Run schedule with category and categories use disabled
 	Given I enable Categories use
 		And I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
@@ -230,7 +230,7 @@ Scenario: Db14. Run schedule with category and categories use disabled
 		And run the scheduler
 	Then I will receive this core error: CategoriesDisabled
 
-Scenario: Db15. Run schedule without category and categories use enabled
+Scenario: Gd15. Run schedule without category and categories use enabled
 	Given I disable Categories use
 		And I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
@@ -245,7 +245,7 @@ Scenario: Db15. Run schedule without category and categories use enabled
 		And run the scheduler
 	Then I will receive this core error: InvalidCategory
 
-Scenario: Db16. Run with normal user
+Scenario: Gd16. Run with normal user
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Db17   | 2021-04-22 | Out    | 10    | 1     | False     | Monthly   | False           |
@@ -257,7 +257,7 @@ Scenario: Db16. Run with normal user
 	When run the scheduler
 	Then I will receive this core error: Uninvited
 
-Scenario: Db17. Run only that timezone schedules
+Scenario: Gd17. Run only that timezone schedules
 	Given I have this user created
 			| Email                                      | Password | Active | Signed | Timezone |
 			| tz_now_{scenarioCode}@dontflymoney.com     | password | true   | true   | +0       |
@@ -278,7 +278,7 @@ Scenario: Db17. Run only that timezone schedules
 			| tz_not_now_{scenarioCode}@dontflymoney.com | password |
 	Then the accountOut value will not change
 
-Scenario: Db18. Run only active users
+Scenario: Gd18. Run only active users
 	Given I have this user created
 			| Email                                    | Password | Active | Signed |
 			| active_{scenarioCode}@dontflymoney.com   | password | true   | true   |
@@ -299,7 +299,7 @@ Scenario: Db18. Run only active users
 			| inactive_{scenarioCode}@dontflymoney.com | password |
 	Then the accountOut value will not change
 
-Scenario: Db19. Do not run robots
+Scenario: Gd19. Do not run robots
 	Given I have this user created
 			| Email                                  | Password | Active | Signed |
 			| common_{scenarioCode}@dontflymoney.com | password | true   | true   |
@@ -320,7 +320,7 @@ Scenario: Db19. Do not run robots
 			| zb_{scenarioCode}@dontflymoney.com | password |
 	Then the accountOut value will not change
 
-Scenario: Db20. Run scheduler after add schedule
+Scenario: Gd20. Run scheduler after add schedule
 	Given I have this user created
 			| Email                                        | Password | Active | Signed |
 			| new_schedule_{scenarioCode}@dontflymoney.com | password | true   | true   |
@@ -335,7 +335,7 @@ Scenario: Db20. Run scheduler after add schedule
 			| new_schedule_{scenarioCode}@dontflymoney.com | password |
 	Then the accountOut value will change in -16
 
-Scenario: Db21. Not run scheduler if user is marked for deletion
+Scenario: Gd21. Not run scheduler if user is marked for deletion
 	Given I have this user created
 			| Email                                   | Password | Active | Signed |
 			| deleted_{scenarioCode}@dontflymoney.com | password | true   | true   |
@@ -345,7 +345,7 @@ Scenario: Db21. Not run scheduler if user is marked for deletion
 		And run the scheduler
 	Then the user deleted_{scenarioCode}@dontflymoney.com will still have no moves
 
-Scenario: Db22. Not run scheduler if user has not signed last contract
+Scenario: Gd22. Not run scheduler if user has not signed last contract
 	Given I have this user created
 			| Email                                      | Password | Active | Signed |
 			| not_signed_{scenarioCode}@dontflymoney.com | password | true   | true   |
@@ -356,7 +356,7 @@ Scenario: Db22. Not run scheduler if user has not signed last contract
 	Then I will receive no core error
 		But the user not_signed_{scenarioCode}@dontflymoney.com will still have no moves
 
-Scenario: Db23. Not run scheduler if user requested wipe
+Scenario: Gd23. Not run scheduler if user requested wipe
 	Given I have this user created
 			| Email                                     | Password | Active | Signed |
 			| askedwipe_{scenarioCode}@dontflymoney.com | password | true   | true   |

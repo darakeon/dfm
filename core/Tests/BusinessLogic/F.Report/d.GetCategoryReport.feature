@@ -1,4 +1,4 @@
-﻿Feature: Ed. Get category report
+﻿Feature: Fd. Get category report
 
 Background:
 	Given test user login
@@ -24,7 +24,7 @@ Background:
 			| 2021-08-06 |       | CatReport USC | USC    |        |
 			| 2021-08-07 |       | CatReport RFB | RFB    |        |
 
-Scenario: Ed01. Get with invalid Account name
+Scenario: Fd01. Get with invalid Account name
 	Given I pass an invalid account url
 		And I pass this date
 			| Month | Year |
@@ -33,7 +33,7 @@ Scenario: Ed01. Get with invalid Account name
 	Then I will receive this core error: InvalidAccount
 		And I will receive no category report
 
-Scenario: Ed02. Get with Date Year Zero
+Scenario: Fd02. Get with Date Year Zero
 	Given I pass a valid account url
 		And I pass this date
 			| Month | Year |
@@ -42,7 +42,7 @@ Scenario: Ed02. Get with Date Year Zero
 	Then I will receive this core error: InvalidYear
 		And I will receive no category report
 
-Scenario: Ed03. Get with Date Month less than 1
+Scenario: Fd03. Get with Date Month less than 1
 	Given I pass a valid account url
 		And I pass this date
 			| Month | Year |
@@ -51,7 +51,7 @@ Scenario: Ed03. Get with Date Month less than 1
 	Then I will receive this core error: InvalidMonth
 		And I will receive no category report
 
-Scenario: Ed04. Get with Date Month more than 12
+Scenario: Fd04. Get with Date Month more than 12
 	Given I pass a valid account url
 		And I pass this date
 			| Month | Year |
@@ -60,7 +60,7 @@ Scenario: Ed04. Get with Date Month more than 12
 	Then I will receive this core error: InvalidMonth
 		And I will receive no category report
 
-Scenario: Ed05. Get with next year date
+Scenario: Fd05. Get with next year date
 	Given I have moves of
 			| Date       |
 			| +0         |
@@ -72,7 +72,7 @@ Scenario: Ed05. Get with next year date
 	Then I will receive no core error
 		And I will receive empty category report
 
-Scenario: Ed06. Get with info all right for month
+Scenario: Fd06. Get with info all right for month
 	Given I pass a valid account url
 		And I pass this date
 			| Month | Year |
@@ -85,7 +85,7 @@ Scenario: Ed06. Get with info all right for month
 			| CatReport RFB | 13  | 6  |
 			| CatReport USC | 10  | 5  |
 
-Scenario: Ed07. Not get report if user is marked for deletion
+Scenario: Fd07. Not get report if user is marked for deletion
 	Given I pass a valid account url
 		And I pass this date
 			| Month | Year |
@@ -94,7 +94,7 @@ Scenario: Ed07. Not get report if user is marked for deletion
 	When I try to get the category report
 	Then I will receive this core error: UserDeleted
 
-Scenario: Ed08. Not get report if user requested wipe
+Scenario: Fd08. Not get report if user requested wipe
 	Given I pass a valid account url
 		And I pass this date
 			| Month | Year |
@@ -103,7 +103,7 @@ Scenario: Ed08. Not get report if user requested wipe
 	When I try to get the category report
 	Then I will receive this core error: UserAskedWipe
 
-Scenario: Ed09. Get with info all right for year
+Scenario: Fd09. Get with info all right for year
 	Given I pass a valid account url
 		And I pass this date
 			| Year |
@@ -116,7 +116,7 @@ Scenario: Ed09. Get with info all right for year
 			| CatReport RFB | 13  | 6  |
 			| CatReport USC | 12  | 5  |
 
-Scenario: Ed10. Not get report if user logoff
+Scenario: Fd10. Not get report if user logoff
 	Given I pass a valid account url
 		And I pass this date
 			| Month | Year |
@@ -125,7 +125,7 @@ Scenario: Ed10. Not get report if user logoff
 	When I try to get the category report
 	Then I will receive this core error: Uninvited
 
-Scenario: Ed11. Not get report if not signed last contract
+Scenario: Fd11. Not get report if not signed last contract
 	Given I pass a valid account url
 		And I pass this date
 			| Month | Year |

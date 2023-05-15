@@ -1,10 +1,10 @@
-﻿Feature: Bh. Update category
+﻿Feature: Ck. Update category
 
 Background:
 	Given test user login
 		And I enable Categories use
 
-Scenario: Bh01. Change the name
+Scenario: Ck01. Change the name
 	Given I have this category
 			| Name          |
 			| Category Bh01 |
@@ -15,7 +15,7 @@ Scenario: Bh01. Change the name
 	Then I will receive no core error
 		And the category will be changed
 
-Scenario: Bh02. Change the name to repeated
+Scenario: Ck02. Change the name to repeated
 	Given I have this category
 			| Name            |
 			| Category Bh02.1 |
@@ -29,7 +29,7 @@ Scenario: Bh02. Change the name to repeated
 	Then I will receive this core error: CategoryAlreadyExists
 		And the category will not be changed
 
-Scenario: Bh03. Change the name to empty
+Scenario: Ck03. Change the name to empty
 	Given I have this category
 			| Name          |
 			| Category Bh03 |
@@ -40,7 +40,7 @@ Scenario: Bh03. Change the name to empty
 	Then I will receive this core error: CategoryNameRequired
 		And the category will not be changed
 
-Scenario: Bh04. Change the name of another user category
+Scenario: Ck04. Change the name of another user category
 	Given I have this category
 			| Name          |
 			| Category Bh04 |
@@ -52,7 +52,7 @@ Scenario: Bh04. Change the name of another user category
 	When I try to update the category
 	Then I will receive this core error: InvalidCategory
 
-Scenario: Bh05. Not update if user is marked for deletion
+Scenario: Ck05. Not update if user is marked for deletion
 	Given I have this category
 			| Name          |
 			| Category Bh05 |
@@ -63,7 +63,7 @@ Scenario: Bh05. Not update if user is marked for deletion
 	When I try to update the category
 	Then I will receive this core error: UserDeleted
 
-Scenario: Bh06. Not update if user requested wipe
+Scenario: Ck06. Not update if user requested wipe
 	Given I have this category
 			| Name          |
 			| Category Bh06 |
@@ -74,7 +74,7 @@ Scenario: Bh06. Not update if user requested wipe
 	When I try to update the category
 	Then I will receive this core error: UserAskedWipe
 
-Scenario: Bh07. Not update without signing contract
+Scenario: Ck07. Not update without signing contract
 	Given I have this category
 			| Name          |
 			| Category Bh07 |

@@ -1,4 +1,4 @@
-﻿Feature: Al. Change password
+﻿Feature: Af. Change password
 
 Background:
 	Given I have this user created
@@ -9,7 +9,7 @@ Background:
 			| {scenarioCode}@dontflymoney.com | password |
 		And I have a ticket of this user
 
-Scenario: Al01. Password change with wrong current password
+Scenario: Af01. Password change with wrong current password
 	Given I pass this password
 			| Current Password | Password     | Retype Password |
 			| password_wrong   | new_password | new_password    |
@@ -18,7 +18,7 @@ Scenario: Al01. Password change with wrong current password
 		And the password will not be changed
 		And the ticket will still be valid
 
-Scenario: Al02. Password change with empty new password
+Scenario: Af02. Password change with empty new password
 	Given I pass this password
 			| Current Password | Password | Retype Password |
 			| password         |          | new_password    |
@@ -27,7 +27,7 @@ Scenario: Al02. Password change with empty new password
 		And the password will not be changed
 		And the ticket will still be valid
 
-Scenario: Al03. Password change with different retype password
+Scenario: Af03. Password change with different retype password
 	Given I pass this password
 			| Current Password | Password     | Retype Password |
 			| password         | new_password | password_wrong  |
@@ -36,7 +36,7 @@ Scenario: Al03. Password change with different retype password
 		And the password will not be changed
 		And the ticket will still be valid
 
-Scenario: Al04. Password change with info all right
+Scenario: Af04. Password change with info all right
 	Given I pass this password
 			| Current Password | Password     | Retype Password |
 			| password         | new_password | new_password    |
@@ -45,7 +45,7 @@ Scenario: Al04. Password change with info all right
 		And the password will be changed
 		And only the last login will be active
 
-Scenario: Al05. Not change if user is marked for deletion
+Scenario: Af05. Not change if user is marked for deletion
 	Given I pass this password
 			| Current Password | Password     | Retype Password |
 			| password         | new_password | new_password    |
@@ -53,7 +53,7 @@ Scenario: Al05. Not change if user is marked for deletion
 	When I try to change the password
 	Then I will receive this core error: UserDeleted
 
-Scenario: Al06. Not change if user requested wipe
+Scenario: Af06. Not change if user requested wipe
 	Given I pass this password
 			| Current Password | Password     | Retype Password |
 			| password         | new_password | new_password    |
@@ -61,7 +61,7 @@ Scenario: Al06. Not change if user requested wipe
 	When I try to change the password
 	Then I will receive this core error: UserAskedWipe
 
-Scenario: Al07. Change Password without signing contract
+Scenario: Af07. Change Password without signing contract
 	Given I pass this password
 			| Current Password | Password     | Retype Password |
 			| password         | new_password | new_password    |

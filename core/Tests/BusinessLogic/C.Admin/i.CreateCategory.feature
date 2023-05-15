@@ -1,10 +1,10 @@
-﻿Feature: Bf. Create category
+﻿Feature: Ci. Create category
 
 Background:
 	Given test user login
 		And I enable Categories use
 
-Scenario: Bf01. Save Category without name
+Scenario: Ci01. Save Category without name
 	Given I have this category to create
 			| Name |
 			|      |
@@ -12,7 +12,7 @@ Scenario: Bf01. Save Category without name
 	Then I will receive this core error: CategoryNameRequired
 		And the category will not be saved
 
-Scenario: Bf02. Save Category with name that already exists
+Scenario: Ci02. Save Category with name that already exists
 	Given I have this category to create
 			| Name          |
 			| Category Bf02 |
@@ -23,7 +23,7 @@ Scenario: Bf02. Save Category with name that already exists
 	Then I will receive this core error: CategoryAlreadyExists
 	#And the category will not be changed
 
-Scenario: Bf03. Save Category with too big name
+Scenario: Ci03. Save Category with too big name
 	Given I have this category to create
 			| Name                  |
 			| ABCDEFGHIJKLMNOPQRSTU |
@@ -31,7 +31,7 @@ Scenario: Bf03. Save Category with too big name
 	Then I will receive this core error: TooLargeCategoryName
 		And the category will not be saved
 
-Scenario: Bf04. Save Category with exactly length name
+Scenario: Ci04. Save Category with exactly length name
 	Given I have this category to create
 			| Name                 |
 			| ABCDEFGHIJKLMNOPQRST |
@@ -39,7 +39,7 @@ Scenario: Bf04. Save Category with exactly length name
 	Then I will receive no core error
 		And the category will be saved
 
-Scenario: Bf05. Save Category with info all right
+Scenario: Ci05. Save Category with info all right
 	Given I have this category to create
 			| Name          |
 			| Category Bf05 |
@@ -47,7 +47,7 @@ Scenario: Bf05. Save Category with info all right
 	Then I will receive no core error
 		And the category will be saved
 
-Scenario: Bf06. Save Category with same name in another user
+Scenario: Ci06. Save Category with same name in another user
 	Given I have this category to create
 			| Name          |
 			| Category Bf06 |
@@ -63,7 +63,7 @@ Scenario: Bf06. Save Category with same name in another user
 	Then I will receive no core error
 		And the category will be saved
 
-Scenario: Bf07. Not save Category if user is marked for deletion
+Scenario: Ci07. Not save Category if user is marked for deletion
 	Given I have this category to create
 			| Name          |
 			| Category Bf07 |
@@ -71,7 +71,7 @@ Scenario: Bf07. Not save Category if user is marked for deletion
 	When I try to save the category
 	Then I will receive this core error: UserDeleted
 
-Scenario: Bf08. Not save Category if user requested wipe
+Scenario: Ci08. Not save Category if user requested wipe
 	Given I have this category to create
 			| Name          |
 			| Category Bf08 |
@@ -79,7 +79,7 @@ Scenario: Bf08. Not save Category if user requested wipe
 	When I try to save the category
 	Then I will receive this core error: UserAskedWipe
 
-Scenario: Bf09. Not save Category without signing contract
+Scenario: Ci09. Not save Category without signing contract
 	Given I have this category to create
 			| Name          |
 			| Category Bf09 |

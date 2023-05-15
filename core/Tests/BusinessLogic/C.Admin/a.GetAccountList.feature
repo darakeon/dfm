@@ -1,10 +1,10 @@
-﻿Feature: Bl. Get account list
+﻿Feature: Ca. Get account list
 
 Background:
 	Given test user login
 		And I disable Categories use
 
-Scenario: Bl01. Get all active accounts
+Scenario: Ca01. Get all active accounts
 	Given I have this account
 			| Name           |
 			| Account Bl01.1 |
@@ -18,7 +18,7 @@ Scenario: Bl01. Get all active accounts
 			| Account Bl01.1 | account_bl01_1 |
 			| Account Bl01.2 | account_bl01_2 |
 
-Scenario: Bl02. Get all active accounts after close one
+Scenario: Ca02. Get all active accounts after close one
 	Given I have this account
 			| Name           |
 			| Account Bl02.1 |
@@ -36,7 +36,7 @@ Scenario: Bl02. Get all active accounts after close one
 			| Name           | Url            |
 			| Account Bl02.2 | account_bl02_2 |
 
-Scenario: Bl03. Get all not active accounts after close one
+Scenario: Ca03. Get all not active accounts after close one
 	Given I have this account
 			| Name           |
 			| Account Bl03.1 |
@@ -54,7 +54,7 @@ Scenario: Bl03. Get all not active accounts after close one
 			| Name           | Url            |
 			| Account Bl03.1 | account_bl03_1 |
 
-Scenario: Bl04. Not get accounts if user is marked for deletion
+Scenario: Ca04. Not get accounts if user is marked for deletion
 	Given I have this account
 			| Name         |
 			| Account Bl04 |
@@ -62,7 +62,7 @@ Scenario: Bl04. Not get accounts if user is marked for deletion
 	When ask for the not active account list
 	Then I will receive this core error: UserDeleted
 
-Scenario: Bl05. Not get accounts if user requested wipe
+Scenario: Ca05. Not get accounts if user requested wipe
 	Given I have this account
 			| Name         |
 			| Account Bl05 |
@@ -70,12 +70,12 @@ Scenario: Bl05. Not get accounts if user requested wipe
 	When ask for the not active account list
 	Then I will receive this core error: UserAskedWipe
 
-Scenario: Bl06. Not get active accounts without signing contract
+Scenario: Ca06. Not get active accounts without signing contract
 	Given there is a new contract
 	When ask for the active account list
 	Then I will receive this core error: NotSignedLastContract
 
-Scenario: Bl07. Not get not active accounts without signing contract
+Scenario: Ca07. Not get not active accounts without signing contract
 	Given there is a new contract
 	When ask for the not active account list
 	Then I will receive this core error: NotSignedLastContract

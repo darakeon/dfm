@@ -1,4 +1,4 @@
-﻿Feature: Eb. Get year report
+﻿Feature: Fb. Get year report
 
 Background:
 	Given test user login
@@ -18,7 +18,7 @@ Background:
 			| 2012-04-05 |
 			| 2012-04-06 |
 
-Scenario: Eb01. Get with invalid Account name
+Scenario: Fb01. Get with invalid Account name
 	Given I pass an invalid account url
 		And I pass this date
 			| Year |
@@ -27,7 +27,7 @@ Scenario: Eb01. Get with invalid Account name
 	Then I will receive this core error: InvalidAccount
 		And I will receive no year report
 
-Scenario: Eb02. Get with Date Year Zero
+Scenario: Fb02. Get with Date Year Zero
 	Given I pass a valid account url
 		And I pass this date
 			| Year |
@@ -36,7 +36,7 @@ Scenario: Eb02. Get with Date Year Zero
 	Then I will receive this core error: InvalidYear
 		And I will receive no year report
 
-Scenario: Eb03. Get with info all right
+Scenario: Fb03. Get with info all right
 	Given I pass a valid account url
 		And I pass this date
 			| Year |
@@ -62,7 +62,7 @@ Scenario: Eb03. Get with info all right
 			| Current In | Current Out | Current Total | Foreseen In | Foreseen Out | Foreseen Total |
 			| 0          | 110         | -110          | 0           | 0            | 0              |
 
-Scenario: Eb04. Get foreseen ins, outs and balances
+Scenario: Fb04. Get foreseen ins, outs and balances
 	Given I disable Categories use
 		And I have schedules of
 			| Description     | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
@@ -97,7 +97,7 @@ Scenario: Eb04. Get foreseen ins, outs and balances
 			| Current In | Current Out | Current Total | Foreseen In | Foreseen Out | Foreseen Total |
 			| 0          | 0           | 0             | 296         | 736          | -440           |
 
-Scenario: Eb05. Not get year report if user is marked for deletion
+Scenario: Fb05. Not get year report if user is marked for deletion
 	Given I pass a valid account url
 		And I pass this date
 			| Year |
@@ -106,7 +106,7 @@ Scenario: Eb05. Not get year report if user is marked for deletion
 	When I try to get the year report
 	Then I will receive this core error: UserDeleted
 
-Scenario: Eb06. Not get year report if user requested wipe
+Scenario: Fb06. Not get year report if user requested wipe
 	Given I pass a valid account url
 		And I pass this date
 			| Year |
@@ -115,7 +115,7 @@ Scenario: Eb06. Not get year report if user requested wipe
 	When I try to get the year report
 	Then I will receive this core error: UserAskedWipe
 
-Scenario: Eb07. Not get year report if not signed last contract
+Scenario: Fb07. Not get year report if not signed last contract
 	Given I pass a valid account url
 		And I pass this date
 			| Year |
