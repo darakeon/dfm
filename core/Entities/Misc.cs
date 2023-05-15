@@ -10,8 +10,7 @@ namespace DFM.Entities
 			DNA = dna;
 
 			var dnaBinary = Convert.ToString(dna - 1, 2)
-				.PadLeft(9, '0')
-				.Substring(0, 9);
+				.PadLeft(9, '0')[..9];
 
 			var r = dnaBinary.Substring(0, 1);
 			var g = dnaBinary.Substring(3, 1);

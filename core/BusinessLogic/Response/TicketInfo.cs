@@ -13,7 +13,7 @@ namespace DFM.BusinessLogic.Response
 			{
 				Creation = ticket.Creation,
 				Expiration = ticket.Expiration,
-				Key = ticket.Key.Substring(0, Defaults.TicketShowedPart),
+				Key = ticket.Key[..Defaults.TicketShowedPart],
 				Type = ticket.Type,
 				Current = ticket.Key == currentTicket,
 			};
