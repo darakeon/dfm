@@ -42,7 +42,7 @@ namespace DFM.Tests.Util
 			Path.GetDirectoryName(typeof(ContextHelper).Assembly.Location);
 
 		protected String scenarioTitle => context?.ScenarioInfo?.Title;
-		protected String scenarioCode => scenarioTitle?.ToLower().Substring(0, 4);
+		protected String scenarioCode => scenarioTitle?.ToLower()[..4];
 
 		protected Boolean isCurrent(ScenarioBlock block)
 		{

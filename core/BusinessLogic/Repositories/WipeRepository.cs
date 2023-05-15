@@ -32,8 +32,8 @@ namespace DFM.BusinessLogic.Repositories
 			var wipe = new Wipe
 			{
 				HashedEmail = Crypt.Do(user.Email),
-				UsernameStart = user.Username.Substring(0, 2),
-				DomainStart = user.Domain.Substring(0, 3),
+				UsernameStart = user.Username[..2],
+				DomainStart = user.Domain[..3],
 				When = DateTime.UtcNow,
 				Why = reason,
 				Password = user.Password,
@@ -142,8 +142,8 @@ namespace DFM.BusinessLogic.Repositories
 
 			var username = emailParts[0];
 			var domain = emailParts[1];
-			var usernameStart = username.Substring(0, 2);
-			var domainStart = domain.Substring(0, 3);
+			var usernameStart = username[..2];
+			var domainStart = domain[..3];
 
 			var wipes = Where(
 				w => w.UsernameStart == usernameStart

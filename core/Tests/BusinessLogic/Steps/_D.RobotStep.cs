@@ -527,7 +527,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			Assert.IsTrue(Crypt.Check(userEmail, wipe.HashedEmail));
 
-			Assert.AreEqual(userEmail.Substring(0, 2), wipe.UsernameStart);
+			Assert.AreEqual(userEmail[..2], wipe.UsernameStart);
 			Assert.AreEqual("don", wipe.DomainStart);
 
 			Assert.Less(testStart, wipe.When.ToUniversalTime());
