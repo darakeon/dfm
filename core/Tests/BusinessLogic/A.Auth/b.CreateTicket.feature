@@ -1,6 +1,6 @@
-﻿Feature: Ae. Create ticket
+﻿Feature: Ab. Create ticket
 
-Scenario: Ae01. Validate without e-mail
+Scenario: Ab01. Validate without e-mail
 	Given I have this user created
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |
@@ -11,7 +11,7 @@ Scenario: Ae01. Validate without e-mail
 	Then I will receive this core error: InvalidUser
 		And I will not receive the ticket
 
-Scenario: Ae02. Validate with empty password
+Scenario: Ab02. Validate with empty password
 	Given I have this user created
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |
@@ -22,7 +22,7 @@ Scenario: Ae02. Validate with empty password
 	Then I will receive this core error: InvalidUser
 		And I will not receive the ticket
 
-Scenario: Ae03. Validate with null password
+Scenario: Ab03. Validate with null password
 	Given I have this user created
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |
@@ -33,7 +33,7 @@ Scenario: Ae03. Validate with null password
 	Then I will receive this core error: InvalidUser
 		And I will not receive the ticket
 
-Scenario: Ae04. Validate with wrong e-mail
+Scenario: Ab04. Validate with wrong e-mail
 	Given I have this user data
 			| Email                                      | Password |
 			| dont_exist_{scenarioCode}@dontflymoney.com | password |
@@ -41,7 +41,7 @@ Scenario: Ae04. Validate with wrong e-mail
 	Then I will receive this core error: InvalidUser
 		And I will not receive the ticket
 
-Scenario: Ae05. Validate with wrong password
+Scenario: Ab05. Validate with wrong password
 	Given I have this user created
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |
@@ -52,7 +52,7 @@ Scenario: Ae05. Validate with wrong password
 	Then I will receive this core error: InvalidUser
 		And I will not receive the ticket
 
-Scenario: Ae06. Validate user disabled
+Scenario: Ab06. Validate user disabled
 	Given I have this user created
 			| Email                           | Password | Days |
 			| {scenarioCode}@dontflymoney.com | password | -7   |
@@ -63,7 +63,7 @@ Scenario: Ae06. Validate user disabled
 	Then I will receive this core error: DisabledUser
 		And I will not receive the ticket
 
-Scenario: Ae07. Disable user by excessive trying
+Scenario: Ab07. Disable user by excessive trying
 	Given I have this user created
 			| Email                           | Password | Active |
 			| {scenarioCode}@dontflymoney.com | password | true   |
@@ -74,7 +74,7 @@ Scenario: Ae07. Disable user by excessive trying
 	Then I will receive this core error: DisabledUser
 		And I will not receive the ticket
 
-Scenario: Ae08. Validate disabled with wrong password
+Scenario: Ab08. Validate disabled with wrong password
 	Given I have this user created
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |
@@ -85,7 +85,7 @@ Scenario: Ae08. Validate disabled with wrong password
 	Then I will receive this core error: InvalidUser
 		And I will not receive the ticket
 
-Scenario: Ae09. Validate with info all right
+Scenario: Ab09. Validate with info all right
 	Given I have this user created
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |
@@ -97,7 +97,7 @@ Scenario: Ae09. Validate with info all right
 	Then I will receive no core error
 		And I will receive the ticket
 
-Scenario: Ae10. Enable user let login again
+Scenario: Ab10. Enable user let login again
 	Given I have this user created
 			| Email                           | Password | Active |
 			| {scenarioCode}@dontflymoney.com | password | true   |
@@ -113,7 +113,7 @@ Scenario: Ae10. Enable user let login again
 	Then I will receive no core error
 		And I will receive the ticket
 
-Scenario: Ae11. Enable user resets the password trial times
+Scenario: Ab11. Enable user resets the password trial times
 	Given I have this user created
 			| Email                           | Password | Active |
 			| {scenarioCode}@dontflymoney.com | password | true   |
@@ -136,7 +136,7 @@ Scenario: Ae11. Enable user resets the password trial times
 	Then I will receive no core error
 		And I will receive the ticket
 
-Scenario: Ae12. Not validate if user is marked for deletion
+Scenario: Ab12. Not validate if user is marked for deletion
 	Given I have this user created
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |
@@ -148,7 +148,7 @@ Scenario: Ae12. Not validate if user is marked for deletion
 	When I try to get the ticket
 	Then I will receive this core error: UserDeleted
 
-Scenario: Ae13. Not validate if user requested wipe
+Scenario: Ab13. Not validate if user requested wipe
 	Given I have this user created
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |
@@ -160,7 +160,7 @@ Scenario: Ae13. Not validate if user requested wipe
 	When I try to get the ticket
 	Then I will receive this core error: UserAskedWipe
 
-Scenario: Ae14. Let user login within 7 days after creation
+Scenario: Ab14. Let user login within 7 days after creation
 	Given I have this user created
 			| Email                           | Password | Active | Days |
 			| {scenarioCode}@dontflymoney.com | password | true   | -6   |

@@ -1,4 +1,4 @@
-﻿Feature: Da. Save schedule
+﻿Feature: Gc. Save schedule
 
 Background:
 	Given test user login
@@ -6,7 +6,7 @@ Background:
 		And I have two accounts
 		And I have a category
 
-Scenario: Da01. Save without Description
+Scenario: Gc01. Save without Description
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			|             | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
@@ -21,7 +21,7 @@ Scenario: Da01. Save without Description
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da02. Save without Date
+Scenario: Gc02. Save without Date
 	Given I have this schedule to create
 			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da02   |      | Out    | 10    | 10    | False     | Monthly   | False           |
@@ -36,7 +36,7 @@ Scenario: Da02. Save without Date
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da03. Save without Category
+Scenario: Gc03. Save without Category
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da03   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
@@ -51,7 +51,7 @@ Scenario: Da03. Save without Category
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da04. Save with unknown Category
+Scenario: Gc04. Save with unknown Category
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da04   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
@@ -66,7 +66,7 @@ Scenario: Da04. Save with unknown Category
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da05. Save with Description too large
+Scenario: Gc05. Save with Description too large
 	Given I have this schedule to create
 			| Description                                         | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
@@ -81,7 +81,7 @@ Scenario: Da05. Save with Description too large
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da06. Save with (Nature: Out) (AccountOut:No) (AccountIn:No)
+Scenario: Gc06. Save with (Nature: Out) (AccountOut:No) (AccountIn:No)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da06   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
@@ -93,7 +93,7 @@ Scenario: Da06. Save with (Nature: Out) (AccountOut:No) (AccountIn:No)
 	Then I will receive this core error: OutMoveWrong
 		And the schedule will not be saved
 
-Scenario: Da07. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes)
+Scenario: Gc07. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da07   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
@@ -111,7 +111,7 @@ Scenario: Da07. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes)
 		And the month-category-accountIn value will not change
 		And the year-category-accountIn value will not change
 
-Scenario: Da08. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes)
+Scenario: Gc08. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da08   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
@@ -126,7 +126,7 @@ Scenario: Da08. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes)
 		And the month-category-accountIn value will not change
 		And the year-category-accountIn value will not change
 
-Scenario: Da09. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No)
+Scenario: Gc09. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da09   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
@@ -138,7 +138,7 @@ Scenario: Da09. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No)
 	Then I will receive this core error: InvalidAccount
 		And the schedule will not be saved
 
-Scenario: Da10. Save with (Nature: In) (AccountOut:No) (AccountIn:No)
+Scenario: Gc10. Save with (Nature: In) (AccountOut:No) (AccountIn:No)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da10   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
@@ -150,7 +150,7 @@ Scenario: Da10. Save with (Nature: In) (AccountOut:No) (AccountIn:No)
 	Then I will receive this core error: InMoveWrong
 		And the schedule will not be saved
 
-Scenario: Da11. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes)
+Scenario: Gc11. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da11   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
@@ -168,7 +168,7 @@ Scenario: Da11. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes)
 		And the month-category-accountIn value will not change
 		And the year-category-accountIn value will not change
 
-Scenario: Da12. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No)
+Scenario: Gc12. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da12   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
@@ -183,7 +183,7 @@ Scenario: Da12. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No)
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da13. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown)
+Scenario: Gc13. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da13   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
@@ -195,7 +195,7 @@ Scenario: Da13. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown)
 	Then I will receive this core error: InvalidAccount
 		And the schedule will not be saved
 
-Scenario: Da14. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:No)
+Scenario: Gc14. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:No)
 	Given I have this schedule to create
 			| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da14   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
@@ -207,7 +207,7 @@ Scenario: Da14. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:No)
 	Then I will receive this core error: TransferMoveWrong
 		And the schedule will not be saved
 
-Scenario: Da15. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes)
+Scenario: Gc15. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes)
 	Given I have this schedule to create
 			| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da15   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
@@ -222,7 +222,7 @@ Scenario: Da15. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes)
 		And the month-category-accountIn value will not change
 		And the year-category-accountIn value will not change
 
-Scenario: Da16. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No)
+Scenario: Gc16. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No)
 	Given I have this schedule to create
 			| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da16   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
@@ -237,7 +237,7 @@ Scenario: Da16. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No)
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da17. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown)
+Scenario: Gc17. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown)
 	Given I have this schedule to create
 			| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da17   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
@@ -252,7 +252,7 @@ Scenario: Da17. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da18. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes)
+Scenario: Gc18. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes)
 	Given I have this schedule to create
 			| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da18   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
@@ -267,7 +267,7 @@ Scenario: Da18. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes
 		And the month-category-accountIn value will not change
 		And the year-category-accountIn value will not change
 
-Scenario: Da19. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out)
+Scenario: Gc19. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out)
 	Given I have this schedule to create
 			| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da19   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
@@ -285,7 +285,7 @@ Scenario: Da19. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal t
 		And the month-category-accountIn value will not change
 		And the year-category-accountIn value will not change
 
-Scenario: Da20. Save without Value or Details
+Scenario: Gc20. Save without Value or Details
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da20   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
@@ -300,7 +300,7 @@ Scenario: Da20. Save without Value or Details
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da21. Save with Value zero and no Details
+Scenario: Gc21. Save with Value zero and no Details
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da21   | 2012-03-31 | Out    | 0     | 10    | False     | Monthly   | False           |
@@ -315,7 +315,7 @@ Scenario: Da21. Save with Value zero and no Details
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da22. Save without value and without Description in Detail
+Scenario: Gc22. Save without value and without Description in Detail
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da22   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
@@ -333,7 +333,7 @@ Scenario: Da22. Save without value and without Description in Detail
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da23. Save without value and with Amount zero in Detail
+Scenario: Gc23. Save without value and with Amount zero in Detail
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da23   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
@@ -351,7 +351,7 @@ Scenario: Da23. Save without value and with Amount zero in Detail
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da24. Save without value and with Value zero in Detail
+Scenario: Gc24. Save without value and with Value zero in Detail
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da24   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
@@ -369,7 +369,7 @@ Scenario: Da24. Save without value and with Value zero in Detail
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da25. Save with Description too large in Detail
+Scenario: Gc25. Save with Description too large in Detail
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da25   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
@@ -386,7 +386,7 @@ Scenario: Da25. Save with Description too large in Detail
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da26. Save without Schedule
+Scenario: Gc26. Save without Schedule
 	Given I have no schedule
 		And it has a Category
 		And it has an Account Out
@@ -398,7 +398,7 @@ Scenario: Da26. Save without Schedule
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da27. Save with Schedule Times zero and bounded
+Scenario: Gc27. Save with Schedule Times zero and bounded
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da27   | 2012-03-31 | Out    | 10    | 0     | False     | Monthly   | False           |
@@ -413,7 +413,7 @@ Scenario: Da27. Save with Schedule Times zero and bounded
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da28. Save with info all right (Out)
+Scenario: Gc28. Save with info all right (Out)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da28   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
@@ -428,7 +428,7 @@ Scenario: Da28. Save with info all right (Out)
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da29. Save with info all right (In)
+Scenario: Gc29. Save with info all right (In)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da29   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
@@ -444,7 +444,7 @@ Scenario: Da29. Save with info all right (In)
 		And the month-category-accountIn value will not change
 		And the year-category-accountIn value will not change
 
-Scenario: Da30. Save with info all right (Transfer)
+Scenario: Gc30. Save with info all right (Transfer)
 	Given I have this schedule to create
 			| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da30   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
@@ -463,7 +463,7 @@ Scenario: Da30. Save with info all right (Transfer)
 		And the month-category-accountIn value will not change
 		And the year-category-accountIn value will not change
 
-Scenario: Da31. Save with info all right (value)
+Scenario: Gc31. Save with info all right (value)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da31   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
@@ -480,7 +480,7 @@ Scenario: Da31. Save with info all right (value)
 		And the year-category-accountOut value will not change
 		And the next robot schedule run will check the user
 
-Scenario: Da32. Save with info all right (details)
+Scenario: Gc32. Save with info all right (details)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da32   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
@@ -499,7 +499,7 @@ Scenario: Da32. Save with info all right (details)
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da33. Save negative (value)
+Scenario: Gc33. Save negative (value)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da33   | 2012-03-31 | Out    | -10   | 10    | False     | Monthly   | False           |
@@ -515,7 +515,7 @@ Scenario: Da33. Save negative (value)
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da34. Save negative (details)
+Scenario: Gc34. Save negative (details)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da34   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
@@ -534,7 +534,7 @@ Scenario: Da34. Save negative (details)
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da35. Save with future Date
+Scenario: Gc35. Save with future Date
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da35   | 2099-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
@@ -550,7 +550,7 @@ Scenario: Da35. Save with future Date
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da36. Save with exactly length in Description of Detail
+Scenario: Gc36. Save with exactly length in Description of Detail
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da36   | 2010-03-31 | Out    |       | 10    | False     | Monthly   | False           |
@@ -568,7 +568,7 @@ Scenario: Da36. Save with exactly length in Description of Detail
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da37. Save with exactly length in Description
+Scenario: Gc37. Save with exactly length in Description
 	Given I have this schedule to create
 			| Description                                        | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx | 2010-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
@@ -584,7 +584,7 @@ Scenario: Da37. Save with exactly length in Description
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da38. Save with details with same description
+Scenario: Gc38. Save with details with same description
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da38   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
@@ -602,7 +602,7 @@ Scenario: Da38. Save with details with same description
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
 
-Scenario: Da39. Not save if user is marked for deletion
+Scenario: Gc39. Not save if user is marked for deletion
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da39   | 2021-05-16 | Out    | 10    | 10    | False     | Monthly   | False           |
@@ -614,7 +614,7 @@ Scenario: Da39. Not save if user is marked for deletion
 	When I try to save the schedule
 	Then I will receive this core error: UserDeleted
 
-Scenario: Da40. Not save if user requested wipe
+Scenario: Gc40. Not save if user requested wipe
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da40   | 2021-06-26 | Out    | 10    | 10    | False     | Monthly   | False           |
@@ -626,7 +626,7 @@ Scenario: Da40. Not save if user requested wipe
 	When I try to save the schedule
 	Then I will receive this core error: UserAskedWipe
 
-Scenario: Da41. Not save if not signed last contract
+Scenario: Gc41. Not save if not signed last contract
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da41   | 2023-04-09 | Out    | 10    | 10    | False     | Monthly   | False           |

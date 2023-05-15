@@ -1,10 +1,10 @@
-﻿Feature: Br. Unify categories
+﻿Feature: Cn. Unify categories
 
 Background:
 	Given test user login
 		And I enable Categories use
 
-Scenario: Br01. Category to keep invalid
+Scenario: Cn01. Category to keep invalid
 	Given I have this category
 			| Name |
 			| CatB |
@@ -12,7 +12,7 @@ Scenario: Br01. Category to keep invalid
 	Then I will receive this core error: InvalidCategory
 		And category CatB will exist
 
-Scenario: Br02. Category to delete invalid
+Scenario: Cn02. Category to delete invalid
 	Given I have this category
 			| Name |
 			| CatA |
@@ -20,7 +20,7 @@ Scenario: Br02. Category to delete invalid
 	Then I will receive this core error: InvalidCategory
 		And category CatA will exist
 
-Scenario: Br03. Category use disabled
+Scenario: Cn03. Category use disabled
 	Given I have these categories
 			| Name |
 			| CatA |
@@ -31,7 +31,7 @@ Scenario: Br03. Category use disabled
 		And category CatA will exist
 		And category CatB will exist
 
-Scenario: Br04. Logged out
+Scenario: Cn04. Logged out
 	Given I have these categories
 			| Name |
 			| CatA |
@@ -42,7 +42,7 @@ Scenario: Br04. Logged out
 		And category CatA will exist
 		And category CatB will exist
 
-Scenario: Br05. User is marked for deletion
+Scenario: Cn05. User is marked for deletion
 	Given I have these categories
 			| Name |
 			| CatA |
@@ -53,7 +53,7 @@ Scenario: Br05. User is marked for deletion
 		And category CatA will exist
 		And category CatB will exist
 
-Scenario: Br06. User requested wipe
+Scenario: Cn06. User requested wipe
 	Given I have these categories
 			| Name |
 			| CatA |
@@ -64,7 +64,7 @@ Scenario: Br06. User requested wipe
 		And category CatA will exist
 		And category CatB will exist
 
-Scenario: Br07. All info right
+Scenario: Cn07. All info right
 	Given I have these categories
 			| Name |
 			| CatA |
@@ -74,7 +74,7 @@ Scenario: Br07. All info right
 		And category CatA will exist
 		And category CatB will not exist
 
-Scenario: Br08. Category to delete has moves
+Scenario: Cn08. Category to delete has moves
 	Given I have these categories
 			| Name |
 			| CatA |
@@ -96,7 +96,7 @@ Scenario: Br08. Category to delete has moves
 		And category CatB will not exist
 		And category CatA will have 8 moves
 
-Scenario: Br09. Category to delete has a defective summary
+Scenario: Cn09. Category to delete has a defective summary
 	Given I have these categories
 			| Name |
 			| CatA |
@@ -108,7 +108,7 @@ Scenario: Br09. Category to delete has a defective summary
 		And category CatA will exist
 		And category CatB will exist
 
-Scenario: Br10. Category to delete has schedules
+Scenario: Cn10. Category to delete has schedules
 	Given I have these categories
 			| Name |
 			| CatA |
@@ -124,7 +124,7 @@ Scenario: Br10. Category to delete has schedules
 		And category CatB will not exist
 		And category CatA will have 2 schedules
 
-Scenario: Br11. Category to delete same as to keep
+Scenario: Cn11. Category to delete same as to keep
 	Given I have this category
 			| Name |
 			| CatA |
@@ -132,7 +132,7 @@ Scenario: Br11. Category to delete same as to keep
 	Then I will receive this core error: CannotMergeSameCategory
 		And category CatA will exist
 
-Scenario: Br12. Category to keep is disabled
+Scenario: Cn12. Category to keep is disabled
 	Given I have these categories
 			| Name | Enabled |
 			| CatA | false   |
@@ -142,7 +142,7 @@ Scenario: Br12. Category to keep is disabled
 		And category CatA will exist
 		And category CatB will exist
 
-Scenario: Br13. New contract not signed
+Scenario: Cn13. New contract not signed
 	Given I have these categories
 			| Name |
 			| CatA |

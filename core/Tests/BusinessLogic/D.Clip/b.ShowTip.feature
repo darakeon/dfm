@@ -1,4 +1,4 @@
-﻿Feature: Ee. Show tip
+﻿Feature: Db. Show tip
 
 # the number of calls taken to show a tip,
 # the number of calls a tip is repeated and
@@ -17,16 +17,16 @@
 Background:
 	Given test user login
 
-Scenario: Ee01. First time ask for tip
+Scenario: Db01. First time ask for tip
 	When show a tip
 	Then tip will not be shown
 
-Scenario: Ee02. Ask for tip when the age is enough
+Scenario: Db02. Ask for tip when the age is enough
 	Given asked for tip 4 times
 	When show a tip
 	Then tip will be shown
 
-Scenario: Ee03. Ask for tip should repeat tip some times
+Scenario: Db03. Ask for tip should repeat tip some times
 	Given asked for tip 4 times
 	# first time
 	When show a tip
@@ -44,7 +44,7 @@ Scenario: Ee03. Ask for tip should repeat tip some times
 	When show a tip
 	Then tip will not be shown
 
-Scenario: Ee04. After first tip and counting again, show another tip
+Scenario: Db04. After first tip and counting again, show another tip
 	Given asked for tip 4 times
 	When show a tip
 	Then tip will be shown
@@ -53,21 +53,21 @@ Scenario: Ee04. After first tip and counting again, show another tip
 	When show a tip
 	Then tip will be shown
 
-Scenario: Ee05. Ask for tips and see random ones
+Scenario: Db05. Ask for tips and see random ones
 	Given asked for tip 4 times
 	When show a tip
 		And show a tip again
 	Then tip will be shown
 		And the tips will not be the first ones
 
-Scenario: Ee06. Dismiss tip show another after counter
+Scenario: Db06. Dismiss tip show another after counter
 	Given asked for tip 5 times
 		And dismissed tip
 		And asked for tip 4 times
 	When show a tip
 	Then tip will be shown
 
-Scenario: Ee07. Restart again after show all tips
+Scenario: Db07. Restart again after show all tips
 	# first tip
 	Given asked for tip 4 times
 	When show a tip
@@ -93,7 +93,7 @@ Scenario: Ee07. Restart again after show all tips
 	When show a tip
 	Then tip will be shown
 
-Scenario: Ee08. Do not show used features
+Scenario: Db08. Do not show used features
 	Given asked for tip 4 times
 		And disabled tip TestTip1
 		And disabled tip TestTip2
@@ -101,25 +101,25 @@ Scenario: Ee08. Do not show used features
 	When show a tip
 	Then tip will not be shown
 
-Scenario: Ee09. Not show tip if user is marked for deletion
+Scenario: Db09. Not show tip if user is marked for deletion
 	Given the user is marked for deletion
 	When show a tip
 	Then I will receive this core error: UserDeleted
 		And tip will not be shown
 
-Scenario: Ee10. Not show tip if user requested wipe
+Scenario: Db10. Not show tip if user requested wipe
 	Given the user asked data wipe
 	When show a tip
 	Then I will receive this core error: UserAskedWipe
 		And tip will not be shown
 
-Scenario: Ee11. Not show tip if user logoff
+Scenario: Db11. Not show tip if user logoff
 	Given I logoff the user
 	When show a tip
 	Then I will receive this core error: Uninvited
 		And tip will not be shown
 
-Scenario: Ee12. Tip return valid value
+Scenario: Db12. Tip return valid value
 	Given asked for tip 4 times
 	When show a tip
 	Then tip will be one of
@@ -128,7 +128,7 @@ Scenario: Ee12. Tip return valid value
 			| TestTip2 |
 			| TestTip3 |
 
-Scenario: Ee13. Not show tip if user has not signed last contract
+Scenario: Db13. Not show tip if user has not signed last contract
 	Given there is a new contract
 	When show a tip
 	Then I will receive this core error: NotSignedLastContract

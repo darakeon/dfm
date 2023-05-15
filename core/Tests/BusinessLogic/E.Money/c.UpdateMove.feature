@@ -1,4 +1,4 @@
-﻿Feature: Cb. Update move
+﻿Feature: Ec. Update move
 
 Background:
 	Given test user login
@@ -7,7 +7,7 @@ Background:
 		And I have two accounts
 		And I have a category
 
-Scenario: Cb01. Update the move date in 1 day
+Scenario: Ec01. Update the move date in 1 day
 	Given I have a move with value 10 (Out)
 		And the move is checked for account Out
 		And I change the move date in -1 day
@@ -19,7 +19,7 @@ Scenario: Cb01. Update the move date in 1 day
 		And the year-category-accountOut value will not change
 		But the move is not checked for account Out
 
-Scenario: Cb02. Update the move date in 1 month
+Scenario: Ec02. Update the move date in 1 month
 	Given I have a move with value 10 (Out)
 		And the move is checked for account Out
 		And I change the move date in -1 month
@@ -32,7 +32,7 @@ Scenario: Cb02. Update the move date in 1 month
 		And the year-category-accountOut value will not change
 		But the move is not checked for account Out
 
-Scenario: Cb03. Update the move date in 1 year
+Scenario: Ec03. Update the move date in 1 year
 	Given I have a move with value 10 (Out)
 		And the move is checked for account Out
 		And I change the move date in -1 year
@@ -46,7 +46,7 @@ Scenario: Cb03. Update the move date in 1 year
 		And the old-year-category-accountOut value will change in -10
 		But the move is not checked for account Out
 
-Scenario: Cb04. Update the move Category
+Scenario: Ec04. Update the move Category
 	Given I have a move with value 10 (Out)
 		And the move is checked for account Out
 	When I change the category of the move
@@ -62,7 +62,7 @@ Scenario: Cb04. Update the move Category
 		And the old-year-category-accountOut value will change in -10
 		But the move is not checked for account Out
 
-Scenario: Cb05. Update the move Account Out
+Scenario: Ec05. Update the move Account Out
 	Given I have a move with value 10 (Out)
 		And the move is checked for account Out
 	When I change the account out of the move
@@ -77,7 +77,7 @@ Scenario: Cb05. Update the move Account Out
 		And the old-year-category-accountOut value will change in -10
 		But the move is not checked for account Out
 
-Scenario: Cb06. Update the move Account In
+Scenario: Ec06. Update the move Account In
 	Given I have a move with value 10 (In)
 		And the move is checked for account In
 	When I change the account in of the move
@@ -92,7 +92,7 @@ Scenario: Cb06. Update the move Account In
 		And the old-year-category-accountIn value will change in -10
 		But the move is not checked for account In
 
-Scenario: Cb07. Update the move Account Transfer (Out)
+Scenario: Ec07. Update the move Account Transfer (Out)
 	Given I have a move with value 10 (Transfer)
 		And the move is checked for account Out
 		And the move is checked for account In
@@ -109,7 +109,7 @@ Scenario: Cb07. Update the move Account Transfer (Out)
 		But the move is not checked for account Out
 		And the move is not checked for account In
 
-Scenario: Cb08. Update the move Account Transfer (In)
+Scenario: Ec08. Update the move Account Transfer (In)
 	Given I have a move with value 10 (Transfer)
 		And the move is checked for account Out
 		And the move is checked for account In
@@ -126,7 +126,7 @@ Scenario: Cb08. Update the move Account Transfer (In)
 		But the move is not checked for account Out
 		And the move is not checked for account In
 
-Scenario: Cb09. Update the move Account Transfer (Both)
+Scenario: Ec09. Update the move Account Transfer (Both)
 	Given I have a move with value 10 (Transfer)
 		And the move is checked for account Out
 		And the move is checked for account In
@@ -150,7 +150,7 @@ Scenario: Cb09. Update the move Account Transfer (Both)
 		But the move is not checked for account Out
 		And the move is not checked for account In
 
-Scenario: Cb10. Update the move Out to In
+Scenario: Ec10. Update the move Out to In
 	Given I have a move with value 10 (Out)
 		And the move is checked for account Out
 	When I change the move out to in
@@ -166,7 +166,7 @@ Scenario: Cb10. Update the move Out to In
 		But the move is not checked for account Out
 		And the move is not checked for account In
 
-Scenario: Cb11. Update the move In to Out
+Scenario: Ec11. Update the move In to Out
 	Given I have a move with value 10 (In)
 		And the move is checked for account In
 	When I change the move in to out
@@ -182,7 +182,7 @@ Scenario: Cb11. Update the move In to Out
 		But the move is not checked for account In
 		And the move is not checked for account Out
 
-Scenario: Cb12. Update the move value
+Scenario: Ec12. Update the move value
 	Given I have a move with value 10 (Out)
 		And the move is checked for account Out
 	When I change the move value to 20
@@ -194,7 +194,7 @@ Scenario: Cb12. Update the move value
 		And the old-year-category-accountOut value will change in 10
 		But the move is not checked for account Out
 
-Scenario: Cb13. Add details to the move
+Scenario: Ec13. Add details to the move
 	Given I have a move with these details (Out)
 			| Description | Amount | Value |
 			| Move Cb13a  | 1      | 10    |
@@ -210,7 +210,7 @@ Scenario: Cb13. Add details to the move
 		And the old-year-category-accountOut value will change in 10
 		But the move is not checked for account Out
 
-Scenario: Cb14. Change the details of the move - remove and add
+Scenario: Ec14. Change the details of the move - remove and add
 	Given I have a move with these details (Out)
 			| Description | Amount | Value |
 			| Move Cb14a  | 1      | 10    |
@@ -226,7 +226,7 @@ Scenario: Cb14. Change the details of the move - remove and add
 		And the old-year-category-accountOut value will change in 30
 		But the move is not checked for account Out
 
-Scenario: Cb15. Change the details of the move - remove one
+Scenario: Ec15. Change the details of the move - remove one
 	Given I have a move with these details (Out)
 			| Description | Amount | Value |
 			| Move Cb15a  | 1      | 10    |
@@ -243,7 +243,7 @@ Scenario: Cb15. Change the details of the move - remove one
 		And the old-year-category-accountOut value will change in -10
 		But the move is not checked for account Out
 
-Scenario: Cb16. Change move with schedule
+Scenario: Ec16. Change move with schedule
 	Given I have this schedule to create
 			| Description   | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Schedule Cb16 | 2017-03-27 | Out    | 10    | 1     | False     | Monthly   | False           |
@@ -259,7 +259,7 @@ Scenario: Cb16. Change move with schedule
 	Then I will receive no core error
 		And the Move will still be at the Schedule
 
-Scenario: Cb17. Update the move of another user
+Scenario: Ec17. Update the move of another user
 	Given I have a move with value 10 (Out)
 		And the move is checked for account Out
 		But there is a bad person logged in
@@ -273,7 +273,7 @@ Scenario: Cb17. Update the move of another user
 		And the year-category-accountOut value will not change
 		And the move is checked for account Out
 
-Scenario: Cb18. Update the move adding details, but not removing value
+Scenario: Ec18. Update the move adding details, but not removing value
 	Given I have a move with value 10 (Out)
 		And the move is checked for account Out
 	When I add these details to the move
@@ -286,20 +286,20 @@ Scenario: Cb18. Update the move adding details, but not removing value
 		And the year-category-accountOut value will not change
 		And the move is checked for account Out
 
-Scenario: Cb19. Update the move value with e-mail system out
+Scenario: Ec19. Update the move value with e-mail system out
 	Given I have a move with value 10 (Out)
 	When I update the move with e-mail system out
 	Then I will receive no core error
 		And I will receive the notification
 
-Scenario: Cb20. Update the move value with e-mail system ok
+Scenario: Ec20. Update the move value with e-mail system ok
 	Given I have a move with value 10 (Out)
 	When I update the move with e-mail system ok
 	Then I will receive no core error
 		And I will receive no notification
 		And the move e-mail will have an unsubscribe link
 
-Scenario: Cb21. Update move date not changing its position at schedule
+Scenario: Ec21. Update move date not changing its position at schedule
 	Given I have this schedule to create
 			| Description   | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Schedule Cb21 | 2020-11-01 | Out    | 10    | 5     | False     | Monthly   | True            |
@@ -315,21 +315,21 @@ Scenario: Cb21. Update move date not changing its position at schedule
 	When I update the move
 	Then the description will still be Schedule Cb21 [1/5]
 
-Scenario: Cb22. Not update if user is marked for deletion
+Scenario: Ec22. Not update if user is marked for deletion
 	Given I have a move with value 10 (Out)
 		But the user is marked for deletion
 	When I change the move value to 20
 		And I update the move
 	Then I will receive this core error: UserDeleted
 
-Scenario: Cb23. Not update if user requested wipe
+Scenario: Ec23. Not update if user requested wipe
 	Given I have a move with value 10 (Out)
 		But the user asked data wipe
 	When I change the move value to 20
 		And I update the move
 	Then I will receive this core error: UserAskedWipe
 
-Scenario: Cb24. Not update if not signed last contract
+Scenario: Ec24. Not update if not signed last contract
 	Given I have a move with value 10 (Out)
 		But there is a new contract
 	When I change the move value to 20

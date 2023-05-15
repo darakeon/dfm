@@ -507,7 +507,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"there will be an export file with this content")]
 		public void ThenThereWillBeAnExportFileWithThisContent(Table table)
 		{
-			Assert.AreEqual(table.ToCsv(), csv);
+			var expected = table.ToCsv()
+				.Select(r => r.Replace("{scenarioCode}", scenarioCode));
+
+			Assert.AreEqual(expected, csv);
 		}
 
 		[Then(@"there will no be an export file")]

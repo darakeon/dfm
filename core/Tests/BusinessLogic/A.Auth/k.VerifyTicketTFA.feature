@@ -1,4 +1,4 @@
-﻿Feature: At. Verify ticket two factor authentication
+﻿Feature: Ak. Verify ticket two factor authentication
 
 Background:
 	Given I have this user created
@@ -15,13 +15,13 @@ Background:
 			| 123    | {generated} | password |
 		And I set two-factor
 
-Scenario: At01. Check not verified ticket
+Scenario: Ak01. Check not verified ticket
 	Given I have a ticket key
 	When I try to verify the ticket
 	Then I will receive no core error
 		And the ticket will not be verified
 
-Scenario: At02. Check verified ticket
+Scenario: Ak02. Check verified ticket
 	Given I have a ticket key
 		And I have this two-factor data
 			| Secret | Code        |
@@ -31,20 +31,20 @@ Scenario: At02. Check verified ticket
 	Then I will receive no core error
 		And the ticket will be verified
 
-Scenario: At03. Check ticket without two factor
+Scenario: Ak03. Check ticket without two factor
 	Given I remove two-factor
 		And I have a ticket key
 	When I try to verify the ticket
 	Then I will receive no core error
 		And the ticket will be verified
 
-Scenario: At04. Not check ticket if user is marked for deletion
+Scenario: Ak04. Not check ticket if user is marked for deletion
 	Given I have a ticket key
 		But the user is marked for deletion
 	When I try to verify the ticket
 	Then I will receive this core error: UserDeleted
 
-Scenario: At05. Not check ticket if user requested wipe
+Scenario: Ak05. Not check ticket if user requested wipe
 	Given I have a ticket key
 		But the user asked data wipe
 	When I try to verify the ticket

@@ -1,10 +1,10 @@
-﻿Feature: Bm. Get category list
+﻿Feature: Ch. Get category list
 
 Background:
 	Given test user login
 		And I enable Categories use
 
-Scenario: Bm01. Get all active categories
+Scenario: Ch01. Get all active categories
 	Given I have this category
 			| Name            |
 			| Category Bm01.1 |
@@ -18,7 +18,7 @@ Scenario: Bm01. Get all active categories
 			| Category Bm01.1 |
 			| Category Bm01.2 |
 
-Scenario: Bm02. Get all active categories after close one
+Scenario: Ch02. Get all active categories after close one
 	Given I have this category
 			| Name            |
 			| Category Bm02.1 |
@@ -35,7 +35,7 @@ Scenario: Bm02. Get all active categories after close one
 			| Name            |
 			| Category Bm02.2 |
 
-Scenario: Bm03. Get all not active categories after close one
+Scenario: Ch03. Get all not active categories after close one
 	Given I have this category
 			| Name            |
 			| Category Bm03.1 |
@@ -52,7 +52,7 @@ Scenario: Bm03. Get all not active categories after close one
 			| Name            |
 			| Category Bm03.1 |
 
-Scenario: Bm04. Get all categories after close one
+Scenario: Ch04. Get all categories after close one
 	Given I have this category
 			| Name            |
 			| Category Bm04.1 |
@@ -67,7 +67,7 @@ Scenario: Bm04. Get all categories after close one
 			| Category Bm04.2 |
 			| Category Bm04.1 |
 
-Scenario: Bm05. Not get categories if user is marked for deletion
+Scenario: Ch05. Not get categories if user is marked for deletion
 	Given I have this category
 			| Name          |
 			| Category Bm05 |
@@ -75,7 +75,7 @@ Scenario: Bm05. Not get categories if user is marked for deletion
 	When ask for all the category list
 	Then I will receive this core error: UserDeleted
 
-Scenario: Bm06. Not get categories if user requested wipe
+Scenario: Ch06. Not get categories if user requested wipe
 	Given I have this category
 			| Name          |
 			| Category Bm06 |
@@ -83,7 +83,7 @@ Scenario: Bm06. Not get categories if user requested wipe
 	When ask for all the category list
 	Then I will receive this core error: UserAskedWipe
 
-Scenario: Bm07. Not get categories without signing contract
+Scenario: Ch07. Not get categories without signing contract
 	Given I have this category
 			| Name          |
 			| Category Bm07 |

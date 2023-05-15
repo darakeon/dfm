@@ -1,4 +1,4 @@
-﻿Feature: Am. Update e-mail
+﻿Feature: Ag. Update e-mail
 
 Background:
 	Given I have this user created
@@ -9,7 +9,7 @@ Background:
 			| {scenarioCode}@dontflymoney.com | password |
 		And I have a ticket of this user
 
-Scenario: Am01. E-mail change with wrong current password
+Scenario: Ag01. E-mail change with wrong current password
 	Given I pass this new e-mail and password
 			| New E-mail                          | Current Password |
 			| new_{scenarioCode}@dontflymoney.com | password_wrong   |
@@ -18,7 +18,7 @@ Scenario: Am01. E-mail change with wrong current password
 		And the e-mail will not be changed
 		And the user will be activated
 
-Scenario: Am02. E-mail change with empty new e-mail
+Scenario: Ag02. E-mail change with empty new e-mail
 	Given I pass this new e-mail and password
 			| New E-mail | Current Password |
 			|            | password         |
@@ -27,7 +27,7 @@ Scenario: Am02. E-mail change with empty new e-mail
 		And the e-mail will not be changed
 		And the user will be activated
 
-Scenario: Am03. E-mail change with info all right
+Scenario: Ag03. E-mail change with info all right
 	Given I pass this new e-mail and password
 			| New E-mail                          | Current Password |
 			| new_{scenarioCode}@dontflymoney.com | password         |
@@ -36,7 +36,7 @@ Scenario: Am03. E-mail change with info all right
 		And the e-mail will be changed
 		And the user will not be activated
 
-Scenario: Am04. Not update if user is marked for deletion
+Scenario: Ag04. Not update if user is marked for deletion
 	Given I pass this new e-mail and password
 			| New E-mail                          | Current Password |
 			| new_{scenarioCode}@dontflymoney.com | password         |
@@ -44,7 +44,7 @@ Scenario: Am04. Not update if user is marked for deletion
 	When I try to change the e-mail
 	Then I will receive this core error: UserDeleted
 
-Scenario: Am05. Not update if user requested wipe
+Scenario: Ag05. Not update if user requested wipe
 	Given I pass this new e-mail and password
 			| New E-mail                          | Current Password |
 			| new_{scenarioCode}@dontflymoney.com | password         |
@@ -52,7 +52,7 @@ Scenario: Am05. Not update if user requested wipe
 	When I try to change the e-mail
 	Then I will receive this core error: UserAskedWipe
 
-Scenario: Am06. Update E-mail without signing contract
+Scenario: Ag06. Update E-mail without signing contract
 	Given I pass this new e-mail and password
 			| New E-mail                          | Current Password |
 			| new_{scenarioCode}@dontflymoney.com | password         |

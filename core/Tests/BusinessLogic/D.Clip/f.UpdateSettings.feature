@@ -1,11 +1,11 @@
-﻿Feature: Bk. Update settings
+﻿Feature: Df. Update settings
 
 Background:
 	Given test user login
 		And I enable Categories use
 		And I have a category
 
-Scenario: Bk01. Disable categories use and save move with category
+Scenario: Df01. Disable categories use and save move with category
 	Given I disable Categories use
 		And I have this move to create
 			| Description | Date       | Nature | Value |
@@ -18,7 +18,7 @@ Scenario: Bk01. Disable categories use and save move with category
 	Then I will receive this core error: CategoriesDisabled
 		And the move will not be saved
 
-Scenario: Bk02. Disable categories use and save schedule with category
+Scenario: Df02. Disable categories use and save schedule with category
 	Given I disable Categories use
 		And I have this schedule to create
 			| Description   | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
@@ -31,7 +31,7 @@ Scenario: Bk02. Disable categories use and save schedule with category
 	Then I will receive this core error: CategoriesDisabled
 		And the schedule will not be saved
 
-Scenario: Bk03. Disable categories use and create a category
+Scenario: Df03. Disable categories use and create a category
 	Given I disable Categories use
 		And I have this category to create
 			| Name          |
@@ -40,44 +40,44 @@ Scenario: Bk03. Disable categories use and create a category
 	Then I will receive this core error: CategoriesDisabled
 		And the category will not be saved
 
-Scenario: Bk04. Disable categories use and select a category
+Scenario: Df04. Disable categories use and select a category
 	Given I pass a valid category name
 		And I disable Categories use
 	When I try to get the category by its name
 	Then I will receive this core error: CategoriesDisabled
 		And I will receive no category
 
-Scenario: Bk05. Disable categories use and disable a category
+Scenario: Df05. Disable categories use and disable a category
 	Given I give the enabled category Bk05
 		And I disable Categories use
 	When I try to disable the category
 	Then I will receive this core error: CategoriesDisabled
 
-Scenario: Bk06. Disable categories use and enable a category
+Scenario: Df06. Disable categories use and enable a category
 	Given I give the disabled category Bk06
 		And I disable Categories use
 	When I try to enable the category
 	Then I will receive this core error: CategoriesDisabled
 
-Scenario: Bk07. Change language to one that doesn't exist
+Scenario: Df07. Change language to one that doesn't exist
 	When I try to change the language to zz-ZZ
 	Then I will receive this core error: LanguageUnknown
 
-Scenario: Bk08. Change timezone to one that doesn't exist
+Scenario: Df08. Change timezone to one that doesn't exist
 	When I try to change the timezone to UTC-99:99
 	Then I will receive this core error: TimeZoneUnknown
 
-Scenario: Bk09. Disable categories use
+Scenario: Df09. Disable categories use
 	Given I enable Categories use
 	When I try to disable Categories use
 	Then I will receive no core error
 
-Scenario: Bk10. Enable categories use
+Scenario: Df10. Enable categories use
 	Given I disable Categories use
 	When I try to enable Categories use
 	Then I will receive no core error
 
-Scenario: Bk11. Disable categories use and save move without category
+Scenario: Df11. Disable categories use and save move without category
 	Given I disable Categories use
 		And I have this move to create
 			| Description | Date       | Nature | Value |
@@ -93,7 +93,7 @@ Scenario: Bk11. Disable categories use and save move without category
 		And the month-category-accountOut value will change in 10
 		And the year-category-accountOut value will change in 10
 
-Scenario: Bk12. Disable categories use and save schedule without category
+Scenario: Df12. Disable categories use and save schedule without category
 	Given I disable Categories use
 		And I have this schedule to create
 			| Description   | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
@@ -106,67 +106,67 @@ Scenario: Bk12. Disable categories use and save schedule without category
 	Then I will receive no core error
 		And the schedule will be saved
 
-Scenario: Bk13. Change language to pt-BR
+Scenario: Df13. Change language to pt-BR
 	When I try to change the language to pt-BR
 	Then I will receive no core error
 		And the translation will be
 			| Key             | Translated |
 			| CurrentLanguage | português  |
 
-Scenario: Bk14. Change language to en-US
+Scenario: Df14. Change language to en-US
 	When I try to change the language to en-US
 	Then I will receive no core error
 		And the translation will be
 			| Key             | Translated |
 			| CurrentLanguage | english    |
 
-Scenario: Bk15. Change timezone
+Scenario: Df15. Change timezone
 	When I try to change the timezone to UTC-03:00
 	Then I will receive no core error
 
-Scenario: Bk16. Disable move send e-mail
+Scenario: Df16. Disable move send e-mail
 	Given I enable move send e-mail
 	When I try to disable move send e-mail
 	Then I will receive no core error
 
-Scenario: Bk17. Enable move send e-mail
+Scenario: Df17. Enable move send e-mail
 	Given I disable move send e-mail
 	When I try to enable move send e-mail
 	Then I will receive no core error
 
-Scenario: Bk18. Disable move check
+Scenario: Df18. Disable move check
 	Given I enable move check
 	When I try to disable move check
 	Then I will receive no core error
 
-Scenario: Bk19. Enable move check
+Scenario: Df19. Enable move check
 	Given I disable move check
 	When I try to enable move check
 	Then I will receive no core error
 
-Scenario: Bk20. Disable wizard
+Scenario: Df20. Disable wizard
 	Given I enable wizard
 	When I try to disable wizard
 	Then I will receive no core error
 
-Scenario: Bk21. Enable wizard
+Scenario: Df21. Enable wizard
 	Given I disable wizard
 	When I try to enable wizard
 	Then I will receive no core error
 
-Scenario: Bk22. Not update if user is marked for deletion
+Scenario: Df22. Not update if user is marked for deletion
 	Given I disable wizard
 		But the user is marked for deletion
 	When I try to enable wizard
 	Then I will receive this core error: UserDeleted
 
-Scenario: Bk23. Not update if user requested wipe
+Scenario: Df23. Not update if user requested wipe
 	Given I disable wizard
 		But the user asked data wipe
 	When I try to enable wizard
 	Then I will receive this core error: UserAskedWipe
 
-Scenario: Bk24. Disable accounts signs
+Scenario: Df24. Disable accounts signs
 	Given have enabled accounts signs
 		And I have this account
 			| Name         | Yellow | Red |
@@ -178,7 +178,7 @@ Scenario: Bk24. Disable accounts signs
 		And the year report will not have sign
 		And the month report will not have sign
 
-Scenario: Bk25. Enable accounts signs
+Scenario: Df25. Enable accounts signs
 	Given have enabled accounts signs
 		And I have this account
 			| Name         | Yellow | Red |
@@ -191,32 +191,32 @@ Scenario: Bk25. Enable accounts signs
 		And the year report will have sign
 		And the month report will have sign
 
-Scenario: Bk26. Update Settings - Categories Disable without signing contract
+Scenario: Df26. Update Settings - Categories Disable without signing contract
 	Given there is a new contract
 	When I try to disable Categories use
 	Then I will receive this core error: NotSignedLastContract
 
-Scenario: Bk27. Update Settings - Categories Enable without signing contract
+Scenario: Df27. Update Settings - Categories Enable without signing contract
 	Given there is a new contract
 	When I try to enable Categories use
 	Then I will receive this core error: NotSignedLastContract
 
-Scenario: Bk28. Update Settings - Move Send E-mail Disable without signing contract
+Scenario: Df28. Update Settings - Move Send E-mail Disable without signing contract
 	Given there is a new contract
 	When I try to disable move send e-mail
 	Then I will receive this core error: NotSignedLastContract
 
-Scenario: Bk29. Update Settings - Move Send E-mail Enable without signing contract
+Scenario: Df29. Update Settings - Move Send E-mail Enable without signing contract
 	Given there is a new contract
 	When I try to enable move send e-mail
 	Then I will receive this core error: NotSignedLastContract
 
-Scenario: Bk30. Update Settings - Change Language without signing contract
+Scenario: Df30. Update Settings - Change Language without signing contract
 	Given there is a new contract
 	When I try to change the language to en-US
 	Then I will receive this core error: NotSignedLastContract
 
-Scenario: Bk31. Update Settings - Change TimeZone without signing contract
+Scenario: Df31. Update Settings - Change TimeZone without signing contract
 	Given there is a new contract
 	When I try to change the timezone to UTC-03:00
 	Then I will receive this core error: NotSignedLastContract

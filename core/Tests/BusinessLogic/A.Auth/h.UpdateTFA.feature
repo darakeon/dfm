@@ -1,4 +1,4 @@
-﻿Feature: Aq. Update two factor authentication
+﻿Feature: Ah. Update two factor authentication
 
 Background:
 	Given I have this user created
@@ -8,7 +8,7 @@ Background:
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |
 
-Scenario: Aq01. With empty secret key
+Scenario: Ah01. With empty secret key
 	Given I have this two-factor data
 			| Secret | Code        | Password |
 			|        | {generated} | password |
@@ -16,7 +16,7 @@ Scenario: Aq01. With empty secret key
 	Then I will receive this core error: TFAEmptySecret
 		And the two-factor will be empty
 
-Scenario: Aq02. With wrong code
+Scenario: Ah02. With wrong code
 	Given I have this two-factor data
 			| Secret | Code  | Password |
 			| 123    | wrong | password |
@@ -24,7 +24,7 @@ Scenario: Aq02. With wrong code
 	Then I will receive this core error: TFAWrongCode
 		And the two-factor will be empty
 
-Scenario: Aq03. With wrong password
+Scenario: Ah03. With wrong password
 	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | wrong    |
@@ -32,7 +32,7 @@ Scenario: Aq03. With wrong password
 	Then I will receive this core error: TFAWrongPassword
 		And the two-factor will be empty
 
-Scenario: Aq04. With all info right
+Scenario: Ah04. With all info right
 	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
@@ -40,7 +40,7 @@ Scenario: Aq04. With all info right
 	Then I will receive no core error
 		And the two-factor will be [123]
 
-Scenario: Aq05. Update two-factor
+Scenario: Ah05. Update two-factor
 	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
@@ -52,7 +52,7 @@ Scenario: Aq05. Update two-factor
 	Then I will receive no core error
 		And the two-factor will be [456]
 
-Scenario: Aq06. With empty password
+Scenario: Ah06. With empty password
 	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} |          |
@@ -60,7 +60,7 @@ Scenario: Aq06. With empty password
 	Then I will receive this core error: TFAWrongPassword
 		And the two-factor will be empty
 
-Scenario: Aq07. With null password
+Scenario: Ah07. With null password
 	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | {null}   |
@@ -68,7 +68,7 @@ Scenario: Aq07. With null password
 	Then I will receive this core error: TFAWrongPassword
 		And the two-factor will be empty
 
-Scenario: Aq08. Not update if user is marked for deletion
+Scenario: Ah08. Not update if user is marked for deletion
 	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
@@ -76,7 +76,7 @@ Scenario: Aq08. Not update if user is marked for deletion
 	When I try to set two-factor
 	Then I will receive this core error: UserDeleted
 
-Scenario: Aq09. Not update if user requested wipe
+Scenario: Ah09. Not update if user requested wipe
 	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
@@ -84,7 +84,7 @@ Scenario: Aq09. Not update if user requested wipe
 	When I try to set two-factor
 	Then I will receive this core error: UserAskedWipe
 
-Scenario: Aq10. Not update if not signed last contract
+Scenario: Ah10. Not update if not signed last contract
 	Given I have this two-factor data
 			| Secret | Code        | Password |
 			| 123    | {generated} | password |
