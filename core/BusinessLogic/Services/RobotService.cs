@@ -44,7 +44,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			try
 			{
-				parent.Safe.VerifyUser(user);
+				parent.Auth.VerifyUser(user);
 			}
 			catch (CoreError e)
 			{
@@ -109,7 +109,7 @@ namespace DFM.BusinessLogic.Services
 
 		public ScheduleResult SaveSchedule(ScheduleInfo info)
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 
 			if (info == null)
 				throw Error.ScheduleRequired.Throw();
@@ -129,7 +129,7 @@ namespace DFM.BusinessLogic.Services
 				Out = parent.BaseMove.GetAccount(info.OutUrl),
 				In = parent.BaseMove.GetAccount(info.InUrl),
 				Category = parent.BaseMove.GetCategory(info.CategoryName),
-				User = parent.Safe.GetCurrent()
+				User = parent.Auth.GetCurrent()
 			};
 
 			info.Update(schedule);
@@ -152,9 +152,9 @@ namespace DFM.BusinessLogic.Services
 
 		public void DisableSchedule(Guid guid)
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 
-			var user = parent.Safe.GetCurrent();
+			var user = parent.Auth.GetCurrent();
 
 			inTransaction("DisableSchedule", () =>
 				repos.Schedule.Disable(guid, user)
@@ -163,9 +163,9 @@ namespace DFM.BusinessLogic.Services
 
 		public IList<ScheduleInfo> GetScheduleList()
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 
-			var user = parent.Safe.GetCurrent();
+			var user = parent.Auth.GetCurrent();
 
 			return repos.Schedule
 				.Where(
@@ -336,7 +336,7 @@ namespace DFM.BusinessLogic.Services
 
 		public Boolean HasSchedule()
 		{
-			var user = parent.Safe.VerifyUser();
+			var user = parent.Auth.VerifyUser();
 			var x = repos.Schedule.Where(
 				s => s.User.ID == user.ID
 				     && s.Active
@@ -345,6 +345,24 @@ namespace DFM.BusinessLogic.Services
 				s => s.User.ID == user.ID
 				     && s.Active
 			);
+		}
+
+		public void AskWipe(String password)
+		{
+			parent.Auth.VerifyUser();
+
+			inTransaction("AskWipe", () =>
+			{
+				var user = parent.Auth.GetCurrent();
+
+				var validPassword =
+					repos.User.VerifyPassword(user, password);
+
+				if (!validPassword)
+					throw Error.WrongPassword.Throw();
+
+				repos.Control.RequestWipe(user);
+			});
 		}
 	}
 }

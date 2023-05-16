@@ -10,7 +10,7 @@ namespace DFM.MVC.Models
 		{
 			try
 			{
-				safe.DisableToken(token);
+				outside.DisableToken(token);
 			}
 			catch (CoreError)
 			{
@@ -24,14 +24,14 @@ namespace DFM.MVC.Models
 		{
 			try
 			{
-				safe.TestSecurityToken(token, SecurityAction.UserVerification);
+				outside.TestSecurityToken(token, SecurityAction.UserVerification);
 			}
 			catch (CoreError)
 			{
 				return false;
 			}
 
-			safe.ActivateUser(token);
+			outside.ActivateUser(token);
 
 			return true;
 		}
@@ -43,8 +43,8 @@ namespace DFM.MVC.Models
 
 		internal void DisableLogin(String key)
 		{
-			report.DisableTip(TipBrowser.DeleteLogins);
-			safe.DisableTicket(key);
+			clip.DisableTip(TipBrowser.DeleteLogins);
+			auth.DisableTicket(key);
 		}
 	}
 }

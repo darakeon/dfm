@@ -41,7 +41,7 @@ namespace DFM.MVC.Models
 
 			try
 			{
-				safe.TestSecurityToken(Token, SecurityAction);
+				outside.TestSecurityToken(Token, SecurityAction);
 			}
 			catch (CoreError e)
 			{

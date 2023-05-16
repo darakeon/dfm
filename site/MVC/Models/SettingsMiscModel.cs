@@ -15,7 +15,7 @@ namespace DFM.MVC.Models
 
 			try
 			{
-				safe.ReMisc(Password);
+				clip.ReMisc(Password);
 				errorAlert.Add("SettingsChanged");
 			}
 			catch (CoreError e)

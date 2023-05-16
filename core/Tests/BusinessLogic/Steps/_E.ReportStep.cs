@@ -376,20 +376,20 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			for (var i = 0; i < times; i++)
 			{
-				service.Report.ShowTip();
+				service.Clip.ShowTip();
 			}
 		}
 
 		[Given(@"dismissed tip")]
 		public void GivenDismissedTip()
 		{
-			service.Report.DismissTip();
+			service.Clip.DismissTip();
 		}
 
 		[Given(@"disabled tip (.+)")]
 		public void GivenDisabledTip(TipTests tip)
 		{
-			service.Report.DisableTip(tip);
+			service.Clip.DisableTip(tip);
 		}
 
 		[When(@"show a tip")]
@@ -397,7 +397,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				tip = service.Report.ShowTip();
+				tip = service.Clip.ShowTip();
 			}
 			catch (CoreError e)
 			{
@@ -410,7 +410,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				otherTip = service.Report.ShowTip();
+				otherTip = service.Clip.ShowTip();
 			}
 			catch (CoreError e)
 			{
@@ -423,7 +423,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Report.DisableTip(tip);
+				service.Clip.DisableTip(tip);
 			}
 			catch (CoreError e)
 			{
@@ -436,7 +436,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Report.DismissTip();
+				service.Clip.DismissTip();
 			}
 			catch (CoreError e)
 			{

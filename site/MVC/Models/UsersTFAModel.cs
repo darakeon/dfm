@@ -11,7 +11,7 @@ namespace DFM.MVC.Models
 		{
 			try
 			{
-				safe.ValidateTicketTFA(Code);
+				auth.ValidateTicketTFA(Code);
 			}
 			catch (CoreError exception)
 			{

@@ -17,7 +17,7 @@ namespace DFM.MVC.Models
 
 			try
 			{
-				safe.ChangePassword(Password);
+				auth.ChangePassword(Password);
 				errorAlert.Add("PasswordChanged");
 			}
 			catch (CoreError e)

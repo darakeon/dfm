@@ -9,7 +9,7 @@ namespace DFM.MVC.Models
 		{
 			try
 			{
-				safe.SendUserVerify();
+				outside.SendUserVerify(current.Email);
 			}
 			catch (CoreError exception)
 			{

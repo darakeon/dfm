@@ -7,7 +7,7 @@ namespace DFM.MVC.Models
 	{
 		public UsersContractModel()
 		{
-			Contract = safe.GetContract();
+			Contract = law.GetContract();
 		}
 
 		public ContractInfo Contract { get; }
@@ -18,7 +18,7 @@ namespace DFM.MVC.Models
 			if (!Accept)
 				addModelError("Accept", String.Empty);
 			else
-				safe.AcceptContract();
+				law.AcceptContract();
 		}
 	}
 }

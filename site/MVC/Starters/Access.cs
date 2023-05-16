@@ -17,7 +17,7 @@ namespace DFM.MVC.Starters
 					var current = service.Current;
 
 					if (current.IsAuthenticated)
-						service.Access.Safe.SaveAccess();
+						service.Access.Law.SaveAccess();
 				}
 				catch (Exception e)
 				{

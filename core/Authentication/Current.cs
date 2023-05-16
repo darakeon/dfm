@@ -16,9 +16,9 @@ namespace DFM.Authentication
 		where SignInInfo : ISignInInfo, new()
 		where SessionInfo : class, ISessionInfo, new()
 	{
-		private ISafeService<SignInInfo, SessionInfo> userService { get; }
+		private IAuthService<SignInInfo, SessionInfo> userService { get; }
 
-		protected Current(ISafeService<SignInInfo, SessionInfo> userService, GetTicket getTicket)
+		protected Current(IAuthService<SignInInfo, SessionInfo> userService, GetTicket getTicket)
 		{
 			this.userService = userService;
 			clientGetTicket = getTicket;

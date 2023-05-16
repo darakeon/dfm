@@ -13,31 +13,10 @@ using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Services
 {
-	public class SafeService : Service, ISafeService<SignInInfo, SessionInfo>
+	public class AuthService: Service, IAuthService<SignInInfo, SessionInfo>
 	{
-		internal SafeService(ServiceAccess serviceAccess, Repos repos)
+		internal AuthService(ServiceAccess serviceAccess, Repos repos)
 			: base(serviceAccess, repos) { }
-
-		public void SendPasswordReset(String email)
-		{
-			inTransaction("SendPasswordReset", () =>
-			{
-				var user = repos.User.GetByEmail(email);
-
-				if (user == null)
-					return;
-
-				if (user.Control.ProcessingDeletion)
-					throw Error.UserDeleted.Throw();
-
-				if (user.Control.WipeRequest != null)
-					throw Error.UserAskedWipe.Throw();
-
-				repos.Security.CreateAndSendToken(
-					user, SecurityAction.PasswordReset
-				);
-			});
-		}
 
 		public void SaveUser(SignUpInfo info)
 		{
@@ -51,106 +30,10 @@ namespace DFM.BusinessLogic.Services
 				user = repos.User.Save(user);
 
 				if (info.AcceptedContract)
-					acceptContract(user);
+					parent.Law.AcceptContract(user);
 
-				sendUserVerify(user);
+				parent.Outside.SendUserVerify(user);
 			});
-		}
-
-		public void SendUserVerify()
-		{
-			SendUserVerify(parent.Current.Email);
-		}
-
-		public void SendUserVerify(String email)
-		{
-			inTransaction("SendUserVerify", () =>
-			{
-				var user = repos.User.GetByEmail(email);
-
-				if (user == null)
-					throw Error.InvalidUser.Throw();
-
-				if (user.Control.ProcessingDeletion)
-					throw Error.UserDeleted.Throw();
-
-				if (user.Control.WipeRequest != null)
-					throw Error.UserAskedWipe.Throw();
-
-				sendUserVerify(user);
-			});
-		}
-
-		private void sendUserVerify(User user)
-		{
-			repos.Security.CreateAndSendToken(
-				user, SecurityAction.UserVerification
-			);
-		}
-
-		public void ActivateUser(String token)
-		{
-			inTransaction("ActivateUser", () =>
-			{
-				var security = repos.Security.ValidateAndGet(
-					token, SecurityAction.UserVerification
-				);
-
-				if (security.User.Control.ProcessingDeletion)
-					throw Error.UserDeleted.Throw();
-
-				if (security.User.Control.WipeRequest != null)
-					throw Error.UserAskedWipe.Throw();
-
-				repos.Control.Activate(security.User);
-
-				repos.Security.Disable(token);
-			});
-		}
-
-		public void ResetPassword(PasswordResetInfo reset)
-		{
-			reset.VerifyPassword();
-
-			inTransaction("PasswordReset", () =>
-			{
-				var security = repos.Security.ValidateAndGet(
-					reset.Token,
-					SecurityAction.PasswordReset
-				);
-
-				var user = security.User;
-
-				if (user.Control.ProcessingDeletion)
-					throw Error.UserDeleted.Throw();
-
-				if (user.Control.WipeRequest != null)
-					throw Error.UserAskedWipe.Throw();
-
-				user.Password = reset.Password;
-
-				repos.User.ChangePassword(user);
-
-				repos.Security.Disable(reset.Token);
-			});
-		}
-
-		public void TestSecurityToken(String token, SecurityAction securityAction)
-		{
-			var security = repos.Security.ValidateAndGet(token, securityAction);
-
-			if (security.User.Control.ProcessingDeletion)
-				throw Error.UserDeleted.Throw();
-
-			if (security.User.Control.WipeRequest != null)
-				throw Error.UserAskedWipe.Throw();
-		}
-
-		public void DisableToken(String token)
-		{
-			inTransaction("DisableToken",
-				() => repos.Security.Disable(token)
-			);
 		}
 
 		public SessionInfo GetSession(String ticketKey)
@@ -289,7 +172,7 @@ namespace DFM.BusinessLogic.Services
 			if (user.Control.WipeRequest != null)
 				throw Error.UserAskedWipe.Throw();
 
-			if (!IsLastContractAccepted(user))
+			if (!parent.Law.IsLastContractAccepted(user))
 				throw Error.NotSignedLastContract.Throw();
 		}
 
@@ -349,70 +232,8 @@ namespace DFM.BusinessLogic.Services
 			{
 				user = repos.User.UpdateEmail(user.ID, email);
 				repos.Control.Deactivate(user);
-				sendUserVerify(user);
+				parent.Outside.SendUserVerify(user);
 			});
-		}
-
-		public ContractInfo GetContract()
-		{
-			var contract = getContract();
-
-			if (contract == null)
-				return null;
-
-			return new ContractInfo(contract);
-		}
-
-		private Contract getContract()
-		{
-			return repos.Contract.GetContract();
-		}
-
-		public Boolean IsLastContractAccepted()
-		{
-			var user = GetCurrent();
-
-			if (user.Control.ProcessingDeletion)
-				throw Error.UserDeleted.Throw();
-
-			if (user.Control.WipeRequest != null)
-				throw Error.UserAskedWipe.Throw();
-
-			return IsLastContractAccepted(user);
-		}
-
-		internal Boolean IsLastContractAccepted(User user)
-		{
-			var contract = getContract();
-
-			if (contract == null)
-				return true;
-
-			return repos.Acceptance.IsAccepted(user, contract);
-		}
-
-		public void AcceptContract()
-		{
-			inTransaction("AcceptContract", () =>
-				acceptContract(GetCurrent())
-			);
-		}
-
-		private void acceptContract(User user)
-		{
-			if (user.Control.ProcessingDeletion)
-				throw Error.UserDeleted.Throw();
-
-			if (user.Control.WipeRequest != null)
-				throw Error.UserAskedWipe.Throw();
-
-			var contract = getContract();
-			var acceptedNow = repos.Acceptance.Accept(user, contract);
-
-			if (!acceptedNow) return;
-
-			var control = user.Control;
-			repos.Control.ResetWarnCounter(control);
 		}
 
 		public void UpdateTFA(TFAInfo info)
@@ -436,7 +257,7 @@ namespace DFM.BusinessLogic.Services
 				if (user.Control.WipeRequest != null)
 					throw Error.UserAskedWipe.Throw();
 
-				if (!IsLastContractAccepted(user))
+				if (!parent.Law.IsLastContractAccepted(user))
 					throw Error.NotSignedLastContract.Throw();
 
 				repos.User.SaveTFA(user, info.Secret);
@@ -455,7 +276,7 @@ namespace DFM.BusinessLogic.Services
 				if (user.Control.WipeRequest != null)
 					throw Error.UserAskedWipe.Throw();
 
-				if (!IsLastContractAccepted(user))
+				if (!parent.Law.IsLastContractAccepted(user))
 					throw Error.NotSignedLastContract.Throw();
 
 				if (!repos.User.VerifyPassword(user, currentPassword))
@@ -527,31 +348,6 @@ namespace DFM.BusinessLogic.Services
 			return getUserByTicket(parent.Current.TicketKey);
 		}
 
-		public void SaveAccess()
-		{
-			var key = parent.Current.TicketKey;
-			var ticket = repos.Ticket.GetByKey(key);
-
-			if (ticket == null)
-				return;
-
-			var user = ticket.User;
-
-			if (user.Control.ProcessingDeletion)
-				throw Error.UserDeleted.Throw();
-
-			if (user.Control.WipeRequest != null)
-				throw Error.UserAskedWipe.Throw();
-
-			inTransaction("SaveAccess", () =>
-			{
-				ticket.LastAccess = DateTime.UtcNow;
-				repos.Ticket.SaveOrUpdate(ticket);
-
-				repos.Control.SaveAccess(user.Control);
-			});
-		}
-
 		public void UseTFAAsPassword(Boolean use)
 		{
 			inTransaction("UseTFAAsPassword", () =>
@@ -564,68 +360,11 @@ namespace DFM.BusinessLogic.Services
 				if (user.Control.WipeRequest != null)
 					throw Error.UserAskedWipe.Throw();
 
-				if (!IsLastContractAccepted(user))
+				if (!parent.Law.IsLastContractAccepted(user))
 					throw Error.NotSignedLastContract.Throw();
 
 				repos.User.UseTFAAsPassword(user, use);
 			});
-		}
-
-		public void AskWipe(String password)
-		{
-			VerifyUser();
-
-			inTransaction("AskWipe", () =>
-			{
-				var user = GetCurrent();
-
-				var validPassword =
-					repos.User.VerifyPassword(user, password);
-
-				if (!validPassword)
-					throw Error.WrongPassword.Throw();
-
-				repos.Control.RequestWipe(user);
-			});
-		}
-
-		public void ReMisc(String password)
-		{
-			VerifyUser();
-
-			inTransaction("ReMisc", () =>
-			{
-				var user = GetCurrent();
-
-				var validPassword =
-					repos.User.VerifyPassword(user, password);
-
-				if (!validPassword)
-					throw Error.WrongPassword.Throw();
-
-				repos.Control.ReMisc(user);
-			});
-		}
-
-		public void SendWipedUserCSV(String email, String password, Action<String> download)
-		{
-			var wipes = repos.Wipe.GetByUser(email, password);
-
-			wipes = wipes.Where(
-				w => w.Why != RemovalReason.PersonAsked
-			).ToList();
-
-			if (!wipes.Any())
-				throw Error.WipeUserAsked.Throw();
-
-			wipes = wipes.Where(
-				w => !String.IsNullOrEmpty(w.S3)
-			).ToList();
-
-			if (!wipes.Any())
-				throw Error.WipeNoMoves.Throw();
-
-			repos.Wipe.SendCSV(email, wipes, download);
 		}
 	}
 }

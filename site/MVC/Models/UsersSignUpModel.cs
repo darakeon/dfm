@@ -11,7 +11,7 @@ namespace DFM.MVC.Models
 	{
 		public UsersSignUpModel()
 		{
-			Contract = safe.GetContract();
+			Contract = law.GetContract();
 			Info = new SignUpInfo
 			{
 				EnableWizard = true
@@ -60,7 +60,7 @@ namespace DFM.MVC.Models
 			{
 				Info.Language = Language;
 				Info.TimeZone = TZ.GetTimeZone(TimeZoneOffset);
-				safe.SaveUser(Info);
+				auth.SaveUser(Info);
 
 				current.Set(Info.Email, Info.Password, true);
 			}

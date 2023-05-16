@@ -27,13 +27,13 @@ namespace DFM.MVC.Helpers.Authorize
 		                                  && !current.IsAdm;
 
 		private Boolean denyByContract => !mandatory.HasFlag(AuthParams.IgnoreContract)
-		                                  && !access.Safe.IsLastContractAccepted();
+		                                  && !access.Law.IsLastContractAccepted();
 		
 		private Boolean denyByTFA      => !mandatory.HasFlag(AuthParams.IgnoreTFA)
-		                                  && !access.Safe.VerifyTicketTFA();
+		                                  && !access.Auth.VerifyTicketTFA();
 		
 		private Boolean denyByMobile   => mandatory.HasFlag(AuthParams.Mobile)
-		                                  && !access.Safe.VerifyTicketType(TicketType.Mobile);
+		                                  && !access.Auth.VerifyTicketType(TicketType.Mobile);
 
 		public void OnAuthorization(AuthorizationFilterContext context)
 		{

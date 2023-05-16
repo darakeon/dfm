@@ -24,11 +24,14 @@ namespace DFM.MVC.Models
 
 		protected static ServiceAccess service => context.GetService().Access;
 
+		protected AuthService auth => service.Auth;
+		protected LawService law => service.Law;
 		protected AdminService admin => service.Admin;
+		protected ClipService clip => service.Clip;
 		protected MoneyService money => service.Money;
 		protected ReportService report => service.Report;
 		protected RobotService robot => service.Robot;
-		protected SafeService safe => service.Safe;
+		protected OutsideService outside => service.Outside;
 
 		protected Current current => service.Current;
 
@@ -50,7 +53,7 @@ namespace DFM.MVC.Models
 			catch (CoreError e)
 			{
 				if (e.Type == Error.DisabledUser)
-					safe.SendUserVerify(email);
+					outside.SendUserVerify(email);
 
 				throw;
 			}

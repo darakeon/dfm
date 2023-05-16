@@ -140,7 +140,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 					Language = Defaults.SettingsLanguage,
 				};
 
-				service.Safe.SaveUser(info);
+				service.Auth.SaveUser(info);
 			}
 			catch (CoreError e)
 			{
@@ -195,7 +195,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Safe.SendPasswordReset(email);
+				service.Outside.SendPasswordReset(email);
 			}
 			catch (CoreError e)
 			{
@@ -217,7 +217,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"I pass a token of password reset")]
 		public void GivenIPassATokenOfPasswordReset()
 		{
-			service.Safe.SendPasswordReset(current.Email);
+			service.Outside.SendPasswordReset(current.Email);
 
 			token = getLastTokenForUser(
 				current.Email,
@@ -230,7 +230,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Safe.ActivateUser(token);
+				service.Outside.ActivateUser(token);
 			}
 			catch (CoreError e)
 			{
@@ -250,14 +250,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"I activate the user")]
 		public void GivenIActivateTheUser()
 		{
-			service.Safe.SendUserVerify(email);
+			service.Outside.SendUserVerify(email);
 
 			var tokenToActivate = getLastTokenForUser(
 				email,
 				SecurityAction.UserVerification
 			);
 
-			service.Safe.ActivateUser(tokenToActivate);
+			service.Outside.ActivateUser(tokenToActivate);
 		}
 
 		[Given(@"I deactivate the user")]
@@ -291,7 +291,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 					TicketType = TicketType.Tests,
 				};
 
-				ticket = service.Safe.CreateTicket(info);
+				ticket = service.Auth.CreateTicket(info);
 			}
 			catch (CoreError e)
 			{
@@ -317,14 +317,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 			{
 				try
 				{
-					service.Safe.CreateTicket(info);
+					service.Auth.CreateTicket(info);
 				}
 				catch (CoreError) { }
 			}
 
 			try
 			{
-				service.Safe.CreateTicket(info);
+				service.Auth.CreateTicket(info);
 			}
 			catch (CoreError e)
 			{
@@ -339,7 +339,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			{
 				Assert.IsNotNull(ticket);
 
-				var expectedSession = service.Safe.GetSession(ticket);
+				var expectedSession = service.Auth.GetSession(ticket);
 
 				Assert.IsNotNull(expectedSession);
 			}
@@ -358,7 +358,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			try
 			{
-				session = service.Safe.GetSession(ticket);
+				session = service.Auth.GetSession(ticket);
 			}
 			catch (CoreError e)
 			{
@@ -406,7 +406,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 					Token = token
 				};
 
-				service.Safe.ResetPassword(info);
+				service.Outside.ResetPassword(info);
 			}
 			catch (CoreError e)
 			{
@@ -448,7 +448,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Safe.TestSecurityToken(token, action);
+				service.Outside.TestSecurityToken(token, action);
 			}
 			catch (CoreError e)
 			{
@@ -463,7 +463,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Safe.DisableToken(token);
+				service.Outside.DisableToken(token);
 			}
 			catch (CoreError e)
 			{
@@ -476,7 +476,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Safe.TestSecurityToken(token, action);
+				service.Outside.TestSecurityToken(token, action);
 			}
 			catch (CoreError e)
 			{
@@ -494,7 +494,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Safe.DisableTicket(ticket);
+				service.Auth.DisableTicket(ticket);
 			}
 			catch (CoreError e)
 			{
@@ -509,7 +509,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			try
 			{
-				service.Safe.GetSession(ticket);
+				service.Auth.GetSession(ticket);
 			}
 			catch (CoreError e)
 			{
@@ -527,7 +527,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			try
 			{
-				service.Safe.GetSession(ticket);
+				service.Auth.GetSession(ticket);
 			}
 			catch (CoreError e)
 			{
@@ -563,7 +563,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				logins = service.Safe.ListLogins();
+				logins = service.Auth.ListLogins();
 			}
 			catch (CoreError e)
 			{
@@ -580,7 +580,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"they will be active")]
 		public void ThenTheyWillBeActive()
 		{
-			var user = service.Safe.GetCurrent();
+			var user = service.Auth.GetCurrent();
 
 			foreach (var login in logins)
 			{
@@ -604,7 +604,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the current login and only it will have current flag")]
 		public void ThenTheCurrentLoginAndOnlyItWillHaveCurrentFlag()
 		{
-			var user = service.Safe.GetCurrent();
+			var user = service.Auth.GetCurrent();
 
 			foreach (var login in logins)
 			{
@@ -632,7 +632,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 					RetypePassword = retypePassword
 				};
 
-				service.Safe.ChangePassword(info);
+				service.Auth.ChangePassword(info);
 			}
 			catch (CoreError e)
 			{
@@ -666,7 +666,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Safe.UpdateEmail(currentPassword, newEmail);
+				service.Auth.UpdateEmail(currentPassword, newEmail);
 			}
 			catch (CoreError e)
 			{
@@ -678,7 +678,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void ThenTheEmailWillNotBeChanged()
 		{
 			error = null;
-			var user = service.Safe.GetSession(ticketKey);
+			var user = service.Auth.GetSession(ticketKey);
 			Assert.AreEqual(email, user.Email);
 		}
 
@@ -702,7 +702,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Safe.SaveAccess();
+				service.Law.SaveAccess();
 			}
 			catch (CoreError e)
 			{
@@ -749,7 +749,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Safe.UseTFAAsPassword(use);
+				service.Auth.UseTFAAsPassword(use);
 			}
 			catch (CoreError e)
 			{
@@ -773,7 +773,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 					TicketType = TicketType.Tests
 				};
 
-				service.Safe.CreateTicket(info);
+				service.Auth.CreateTicket(info);
 			}
 			catch (CoreError)
 			{
@@ -803,7 +803,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				TicketType = TicketType.Tests,
 			};
 
-			ticket = service.Safe.CreateTicket(info);
+			ticket = service.Auth.CreateTicket(info);
 		}
 		#endregion
 
@@ -827,7 +827,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			try
 			{
-				service.Safe.SendWipedUserCSV(
+				service.Outside.SendWipedUserCSV(
 					email, password,
 					path => File.WriteAllText(path, csvs[path])
 				);
@@ -905,13 +905,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"I have a token for its activation")]
 		public void GivenIHaveATokenForItsActivation()
 		{
-			service.Safe.SendUserVerify(email);
+			service.Outside.SendUserVerify(email);
 		}
 
 		[Given(@"I have a token for its password reset")]
 		public void GivenIHaveATokenForItsPasswordReset()
 		{
-			service.Safe.SendPasswordReset(email);
+			service.Outside.SendPasswordReset(email);
 		}
 
 		[Given(@"I pass an invalid token")]
@@ -965,7 +965,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"I pass a ticket that is already disabled")]
 		public void GivenIPassATicketThatIsAlreadyInvalid()
 		{
-			service.Safe.DisableTicket(ticket);
+			service.Auth.DisableTicket(ticket);
 		}
 
 		[Given(@"I pass a ticket that is of this disabled user")]
@@ -979,7 +979,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				TicketType = TicketType.Tests,
 			};
 
-			ticket = service.Safe.CreateTicket(info);
+			ticket = service.Auth.CreateTicket(info);
 		}
 
 		[Given(@"I pass a ticket that exist")]
@@ -1025,7 +1025,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				TicketType = TicketType.Tests,
 			};
 
-			ticket = service.Safe.CreateTicket(info);
+			ticket = service.Auth.CreateTicket(info);
 		}
 
 
@@ -1034,7 +1034,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Safe.SendUserVerify(email);
+				service.Outside.SendUserVerify(email);
 			}
 			catch (CoreError e)
 			{
@@ -1085,7 +1085,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"I have accepted the contract")]
 		public void GivenIHaveAcceptedTheContract()
 		{
-			service.Safe.AcceptContract();
+			service.Law.AcceptContract();
 		}
 
 		[Given(@"there is a new contract")]
@@ -1105,7 +1105,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Safe.GetContract();
+				service.Law.GetContract();
 			}
 			catch (CoreError e)
 			{
@@ -1118,7 +1118,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Safe.AcceptContract();
+				service.Law.AcceptContract();
 			}
 			catch (CoreError e)
 			{
@@ -1131,7 +1131,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				accepted = service.Safe.IsLastContractAccepted();
+				accepted = service.Law.IsLastContractAccepted();
 			}
 			catch (CoreError e)
 			{
@@ -1142,7 +1142,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the contract status will be (not )?accepted")]
 		public void ThenTheContractStatusWillBeAccepted(Boolean expectAccepted)
 		{
-			accepted ??= service.Safe.IsLastContractAccepted();
+			accepted ??= service.Law.IsLastContractAccepted();
 
 			Assert.AreEqual(expectAccepted, accepted);
 		}
@@ -1177,7 +1177,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				TicketType = TicketType.Tests,
 			};
 
-			ticket = service.Safe.CreateTicket(info);
+			ticket = service.Auth.CreateTicket(info);
 		}
 
 		[Given(@"I have this two-factor data")]
@@ -1202,7 +1202,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Safe.UpdateTFA(tfa);
+				service.Auth.UpdateTFA(tfa);
 			}
 			catch (CoreError e)
 			{
@@ -1219,7 +1219,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Safe.RemoveTFA(tfa.Password);
+				service.Auth.RemoveTFA(tfa.Password);
 			}
 			catch (CoreError e)
 			{
@@ -1261,7 +1261,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				TicketType = TicketType.Tests,
 			};
 
-			ticket = service.Safe.CreateTicket(info);
+			ticket = service.Auth.CreateTicket(info);
 		}
 
 		[Given(@"I validate the ticket two factor")]
@@ -1270,7 +1270,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Safe.ValidateTicketTFA(tfa.Code);
+				service.Auth.ValidateTicketTFA(tfa.Code);
 			}
 			catch (CoreError exception)
 			{
@@ -1286,7 +1286,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				ticketVerified = service.Safe.VerifyTicketTFA();
+				ticketVerified = service.Auth.VerifyTicketTFA();
 			}
 			catch (CoreError exception)
 			{
@@ -1299,7 +1299,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				ticketVerified = service.Safe.VerifyTicketType(type);
+				ticketVerified = service.Auth.VerifyTicketType(type);
 			}
 			catch (CoreError exception)
 			{
@@ -1317,7 +1317,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the ticket will (not )?be valid")]
 		public void ThenTheTicketWillBeValidated(Boolean valid)
 		{
-			var recordedValidated = service.Safe.VerifyTicketTFA();
+			var recordedValidated = service.Auth.VerifyTicketTFA();
 			Assert.AreEqual(valid, recordedValidated);
 		}
 		#endregion TFA
@@ -1351,7 +1351,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Safe.AskWipe(password);
+				service.Robot.AskWipe(password);
 			}
 			catch (CoreError e)
 			{
@@ -1383,7 +1383,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Safe.ReMisc(password);
+				service.Clip.ReMisc(password);
 			}
 			catch (CoreError e)
 			{

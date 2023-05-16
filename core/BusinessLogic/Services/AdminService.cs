@@ -20,9 +20,9 @@ namespace DFM.BusinessLogic.Services
 		#region Account
 		public IList<AccountListItem> GetAccountList(Boolean open)
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 
-			var user = parent.Safe.GetCurrent();
+			var user = parent.Auth.GetCurrent();
 
 			return repos.Account.Get(user, open)
 				.Select(makeAccountListItem)
@@ -41,7 +41,7 @@ namespace DFM.BusinessLogic.Services
 
 		public AccountInfo GetAccount(String url)
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 			var account = GetAccountEntity(url);
 			return AccountInfo.Convert(account);
 		}
@@ -58,7 +58,7 @@ namespace DFM.BusinessLogic.Services
 
 		private Account getAccount(String url)
 		{
-			var user = parent.Safe.GetCurrent();
+			var user = parent.Auth.GetCurrent();
 			return repos.Account.GetByUrl(url, user);
 		}
 
@@ -66,7 +66,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			var account = new Account
 			{
-				User = parent.Safe.GetCurrent(),
+				User = parent.Auth.GetCurrent(),
 				Open = true,
 			};
 
@@ -81,7 +81,7 @@ namespace DFM.BusinessLogic.Services
 
 		private void saveAccount(AccountInfo info, Account account)
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 
 			inTransaction("SaveAccount", () =>
 			{
@@ -92,7 +92,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void CloseAccount(String url)
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 
 			inTransaction("CloseAccount", () =>
 			{
@@ -111,7 +111,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void DeleteAccount(String url)
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 
 			inTransaction("DeleteAccount", () =>
 			{
@@ -132,7 +132,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void ReopenAccount(String url)
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 
 			inTransaction("ReopenAccount", () =>
 			{
@@ -146,9 +146,9 @@ namespace DFM.BusinessLogic.Services
 		#region Category
 		public IList<CategoryListItem> GetCategoryList(Boolean? active = null)
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 
-			var user = parent.Safe.GetCurrent();
+			var user = parent.Auth.GetCurrent();
 			var categories = repos.Category.Get(user, active);
 
 			return categories
@@ -158,7 +158,7 @@ namespace DFM.BusinessLogic.Services
 
 		public CategoryInfo GetCategory(String name)
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 			return CategoryInfo.Convert(
 				GetCategoryEntity(name)
 			);
@@ -178,7 +178,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			verifyCategoriesEnabled();
 
-			var user = parent.Safe.GetCurrent();
+			var user = parent.Auth.GetCurrent();
 			return repos.Category.GetByName(name, user);
 		}
 
@@ -186,7 +186,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			var category = new Category
 			{
-				User = parent.Safe.GetCurrent()
+				User = parent.Auth.GetCurrent()
 			};
 
 			saveCategory(info, category);
@@ -194,7 +194,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void UpdateCategory(CategoryInfo info)
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 
 			var category = GetCategoryEntity(info.OriginalName);
 
@@ -203,7 +203,7 @@ namespace DFM.BusinessLogic.Services
 
 		private void saveCategory(CategoryInfo info, Category category)
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 			verifyCategoriesEnabled();
 
 			inTransaction("SaveCategory", () =>
@@ -215,7 +215,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void DisableCategory(String name)
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 			verifyCategoriesEnabled();
 
 			var category = GetCategoryEntity(name);
@@ -228,7 +228,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void EnableCategory(String name)
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 			verifyCategoriesEnabled();
 
 			var category = GetCategoryEntity(name);
@@ -247,7 +247,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void UnifyCategory(String categoryToKeep, String categoryToDelete)
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 			verifyCategoriesEnabled();
 
 			if (categoryToKeep == categoryToDelete)
@@ -281,7 +281,7 @@ namespace DFM.BusinessLogic.Services
 				}
 			});
 
-			var user = parent.Safe.GetCurrent();
+			var user = parent.Auth.GetCurrent();
 			parent.BaseMove.FixSummaries(user);
 
 			var summaries = repos.Summary.ByCategory(delete);
@@ -301,103 +301,5 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 		#endregion Category
-
-		#region Settings
-
-		public void UpdateSettings(SettingsInfo info)
-		{
-			parent.Safe.VerifyUser();
-
-			inTransaction("UpdateSettings", () =>
-			{
-				var user = parent.Safe.GetCurrent();
-				updateSettings(info, user.Settings);
-			});
-		}
-
-		private void updateSettings(SettingsInfo info, Settings settings)
-		{
-			if (info.Language != null && !PlainText.AcceptLanguage(info.Language))
-				throw Error.LanguageUnknown.Throw();
-
-			if (info.TimeZone != null && !TZ.IsValid(info.TimeZone))
-				throw Error.TimeZoneUnknown.Throw();
-
-			if (!String.IsNullOrEmpty(info.Language))
-				settings.Language = info.Language;
-
-			if (!String.IsNullOrEmpty(info.TimeZone))
-				settings.TimeZone = info.TimeZone;
-
-			if (info.UseCategories.HasValue)
-				settings.UseCategories = info.UseCategories.Value;
-
-			if (info.UseAccountsSigns.HasValue)
-				settings.UseAccountsSigns = info.UseAccountsSigns.Value;
-
-			if (info.MoveCheck.HasValue)
-				settings.MoveCheck = info.MoveCheck.Value;
-
-			if (info.SendMoveEmail.HasValue)
-				settings.SendMoveEmail = info.SendMoveEmail.Value;
-
-			if (info.Wizard.HasValue)
-				settings.Wizard = info.Wizard.Value;
-
-			repos.Settings.Update(settings);
-		}
-
-		public void EndWizard()
-		{
-			parent.Safe.VerifyUser();
-
-			inTransaction("EndWizard", () =>
-			{
-				var settings = parent.Safe.GetCurrent().Settings;
-				settings.Wizard = false;
-				repos.Settings.Update(settings);
-			});
-		}
-
-		public void UnsubscribeMoveMail(String token)
-		{
-			inTransaction("UnsubscribeMoveMail", () =>
-			{
-				var security = repos.Security.ValidateAndGet(
-					token, SecurityAction.UnsubscribeMoveMail
-				);
-
-				var user = security.User;
-				if (!parent.Safe.IsLastContractAccepted(user))
-					throw Error.NotSignedLastContract.Throw();
-
-				var settings = user.Settings;
-				settings.SendMoveEmail = false;
-				repos.Settings.Update(settings);
-
-				repos.Security.Disable(token);
-			});
-		}
-		#endregion Settings
-
-		#region Theme
-		public void ChangeTheme(Theme theme)
-		{
-			parent.Safe.VerifyUser();
-
-			if (theme == Theme.None)
-				throw Error.InvalidTheme.Throw();
-
-			var user = parent.Safe.GetCurrent();
-
-			var settings = user.Settings;
-			settings.Theme = theme;
-
-			inTransaction("ChangeTheme", () =>
-			{
-				repos.Settings.Update(settings);
-			});
-		}
-		#endregion Theme
 	}
 }

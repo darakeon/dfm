@@ -6,7 +6,7 @@ namespace DFM.BusinessLogic
 	public class Current : Current<SignInInfo, SessionInfo>
 	{
 		internal Current(
-			ISafeService<SignInInfo, SessionInfo> userService,
+			IAuthService<SignInInfo, SessionInfo> userService,
 			GetTicket getTicket
 		)
 			: base(userService, getTicket)

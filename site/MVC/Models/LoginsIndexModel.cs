@@ -7,7 +7,7 @@ namespace DFM.MVC.Models
 	{
 		public LoginsIndexModel()
 		{
-			LoginsList = safe.ListLogins();
+			LoginsList = auth.ListLogins();
 		}
 
 		public IList<TicketInfo> LoginsList { get; set; }
