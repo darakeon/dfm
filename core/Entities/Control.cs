@@ -47,7 +47,7 @@ namespace DFM.Entities
 
 		public virtual Boolean ActiveOrAllowedPeriod()
 		{
-			return Active || Creation >= AllowedPeriod;
+			return Active || Creation.ToUniversalTime() >= AllowedPeriod;
 		}
 
 		public override String ToString()
