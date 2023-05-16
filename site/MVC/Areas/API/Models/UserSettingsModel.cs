@@ -22,7 +22,7 @@ namespace DFM.MVC.Areas.Api.Models
 				MoveCheck = MoveCheck
 			};
 
-			admin.UpdateSettings(mainSettings);
+			clip.UpdateSettings(mainSettings);
 		}
 	}
 }

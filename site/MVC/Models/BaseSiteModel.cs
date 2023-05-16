@@ -15,7 +15,7 @@ namespace DFM.MVC.Models
 	public class BaseSiteModel : BaseModel
 	{
 		public Boolean IsAuthenticated => current.IsAuthenticated;
-		public Boolean IsLastContractAccepted => safe.IsLastContractAccepted();
+		public Boolean IsLastContractAccepted => law.IsLastContractAccepted();
 
 		public Boolean IsUsingCategories => isUsingCategories;
 		public Boolean IsUsingAccountsSigns => isUsingAccountsSigns;
@@ -60,7 +60,7 @@ namespace DFM.MVC.Models
 				&& current.IsVerified
 				&& IsLastContractAccepted
 				&& !ShowWizard
-			? service.Report.ShowTip()
+			? service.Clip.ShowTip()
 			: null;
 
 		public Boolean IsExternal

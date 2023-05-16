@@ -120,7 +120,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			resetTicket();
 			createUserIfNotExists(email, userPassword, true);
 			current.Set(email, userPassword, false);
-			service.Safe.AcceptContract();
+			service.Law.AcceptContract();
 		}
 
 		protected void createUserIfNotExists(
@@ -153,7 +153,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				info.TimeZone = $"UTC{userHour:+00;-00; 00}:00";
 			}
 
-			service.Safe.SaveUser(info);
+			service.Auth.SaveUser(info);
 
 			user = repos.User.GetByEmail(email);
 

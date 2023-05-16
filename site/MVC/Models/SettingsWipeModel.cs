@@ -16,7 +16,7 @@ namespace DFM.MVC.Models
 
 			try
 			{
-				safe.AskWipe(Password);
+				robot.AskWipe(Password);
 				errorAlert.Add("Wipe_RequestSent");
 			}
 			catch (CoreError e)

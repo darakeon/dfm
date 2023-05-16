@@ -19,13 +19,13 @@ namespace DFM.Tests.Util
 		public static void ActivateMoveEmailForUser(ServiceAccess sa)
 		{
 			var mainSettings = new SettingsInfo { SendMoveEmail = true };
-			sa.Admin.UpdateSettings(mainSettings);
+			sa.Clip.UpdateSettings(mainSettings);
 		}
 
 		public static void DeactivateMoveEmailForUser(ServiceAccess sa)
 		{
 			var mainSettings = new SettingsInfo { SendMoveEmail = false };
-			sa.Admin.UpdateSettings(mainSettings);
+			sa.Clip.UpdateSettings(mainSettings);
 		}
 	}
 }

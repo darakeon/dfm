@@ -87,7 +87,7 @@ namespace DFM.MVC.Models
 
 			try
 			{
-				admin.UpdateSettings(Info);
+				clip.UpdateSettings(Info);
 				errorAlert.Add("SettingsChanged");
 			}
 			catch (CoreError e)

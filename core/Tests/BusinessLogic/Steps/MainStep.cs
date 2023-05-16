@@ -42,7 +42,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"the user have accepted the contract")]
 		public void GivenTheUserHaveAcceptedTheContract()
 		{
-			service.Safe.AcceptContract();
+			service.Law.AcceptContract();
 		}
 
 		[Given(@"I have an account")]

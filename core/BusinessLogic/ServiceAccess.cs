@@ -13,22 +13,28 @@ namespace DFM.BusinessLogic
 
 			BaseMove = new BaseMoveSaverService(this, repos);
 
-			Safe = new SafeService(this, repos);
+			Auth = new AuthService(this, repos);
+			Law = new LawService(this, repos);
 			Admin = new AdminService(this, repos);
+			Clip = new ClipService(this, repos);
 			Money = new MoneyService(this, repos);
-			Robot = new RobotService(this, repos);
 			Report = new ReportService(this, repos);
+			Robot = new RobotService(this, repos);
+			Outside = new OutsideService(this, repos);
 
-			Current = new Current(Safe, getTicket);
+			Current = new Current(Auth, getTicket);
 		}
 
 		internal BaseMoveSaverService BaseMove { get; }
 
+		public AuthService Auth { get; }
+		public LawService Law { get; }
+		public AdminService Admin { get; }
+		public ClipService Clip { get; }
 		public MoneyService Money { get; }
 		public ReportService Report { get; }
-		public SafeService Safe { get; }
-		public AdminService Admin { get; }
 		public RobotService Robot { get; }
+		public OutsideService Outside { get; }
 
 		public Current Current { get; }
 	}

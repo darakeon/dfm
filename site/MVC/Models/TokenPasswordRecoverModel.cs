@@ -29,7 +29,7 @@ namespace DFM.MVC.Models
 		{
 			try
 			{
-				safe.TestSecurityToken(token, SecurityAction.PasswordReset);
+				outside.TestSecurityToken(token, SecurityAction.PasswordReset);
 			}
 			catch (CoreError)
 			{
@@ -47,7 +47,7 @@ namespace DFM.MVC.Models
 			{
 				info.Token = token;
 
-				safe.ResetPassword(info);
+				outside.ResetPassword(info);
 			}
 			catch (CoreError e)
 			{

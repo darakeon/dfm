@@ -11,7 +11,7 @@ namespace DFM.MVC.Models
 		{
 			try
 			{
-				model.report.DismissTip();
+				model.clip.DismissTip();
 			}
 			catch (CoreError e)
 			{

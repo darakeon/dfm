@@ -9,7 +9,7 @@ namespace DFM.MVC.Models
 		{
 			try
 			{
-				admin.EndWizard();
+				clip.EndWizard();
 			}
 			catch (CoreError e)
 			{

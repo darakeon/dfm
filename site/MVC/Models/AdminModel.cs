@@ -70,14 +70,14 @@ namespace DFM.MVC.Models
 		{
 			try
 			{
-				safe.TestSecurityToken(token, SecurityAction.UnsubscribeMoveMail);
+				outside.TestSecurityToken(token, SecurityAction.UnsubscribeMoveMail);
 			}
 			catch (CoreError)
 			{
 				return false;
 			}
 
-			admin.UnsubscribeMoveMail(token);
+			outside.UnsubscribeMoveMail(token);
 
 			return true;
 		}

@@ -27,7 +27,7 @@ namespace DFM.MVC.Models
 
 			try
 			{
-				admin.ChangeTheme(NewTheme);
+				clip.ChangeTheme(NewTheme);
 				errorAlert.Add("SettingsChanged");
 			}
 			catch (CoreError e)

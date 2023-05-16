@@ -15,7 +15,7 @@ namespace DFM.BusinessLogic.Services
 
 		public MoveInfo GetMove(Guid guid)
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 			return MoveInfo.Convert4Edit(
 				GetMoveEntity(guid)
 			);
@@ -32,7 +32,7 @@ namespace DFM.BusinessLogic.Services
 
 		public MoveResult SaveMove(MoveInfo move)
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 
 			var result = save(move);
 
@@ -57,7 +57,7 @@ namespace DFM.BusinessLogic.Services
 
 		public MoveResult DeleteMove(Guid guid)
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 
 			var result = inTransaction("DeleteMove", () => deleteMove(guid));
 
@@ -81,7 +81,7 @@ namespace DFM.BusinessLogic.Services
 				repos.Schedule.AddDeleted(move.Schedule);
 			}
 
-			var user = parent.Safe.GetCurrent();
+			var user = parent.Auth.GetCurrent();
 			var security = repos.Security.Grab(user, SecurityAction.UnsubscribeMoveMail);
 			var emailStatus = repos.Move.SendEmail(move, OperationType.Deletion, security);
 
@@ -100,7 +100,7 @@ namespace DFM.BusinessLogic.Services
 
 		private MoveInfo toggleMoveCheck(Guid guid, PrimalMoveNature nature, Boolean check)
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 
 			var move = GetMoveEntity(guid);
 

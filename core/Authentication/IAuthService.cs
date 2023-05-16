@@ -2,7 +2,7 @@
 
 namespace DFM.Authentication
 {
-	public interface ISafeService<in SignInInfo, out SessionInfo>
+	public interface IAuthService<in SignInInfo, out SessionInfo>
 		where SignInInfo: ISignInInfo
 		where SessionInfo: ISessionInfo
 	{

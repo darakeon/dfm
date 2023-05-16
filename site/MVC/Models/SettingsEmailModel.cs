@@ -17,7 +17,7 @@ namespace DFM.MVC.Models
 
 			try
 			{
-				safe.UpdateEmail(CurrentPassword, Email);
+				auth.UpdateEmail(CurrentPassword, Email);
 
 				errorAlert.Add("EmailUpdated");
 			}

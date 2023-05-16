@@ -13,7 +13,7 @@ namespace DFM.MVC.Areas.Api.Models
 
 		internal void Validate()
 		{
-			safe.ValidateTicketTFA(Code);
+			auth.ValidateTicketTFA(Code);
 		}
 	}
 }

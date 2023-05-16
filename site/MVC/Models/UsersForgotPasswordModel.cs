@@ -16,7 +16,7 @@ namespace DFM.MVC.Models
 
 			try
 			{
-				safe.SendPasswordReset(Email);
+				outside.SendPasswordReset(Email);
 			}
 			catch (CoreError e)
 			{

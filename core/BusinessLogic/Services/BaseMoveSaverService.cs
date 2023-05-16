@@ -65,7 +65,7 @@ namespace DFM.BusinessLogic.Services
 			if (!moveIsNew)
 				BreakSummaries(move);
 
-			var user = parent.Safe.GetCurrent();
+			var user = parent.Auth.GetCurrent();
 			var security = repos.Security.Grab(
 				user, SecurityAction.UnsubscribeMoveMail
 			);
@@ -139,7 +139,7 @@ namespace DFM.BusinessLogic.Services
 
 		internal void FixSummaries()
 		{
-			var user = parent.Safe.GetCurrent();
+			var user = parent.Auth.GetCurrent();
 			FixSummaries(user);
 		}
 
@@ -165,7 +165,7 @@ namespace DFM.BusinessLogic.Services
 
 		internal void VerifyUser(Move move)
 		{
-			var user = parent.Safe.GetCurrent();
+			var user = parent.Auth.GetCurrent();
 			if (move == null || repos.Move.GetUser(move).ID != user.ID)
 				throw Error.InvalidMove.Throw();
 		}

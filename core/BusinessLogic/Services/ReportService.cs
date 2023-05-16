@@ -16,7 +16,7 @@ namespace DFM.BusinessLogic.Services
 
 		public MonthReport GetMonthReport(String accountUrl, Int16 dateYear, Int16 dateMonth)
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 
 			if (dateYear <= 0)
 				throw Error.InvalidYear.Throw();
@@ -24,7 +24,7 @@ namespace DFM.BusinessLogic.Services
 			if (dateMonth <= 0 || dateMonth >= 13)
 				throw Error.InvalidMonth.Throw();
 
-			var user = parent.Safe.GetCurrent();
+			var user = parent.Auth.GetCurrent();
 			var account = repos.Account.GetByUrl(accountUrl, user);
 
 			if (account == null)
@@ -54,12 +54,12 @@ namespace DFM.BusinessLogic.Services
 
 		public YearReport GetYearReport(String accountUrl, Int16 dateYear)
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 
 			if (dateYear <= 0)
 				throw Error.InvalidYear.Throw();
 
-			var user = parent.Safe.GetCurrent();
+			var user = parent.Auth.GetCurrent();
 			var account = repos.Account.GetByUrl(accountUrl, user);
 
 			if (account == null)
@@ -78,7 +78,7 @@ namespace DFM.BusinessLogic.Services
 
 		public SearchResult SearchByDescription(String description)
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 
 			if (String.IsNullOrEmpty(description))
 				return new SearchResult();
@@ -98,7 +98,7 @@ namespace DFM.BusinessLogic.Services
 
 		public CategoryReport GetCategoryReport(String accountUrl, Int16 dateYear, Int16? dateMonth = null)
 		{
-			parent.Safe.VerifyUser();
+			parent.Auth.VerifyUser();
 
 			if (dateYear <= 0)
 				throw Error.InvalidYear.Throw();
@@ -106,7 +106,7 @@ namespace DFM.BusinessLogic.Services
 			if (dateMonth is <= 0 or >= 13)
 				throw Error.InvalidMonth.Throw();
 
-			var user = parent.Safe.GetCurrent();
+			var user = parent.Auth.GetCurrent();
 			var account = repos.Account.GetByUrl(accountUrl, user);
 
 			if (account == null)
@@ -127,116 +127,5 @@ namespace DFM.BusinessLogic.Services
 			return new CategoryReport(nature, summaryList);
 		}
 
-		private static Int16 countdown = (Int16)(Cfg.Tips.Countdown - 1);
-		private static Int16 repeat = Cfg.Tips.Repeat;
-		private static Int16 reset = (Int16)(Cfg.Tips.Reset - 1);
-
-		public String ShowTip()
-		{
-			var tips = getTips();
-			String result = null;
-
-			if (tips.Countdown > 0)
-			{
-				tips.Countdown--;
-			}
-			else
-			{
-				if (tips.Repeat > 0)
-				{
-					tips.Repeat--;
-					result = tips.LastGiven() ?? tips.Random();
-				}
-
-				if (tips.Repeat == 0)
-				{
-					resetTip(tips);
-				}
-			}
-
-			inTransaction(
-				"ShowTip",
-				() => repos.Tips.SaveOrUpdate(tips)
-			);
-
-			return result;
-		}
-
-		private Tips getTips()
-		{
-			var user = parent.Safe.VerifyUser();
-			var type = parent.Current.TipType;
-
-			return repos.Tips.By(user, type)
-			    ?? createTip(user, type);
-		}
-
-		private static Tips createTip(User user, TipType type)
-		{
-			return new()
-			{
-				User = user,
-				Type = type,
-				Countdown = countdown,
-				Repeat = repeat,
-			};
-		}
-
-		private static void resetTip(Tips tips)
-		{
-			tips.Repeat = repeat;
-			tips.Last = 0;
-
-			if (tips.IsFull())
-			{
-				tips.Temporary = 0;
-				tips.Countdown = reset;
-			}
-			else
-			{
-				tips.Countdown = countdown;
-			}
-		}
-
-		public void DismissTip()
-		{
-			var tips = getTips();
-
-			if (tips == null || tips.Last == 0)
-				return;
-
-			resetTip(tips);
-			inTransaction(
-				"DismissTip",
-				() => repos.Tips.SaveOrUpdate(tips)
-			);
-		}
-
-		public void DisableTip(TipTests tip)
-		{
-			DisableTip((UInt64)tip);
-		}
-
-		public void DisableTip(TipBrowser tip)
-		{
-			DisableTip((UInt64)tip);
-		}
-
-		public void DisableTip(TipMobile tip)
-		{
-			DisableTip((UInt64)tip);
-		}
-
-		internal void DisableTip(UInt64 tip)
-		{
-			var tips = getTips();
-
-			tips.Permanent += tip;
-
-			inTransaction(
-				"DisableTip",
-				() => repos.Tips.SaveOrUpdate(tips)
-			);
-		}
 	}
 }

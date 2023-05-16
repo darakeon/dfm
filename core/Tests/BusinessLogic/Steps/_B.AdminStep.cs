@@ -878,7 +878,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void GivenIDisableCategoriesUse(Boolean enable)
 		{
 			var mainSettings = new SettingsInfo { UseCategories = enable };
-			service.Admin.UpdateSettings(mainSettings);
+			service.Clip.UpdateSettings(mainSettings);
 		}
 
 		[When(@"I try to (dis|en)able Categories use")]
@@ -887,7 +887,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			try
 			{
 				var mainSettings = new SettingsInfo { UseCategories = enable };
-				service.Admin.UpdateSettings(mainSettings);
+				service.Clip.UpdateSettings(mainSettings);
 			}
 			catch (CoreError e)
 			{
@@ -899,7 +899,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void GivenIDisableMoveCheck(Boolean enable)
 		{
 			var mainSettings = new SettingsInfo { MoveCheck = enable };
-			service.Admin.UpdateSettings(mainSettings);
+			service.Clip.UpdateSettings(mainSettings);
 		}
 
 		[When(@"I try to (dis|en)able move check")]
@@ -908,7 +908,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			try
 			{
 				var mainSettings = new SettingsInfo { MoveCheck = enable };
-				service.Admin.UpdateSettings(mainSettings);
+				service.Clip.UpdateSettings(mainSettings);
 			}
 			catch (CoreError e)
 			{
@@ -920,7 +920,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void GivenIDisableWizard(Boolean enable)
 		{
 			var mainSettings = new SettingsInfo { Wizard = enable };
-			service.Admin.UpdateSettings(mainSettings);
+			service.Clip.UpdateSettings(mainSettings);
 		}
 
 		[When(@"I try to (dis|en)able wizard")]
@@ -929,7 +929,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			try
 			{
 				var mainSettings = new SettingsInfo { Wizard = enable };
-				service.Admin.UpdateSettings(mainSettings);
+				service.Clip.UpdateSettings(mainSettings);
 			}
 			catch (CoreError e)
 			{
@@ -943,7 +943,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			try
 			{
 				var mainSettings = new SettingsInfo { Language = language };
-				service.Admin.UpdateSettings(mainSettings);
+				service.Clip.UpdateSettings(mainSettings);
 			}
 			catch (CoreError e)
 			{
@@ -969,7 +969,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			try
 			{
 				var mainSettings = new SettingsInfo { TimeZone = timeZone };
-				service.Admin.UpdateSettings(mainSettings);
+				service.Clip.UpdateSettings(mainSettings);
 			}
 			catch (CoreError e)
 			{
@@ -981,7 +981,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void GivenEnableMoveSendEmail(Boolean enable)
 		{
 			var mainSettings = new SettingsInfo { SendMoveEmail = enable };
-			service.Admin.UpdateSettings(mainSettings);
+			service.Clip.UpdateSettings(mainSettings);
 		}
 
 		[When(@"I try to (dis|en)able move send e-mail")]
@@ -990,7 +990,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			try
 			{
 				var mainSettings = new SettingsInfo { SendMoveEmail = enable };
-				service.Admin.UpdateSettings(mainSettings);
+				service.Clip.UpdateSettings(mainSettings);
 			}
 			catch (CoreError e)
 			{
@@ -1002,7 +1002,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void GivenIDisableAccountsSign(Boolean enable)
 		{
 			var mainSettings = new SettingsInfo { UseAccountsSigns = enable };
-			service.Admin.UpdateSettings(mainSettings);
+			service.Clip.UpdateSettings(mainSettings);
 		}
 
 		[When(@"(dis|en)able accounts signs")]
@@ -1011,7 +1011,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			try
 			{
 				var mainSettings = new SettingsInfo { UseAccountsSigns = enable };
-				service.Admin.UpdateSettings(mainSettings);
+				service.Clip.UpdateSettings(mainSettings);
 			}
 			catch (CoreError e)
 			{
@@ -1091,7 +1091,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Admin.ChangeTheme(theme);
+				service.Clip.ChangeTheme(theme);
 			}
 			catch (CoreError e)
 			{
@@ -1112,7 +1112,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Admin.EndWizard();
+				service.Clip.EndWizard();
 			}
 			catch (CoreError e)
 			{
@@ -1127,7 +1127,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Admin.UnsubscribeMoveMail(token);
+				service.Outside.UnsubscribeMoveMail(token);
 			}
 			catch (CoreError e)
 			{
@@ -1140,7 +1140,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Admin.UnsubscribeMoveMail("invalid");
+				service.Outside.UnsubscribeMoveMail("invalid");
 			}
 			catch (CoreError e)
 			{

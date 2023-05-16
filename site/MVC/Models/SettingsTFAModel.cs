@@ -33,9 +33,9 @@ namespace DFM.MVC.Models
 			try
 			{
 				if (IsActive)
-					safe.RemoveTFA(TFA.Password);
+					auth.RemoveTFA(TFA.Password);
 				else
-					safe.UpdateTFA(TFA);
+					auth.UpdateTFA(TFA);
 
 				errorAlert.Add("TFAAuthenticated");
 			}
