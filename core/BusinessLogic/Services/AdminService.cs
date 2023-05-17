@@ -14,7 +14,7 @@ namespace DFM.BusinessLogic.Services
 		internal AdminService(ServiceAccess serviceAccess, Repos repos)
 			: base(serviceAccess, repos) { }
 
-		#region Account
+
 		public IList<AccountListItem> GetAccountList(Boolean open)
 		{
 			parent.Auth.VerifyUser();
@@ -34,6 +34,28 @@ namespace DFM.BusinessLogic.Services
 			var item = AccountListItem.Convert(account, total, hasMoves);
 
 			return item;
+		}
+
+		public void CreateAccount(AccountInfo info)
+		{
+			var account = new Account
+			{
+				User = parent.Auth.GetCurrent(),
+				Open = true,
+			};
+
+			saveAccount(info, account);
+		}
+
+		private void saveAccount(AccountInfo info, Account account)
+		{
+			parent.Auth.VerifyUser();
+
+			inTransaction("SaveAccount", () =>
+			{
+				info.Update(account);
+				repos.Account.Save(account);
+			});
 		}
 
 		public AccountInfo GetAccount(String url)
@@ -59,32 +81,10 @@ namespace DFM.BusinessLogic.Services
 			return repos.Account.GetByUrl(url, user);
 		}
 
-		public void CreateAccount(AccountInfo info)
-		{
-			var account = new Account
-			{
-				User = parent.Auth.GetCurrent(),
-				Open = true,
-			};
-
-			saveAccount(info, account);
-		}
-
 		public void UpdateAccount(AccountInfo info)
 		{
 			var account = GetAccountEntity(info.OriginalUrl);
 			saveAccount(info, account);
-		}
-
-		private void saveAccount(AccountInfo info, Account account)
-		{
-			parent.Auth.VerifyUser();
-
-			inTransaction("SaveAccount", () =>
-			{
-				info.Update(account);
-				repos.Account.Save(account);
-			});
 		}
 
 		public void CloseAccount(String url)
@@ -104,6 +104,18 @@ namespace DFM.BusinessLogic.Services
 
 				repos.Account.Close(account);
 			});
+		}
+
+		public void ReopenAccount(String url)
+		{
+			parent.Auth.VerifyUser();
+
+			inTransaction("ReopenAccount", () =>
+			{
+				var account = GetAccountEntity(url);
+				repos.Account.Reopen(account);
+			});
+
 		}
 
 		public void DeleteAccount(String url)
@@ -127,20 +139,7 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
-		public void ReopenAccount(String url)
-		{
-			parent.Auth.VerifyUser();
 
-			inTransaction("ReopenAccount", () =>
-			{
-				var account = GetAccountEntity(url);
-				repos.Account.Reopen(account);
-			});
-
-		}
-		#endregion Account
-
-		#region Category
 		public IList<CategoryListItem> GetCategoryList(Boolean? active = null)
 		{
 			parent.Auth.VerifyUser();
@@ -151,6 +150,28 @@ namespace DFM.BusinessLogic.Services
 			return categories
 				.Select(CategoryListItem.Convert)
 				.ToList();
+		}
+
+		public void CreateCategory(CategoryInfo info)
+		{
+			var category = new Category
+			{
+				User = parent.Auth.GetCurrent()
+			};
+
+			saveCategory(info, category);
+		}
+
+		private void saveCategory(CategoryInfo info, Category category)
+		{
+			parent.Auth.VerifyUser();
+			verifyCategoriesEnabled();
+
+			inTransaction("SaveCategory", () =>
+			{
+				info.Update(category);
+				repos.Category.Save(category);
+			});
 		}
 
 		public CategoryInfo GetCategory(String name)
@@ -179,16 +200,6 @@ namespace DFM.BusinessLogic.Services
 			return repos.Category.GetByName(name, user);
 		}
 
-		public void CreateCategory(CategoryInfo info)
-		{
-			var category = new Category
-			{
-				User = parent.Auth.GetCurrent()
-			};
-
-			saveCategory(info, category);
-		}
-
 		public void UpdateCategory(CategoryInfo info)
 		{
 			parent.Auth.VerifyUser();
@@ -196,18 +207,6 @@ namespace DFM.BusinessLogic.Services
 			var category = GetCategoryEntity(info.OriginalName);
 
 			saveCategory(info, category);
-		}
-
-		private void saveCategory(CategoryInfo info, Category category)
-		{
-			parent.Auth.VerifyUser();
-			verifyCategoriesEnabled();
-
-			inTransaction("SaveCategory", () =>
-			{
-				info.Update(category);
-				repos.Category.Save(category);
-			});
 		}
 
 		public void DisableCategory(String name)
@@ -297,6 +296,5 @@ namespace DFM.BusinessLogic.Services
 				repos.Category.Delete(delete);
 			});
 		}
-		#endregion Category
 	}
 }

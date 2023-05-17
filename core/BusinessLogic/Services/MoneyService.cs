@@ -13,23 +13,6 @@ namespace DFM.BusinessLogic.Services
 		internal MoneyService(ServiceAccess serviceAccess, Repos repos)
 			: base(serviceAccess, repos) { }
 
-		public MoveInfo GetMove(Guid guid)
-		{
-			parent.Auth.VerifyUser();
-			return MoveInfo.Convert4Edit(
-				GetMoveEntity(guid)
-			);
-		}
-
-		internal Move GetMoveEntity(Guid guid)
-		{
-			var move = repos.Move.Get(guid);
-
-			parent.BaseMove.VerifyUser(move);
-
-			return move;
-		}
-
 		public MoveResult SaveMove(MoveInfo move)
 		{
 			parent.Auth.VerifyUser();
@@ -55,37 +38,21 @@ namespace DFM.BusinessLogic.Services
 			);
 		}
 
-		public MoveResult DeleteMove(Guid guid)
+		public MoveInfo GetMove(Guid guid)
 		{
 			parent.Auth.VerifyUser();
-
-			var result = inTransaction("DeleteMove", () => deleteMove(guid));
-
-			parent.BaseMove.FixSummaries();
-
-			return result;
+			return MoveInfo.Convert4Edit(
+				GetMoveEntity(guid)
+			);
 		}
 
-		private MoveResult deleteMove(Guid guid)
+		internal Move GetMoveEntity(Guid guid)
 		{
-			var move = GetMoveEntity(guid);
+			var move = repos.Move.Get(guid);
 
 			parent.BaseMove.VerifyUser(move);
 
-			repos.Move.Delete(move);
-
-			parent.BaseMove.BreakSummaries(move);
-
-			if (move.Schedule != null)
-			{
-				repos.Schedule.AddDeleted(move.Schedule);
-			}
-
-			var user = parent.Auth.GetCurrent();
-			var security = repos.Security.Grab(user, SecurityAction.UnsubscribeMoveMail);
-			var emailStatus = repos.Move.SendEmail(move, OperationType.Deletion, security);
-
-			return new MoveResult(move, emailStatus);
+			return move;
 		}
 
 		public MoveInfo CheckMove(Guid guid, PrimalMoveNature nature)
@@ -140,6 +107,39 @@ namespace DFM.BusinessLogic.Services
 
 				throw error.Throw();
 			}
+		}
+
+		public MoveResult DeleteMove(Guid guid)
+		{
+			parent.Auth.VerifyUser();
+
+			var result = inTransaction("DeleteMove", () => deleteMove(guid));
+
+			parent.BaseMove.FixSummaries();
+
+			return result;
+		}
+
+		private MoveResult deleteMove(Guid guid)
+		{
+			var move = GetMoveEntity(guid);
+
+			parent.BaseMove.VerifyUser(move);
+
+			repos.Move.Delete(move);
+
+			parent.BaseMove.BreakSummaries(move);
+
+			if (move.Schedule != null)
+			{
+				repos.Schedule.AddDeleted(move.Schedule);
+			}
+
+			var user = parent.Auth.GetCurrent();
+			var security = repos.Security.Grab(user, SecurityAction.UnsubscribeMoveMail);
+			var emailStatus = repos.Move.SendEmail(move, OperationType.Deletion, security);
+
+			return new MoveResult(move, emailStatus);
 		}
 	}
 }

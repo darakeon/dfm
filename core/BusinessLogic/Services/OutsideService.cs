@@ -13,25 +13,22 @@ namespace DFM.BusinessLogic.Services
 		internal OutsideService(ServiceAccess serviceAccess, Repos repos)
 			: base(serviceAccess, repos) { }
 
-		public void SendPasswordReset(String email)
+		public void TestSecurityToken(String token, SecurityAction securityAction)
 		{
-			inTransaction("SendPasswordReset", () =>
-			{
-				var user = repos.User.GetByEmail(email);
+			var security = repos.Security.ValidateAndGet(token, securityAction);
 
-				if (user == null)
-					return;
+			if (security.User.Control.ProcessingDeletion)
+				throw Error.UserDeleted.Throw();
 
-				if (user.Control.ProcessingDeletion)
-					throw Error.UserDeleted.Throw();
+			if (security.User.Control.WipeRequest != null)
+				throw Error.UserAskedWipe.Throw();
+		}
 
-				if (user.Control.WipeRequest != null)
-					throw Error.UserAskedWipe.Throw();
-
-				repos.Security.CreateAndSendToken(
-					user, SecurityAction.PasswordReset
-				);
-			});
+		public void DisableToken(String token)
+		{
+			inTransaction("DisableToken",
+				() => repos.Security.Disable(token)
+			);
 		}
 
 		public void SendUserVerify(String email)
@@ -80,6 +77,27 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
+		public void SendPasswordReset(String email)
+		{
+			inTransaction("SendPasswordReset", () =>
+			{
+				var user = repos.User.GetByEmail(email);
+
+				if (user == null)
+					return;
+
+				if (user.Control.ProcessingDeletion)
+					throw Error.UserDeleted.Throw();
+
+				if (user.Control.WipeRequest != null)
+					throw Error.UserAskedWipe.Throw();
+
+				repos.Security.CreateAndSendToken(
+					user, SecurityAction.PasswordReset
+				);
+			});
+		}
+
 		public void ResetPassword(PasswordResetInfo reset)
 		{
 			reset.VerifyPassword();
@@ -107,22 +125,24 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
-		public void TestSecurityToken(String token, SecurityAction securityAction)
+		public void UnsubscribeMoveMail(String token)
 		{
-			var security = repos.Security.ValidateAndGet(token, securityAction);
+			inTransaction("UnsubscribeMoveMail", () =>
+			{
+				var security = repos.Security.ValidateAndGet(
+					token, SecurityAction.UnsubscribeMoveMail
+				);
 
-			if (security.User.Control.ProcessingDeletion)
-				throw Error.UserDeleted.Throw();
+				var user = security.User;
+				if (!parent.Law.IsLastContractAccepted(user))
+					throw Error.NotSignedLastContract.Throw();
 
-			if (security.User.Control.WipeRequest != null)
-				throw Error.UserAskedWipe.Throw();
-		}
+				var settings = user.Settings;
+				settings.SendMoveEmail = false;
+				repos.Settings.Update(settings);
 
-		public void DisableToken(String token)
-		{
-			inTransaction("DisableToken",
-				() => repos.Security.Disable(token)
-			);
+				repos.Security.Disable(token);
+			});
 		}
 
 		public void SendWipedUserCSV(String email, String password, Action<String> download)
@@ -144,26 +164,6 @@ namespace DFM.BusinessLogic.Services
 				throw Error.WipeNoMoves.Throw();
 
 			repos.Wipe.SendCSV(email, wipes, download);
-		}
-
-		public void UnsubscribeMoveMail(String token)
-		{
-			inTransaction("UnsubscribeMoveMail", () =>
-			{
-				var security = repos.Security.ValidateAndGet(
-					token, SecurityAction.UnsubscribeMoveMail
-				);
-
-				var user = security.User;
-				if (!parent.Law.IsLastContractAccepted(user))
-					throw Error.NotSignedLastContract.Throw();
-
-				var settings = user.Settings;
-				settings.SendMoveEmail = false;
-				repos.Settings.Update(settings);
-
-				repos.Security.Disable(token);
-			});
 		}
 	}
 }
