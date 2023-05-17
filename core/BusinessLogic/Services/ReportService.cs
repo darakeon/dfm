@@ -3,9 +3,7 @@ using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
-using DFM.Entities;
 using DFM.Entities.Enums;
-using DFM.Generic;
 
 namespace DFM.BusinessLogic.Services
 {
