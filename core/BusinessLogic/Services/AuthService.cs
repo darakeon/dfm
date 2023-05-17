@@ -36,34 +36,6 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
-		public SessionInfo GetSession(String ticketKey)
-		{
-			var user = getUserByTicket(ticketKey);
-
-			if (user.Control.ProcessingDeletion)
-				throw Error.UserDeleted.Throw();
-
-			if (user.Control.WipeRequest != null)
-				throw Error.UserAskedWipe.Throw();
-
-			return new(user);
-		}
-
-		private User getUserByTicket(String ticketKey)
-		{
-			var ticket = repos.Ticket.GetByKey(ticketKey);
-
-			if (ticket is not {Active: true})
-				throw Error.Uninvited.Throw();
-
-			var user = ticket.User;
-
-			if (!user.Control.ActiveOrAllowedPeriod())
-				throw Error.DisabledUser.Throw();
-
-			return user;
-		}
-
 		public String CreateTicket(SignInInfo info)
 		{
 			return inTransaction("CreateTicket",
@@ -122,6 +94,34 @@ namespace DFM.BusinessLogic.Services
 				throw Error.DisabledUser.Throw();
 		}
 
+		public SessionInfo GetSession(String ticketKey)
+		{
+			var user = getUserByTicket(ticketKey);
+
+			if (user.Control.ProcessingDeletion)
+				throw Error.UserDeleted.Throw();
+
+			if (user.Control.WipeRequest != null)
+				throw Error.UserAskedWipe.Throw();
+
+			return new(user);
+		}
+
+		private User getUserByTicket(String ticketKey)
+		{
+			var ticket = repos.Ticket.GetByKey(ticketKey);
+
+			if (ticket is not {Active: true})
+				throw Error.Uninvited.Throw();
+
+			var user = ticket.User;
+
+			if (!user.Control.ActiveOrAllowedPeriod())
+				throw Error.DisabledUser.Throw();
+
+			return user;
+		}
+
 		public void DisableTicket(String ticketKey)
 		{
 			inTransaction("DisableTicket", () =>
@@ -148,32 +148,6 @@ namespace DFM.BusinessLogic.Services
 				if (ticket.Active)
 					repos.Ticket.Disable(ticket);
 			});
-		}
-
-		internal User VerifyUser()
-		{
-			var user = GetCurrent();
-			VerifyUser(user);
-
-			if (!parent.Current.IsVerified)
-				throw Error.TFANotVerified.Throw();
-
-			return user;
-		}
-
-		internal void VerifyUser(User user)
-		{
-			if (user == null || !user.Control.ActiveOrAllowedPeriod())
-				throw Error.Uninvited.Throw();
-
-			if (user.Control.ProcessingDeletion)
-				throw Error.UserDeleted.Throw();
-
-			if (user.Control.WipeRequest != null)
-				throw Error.UserAskedWipe.Throw();
-
-			if (!parent.Law.IsLastContractAccepted(user))
-				throw Error.NotSignedLastContract.Throw();
 		}
 
 		public IList<TicketInfo> ListLogins()
@@ -343,11 +317,6 @@ namespace DFM.BusinessLogic.Services
 			return ticket.Type == type;
 		}
 
-		internal User GetCurrent()
-		{
-			return getUserByTicket(parent.Current.TicketKey);
-		}
-
 		public void UseTFAAsPassword(Boolean use)
 		{
 			inTransaction("UseTFAAsPassword", () =>
@@ -365,6 +334,37 @@ namespace DFM.BusinessLogic.Services
 
 				repos.User.UseTFAAsPassword(user, use);
 			});
+		}
+
+		internal User GetCurrent()
+		{
+			return getUserByTicket(parent.Current.TicketKey);
+		}
+
+		internal User VerifyUser()
+		{
+			var user = GetCurrent();
+			VerifyUser(user);
+
+			if (!parent.Current.IsVerified)
+				throw Error.TFANotVerified.Throw();
+
+			return user;
+		}
+
+		internal void VerifyUser(User user)
+		{
+			if (user == null || !user.Control.ActiveOrAllowedPeriod())
+				throw Error.Uninvited.Throw();
+
+			if (user.Control.ProcessingDeletion)
+				throw Error.UserDeleted.Throw();
+
+			if (user.Control.WipeRequest != null)
+				throw Error.UserAskedWipe.Throw();
+
+			if (!parent.Law.IsLastContractAccepted(user))
+				throw Error.NotSignedLastContract.Throw();
 		}
 	}
 }

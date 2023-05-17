@@ -124,6 +124,5 @@ namespace DFM.BusinessLogic.Services
 
 			return new CategoryReport(nature, summaryList);
 		}
-
 	}
 }

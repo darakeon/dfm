@@ -26,29 +26,6 @@ namespace DFM.BusinessLogic.Services
 			return repos.Contract.GetContract();
 		}
 
-		public Boolean IsLastContractAccepted()
-		{
-			var user = parent.Auth.GetCurrent();
-
-			if (user.Control.ProcessingDeletion)
-				throw Error.UserDeleted.Throw();
-
-			if (user.Control.WipeRequest != null)
-				throw Error.UserAskedWipe.Throw();
-
-			return IsLastContractAccepted(user);
-		}
-
-		internal Boolean IsLastContractAccepted(User user)
-		{
-			var contract = getContract();
-
-			if (contract == null)
-				return true;
-
-			return repos.Acceptance.IsAccepted(user, contract);
-		}
-
 		public void AcceptContract()
 		{
 			inTransaction("AcceptContract", () =>
@@ -71,6 +48,29 @@ namespace DFM.BusinessLogic.Services
 
 			var control = user.Control;
 			repos.Control.ResetWarnCounter(control);
+		}
+
+		public Boolean IsLastContractAccepted()
+		{
+			var user = parent.Auth.GetCurrent();
+
+			if (user.Control.ProcessingDeletion)
+				throw Error.UserDeleted.Throw();
+
+			if (user.Control.WipeRequest != null)
+				throw Error.UserAskedWipe.Throw();
+
+			return IsLastContractAccepted(user);
+		}
+
+		internal Boolean IsLastContractAccepted(User user)
+		{
+			var contract = getContract();
+
+			if (contract == null)
+				return true;
+
+			return repos.Acceptance.IsAccepted(user, contract);
 		}
 
 		public void SaveAccess()

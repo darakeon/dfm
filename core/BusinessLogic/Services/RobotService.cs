@@ -18,6 +18,76 @@ namespace DFM.BusinessLogic.Services
 		internal RobotService(ServiceAccess serviceAccess, Repos repos)
 			: base(serviceAccess, repos) { }
 
+		public IList<ScheduleInfo> GetScheduleList()
+		{
+			parent.Auth.VerifyUser();
+
+			var user = parent.Auth.GetCurrent();
+
+			return repos.Schedule
+				.Where(
+					s => s.Active && s.User.ID == user.ID
+				)
+				.Select(ScheduleInfo.Convert)
+				.ToList();
+		}
+
+		public Boolean HasSchedule()
+		{
+			var user = parent.Auth.VerifyUser();
+			var x = repos.Schedule.Where(
+				s => s.User.ID == user.ID
+				     && s.Active
+			);
+			return repos.Schedule.Any(
+				s => s.User.ID == user.ID
+				     && s.Active
+			);
+		}
+
+		public ScheduleResult SaveSchedule(ScheduleInfo info)
+		{
+			parent.Auth.VerifyUser();
+
+			if (info == null)
+				throw Error.ScheduleRequired.Throw();
+
+			var result = inTransaction(
+				"SaveSchedule",
+				() => save(info)
+			);
+
+			return result;
+		}
+
+		private ScheduleResult save(ScheduleInfo info)
+		{
+			var schedule = new Schedule
+			{
+				Out = parent.BaseMove.GetAccount(info.OutUrl),
+				In = parent.BaseMove.GetAccount(info.InUrl),
+				Category = parent.BaseMove.GetCategory(info.CategoryName),
+				User = parent.Auth.GetCurrent()
+			};
+
+			info.Update(schedule);
+
+			if (schedule.ID == 0 || !schedule.IsDetailed())
+			{
+				repos.Schedule.Save(schedule);
+				repos.Detail.SaveDetails(schedule);
+			}
+			else
+			{
+				repos.Detail.SaveDetails(schedule);
+				repos.Schedule.Save(schedule);
+			}
+
+			repos.Control.AnticipateRobotCheck(schedule.User.Control);
+
+			return new ScheduleResult(schedule.Guid);
+		}
+
 		public DicList<CoreError> RunSchedule()
 		{
 			var errors = new DicList<CoreError>();
@@ -107,49 +177,6 @@ namespace DFM.BusinessLogic.Services
 			repos.Schedule.UpdateState(schedule);
 		}
 
-		public ScheduleResult SaveSchedule(ScheduleInfo info)
-		{
-			parent.Auth.VerifyUser();
-
-			if (info == null)
-				throw Error.ScheduleRequired.Throw();
-
-			var result = inTransaction(
-				"SaveSchedule",
-				() => save(info)
-			);
-
-			return result;
-		}
-
-		private ScheduleResult save(ScheduleInfo info)
-		{
-			var schedule = new Schedule
-			{
-				Out = parent.BaseMove.GetAccount(info.OutUrl),
-				In = parent.BaseMove.GetAccount(info.InUrl),
-				Category = parent.BaseMove.GetCategory(info.CategoryName),
-				User = parent.Auth.GetCurrent()
-			};
-
-			info.Update(schedule);
-
-			if (schedule.ID == 0 || !schedule.IsDetailed())
-			{
-				repos.Schedule.Save(schedule);
-				repos.Detail.SaveDetails(schedule);
-			}
-			else
-			{
-				repos.Detail.SaveDetails(schedule);
-				repos.Schedule.Save(schedule);
-			}
-
-			repos.Control.AnticipateRobotCheck(schedule.User.Control);
-
-			return new ScheduleResult(schedule.Guid);
-		}
-
 		public void DisableSchedule(Guid guid)
 		{
 			parent.Auth.VerifyUser();
@@ -161,18 +188,22 @@ namespace DFM.BusinessLogic.Services
 			);
 		}
 
-		public IList<ScheduleInfo> GetScheduleList()
+		public void AskWipe(String password)
 		{
 			parent.Auth.VerifyUser();
 
-			var user = parent.Auth.GetCurrent();
+			inTransaction("AskWipe", () =>
+			{
+				var user = parent.Auth.GetCurrent();
 
-			return repos.Schedule
-				.Where(
-					s => s.Active && s.User.ID == user.ID
-				)
-				.Select(ScheduleInfo.Convert)
-				.ToList();
+				var validPassword =
+					repos.User.VerifyPassword(user, password);
+
+				if (!validPassword)
+					throw Error.WrongPassword.Throw();
+
+				repos.Control.RequestWipe(user);
+			});
 		}
 
 		public void WipeUsers(Action<String> upload)
@@ -332,37 +363,6 @@ namespace DFM.BusinessLogic.Services
 				"DeleteUser",
 				() => repos.Wipe.Execute(user, date, upload, reason)
 			);
-		}
-
-		public Boolean HasSchedule()
-		{
-			var user = parent.Auth.VerifyUser();
-			var x = repos.Schedule.Where(
-				s => s.User.ID == user.ID
-				     && s.Active
-			);
-			return repos.Schedule.Any(
-				s => s.User.ID == user.ID
-				     && s.Active
-			);
-		}
-
-		public void AskWipe(String password)
-		{
-			parent.Auth.VerifyUser();
-
-			inTransaction("AskWipe", () =>
-			{
-				var user = parent.Auth.GetCurrent();
-
-				var validPassword =
-					repos.User.VerifyPassword(user, password);
-
-				if (!validPassword)
-					throw Error.WrongPassword.Throw();
-
-				repos.Control.RequestWipe(user);
-			});
 		}
 	}
 }
