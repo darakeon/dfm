@@ -13,10 +13,11 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (62)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (63)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
 | Delete data on app (legal requirement)                                         | :whale:  |  2  |  4  |  6  |                |
 | Add transfer with conversion (value in/out) (NEEDED BY MAIN USER)              | :whale:  |  4  |  3  |  3  |                |
+| Make google see move unsubscribe link ([Google tips avoid being spam])         | :sheep:  |  1  |  3  |  6  |                |
 | Add test for unifying categories used in closed accounts                       | :ant:    |  1  |  3  |  6  |                |
 | Expire tickets with more than 30 without access (add to contract)              | :sheep:  |  3  |  4  |  5  |                |
 | add snyk/clair check to docker containers                                      | :ant:    |  3  |  4  |  5  |                |
@@ -84,3 +85,4 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 [Lint C#]: https://medium.com/@michaelparkerdev/linting-c-in-2019-stylecop-sonar-resharper-and-roslyn-73e88af57ebd
 [OCR]: https://developers.google.com/ml-kit/vision/text-recognition/android
 [Reduce Docker Images]:https://www.ecloudcontrol.com/best-practices-to-reduce-docker-images-size/
+[Google tips avoid being spam]:https://support.google.com/mail/answer/81126?hl=en&sjid=2044805771675957069-EU
