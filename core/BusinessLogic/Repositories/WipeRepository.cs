@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Email;
 using DFM.Entities;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Exchange;
 using Keon.Util.Crypto;
@@ -32,8 +33,8 @@ namespace DFM.BusinessLogic.Repositories
 			var wipe = new Wipe
 			{
 				HashedEmail = Crypt.Do(user.Email),
-				UsernameStart = user.Username[..2],
-				DomainStart = user.Domain[..3],
+				UsernameStart = user.Username[..MaxLen.WipeUsernameStart],
+				DomainStart = user.Domain[..MaxLen.WipeDomainStart],
 				When = DateTime.UtcNow,
 				Why = reason,
 				Password = user.Password,
@@ -142,8 +143,8 @@ namespace DFM.BusinessLogic.Repositories
 
 			var username = emailParts[0];
 			var domain = emailParts[1];
-			var usernameStart = username[..2];
-			var domainStart = domain[..3];
+			var usernameStart = username[..MaxLen.WipeUsernameStart];
+			var domainStart = domain[..MaxLen.WipeDomainStart];
 
 			var wipes = Where(
 				w => w.UsernameStart == usernameStart

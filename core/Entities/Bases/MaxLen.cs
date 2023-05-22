@@ -18,6 +18,9 @@ namespace DFM.Entities.Bases
 		public const Int16 UserEmailDomain = 255;
 		public const Int16 UserEmail = UserEmailUsername + 1 + UserEmailDomain;
 
+		public const Int16 WipeUsernameStart = 2;
+		public const Int16 WipeDomainStart = 3;
+
 		public const Int16 SettingsLanguage = 5;
 
 	}
