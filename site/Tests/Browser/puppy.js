@@ -104,7 +104,7 @@ async function callLogonPage(email) {
 	await waitFor('#body form')
 
 	await page.type('#Email', email)
-	await page.type('#Password', db.password.plain)
+	await page.type('#Password', db.password)
 	await page.click('#RememberMe')
 
 	await submit('/Users/LogOn')

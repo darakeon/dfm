@@ -12,8 +12,8 @@ describe('Users', () => {
 		await puppy.waitFor('#body form')
 
 		await page.type('#Email', 'signup@dontflymoney.com')
-		await page.type('#Password', db.password.plain)
-		await page.type('#RetypePassword', db.password.plain)
+		await page.type('#Password', db.password)
+		await page.type('#RetypePassword', db.password)
 		await page.click('#Accept')
 		await puppy.submit('/Users/SignUp')
 
@@ -134,7 +134,7 @@ describe('Users', () => {
 		await puppy.waitFor('#body form')
 
 		await page.type('#Email', email)
-		await page.type('#Password', db.password.plain)
+		await page.type('#Password', db.password)
 		await page.click('#RememberMe')
 		await puppy.submit('/Users/LogOn')
 
@@ -149,7 +149,7 @@ describe('Users', () => {
 		await puppy.waitFor('#body form')
 
 		await page.type('#Email', email)
-		await page.type('#Password', db.password.plain)
+		await page.type('#Password', db.password)
 		await page.click('#RememberMe')
 		await page.click('#body form button[type="submit"]')
 
@@ -191,7 +191,7 @@ describe('Users', () => {
 		await puppy.waitFor('#body form')
 
 		await page.type('#Email', email)
-		await page.type('#Password', db.password.plain)
+		await page.type('#Password', db.password)
 		await page.click('#RememberMe')
 		await page.click('#body form button[type="submit"]')
 
@@ -211,7 +211,7 @@ describe('Users', () => {
 		await puppy.waitFor('#body form')
 
 		await page.type('#Email', email)
-		await page.type('#Password', db.password.plain)
+		await page.type('#Password', db.password)
 		await page.click('#RememberMe')
 		await page.click('#body form button[type="submit"]')
 

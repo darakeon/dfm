@@ -47,8 +47,8 @@ describe('Users', () => {
 		await puppy.call(`Tokens/PasswordReset/${token}`)
 		await puppy.waitFor('#body form')
 
-		await page.type('#Password', db.password.plain)
-		await page.type('#RetypePassword', db.password.plain)
+		await page.type('#Password', db.password)
+		await page.type('#RetypePassword', db.password)
 		await page.click('#body form button[type="submit"]')
 
 		const message = await puppy.content('.alert')
@@ -68,8 +68,8 @@ describe('Users', () => {
 		await page.click('#body form button[type="submit"]')
 		await puppy.waitFor('#body form')
 
-		await page.type('#Password', db.password.plain)
-		await page.type('#RetypePassword', db.password.plain)
+		await page.type('#Password', db.password)
+		await page.type('#RetypePassword', db.password)
 		await page.click('#body form button[type="submit"]')
 
 		const message = await puppy.content('.alert')
