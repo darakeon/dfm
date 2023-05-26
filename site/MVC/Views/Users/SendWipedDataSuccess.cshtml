@@ -1,0 +1,9 @@
+﻿@{
+	ViewBag.Title = Context.Translate("WipedData");
+	ViewBag.Style = "success";
+	Layout = "~/Views/Shared/Layouts/_Result.cshtml";
+}
+
+@Context.Translate("WipedDataSent")<br/>
+
+@await Html.PartialAsync("EmailSent")

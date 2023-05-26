@@ -415,6 +415,8 @@ jobs:
           path: site/Tests/Browser/log
       - store_artifacts:
           path: inbox
+      - store_artifacts:
+          path: s3
 
   build_android:
     docker:

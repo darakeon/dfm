@@ -1,6 +1,9 @@
+const fs = require('fs/promises');
+
 const db = require('./db')
 const puppy = require('./puppy')
 const tfa = require('./tfa')
+
 
 describe('Users', () => {
 	beforeEach(async () => {
@@ -254,5 +257,45 @@ describe('Users', () => {
 
 		await puppy.waitFor('#body')
 		await expect(page.title()).resolves.toMatch('DfM - Contas')
+	})
+
+	test('SendWipedData', async () => {
+		email = 'deleted@dontflymoney.com'
+		await db.deleteWipe(email)
+
+		await puppy.call()
+		await puppy.waitFor('#body')
+
+		await page.click('#dfm-navigation ul li:last-child')
+		await puppy.waitFor('#body')
+
+		await expect(page.title()).resolves.toMatch('DfM - Dados removidos')
+
+		await page.type('#Email', email)
+		await page.type('#Password', db.password)
+		await puppy.submit('/Users/SendWipedData')
+
+		await puppy.waitFor('#body')
+		await expect(page.title()).resolves.toMatch('DfM - Dados removidos')
+
+		const warningNotFound = await puppy.content('.alert')
+		expect(warningNotFound).toContain(
+			`E-mail não encontrado entre dados excluídos de pessoas`
+		)
+
+		const s3 = await db.createWipe(email)
+		const path = `../../../s3/${s3}`
+		await fs.writeFile(path, 'test')
+
+		await page.type('#Password', db.password)
+		await puppy.submit('/Users/SendWipedData')
+
+		await puppy.waitFor('#body')
+		await expect(page.title()).resolves.toMatch('DfM - Dados removidos')
+
+		const warningNoFile = await puppy.content('.alert')
+		expect(warningNoFile).toContain(
+			`Arquivo com movimentações enviado com sucesso`
+		)
 	})
 })

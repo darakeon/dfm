@@ -418,6 +418,43 @@ async function getTipPermanent(user) {
 	return result[0]["Permanent"]
 }
 
+async function deleteWipe(email) {
+	let { username, domain } = splitEmail(email)
+	username = username.substring(0, 2)
+	domain = domain.substring(0, 3)
+
+	await execute(
+		`delete from wipe
+			where usernameStart = '${username}'
+				and domainStart = '${domain}'`
+	)
+}
+
+async function createWipe(email) {
+	const hashedEmail = await hash(email)
+
+	let { username, domain } = splitEmail(email)
+	username = username.substring(0, 2)
+	domain = domain.substring(0, 3)
+
+	const why = 2 // Not Signed Contract
+
+	const hashedPassword = await hash(password)
+
+	var hashedEmailBase64 = Buffer.from(hashedEmail).toString('base64');
+	const s3 = `${hashedEmailBase64}_19860327012000.csv`;
+
+	await execute(
+		`insert into wipe
+				(hashedEmail, usernameStart, domainStart, when_, why, password, s3)
+			values
+				('${hashedEmail}', '${username}', '${domain}', datetime('now'), ${why}, '${hashedPassword}', '${s3}')`
+	)
+
+	return s3;
+}
+
+
 async function execute(query, params) {
 	let done = false;
 	let result;
@@ -495,4 +532,6 @@ module.exports = {
 	setSecret,
 	getEndDate,
 	getTipPermanent,
+	deleteWipe,
+	createWipe,
 }

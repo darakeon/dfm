@@ -32,7 +32,8 @@ namespace DFM.MVC.Controllers
 				$"{site}/Users/SignUp",
 				$"{site}/Users/LogOn",
 				$"{site}/Users/ForgotPassword",
-				$"{site}/Users/Contract"
+				$"{site}/Users/Contract",
+				$"{site}/Users/SendWipedData",
 			};
 
 			return crawler(String.Join('\n', pages));

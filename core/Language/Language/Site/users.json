@@ -21,6 +21,9 @@
 
 		"NewClausesHighlighted": "Newer clauses are highlighted to ease reading for whom have read older contracts",
 
+		"SendFile": "send file",
+		"WipedDataSent": "File with moves sent successfully",
+
 		"": null
 	},
 	"pt-BR": {
@@ -44,6 +47,9 @@
 		"UserVerificationSent": "Código enviado",
 
 		"NewClausesHighlighted": "Cláusulas mais novas são destacadas, para facilitar a leitura para quem já leu contratos anteriores",
+
+		"SendFile": "enviar arquivo",
+		"WipedDataSent": "Arquivo com movimentações enviado com sucesso",
 
 		"": null
 	}
