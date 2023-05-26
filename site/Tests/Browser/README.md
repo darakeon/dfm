@@ -1,8 +1,17 @@
 # Running tests
 
-Main Make commands:
+The tests are easier to run using docker.
 
-- `machine`: creates and enters a docker machine to run the tests;
-- `setup`: sets the environment to run the tests inside the machine;
-- `resetup`: clear and reset the environment;
-- `test`: run the tests
+This make is prepared to create the machine AND to be used inside of it.
+
+At your terminal:
+
+- `machine`: start the docker container to run tests
+- `rm`: remove the docker container
+
+Inside the docker machine:
+
+- `setup`: build and run the site
+- `clear`: stop site and clear db
+- `resetup`: call clear then setup
+- `test`: run the automated browser tests
