@@ -1,0 +1,25 @@
+﻿@model UsersSendWipedDataModel
+
+@{
+	ViewBag.Title = Context.Translate("WipedData");
+	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
+
+	ViewBag.RouteValues = new {returnUrl = Context.Request.Query["returnUrl"]};
+}
+
+<div class="form-group">
+	@Html.LabelFor(m => m.Email, Context.Translate("Email"), new { @class = "control-label" })
+	@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+</div>
+
+<div class="form-group">
+	@Html.LabelFor(m => m.Password, Context.Translate("Password"), new { @class = "control-label" })
+	@Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+</div>
+
+@section Footer
+{
+	<button type="submit" class="btn btn-success">
+		@Context.Translate("SendFile")
+	</button>
+}

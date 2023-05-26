@@ -151,5 +151,26 @@ namespace DFM.MVC.Controllers
 			model.Send(ModelState.AddModelError);
 			return View(model);
 		}
+
+		[HttpGetAndHead]
+		public IActionResult SendWipedData()
+		{
+			var model = new UsersSendWipedDataModel();
+			return View(model);
+		}
+
+		[HttpPost, ValidateAntiForgeryToken]
+		public IActionResult SendWipedData(UsersSendWipedDataModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				var errors = model.SendFile();
+				addErrors(errors);
+			}
+
+			return ModelState.IsValid
+				? baseModelView("SendWipedDataSuccess")
+				: View(model);
+		}
 	}
 }

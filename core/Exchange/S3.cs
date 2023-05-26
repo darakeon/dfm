@@ -14,6 +14,9 @@ namespace DFM.Exchange
 			if (!Cfg.S3.Filled)
 				throw new ConfigurationException("Must have section S3 whole configured");
 
+			if (Cfg.S3.Test)
+				return;
+
 			var region = RegionEndpoint.GetBySystemName(Cfg.S3.Region);
 			var accessKey = Cfg.S3.AccessKey;
 			var secretKey = Cfg.S3.SecretKey;
@@ -37,7 +40,33 @@ namespace DFM.Exchange
 				);
 			}
 
-			s3.Upload(path, bucket);
+			if (Cfg.S3.Test)
+			{
+				var filename = info.Name;
+				var destinyPath = Path.Combine(Cfg.S3.Directory, filename);
+				File.Copy(path, destinyPath);
+			}
+			else
+			{
+				s3.Upload(path, bucket);
+			}
+		}
+
+		public void Download(String path)
+		{
+			var info = new FileInfo(path);
+			var key = info.Name;
+
+			if (Cfg.S3.Test)
+			{
+				var filename = info.Name;
+				var originPath = Path.Combine(Cfg.S3.Directory, filename);
+				File.Copy(originPath, path);
+			}
+			else
+			{
+				s3.Download(path, bucket, key);
+			}
 		}
 
 		public void Dispose()
