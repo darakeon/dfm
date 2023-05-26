@@ -3,6 +3,23 @@ MAKEFLAGS += --no-print-directory
 MACHINE_NAME=dfm_bt
 IS_MACHINE_RUNNING:=$$(make _is_machine_running)
 
+help:
+	@echo ""
+	@echo "Hi!"
+	@echo ""
+	@echo "The tests are easier to run using docker."
+	@echo "This make is prepared to create the machine AND to be used inside of it."
+	@echo ""
+	@echo "At your terminal"
+	@echo "    machine      start the docker container to run tests"
+	@echo "    rm           remove the docker container"
+	@echo ""
+	@echo "Inside the docker machine"
+	@echo "    setup        build and run the site"
+	@echo "    clear        stop site and clear db"
+	@echo "    resetup      call clear then setup"
+	@echo "    test         run the automated browser tests"
+
 machine:
 	@if [ "${IS_MACHINE_RUNNING}" = "" ]; then \
 		docker run -it \
@@ -47,6 +64,9 @@ resetup: clear setup
 
 test:
 	@npm test
+
+is_site_running:
+	@npm test -- open
 
 
 _is_machine_running:
