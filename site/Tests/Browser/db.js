@@ -2,9 +2,10 @@ const sqlite = require('sqlite3')
 const { v4: uuid } = require('uuid')
 const { bytesToGuid } = require('./guid')
 
-const password = {
-	plain: 'password',
-	encrypted: '$2a$11$B.hVZuq8he7GopqvMeFXWOphCfy.ATSnR7ksneKS.eiCCKFkP8usS',
+const password = 'password'
+
+const encrypts = {
+	'password': '$2a$11$B.hVZuq8he7GopqvMeFXWOphCfy.ATSnR7ksneKS.eiCCKFkP8usS',
 }
 
 const language = 'pt-BR'
@@ -132,7 +133,7 @@ async function createUser(email, active, wizard, creation) {
 				password, username, domain,
 				settings_id, tfaPassword, control_id
 			) values (
-				'${password.encrypted}', '${username}', '${domain}',
+				'${encrypts[password]}', '${username}', '${domain}',
 				${settings[0].ID}, 0, ${control[0].ID}
 			)`
 	)
