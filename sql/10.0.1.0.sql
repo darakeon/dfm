@@ -43,6 +43,14 @@ create trigger no_delete_wipe
 		signal sqlstate '45000'
 			set message_text = 'cannot delete wipe';
 
+alter table security
+	add wipe_id bigint null,
+	add constraint FK_Security_Wipe
+		foreign key (wipe_id)
+		references wipe (id),
+	modify user_id bigint null;
+
+
 delimiter //
 
 create procedure finish_wipe_table()

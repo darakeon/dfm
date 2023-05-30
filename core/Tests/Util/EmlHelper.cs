@@ -36,8 +36,10 @@ namespace DFM.Tests.Util
 				{EmailType.MoveNotification.ToString(), EmailType.MoveNotification},
 			};
 
-			EnumX.AllExcept(SecurityAction.UnsubscribeMoveMail)
-				.ForEach(
+			EnumX.AllExcept(
+					SecurityAction.UnsubscribeMoveMail,
+					SecurityAction.DeleteCsvData
+				).ForEach(
 					sa => types.Add(sa.ToString(), EmailType.SecurityAction)
 				);
 

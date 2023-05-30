@@ -861,6 +861,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 					emails[0].Body
 						.Split("Content-Disposition: attachment")
 						.Length - 1;
+
 				Assert.AreEqual(csvCount, countAttachments);
 			}
 			else
