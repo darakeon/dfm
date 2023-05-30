@@ -57,7 +57,7 @@ create_contract: install_proj_deps
 setup: publish_site run_site _wait create_contract
 
 clear:
-	@cd server && rm tests.db
+	@cd server && rm -f tests.db
 	@pkill DFM.MVC
 
 resetup: clear setup
