@@ -70,7 +70,7 @@ test:
 	fi
 
 is_site_running:
-	@npm test -- open
+	@curl -o /dev/null -s http://localhost:2709 && echo Ok || echo Nop
 
 
 _is_machine_running:
