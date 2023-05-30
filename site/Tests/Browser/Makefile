@@ -63,7 +63,11 @@ clear:
 resetup: clear setup
 
 test:
-	@npm test
+	@if [ "$(FILE)" = "" ]; then \
+		npm test; \
+	else \
+		npm test -- $(FILE); \
+	fi
 
 is_site_running:
 	@npm test -- open
