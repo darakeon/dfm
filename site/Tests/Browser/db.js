@@ -87,9 +87,9 @@ async function changeUserState(email, active, wizard, creation) {
 
 	if (creation != undefined) {
 		await execute(
-			`update settings
+			`update control
 				set creation=datetime('now','${creation} day')
-				where id=${user[0].Settings_ID}`
+				where id=${user[0].Control_ID}`
 		)
 	}
 }
