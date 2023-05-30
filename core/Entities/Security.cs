@@ -16,6 +16,7 @@ namespace DFM.Entities
 		public virtual Boolean Sent { get; set; }
 
 		public virtual User User { get; set; }
+		public virtual Wipe Wipe { get; set; }
 
 		public virtual void CreateToken()
 		{

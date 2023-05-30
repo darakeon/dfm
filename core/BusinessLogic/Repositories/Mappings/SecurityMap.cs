@@ -13,6 +13,12 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 			mapping.Map(s => s.Token)
 				.Length(MaxLen.SecurityToken)
 				.Unique();
+
+			mapping.References(s => s.User)
+				.Nullable();
+
+			mapping.References(s => s.Wipe)
+				.Nullable();
 		}
 	}
 }
