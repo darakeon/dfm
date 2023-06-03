@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Keon.Eml" Version="3.0.3" />
+    <PackageReference Include="Keon.Eml" Version="4.0.0" />
     <PackageReference Include="SpecFlow" Version="3.9.74" />
   </ItemGroup>
 
