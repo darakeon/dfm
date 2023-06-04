@@ -85,3 +85,13 @@ Scenario: Hf08. Not reset if user requested wipe
 		But the user asked data wipe
 	When I try to reset the password
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Hf09. Password reset with expired token
+	Given I pass a valid PasswordReset token
+		And I pass this password
+			| Password     | Retype Password |
+			| new_password | new_password    |
+		But the token expires
+	When I try to reset the password
+	Then I will receive this core error: InvalidToken
+		And the password will not be changed

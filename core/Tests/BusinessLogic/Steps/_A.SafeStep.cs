@@ -1036,6 +1036,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 			ticket = service.Auth.CreateTicket(info);
 		}
 
+		[Given(@"the token expires")]
+		public void GivenTheTokenExpires()
+		{
+			var security = repos.Security.GetByToken(token);
+			security.Expire = DateTime.Now.AddDays(-1);
+			repos.Security.SaveOrUpdate(security);
+		}
 
 		[When(@"I try to send the e-mail of user verify")]
 		public void WhenITryToSendTheEMailOfUserVerify()
