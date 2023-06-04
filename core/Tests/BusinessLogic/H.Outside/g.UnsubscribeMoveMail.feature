@@ -82,3 +82,10 @@ Scenario: Hg12. Error on stop sending move mail if not signed last contract
 		But there is a new contract
 	When I unsubscribe move mail
 	Then I will receive this core error: NotSignedLastContract
+
+Scenario: Hg13. Stop sending move mail with expired token
+	Given I pass a valid UnsubscribeMoveMail token
+		But the token expires
+	When I unsubscribe move mail
+	Then I will receive this core error: InvalidToken
+		And the move mail will be enabled

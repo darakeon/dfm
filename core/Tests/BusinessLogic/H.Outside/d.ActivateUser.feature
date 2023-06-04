@@ -58,3 +58,10 @@ Scenario: Hd07. Not activate if user requested wipe
 		But the user asked data wipe
 	When I try to activate the user
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Hd08. Activate user with expired token
+	Given I pass a valid UserVerification token
+		But the token expires
+	When I try to activate the user
+	Then I will receive this core error: InvalidToken
+		And the user will not be activated
