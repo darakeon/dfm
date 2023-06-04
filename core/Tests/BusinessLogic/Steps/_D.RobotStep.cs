@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
@@ -34,12 +33,6 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			get => get<IList<ScheduleInfo>>("scheduleList");
 			set => set("scheduleList", value);
-		}
-
-		private IList<String> csv
-		{
-			get => get<IList<String>>("csv");
-			set => set("csv", value);
 		}
 
 		private Boolean hasSchedule
@@ -446,10 +439,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Robot.WipeUsers(path =>
-				{
-					csv = File.ReadAllLines(path);
-				});
+				service.Robot.WipeUsers();
 			}
 			catch (CoreError e)
 			{
@@ -510,17 +500,11 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var expected = table.ToCsv()
 				.Select(r => r.Replace("{scenarioCode}", scenarioCode));
 
-			Assert.AreEqual(expected, csv);
+			Assert.AreEqual(expected, fileService.LastCsv);
 		}
 
-		[Then(@"there will no be an export file")]
-		public void ThenThereWillNoBeAnExportFile()
-		{
-			Assert.Null(csv);
-		}
-
-		[Then(@"it will be registered at wipe table with reason (\w+)")]
-		public void ThenItWillBeRegisteredAtWipeTable(RemovalReason reason)
+		[Then(@"it will be registered at wipe table with reason (\w+) and (no )?CSV file")]
+		public void ThenItWillBeRegisteredAtWipeTable(RemovalReason reason, Boolean hasCSV)
 		{
 			var wipe = repos.Wipe.NewQuery()
 				.OrderBy(w => w.When, false)
@@ -536,7 +520,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.Less(testStart, wipe.When.ToUniversalTime());
 			Assert.AreEqual(reason, wipe.Why);
 
-			if (csv != null)
+			if (hasCSV)
 			{
 				Assert.NotNull(wipe.S3);
 				Assert.True(

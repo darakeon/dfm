@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.BusinessLogic.Response;
+using DFM.BusinessLogic.Tests.Helpers;
 using DFM.Entities;
 using DFM.Generic;
 using DFM.Generic.Datetime;
@@ -139,7 +140,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			setLogName();
 
-			setRepositories();
+			setRepositories(fileService);
 
 			log("General", "BeforeTestRun");
 
@@ -150,7 +151,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 			SessionFactoryManager.Initialize<UserMap, User>(Cfg.DB);
 			SessionManager.Init(getTicketKey);
 
-			service = new ServiceAccess(getTicket, getSite);
+			service = new ServiceAccess(
+				getTicket, getSite, fileService
+			);
 
 			createContract();
 
@@ -227,10 +230,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 		// ReSharper disable once UnusedMember.Global
-		[StepArgumentTransformation(@"( not|not )?")]
+		[StepArgumentTransformation(@"( not?|not? )?")]
 		public Boolean NotToBoolTransform(String not)
 		{
-			return not.Trim() != "not";
+			return not.Trim() != "not" && not.Trim() != "no";
 		}
 
 		// ReSharper disable once UnusedMember.Global

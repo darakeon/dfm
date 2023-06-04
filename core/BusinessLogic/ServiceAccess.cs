@@ -1,15 +1,20 @@
 ﻿using System.Runtime.CompilerServices;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Services;
+using DFM.Exchange;
 
 [assembly: InternalsVisibleTo("DFM.BusinessLogic.Tests")]
 namespace DFM.BusinessLogic
 {
 	public class ServiceAccess
 	{
-		public ServiceAccess(Current.GetTicket getTicket, Current.GetUrl getUrl)
+		public ServiceAccess(
+			Current.GetTicket getTicket,
+			Current.GetUrl getUrl,
+			IFileService fileService
+		)
 		{
-			var repos = new Repos(getUrl);
+			var repos = new Repos(getUrl, fileService);
 
 			BaseMove = new BaseMoveSaverService(this, repos);
 
@@ -23,6 +28,7 @@ namespace DFM.BusinessLogic
 			Outside = new OutsideService(this, repos);
 
 			Current = new Current(Auth, getTicket);
+			File = fileService;
 		}
 
 		internal BaseMoveSaverService BaseMove { get; }
@@ -37,5 +43,7 @@ namespace DFM.BusinessLogic
 		public OutsideService Outside { get; }
 
 		public Current Current { get; }
+
+		internal IFileService File { get; }
 	}
 }

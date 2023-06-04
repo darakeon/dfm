@@ -95,20 +95,6 @@ namespace DFM.BusinessLogic.Tests.Steps
 			get => get<Misc>("Misc");
 			set => set("Misc", value);
 		}
-
-		private IDictionary<String, String> csvs
-		{
-			get
-			{
-				var dic = get<IDictionary<String, String>>("Misc");
-				if (dic != null) return dic;
-
-				dic = new Dictionary<String, String>();
-				set("Misc", dic);
-				return dic;
-			}
-		}
-
 		#endregion
 
 
@@ -812,9 +798,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"robot call wipe users")]
 		public void WhenRobotWipeUsers()
 		{
-			robotRunWipe(
-				path => csvs.Add(path, File.ReadAllText(path))
-			);
+			robotRunWipe();
 		}
 
 		[When(@"ask wiped user csv")]
@@ -827,10 +811,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			try
 			{
-				service.Outside.SendWipedUserCSV(
-					email, password,
-					path => File.WriteAllText(path, csvs[path])
-				);
+				service.Outside.SendWipedUserCSV(email, password);
 			}
 			catch (CoreError e)
 			{

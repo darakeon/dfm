@@ -7,7 +7,7 @@ using DFM.Generic;
 
 namespace DFM.Exchange
 {
-	public class S3 : IDisposable
+	public class S3 : IDisposable, IFileService
 	{
 		public S3()
 		{
