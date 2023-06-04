@@ -1,5 +1,6 @@
 ﻿using System;
 using DFM.BusinessLogic;
+using DFM.Exchange;
 using Keon.MVC.Cookies;
 using Microsoft.AspNetCore.Http;
 
@@ -12,7 +13,8 @@ namespace DFM.MVC.Helpers
 			this.getContext = getContext;
 			Access = new ServiceAccess(
 				new Session(getContext).GetTicket,
-				getUrl
+				getUrl,
+				new S3()
 			);
 		}
 

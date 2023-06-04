@@ -5,10 +5,12 @@ using DFM.Authentication;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
+using DFM.BusinessLogic.Tests.Helpers;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
+using DFM.Exchange;
 using DFM.Generic;
 using DFM.Generic.Datetime;
 using DFM.Tests.Util;
@@ -34,6 +36,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 		protected static TestService db = new(service, repos);
 
+		protected static TestFileService fileService = new();
+
 		protected static void setLogName()
 		{
 			var logDate = DateTime.UtcNow.UntilSecond();
@@ -51,9 +55,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 			logFileName = Path.Combine(path, $"tests_{logDate}.log");
 		}
 
-		protected static void setRepositories()
+		protected static void setRepositories(IFileService fileService)
 		{
-			repos = new Repos(getSite);
+			repos = new Repos(getSite, fileService);
 		}
 
 		protected static String getSite()
@@ -99,10 +103,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 			createLogoffLogin(userEmail);
 		}
 
-		protected void robotRunWipe(Action<String> action)
+		protected void robotRunWipe()
 		{
 			createLogoffLoginRobot();
-			service.Robot.WipeUsers(action);
+			service.Robot.WipeUsers();
 			resetTicket();
 		}
 

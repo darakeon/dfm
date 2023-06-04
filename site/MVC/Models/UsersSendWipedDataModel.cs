@@ -20,8 +20,7 @@ public class UsersSendWipedDataModel : BaseSiteModel
 
 		try
 		{
-			var s3 = new S3();
-			outside.SendWipedUserCSV(Email, Password, s3.Download);
+			outside.SendWipedUserCSV(Email, Password);
 			
 			return null;
 		}

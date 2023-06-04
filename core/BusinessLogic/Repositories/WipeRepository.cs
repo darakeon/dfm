@@ -18,16 +18,20 @@ namespace DFM.BusinessLogic.Repositories
 {
 	internal class WipeRepository : Repo<Wipe>
 	{
-		public WipeRepository(Repos repos, Current.GetUrl getUrl)
+		public WipeRepository(
+			Repos repos, Current.GetUrl getUrl, IFileService fileService
+		)
 		{
 			this.repos = repos;
 			this.getUrl = getUrl;
+			this.fileService = fileService;
 		}
 
 		private readonly Repos repos;
 		private readonly Current.GetUrl getUrl;
+		private readonly IFileService fileService;
 
-		public void Execute(User user, DateTime date, Action<String> upload, RemovalReason reason)
+		public void Execute(User user, DateTime date, RemovalReason reason)
 		{
 			var accounts = repos.Account.Where(a => a.User.ID == user.ID);
 
@@ -43,7 +47,7 @@ namespace DFM.BusinessLogic.Repositories
 
 			wipe.S3 = reason == RemovalReason.PersonAsked
 				? null
-				: extractToFile(wipe, accounts, upload);
+				: extractToFile(wipe, accounts);
 
 			SaveOrUpdate(wipe);
 
@@ -72,7 +76,7 @@ namespace DFM.BusinessLogic.Repositories
 			repos.Control.Delete(user.Control);
 		}
 
-		private String extractToFile(Wipe wipe, IList<Account> accounts, Action<String> upload)
+		private String extractToFile(Wipe wipe, IList<Account> accounts)
 		{
 			String s3 = null;
 
@@ -88,7 +92,7 @@ namespace DFM.BusinessLogic.Repositories
 
 			if (csv.Path != null)
 			{
-				upload(csv.Path);
+				fileService.Upload(csv.Path);
 				s3 = csv.Path;
 			}
 
@@ -161,7 +165,7 @@ namespace DFM.BusinessLogic.Repositories
 			return wipes;
 		}
 
-		public void SendCSV(String email, Security security, Action<String> download)
+		public void SendCSV(String email, Security security)
 		{
 			var dic = new Dictionary<String, String>
 			{
@@ -179,7 +183,7 @@ namespace DFM.BusinessLogic.Repositories
 				.Subject(format.Subject)
 				.Body(fileContent);
 
-			download(security.Wipe.S3);
+			fileService.Download(security.Wipe.S3);
 			sender.Attach(security.Wipe.S3);
 
 			try

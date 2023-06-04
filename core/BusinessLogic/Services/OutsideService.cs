@@ -145,7 +145,7 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
-		public void SendWipedUserCSV(String email, String password, Action<String> download)
+		public void SendWipedUserCSV(String email, String password)
 		{
 			var wipes = repos.Wipe.GetByUser(email, password);
 
@@ -166,7 +166,7 @@ namespace DFM.BusinessLogic.Services
 			foreach (var wipe in wipes)
 			{
 				var security = repos.Security.Create(wipe);
-				repos.Wipe.SendCSV(email, security, download);
+				repos.Wipe.SendCSV(email, security);
 			}
 		}
 	}

@@ -206,19 +206,19 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
-		public void WipeUsers(Action<String> upload)
+		public void WipeUsers()
 		{
 			if (!parent.Current.IsRobot)
 				throw Error.Uninvited.Throw();
 
 			var ignoreUserIDs = new List<Int64>();
 
-			wipeBecauseNoInteraction(ignoreUserIDs, upload);
-			wipeBecauseNotSignedContract(ignoreUserIDs, upload);
-			wipeBecausePersonAsked(ignoreUserIDs, upload);
+			wipeBecauseNoInteraction(ignoreUserIDs);
+			wipeBecauseNotSignedContract(ignoreUserIDs);
+			wipeBecausePersonAsked(ignoreUserIDs);
 		}
 
-		private void wipeBecauseNoInteraction(IList<Int64> ignoreUserIDs, Action<String> upload)
+		private void wipeBecauseNoInteraction(IList<Int64> ignoreUserIDs)
 		{
 			var users = repos.User.NewQuery()
 				.Where(
@@ -237,7 +237,7 @@ namespace DFM.BusinessLogic.Services
 				var control = user.Control;
 				var date = control.LastInteraction();
 				var didSomething = warnOrDelete(
-					user, date, upload,
+					user, date,
 					RemovalReason.NoInteraction
 				);
 
@@ -248,7 +248,7 @@ namespace DFM.BusinessLogic.Services
 			}
 		}
 
-		private void wipeBecauseNotSignedContract(IList<Int64> ignoreUserIDs, Action<String> upload)
+		private void wipeBecauseNotSignedContract(IList<Int64> ignoreUserIDs)
 		{
 			var contract = repos.Contract.GetContract();
 
@@ -279,7 +279,7 @@ namespace DFM.BusinessLogic.Services
 						: contractDate;
 
 				var didSomething = warnOrDelete(
-					user, newestDate, upload,
+					user, newestDate,
 					RemovalReason.NotSignedContract
 				);
 
@@ -290,7 +290,7 @@ namespace DFM.BusinessLogic.Services
 			}
 		}
 
-		private void wipeBecausePersonAsked(IList<Int64> ignoreUserIDs, Action<String> upload)
+		private void wipeBecausePersonAsked(IList<Int64> ignoreUserIDs)
 		{
 			var users = repos.User.NewQuery()
 				.NotIn(u => u.ID, ignoreUserIDs)
@@ -305,7 +305,7 @@ namespace DFM.BusinessLogic.Services
 				// ReSharper disable once PossibleInvalidOperationException
 				var date = user.Control.WipeRequest.Value;
 
-				delete(user, date, upload, RemovalReason.PersonAsked);
+				delete(user, date, RemovalReason.PersonAsked);
 
 				ignoreUserIDs.Add(user.ID);
 			}
@@ -314,7 +314,6 @@ namespace DFM.BusinessLogic.Services
 		private Boolean warnOrDelete(
 			User user,
 			DateTime date,
-			Action<String> upload,
 			RemovalReason reason
 		)
 		{
@@ -326,7 +325,7 @@ namespace DFM.BusinessLogic.Services
 
 			if (shouldRemove)
 			{
-				delete(user, date, upload, reason);
+				delete(user, date, reason);
 				return true;
 			}
 
@@ -348,9 +347,9 @@ namespace DFM.BusinessLogic.Services
 			return true;
 		}
 
-		private void delete(User user,
+		private void delete(
+			User user,
 			DateTime date,
-			Action<String> upload,
 			RemovalReason reason
 		)
 		{
@@ -361,7 +360,7 @@ namespace DFM.BusinessLogic.Services
 
 			inTransaction(
 				"DeleteUser",
-				() => repos.Wipe.Execute(user, date, upload, reason)
+				() => repos.Wipe.Execute(user, date, reason)
 			);
 		}
 	}

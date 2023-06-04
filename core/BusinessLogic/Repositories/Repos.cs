@@ -1,5 +1,6 @@
 using DFM.Authentication;
 using DFM.BusinessLogic.Response;
+using DFM.Exchange;
 
 namespace DFM.BusinessLogic.Repositories
 {
@@ -21,7 +22,10 @@ namespace DFM.BusinessLogic.Repositories
 		internal TipsRepository Tips;
 		internal UserRepository User;
 
-		internal Repos(Current<SignInInfo, SessionInfo>.GetUrl getUrl)
+		internal Repos(
+			Current<SignInInfo, SessionInfo>.GetUrl getUrl,
+			IFileService fileService
+		)
 		{
 			Acceptance = new AcceptanceRepository();
 			Account = new AccountRepository();
@@ -31,7 +35,7 @@ namespace DFM.BusinessLogic.Repositories
 			Control = new ControlRepository(getUrl);
 			Detail = new DetailRepository();
 			Move = new MoveRepository(getUrl);
-			Wipe = new WipeRepository(this, getUrl);
+			Wipe = new WipeRepository(this, getUrl, fileService);
 			Schedule = new ScheduleRepository();
 			Security = new SecurityRepository(getUrl);
 			Summary = new SummaryRepository();

@@ -22,13 +22,12 @@ namespace DFM.Robot
 
 			TZ.Init(false);
 
-			service = new ServiceAccess(getTicket, getSite);
+			s3 = this.task == Task.Wipe ? new S3() : null;
+
+			service = new ServiceAccess(getTicket, getSite, s3);
 
 			if (this.task != Task.Check)
 				service.Current.Set(Cfg.RobotEmail, Cfg.RobotPassword, false);
-
-			if (this.task == Task.Wipe)
-				s3 = new S3();
 		}
 
 		private static ClientTicket getTicket(Boolean remember)
@@ -55,7 +54,7 @@ namespace DFM.Robot
 					break;
 
 				case Task.Wipe:
-					service.Robot.WipeUsers(s3.Upload);
+					service.Robot.WipeUsers();
 					break;
 			}
 		}
