@@ -163,7 +163,11 @@ namespace DFM.BusinessLogic.Services
 			if (!wipes.Any())
 				throw Error.WipeNoMoves.Throw();
 
-			repos.Wipe.SendCSV(email, wipes, download);
+			foreach (var wipe in wipes)
+			{
+				var security = repos.Security.Create(wipe);
+				repos.Wipe.SendCSV(email, security, download);
+			}
 		}
 	}
 }

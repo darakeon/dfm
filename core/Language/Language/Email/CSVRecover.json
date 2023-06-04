@@ -5,6 +5,7 @@
 		"Notice": "As by requested at the website we are sending attached to this email the data exported from the system.",
 		"ReadTerms": "Read the terms of use at the website",
 		"ToUnderstand": "to understand more about data deletion",
+		"DeleteCsvClick": "Click here to delete DEFINITELY from Don't fly Money the csv file attached to this email.",
 		"": null
 	},
 	"pt-BR": {
@@ -13,6 +14,7 @@
 		"Notice": "Por requisição feita via site, estamos enviando em anexo dados exportados do sistema.",
 		"ReadTerms": "Leia os termos de uso no site",
 		"ToUnderstand": "para entender mais sobre a exclusão de dados",
+		"DeleteCsvClick": "Clique aqui excluir DEFINITIVAMENTE do Sistema Don't fly Money o arquivo csv anexado neste e-mail.",
 		"": null
 	}
 }

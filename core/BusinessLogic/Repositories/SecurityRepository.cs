@@ -86,9 +86,13 @@ namespace DFM.BusinessLogic.Repositories
 		private void disableOthers(Security security)
 		{
 			var others = Where(
-				s => s.ID != security.ID
-					&& s.User.ID == security.User.ID
-					&& s.Active
+				security.User != null
+					? s => s.ID != security.ID
+						&& s.User.ID == security.User.ID
+						&& s.Active
+					: s => s.ID != security.ID
+						&& s.Wipe.ID == security.Wipe.ID
+						&& s.Active
 			);
 
 			foreach (var other in others)
@@ -96,6 +100,28 @@ namespace DFM.BusinessLogic.Repositories
 				other.Active = false;
 				SaveOrUpdate(other);
 			}
+		}
+
+		internal Security Create(Wipe wipe)
+		{
+			var security = create(wipe);
+			disableOthers(security);
+			return security;
+		}
+
+		private Security create(Wipe wipe)
+		{
+			var security = new Security
+			{
+				Action = SecurityAction.DeleteCsvData,
+				Active = true,
+				Expire = DateTime.Now.AddDays(7),
+				Wipe = wipe,
+			};
+
+			security.CreateToken();
+
+			return SaveOrUpdate(security);
 		}
 
 		internal Security GetByToken(String token)

@@ -12,6 +12,7 @@ using Keon.Util.Crypto;
 using Keon.Util.DB;
 using Keon.Util.Extensions;
 using Error = DFM.BusinessLogic.Exceptions.Error;
+using Security = DFM.Entities.Security;
 
 namespace DFM.BusinessLogic.Repositories
 {
@@ -160,13 +161,14 @@ namespace DFM.BusinessLogic.Repositories
 			return wipes;
 		}
 
-		public void SendCSV(String email, IList<Wipe> wipes, Action<String> download)
+		public void SendCSV(String email, Security security, Action<String> download)
 		{
 			var dic = new Dictionary<String, String>
 			{
 				{ "Url", getUrl() },
 				{ "DateTime", DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm") },
-				{ "Count", wipes.Count.ToString() },
+				{ "DeleteCsvPath", security.Action.ToString() },
+				{ "DeleteCsvToken", security.Token },
 			};
 
 			var format = Format.WipeCSVRecover();
@@ -177,11 +179,8 @@ namespace DFM.BusinessLogic.Repositories
 				.Subject(format.Subject)
 				.Body(fileContent);
 
-			foreach (var wipe in wipes)
-			{
-				download(wipe.S3);
-				sender.Attach(wipe.S3);
-			}
+			download(security.Wipe.S3);
+			sender.Attach(security.Wipe.S3);
 
 			try
 			{
