@@ -14,7 +14,7 @@ namespace DFM.Robot
 	{
 		private readonly Task task;
 		private readonly ServiceAccess service;
-		private readonly S3 s3;
+		private readonly S3Service s3;
 
 		public Service(String task)
 		{
@@ -22,7 +22,7 @@ namespace DFM.Robot
 
 			TZ.Init(false);
 
-			s3 = this.task == Task.Wipe ? new S3() : null;
+			s3 = this.task == Task.Wipe ? new S3Service() : null;
 
 			service = new ServiceAccess(getTicket, getSite, s3);
 

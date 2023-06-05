@@ -140,7 +140,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			setLogName();
 
-			setRepositories(fileService);
+			setRepositories();
 
 			log("General", "BeforeTestRun");
 

@@ -7,15 +7,12 @@ using DFM.Generic;
 
 namespace DFM.Exchange
 {
-	public class S3 : IDisposable, IFileService
+	public class S3Service : IDisposable, IFileService
 	{
-		public S3()
+		public S3Service()
 		{
-			if (!Cfg.S3.Filled)
-				throw new ConfigurationException("Must have section S3 whole configured");
-
-			if (Cfg.S3.Test)
-				return;
+			if (!Cfg.S3.S3Filled)
+				throw new ConfigurationException("Must have section S3 whole configured for aws");
 
 			var region = RegionEndpoint.GetBySystemName(Cfg.S3.Region);
 			var accessKey = Cfg.S3.AccessKey;
@@ -40,16 +37,7 @@ namespace DFM.Exchange
 				);
 			}
 
-			if (Cfg.S3.Test)
-			{
-				var filename = info.Name;
-				var destinyPath = Path.Combine(Cfg.S3.Directory, filename);
-				File.Copy(path, destinyPath);
-			}
-			else
-			{
-				s3.Upload(path, bucket);
-			}
+			s3.Upload(path, bucket);
 		}
 
 		public void Download(String path)
@@ -57,16 +45,7 @@ namespace DFM.Exchange
 			var info = new FileInfo(path);
 			var key = info.Name;
 
-			if (Cfg.S3.Test)
-			{
-				var filename = info.Name;
-				var originPath = Path.Combine(Cfg.S3.Directory, filename);
-				File.Copy(originPath, path);
-			}
-			else
-			{
-				s3.Download(path, bucket, key);
-			}
+			s3.Download(path, bucket, key);
 		}
 
 		public void Dispose()

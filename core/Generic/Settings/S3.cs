@@ -7,9 +7,10 @@ namespace DFM.Generic.Settings
 	{
 		public S3(IConfiguration s3)
 		{
-			Test = Boolean.Parse(s3["Test"] ?? String.Empty);
+			Local = !String.IsNullOrEmpty(s3["Local"])
+				&& Boolean.Parse(s3["Local"]);
 
-			if (Test)
+			if (Local)
 			{
 				Directory = s3["Directory"];
 			}
@@ -27,18 +28,18 @@ namespace DFM.Generic.Settings
 		public readonly String AccessKey;
 		public readonly String SecretKey;
 
-		public readonly Boolean Test;
+		public readonly Boolean Local;
 		public readonly String Directory;
 
-		private Boolean testFilled =>
-			Test && !String.IsNullOrEmpty(Directory);
+		public Boolean LocalFilled =>
+			Local
+			&& !String.IsNullOrEmpty(Directory);
 
-		private Boolean prodFilled =>
-			!String.IsNullOrEmpty(Region)
+		public Boolean S3Filled =>
+			!Local
+			&& !String.IsNullOrEmpty(Region)
 			&& !String.IsNullOrEmpty(Bucket)
 			&& !String.IsNullOrEmpty(AccessKey)
 			&& !String.IsNullOrEmpty(SecretKey);
-
-		public Boolean Filled => prodFilled || testFilled;
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using DFM.BusinessLogic;
 using DFM.Exchange;
+using DFM.Generic;
 using Keon.MVC.Cookies;
 using Microsoft.AspNetCore.Http;
 
@@ -11,10 +12,16 @@ namespace DFM.MVC.Helpers
 		public Service(GetContext getContext)
 		{
 			this.getContext = getContext;
+
+			IFileService fileService =
+				Cfg.S3.Local
+					? new LocalFileService()
+					: new S3Service();
+
 			Access = new ServiceAccess(
 				new Session(getContext).GetTicket,
 				getUrl,
-				new S3()
+				fileService
 			);
 		}
 
