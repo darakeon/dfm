@@ -1,6 +1,6 @@
 {
 	"S3": {
-		"Test": true,
+		"Local": true,
 		"Directory": "../../s3"
 	}
 }

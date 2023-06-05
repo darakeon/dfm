@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
@@ -500,7 +501,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var expected = table.ToCsv()
 				.Select(r => r.Replace("{scenarioCode}", scenarioCode));
 
-			Assert.AreEqual(expected, fileService.LastCsv);
+			var file = Directory
+				.GetFiles(Cfg.S3.Directory, "*.csv")
+				.OrderByDescending(f => f.Split("_")[1])
+				.Last();
+
+			var content = File.ReadAllLines(file);
+
+			Assert.AreEqual(expected, content);
 		}
 
 		[Then(@"it will be registered at wipe table with reason (\w+) and (no )?CSV file")]

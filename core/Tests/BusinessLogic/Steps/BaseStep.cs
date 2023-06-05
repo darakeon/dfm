@@ -31,12 +31,11 @@ namespace DFM.BusinessLogic.Tests.Steps
 		protected static Current current => service.Current;
 
 		private protected static Repos repos;
+		private protected static IFileService fileService;
 
 		private static String logFileName;
 
 		protected static TestService db = new(service, repos);
-
-		protected static TestFileService fileService = new();
 
 		protected static void setLogName()
 		{
@@ -55,8 +54,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 			logFileName = Path.Combine(path, $"tests_{logDate}.log");
 		}
 
-		protected static void setRepositories(IFileService fileService)
+		protected static void setRepositories()
 		{
+			fileService = new LocalFileService();
 			repos = new Repos(getSite, fileService);
 		}
 
