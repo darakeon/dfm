@@ -17,11 +17,14 @@ namespace DFM.BusinessLogic.Services
 		{
 			var security = repos.Security.ValidateAndGet(token, securityAction);
 
-			if (security.User.Control.ProcessingDeletion)
-				throw Error.UserDeleted.Throw();
+			if (security.User != null)
+			{
+				if (security.User.Control.ProcessingDeletion)
+					throw Error.UserDeleted.Throw();
 
-			if (security.User.Control.WipeRequest != null)
-				throw Error.UserAskedWipe.Throw();
+				if (security.User.Control.WipeRequest != null)
+					throw Error.UserAskedWipe.Throw();
+			}
 		}
 
 		public void DisableToken(String token)
@@ -168,6 +171,24 @@ namespace DFM.BusinessLogic.Services
 				var security = repos.Security.Create(wipe);
 				repos.Wipe.SendCSV(email, security);
 			}
+		}
+
+		public void WipeCsv(String token)
+		{
+			var security = repos.Security.ValidateAndGet(
+				token, SecurityAction.DeleteCsvData
+			);
+
+			var csv = security.Wipe.S3;
+
+			if (!parent.File.Exists(csv))
+				throw Error.CSVNotFound.Throw();
+
+			inTransaction("WipeCsv", () =>
+			{
+				repos.Security.Disable(token);
+				parent.File.Delete(csv);
+			});
 		}
 	}
 }

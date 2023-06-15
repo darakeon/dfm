@@ -1,5 +1,7 @@
 ﻿using System;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
+using Keon.Util.Crypto;
 using Keon.Util.DB;
 
 namespace DFM.Entities
@@ -21,6 +23,18 @@ namespace DFM.Entities
 		public override String ToString()
 		{
 			return $"[{ID}] {UsernameStart}...@{DomainStart}...";
+		}
+
+		public static Wipe FromUser(User user)
+		{
+			return new Wipe
+			{
+				HashedEmail = Crypt.Do(user.Email),
+				UsernameStart = user.Username[..MaxLen.WipeUsernameStart],
+				DomainStart = user.Domain[..MaxLen.WipeDomainStart],
+				When = DateTime.UtcNow,
+				Password = user.Password,
+			};
 		}
 	}
 }

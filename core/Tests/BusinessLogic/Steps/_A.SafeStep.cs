@@ -7,6 +7,7 @@ using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
+using DFM.Generic;
 using Keon.Eml;
 using Keon.TwoFactorAuth;
 using Keon.Util.Crypto;
@@ -801,6 +802,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 			robotRunWipe();
 		}
 
+		[Given(@"I wipe the file")]
+		public void GivenIWipeTheFile()
+		{
+			service.Outside.WipeCsv(token);
+		}
+
 		[When(@"ask wiped user csv")]
 		public void WhenAskWipedUserCsv(Table table)
 		{
@@ -859,6 +866,52 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 		#endregion SendWipedUserCSV
+
+		#region WipeCSV
+		[Given(@"the user was wiped once")]
+		public void GivenIHaveAWipedUser()
+		{
+			var wipe = Wipe.FromUser(new User
+			{
+				Email = $"{scenarioCode}@dontflymoney.com",
+				Password = Crypt.Do(userPassword),
+			});
+
+			wipe.S3 = $"{scenarioCode}.csv";
+
+			repos.Wipe.SaveOrUpdate(wipe);
+
+			var path = Path.Combine(Cfg.S3.Directory, wipe.S3);
+			File.WriteAllText(path, "hey, listen!");
+		}
+
+		[When(@"I try to wipe the file")]
+		public void WhenITryToWipeTheFile()
+		{
+			try
+			{
+				service.Outside.WipeCsv(token);
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[Then(@"the file will (not )?be wiped")]
+		public void ThenTheFileWill_BeWiped(Boolean wiped)
+		{
+			var path = Path.Combine(
+				Cfg.S3.Directory,
+				$"{scenarioCode}.csv"
+			);
+			
+			Assert.AreEqual(
+				!File.Exists(path), wiped,
+				$"File {(wiped?"not ":"")}found"
+			);
+		}
+		#endregion
 
 		#region MoreThanOne
 		[Given(@"I have (?:this user|these users) created")]
@@ -982,24 +1035,36 @@ namespace DFM.BusinessLogic.Tests.Steps
 			).FirstOrDefault()?.Key;
 		}
 
-		[Given(@"I pass a valid (UserVerification|PasswordReset|UnsubscribeMoveMail) token")]
-		public void GivenIPassTheValidToken(SecurityAction actionOf)
+		[Given(@"I pass a valid (UserVerification|PasswordReset|UnsubscribeMoveMail|DeleteCsvData) token")]
+		public void GivenIPassTheValidToken(SecurityAction action)
 		{
-			action = actionOf;
+			this.action = action;
 
 			var tokenEmail = email ?? userEmail;
 
-			if (actionOf == SecurityAction.UnsubscribeMoveMail)
+			switch (action)
 			{
-				var user = repos.User.GetByEmail(tokenEmail);
-				var security = repos.Security.Grab(
-					user, SecurityAction.UnsubscribeMoveMail
-				);
-				token = security.Token;
-			}
-			else
-			{
-				token = getLastTokenForUser(tokenEmail, action);
+				case SecurityAction.UnsubscribeMoveMail:
+				{
+					var user = repos.User.GetByEmail(tokenEmail);
+					var security = repos.Security.Grab(
+						user, SecurityAction.UnsubscribeMoveMail
+					);
+					token = security.Token;
+					break;
+				}
+				case SecurityAction.DeleteCsvData:
+				{
+					var wipes = repos.Wipe.GetByUser(tokenEmail, userPassword);
+					var security = repos.Security.Create(wipes[0]);
+					token = security.Token;
+					break;
+				}
+				default:
+				{
+					token = getLastTokenForUser(tokenEmail, action);
+					break;
+				}
 			}
 		}
 
@@ -1021,7 +1086,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void GivenTheTokenExpires()
 		{
 			var security = repos.Security.GetByToken(token);
-			security.Expire = DateTime.Now.AddDays(-1);
+			security.Expire = DateTime.UtcNow.AddDays(-1);
 			repos.Security.SaveOrUpdate(security);
 		}
 

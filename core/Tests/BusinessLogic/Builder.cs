@@ -79,7 +79,7 @@ namespace DFM.BusinessLogic.Tests
 			{
 				Contract = contract(),
 				User = user,
-				CreateDate = DateTime.Now
+				CreateDate = DateTime.UtcNow
 			};
 
 			repos.Acceptance.SaveOrUpdate(acceptance);

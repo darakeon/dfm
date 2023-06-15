@@ -90,3 +90,18 @@ Scenario: Hh08. Wiped twice
 			| {scenarioCode}@dontflymoney.com | password |
 	Then I will receive no core error
 		And 2 emails with csv will be sent
+
+Scenario: Hh09. Recover wiped file
+	Given the user creation was 100 days before
+		And the user have being warned twice
+		And the user have
+			| System Stuff |
+			| Move         |
+		And robot call wipe users
+		But I pass a valid DeleteCsvData token
+			And I wipe the file
+	When ask wiped user csv
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com | password |
+	Then I will receive this core error: CSVNotFound
+		And email with csv will not be sent

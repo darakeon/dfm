@@ -32,6 +32,7 @@ namespace DFM.BusinessLogic.Exceptions
 		WipeInvalid = 220,
 		WipeUserAsked = 221,
 		WipeNoMoves = 222,
+		CSVNotFound = 223,
 
 		AccountNameRequired = 301,
 		AccountNameAlreadyExists = 302,

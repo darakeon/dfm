@@ -91,7 +91,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				s => s.User.ID == user.ID
 					&& s.Action == action
 					&& s.Active
-					&& s.Expire >= current.Now
+					&& s.Expire >= DateTime.UtcNow
 			).FirstOrDefault()?.Token;
 		}
 

@@ -32,6 +32,18 @@ namespace DFM.Exchange
 			File.Copy(s3Path, path);
 		}
 
+		public Boolean Exists(String path)
+		{
+			var s3Path = getS3Path(path);
+			return File.Exists(s3Path);
+		}
+
+		public void Delete(String path)
+		{
+			var s3Path = getS3Path(path);
+			File.Delete(s3Path);
+		}
+
 		private static String getS3Path(String path)
 		{
 			var info = new FileInfo(path);
