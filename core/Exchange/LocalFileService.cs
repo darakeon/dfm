@@ -29,6 +29,10 @@ namespace DFM.Exchange
 		public void Download(String path)
 		{
 			var s3Path = getS3Path(path);
+
+			if (File.Exists(path))
+				File.Delete(path);
+
 			File.Copy(s3Path, path);
 		}
 
