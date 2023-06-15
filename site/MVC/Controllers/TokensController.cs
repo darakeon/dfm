@@ -51,7 +51,8 @@ namespace DFM.MVC.Controllers
 				PathType.UserVerification => "UserVerification",
 				PathType.UnsubscribeMoveMail => "UnsubscribeMoveMail",
 				PathType.DisableToken => "Disable",
-				_ => throw new NotImplementedException()
+				PathType.DeleteCsvData => "DeleteCsvData",
+				_ => "Invalid"
 			};
 		}
 
@@ -112,6 +113,18 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpGetAndHead]
+		public IActionResult DeleteCsvData(String id)
+		{
+			var model = new SafeModel();
+
+			var isValid = model.DeleteCsvData(id);
+
+			return isValid
+				? baseModelView("DeleteCsvDataSuccess")
+				: baseModelView("Invalid");
+		}
+
+		[HttpGetAndHead]
 		public IActionResult Disable(String id)
 		{
 			var model = new SafeModel();
@@ -121,6 +134,12 @@ namespace DFM.MVC.Controllers
 			return isValid
 				? baseModelView()
 				: baseModelView("Invalid");
+		}
+
+		[HttpGetAndHead]
+		public IActionResult Invalid()
+		{
+			return baseModelView();
 		}
 	}
 }
