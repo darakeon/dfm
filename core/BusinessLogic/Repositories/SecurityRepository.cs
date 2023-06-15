@@ -115,7 +115,7 @@ namespace DFM.BusinessLogic.Repositories
 			{
 				Action = SecurityAction.DeleteCsvData,
 				Active = true,
-				Expire = DateTime.Now.AddDays(7),
+				Expire = DateTime.UtcNow.AddDays(7),
 				Wipe = wipe,
 			};
 
@@ -128,8 +128,7 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			var security = SingleOrDefault(s => s.Token == token);
 
-			var canBeUsed = security is {Active: true}
-				&& security.Expire >= security.User.Now();
+			var canBeUsed = security?.IsValid() ?? false;
 
 			return canBeUsed ? security : null;
 		}
@@ -141,11 +140,14 @@ namespace DFM.BusinessLogic.Repositories
 			if (security == null)
 				throw Error.InvalidToken.Throw();
 
-			if (security.User.Control.ProcessingDeletion)
-				throw Error.UserDeleted.Throw();
+			if (security.User != null)
+			{
+				if (security.User.Control.ProcessingDeletion)
+					throw Error.UserDeleted.Throw();
 
-			if (security.User.Control.WipeRequest != null)
-				throw Error.UserAskedWipe.Throw();
+				if (security.User.Control.WipeRequest != null)
+					throw Error.UserAskedWipe.Throw();
+			}
 
 			security.Active = false;
 			SaveOrUpdate(security);

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using Amazon;
+using Amazon.S3;
 using Amazon.S3.Transfer;
 using CsvHelper.Configuration;
 using DFM.Generic;
@@ -46,6 +48,30 @@ namespace DFM.Exchange
 			var key = info.Name;
 
 			s3.Download(path, bucket, key);
+		}
+
+		public void Delete(String path)
+		{
+			var info = new FileInfo(path);
+			var key = info.Name;
+
+			s3.S3Client.DeleteObjectAsync(bucket, key).Wait();
+		}
+
+		public Boolean Exists(String path)
+		{
+			var info = new FileInfo(path);
+			var key = info.Name;
+
+			try
+			{
+				s3.S3Client.GetObjectMetadataAsync(bucket, key).Wait();
+				return true;
+			}
+			catch (AmazonS3Exception exception)
+			{
+				return exception.StatusCode == HttpStatusCode.NotFound;
+			}
 		}
 
 		public void Dispose()

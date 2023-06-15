@@ -23,6 +23,12 @@ namespace DFM.Entities
 			Token = token.New();
 		}
 
+		public virtual Boolean IsValid()
+		{
+			var now = User?.Now() ?? DateTime.UtcNow;
+			return Active && Expire >= now;
+		}
+
 		public override String ToString()
 		{
 			return $"[{ID}] {Token}";

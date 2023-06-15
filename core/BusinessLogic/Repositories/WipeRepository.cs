@@ -35,15 +35,9 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			var accounts = repos.Account.Where(a => a.User.ID == user.ID);
 
-			var wipe = new Wipe
-			{
-				HashedEmail = Crypt.Do(user.Email),
-				UsernameStart = user.Username[..MaxLen.WipeUsernameStart],
-				DomainStart = user.Domain[..MaxLen.WipeDomainStart],
-				When = DateTime.UtcNow,
-				Why = reason,
-				Password = user.Password,
-			};
+			var wipe = Wipe.FromUser(user);
+
+			wipe.Why = reason;
 
 			wipe.S3 = reason == RemovalReason.PersonAsked
 				? null
@@ -182,6 +176,9 @@ namespace DFM.BusinessLogic.Repositories
 				.To(email)
 				.Subject(format.Subject)
 				.Body(fileContent);
+
+			if (!fileService.Exists(security.Wipe.S3))
+				throw Error.CSVNotFound.Throw();
 
 			fileService.Download(security.Wipe.S3);
 			sender.Attach(security.Wipe.S3);

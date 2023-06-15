@@ -97,6 +97,7 @@
 		"WipeInvalid": "Email not found between wiped person data",
 		"WipeUserAsked": "Person asked for wipe, data was not kept",
 		"WipeNoMoves": "There was no moves to keep in the wipe moment",
+		"CSVNotFound": "Data file not found",
 		"": null
 	},
 	"pt-BR": {
@@ -197,6 +198,7 @@
 		"WipeInvalid": "E-mail não encontrado entre dados excluídos de pessoas",
 		"WipeUserAsked": "A pessoa pediu pela exclusão, os dados não foram mantidos",
 		"WipeNoMoves": "Não havia movimentações para serem mantidas no momento da exclusão",
+		"CSVNotFound": "Arquivo de dados não encontrado",
 		"": null
 	}
 }

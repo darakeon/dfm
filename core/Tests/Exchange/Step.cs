@@ -76,13 +76,15 @@ namespace DFM.Exchange.Tests
 			csv.Add(schedules);
 
 			var email = $"{scenarioCode}@dontflymoney.com";
-			var hashedEmail = Crypt.Do(email);
-			csv.Create(new Wipe { HashedEmail = hashedEmail });
+			var user = new User {Email = email, Password = "password"};
+			var wipe = Wipe.FromUser(user);
+
+			csv.Create(wipe);
 
 			var filename = Directory
 				.GetFiles(
 					Directory.GetCurrentDirectory(),
-					$"{hashedEmail.ToBase64()}*.csv"
+					$"{wipe.HashedEmail.ToBase64()}*.csv"
 				)
 				.OrderByDescending(s => s)
 				.FirstOrDefault();
