@@ -161,6 +161,9 @@ namespace DFM.BusinessLogic.Repositories
 
 		public void SendCSV(String email, Security security)
 		{
+			if (!fileService.Exists(security.Wipe.S3))
+				throw Error.CSVNotFound.Throw();
+
 			var dic = new Dictionary<String, String>
 			{
 				{ "Url", getUrl() },
@@ -177,9 +180,6 @@ namespace DFM.BusinessLogic.Repositories
 				.Subject(format.Subject)
 				.Body(fileContent);
 
-			if (!fileService.Exists(security.Wipe.S3))
-				throw Error.CSVNotFound.Throw();
-
 			fileService.Download(security.Wipe.S3);
 			sender.Attach(security.Wipe.S3);
 
@@ -191,7 +191,6 @@ namespace DFM.BusinessLogic.Repositories
 			{
 				throw Error.FailOnEmailSend.Throw(e);
 			}
-
 		}
 	}
 }
