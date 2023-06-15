@@ -36,6 +36,22 @@ namespace DFM.MVC.Models
 			return true;
 		}
 
+		internal Boolean DeleteCsvData(String token)
+		{
+			try
+			{
+				outside.TestSecurityToken(token, SecurityAction.DeleteCsvData);
+			}
+			catch (CoreError)
+			{
+				return false;
+			}
+
+			outside.WipeCsv(token);
+
+			return true;
+		}
+
 		internal void LogOff()
 		{
 			logout();
