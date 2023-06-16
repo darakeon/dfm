@@ -6,6 +6,7 @@ using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
+using DFM.Generic.Datetime;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Repositories
@@ -32,7 +33,7 @@ namespace DFM.BusinessLogic.Repositories
 					s => s.User.ID == user.ID
 						&& s.Action == action
 						&& s.Active
-						&& s.Expire >= user.Now()
+						&& s.Expire >= DateTime.UtcNow
 				).FirstOrDefault ?? create(user, action);
 		}
 
@@ -42,7 +43,7 @@ namespace DFM.BusinessLogic.Repositories
 			{
 				Action = action,
 				Active = true,
-				Expire = user.Now().AddDays(3),
+				Expire = DateTime.UtcNow.AddDays(3),
 				User = user,
 			};
 
@@ -57,7 +58,7 @@ namespace DFM.BusinessLogic.Repositories
 			{
 				{ "Url", getUrl() },
 				{ "Token", security.Token },
-				{ "Date", security.Expire.AddDays(-1).ToShortDateString() },
+				{ "Date", security.Expire.UniversalWithTime() },
 				{ "PathAction", security.Action.ToString() },
 				{ "PathDisable", PathType.DisableToken.ToString() },
 			};
