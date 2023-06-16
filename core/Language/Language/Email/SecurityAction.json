@@ -2,12 +2,14 @@
 	"en-US": {
 		"DisableToken": "Disable Token",
 		"TokenValid": "Token valid to",
+		"GreenwichTime": "Greenwich Time",
 		"TokenText": "If you prefer, go to the website, click in the link 'Token received by e-mail' and type the token below.",
 		"": null
 	},
 	"pt-BR": {
 		"DisableToken": "Desativar Token",
 		"TokenValid": "Token válido até",
+		"GreenwichTime": "horário de Greenwich",
 		"TokenText": "Se preferir, vá até o site, clique no link 'Token recebido via e-mail' e cole o Token.",
 		"": null
 	}

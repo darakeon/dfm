@@ -42,5 +42,11 @@ namespace DFM.Generic.Datetime
 		{
 			return value.ToString(universal);
 		}
+
+		private const String universalWithTime = "yyyy-MM-dd HH:mm";
+		public static String UniversalWithTime(this DateTime value)
+		{
+			return value.ToString(universalWithTime);
+		}
 	}
 }

@@ -967,7 +967,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			GivenIPassTheValidToken(action);
 			var security = repos.Security.GetByToken(token);
-			security.Expire = DateTime.Today.AddDays(-2);
+			security.Expire = DateTime.UtcNow.AddDays(-2);
 			repos.Security.SaveOrUpdate(security);
 		}
 

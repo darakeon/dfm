@@ -25,8 +25,7 @@ namespace DFM.Entities
 
 		public virtual Boolean IsValid()
 		{
-			var now = User?.Now() ?? DateTime.UtcNow;
-			return Active && Expire >= now;
+			return Active && Expire >= DateTime.UtcNow;
 		}
 
 		public override String ToString()
