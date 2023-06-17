@@ -28,7 +28,7 @@ namespace DFM.Language.Emails
 
 				var html = baseContent
 					.Replace("{{Body}}", mainContent)
-					.Replace("{{Misc}}", miscContent)
+					.Replace("{{Misc}}", misc != null ? miscContent : "")
 					.Replace("{{TokenToNotHide}}", Token.New());
 
 				var themePath = Path.Combine(path, "theme.json");

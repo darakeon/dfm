@@ -19,7 +19,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Add admin to nginx with production settings
 - [ ] Fix emails to remove email contact and tell how to recover and delete csv
 - [ ] Fix terms to remove email contact and tell how to recover and delete csv
-- [ ] `230530>......` Add link to purge csv into email with csv
+- [x] `230530>230617` Add link to purge csv into email with csv
 - [x] `230409>230409` Fix acceptance check bug for calling inside another transaction
 - [x] `230407>230409` Distribute tests of operations with not signed contract
 - [x] `230407>230530` Add option of sending CSV to user e-mail

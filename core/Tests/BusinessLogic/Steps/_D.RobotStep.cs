@@ -518,6 +518,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var row = table.Rows[0];
 			var reason = EnumX.Parse<RemovalReason>(row["Reason"]);
 			var hasCSV = row["CSV file"] == "Yes";
+			var theme = EnumX.Parse<Theme>(row["Theme"]);
+			var language = row["Language"];
 
 			var wipe = repos.Wipe.NewQuery()
 				.OrderBy(w => w.When, false)
@@ -532,6 +534,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			Assert.Less(testStart, wipe.When.ToUniversalTime());
 			Assert.AreEqual(reason, wipe.Why);
+
+			Assert.AreEqual(theme, wipe.Theme);
+			Assert.AreEqual(language, wipe.Language);
 
 			if (hasCSV)
 			{

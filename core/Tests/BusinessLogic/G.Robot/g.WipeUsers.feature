@@ -2,8 +2,8 @@
 
 Background:
 	Given I have this user created
-			| Email                           | Signed | Active |
-			| {scenarioCode}@dontflymoney.com | true   | true   |
+			| Email                           | Signed | Active | Theme     | Language |
+			| {scenarioCode}@dontflymoney.com | true   | true   | DarkMagic | en-US    |
 
 Scenario: Gg01. Find just active / signed term users
 	When robot user login
@@ -128,8 +128,8 @@ Scenario: Gg12. Find abandoned user for 90 days warned twice
 		And the user won't exist
 		And the count of warnings sent will be 0
 		And it will be registered at wipe table
-			| Reason        | CSV file |
-			| NoInteraction | No       |
+			| Reason        | CSV file | Theme     | Language |
+			| NoInteraction | No       | DarkMagic | en-US    |
 
 Scenario: Gg13. Find abandoned user for 105 days not warned
 	Given the user last access was 105 days before
@@ -150,8 +150,8 @@ Scenario: Gg14. Find abandoned user for 105 days warned twice
 		And the user won't exist
 		And the count of warnings sent will be 0
 		And it will be registered at wipe table
-			| Reason        | CSV file |
-			| NoInteraction | No       |
+			| Reason        | CSV file | Theme     | Language |
+			| NoInteraction | No       | DarkMagic | en-US    |
 
 Scenario: Gg15. Find user not signed contract for 15 days
 	Given a contract from 15 days before
@@ -289,8 +289,8 @@ Scenario: Gg25. Find user not signed contract for 90 days warned twice
 		And the user won't exist
 		And the count of warnings sent will be 0
 		And it will be registered at wipe table
-			| Reason            | CSV file |
-			| NotSignedContract | No       |
+			| Reason            | CSV file | Theme     | Language |
+			| NotSignedContract | No       | DarkMagic | en-US    |
 
 Scenario: Gg26. Find user not signed contract for 105 days not warned
 	Given a contract from 105 days before
@@ -315,8 +315,8 @@ Scenario: Gg27. Find user not signed contract for 105 days warned twice
 		And the user won't exist
 		And the count of warnings sent will be 0
 		And it will be registered at wipe table
-			| Reason            | CSV file |
-			| NotSignedContract | No       |
+			| Reason            | CSV file | Theme     | Language |
+			| NotSignedContract | No       | DarkMagic | en-US    |
 
 Scenario: Gg28. Do not duplicate warnings (last accessed / contract)
 	Given the user last access was 60 days before
@@ -444,8 +444,8 @@ Scenario: Gg39. Find never accessed user after 90 days warned twice
 		And the user won't exist
 		And the count of warnings sent will be 0
 		And it will be registered at wipe table
-			| Reason        | CSV file |
-			| NoInteraction | No       |
+			| Reason        | CSV file | Theme     | Language |
+			| NoInteraction | No       | DarkMagic | en-US    |
 
 Scenario: Gg40. Find never accessed user after 105 days not warned
 	Given the user creation was 105 days before
@@ -466,8 +466,8 @@ Scenario: Gg41. Find never accessed user after 105 days warned twice
 		And the user won't exist
 		And the count of warnings sent will be 0
 		And it will be registered at wipe table
-			| Reason        | CSV file |
-			| NoInteraction | No       |
+			| Reason        | CSV file | Theme     | Language |
+			| NoInteraction | No       | DarkMagic | en-US    |
 
 Scenario: Gg42. Find new user but having contract of 30 days ago
 	Given the user creation was 0 days before
@@ -540,8 +540,8 @@ Scenario: Gg47. Remove User with just accessory data
 		And the user won't exist
 		And the count of warnings sent will be 0
 		And it will be registered at wipe table
-			| Reason        | CSV file |
-			| NoInteraction | No       |
+			| Reason        | CSV file | Theme     | Language |
+			| NoInteraction | No       | DarkMagic | en-US    |
 
 Scenario: Gg48. Remove User with admin data
 	Given the user last access was 578 days before
@@ -556,8 +556,8 @@ Scenario: Gg48. Remove User with admin data
 		And the user won't exist
 		And the count of warnings sent will be 0
 		And it will be registered at wipe table
-			| Reason        | CSV file |
-			| NoInteraction | No       |
+			| Reason        | CSV file | Theme     | Language |
+			| NoInteraction | No       | DarkMagic | en-US    |
 
 Scenario: Gg49. Remove User with moves and schedules
 	Given the user last access was 578 days before
@@ -585,8 +585,8 @@ Scenario: Gg49. Remove User with moves and schedules
 			| Schedule {scenarioCode} | 3000-11-27 | Category {scenarioCode} schedule | Transfer | Account {scenarioCode} in | Account {scenarioCode} out | 0.27  |                                                           |
 			| Schedule {scenarioCode} | 3000-12-27 | Category {scenarioCode} schedule | Transfer | Account {scenarioCode} in | Account {scenarioCode} out | 0.27  |                                                           |
 		And it will be registered at wipe table
-			| Reason        | CSV file |
-			| NoInteraction | Yes      |
+			| Reason        | CSV file | Theme     | Language |
+			| NoInteraction | Yes      | DarkMagic | en-US    |
 
 Scenario: Gg50. Send e-mail using user language
 	Given the user last access was 748 days before
@@ -603,7 +603,7 @@ Scenario: Gg51. Check days counting
 	When robot user login
 		And call wipe users
 	Then I will receive no core error
-		And the e-mail body will contain "27</h1>dias"
+		And the e-mail body will contain "27</h1>days"
 
 Scenario: Gg52. Check wipe notice
 	Given the user last access was 105 days before
@@ -615,8 +615,8 @@ Scenario: Gg52. Check wipe notice
 		And the count of warnings sent will be 0
 		And there will be a wipe notice sent
 		And it will be registered at wipe table
-			| Reason        | CSV file |
-			| NoInteraction | No       |
+			| Reason        | CSV file | Theme     | Language |
+			| NoInteraction | No       | DarkMagic | en-US    |
 
 Scenario: Gg53. Wipe when user asks too
 	Given the user have
@@ -630,8 +630,8 @@ Scenario: Gg53. Wipe when user asks too
 		And the user won't exist
 		And there will be a wipe notice sent
 		And it will be registered at wipe table
-			| Reason      | CSV file |
-			| PersonAsked | No       |
+			| Reason      | CSV file | Theme     | Language |
+			| PersonAsked | No       | DarkMagic | en-US    |
 
 Scenario: Gg54. Wipe just the right user
 	Given the user have

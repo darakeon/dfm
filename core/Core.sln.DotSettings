@@ -9,4 +9,5 @@
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=DB/@EntryIndexedValue">DB</s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=HTML/@EntryIndexedValue">HTML</s:String>
 	<s:Boolean x:Key="/Default/InstalledDictionaries/InstalledDictionaries/=respell_005Cdfm_002Edic/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/InstalledDictionaries/InstalledDictionaries/=respell_005Cpt_002DBR_002Edic/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
+	<s:Boolean x:Key="/Default/InstalledDictionaries/InstalledDictionaries/=respell_005Cpt_002DBR_002Edic/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Talkable/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

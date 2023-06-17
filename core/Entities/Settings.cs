@@ -1,10 +1,11 @@
 ﻿using System;
+using DFM.Entities.Bases;
 using DFM.Generic;
 using Keon.Util.DB;
 
 namespace DFM.Entities
 {
-	public class Settings : IEntityLong
+	public class Settings : IEntityLong, ITalkable
 	{
 		public virtual Int64 ID { get; set; }
 

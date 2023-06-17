@@ -10,6 +10,8 @@ alter table wipe
 	add HashedEmail varchar(72),
 	add UsernameStart varchar(2),
 	add DomainStart varchar(3),
+	add Theme smallint,
+	add Language varchar(5),
 	modify Email varchar(320) null,
 	drop TFA;
 
@@ -17,9 +19,17 @@ set sql_safe_updates = 0;
 
 update wipe
 	set UsernameStart = left(Email, 2),
-		DomainStart = left(right(Email, length(Email) - position('@' in Email)), 3);
+		DomainStart = left(right(Email, length(Email) - position('@' in Email)), 3),
+		Theme = -2,
+		Language = 'pt-BR';
 
 set sql_safe_updates = 1;
+
+alter table wipe
+	modify UsernameStart varchar(2) not null,
+	modify DomainStart varchar(3) not null,
+	modify Theme smallint not null,
+	modify Language varchar(5) not null;
 
 create view deleted_users_wipe as
 	select id,
@@ -60,8 +70,6 @@ begin
 	else
 		alter table wipe
 			modify HashedEmail varchar(60) not null,
-			modify UsernameStart varchar(2) not null,
-			modify DomainStart varchar(3) not null,
 			drop Email;
 	end if;
 end //
