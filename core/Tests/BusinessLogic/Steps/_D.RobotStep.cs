@@ -511,9 +511,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.AreEqual(expected, content);
 		}
 
-		[Then(@"it will be registered at wipe table with reason (\w+) and (no )?CSV file")]
-		public void ThenItWillBeRegisteredAtWipeTable(RemovalReason reason, Boolean hasCSV)
+		[Then(@"it will be registered at wipe table")]
+		public void ThenItWillBeRegisteredAtWipeTable(Table table)
 		{
+			var row = table.Rows[0];
+			var reason = EnumX.Parse<RemovalReason>(row["Reason"]);
+			var hasCSV = row["CSV file"] == "Yes";
+
 			var wipe = repos.Wipe.NewQuery()
 				.OrderBy(w => w.When, false)
 				.FirstOrDefault;

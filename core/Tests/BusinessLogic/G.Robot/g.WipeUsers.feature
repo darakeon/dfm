@@ -127,7 +127,9 @@ Scenario: Gg12. Find abandoned user for 90 days warned twice
 	Then I will receive no core error
 		And the user won't exist
 		And the count of warnings sent will be 0
-		And it will be registered at wipe table with reason NoInteraction and no CSV file
+		And it will be registered at wipe table
+			| Reason        | CSV file |
+			| NoInteraction | No       |
 
 Scenario: Gg13. Find abandoned user for 105 days not warned
 	Given the user last access was 105 days before
@@ -147,7 +149,9 @@ Scenario: Gg14. Find abandoned user for 105 days warned twice
 	Then I will receive no core error
 		And the user won't exist
 		And the count of warnings sent will be 0
-		And it will be registered at wipe table with reason NoInteraction and no CSV file
+		And it will be registered at wipe table
+			| Reason        | CSV file |
+			| NoInteraction | No       |
 
 Scenario: Gg15. Find user not signed contract for 15 days
 	Given a contract from 15 days before
@@ -284,7 +288,9 @@ Scenario: Gg25. Find user not signed contract for 90 days warned twice
 	Then I will receive no core error
 		And the user won't exist
 		And the count of warnings sent will be 0
-		And it will be registered at wipe table with reason NotSignedContract and no CSV file
+		And it will be registered at wipe table
+			| Reason            | CSV file |
+			| NotSignedContract | No       |
 
 Scenario: Gg26. Find user not signed contract for 105 days not warned
 	Given a contract from 105 days before
@@ -308,7 +314,9 @@ Scenario: Gg27. Find user not signed contract for 105 days warned twice
 	Then I will receive no core error
 		And the user won't exist
 		And the count of warnings sent will be 0
-		And it will be registered at wipe table with reason NotSignedContract and no CSV file
+		And it will be registered at wipe table
+			| Reason            | CSV file |
+			| NotSignedContract | No       |
 
 Scenario: Gg28. Do not duplicate warnings (last accessed / contract)
 	Given the user last access was 60 days before
@@ -435,7 +443,9 @@ Scenario: Gg39. Find never accessed user after 90 days warned twice
 	Then I will receive no core error
 		And the user won't exist
 		And the count of warnings sent will be 0
-		And it will be registered at wipe table with reason NoInteraction and no CSV file
+		And it will be registered at wipe table
+			| Reason        | CSV file |
+			| NoInteraction | No       |
 
 Scenario: Gg40. Find never accessed user after 105 days not warned
 	Given the user creation was 105 days before
@@ -455,7 +465,9 @@ Scenario: Gg41. Find never accessed user after 105 days warned twice
 	Then I will receive no core error
 		And the user won't exist
 		And the count of warnings sent will be 0
-		And it will be registered at wipe table with reason NoInteraction and no CSV file
+		And it will be registered at wipe table
+			| Reason        | CSV file |
+			| NoInteraction | No       |
 
 Scenario: Gg42. Find new user but having contract of 30 days ago
 	Given the user creation was 0 days before
@@ -527,7 +539,9 @@ Scenario: Gg47. Remove User with just accessory data
 	Then I will receive no core error
 		And the user won't exist
 		And the count of warnings sent will be 0
-		And it will be registered at wipe table with reason NoInteraction and no CSV file
+		And it will be registered at wipe table
+			| Reason        | CSV file |
+			| NoInteraction | No       |
 
 Scenario: Gg48. Remove User with admin data
 	Given the user last access was 578 days before
@@ -541,7 +555,9 @@ Scenario: Gg48. Remove User with admin data
 	Then I will receive no core error
 		And the user won't exist
 		And the count of warnings sent will be 0
-		And it will be registered at wipe table with reason NoInteraction and no CSV file
+		And it will be registered at wipe table
+			| Reason        | CSV file |
+			| NoInteraction | No       |
 
 Scenario: Gg49. Remove User with moves and schedules
 	Given the user last access was 578 days before
@@ -568,7 +584,9 @@ Scenario: Gg49. Remove User with moves and schedules
 			| Schedule {scenarioCode} | 3000-10-27 | Category {scenarioCode} schedule | Transfer | Account {scenarioCode} in | Account {scenarioCode} out | 0.27  |                                                           |
 			| Schedule {scenarioCode} | 3000-11-27 | Category {scenarioCode} schedule | Transfer | Account {scenarioCode} in | Account {scenarioCode} out | 0.27  |                                                           |
 			| Schedule {scenarioCode} | 3000-12-27 | Category {scenarioCode} schedule | Transfer | Account {scenarioCode} in | Account {scenarioCode} out | 0.27  |                                                           |
-		And it will be registered at wipe table with reason NoInteraction and CSV file
+		And it will be registered at wipe table
+			| Reason        | CSV file |
+			| NoInteraction | Yes      |
 
 Scenario: Gg50. Send e-mail using user language
 	Given the user last access was 748 days before
@@ -596,7 +614,9 @@ Scenario: Gg52. Check wipe notice
 		And the user won't exist
 		And the count of warnings sent will be 0
 		And there will be a wipe notice sent
-		And it will be registered at wipe table with reason NoInteraction and no CSV file
+		And it will be registered at wipe table
+			| Reason        | CSV file |
+			| NoInteraction | No       |
 
 Scenario: Gg53. Wipe when user asks too
 	Given the user have
@@ -609,7 +629,9 @@ Scenario: Gg53. Wipe when user asks too
 	Then I will receive no core error
 		And the user won't exist
 		And there will be a wipe notice sent
-		And it will be registered at wipe table with reason PersonAsked and no CSV file
+		And it will be registered at wipe table
+			| Reason      | CSV file |
+			| PersonAsked | No       |
 
 Scenario: Gg54. Wipe just the right user
 	Given the user have
