@@ -133,6 +133,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Boolean shouldActivateUser = false,
 			Boolean shouldSignContract = false,
 			Int32? timezone = null,
+			Theme? theme = null,
+			String language = null,
 			Int32? days = null
 		)
 		{
@@ -157,9 +159,21 @@ namespace DFM.BusinessLogic.Tests.Steps
 				info.TimeZone = $"UTC{userHour:+00;-00; 00}:00";
 			}
 
+			if (language != null)
+			{
+				info.Language = language;
+			}
+
 			service.Auth.SaveUser(info);
 
 			user = repos.User.GetByEmail(email);
+
+			if (theme.HasValue)
+			{
+				var settings = user.Settings;
+				settings.Theme = theme.Value;
+				db.Execute(() => repos.Settings.SaveOrUpdate(settings));
+			}
 
 			if (shouldActivateUser)
 			{

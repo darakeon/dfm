@@ -172,7 +172,7 @@ namespace DFM.BusinessLogic.Repositories
 				{ "DeleteCsvToken", security.Token },
 			};
 
-			var format = Format.WipeCSVRecover();
+			var format = Format.WipeCSVRecover(security.Wipe);
 			var fileContent = format.Layout.Format(dic);
 
 			var sender = new Sender()

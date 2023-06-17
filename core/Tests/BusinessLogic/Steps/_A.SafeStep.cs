@@ -871,11 +871,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"the user was wiped once")]
 		public void GivenIHaveAWipedUser()
 		{
-			var wipe = Wipe.FromUser(new User
-			{
-				Email = $"{scenarioCode}@dontflymoney.com",
-				Password = Crypt.Do(userPassword),
-			});
+			var email = $"{scenarioCode}@dontflymoney.com";
+			var user = repos.User.GetByEmail(email);
+			var wipe = Wipe.FromUser(user);
 
 			wipe.S3 = $"{scenarioCode}.csv";
 
@@ -936,11 +934,19 @@ namespace DFM.BusinessLogic.Tests.Steps
 					? Int32.Parse(userData["Timezone"])
 					: default(Int32?);
 
+				var theme = userData.ContainsKey("Theme")
+					? EnumX.Parse<Theme>(userData["Theme"])
+					: default(Theme?);
+
+				var language = userData.ContainsKey("Language")
+					? userData["Language"]
+					: null;
+
 				var days = userData.ContainsKey("Days")
 					? Int32.Parse(userData["Days"])
 					: default(Int32?);
 
-				createUserIfNotExists(email, password, active, signed, timezone, days);
+				createUserIfNotExists(email, password, active, signed, timezone, theme, language, days);
 			}
 		}
 

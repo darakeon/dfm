@@ -36,12 +36,11 @@ namespace DFM.Email
 			return new(user, EmailType.WipeNotice, removalReason);
 		}
 
-		public static Format WipeCSVRecover()
+		public static Format WipeCSVRecover(ITalkable talkable)
 		{
 			return new(
-				Defaults.SettingsLanguage,
-				Defaults.DefaultTheme,
-				Misc.Empty(),
+				talkable,
+				null,
 				EmailType.CSVRecover,
 				EmailType.CSVRecover
 			);
@@ -49,31 +48,33 @@ namespace DFM.Email
 
 		private Format(User user, EmailType type, Object layoutType)
 			: this(
-				user.Settings.Language,
-				user.Settings.Theme,
+				user.Settings,
 				user.GenerateMisc(),
 				type,
 				layoutType
 			) { }
 
 		private Format(
-			String language, Theme theme, Misc misc,
+			ITalkable talkable, Misc misc,
 			EmailType type, Object layoutType
 		)
 		{
 			var layoutName = layoutType.ToString();
-			var replaces = getReplaces(type.ToString(), layoutName, language);
+			var replaces = getReplaces(type.ToString(), layoutName, talkable.Language);
 
-			replaces.Add("MiscColor", misc.Color);
-			replaces.Add("MiscAntenna", misc.Antenna);
-			replaces.Add("MiscEye", misc.Eye);
-			replaces.Add("MiscArm", misc.Arm);
-			replaces.Add("MiscLeg", misc.Leg);
-			replaces.Add("MiscBackground", misc.Background);
-			replaces.Add("MiscBorder", misc.Border);
+			if (misc != null)
+			{
+				replaces.Add("MiscColor", misc.Color);
+				replaces.Add("MiscAntenna", misc.Antenna);
+				replaces.Add("MiscEye", misc.Eye);
+				replaces.Add("MiscArm", misc.Arm);
+				replaces.Add("MiscLeg", misc.Leg);
+				replaces.Add("MiscBackground", misc.Background);
+				replaces.Add("MiscBorder", misc.Border);
+			}
 
 			Subject = replaces["Subject"];
-			Layout = FormatEmail(theme, type, replaces, misc);
+			Layout = FormatEmail(talkable.Theme, type, replaces, misc);
 		}
 
 		private static Dictionary<String, String> getReplaces(
