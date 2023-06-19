@@ -140,16 +140,16 @@ alter table security
 				"Text": "Quando a Pessoa se registra no Sistema existe um período de 7 dias para confirmar o endereço de e-mail:",
 				"Items": [
 					{
-						"Text": "Uma mensagem é enviada ao endereço de e-mail informado quando a pessoa se cadastra:",
+						"Text": "Uma mensagem é enviada ao endereço de e-mail informado quando a Pessoa se cadastra:",
 						"Items": [
-							{ "Text": "Ela contém um link - que a pessoa pode clicar - e um token - que pode ser usado no site seguindo as instruções descritas na mensagem de e-mail;" },
+							{ "Text": "Ela contém um link - que a Pessoa pode clicar - e um token - que pode ser usado no site seguindo as instruções descritas na mensagem de e-mail;" },
 							{ "Text": "Qualquer dos dois métodos pode ser usado para confirmar o endereço de e-mail;" },
 							{ "Text": "Ambos expiram em 3 dias;" },
 							{ "Text": "Você pode enviar uma nova confirmação clicando no aviso que começa a aparecer no site após dois dias de cadastro." },
 						]
 					},
 					{ "Text": "Se o período de confirmação terminar, a Pessoa não pode mais usar o Sistema;" },
-					{ "Text": "Cada vez que a pessoa tenta se conectar depois do período terminado, uma nova mensagem de confirmação é enviada para o endereço de e-mail;" },
+					{ "Text": "Cada vez que a Pessoa tenta se conectar depois do período terminado, uma nova mensagem de confirmação é enviada para o endereço de e-mail;" },
 					{ "Text": "A funcionalidade de movimentações agendadas não está ativa enquanto o e-mail não for confirmado." }
 				]
 			},
