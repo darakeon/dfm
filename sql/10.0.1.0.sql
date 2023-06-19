@@ -159,15 +159,27 @@ alter table security
 					{ "Text": "Para evitar isso, a Pessoa deve interagir com o Sistema (estando logada) pelo site e/ou pelo aplicativo;" },
 					{ "Text": "Agendamentos sendo rodados não contam como interações válidas para esta regra;" },
 					{ "Text": "Haverá dois avisos, um em torno de 30 dias e outro em torno de 60 dias após a última interação válida, enviados ao e-mail cadastrado no Sistema pela Pessoa;" },
-					{ "Text": "Passados 90 dias sem interações válidas descritas acima, os dados da Pessoa podem ser removidos permanentemente do Sistema." }
+					{
+						"Text": "Passados 90 dias sem interações válidas descritas acima, o acesso direto e a manipulação via Sistema dos dados da Pessoa podem ser removidos.",
+						"New": true
+					}
 				]
 			},
 			{
 				"Text": "Quando os dados são removidos do Sistema, não podem ser automaticamente recuperados. Dado que talvez a Pessoa queira manter os dados para si, mesmo sem usar o Sistema, as movimentações serão exportadas pelo Sistema para um arquivo antes da remoção:",
 				"Items": [
-					{ "Text": "a Pessoa pode requisitar o arquivo enviando um e-mail para <a target=\'_blank\' href=\'mailto:dfm@dontflymoney.com\'>dfm@dontflymoney.com</a>, usando o mesmo e-mail cadastrado no Sistema;" },
-					{ "Text": "a Pessoa pode requisitar a exclusão permanente desse arquivo enviando um e-mail para <a target=\'_blank\' href=\'mailto:dfm@dontflymoney.com\'>dfm@dontflymoney.com</a>, usando o mesmo e-mail cadastrado no Sistema;" },
-					{ "Text": "se a Pessoa requisitar o arquivo e/ou sua exclusão permanente, isso será feito assim que possível após ser vista a requisição;" },
+					{
+						"Text": "a Pessoa pode requisitar o arquivo através do menu \'Dados Removidos\', usando os últimos e-mail e senha cadastrados no Sistema antes da exclusão;",
+						"New": true
+					},
+					{
+						"Text": "uma vez requisitado, o arquivo será enviado para o endereço de e-mail originalmente registrado no Sistema, o mesmo preenchido na tela \'Dados Removidos\';",
+						"New": true
+					},
+					{
+						"Text": "na mensagem de e-mail enviada com o arquivo, haverá um link para requisitar a exclusão permanente do arquivo - o link é válido por 7 dias;",
+						"New": true
+					},
 					{ "Text": "a criação do arquivo não é uma garantia de sua existência para sempre: o arquivo pode ser apagado a qualquer momento após a remoção dos dados do Sistema, sem consulta prévia a Pessoa." },
 				]
 			},
@@ -204,7 +216,10 @@ alter table security
 				"Text": "Estes termos podem ser alterados a qualquer momento:",
 				"Items": [
 					{ "Text": "Em caso de alteração, a Pessoa precisa aceitar os novos termos para continuar usando o Sistema;" },
-					{ "Text": "Passados 90 dias, caso não aceite os novos termos, os dados da Pessoa podem ser removidos permanentemente do Sistema, sob as mesmas condições da falta de interações descrita acima nesse contrato." }
+					{
+						"Text": "Passados 90 dias, caso não aceite os novos termos, os dados da Pessoa podem ser removidos do Sistema, sob as mesmas condições da falta de interações descrita acima nesse contrato.",
+						"New": true
+					}
 				]
 			},
 			{
@@ -310,15 +325,27 @@ alter table security
 					{ "Text": "To avoid this, the Person should interact with the System (logged in) by website and/or android app;" },
 					{ "Text": "Running schedules are not valid interactions for this rule;" },
 					{ "Text": "There will be two warnings, one around 30 days and other around 60 days after last valid interaction, sent to registered e-mail at the System by the Person;" },
-					{ "Text": "Passed 90 days without above described interactions the Person\'s data can be permanently removed from the System." }
+					{ 
+						"Text": "Passed 90 days without above described interactions the Person\'s data can be removed from direct access and manipulation through the System.",
+						"New": true
+					}
 				]
 			},
 			{
 				"Text": "When the data is removed from the System, this cannot be automatically restored. Given maybe the Person wants to keep the data to itself even without using the System, the moves will be exported by the System to a file before removal:",
 				"Items": [
-					{ "Text": "the Person can request the file sending e-mail to <a target=\'_blank\' href=\'mailto:dfm@dontflymoney.com\'>dfm@dontflymoney.com</a> using same e-mail registered at the System;" },
-					{ "Text": "the Person can request the permanent deletion of the file sending e-mail to <a target=\'_blank\' href=\'mailto:dfm@dontflymoney.com\'>dfm@dontflymoney.com</a> using same e-mail registered at the System;" },
-					{ "Text": "if the Person request the data file and/or its permanent deletion it will be made as soon possible after the request is seen;" },
+					{
+						"Text": "the Person can request the file through the \'Deleted Data\' menu, using same e-mail and password last registered at the System before the deletion;",
+						"New": true
+					},
+					{
+						"Text": "once requested, the file will be send to the email address originally registered at the System, same filled in the \'Deleted Data\' page;",
+						"New": true
+					},
+					{
+						"Text": "in the email message sent with the file, there will be a link to request the permanent deletion of the file - this link is valid for 7 days;",
+						"New": true
+					},
 					{ "Text": "the creation of the file is not a guarantee of its existence forever: the file can be deleted any time after System data removal, without prior check with the Person." },
 				]
 			},
@@ -355,7 +382,10 @@ alter table security
 				"Text": "These terms can be changed any time in the future:",
 				"Items": [
 					{ "Text": "If the terms change, the Person need to accept the new terms to keep using the System;" },
-					{ "Text": "Passed 90 days, if the new terms are not accepted, the Person\'s data can be permanently removed from the System, under the same conditions of lack of interaction describe before in this terms." }
+					{
+						"Text": "Passed 90 days, if the new terms are not accepted, the Person\'s data can be removed from the System, under the same conditions of lack of interaction describe before in this terms.",
+						"New": true
+					}
 				]
 			},
 			{
