@@ -202,7 +202,8 @@ alter table security
 				]
 			},
 			{
-				"Text": "Quando os dados são removidos do Sistema, o endereço de e-mail registrado é guardado para caso seja necessário consultar motivo e/ou data da remoção dos dados;",
+				"Text": "Quando os dados são removidos do Sistema, o endereço de e-mail registrado é guardado usando o mesmo processo já usado para guardar a senha (descrito acima nestes termos);",
+				"New": true
 			},
 			{
 				"Text": "O Sistema, considerando Site e Aplicativo de celular, é mantido como aqui apresentado, e pode ficar indisponível. Não há garantias de o Sistema estar online, ou de permanecer online, não cabendo ônus a quem o mantém em caso de indisponibilidade, seja esta temporária ou permanente;",
@@ -377,7 +378,8 @@ alter table security
 				]
 			},
 			{
-				"Text": "When the data is removed from the System, the registered e-mail address is kept in case the information of reason and/or date of data removal is needed;",
+				"Text": "When the data is removed from the System, the registered e-mail address is kept using same process used to register the password (described above in this terms);",
+				"New": true
 			},
 			{
 				"Text": "The System (considering website and mobile app) is kept as here presented and can be unavailable. There are no guarantees of the System being online or to stay online, and there will be no onus for the System maintainer in case of unavailability, this one being temporary or permanent;",
