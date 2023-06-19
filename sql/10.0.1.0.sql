@@ -137,6 +137,15 @@ alter table security
 				]
 			},
 			{
+				"Text": "A senha escolhida pela Pessoa no Sistema é registrada usando um protocolo de segurança:",
+				"Items": [
+					{ "Text": "ao invés de registrar o texto como foi digitado, é registrado um outro texto, gerado a partir do que foi digitado pela Pessoa;" },
+					{ "Text": "quando a Pessoa digita novamente a senha no Sistema, a senha digitada naquele momento e o texto gerado são comparados para confirmar que a senha está correta;" },
+					{ "Text": "não é possível saber qual a senha original tendo apenas o texto gerado, apenas a comparação entre a senha e o texto gerado é possível." }
+				],
+				"New": true
+			},
+			{
 				"Text": "Quando a Pessoa se registra no Sistema existe um período de 7 dias para confirmar o endereço de e-mail:",
 				"Items": [
 					{
@@ -301,6 +310,15 @@ alter table security
 					},
 					{ "Text": "by the force of law." }
 				]
+			},
+			{
+				"Text": "The password chosen by the Person at the System is registered using a security protocol:",
+				"Items": [
+					{ "Text": "instead of registering the text as typed, it is registered another text, generated from what was typed by the Person;" },
+					{ "Text": "when the Person types the password again in the System, the typed password at that moment and the generated text are compared to confirm that the password is correct;" },
+					{ "Text": "it is not possible to know which is the original password having only the generated text, only the comparison between the password and the text is possible." }
+				],
+				"New": true
 			},
 			{
 				"Text": "Once the Person register at the System there is a period of 7 days to confirm the email address:",
