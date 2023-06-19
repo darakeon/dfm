@@ -118,10 +118,10 @@ alter table security
 			{ "Text": "A Pessoa se compromete a manter o e-mail cadastrado atualizado;" },
 			{ "Text": "Quaisquer atos que violem leis feitos por intermédio do Sistema são responsabilidade da Pessoa;" },
 			{
-				"Text": "Privacidade: dados inseridos no Sistema pela Pessoa são usados em:",
+				"Text": "Privacidade: dados inseridos no Sistema pela Pessoa são usados:",
 				"Items": [
 					{
-						"Text": "relatórios pessoais, que podem ser vistos apenas pela Pessoa, no Site e no Aplicativo de celular:",
+						"Text": "em relatórios pessoais, que podem ser vistos apenas pela Pessoa, no Site e no Aplicativo de celular:",
 						"Items": [
 							{ "Text": "O acesso a esses relatórios é controlado por login e senha, que a Pessoa é responsável por manter em segredo." }
 						]
