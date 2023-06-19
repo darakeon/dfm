@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Language\Email\CSVRecover.json" />
+    <None Remove="Language\Email\DeleteCsvData.json" />
     <None Remove="Language\Email\general.json" />
     <None Remove="Language\Email\MoveNotification.json" />
     <None Remove="Language\Email\NoInteraction.json" />
@@ -46,7 +46,7 @@
     <Content Include="Language\Email\WipeNotice.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Language\Email\CSVRecover.json">
+    <Content Include="Language\Email\DeleteCsvData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Language\Email\RemovalReason.json">

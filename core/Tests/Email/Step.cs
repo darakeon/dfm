@@ -135,6 +135,8 @@ namespace DFM.Email.Tests
 				.Replace("\n", "")
 				.Replace("\t", "");
 
+			var resultPath = Path.Combine("Templates", "result.html");
+			File.WriteAllText(resultPath, body);
 			Assert.True(match(body, pattern));
 		}
 

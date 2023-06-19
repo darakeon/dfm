@@ -168,8 +168,8 @@ namespace DFM.BusinessLogic.Repositories
 			{
 				{ "Url", getUrl() },
 				{ "DateTime", DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm") },
-				{ "DeleteCsvPath", security.Action.ToString() },
-				{ "DeleteCsvToken", security.Token },
+				{ "PathAction", security.Action.ToString() },
+				{ "Token", security.Token },
 			};
 
 			var format = Format.WipeCSVRecover(security.Wipe);

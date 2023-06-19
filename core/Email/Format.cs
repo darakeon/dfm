@@ -36,31 +36,31 @@ namespace DFM.Email
 			return new(user, EmailType.WipeNotice, removalReason);
 		}
 
-		public static Format WipeCSVRecover(ITalkable talkable)
+		public static Format WipeCSVRecover(Wipe wipe)
 		{
 			return new(
-				talkable,
+				wipe,
 				null,
-				EmailType.CSVRecover,
-				EmailType.CSVRecover
+				EmailType.SecurityAction,
+				Entities.Enums.SecurityAction.DeleteCsvData
 			);
 		}
 
-		private Format(User user, EmailType type, Object layoutType)
+		private Format(User user, EmailType type, Object subtype)
 			: this(
 				user.Settings,
 				user.GenerateMisc(),
 				type,
-				layoutType
+				subtype
 			) { }
 
 		private Format(
 			ITalkable talkable, Misc misc,
-			EmailType type, Object layoutType
+			EmailType type, Object subtype
 		)
 		{
-			var layoutName = layoutType.ToString();
-			var replaces = getReplaces(type.ToString(), layoutName, talkable.Language);
+			var subtypeName = subtype.ToString();
+			var replaces = getReplaces(type.ToString(), subtypeName, talkable.Language);
 
 			if (misc != null)
 			{
@@ -74,7 +74,7 @@ namespace DFM.Email
 			}
 
 			Subject = replaces["Subject"];
-			Layout = FormatEmail(talkable.Theme, type, replaces, misc);
+			Layout = FormatEmail(talkable.Theme, type, subtypeName, replaces, misc);
 		}
 
 		private static Dictionary<String, String> getReplaces(
@@ -86,13 +86,15 @@ namespace DFM.Email
 			return replaces.ToDictionary(p => p.Name, p => p.Text);
 		}
 
-		public static String FormatEmail<T>(Theme theme, EmailType type, IDictionary<String, T> replaces, Misc misc)
+		public static String FormatEmail<T>(Theme theme, EmailType type, String subtype, IDictionary<String, T> replaces, Misc misc)
 		{
-			return PlainText.Html[theme, type, misc]
+			return PlainText.Html[theme, type, subtype, misc]
 				.Format(
 					replaces.ToDictionary(
 						p => p.Key,
-						p => p.Value?.ToString()
+						p => p.Value?
+							.ToString()?
+							.Replace("\n", "<br />")
 					)
 				);
 		}

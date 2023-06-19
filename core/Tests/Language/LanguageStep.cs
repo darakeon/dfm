@@ -120,7 +120,7 @@ namespace DFM.Language.Tests
 				{
 					try
 					{
-						var layout = PlainText.Html[theme, emailType, Misc.Random()];
+						var layout = PlainText.Html[theme, emailType, "any", Misc.Random()];
 
 						if (String.IsNullOrEmpty(layout))
 							errors.AppendLine($"Null at {theme} {emailType}");
