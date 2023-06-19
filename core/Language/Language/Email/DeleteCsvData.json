@@ -1,0 +1,22 @@
+﻿{
+	"en-US": {
+		"Subject": "Data exported",
+		"Title": "Data exported",
+		"UrlText": "As by requested at the website we are sending attached to this email the data exported from the system.\n\nYour data was deleted from the System, but this was not given to you asking directly for it. In this case, a file is exported with the data of the moves created inside the System. This file was still available and it is attached to this email. But it is your data: if you want it to be deleted, you can do it by clicking in the link below.\n\nIn case you delete it, you will not be able to request this data at the System anymore.",
+		"LinkTitle": "Click here to delete DEFINITELY from Don't fly Money the csv file attached to this email.",
+		"ReadTerms": "Read the terms of use at the website",
+		"ToUnderstand": "to understand more about data deletion",
+		"DisableText": "If you don't want to delete the file, please, disable the Token.",
+		"": null
+	},
+	"pt-BR": {
+		"Subject": "Dados exportados",
+		"Title": "Dados exportados",
+		"UrlText": "Por requisição feita via site, estamos enviando em anexo dados exportados do sistema.\n\nSeus dados foram excluídos do Sistema, mas não devido a um pedido seu direto. Neste caso, um arquivo é exportado com os dados das movimentações criadas no Sistema. Este arquivo ainda estava disponível e está anexo neste e-mail. Porém são seus dados: se quiser que o arquivo seja excluído, você pode fazer isso clicando no link abaixo.\n\nCaso escolha excluir o arquivo, você não poderá requisitá-lo novamente no Sistema.",
+		"LinkTitle": "Clique aqui excluir DEFINITIVAMENTE do Sistema Don't fly Money o arquivo csv anexado neste e-mail.",
+		"ReadTerms": "Leia os termos de uso no site",
+		"ToUnderstand": "para entender mais sobre a exclusão de dados",
+		"DisableText": "Se você não quer excluir o arquivo, por favor, desative o Token.",
+		"": null
+	}
+}

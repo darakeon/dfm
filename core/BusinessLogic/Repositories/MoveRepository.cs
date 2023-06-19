@@ -131,6 +131,7 @@ namespace DFM.BusinessLogic.Repositories
 				(
 					settings.Theme,
 					EmailType.Detail,
+					null,
 					new Dictionary<String, Object> {
 						{ "Description", detail.Description },
 						{ "Amount", detail.Amount },

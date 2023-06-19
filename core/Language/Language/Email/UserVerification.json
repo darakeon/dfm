@@ -3,6 +3,7 @@
 		"DisableText": "If your user is already activated, please, disable the Token. Won't be necessary give any information.",
 		"Subject": "User Verification",
 		"Title": "Verification",
+		"LinkTitle": "User Verification",
 		"UrlText": "Your user in Don't fly Money is waiting for a confirm to be activated. To proceed, click the link below.",
 		"": null
 	},
@@ -10,6 +11,7 @@
 		"DisableText": "Se seu registro já está ativado, por favor, desative o Token. Não será necessário passar qualquer informação.",
 		"Subject": "Verificação de Registro",
 		"Title": "Verificação",
+		"LinkTitle": "Verificação de Registro",
 		"UrlText": "Seu registro no Don't fly Money aguarda confirmação para ser ativado. Para prosseguir, clique no link abaixo.",
 		"": null
 	}

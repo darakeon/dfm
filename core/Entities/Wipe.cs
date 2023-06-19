@@ -33,9 +33,9 @@ namespace DFM.Entities
 		{
 			return new Wipe
 			{
-				HashedEmail = Crypt.Do(user.Email),
-				UsernameStart = user.Username[..MaxLen.WipeUsernameStart],
-				DomainStart = user.Domain[..MaxLen.WipeDomainStart],
+				HashedEmail = Crypt.Do(user.Email ?? ""),
+				UsernameStart = user.Username?[..MaxLen.WipeUsernameStart],
+				DomainStart = user.Domain?[..MaxLen.WipeDomainStart],
 				When = DateTime.UtcNow,
 				Password = user.Password,
 				Theme = user.Settings.Theme,
