@@ -1,9 +1,14 @@
 .DEFAULT_GOAL=run
 
-include .env
+-include .env
 export
 
 EXEC=docker exec -it midna
+
+env:
+	@if [ ! -e .env ]; then \
+		cp example.env .env; \
+	fi
 
 build:
 	@docker login
@@ -12,7 +17,7 @@ build:
 db:
 	@cd ../sql && docker-compose up -d
 
-run: stop rm build db
+run: env stop rm build db
 	@docker run -v ${PWD}/src:/var/midna/src \
 		-v ${PWD}/gunicorn/config:/var/midna/config \
 		-v ${PWD}/gunicorn/log:/var/log/gunicorn/ \
@@ -32,7 +37,7 @@ stop:
 	@docker stop midna 2> /dev/null || echo 'no midna'
 
 rm:
-	@docker rm midna
+	@docker rm midna 2> /dev/null || echo 'no midna'
 
 logs:
 	@docker logs midna

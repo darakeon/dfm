@@ -718,9 +718,14 @@ jobs:
           keys:
             - python-{{ checksum "midna/src/requirements.txt" }}
       - run:
-          path: midna/src
+          path: midna
           name: run tests
-          command: python manage.py test deleted_users
+          command: |
+            set -o allexport
+            source example.env
+            set +o allexport
+            cd src
+            python manage.py test deleted_users
 
   audit_version_changer:
     docker:
