@@ -12,12 +12,15 @@ build:
 db:
 	@cd ../sql && docker-compose up -d
 
-run: stop build db
-	@docker run -v ${PWD}:/var/midna \
+run: stop rm build db
+	@docker run -v ${PWD}/src:/var/midna/src \
+		-v ${PWD}/gunicorn/config:/var/midna/config \
+		-v ${PWD}/gunicorn/log:/var/log/gunicorn/ \
+		-v ${PWD}/gunicorn/run:/var/run/gunicorn/ \
 		--env-file=.env \
 		-p 8000:8000 \
 		--name midna \
-		-d --rm \
+		-d \
 		darakeon/midna
 	@echo
 	@echo "Site running. Go to http://localhost:8000/twilight/"
@@ -27,6 +30,9 @@ push: build
 
 stop:
 	@docker stop midna 2> /dev/null || echo 'no midna'
+
+rm:
+	@docker rm midna
 
 logs:
 	@docker logs midna

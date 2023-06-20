@@ -6,4 +6,4 @@ RUN pip install -r requirements.txt
 
 WORKDIR /var/midna/src
 
-CMD python manage.py runserver 0.0.0.0:8000
+CMD gunicorn -c ../config/dev.py && tail -f /dev/null
