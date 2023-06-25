@@ -43,6 +43,9 @@
     <None Update="Templates\move-notification.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Templates\security-action-delete-csv-data.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Templates\wipe-notice-person-asked.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

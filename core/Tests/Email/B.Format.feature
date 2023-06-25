@@ -42,3 +42,8 @@ Scenario: B08. Format wipe by person asked
 	When a wipe notice is formatted because of PersonAsked
 		And the e-mail is sent
 	Then there will be a wipe-notice-person-asked e-mail sent
+
+Scenario: B09. Format csv recover
+	When a security action is formatted to DeleteCsvData
+		And the e-mail is sent
+	Then there will be a security-action-delete-csv-data e-mail sent
