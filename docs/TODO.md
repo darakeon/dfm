@@ -13,9 +13,10 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (66)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (67)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
 | Fix alternate text in pig (add pink pig, which is the real description)        | :sheep:  |  1  |  4  |  7  |                |
+| Check accessibility of email layouts                                           | :whale:  |  2  |  4  |  6  |                |
 | Delete data on app (legal requirement)                                         | :whale:  |  2  |  4  |  6  |                |
 | Add transfer with conversion (value in/out) (NEEDED BY MAIN USER)              | :whale:  |  4  |  3  |  3  |                |
 | Make google see move unsubscribe link ([Google tips avoid being spam])         | :sheep:  |  1  |  3  |  6  |                |
