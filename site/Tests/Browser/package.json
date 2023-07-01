@@ -12,6 +12,10 @@
 		"jest": "27.0.6",
 		"jest-puppeteer": "6.2.0"
 	},
+	"overrides": {
+		"semver": "^7.5.2",
+		"optionator": "^0.9.3"
+	},
 	"scripts": {
 		"test": "jest --runInBand"
 	},
