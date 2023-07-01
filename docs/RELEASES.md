@@ -16,7 +16,7 @@ This is the list of project releases, past and current. To see tasks that are st
 
 ## <a name="10.0.1.0"></a>10.0.1.0 :sheep: <sup>`11`</sup>
 - [ ] Fix menu not opening
-- [ ] `230619>......` Add admin to nginx with production settings
+- [ ] `230619>......` Add admin to nginx with production settings ([django-prod]/[django-nginx])
 - [x] `230619>230619` Fix emails to remove email contact and tell how to recover and delete csv
 - [x] `230618>230619` Fix terms to remove email contact and tell how to recover and delete csv
 - [x] `230530>230617` Add link to purge csv into email with csv
@@ -986,3 +986,5 @@ This is the list of project releases, past and current. To see tasks that are st
 [#107]: https://github.com/darakeon/dfm/issues/107
 [how to commit ci]: https://support.circleci.com/hc/en-us/articles/360018860473-How-to-push-a-commit-back-to-the-same-repository-as-part-of-the-CircleCI-job?utm_source=google&utm_medium=sem&utm_campaign=sem-google-dg--latam-en-dsa-maxConv-auth-nb&utm_term=g_b-_m__dsa_&utm_content=&gclid=EAIaIQobChMIvaiowOO59AIVChCRCh0rgA0SEAAYASAAEgLqdvD_BwE
 [.NET Lib]:https://github.com/prometheus-net/prometheus-net
+[django-prod]:https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
+[django-nginx]:https://realpython.com/django-nginx-gunicorn/
