@@ -12,6 +12,12 @@ site:
 site_push: site
 	@make push MACHINE=site
 
+midna:
+	@make single MACHINE=midna
+
+midna_push: midna
+	@make push MACHINE=midna
+
 single:
 	@echo "Building ${MACHINE}..."
 	@docker build .. --pull --progress plain -t darakeon/dfm-${MACHINE} -f "${PWD}/dfm-${MACHINE}.dockerfile"
