@@ -42,3 +42,10 @@ robot/Robot/db.*.json
 robot/Robot/smtp.*.json
 robot/Robot/login.*.json
 robot/Robot/s3.*.json
+
+midna/.env
+midna/gunicorn/log
+midna/gunicorn/run
+midna/src/db.sqlite3
+midna/src/.pytest_cache
+midna/**/__pycache__
