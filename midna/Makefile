@@ -19,9 +19,6 @@ db:
 
 run: env stop rm build db
 	@docker run -v ${PWD}/src:/var/midna/src \
-		-v ${PWD}/gunicorn/config:/var/midna/config \
-		-v ${PWD}/gunicorn/log:/var/log/gunicorn/ \
-		-v ${PWD}/gunicorn/run:/var/run/gunicorn/ \
 		--env-file=.env \
 		-p 8000:8000 \
 		--name midna \
