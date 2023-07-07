@@ -4,28 +4,28 @@
 core/.editorconfig
 
 core/.vs
-core/*/bin
-core/*/obj
+core/**/bin
+core/**/obj
 core/packages
-core/*/log
-core/*/*.user
+core/**/log
+core/**/*.user
 core/Tests
 core/respell
 
 site/.vs
-site/*/bin
-site/*/obj
+site/**/bin
+site/**/obj
 site/packages
-site/*/log
-site/*/*.user
+site/**/log
+site/**/*.user
 site/Tests
 
 robot/.vs
-robot/*/bin
-robot/*/obj
+robot/**/bin
+robot/**/obj
 robot/packages
-robot/*/log
-robot/*/*.user
+robot/**/log
+robot/**/*.user
 robot/Tests
 
 site/MVC/Assets/libs
