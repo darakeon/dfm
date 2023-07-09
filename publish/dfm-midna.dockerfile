@@ -13,4 +13,9 @@ EXPOSE 8627
 
 WORKDIR /var/midna/src
 
-CMD gunicorn -c ../config/prod.py
+RUN mkdir /var/midna/static
+RUN mkdir /var/midna/static/inside
+RUN mkdir /var/midna/static/outside
+RUN SECRET_KEY=temp python3 manage.py collectstatic
+
+CMD cp -r ../static/inside/* ../static/outside && gunicorn -c ../config/prod.py

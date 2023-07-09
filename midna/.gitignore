@@ -3,4 +3,5 @@ db.sqlite3
 .env
 gunicorn/log
 gunicorn/run
+gunicorn/static
 .pytest_cache
