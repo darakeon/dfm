@@ -13,4 +13,4 @@ EXPOSE 8627
 
 WORKDIR /var/midna/src
 
-CMD gunicorn -c ../config/prod.py && tail -f /dev/null
+CMD gunicorn -c ../config/prod.py
