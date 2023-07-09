@@ -22,9 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 if 'SECRET_KEY' in environ:
-    SECRET_KEY = environ['SECRET_KEY']
+	SECRET_KEY = environ['SECRET_KEY']
 else:
-    raise RuntimeError('Could not find a SECRET_KEY in environment')
+	raise RuntimeError('Could not find a SECRET_KEY in environment')
+
 
 DEBUG = 'DEBUG' in environ and environ['DEBUG'] == 'true'
 
