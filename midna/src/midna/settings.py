@@ -30,7 +30,10 @@ else:
 DEBUG = 'DEBUG' in environ and environ['DEBUG'] == 'true'
 
 
-ALLOWED_HOSTS = [environ['DOMAIN']]
+if 'DOMAIN' in environ:
+	ALLOWED_HOSTS = [environ['DOMAIN']]
+else:
+	ALLOWED_HOSTS = []
 
 
 # Application definition
