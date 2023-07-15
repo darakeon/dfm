@@ -13,7 +13,7 @@
           name: run tests
           command: |
             set -o allexport
-            source example.env
+            source env/example.env
             set +o allexport
             cd src
             python manage.py test deleted_users
