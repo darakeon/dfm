@@ -22,6 +22,7 @@ RUN SECRET_KEY=collectstatic \
 	DATABASE_PASS= \
 	DATABASE_HOST= \
 	DATABASE_PORT= \
+	DOMAIN=collectstatic \
 	python3 manage.py collectstatic
 
 CMD cp -r ../static/inside/* ../static/outside && gunicorn -c ../config/prod.py
