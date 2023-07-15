@@ -27,4 +27,5 @@ RUN SECRET_KEY=collectstatic \
 
 CMD cp -r ../static/inside/* ../static/outside \
 	&& python3 manage.py migrate \
+	&& python3 manage.py createsuperuser --noinput \
 	&& gunicorn -c ../config/prod.py
