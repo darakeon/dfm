@@ -12,6 +12,7 @@
 - [ ] Execute non-destructive Sql
 - [ ] Deploy Site
 - [ ] Deploy Robot
+- [ ] Deploy Admin
 - [ ] Test Site
 - [ ] Test error handler
 - [ ] Deploy APKs
