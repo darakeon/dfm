@@ -25,4 +25,6 @@ RUN SECRET_KEY=collectstatic \
 	DOMAIN=collectstatic \
 	python3 manage.py collectstatic
 
-CMD cp -r ../static/inside/* ../static/outside && gunicorn -c ../config/prod.py
+CMD cp -r ../static/inside/* ../static/outside \
+	&& python3 manage.py migrate \
+	&& gunicorn -c ../config/prod.py
