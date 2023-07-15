@@ -30,10 +30,12 @@ else:
 DEBUG = 'DEBUG' in environ and environ['DEBUG'] == 'true'
 
 
-if 'DOMAIN' in environ:
+if DEBUG:
+	ALLOWED_HOSTS = []
+elif 'DOMAIN' in environ:
 	ALLOWED_HOSTS = [environ['DOMAIN']]
 else:
-	ALLOWED_HOSTS = []
+	raise RuntimeError('Could not find a DOMAIN in environment')
 
 
 # Application definition
