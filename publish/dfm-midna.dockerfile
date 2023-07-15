@@ -16,6 +16,12 @@ WORKDIR /var/midna/src
 RUN mkdir /var/midna/static
 RUN mkdir /var/midna/static/inside
 RUN mkdir /var/midna/static/outside
-RUN SECRET_KEY=temp python3 manage.py collectstatic
+RUN SECRET_KEY=collectstatic \
+	DATABASE_NAME= \
+	DATABASE_USER= \
+	DATABASE_PASS= \
+	DATABASE_HOST= \
+	DATABASE_PORT= \
+	python3 manage.py collectstatic
 
 CMD cp -r ../static/inside/* ../static/outside && gunicorn -c ../config/prod.py
