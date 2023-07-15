@@ -90,11 +90,11 @@ DATABASES = {
 	},
 	'mysql': {
 		'ENGINE': 'django.db.backends.mysql',
-		'NAME': 'dfm',
-		'USER': 'dfm_user',
-		'PASSWORD': '',
-		'HOST': '172.17.0.1',
-		'PORT': '3306',
+		'NAME': environ['DATABASE_NAME'],
+		'USER': environ['DATABASE_USER'],
+		'PASSWORD': environ['DATABASE_PASS'],
+		'HOST': environ['DATABASE_HOST'],
+		'PORT': environ['DATABASE_PORT'],
 		'OPTIONS': {
 			'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
 		}
