@@ -159,3 +159,36 @@ if not DEBUG:
 	SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 	SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 	SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+
+	LOGGING = {
+		'version': 1,
+		'disable_existing_loggers': False,
+		'formatters': {
+			'django.server': {
+				'()': 'django.utils.log.ServerFormatter',
+				'format': '[%(server_time)s] %(message)s',
+			}
+		},
+		'handlers': {
+			'console': {
+				'level': 'INFO',
+				'class': 'logging.StreamHandler',
+			},
+			'django.server': {
+				'level': 'INFO',
+				'class': 'logging.StreamHandler',
+				'formatter': 'django.server',
+			},
+		},
+		'loggers': {
+			'django': {
+				'handlers': ['console'],
+				'level': 'INFO',
+			},
+			'django.server': {
+				'handlers': ['django.server'],
+				'level': 'INFO',
+				'propagate': False,
+			},
+		}
+	}
