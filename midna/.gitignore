@@ -1,6 +1,6 @@
 __pycache__
 db.sqlite3
-.env
+env/
 gunicorn/log
 gunicorn/run
 gunicorn/static

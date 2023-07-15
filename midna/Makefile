@@ -1,13 +1,13 @@
 .DEFAULT_GOAL=run
 
--include .env
+-include env/dev.env
 export
 
 EXEC=docker exec -it midna
 
 env:
-	@if [ ! -e .env ]; then \
-		cp example.env .env; \
+	@if [ ! -e env/dev.env ]; then \
+		cp env/example.env env/dev.env; \
 	fi
 
 build:
@@ -19,7 +19,7 @@ db:
 
 run: env stop rm build db
 	@docker run -v ${PWD}/src:/var/midna/src \
-		--env-file=.env \
+		--env-file=env/dev.env \
 		-p 8000:8000 \
 		--name midna \
 		-d \
