@@ -12,7 +12,7 @@ env:
 
 build:
 	@docker login
-	@docker build . -t darakeon/midna
+	@docker build . -t midna
 
 db:
 	@cd ../sql && docker-compose up -d
@@ -23,12 +23,12 @@ run: env stop rm build db
 		-p 8000:8000 \
 		--name midna \
 		-d \
-		darakeon/midna
+		midna
 	@echo
 	@echo "Site running. Go to http://localhost:8000/twilight/"
 
 push: build
-	@docker push darakeon/midna
+	@docker push midna
 
 stop:
 	@docker stop midna 2> /dev/null || echo 'no midna'
