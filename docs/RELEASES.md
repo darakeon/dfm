@@ -14,8 +14,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="10.0.1.0"></a>10.0.1.0 :sheep: <sup>`11`</sup>
-- [ ] Fix menu not opening
+## <a name="10.0.1.0"></a>10.0.1.0 :sheep: <sup>`10`</sup>
 - [x] `230619>230719` Add admin to nginx with production settings ([django-prod]/[django-nginx])
 - [x] `230619>230619` Fix emails to remove email contact and tell how to recover and delete csv
 - [x] `230618>230619` Fix terms to remove email contact and tell how to recover and delete csv
