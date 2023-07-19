@@ -160,6 +160,9 @@ if not DEBUG:
 	SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 	SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
+	SESSION_COOKIE_SECURE = True
+	CSRF_COOKIE_SECURE = True
+
 	LOGGING = {
 		'version': 1,
 		'disable_existing_loggers': False,
