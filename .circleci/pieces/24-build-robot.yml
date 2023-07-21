@@ -7,7 +7,7 @@
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: core
       - run:
           name: set checksums
           command: |

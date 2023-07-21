@@ -116,9 +116,39 @@ jobs:
           name: build
           command: dotnet build -c Debug core/Core.sln --no-restore
       - persist_to_workspace:
-          root: .
+          root: core
           paths:
-            - core
+            - cache_key
+            - Authentication/bin
+            - BusinessLogic/bin
+            - Email/bin
+            - Entities/bin
+            - Exchange/bin
+            - Generic/bin
+            - Language/bin
+            - Logs/bin
+            - Authentication/obj
+            - BusinessLogic/obj
+            - Email/obj
+            - Entities/obj
+            - Exchange/obj
+            - Generic/obj
+            - Language/obj
+            - Logs/obj
+            - Tests/BusinessLogic/bin
+            - Tests/Email/bin
+            - Tests/Entities/bin
+            - Tests/Exchange/bin
+            - Tests/Generic/bin
+            - Tests/Language/bin
+            - Tests/Util/bin
+            - Tests/BusinessLogic/obj
+            - Tests/Email/obj
+            - Tests/Entities/obj
+            - Tests/Exchange/obj
+            - Tests/Generic/obj
+            - Tests/Language/obj
+            - Tests/Util/obj
 
   audit_core:
     docker:
@@ -126,7 +156,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: core
       - restore_cache:
           keys:
             - dotnet-{{ checksum "core/cache_key" }}
@@ -152,7 +182,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: core
       - restore_cache:
           keys:
             - dotnet-{{ checksum "core/cache_key" }}
@@ -170,7 +200,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: core
       - restore_cache:
           keys:
             - dotnet-{{ checksum "core/cache_key" }}
@@ -188,7 +218,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: core
       - restore_cache:
           keys:
             - dotnet-{{ checksum "core/cache_key" }}
@@ -212,7 +242,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: core
       - restore_cache:
           keys:
             - dotnet-{{ checksum "core/cache_key" }}
@@ -230,7 +260,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: core
       - restore_cache:
           keys:
             - dotnet-{{ checksum "core/cache_key" }}
@@ -248,7 +278,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: core
       - restore_cache:
           keys:
             - dotnet-{{ checksum "core/cache_key" }}
@@ -272,7 +302,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: core
       - run:
           name: set checksums
           command: |
@@ -583,7 +613,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: core
       - run:
           name: set checksums
           command: |
