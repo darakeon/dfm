@@ -15,15 +15,14 @@
           path: robot
           name: check vulnerability
           command: |
-            RESULT=$(dotnet list package --vulnerable --include-transitive)
+            RESULT=$(dotnet list package --vulnerable --include-transitive | grep 'has no vulnerable')
 
             echo "$RESULT"
 
             NUMBER_OF_PROJECTS=9
-            EXPECTED=$(expr $NUMBER_OF_PROJECTS + 4)
             CURRENT=$(echo "$RESULT" | wc -l)
 
-            if [ $CURRENT != $EXPECTED ]; then
+            if [ $CURRENT != $NUMBER_OF_PROJECTS ]; then
                 exit 1
             fi
 
