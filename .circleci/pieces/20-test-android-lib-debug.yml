@@ -4,7 +4,7 @@
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: android
       - restore_cache:
           keys:
             - kotlin-{{ checksum "android/cache_key" }}

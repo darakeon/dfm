@@ -55,7 +55,12 @@
           path: android/ErrorLogs/build/reports
           destination: reports/errorLogs
       - persist_to_workspace:
-          root: .
+          root: android
           paths:
-            - android
+            - cache_key
+            - keystore.properties
+            - Lib/build
+            - App/build
+            - ErrorLogs/build
+            - TestUtils/build
 

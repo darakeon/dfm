@@ -512,9 +512,14 @@ jobs:
           path: android/ErrorLogs/build/reports
           destination: reports/errorLogs
       - persist_to_workspace:
-          root: .
+          root: android
           paths:
-            - android
+            - cache_key
+            - keystore.properties
+            - Lib/build
+            - App/build
+            - ErrorLogs/build
+            - TestUtils/build
 
   audit_android:
     docker:
@@ -522,7 +527,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: android
       - restore_cache:
           keys:
             - kotlin-{{ checksum "android/cache_key" }}
@@ -537,7 +542,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: android
       - restore_cache:
           keys:
             - kotlin-{{ checksum "android/cache_key" }}
@@ -557,7 +562,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: android
       - restore_cache:
           keys:
             - kotlin-{{ checksum "android/cache_key" }}
@@ -577,7 +582,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: android
       - restore_cache:
           keys:
             - kotlin-{{ checksum "android/cache_key" }}
@@ -597,7 +602,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: android
       - restore_cache:
           keys:
             - kotlin-{{ checksum "android/cache_key" }}
