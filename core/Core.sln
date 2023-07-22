@@ -36,7 +36,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exchange.Tests", "Tests\Exc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Generic.Tests", "Tests\Generic\Generic.Tests.csproj", "{FE8F7986-DCE0-42AC-8D22-440688DA0F01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities.Tests", "Tests\Entities\Entities.Tests\Entities.Tests.csproj", "{9E22EDFA-FC9E-48D0-818D-CB799F2BEC33}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities.Tests", "Tests\Entities\Entities.Tests.csproj", "{9E22EDFA-FC9E-48D0-818D-CB799F2BEC33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
