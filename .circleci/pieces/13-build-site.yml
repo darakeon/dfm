@@ -34,8 +34,11 @@
           name: build
           command: dotnet build -c Debug site/Site.sln --no-restore
       - persist_to_workspace:
-          root: .
+          root: site
           paths:
-            - core
-            - site
+            - cache_key
+            - MVC/bin
+            - MVC/obj
+            - Tests/MVC/bin
+            - Tests/MVC/obj
 
