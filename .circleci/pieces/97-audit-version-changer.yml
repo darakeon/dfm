@@ -30,8 +30,8 @@
           name: audit
           path: version
           command: cargo audit && echo "All OK!"
-      - persist_to_workspace:
-          root: .
-          paths:
-            - version
+      #- persist_to_workspace:
+      #    root: version
+      #    paths:
+      #      -
 
