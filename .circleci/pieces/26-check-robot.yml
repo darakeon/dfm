@@ -7,14 +7,12 @@
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: robot
       - restore_cache:
           keys:
             - dotnet-{{ checksum "robot/cache_key" }}
       - run:
           name: check
-          path: robot
+          path: robot/Robot/bin/Release/net6.0
           command: ./DFM.Robot check
-      - store_artifacts:
-          path: inbox
 

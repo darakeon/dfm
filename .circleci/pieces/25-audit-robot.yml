@@ -7,7 +7,9 @@
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: core
+      - attach_workspace:
+          at: robot
       - restore_cache:
           keys:
             - dotnet-{{ checksum "robot/cache_key" }}
