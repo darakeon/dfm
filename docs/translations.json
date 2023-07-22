@@ -1,12 +1,28 @@
 {
-        "en-us": {
-                "Add monitoring with Grafana and Prometheus ([.NET Lib])": "Add system health monitoring tools",
-                "Fix date calculation problem": "Fixed problem with schedule date calculation",
-                "": null
-        },
-        "pt-br": {
-                "Add monitoring with Grafana and Prometheus ([.NET Lib])": "Adicionadas ferramentas de monitoramente de saúde do sistema",
-                "Fix date calculation problem": "Arrumado problema com cálculo de datas nos agendamentos",
-                "": null
-        }
+	"en-us": {
+		"Add admin to nginx with production settings ([django-prod]/[django-nginx])": "-",
+		"Fix emails to remove email contact and tell how to recover and delete csv": "-",
+		"Fix terms to remove email contact and tell how to recover and delete csv": "Change terms about data after wipe",
+		"Add link to purge csv into email with csv": "Allow CSV deletion after receiving it at email",
+		"Fix acceptance check bug for calling inside another transaction": "Fix error with Terms acceptance",
+		"Distribute tests of operations with not signed contract": "-",
+		"Add option of sending CSV to user e-mail": "Allow request via System of wiped data CSV",
+		"Use hexadecimal of hash email in deleted account CSV name": "-",
+		"Hash email after wipe in the wipe history table": "Improved protection of System wiped data details",
+		"Add django admin to search deleted accounts": "-",
+		"": null
+	},
+	"pt-br": {
+		"Add admin to nginx with production settings ([django-prod]/[django-nginx])": "-",
+		"Fix emails to remove email contact and tell how to recover and delete csv": "-",
+		"Fix terms to remove email contact and tell how to recover and delete csv": "Mudança nos Termos sobre dados após a exclusão",
+		"Add link to purge csv into email with csv": "Permitida exclusão de CSV após recebê-lo via email",
+		"Fix acceptance check bug for calling inside another transaction": "Corrigido problema com aceite de Termos",
+		"Distribute tests of operations with not signed contract": "-",
+		"Add option of sending CSV to user e-mail": "Permitida requisição via Sistema de CSV de dados excluídos",
+		"Use hexadecimal of hash email in deleted account CSV name": "-",
+		"Hash email after wipe in the wipe history table": "Melhorada proteção de detalhes de dados excluídos do Sistema",
+		"Add django admin to search deleted accounts": "-",
+		"": null
+	}
 }
