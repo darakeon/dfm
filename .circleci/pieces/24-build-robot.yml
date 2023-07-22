@@ -34,11 +34,12 @@
             - ~/.nuget/packages
       - run:
           name: build
-          path: robot/Robot
-          command: dotnet publish -c Release Robot.csproj -o ../ --no-restore
+          path: robot
+          command: dotnet build -c Release Robot.sln --no-restore
       - persist_to_workspace:
-          root: .
+          root: robot
           paths:
-            - core
-            - robot
+            - cache_key
+            - Robot/bin
+            - Robot/obj
 

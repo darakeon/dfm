@@ -650,13 +650,14 @@ jobs:
             - ~/.nuget/packages
       - run:
           name: build
-          path: robot/Robot
-          command: dotnet publish -c Release Robot.csproj -o ../ --no-restore
+          path: robot
+          command: dotnet build -c Release Robot.sln --no-restore
       - persist_to_workspace:
-          root: .
+          root: robot
           paths:
-            - core
-            - robot
+            - cache_key
+            - Robot/bin
+            - Robot/obj
 
   audit_robot:
     docker:
@@ -667,7 +668,9 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: core
+      - attach_workspace:
+          at: robot
       - restore_cache:
           keys:
             - dotnet-{{ checksum "robot/cache_key" }}
@@ -695,16 +698,14 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: robot
       - restore_cache:
           keys:
             - dotnet-{{ checksum "robot/cache_key" }}
       - run:
           name: check
-          path: robot
+          path: robot/Robot/bin/Release/net6.0
           command: ./DFM.Robot check
-      - store_artifacts:
-          path: inbox
 
   build_midna:
     docker:
