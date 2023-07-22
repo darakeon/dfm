@@ -18,8 +18,8 @@
           key: python-{{ checksum "midna/src/requirements.txt" }}
           paths:
             - /usr/local/lib/python3.11/site-packages/
-      - persist_to_workspace:
-          root: .
-          paths:
-            - midna
+      #- persist_to_workspace:
+      #    root: midna
+      #    paths:
+      #      -
 

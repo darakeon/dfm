@@ -3,8 +3,8 @@
       - image: python:3.11 # if change, remember to change save_cache
     steps:
       - checkout
-      - attach_workspace:
-          at: ./
+      #- attach_workspace:
+      #    at: midna
       - restore_cache:
           keys:
             - python-{{ checksum "midna/src/requirements.txt" }}
