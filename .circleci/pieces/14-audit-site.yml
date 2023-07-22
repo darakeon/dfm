@@ -4,7 +4,9 @@
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: core
+      - attach_workspace:
+          at: site
       - restore_cache:
           keys:
             - dotnet-{{ checksum "site/cache_key" }}
