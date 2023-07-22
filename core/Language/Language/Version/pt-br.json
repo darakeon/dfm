@@ -1,4 +1,11 @@
 {
+	"10.0.1.0": [
+		"Mudança nos Termos sobre dados após a exclusão",
+		"Permitida exclusão de CSV após recebê-lo via email",
+		"Corrigido problema com aceite de Termos",
+		"Permitida requisição via Sistema de CSV de dados excluídos",
+		"Melhorada proteção de detalhes de dados excluídos do Sistema"
+	],
 	"10.0.0.0": [
 		"Adicionadas ferramentas de monitoramente de saúde do sistema",
 		"Arrumado problema com cálculo de datas nos agendamentos"

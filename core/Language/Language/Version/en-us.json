@@ -1,4 +1,11 @@
 {
+	"10.0.1.0": [
+		"Change terms about data after wipe",
+		"Allow CSV deletion after receiving it at email",
+		"Fix error with Terms acceptance",
+		"Allow request via System of wiped data CSV",
+		"Improved protection of System wiped data details"
+	],
 	"10.0.0.0": [
 		"Add system health monitoring tools",
 		"Fixed problem with schedule date calculation"
