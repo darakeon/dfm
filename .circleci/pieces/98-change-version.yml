@@ -6,8 +6,8 @@
       RUST_BACKTRACE: 1
     steps:
       - checkout
-      - attach_workspace:
-          at: ./
+      #- attach_workspace:
+      #    at: version
       - restore_cache:
           keys:
             - cargo-version-{{ checksum "version/Cargo.toml" }}-{{ checksum "version/Cargo.lock" }}
