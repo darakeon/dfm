@@ -30,6 +30,9 @@ workflows:
       - test_core_exchange:
           requires:
             - build_core
+      - test_core_entities:
+          requires:
+            - build_core
       - test_core_business_logic:
           requires:
             - build_core
@@ -95,8 +98,8 @@ workflows:
             branches:
               only: /^\d+\.\d+\.\d+\.\d+$/
           requires:
-            - test_ci
             - trufflehog
+            - test_ci
             - push_docker_browser
             - push_docker_android
             - build_core
@@ -105,6 +108,7 @@ workflows:
             - test_core_language
             - test_core_email
             - test_core_exchange
+            - test_core_entities
             - test_core_business_logic
             - build_site
             - audit_site
