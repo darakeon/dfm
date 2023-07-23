@@ -45,11 +45,15 @@ followed by `:`, then by the description of what is done, what should
 start with a infinitive verb.
 
 The allowed types are:
-- `safe`: core > user;
+- `core`: main system structure general change;
+- `auth`: core > authentication matters;
+- `law`: core > terms and acceptance;
+- `clip`: core > tips and system wizard;
 - `admin`: core > accounts and categories;
 - `money`: core > moves;
 - `report`: core > reports;
 - `robot`: core > schedules;
+- `outside`: core > handle not logged actions;
 - `site`: ui, mvc;
 - `android`: app;
 - `chore`: little changes, refactors;

@@ -28,14 +28,15 @@ jobs:
       - name: Check Commit Scope
         uses: gsactions/commit-message-checker@v1
         with:
-          pattern: '^(safe|admin|money|report|robot|site|android|chore|version|docs|tests|tools|security|db|ci|mail|language|publish|accessibility|legal|midna): .+'
+          pattern: '^(core|auth|law|clip|admin|money|report|robot|outside|site|android|chore|version|docs|tests|tools|security|db|ci|mail|language|publish|accessibility|legal|midna): .+'
           error: '
             The title of the commit message must have the format
             "{scope}: {message in infinitive tense}".
-            The valid scopes are: `safe`, `admin`, `money`, `report`,
-            `robot`, `site`, `android`, `chore`, `version`, `docs`,
-            `tests`, `tools`, `security`, `db`, `ci`, `mail`,
-            `language`, `publish`, `accessibility`, `legal`
+            The valid scopes are: `core`, `auth`, `law`, `clip`,
+            `admin`, `money`, `report`, `robot`, `outside`, `site`,
+            `android`, `chore`, `version`, `docs`, `tests`, `tools`,
+            `security`, `db`, `ci`, `mail`, `language`, `publish`,
+            `accessibility`, `legal`, `midna`
             
             For more explanations:
             https://github.com/darakeon/dfm/blob/main/CONTRIBUTING.md
