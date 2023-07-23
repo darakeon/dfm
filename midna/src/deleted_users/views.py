@@ -13,7 +13,7 @@ def fix(_):
 
 	s3 = S3()
 
-	for wipe in wipes:
+	for wipe in wipes[:3]:
 		email = wipe.email
 
 		wipe.encrypt_email()
