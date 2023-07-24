@@ -31,3 +31,16 @@ class S3:
 		except ClientError as error:
 			print(error)
 			return False
+
+	def exists(self, name):
+		try:
+			self.s3.head_object(
+				Bucket = self.bucket,
+				Key = name,
+			)
+
+			return True
+
+		except ClientError as error:
+			print(error)
+			return False
