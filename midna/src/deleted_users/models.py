@@ -27,15 +27,8 @@ class Wipe(models.Model):
 
 	s3 = models.CharField(null=True, max_length=500)
 
-	# remove
-	email = models.EmailField(max_length=320, null=True)
-
 	def masked_email(self):
 		return f"{self.username_start}...@{self.domain_start}..."
-
-	def encrypt_email(self):
-		self.hashed_email = hash(self.email)
-		self.email = None
 
 	def hashed_email_base64(self):
 		hashed_email_bytes = self.hashed_email.encode('utf8')
