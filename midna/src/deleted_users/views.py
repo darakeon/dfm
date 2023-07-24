@@ -7,32 +7,29 @@ from utils.s3 import S3
 
 @login_required
 def fix(_):
-	wipes = Wipe.objects.exclude(email=None)
+	wipes = Wipe.objects.filter(s3__contains='@')
 
 	response = []
 
 	s3 = S3()
 
-	for wipe in wipes[:10]:
+	for wipe in wipes:
 		email = wipe.email
 
-		wipe.encrypt_email()
+		email = wipe.s3.split('_')[0]
+		hashed_email_base64 = wipe.hashed_email_base64()
+		new_name = wipe.s3.replace(email, hashed_email_base64)
+		file_exists = s3.exists(new_name)
 
-		file_done = wipe.s3 == None
-
-		new_name = ''
-
-		if not file_done:
-			hashed_email_base64 = wipe.hashed_email_base64()
-			new_name = wipe.s3.replace(email, hashed_email_base64)
-			file_done = s3.rename_file(wipe.s3, new_name)
-
-		if file_done:
+		if file_exists:
+			wipe.s3 = new_name
 			wipe.save()
 
-			response.append({
-				'hashed_email': wipe.hashed_email,
-				'new_file': new_name,
-			})
+		response.append({
+			'email': email,
+			'hashed_email': wipe.hashed_email,
+			'new_file': new_name,
+			'file_exists': file_exists
+		})
 
 	return JsonResponse(response, safe=False)
