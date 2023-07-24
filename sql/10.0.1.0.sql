@@ -459,6 +459,17 @@ begin
 		alter table wipe
 			modify HashedEmail varchar(60) not null,
 			drop Email;
+
+		drop view deleted_users_wipe;
+
+		create view deleted_users_wipe as
+			select id,
+				HashedEmail as hashed_email,
+				UsernameStart as username_start,
+				DomainStart as domain_start,
+				when_ as `when`, why,
+				password, s3
+			from wipe;
 	end if;
 end //
 
