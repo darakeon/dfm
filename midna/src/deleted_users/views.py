@@ -13,21 +13,26 @@ def fix(_):
 
 	s3 = S3()
 
-	for wipe in wipes[:3]:
+	for wipe in wipes[:10]:
 		email = wipe.email
 
 		wipe.encrypt_email()
 
-		if wipe.s3 != None:
+		file_done = wipe.s3 == None
+
+		new_name = ''
+
+		if not file_done:
 			hashed_email_base64 = wipe.hashed_email_base64()
 			new_name = wipe.s3.replace(email, hashed_email_base64)
-			s3.rename_file(wipe.s3, new_name)
+			file_done = s3.rename_file(wipe.s3, new_name)
 
-		wipe.save()
+		if file_done:
+			wipe.save()
 
-		response.append({
-			'hashed_email': wipe.hashed_email,
-			'new_file': new_name,
-		})
+			response.append({
+				'hashed_email': wipe.hashed_email,
+				'new_file': new_name,
+			})
 
 	return JsonResponse(response, safe=False)
