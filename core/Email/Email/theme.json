@@ -2,11 +2,11 @@
 	"None": {
 		"Values": {
 			"neutral-0": "#FFF",
-			"neutral-1": "#000"
+			"neutral-1": "#EEE"
 		},
 		"Colors": {
 			"None": {
-				"primary-0": "#777",
+				"primary-0": "#666",
 				"highlight-1": "#333",
 				"theme-colored": "on",
 			}
