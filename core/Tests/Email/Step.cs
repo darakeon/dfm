@@ -126,12 +126,14 @@ namespace DFM.Email.Tests
 				.Replace("{{", @"\{\{")
 				.Replace("}}", @"\}\}")
 				.Replace("/", @"\/")
+				.Replace("\r", "")
 				.Replace("\n", "")
 				.Replace("\t", "");
 
 			var email = EmlHelper.ByEmail(user.Email);
 
 			var body = email.Body
+				.Replace("\r", "")
 				.Replace("\n", "")
 				.Replace("\t", "");
 
