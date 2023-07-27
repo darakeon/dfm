@@ -2,6 +2,8 @@
 	"en-US": {
 		"CurrentLanguage": "english",
 
+		"PinkPigAlt": "Pink Pig, icon of Don't fly Money",
+
 		"Enter": "Enter",
 		"Login": "Login",
 		"SignUp": "Sign up",
@@ -166,6 +168,8 @@
 	},
 	"pt-BR": {
 		"CurrentLanguage": "português",
+
+		"PinkPigAlt": "Porquinho rosa, símbolo do Don't fly Money",
 
 		"Enter": "Entrar",
 		"Login": "Entrar",
