@@ -16,7 +16,7 @@ This is the list of project releases, past and current. To see tasks that are st
 
 ## <a name="10.1.0.0"></a>10.1.0.0 :whale: <sup>`2`</sup>
 - [ ] Check accessibility of email layouts
-- [ ] Fix alternate text in pig (add pink pig, which is the real description)
+- [x] `230727>230727` Fix alternate text in pig (add pink pig, which is the real description)
 
 ## <a name="10.0.1.0"></a>10.0.1.0 :sheep: <sup>`10`</sup>
 - [x] `230619>230719` Add admin to nginx with production settings ([django-prod]/[django-nginx])
