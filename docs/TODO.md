@@ -13,6 +13,21 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
+[clear headers on nginx](todo/clear-headers.png)
+Use multiple FROM for browser tests docker
+Warning about site not being always available
+Warning about mobile and browser login stay active
+Warning that system can be removed permantely
+Warning that schedule can be added 15 minutes after inserting
+Warning about person being responsible about decisions 
+Warning about agreement being just with the person
+Put Terms in the mobile app
+Check [nginx example configuration](todo/nginx-example.conf)
+Add rate limit to API and site
+Add semgrep to dfm, dk-lib, meak and server
+Check [android error socket](todo/android-error-socket-closed.log)
+Check [android error no internet](todo/android-error-no-internet.log)
+
 | Task (65)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
 | Delete data on app (legal requirement)                                         | :whale:  |  2  |  4  |  6  |                |
