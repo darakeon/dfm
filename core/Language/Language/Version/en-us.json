@@ -1,4 +1,8 @@
 {
+	"10.1.0.0": [
+		"Fix accessibility at emails sent by System",
+		"Fix website images description"
+	],
 	"10.0.1.0": [
 		"Change terms about data after wipe",
 		"Allow CSV deletion after receiving it at email",
