@@ -9,7 +9,7 @@ help:
 	@echo "    |    make new_by_quantity QUANTITY={N}                                        |"
 	@echo "    |    >>> get first N tasks;                                                   |"
 	@echo "    |                                                                             |"
-	@echo "    |    make new_by_numbers NUMBERS="{p1} {p2} {p3} ..."                         |"
+	@echo "    |    make new_by_numbers NUMBERS=\"{p1} {p2} {p3} ...\"                         |"
 	@echo "    |    >>> get tasks by position;                                               |"
 	@echo "    |                                                                             |"
 	@echo "    |    make existing                                                            |"
