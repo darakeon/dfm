@@ -4,6 +4,8 @@ RUN maintain
 
 RUN apt-get install -y python3 python3-pip default-libmysqlclient-dev pkg-config
 
+RUN pip install --upgrade pip
+
 COPY midna/src/requirements.txt requirements.txt
 RUN python3 -m pip install -r requirements.txt
 
