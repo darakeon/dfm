@@ -1,4 +1,5 @@
-﻿@model SettingsMiscModel
+﻿@using DFM.Language
+@model SettingsMiscModel
 @{
 	ViewBag.Title = Context.Translate("MiscSettings");
 	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
@@ -15,13 +16,15 @@
 
 	ViewBag.SettingsMenuClass = hl["Settings"];
 	ViewBag.SettingsWipeMenuClass = hl["SettingsWipe"];
+
+	var miscImageReading = PlainText.GetMiscText(Model.Misc, Model.Language);
 }
 
 @section Styles {
 	<link rel="stylesheet" type="text/css" href="~/Assets/styles/misc.css?v=@Cfg.Version" />
 }
 
-<div class="text-center @hl["Misc"]">
+<div class="text-center @hl["Misc"]" title="@miscImageReading">
 	@await Html.PartialAsync("MiscImage", Model.Misc)
 </div>
 <hr />
