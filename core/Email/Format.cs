@@ -71,6 +71,11 @@ namespace DFM.Email
 				replaces.Add("MiscLeg", misc.Leg);
 				replaces.Add("MiscBackground", misc.Background);
 				replaces.Add("MiscBorder", misc.Border);
+
+				replaces.Add(
+					"MiscImageReading",
+					PlainText.GetMiscText(misc, talkable.Language)
+				);
 			}
 
 			Subject = replaces["Subject"];

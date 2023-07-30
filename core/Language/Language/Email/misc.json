@@ -1,0 +1,90 @@
+{
+	"en-US": {
+		"Start": "Image of a character looking like a ball ",
+
+		"Color000": "black",
+		"Color001": "blue",
+		"Color010": "green",
+		"Color100": "red",
+		"Color111": "white",
+		"Color110": "yellow",
+		"Color101": "purple",
+		"Color011": "cyan",
+
+		"Stain000": "black without birthmarks",
+		"Stain001": "black with birthmark on the head at left side",
+		"Stain010": "black with birthmark at the left leg",
+		"Stain100": "black with birthmark at the right arm",
+		"Stain111": "white without birthmarks",
+		"Stain110": "white with birthmark on the head at left side",
+		"Stain101": "white with birthmark at the left leg",
+		"Stain011": "white with birthmark at the right arm",
+
+		"Middle": " having ",
+
+		"Eyes00": "one eye",
+		"Eyes01": "two eyes",
+		"Eyes10": "three eyes forming a triangle",
+		"Eyes11": "three eyes forming a triangle upside down",
+
+		"Arms0": "two arms with rounded hands",
+		"Arms1": "two arms with forked hands",
+
+		"Legs0": "two legs with rounded feet",
+		"Legs1": "two legs with forked feet",
+
+		"Antenna00": "no antenna",
+		"Antenna01": "two dog ears shaped antennas",
+		"Antenna10": "a fountain shape antenna",
+		"Antenna11": "an antenna with two diagonal pins and a little ball in the top",
+
+		"Comma": ", ",
+		"And": " and ",
+
+		"": null
+	},
+	"pt-BR": {
+		"Start": "Imagem de personagem que parece uma bolinha ",
+
+		"Color000": "preta",
+		"Color001": "azul",
+		"Color010": "verde",
+		"Color100": "vermelha",
+		"Color111": "branca",
+		"Color110": "amarela",
+		"Color101": "roxa",
+		"Color011": "ciano",
+
+		"Stain000": "preta sem marcas de nascença",
+		"Stain001": "preta com marca de nascença na cabeça à esquerda",
+		"Stain010": "preta com marca de nascença na perna esquerda",
+		"Stain100": "preta com marca de nascença no braço direito",
+		"Stain111": "branca sem marcas de nascença",
+		"Stain110": "branca com marca de nascença na cabeça à esquerda",
+		"Stain101": "branca com marca de nascença na perna esquerda",
+		"Stain011": "branca com marca de nascença no braço direito",
+
+		"Middle": " tendo ",
+
+		"Eyes00": "um olho",
+		"Eyes01": "dois olhos",
+		"Eyes10": "três olhos formando um triângulo",
+		"Eyes11": "três olhos formando um triângulo de ponta cabeça",
+
+		"Arms0": "dois braços com mãos arredondadas",
+		"Arms1": "dois braços com mãos bifurcadas",
+
+		"Legs0": "duas pernas com pés arredondados",
+		"Legs1": "duas pernas com pés bifurcados",
+
+		"Antenna00": "sem antena",
+		"Antenna01": "com duas antenas parecidas com orelhas de cachorro",
+		"Antenna10": "com uma antena que parece uma fonte de água",
+		"Antenna11": "com uma antena com dois pinos diagonais e uma bolinha na ponta",
+
+		"Comma": ", ",
+		"And": " e ",
+
+		"": null
+	}
+}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using DFM.Entities;
 using DFM.Language.Emails;
 using DFM.Language.Entities;
 using DFM.Language.Extensions;
@@ -180,6 +181,31 @@ namespace DFM.Language
 		public static NumberFormatInfo GetNumberFormat(String language)
 		{
 			return CultureInfo.GetCultureInfo(language).NumberFormat;
+		}
+
+		public static String GetMiscText(Misc misc, String language)
+		{
+			var parts = new[]
+			{
+				"Start",
+				misc.Colors
+					? $"Color{misc.Color}"
+					: $"Stain{misc.Color}",
+				"Comma",
+				"Middle",
+				$"Eyes{misc.Eye}",
+				"Comma",
+				$"Arms{misc.Arm}",
+				"Comma",
+				$"Legs{misc.Leg}",
+				"And",
+				$"Antenna{misc.Antenna}"
+			};
+
+			return String.Join(
+				"",
+				parts.Select(part => Email["misc", language, part])
+			);
 		}
 	}
 }
