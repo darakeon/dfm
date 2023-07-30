@@ -13,13 +13,11 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (73)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (71)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
-| Delete data on app (legal requirement)                                         | :whale:  |  2  |  4  |  6  |                |
 | Add transfer with conversion (value in/out) (NEEDED BY MAIN USER)              | :whale:  |  4  |  3  |  3  |                |
 | Make google see move unsubscribe link ([Google tips avoid being spam])         | :sheep:  |  1  |  3  |  6  |                |
 | Add test for unifying categories used in closed accounts                       | :ant:    |  1  |  3  |  6  |                |
-| Put Terms in the mobile app                                                    | :whale:  |  3  |  4  |  5  |                |
 | Expire tickets with more than 30 without access (add to contract)              | :sheep:  |  3  |  4  |  5  |                |
 | add snyk/clair check to docker containers                                      | :ant:    |  3  |  4  |  5  |                |
 | Add schedule anticipation                                                      | :whale:  |  2  |  3  |  5  |                |

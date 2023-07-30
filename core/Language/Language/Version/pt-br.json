@@ -1,4 +1,8 @@
 {
+	"10.1.0.0": [
+		"Arrumada acessibilidade nos e-mails enviados pelo Sistema",
+		"Arrumada descrição de imagens no site"
+	],
 	"10.0.1.0": [
 		"Mudança nos Termos sobre dados após a exclusão",
 		"Permitida exclusão de CSV após recebê-lo via email",

@@ -13,7 +13,7 @@ buildscript {
 	ext.testrunner_version = '1.0.2'
 	ext.expresso_version = '3.0.2'
 
-	ext.dfm_version = "10.0.1.0"
+	ext.dfm_version = "10.1.0.0"
 
 	repositories {
 		google()
