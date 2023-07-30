@@ -13,27 +13,21 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-[clear headers on nginx](todo/clear-headers.png)
-Use multiple FROM for browser tests docker
-Warning that schedule can be added 15 minutes after inserting
-Put Terms in the mobile app
-Check [nginx example configuration](todo/nginx-example.conf)
-Add rate limit to API and site
-Add semgrep to dfm, dk-lib, meak and server
-Check [android error socket](todo/android-error-socket-closed.log)
-Check [android error no internet](todo/android-error-no-internet.log)
-
-| Task (65)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (74)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
 | Delete data on app (legal requirement)                                         | :whale:  |  2  |  4  |  6  |                |
 | Add transfer with conversion (value in/out) (NEEDED BY MAIN USER)              | :whale:  |  4  |  3  |  3  |                |
 | Make google see move unsubscribe link ([Google tips avoid being spam])         | :sheep:  |  1  |  3  |  6  |                |
+| Warning that schedule can be added 15 minutes after inserting                  | :sheep:  |  1  |  3  |  6  |                |
 | Add test for unifying categories used in closed accounts                       | :ant:    |  1  |  3  |  6  |                |
+| Put Terms in the mobile app                                                    | :whale:  |  3  |  4  |  5  |                |
 | Expire tickets with more than 30 without access (add to contract)              | :sheep:  |  3  |  4  |  5  |                |
 | add snyk/clair check to docker containers                                      | :ant:    |  3  |  4  |  5  |                |
 | Add schedule anticipation                                                      | :whale:  |  2  |  3  |  5  |                |
 | Add weekly scheduling                                                          | :sheep:  |  2  |  3  |  5  |                |
 | Handle split screen layout at android app                                      | :sheep:  |  2  |  3  |  5  |                |
+| Check [android error socket](todo/android-error-socket-closed.log)             | :ant:    |  2  |  3  |  5  |                |
+| Check [android error no internet](todo/android-error-no-internet.log)          | :ant:    |  2  |  3  |  5  |                |
 | warning about 15 minutes windows for runnings schedules                        | :sheep:  |  1  |  2  |  5  |                |
 | Add account names into search                                                  | :sheep:  |  1  |  2  |  5  |                |
 | Fix print contract                                                             | :sheep:  |  1  |  2  |  5  |                |
@@ -82,11 +76,16 @@ Check [android error no internet](todo/android-error-no-internet.log)
 | [Reduce Docker Images]                                                         | :ant:    |  2  |  1  |  3  |                |
 | Use multistaged container                                                      | :ant:    |  2  |  1  |  3  |                |
 | Avoid token duplication error                                                  | :ant:    |  2  |  1  |  3  |                |
+| [clear headers on nginx](todo/clear-headers.png)                               | :ant:    |  2  |  1  |  3  |                |
+| Add rate limit to API and site                                                 | :ant:    |  2  |  1  |  3  |                |
 | [OCR] to add values to system                                                  | :dragon: |  4  |  2  |  2  |                |
 | Dependent users                                                                | :dragon: |  4  |  2  |  2  |                |
 | Add [gherkin jest]                                                             | :ant:    |  4  |  2  |  2  |                |
 | Data import and export (csv, json) (with max request length)                   | :dragon: |  3  |  1  |  2  |                |
 | Remove GetOrCreate                                                             | :ant:    |  3  |  1  |  2  |                |
+| Use multiple FROM for browser tests docker                                     | :ant:    |  3  |  1  |  2  |                |
+| Check [nginx example configuration](todo/nginx-example.conf)                   | :ant:    |  3  |  1  |  2  |                |
+| Add semgrep to dfm, dk-lib, meak and server                                    | :ant:    |  3  |  1  |  2  |                |
 | Create service to translate site ("put in your language")                      | :dragon: |  4  |  1  |  1  |                |
 | Create measure of recovering after lost authy                                  | :sheep:  |  4  |  1  |  1  |                |
 | Replace direct communication to DB with NH by django rest framework            | :ant:    |  4  |  1  |  1  |                |
