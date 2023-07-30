@@ -1,8 +1,8 @@
 django==4.2.3
-mysqlclient==2.1.1
+mysqlclient==2.2.0
 bcrypt==4.0.1
-boto3==1.26.104
-pytest==7.2.2
-pip-audit==2.5.4
-gunicorn==20.1.0
+boto3==1.28.15
+pytest==7.4.0
+pip-audit==2.6.1
+gunicorn==21.2.0
 tzdata==2023.3
