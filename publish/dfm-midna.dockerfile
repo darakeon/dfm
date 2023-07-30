@@ -2,7 +2,7 @@ FROM darakeon/ubuntu
 LABEL maintainer="Dara Keon <laboon@darakeon.com>"
 RUN maintain
 
-RUN apt-get install -y python3 python3-pip default-libmysqlclient-dev
+RUN apt-get install -y python3 python3-pip default-libmysqlclient-dev pkg-config
 
 COPY midna/src/requirements.txt requirements.txt
 RUN python3 -m pip install -r requirements.txt
