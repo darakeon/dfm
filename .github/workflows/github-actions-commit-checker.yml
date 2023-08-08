@@ -49,11 +49,11 @@ jobs:
       - name: Check Description Length
         uses: gsactions/commit-message-checker@v1
         with:
-          pattern: '^[^\n]{7,50}(?:\n(?:\n[^\n]{0,72})+)?$'
+          pattern: '^[^\n]{7,50}(?:\n(?:\n[^\n]{0,80})+)?$'
           flags: g
           error: '
             The body can have a longer description than the subject,
-            but if you break it in lines with 72 characters,
+            but if you break it in lines with 80 characters,
             it will be easier to read.
             
             For more explanations:
