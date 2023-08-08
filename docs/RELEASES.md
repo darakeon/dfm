@@ -17,7 +17,7 @@ This is the list of project releases, past and current. To see tasks that are st
 ## <a name="10.2.0.0"></a>10.2.0.0 :whale: <sup>`3`</sup>
 - [ ] Put Terms in the mobile app
 - [ ] Delete data on app (legal requirement)
-- [ ] Avoid run CI flows for unchanged code
+- [ ] `230808>......` Avoid run CI flows for unchanged code
 
 ## <a name="10.1.0.0"></a>10.1.0.0 :whale: <sup>`2`</sup>
 - [x] `230727>230730` Check accessibility of email layouts
