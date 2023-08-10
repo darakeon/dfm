@@ -18,7 +18,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Put Terms in the mobile app
 - [ ] Delete data on app (legal requirement)
 - [ ] Handle change version CI step in dependabot branches
-- [ ] `230808>......` Avoid run CI flows for unchanged code
+- [x] `230808>230810` Avoid run CI flows for unchanged code
 
 ## <a name="10.1.0.0"></a>10.1.0.0 :whale: <sup>`2`</sup>
 - [x] `230727>230730` Check accessibility of email layouts
