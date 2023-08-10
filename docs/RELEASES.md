@@ -14,9 +14,10 @@ This is the list of project releases, past and current. To see tasks that are st
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="10.2.0.0"></a>10.2.0.0 :whale: <sup>`3`</sup>
+## <a name="10.2.0.0"></a>10.2.0.0 :whale: <sup>`4`</sup>
 - [ ] Put Terms in the mobile app
 - [ ] Delete data on app (legal requirement)
+- [ ] Handle change version CI step in dependabot branches
 - [ ] `230808>......` Avoid run CI flows for unchanged code
 
 ## <a name="10.1.0.0"></a>10.1.0.0 :whale: <sup>`2`</sup>
