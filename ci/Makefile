@@ -4,7 +4,6 @@ ERROR=\033[0;31m
 CLEAR=\033[0m
 
 build_browser:
-	@make single_build MACHINE=netcore-libman PUSH=${PUSH}
 	@make single_build MACHINE=netcore-libman-node PUSH=${PUSH}
 	@make single_build MACHINE=netcore-libman-node-chrome PUSH=${PUSH}
 
