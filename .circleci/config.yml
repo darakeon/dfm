@@ -874,6 +874,9 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/core.+$/
+                - /^feature/site.+$/
+                - /^feature/robot.+$/
                 - /^dependabot/nuget/core/.+$/
                 - /^dependabot/nuget/site/.+$/
                 - /^dependabot/nuget/robot/.+$/
@@ -885,6 +888,9 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/core.+$/
+                - /^feature/site.+$/
+                - /^feature/robot.+$/
                 - /^dependabot/nuget/core/.+$/
                 - /^dependabot/nuget/site/.+$/
                 - /^dependabot/nuget/robot/.+$/
@@ -896,6 +902,9 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/core.+$/
+                - /^feature/site.+$/
+                - /^feature/robot.+$/
                 - /^dependabot/nuget/core/.+$/
                 - /^dependabot/nuget/site/.+$/
                 - /^dependabot/nuget/robot/.+$/
@@ -907,6 +916,9 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/core.+$/
+                - /^feature/site.+$/
+                - /^feature/robot.+$/
                 - /^dependabot/nuget/core/.+$/
                 - /^dependabot/nuget/site/.+$/
                 - /^dependabot/nuget/robot/.+$/
@@ -918,6 +930,9 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/core.+$/
+                - /^feature/site.+$/
+                - /^feature/robot.+$/
                 - /^dependabot/nuget/core/.+$/
                 - /^dependabot/nuget/site/.+$/
                 - /^dependabot/nuget/robot/.+$/
@@ -929,6 +944,9 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/core.+$/
+                - /^feature/site.+$/
+                - /^feature/robot.+$/
                 - /^dependabot/nuget/core/.+$/
                 - /^dependabot/nuget/site/.+$/
                 - /^dependabot/nuget/robot/.+$/
@@ -940,6 +958,9 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/core.+$/
+                - /^feature/site.+$/
+                - /^feature/robot.+$/
                 - /^dependabot/nuget/core/.+$/
                 - /^dependabot/nuget/site/.+$/
                 - /^dependabot/nuget/robot/.+$/
@@ -951,6 +972,9 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/core.+$/
+                - /^feature/site.+$/
+                - /^feature/robot.+$/
                 - /^dependabot/nuget/core/.+$/
                 - /^dependabot/nuget/site/.+$/
                 - /^dependabot/nuget/robot/.+$/
@@ -962,6 +986,8 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/core.+$/
+                - /^feature/site.+$/
                 - /^dependabot/nuget/core/.+$/
                 - /^dependabot/nuget/site/.+$/
           requires:
@@ -972,6 +998,8 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/core.+$/
+                - /^feature/site.+$/
                 - /^dependabot/nuget/core/.+$/
                 - /^dependabot/nuget/site/.+$/
           requires:
@@ -982,6 +1010,8 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/core.+$/
+                - /^feature/site.+$/
                 - /^dependabot/nuget/core/.+$/
                 - /^dependabot/nuget/site/.+$/
           requires:
@@ -992,6 +1022,8 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/core.+$/
+                - /^feature/site.+$/
                 - /^dependabot/nuget/core/.+$/
                 - /^dependabot/nuget/site/.+$/
                 - /^dependabot/npm_and_yarn/site/Tests/Browser.+$/
@@ -1003,6 +1035,8 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/core.+$/
+                - /^feature/site.+$/
                 - /^dependabot/nuget/core/.+$/
                 - /^dependabot/nuget/site/.+$/
                 - /^dependabot/npm_and_yarn/site/Tests/Browser.+$/
@@ -1016,6 +1050,7 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/android.+$/
                 - /^dependabot/gradle/android/.+$/
           requires:
             - test_ci
@@ -1026,6 +1061,7 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/android.+$/
                 - /^dependabot/gradle/android/.+$/
           requires:
             - build_android
@@ -1035,6 +1071,7 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/android.+$/
                 - /^dependabot/gradle/android/.+$/
           requires:
             - build_android
@@ -1044,6 +1081,7 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/android.+$/
                 - /^dependabot/gradle/android/.+$/
           requires:
             - build_android
@@ -1053,6 +1091,7 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/android.+$/
                 - /^dependabot/gradle/android/.+$/
           requires:
             - build_android
@@ -1062,6 +1101,7 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/android.+$/
                 - /^dependabot/gradle/android/.+$/
           requires:
             - build_android
@@ -1071,6 +1111,7 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/robot.+$/
                 - /^dependabot/nuget/robot/.+$/
           requires:
             - build_core
@@ -1080,6 +1121,7 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/robot.+$/
                 - /^dependabot/nuget/robot/.+$/
           requires:
             - build_robot
@@ -1089,6 +1131,7 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/robot.+$/
                 - /^dependabot/nuget/robot/.+$/
           requires:
             - build_robot
@@ -1098,6 +1141,7 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/midna.+$/
                 - /^dependabot/pip/midna/.+$/
           requires:
             - test_ci
@@ -1107,6 +1151,7 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/midna.+$/
                 - /^dependabot/pip/midna/.+$/
           requires:
             - build_midna
@@ -1116,6 +1161,7 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/midna.+$/
                 - /^dependabot/pip/midna/.+$/
           requires:
             - build_midna
@@ -1125,6 +1171,7 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/version.+$/
                 - /^dependabot/cargo/version/.+$/
           requires:
             - test_ci
@@ -1133,6 +1180,7 @@ workflows:
             branches:
               only:
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/version.+$/
                 - /^dependabot/cargo/version/.+$/
           requires:
             - trufflehog
