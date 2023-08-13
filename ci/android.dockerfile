@@ -2,13 +2,12 @@ FROM darakeon/ubuntu
 LABEL maintainer="Dara Keon <laboon@darakeon.com>"
 RUN maintain
 
-RUN apt-get install -y default-jdk
-ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+RUN apt-get install -y openjdk-17-jdk
 
-RUN curl -sL https://services.gradle.org/distributions/gradle-7.5.1-all.zip > /tmp/gradle.zip \
+RUN curl -sL https://services.gradle.org/distributions/gradle-8.2.1-all.zip > /tmp/gradle.zip \
 	&& unzip -d /opt/gradle /tmp/gradle.zip \
 	&& rm /tmp/gradle.zip
-ENV GRADLE_HOME=/opt/gradle/gradle-7.5.1
+ENV GRADLE_HOME=/opt/gradle/gradle-8.2.1
 ENV PATH=${GRADLE_HOME}/bin/:${PATH}
 ENV GRADLE_USER_HOME=/var/cache/gradle
 

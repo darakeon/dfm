@@ -107,8 +107,12 @@ task ipAddress(type: Copy) {
 	}
 }
 
-tasks.withType(JavaCompile) {
-	buildTask -> buildTask.dependsOn ipNetwork, ipAddress
+afterEvaluate {
+	tasks.forEach {task ->
+		if (task.name.contains('packageDebugResources')) {
+			task.dependsOn ipNetwork, ipAddress
+		}
+	}
 }
 
 /// ROBOLECTRIC
@@ -164,7 +168,9 @@ sdks.forEach { sdk ->
 				if(componentId instanceof ModuleComponentIdentifier) {
 					File pomFile = component.getArtifacts(MavenPomArtifact)[0].file
 					File dest = new File(mavenRobolectric, pomFile.name)
-					Files.copy(pomFile.toPath(), dest.toPath())
+					if (!Files.exists(dest.toPath())) {
+						Files.copy(pomFile.toPath(), dest.toPath())
+					}
 				}
 			}
 		}
