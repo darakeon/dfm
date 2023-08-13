@@ -107,8 +107,12 @@ task ipAddress(type: Copy) {
 	}
 }
 
-tasks.withType(JavaCompile) {
-	buildTask -> buildTask.dependsOn ipNetwork, ipAddress
+afterEvaluate {
+	tasks.forEach {task ->
+		if (task.name.contains('packageDebugResources')) {
+			task.dependsOn ipNetwork, ipAddress
+		}
+	}
 }
 
 /// ROBOLECTRIC
