@@ -38,7 +38,7 @@ class Notification(private val service: Service) {
 
 	fun notify(message: String) {
 		val intent = Intent(service, ListActivity::class.java)
-		val pending = PendingIntent.getActivity(service, 0, intent, 0)
+		val pending = PendingIntent.getActivity(service, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
 		val builder = NotificationCompat.Builder(service, channelID)
 			.setSmallIcon(R.drawable.notification)
