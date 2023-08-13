@@ -29,6 +29,6 @@ verify:
 			|| echo "windows folder not found"
 
 write-metadata:
-	@rm gradle/verification-metadata.xml
+	@if [ -e gradle/verification-metadata.xml ]; then rm gradle/verification-metadata.xml; fi
 	@docker exec -it dkdroid \
 		gradle --write-verification-metadata sha256 help
