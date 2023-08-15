@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-	compileSdkVersion 32
+	compileSdkVersion 33
 
 	defaultConfig {
 		applicationId "com.darakeon.dfm.error_logs"
@@ -12,7 +12,7 @@ android {
 		versionName "$dfm_version"
 
 		minSdkVersion 21
-		targetSdkVersion 32
+		targetSdkVersion 33
 	}
 
 	buildTypes {
