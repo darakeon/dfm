@@ -34,6 +34,7 @@
           key: kotlin-{{ checksum "android/cache_key" }}
           paths:
             - /var/cache/gradle
+            - /root/.m2/repository
       - run:
           name: build
           path: android
