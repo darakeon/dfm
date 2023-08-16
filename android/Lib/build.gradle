@@ -136,7 +136,7 @@ task robolectricSdkDownload {
 }
 
 def sdks = [
-	[android: "6.0.1_r3", build: "r1"],
+	[android: "6.0.1_r3", build: "r1-i4"],
 	[android: "5.0.2_r3", build: "r0"],
 ]
 
