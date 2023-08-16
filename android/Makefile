@@ -31,4 +31,4 @@ verify:
 write-metadata:
 	@if [ -e gradle/verification-metadata.xml ]; then rm gradle/verification-metadata.xml; fi
 	@docker exec -it dkdroid \
-		gradle --write-verification-metadata sha256 help
+		gradle --write-verification-metadata sha256 androidDependencies
