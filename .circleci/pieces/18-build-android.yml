@@ -44,6 +44,9 @@
           path: android
           command: gradle configure
       - store_artifacts:
+          path: android/build/reports
+          destination: reports/main
+      - store_artifacts:
           path: android/TestUtils/build/reports
           destination: reports/testUtils
       - store_artifacts:
@@ -60,6 +63,7 @@
           paths:
             - cache_key
             - keystore.properties
+            - build
             - Lib/build
             - App/build
             - ErrorLogs/build
