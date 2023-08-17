@@ -11,7 +11,10 @@ start:
 		tail -f /dev/null
 
 stop:
-	@docker stop dkdroid
+	@docker stop dkdroid || echo "no dkdroid to stop"
+
+sleep:
+	@sleep 2
 
 apk:
 	@docker exec -it dkdroid \
@@ -32,8 +35,9 @@ write-metadata:
 	@if [ -e gradle/verification-metadata.xml ]; then rm gradle/verification-metadata.xml; fi
 	@docker exec -it dkdroid \
 		gradle --write-verification-metadata sha256 androidDependencies
+restart: stop sleep start
 
-ci: stop start
+ci:
 	@docker exec -it dkdroid \
 		gradle androidDependencies
 	@docker exec -it dkdroid \
