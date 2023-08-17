@@ -32,3 +32,13 @@ write-metadata:
 	@if [ -e gradle/verification-metadata.xml ]; then rm gradle/verification-metadata.xml; fi
 	@docker exec -it dkdroid \
 		gradle --write-verification-metadata sha256 androidDependencies
+
+ci: stop start
+	@docker exec -it dkdroid \
+		gradle androidDependencies
+	@docker exec -it dkdroid \
+		gradle robolectricSdkDownload
+	@docker exec -it dkdroid \
+        gradle build -x test -x androidDependencies -x packageRelease -x packageDebug
+	@docker exec -it dkdroid \
+        gradle configure
