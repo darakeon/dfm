@@ -1,5 +1,6 @@
 PROJECTS=/mnt/c/Users/${WINDOWS_USER}/Projects
 PROJECT=${PROJECTS}/keon/dfm
+DKDROID=docker exec -it dkdroid
 GRADLE=docker exec -it dkdroid gradle
 
 start:
@@ -12,7 +13,10 @@ start:
 		tail -f /dev/null
 
 stop:
-	@docker stop dkdroid
+	@docker stop dkdroid || echo "no dkdroid to stop"
+
+sleep:
+	@sleep 2
 
 apk:
 	@${GRADLE} :app:bundleRelease
@@ -30,5 +34,13 @@ verify:
 write-metadata:
 	@if [ -e gradle/verification-metadata.xml ]; then rm gradle/verification-metadata.xml; fi
 	@${GRADLE} build --dry-run --write-verification-metadata sha256
-
 	@mv gradle/verification-metadata.dryrun.xml gradle/verification-metadata.xml
+
+restart: stop sleep start
+
+ci:
+	@${DKDROID} echo "storeFile=\nstorePassword=\nkeyAlias=\nkeyPassword=" > keystore.properties
+	@${GRADLE} androidDependencies
+	@${GRADLE} robolectricSdkDownload
+	@${GRADLE} build -x test -x androidDependencies -x packageRelease -x packageDebug
+	@${GRADLE} configure
