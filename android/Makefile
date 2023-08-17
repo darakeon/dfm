@@ -37,11 +37,7 @@ write-metadata:
 restart: stop sleep start
 
 ci:
-	@docker exec -it dkdroid \
-		gradle androidDependencies
-	@docker exec -it dkdroid \
-		gradle robolectricSdkDownload
-	@docker exec -it dkdroid \
-        gradle build -x test -x androidDependencies -x packageRelease -x packageDebug
-	@docker exec -it dkdroid \
-        gradle configure
+	@${GRADLE} androidDependencies
+	@${GRADLE} robolectricSdkDownload
+	@${GRADLE} build -x test -x androidDependencies -x packageRelease -x packageDebug
+	@${GRADLE} configure
