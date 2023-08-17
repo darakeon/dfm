@@ -1,5 +1,6 @@
 PROJECTS=/mnt/c/Users/${WINDOWS_USER}/Projects
 PROJECT=${PROJECTS}/keon/dfm
+GRADLE=docker exec -it dkdroid gradle
 
 start:
 	@docker run -d --rm \
@@ -17,24 +18,22 @@ sleep:
 	@sleep 2
 
 apk:
-	@docker exec -it dkdroid \
-		gradle :app:bundleRelease
+	@${GRADLE} :app:bundleRelease
 
 	@cp App/build/outputs/bundle/release/* \
 		${PROJECT}/android/publish/ \
 		|| echo "windows folder not found"
 
 verify:
-	@docker exec -it dkdroid \
-		gradle dependencyCheckAnalyze \
+	@${GRADLE} dependencyCheckAnalyze \
 		|| cp -r build/reports \
 			${PROJECT}/android/ \
 			|| echo "windows folder not found"
 
 write-metadata:
 	@if [ -e gradle/verification-metadata.xml ]; then rm gradle/verification-metadata.xml; fi
-	@docker exec -it dkdroid \
-		gradle --write-verification-metadata sha256 androidDependencies
+	@${GRADLE} --write-verification-metadata sha256 androidDependencies
+
 restart: stop sleep start
 
 ci:
