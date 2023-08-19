@@ -38,6 +38,19 @@ write-metadata:
 
 restart: stop sleep start
 
+clean:
+	@rm -rf .gradle
+	@rm -rf .idea
+	@rm -rf build
+	@rm -rf build-cache
+	@rm -rf App/build
+	@rm -rf ErrorLogs/build
+	@rm -rf Lib/build
+	@rm -rf TestUtils/build
+	@rm -f local.properties
+	@rm -f Lib/src/debug/res/values/site-address.xml
+	@rm -f Lib/src/debug/res/xml/network_security_config.xml
+
 ci:
 	@${DKDROID} echo "storeFile=\nstorePassword=\nkeyAlias=\nkeyPassword=" > keystore.properties
 	@${GRADLE} androidDependencies
