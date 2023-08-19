@@ -493,7 +493,7 @@ jobs:
       - run:
           name: build
           path: android
-          command: gradle build -x test -x androidDependencies -x packageRelease -x packageDebug
+          command: gradle build -x test -x androidDependencies -x robolectricSdkDownload -x packageRelease -x packageDebug
       - run:
           name: configure
           path: android
