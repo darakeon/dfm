@@ -54,5 +54,5 @@ ci:
 	@${DKDROID} echo "storeFile=\nstorePassword=\nkeyAlias=\nkeyPassword=" > keystore.properties
 	@${GRADLE} androidDependencies
 	@${GRADLE} robolectricSdkDownload
-	@${GRADLE} build -x test -x androidDependencies -x packageRelease -x packageDebug
+	@${GRADLE} build -x test -x androidDependencies -x robolectricSdkDownload -x packageRelease -x packageDebug
 	@${GRADLE} configure
