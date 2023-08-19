@@ -8,7 +8,7 @@
 .idea
 
 local.properties
-keystore.properties
+keystore*.properties
 .DS_Store
 
 */build
