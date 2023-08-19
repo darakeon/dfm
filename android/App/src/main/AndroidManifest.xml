@@ -19,6 +19,11 @@
 		android:protectionLevel="signature"
 		/>
 
+	<uses-permission
+		android:name="android.permission.POST_NOTIFICATIONS"
+		android:protectionLevel="signature"
+		/>
+
 	<uses-feature
 		android:name="android.hardware.faketouch"
 		android:required="true"
