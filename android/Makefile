@@ -50,9 +50,13 @@ clean:
 	@rm -f local.properties
 	@rm -f Lib/src/debug/res/values/site-address.xml
 	@rm -f Lib/src/debug/res/xml/network_security_config.xml
+	@mv keystore.properties keystore-$$(date +%Y%m%d%H%M%S%N).properties
 
 ci:
-	@${DKDROID} echo "storeFile=\nstorePassword=\nkeyAlias=\nkeyPassword=" > keystore.properties
+	@if [ ! -e keystore.properties ]; then \
+		echo "" > fake.keystore; \
+		echo "storeFile=fake.keystore\nstorePassword=\nkeyAlias=\nkeyPassword=" > keystore.properties; \
+	fi
 	@${GRADLE} androidDependencies
 	@${GRADLE} robolectricSdkDownload
 	@${GRADLE} build -x test -x androidDependencies -x robolectricSdkDownload -x packageRelease -x packageDebug
