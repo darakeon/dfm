@@ -1,5 +1,6 @@
 PROJECTS=/mnt/c/Users/${WINDOWS_USER}/Projects
 PROJECT=${PROJECTS}/keon/dfm
+DKDROID=docker exec -it dkdroid
 GRADLE=docker exec -it dkdroid gradle
 
 start:
@@ -37,6 +38,7 @@ write-metadata:
 restart: stop sleep start
 
 ci:
+	@${DKDROID} echo "storeFile=\nstorePassword=\nkeyAlias=\nkeyPassword=" > keystore.properties
 	@${GRADLE} androidDependencies
 	@${GRADLE} robolectricSdkDownload
 	@${GRADLE} build -x test -x androidDependencies -x packageRelease -x packageDebug
