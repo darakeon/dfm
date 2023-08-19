@@ -9,6 +9,7 @@
 
 local.properties
 keystore*.properties
+fake.keystore
 .DS_Store
 
 */build
