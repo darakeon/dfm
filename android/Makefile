@@ -55,9 +55,10 @@ clean:
 
 ci:
 	@if [ ! -e keystore.properties ]; then \
-		echo "storeFile=\nstorePassword=\nkeyAlias=\nkeyPassword=" > keystore.properties; \
+		echo "" > fake.keystore; \
+		echo "storeFile=fake.keystore\nstorePassword=\nkeyAlias=\nkeyPassword=" > keystore.properties; \
 	fi
-	@${GRADLE} androidDependencies --stacktrace
+	@${GRADLE} androidDependencies
 	@${GRADLE} robolectricSdkDownload
 	@${GRADLE} build -x test -x androidDependencies -x robolectricSdkDownload -x packageRelease -x packageDebug
 	@${GRADLE} configure
