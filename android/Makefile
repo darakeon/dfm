@@ -1,3 +1,5 @@
+MAKEFLAGS += --no-print-directory
+
 PROJECTS=/mnt/c/Users/${WINDOWS_USER}/Projects
 PROJECT=${PROJECTS}/keon/dfm
 DKDROID=docker exec -it dkdroid
