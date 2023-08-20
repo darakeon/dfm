@@ -1,3 +1,5 @@
+MAKEFLAGS += --no-print-directory
+
 PROJECTS=/mnt/c/Users/${WINDOWS_USER}/Projects
 PROJECT=${PROJECTS}/keon/dfm
 DKDROID=docker exec -it dkdroid
@@ -32,8 +34,11 @@ verify:
 			|| echo "windows folder not found"
 
 write-metadata:
-	@if [ -e gradle/verification-metadata.xml ]; then rm gradle/verification-metadata.xml; fi
 	@${GRADLE} --write-verification-metadata sha256 androidDependencies
+
+rewrite-metadata:
+	@if [ -e gradle/verification-metadata.xml ]; then rm gradle/verification-metadata.xml; fi
+	@make write-metadata
 
 restart: stop sleep start
 
