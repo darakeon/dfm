@@ -1,3 +1,4 @@
+MAKEFLAGS += --no-print-directory
 BRANCH:=$$(cat branch.git)
 
 help:
