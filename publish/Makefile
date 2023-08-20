@@ -1,3 +1,5 @@
+MAKEFLAGS += --no-print-directory
+
 all: site_push robot_push
 
 robot:
