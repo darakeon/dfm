@@ -1,3 +1,4 @@
+MAKEFLAGS += --no-print-directory
 .DEFAULT_GOAL=run
 
 -include env/dev.env
