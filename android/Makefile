@@ -57,12 +57,22 @@ clean:
 	@rm -f Lib/src/debug/res/xml/network_security_config.xml
 	@mv keystore.properties keystore-$$(date +%Y%m%d%H%M%S%N).properties
 
-ci:
+ci-keystore:
 	@if [ ! -e keystore.properties ]; then \
 		echo "" > fake.keystore; \
 		echo "storeFile=fake.keystore\nstorePassword=\nkeyAlias=\nkeyPassword=" > keystore.properties; \
 	fi
+
+ci-androidDeps:
 	@${GRADLE} androidDependencies
+
+ci-robolectric:
 	@${GRADLE} robolectricSdkDownload
+
+ci-build:
 	@${GRADLE} build -x test -x androidDependencies -x robolectricSdkDownload -x packageRelease -x packageDebug
+
+ci-configure:
 	@${GRADLE} configure
+
+ci: ci-keystore ci-androidDeps ci-robolectric ci-build ci-configure
