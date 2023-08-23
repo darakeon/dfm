@@ -4,7 +4,7 @@
 	"description": "DfM Site Tests",
 	"main": "index.js",
 	"dependencies": {
-		"bcrypt": "^5.1.0",
+		"bcrypt": "^5.1.1",
 		"sqlite3": "5.1.6",
 		"uuid": "9.0.0"
 	},
