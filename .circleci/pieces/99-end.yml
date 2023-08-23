@@ -144,6 +144,7 @@ workflows:
                 - /^feature/site.+$/
                 - /^dependabot/nuget/core/.+$/
                 - /^dependabot/nuget/site/.+$/
+                - /^dependabot/npm_and_yarn/site/Tests/Browser.+$/
           requires:
             - build_core
       - audit_site:
