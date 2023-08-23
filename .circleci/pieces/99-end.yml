@@ -34,6 +34,7 @@ workflows:
                 - /^dependabot/nuget/core/.+$/
                 - /^dependabot/nuget/site/.+$/
                 - /^dependabot/nuget/robot/.+$/
+                - /^dependabot/npm_and_yarn/site/Tests/Browser.+$/
           requires:
             - test_ci
       - audit_core:
