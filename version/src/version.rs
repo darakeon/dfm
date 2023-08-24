@@ -31,7 +31,7 @@ pub fn create_version(option: &ProgramOption, numbers: Vec<usize>) -> Option<Ver
 	}
 
 	if !version.done {
-		return end_not_done();
+		return end_not_done(version.code);
 	}
 
 	let just_check = option == &ProgramOption::Check;
@@ -108,8 +108,8 @@ fn start_of_current_tasks(task_list: &Vec<String>, branch: String) -> usize {
 	return start;
 }
 
-fn end_not_done() -> Option<Version> {
-	if has_pull_request() {
+fn end_not_done(version: String) -> Option<Version> {
+	if has_pull_request(version) {
 		throw(11, "There is an opened pull request and the version is not done");
 	}
 
