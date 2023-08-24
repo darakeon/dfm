@@ -95,9 +95,9 @@ fn get_path(file: DiffFile) -> String {
 	return file.path().unwrap().to_str().unwrap().to_string();
 }
 
-pub fn has_pull_request() -> bool {
+pub fn has_pull_request(version: String) -> bool {
 	let url_repo = url_repo();
-	let url_api = url_api(&url_repo);
+	let url_api = url_api(&url_repo, version);
 
 	let client = Client::new().get(&url_api).header("User-Agent", "");
 	let response = client.send().unwrap();
@@ -111,14 +111,12 @@ fn url_repo() -> String {
 		.url().unwrap().to_string();
 }
 
-fn url_api(url_repo: &str) -> String {
+fn url_api(url_repo: &str, version: String) -> String {
 	let pattern = r"git@github.com:(\w+)/(\w+).git";
 	let replacer = r"https://api.github.com/repos/$1/$2/pulls?state=open&head=$1:";
 	let replaced = replace(url_repo, pattern, replacer).unwrap();
 
-	let branch = current_branch().unwrap();
-
-	return format!("{}{}", replaced, branch);
+	return format!("{}{}", replaced, version);
 }
 
 pub fn update_local() {
