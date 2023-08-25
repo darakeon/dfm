@@ -1,6 +1,6 @@
 package com.darakeon.dfm.testutils.api
 
-import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.Request
 import okhttp3.ResponseBody
 import okio.Timeout
@@ -60,7 +60,7 @@ open class CallMock<Body>(
 		}
 
 		val errorBody = ResponseBody.create(
-			MediaType.get("text/plain"), error?.message ?: ""
+			"text/plain".toMediaType(), error?.message ?: ""
 		)
 		return Response.error(500, errorBody)
 	}
