@@ -3,7 +3,7 @@ MAKEFLAGS += --no-print-directory
 PROJECTS=/mnt/c/Users/${WINDOWS_USER}/Projects
 PROJECT=${PROJECTS}/keon/dfm
 DKDROID=docker exec -it dkdroid
-GRADLE=docker exec -it dkdroid gradle
+GRADLE=docker exec -it dkdroid gradle --no-daemon
 
 start:
 	@docker run -d --rm \
