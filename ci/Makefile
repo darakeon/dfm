@@ -10,7 +10,7 @@ build_browser:
 	@make single_build MACHINE=dfm-browser-tests PUSH=${PUSH}
 
 build_android:
-	@make single_build MACHINE=android PUSH=${PUSH}
+	@make single_build MACHINE=android TAG=gradle821-jdk17 PUSH=${PUSH}
 
 single_build:
 	@if [ "${MACHINE}" = "" ]; then \
@@ -23,8 +23,12 @@ single_build:
 		docker build . --pull -f ${MACHINE}.dockerfile -t darakeon/${MACHINE} --network=host; \
 		docker image prune -f > /dev/null; \
 		\
+		if [ "${TAG}" ]; then \
+			docker tag darakeon/${MACHINE} darakeon/${MACHINE}:${TAG}; \
+		fi; \
+		\
 		if [ "${PUSH}" ]; then \
-			docker push darakeon/${MACHINE}; \
+			docker push -a darakeon/${MACHINE}; \
 		fi; \
 	fi
 
