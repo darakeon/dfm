@@ -480,11 +480,11 @@ jobs:
       - run:
           name: project dependencies
           path: android
-          command: gradle androidDependencies
+          command: gradle --no-daemon androidDependencies
       - run:
           name: robolectric dependencies
           path: android
-          command: gradle robolectricSdkDownload
+          command: gradle --no-daemon robolectricSdkDownload
       - save_cache:
           key: kotlin-{{ checksum "android/cache_key" }}
           paths:
@@ -497,7 +497,7 @@ jobs:
       - run:
           name: configure
           path: android
-          command: gradle configure
+          command: gradle --no-daemon configure
       - store_artifacts:
           path: android/build/reports
           destination: reports/main
