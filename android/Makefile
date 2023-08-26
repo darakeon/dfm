@@ -55,7 +55,9 @@ clean:
 	@rm -f local.properties
 	@rm -f Lib/src/debug/res/values/site-address.xml
 	@rm -f Lib/src/debug/res/xml/network_security_config.xml
-	@mv keystore.properties keystore-$$(date +%Y%m%d%H%M%S%N).properties
+	@if [ -e keystore.properties ]; then \
+		mv keystore.properties keystore-$$(date +%Y%m%d%H%M%S%N).properties; \
+	fi
 
 ci-keystore:
 	@if [ ! -e keystore.properties ]; then \
