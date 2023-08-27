@@ -5,6 +5,7 @@ import android.view.View
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
+import com.darakeon.dfm.databinding.SummaryBinding
 import com.darakeon.dfm.dialogs.getDateDialog
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.getFromJson
@@ -21,7 +22,7 @@ import kotlinx.android.synthetic.main.summary.total_title
 import kotlinx.android.synthetic.main.summary.total_value
 import java.util.Calendar
 
-class SummaryActivity : BaseActivity() {
+class SummaryActivity : BaseActivity<SummaryBinding>() {
 	private var accountUrl: String = ""
 
 	private var year: Int = 0
@@ -30,7 +31,7 @@ class SummaryActivity : BaseActivity() {
 	private var summary = Summary()
 	private val summaryKey = "summary"
 
-	override val contentView = R.layout.summary
+	override val contentViewId = R.layout.summary
 	override val title = R.string.title_activity_summary
 
 	override val refresh: SwipeRefreshLayout?

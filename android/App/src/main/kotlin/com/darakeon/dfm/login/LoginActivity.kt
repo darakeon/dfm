@@ -5,6 +5,7 @@ import android.net.Uri
 import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
+import com.darakeon.dfm.databinding.LoginBinding
 import com.darakeon.dfm.dialogs.confirm
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.lib.api.MainInfo
@@ -13,8 +14,8 @@ import com.darakeon.dfm.welcome.WelcomeActivity
 import kotlinx.android.synthetic.main.login.email
 import kotlinx.android.synthetic.main.login.password
 
-class LoginActivity : BaseActivity() {
-	override val contentView = R.layout.login
+class LoginActivity : BaseActivity<LoginBinding>() {
+	override val contentViewId = R.layout.login
 
 	fun login(@Suppress(ON_CLICK) view: View) {
 		callApi { api ->

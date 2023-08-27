@@ -5,6 +5,7 @@ import android.view.View
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
+import com.darakeon.dfm.databinding.AccountsBinding
 import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.lib.api.entities.accounts.Account
@@ -13,8 +14,8 @@ import kotlinx.android.synthetic.main.accounts.empty_list
 import kotlinx.android.synthetic.main.accounts.main
 import kotlinx.android.synthetic.main.accounts.main_table
 
-class AccountsActivity : BaseActivity() {
-	override val contentView = R.layout.accounts
+class AccountsActivity : BaseActivity<AccountsBinding>() {
+	override val contentViewId = R.layout.accounts
 	override val title = R.string.title_activity_accounts
 
 	private var accountList: List<Account> = emptyList()

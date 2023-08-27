@@ -3,6 +3,7 @@ package com.darakeon.dfm.extensions
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import androidx.viewbinding.ViewBinding
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.lib.api.Api
 import com.darakeon.dfm.lib.extensions.redirect
@@ -25,14 +26,14 @@ fun Activity.backWithExtras() {
 	startActivity(intent)
 }
 
-internal fun BaseActivity.logout(api: Api<BaseActivity>?) {
+internal fun <T:ViewBinding> BaseActivity<T>.logout(api: Api<BaseActivity<T>>?) {
 	if (api == null)
 		logoutLocal()
 	else
 		api.logout(this::logoutLocal)
 }
 
-internal fun BaseActivity.logoutLocal() {
+internal fun <T:ViewBinding> BaseActivity<T>.logoutLocal() {
 	clearAuth()
 	redirect<LoginActivity>()
 }
