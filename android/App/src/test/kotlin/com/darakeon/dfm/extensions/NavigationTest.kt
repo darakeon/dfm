@@ -2,10 +2,10 @@ package com.darakeon.dfm.extensions
 
 import android.content.Intent
 import android.os.Bundle
-import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.context.getCalledName
 import com.darakeon.dfm.testutils.execute
+import com.darakeon.dfm.utils.activity.TestBaseActivity
 import com.darakeon.dfm.utils.activity.mockContext
 import com.darakeon.dfm.welcome.WelcomeActivity
 import org.hamcrest.CoreMatchers.`is`
@@ -22,7 +22,7 @@ import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
 class NavigationTest: BaseTest() {
-	private lateinit var activity: BaseActivity
+	private lateinit var activity: TestBaseActivity
 
 	private var calledIntent: Intent? = null
 	private val calledActivity

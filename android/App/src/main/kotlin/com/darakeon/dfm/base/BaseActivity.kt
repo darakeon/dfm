@@ -9,6 +9,7 @@ import android.view.Window
 import android.widget.Button
 import android.widget.Toast
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.viewbinding.ViewBinding
 import com.darakeon.dfm.R
 import com.darakeon.dfm.accounts.AccountsActivity
 import com.darakeon.dfm.dialogs.alertError
@@ -41,14 +42,13 @@ import kotlinx.android.synthetic.main.bottom_menu.action_logout
 import kotlinx.android.synthetic.main.bottom_menu.action_move
 import kotlinx.android.synthetic.main.bottom_menu.action_settings
 import kotlinx.android.synthetic.main.bottom_menu.bottom_menu
-import java.util.HashMap
 import kotlinx.android.synthetic.main.welcome.action_logout as welcome_logout
 
-abstract class BaseActivity: Activity(), ApiCaller {
-	private var api: Api<BaseActivity>? = null
+abstract class BaseActivity<Binding: ViewBinding>: Activity(), ApiCaller {
+	private var api: Api<BaseActivity<Binding>>? = null
 	private var serverUrl: String? = null
 
-	protected fun callApi(call: (Api<BaseActivity>) -> Unit) {
+	protected fun callApi(call: (Api<BaseActivity<Binding>>) -> Unit) {
 		val api = api
 
 		if (api == null) {
@@ -69,7 +69,12 @@ abstract class BaseActivity: Activity(), ApiCaller {
 
 	open fun clearAuth() = auth?.clear()
 
-	protected abstract val contentView: Int
+	protected open val contentViewId: Int = 0
+	protected lateinit var binding: Binding
+	protected open fun inflateBinding(): Binding {
+		throw NotImplementedError()
+	}
+
 	protected open val title: Int = 0
 
 	protected open val refresh: SwipeRefreshLayout? = null
@@ -145,8 +150,12 @@ abstract class BaseActivity: Activity(), ApiCaller {
 		else
 			requestWindowFeature(Window.FEATURE_NO_TITLE)
 
-		if (contentView != 0)
-			setContentView(contentView)
+		if (contentViewId != 0) {
+			setContentView(contentViewId)
+		} else {
+			binding = inflateBinding()
+			setContentView(binding.root)
+		}
 	}
 
 	private fun setMenuLongClicks() {

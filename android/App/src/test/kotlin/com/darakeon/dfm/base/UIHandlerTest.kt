@@ -5,6 +5,7 @@ import android.view.WindowManager
 import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.robolectric.assertAlertWait
 import com.darakeon.dfm.utils.activity.TestActivity
+import com.darakeon.dfm.utils.activity.TestBaseActivity
 import com.darakeon.dfm.utils.api.ActivityMock
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.not
@@ -19,7 +20,7 @@ import org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog
 
 @RunWith(RobolectricTestRunner::class)
 class UIHandlerTest: BaseTest() {
-	private lateinit var activity: BaseActivity
+	private lateinit var activity: TestBaseActivity
 	private lateinit var handler: UIHandler
 
 	@Before
