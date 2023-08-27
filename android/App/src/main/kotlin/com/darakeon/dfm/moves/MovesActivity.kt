@@ -9,6 +9,7 @@ import android.view.View.VISIBLE
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
+import com.darakeon.dfm.databinding.MovesBinding
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.dialogs.getDateDialog
 import com.darakeon.dfm.extensions.ON_CLICK
@@ -53,8 +54,8 @@ import kotlinx.android.synthetic.main.moves.value
 import kotlinx.android.synthetic.main.moves.warnings
 import java.util.UUID
 
-class MovesActivity : BaseActivity() {
-	override val contentView = R.layout.moves
+class MovesActivity : BaseActivity<MovesBinding>() {
+	override val contentViewId = R.layout.moves
 	override val title = R.string.title_activity_move
 
 	private var move = Move()

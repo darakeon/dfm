@@ -5,6 +5,7 @@ import android.view.View
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
+import com.darakeon.dfm.databinding.ExtractBinding
 import com.darakeon.dfm.dialogs.confirm
 import com.darakeon.dfm.dialogs.getDateDialog
 import com.darakeon.dfm.extensions.ON_CLICK
@@ -27,7 +28,7 @@ import kotlinx.android.synthetic.main.extract.total_title
 import kotlinx.android.synthetic.main.extract.total_value
 import java.util.Calendar
 
-class ExtractActivity : BaseActivity() {
+class ExtractActivity : BaseActivity<ExtractBinding>() {
 	private var accountUrl: String = ""
 
 	private val now = Calendar.getInstance()
@@ -39,7 +40,7 @@ class ExtractActivity : BaseActivity() {
 	private var extract = Extract()
 	private val extractKey = "extract"
 
-	override val contentView = R.layout.extract
+	override val contentViewId = R.layout.extract
 	override val title = R.string.title_activity_extract
 
 	override val refresh: SwipeRefreshLayout?
