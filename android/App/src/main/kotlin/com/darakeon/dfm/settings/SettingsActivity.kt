@@ -6,6 +6,7 @@ import android.view.View
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
+import com.darakeon.dfm.databinding.SettingsBinding
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.backWithExtras
 import com.darakeon.dfm.extensions.getFromJson
@@ -18,8 +19,8 @@ import kotlinx.android.synthetic.main.settings.site
 import kotlinx.android.synthetic.main.settings.use_categories
 import kotlinx.android.synthetic.main.settings.version
 
-class SettingsActivity : BaseActivity() {
-	override val contentView = R.layout.settings
+class SettingsActivity : BaseActivity<SettingsBinding>() {
+	override val contentViewId = R.layout.settings
 	override val title = R.string.title_activity_settings
 
 	private var settings = Settings()

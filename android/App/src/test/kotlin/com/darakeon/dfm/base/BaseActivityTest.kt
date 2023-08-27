@@ -18,6 +18,7 @@ import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
 import com.darakeon.dfm.testutils.robolectric.waitTasks
 import com.darakeon.dfm.utils.activity.TestActivity
+import com.darakeon.dfm.utils.activity.TestBaseActivity
 import com.darakeon.dfm.utils.api.ActivityMock
 import kotlinx.android.synthetic.main.bottom_menu.action_logout
 import kotlinx.android.synthetic.main.bottom_menu.bottom_menu
@@ -132,7 +133,7 @@ class BaseActivityTest: BaseTest() {
 	fun onCreateAddApiAndAuth() {
 		val activity = mocker.get()
 
-		var api = activity.getPrivate<Api<BaseActivity>>("api")
+		var api = activity.getPrivate<Api<TestBaseActivity>>("api")
 		var auth = activity.getPrivate<Authentication>("auth")
 
 		assertNull(api)
@@ -263,7 +264,7 @@ class BaseActivityTest: BaseTest() {
 	fun onDestroy() {
 		val activity = mocker.create()
 
-		val api = activity.getPrivate<Api<BaseActivity>>("api")
+		val api = activity.getPrivate<Api<TestBaseActivity>>("api")
 		api.wakeUpSite{}
 
 		activity.testDestroy()
