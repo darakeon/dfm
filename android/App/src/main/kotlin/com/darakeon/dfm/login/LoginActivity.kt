@@ -11,17 +11,17 @@ import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.lib.api.MainInfo
 import com.darakeon.dfm.lib.extensions.redirect
 import com.darakeon.dfm.welcome.WelcomeActivity
-import kotlinx.android.synthetic.main.login.email
-import kotlinx.android.synthetic.main.login.password
 
 class LoginActivity : BaseActivity<LoginBinding>() {
-	override val contentViewId = R.layout.login
+	override fun inflateBinding(): LoginBinding {
+		return LoginBinding.inflate(layoutInflater)
+	}
 
 	fun login(@Suppress(ON_CLICK) view: View) {
 		callApi { api ->
 			api.login(
-				email.text.toString(),
-				password.text.toString()
+				binding.email.text.toString(),
+				binding.password.text.toString()
 			) {
 				ticket = it.ticket
 				redirect<WelcomeActivity>()
