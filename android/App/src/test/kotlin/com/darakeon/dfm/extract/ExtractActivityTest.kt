@@ -27,7 +27,7 @@ import com.darakeon.dfm.utils.api.ActivityMock
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.extract.empty_list
 import kotlinx.android.synthetic.main.extract.main_table
-import kotlinx.android.synthetic.main.extract.reportChange
+import kotlinx.android.synthetic.main.extract.report_change
 import kotlinx.android.synthetic.main.extract.total_title
 import kotlinx.android.synthetic.main.extract.total_value
 import org.hamcrest.CoreMatchers.`is`
@@ -76,7 +76,7 @@ class ExtractActivityTest: BaseTest() {
 		assertNotNull(activity.findViewById(R.id.highlight))
 		assertNotNull(activity.findViewById(R.id.total_title))
 		assertNotNull(activity.findViewById(R.id.total_value))
-		assertNotNull(activity.findViewById(R.id.reportChange))
+		assertNotNull(activity.findViewById(R.id.report_change))
 		assertNotNull(activity.findViewById(R.id.action_summary))
 		assertNotNull(activity.findViewById(R.id.empty_list))
 		assertNotNull(activity.findViewById(R.id.main_table))
@@ -207,7 +207,7 @@ class ExtractActivityTest: BaseTest() {
 		assertThat(extract.moveList[0].checked, `is`(true))
 		assertThat(extract.moveList[0].guid, `is`(guid))
 
-		assertThat(activity.reportChange.text.toString(), `is`("$aMonthName/1986"))
+		assertThat(activity.report_change.text.toString(), `is`("$aMonthName/1986"))
 		assertThat(activity.main_table.adapter.count, `is`(1))
 	}
 
@@ -226,7 +226,7 @@ class ExtractActivityTest: BaseTest() {
 		assertThat(month, `is`(aMonthJava))
 
 		assertThat(
-			activity.reportChange.text.toString(),
+			activity.report_change.text.toString(),
 			`is`("$aMonthName/1986")
 		)
 

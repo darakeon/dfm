@@ -6,20 +6,13 @@ import android.content.res.Configuration.ORIENTATION_PORTRAIT
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import com.darakeon.dfm.R
+import com.darakeon.dfm.databinding.MoveDetailsBinding
+import com.darakeon.dfm.databinding.MoveLineBinding
 import com.darakeon.dfm.lib.api.entities.extract.Move
 import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.extensions.applyGlyphicon
 import com.darakeon.dfm.lib.extensions.setColorByAttr
 import com.darakeon.dfm.lib.extensions.setValueColored
-import kotlinx.android.synthetic.main.move_details.view.date
-import kotlinx.android.synthetic.main.move_details.view.move_status
-import kotlinx.android.synthetic.main.move_details.view.name
-import kotlinx.android.synthetic.main.move_details.view.value
-import kotlinx.android.synthetic.main.move_line.view.action_check
-import kotlinx.android.synthetic.main.move_line.view.action_delete
-import kotlinx.android.synthetic.main.move_line.view.action_edit
-import kotlinx.android.synthetic.main.move_line.view.action_uncheck
-import kotlinx.android.synthetic.main.move_line.view.actions
 import java.util.UUID
 
 class MoveLine(
@@ -27,6 +20,8 @@ class MoveLine(
 	attributeSet: AttributeSet
 ) : LinearLayout(context, attributeSet) {
 	private lateinit var move: Move
+	private lateinit var binding: MoveLineBinding
+	private lateinit var detailBinding: MoveDetailsBinding
 	private var checkNature: Nature = Nature.Out
 
 	val guid: UUID
@@ -42,7 +37,10 @@ class MoveLine(
 	) {
 		this.move = move
 
-		name.text = move.description
+		binding = MoveLineBinding.bind(this)
+		detailBinding = binding.details
+
+		detailBinding.name.text = move.description
 		setTotalField(move)
 		setCheckField(canCheck)
 		setCheckNature(move)
@@ -51,56 +49,56 @@ class MoveLine(
 		setActions(edit, delete, check, uncheck)
 
 		setOnLongClickListener {
-			if (actions.visibility == GONE)
-				actions.visibility = VISIBLE
+			if (binding.actions.visibility == GONE)
+				binding.actions.visibility = VISIBLE
 			else
-				actions.visibility = GONE
+				binding.actions.visibility = GONE
 
 			true
 		}
 	}
 
 	private fun setTotalField(move: Move) {
-		value.setValueColored(move.total)
+		detailBinding.value.setValueColored(move.total)
 	}
 
 	private fun setCheckField(canCheck: Boolean) {
 		if (canCheck) {
 			setCheckField()
 		} else {
-			action_check.visibility = GONE
-			action_uncheck.visibility = GONE
-			move_status.visibility = GONE
+			binding.actionCheck.visibility = GONE
+			binding.actionUncheck.visibility = GONE
+			detailBinding.moveStatus.visibility = GONE
 		}
 	}
 
 	private fun setCheckField() {
 		val textRes = if (isChecked) R.string.glyph_checked else R.string.glyph_unchecked
-		move_status.text = context.getString(textRes)
+		detailBinding.moveStatus.text = context.getString(textRes)
 
-		move_status.applyGlyphicon()
+		detailBinding.moveStatus.applyGlyphicon()
 
 		val color = if (isChecked) R.attr.checked else R.attr.unchecked
-		move_status.setColorByAttr(color)
+		detailBinding.moveStatus.setColorByAttr(color)
 
 		if (isChecked) {
-			action_check.visibility = GONE
-			action_uncheck.visibility = VISIBLE
+			binding.actionCheck.visibility = GONE
+			binding.actionUncheck.visibility = VISIBLE
 		}
 		else {
-			action_check.visibility = VISIBLE
-			action_uncheck.visibility = GONE
+			binding.actionCheck.visibility = VISIBLE
+			binding.actionUncheck.visibility = GONE
 		}
 	}
 
 	private fun setDateField(move: Move) {
 		when (context.resources.configuration.orientation) {
 			ORIENTATION_PORTRAIT -> {
-				date?.text = move.date.day
+				detailBinding.date.text = move.date.day
 					.toString().padStart(2, '0')
 			}
 			ORIENTATION_LANDSCAPE -> {
-				date?.text = move.date.format()
+				detailBinding.date.text = move.date.format()
 			}
 		}
 	}
@@ -119,17 +117,17 @@ class MoveLine(
 		check: (MoveLine) -> Unit,
 		uncheck: (MoveLine) -> Unit,
 	) {
-		action_edit.applyGlyphicon()
-		action_edit.setOnClickListener { edit(this) }
+		binding.actionEdit.applyGlyphicon()
+		binding.actionEdit.setOnClickListener { edit(this) }
 
-		action_delete.applyGlyphicon()
-		action_delete.setOnClickListener { delete(this) }
+		binding.actionDelete.applyGlyphicon()
+		binding.actionDelete.setOnClickListener { delete(this) }
 
-		action_check.applyGlyphicon()
-		action_check.setOnClickListener { check(this) }
+		binding.actionCheck.applyGlyphicon()
+		binding.actionCheck.setOnClickListener { check(this) }
 
-		action_uncheck.applyGlyphicon()
-		action_uncheck.setOnClickListener { uncheck(this) }
+		binding.actionUncheck.applyGlyphicon()
+		binding.actionUncheck.setOnClickListener { uncheck(this) }
 	}
 
 	fun check() {

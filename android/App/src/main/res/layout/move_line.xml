@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
 	android:paddingHorizontal="@dimen/padding_detail_field">
 	<include
+		android:id="@+id/details"
 		layout="@layout/move_details"
 		/>
 	<LinearLayout
