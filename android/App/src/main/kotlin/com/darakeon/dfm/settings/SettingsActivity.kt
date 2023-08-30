@@ -13,21 +13,19 @@ import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.lib.api.MainInfo
 import com.darakeon.dfm.lib.api.entities.settings.Settings
-import kotlinx.android.synthetic.main.settings.main
-import kotlinx.android.synthetic.main.settings.move_check
-import kotlinx.android.synthetic.main.settings.site
-import kotlinx.android.synthetic.main.settings.use_categories
-import kotlinx.android.synthetic.main.settings.version
 
 class SettingsActivity : BaseActivity<SettingsBinding>() {
-	override val contentViewId = R.layout.settings
+	override fun inflateBinding(): SettingsBinding {
+		return SettingsBinding.inflate(layoutInflater)
+	}
+
 	override val title = R.string.title_activity_settings
 
 	private var settings = Settings()
 	private val settingsKey = "settings"
 
-	override val refresh: SwipeRefreshLayout?
-		get() = main
+	override val refresh: SwipeRefreshLayout
+		get() = binding.main
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -46,23 +44,23 @@ class SettingsActivity : BaseActivity<SettingsBinding>() {
 
 		setControls()
 
-		site.text = MainInfo.getSiteUrl(this)
-		version.text = MainInfo.getAppVersion(this)
+		binding.site.text = MainInfo.getSiteUrl(this)
+		binding.version.text = MainInfo.getAppVersion(this)
 	}
 
 	private fun populateScreen(data: Settings) {
 		settings = data
 
-		use_categories.isChecked = data.useCategories
-		move_check.isChecked = data.moveCheck
+		binding.useCategories.isChecked = data.useCategories
+		binding.moveCheck.isChecked = data.moveCheck
 	}
 
 	private fun setControls() {
-		use_categories.setOnCheckedChangeListener { _, isChecked ->
+		binding.useCategories.setOnCheckedChangeListener { _, isChecked ->
 			settings.useCategories = isChecked
 		}
 
-		move_check.setOnCheckedChangeListener { _, isChecked ->
+		binding.moveCheck.setOnCheckedChangeListener { _, isChecked ->
 			settings.moveCheck = isChecked
 		}
 	}
