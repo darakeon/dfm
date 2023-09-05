@@ -44,17 +44,17 @@ rewrite-metadata:
 restart: stop sleep start
 
 clean:
-	@rm -rf .gradle
-	@rm -rf .idea
-	@rm -rf build
-	@rm -rf build-cache
-	@rm -rf App/build
-	@rm -rf ErrorLogs/build
-	@rm -rf Lib/build
-	@rm -rf TestUtils/build
-	@rm -f local.properties
-	@rm -f Lib/src/debug/res/values/site-address.xml
-	@rm -f Lib/src/debug/res/xml/network_security_config.xml
+	@sudo rm -rf .gradle
+	@sudo rm -rf .idea
+	@sudo rm -rf build
+	@sudo rm -rf build-cache
+	@sudo rm -rf App/build
+	@sudo rm -rf ErrorLogs/build
+	@sudo rm -rf Lib/build
+	@sudo rm -rf TestUtils/build
+	@sudo rm -f local.properties
+	@sudo rm -f Lib/src/debug/res/values/site-address.xml
+	@sudo rm -f Lib/src/debug/res/xml/network_security_config.xml
 	@if [ -e keystore.properties ]; then \
 		mv keystore.properties keystore-$$(date +%Y%m%d%H%M%S%N).properties; \
 	fi
