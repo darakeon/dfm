@@ -4,6 +4,8 @@
 
 This is the task list for the project.
 
+KAFKA FOR DELETING USERS TO MAKE THE CRON PROCESS DO NOT EXTEND
+
 - Type: how does it changes the version number (check [RELEASES](RELEASES.md))
 - Dif(ficulty): how hard is to do the job \[1-4\]
 - Imp(ortance): how positive is the impact caused on system \[1-4\]
