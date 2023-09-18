@@ -6,7 +6,7 @@
 	"dependencies": {
 		"bcrypt": "^5.1.1",
 		"sqlite3": "5.1.6",
-		"uuid": "9.0.0"
+		"uuid": "9.0.1"
 	},
 	"devDependencies": {
 		"jest": "27.0.6",
