@@ -194,6 +194,25 @@ set @EN = replace(replace('
 }
 ', '\n', ''), '\t', '');
 
+
+	select @len := max(len) from (
+			select max(length(Json)) as len
+				from terms
+		union
+			select length(@PT)
+		union
+			select length(@EN)
+	) as lens;
+
+	set @alter_query = concat('
+	alter table terms
+		modify column Json varchar(', @len, ') not null;
+	');
+	prepare alter_query from @alter_query;
+	execute alter_query;
+	deallocate prepare alter_query;
+
+
 insert into terms
 		(Json, Language, Contract_ID)
 	values
