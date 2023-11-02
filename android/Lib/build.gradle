@@ -73,7 +73,7 @@ task wrapper(type: Wrapper) {
 	gradleVersion = '6.2'
 }
 
-static def getLocalIP() {
+static def getLocalIP(int port) {
 	def ips = []
 	NetworkInterface.getNetworkInterfaces()
 		.findAll { it.isUp() && !it.isLoopback() && !it.isVirtual() }
@@ -88,14 +88,19 @@ static def getLocalIP() {
 	if (ips.empty)
 		return "dontflymoney.com"
 
-	return ips.first().toString().substring(1)
+	def address = ips.first().toString().substring(1)
+
+	if (port > 0)
+		address = address + ":" + port
+
+	return address
 }
 
 task ipNetwork(type: Copy) {
 	from ('src/main/res/xml/network_security_config.xml')
 	into ('src/debug/res/xml')
 	filter {
-		String line -> line.replaceAll("dontflymoney.com", getLocalIP())
+		String line -> line.replaceAll("dontflymoney.com", getLocalIP(0))
 	}
 }
 
@@ -103,7 +108,7 @@ task ipAddress(type: Copy) {
 	from ('src/main/res/values/site-address.xml')
 	into ('src/debug/res/values')
 	filter {
-		String line -> line.replaceAll("dontflymoney.com", getLocalIP() + ":2409")
+		String line -> line.replaceAll("dontflymoney.com", getLocalIP(2409))
 	}
 }
 
