@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.widget.Toast
+import androidx.viewbinding.ViewBinding
 import com.darakeon.dfm.lib.api.Api
 import com.darakeon.dfm.lib.api.ApiCaller
 import com.darakeon.dfm.lib.api.entities.Environment
@@ -12,16 +13,22 @@ import com.darakeon.dfm.lib.api.entities.Theme
 import com.darakeon.dfm.lib.auth.Authentication
 import com.darakeon.dfm.lib.auth.setEnvironment
 
-open class BaseActivity: Activity(), ApiCaller {
+open class BaseActivity<Binding: ViewBinding>: Activity(), ApiCaller {
 	protected lateinit var auth: Authentication
-	protected lateinit var api: Api<BaseActivity>
+	protected lateinit var api: Api<BaseActivity<Binding>>
 	private var serverUrl: String? = null
+
+	protected lateinit var binding: Binding
+	protected open fun inflateBinding(): Binding {
+		throw NotImplementedError()
+	}
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		auth = Authentication(this)
 		api = Api(this, serverUrl)
 		setEnvironment(Environment(Theme.DarkMagic))
+		binding = inflateBinding()
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
