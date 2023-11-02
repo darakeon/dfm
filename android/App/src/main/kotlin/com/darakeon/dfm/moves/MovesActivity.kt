@@ -27,35 +27,13 @@ import com.darakeon.dfm.lib.extensions.changeColSpan
 import com.darakeon.dfm.lib.extensions.onChange
 import com.darakeon.dfm.lib.extensions.showChangeList
 import com.darakeon.dfm.lib.extensions.toDoubleByCulture
-import kotlinx.android.synthetic.main.moves.account_in
-import kotlinx.android.synthetic.main.moves.account_in_picker
-import kotlinx.android.synthetic.main.moves.account_out
-import kotlinx.android.synthetic.main.moves.account_out_picker
-import kotlinx.android.synthetic.main.moves.category
-import kotlinx.android.synthetic.main.moves.category_picker
-import kotlinx.android.synthetic.main.moves.date
-import kotlinx.android.synthetic.main.moves.date_picker
-import kotlinx.android.synthetic.main.moves.description
-import kotlinx.android.synthetic.main.moves.detail_amount
-import kotlinx.android.synthetic.main.moves.detail_description
-import kotlinx.android.synthetic.main.moves.detail_value
-import kotlinx.android.synthetic.main.moves.detailed_value
-import kotlinx.android.synthetic.main.moves.details
-import kotlinx.android.synthetic.main.moves.form
-import kotlinx.android.synthetic.main.moves.main
-import kotlinx.android.synthetic.main.moves.nature_in
-import kotlinx.android.synthetic.main.moves.nature_out
-import kotlinx.android.synthetic.main.moves.nature_transfer
-import kotlinx.android.synthetic.main.moves.no_accounts
-import kotlinx.android.synthetic.main.moves.no_categories
-import kotlinx.android.synthetic.main.moves.remove_check
-import kotlinx.android.synthetic.main.moves.simple_value
-import kotlinx.android.synthetic.main.moves.value
-import kotlinx.android.synthetic.main.moves.warnings
 import java.util.UUID
 
 class MovesActivity : BaseActivity<MovesBinding>() {
-	override val contentViewId = R.layout.moves
+	override fun inflateBinding(): MovesBinding {
+		return MovesBinding.inflate(layoutInflater)
+	}
+
 	override val title = R.string.title_activity_move
 
 	private var move = Move()
@@ -74,7 +52,7 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 		).toString()
 
 	override val refresh: SwipeRefreshLayout?
-		get() = main
+		get() = binding.main
 
 	private var loadedScreen = false
 	private val fallbackManager = MovesService.manager(this)
@@ -83,10 +61,10 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 		super.onCreate(savedInstanceState)
 
 		arrayOf(
-			date_picker,
-			category_picker,
-			account_out_picker,
-			account_in_picker
+			binding.datePicker,
+			binding.categoryPicker,
+			binding.accountOutPicker,
+			binding.accountInPicker
 		).forEach { it.applyGlyphicon() }
 
 		accountUrl = getExtraOrUrl("accountUrl") ?: ""
@@ -95,7 +73,7 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 		if (id != null)
 			this.id = tryGetGuid(id)
 
-		detail_amount.setText(amountDefault)
+		binding.detailAmount.setText(amountDefault)
 
 		if (savedInstanceState == null) {
 			if (this.id != null) {
@@ -155,13 +133,13 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 		if (!isMoveAllowed())
 			return
 
-		main.scrollChild = form
+		binding.main.scrollChild = binding.form
 
 		if (move.checked)
-			remove_check.visibility = VISIBLE
+			binding.removeCheck.visibility = VISIBLE
 
-		description.setText(move.description)
-		description.onChange { move.description = it }
+		binding.description.setText(move.description)
+		binding.description.onChange { move.description = it }
 
 		populateDate()
 		populateCategory()
@@ -178,17 +156,17 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 
 		if (blockedByAccounts()) {
 			canMove = false
-			no_accounts.visibility = VISIBLE
+			binding.noAccounts.visibility = VISIBLE
 		}
 
 		if (blockedByCategories()) {
 			canMove = false
-			no_categories.visibility = VISIBLE
+			binding.noCategories.visibility = VISIBLE
 		}
 
 		if (!canMove) {
-			form.visibility = GONE
-			warnings.visibility = VISIBLE
+			binding.form.visibility = GONE
+			binding.warnings.visibility = VISIBLE
 		}
 
 		return canMove
@@ -201,16 +179,16 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 		isUsingCategories && categoryCombo.isEmpty()
 
 	private fun populateDate() {
-		date.addMask("####-##-##")
-		date.setText(move.date.format())
-		date.onChange { move.date = Date(it) }
-		date_picker.setOnClickListener { showDatePicker() }
+		binding.date.addMask("####-##-##")
+		binding.date.setText(move.date.format())
+		binding.date.onChange { move.date = Date(it) }
+		binding.datePicker.setOnClickListener { showDatePicker() }
 	}
 
 	fun showDatePicker() {
 		with(move.date) {
 			getDateDialog(year, javaMonth, day) { y, m, d ->
-				date.setText(Date(y, m+1, d).format())
+				binding.date.setText(Date(y, m+1, d).format())
 			}.show()
 		}
 	}
@@ -231,8 +209,8 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 
 	private fun populateCategoryCombo() {
 		categoryCombo.setCombo(
-			category,
-			category_picker,
+			binding.category,
+			binding.categoryPicker,
 			move::categoryName,
 			this::changeCategory
 		)
@@ -240,62 +218,62 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 
 	fun changeCategory() {
 		showChangeList(categoryCombo, R.string.category) {
-			text, _ -> category.setText(text)
+			text, _ -> binding.category.setText(text)
 		}
 	}
 
 	private fun setupWarnLoseCategory() {
-		category.visibility = GONE
-		category.changeColSpan(0)
-		category_picker.changeColSpan(4)
+		binding.category.visibility = GONE
+		binding.category.changeColSpan(0)
+		binding.categoryPicker.changeColSpan(4)
 
-		category_picker.text = move.categoryName
-		category_picker.paintFlags += Paint.STRIKE_THRU_TEXT_FLAG
-		category_picker.setOnClickListener {
+		binding.categoryPicker.text = move.categoryName
+		binding.categoryPicker.paintFlags += Paint.STRIKE_THRU_TEXT_FLAG
+		binding.categoryPicker.setOnClickListener {
 			this.alertError(R.string.losingCategory)
 		}
 	}
 
 	private fun hideCategory() {
-		category.visibility = GONE
-		category_picker.visibility = GONE
+		binding.category.visibility = GONE
+		binding.categoryPicker.visibility = GONE
 
-		date.changeColSpan(7)
-		category.changeColSpan(0)
-		category_picker.changeColSpan(0)
+		binding.date.changeColSpan(7)
+		binding.category.changeColSpan(0)
+		binding.categoryPicker.changeColSpan(0)
 	}
 
 	private fun populateAccounts() {
 		accountCombo.setCombo(
-			account_out,
-			account_out_picker,
+			binding.accountOut,
+			binding.accountOutPicker,
 			move::outUrl,
 			this::changeAccountOut
 		)
-		account_out.onChange {
+		binding.accountOut.onChange {
 			setNatureFromAccounts()
 		}
 
 		accountCombo.setCombo(
-			account_in,
-			account_in_picker,
+			binding.accountIn,
+			binding.accountInPicker,
 			move::inUrl,
 			this::changeAccountIn
 		)
-		account_in.onChange {
+		binding.accountIn.onChange {
 			setNatureFromAccounts()
 		}
 	}
 
 	fun changeAccountOut() {
 		showChangeList(accountCombo, R.string.account) { text, _ ->
-			account_out.setText(text)
+			binding.accountOut.setText(text)
 		}
 	}
 
 	fun changeAccountIn() {
 		showChangeList(accountCombo, R.string.account) { text, _ ->
-			account_in.setText(text)
+			binding.accountIn.setText(text)
 		}
 	}
 
@@ -311,14 +289,14 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 		}
 
 		runOnUiThread {
-			nature_out.isChecked = false
-			nature_transfer.isChecked = false
-			nature_in.isChecked = false
+			binding.natureOut.isChecked = false
+			binding.natureTransfer.isChecked = false
+			binding.natureIn.isChecked = false
 
 			when (move.natureEnum) {
-				Nature.Out -> nature_out.isChecked = true
-				Nature.Transfer -> nature_transfer.isChecked = true
-				Nature.In -> nature_in.isChecked = true
+				Nature.Out -> binding.natureOut.isChecked = true
+				Nature.Transfer -> binding.natureTransfer.isChecked = true
+				Nature.In -> binding.natureIn.isChecked = true
 				else -> {}
 			}
 		}
@@ -332,42 +310,42 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 			}
 		} else if (move.value != null) {
 			useSimple()
-			value.setText(String.format("%1$,.2f", move.value))
+			binding.value.setText(String.format("%1$,.2f", move.value))
 		}
 
-		value.onChange { move.setValue(it) }
+		binding.value.onChange { move.setValue(it) }
 	}
 
 	private fun useDetailed() {
 		move.isDetailed = true
 
-		simple_value.visibility = GONE
-		detailed_value.visibility = VISIBLE
+		binding.simpleValue.visibility = GONE
+		binding.detailedValue.visibility = VISIBLE
 
-		account_in.nextFocusDownId = R.id.detail_description
+		binding.accountIn.nextFocusDownId = R.id.detail_description
 
-		scrollToTheEnd(detail_description)
+		scrollToTheEnd(binding.detailDescription)
 	}
 
 	private fun addViewDetail(move: Move, description: String, amount: Int, value: Double) {
 		val row = DetailBox(this, move, description, amount, value)
-		details.addView(row)
+		binding.details.addView(row)
 	}
 
 	private fun useSimple() {
 		move.isDetailed = false
 
-		simple_value.visibility = VISIBLE
-		detailed_value.visibility = GONE
+		binding.simpleValue.visibility = VISIBLE
+		binding.detailedValue.visibility = GONE
 
-		account_in.nextFocusDownId = R.id.value
+		binding.accountIn.nextFocusDownId = R.id.value
 
-		scrollToTheEnd(value)
+		scrollToTheEnd(binding.value)
 	}
 
 	private fun scrollToTheEnd(view: View) {
-		form.post {
-			form.fullScroll(FOCUS_DOWN)
+		binding.form.post {
+			binding.form.fullScroll(FOCUS_DOWN)
 			view.requestFocus()
 		}
 	}
@@ -388,24 +366,24 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 	}
 
 	fun addDetail(@Suppress(ON_CLICK) view: View) {
-		val description = detail_description.text.toString()
-		val amount = detail_amount.text.toString().toIntOrNull()
-		val value = detail_value.text.toString().toDoubleByCulture()
+		val description = binding.detailDescription.text.toString()
+		val amount = binding.detailAmount.text.toString().toIntOrNull()
+		val value = binding.detailValue.text.toString().toDoubleByCulture()
 
 		if (description.isEmpty() || amount == null || value == null) {
 			alertError(R.string.fill_all)
 			return
 		}
 
-		detail_description.setText("")
-		detail_amount.setText(amountDefault)
-		detail_value.setText("")
+		binding.detailDescription.setText("")
+		binding.detailAmount.setText(amountDefault)
+		binding.detailValue.setText("")
 
 		move.add(description, amount, value)
 
 		addViewDetail(move, description, amount, value)
 
-		scrollToTheEnd(detail_description)
+		scrollToTheEnd(binding.detailDescription)
 	}
 
 	fun save(@Suppress(ON_CLICK) view: View) {
