@@ -61,7 +61,7 @@
 				/>
 
 			<Button
-				android:id="@+id/reportChange"
+				android:id="@+id/report_change"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_columnWeight="1"
