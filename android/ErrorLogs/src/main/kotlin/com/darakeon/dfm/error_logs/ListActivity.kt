@@ -3,19 +3,19 @@ package com.darakeon.dfm.error_logs
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import com.darakeon.dfm.error_logs.databinding.ListBinding
 import com.darakeon.dfm.error_logs.service.SiteErrorService
 import com.darakeon.dfm.lib.Log
 import com.darakeon.dfm.lib.api.entities.status.ErrorList
 import com.darakeon.dfm.lib.api.entities.status.ErrorLog
 import com.darakeon.dfm.lib.extensions.refresh
-import kotlinx.android.synthetic.main.list.list
-import kotlinx.android.synthetic.main.list.main
-import kotlinx.android.synthetic.main.list.message
-import kotlinx.android.synthetic.main.list.start
-import kotlinx.android.synthetic.main.list.stop
 
-class ListActivity : BaseActivity() {
+class ListActivity : BaseActivity<ListBinding>() {
 	private var logs: MutableList<ErrorLog> = mutableListOf()
+
+	override fun inflateBinding(): ListBinding {
+		return ListBinding.inflate(layoutInflater)
+	}
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -27,20 +27,20 @@ class ListActivity : BaseActivity() {
 
 		toggleButtons()
 
-		main.setOnRefreshListener { refresh() }
-		main.listChild = list
+		binding.main.setOnRefreshListener { refresh() }
+		binding.main.listChild = binding.list
 	}
 
 	private fun fillList(errors: ErrorList) {
 		if (errors.count == 0) {
-			message.setText(R.string.empty)
+			binding.message.setText(R.string.empty)
 			logs.clear()
 		} else {
-			message.text = ""
+			binding.message.text = ""
 			errors.logs.forEach(logs::add)
 		}
 
-		list.adapter = ErrorAdapter(this, api, logs)
+		binding.list.adapter = ErrorAdapter(this, api, logs)
 	}
 
 	@Suppress("UNUSED_PARAMETER")
@@ -58,8 +58,8 @@ class ListActivity : BaseActivity() {
 	private fun toggleButtons() {
 		Log.record(SiteErrorService.running)
 		val running = SiteErrorService.running
-		toggle(stop, running)
-		toggle(start, !running)
+		toggle(binding.stop, running)
+		toggle(binding.start, !running)
 	}
 
 	private fun toggle(view: View, visible: Boolean) {
