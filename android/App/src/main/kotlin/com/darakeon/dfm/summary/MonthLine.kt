@@ -3,11 +3,10 @@ package com.darakeon.dfm.summary
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
+import com.darakeon.dfm.databinding.MonthLineBinding
 import com.darakeon.dfm.extract.ExtractActivity
 import com.darakeon.dfm.lib.extensions.redirect
 import com.darakeon.dfm.lib.extensions.setValueColored
-import kotlinx.android.synthetic.main.month_line.view.name
-import kotlinx.android.synthetic.main.month_line.view.value
 
 class MonthLine(context: Context, attributeSet: AttributeSet)
 	: LinearLayout(context, attributeSet) {
@@ -18,9 +17,11 @@ class MonthLine(context: Context, attributeSet: AttributeSet)
 		yearNumber: Int,
 		monthNumber: Int
 	) {
-		this.name.text = name
+		val binding = MonthLineBinding.bind(this)
 
-		value.setValueColored(total)
+		binding.name.text = name
+
+		binding.value.setValueColored(total)
 
 		isClickable = true
 
