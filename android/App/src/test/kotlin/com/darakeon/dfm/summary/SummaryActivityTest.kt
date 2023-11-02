@@ -20,7 +20,7 @@ import com.darakeon.dfm.utils.api.ActivityMock
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.summary.empty_list
 import kotlinx.android.synthetic.main.summary.main_table
-import kotlinx.android.synthetic.main.summary.reportChange
+import kotlinx.android.synthetic.main.summary.report_change
 import kotlinx.android.synthetic.main.summary.total_title
 import kotlinx.android.synthetic.main.summary.total_value
 import org.hamcrest.CoreMatchers.`is`
@@ -59,7 +59,7 @@ class SummaryActivityTest: BaseTest() {
 		assertNotNull(activity.findViewById(R.id.highlight))
 		assertNotNull(activity.findViewById(R.id.total_title))
 		assertNotNull(activity.findViewById(R.id.total_value))
-		assertNotNull(activity.findViewById(R.id.reportChange))
+		assertNotNull(activity.findViewById(R.id.report_change))
 		assertNotNull(activity.findViewById(R.id.empty_list))
 		assertNotNull(activity.findViewById(R.id.main_table))
 	}
@@ -188,7 +188,7 @@ class SummaryActivityTest: BaseTest() {
 		assertThat(year, `is`(1986))
 
 		assertThat(
-			activity.reportChange.text.toString(),
+			activity.report_change.text.toString(),
 			`is`("1986")
 		)
 
