@@ -26,6 +26,10 @@ android {
 		}
 	}
 
+	buildFeatures {
+		viewBinding true
+	}
+
 	sourceSets {
 		debug.resources.srcDirs += 'src/debug/res'
 		main.java.srcDirs += 'src/main/kotlin'
