@@ -172,7 +172,6 @@ class BaseActivityTest: BaseTest() {
 	@Test
 	fun onCreateHandleScreenWithContent() {
 		val activity = mocker.get()
-		activity.testContentView = R.layout.welcome
 
 		activity.onCreate(null, null)
 
@@ -183,7 +182,26 @@ class BaseActivityTest: BaseTest() {
 	@Test
 	fun onCreateSetMenuLongClicksLogout() {
 		val activity = mocker.get()
-		activity.testContentView = R.layout.bottom_menu
+		activity.isBottomMenuTest = true
+
+		activity.onCreate(null, null)
+
+		activity.ticket = "logged in"
+		activity.simulateNetwork()
+		mocker.server.enqueue("empty")
+
+		val logout = shadowOf(activity.action_logout)
+		assertNotNull(logout.onLongClickListener)
+
+		activity.action_logout.performLongClick()
+		activity.waitTasks(mocker.server)
+
+		assertThat(activity.ticket, `is`(""))
+	}
+
+	@Test
+	fun onCreateSetMenuLongClicksLogoutWelcome() {
+		val activity = mocker.get()
 
 		activity.onCreate(null, null)
 
@@ -215,7 +233,7 @@ class BaseActivityTest: BaseTest() {
 	@Test
 	fun onCreateCustomizeBottomMenuGenericActivity() {
 		val activity = mocker.get()
-		activity.testContentView = R.layout.bottom_menu
+		activity.isBottomMenuTest = true
 
 		activity.onCreate(null, null)
 

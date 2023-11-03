@@ -1,7 +1,9 @@
 package com.darakeon.dfm.welcome
 
 import android.os.Bundle
+import android.widget.Button
 import com.darakeon.dfm.base.BaseActivity
+import com.darakeon.dfm.databinding.BottomMenuBinding
 import com.darakeon.dfm.databinding.WelcomeBinding
 import com.darakeon.dfm.lib.extensions.applyGlyphicon
 import com.darakeon.dfm.lib.extensions.redirect
@@ -11,6 +13,12 @@ import com.darakeon.dfm.moves.MovesService
 class WelcomeActivity : BaseActivity<WelcomeBinding>() {
 	override fun inflateBinding(): WelcomeBinding {
 		return WelcomeBinding.inflate(layoutInflater)
+	}
+	override fun getMenuBinding(): BottomMenuBinding {
+		return BottomMenuBinding.inflate(layoutInflater)
+	}
+	override fun getLogoutButton(): Button? {
+		return binding.actionLogout
 	}
 
 	override fun onCreate(savedInstanceState: Bundle?) {

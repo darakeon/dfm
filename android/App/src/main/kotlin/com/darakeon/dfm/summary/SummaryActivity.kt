@@ -5,6 +5,7 @@ import android.view.View
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
+import com.darakeon.dfm.databinding.BottomMenuBinding
 import com.darakeon.dfm.databinding.SummaryBinding
 import com.darakeon.dfm.dialogs.getDateDialog
 import com.darakeon.dfm.extensions.ON_CLICK
@@ -19,6 +20,9 @@ import java.util.Calendar
 class SummaryActivity : BaseActivity<SummaryBinding>() {
 	override fun inflateBinding(): SummaryBinding {
 		return SummaryBinding.inflate(layoutInflater)
+	}
+	override fun getMenuBinding(): BottomMenuBinding {
+		return binding.bottomMenu
 	}
 
 	private var accountUrl: String = ""
