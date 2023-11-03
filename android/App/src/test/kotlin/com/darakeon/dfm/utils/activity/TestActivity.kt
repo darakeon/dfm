@@ -1,7 +1,10 @@
 package com.darakeon.dfm.utils.activity
 
+import android.widget.Button
 import androidx.viewbinding.ViewBinding
 import com.darakeon.dfm.base.BaseActivity
+import com.darakeon.dfm.databinding.BottomMenuBinding
+import com.darakeon.dfm.databinding.WelcomeBinding
 import com.darakeon.dfm.lib.api.Api
 
 class TestActivity : TestBaseActivity() {
@@ -32,5 +35,25 @@ class TestActivity : TestBaseActivity() {
 	override fun endWait() {
 		super.endWait()
 		waitEnded = true
+	}
+
+	var isBottomMenuTest = false
+	private lateinit var welcomeTestBinding: WelcomeBinding
+	private lateinit var bottomMenuBinding: BottomMenuBinding
+	override fun inflateBinding(): ViewBinding {
+		return if (isBottomMenuTest) {
+			bottomMenuBinding = BottomMenuBinding.inflate(layoutInflater)
+			bottomMenuBinding
+		} else {
+			welcomeTestBinding = WelcomeBinding.inflate(layoutInflater)
+			welcomeTestBinding
+		}
+	}
+
+	override fun getLogoutButton(): Button {
+		return if (isBottomMenuTest)
+			bottomMenuBinding.actionLogout
+		else
+			welcomeTestBinding.actionLogout
 	}
 }

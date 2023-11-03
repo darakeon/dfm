@@ -9,6 +9,7 @@ import android.view.View.VISIBLE
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
+import com.darakeon.dfm.databinding.BottomMenuBinding
 import com.darakeon.dfm.databinding.MovesBinding
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.dialogs.getDateDialog
@@ -32,6 +33,9 @@ import java.util.UUID
 class MovesActivity : BaseActivity<MovesBinding>() {
 	override fun inflateBinding(): MovesBinding {
 		return MovesBinding.inflate(layoutInflater)
+	}
+	override fun getMenuBinding(): BottomMenuBinding {
+		return binding.bottomMenu
 	}
 
 	override val title = R.string.title_activity_move

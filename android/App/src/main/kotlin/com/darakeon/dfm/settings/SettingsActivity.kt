@@ -6,6 +6,7 @@ import android.view.View
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
+import com.darakeon.dfm.databinding.BottomMenuBinding
 import com.darakeon.dfm.databinding.SettingsBinding
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.backWithExtras
@@ -17,6 +18,9 @@ import com.darakeon.dfm.lib.api.entities.settings.Settings
 class SettingsActivity : BaseActivity<SettingsBinding>() {
 	override fun inflateBinding(): SettingsBinding {
 		return SettingsBinding.inflate(layoutInflater)
+	}
+	override fun getMenuBinding(): BottomMenuBinding {
+		return binding.bottomMenu
 	}
 
 	override val title = R.string.title_activity_settings

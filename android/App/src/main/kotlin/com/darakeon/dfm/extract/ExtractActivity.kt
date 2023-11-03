@@ -5,6 +5,7 @@ import android.view.View
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
+import com.darakeon.dfm.databinding.BottomMenuBinding
 import com.darakeon.dfm.databinding.ExtractBinding
 import com.darakeon.dfm.dialogs.confirm
 import com.darakeon.dfm.dialogs.getDateDialog
@@ -25,6 +26,9 @@ import java.util.Calendar
 class ExtractActivity : BaseActivity<ExtractBinding>() {
 	override fun inflateBinding(): ExtractBinding {
 		return ExtractBinding.inflate(layoutInflater)
+	}
+	override fun getMenuBinding(): BottomMenuBinding {
+		return binding.bottomMenu
 	}
 
 	override val title = R.string.title_activity_extract
