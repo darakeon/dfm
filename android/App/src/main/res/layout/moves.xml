@@ -359,6 +359,7 @@
 			</GridLayout>
 		</ScrollView>
 
-		<include layout="@layout/bottom_menu" />
+		<include layout="@layout/bottom_menu"
+			android:id="@+id/bottom_menu" />
 	</LinearLayout>
 </com.darakeon.dfm.lib.ui.SwipeRefresh>
