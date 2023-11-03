@@ -12,6 +12,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewbinding.ViewBinding
 import com.darakeon.dfm.R
 import com.darakeon.dfm.accounts.AccountsActivity
+import com.darakeon.dfm.databinding.BottomMenuBinding
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.back
@@ -37,12 +38,6 @@ import com.darakeon.dfm.lib.extensions.refresh
 import com.darakeon.dfm.moves.MovesActivity
 import com.darakeon.dfm.settings.SettingsActivity
 import com.darakeon.dfm.tfa.TFAActivity
-import kotlinx.android.synthetic.main.bottom_menu.action_home
-import kotlinx.android.synthetic.main.bottom_menu.action_logout
-import kotlinx.android.synthetic.main.bottom_menu.action_move
-import kotlinx.android.synthetic.main.bottom_menu.action_settings
-import kotlinx.android.synthetic.main.bottom_menu.bottom_menu
-import kotlinx.android.synthetic.main.welcome.action_logout as welcome_logout
 
 abstract class BaseActivity<Binding: ViewBinding>: Activity(), ApiCaller {
 	private var api: Api<BaseActivity<Binding>>? = null
@@ -73,6 +68,12 @@ abstract class BaseActivity<Binding: ViewBinding>: Activity(), ApiCaller {
 	protected lateinit var binding: Binding
 	protected open fun inflateBinding(): Binding {
 		throw NotImplementedError()
+	}
+	protected open fun getMenuBinding(): BottomMenuBinding? {
+		return null
+	}
+	protected open fun getLogoutButton(): Button? {
+		return getMenuBinding()?.actionLogout
 	}
 
 	protected open val title: Int = 0
@@ -159,8 +160,8 @@ abstract class BaseActivity<Binding: ViewBinding>: Activity(), ApiCaller {
 	}
 
 	private fun setMenuLongClicks() {
-		val logout = action_logout ?: welcome_logout
-		logout?.setOnLongClickListener {
+		val logout = getLogoutButton() ?: return
+		logout.setOnLongClickListener {
 			logout(api)
 			true
 		}
@@ -176,20 +177,20 @@ abstract class BaseActivity<Binding: ViewBinding>: Activity(), ApiCaller {
 	}
 
 	private fun customizeBottomMenu() {
-		if (bottom_menu == null) return
+		val menuBinding = getMenuBinding() ?: return
 
-		(0 until bottom_menu.childCount).forEach {
-			val button = bottom_menu.getChildAt(it) as Button
+		(0 until menuBinding.bottomMenu.childCount).forEach {
+			val button = menuBinding.bottomMenu.getChildAt(it) as Button
 			button.applyGlyphicon()
 
 			if (this is AccountsActivity)
-				action_home.isEnabled = false
+				menuBinding.actionHome.isEnabled = false
 
 			if (this is SettingsActivity)
-				action_settings.isEnabled = false
+				menuBinding.actionSettings.isEnabled = false
 
 			if (this is MovesActivity)
-				action_move.isEnabled = false
+				menuBinding.actionMove.isEnabled = false
 		}
 	}
 
