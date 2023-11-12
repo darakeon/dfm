@@ -879,6 +879,7 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^dependabot/npm_and_yarn/site/Tests/Browser.+$/
           requires:
             - test_ci
       - push_docker_android:
@@ -887,6 +888,8 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/android.+$/
+                - /^dependabot/gradle/android/.+$/
           requires:
             - test_ci
       - build_core:
