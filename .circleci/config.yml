@@ -480,11 +480,11 @@ jobs:
       - run:
           name: project dependencies
           path: android
-          command: gradle --no-daemon androidDependencies
+          command: gradle-with-metadata --no-daemon androidDependencies
       - run:
           name: robolectric dependencies
           path: android
-          command: gradle --no-daemon robolectricSdkDownload
+          command: gradle-with-metadata --no-daemon robolectricSdkDownload
       - save_cache:
           key: kotlin-{{ checksum "android/cache_key" }}
           paths:
@@ -493,11 +493,11 @@ jobs:
       - run:
           name: build
           path: android
-          command: gradle --no-daemon build -x test -x androidDependencies -x robolectricSdkDownload -x packageRelease -x packageDebug
+          command: gradle-with-metadata --no-daemon build -x test -x androidDependencies -x robolectricSdkDownload -x packageRelease -x packageDebug
       - run:
           name: configure
           path: android
-          command: gradle --no-daemon configure
+          command: gradle-with-metadata --no-daemon configure
       - store_artifacts:
           path: android/build/reports
           destination: reports/main
@@ -513,6 +513,9 @@ jobs:
       - store_artifacts:
           path: android/ErrorLogs/build/reports
           destination: reports/errorLogs
+      - store_artifacts:
+          path: android/gradle/verification-metadata.xml
+          destination: verification-metadata.xml
       - persist_to_workspace:
           root: android
           paths:
@@ -552,10 +555,13 @@ jobs:
       - run:
           name: tests lib debug
           path: android
-          command: gradle :Lib:testDebugUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
+          command: gradle-with-metadata :Lib:testDebugUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
       - store_artifacts:
           path: android/Lib/log
           destination: log/lib
+      - store_artifacts:
+          path: android/gradle/verification-metadata.xml
+          destination: verification-metadata.xml
       - store_test_results:
           path: android/Lib/build/test-results
 
@@ -572,10 +578,13 @@ jobs:
       - run:
           name: tests lib release
           path: android
-          command: gradle :Lib:testReleaseUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
+          command: gradle-with-metadata :Lib:testReleaseUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
       - store_artifacts:
           path: android/Lib/log
           destination: log/lib
+      - store_artifacts:
+          path: android/gradle/verification-metadata.xml
+          destination: verification-metadata.xml
       - store_test_results:
           path: android/Lib/build/test-results
 
@@ -592,10 +601,13 @@ jobs:
       - run:
           name: tests app debug
           path: android
-          command: gradle :App:testDebugUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
+          command: gradle-with-metadata :App:testDebugUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
       - store_artifacts:
           path: android/App/log
           destination: log/app
+      - store_artifacts:
+          path: android/gradle/verification-metadata.xml
+          destination: verification-metadata.xml
       - store_test_results:
           path: android/App/build/test-results
 
@@ -612,10 +624,13 @@ jobs:
       - run:
           name: tests app release
           path: android
-          command: gradle :App:testReleaseUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
+          command: gradle-with-metadata :App:testReleaseUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
       - store_artifacts:
           path: android/App/log
           destination: log/app
+      - store_artifacts:
+          path: android/gradle/verification-metadata.xml
+          destination: verification-metadata.xml
       - store_test_results:
           path: android/App/build/test-results
 

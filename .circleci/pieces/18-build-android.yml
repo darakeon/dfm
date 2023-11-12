@@ -25,11 +25,11 @@
       - run:
           name: project dependencies
           path: android
-          command: gradle --no-daemon androidDependencies
+          command: gradle-with-metadata --no-daemon androidDependencies
       - run:
           name: robolectric dependencies
           path: android
-          command: gradle --no-daemon robolectricSdkDownload
+          command: gradle-with-metadata --no-daemon robolectricSdkDownload
       - save_cache:
           key: kotlin-{{ checksum "android/cache_key" }}
           paths:
@@ -38,11 +38,11 @@
       - run:
           name: build
           path: android
-          command: gradle --no-daemon build -x test -x androidDependencies -x robolectricSdkDownload -x packageRelease -x packageDebug
+          command: gradle-with-metadata --no-daemon build -x test -x androidDependencies -x robolectricSdkDownload -x packageRelease -x packageDebug
       - run:
           name: configure
           path: android
-          command: gradle --no-daemon configure
+          command: gradle-with-metadata --no-daemon configure
       - store_artifacts:
           path: android/build/reports
           destination: reports/main
@@ -58,6 +58,9 @@
       - store_artifacts:
           path: android/ErrorLogs/build/reports
           destination: reports/errorLogs
+      - store_artifacts:
+          path: android/gradle/verification-metadata.xml
+          destination: verification-metadata.xml
       - persist_to_workspace:
           root: android
           paths:

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+printf '\e[38;5;228m'
+
+echo
+
+for line in "$@"
+do
+    echo "$line"
+done
+
+echo
+
+printf '\e[38;5;253m'
