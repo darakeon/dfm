@@ -10,6 +10,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.TextView
 import com.darakeon.dfm.R
+import com.darakeon.dfm.databinding.MovesBinding
 import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.lib.api.entities.ComboItem
@@ -29,28 +30,6 @@ import com.darakeon.dfm.utils.activity.getLastDatePicker
 import com.darakeon.dfm.utils.api.ActivityMock
 import com.darakeon.dfm.welcome.WelcomeActivity
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.moves.account_in
-import kotlinx.android.synthetic.main.moves.account_out
-import kotlinx.android.synthetic.main.moves.category
-import kotlinx.android.synthetic.main.moves.category_picker
-import kotlinx.android.synthetic.main.moves.date
-import kotlinx.android.synthetic.main.moves.date_picker
-import kotlinx.android.synthetic.main.moves.description
-import kotlinx.android.synthetic.main.moves.detail_amount
-import kotlinx.android.synthetic.main.moves.detail_description
-import kotlinx.android.synthetic.main.moves.detail_value
-import kotlinx.android.synthetic.main.moves.detailed_value
-import kotlinx.android.synthetic.main.moves.details
-import kotlinx.android.synthetic.main.moves.form
-import kotlinx.android.synthetic.main.moves.nature_in
-import kotlinx.android.synthetic.main.moves.nature_out
-import kotlinx.android.synthetic.main.moves.nature_transfer
-import kotlinx.android.synthetic.main.moves.no_accounts
-import kotlinx.android.synthetic.main.moves.no_categories
-import kotlinx.android.synthetic.main.moves.remove_check
-import kotlinx.android.synthetic.main.moves.simple_value
-import kotlinx.android.synthetic.main.moves.value
-import kotlinx.android.synthetic.main.moves.warnings
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.MatcherAssert.assertThat
@@ -167,15 +146,19 @@ class MovesActivityTest: BaseTest() {
 		activity.onCreate(null, null)
 		activity.waitTasks(mocker.server)
 
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val move = activity.getPrivate<Move>("move")
 		assertNull(move.guid)
 		assertThat(move.date, `is`(Date()))
 		assertNull(move.inUrl)
 		assertThat(move.outUrl, `is`("out"))
 
-		assertTrue(activity.nature_out.isChecked)
-		assertFalse(activity.nature_in.isChecked)
-		assertFalse(activity.nature_transfer.isChecked)
+		assertTrue(binding.natureOut.isChecked)
+		assertFalse(binding.natureIn.isChecked)
+		assertFalse(binding.natureTransfer.isChecked)
 	}
 
 	@Test
@@ -242,10 +225,14 @@ class MovesActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
-		assertThat(activity.no_accounts.visibility, `is`(VISIBLE))
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
 
-		assertThat(activity.form.visibility, `is`(GONE))
-		assertThat(activity.warnings.visibility, `is`(VISIBLE))
+		assertThat(binding.noAccounts.visibility, `is`(VISIBLE))
+
+		assertThat(binding.form.visibility, `is`(GONE))
+		assertThat(binding.warnings.visibility, `is`(VISIBLE))
 	}
 
 	@Test
@@ -256,10 +243,14 @@ class MovesActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
-		assertThat(activity.no_categories.visibility, `is`(VISIBLE))
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
 
-		assertThat(activity.form.visibility, `is`(GONE))
-		assertThat(activity.warnings.visibility, `is`(VISIBLE))
+		assertThat(binding.noCategories.visibility, `is`(VISIBLE))
+
+		assertThat(binding.form.visibility, `is`(GONE))
+		assertThat(binding.warnings.visibility, `is`(VISIBLE))
 	}
 
 	@Test
@@ -269,7 +260,11 @@ class MovesActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
-		assertThat(activity.remove_check.visibility, `is`(VISIBLE))
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		assertThat(binding.removeCheck.visibility, `is`(VISIBLE))
 	}
 
 	@Test
@@ -279,11 +274,15 @@ class MovesActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
-		assertThat(activity.description.text.toString(), `is`("move"))
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		assertThat(binding.description.text.toString(), `is`("move"))
 
 		val move = activity.getPrivate<Move>("move")
 
-		activity.description.setText("another")
+		binding.description.setText("another")
 		assertThat(move.description, `is`("another"))
 	}
 
@@ -294,9 +293,13 @@ class MovesActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
-		assertThat(activity.date.text.toString(), `is`("2020-03-08"))
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
 
-		val pickerButton = shadowOf(activity.date_picker)
+		assertThat(binding.date.text.toString(), `is`("2020-03-08"))
+
+		val pickerButton = shadowOf(binding.datePicker)
 		assertNotNull(pickerButton.onClickListener)
 	}
 
@@ -307,8 +310,12 @@ class MovesActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val categoryButton = shadowOf(
-			activity.category_picker
+			binding.categoryPicker
 		)
 		assertNotNull(categoryButton.onClickListener)
 	}
@@ -322,8 +329,12 @@ class MovesActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
-		assertThat(activity.category.visibility, `is`(GONE))
-		assertThat(activity.category_picker.visibility, `is`(GONE))
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		assertThat(binding.category.visibility, `is`(GONE))
+		assertThat(binding.categoryPicker.visibility, `is`(GONE))
 	}
 
 	@Test
@@ -335,10 +346,14 @@ class MovesActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
-		assertThat(activity.category.visibility, `is`(GONE))
-		assertThat(activity.category_picker.visibility, `is`(VISIBLE))
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
 
-		val fieldFlags = activity.category_picker.paintFlags
+		assertThat(binding.category.visibility, `is`(GONE))
+		assertThat(binding.categoryPicker.visibility, `is`(VISIBLE))
+
+		val fieldFlags = binding.categoryPicker.paintFlags
 		val strikeLine = Paint.STRIKE_THRU_TEXT_FLAG
 		assertThat(fieldFlags.and(strikeLine), `is`(strikeLine))
 	}
@@ -350,7 +365,11 @@ class MovesActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
-		assertTrue(activity.nature_out.isChecked)
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		assertTrue(binding.natureOut.isChecked)
 
 		val move = activity.getPrivate<Move>("move")
 
@@ -367,7 +386,11 @@ class MovesActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
-		assertTrue(activity.nature_transfer.isChecked)
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		assertTrue(binding.natureTransfer.isChecked)
 
 		val move = activity.getPrivate<Move>("move")
 
@@ -376,8 +399,8 @@ class MovesActivityTest: BaseTest() {
 		assertNotNull(move.outUrl)
 		assertNotNull(move.inUrl)
 
-		assertThat(activity.account_out.text.toString(), not(`is`("account out")))
-		assertThat(activity.account_in.text.toString(), not(`is`("account in")))
+		assertThat(binding.accountOut.text.toString(), not(`is`("account out")))
+		assertThat(binding.accountIn.text.toString(), not(`is`("account in")))
 	}
 
 	@Test
@@ -387,7 +410,11 @@ class MovesActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
-		assertTrue(activity.nature_in.isChecked)
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		assertTrue(binding.natureIn.isChecked)
 
 		val move = activity.getPrivate<Move>("move")
 
@@ -404,8 +431,12 @@ class MovesActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
-		assertThat(activity.account_out.text.toString(), `is`("My Out"))
-		assertThat(activity.account_in.text.toString(), `is`("My In"))
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		assertThat(binding.accountOut.text.toString(), `is`("My Out"))
+		assertThat(binding.accountIn.text.toString(), `is`("My In"))
 	}
 
 	@Test
@@ -415,22 +446,26 @@ class MovesActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val move = activity.getPrivate<Move>("move")
 
 		assertTrue(move.isDetailed)
 
-		assertThat(activity.simple_value.visibility, `is`(GONE))
-		assertThat(activity.detailed_value.visibility, `is`(VISIBLE))
+		assertThat(binding.simpleValue.visibility, `is`(GONE))
+		assertThat(binding.detailedValue.visibility, `is`(VISIBLE))
 
-		assertThat(activity.details.childCount, `is`(2))
+		assertThat(binding.details.childCount, `is`(2))
 
-		val detail1 = activity.details.getChildAt(0) as DetailBox
+		val detail1 = binding.details.getChildAt(0) as DetailBox
 		val getText1 = { id: Int -> detail1.findViewById<TextView>(id).text.toString() }
 		assertThat(getText1(R.id.detail_description), `is`("detail 1"))
 		assertThat(getText1(R.id.detail_amount), `is`("1"))
 		assertThat(getText1(R.id.detail_value), `is`("27.00".getDecimal()))
 
-		val detail2 = activity.details.getChildAt(1) as DetailBox
+		val detail2 = binding.details.getChildAt(1) as DetailBox
 		val getText2 = { id: Int -> detail2.findViewById<TextView>(id).text.toString() }
 		assertThat(getText2(R.id.detail_description), `is`("detail 2"))
 		assertThat(getText2(R.id.detail_amount), `is`("2"))
@@ -444,19 +479,23 @@ class MovesActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val move = activity.getPrivate<Move>("move")
 
 		assertFalse(move.isDetailed)
 
-		assertThat(activity.simple_value.visibility, `is`(VISIBLE))
-		assertThat(activity.detailed_value.visibility, `is`(GONE))
+		assertThat(binding.simpleValue.visibility, `is`(VISIBLE))
+		assertThat(binding.detailedValue.visibility, `is`(GONE))
 
-		assertThat(activity.value.text.toString(), `is`("1.00".getDecimal()))
+		assertThat(binding.value.text.toString(), `is`("1.00".getDecimal()))
 
-		activity.value.setText("2")
+		binding.value.setText("2")
 		assertThat(move.value, `is`(2.0))
 
-		assertThat(activity.details.childCount, `is`(0))
+		assertThat(binding.details.childCount, `is`(0))
 	}
 
 	@Test
@@ -483,7 +522,11 @@ class MovesActivityTest: BaseTest() {
 		val saved = Bundle()
 		activity.onCreate(saved, null)
 
-		assertThat(activity.date.text.toString(), `is`(""))
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		assertThat(binding.date.text.toString(), `is`(""))
 
 		activity.showDatePicker()
 
@@ -492,7 +535,7 @@ class MovesActivityTest: BaseTest() {
 		dialog.getButton(Dialog.BUTTON_POSITIVE).performClick()
 		activity.waitTasks(mocker.server)
 
-		assertThat(activity.date.text.toString(), `is`("1986-03-27"))
+		assertThat(binding.date.text.toString(), `is`("1986-03-27"))
 	}
 
 	@Test
@@ -500,9 +543,13 @@ class MovesActivityTest: BaseTest() {
 		val saved = Bundle()
 		activity.onCreate(saved, null)
 
-		assertThat(activity.date.text.toString(), `is`(""))
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
 
-		activity.date.append("1986-03-27")
+		assertThat(binding.date.text.toString(), `is`(""))
+
+		binding.date.append("1986-03-27")
 
 		val move = activity.getPrivate<Move>("move")
 		assertThat(move.date, `is`(Date(1986, 3, 27)))
@@ -513,15 +560,19 @@ class MovesActivityTest: BaseTest() {
 		val saved = Bundle()
 		activity.onCreate(saved, null)
 
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val move = activity.getPrivate<Move>("move")
 
-		assertThat(activity.category.text.toString(), `is`(""))
+		assertThat(binding.category.text.toString(), `is`(""))
 		assertNull(move.categoryName)
 
 		activity.changeCategory()
 		shadowOf(getLatestAlertDialog()).clickOnItem(1)
 
-		assertThat(activity.category.text.toString(), `is`("My Category"))
+		assertThat(binding.category.text.toString(), `is`("My Category"))
 		assertThat(move.categoryName, `is`("category"))
 	}
 
@@ -530,16 +581,20 @@ class MovesActivityTest: BaseTest() {
 		val saved = Bundle()
 		activity.onCreate(saved, null)
 
-		val suggestions = activity.category.adapter
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		val suggestions = binding.category.adapter
 		assertNotNull(suggestions)
 		assertThat(suggestions.count, `is`(1))
 
 		val move = activity.getPrivate<Move>("move")
 
-		assertThat(activity.category.text.toString(), `is`(""))
+		assertThat(binding.category.text.toString(), `is`(""))
 		assertNull(move.categoryName)
 
-		activity.category.append("My Category")
+		binding.category.append("My Category")
 
 		assertThat(move.categoryName, `is`("category"))
 	}
@@ -553,7 +608,11 @@ class MovesActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
-		activity.category_picker.performClick()
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		binding.categoryPicker.performClick()
 
 		val alert = getLatestAlertDialog()
 		val shadow = shadowOf(alert)
@@ -568,20 +627,24 @@ class MovesActivityTest: BaseTest() {
 		val saved = Bundle()
 		activity.onCreate(saved, null)
 
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val move = activity.getPrivate<Move>("move")
 
-		assertThat(activity.account_out.text.toString(), `is`(""))
+		assertThat(binding.accountOut.text.toString(), `is`(""))
 		assert(move.outUrl.isNullOrEmpty())
 
 		activity.changeAccountOut()
 		shadowOf(getLatestAlertDialog()).clickOnItem(1)
 
-		assertThat(activity.account_out.text.toString(), `is`("My Out"))
+		assertThat(binding.accountOut.text.toString(), `is`("My Out"))
 		assertThat(move.outUrl, `is`("out"))
 
-		assertTrue(activity.nature_out.isChecked)
-		assertFalse(activity.nature_transfer.isChecked)
-		assertFalse(activity.nature_in.isChecked)
+		assertTrue(binding.natureOut.isChecked)
+		assertFalse(binding.natureTransfer.isChecked)
+		assertFalse(binding.natureIn.isChecked)
 	}
 
 	@Test
@@ -589,18 +652,22 @@ class MovesActivityTest: BaseTest() {
 		val saved = Bundle()
 		activity.onCreate(saved, null)
 
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val move = activity.getPrivate<Move>("move")
 
-		assertThat(activity.account_out.text.toString(), `is`(""))
+		assertThat(binding.accountOut.text.toString(), `is`(""))
 		assert(move.outUrl.isNullOrEmpty())
 
-		activity.account_out.append("My Out")
+		binding.accountOut.append("My Out")
 
 		assertThat(move.outUrl, `is`("out"))
 
-		assertTrue(activity.nature_out.isChecked)
-		assertFalse(activity.nature_transfer.isChecked)
-		assertFalse(activity.nature_in.isChecked)
+		assertTrue(binding.natureOut.isChecked)
+		assertFalse(binding.natureTransfer.isChecked)
+		assertFalse(binding.natureIn.isChecked)
 	}
 
 	@Test
@@ -608,20 +675,24 @@ class MovesActivityTest: BaseTest() {
 		val saved = Bundle()
 		activity.onCreate(saved, null)
 
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val move = activity.getPrivate<Move>("move")
 
-		assertThat(activity.account_in.text.toString(), `is`(""))
+		assertThat(binding.accountIn.text.toString(), `is`(""))
 		assert(move.inUrl.isNullOrEmpty())
 
 		activity.changeAccountIn()
 		shadowOf(getLatestAlertDialog()).clickOnItem(2)
 
-		assertThat(activity.account_in.text.toString(), `is`("My In"))
+		assertThat(binding.accountIn.text.toString(), `is`("My In"))
 		assertThat(move.inUrl, `is`("in"))
 
-		assertFalse(activity.nature_out.isChecked)
-		assertFalse(activity.nature_transfer.isChecked)
-		assertTrue(activity.nature_in.isChecked)
+		assertFalse(binding.natureOut.isChecked)
+		assertFalse(binding.natureTransfer.isChecked)
+		assertTrue(binding.natureIn.isChecked)
 	}
 
 	@Test
@@ -629,18 +700,22 @@ class MovesActivityTest: BaseTest() {
 		val saved = Bundle()
 		activity.onCreate(saved, null)
 
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val move = activity.getPrivate<Move>("move")
 
-		assertThat(activity.account_in.text.toString(), `is`(""))
+		assertThat(binding.accountIn.text.toString(), `is`(""))
 		assert(move.inUrl.isNullOrEmpty())
 
-		activity.account_in.append("My In")
+		binding.accountIn.append("My In")
 
 		assertThat(move.inUrl, `is`("in"))
 
-		assertFalse(activity.nature_out.isChecked)
-		assertFalse(activity.nature_transfer.isChecked)
-		assertTrue(activity.nature_in.isChecked)
+		assertFalse(binding.natureOut.isChecked)
+		assertFalse(binding.natureTransfer.isChecked)
+		assertTrue(binding.natureIn.isChecked)
 	}
 
 	@Test
@@ -648,9 +723,13 @@ class MovesActivityTest: BaseTest() {
 		val saved = Bundle()
 		activity.onCreate(saved, null)
 
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val move = activity.getPrivate<Move>("move")
 
-		assertThat(activity.account_in.text.toString(), `is`(""))
+		assertThat(binding.accountIn.text.toString(), `is`(""))
 		assert(move.inUrl.isNullOrEmpty())
 
 		activity.changeAccountIn()
@@ -659,15 +738,15 @@ class MovesActivityTest: BaseTest() {
 		activity.changeAccountOut()
 		shadowOf(getLatestAlertDialog()).clickOnItem(1)
 
-		assertThat(activity.account_in.text.toString(), `is`("My In"))
+		assertThat(binding.accountIn.text.toString(), `is`("My In"))
 		assertThat(move.inUrl, `is`("in"))
 
-		assertThat(activity.account_out.text.toString(), `is`("My Out"))
+		assertThat(binding.accountOut.text.toString(), `is`("My Out"))
 		assertThat(move.outUrl, `is`("out"))
 
-		assertFalse(activity.nature_out.isChecked)
-		assertTrue(activity.nature_transfer.isChecked)
-		assertFalse(activity.nature_in.isChecked)
+		assertFalse(binding.natureOut.isChecked)
+		assertTrue(binding.natureTransfer.isChecked)
+		assertFalse(binding.natureIn.isChecked)
 	}
 
 	@Test
@@ -675,20 +754,24 @@ class MovesActivityTest: BaseTest() {
 		val saved = Bundle()
 		activity.onCreate(saved, null)
 
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val move = activity.getPrivate<Move>("move")
 
-		assertThat(activity.account_in.text.toString(), `is`(""))
+		assertThat(binding.accountIn.text.toString(), `is`(""))
 		assert(move.inUrl.isNullOrEmpty())
 
-		activity.account_in.append("My In")
-		activity.account_out.append("My Out")
+		binding.accountIn.append("My In")
+		binding.accountOut.append("My Out")
 
 		assertThat(move.inUrl, `is`("in"))
 		assertThat(move.outUrl, `is`("out"))
 
-		assertFalse(activity.nature_out.isChecked)
-		assertTrue(activity.nature_transfer.isChecked)
-		assertFalse(activity.nature_in.isChecked)
+		assertFalse(binding.natureOut.isChecked)
+		assertTrue(binding.natureTransfer.isChecked)
+		assertFalse(binding.natureIn.isChecked)
 	}
 
 	@Test
@@ -696,19 +779,27 @@ class MovesActivityTest: BaseTest() {
 		val saved = Bundle()
 		activity.onCreate(saved, null)
 
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val move = activity.getPrivate<Move>("move")
 
 		activity.useDetailed(View(activity))
 
 		assertTrue(move.isDetailed)
 
-		assertThat(activity.detail_amount.text.toString(), `is`("1"))
+		assertThat(binding.detailAmount.text.toString(), `is`("1"))
 	}
 
 	@Test
 	fun useSimple() {
 		val saved = Bundle()
 		activity.onCreate(saved, null)
+
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
 
 		val move = activity.getPrivate<Move>("move")
 
@@ -722,25 +813,29 @@ class MovesActivityTest: BaseTest() {
 		val saved = Bundle()
 		activity.onCreate(saved, null)
 
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val move = activity.getPrivate<Move>("move")
 
-		activity.detail_description.setText("cat")
-		activity.detail_amount.setText("18")
-		activity.detail_value.setText("3.14".getDecimal())
+		binding.detailDescription.setText("cat")
+		binding.detailAmount.setText("18")
+		binding.detailValue.setText("3.14".getDecimal())
 
 		activity.addDetail(View(activity))
 
-		assertThat(activity.detail_description.text.toString(), `is`(""))
-		assertThat(activity.detail_amount.text.toString(), `is`("1"))
-		assertThat(activity.detail_value.text.toString(), `is`(""))
+		assertThat(binding.detailDescription.text.toString(), `is`(""))
+		assertThat(binding.detailAmount.text.toString(), `is`("1"))
+		assertThat(binding.detailValue.text.toString(), `is`(""))
 
 		assertThat(move.detailList.size, `is`(1))
 		assertThat(move.detailList[0].description, `is`("cat"))
 		assertThat(move.detailList[0].amount, `is`(18))
 		assertThat(move.detailList[0].value, `is`(3.14))
 
-		assertThat(activity.details.childCount, `is`(1))
-		val detail = activity.details.getChildAt(0) as DetailBox
+		assertThat(binding.details.childCount, `is`(1))
+		val detail = binding.details.getChildAt(0) as DetailBox
 		val getText = { id: Int -> detail.findViewById<TextView>(id).text.toString() }
 		assertThat(getText(R.id.detail_description), `is`("cat"))
 		assertThat(getText(R.id.detail_amount), `is`("18"))
@@ -752,11 +847,15 @@ class MovesActivityTest: BaseTest() {
 		val saved = Bundle()
 		activity.onCreate(saved, null)
 
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val move = activity.getPrivate<Move>("move")
 
-		activity.detail_description.setText("")
-		activity.detail_amount.setText("18")
-		activity.detail_value.setText("3.14".getDecimal())
+		binding.detailDescription.setText("")
+		binding.detailAmount.setText("18")
+		binding.detailValue.setText("3.14".getDecimal())
 
 		activity.addDetail(View(activity))
 
@@ -769,7 +868,7 @@ class MovesActivityTest: BaseTest() {
 		assertThat(shadow.message.toString(), `is`(message))
 
 		assertThat(move.detailList.size, `is`(0))
-		assertThat(activity.details.childCount, `is`(0))
+		assertThat(binding.details.childCount, `is`(0))
 	}
 
 	@Test
@@ -777,11 +876,15 @@ class MovesActivityTest: BaseTest() {
 		val saved = Bundle()
 		activity.onCreate(saved, null)
 
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val move = activity.getPrivate<Move>("move")
 
-		activity.detail_description.setText("cat")
-		activity.detail_amount.setText("")
-		activity.detail_value.setText("3.14".getDecimal())
+		binding.detailDescription.setText("cat")
+		binding.detailAmount.setText("")
+		binding.detailValue.setText("3.14".getDecimal())
 
 		activity.addDetail(View(activity))
 
@@ -794,7 +897,7 @@ class MovesActivityTest: BaseTest() {
 		assertThat(shadow.message.toString(), `is`(message))
 
 		assertThat(move.detailList.size, `is`(0))
-		assertThat(activity.details.childCount, `is`(0))
+		assertThat(binding.details.childCount, `is`(0))
 	}
 
 	@Test
@@ -802,11 +905,15 @@ class MovesActivityTest: BaseTest() {
 		val saved = Bundle()
 		activity.onCreate(saved, null)
 
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val move = activity.getPrivate<Move>("move")
 
-		activity.detail_description.setText("cat")
-		activity.detail_amount.setText("18")
-		activity.detail_value.setText("")
+		binding.detailDescription.setText("cat")
+		binding.detailAmount.setText("18")
+		binding.detailValue.setText("")
 
 		activity.addDetail(View(activity))
 
@@ -819,7 +926,7 @@ class MovesActivityTest: BaseTest() {
 		assertThat(shadow.message.toString(), `is`(message))
 
 		assertThat(move.detailList.size, `is`(0))
-		assertThat(activity.details.childCount, `is`(0))
+		assertThat(binding.details.childCount, `is`(0))
 	}
 
 	@Test

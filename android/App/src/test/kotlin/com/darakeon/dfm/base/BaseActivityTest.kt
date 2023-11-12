@@ -7,6 +7,11 @@ import android.view.Window
 import android.widget.Button
 import com.darakeon.dfm.R
 import com.darakeon.dfm.accounts.AccountsActivity
+import com.darakeon.dfm.databinding.AccountsBinding
+import com.darakeon.dfm.databinding.BottomMenuBinding
+import com.darakeon.dfm.databinding.MovesBinding
+import com.darakeon.dfm.databinding.SettingsBinding
+import com.darakeon.dfm.databinding.WelcomeBinding
 import com.darakeon.dfm.lib.api.Api
 import com.darakeon.dfm.lib.auth.Authentication
 import com.darakeon.dfm.lib.auth.setValue
@@ -20,11 +25,6 @@ import com.darakeon.dfm.testutils.robolectric.waitTasks
 import com.darakeon.dfm.utils.activity.TestActivity
 import com.darakeon.dfm.utils.activity.TestBaseActivity
 import com.darakeon.dfm.utils.api.ActivityMock
-import kotlinx.android.synthetic.main.bottom_menu.action_logout
-import kotlinx.android.synthetic.main.bottom_menu.bottom_menu
-import kotlinx.android.synthetic.main.bottom_menu.view.action_home
-import kotlinx.android.synthetic.main.bottom_menu.view.action_move
-import kotlinx.android.synthetic.main.bottom_menu.view.action_settings
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.MatcherAssert.assertThat
@@ -182,18 +182,22 @@ class BaseActivityTest: BaseTest() {
 	@Test
 	fun onCreateSetMenuLongClicksLogout() {
 		val activity = mocker.get()
+
 		activity.isBottomMenuTest = true
 
 		activity.onCreate(null, null)
+
+		val shadow = shadowOf(activity)
+		val binding = BottomMenuBinding.bind(shadow.contentView)
 
 		activity.ticket = "logged in"
 		activity.simulateNetwork()
 		mocker.server.enqueue("empty")
 
-		val logout = shadowOf(activity.action_logout)
+		val logout = shadowOf(binding.actionLogout)
 		assertNotNull(logout.onLongClickListener)
 
-		activity.action_logout.performLongClick()
+		binding.actionLogout.performLongClick()
 		activity.waitTasks(mocker.server)
 
 		assertThat(activity.ticket, `is`(""))
@@ -205,14 +209,17 @@ class BaseActivityTest: BaseTest() {
 
 		activity.onCreate(null, null)
 
+		val shadow = shadowOf(activity)
+		val binding = WelcomeBinding.bind(shadow.contentView)
+
 		activity.ticket = "logged in"
 		activity.simulateNetwork()
 		mocker.server.enqueue("empty")
 
-		val logout = shadowOf(activity.action_logout)
+		val logout = shadowOf(binding.actionLogout)
 		assertNotNull(logout.onLongClickListener)
 
-		activity.action_logout.performLongClick()
+		binding.actionLogout.performLongClick()
 		activity.waitTasks(mocker.server)
 
 		assertThat(activity.ticket, `is`(""))
@@ -237,45 +244,57 @@ class BaseActivityTest: BaseTest() {
 
 		activity.onCreate(null, null)
 
-		val menu = activity.bottom_menu
+		val shadow = shadowOf(activity)
+		val binding = BottomMenuBinding.bind(shadow.contentView)
+
+		val menu = binding.bottomMenu
 		for (b in 0 until menu.childCount) {
 			val button = menu.getChildAt(b) as Button
 			assertNotNull(button.typeface)
 		}
 
-		assertTrue(menu.action_home.isEnabled)
-		assertTrue(menu.action_settings.isEnabled)
-		assertTrue(menu.action_move.isEnabled)
+		assertTrue(binding.actionHome.isEnabled)
+		assertTrue(binding.actionSettings.isEnabled)
+		assertTrue(binding.actionMove.isEnabled)
 	}
 
 	@Test
 	fun onCreateCustomizeBottomMenuAccountsActivity() {
 		val activity = ActivityMock(AccountsActivity::class).create()
 
-		val menu = activity.bottom_menu
-		assertFalse(menu.action_home.isEnabled)
-		assertTrue(menu.action_settings.isEnabled)
-		assertTrue(menu.action_move.isEnabled)
+		val shadow = shadowOf(activity)
+		val binding = AccountsBinding.bind(shadow.contentView)
+
+		val menu = binding.bottomMenu
+		assertFalse(menu.actionHome.isEnabled)
+		assertTrue(menu.actionSettings.isEnabled)
+		assertTrue(menu.actionMove.isEnabled)
 	}
 
 	@Test
 	fun onCreateCustomizeBottomMenuSettingsActivity() {
 		val activity = ActivityMock(SettingsActivity::class).create()
 
-		val menu = activity.bottom_menu
-		assertTrue(menu.action_home.isEnabled)
-		assertFalse(menu.action_settings.isEnabled)
-		assertTrue(menu.action_move.isEnabled)
+		val shadow = shadowOf(activity)
+		val binding = SettingsBinding.bind(shadow.contentView)
+
+		val menu = binding.bottomMenu
+		assertTrue(menu.actionHome.isEnabled)
+		assertFalse(menu.actionSettings.isEnabled)
+		assertTrue(menu.actionMove.isEnabled)
 	}
 
 	@Test
 	fun onCreateCustomizeBottomMenuMovesActivity() {
 		val activity = ActivityMock(MovesActivity::class).create()
 
-		val menu = activity.bottom_menu
-		assertTrue(menu.action_home.isEnabled)
-		assertTrue(menu.action_settings.isEnabled)
-		assertFalse(menu.action_move.isEnabled)
+		val shadow = shadowOf(activity)
+		val binding = MovesBinding.bind(shadow.contentView)
+
+		val menu = binding.bottomMenu
+		assertTrue(menu.actionHome.isEnabled)
+		assertTrue(menu.actionSettings.isEnabled)
+		assertFalse(menu.actionMove.isEnabled)
 	}
 
 	@Test
