@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
 import com.darakeon.dfm.R
+import com.darakeon.dfm.databinding.SummaryBinding
 import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.lib.api.entities.summary.Summary
@@ -18,11 +19,6 @@ import com.darakeon.dfm.testutils.robolectric.waitTasks
 import com.darakeon.dfm.utils.activity.getLastDatePicker
 import com.darakeon.dfm.utils.api.ActivityMock
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.summary.empty_list
-import kotlinx.android.synthetic.main.summary.main_table
-import kotlinx.android.synthetic.main.summary.report_change
-import kotlinx.android.synthetic.main.summary.total_title
-import kotlinx.android.synthetic.main.summary.total_value
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
@@ -32,6 +28,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.Shadows.shadowOf
 import java.util.Calendar
 
 @RunWith(RobolectricTestRunner::class)
@@ -138,6 +135,10 @@ class SummaryActivityTest: BaseTest() {
 		activity.onCreate(null, null)
 		activity.waitTasks(mocker.server)
 
+		val binding = SummaryBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val summary = activity.getPrivate<Summary>("summary")
 		assertThat(summary.title, `is`("account"))
 		assertThat(summary.total, `is`(2.0))
@@ -149,7 +150,7 @@ class SummaryActivityTest: BaseTest() {
 		assertThat(summary.monthList[1].number, `is`(12))
 		assertThat(summary.monthList[1].total, `is`(1.0))
 
-		assertThat(activity.main_table.adapter.count, `is`(2))
+		assertThat(binding.mainTable.adapter.count, `is`(2))
 	}
 
 	@Test
@@ -160,6 +161,10 @@ class SummaryActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
+		val binding = SummaryBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val year = activity.getPrivate<Int>("year")
 		assertThat(year, `is`(1986))
 
@@ -174,7 +179,7 @@ class SummaryActivityTest: BaseTest() {
 		assertThat(summary.monthList[1].number, `is`(12))
 		assertThat(summary.monthList[1].total, `is`(1.0))
 
-		assertThat(activity.main_table.adapter.count, `is`(2))
+		assertThat(binding.mainTable.adapter.count, `is`(2))
 	}
 
 	@Test
@@ -184,11 +189,15 @@ class SummaryActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
+		val binding = SummaryBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val year = activity.getPrivate<Int>("year")
 		assertThat(year, `is`(1986))
 
 		assertThat(
-			activity.report_change.text.toString(),
+			binding.reportChange.text.toString(),
 			`is`("1986")
 		)
 
@@ -206,10 +215,14 @@ class SummaryActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
-		assertThat(activity.total_title.text.toString(), `is`("account"))
-		assertThat(activity.total_value.text.toString(), `is`("+2.00".getDecimal()))
+		val binding = SummaryBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		assertThat(binding.totalTitle.text.toString(), `is`("account"))
+		assertThat(binding.totalValue.text.toString(), `is`("+2.00".getDecimal()))
 		val color = activity.getColor(android.R.color.holo_blue_dark)
-		assertThat(activity.total_value.currentTextColor, `is`(color))
+		assertThat(binding.totalValue.currentTextColor, `is`(color))
 	}
 
 	@Test
@@ -220,9 +233,13 @@ class SummaryActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
-		assertThat(activity.empty_list.visibility, `is`(View.VISIBLE))
-		assertThat(activity.main_table.visibility, `is`(View.GONE))
-		assertNull(activity.main_table.adapter)
+		val binding = SummaryBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		assertThat(binding.emptyList.visibility, `is`(View.VISIBLE))
+		assertThat(binding.mainTable.visibility, `is`(View.GONE))
+		assertNull(binding.mainTable.adapter)
 	}
 
 	@Test
@@ -233,9 +250,13 @@ class SummaryActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
-		assertThat(activity.empty_list.visibility, `is`(View.GONE))
-		assertThat(activity.main_table.visibility, `is`(View.VISIBLE))
-		assertThat(activity.main_table.adapter.count, `is`(2))
+		val binding = SummaryBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		assertThat(binding.emptyList.visibility, `is`(View.GONE))
+		assertThat(binding.mainTable.visibility, `is`(View.VISIBLE))
+		assertThat(binding.mainTable.adapter.count, `is`(2))
 	}
 
 	@Test
@@ -247,7 +268,11 @@ class SummaryActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
-		assertNull(activity.main_table.adapter)
+		val binding = SummaryBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		assertNull(binding.mainTable.adapter)
 
 		activity.changeDate(View(activity))
 

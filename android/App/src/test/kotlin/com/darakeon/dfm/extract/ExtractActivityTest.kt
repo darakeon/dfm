@@ -7,6 +7,7 @@ import android.os.PersistableBundle
 import android.view.View
 import android.widget.Button
 import com.darakeon.dfm.R
+import com.darakeon.dfm.databinding.ExtractBinding
 import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.lib.api.entities.Date
@@ -25,11 +26,6 @@ import com.darakeon.dfm.testutils.robolectric.waitTasks
 import com.darakeon.dfm.utils.activity.getLastDatePicker
 import com.darakeon.dfm.utils.api.ActivityMock
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.extract.empty_list
-import kotlinx.android.synthetic.main.extract.main_table
-import kotlinx.android.synthetic.main.extract.report_change
-import kotlinx.android.synthetic.main.extract.total_title
-import kotlinx.android.synthetic.main.extract.total_value
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
@@ -169,6 +165,10 @@ class ExtractActivityTest: BaseTest() {
 		activity.onCreate(null, null)
 		activity.waitTasks(mocker.server)
 
+		val binding = ExtractBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val extract = activity.getPrivate<Extract>("extract")
 		assertThat(extract.title, `is`("account"))
 		assertThat(extract.total, `is`(27.0))
@@ -179,7 +179,7 @@ class ExtractActivityTest: BaseTest() {
 		assertThat(extract.moveList[0].checked, `is`(true))
 		assertThat(extract.moveList[0].guid, `is`(guid))
 
-		assertThat(activity.main_table.adapter.count, `is`(1))
+		assertThat(binding.mainTable.adapter.count, `is`(1))
 	}
 
 	@Test
@@ -191,6 +191,10 @@ class ExtractActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
+		val binding = ExtractBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val year = activity.getPrivate<Int>("year")
 		assertThat(year, `is`(1986))
 
@@ -207,8 +211,8 @@ class ExtractActivityTest: BaseTest() {
 		assertThat(extract.moveList[0].checked, `is`(true))
 		assertThat(extract.moveList[0].guid, `is`(guid))
 
-		assertThat(activity.report_change.text.toString(), `is`("$aMonthName/1986"))
-		assertThat(activity.main_table.adapter.count, `is`(1))
+		assertThat(binding.reportChange.text.toString(), `is`("$aMonthName/1986"))
+		assertThat(binding.mainTable.adapter.count, `is`(1))
 	}
 
 	@Test
@@ -219,6 +223,10 @@ class ExtractActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
+		val binding = ExtractBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val year = activity.getPrivate<Int>("year")
 		assertThat(year, `is`(1986))
 
@@ -226,7 +234,7 @@ class ExtractActivityTest: BaseTest() {
 		assertThat(month, `is`(aMonthJava))
 
 		assertThat(
-			activity.report_change.text.toString(),
+			binding.reportChange.text.toString(),
 			`is`("$aMonthName/1986")
 		)
 
@@ -250,10 +258,14 @@ class ExtractActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
-		assertThat(activity.total_title.text.toString(), `is`("account"))
-		assertThat(activity.total_value.text.toString(), `is`("+27.00".getDecimal()))
+		val binding = ExtractBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		assertThat(binding.totalTitle.text.toString(), `is`("account"))
+		assertThat(binding.totalValue.text.toString(), `is`("+27.00".getDecimal()))
 		val color = activity.getColor(android.R.color.holo_blue_dark)
-		assertThat(activity.total_value.currentTextColor, `is`(color))
+		assertThat(binding.totalValue.currentTextColor, `is`(color))
 	}
 
 	@Test
@@ -265,9 +277,13 @@ class ExtractActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
-		assertThat(activity.empty_list.visibility, `is`(View.VISIBLE))
-		assertThat(activity.main_table.visibility, `is`(View.GONE))
-		assertNull(activity.main_table.adapter)
+		val binding = ExtractBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		assertThat(binding.emptyList.visibility, `is`(View.VISIBLE))
+		assertThat(binding.mainTable.visibility, `is`(View.GONE))
+		assertNull(binding.mainTable.adapter)
 	}
 
 	@Test
@@ -278,9 +294,13 @@ class ExtractActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
-		assertThat(activity.empty_list.visibility, `is`(View.GONE))
-		assertThat(activity.main_table.visibility, `is`(View.VISIBLE))
-		assertThat(activity.main_table.adapter.count, `is`(1))
+		val binding = ExtractBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		assertThat(binding.emptyList.visibility, `is`(View.GONE))
+		assertThat(binding.mainTable.visibility, `is`(View.VISIBLE))
+		assertThat(binding.mainTable.adapter.count, `is`(1))
 	}
 
 	@Test
@@ -291,7 +311,11 @@ class ExtractActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
-		assertNull(activity.main_table.adapter)
+		val binding = ExtractBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		assertNull(binding.mainTable.adapter)
 
 		activity.changeDate(View(activity))
 
@@ -459,8 +483,12 @@ class ExtractActivityTest: BaseTest() {
 		activity.setEnvironment(Environment(Theme.DarkMagic))
 		activity.onCreate(saved, null)
 
-		shadowOf(activity.main_table).populateItems()
-		val line = activity.main_table
+		val binding = ExtractBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		shadowOf(binding.mainTable).populateItems()
+		val line = binding.mainTable
 			.getChildAt(0) as MoveLine
 		line.performLongClick()
 

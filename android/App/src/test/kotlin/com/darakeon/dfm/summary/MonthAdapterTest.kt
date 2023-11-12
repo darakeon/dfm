@@ -1,10 +1,10 @@
 package com.darakeon.dfm.summary
 
 import com.darakeon.dfm.R
+import com.darakeon.dfm.databinding.MonthLineBinding
 import com.darakeon.dfm.lib.api.entities.summary.Month
 import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.utils.api.ActivityMock
-import kotlinx.android.synthetic.main.month_line.view.name
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
@@ -24,6 +24,8 @@ class MonthAdapterTest: BaseTest() {
 
 		adapter.populateView(line, 0)
 
-		assertThat(line.name.text.toString(), `is`("september"))
+		val binding = MonthLineBinding.bind(line)
+
+		assertThat(binding.name.text.toString(), `is`("september"))
 	}
 }
