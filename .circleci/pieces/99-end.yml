@@ -12,6 +12,7 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^dependabot/npm_and_yarn/site/Tests/Browser.+$/
           requires:
             - test_ci
       - push_docker_android:
