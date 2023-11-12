@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
 import com.darakeon.dfm.R
+import com.darakeon.dfm.databinding.AccountsBinding
 import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.lib.api.entities.accounts.Account
@@ -14,8 +15,6 @@ import com.darakeon.dfm.testutils.robolectric.simulateNetwork
 import com.darakeon.dfm.testutils.robolectric.waitTasks
 import com.darakeon.dfm.utils.api.ActivityMock
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.accounts.empty_list
-import kotlinx.android.synthetic.main.accounts.main_table
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertNotNull
@@ -24,6 +23,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.Shadows.shadowOf
 
 @RunWith(RobolectricTestRunner::class)
 class AccountsActivityTest: BaseTest() {
@@ -90,9 +90,13 @@ class AccountsActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
-		assertThat(activity.empty_list.visibility, `is`(View.VISIBLE))
-		assertThat(activity.main_table.visibility, `is`(View.GONE))
-		assertNull(activity.main_table.adapter)
+		val binding = AccountsBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		assertThat(binding.emptyList.visibility, `is`(View.VISIBLE))
+		assertThat(binding.mainTable.visibility, `is`(View.GONE))
+		assertNull(binding.mainTable.adapter)
 	}
 
 	@Test
@@ -102,9 +106,13 @@ class AccountsActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
-		assertThat(activity.empty_list.visibility, `is`(View.GONE))
-		assertThat(activity.main_table.visibility, `is`(View.VISIBLE))
-		assertThat(activity.main_table.adapter.count, `is`(2))
+		val binding = AccountsBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		assertThat(binding.emptyList.visibility, `is`(View.GONE))
+		assertThat(binding.mainTable.visibility, `is`(View.VISIBLE))
+		assertThat(binding.mainTable.adapter.count, `is`(2))
 	}
 
 	@Test

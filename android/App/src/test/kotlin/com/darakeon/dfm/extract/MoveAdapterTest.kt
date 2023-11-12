@@ -1,15 +1,11 @@
 package com.darakeon.dfm.extract
 
 import com.darakeon.dfm.R
+import com.darakeon.dfm.databinding.MoveLineBinding
 import com.darakeon.dfm.lib.api.entities.extract.Move
 import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.api.guid
 import com.darakeon.dfm.utils.api.ActivityMock
-import kotlinx.android.synthetic.main.move_details.view.name
-import kotlinx.android.synthetic.main.move_line.view.action_check
-import kotlinx.android.synthetic.main.move_line.view.action_delete
-import kotlinx.android.synthetic.main.move_line.view.action_edit
-import kotlinx.android.synthetic.main.move_line.view.action_uncheck
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertTrue
@@ -43,18 +39,20 @@ class MoveAdapterTest: BaseTest() {
 
 		adapter.populateView(line, 0)
 
-		assertThat(line.name.text.toString(), `is`("name"))
+		val binding = MoveLineBinding.bind(line)
 
-		line.action_edit.performClick()
+		assertThat(binding.details.name.text.toString(), `is`("name"))
+
+		binding.actionEdit.performClick()
 		assertTrue(edit)
 
-		line.action_delete.performClick()
+		binding.actionDelete.performClick()
 		assertTrue(delete)
 
-		line.action_check.performClick()
+		binding.actionCheck.performClick()
 		assertTrue(check)
 
-		line.action_uncheck.performClick()
+		binding.actionUncheck.performClick()
 		assertTrue(uncheck)
 	}
 }

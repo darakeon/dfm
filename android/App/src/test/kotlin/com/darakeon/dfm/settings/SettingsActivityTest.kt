@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
 import com.darakeon.dfm.R
+import com.darakeon.dfm.databinding.SettingsBinding
 import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.lib.api.entities.settings.Settings
@@ -18,10 +19,6 @@ import com.darakeon.dfm.testutils.robolectric.waitTasks
 import com.darakeon.dfm.utils.api.ActivityMock
 import com.darakeon.dfm.welcome.WelcomeActivity
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.settings.move_check
-import kotlinx.android.synthetic.main.settings.site
-import kotlinx.android.synthetic.main.settings.use_categories
-import kotlinx.android.synthetic.main.settings.version
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
@@ -71,11 +68,15 @@ class SettingsActivityTest: BaseTest() {
 		activity.onCreate(null, null)
 		activity.waitTasks(mocker.server)
 
+		val binding = SettingsBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val settings = activity.getPrivate<Settings>("settings")
 		assertThat(settings, `is`(Settings(true, true)))
 
-		assertTrue(activity.use_categories.isChecked)
-		assertTrue(activity.move_check.isChecked)
+		assertTrue(binding.useCategories.isChecked)
+		assertTrue(binding.moveCheck.isChecked)
 	}
 
 	@Test
@@ -85,11 +86,15 @@ class SettingsActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
+		val binding = SettingsBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val settings = activity.getPrivate<Settings>("settings")
 		assertThat(settings, `is`(Settings(true, true)))
 
-		assertTrue(activity.use_categories.isChecked)
-		assertTrue(activity.move_check.isChecked)
+		assertTrue(binding.useCategories.isChecked)
+		assertTrue(binding.moveCheck.isChecked)
 	}
 
 	@Test
@@ -99,18 +104,22 @@ class SettingsActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
+		val binding = SettingsBinding.bind(
+			shadowOf(activity).contentView
+		)
+
 		val settings = activity.getPrivate<Settings>("settings")
 
 		assertFalse(settings.useCategories)
-		activity.use_categories.performClick()
+		binding.useCategories.performClick()
 		assertTrue(settings.useCategories)
-		activity.use_categories.performClick()
+		binding.useCategories.performClick()
 		assertFalse(settings.useCategories)
 
 		assertFalse(settings.moveCheck)
-		activity.move_check.performClick()
+		binding.moveCheck.performClick()
 		assertTrue(settings.moveCheck)
-		activity.move_check.performClick()
+		binding.moveCheck.performClick()
 		assertFalse(settings.moveCheck)
 	}
 
@@ -121,11 +130,15 @@ class SettingsActivityTest: BaseTest() {
 
 		activity.onCreate(saved, null)
 
-		val siteValue = activity.site.text.toString()
+		val binding = SettingsBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		val siteValue = binding.site.text.toString()
 		assertNotNull(siteValue)
 		assertTrue(siteValue.startsWith("http"))
 
-		val versionValue = activity.version.text.toString()
+		val versionValue = binding.version.text.toString()
 		val versionRegex = Regex("\\d{1,2}\\.\\d{1,2}\\.\\d{1,2}\\.\\d{1,2}")
 		assertTrue(versionRegex.matches(versionValue))
 	}
