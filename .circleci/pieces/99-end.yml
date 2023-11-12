@@ -21,6 +21,8 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/android.+$/
+                - /^dependabot/gradle/android/.+$/
           requires:
             - test_ci
       - build_core:
