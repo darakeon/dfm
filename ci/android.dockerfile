@@ -21,6 +21,9 @@ RUN apt-get install -y android-sdk \
 
 RUN gradle -v # to avoid excessive info at gradle version check
 
+COPY echyellow /usr/bin
+COPY gradle-with-metadata /usr/bin
+
 RUN echo "echo" >> ~/.bashrc
 RUN echo "printf '\e[38;5;46m'" >> ~/.bashrc
 RUN echo "echo --------------------------------------------------------------------------------" >> ~/.bashrc
