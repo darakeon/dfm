@@ -11,10 +11,13 @@
       - run:
           name: tests app debug
           path: android
-          command: gradle :App:testDebugUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
+          command: gradle-with-metadata :App:testDebugUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
       - store_artifacts:
           path: android/App/log
           destination: log/app
+      - store_artifacts:
+          path: android/gradle/verification-metadata.xml
+          destination: verification-metadata.xml
       - store_test_results:
           path: android/App/build/test-results
 
