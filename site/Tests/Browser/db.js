@@ -1,5 +1,5 @@
 const sqlite = require('sqlite3')
-const { v4: uuid } = require('uuid')
+const { generateUUID } = require('./uuid')
 const { bytesToGuid } = require('./guid')
 const { hash } = require('./crypt')
 
@@ -181,7 +181,7 @@ async function cleanupTickets() {
 async function createToken(email, action) {
 	const users = await getUser(email)
 
-	const guid = uuid().replace(/\-/g, '').toUpperCase()
+	const guid = generateUUID().replace(/\-/g, '').toUpperCase()
 
 	await execute(
 		`insert into security
