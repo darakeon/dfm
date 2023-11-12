@@ -1,10 +1,10 @@
 package com.darakeon.dfm.accounts
 
 import com.darakeon.dfm.R
+import com.darakeon.dfm.databinding.AccountsLineBinding
 import com.darakeon.dfm.lib.api.entities.accounts.Account
 import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.utils.api.ActivityMock
-import kotlinx.android.synthetic.main.accounts_line.view.name
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
@@ -24,6 +24,8 @@ class AccountAdapterTest: BaseTest() {
 
 		adapter.populateView(line, 0)
 
-		assertThat(line.name.text.toString(), `is`("name"))
+		val binding = AccountsLineBinding.bind(line)
+
+		assertThat(binding.name.text.toString(), `is`("name"))
 	}
 }
