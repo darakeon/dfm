@@ -1,6 +1,7 @@
   build_android:
     docker:
       - image: darakeon/android
+    resource_class: large
     steps:
       - checkout
       - run:
