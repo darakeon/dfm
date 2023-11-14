@@ -7,11 +7,19 @@ echyellow "The goal is to the CI to give the metadata if a step fail" \
     "  so one does not need to run it locally" \
     "  to complete the metadata file"
 
-gradle $1 \
+echyellow "tasks: " \
+    "  $*"
+
+gradle $* \
     && echyellow "Everything fine, just keep going" \
-    || ERROR=$? \
-        && echyellow "Something ended wrong, let's generate metadata" \
-        && gradle --write-verification-metadata sha256 $1 \
-        && echyellow "Done. If you are using this in CI," "  don't forget to make CI give you the file in" "  $PWD/gradle/verification-metadata.xml" \
-        && echyellow "Now finishing with the original error" \
-        && exit $ERROR
+    || ERROR=$?
+
+if [ $ERROR != 0 ]; then
+    echyellow "Something ended wrong, let's generate metadata"
+    gradle --write-verification-metadata sha256 $*
+    echyellow "Done. If you are using this in CI," \
+        "  don't forget to make CI give you the file in" \
+        "  $PWD/gradle/verification-metadata.xml"
+    echyellow "Now finishing with the original error"
+    exit $ERROR
+fi
