@@ -546,6 +546,7 @@ jobs:
   test_android_lib_debug:
     docker:
       - image: darakeon/android
+    resource_class: large
     steps:
       - checkout
       - attach_workspace:
@@ -569,6 +570,7 @@ jobs:
   test_android_lib_release:
     docker:
       - image: darakeon/android
+    resource_class: large
     steps:
       - checkout
       - attach_workspace:
@@ -592,6 +594,7 @@ jobs:
   test_android_app_debug:
     docker:
       - image: darakeon/android
+    resource_class: large
     steps:
       - checkout
       - attach_workspace:
@@ -615,6 +618,7 @@ jobs:
   test_android_app_release:
     docker:
       - image: darakeon/android
+    resource_class: large
     steps:
       - checkout
       - attach_workspace:
