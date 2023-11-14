@@ -14,7 +14,7 @@ gradle $* \
     && echyellow "Everything fine, just keep going" \
     || ERROR=$?
 
-if [ $ERROR != 0 ]; then
+if [ "$ERROR" != "" ]; then
     echyellow "Something ended wrong, let's generate metadata"
     gradle --write-verification-metadata sha256 $*
     echyellow "Done. If you are using this in CI," \
