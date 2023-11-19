@@ -10,6 +10,7 @@ import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
 import com.darakeon.dfm.lib.api.entities.status.ErrorList
 import com.darakeon.dfm.lib.api.entities.summary.Summary
+import com.darakeon.dfm.lib.api.entities.wipe.Wipe
 import com.darakeon.dfm.lib.utils.ActivityMock
 import com.darakeon.dfm.lib.utils.ApiActivity
 import com.darakeon.dfm.testutils.BaseTest
@@ -246,6 +247,19 @@ class ApiTest: BaseTest() {
 
 		var called = false
 		api.validateTFA("") {
+			called = true
+		}
+		activity.waitTasks()
+
+		assertTrue(called)
+	}
+
+	@Test
+	fun wipe() {
+		server.enqueue("empty")
+
+		var called = false
+		api.wipe(Wipe("")) {
 			called = true
 		}
 		activity.waitTasks()

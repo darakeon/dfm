@@ -94,4 +94,6 @@
     <string name="sign_up">Cadastrar-se</string>
 	<string name="go_to_sign_up">Para se cadastrar você precisa ir até o site. Clique \"OK\" e abriremos a página para você.</string>
     <string name="update_cache">atualizar contas e categorias</string>
+    <string name="wipe_title">Remover Meus Dados</string>
+	<string name="wipe_explanation">"Aqui você pode pedir a remoção de seus dados do sistema.\n\nApós fazer isso, não é mais possível se logar no sistema.\n\nA remoção permanente ocorrerá dentro de 24h.\n\nNão haverá forma de recuperar os dados após a remoção.\n\nCaso deseje de fato prosseguir, digite sua senha abaixo e aperte o botão."</string>
 </resources>

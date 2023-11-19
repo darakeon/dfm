@@ -1,0 +1,70 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	tools:context=".settings.SettingsActivity"
+	android:id="@+id/main"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:paddingBottom="@dimen/activity_vertical_margin"
+	android:paddingLeft="@dimen/activity_horizontal_margin"
+	android:paddingRight="@dimen/activity_horizontal_margin"
+	android:paddingTop="@dimen/activity_vertical_margin">
+
+	<TextView
+		android:id="@+id/explanation"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:textSize="20sp"
+		android:layout_margin="@dimen/activity_horizontal_margin"
+		android:text="@string/wipe_explanation"
+		/>
+
+	<EditText
+		android:id="@+id/password"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:hint="@string/password"
+		android:inputType="textPassword"
+		android:importantForAutofill="no"
+		android:imeOptions="actionDone"
+		android:layout_margin="@dimen/activity_horizontal_margin"
+		android:text="@string/test_pass"
+		/>
+
+	<GridLayout
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1"
+		android:orientation="horizontal"
+		android:columnCount="2"
+		>
+
+		<Button
+			android:text="@string/cancel_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_columnWeight="1"
+			android:layout_columnSpan="1"
+			android:layout_margin="@dimen/button_margin"
+			android:onClick="back"
+			tools:ignore="OnClick"
+			/>
+
+		<Button
+			android:text="@string/wipe_title"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_columnWeight="1"
+			android:layout_columnSpan="1"
+			android:layout_margin="@dimen/button_margin"
+			android:onClick="wipe"
+			/>
+
+	</GridLayout>
+
+	<include layout="@layout/bottom_menu"
+		android:id="@+id/bottom_menu" />
+
+</LinearLayout>
