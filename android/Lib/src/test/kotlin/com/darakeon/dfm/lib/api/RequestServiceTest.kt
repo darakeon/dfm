@@ -5,6 +5,7 @@ import com.darakeon.dfm.lib.api.entities.Theme
 import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
+import com.darakeon.dfm.lib.api.entities.wipe.Wipe
 import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.api.Server
 import com.darakeon.dfm.testutils.api.guid
@@ -316,6 +317,21 @@ class RequestServiceTest: BaseTest() {
 		server.enqueue("empty")
 
 		val response = service.validateTFA("123456").execute()
+		assertNotNull(response)
+		val body = response.body()!!
+
+		val environment = body.environment!!
+		assertThat(environment.language, `is`("pt-BR"))
+		assertThat(environment.theme, `is`(Theme.DarkMagic))
+
+		assertNotNull(body.data)
+	}
+
+	@Test
+	fun wipe() {
+		server.enqueue("empty")
+
+		val response = service.wipe(Wipe("")).execute()
 		assertNotNull(response)
 		val body = response.body()!!
 

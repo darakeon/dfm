@@ -14,6 +14,8 @@ import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.lib.api.MainInfo
 import com.darakeon.dfm.lib.api.entities.settings.Settings
+import com.darakeon.dfm.lib.extensions.redirect
+import com.darakeon.dfm.wipe.WipeActivity
 
 class SettingsActivity : BaseActivity<SettingsBinding>() {
 	override fun inflateBinding(): SettingsBinding {
@@ -78,6 +80,10 @@ class SettingsActivity : BaseActivity<SettingsBinding>() {
 		callApi {
 			it.saveSettings(settings, this::back)
 		}
+	}
+
+	fun goToWipe(@Suppress(ON_CLICK) view: View) {
+		redirect<WipeActivity>()
 	}
 
 	private fun back() {

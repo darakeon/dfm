@@ -182,6 +182,8 @@
 
 		<activity android:name=".tfa.TFAActivity" />
 
+		<activity android:name=".wipe.WipeActivity" />
+
 		<meta-data
 			android:name="asset_statements"
 			android:resource="@string/asset_statements"
