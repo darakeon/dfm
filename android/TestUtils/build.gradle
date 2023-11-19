@@ -41,7 +41,7 @@ android {
 		abortOnError true
 	}
 
-    namespace 'com.darakeon.dfm.testutils'
+	namespace 'com.darakeon.dfm.testutils'
 
 }
 
