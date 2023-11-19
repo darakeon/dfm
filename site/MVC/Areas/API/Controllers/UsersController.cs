@@ -52,5 +52,12 @@ namespace DFM.MVC.Areas.Api.Controllers
 			var model = new UserTFAModel(code);
 			return json(model.Validate);
 		}
+
+		[HttpPost, ApiAuth]
+		public IActionResult Wipe()
+		{
+			var model = getFromBody<UserWipeModel>();
+			return json(model.AskWipe);
+		}
 	}
 }
