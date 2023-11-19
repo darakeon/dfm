@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="welcome_columns">2</integer>
+	<integer name="welcome_columns">2</integer>
 	<integer name="welcome_column_move">2</integer>
-    <integer name="service_seconds_interval">300</integer>
+	<integer name="service_seconds_interval">300</integer>
 </resources>

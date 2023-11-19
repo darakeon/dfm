@@ -4,12 +4,12 @@ include ':ErrorLogs'
 include ':App'
 
 buildCache {
-    local {
-        enabled = true
-        directory = new File(rootDir, 'build-cache')
-        removeUnusedEntriesAfterDays = 1
-    }
-    remote(HttpBuildCache) {
-        enabled = false
-    }
+	local {
+		enabled = true
+		directory = new File(rootDir, 'build-cache')
+		removeUnusedEntriesAfterDays = 1
+	}
+	remote(HttpBuildCache) {
+		enabled = false
+	}
 }
