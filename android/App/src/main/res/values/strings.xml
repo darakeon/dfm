@@ -93,7 +93,7 @@
 	<string name="fail_at_offline_insert">try to insert the move again</string>
 	<string name="sign_up">Sign Up</string>
 	<string name="go_to_sign_up">To sign up an account you need to go to the site. Click \"OK\" and we will open the page for you.</string>
-    <string name="update_cache">update accounts and categories</string>
-    <string name="wipe_title">Remove My Data</string>
+	<string name="update_cache">update accounts and categories</string>
+	<string name="wipe_title">Remove My Data</string>
 	<string name="wipe_explanation">"Here you can ask the removal of your data from the system.\n\nAfter that, this is not possible to login at the system anymore.\n\nThe permanent removal will take effect in a period of 24 hours.\n\nThere is no way to recover your data after the removal.\n\nIf you really want to proceed, type your password below and press the button."</string>
 </resources>
