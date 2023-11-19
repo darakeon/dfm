@@ -1,24 +1,14 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
     "target": {
       "namespace": "android_app",
       "package_name": "com.dontflymoney.view",
-      "sha256_cert_fingerprints":
-      ["4D:13:EB:7A:06:BB:5F:9E:58:EB:B5:54:BB:50:D0:66:54:A2:43:23:4F:2B:B2:1E:9B:13:9E:99:DE:31:E6:2F"]
+      "sha256_cert_fingerprints": [
+        "4D:13:EB:7A:06:BB:5F:9E:58:EB:B5:54:BB:50:D0:66:54:A2:43:23:4F:2B:B2:1E:9B:13:9E:99:DE:31:E6:2F"
+      ]
     }
-  },
-  {
-    "relation": ["delegate_permission/common.handle_all_urls"],
-    "target": {
-      "namespace": "android_app",
-      "package_name": "com.dontflymoney.view",
-      "sha256_cert_fingerprints":
-      ["BD:26:E0:18:E6:69:36:04:CD:1C:C3:96:43:E7:98:2E:CD:9B:DA:FB:CF:D4:EC:CE:27:6A:76:7F:BD:42:75:E4"]
-    }
-  },
-  {
-	"if-want-hack": "please, don't!",
-	"if-want-help": "https://github.com/darakeon/dfm"
   }
 ]

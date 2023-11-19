@@ -10,6 +10,7 @@ namespace DFM.MVC.Starters
 		public static void Configure(IApplicationBuilder app)
 		{
 			addStaticPath(app, "Assets");
+			addStaticPath(app, ".well-known");
 		}
 
 		private static void addStaticPath(IApplicationBuilder app, String folder)
