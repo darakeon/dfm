@@ -28,6 +28,7 @@
 				android:layout_height="wrap_content"
 				android:gravity="center"
 				android:layout_columnSpan="8"
+				android:textSize="28sp"
 				android:text="@string/settings_warning"
 				/>
 
@@ -88,6 +89,24 @@
 				android:layout_columnSpan="4"
 				android:layout_margin="@dimen/button_margin"
 				android:onClick="saveSettings"
+				/>
+
+			<View
+				android:layout_width="fill_parent"
+				android:layout_height="35dp"
+				android:layout_rowWeight="1"
+				android:layout_columnSpan="8"
+				/>
+
+			<Button
+				android:text="@string/wipe_title"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_columnSpan="8"
+				android:layout_marginVertical="@dimen/activity_vertical_margin"
+				android:layout_gravity="end|top"
+				android:onClick="goToWipe"
+				style="@style/Link"
 				/>
 
 		</GridLayout>

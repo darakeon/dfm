@@ -12,6 +12,7 @@ import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
 import com.darakeon.dfm.lib.api.entities.status.ErrorList
 import com.darakeon.dfm.lib.api.entities.summary.Summary
+import com.darakeon.dfm.lib.api.entities.wipe.Wipe
 import retrofit2.Call
 import java.util.UUID
 
@@ -156,6 +157,14 @@ class Api<C>(
 		service.validateTFA(text).call { onSuccess() }
 	}
 
+	fun listsForMoves(onSuccess: (Lists) -> Unit) {
+		service.listsForMoves().call { onSuccess(it) }
+	}
+
+	fun wipe(wipe: Wipe, onSuccess: () -> Unit) {
+		service.wipe(wipe).call { onSuccess() }
+	}
+
 	fun wakeUpSite(onSuccess: () -> Unit) {
 		service.wakeUpSite().call { onSuccess() }
 	}
@@ -170,9 +179,5 @@ class Api<C>(
 
 	fun archiveErrors(id: Int, onSuccess: () -> Unit) {
 		service.archiveErrors(id).call { onSuccess() }
-	}
-
-	fun listsForMoves(onSuccess: (Lists) -> Unit) {
-		service.listsForMoves().call { onSuccess(it) }
 	}
 }

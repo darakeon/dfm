@@ -11,6 +11,7 @@ import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
 import com.darakeon.dfm.lib.api.entities.status.ErrorList
 import com.darakeon.dfm.lib.api.entities.summary.Summary
+import com.darakeon.dfm.lib.api.entities.wipe.Wipe
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -98,6 +99,14 @@ interface RequestService {
 		@Field("code") code: String
 	): Call<Body<Any>>
 
+	@GET("api/moves/lists")
+	fun listsForMoves(): Call<Body<Lists>>
+
+	@POST("api/users/wipe")
+	fun wipe(
+		@RetrofitBody wipe: Wipe
+	): Call<Body<Any>>
+
 	@GET("api")
 	fun wakeUpSite(): Call<Body<Any>>
 
@@ -111,7 +120,4 @@ interface RequestService {
 	fun archiveErrors(
 		@Path("id") id: Int
 	): Call<Body<Any>>
-
-	@GET("api/moves/lists")
-	fun listsForMoves(): Call<Body<Lists>>
 }
