@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -134,7 +134,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Keon.Util" Version="4.0.0" />
+    <PackageReference Include="Keon.Util" Version="4.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
