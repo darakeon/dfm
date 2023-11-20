@@ -33,7 +33,7 @@ buildscript {
 }
 
 plugins {
-	id "org.owasp.dependencycheck" version "8.4.2"
+	id "org.owasp.dependencycheck" version "8.4.3"
 }
 
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
