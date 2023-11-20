@@ -192,4 +192,18 @@ class SettingsActivityTest: BaseTest() {
 
 		assertThat(intent.getCalledName(), `is`("WelcomeActivity"))
 	}
+
+	@Test
+	fun goToWipe() {
+		val activity = mocker.create()
+
+		val view = View(activity)
+		activity.goToWipe(view)
+
+		val called = shadowOf(activity)
+			.peekNextStartedActivity()
+			.getCalledName()
+
+		assertThat(called, `is`("WipeActivity"))
+	}
 }
