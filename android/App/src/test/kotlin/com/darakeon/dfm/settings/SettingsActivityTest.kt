@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
+import android.widget.Button
 import com.darakeon.dfm.R
 import com.darakeon.dfm.databinding.SettingsBinding
 import com.darakeon.dfm.extensions.getFromJson
@@ -197,8 +198,8 @@ class SettingsActivityTest: BaseTest() {
 	fun goToWipe() {
 		val activity = mocker.create()
 
-		val view = View(activity)
-		activity.goToWipe(view)
+		val link = activity.findViewById<Button>(R.id.wipe_link)
+		link.performClick()
 
 		val called = shadowOf(activity)
 			.peekNextStartedActivity()
