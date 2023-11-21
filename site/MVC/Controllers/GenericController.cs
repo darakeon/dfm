@@ -12,6 +12,7 @@ namespace DFM.MVC.Controllers
 		[HttpGetAndHead]
 		public IActionResult Mobile()
 		{
+			Response.ContentType = "application/json";
 			return Redirect(Cfg.GooglePlay);
 		}
 
