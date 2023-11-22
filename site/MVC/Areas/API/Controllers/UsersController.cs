@@ -59,5 +59,11 @@ namespace DFM.MVC.Areas.Api.Controllers
 			var model = getFromBody<UserWipeModel>();
 			return json(model.AskWipe);
 		}
+
+		[HttpGetAndHead]
+		public IActionResult Terms()
+		{
+			return json(() => new UserTermsModel());
+		}
 	}
 }
