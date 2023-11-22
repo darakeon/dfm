@@ -32,13 +32,8 @@ namespace DFM.BusinessLogic.Response
 
 		public class Clause
 		{
-			public Clause()
-			{
-				Items = new List<Clause>();
-			}
-
 			public String Text { get; set; }
-			public IList<Clause> Items { get; set; }
+			public IList<Clause> Items { get; set; } = new List<Clause>();
 			public Boolean New { get; set; }
 		}
 	}
