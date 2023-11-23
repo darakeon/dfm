@@ -74,4 +74,5 @@ object Internet {
 
 	fun isEmulator() =
 		TAGS == "dev-keys" && TYPE == "userdebug"
+	// apk > cellphone: TAGS == "release-keys" && TYPE = "user"
 }
