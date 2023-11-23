@@ -11,6 +11,7 @@ import com.darakeon.dfm.databinding.SettingsBinding
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.backWithExtras
 import com.darakeon.dfm.extensions.getFromJson
+import com.darakeon.dfm.extensions.goToTerms
 import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.lib.api.MainInfo
 import com.darakeon.dfm.lib.api.entities.settings.Settings
@@ -84,6 +85,10 @@ class SettingsActivity : BaseActivity<SettingsBinding>() {
 
 	fun goToWipe(@Suppress(ON_CLICK) view: View) {
 		redirect<WipeActivity>()
+	}
+
+	fun goToTerms(@Suppress(ON_CLICK) view: View) {
+		goToTerms()
 	}
 
 	private fun back() {

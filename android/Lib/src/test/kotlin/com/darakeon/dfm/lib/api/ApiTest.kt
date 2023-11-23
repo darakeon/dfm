@@ -10,6 +10,7 @@ import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
 import com.darakeon.dfm.lib.api.entities.status.ErrorList
 import com.darakeon.dfm.lib.api.entities.summary.Summary
+import com.darakeon.dfm.lib.api.entities.terms.Terms
 import com.darakeon.dfm.lib.api.entities.wipe.Wipe
 import com.darakeon.dfm.lib.utils.ActivityMock
 import com.darakeon.dfm.lib.utils.ApiActivity
@@ -265,6 +266,19 @@ class ApiTest: BaseTest() {
 		activity.waitTasks()
 
 		assertTrue(called)
+	}
+
+	@Test
+	fun getTerms() {
+		server.enqueue("terms_get")
+
+		var terms: Terms? = null
+		api.getTerms {
+			terms = it
+		}
+		activity.waitTasks()
+
+		assertNotNull(terms)
 	}
 
 	@Test
