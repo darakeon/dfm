@@ -1,6 +1,8 @@
 package com.darakeon.dfm.login
 
+import android.app.Dialog
 import android.view.View
+import android.widget.Button
 import com.darakeon.dfm.R
 import com.darakeon.dfm.lib.auth.Authentication
 import com.darakeon.dfm.testutils.BaseTest
@@ -19,6 +21,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows.shadowOf
+import org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog
 
 @RunWith(RobolectricTestRunner::class)
 class LoginActivityTest: BaseTest() {
@@ -61,5 +64,42 @@ class LoginActivityTest: BaseTest() {
 		val intent = shadow.peekNextStartedActivity()
 
 		assertThat(intent.getCalledName(), `is`("WelcomeActivity"))
+	}
+
+	@Test
+	fun goToSignUp() {
+		val activity = mocker.create()
+
+		val link = activity.findViewById<Button>(R.id.signup_link)
+		link.performClick()
+
+		getLatestAlertDialog()
+			.getButton(Dialog.BUTTON_POSITIVE)
+			.performClick()
+
+		activity.waitTasks(mocker.server)
+
+		val called = shadowOf(activity)
+			.peekNextStartedActivity()
+			.data
+
+		val site = activity.getString(R.string.site_address)
+		val expected = "http://${site}:2409/Users/SignUp"
+
+		assertThat(called.toString(), `is`(expected))
+	}
+
+	@Test
+	fun goToTerms() {
+		val activity = mocker.create()
+
+		val link = activity.findViewById<Button>(R.id.terms_link)
+		link.performClick()
+
+		val called = shadowOf(activity)
+			.peekNextStartedActivity()
+			.getCalledName()
+
+		assertThat(called, `is`("TermsActivity"))
 	}
 }

@@ -12,6 +12,7 @@ import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
 import com.darakeon.dfm.lib.api.entities.status.ErrorList
 import com.darakeon.dfm.lib.api.entities.summary.Summary
+import com.darakeon.dfm.lib.api.entities.terms.Terms
 import com.darakeon.dfm.lib.api.entities.wipe.Wipe
 import retrofit2.Call
 import java.util.UUID
@@ -163,6 +164,10 @@ class Api<C>(
 
 	fun wipe(wipe: Wipe, onSuccess: () -> Unit) {
 		service.wipe(wipe).call { onSuccess() }
+	}
+
+	fun getTerms(onSuccess: (Terms) -> Unit) {
+		service.getTerms().call { onSuccess(it) }
 	}
 
 	fun wakeUpSite(onSuccess: () -> Unit) {

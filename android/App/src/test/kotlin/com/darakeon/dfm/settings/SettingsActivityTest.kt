@@ -207,4 +207,18 @@ class SettingsActivityTest: BaseTest() {
 
 		assertThat(called, `is`("WipeActivity"))
 	}
+
+	@Test
+	fun goToTerms() {
+		val activity = mocker.create()
+
+		val link = activity.findViewById<Button>(R.id.terms_link)
+		link.performClick()
+
+		val called = shadowOf(activity)
+			.peekNextStartedActivity()
+			.getCalledName()
+
+		assertThat(called, `is`("TermsActivity"))
+	}
 }
