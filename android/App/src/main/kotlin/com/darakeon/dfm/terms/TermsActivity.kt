@@ -44,7 +44,7 @@ class TermsActivity : BaseActivity<TermsBinding>() {
 		val clauses = data.content.format()
 
 		binding.content.adapter =
-			ArrayAdapter(this,android.R.layout.simple_list_item_1,clauses);
+			ArrayAdapter(this, R.layout.terms_line, clauses);
 
 		binding.date.text =
 			getString(R.string.effective_date).format(data.date.format())
