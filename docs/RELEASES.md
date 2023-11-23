@@ -16,7 +16,7 @@ This is the list of project releases, past and current. To see tasks that are st
 
 ## <a name="10.2.0.0"></a>10.2.0.0 :whale: <sup>`6`</sup>
 - [ ] Warning about wipe and terms in app
-- [ ] `231119>......` Put Terms in the mobile app
+- [x] `231119>231123` Put Terms in the mobile app
 - [x] `231119>231119` Delete data on app (legal requirement)
 - [x] `230827>231112` Remove kotlinx
 - [x] `230824>230824` Handle change version CI step in dependabot branches
