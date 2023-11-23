@@ -10,8 +10,8 @@ import com.darakeon.dfm.testutils.BaseTest
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
-import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
+import org.mockito.Mockito.`when`
 
 class MainInfoTest: BaseTest() {
 	@Test
@@ -26,7 +26,7 @@ class MainInfoTest: BaseTest() {
 
 		val url = MainInfo.getSiteUrl(context)
 
-		assertThat(url, `is`("http://127.0.0.1/"))
+		assertThat(url, `is`("http://127.0.0.1:2409/"))
 	}
 
 	@Test

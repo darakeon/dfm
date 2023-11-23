@@ -4,6 +4,8 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.os.Build.TAGS
+import android.os.Build.TYPE
 import androidx.annotation.RequiresApi
 
 abstract class BaseInternet(context: Context) {
@@ -17,12 +19,6 @@ abstract class BaseInternet(context: Context) {
 	protected abstract fun isOnline(
 		connectivityManager: ConnectivityManager?
 	) : Boolean
-
-	fun isEmulator() = usingEthernet(connectivityManager)
-
-	protected abstract fun usingEthernet(
-		connectivityManager: ConnectivityManager?
-	) : Boolean
 }
 
 @RequiresApi(Build.VERSION_CODES.M)
@@ -32,12 +28,6 @@ class InternetNew(context: Context) : BaseInternet(context) {
 			it.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
 			|| it.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
 			|| it.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
-		}
-	}
-
-	override fun usingEthernet(connectivityManager: ConnectivityManager?): Boolean {
-		return testConnection(connectivityManager) {
-			it.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
 		}
 	}
 
@@ -70,11 +60,6 @@ class InternetOld(context: Context) : BaseInternet(context) {
 
 		return result
 	}
-
-	// don't know how to test it at older devices
-	override fun usingEthernet(
-		connectivityManager: ConnectivityManager?
-	) = false
 }
 
 object Internet {
@@ -87,6 +72,6 @@ object Internet {
 	fun isOffline(context: Context) =
 		internet(context).isOffline()
 
-	fun isEmulator(context: Context) =
-		internet(context).isEmulator()
+	fun isEmulator() =
+		TAGS == "dev-keys" && TYPE == "userdebug"
 }
