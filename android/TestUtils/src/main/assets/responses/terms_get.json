@@ -1,0 +1,53 @@
+{
+	"data": {
+		"content": {
+			"text": "main",
+			"items": [
+				{
+					"text": "clause 1",
+					"items": [
+						{
+							"text": "clause 1a"
+						},
+						{
+							"text": "clause 1b"
+						},
+						{
+							"text": "clause 1c"
+						}
+					]
+				},
+				{
+					"text": "clause 2"
+				},
+				{
+					"text": "clause 3",
+					"items": [
+						{
+							"text": "clause 3a",
+							"items": [
+								{
+									"text": "clause 3aI"
+								},
+								{
+									"text": "clause 3aII"
+								}
+							]
+						},
+						{
+							"text": "clause 3b"
+						}
+					]
+				}
+			]
+		},
+		"year": 2023,
+		"month": 11,
+		"day": 20
+	},
+	"environment": {
+		"theme": "DarkMagic",
+		"language": "pt-BR"
+	}
+}
+

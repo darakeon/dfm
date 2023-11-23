@@ -11,6 +11,7 @@ import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
 import com.darakeon.dfm.lib.api.entities.status.ErrorList
 import com.darakeon.dfm.lib.api.entities.summary.Summary
+import com.darakeon.dfm.lib.api.entities.terms.Terms
 import com.darakeon.dfm.lib.api.entities.wipe.Wipe
 import retrofit2.Call
 import retrofit2.http.Field
@@ -106,6 +107,9 @@ interface RequestService {
 	fun wipe(
 		@RetrofitBody wipe: Wipe
 	): Call<Body<Any>>
+
+	@GET("api/users/terms")
+	fun getTerms(): Call<Body<Terms>>
 
 	@GET("api")
 	fun wakeUpSite(): Call<Body<Any>>

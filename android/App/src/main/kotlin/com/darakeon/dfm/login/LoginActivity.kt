@@ -8,6 +8,7 @@ import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.databinding.LoginBinding
 import com.darakeon.dfm.dialogs.confirm
 import com.darakeon.dfm.extensions.ON_CLICK
+import com.darakeon.dfm.extensions.goToTerms
 import com.darakeon.dfm.lib.api.MainInfo
 import com.darakeon.dfm.lib.extensions.redirect
 import com.darakeon.dfm.welcome.WelcomeActivity
@@ -36,5 +37,9 @@ class LoginActivity : BaseActivity<LoginBinding>() {
 			intent.data = Uri.parse(url)
 			startActivity(intent)
 		}
+	}
+
+	fun goToTerms(@Suppress(ON_CLICK) view: View) {
+		goToTerms()
 	}
 }

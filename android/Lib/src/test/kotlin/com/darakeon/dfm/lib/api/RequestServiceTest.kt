@@ -5,6 +5,7 @@ import com.darakeon.dfm.lib.api.entities.Theme
 import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
+import com.darakeon.dfm.lib.api.entities.terms.Clause
 import com.darakeon.dfm.lib.api.entities.wipe.Wipe
 import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.api.Server
@@ -340,6 +341,51 @@ class RequestServiceTest: BaseTest() {
 		assertThat(environment.theme, `is`(Theme.DarkMagic))
 
 		assertNotNull(body.data)
+	}
+
+	@Test
+	fun getTerms() {
+		server.enqueue("terms_get")
+
+		val response = service.getTerms().execute()
+		assertNotNull(response)
+		val body = response.body()!!
+
+		val environment = body.environment!!
+		assertThat(environment.language, `is`("pt-BR"))
+		assertThat(environment.theme, `is`(Theme.DarkMagic))
+
+		val summary = body.data!!
+		assertThat(summary.date,  `is`(Date(2023, 11, 20)))
+
+		val content = Clause(
+			"main",
+			listOf(
+				Clause(
+					"clause 1",
+					listOf(
+						Clause("clause 1a"),
+						Clause("clause 1b"),
+						Clause("clause 1c"),
+					)
+				),
+				Clause("clause 2"),
+				Clause(
+					"clause 3",
+					listOf(
+						Clause(
+							"clause 3a",
+							listOf(
+								Clause("clause 3aI"),
+								Clause("clause 3aII"),
+							)
+						),
+						Clause("clause 3b"),
+					)
+				),
+			)
+		)
+		assertThat(summary.content, `is`(content))
 	}
 
 	@Test

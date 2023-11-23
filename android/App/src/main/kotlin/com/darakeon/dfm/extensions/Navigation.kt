@@ -10,6 +10,7 @@ import com.darakeon.dfm.lib.extensions.redirect
 import com.darakeon.dfm.login.LoginActivity
 import com.darakeon.dfm.moves.MovesActivity
 import com.darakeon.dfm.settings.SettingsActivity
+import com.darakeon.dfm.terms.TermsActivity
 
 const val ON_CLICK: String = "UNUSED_PARAMETER"
 
@@ -48,6 +49,10 @@ internal fun Activity.goToSettings() {
 
 internal fun Activity.createMove(extras: Bundle? = null) {
 	goToActivityWithBack(MovesActivity::class.java, extras)
+}
+
+internal fun Activity.goToTerms() {
+	goToActivityWithBack(TermsActivity::class.java)
 }
 
 private fun Activity.goToActivityWithBack(newActivity: Class<*>, extras: Bundle? = null) {
