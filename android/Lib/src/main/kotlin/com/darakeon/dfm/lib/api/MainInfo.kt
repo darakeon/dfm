@@ -1,18 +1,20 @@
 package com.darakeon.dfm.lib.api
 
 import android.content.Context
-import android.os.Build
 import com.darakeon.dfm.lib.BuildConfig
 import com.darakeon.dfm.lib.R
 
 object MainInfo {
 	fun getSiteUrl(context: Context) : String {
 		val siteAddress =
-			context.getString(R.string.site_address)
+			if (Internet.isEmulator())
+				"10.0.2.2"
+			else
+				context.getString(R.string.site_address)
 
 		return when {
 			siteAddress == "" -> ""
-			BuildConfig.DEBUG -> "http://$siteAddress/"
+			BuildConfig.DEBUG -> "http://$siteAddress:2409/"
 			else -> "https://$siteAddress/"
 		}
 	}
