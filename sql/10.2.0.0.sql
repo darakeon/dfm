@@ -139,13 +139,14 @@ insert into migrations (name) values ('10.2.0.0');
 				]
 			},
 			{
-				"Text": "Existe um menu dentro das configurações no site para a Pessoa poder excluir seus dados do Sistema:",
+				"Text": "Existe um menu dentro das configurações no site e um link dentro das configurações do app android onde a Pessoa pode excluir seus dados do Sistema:",
 				"Items": [
 					{ "Text": "Os dados não são excluídos instantaneamente;" },
 					{ "Text": "Nesse caso - a exclusão ser uma requisição da Pessoa - as movimentações não são gravadas em um arquivo;" },
 					{ "Text": "Após a remoção, não existe uma forma de a Pessoa recuperar os dados via sistema;" },
 					{ "Text": "É pedida a senha da Pessoa para registrar o pedido de exclusão." }
-				]
+				],
+				"New": true
 			},
 			{
 				"Text": "Quando os dados são removidos do Sistema, o endereço de e-mail registrado é guardado usando o mesmo processo já usado para guardar a senha (descrito acima nestes termos);"
@@ -321,13 +322,14 @@ insert into migrations (name) values ('10.2.0.0');
 				]
 			},
 			{
-				"Text": "There is menu inside system settings at the website to the Person delete their data from the System:",
+				"Text": "There is menu inside system settings at the website and a link inside mobile app settings where the Person can delete their data from the System:",
 				"Items": [
 					{ "Text": "The data is not removed instantly;" },
 					{ "Text": "In this case - the Person asking the data deletion - the moves are not recorded in a file;" },
 					{ "Text": "After the removal there is no way to the Person to recover the data through the System;" },
 					{ "Text": "The Person\'s password is asked to register the data deletion request." }
-				]
+				],
+				"New": true
 			},
 			{
 				"Text": "When the data is removed from the System, the registered e-mail address is kept using same process used to register the password (described above in this terms);"
