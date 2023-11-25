@@ -31,15 +31,27 @@ insert into migrations (name) values ('10.2.0.0');
 			{
 				"Text": "Os meios de comunicação do Sistema com a Pessoa são:",
 				"Items": [
-					{ "Text": "E-mail cadastrado pela Pessoa ao se registrar em Sistema, cujo contato é feito somente pelos endereços no-reply@dontflymoney.com - apenas para alertas automatizados - e <a target=\'_blank\' href=\'mailto:dfm@dontflymoney.com\'>dfm@dontflymoney.com</a> - para suporte;" },
-					{ "Text": "Sistema web, registrado no domínio <a href=\'https://dontflymoney.com\'>dontflymoney.com</a>;" },
-					{ "Text": "Aplicativo para dispositivos android <a target=\'_blank\' href=\'https://play.google.com/store/apps/details?id=com.dontflymoney.view\'>Don\'t fly Money</a>, instalação via Play Store." }
+					{
+						"Text": "E-mail cadastrado pela Pessoa ao se registrar em Sistema, cujo contato é feito somente pelos endereços no-reply@dontflymoney.com - apenas para alertas automatizados - e dfm@dontflymoney.com - para suporte;",
+						"New": true
+					},
+					{
+						"Text": "Sistema web, disponível em https://dontflymoney.com;",
+						"New": true
+					},
+					{
+						"Text": "Aplicativo para dispositivos android \'Don\'t fly Money\', que pode ser instalado via Play Store no endereço https://play.google.com/store/apps/details?id=com.dontflymoney.view .",
+						"New": true
+					}
 				]
 			},
 			{
 				"Text": "O código fonte do Sistema - instruções para computador que regem o funcionamento do Sistema - está em um endereço web:",
 				"Items": [
-					{ "Text": "O endereço é público: <a target=\'_blank\' href=\'https://github.com/darakeon/dfm\'>GitHub</a>;" },
+					{
+						"Text": "O endereço é público: https://github.com/darakeon/dfm ;",
+						"New": true
+					},
 					{ "Text": "O código fonte é ABERTO, podendo QUALQUER pessoa com acesso não-censurado a internet visualizá-lo e sugerir edições, usando uma conta do github." }
 				]
 			},
@@ -148,7 +160,8 @@ insert into migrations (name) values ('10.2.0.0');
 						"Text": "A imagem logo do site - porquinho - e a imagem de segurança tiveram sua autoria registrada na Biblioteca Nacional Brasileira;",
 						"Items": [
 							{
-								"Text": "Seu uso só pode ser feito mediante autorização através do e-mail <a target=\'_blank\' href=\'mailto:dfm@dontflymoney.com\'>dfm@dontflymoney.com</a>.",
+								"Text": "Seu uso só pode ser feito mediante autorização através do e-mail dfm@dontflymoney.com .",
+								"New": true
 							}
 						]
 					},
@@ -200,15 +213,27 @@ insert into migrations (name) values ('10.2.0.0');
 			{
 				"Text": "Communication vehicles from System to the Person are:",
 				"Items": [
-					{ "Text": "E-mail informed by the Person on the registration at the System, which is only contacted by the addresses no-reply@dontflymoney.com - just for automated alerts - and <a target=\'_blank\' href=\'mailto:dfm@dontflymoney.com\'>dfm@dontflymoney.com</a> - for support;" },
-					{ "Text": "Web system, registered at site <a href=\'https://dontflymoney.com\'>dontflymoney.com</a>;" },
-					{ "Text": "Android app <a target=\'_blank\' href=\'https://play.google.com/store/apps/details?id=com.dontflymoney.view\'>Don\'t fly Money</a>, installed by Play Store." }
+					{
+						"Text": "E-mail informed by the Person on the registration at the System, which is only contacted by the addresses no-reply@dontflymoney.com - just for automated alerts - and dfm@dontflymoney.com - for support;",
+						"New": true
+					},
+					{
+						"Text": "Web system, available at site https://dontflymoney.com;",
+						"New": true
+					},
+					{
+						"Text": "Android app \'Don\'t fly Money\', that can be installed via Play Store at the address https://play.google.com/store/apps/details?id=com.dontflymoney.view .",
+						"New": true
+					}
 				]
 			},
 			{
 				"Text": "The System source code - instructions to computer which rule the System - is hosted at a web address:",
 				"Items": [
-					{ "Text": "The address is public: <a target=\'_blank\' href=\'https://github.com/darakeon/dfm\'>GitHub</a>;" },
+					{
+						"Text": "The address is public: https://github.com/darakeon/dfm;",
+						"New": true
+					},
 					{ "Text": "The source code is OPEN and ANY person using uncensored internet access can see it and suggest changes, using a github login." }
 				]
 			},
@@ -317,7 +342,8 @@ insert into migrations (name) values ('10.2.0.0');
 						"Text": "The logo image - the pig - and the safety image had their authorship registered at Biblioteca Nacional (National Library) in Brazil;",
 						"Items": [
 							{
-								"Text": "They only can be used with authorization via the email <a target=\'_blank\' href=\'mailto:dfm@dontflymoney.com\'>dfm@dontflymoney.com</a>.",
+								"Text": "They only can be used with authorization via the email dfm@dontflymoney.com .",
+								"New": true
 							}
 						]
 					},
