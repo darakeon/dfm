@@ -14,5 +14,4 @@ Tests/Core/log
 
 *.amazon.json
 
-MVC/Assets/Libs
-MVC/Assets/themes/bootstrap.min.css
+Tests/*/SpecFlow
