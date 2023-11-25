@@ -186,7 +186,12 @@ insert into migrations (name) values ('10.2.0.0');
 				]
 			},
 			{
-				"Text": "Estes termos podem ser encontrados a qualquer momento em que o site esteja disponível; o link está no rodapé da página."
+				"Text": "Estes termos podem ser encontrados a qualquer momento em que o Site esteja disponível:",
+				"Items": [
+					{ "Text": "Há um link no rodapé de todas as páginas do Site;" },
+					{ "Text": "Há links nas telas de login e configurações do Aplicativo Android." }
+				],
+				"New": true
 			}
 		]
 	}
@@ -369,7 +374,12 @@ insert into migrations (name) values ('10.2.0.0');
 				]
 			},
 			{
-				"Text": "These terms can be found whenever the website is available; the link is at the footer of the page."
+				"Text": "These terms can be found whenever the Website is available:",
+				"Items": [
+					{ "Text": "There is a link at the footer of all Website pages;" },
+					{ "Text": "There are links inside the Android App in login and settings screens." }
+				],
+				"New": true
 			}
 		]
 	}
