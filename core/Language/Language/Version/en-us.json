@@ -1,4 +1,11 @@
 {
+	"10.2.0.0": [
+		"Change Terms of Use to include new Android App features and make some word standardizations",
+		"Terms of Use in the Android App",
+		"System data deletion screen in the Android App",
+		"Update Android App tools",
+		"Improvements in development environment for velocity and sustenability"
+	],
 	"10.1.0.0": [
 		"Fix accessibility at emails sent by System",
 		"Fix website images description"
