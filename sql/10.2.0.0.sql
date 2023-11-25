@@ -40,7 +40,7 @@ insert into migrations (name) values ('10.2.0.0');
 						"New": true
 					},
 					{
-						"Text": "Aplicativo para dispositivos android \'Don\'t fly Money\', que pode ser instalado via Play Store no endereço https://play.google.com/store/apps/details?id=com.dontflymoney.view .",
+						"Text": "Aplicativo para Dispositivos Android \'Don\'t fly Money\', que pode ser instalado via Play Store no endereço https://play.google.com/store/apps/details?id=com.dontflymoney.view .",
 						"New": true
 					}
 				]
@@ -55,14 +55,14 @@ insert into migrations (name) values ('10.2.0.0');
 					{ "Text": "O código fonte é ABERTO, podendo QUALQUER pessoa com acesso não-censurado a internet visualizá-lo e sugerir edições, usando uma conta do github." }
 				]
 			},
-			{ "Text": "Cookies são usados para controlar seu acesso a informações e a segurança dos formulários deste site;" },
+			{ "Text": "Cookies são usados para controlar seu acesso a informações e a segurança dos formulários deste Site;" },
 			{
-				"Text": "Após colocar seu e-mail e senha e se logar no site ou no aplicativo de celular, seu login é mantido e seus dados disponíveis no dispositivo sem data de expiração definida:",
+				"Text": "Após colocar seu e-mail e senha e se logar no Site ou no Aplicativo Android, seu login é mantido e seus dados disponíveis no dispositivo sem data de expiração definida:",
 				"Items": [
 					{
-						"Text": "O site possui um botão no topo a direita para desfazer o login, removendo desta forma o acesso aos dados;",
-						"Text": "O aplicativo possui o mesmo botão, no topo a esquerda na tela inicial e abaixo a direita nas outras telas, assim é possível desfazer o login, removendo desta forma o acesso aos dados;",
-						"Text": "O site, na tela principal logada, possui um menu \'Logins\' no topo a direita onde é possível ver todos os logins ativos e desativá-los."
+						"Text": "O Site possui um botão no topo a direita para desfazer o login, removendo desta forma o acesso aos dados;",
+						"Text": "O Aplicativo Android possui o mesmo botão, no topo a esquerda na tela inicial e abaixo a direita nas outras telas, assim é possível desfazer o login, removendo desta forma o acesso aos dados;",
+						"Text": "O Site, na tela principal logada, possui um menu \'Logins\' no topo a direita onde é possível ver todos os logins ativos e desativá-los."
 					}
 				]
 			},
@@ -72,7 +72,7 @@ insert into migrations (name) values ('10.2.0.0');
 				"Text": "Privacidade: dados inseridos no Sistema pela Pessoa são usados:",
 				"Items": [
 					{
-						"Text": "em relatórios pessoais, que podem ser vistos apenas pela Pessoa, no Site e no Aplicativo de celular:",
+						"Text": "em relatórios pessoais, que podem ser vistos apenas pela Pessoa, no Site e no Aplicativo Android:",
 						"Items": [
 							{ "Text": "O acesso a esses relatórios é controlado por login e senha, que a Pessoa é responsável por manter em segredo." }
 						]
@@ -101,10 +101,10 @@ insert into migrations (name) values ('10.2.0.0');
 					{
 						"Text": "Uma mensagem é enviada ao endereço de e-mail informado quando a Pessoa se cadastra:",
 						"Items": [
-							{ "Text": "Ela contém um link - que a Pessoa pode clicar - e um token - que pode ser usado no site seguindo as instruções descritas na mensagem de e-mail;" },
+							{ "Text": "Ela contém um link - que a Pessoa pode clicar - e um token - que pode ser usado no Site seguindo as instruções descritas na mensagem de e-mail;" },
 							{ "Text": "Qualquer dos dois métodos pode ser usado para confirmar o endereço de e-mail;" },
 							{ "Text": "Ambos expiram em 3 dias;" },
-							{ "Text": "Você pode enviar uma nova confirmação clicando no aviso que começa a aparecer no site após dois dias de cadastro." },
+							{ "Text": "Você pode enviar uma nova confirmação clicando no aviso que começa a aparecer no Site após dois dias de cadastro." },
 						]
 					},
 					{ "Text": "Se o período de confirmação terminar, a Pessoa não pode mais usar o Sistema;" },
@@ -115,7 +115,7 @@ insert into migrations (name) values ('10.2.0.0');
 			{
 				"Text": "Quando a Pessoa abandona o Sistema por 90 dias, seus dados podem ser removidos:",
 				"Items": [
-					{ "Text": "Para evitar isso, a Pessoa deve interagir com o Sistema (estando logada) pelo site e/ou pelo aplicativo;" },
+					{ "Text": "Para evitar isso, a Pessoa deve interagir com o Sistema (estando logada) pelo Site e/ou pelo Aplicativo Android;" },
 					{ "Text": "Agendamentos sendo rodados não contam como interações válidas para esta regra;" },
 					{ "Text": "Haverá dois avisos, um em torno de 30 dias e outro em torno de 60 dias após a última interação válida, enviados ao e-mail cadastrado no Sistema pela Pessoa;" },
 					{
@@ -139,7 +139,7 @@ insert into migrations (name) values ('10.2.0.0');
 				]
 			},
 			{
-				"Text": "Existe um menu dentro das configurações no site e um link dentro das configurações do app android onde a Pessoa pode excluir seus dados do Sistema:",
+				"Text": "Existe um menu dentro das configurações no Site e um link dentro das configurações do Aplicativo Android onde a Pessoa pode excluir seus dados do Sistema:",
 				"Items": [
 					{ "Text": "Os dados não são excluídos instantaneamente;" },
 					{ "Text": "Nesse caso - a exclusão ser uma requisição da Pessoa - as movimentações não são gravadas em um arquivo;" },
@@ -152,22 +152,22 @@ insert into migrations (name) values ('10.2.0.0');
 				"Text": "Quando os dados são removidos do Sistema, o endereço de e-mail registrado é guardado usando o mesmo processo já usado para guardar a senha (descrito acima nestes termos);"
 			},
 			{
-				"Text": "O Sistema, considerando Site e Aplicativo de celular, é mantido como aqui apresentado, e pode ficar indisponível. Não há garantias de o Sistema estar online, ou de permanecer online, não cabendo ônus a quem o mantém em caso de indisponibilidade, seja esta temporária ou permanente;",
+				"Text": "O Sistema, considerando Site e Aplicativo Android, é mantido como aqui apresentado, e pode ficar indisponível. Não há garantias de o Sistema estar online, ou de permanecer online, não cabendo ônus a quem o mantém em caso de indisponibilidade, seja esta temporária ou permanente;",
 			},
 			{
-				"Text": "As imagens do site possuem seus direitos resguardados:",
+				"Text": "As imagens do Sistema possuem seus direitos resguardados:",
 				"Items": [
 					{
-						"Text": "A imagem logo do site - porquinho - e a imagem de segurança tiveram sua autoria registrada na Biblioteca Nacional Brasileira;",
+						"Text": "A imagem logo do Site - porquinho - e a imagem de segurança tiveram sua autoria registrada na Biblioteca Nacional Brasileira;",
 						"Items": [
 							{
-								"Text": "Seu uso só pode ser feito mediante autorização através do e-mail dfm@dontflymoney.com .",
-								"New": true
+								"Text": "Seu uso só pode ser feito mediante autorização através do e-mail dfm@dontflymoney.com ."
 							}
 						]
 					},
 					{ "Text": "O robô Android é modificado a partir de trabalhos criados e compartilhados pela Google e usado de acordo com os termos descritos na Licença de atribuição Creative Commons 3.0." }
 				],
+				"New": true
 			},
 			{
 				"Text": "Estes termos podem ser alterados a qualquer momento:",
@@ -224,11 +224,11 @@ insert into migrations (name) values ('10.2.0.0');
 						"New": true
 					},
 					{
-						"Text": "Web system, available at site https://dontflymoney.com;",
+						"Text": "Website, available at the address https://dontflymoney.com;",
 						"New": true
 					},
 					{
-						"Text": "Android app \'Don\'t fly Money\', that can be installed via Play Store at the address https://play.google.com/store/apps/details?id=com.dontflymoney.view .",
+						"Text": "Android Mobile App \'Don\'t fly Money\', that can be installed via Play Store at the address https://play.google.com/store/apps/details?id=com.dontflymoney.view .",
 						"New": true
 					}
 				]
@@ -243,14 +243,14 @@ insert into migrations (name) values ('10.2.0.0');
 					{ "Text": "The source code is OPEN and ANY person using uncensored internet access can see it and suggest changes, using a github login." }
 				]
 			},
-			{ "Text": "Cookies are used to control logon and security of forms of this site;" },
+			{ "Text": "Cookies are used to control logon and security of forms of this Website;" },
 			{
-				"Text": "After you enter your credentials at the website or mobile app, it keeps you logged in and your data available at that device with no defined expiration date:",
+				"Text": "After you enter your credentials at the Website or Android App, it keeps you logged in and your data available at that device with no defined expiration date:",
 				"Items": [
 					{
-						"Text": "The website has a button at the top right corner so one can remove the login, removing this way the access to its data;",
-						"Text": "The mobile app has the same button, at top left corner in the app start screen, at bottom right corner at other screens, so one can remove the login, removing this way the access to its data;",
-						"Text": "The website, in the logged in main screen, has a menu \'Logins\' at the top right corner where you can see all active logins and delete them."
+						"Text": "The Website has a button at the top right corner so one can remove the login, removing this way the access to its data;",
+						"Text": "The Android App has the same button, at top left corner in the app start screen, at bottom right corner at other screens, so one can remove the login, removing this way the access to its data;",
+						"Text": "The Website, in the logged in main screen, has a menu \'Logins\' at the top right corner where you can see all active logins and delete them."
 					}
 				]
 			},
@@ -260,7 +260,7 @@ insert into migrations (name) values ('10.2.0.0');
 				"Text": "Privacy: data inputted into the System by the Person is used:",
 				"Items": [
 					{
-						"Text": "at personal reports, that can be seen just by the Person, at the Site and the Mobile App:",
+						"Text": "at personal reports, that can be seen just by the Person, at the Website and the Android App:",
 						"Items": [
 							{ "Text": "the access to this reports is controlled by login and password, which the Person is sole responsible to keep secret." }
 						]
@@ -289,7 +289,7 @@ insert into migrations (name) values ('10.2.0.0');
 					{
 						"Text": "A message is sent to the email address informed while registering:",
 						"Items": [
-							{ "Text": "It contains both a link - which the Person can click - and a token - that can be used at the site following the email message instructions;" },
+							{ "Text": "It contains both a link - which the Person can click - and a token - that can be used at the Website following the email message instructions;" },
 							{ "Text": "Any of the two methods can be used to confirm the Person email address;" },
 							{ "Text": "Both methods expire in 3 days;" },
 							{ "Text": "You can send a new confirmation message by clicking a warning that appears in the System after 2 days of registration." },
@@ -303,7 +303,7 @@ insert into migrations (name) values ('10.2.0.0');
 			{
 				"Text": "When the Person abandons the System for 90 days, their data can be removed:",
 				"Items": [
-					{ "Text": "To avoid this, the Person should interact with the System (logged in) by website and/or android app;" },
+					{ "Text": "To avoid this, the Person should interact with the System (logged in) by Website and/or Android App;" },
 					{ "Text": "Running schedules are not valid interactions for this rule;" },
 					{ "Text": "There will be two warnings, one around 30 days and other around 60 days after last valid interaction, sent to registered e-mail at the System by the Person;" },
 					{ 
@@ -327,7 +327,7 @@ insert into migrations (name) values ('10.2.0.0');
 				]
 			},
 			{
-				"Text": "There is menu inside system settings at the website and a link inside mobile app settings where the Person can delete their data from the System:",
+				"Text": "There is menu inside system settings at the Website and a link inside Android App settings where the Person can delete their data from the System:",
 				"Items": [
 					{ "Text": "The data is not removed instantly;" },
 					{ "Text": "In this case - the Person asking the data deletion - the moves are not recorded in a file;" },
@@ -340,22 +340,22 @@ insert into migrations (name) values ('10.2.0.0');
 				"Text": "When the data is removed from the System, the registered e-mail address is kept using same process used to register the password (described above in this terms);"
 			},
 			{
-				"Text": "The System (considering website and mobile app) is kept as here presented and can be unavailable. There are no guarantees of the System being online or to stay online, and there will be no onus for the System maintainer in case of unavailability, this one being temporary or permanent;",
+				"Text": "The System (considering Website and Android App) is kept as here presented and can be unavailable. There are no guarantees of the System being online or to stay online, and there will be no onus for the System maintainer in case of unavailability, this one being temporary or permanent;",
 			},
 			{
-				"Text": "Site images have the rights protected as follows:",
+				"Text": "System images have the rights protected as follows:",
 				"Items": [
 					{
 						"Text": "The logo image - the pig - and the safety image had their authorship registered at Biblioteca Nacional (National Library) in Brazil;",
 						"Items": [
 							{
-								"Text": "They only can be used with authorization via the email dfm@dontflymoney.com .",
-								"New": true
+								"Text": "They only can be used with authorization via the email dfm@dontflymoney.com ."
 							}
 						]
 					},
 					{ "Text": "The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License." }
 				],
+				"New": true
 			},
 			{
 				"Text": "These terms can be changed any time in the future:",
