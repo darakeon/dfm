@@ -15,7 +15,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="10.2.0.0"></a>10.2.0.0 :whale: <sup>`6`</sup>
-- [ ] `231125>......` Warning about wipe and terms in app
+- [ ] `231124>......` Warning about wipe and terms in app
 - [x] `231119>231123` Put Terms in the mobile app
 - [x] `231119>231119` Delete data on app (legal requirement)
 - [x] `230827>231112` Remove kotlinx
