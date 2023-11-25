@@ -13,10 +13,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (57)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (55)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
-| Make google see move unsubscribe link ([Google tips avoid being spam])         | :sheep:  |  1  |  4  |  7  |                |
-| Add tests to moves ordering at reports                                         | :sheep:  |  1  |  4  |  7  |                |
 | Add user creation (mobile)                                                     | :dragon: |  2  |  4  |  6  |                |
 | Add schedule creation (mobile)                                                 | :dragon: |  2  |  4  |  6  |                |
 | Add account creation (mobile)                                                  | :dragon: |  2  |  4  |  6  |                |
