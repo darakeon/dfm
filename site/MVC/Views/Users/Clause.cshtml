@@ -1,6 +1,16 @@
+@using System.Text.RegularExpressions
 @model DFM.BusinessLogic.Response.ContractInfo.Clause
 
-@Html.Raw(Model.Text)
+@{
+	var text = Model.Text;
+	var linkRegex = new Regex("(https://[\\w\\.?=/]+)");
+	var emailRegex = new Regex(" ([\\w]+@[\\w\\.]+)");
+
+	text = linkRegex.Replace(text, "<a href='$1' target='_blank'>$1</a>");
+	text = emailRegex.Replace(text, " <a href='mailto:$1' target='_blank'>$1</a>");
+}
+
+@Html.Raw(text)
 
 @if (Model.Items.Any())
 {
