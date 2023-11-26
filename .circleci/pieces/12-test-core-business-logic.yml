@@ -1,6 +1,7 @@
   test_core_business_logic:
     docker:
       - image: darakeon/netcore
+    resource_class: large
     steps:
       - checkout
       - attach_workspace:
