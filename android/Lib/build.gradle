@@ -55,16 +55,18 @@ dependencies {
 	implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
 	implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
-	testImplementation project(":TestUtils")
+	if (!project.hasProperty("hide-test-deps")) {
+		testImplementation project(":TestUtils")
 
-	testImplementation "junit:junit:$junit_version"
-	testImplementation "org.mockito:mockito-core:$mockito_version"
-	testImplementation "org.robolectric:robolectric:$robolectric_version"
-	testImplementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+		testImplementation "junit:junit:$junit_version"
+		testImplementation "org.mockito:mockito-core:$mockito_version"
+		testImplementation "org.robolectric:robolectric:$robolectric_version"
+		testImplementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
-	androidTestImplementation project(":TestUtils")
+		androidTestImplementation project(":TestUtils")
 
-	androidTestImplementation "com.android.support.test:runner:$testrunner_version"
+		androidTestImplementation "com.android.support.test:runner:$testrunner_version"
+	}
 }
 
 task wrapper(type: Wrapper) {
