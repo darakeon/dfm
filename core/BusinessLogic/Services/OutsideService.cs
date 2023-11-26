@@ -125,6 +125,9 @@ namespace DFM.BusinessLogic.Services
 				repos.User.ChangePassword(user);
 
 				repos.Security.Disable(reset.Token);
+
+				repos.Ticket.List(user)
+					.ToList().ForEach(repos.Ticket.Disable);
 			});
 		}
 
