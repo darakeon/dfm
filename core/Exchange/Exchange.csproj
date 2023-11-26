@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>DFM.Exchange</AssemblyName>
     <RootNamespace>DFM.Exchange</RootNamespace>
     <AssemblyVersion>10.2.0.0</AssemblyVersion>
@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.S3" Version="3.7.301" />
+    <PackageReference Include="AWSSDK.S3" Version="3.7.302" />
     <PackageReference Include="CsvHelper" Version="30.0.1" />
   </ItemGroup>
 

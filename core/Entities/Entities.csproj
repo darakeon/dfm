@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>DFM.Entities</AssemblyName>
     <RootNamespace>DFM.Entities</RootNamespace>
     <AssemblyVersion>10.2.0.0</AssemblyVersion>
@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Keon.Util" Version="4.1.0" />
+    <PackageReference Include="Keon.Util" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>

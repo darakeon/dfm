@@ -17,7 +17,7 @@ This is the list of project releases, past and current. To see tasks that are st
 ## <a name="10.2.1.0"></a>10.2.1.0 :sheep: <sup>`4`</sup>
 - [ ] Add tests to moves ordering at reports
 - [ ] Make google see move unsubscribe link ([Google tips avoid being spam])
-- [ ] Update to .NET 8
+- [ ] `231126>......` Update to .NET 8
 - [x] `231126>231126` Fix android density value in settings (pt-br)
 
 ## <a name="10.2.0.0"></a>10.2.0.0 :whale: <sup>`6`</sup>
