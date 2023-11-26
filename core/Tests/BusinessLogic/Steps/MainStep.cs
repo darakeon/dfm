@@ -117,20 +117,20 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"I will receive a core error")]
 		public void ThenIWillReceiveACoreError()
 		{
-			Assert.IsNotNull(error);
+			Assert.That(error, Is.Not.Null);
 		}
 
 		[Then(@"I will receive this core error: ([A-Za-z]+)")]
 		public void ThenIWillReceiveThisError(Error expectedError)
 		{
-			Assert.IsNotNull(error);
-			Assert.AreEqual(expectedError, error.Type);
+			Assert.That(error, Is.Not.Null);
+			Assert.That(error.Type, Is.EqualTo(expectedError));
 		}
 
 		[Then(@"I will receive no core error")]
 		public void ThenIWillReceiveNoCoreError()
 		{
-			Assert.IsNull(error);
+			Assert.That(error, Is.Null);
 		}
 
 		[BeforeTestRun]

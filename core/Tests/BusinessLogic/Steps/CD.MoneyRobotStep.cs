@@ -244,7 +244,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var url = accountOut?.Url ?? accountOutUrl;
 			accountOut = getOrCreateAccount(url);
 
-			Assert.AreEqual(accountOutTotal, repos.Summary.GetTotal(accountOut));
+			Assert.That(repos.Summary.GetTotal(accountOut), Is.EqualTo(accountOutTotal));
 		}
 
 		[Then(@"the month-category-accountOut value will not change")]
@@ -260,7 +260,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				accountOut, category, entityDate.ToMonthYear()
 			)?.Out ?? 0;
 
-			Assert.AreEqual(monthCategoryAccountOutTotal, currentTotal);
+			Assert.That(currentTotal, Is.EqualTo(monthCategoryAccountOutTotal));
 		}
 
 		[Then(@"the year-category-accountOut value will not change")]
@@ -276,7 +276,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				accountOut, category, entityDate.Year
 			)?.Out ?? 0;
 
-			Assert.AreEqual(yearCategoryAccountOutTotal, currentTotal);
+			Assert.That(currentTotal, Is.EqualTo(yearCategoryAccountOutTotal));
 		}
 
 		[Then(@"the accountIn value will not change")]
@@ -285,7 +285,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var url = accountIn?.Url ?? accountInUrl;
 			accountIn = getOrCreateAccount(url);
 
-			Assert.AreEqual(accountInTotal, repos.Summary.GetTotal(accountIn));
+			Assert.That(repos.Summary.GetTotal(accountIn), Is.EqualTo(accountInTotal));
 		}
 
 		[Then(@"the month-category-accountIn value will not change")]
@@ -301,7 +301,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				accountIn, category, entityDate.ToMonthYear()
 			)?.In ?? 0;
 
-			Assert.AreEqual(monthCategoryAccountInTotal, currentTotal);
+			Assert.That(currentTotal, Is.EqualTo(monthCategoryAccountInTotal));
 		}
 
 		[Then(@"the year-category-accountIn value will not change")]
@@ -317,7 +317,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				accountIn, category, entityDate.Year
 			)?.In ?? 0;
 
-			Assert.AreEqual(yearCategoryAccountInTotal, currentTotal);
+			Assert.That(currentTotal, Is.EqualTo(yearCategoryAccountInTotal));
 		}
 
 		[Then(@"the accountOut value will change in (\-?\d+\.?\d*)")]
@@ -328,7 +328,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			var currentTotal = repos.Summary.GetTotal(accountOut);
 
-			Assert.AreEqual(accountOutTotal + change, currentTotal);
+			Assert.That(currentTotal, Is.EqualTo(accountOutTotal + change));
 		}
 
 		[Then(@"the month-category-accountOut value will change in (\-?\d+\.?\d*)")]
@@ -344,7 +344,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				accountOut, category, entityDate.ToMonthYear()
 			)?.Out ?? 0;
 
-			Assert.AreEqual(monthCategoryAccountOutTotal + change, currentTotal);
+			Assert.That(currentTotal, Is.EqualTo(monthCategoryAccountOutTotal + change));
 		}
 
 		[Then(@"the year-category-accountOut value will change in (\-?\d+\.?\d*)")]
@@ -360,7 +360,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				accountOut, category, entityDate.Year
 			)?.Out ?? 0;
 
-			Assert.AreEqual(yearCategoryAccountOutTotal + change, currentTotal);
+			Assert.That(currentTotal, Is.EqualTo(yearCategoryAccountOutTotal + change));
 		}
 
 
@@ -372,7 +372,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			var currentTotal = repos.Summary.GetTotal(accountIn);
 
-			Assert.AreEqual(accountInTotal + change, currentTotal);
+			Assert.That(currentTotal, Is.EqualTo(accountInTotal + change));
 		}
 
 		[Then(@"the month-category-accountIn value will change in (\-?\d+\.?\d*)")]
@@ -388,7 +388,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				accountIn, category, entityDate.ToMonthYear()
 			)?.In ?? 0;
 
-			Assert.AreEqual(monthCategoryAccountInTotal + change, currentTotal);
+			Assert.That(currentTotal, Is.EqualTo(monthCategoryAccountInTotal + change));
 		}
 
 		[Then(@"the year-category-accountIn value will change in (\-?\d+\.?\d*)")]
@@ -404,7 +404,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				accountIn, category, entityDate.Year
 			)?.In ?? 0;
 
-			Assert.AreEqual(yearCategoryAccountInTotal + change, currentTotal);
+			Assert.That(currentTotal, Is.EqualTo(yearCategoryAccountInTotal + change));
 		}
 	}
 }

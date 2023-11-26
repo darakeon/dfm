@@ -116,9 +116,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var account = service.Admin.GetAccount(oldAccount.Name.IntoUrl());
 
-			Assert.AreEqual(oldAccount.Name, account.Name);
-			Assert.AreEqual(oldAccount.RedLimit, account.RedLimit);
-			Assert.AreEqual(oldAccount.YellowLimit, account.YellowLimit);
+			Assert.That(account.Name, Is.EqualTo(oldAccount.Name));
+			Assert.That(account.RedLimit, Is.EqualTo(oldAccount.RedLimit));
+			Assert.That(account.YellowLimit, Is.EqualTo(oldAccount.YellowLimit));
 		}
 
 		[Then(@"the account will not be saved")]
@@ -137,9 +137,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 				error = e;
 			}
 
-			Assert.IsNull(accountInfo);
-			Assert.IsNotNull(error);
-			Assert.AreEqual(Error.InvalidAccount, error.Type);
+			Assert.That(accountInfo, Is.Null);
+			Assert.That(error, Is.Not.Null);
+			Assert.That(error.Type, Is.EqualTo(Error.InvalidAccount));
 		}
 
 		[Then(@"the account will be saved")]
@@ -147,7 +147,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			accountInfo = service.Admin.GetAccount(accountInfo.Name.IntoUrl());
 
-			Assert.IsNotNull(accountInfo);
+			Assert.That(accountInfo, Is.Not.Null);
 		}
 
 		[Then(@"the account url will be (.+)")]
@@ -155,7 +155,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var newAccount = service.Admin.GetAccount(url);
 
-			Assert.IsNotNull(accountInfo.Name, newAccount.Name);
+			Assert.That(accountInfo.Name, Is.Not.Null, newAccount.Name);
 		}
 		#endregion
 
@@ -277,13 +277,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 				error = e;
 			}
 
-			Assert.IsNotNull(account);
-			Assert.IsNull(error);
+			Assert.That(account, Is.Not.Null);
+			Assert.That(error, Is.Null);
 
-			Assert.AreEqual(accountInfo.Name, account.Name);
-			Assert.AreEqual(accountInfo.HasLimit, account.HasLimit);
-			Assert.AreEqual(accountInfo.RedLimit, account.RedLimit);
-			Assert.AreEqual(accountInfo.YellowLimit, account.YellowLimit);
+			Assert.That(account.Name, Is.EqualTo(accountInfo.Name));
+			Assert.That(account.HasLimit, Is.EqualTo(accountInfo.HasLimit));
+			Assert.That(account.RedLimit, Is.EqualTo(accountInfo.RedLimit));
+			Assert.That(account.YellowLimit, Is.EqualTo(accountInfo.YellowLimit));
 		}
 
 		[Then(@"the account value will not change")]
@@ -292,7 +292,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var user = repos.User.GetByEmail(current.Email);
 			var account = repos.Account.GetByUrl(accountInfo.Name.IntoUrl(), user);
 			var total = repos.Summary.GetTotal(account);
-			Assert.AreEqual(accountTotal, total);
+			Assert.That(total, Is.EqualTo(accountTotal));
 		}
 		#endregion
 
@@ -321,7 +321,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var user = repos.User.GetByEmail(current.Email);
 			var account = repos.Account.GetByUrl(accountUrl, user);
-			Assert.IsTrue(account.Open);
+			Assert.That(account.Open, Is.True);
 		}
 
 		[Then(@"the account will be closed")]
@@ -329,7 +329,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var user = repos.User.GetByEmail(current.Email);
 			var account = repos.Account.GetByUrl(accountUrl, user);
-			Assert.IsFalse(account.Open);
+			Assert.That(account.Open, Is.False);
 		}
 		#endregion
 
@@ -371,7 +371,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			accountInfo = service.Admin.GetAccount(accountUrl);
 
-			Assert.IsNotNull(accountInfo);
+			Assert.That(accountInfo, Is.Not.Null);
 		}
 
 		[Then(@"the account will be deleted")]
@@ -390,9 +390,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 				error = e;
 			}
 
-			Assert.IsNull(accountInfo);
-			Assert.IsNotNull(error);
-			Assert.AreEqual(Error.InvalidAccount, error.Type);
+			Assert.That(accountInfo, Is.Null);
+			Assert.That(error, Is.Not.Null);
+			Assert.That(error.Type, Is.EqualTo(Error.InvalidAccount));
 		}
 		#endregion
 
@@ -441,11 +441,11 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 				if (has)
 				{
-					Assert.IsNotNull(account);
+					Assert.That(account, Is.Not.Null);
 				}
 				else
 				{
-					Assert.IsNull(account);
+					Assert.That(account, Is.Null);
 				}
 			}
 		}
@@ -470,7 +470,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var url = accountUrl ?? accountInfo?.Name.IntoUrl();
 			var account = service.Admin.GetAccount(url);
-			Assert.IsTrue(account.IsOpen);
+			Assert.That(account.IsOpen, Is.True);
 		}
 		#endregion
 		#endregion Account
@@ -530,8 +530,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 				error = e;
 			}
 
-			Assert.IsNotNull(error);
-			Assert.IsNull(categoryInfo);
+			Assert.That(error, Is.Not.Null);
+			Assert.That(categoryInfo, Is.Null);
 		}
 
 		[Then(@"the category will be saved")]
@@ -539,7 +539,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			categoryInfo = service.Admin.GetCategory(categoryInfo.Name);
 
-			Assert.IsNotNull(categoryInfo);
+			Assert.That(categoryInfo, Is.Not.Null);
 		}
 		#endregion
 
@@ -623,14 +623,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			if (!changed)
 			{
-				Assert.IsNotNull(category);
-				Assert.IsNull(error);
+				Assert.That(category, Is.Not.Null);
+				Assert.That(error, Is.Null);
 				return;
 			}
 
-			Assert.IsNull(category);
-			Assert.IsNotNull(error);
-			Assert.AreEqual(error.Type, Error.InvalidCategory);
+			Assert.That(category, Is.Null);
+			Assert.That(error, Is.Not.Null);
+			Assert.That(Error.InvalidCategory, Is.EqualTo(error.Type));
 
 			error = null;
 
@@ -643,8 +643,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 				error = e;
 			}
 
-			Assert.IsNotNull(category);
-			Assert.IsNull(error);
+			Assert.That(category, Is.Not.Null);
+			Assert.That(error, Is.Null);
 		}
 		#endregion
 
@@ -688,7 +688,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var user = repos.User.GetByEmail(current.Email);
 			var category = repos.Category.GetByName(categoryName, user);
-			Assert.IsFalse(category.Active);
+			Assert.That(category.Active, Is.False);
 		}
 		#endregion
 
@@ -734,7 +734,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var user = repos.User.GetByEmail(current.Email);
 			var category = repos.Category.GetByName(categoryName, user);
-			Assert.IsTrue(category.Active);
+			Assert.That(category.Active, Is.True);
 		}
 		#endregion
 
@@ -794,11 +794,11 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 				if (has)
 				{
-					Assert.IsNotNull(category);
+					Assert.That(category, Is.Not.Null);
 				}
 				else
 				{
-					Assert.IsNull(category);
+					Assert.That(category, Is.Null);
 				}
 			}
 		}
@@ -844,9 +844,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var category = repos.Category.GetByName(categoryName, user);
 
 			if (exist)
-				Assert.IsNotNull(category);
+				Assert.That(category, Is.Not.Null);
 			else
-				Assert.IsNull(category);
+				Assert.That(category, Is.Null);
 		}
 
 		[Then(@"category (.+) will have (\d+) moves")]
@@ -856,7 +856,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var category = repos.Category.GetByName(categoryName, user);
 			var moves = repos.Move.ByCategory(category);
 
-			Assert.AreEqual(count, moves.Count);
+			Assert.That(moves.Count, Is.EqualTo(count));
 		}
 
 		[Then(@"category (.+) will have (\d+) schedules")]
@@ -866,7 +866,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var category = repos.Category.GetByName(categoryName, user);
 			var schedules = repos.Schedule.ByCategory(category);
 
-			Assert.AreEqual(count, schedules.Count);
+			Assert.That(schedules.Count, Is.EqualTo(count));
 		}
 		#endregion Unify Categories
 
@@ -959,7 +959,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				var translated = PlainText.Site[
 					"general", service.Current.Language, tableRow["Key"]
 				].Text;
-				Assert.AreEqual(tableRow["Translated"], translated);
+				Assert.That(translated, Is.EqualTo(tableRow["Translated"]));
 			}
 		}
 
@@ -1023,7 +1023,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void ThenAccountSignWillBeAvailable(Boolean available)
 		{
 			var accountSign = service.Current.UseAccountsSigns;
-			Assert.AreEqual(available, accountSign);
+			Assert.That(accountSign, Is.EqualTo(available));
 		}
 
 		[Then(@"the account list will( not)? have sign")]
@@ -1034,9 +1034,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var account = accountList.Single(a => a.Url == url);
 
 			if (hasSign)
-				Assert.AreNotEqual(AccountSign.None, account.Sign);
+				Assert.That(account.Sign, Is.Not.EqualTo(AccountSign.None));
 			else
-				Assert.AreEqual(AccountSign.None, account.Sign);
+				Assert.That(account.Sign, Is.EqualTo(AccountSign.None));
 		}
 
 		[Then(@"the year report will( not)? have sign")]
@@ -1048,13 +1048,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			if (hasSign)
 			{
-				Assert.AreNotEqual(AccountSign.None, yearReport.AccountSign);
-				Assert.AreNotEqual(AccountSign.None, yearReport.AccountForeseenSign);
+				Assert.That(yearReport.AccountSign, Is.Not.EqualTo(AccountSign.None));
+				Assert.That(yearReport.AccountForeseenSign, Is.Not.EqualTo(AccountSign.None));
 			}
 			else
 			{
-				Assert.AreEqual(AccountSign.None, yearReport.AccountSign);
-				Assert.AreEqual(AccountSign.None, yearReport.AccountForeseenSign);
+				Assert.That(yearReport.AccountSign, Is.EqualTo(AccountSign.None));
+				Assert.That(yearReport.AccountForeseenSign, Is.EqualTo(AccountSign.None));
 			}
 		}
 
@@ -1068,13 +1068,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			if (hasSign)
 			{
-				Assert.AreNotEqual(AccountSign.None, monthReport.AccountTotalSign);
-				Assert.AreNotEqual(AccountSign.None, monthReport.ForeseenTotalSign);
+				Assert.That(monthReport.AccountTotalSign, Is.Not.EqualTo(AccountSign.None));
+				Assert.That(monthReport.ForeseenTotalSign, Is.Not.EqualTo(AccountSign.None));
 			}
 			else
 			{
-				Assert.AreEqual(AccountSign.None, monthReport.AccountTotalSign);
-				Assert.AreEqual(AccountSign.None, monthReport.ForeseenTotalSign);
+				Assert.That(monthReport.AccountTotalSign, Is.EqualTo(AccountSign.None));
+				Assert.That(monthReport.ForeseenTotalSign, Is.EqualTo(AccountSign.None));
 			}
 		}
 		#endregion
@@ -1102,7 +1102,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the Theme will be (\w+)")]
 		public void ThenTheThemeWillBeSlate(Theme chosenTheme)
 		{
-			Assert.AreEqual(chosenTheme, current.Theme);
+			Assert.That(current.Theme, Is.EqualTo(chosenTheme));
 		}
 		#endregion ChangeTheme
 
@@ -1152,7 +1152,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void ThenTheMoveMailWill_BeEnabled(Boolean enabled)
 		{
 			var user = repos.User.GetByEmail(userEmail);
-			Assert.AreEqual(enabled, user.Settings.SendMoveEmail);
+			Assert.That(user.Settings.SendMoveEmail, Is.EqualTo(enabled));
 		}
 
 		[Then(@"the last two e-mails will have same unsubscribe token")]
@@ -1168,7 +1168,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var match2 = regex.Match(email2.Body);
 			var token2 = match2.Groups[1].Value;
 
-			Assert.AreEqual(token1, token2);
+			Assert.That(token2, Is.EqualTo(token1));
 		}
 		#endregion UnsubscribeMoveMail
 
@@ -1299,17 +1299,17 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"I will receive no account")]
 		public void ThenIWillReceiveNoAccount()
 		{
-			Assert.IsNull(accountInfo);
+			Assert.That(accountInfo, Is.Null);
 		}
 
 		[Then(@"I will receive the account")]
 		public void ThenIWillReceiveTheAccount()
 		{
-			Assert.IsNotNull(accountInfo);
+			Assert.That(accountInfo, Is.Not.Null);
 
 			if (accountUrl != null)
 			{
-				Assert.AreEqual(accountUrl, accountInfo.Name.IntoUrl());
+				Assert.That(accountInfo.Name.IntoUrl(), Is.EqualTo(accountUrl));
 			}
 			else
 			{
@@ -1324,24 +1324,24 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var account = service.Admin.GetAccount(url);
 
 			if (hasEndDate)
-				Assert.IsNotNull(account.End);
+				Assert.That(account.End, Is.Not.Null);
 			else
-				Assert.IsNull(account.End);
+				Assert.That(account.End, Is.Null);
 		}
 
 		[Then(@"I will receive no category")]
 		public void ThenIWillReceiveNoCategory()
 		{
-			Assert.IsNull(categoryInfo);
+			Assert.That(categoryInfo, Is.Null);
 		}
 
 		[Then(@"I will receive the category")]
 		public void ThenIWillReceiveTheCategory()
 		{
-			Assert.IsNotNull(categoryInfo);
+			Assert.That(categoryInfo, Is.Not.Null);
 
 			if (categoryName != null)
-				Assert.AreEqual(categoryName, categoryInfo.Name);
+				Assert.That(categoryInfo.Name, Is.EqualTo(categoryName));
 		}
 		#endregion
 

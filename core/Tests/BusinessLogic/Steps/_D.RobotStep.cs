@@ -89,20 +89,20 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void ThenTheScheduleWillNotBeSaved()
 		{
 			if (scheduleInfo != null)
-				Assert.AreEqual(Guid.Empty, scheduleInfo.Guid);
+				Assert.That(scheduleInfo.Guid, Is.EqualTo(Guid.Empty));
 		}
 
 		[Then(@"the schedule will be saved")]
 		public void ThenTheScheduleWillBeSaved()
 		{
-			Assert.AreNotEqual(Guid.Empty, scheduleInfo.Guid);
+			Assert.That(scheduleInfo.Guid, Is.Not.EqualTo(Guid.Empty));
 		}
 
 		[Then(@"the schedule value will be (\d+\.?\d*)")]
 		public void ThenTheScheduleValueWillBe(Decimal value)
 		{
 			var schedule = repos.Schedule.Get(scheduleResult.Guid);
-			Assert.AreEqual(value, schedule.Value);
+			Assert.That(schedule.Value, Is.EqualTo(value));
 		}
 
 		[Then(@"the next robot schedule run will check the user")]
@@ -110,8 +110,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var user = repos.User.GetByEmail(userEmail);
 			var nextCheck = user.Control.RobotCheck.ToUniversalTime();
-			Assert.Less(testStart, nextCheck);
-			Assert.Greater(DateTime.UtcNow, nextCheck);
+
+			Assert.That(nextCheck, Is.GreaterThan(testStart));
+			Assert.That(nextCheck, Is.LessThan(DateTime.UtcNow));
 		}
 		#endregion
 
@@ -270,7 +271,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			foreach (var account in accounts)
 			{
 				var moves = repos.Move.ByAccount(account);
-				Assert.IsEmpty(moves);
+				Assert.That(moves, Is.Empty);
 			}
 		}
 		#endregion
@@ -345,11 +346,11 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 				if (has)
 				{
-					Assert.IsNotNull(schedule);
+					Assert.That(schedule, Is.Not.Null);
 				}
 				else
 				{
-					Assert.IsNull(schedule);
+					Assert.That(schedule, Is.Null);
 				}
 			}
 		}
@@ -456,14 +457,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 				: email.Trim().Replace("{scenarioCode}", scenarioCode);
 
 			var user = repos.User.GetByEmail(email);
-			Assert.IsNotNull(user);
+			Assert.That(user, Is.Not.Null);
 		}
 
 		[Then(@"the user won't exist")]
 		public void ThenTheUserWillNotExists()
 		{
 			var user = repos.User.GetByEmail(userEmail);
-			Assert.IsNull(user);
+			Assert.That(user, Is.Null);
 		}
 
 		[Then(@"the count of warnings sent will be (\d+)")]
@@ -474,7 +475,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				EmailType.RemovalReason,
 				testStart
 			);
-			Assert.AreEqual(expectedCount, actualCount);
+			Assert.That(actualCount, Is.EqualTo(expectedCount));
 		}
 
 		[Then(@"there will be a wipe notice sent")]
@@ -485,14 +486,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 				EmailType.WipeNotice,
 				testStart
 			);
-			Assert.AreEqual(1, actualCount);
+			Assert.That(actualCount, Is.EqualTo(1));
 		}
 
 		[Then(@"and the user warning count will be (\d+)")]
 		public void ThenAndTheUserWarningCountWillBe(Int32 count)
 		{
 			var user = repos.User.GetByEmail(userEmail);
-			Assert.AreEqual(count, user.Control.RemovalWarningSent);
+			Assert.That(user.Control.RemovalWarningSent, Is.EqualTo(count));
 		}
 
 		[Then(@"there will be an export file with this content")]
@@ -509,7 +510,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			var content = File.ReadAllLines(file);
 
-			Assert.AreEqual(expected, content);
+			Assert.That(content, Is.EqualTo(expected));
 		}
 
 		[Then(@"it will be registered at wipe table")]
@@ -525,34 +526,35 @@ namespace DFM.BusinessLogic.Tests.Steps
 				.OrderBy(w => w.When, false)
 				.FirstOrDefault;
 
-			Assert.NotNull(wipe);
+			Assert.That(wipe, Is.Not.Null);
 
-			Assert.IsTrue(Crypt.Check(userEmail, wipe.HashedEmail));
+			Assert.That(Crypt.Check(userEmail, wipe.HashedEmail), Is.True);
 
-			Assert.AreEqual(userEmail[..2], wipe.UsernameStart);
-			Assert.AreEqual("don", wipe.DomainStart);
+			Assert.That(wipe.UsernameStart, Is.EqualTo(userEmail[..2]));
+			Assert.That(wipe.DomainStart, Is.EqualTo("don"));
 
-			Assert.Less(testStart, wipe.When.ToUniversalTime());
-			Assert.AreEqual(reason, wipe.Why);
+			Assert.That(wipe.When.ToUniversalTime(), Is.GreaterThan(testStart));
+			Assert.That(wipe.Why, Is.EqualTo(reason));
 
-			Assert.AreEqual(theme, wipe.Theme);
-			Assert.AreEqual(language, wipe.Language);
+			Assert.That(wipe.Theme, Is.EqualTo(theme));
+			Assert.That(wipe.Language, Is.EqualTo(language));
 
 			if (hasCSV)
 			{
-				Assert.NotNull(wipe.S3);
-				Assert.True(
+				Assert.That(wipe.S3, Is.Not.Null);
+				Assert.That(
 					wipe.S3.StartsWith(
 						wipe.HashedEmail.ToBase64()
-					)
+					),
+					Is.True
 				);
 			}
 			else
 			{
-				Assert.Null(wipe.S3);
+				Assert.That(wipe.S3, Is.Null);
 			}
 
-			Assert.True(Crypt.Check("password", wipe.Password));
+			Assert.That(Crypt.Check("password", wipe.Password), Is.True);
 		}
 
 		[Then(@"it will not be registered at wipe table")]
@@ -562,8 +564,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			foreach (var wipe in wipes)
 			{
-				Assert.IsFalse(
-					Crypt.Check(userEmail, wipe.HashedEmail)
+				Assert.That(
+					Crypt.Check(userEmail, wipe.HashedEmail),
+					Is.False
 				);
 			}
 		}
@@ -572,7 +575,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void ThenTheE_MailSubjectWillBe(String subject)
 		{
 			var email = EmlHelper.ByEmail(userEmail);
-			Assert.AreEqual(subject, email.Subject);
+			Assert.That(email.Subject, Is.EqualTo(subject));
 		}
 
 		[Then(@"the e-mail body will contain ""(.*)""")]
@@ -583,8 +586,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 				.Replace("\n", "")
 				.Replace("\t", "");
 
-			Assert.True(
+			Assert.That(
 				body.Contains(bodyPart),
+				Is.True,
 				@$"
 					Expected: {bodyPart}
 					Actual: {body}
@@ -610,7 +614,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the answer is (Yes|No)")]
 		public void ThenTheAnswerIsYes(Boolean hasSchedule)
 		{
-			Assert.AreEqual(hasSchedule, this.hasSchedule);
+			Assert.That(this.hasSchedule, Is.EqualTo(hasSchedule));
 		}
 		#endregion
 
@@ -699,21 +703,21 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void ThenTheScheduleWillBeDisabled()
 		{
 			var schedule = repos.Schedule.Get(scheduleInfo.Guid);
-			Assert.IsFalse(schedule.Active);
+			Assert.That(schedule.Active, Is.False);
 		}
 
 		[Then(@"the schedule will be enabled")]
 		public void ThenTheScheduleWillBeEnabled()
 		{
 			var schedule = repos.Schedule.Get(scheduleInfo.Guid);
-			Assert.IsTrue(schedule.Active);
+			Assert.That(schedule.Active, Is.True);
 		}
 
 		[Then(@"the schedule last run will be (\d+)")]
 		public void ThenTheScheduleLastRunWillBe(Int32 lastRun)
 		{
 			var schedule = repos.Schedule.Get(scheduleInfo.Guid);
-			Assert.AreEqual(lastRun, schedule.LastRun);
+			Assert.That(schedule.LastRun, Is.EqualTo(lastRun));
 		}
 		#endregion
 	}

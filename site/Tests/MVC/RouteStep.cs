@@ -47,10 +47,10 @@ namespace DFM.MVC.Tests
 				var expected = row["Route"];
 				var actual = results.Dequeue();
 
-				Assert.AreEqual(expected, actual);
+				Assert.That(actual, Is.EqualTo(expected));
 			}
 
-			Assert.IsEmpty(results);
+			Assert.That(results, Is.Empty);
 		}
 	}
 }

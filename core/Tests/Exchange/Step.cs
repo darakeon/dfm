@@ -98,13 +98,13 @@ namespace DFM.Exchange.Tests
 		{
 			var expected = table.Rows.Select(r => r["File"]);
 
-			Assert.AreEqual(expected, csv);
+			Assert.That(csv, Is.EqualTo(expected));
 		}
 
 		[Then(@"there will be no file generation")]
 		public void ThenThereWillBeNoFileGeneration()
 		{
-			Assert.Null(csv);
+			Assert.That(csv, Is.Null);
 		}
 	}
 }

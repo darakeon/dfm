@@ -108,14 +108,14 @@ namespace DFM.Email.Tests
 		[Then(@"I will receive this e-mail error: ([A-Za-z]+)")]
 		public void ThenIWillReceiveThisError(String errorMessage)
 		{
-			Assert.IsNotNull(error);
-			Assert.AreEqual(errorMessage, error.Type.ToString());
+			Assert.That(error, Is.Not.Null);
+			Assert.That(error.Type.ToString(), Is.EqualTo(errorMessage));
 		}
 
 		[Then(@"I will receive no e-mail error")]
 		public void ThenIWillReceiveNoEmailError()
 		{
-			Assert.IsNull(error);
+			Assert.That(error, Is.Null);
 		}
 
 		[Then(@"there will be a ([\w\-]+) e-mail sent")]
@@ -139,7 +139,7 @@ namespace DFM.Email.Tests
 
 			var resultPath = Path.Combine("Templates", "result.html");
 			File.WriteAllText(resultPath, body);
-			Assert.True(match(body, pattern));
+			Assert.That(match(body, pattern), Is.True);
 		}
 
 		private MailError error

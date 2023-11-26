@@ -10,7 +10,7 @@ namespace DFM.Generic.Tests
 			var original = "$2b$12$ibiSaL7EiAFxPcPwDmx6vOZrnpEvUjEh95vzKCV.jj5445YlVCmJK";
 			var expected = "JDJiJDEyJGliaVNhTDdFaUFGeFBjUHdEbXg2dk9acm5wRXZVakVoOTV2ektDVi5qajU0NDVZbFZDbUpL";
 
-			Assert.AreEqual(expected, original.ToBase64());
+			Assert.That(original.ToBase64(), Is.EqualTo(expected));
 		}
 	}
 }
