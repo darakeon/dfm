@@ -196,7 +196,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var user = repos.User.GetByEmail(email);
 			var loginForUser = repos.Ticket.List(user).ToList();
 
-			Assert.That(loginForUser.Count, Is.GreaterThan(0));
+			Assert.That(loginForUser.Count, Is.EqualTo(0));
 		}
 		#endregion
 
