@@ -90,13 +90,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"I will receive no month report")]
 		public void ThenIWillReceiveNoMonthReport()
 		{
-			Assert.IsNull(monthReport);
+			Assert.That(monthReport, Is.Null);
 		}
 
 		[Then(@"I will receive the month report")]
 		public void ThenIWillReceiveTheMonthReport()
 		{
-			Assert.IsNotNull(monthReport);
+			Assert.That(monthReport, Is.Not.Null);
 		}
 
 		[Then(@"its sum value will be equal to its moves sum value")]
@@ -116,20 +116,21 @@ namespace DFM.BusinessLogic.Tests.Steps
 						: m.Value
 				);
 
-			Assert.AreEqual(expected, actual);
+			Assert.That(actual, Is.EqualTo(expected));
 		}
 
 		[Then(@"there will be no moves")]
 		public void ThenThereWillBeNoMoves()
 		{
-			Assert.IsEmpty(monthReport.MoveList);
+			Assert.That(monthReport.MoveList, Is.Empty);
 		}
 
 		[Then(@"there will have a move with description (.*)")]
 		public void ThenThereWillHaveAMoveWithDescriptionScheduleEa(String description)
 		{
-			Assert.IsTrue(
-				monthReport.MoveList.Any(m => m.Description == description)
+			Assert.That(
+				monthReport.MoveList.Any(m => m.Description == description),
+				Is.True
 			);
 		}
 
@@ -139,7 +140,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var foreseenMoves = monthReport.ForeseenList;
 
 			var count = table.RowCount;
-			Assert.AreEqual(count, foreseenMoves.Count);
+			Assert.That(foreseenMoves.Count, Is.EqualTo(count));
 
 			for (var m = 0; m < count; m++)
 			{
@@ -150,10 +151,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 				var value = Int32.Parse(row["Value"]);
 
 				var line = foreseenMoves[m];
-				Assert.AreEqual(description, line.Description);
-				Assert.AreEqual(date, line.GetDate());
-				Assert.AreEqual(nature, line.Nature);
-				Assert.AreEqual(value, line.Value);
+				Assert.That(line.Description, Is.EqualTo(description));
+				Assert.That(line.GetDate(), Is.EqualTo(date));
+				Assert.That(line.Nature, Is.EqualTo(nature));
+				Assert.That(line.Value, Is.EqualTo(value));
 			}
 		}
 
@@ -161,7 +162,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void ThenTheForeseenValueWillBe(Int32 value)
 		{
 			var foreseen = monthReport.ForeseenTotal - monthReport.AccountTotal;
-			Assert.AreEqual(value, foreseen);
+			Assert.That(foreseen, Is.EqualTo(value));
 		}
 		#endregion
 
@@ -182,18 +183,18 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"I will receive no year report")]
 		public void ThenIWillReceiveNoYearReport()
 		{
-			Assert.IsNull(yearReport);
+			Assert.That(yearReport, Is.Null);
 		}
 
 		[Then(@"I will receive the year report")]
 		public void ThenIWillReceiveTheYearReport(Table table)
 		{
-			Assert.IsNotNull(yearReport);
+			Assert.That(yearReport, Is.Not.Null);
 
 			var months = yearReport.MonthList;
 
 			var count = table.RowCount;
-			Assert.AreEqual(count, months.Count);
+			Assert.That(months.Count, Is.EqualTo(count));
 
 			for (var m = 0; m < count; m++)
 			{
@@ -207,13 +208,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 				var foreseenTotal = Int32.Parse(row["Foreseen Total"]);
 
 				var line = months[m];
-				Assert.AreEqual(number, line.Number);
-				Assert.AreEqual(currentIn, line.CurrentIn);
-				Assert.AreEqual(currentOut, line.CurrentOut);
-				Assert.AreEqual(currentTotal, line.CurrentTotal);
-				Assert.AreEqual(foreseenIn, line.ForeseenIn);
-				Assert.AreEqual(foreseenOut, line.ForeseenOut);
-				Assert.AreEqual(foreseenTotal, line.ForeseenTotal);
+				Assert.That(line.Number, Is.EqualTo(number));
+				Assert.That(line.CurrentIn, Is.EqualTo(currentIn));
+				Assert.That(line.CurrentOut, Is.EqualTo(currentOut));
+				Assert.That(line.CurrentTotal, Is.EqualTo(currentTotal));
+				Assert.That(line.ForeseenIn, Is.EqualTo(foreseenIn));
+				Assert.That(line.ForeseenOut, Is.EqualTo(foreseenOut));
+				Assert.That(line.ForeseenTotal, Is.EqualTo(foreseenTotal));
 			}
 		}
 
@@ -233,7 +234,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 						: -m.Value
 				);
 
-			Assert.AreEqual(expected, actual);
+			Assert.That(actual, Is.EqualTo(expected));
 		}
 
 		[Then(@"the year report sums will be")]
@@ -242,22 +243,22 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var row = table.Rows[0];
 
 			var currentIn = Int32.Parse(row["Current In"]);
-			Assert.AreEqual(currentIn, yearReport.CurrentIn);
+			Assert.That(yearReport.CurrentIn, Is.EqualTo(currentIn));
 
 			var currentOut = Int32.Parse(row["Current Out"]);
-			Assert.AreEqual(currentOut, yearReport.CurrentOut);
+			Assert.That(yearReport.CurrentOut, Is.EqualTo(currentOut));
 
 			var currentTotal = Int32.Parse(row["Current Total"]);
-			Assert.AreEqual(currentTotal, yearReport.CurrentTotal);
+			Assert.That(yearReport.CurrentTotal, Is.EqualTo(currentTotal));
 
 			var foreseenIn = Int32.Parse(row["Foreseen In"]);
-			Assert.AreEqual(foreseenIn, yearReport.ForeseenIn);
+			Assert.That(yearReport.ForeseenIn, Is.EqualTo(foreseenIn));
 
 			var foreseenOut = Int32.Parse(row["Foreseen Out"]);
-			Assert.AreEqual(foreseenOut, yearReport.ForeseenOut);
+			Assert.That(yearReport.ForeseenOut, Is.EqualTo(foreseenOut));
 
 			var foreseenTotal = Int32.Parse(row["Foreseen Total"]);
-			Assert.AreEqual(foreseenTotal, yearReport.ForeseenTotal);
+			Assert.That(yearReport.ForeseenTotal, Is.EqualTo(foreseenTotal));
 		}
 		#endregion
 
@@ -285,13 +286,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"I will receive no moves")]
 		public void ThenIWillReceiveNoMoves()
 		{
-			Assert.AreEqual(0, searchResult.MoveList.Count);
+			Assert.That(searchResult.MoveList.Count, Is.EqualTo(0));
 		}
 
 		[Then(@"I will receive these moves")]
 		public void ThenIWillReceiveTheseMoves(Table table)
 		{
-			Assert.AreEqual(table.RowCount, searchResult.MoveList.Count);
+			Assert.That(searchResult.MoveList.Count, Is.EqualTo(table.RowCount));
 
 			foreach (var row in table.Rows)
 			{
@@ -312,7 +313,11 @@ namespace DFM.BusinessLogic.Tests.Steps
 						)
 				);
 
-				Assert.IsNotNull(move, $"NOT FOUND: [{moveDate}] {description} ({detail})");
+				Assert.That(
+					move,
+					Is.Not.Null,
+					$"NOT FOUND: [{moveDate}] {description} ({detail})"
+				);
 
 				searchResult.MoveList.Remove(move);
 			}
@@ -339,23 +344,23 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"I will receive no category report")]
 		public void ThenIWillReceiveNoCategoryReport()
 		{
-			Assert.IsNull(categoryReport);
+			Assert.That(categoryReport, Is.Null);
 		}
 
 		[Then(@"I will receive empty category report")]
 		public void ThenIWillReceiveTheCategoryReport()
 		{
-			Assert.IsNotNull(categoryReport);
-			Assert.IsEmpty(categoryReport.List);
+			Assert.That(categoryReport, Is.Not.Null);
+			Assert.That(categoryReport.List, Is.Empty);
 		}
 
 		[Then(@"I will receive this category report")]
 		public void ThenIWillReceiveThisCategoryReport(Table table)
 		{
-			Assert.IsNotNull(categoryReport);
-			Assert.IsNotEmpty(categoryReport.List);
+			Assert.That(categoryReport, Is.Not.Null);
+			Assert.That(categoryReport.List, Is.Not.Empty);
 
-			Assert.AreEqual(table.Rows.Count, categoryReport.List.Count);
+			Assert.That(categoryReport.List.Count, Is.EqualTo(table.Rows.Count));
 
 			for (var r = 0; r < table.Rows.Count; r++)
 			{
@@ -363,9 +368,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 				var item = categoryReport.List[r];
 				var category = row["Category"];
 
-				Assert.AreEqual(category, item.Category);
-				Assert.AreEqual(row["Out"], (item.OutCents / 100).ToString(), $"For {category}");
-				Assert.AreEqual(row["In"], (item.InCents / 100).ToString(), $"For {category}");
+				Assert.That(item.Category, Is.EqualTo(category));
+				Assert.That((item.OutCents / 100).ToString(), Is.EqualTo(row["Out"]), $"For {category}");
+				Assert.That((item.InCents / 100).ToString(), Is.EqualTo(row["In"]), $"For {category}");
 			}
 		}
 		#endregion
@@ -448,26 +453,27 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void ThenTipWillBeShown(Boolean shown)
 		{
 			if (shown)
-				Assert.NotNull(tip);
+				Assert.That(tip, Is.Not.Null);
 			else
-				Assert.Null(tip);
+				Assert.That(tip, Is.Null);
 		}
 
 		[Then(@"tip shown will (not )?be equal to last one")]
 		public void ThenTipShownWillBeEqualToLastOne(Boolean equal)
 		{
 			if (equal)
-				Assert.AreEqual(tip, otherTip);
+				Assert.That(otherTip, Is.EqualTo(tip));
 			else
-				Assert.AreNotEqual(tip, otherTip);
+				Assert.That(otherTip, Is.Not.EqualTo(tip));
 		}
 
 		[Then(@"the tips will not be the first ones")]
 		public void ThenTheTipsWillNotBeTheFirstOnes()
 		{
-			Assert.False(
+			Assert.That(
 				TipTests.TestTip1.ToString() == tip
-				&& TipTests.TestTip2.ToString() == otherTip
+				&& TipTests.TestTip2.ToString() == otherTip,
+				Is.False
 			);
 		}
 
@@ -476,10 +482,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var user = repos.User.GetByEmail(userEmail);
 			var tips = repos.Tips.By(user, TipType.Tests);
-			Assert.NotNull(tips);
+			Assert.That(tips, Is.Not.Null);
 
 			var isPermanent = tips.IsPermanent(tip);
-			Assert.True(isPermanent);
+			Assert.That(isPermanent, Is.True);
 		}
 
 		[Then(@"the next tip will shown after (\d+) requests")]
@@ -487,9 +493,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var user = repos.User.GetByEmail(userEmail);
 			var tips = repos.Tips.By(user, TipType.Tests);
-			Assert.NotNull(tips);
+			Assert.That(tips, Is.Not.Null);
 
-			Assert.AreEqual(counter - 1, tips.Countdown);
+			Assert.That(tips.Countdown, Is.EqualTo(counter - 1));
 		}
 
 		[Then(@"tip will be one of")]
@@ -499,7 +505,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				.Select(r => r["Tip"])
 				.ToList();
 
-			Assert.Contains(tip, validTips);
+			Assert.That(validTips.Contains(tip), Is.True);
 		}
 		#endregion ShowTip
 

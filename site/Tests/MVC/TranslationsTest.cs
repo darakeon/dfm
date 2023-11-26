@@ -104,8 +104,8 @@ namespace DFM.MVC.Tests
 			var regex = new Regex(@"Translate(?:List)?\(([^\)]+)\)");
 			var matches = regex.Matches(html);
 
-			Assert.AreEqual(
-				count, matches.Count,
+			Assert.That(
+				matches.Count, Is.EqualTo(count),
 				$"Problem at {file}, regex ignored {count - matches.Count} occurrences"
 			);
 
@@ -122,8 +122,8 @@ namespace DFM.MVC.Tests
 			{
 				var translation = PlainText.Site[section, "pt-BR", phrase]?.Text;
 
-				Assert.NotNull(translation);
-				Assert.IsNotEmpty(translation);
+				Assert.That(translation, Is.Not.Null);
+				Assert.That(translation, Is.Not.Empty);
 
 				return null;
 			}
@@ -263,8 +263,8 @@ namespace DFM.MVC.Tests
 
 				foreach (var groups in wizardPlusLines)
 				{
-					Assert.GreaterOrEqual(
-						groups.Count, 2,
+					Assert.That(
+						groups.Count, Is.GreaterThanOrEqualTo(2),
 						$"Wizard Plus values not found for {name}"
 					);
 

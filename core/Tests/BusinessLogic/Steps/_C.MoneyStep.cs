@@ -180,37 +180,37 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void ThenTheMoveValueWillBe(Decimal value)
 		{
 			var move = repos.Move.Get(moveResult.Guid);
-			Assert.AreEqual(value, move.Value);
+			Assert.That(move.Value, Is.EqualTo(value));
 		}
 
 		[Then(@"the move will not be saved")]
 		public void ThenTheMoveWillNotBeSaved()
 		{
-			Assert.AreEqual(Guid.Empty, moveResult?.Guid ?? Guid.Empty);
+			Assert.That(moveResult?.Guid ?? Guid.Empty, Is.EqualTo(Guid.Empty));
 		}
 
 		[Then(@"the move will be saved")]
 		public void ThenTheMoveWillBeSaved()
 		{
-			Assert.AreNotEqual(Guid.Empty, moveResult?.Guid ?? Guid.Empty);
+			Assert.That(moveResult?.Guid ?? Guid.Empty, Is.Not.EqualTo(Guid.Empty));
 
 			var newMove = service.Money.GetMove(moveResult?.Guid ?? Guid.Empty);
 
-			Assert.IsNotNull(newMove);
+			Assert.That(newMove, Is.Not.Null);
 		}
 
 		[Then(@"I will receive the notification")]
 		public void ThenIWillReceiveTheNotification()
 		{
-			Assert.IsTrue(currentEmailStatus.HasValue);
-			Assert.AreEqual(EmailStatus.EmailNotSent, currentEmailStatus.Value);
+			Assert.That(currentEmailStatus.HasValue, Is.True);
+			Assert.That(currentEmailStatus.Value, Is.EqualTo(EmailStatus.EmailNotSent));
 		}
 
 		[Then(@"I will receive no notification")]
 		public void ThenIWillReceiveNoNotification()
 		{
-			Assert.IsTrue(currentEmailStatus.HasValue);
-			Assert.AreEqual(EmailStatus.EmailSent, currentEmailStatus.Value);
+			Assert.That(currentEmailStatus.HasValue, Is.True);
+			Assert.That(currentEmailStatus.Value, Is.EqualTo(EmailStatus.EmailSent));
 		}
 
 		[Then(@"the accountIn begin date will be (\d{4}\-\d{2}\-\d{2})")]
@@ -230,7 +230,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var user = repos.User.GetByEmail(current.Email);
 			var account = repos.Account.GetByUrl(url, user);
 
-			Assert.AreEqual(beginDate, account.BeginDate);
+			Assert.That(account.BeginDate, Is.EqualTo(beginDate));
 		}
 		#endregion
 
@@ -448,7 +448,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			var currentTotal = repos.Summary.GetTotal(account);
 
-			Assert.AreEqual(accountOutTotal + value, currentTotal);
+			Assert.That(currentTotal, Is.EqualTo(accountOutTotal + value));
 		}
 
 		[Then(@"the new-accountOut value will change in (\-?\d+\.?\d*)")]
@@ -458,7 +458,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			var currentTotal = repos.Summary.GetTotal(account);
 
-			Assert.AreEqual(newAccountOutTotal + value, currentTotal);
+			Assert.That(currentTotal, Is.EqualTo(newAccountOutTotal + value));
 		}
 
 		[Then(@"the old-year-category-accountOut value will change in (\-?\d+\.?\d*)")]
@@ -469,7 +469,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var category = repos.Category.GetByName(mainCategoryName, user);
 			var summary = repos.Summary.Get(account, category, oldDate.Year);
 
-			Assert.AreEqual(yearCategoryAccountOutTotal + value, summary.Out);
+			Assert.That(summary.Out, Is.EqualTo(yearCategoryAccountOutTotal + value));
 		}
 
 		[Then(@"the new-year-category-accountOut value will change in (\-?\d+\.?\d*)")]
@@ -480,7 +480,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var category = repos.Category.GetByName(categoryInfo?.Name, user);
 			var summary = repos.Summary.Get(account, category, moveInfo.Year);
 
-			Assert.AreEqual(newYearCategoryAccountOutTotal + value, summary.Out);
+			Assert.That(summary.Out, Is.EqualTo(newYearCategoryAccountOutTotal + value));
 		}
 
 		[Then(@"the old-month-category-accountOut value will change in (\-?\d+\.?\d*)")]
@@ -491,7 +491,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var category = repos.Category.GetByName(mainCategoryName, user);
 			var summary = repos.Summary.Get(account, category, oldDate.ToMonthYear());
 
-			Assert.AreEqual(monthCategoryAccountOutTotal + value, summary.Out);
+			Assert.That(summary.Out, Is.EqualTo(monthCategoryAccountOutTotal + value));
 		}
 
 		[Then(@"the new-month-category-accountOut value will change in (\-?\d+\.?\d*)")]
@@ -502,7 +502,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var category = repos.Category.GetByName(categoryInfo?.Name, user);
 			var summary = repos.Summary.Get(account, category, moveInfo.ToMonthYear());
 
-			Assert.AreEqual(newMonthCategoryAccountOutTotal + value, summary.Out);
+			Assert.That(summary.Out, Is.EqualTo(newMonthCategoryAccountOutTotal + value));
 		}
 
 		[Then(@"the old-accountIn value will change in (\-?\d+\.?\d*)")]
@@ -512,7 +512,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			var currentTotal = repos.Summary.GetTotal(account);
 
-			Assert.AreEqual(accountInTotal + value, currentTotal);
+			Assert.That(currentTotal, Is.EqualTo(accountInTotal + value));
 		}
 
 		[Then(@"the new-accountIn value will change in (\-?\d+\.?\d*)")]
@@ -522,7 +522,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			var currentTotal = repos.Summary.GetTotal(account);
 
-			Assert.AreEqual(newAccountInTotal + value, currentTotal);
+			Assert.That(currentTotal, Is.EqualTo(newAccountInTotal + value));
 		}
 
 		[Then(@"the old-year-category-accountIn value will change in (\-?\d+\.?\d*)")]
@@ -533,7 +533,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var category = repos.Category.GetByName(mainCategoryName, user);
 			var summary = repos.Summary.Get(account, category, oldDate.Year);
 
-			Assert.AreEqual(yearCategoryAccountInTotal + value, summary.In);
+			Assert.That(summary.In, Is.EqualTo(yearCategoryAccountInTotal + value));
 		}
 
 		[Then(@"the new-year-category-accountIn value will change in (\-?\d+\.?\d*)")]
@@ -544,7 +544,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var category = repos.Category.GetByName(categoryInfo?.Name, user);
 			var summary = repos.Summary.Get(account, category, moveInfo.Year);
 
-			Assert.AreEqual(newYearCategoryAccountInTotal + value, summary.In);
+			Assert.That(summary.In, Is.EqualTo(newYearCategoryAccountInTotal + value));
 		}
 
 		[Then(@"the old-month-category-accountIn value will change in (\-?\d+\.?\d*)")]
@@ -555,7 +555,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var category = repos.Category.GetByName(mainCategoryName, user);
 			var summary = repos.Summary.Get(account, category, oldDate.ToMonthYear());
 
-			Assert.AreEqual(monthCategoryAccountInTotal + value, summary.In);
+			Assert.That(summary.In, Is.EqualTo(monthCategoryAccountInTotal + value));
 		}
 
 		[Then(@"the new-month-category-accountIn value will change in (\-?\d+\.?\d*)")]
@@ -566,7 +566,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var category = repos.Category.GetByName(categoryInfo?.Name, user);
 			var summary = repos.Summary.Get(account, category, moveInfo.ToMonthYear());
 
-			Assert.AreEqual(newMonthCategoryAccountInTotal + value, summary.In);
+			Assert.That(summary.In, Is.EqualTo(newMonthCategoryAccountInTotal + value));
 		}
 
 		[Then(@"the month-accountOut value will not change")]
@@ -575,7 +575,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var account = getOrCreateAccount(accountOutUrl);
 			var summary = repos.Summary.Get(account, oldDate.ToMonthYear());
 
-			Assert.AreEqual(monthAccountOutTotal, summary.Sum(s => s.Out));
+			Assert.That(summary.Sum(s => s.Out), Is.EqualTo(monthAccountOutTotal));
 		}
 
 		[Then(@"the year-accountOut value will not change")]
@@ -584,22 +584,22 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var account = getOrCreateAccount(accountOutUrl);
 			var summary = repos.Summary.Get(account, oldDate.Year);
 
-			Assert.AreEqual(yearAccountOutTotal, summary.Sum(s => s.Out));
+			Assert.That(summary.Sum(s => s.Out), Is.EqualTo(yearAccountOutTotal));
 		}
 
 		[Then(@"the Move will still be at the Schedule")]
 		public void ThenTheMoveWillStillBeAtTheSchedule()
 		{
 			var move = repos.Move.Get(moveInfo.Guid);
-			Assert.IsNotNull(move.Schedule);
-			Assert.AreEqual(scheduleInfo.Guid, move.Schedule.Guid);
+			Assert.That(move.Schedule, Is.Not.Null);
+			Assert.That(move.Schedule.Guid, Is.EqualTo(scheduleInfo.Guid));
 		}
 
 		[Then(@"the move is (not )?checked for account (Out|In)")]
 		public void ThenTheMoveIsNotCheckedForAccountOutAnymore(Boolean @checked, PrimalMoveNature nature)
 		{
 			var move = repos.Move.Get(moveInfo.Guid);
-			Assert.AreEqual(@checked, move.IsChecked(nature));
+			Assert.That(move.IsChecked(nature), Is.EqualTo(@checked));
 		}
 
 		[Then(@"the description will still be (.+)")]
@@ -614,7 +614,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var move = report.MoveList
 				.Single(m => m.Guid == moveInfo.Guid);
 
-			Assert.AreEqual(description, move.Description);
+			Assert.That(move.Description, Is.EqualTo(description));
 		}
 		#endregion
 
@@ -638,19 +638,19 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"I will receive no move")]
 		public void ThenIWillReceiveNoMove()
 		{
-			Assert.IsNull(moveInfo);
+			Assert.That(moveInfo, Is.Null);
 		}
 
 		[Then(@"I will receive the move")]
 		public void ThenIWillReceiveTheMove()
 		{
-			Assert.IsNotNull(moveInfo);
+			Assert.That(moveInfo, Is.Not.Null);
 		}
 
 		[Then(@"the Move description will be (.+)")]
 		public void ThenTheMoveDescriptionWillBe(String description)
 		{
-			Assert.AreEqual(description, moveInfo.Description);
+			Assert.That(moveInfo.Description, Is.EqualTo(description));
 		}
 		#endregion
 
@@ -744,7 +744,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void ThenTheMoveWillOrNotBeDeleted(Boolean deleted)
 		{
 			var move = repos.Move.Get(guid);
-			Assert.AreEqual(deleted, move == null);
+			Assert.That(move == null, Is.EqualTo(deleted));
 		}
 		#endregion
 
@@ -784,15 +784,15 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void ThenTheMoveWillBeChecked(Boolean @checked, PrimalMoveNature nature)
 		{
 			var move = repos.Move.Get(moveInfo.Guid);
-			Assert.IsNotNull(move);
+			Assert.That(move, Is.Not.Null);
 
 			switch (nature)
 			{
 				case PrimalMoveNature.In:
-					Assert.AreEqual(@checked, move.CheckedIn);
+					Assert.That(move.CheckedIn, Is.EqualTo(@checked));
 					break;
 				case PrimalMoveNature.Out:
-					Assert.AreEqual(@checked, move.CheckedOut);
+					Assert.That(move.CheckedOut, Is.EqualTo(@checked));
 					break;
 				default:
 					throw new NotImplementedException();
@@ -961,7 +961,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var subject = PlainText.Email[
 				"MoveNotification", lang, "Subject"
 			].Text;
-			Assert.AreEqual(subject, email.Subject);
+			Assert.That(email.Subject, Is.EqualTo(subject));
 
 			var token = repos.Security
 				.Where(
@@ -971,7 +971,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				)
 				.OrderByDescending(s => s.ID)
 				.FirstOrDefault()?.Token;
-			Assert.NotNull(token);
+			Assert.That(token, Is.Not.Null);
 
 			var link = $"https://dontflymoney.com/>UnsubscribeMoveMail>{token}";
 

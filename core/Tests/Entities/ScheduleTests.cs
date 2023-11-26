@@ -18,11 +18,11 @@ namespace DFM.Entities.Tests
 				.CreateMovesByFrequency(2023, 2)
 				.ToList();
 
-			Assert.AreEqual(1, moves.Count);
+			Assert.That(moves.Count, Is.EqualTo(1));
 
-			Assert.AreEqual(
-				new DateTime(2023, 2, 28),
-				moves[0].GetDate()
+			Assert.That(
+				moves[0].GetDate(),
+				Is.EqualTo(new DateTime(2023, 2, 28))
 			);
 		}
 
@@ -37,11 +37,11 @@ namespace DFM.Entities.Tests
 				.CreateMovesByFrequency(2023, 12)
 				.ToList();
 
-			Assert.AreEqual(1, moves.Count);
+			Assert.That(moves.Count, Is.EqualTo(1));
 
-			Assert.AreEqual(
-				new DateTime(2023, 12, 31),
-				moves[0].GetDate()
+			Assert.That(
+				moves[0].GetDate(),
+				Is.EqualTo(new DateTime(2023, 12, 31))
 			);
 		}
 	}

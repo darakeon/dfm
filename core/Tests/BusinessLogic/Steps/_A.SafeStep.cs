@@ -139,10 +139,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void ThenTheUserWillNotBeChanged()
 		{
 			var savedUser = repos.User.GetByEmail(email);
-			Assert.IsNotNull(savedUser);
+			Assert.That(savedUser, Is.Not.Null);
 
 			var rightPassword = Crypt.Check(password, savedUser.Password);
-			Assert.IsTrue(rightPassword);
+			Assert.That(rightPassword, Is.True);
 		}
 
 		[Then(@"the user will (not )?be saved")]
@@ -152,14 +152,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			if (saved)
 			{
-				Assert.IsNotNull(savedUser);
+				Assert.That(savedUser, Is.Not.Null);
 
 				var rightPassword = Crypt.Check(password, savedUser.Password);
-				Assert.IsTrue(rightPassword);
+				Assert.That(rightPassword, Is.True);
 			}
 			else
 			{
-				Assert.IsNull(savedUser);
+				Assert.That(savedUser, Is.Null);
 			}
 		}
 
@@ -167,8 +167,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void ThenItWillHaveAMisc()
 		{
 			var savedUser = repos.User.GetByEmail(email);
-			Assert.NotNull(savedUser);
-			Assert.NotZero(savedUser.Control.MiscDna);
+			Assert.That(savedUser, Is.Not.Null);
+			Assert.That(savedUser.Control.MiscDna, Is.Not.Zero);
 		}
 		#endregion
 
@@ -196,7 +196,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var user = repos.User.GetByEmail(email);
 			var loginForUser = repos.Ticket.List(user).ToList();
 
-			Assert.LessOrEqual(0, loginForUser.Count);
+			Assert.That(loginForUser.Count, Is.GreaterThan(0));
 		}
 		#endregion
 
@@ -229,7 +229,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void ThenTheUserWillNotBeActivated(Boolean active)
 		{
 			var user = repos.User.GetByEmail(email);
-			Assert.AreEqual(active, user.Control.Active);
+			Assert.That(user.Control.Active, Is.EqualTo(active));
 		}
 		#endregion
 
@@ -324,15 +324,15 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			if (receive)
 			{
-				Assert.IsNotNull(ticket);
+				Assert.That(ticket, Is.Not.Null);
 
 				var expectedSession = service.Auth.GetSession(ticket);
 
-				Assert.IsNotNull(expectedSession);
+				Assert.That(expectedSession, Is.Not.Null);
 			}
 			else
 			{
-				Assert.IsNull(ticket);
+				Assert.That(ticket, Is.Null);
 			}
 		}
 		#endregion
@@ -405,20 +405,20 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void ThenThePasswordWillNotBeChanged()
 		{
 			var savedUser = repos.User.GetByEmail(email);
-			Assert.IsNotNull(savedUser);
+			Assert.That(savedUser, Is.Not.Null);
 
 			var rightPassword = Crypt.Check(password, savedUser.Password);
-			Assert.IsTrue(rightPassword);
+			Assert.That(rightPassword, Is.True);
 		}
 
 		[Then(@"the password will be changed")]
 		public void ThenThePasswordWillBeChanged()
 		{
 			var savedUser = repos.User.GetByEmail(email);
-			Assert.IsNotNull(savedUser);
+			Assert.That(savedUser, Is.Not.Null);
 
 			var rightPassword = Crypt.Check(newPassword, savedUser.Password);
-			Assert.IsTrue(rightPassword);
+			Assert.That(rightPassword, Is.True);
 		}
 		#endregion
 
@@ -470,8 +470,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 				error = e;
 			}
 
-			Assert.IsNotNull(error);
-			Assert.AreEqual(Error.InvalidToken, error.Type);
+			Assert.That(error, Is.Not.Null);
+			Assert.That(error.Type, Is.EqualTo(Error.InvalidToken));
 		}
 		#endregion
 
@@ -503,8 +503,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 				error = e;
 			}
 
-			Assert.IsNotNull(error);
-			Assert.AreEqual(Error.Uninvited, error.Type);
+			Assert.That(error, Is.Not.Null);
+			Assert.That(error.Type, Is.EqualTo(Error.Uninvited));
 		}
 
 		[Then(@"the ticket will still be valid")]
@@ -521,7 +521,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				error = e;
 			}
 
-			Assert.IsNull(error);
+			Assert.That(error, Is.Null);
 		}
 		#endregion
 
@@ -561,7 +561,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"there will be (\d+) logins")]
 		public void ThenThereWillBeCountLogins(Int32 count)
 		{
-			Assert.AreEqual(count, logins.Count);
+			Assert.That(logins.Count, Is.EqualTo(count));
 		}
 
 		[Then(@"they will be active")]
@@ -575,7 +575,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 					user, login.Key
 				);
 
-				Assert.IsTrue(loginDb.Active);
+				Assert.That(loginDb.Active, Is.True);
 			}
 		}
 
@@ -584,7 +584,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			foreach (var login in logins)
 			{
-				Assert.AreEqual(Defaults.TicketShowedPart, login.Key.Length);
+				Assert.That(login.Key.Length, Is.EqualTo(Defaults.TicketShowedPart));
 			}
 		}
 
@@ -599,9 +599,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 					.GetByPartOfKey(user, login.Key);
 
 				if (loginDb.Key == service.Current.TicketKey)
-					Assert.IsTrue(login.Current);
+					Assert.That(login.Current, Is.True);
 				else
-					Assert.IsFalse(login.Current);
+					Assert.That(login.Current, Is.False);
 			}
 		}
 		#endregion
@@ -633,8 +633,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var user = repos.User.GetByEmail(email);
 			var loginForUser = repos.Ticket.List(user).ToList();
 
-			Assert.AreEqual(1, loginForUser.Count);
-			Assert.AreEqual(ticketKey, loginForUser[0].Key);
+			Assert.That(loginForUser.Count, Is.EqualTo(1));
+			Assert.That(loginForUser[0].Key, Is.EqualTo(ticketKey));
 		}
 		#endregion ChangePassword
 
@@ -666,7 +666,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			error = null;
 			var user = service.Auth.GetSession(ticketKey);
-			Assert.AreEqual(email, user.Email);
+			Assert.That(user.Email, Is.EqualTo(email));
 		}
 
 		[Then(@"the e-mail will be changed")]
@@ -676,7 +676,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			var actualTicket = repos.Ticket.GetByKey(ticketKey);
 			var actualEmail = actualTicket?.User?.Email;
-			Assert.AreEqual(newEmail, actualEmail);
+			Assert.That(actualEmail, Is.EqualTo(newEmail));
 
 			//To next verification
 			email = newEmail;
@@ -707,14 +707,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 				)
 				.List;
 
-			Assert.AreNotEqual(0, ticketList.Count, $"no login for {userEmail}");
+			Assert.That(ticketList.Count, Is.Not.EqualTo(0), $"no login for {userEmail}");
 
 			var updated = ticketList.Count(
 				t => t.LastAccess.ToUniversalTime() > testStart
 			);
 
 			var expectedUpdated = after ? 1 : 0;
-			Assert.AreEqual(expectedUpdated, updated);
+			Assert.That(updated, Is.EqualTo(expectedUpdated));
 		}
 
 		[Then(@"the user access will( not)? be null")]
@@ -724,9 +724,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var lastAccess = user.Control.LastAccess?.ToUniversalTime();
 
 			if (isNull)
-				Assert.IsNull(lastAccess);
+				Assert.That(lastAccess, Is.Null);
 			else
-				Assert.IsNotNull(lastAccess);
+				Assert.That(lastAccess, Is.Not.Null);
 		}
 		#endregion
 
@@ -767,14 +767,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 				worked = false;
 			}
 
-			Assert.AreEqual(canBe, worked);
+			Assert.That(worked, Is.EqualTo(canBe));
 		}
 
 		[Then(@"the TFA will (not )?be asked")]
 		public void ThenTheTFAWillNotBeAsked(Boolean askTFA)
 		{
 			var currentTicket = repos.Ticket.GetByKey(ticket);
-			Assert.AreEqual(askTFA, !currentTicket.ValidTFA);
+			Assert.That(!currentTicket.ValidTFA, Is.EqualTo(askTFA));
 		}
 
 		[Then(@"I can still login using normal password")]
@@ -843,13 +843,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			if (csvSent)
 			{
-				Assert.AreEqual(emailCount, emails.Count);
+				Assert.That(emails.Count, Is.EqualTo(emailCount));
 
 				foreach (var email in emails)
 				{
 					var countAttachments = email.Attachments.Count;
 
-					Assert.AreEqual(1, countAttachments);
+					Assert.That(countAttachments, Is.EqualTo(1));
 
 					var link = $"https://dontflymoney.com/>DeleteCsvData>{token}";
 
@@ -861,7 +861,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			else
 			{
-				Assert.AreEqual(0, emails.Count);
+				Assert.That(emails.Count, Is.EqualTo(0));
 			}
 		}
 
@@ -904,8 +904,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 				$"{scenarioCode}.csv"
 			);
 			
-			Assert.AreEqual(
-				!File.Exists(path), wiped,
+			Assert.That(
+				wiped,
+				Is.EqualTo(!File.Exists(path)),
 				$"File {(wiped?"not ":"")}found"
 			);
 		}
@@ -1113,20 +1114,20 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"I will receive no session")]
 		public void ThenIWillReceiveNoSession()
 		{
-			Assert.IsNull(session);
+			Assert.That(session, Is.Null);
 		}
 
 		[Then(@"I will receive the session")]
 		public void ThenIWillReceiveTheSession()
 		{
-			Assert.IsNotNull(session);
-			Assert.AreEqual(email, session.Email);
+			Assert.That(session, Is.Not.Null);
+			Assert.That(session.Email, Is.EqualTo(email));
 		}
 
 		[Then(@"the TFA will (not )?be enabled")]
 		public void ThenTheTFAWill_BeEnabled(Boolean enabled)
 		{
-			Assert.AreEqual(enabled, session.HasTFA);
+			Assert.That(session.HasTFA, Is.EqualTo(enabled));
 		}
 		#endregion
 
@@ -1211,7 +1212,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			accepted ??= service.Law.IsLastContractAccepted();
 
-			Assert.AreEqual(expectAccepted, accepted);
+			Assert.That(accepted, Is.EqualTo(expectAccepted));
 		}
 		#endregion Contract
 
@@ -1301,14 +1302,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void ThenTheTwoFactorWillStillBeEmpty()
 		{
 			var user = repos.User.GetByEmail(current.Email);
-			Assert.IsNull(user?.TFASecret);
+			Assert.That(user?.TFASecret, Is.Null);
 		}
 
 		[Then(@"the two-factor will be \[(.*)\]")]
 		public void ThenTheTwoFactorWillStillBe(String secret)
 		{
 			var user = repos.User.GetByEmail(current.Email);
-			Assert.AreEqual(secret, user.TFASecret);
+			Assert.That(user.TFASecret, Is.EqualTo(secret));
 		}
 
 		[Given(@"I have not valid ticket key")]
@@ -1378,14 +1379,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void ThenTheTicketWillBeVerified(Boolean verified)
 		{
 			var recordedVerified = ticketVerified == true;
-			Assert.AreEqual(verified, recordedVerified);
+			Assert.That(recordedVerified, Is.EqualTo(verified));
 		}
 
 		[Then(@"the ticket will (not )?be valid")]
 		public void ThenTheTicketWillBeValidated(Boolean valid)
 		{
 			var recordedValidated = service.Auth.VerifyTicketTFA();
-			Assert.AreEqual(valid, recordedValidated);
+			Assert.That(recordedValidated, Is.EqualTo(valid));
 		}
 		#endregion TFA
 
@@ -1432,9 +1433,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var user = repos.User.GetByEmail(userEmail);
 
 			if (marked)
-				Assert.NotNull(user.Control.WipeRequest);
+				Assert.That(user.Control.WipeRequest, Is.Not.Null);
 			else
-				Assert.Null(user.Control.WipeRequest);
+				Assert.That(user.Control.WipeRequest, Is.Null);
 		}
 		#endregion
 
@@ -1464,9 +1465,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var user = repos.User.GetByEmail(userEmail);
 
 			if (changed)
-				Assert.AreNotEqual(misc, user.GenerateMisc());
+				Assert.That(user.GenerateMisc(), Is.Not.EqualTo(misc));
 			else
-				Assert.AreEqual(misc, user.GenerateMisc());
+				Assert.That(user.GenerateMisc(), Is.EqualTo(misc));
 		}
 		#endregion
 	}

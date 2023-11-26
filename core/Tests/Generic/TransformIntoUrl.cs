@@ -38,7 +38,7 @@ namespace DFM.Generic.Tests
 		[Then(@"the result will be (.+)")]
 		public void ThenTheResultWillBe(String expected)
 		{
-			Assert.AreEqual(expected, transformed);
+			Assert.That(transformed, Is.EqualTo(expected));
 		}
 	}
 }

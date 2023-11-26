@@ -168,7 +168,7 @@ namespace DFM.Language.Tests
 		[Then(@"I will receive no language error")]
 		public void ThenIWillReceiveNoLanguageError()
 		{
-			Assert.IsEmpty(errors.ToString());
+			Assert.That(errors.ToString(), Is.Empty);
 		}
 
 		[Then(@"all keys should be available in all languages at (.+) dictionary")]
@@ -195,13 +195,13 @@ namespace DFM.Language.Tests
 								phrase.Name
 							];
 
-							Assert.IsNotNull(translation, $"{id} not found");
+							Assert.That(translation, Is.Not.Null, $"{id} not found");
 
 							var text = translation.Text
 								?? String.Join(' ', translation.Texts);
 
-							Assert.IsNotNull(text, $"{id} not found");
-							Assert.IsNotEmpty(text, $"{id} is empty");
+							Assert.That(text, Is.Not.Null, $"{id} not found");
+							Assert.That(text, Is.Not.Empty, $"{id} is empty");
 						}
 					}
 				}
@@ -226,7 +226,7 @@ namespace DFM.Language.Tests
 							.Distinct()
 							.Count();
 
-					Assert.AreEqual(allPhrases, distinctPhrases);
+					Assert.That(distinctPhrases, Is.EqualTo(allPhrases));
 				}
 			}
 		}
@@ -236,9 +236,9 @@ namespace DFM.Language.Tests
 		{
 			var expectedList = table.CreateSet<LangValue>().ToList();
 
-			Assert.AreEqual(
-				expectedList.Count,
-				translations.Sum(e => e.Value.Count)
+			Assert.That(
+				translations.Sum(e => e.Value.Count),
+				Is.EqualTo(expectedList.Count)
 			);
 
 			foreach (var expected in expectedList)
@@ -247,7 +247,7 @@ namespace DFM.Language.Tests
 				var value = expected.Value;
 
 				var translation = translations[lang].Dequeue();
-				Assert.AreEqual(value, translation);
+				Assert.That(translation, Is.EqualTo(value));
 			}
 		}
 
@@ -278,12 +278,12 @@ namespace DFM.Language.Tests
 								phrase.Name
 							];
 
-							Assert.IsNotNull(translation, $"{id} not found");
+							Assert.That(translation, Is.Not.Null, $"{id} not found");
 
 							var texts = translation.Texts;
 
-							Assert.IsNotNull(texts, $"{id} has no list");
-							Assert.AreEqual(phrase.Texts.Count, texts.Count, $"{id} has a different size");
+							Assert.That(texts, Is.Not.Null, $"{id} has no list");
+							Assert.That(texts.Count, Is.EqualTo(phrase.Texts.Count), $"{id} has a different size");
 						}
 					}
 				}
