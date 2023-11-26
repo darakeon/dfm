@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>DFM.Email</AssemblyName>
     <RootNamespace>DFM.Email</RootNamespace>
     <AssemblyVersion>10.2.0.0</AssemblyVersion>
@@ -51,7 +51,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Keon.Util" Version="4.1.0" />
+    <PackageReference Include="Keon.Util" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
