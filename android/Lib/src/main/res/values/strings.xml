@@ -43,7 +43,7 @@
 	<string name="send_report_button">
 		Send error
 	</string>
-	<string name="current_density">density</string>
+	<string name="current_density" translatable="false">density</string>
 	<string name="dfm_mail_address" translatable="false">dfm@dontflymoney.com</string>
 	<string name="glyph" translatable="false"></string>
 </resources>
