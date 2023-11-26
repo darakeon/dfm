@@ -21,7 +21,7 @@ sleep:
 	@sleep 2
 
 apk:
-	@${GRADLE} :app:bundleRelease
+	@${GRADLE} :app:bundleRelease -Phide-test-deps
 
 	@cp App/build/outputs/bundle/release/* \
 		${PROJECT}/android/publish/ \
