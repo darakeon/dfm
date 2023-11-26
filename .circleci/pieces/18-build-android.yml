@@ -27,10 +27,6 @@
           name: project dependencies
           path: android
           command: gradle-with-metadata --no-daemon androidDependencies
-      - run:
-          name: robolectric dependencies
-          path: android
-          command: gradle-with-metadata --no-daemon robolectricSdkDownload
       - save_cache:
           key: kotlin-{{ checksum "android/cache_key" }}
           paths:
@@ -39,7 +35,7 @@
       - run:
           name: build
           path: android
-          command: gradle-with-metadata --no-daemon build -x test -x androidDependencies -x robolectricSdkDownload -x packageRelease -x packageDebug
+          command: gradle-with-metadata --no-daemon build -x test -x androidDependencies -x packageRelease -x packageDebug
       - run:
           name: configure
           path: android
