@@ -28,6 +28,11 @@ namespace DFM.Email.Tests
 				.Subject(email["Subject"])
 				.Body(email["Body"])
 				.To(email["To"]);
+
+			if (email.ContainsKey("Unsubscribe Link"))
+			{
+				sender.UnsubscribeLink(email["Unsubscribe Link"]);
+			}
 		}
 
 		[Given(@"I have this e-mail to send to default")]
@@ -140,6 +145,22 @@ namespace DFM.Email.Tests
 			var resultPath = Path.Combine("Templates", "result.html");
 			File.WriteAllText(resultPath, body);
 			Assert.That(match(body, pattern), Is.True);
+		}
+
+		[Then("there will be a header in the email sent to (.+) with the link (.+)")]
+		public void ThenThereWillBeAHeaderWithTheLink(String email, String headerLink)
+		{
+			var emailSent = EmlHelper.ByEmail(email);
+
+			Assert.That(
+				emailSent.Headers["List-Unsubscribe-Post"],
+				Is.EqualTo("List-Unsubscribe=One-Click")
+			);
+
+			Assert.That(
+				emailSent.Headers["List-Unsubscribe"],
+				Is.EqualTo(headerLink)
+			);
 		}
 
 		private MailError error

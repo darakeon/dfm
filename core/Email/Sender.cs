@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -13,11 +14,13 @@ namespace DFM.Email
 		private readonly String from;
 		private String to, subject, body;
 		private readonly IList<String> files;
+		private readonly NameValueCollection headers;
 		private readonly String @default;
 
 		public Sender()
 		{
 			files = new List<String>();
+			headers = new NameValueCollection();
 
 			if (Cfg.Smtp.From != null)
 				from = Cfg.Smtp.From;
@@ -52,6 +55,13 @@ namespace DFM.Email
 		public Sender Attach(String fileFullName)
 		{
 			files.Add(fileFullName);
+			return this;
+		}
+
+		public Sender UnsubscribeLink(String link)
+		{
+			headers.Add("List-Unsubscribe-Post", "List-Unsubscribe=One-Click");
+			headers.Add("List-Unsubscribe", link);
 			return this;
 		}
 
@@ -100,6 +110,8 @@ namespace DFM.Email
 				{
 					message.Attachments.Add(attachment);
 				}
+
+				message.Headers.Add(headers);
 
 				client.Send(message);
 			}
