@@ -979,6 +979,16 @@ namespace DFM.BusinessLogic.Tests.Steps
 				email.Body.Contains(link),
 				() => $"{link}\nnot found at\n{email.Body}"
 			);
+
+			Assert.That(
+				email.Headers["List-Unsubscribe-Post"],
+				Is.EqualTo("List-Unsubscribe=One-Click")
+			);
+
+			Assert.That(
+				email.Headers["List-Unsubscribe"],
+				Is.EqualTo(link)
+			);
 		}
 		#endregion
 	}
