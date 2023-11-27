@@ -90,10 +90,13 @@ namespace DFM.BusinessLogic.Repositories
 
 			var fileContent = format.Layout.Format(dic);
 
+			var unsubscribeLink = $"{getUrl()}/>{security.Action}>{security.Token}";
+
 			var sender = new Sender()
 				.To(user.Email)
 				.Subject(format.Subject)
-				.Body(fileContent);
+				.Body(fileContent)
+				.UnsubscribeLink(unsubscribeLink);
 
 			try
 			{
