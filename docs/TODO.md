@@ -77,4 +77,3 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 [Lint C#]: https://medium.com/@michaelparkerdev/linting-c-in-2019-stylecop-sonar-resharper-and-roslyn-73e88af57ebd
 [OCR]: https://developers.google.com/ml-kit/vision/text-recognition/android
 [Reduce Docker Images]:https://www.ecloudcontrol.com/best-practices-to-reduce-docker-images-size/
-[Google tips avoid being spam]:https://support.google.com/mail/answer/81126?hl=en&sjid=2044805771675957069-EU
