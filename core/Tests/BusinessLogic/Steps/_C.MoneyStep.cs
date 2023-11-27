@@ -968,9 +968,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 					s => s.Active
 						&& s.User.ID == user.ID
 						&& s.Action == SecurityAction.UnsubscribeMoveMail
-				)
-				.OrderByDescending(s => s.ID)
-				.FirstOrDefault()?.Token;
+				).MaxBy(s => s.ID)?.Token;
+
 			Assert.That(token, Is.Not.Null);
 
 			var link = $"https://dontflymoney.com/>UnsubscribeMoveMail>{token}";
