@@ -27,8 +27,12 @@ namespace DFM.Email.Tests
 			sender = new Sender()
 				.Subject(email["Subject"])
 				.Body(email["Body"])
-				.To(email["To"])
-				.UnsubscribeLink(email["Unsubscribe Link"]);
+				.To(email["To"]);
+
+			if (email.ContainsKey("Unsubscribe Link"))
+			{
+				sender.UnsubscribeLink(email["Unsubscribe Link"]);
+			}
 		}
 
 		[Given(@"I have this e-mail to send to default")]
