@@ -14,7 +14,8 @@ This is the list of project releases, past and current. To see tasks that are st
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="10.2.1.0"></a>10.2.1.0 :sheep: <sup>`4`</sup>
+## <a name="10.2.1.0"></a>10.2.1.0 :sheep: <sup>`5`</sup>
+- [ ] Update dependabot file in version update
 - [ ] Add tests to moves ordering at reports
 - [x] `231127>231127` Make google see move unsubscribe link ([Google tips avoid being spam])
 - [x] `231126>231126` Update to .NET 8
