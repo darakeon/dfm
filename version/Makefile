@@ -7,6 +7,9 @@ help:
 	@echo "    |                                                                             |"
 	@echo "    |  Need parameters to get tasks from TODO and create new version at RELEASES  |"
 	@echo "    |                                                                             |"
+	@echo "    |    make translate                                                           |"
+	@echo "    |    >>> open task translations file;                                         |"
+	@echo "    |                                                                             |"
 	@echo "    |    make new_by_quantity QUANTITY={N}                                        |"
 	@echo "    |    >>> get first N tasks;                                                   |"
 	@echo "    |                                                                             |"
@@ -25,6 +28,9 @@ help:
 	@echo "    |                             use just numbers at parameters, not the braces  |"
 	@echo "    |                                                                             |"
 	@echo "    |-----------------------------------------------------------------------------|"
+
+translate:
+	@code ../docs/translations.json
 
 new_by_quantity:
 	@cargo run -q -- -q ${QUANTITY}
