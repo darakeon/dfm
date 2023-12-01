@@ -37,8 +37,8 @@ Scenario: A05. Send an e-mail to default
 
 Scenario: A06. Send an e-mail with unsubscribe link
 	Given I have this e-mail to send
-			| Subject | Body  | To                   | Unsubscribe Link                    |
-			| unsub   | unsub | dfm@dontflymoney.com | https://dontlfymoney.com/fake-unsub |
+			| Subject | Body  | To                     | Unsubscribe Link                    |
+			| unsub   | unsub | unsub@dontflymoney.com | https://dontlfymoney.com/fake-unsub |
 	When I try to send the e-mail
 	Then I will receive no e-mail error
-		And there will be a header in the email sent to dfm@dontflymoney.com with the link https://dontlfymoney.com/fake-unsub
+		And there will be a header in the email sent to unsub@dontflymoney.com with the link https://dontlfymoney.com/fake-unsub
