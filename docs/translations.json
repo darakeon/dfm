@@ -1,20 +1,18 @@
 {
 	"en-us": {
-		"Warning about wipe and terms in app": "Change Terms of Use to include new Android App features and make some word standardizations",
-		"Put Terms in the mobile app": "Terms of Use in the Android App",
-		"Delete data on app (legal requirement)": "System data deletion screen in the Android App",
-		"Remove kotlinx": "Update Android App tools",
-		"Handle change version CI step in dependabot branches": "-",
-		"Avoid run CI flows for unchanged code": "Improvements in development environment for velocity and sustenability",
+		"Update dependabot file in version update": "-",
+		"Add tests to moves ordering at reports": "-",
+		"Make google see move unsubscribe link ([Google tips avoid being spam])": "Add unsubscribe link to recurrent emails sent by the system",
+		"Update to .NET 8": "Update system tools",
+		"Fix android density value in settings (pt-br)": "Fix settings footer data in Android App",
 		"": null
 	},
 	"pt-br": {
-		"Warning about wipe and terms in app": "Altera os Termos de Uso para incluir novas funcionalidades do Aplicativo Android e padroniza alguns usos de palavras",
-		"Put Terms in the mobile app": "Termos de Uso no Aplicativo Android",
-		"Delete data on app (legal requirement)": "Tela para remoção de dados do Sistema no Aplicativo Android",
-		"Remove kotlinx": "Atualização de ferramentas no Aplicativo Android",
-		"Handle change version CI step in dependabot branches": "-",
-		"Avoid run CI flows for unchanged code": "Melhorias no ambiente de desenvolvimento para maior velocidade e sustentabilidade",
+		"Update dependabot file in version update": "-",
+		"Add tests to moves ordering at reports": "-",
+		"Make google see move unsubscribe link ([Google tips avoid being spam])": "Adiciona link para desinscrever nos emails recorrentes enviados pelo site",
+		"Update to .NET 8": "Atualiza ferramentas de sistema",
+		"Fix android density value in settings (pt-br)": "Ajuste de informação no rodapé das configurações no Aplicativo Android",
 		"": null
 	}
 }
