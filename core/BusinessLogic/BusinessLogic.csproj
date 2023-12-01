@@ -4,8 +4,8 @@
     <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>DFM.BusinessLogic</AssemblyName>
     <RootNamespace>DFM.BusinessLogic</RootNamespace>
-    <AssemblyVersion>10.2.0.0</AssemblyVersion>
-    <FileVersion>10.2.0.0</FileVersion>
+    <AssemblyVersion>10.2.1.0</AssemblyVersion>
+    <FileVersion>10.2.1.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

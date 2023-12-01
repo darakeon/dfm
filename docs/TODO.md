@@ -13,13 +13,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (55)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (50)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
-| Add user creation (mobile)                                                     | :dragon: |  2  |  4  |  6  |                |
-| Add schedule creation (mobile)                                                 | :dragon: |  2  |  4  |  6  |                |
-| Add account creation (mobile)                                                  | :dragon: |  2  |  4  |  6  |                |
-| Add category creation (mobile)                                                 | :dragon: |  2  |  4  |  6  |                |
-| Add transfer with conversion (value in/out)                                    | :whale:  |  2  |  4  |  6  |                |
 | Separate MVC projects: site and api                                            | :whale:  |  2  |  4  |  6  |                |
 | Use multistaged (multiple FROM at dockerfiles) container                       | :whale:  |  2  |  4  |  6  |                |
 | [Reduce Docker Images]                                                         | :whale:  |  2  |  4  |  6  |                |

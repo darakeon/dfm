@@ -1,4 +1,9 @@
 {
+	"10.2.1.0": [
+		"Adiciona link para desinscrever nos emails recorrentes enviados pelo site",
+		"Atualiza ferramentas de sistema",
+		"Ajuste de informação no rodapé das configurações no Aplicativo Android"
+	],
 	"10.2.0.0": [
 		"Altera os Termos de Uso para incluir novas funcionalidades do Aplicativo Android e padroniza alguns usos de palavras",
 		"Termos de Uso no Aplicativo Android",
