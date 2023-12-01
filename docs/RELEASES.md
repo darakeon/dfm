@@ -4,15 +4,22 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#10.2.0.0)
-- [go to version in development](#10.2.1.0)
-- [dev version state](../../10.2.1.0/docs/RELEASES.md#10.2.1.0)
+- [go to published version](#10.2.1.0)
+- [go to version in development](#11.0.0.0)
+- [dev version state](../../11.0.0.0/docs/RELEASES.md#11.0.0.0)
 
 ## Legend
 - :dragon:: at least one huge change (increases first number)
 - :whale:: at least one big change, like a new feature (increases second number)
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="11.0.0.0"></a>11.0.0.0 :dragon: <sup>`5`</sup>
+- [ ] Add transfer with conversion (value in/out)
+- [ ] Add category creation (mobile)
+- [ ] Add account creation (mobile)
+- [ ] Add schedule creation (mobile)
+- [ ] Add user creation (mobile)
 
 ## <a name="10.2.1.0"></a>10.2.1.0 :sheep: <sup>`5`</sup>
 - [x] `231201>231201` Update dependabot file in version update

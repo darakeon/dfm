@@ -1,4 +1,9 @@
 {
+	"10.2.1.0": [
+		"Add unsubscribe link to recurrent emails sent by the system",
+		"Update system tools",
+		"Fix settings footer data in Android App"
+	],
 	"10.2.0.0": [
 		"Change Terms of Use to include new Android App features and make some word standardizations",
 		"Terms of Use in the Android App",
