@@ -2,6 +2,7 @@ mod android;
 mod arguments;
 mod browser;
 mod csharp;
+mod dependabot;
 mod end;
 mod file;
 mod git;
@@ -17,6 +18,7 @@ use android::update_android;
 use arguments::{parse_arguments,ProgramOption};
 use browser::update_node;
 use csharp::update_csharp;
+use dependabot::update_dependabot;
 use end::success;
 use git::{update_local,go_to_main,commit,connect_local_and_remote_branch,create_tag,create_branch,remove_branch,update_remote,stash,stash_pop};
 use notes::update_notes;
@@ -92,6 +94,7 @@ fn update_version(version: Version) {
 	update_task_list(&version);
 	update_android(&version);
 	update_csharp(&version);
+	update_dependabot(&version);
 	update_rust(&version);
 	update_node(&version);
 
