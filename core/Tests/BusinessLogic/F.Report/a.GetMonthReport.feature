@@ -208,3 +208,36 @@ Scenario: Fa13. Not get report if not signed last contract
 		But there is a new contract
 	When I try to get the month report
 	Then I will receive this core error: NotSignedLastContract
+
+Scenario: Fa14. Get report with moves in right order
+	Given I have moves of
+			| Date       | Description |
+			| 2023-12-01 | Move Fa14 0 |
+			| 2023-12-01 | Move Fa14 1 |
+			| 2023-12-01 | Move Fa14 2 |
+			| 2023-12-01 | Move Fa14 3 |
+			| 2023-12-01 | Move Fa14 4 |
+			| 2023-12-01 | Move Fa14 5 |
+			| 2023-12-01 | Move Fa14 6 |
+			| 2023-12-01 | Move Fa14 7 |
+			| 2023-12-01 | Move Fa14 8 |
+			| 2023-12-01 | Move Fa14 9 |
+		And I pass a valid account url
+		And I pass this date
+			| Month | Year |
+			| 12    | 2023 |
+	When I try to get the month report
+	Then I will receive no core error
+		And I will receive the month report
+		And there will be these moves
+			| Date       | Description |
+			| 2023-12-01 | Move Fa14 0 |
+			| 2023-12-01 | Move Fa14 1 |
+			| 2023-12-01 | Move Fa14 2 |
+			| 2023-12-01 | Move Fa14 3 |
+			| 2023-12-01 | Move Fa14 4 |
+			| 2023-12-01 | Move Fa14 5 |
+			| 2023-12-01 | Move Fa14 6 |
+			| 2023-12-01 | Move Fa14 7 |
+			| 2023-12-01 | Move Fa14 8 |
+			| 2023-12-01 | Move Fa14 9 |

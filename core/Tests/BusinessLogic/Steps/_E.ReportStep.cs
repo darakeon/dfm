@@ -164,6 +164,45 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var foreseen = monthReport.ForeseenTotal - monthReport.AccountTotal;
 			Assert.That(foreseen, Is.EqualTo(value));
 		}
+
+		[Then(@"there will be these moves")]
+		public void ThenThereWillBeTheseMoves(Table table)
+		{
+			var moveList = monthReport.MoveList;
+
+			var count = table.RowCount;
+			Assert.That(moveList.Count, Is.EqualTo(count));
+
+			for (var m = 0; m < count; m++)
+			{
+				var row = table.Rows[m];
+				var line = moveList[m];
+
+				if (row.ContainsKey("Description"))
+				{
+					var description = row["Description"];
+					Assert.That(line.Description, Is.EqualTo(description));
+				}
+
+				if (row.ContainsKey("Date"))
+				{
+					var date = DateTime.Parse(row["Date"]);
+					Assert.That(line.GetDate(), Is.EqualTo(date));
+				}
+
+				if (row.ContainsKey("Nature"))
+				{
+					var nature = EnumX.Parse<MoveNature>(row["Nature"]);
+					Assert.That(line.Nature, Is.EqualTo(nature));
+				}
+
+				if (row.ContainsKey("Value"))
+				{
+					var value = Int32.Parse(row["Value"]);
+					Assert.That(line.Value, Is.EqualTo(value));
+				}
+			}
+		}
 		#endregion
 
 		#region GetYearReport
