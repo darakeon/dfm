@@ -52,6 +52,8 @@ fn process_tasks(mut numbers: Vec<usize>) -> (Vec<String>, Vec<String>) {
 		}
 	}
 
+	new_tasks.push(">>>>> ADD A DEPLOY AUTOMATION TASK".to_string());
+
 	let new_size = todo_list.len();
 
 	if let Some(title) = todo_list.get_mut(15) {
