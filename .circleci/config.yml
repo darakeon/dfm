@@ -726,7 +726,7 @@ jobs:
             - dotnet-{{ checksum "robot/cache_key" }}
       - run:
           name: check
-          path: robot/Robot/bin/Release/net7.0
+          path: robot/Robot/bin/Release/net8.0
           command: ./DFM.Robot check
 
   build_midna:
