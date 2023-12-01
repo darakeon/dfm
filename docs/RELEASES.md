@@ -16,7 +16,7 @@ This is the list of project releases, past and current. To see tasks that are st
 
 ## <a name="10.2.1.0"></a>10.2.1.0 :sheep: <sup>`5`</sup>
 - [ ] Update dependabot file in version update
-- [ ] Add tests to moves ordering at reports
+- [x] `231201>231201` Add tests to moves ordering at reports
 - [x] `231127>231127` Make google see move unsubscribe link ([Google tips avoid being spam])
 - [x] `231126>231126` Update to .NET 8
 - [x] `231126>231126` Fix android density value in settings (pt-br)
