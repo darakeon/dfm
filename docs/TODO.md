@@ -13,9 +13,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (50)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (49)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
-| Separate MVC projects: site and api                                            | :whale:  |  2  |  4  |  6  |                |
 | Use multistaged (multiple FROM at dockerfiles) container                       | :whale:  |  2  |  4  |  6  |                |
 | [Reduce Docker Images]                                                         | :whale:  |  2  |  4  |  6  |                |
 | Add semgrep to dfm, dk-lib, meak and server                                    | :whale:  |  2  |  4  |  6  |                |

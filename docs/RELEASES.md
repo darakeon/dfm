@@ -14,13 +14,14 @@ This is the list of project releases, past and current. To see tasks that are st
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="11.0.0.0"></a>11.0.0.0 :dragon: <sup>`6`</sup>
+## <a name="11.0.0.0"></a>11.0.0.0 :dragon: <sup>`7`</sup>
 - [ ] Automate execute non destrutive sql
 - [ ] Add transfer with conversion (value in/out)
 - [ ] Add category creation (mobile)
 - [ ] Add account creation (mobile)
 - [ ] Add schedule creation (mobile)
 - [ ] Add user creation (mobile)
+- [ ] Separate MVC projects: site and api
 
 ## <a name="10.2.1.0"></a>10.2.1.0 :sheep: <sup>`5`</sup>
 - [x] `231201>231201` Update dependabot file in version update
