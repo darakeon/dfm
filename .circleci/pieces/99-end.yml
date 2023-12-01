@@ -2,7 +2,14 @@ workflows:
   version: 2.1
   build_all:
     jobs:
-      - trufflehog
+      - trufflehog:
+          filters:
+            branches:
+              only:
+                - main
+                - /^\d+\.\d+\.\d+\.\d+$/
+                - /^dependabot/.+$/
+                - /^feature/.+$/
       - test_ci:
           requires:
             - trufflehog
