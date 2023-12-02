@@ -16,7 +16,7 @@ build:
 	@docker build . -t midna
 
 db:
-	@cd ../sql && docker-compose up -d
+	@cd ../db && docker compose up -d
 
 run: env stop rm build db
 	@docker run -v ${PWD}/src:/var/midna/src \
