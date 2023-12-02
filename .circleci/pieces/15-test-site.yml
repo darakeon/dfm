@@ -13,7 +13,7 @@
           name: tests mvc
           command: dotnet test -v m --no-build
       - store_artifacts:
-          path: inbox
+          path: outputs/inbox
       - store_artifacts:
           path: site/Tests/log
           destination: log

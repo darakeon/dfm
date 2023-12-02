@@ -34,7 +34,7 @@
       - store_artifacts:
           path: site/Tests/Browser/log
       - store_artifacts:
-          path: inbox
+          path: outputs/inbox
       - store_artifacts:
-          path: s3
+          path: outputs/s3
 
