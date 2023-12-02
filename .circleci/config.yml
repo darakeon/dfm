@@ -56,7 +56,7 @@ jobs:
           command: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - run:
           name: Build images
-          path: ci
+          path: architecture/ci
           command: make build_browser PUSH=1
 
   push_docker_android:
@@ -75,7 +75,7 @@ jobs:
           command: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - run:
           name: Build images
-          path: ci
+          path: architecture/ci
           command: make build_android PUSH=1
 
   build_core:
@@ -467,7 +467,7 @@ jobs:
       - run:
           name: set checksums
           command: |
-            KT_DOCK=$(md5sum ci/android.dockerfile | cut -d' ' -f1)
+            KT_DOCK=$(md5sum architecture/ci/android.dockerfile | cut -d' ' -f1)
             KT_MAIN=$(md5sum android/build.gradle | cut -d' ' -f1)
             KT_UTIL=$(md5sum android/TestUtils/build.gradle | cut -d' ' -f1)
             KT_LIBR=$(md5sum android/Lib/build.gradle | cut -d' ' -f1)
