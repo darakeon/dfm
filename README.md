@@ -86,7 +86,7 @@ itself. Well, we are always our most demanding client.
 - [Git](https://git-scm.com/)
 - [CircleCI](https://circleci.com/)
 - [GitExtensions](https://github.com/gitextensions/gitextensions)
-- [KDiff3](https://www.kde.org/applications/development/kdiff3/)
+- [KDiff3](https://www.kde.org/applications/development/kdiff3/) ([Install](https://download.kde.org/stable/kdiff3/?C=M;O=D))
 - [Docker](https://www.docker.com/)
 - [Axe Coconut Acessibility addon - Firefox](https://addons.mozilla.org/firefox/addon/axe-devtools/)
 - [Visual Studio Code](https://code.visualstudio.com/)
