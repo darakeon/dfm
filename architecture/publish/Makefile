@@ -1,6 +1,8 @@
 MAKEFLAGS += --no-print-directory
 
-all: site_push robot_push midna_push
+all: site robot midna
+
+all_push: site_push robot_push midna_push
 
 robot:
 	@make single MACHINE=robot
@@ -22,7 +24,7 @@ midna_push: midna
 
 single:
 	@echo "Building ${MACHINE}..."
-	@docker build .. --pull --progress plain -t darakeon/dfm-${MACHINE} -f "${PWD}/dfm-${MACHINE}.dockerfile"
+	@docker build ../.. --pull --progress plain -t darakeon/dfm-${MACHINE} -f "${PWD}/dfm-${MACHINE}.dockerfile"
 	@echo "${MACHINE} built!"
 
 push:
