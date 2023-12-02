@@ -830,7 +830,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void ThenCSVWill_BeSent(Int32 emailCount, Boolean csvSent)
 		{
 			var inboxPath = Path.Combine(
-				"..", "..", "..", "..", "..", "..", "inbox"
+				"..", "..", "..", "..", "..", "..", "outputs", "inbox"
 			);
 			var inbox = new DirectoryInfo(inboxPath);
 

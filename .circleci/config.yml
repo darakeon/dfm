@@ -226,11 +226,11 @@ jobs:
           name: tests email
           command: dotnet test -v m --no-build
       - run:
-          path: inbox
+          path: outputs/inbox
           name: zip mails
           command: zip inbox.zip *.eml && rm *.eml
       - store_artifacts:
-          path: inbox
+          path: outputs/inbox
       - store_artifacts:
           path: core/Tests/log
           destination: log
@@ -287,11 +287,11 @@ jobs:
           name: tests business logic
           command: dotnet test -v m --no-build
       - run:
-          path: inbox
+          path: outputs/inbox
           name: zip mails
           command: zip inbox.zip *.eml && rm *.eml
       - store_artifacts:
-          path: inbox
+          path: outputs/inbox
       - store_artifacts:
           path: core/Tests/log
           destination: log
@@ -382,7 +382,7 @@ jobs:
           name: tests mvc
           command: dotnet test -v m --no-build
       - store_artifacts:
-          path: inbox
+          path: outputs/inbox
       - store_artifacts:
           path: site/Tests/log
           destination: log
@@ -450,9 +450,9 @@ jobs:
       - store_artifacts:
           path: site/Tests/Browser/log
       - store_artifacts:
-          path: inbox
+          path: outputs/inbox
       - store_artifacts:
-          path: s3
+          path: outputs/s3
 
   build_android:
     docker:

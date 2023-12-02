@@ -14,11 +14,11 @@
           name: tests business logic
           command: dotnet test -v m --no-build
       - run:
-          path: inbox
+          path: outputs/inbox
           name: zip mails
           command: zip inbox.zip *.eml && rm *.eml
       - store_artifacts:
-          path: inbox
+          path: outputs/inbox
       - store_artifacts:
           path: core/Tests/log
           destination: log
