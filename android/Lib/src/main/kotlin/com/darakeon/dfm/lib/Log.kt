@@ -35,7 +35,7 @@ object Log {
 
 		var record = text.toString()
 
-		val path = Paths.get("log", "${BuildConfig.BUILD_TYPE}_${start}.log")
+		val path = Paths.get("..", "..", "outputs", "logs", "android", "${BuildConfig.BUILD_TYPE}_${start}.log")
 
 		if (Files.exists(path)) {
 			val bytes = Files.readAllBytes(path)
@@ -51,10 +51,6 @@ object Log {
 		@RequiresApi(Build.VERSION_CODES.O)
 		get() {
 			if (path == "") {
-				val dir = Paths.get("log")
-				if (!Files.exists(dir))
-					Files.createDirectory(dir)
-
 				path = now("yyyyMMdd_HHmmss_SSS")
 			}
 			return path
