@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="site_address" translatable="false">dontflymoney.com</string>
+	<string name="site_address" translatable="false">api.dontflymoney.com</string>
 </resources>
