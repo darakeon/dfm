@@ -8,5 +8,5 @@
 - [ ] Adicionar alteração no robot
 - [ ] Adicionar subdomínio na AWS
 - [ ] Adicionar no docker compose do server
-- [ ] Redirecionar requests /api para api.dfm
+- [x] Redirecionar requests /api para api.dfm
 - [ ] Limpar Site
