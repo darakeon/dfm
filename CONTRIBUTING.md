@@ -54,7 +54,8 @@ The allowed types are:
 - `report`: core > reports;
 - `robot`: core > schedules;
 - `outside`: core > handle not logged actions;
-- `site`: ui, mvc;
+- `site`: website ui, mvc;
+- `api`: api of the system;
 - `android`: app;
 - `chore`: little changes, refactors;
 - `version`: only used to change version numbers;
