@@ -1,0 +1,84 @@
+﻿{
+	"/Ops/Help": [
+		"^apple-app-site-association.*$",
+		"^.*.php",
+		"^wp-admin",
+		"^wordpress",
+		"^wp",
+		"^fck/fckconfig.js",
+		"^fckeditor/fckconfig.js",
+		"^includes/fckeditor/fckconfig.js",
+		"^includes/fck/fckconfig.js",
+		"^include/fckeditor/fckconfig.js",
+		"^site/wp-includes/wlwmanifest.xml",
+		"^cms/wp-includes/wlwmanifest.xml",
+		"^inc/fckeditor/fckconfig.js",
+		"^inc/fck/fckconfig.js",
+		"^js/fckeditor/fckconfig.js",
+		"^js/fck/fckconfig.js",
+		"^js/mage/cookies.js",
+		"^sftp-config.json",
+		"^myadmin",
+		"^phpmyadmin",
+		"^pma",
+		"^sql",
+		"^admin.*$",
+		"^manager/",
+		"^components",
+		"^license",
+		"^readme.txt",
+		"^readme.md",
+		"^component\/users\/.*$",
+		"^.well-known\/apple-app-site-association",
+		"^.*.html$",
+		"^simpla",
+		"^.vscode/ftp-sync.json",
+		"^.ftpconfig",
+		"^cmd.exe",
+		"^bea_wls_deployment_internal",
+		"^Users\/password",
+		"^DONTFLYMONEY.com",
+		"^.well-known\/security.txt",
+		"^deployment-config.json",
+		"^ftpsync.settings",
+		"^.vscode/sftp.json",
+		"^.remote-sync.json",
+		"^.env",
+		"^WS_FTP.INI",
+		"^filezilla.xml",
+		"^winscp.ini",
+		"^sitemanager.xml",
+		"^.ssh",
+		"^.idea",
+		"^id_",
+		"^graphql",
+		"^vb",
+		"^STRUTS_STRU",
+		"^app-ads.txt",
+		"^mysqladmin",
+		"^rss",
+		"^backup.tar.gz"
+	],
+
+	"https://github.com/darakeon/dfm": [
+		"^.git",
+		"^console"
+	],
+
+	"https://github.com/darakeon/dfm/issues/new": [
+		"^contact"
+	],
+
+	"https://github.com/darakeon/dfm/blob/main/docs/RELEASES.md": [
+		"^CHANGELOG.txt",
+		"^core/CHANGELOG.txt",
+		"^boards",
+		"^discussion"
+	],
+
+	"https://play.google.com/store/apps/details?id=com.dontflymoney.view": [
+		"^downloader",
+		"^com.dontflymoney.view/ads.txt",
+		"^store/apps"
+	]
+}

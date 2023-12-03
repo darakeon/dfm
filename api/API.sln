@@ -1,0 +1,91 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.452
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7EB84316-3CE2-4426-AA5E-7234811CA5BB}"
+	ProjectSection(SolutionItems) = preProject
+		..\core\.editorconfig = ..\core\.editorconfig
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication", "..\core\Authentication\Authentication.csproj", "{84AD52CD-61AA-4F63-B26F-92392493E4DC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogic", "..\core\BusinessLogic\BusinessLogic.csproj", "{E749C813-2963-49E6-9D0A-7E6F165EF929}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Email", "..\core\Email\Email.csproj", "{B586AB4F-74BD-4E49-B584-57F624522C45}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "..\core\Entities\Entities.csproj", "{288B6282-630A-4D92-BF07-717774BFB2BD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Generic", "..\core\Generic\Generic.csproj", "{FD6843E9-6DC1-464A-A6D6-74AE215BD16D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Language", "..\core\Language\Language.csproj", "{A747268B-CE55-4577-8D72-5405A2E5866C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logs", "..\core\Logs\Logs.csproj", "{510A4DAA-4A0F-40D2-B7BC-AB3F95885639}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.Util", "..\core\Tests\Util\Tests.Util.csproj", "{0958B228-EDB7-4CDF-A916-CE9D778A9CBD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API.Tests", "Tests\API\API.Tests.csproj", "{02E9F72D-A580-42FF-946D-AA4F252E4754}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exchange", "..\core\Exchange\Exchange.csproj", "{3C8B9241-5BBE-4403-8E32-BC219FB19C0F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84AD52CD-61AA-4F63-B26F-92392493E4DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84AD52CD-61AA-4F63-B26F-92392493E4DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84AD52CD-61AA-4F63-B26F-92392493E4DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84AD52CD-61AA-4F63-B26F-92392493E4DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E749C813-2963-49E6-9D0A-7E6F165EF929}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E749C813-2963-49E6-9D0A-7E6F165EF929}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E749C813-2963-49E6-9D0A-7E6F165EF929}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E749C813-2963-49E6-9D0A-7E6F165EF929}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B586AB4F-74BD-4E49-B584-57F624522C45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B586AB4F-74BD-4E49-B584-57F624522C45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B586AB4F-74BD-4E49-B584-57F624522C45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B586AB4F-74BD-4E49-B584-57F624522C45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{288B6282-630A-4D92-BF07-717774BFB2BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{288B6282-630A-4D92-BF07-717774BFB2BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{288B6282-630A-4D92-BF07-717774BFB2BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{288B6282-630A-4D92-BF07-717774BFB2BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD6843E9-6DC1-464A-A6D6-74AE215BD16D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD6843E9-6DC1-464A-A6D6-74AE215BD16D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD6843E9-6DC1-464A-A6D6-74AE215BD16D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD6843E9-6DC1-464A-A6D6-74AE215BD16D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A747268B-CE55-4577-8D72-5405A2E5866C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A747268B-CE55-4577-8D72-5405A2E5866C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A747268B-CE55-4577-8D72-5405A2E5866C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A747268B-CE55-4577-8D72-5405A2E5866C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{510A4DAA-4A0F-40D2-B7BC-AB3F95885639}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{510A4DAA-4A0F-40D2-B7BC-AB3F95885639}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{510A4DAA-4A0F-40D2-B7BC-AB3F95885639}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{510A4DAA-4A0F-40D2-B7BC-AB3F95885639}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0958B228-EDB7-4CDF-A916-CE9D778A9CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0958B228-EDB7-4CDF-A916-CE9D778A9CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0958B228-EDB7-4CDF-A916-CE9D778A9CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02E9F72D-A580-42FF-946D-AA4F252E4754}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02E9F72D-A580-42FF-946D-AA4F252E4754}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02E9F72D-A580-42FF-946D-AA4F252E4754}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C8B9241-5BBE-4403-8E32-BC219FB19C0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C8B9241-5BBE-4403-8E32-BC219FB19C0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C8B9241-5BBE-4403-8E32-BC219FB19C0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C8B9241-5BBE-4403-8E32-BC219FB19C0F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {08FA86D1-E699-4B60-808E-E7110AF82463}
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = DFM.vsmdi
+	EndGlobalSection
+EndGlobal
