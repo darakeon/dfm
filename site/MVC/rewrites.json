@@ -92,14 +92,5 @@
 		"^downloader",
 		"^com.dontflymoney.view/ads.txt",
 		"^store/apps"
-	],
-
-	"http://twitter.com/dfm_grunt": [
-		"^blog.*$",
-		"^modules/mod_feed/mod_feed.xml",
-		"^forum",
-		"^ads.txt",
-		"^messageboard",
-		"^community"
 	]
 }
