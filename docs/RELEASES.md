@@ -21,7 +21,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Add account creation (mobile)
 - [ ] Add schedule creation (mobile)
 - [ ] Add user creation (mobile)
-- [ ] Separate MVC projects: site and api
+- [ ] `231213>......` Separate MVC projects: site and api
 
 ## <a name="10.2.1.0"></a>10.2.1.0 :sheep: <sup>`5`</sup>
 - [x] `231201>231201` Update dependabot file in version update
