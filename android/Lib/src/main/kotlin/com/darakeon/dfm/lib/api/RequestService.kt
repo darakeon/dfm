@@ -23,104 +23,104 @@ import java.util.UUID
 import retrofit2.http.Body as RetrofitBody
 
 interface RequestService {
-	@GET("api/accounts/list")
+	@GET("accounts/list")
 	fun listAccounts(): Call<Body<AccountList>>
 
-	@GET("api/account-{accountUrl}/moves/extract/{time}")
+	@GET("account-{accountUrl}/moves/extract/{time}")
 	fun getExtract(
 		@Path("accountUrl") accountUrl: String,
 		@Path("time") time: Int
 	): Call<Body<Extract>>
 
 	@FormUrlEncoded
-	@POST("api/moves/check/{id}")
+	@POST("moves/check/{id}")
 	fun check(
 		@Path("id") id: UUID,
 		@Field("nature") nature: Nature
 	): Call<Body<Any>>
 
 	@FormUrlEncoded
-	@POST("api/moves/uncheck/{id}")
+	@POST("moves/uncheck/{id}")
 	fun uncheck(
 		@Path("id") id: UUID,
 		@Field("nature") nature: Nature
 	): Call<Body<Any>>
 
-	@POST("api/moves/delete/{id}")
+	@POST("moves/delete/{id}")
 	fun delete(
 		@Path("id") id: UUID
 	): Call<Body<Any>>
 
 	@FormUrlEncoded
-	@POST("api/users/login")
+	@POST("users/login")
 	fun login(
 		@Field("email") email: String,
 		@Field("password") password: String
 	): Call<Body<Login>>
 
-	@POST("api/users/logout")
+	@POST("users/logout")
 	fun logout(): Call<Body<Any>>
 
-	@GET("api/moves/create")
+	@GET("moves/create")
 	fun getMove(): Call<Body<MoveCreation>>
 
-	@GET("api/moves/create/{id}")
+	@GET("moves/create/{id}")
 	fun getMove(
 		@Path("id") id: UUID
 	): Call<Body<MoveCreation>>
 
-	@POST("api/moves/create")
+	@POST("moves/create")
 	fun saveMove(
 		@RetrofitBody move: Move
 	): Call<Body<Any>>
 
-	@POST("api/moves/create/{id}")
+	@POST("moves/create/{id}")
 	fun saveMove(
 		@Path("id") id: UUID,
 		@RetrofitBody move: Move
 	): Call<Body<Any>>
 
-	@GET("api/users/getSettings")
+	@GET("users/getSettings")
 	fun getSettings(): Call<Body<Settings>>
 
-	@POST("api/users/saveSettings")
+	@POST("users/saveSettings")
 	fun saveSettings(
 		@RetrofitBody settings: Settings
 	): Call<Body<Any>>
 
-	@GET("api/account-{accountUrl}/moves/summary/{time}")
+	@GET("account-{accountUrl}/moves/summary/{time}")
 	fun getSummary(
 		@Path("accountUrl") accountUrl: String,
 		@Path("time") time: Int
 	): Call<Body<Summary>>
 
 	@FormUrlEncoded
-	@POST("api/account-{accountUrl}/users/tfa")
+	@POST("account-{accountUrl}/users/tfa")
 	fun validateTFA(
 		@Field("code") code: String
 	): Call<Body<Any>>
 
-	@GET("api/moves/lists")
+	@GET("moves/lists")
 	fun listsForMoves(): Call<Body<Lists>>
 
-	@POST("api/users/wipe")
+	@POST("users/wipe")
 	fun wipe(
 		@RetrofitBody wipe: Wipe
 	): Call<Body<Any>>
 
-	@GET("api/users/terms")
+	@GET("users/terms")
 	fun getTerms(): Call<Body<Terms>>
 
-	@GET("api")
+	@GET("/")
 	fun wakeUpSite(): Call<Body<Any>>
 
-	@GET("api/log/count")
+	@GET("log/count")
 	fun countErrors(): Call<Body<ErrorList>>
 
-	@GET("api/log/list")
+	@GET("log/list")
 	fun listErrors(): Call<Body<ErrorList>>
 
-	@POST("api/log/archive/{id}")
+	@POST("log/archive/{id}")
 	fun archiveErrors(
 		@Path("id") id: Int
 	): Call<Body<Any>>

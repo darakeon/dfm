@@ -67,7 +67,7 @@ open class CallMock<Body>(
 
 	override fun request(): Request {
 		return Request.Builder()
-			.url("http://dontflymoney.com/tests")
+			.url("http://api.dontflymoney.com/tests")
 			.build()
 	}
 
