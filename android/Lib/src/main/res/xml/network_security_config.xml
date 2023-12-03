@@ -2,7 +2,7 @@
 <network-security-config>
 	<domain-config cleartextTrafficPermitted="true">
 		<domain includeSubdomains="true">
-			dontflymoney.com
+			api.dontflymoney.com
 		</domain>
 		<domain includeSubdomains="true">
 			10.0.2.2
