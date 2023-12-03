@@ -1,5 +1,5 @@
-- [ ] Duplicar
-- [ ] Limpar API
+- [x] Duplicar
+- [x] Limpar API
 - [ ] Tratamento de erros
 - [ ] Tratamento de casos de não autorização
 - [ ] Adicionar no CI

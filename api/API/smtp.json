@@ -1,0 +1,9 @@
+{
+	"Email": "dfm@dontflymoney.com",
+
+	"Smtp": {
+		"deliveryMethod": "specifiedPickupDirectory",
+		"pickupDirectoryLocation": "../../outputs/inbox",
+		"from": "dfm@dontflymoney.com"
+	}
+}
