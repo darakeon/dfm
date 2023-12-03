@@ -14,8 +14,8 @@
           path: android
           command: gradle-with-metadata :Lib:testReleaseUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
       - store_artifacts:
-          path: android/Lib/log
-          destination: log/lib
+          path: outputs/logs/android
+          destination: logs
       - store_artifacts:
           path: android/gradle/verification-metadata.xml
           destination: verification-metadata.xml
