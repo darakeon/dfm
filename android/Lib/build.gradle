@@ -86,7 +86,7 @@ static def getLocalIP() {
 		}
 
 	if (ips.empty)
-		return "dontflymoney.com"
+		return "api.dontflymoney.com"
 
 	return ips.first().toString().substring(1)
 }
@@ -95,7 +95,7 @@ task ipNetwork(type: Copy) {
 	from ('src/main/res/xml/network_security_config.xml')
 	into ('src/debug/res/xml')
 	filter {
-		String line -> line.replaceAll("dontflymoney.com", getLocalIP())
+		String line -> line.replaceAll("api.dontflymoney.com", getLocalIP())
 	}
 }
 
@@ -103,7 +103,7 @@ task ipAddress(type: Copy) {
 	from ('src/main/res/values/site-address.xml')
 	into ('src/debug/res/values')
 	filter {
-		String line -> line.replaceAll("dontflymoney.com", getLocalIP())
+		String line -> line.replaceAll("api.dontflymoney.com", getLocalIP())
 	}
 }
 
