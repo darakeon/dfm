@@ -22,7 +22,9 @@ RUN apt-get install -y android-sdk \
 RUN gradle -v # to avoid excessive info at gradle version check
 
 COPY echyellow /usr/bin
+RUN chmod +x /usr/bin/echyellow
 COPY gradle-with-metadata /usr/bin
+RUN chmod +x /usr/bin/gradle-with-metadata
 
 RUN echo "echo" >> ~/.bashrc
 RUN echo "printf '\e[38;5;46m'" >> ~/.bashrc
