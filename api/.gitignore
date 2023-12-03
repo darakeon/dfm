@@ -1,0 +1,17 @@
+*ReSharper*
+bin
+obj
+*.suo
+**.user
+*dotCover
+.vs
+*.user
+packages*/
+
+TestResults/*
+Tests/Core/log
+*.feature.cs
+
+*.amazon.json
+
+Tests/*/SpecFlow
