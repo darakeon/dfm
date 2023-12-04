@@ -78,6 +78,7 @@ namespace DFM.API.Controllers
                 code = (int)error
             };
 
+            Response.StatusCode = 400;
             return makeMvcActionResponse(result);
         }
 
