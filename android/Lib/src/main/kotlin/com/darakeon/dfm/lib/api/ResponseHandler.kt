@@ -6,7 +6,9 @@ import com.darakeon.dfm.lib.BuildConfig
 import com.darakeon.dfm.lib.Log
 import com.darakeon.dfm.lib.R
 import com.darakeon.dfm.lib.api.entities.Body
+import com.darakeon.dfm.lib.api.entities.ErrorBody
 import com.darakeon.dfm.lib.auth.setEnvironment
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,22 +26,38 @@ class ResponseHandler<C, A>(
 	override fun onResponse(call: Call<Body<A>>, response: Response<Body<A>>) {
 		logDebug("RESPONSE ${call.request().url()}")
 
-		val body = response.body()
-
 		logDebug("STATUS ${response.code()}")
 
-		if (body?.environment != null && caller is Activity) {
-			caller.setEnvironment(body.environment)
-		}
-
-		when {
-			body == null ->
+		when (response.code()) {
+			500 ->
 				caller.error(R.string.body_null)
 
-			body.data == null || body.code != null ->
-				assemblyResponse(body.code, body.error)
+			400 -> {
+				val body = Gson().fromJson(
+					response.errorBody()?.string(),
+					ErrorBody::class.java
+				)
 
-			else -> onSuccess(body.data)
+				assemblyResponse(body.code, body.error)
+			}
+
+			else -> {
+				val body = response.body()
+
+				if (body == null) {
+					caller.error(R.string.body_null)
+
+				} else if (body.data == null) {
+					assemblyResponse(body.code, body.error)
+
+				} else {
+					if (body.environment != null && caller is Activity) {
+						caller.setEnvironment(body.environment)
+					}
+
+					onSuccess(body.data)
+				}
+			}
 		}
 
 		caller.endWait()
