@@ -8,7 +8,7 @@
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <AssemblyVersion>10.2.1.0</AssemblyVersion>
     <FileVersion>10.2.1.0</FileVersion>
-    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <ApplicationIcon>Assets/favicon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="favicon.ico">
+    <Content Include="Assets\favicon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
