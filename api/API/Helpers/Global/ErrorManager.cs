@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DFM.API.Helpers.Extensions;
-using DFM.API.Starters.Routes;
 using DFM.Email;
 using DfM.Logs;
 using Keon.MVC.Cookies;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
+using Newtonsoft.Json;
 
 namespace DFM.API.Helpers.Global
 {
@@ -34,6 +34,8 @@ namespace DFM.API.Helpers.Global
 
 		private void process()
 		{
+			var errorStatus = Error.Status.Empty;
+
 			try
 			{
 				var exception = context.Features
@@ -42,17 +44,17 @@ namespace DFM.API.Helpers.Global
 
 				exception.TryLog();
 
-				sendEmail(exception);
+				errorStatus = sendEmail(exception);
 			}
 			catch (Exception e)
 			{
 				e.TryLog();
 			}
 
-			redirect();
+			makeResponse(errorStatus);
 		}
 
-		private void sendEmail(Exception exception)
+		private Error.Status sendEmail(Exception exception)
 		{
 			var user = context.User.Identity;
 			var request = context.Request;
@@ -63,7 +65,7 @@ namespace DFM.API.Helpers.Global
 
 			var authenticated = user?.IsAuthenticated ?? false;
 
-			EmailSent = Error.SendReport(
+			return Error.SendReport(
 				exception,
 				request.GetDisplayUrl(),
 				urlReferrer,
@@ -73,37 +75,18 @@ namespace DFM.API.Helpers.Global
 			);
 		}
 
-		private void redirect()
+		private void makeResponse(Error.Status errorStatus)
 		{
-			context.Response.Redirect(
-				Route.GetUrl<Apis.Main>
-					("Ops", "Code", 500)
-			);
-		}
+			context.Response.StatusCode = 500;
 
-		/// <summary>
-		/// When its value is gotten, its emptied
-		/// </summary>
-		public Error.Status EmailSent
-		{
-			get
+			var response = new
 			{
-				if (!errors.ContainsKey(key))
-					return Error.Status.Empty;
+				emailSent = errorStatus == Error.Status.Sent
+			};
 
-				var result = errors[key];
+			var json = JsonConvert.SerializeObject(response);
 
-				errors[key] = Error.Status.Empty;
-
-				return result;
-			}
-			private set
-			{
-				if (!errors.ContainsKey(key))
-					errors.Add(key, value);
-				else
-					errors[key] = value;
-			}
+			context.Response.WriteAsJsonAsync(response);
 		}
 	}
 }
