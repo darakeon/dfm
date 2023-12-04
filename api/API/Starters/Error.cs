@@ -10,12 +10,6 @@ namespace DFM.API.Starters
 	{
 		public static void AddHandlers(IApplicationBuilder app, IWebHostEnvironment env)
 		{
-			app.Use<Error>("StatusCode", () =>
-				app.UseStatusCodePagesWithReExecute(
-					Route.GetUrl<Apis.Main>("Ops", "Code", "{0}")
-				)
-			);
-
 			if (env.IsDevelopment())
 			{
 				app.Use<Error>("DevException", () => app.UseDeveloperExceptionPage());
