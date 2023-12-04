@@ -1,4 +1,7 @@
 ﻿{
+	"/Assets/favicon.ico": [
+		"favicon.ico"
+	],
 	"/Ops/Help": [
 		"^apple-app-site-association.*$",
 		"^.*.php",
