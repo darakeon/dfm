@@ -9,7 +9,7 @@ namespace DFM.API.Starters
 	{
 		public static void Configure(IApplicationBuilder app)
 		{
-			addStaticPath(app, "favicon.ico");
+			addStaticPath(app, "Assets");
 		}
 
 		private static void addStaticPath(IApplicationBuilder app, String folder)
