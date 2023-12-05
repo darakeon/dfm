@@ -47,7 +47,7 @@ namespace DFM.API.Helpers.Authorize
 			if (goAhead) return;
 
 			if (!isAuthenticated)
-				goToUninvited(context);
+				goToLoginRequested(context);
 
 			else if (denyByTFA)
 				goToTFA(context);
@@ -67,6 +67,11 @@ namespace DFM.API.Helpers.Authorize
 		protected virtual void goToTFA(AuthorizationFilterContext filterContext)
 		{
 			goTo(filterContext, "Users", "OpenTFA");
+		}
+
+		protected virtual void goToLoginRequested(AuthorizationFilterContext filterContext)
+		{
+			goTo(filterContext, "Users", "LoginRequested");
 		}
 
 		protected virtual void goToUninvited(AuthorizationFilterContext filterContext)
