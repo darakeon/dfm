@@ -1,7 +1,7 @@
 - [x] Duplicar
 - [x] Limpar API
 - [x] Tratamento de erros
-- [ ] Tratamento de casos de não autorização
+- [x] Tratamento de casos de não autorização
 - [ ] Adicionar no CI
 - [ ] Adicionar no Dependabot
 - [ ] Adicionar máquina de publish
