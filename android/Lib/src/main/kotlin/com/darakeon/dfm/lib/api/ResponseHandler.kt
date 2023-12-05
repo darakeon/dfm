@@ -29,10 +29,10 @@ class ResponseHandler<C, A>(
 		logDebug("STATUS ${response.code()}")
 
 		when (response.code()) {
-			500 ->
+			in 500 .. 599 ->
 				caller.error(R.string.body_null)
 
-			400 -> {
+			in 400 .. 499 -> {
 				val body = Gson().fromJson(
 					response.errorBody()?.string(),
 					ErrorBody::class.java
