@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Buffers;
+using System.Net;
 using System.Text;
 using DFM.API.Helpers.Controllers;
 using DFM.API.Helpers.Extensions;
@@ -55,10 +56,16 @@ namespace DFM.API.Controllers
         [HttpGetAndHead]
         public JsonResult Uninvited()
         {
-            return error(Error.Uninvited);
+	        return error(Error.Uninvited);
         }
 
         [HttpGetAndHead]
+        public JsonResult LoginRequested()
+        {
+	        return error(Error.LoginRequested);
+        }
+
+		[HttpGetAndHead]
         public JsonResult AcceptOnlineContract()
         {
             return error(Error.NotSignedLastContract);
@@ -75,12 +82,25 @@ namespace DFM.API.Controllers
             var result = new
             {
                 error = HttpContext.Translate(error),
-                code = (int)error
+                code = (Int32) error
             };
 
-            Response.StatusCode = 400;
+            Response.StatusCode = (Int32) getStatusCode(error);
             return makeMvcActionResponse(result);
         }
+
+        private HttpStatusCode getStatusCode(Error error)
+        {
+	        switch (error)
+	        {
+		        case Error.LoginRequested:
+			        return HttpStatusCode.Unauthorized;
+		        case Error.Uninvited:
+			        return HttpStatusCode.Forbidden;
+		        default:
+			        return HttpStatusCode.BadRequest;
+	        }
+	    }
 
         private JsonResult makeMvcActionResponse(object result)
         {
