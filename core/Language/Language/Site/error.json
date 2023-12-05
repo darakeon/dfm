@@ -98,6 +98,7 @@
 		"WipeUserAsked": "Person asked for wipe, data was not kept",
 		"WipeNoMoves": "There was no moves to keep in the wipe moment",
 		"CSVNotFound": "Data file not found",
+		"LoginRequested": "You need to login before accessing this resource",
 		"": null
 	},
 	"pt-BR": {
@@ -199,6 +200,7 @@
 		"WipeUserAsked": "A pessoa pediu pela exclusão, os dados não foram mantidos",
 		"WipeNoMoves": "Não havia movimentações para serem mantidas no momento da exclusão",
 		"CSVNotFound": "Arquivo de dados não encontrado",
+		"LoginRequested": "É necessário se logar antes de acessar este recurso",
 		"": null
 	}
 }
