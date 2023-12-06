@@ -1,0 +1,27 @@
+  audit_api:
+    docker:
+      - image: darakeon/netcore
+    steps:
+      - checkout
+      - attach_workspace:
+          at: core
+      - attach_workspace:
+          at: api
+      - restore_cache:
+          keys:
+            - dotnet-{{ checksum "api/cache_key" }}
+      - run:
+          path: api
+          name: check vulnerability
+          command: |
+            RESULT=$(dotnet list package --vulnerable --include-transitive | grep 'has no vulnerable')
+
+            echo "$RESULT"
+
+            NUMBER_OF_PROJECTS=11
+            CURRENT=$(echo "$RESULT" | wc -l)
+
+            if [ $CURRENT != $NUMBER_OF_PROJECTS ]; then
+                exit 1
+            fi
+
