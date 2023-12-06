@@ -13,6 +13,6 @@
           name: tests entities
           command: dotnet test -v m --no-build
       - store_artifacts:
-          path: core/Tests/log
-          destination: log
+          path: outputs/logs/core
+          destination: logs
 
