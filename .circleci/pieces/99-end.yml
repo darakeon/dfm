@@ -210,6 +210,42 @@ workflows:
             - audit_test_browser
             - build_site
             - push_docker_browser
+      - build_api:
+          filters:
+            branches:
+              only:
+                - main
+                - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/core.+$/
+                - /^feature/api.+$/
+                - /^dependabot/nuget/core/.+$/
+                - /^dependabot/nuget/api/.+$/
+          requires:
+            - build_core
+      - audit_api:
+          filters:
+            branches:
+              only:
+                - main
+                - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/core.+$/
+                - /^feature/api.+$/
+                - /^dependabot/nuget/core/.+$/
+                - /^dependabot/nuget/api/.+$/
+          requires:
+            - build_api
+      - test_api:
+          filters:
+            branches:
+              only:
+                - main
+                - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/core.+$/
+                - /^feature/api.+$/
+                - /^dependabot/nuget/core/.+$/
+                - /^dependabot/nuget/api/.+$/
+          requires:
+            - build_api
       - build_android:
           filters:
             branches:
