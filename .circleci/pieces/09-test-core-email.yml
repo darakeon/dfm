@@ -19,6 +19,6 @@
       - store_artifacts:
           path: outputs/inbox
       - store_artifacts:
-          path: core/Tests/log
-          destination: log
+          path: outputs/logs/core
+          destination: logs
 
