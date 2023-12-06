@@ -14,7 +14,7 @@ updates:
       - internal
       - dependencies
     commit-message:
-      prefix: tools
+      prefix: "tools: update internal\n\n"
 
   - package-ecosystem: "nuget"
     directory: "/site/"
@@ -25,7 +25,7 @@ updates:
       - site
       - dependencies
     commit-message:
-      prefix: tools
+      prefix: "tools: update site\n\n"
 
   - package-ecosystem: "nuget"
     directory: "/api/"
@@ -36,7 +36,7 @@ updates:
       - api
       - dependencies
     commit-message:
-      prefix: tools
+      prefix: "tools: update api\n\n"
 
   - package-ecosystem: "nuget"
     directory: "/robot/"
@@ -47,7 +47,7 @@ updates:
       - robot
       - dependencies
     commit-message:
-      prefix: tools
+      prefix: "tools: update robot\n\n"
 
   - package-ecosystem: "npm"
     directory: "/site/Tests/Browser/"
@@ -58,7 +58,7 @@ updates:
       - tests
       - dependencies
     commit-message:
-      prefix: tools
+      prefix: "tools: update tests\n\n"
 
   - package-ecosystem: "gradle"
     directory: "/android/"
@@ -69,7 +69,7 @@ updates:
       - mobile
       - dependencies
     commit-message:
-      prefix: tools
+      prefix: "tools: update mobile\n\n"
 
   - package-ecosystem: "docker"
     directory: "/ci/"
@@ -80,7 +80,7 @@ updates:
       - tests
       - dependencies
     commit-message:
-      prefix: tools
+      prefix: "tools: update tests\n\n"
 
   - package-ecosystem: "docker"
     directory: "/publish/"
@@ -91,7 +91,7 @@ updates:
       - internal
       - dependencies
     commit-message:
-      prefix: tools
+      prefix: "tools: update internal\n\n"
 
   - package-ecosystem: "cargo"
     directory: "/version/"
@@ -102,7 +102,7 @@ updates:
       - version
       - dependencies
     commit-message:
-      prefix: tools
+      prefix: "tools: update version\n\n"
 
   - package-ecosystem: "pip"
     directory: "/midna/"
@@ -113,4 +113,4 @@ updates:
       - midna
       - dependencies
     commit-message:
-      prefix: tools
+      prefix: "tools: update midna\n\n"
