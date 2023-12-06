@@ -4,7 +4,7 @@
 - [x] Tratamento de casos de não autorização
 - [x] Adicionar no CI
 - [x] Adicionar no Dependabot
-- [ ] Adicionar máquina de publish
+- [x] Adicionar máquina de publish
 - [ ] Adicionar alterar versão do projeto
 - [ ] Adicionar subdomínio na AWS
 - [ ] Adicionar no docker compose do server
