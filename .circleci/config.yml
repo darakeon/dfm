@@ -454,6 +454,97 @@ jobs:
       - store_artifacts:
           path: outputs/s3
 
+  build_api:
+    docker:
+      - image: darakeon/netcore
+    steps:
+      - checkout
+      - attach_workspace:
+          at: core
+      - run:
+          name: set checksums
+          command: |
+            CS_AUTH=$(md5sum core/Authentication/Authentication.csproj | cut -d' ' -f1)
+            CS_BUSI=$(md5sum core/BusinessLogic/BusinessLogic.csproj | cut -d' ' -f1)
+            CS_MAIL=$(md5sum core/Email/Email.csproj | cut -d' ' -f1)
+            CS_ENTI=$(md5sum core/Entities/Entities.csproj | cut -d' ' -f1)
+            CS_GENE=$(md5sum core/Generic/Generic.csproj | cut -d' ' -f1)
+            CS_LANG=$(md5sum core/Language/Language.csproj | cut -d' ' -f1)
+            CS_EXCH=$(md5sum core/Exchange/Exchange.csproj | cut -d' ' -f1)
+            CS_API_=$(md5sum api/API/API.csproj | cut -d' ' -f1)
+            CS_TAPI=$(md5sum api/Tests/API/API.Tests.csproj | cut -d' ' -f1)
+
+            CACHE_KEY=$CS_AUTH-$CS_BUSI-$CS_MAIL-$CS_ENTI-$CS_GENE-$CS_LANG-$CS_EXCH-$CS_API_-$CS_TAPI
+            echo $CACHE_KEY > api/cache_key
+      - restore_cache:
+          keys:
+            - dotnet-{{ checksum "api/cache_key" }}
+      - run:
+          name: dependencies
+          command: dotnet restore api/API.sln
+      - save_cache:
+          key: dotnet-{{ checksum "api/cache_key" }}
+          paths:
+            - ~/.nuget/packages
+      - run:
+          name: build
+          command: dotnet build -c Debug api/API.sln --no-restore
+      - persist_to_workspace:
+          root: api
+          paths:
+            - cache_key
+            - API/bin
+            - API/obj
+            - Tests/API/bin
+            - Tests/API/obj
+
+  audit_api:
+    docker:
+      - image: darakeon/netcore
+    steps:
+      - checkout
+      - attach_workspace:
+          at: core
+      - attach_workspace:
+          at: api
+      - restore_cache:
+          keys:
+            - dotnet-{{ checksum "api/cache_key" }}
+      - run:
+          path: api
+          name: check vulnerability
+          command: |
+            RESULT=$(dotnet list package --vulnerable --include-transitive | grep 'has no vulnerable')
+
+            echo "$RESULT"
+
+            NUMBER_OF_PROJECTS=11
+            CURRENT=$(echo "$RESULT" | wc -l)
+
+            if [ $CURRENT != $NUMBER_OF_PROJECTS ]; then
+                exit 1
+            fi
+
+  test_api:
+    docker:
+      - image: darakeon/netcore
+    steps:
+      - checkout
+      - attach_workspace:
+          at: api
+      - restore_cache:
+          keys:
+            - dotnet-{{ checksum "api/cache_key" }}
+      - run:
+          path: api/Tests/API
+          name: tests api
+          command: dotnet test -v m --no-build
+      - store_artifacts:
+          path: outputs/inbox
+      - store_artifacts:
+          path: api/Tests/log
+          destination: log
+
   build_android:
     docker:
       - image: darakeon/android
@@ -1078,6 +1169,42 @@ workflows:
             - audit_test_browser
             - build_site
             - push_docker_browser
+      - build_api:
+          filters:
+            branches:
+              only:
+                - main
+                - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/core.+$/
+                - /^feature/api.+$/
+                - /^dependabot/nuget/core/.+$/
+                - /^dependabot/nuget/api/.+$/
+          requires:
+            - build_core
+      - audit_api:
+          filters:
+            branches:
+              only:
+                - main
+                - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/core.+$/
+                - /^feature/api.+$/
+                - /^dependabot/nuget/core/.+$/
+                - /^dependabot/nuget/api/.+$/
+          requires:
+            - build_api
+      - test_api:
+          filters:
+            branches:
+              only:
+                - main
+                - /^\d+\.\d+\.\d+\.\d+$/
+                - /^feature/core.+$/
+                - /^feature/api.+$/
+                - /^dependabot/nuget/core/.+$/
+                - /^dependabot/nuget/api/.+$/
+          requires:
+            - build_api
       - build_android:
           filters:
             branches:
