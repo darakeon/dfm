@@ -26,6 +26,16 @@ updates:
       prefix: tools
 
   - package-ecosystem: "nuget"
+    directory: "/api/"
+    target-branch: "11.0.0.0"
+    schedule:
+      interval: "weekly"
+    labels:
+      - api
+    commit-message:
+      prefix: tools
+
+  - package-ecosystem: "nuget"
     directory: "/robot/"
     target-branch: "11.0.0.0"
     schedule:

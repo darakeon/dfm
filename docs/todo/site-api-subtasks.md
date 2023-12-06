@@ -3,7 +3,7 @@
 - [x] Tratamento de erros
 - [x] Tratamento de casos de não autorização
 - [x] Adicionar no CI
-- [ ] Adicionar no Dependabot
+- [x] Adicionar no Dependabot
 - [ ] Adicionar máquina de publish
 - [ ] Adicionar alteração no robot
 - [ ] Adicionar subdomínio na AWS
