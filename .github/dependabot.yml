@@ -12,6 +12,7 @@ updates:
       interval: "weekly"
     labels:
       - internal
+      - dependencies
     commit-message:
       prefix: tools
 
@@ -22,6 +23,7 @@ updates:
       interval: "weekly"
     labels:
       - site
+      - dependencies
     commit-message:
       prefix: tools
 
@@ -32,6 +34,7 @@ updates:
       interval: "weekly"
     labels:
       - api
+      - dependencies
     commit-message:
       prefix: tools
 
@@ -42,6 +45,7 @@ updates:
       interval: "weekly"
     labels:
       - robot
+      - dependencies
     commit-message:
       prefix: tools
 
@@ -52,6 +56,7 @@ updates:
       interval: "weekly"
     labels:
       - tests
+      - dependencies
     commit-message:
       prefix: tools
 
@@ -62,6 +67,7 @@ updates:
       interval: "weekly"
     labels:
       - mobile
+      - dependencies
     commit-message:
       prefix: tools
 
@@ -72,6 +78,7 @@ updates:
       interval: "weekly"
     labels:
       - tests
+      - dependencies
     commit-message:
       prefix: tools
 
@@ -82,6 +89,7 @@ updates:
       interval: "weekly"
     labels:
       - internal
+      - dependencies
     commit-message:
       prefix: tools
 
@@ -92,6 +100,7 @@ updates:
       interval: "weekly"
     labels:
       - version
+      - dependencies
     commit-message:
       prefix: tools
 
@@ -102,5 +111,6 @@ updates:
       interval: "weekly"
     labels:
       - midna
+      - dependencies
     commit-message:
       prefix: tools
