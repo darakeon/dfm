@@ -190,8 +190,8 @@ jobs:
           name: tests generic
           command: dotnet test -v m --no-build
       - store_artifacts:
-          path: core/Tests/log
-          destination: log
+          path: outputs/logs/core
+          destination: logs
 
   test_core_language:
     docker:
@@ -208,8 +208,8 @@ jobs:
           name: tests language
           command: dotnet test -v m --no-build
       - store_artifacts:
-          path: core/Tests/log
-          destination: log
+          path: outputs/logs/core
+          destination: logs
 
   test_core_email:
     docker:
@@ -232,8 +232,8 @@ jobs:
       - store_artifacts:
           path: outputs/inbox
       - store_artifacts:
-          path: core/Tests/log
-          destination: log
+          path: outputs/logs/core
+          destination: logs
 
   test_core_exchange:
     docker:
@@ -250,8 +250,8 @@ jobs:
           name: tests exchange
           command: dotnet test -v m --no-build
       - store_artifacts:
-          path: core/Tests/log
-          destination: log
+          path: outputs/logs/core
+          destination: logs
 
   test_core_entities:
     docker:
@@ -268,8 +268,8 @@ jobs:
           name: tests entities
           command: dotnet test -v m --no-build
       - store_artifacts:
-          path: core/Tests/log
-          destination: log
+          path: outputs/logs/core
+          destination: logs
 
   test_core_business_logic:
     docker:
@@ -293,8 +293,8 @@ jobs:
       - store_artifacts:
           path: outputs/inbox
       - store_artifacts:
-          path: core/Tests/log
-          destination: log
+          path: outputs/logs/core
+          destination: logs
 
   build_site:
     docker:
