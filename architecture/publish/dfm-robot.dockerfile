@@ -6,7 +6,6 @@ COPY core /var/dfm/core
 COPY robot /var/dfm/robot
 RUN cd /var/dfm/robot/Robot \
 	&& dotnet publish Robot.csproj -o /var/robot \
-	&& apt-get remove -y dotnet-sdk-6.0 \
 	&& maintain \
 	&& rm -r /var/dfm
 
