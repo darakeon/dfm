@@ -1,0 +1,20 @@
+  test_api:
+    docker:
+      - image: darakeon/netcore
+    steps:
+      - checkout
+      - attach_workspace:
+          at: api
+      - restore_cache:
+          keys:
+            - dotnet-{{ checksum "api/cache_key" }}
+      - run:
+          path: api/Tests/API
+          name: tests api
+          command: dotnet test -v m --no-build
+      - store_artifacts:
+          path: outputs/inbox
+      - store_artifacts:
+          path: api/Tests/log
+          destination: log
+
