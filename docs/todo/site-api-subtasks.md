@@ -2,7 +2,7 @@
 - [x] Limpar API
 - [x] Tratamento de erros
 - [x] Tratamento de casos de não autorização
-- [ ] Adicionar no CI
+- [x] Adicionar no CI
 - [ ] Adicionar no Dependabot
 - [ ] Adicionar máquina de publish
 - [ ] Adicionar alteração no robot
