@@ -1,6 +1,6 @@
 MAKEFLAGS += --no-print-directory
 
-all: site_push robot_push midna_push
+all: site_push api_push robot_push midna_push
 
 robot:
 	@make single MACHINE=robot
@@ -13,6 +13,12 @@ site:
 
 site_push: site
 	@make push MACHINE=site
+
+api:
+	@make single MACHINE=api
+
+api_push: api
+	@make push MACHINE=api
 
 midna:
 	@make single MACHINE=midna
