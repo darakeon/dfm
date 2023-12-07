@@ -5,7 +5,7 @@
 - [x] Adicionar no CI
 - [x] Adicionar no Dependabot
 - [x] Adicionar máquina de publish
-- [ ] Adicionar alterar versão do projeto
+- [x] Adicionar alterar versão do projeto
 - [ ] Adicionar subdomínio na AWS
 - [ ] Adicionar no docker compose do server
 - [x] Redirecionar requests /api para api.dfm
