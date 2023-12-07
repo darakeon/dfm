@@ -104,7 +104,11 @@ namespace DFM.BusinessLogic.Repositories
 
 		public void ReMisc(User user)
 		{
-			user.Control.MiscDna = Misc.RandomDNA();
+			var oldDna = user.Control.MiscDna;
+			while (oldDna == user.Control.MiscDna)
+			{
+				user.Control.MiscDna = Misc.RandomDNA();
+			}
 			SaveOrUpdate(user.Control);
 		}
 	}
