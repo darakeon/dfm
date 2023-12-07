@@ -21,6 +21,9 @@ pub fn update_csharp(version: &Version) {
 
 	update_csharp_file(&version, vec!["site", "MVC", "MVC.csproj"]);
 	update_csharp_file(&version, vec!["site", "Tests", "MVC", "MVC.Tests.csproj"]);
+
+	update_csharp_file(&version, vec!["api", "API", "API.csproj"]);
+	update_csharp_file(&version, vec!["api", "Tests", "API", "API.Tests.csproj"]);
 }
 
 fn update_csharp_file(version: &Version, file_relative: Vec<&str>) {
