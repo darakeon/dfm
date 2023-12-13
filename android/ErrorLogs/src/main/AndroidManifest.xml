@@ -9,6 +9,11 @@
 		android:protectionLevel="signature"
 		/>
 
+	<uses-permission
+		android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"
+		android:protectionLevel="signature"
+		/>
+
 	<application
 		android:allowBackup="false"
 		android:networkSecurityConfig="@xml/network_security_config"
@@ -43,6 +48,7 @@
 			android:isolatedProcess="false"
 			android:label="@string/service_error_title"
 			android:process=":SiteError"
+			android:foregroundServiceType="specialUse"
 			/>
 	</application>
 </manifest>
