@@ -45,6 +45,12 @@ allprojects {
 		mavenCentral()
 	}
 
+	dependencyCheck {
+		nvd {
+			apiKey=System.getenv("NVD_API_KEY")
+		}
+	}
+
 	tasks.withType(Test) { testTask ->
 
 		testTask.testLogging { logging ->
