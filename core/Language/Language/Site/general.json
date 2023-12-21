@@ -164,6 +164,9 @@
 		"NoLinkReminder1": "THE SYSTEM HAS NO CONNECTION TO ANY FINANCIAL INSTITUTION,",
 		"NoLinkReminder2": "SO ANY MOVES MADE HERE ARE MADE JUST HERE,",
 		"NoLinkReminder3": "BEING MERELY REGISTERS IN THIS SYSTEM.",
+
+		"UpdateApp": "Update the Mobile App to version ",
+
 		"": null
 	},
 	"pt-BR": {
@@ -331,6 +334,9 @@
 		"NoLinkReminder1": "O SISTEMA NÃO POSSUI LIGAÇÃO COM NENHUMA INSTITUIÇÃO,",
 		"NoLinkReminder2": "PORTANTO MOVIMENTAÇÕES FEITAS AQUI SÃO APENAS FEITAS AQUI,",
 		"NoLinkReminder3": "SENDO MERAMENTE REGISTROS NESTE SISTEMA.",
+
+		"UpdateApp": "Atualize seu Aplicativo Android para a versão ",
+
 		"": null
 	}
 }
