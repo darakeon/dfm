@@ -26,7 +26,7 @@ class MainInfoTest: BaseTest() {
 
 		val url = MainInfo.getSiteUrl(context)
 
-		assertThat(url, `is`("http://127.0.0.1:2409/"))
+		assertThat(url, `is`("http://127.0.0.1:2312/"))
 	}
 
 	@Test

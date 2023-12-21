@@ -14,7 +14,7 @@ object MainInfo {
 
 		return when {
 			siteAddress == "" -> ""
-			BuildConfig.DEBUG -> "http://$siteAddress:2409/"
+			BuildConfig.DEBUG -> "http://$siteAddress:2312/"
 			else -> "https://$siteAddress/"
 		}
 	}
