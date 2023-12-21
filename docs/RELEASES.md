@@ -14,13 +14,14 @@ This is the list of project releases, past and current. To see tasks that are st
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="11.0.0.0"></a>11.0.0.0 :dragon: <sup>`7`</sup>
+## <a name="11.0.0.0"></a>11.0.0.0 :dragon: <sup>`8`</sup>
 - [ ] Automate execute non destrutive sql
 - [ ] Add transfer with conversion (value in/out)
 - [ ] Add category creation (mobile)
 - [ ] Add account creation (mobile)
 - [ ] Add schedule creation (mobile)
 - [ ] Add user creation (mobile)
+- [ ] [Reduce Docker Images] / Use multistaged (multiple FROM at dockerfiles) container
 - [x] `231213>231221` Separate MVC projects: site and api
 
 ## <a name="10.2.1.0"></a>10.2.1.0 :sheep: <sup>`5`</sup>
@@ -1016,3 +1017,4 @@ This is the list of project releases, past and current. To see tasks that are st
 [django-prod]:https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 [django-nginx]:https://realpython.com/django-nginx-gunicorn/
 [Google tips avoid being spam]:https://support.google.com/mail/answer/81126?hl=en&sjid=2044805771675957069-EU
+[Reduce Docker Images]:https://www.ecloudcontrol.com/best-practices-to-reduce-docker-images-size/
