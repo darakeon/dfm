@@ -9,4 +9,4 @@
 - [x] Adicionar subdomínio na AWS
 - [x] Adicionar no docker compose do server
 - [x] Redirecionar requests /api para api.dfm
-- [ ] Limpar Site
+- [x] Limpar Site
