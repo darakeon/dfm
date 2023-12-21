@@ -7,6 +7,6 @@
 - [x] Adicionar máquina de publish
 - [x] Adicionar alterar versão do projeto
 - [x] Adicionar subdomínio na AWS
-- [ ] Adicionar no docker compose do server
+- [x] Adicionar no docker compose do server
 - [x] Redirecionar requests /api para api.dfm
 - [ ] Limpar Site
