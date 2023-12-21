@@ -6,6 +6,8 @@ namespace DFM.BusinessLogic.Exceptions
 	{
 		Unknown = 0,
 
+		UpdateApp = 27,
+
 		Uninvited = 207,
 		LoginRequested = 224, 
 		NotSignedLastContract = 42,
