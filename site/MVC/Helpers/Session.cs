@@ -24,29 +24,9 @@ namespace DFM.MVC.Helpers
 
 		public ClientTicket GetTicket(Boolean remember = false)
 		{
-			var path = (request.Path.Value ?? "").ToLower();
-
-			var type = path.StartsWith("/api")
-				? TicketType.Mobile
-				: TicketType.Browser;
-
-			var key = getKey(type, remember);
-
+			var type = TicketType.Browser;
+			var key = BrowserId.Get(() => context, remember);
 			return new ClientTicket(key, type);
-		}
-
-		private String getKey(TicketType type, Boolean remember)
-		{
-			return type switch
-			{
-				TicketType.Browser =>
-					BrowserId.Get(() => context, remember),
-
-				TicketType.Mobile =>
-					request.Headers["ticket"],
-
-				_ => throw new NotImplementedException()
-			};
 		}
 	}
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using DFM.BusinessLogic;
-using DFM.Entities.Enums;
 using DFM.MVC.Helpers.Extensions;
 using DFM.MVC.Starters.Routes;
 using JetBrains.Annotations;
@@ -31,9 +30,6 @@ namespace DFM.MVC.Helpers.Authorize
 		
 		private Boolean denyByTFA      => !mandatory.HasFlag(AuthParams.IgnoreTFA)
 		                                  && !access.Auth.VerifyTicketTFA();
-		
-		private Boolean denyByMobile   => mandatory.HasFlag(AuthParams.Mobile)
-		                                  && !access.Auth.VerifyTicketType(TicketType.Mobile);
 
 		public void OnAuthorization(AuthorizationFilterContext context)
 		{
@@ -42,8 +38,7 @@ namespace DFM.MVC.Helpers.Authorize
 			var goAhead = isAuthenticated
 			              && !denyByAdmin
 			              && !denyByContract
-			              && !denyByTFA
-			              && !denyByMobile;
+			              && !denyByTFA;
 
 			if (goAhead) return;
 
