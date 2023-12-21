@@ -6,7 +6,7 @@
 - [x] Adicionar no Dependabot
 - [x] Adicionar máquina de publish
 - [x] Adicionar alterar versão do projeto
-- [ ] Adicionar subdomínio na AWS
+- [x] Adicionar subdomínio na AWS
 - [ ] Adicionar no docker compose do server
 - [x] Redirecionar requests /api para api.dfm
 - [ ] Limpar Site
