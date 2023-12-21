@@ -11,9 +11,11 @@
 - [ ] Upgrade version and create new release
 - [ ] Execute non-destructive Sql
 - [ ] Deploy Site
+- [ ] Deploy API
 - [ ] Deploy Robot
 - [ ] Deploy Admin
 - [ ] Test Site
+- [ ] Test API
 - [ ] Test error handler
 - [ ] Deploy APKs
 - [ ] Execute destructive Sql
