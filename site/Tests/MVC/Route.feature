@@ -3,8 +3,6 @@
 		Given I have these patterns
 			| Name       | Pattern                                                         |
 			| Account    | Account/{accountUrl}/{controller=Reports}/{action=Index}/{id?}  |
-			| ApiAccount | api/account-{accountUrl}/{controller=Moves}/{action=List}/{id?} |
-			| Api        | api/{controller=Status}/{action=Index}/{id?}                    |
 			| Mobile     | @{activity}                                                     |
 			| Default    | {controller=Users}/{action=Index}/{id?}                         |
 
