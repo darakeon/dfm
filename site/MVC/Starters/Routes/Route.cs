@@ -12,7 +12,6 @@ namespace DFM.MVC.Starters.Routes
 	{
 		internal const String DefaultArea = null;
 		internal const String AccountArea = "Account";
-		internal const String ApiArea = "Api";
 
 		public static void Configure(IServiceCollection services)
 		{
@@ -24,8 +23,6 @@ namespace DFM.MVC.Starters.Routes
 			addUrl<Default.Robots>();
 			addUrl<Default.SiteMap>();
 			addUrl<Accounts>();
-			addUrl<Apis.Accounts>();
-			addUrl<Apis.Main>();
 			addUrl<Default.Contract>();
 			addUrl<Default.Misc>();
 			addUrl<Default.Mail>();
