@@ -84,7 +84,7 @@ class LoginActivityTest: BaseTest() {
 			.data
 
 		val site = activity.getString(R.string.site_address)
-		val expected = "http://${site}:2409/Users/SignUp"
+		val expected = "http://${site}:2312/Users/SignUp"
 
 		assertThat(called.toString(), `is`(expected))
 	}

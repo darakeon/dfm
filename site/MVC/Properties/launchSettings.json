@@ -3,10 +3,10 @@
     "MVC": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:2409",
+      "launchUrl": "http://localhost:2703",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_URLS": "http://localhost:2409;http://0.0.0.0:2409"
+        "ASPNETCORE_URLS": "http://localhost:2703;http://0.0.0.0:2703"
       }
     }
   }
