@@ -13,10 +13,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (49)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (47)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
-| Use multistaged (multiple FROM at dockerfiles) container                       | :whale:  |  2  |  4  |  6  |                |
-| [Reduce Docker Images]                                                         | :whale:  |  2  |  4  |  6  |                |
 | Add semgrep to dfm, dk-lib, meak and server                                    | :whale:  |  2  |  4  |  6  |                |
 | [clear headers on nginx](todo/clear-headers.png)                               | :whale:  |  2  |  4  |  6  |                |
 | Create docker core to make publish faster                                      | :sheep:  |  2  |  4  |  6  |                |
@@ -70,4 +68,3 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 [gherkin jest]: https://www.npmjs.com/package/gherkin-jest
 [Lint C#]: https://medium.com/@michaelparkerdev/linting-c-in-2019-stylecop-sonar-resharper-and-roslyn-73e88af57ebd
 [OCR]: https://developers.google.com/ml-kit/vision/text-recognition/android
-[Reduce Docker Images]:https://www.ecloudcontrol.com/best-practices-to-reduce-docker-images-size/
