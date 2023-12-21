@@ -1,4 +1,8 @@
 ﻿{
+	"api": [
+		"^api/.*$"
+	],
+
 	"Assets/images/pig-on.ico": [
 		"^Assets/images/pig.ico",
 		"^Assets/Images/pig.ico",
