@@ -9,6 +9,9 @@
 		{
 			"name": "Status",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -39,6 +42,9 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -70,6 +76,75 @@
 			"response": []
 		},
 		{
+			"name": "Accounts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const json = pm.response.json()\r",
+							"\r",
+							"if (json.data) {\r",
+							"    pm.collectionVariables.set(\"account_url\", json.data.accountList[0].url)\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/accounts/list",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"accounts",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Moves Prepare",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const json = pm.response.json()\r",
+							"\r",
+							"if (json.data) {\r",
+							"    pm.collectionVariables.set(\"account_url\", json.data.accountList[0].value)\r",
+							"    pm.collectionVariables.set(\"category_name\", json.data.categoryList[0].value)\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/moves/lists",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"moves",
+						"lists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "API Users Terms",
 			"protocolProfileBehavior": {
 				"followRedirects": true
@@ -89,8 +164,68 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Test Error",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/test/error",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"test",
+						"error"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Move",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Description\": \"Museu Barcelona\",\r\n    \"Year\": 2023,\r\n    \"Month\": 8,\r\n    \"Day\": 8,\r\n    \"CategoryName\": \"Lazer\",\r\n    \"Value\": 5,\r\n    \"OutUrl\": \"banco\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/moves/create",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"moves",
+						"create"
+					]
+				}
+			},
+			"response": []
 		}
 	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{ticket}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "ticket",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -139,6 +274,14 @@
 		},
 		{
 			"key": "ticket",
+			"value": ""
+		},
+		{
+			"key": "account_url",
+			"value": ""
+		},
+		{
+			"key": "category_name",
 			"value": ""
 		}
 	]
