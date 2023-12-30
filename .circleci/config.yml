@@ -957,7 +957,8 @@ jobs:
 
 workflows:
   version: 2.1
-  build_all:
+
+  all:
     jobs:
       - trufflehog:
           filters:
@@ -965,382 +966,106 @@ workflows:
               only:
                 - main
                 - /^\d+\.\d+\.\d+\.\d+$/
-                - /^dependabot/.+$/
-                - /^feature/.+$/
       - test_ci:
           requires:
             - trufflehog
       - push_docker_browser:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^dependabot/npm_and_yarn/site/Tests/Browser.+$/
           requires:
             - test_ci
       - push_docker_android:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/android.+$/
-                - /^dependabot/gradle/android/.+$/
           requires:
             - test_ci
       - build_core:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/core.+$/
-                - /^feature/site.+$/
-                - /^feature/robot.+$/
-                - /^dependabot/nuget/core/.+$/
-                - /^dependabot/nuget/site/.+$/
-                - /^dependabot/nuget/robot/.+$/
-                - /^dependabot/npm_and_yarn/site/Tests/Browser.+$/
           requires:
             - test_ci
       - audit_core:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/core.+$/
-                - /^feature/site.+$/
-                - /^feature/robot.+$/
-                - /^dependabot/nuget/core/.+$/
-                - /^dependabot/nuget/site/.+$/
-                - /^dependabot/nuget/robot/.+$/
           requires:
             - build_core
       - test_core_generic:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/core.+$/
-                - /^feature/site.+$/
-                - /^feature/robot.+$/
-                - /^dependabot/nuget/core/.+$/
-                - /^dependabot/nuget/site/.+$/
-                - /^dependabot/nuget/robot/.+$/
           requires:
             - build_core
       - test_core_language:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/core.+$/
-                - /^feature/site.+$/
-                - /^feature/robot.+$/
-                - /^dependabot/nuget/core/.+$/
-                - /^dependabot/nuget/site/.+$/
-                - /^dependabot/nuget/robot/.+$/
           requires:
             - build_core
       - test_core_email:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/core.+$/
-                - /^feature/site.+$/
-                - /^feature/robot.+$/
-                - /^dependabot/nuget/core/.+$/
-                - /^dependabot/nuget/site/.+$/
-                - /^dependabot/nuget/robot/.+$/
           requires:
             - build_core
       - test_core_exchange:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/core.+$/
-                - /^feature/site.+$/
-                - /^feature/robot.+$/
-                - /^dependabot/nuget/core/.+$/
-                - /^dependabot/nuget/site/.+$/
-                - /^dependabot/nuget/robot/.+$/
           requires:
             - build_core
       - test_core_entities:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/core.+$/
-                - /^feature/site.+$/
-                - /^feature/robot.+$/
-                - /^dependabot/nuget/core/.+$/
-                - /^dependabot/nuget/site/.+$/
-                - /^dependabot/nuget/robot/.+$/
           requires:
             - build_core
       - test_core_business_logic:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/core.+$/
-                - /^feature/site.+$/
-                - /^feature/robot.+$/
-                - /^dependabot/nuget/core/.+$/
-                - /^dependabot/nuget/site/.+$/
-                - /^dependabot/nuget/robot/.+$/
           requires:
             - build_core
       - build_site:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/core.+$/
-                - /^feature/site.+$/
-                - /^dependabot/nuget/core/.+$/
-                - /^dependabot/nuget/site/.+$/
-                - /^dependabot/npm_and_yarn/site/Tests/Browser.+$/
           requires:
             - build_core
       - audit_site:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/core.+$/
-                - /^feature/site.+$/
-                - /^dependabot/nuget/core/.+$/
-                - /^dependabot/nuget/site/.+$/
           requires:
             - build_site
       - test_site:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/core.+$/
-                - /^feature/site.+$/
-                - /^dependabot/nuget/core/.+$/
-                - /^dependabot/nuget/site/.+$/
           requires:
             - build_site
       - audit_test_browser:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/core.+$/
-                - /^feature/site.+$/
-                - /^dependabot/nuget/core/.+$/
-                - /^dependabot/nuget/site/.+$/
-                - /^dependabot/npm_and_yarn/site/Tests/Browser.+$/
           requires:
             - test_ci
       - test_browser:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/core.+$/
-                - /^feature/site.+$/
-                - /^dependabot/nuget/core/.+$/
-                - /^dependabot/nuget/site/.+$/
-                - /^dependabot/npm_and_yarn/site/Tests/Browser.+$/
           requires:
             - audit_test_browser
             - build_site
             - push_docker_browser
       - build_api:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/core.+$/
-                - /^feature/api.+$/
-                - /^dependabot/nuget/core/.+$/
-                - /^dependabot/nuget/api/.+$/
           requires:
             - build_core
       - audit_api:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/core.+$/
-                - /^feature/api.+$/
-                - /^dependabot/nuget/core/.+$/
-                - /^dependabot/nuget/api/.+$/
           requires:
             - build_api
       - test_api:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/core.+$/
-                - /^feature/api.+$/
-                - /^dependabot/nuget/core/.+$/
-                - /^dependabot/nuget/api/.+$/
           requires:
             - build_api
       - build_android:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/android.+$/
-                - /^dependabot/gradle/android/.+$/
           requires:
             - test_ci
             - push_docker_android
       - audit_android:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/android.+$/
-                - /^dependabot/gradle/android/.+$/
           requires:
             - build_android
       - test_android_lib_debug:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/android.+$/
-                - /^dependabot/gradle/android/.+$/
           requires:
             - build_android
       - test_android_lib_release:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/android.+$/
-                - /^dependabot/gradle/android/.+$/
           requires:
             - build_android
       - test_android_app_debug:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/android.+$/
-                - /^dependabot/gradle/android/.+$/
           requires:
             - build_android
       - test_android_app_release:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/android.+$/
-                - /^dependabot/gradle/android/.+$/
           requires:
             - build_android
       - build_robot:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/robot.+$/
-                - /^dependabot/nuget/robot/.+$/
           requires:
             - build_core
       - audit_robot:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/robot.+$/
-                - /^dependabot/nuget/robot/.+$/
           requires:
             - build_robot
       - check_robot:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/robot.+$/
-                - /^dependabot/nuget/robot/.+$/
           requires:
             - build_robot
       - build_midna:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/midna.+$/
-                - /^dependabot/pip/midna/.+$/
           requires:
             - test_ci
       - audit_midna:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/midna.+$/
-                - /^dependabot/pip/midna/.+$/
           requires:
             - build_midna
       - test_midna:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/midna.+$/
-                - /^dependabot/pip/midna/.+$/
           requires:
             - build_midna
       - audit_version_changer:
-          filters:
-            branches:
-              only:
-                - main
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/version.+$/
-                - /^dependabot/cargo/version/.+$/
           requires:
             - test_ci
       - change_version:
-          filters:
-            branches:
-              only:
-                - /^\d+\.\d+\.\d+\.\d+$/
-                - /^feature/version.+$/
-                - /^dependabot/cargo/version/.+$/
           requires:
             - trufflehog
             - test_ci
@@ -1371,4 +1096,218 @@ workflows:
             - build_midna
             - audit_midna
             - test_midna
+            - audit_version_changer
+
+  core:
+    jobs:
+      - trufflehog:
+          filters:
+            branches:
+              only:
+                - /^feature/core.+$/
+                - /^dependabot/nuget/core/.+$/
+      - test_ci:
+          requires:
+            - trufflehog
+      - build_core:
+          requires:
+            - test_ci
+      - audit_core:
+          requires:
+            - build_core
+      - test_core_generic:
+          requires:
+            - build_core
+      - test_core_language:
+          requires:
+            - build_core
+      - test_core_email:
+          requires:
+            - build_core
+      - test_core_exchange:
+          requires:
+            - build_core
+      - test_core_entities:
+          requires:
+            - build_core
+      - test_core_business_logic:
+          requires:
+            - build_core
+
+  site:
+    jobs:
+      - trufflehog:
+          filters:
+            branches:
+              only:
+                - /^feature/site.+$/
+                - /^dependabot/nuget/site/.+$/
+      - test_ci:
+          requires:
+            - trufflehog
+      - push_docker_browser:
+          requires:
+            - test_ci
+      - build_core:
+          requires:
+            - test_ci
+      - build_site:
+          requires:
+            - build_core
+      - audit_site:
+          requires:
+            - build_site
+      - test_site:
+          requires:
+            - build_site
+      - audit_test_browser:
+          requires:
+            - test_ci
+      - test_browser:
+          requires:
+            - audit_test_browser
+            - build_site
+            - push_docker_browser
+
+  browser:
+    jobs:
+      - trufflehog:
+          filters:
+            branches:
+              only:
+                - /^dependabot/npm_and_yarn/site/Tests/Browser.+$/
+      - test_ci:
+          requires:
+            - trufflehog
+      - push_docker_browser:
+          requires:
+            - test_ci
+      - audit_test_browser:
+          requires:
+            - test_ci
+      - test_browser:
+          requires:
+            - audit_test_browser
+            - push_docker_browser
+
+  robot:
+    jobs:
+      - trufflehog:
+          filters:
+            branches:
+              only:
+                - /^feature/robot.+$/
+                - /^dependabot/nuget/robot/.+$/
+      - test_ci:
+          requires:
+            - trufflehog
+      - build_core:
+          requires:
+            - test_ci
+      - build_robot:
+          requires:
+            - build_core
+      - audit_robot:
+          requires:
+            - build_robot
+      - check_robot:
+          requires:
+            - build_robot
+
+  api:
+    jobs:
+      - trufflehog:
+          filters:
+            branches:
+              only:
+                - /^feature/api.+$/
+                - /^dependabot/nuget/api/.+$/
+      - test_ci:
+          requires:
+            - trufflehog
+      - build_core:
+          requires:
+            - test_ci
+      - build_api:
+          requires:
+            - build_core
+      - audit_api:
+          requires:
+            - build_api
+      - test_api:
+          requires:
+            - build_api
+
+  android:
+    jobs:
+      - trufflehog:
+          filters:
+            branches:
+              only:
+                - x/^feature/android.+$/
+                - x/^dependabot/gradle/android/.+$/
+      - test_ci:
+          requires:
+            - trufflehog
+      - push_docker_android:
+          requires:
+            - test_ci
+      - build_android:
+          requires:
+            - test_ci
+            - push_docker_android
+      - audit_android:
+          requires:
+            - build_android
+      - test_android_lib_debug:
+          requires:
+            - build_android
+      - test_android_lib_release:
+          requires:
+            - build_android
+      - test_android_app_debug:
+          requires:
+            - build_android
+      - test_android_app_release:
+          requires:
+            - build_android
+
+  midna:
+    jobs:
+      - trufflehog:
+          filters:
+            branches:
+              only:
+                - /^feature/midna.+$/
+                - /^dependabot/pip/midna/.+$/
+      - test_ci:
+          requires:
+            - trufflehog
+      - build_midna:
+          requires:
+            - test_ci
+      - audit_midna:
+          requires:
+            - build_midna
+      - test_midna:
+          requires:
+            - build_midna
+
+  version_:
+    jobs:
+      - trufflehog:
+          filters:
+            branches:
+              only:
+                - /^feature/version.+$/
+                - /^dependabot/cargo/version/.+$/
+      - test_ci:
+          requires:
+            - trufflehog
+      - audit_version_changer:
+          requires:
+            - test_ci
+      - change_version:
+          requires:
+            - test_ci
             - audit_version_changer
