@@ -46,7 +46,7 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Report with more than one account                                              | :dragon: |  3  |  3  |  4  |                |
 | Add schedule anticipation                                                      | :whale:  |  3  |  3  |  4  |                |
 | Handle split screen layout at android app                                      | :whale:  |  3  |  3  |  4  |                |
-| Data import and export (csv, json) (with max request length)                   | :dragon: |  2  |  2  |  4  |                |
+| Data import and export (csv, json) (with max request length) [template]        | :dragon: |  2  |  2  |  4  |                |
 | Create service to translate site ("put in your language")                      | :dragon: |  2  |  2  |  4  |                |
 | Add nickname field - show it at every screen and e-mail                        | :whale:  |  2  |  2  |  4  |                |
 | Make ci ignore jobs (nothing changed) (record commit hash in cache)            | :sheep:  |  2  |  2  |  4  |                |
@@ -68,3 +68,4 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 [gherkin jest]: https://www.npmjs.com/package/gherkin-jest
 [Lint C#]: https://medium.com/@michaelparkerdev/linting-c-in-2019-stylecop-sonar-resharper-and-roslyn-73e88af57ebd
 [OCR]: https://developers.google.com/ml-kit/vision/text-recognition/android
+[template]: dirigir-1tI0z29LBJJAQCYq1fptWCN8jgL6b2yj-
