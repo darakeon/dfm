@@ -176,6 +176,18 @@ workflows:
       - test_core_business_logic:
           requires:
             - build_core
+      - workflow_ran:
+          requires:
+            - trufflehog
+            - test_ci
+            - build_core
+            - audit_core
+            - test_core_generic
+            - test_core_language
+            - test_core_email
+            - test_core_exchange
+            - test_core_entities
+            - test_core_business_logic
 
   site:
     jobs:
@@ -207,6 +219,16 @@ workflows:
           requires:
             - build_site
             - push_docker_browser
+      - workflow_ran:
+          requires:
+            - trufflehog
+            - test_ci
+            - push_docker_browser
+            - build_core
+            - build_site
+            - audit_site
+            - test_site
+            - test_browser
 
   browser:
     jobs:
@@ -235,8 +257,15 @@ workflows:
             - build_site
             - audit_test_browser
             - push_docker_browser
+      - workflow_ran:
+          requires:
+            - trufflehog
+            - test_ci
+            - push_docker_browser
             - build_core
             - build_site
+            - audit_test_browser
+            - test_browser
 
   robot:
     jobs:
@@ -261,6 +290,14 @@ workflows:
       - check_robot:
           requires:
             - build_robot
+      - workflow_ran:
+          requires:
+            - trufflehog
+            - test_ci
+            - build_core
+            - build_robot
+            - audit_robot
+            - check_robot
 
   api:
     jobs:
@@ -285,6 +322,14 @@ workflows:
       - test_api:
           requires:
             - build_api
+      - workflow_ran:
+          requires:
+            - trufflehog
+            - test_ci
+            - build_core
+            - build_api
+            - audit_api
+            - test_api
 
   android:
     jobs:
@@ -319,6 +364,17 @@ workflows:
       - test_android_app_release:
           requires:
             - build_android
+      - workflow_ran:
+          requires:
+            - trufflehog
+            - test_ci
+            - push_docker_android
+            - build_android
+            - audit_android
+            - test_android_lib_debug
+            - test_android_lib_release
+            - test_android_app_debug
+            - test_android_app_release
 
   midna:
     jobs:
@@ -340,6 +396,13 @@ workflows:
       - test_midna:
           requires:
             - build_midna
+      - workflow_ran:
+          requires:
+            - trufflehog
+            - test_ci
+            - build_midna
+            - audit_midna
+            - test_midna
 
   version_:
     jobs:
@@ -359,6 +422,12 @@ workflows:
           requires:
             - test_ci
             - audit_version_changer
+      - workflow_ran:
+          requires:
+            - trufflehog
+            - test_ci
+            - audit_version_changer
+            - change_version
 
   ci:
     jobs:
