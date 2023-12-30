@@ -359,3 +359,17 @@ workflows:
           requires:
             - test_ci
             - audit_version_changer
+
+  ci:
+    jobs:
+      - trufflehog:
+          filters:
+            branches:
+              only:
+                - /^feature/ci.+$/
+      - test_ci:
+          requires:
+            - trufflehog
+      - workflow_ran:
+          requires:
+            - test_ci

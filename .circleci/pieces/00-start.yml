@@ -10,3 +10,8 @@ version: 2.1
 
 
 jobs:
+  workflow_ran:
+    docker:
+      - image: cimg/base:current
+    steps:
+      - run: echo "Now it can be merged into version branch!"
