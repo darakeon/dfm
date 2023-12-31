@@ -1,11 +1,10 @@
-FROM darakeon/netcore-libman
+FROM darakeon/netcore
 LABEL maintainer="Dara Keon <laboon@darakeon.com>"
 RUN maintain
 
 COPY core /var/dfm/core
 COPY api /var/dfm/api
 RUN cd /var/dfm/api/API \
-	&& libman restore \
 	&& dotnet publish API.csproj -o /var/www \
 	&& maintain \
 	&& rm -r /var/dfm
