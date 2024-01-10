@@ -1,4 +1,4 @@
-FROM darakeon/netcore-libman
+FROM darakeon/netcore-libman as builder
 LABEL maintainer="Dara Keon <laboon@darakeon.com>"
 RUN maintain
 
@@ -6,9 +6,7 @@ COPY core /var/dfm/core
 COPY site /var/dfm/site
 RUN cd /var/dfm/site/MVC \
 	&& libman restore \
-	&& dotnet publish MVC.csproj -o /var/www \
-	&& maintain \
-	&& rm -r /var/dfm
+	&& dotnet publish MVC.csproj -o /var/www
 
 ENV ASPNETCORE_ENVIRONMENT=amazon
 
