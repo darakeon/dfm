@@ -2,8 +2,7 @@ FROM darakeon/netcore-libman
 LABEL maintainer="Dara Keon <laboon@darakeon.com>"
 RUN maintain
 
-RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
-RUN apt-get install -y nodejs
+RUN apk add --update nodejs npm
 
 RUN echo "echo" >> ~/.bashrc
 RUN echo "printf '\e[38;5;46m'" >> ~/.bashrc
