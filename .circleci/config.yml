@@ -1102,6 +1102,10 @@ workflows:
             - audit_midna
             - test_midna
             - audit_version_changer
+      - approve_version:
+          type: approval
+          requires:
+            - change_version
 
   core:
     jobs:
