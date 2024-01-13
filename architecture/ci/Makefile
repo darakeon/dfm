@@ -103,7 +103,7 @@ _launch:
 	@if [ "${TYPE}" = "rebuild" ]; then \
 		make single_build MACHINE=${MACHINE}; \
 		docker rm ${NAME} > /dev/null 2> /dev/null; \
-		docker run --name ${NAME} -it -v ${PWD}/../:/var/dfm -w /var/dfm/${WORK_DIR} ${PARAMETERS} darakeon/${MACHINE}; \
+		docker run --name ${NAME} -it -v ${PWD}/../../:/var/dfm -w /var/dfm/${WORK_DIR} ${PARAMETERS} darakeon/${MACHINE}; \
 	else \
 		docker start -i ${NAME}; \
 	fi
