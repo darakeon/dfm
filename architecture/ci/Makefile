@@ -21,6 +21,7 @@ single_build:
 		docker context use default; \
 		docker login; \
 		docker build . --pull -f ${MACHINE}.dockerfile -t darakeon/${MACHINE} --network=host; \
+		docker tag darakeon/${MACHINE} ${MACHINE}; \
 		docker image prune -f > /dev/null; \
 		\
 		if [ "${TAG}" ]; then \
@@ -103,7 +104,7 @@ _launch:
 	@if [ "${TYPE}" = "rebuild" ]; then \
 		make single_build MACHINE=${MACHINE}; \
 		docker rm ${NAME} > /dev/null 2> /dev/null; \
-		docker run --name ${NAME} -it -v ${PWD}/../../:/var/dfm -w /var/dfm/${WORK_DIR} ${PARAMETERS} darakeon/${MACHINE}; \
+		docker run --name ${NAME} -it -v ${PWD}/../../:/var/dfm -w /var/dfm/${WORK_DIR} ${PARAMETERS} ${MACHINE}; \
 	else \
 		docker start -i ${NAME}; \
 	fi
