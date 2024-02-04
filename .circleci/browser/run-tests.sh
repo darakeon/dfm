@@ -4,8 +4,6 @@ set -e
 
 cd site/Tests/Browser/server
 
-./DFM.MVC > ../log/server.log 2> ../log/error.log & disown
-
 echo
 echo "Calling site"
 $DIR/call-site.sh

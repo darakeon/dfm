@@ -1,6 +1,6 @@
   audit_test_browser:
     docker:
-      - image: darakeon/dfm-browser-tests
+      - image: darakeon/node-chrome
     steps:
       - checkout
       - attach_workspace:

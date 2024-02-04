@@ -463,7 +463,7 @@ async function execute(query, params) {
 	if (!params) params = []
 
 	const db = new sqlite.Database(
-		'server/tests.db',
+		'db/tests.db',
 		(err) => { if (err) throw err }
 	)
 

@@ -1,30 +1,27 @@
   test_browser:
     docker:
-      - image: darakeon/dfm-browser-tests
+      - image: darakeon/node-chrome
     steps:
       - checkout
-      - attach_workspace:
-          at: core
-      - attach_workspace:
-          at: site
-      - restore_cache:
-          keys:
-            - dotnet-{{ checksum "site/cache_key" }}
-      - restore_cache:
-          keys:
-            - dotnet-libman-{{ checksum "site/MVC/libman.json" }}
+      - setup_remote_docker:
+          version: 20.10.11
+          docker_layer_caching: true
       - run:
-          name: dependencies client
-          path: site/MVC
-          command: libman restore
-      - save_cache:
-          key: dotnet-libman-{{ checksum "site/MVC/libman.json" }}
-          paths:
-            - site/MVC/Assets/libs
+          name: build site machine
+          path: architecture/publish
+          command: docker build ../.. --progress plain -t dfm-site -f dfm-site.dockerfile
       - run:
-          name: publish site
-          path: site/MVC
-          command: dotnet publish -c Release MVC.csproj -o ../Tests/Browser/server --no-restore
+          name: run site machine
+          path: architecture/publish
+          command: |
+            docker run -d \
+                -e ASPNETCORE_ENVIRONMENT=circleCI \
+                -e MSBUILDSINGLELOADCONTEXT=1 \
+                -e ASPNETCORE_URLS=http://+:2709 \
+                -p 2709:2709
+                -v ../../site/Tests/Browser/db:/var/www/db
+                -v ../../site/Tests/Browser/log:/var/www/log
+                dfm-site
       - restore_cache:
           keys:
             - node-{{ checksum "site/Tests/Browser/package.json" }}-{{ checksum "site/Tests/Browser/package-lock.json" }}
@@ -33,6 +30,8 @@
           command: .circleci/browser/run-tests.sh
       - store_artifacts:
           path: site/Tests/Browser/log
+      - store_artifacts:
+          path: site/Tests/Browser/db
       - store_artifacts:
           path: outputs/inbox
       - store_artifacts:

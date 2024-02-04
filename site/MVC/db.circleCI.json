@@ -2,7 +2,7 @@
 	"DB": {
 		"DBMS": "SQLite",
 
-		"ConnectionString": "Data Source=tests.db; Version=3;",
+		"ConnectionString": "Data Source=db\\tests.db; Version=3;",
 
 		"ShowSQL": "false",
 		"DBAction": "Recreate",
