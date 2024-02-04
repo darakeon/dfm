@@ -54,6 +54,7 @@ workflows:
       - audit_test_browser:
           requires:
             - test_ci
+            - push_docker_browser
       - test_browser:
           requires:
             - audit_test_browser
@@ -222,6 +223,7 @@ workflows:
       - audit_test_browser:
           requires:
             - test_ci
+            - push_docker_browser
       - test_browser:
           requires:
             - audit_test_browser
@@ -255,6 +257,7 @@ workflows:
       - audit_test_browser:
           requires:
             - test_ci
+            - push_docker_browser
       - test_browser:
           requires:
             - audit_test_browser
