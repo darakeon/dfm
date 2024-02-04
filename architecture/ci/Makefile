@@ -4,10 +4,8 @@ ERROR=\033[0;31m
 CLEAR=\033[0m
 
 build_browser:
-	@make single_build MACHINE=netcore-libman-node PUSH=${PUSH}
-	@make single_build MACHINE=netcore-libman-node-chrome PUSH=${PUSH}
-
-	@make single_build MACHINE=dfm-browser-tests PUSH=${PUSH}
+	@make single_build MACHINE=node PUSH=${PUSH}
+	@make single_build MACHINE=node-chrome PUSH=${PUSH}
 
 build_android:
 	@make single_build MACHINE=android TAG=gradle821-jdk17 PUSH=${PUSH}
