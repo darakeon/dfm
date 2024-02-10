@@ -262,14 +262,12 @@ workflows:
       - test_browser:
           requires:
             - build_site
-            - audit_test_browser
             - push_docker_browser
       - workflow_ran:
           requires:
             - trufflehog
             - test_ci
             - push_docker_browser
-            - audit_test_browser
             - test_browser
 
   robot:
