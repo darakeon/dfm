@@ -4,7 +4,6 @@
     steps:
       - checkout
       - setup_remote_docker:
-          version: 20.10.11
           docker_layer_caching: true
       - run:
           name: Install make
