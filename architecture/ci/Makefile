@@ -79,7 +79,7 @@ launch:
 
 # [browser-tests] yoshi
 	@if [ "${NAME}" = "yoshi" ]; then \
-		make _launch MACHINE=dfm-browser-tests PARAMETERS=--expose 2709 -P WORK_DIR=; \
+		make _launch MACHINE=dfm-browser-tests PARAMETERS="--expose 2703 -P" WORK_DIR=; \
 	fi
 
 # [rust] doki

@@ -9,4 +9,4 @@ fi
 echo $1
 
 sleep 1
-curl -s http://localhost:2709 > /dev/null || $0 $1.
+curl -s http://localhost:2703 > /dev/null || $0 $1.
