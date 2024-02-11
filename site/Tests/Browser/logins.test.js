@@ -18,7 +18,7 @@ describe('Logins', () => {
 		await puppy.submit(`/Logins/Delete/${id}`)
 
 		expect(page.url()).toEqual(
-			'http://localhost:2709/Users/LogOn'
+			`http://localhost:2703/Users/LogOn`
 		)
 
 		const permanent = await db.getTipPermanent(user)

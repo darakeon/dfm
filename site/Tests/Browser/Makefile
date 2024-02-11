@@ -25,7 +25,7 @@ machine:
 		docker run -it \
 			--name ${MACHINE_NAME} \
 			-v ${PWD}/../../..:/var/dfm \
-			-p 2709:2709 \
+			-p 2703:2703 \
 			-w /var/dfm/site/Tests/Browser \
 			darakeon/dfm-browser-tests; \
 	else \
@@ -70,7 +70,7 @@ test:
 	fi
 
 is_site_running:
-	@curl -o /dev/null -s http://localhost:2709 && echo Ok || echo Nop
+	@curl -o /dev/null -s http://localhost:2703 && echo Ok || echo Nop
 
 
 _is_machine_running:
