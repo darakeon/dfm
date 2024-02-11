@@ -39,7 +39,7 @@ async function callPlain(path) {
 
 function url(path) {
 	if (!path) path = ''
-	return `http://localhost:2709/${path}`
+	return `http://localhost:2703/${path}`
 }
 
 async function content(selector, options) {
