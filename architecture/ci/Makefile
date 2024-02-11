@@ -16,20 +16,18 @@ single_build:
 		make raise_error TEXT="please set the MACHINE to build"; \
 	fi
 
-	@if [ -e ${MACHINE}.dockerfile ]; then \
-		docker context use default; \
-		docker login; \
-		docker build . -f ${MACHINE}.dockerfile -t darakeon/${MACHINE} --network=host; \
-		docker tag darakeon/${MACHINE} ${MACHINE}; \
-		docker image prune -f > /dev/null; \
-		\
-		if [ "${TAG}" ]; then \
-			docker tag darakeon/${MACHINE} darakeon/${MACHINE}:${TAG}; \
-		fi; \
-		\
-		if [ "${PUSH}" ]; then \
-			docker push -a darakeon/${MACHINE}; \
-		fi; \
+	docker context use default
+	docker login
+	docker build . -f ${MACHINE}.dockerfile -t darakeon/${MACHINE} --network=host
+	docker tag darakeon/${MACHINE} ${MACHINE}
+	docker image prune -f > /dev/null
+
+	if [ "${TAG}" ]; then \
+		docker tag darakeon/${MACHINE} darakeon/${MACHINE}:${TAG}; \
+	fi
+
+	if [ "${PUSH}" ]; then \
+		docker push -a darakeon/${MACHINE}; \
 	fi
 
 rebuild_fi:
