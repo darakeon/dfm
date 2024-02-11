@@ -203,7 +203,7 @@ describe('Users', () => {
 
 		const nav = await puppy.content('.nav')
 		await expect(nav).not.toContain('form')
-		await expect(nav).toContain('Cadastrar-se')
+		await expect(nav).toContain('Sign up')
 	})
 
 	test('End Wizard', async () => {
