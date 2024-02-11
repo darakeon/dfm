@@ -1016,6 +1016,7 @@ workflows:
       - audit_test_browser:
           requires:
             - test_ci
+            - push_docker_browser
       - test_browser:
           requires:
             - audit_test_browser
@@ -1202,6 +1203,7 @@ workflows:
           filters:
             branches:
               only:
+                - /^feature/browser.+$/
                 - /^dependabot/npm_and_yarn/site/Tests/Browser.+$/
       - test_ci:
           requires:
@@ -1218,6 +1220,7 @@ workflows:
       - audit_test_browser:
           requires:
             - test_ci
+            - push_docker_browser
       - test_browser:
           requires:
             - build_site
