@@ -1160,12 +1160,8 @@ workflows:
       - test_site:
           requires:
             - build_site
-      - audit_test_browser:
-          requires:
-            - test_ci
       - test_browser:
           requires:
-            - audit_test_browser
             - build_site
             - push_docker_browser
 
@@ -1182,11 +1178,18 @@ workflows:
       - push_docker_browser:
           requires:
             - test_ci
+      - build_core:
+          requires:
+            - test_ci
+      - build_site:
+          requires:
+            - build_core
       - audit_test_browser:
           requires:
             - test_ci
       - test_browser:
           requires:
+            - build_site
             - audit_test_browser
             - push_docker_browser
 
