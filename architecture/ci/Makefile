@@ -6,7 +6,6 @@ CLEAR=\033[0m
 build_browser:
 	@make single_build MACHINE=netcore-libman-node PUSH=${PUSH}
 	@make single_build MACHINE=netcore-libman-node-chrome PUSH=${PUSH}
-
 	@make single_build MACHINE=dfm-browser-tests PUSH=${PUSH}
 
 build_android:
@@ -20,7 +19,7 @@ single_build:
 	@if [ -e ${MACHINE}.dockerfile ]; then \
 		docker context use default; \
 		docker login; \
-		docker build . --pull -f ${MACHINE}.dockerfile -t darakeon/${MACHINE} --network=host; \
+		docker build . -f ${MACHINE}.dockerfile -t darakeon/${MACHINE} --network=host; \
 		docker tag darakeon/${MACHINE} ${MACHINE}; \
 		docker image prune -f > /dev/null; \
 		\
