@@ -67,7 +67,7 @@ describe('Open site', () => {
 		const content = await puppy.callPlain('robots.txt')
 
 		await expect(content).toBe(
-			'Sitemap: http://localhost:2709/sitemap.txt'
+			'Sitemap: http://localhost:2703/sitemap.txt'
 		)
 	})
 
@@ -81,7 +81,7 @@ describe('Open site', () => {
 		for (let u = 0; u < urls.length; u++) {
 			const url = urls[u]
 
-			await expect(url).toMatch(/http:\/\/localhost:2709\/.+/)
+			await expect(url).toMatch(/http:\/\/localhost:2703\/.+/)
 
 			const response = await page.goto(url)
 			await expect(response.status()).toBe(200)

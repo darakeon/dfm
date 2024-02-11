@@ -20,7 +20,7 @@ dotnet.exe publish -c Release -o ..\Tests\Browser\server > %TESTS_PATH%\log\dotn
 cd ..\Tests\Browser
 
 SET ASPNETCORE_ENVIRONMENT=CircleCI
-SET ASPNETCORE_URLS=http://+:2709
+SET ASPNETCORE_URLS=http://+:2703
 
 cd server
 del tests.db 2> NUL
