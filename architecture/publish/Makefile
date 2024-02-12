@@ -1,4 +1,8 @@
 MAKEFLAGS += --no-print-directory
+RED=\033[01;31m
+PURPLE=\033[01;35m
+RESET=\033[00m
+
 
 all: site api robot midna
 
@@ -29,11 +33,20 @@ midna_push: midna
 	@make push MACHINE=midna
 
 single:
-	@echo "Building ${MACHINE}..."
+	@make echo COLOR="${RED}" TEXT="Building ${MACHINE}..."
 	@docker build ../.. --pull --progress plain -t darakeon/dfm-${MACHINE} -f "${PWD}/dfm-${MACHINE}.dockerfile"
-	@echo "${MACHINE} built!"
+	@make echo COLOR="${PURPLE}" TEXT="${MACHINE} built!"
 
 push:
-	@echo "Pushing ${MACHINE}..."
+	@make echo COLOR="${RED}" TEXT="Pushing ${MACHINE}..."
 	@docker push darakeon/dfm-${MACHINE}
-	@echo "${MACHINE} pushed!"
+	@make echo COLOR="${PURPLE}" TEXT="${MACHINE} pushed!"
+
+echo:
+	@echo
+	@echo "${COLOR}"
+	@echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	@echo ~~~~~~~~~ ${TEXT}
+	@echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	@echo "${RESET}"
+	@echo
