@@ -10,10 +10,10 @@
 
 - [ ] Upgrade version and create new release
 - [ ] Execute non-destructive Sql
-- [ ] Deploy Site
-- [ ] Deploy API
-- [ ] Deploy Robot
-- [ ] Deploy Admin
+- [ ] Deploy Site and Tag
+- [ ] Deploy API and Tag
+- [ ] Deploy Robot and Tag
+- [ ] Deploy Admin and Tag
 - [ ] Test Site
 - [ ] Test API
 - [ ] Test error handler
