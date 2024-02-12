@@ -1,5 +1,7 @@
 MAKEFLAGS += --no-print-directory
 .DEFAULT_GOAL=run
+.PHONY: env build db run push stop rm logs bash python migrate midna test audit
+
 
 -include env/dev.env
 export
