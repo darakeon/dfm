@@ -39,7 +39,9 @@ single:
 
 push:
 	@make echo COLOR="${RED}" TEXT="Pushing ${MACHINE}..."
+	@docker tag darakeon/dfm-${MACHINE} darakeon/dfm-${MACHINE}:$(git branch --show-current)
 	@docker push darakeon/dfm-${MACHINE}
+	@docker push darakeon/dfm-${MACHINE}:$(git branch --show-current)
 	@make echo COLOR="${PURPLE}" TEXT="${MACHINE} pushed!"
 
 echo:
