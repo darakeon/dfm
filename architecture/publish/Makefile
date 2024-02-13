@@ -52,3 +52,11 @@ echo:
 	@echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	@echo "${RESET}"
 	@echo
+
+run:
+	@cd ../../db && pwd && make run
+	@docker compose -f tests/docker-compose.yml up -d
+	@docker compose -f tests/docker-compose.yml logs -f
+
+stop:
+	@docker compose -f tests/docker-compose.yml down
