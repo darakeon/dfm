@@ -1,0 +1,13 @@
+{
+	"DB": {
+		"DBMS": "SQLite",
+
+		"ConnectionString": "Data Source=/db/tests.db; Version=3;",
+
+		"ShowSQL": "false",
+		"DBAction": "Recreate",
+		"ScriptFileFullName": "data/log_files/NH_DB.log",
+
+		"FakeDB": "false"
+	},
+}
