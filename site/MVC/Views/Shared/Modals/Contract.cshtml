@@ -11,7 +11,9 @@
 			</div>
 			<div class="modal-body">
 				<div class="contract">
-					@await Html.PartialAsync("../Users/Clause", Model.Contract[Model.Language])
+					@if (Model.Contract != null) {
+						@await Html.PartialAsync("../Users/Clause", Model.Contract[Model.Language])
+					}
 				</div>
 			</div>
 		</div>
