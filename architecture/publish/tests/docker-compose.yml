@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  site:
+    image: darakeon/dfm-site
+    volumes:
+      - ./cfg:/var/cfg
+      - ./db/site:/db
+      - ../../../outputs:/outputs
+    environment:
+      - ASPNETCORE_ENVIRONMENT=tests
+    ports:
+      - 2011:2011
+
+  api:
+    image: darakeon/dfm-api
+    volumes:
+      - ./cfg:/var/cfg
+      - ./db/api:/db
+      - ../../../outputs:/outputs
+    environment:
+      - ASPNETCORE_ENVIRONMENT=tests
+    ports:
+      - 2023:2023
+
+  robot:
+    image: darakeon/dfm-robot
+    volumes:
+      - ./cfg:/var/cfg
+      - ./db/robot:/db
+      - ../../../outputs:/outputs
+    environment:
+      - ASPNETCORE_ENVIRONMENT=tests
+      - TASK=check
+
+  midna:
+    image: darakeon/dfm-midna
+    volumes:
+      - ../../../midna/gunicorn/config:/var/midna/config
+      - ./run:/var/run/gunicorn
+      - ./log:/var/log/gunicorn
+    env_file:
+      - cfg/python.env
+    ports:
+      - 8627:8627
