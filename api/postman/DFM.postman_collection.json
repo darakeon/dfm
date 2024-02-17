@@ -24,7 +24,103 @@
 			"response": []
 		},
 		{
-			"name": "Login",
+			"name": "Test Error",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/test/error",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"test",
+						"error"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Log Count",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/log/count",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"log",
+						"count"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Log List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body has properties\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json).to.have.property(\"data\");\r",
+							"    pm.expect(json.data).to.have.property(\"logs\");\r",
+							"\r",
+							"    if (json.data.logs.length > 0) {\r",
+							"        pm.collectionVariables.set(\"log_id\", json.data.logs[0].id);\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/log/list",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"log",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Log Archive",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/log/archive/{{log_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"log",
+						"archive",
+						"{{log_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users Login",
 			"event": [
 				{
 					"listen": "test",
@@ -76,17 +172,216 @@
 			"response": []
 		},
 		{
-			"name": "Accounts",
+			"name": "Users Logout",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"const json = pm.response.json()\r",
+							"pm.collectionVariables.set(\"ticket\", null)\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users/logout",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users Settings",
+			"protocolProfileBehavior": {
+				"followRedirects": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users/getsettings",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"getsettings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users Settings",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"UseCategories\": true,\r\n    \"MoveCheck\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users/savesettings",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"savesettings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users TFA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "code",
+							"value": "012345",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/users/tfa",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"tfa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users Wipe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\": \"{{test_user_password}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users/wipe",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"wipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users Terms",
+			"protocolProfileBehavior": {
+				"followRedirects": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users/terms",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"terms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accounts List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
 							"\r",
-							"if (json.data) {\r",
-							"    pm.collectionVariables.set(\"account_url\", json.data.accountList[0].url)\r",
-							"}\r",
+							"pm.test(\"Body has properties\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"\r",
+							"    pm.expect(json).to.have.property(\"data\");\r",
+							"    pm.expect(json.data).to.have.property(\"accountList\");\r",
+							"\r",
+							"    if (json.data.accountList.length > 0) {\r",
+							"        pm.collectionVariables.set(\"account_url\", json.data.accountList[0].url)\r",
+							"    }\r",
+							"});\r",
 							""
 						],
 						"type": "text/javascript"
@@ -110,7 +405,299 @@
 			"response": []
 		},
 		{
-			"name": "Moves Prepare",
+			"name": "Moves Extract",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body has properties\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"\r",
+							"    pm.expect(json).to.have.property(\"data\");\r",
+							"    pm.expect(json.data).to.have.property(\"moveList\");\r",
+							"\r",
+							"    if (json.data.moveList.length > 0) {\r",
+							"        pm.collectionVariables.set(\"move_id\", json.data.moveList[0].guid)\r",
+							"    }\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/account-{{account_url}}/moves/extract/202311",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"account-{{account_url}}",
+						"moves",
+						"extract",
+						"202311"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Moves Summary",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/account-{{account_url}}/moves/summary/2023",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"account-{{account_url}}",
+						"moves",
+						"summary",
+						"2023"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Moves Create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/account-{{account_url}}/moves/create",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"account-{{account_url}}",
+						"moves",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Moves Create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Description\": \"postman 2\",\r\n    \"Year\": 2023,\r\n    \"Month\": 11,\r\n    \"Day\": 16,\r\n    \"Nature\": 0,\r\n    \"Value\": 0,\r\n    \"DetailList\": [\r\n        {\r\n            \"Description\": \"Detail\",\r\n            \"Amount\": 2,\r\n            \"Value\": 3.00\r\n        }\r\n    ],\r\n    \"OutUrl\": \"{{account_url}}\",\r\n    \"InUrl\": null,\r\n    \"CategoryName\": \"{{category_name}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/account-{{account_url}}/moves/create",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"account-{{account_url}}",
+						"moves",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Moves Edit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/account-{{account_url}}/moves/create/{{move_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"account-{{account_url}}",
+						"moves",
+						"create",
+						"{{move_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Moves Edit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Guid\": \"{{move_id}}\",\r\n    \"Description\": \"postman 3\",\r\n    \"Year\": 2024,\r\n    \"Month\": 2,\r\n    \"Day\": 16,\r\n    \"Nature\": 0,\r\n    \"Value\": 0,\r\n    \"DetailList\": [\r\n        {\r\n            \"Description\": \"Detail\",\r\n            \"Amount\": 2,\r\n            \"Value\": 3.00\r\n        }\r\n    ],\r\n    \"OutUrl\": \"{{account_url}}\",\r\n    \"InUrl\": null,\r\n    \"CategoryName\": \"{{category_name}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/account-{{account_url}}/moves/create",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"account-{{account_url}}",
+						"moves",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Moves Delete",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/moves/delete/{{move_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"moves",
+						"delete",
+						"{{move_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Moves Check",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nature",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/moves/check/{{move_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"moves",
+						"check",
+						"{{move_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Moves Uncheck",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nature",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/moves/uncheck/{{move_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"moves",
+						"uncheck",
+						"{{move_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Moves Lists",
 			"event": [
 				{
 					"listen": "test",
@@ -139,72 +726,6 @@
 					"path": [
 						"moves",
 						"lists"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "API Users Terms",
-			"protocolProfileBehavior": {
-				"followRedirects": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/users/terms",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"users",
-						"terms"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Test Error",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/test/error",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"test",
-						"error"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Move",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"Description\": \"Museu Barcelona\",\r\n    \"Year\": 2023,\r\n    \"Month\": 8,\r\n    \"Day\": 8,\r\n    \"CategoryName\": \"Lazer\",\r\n    \"Value\": 5,\r\n    \"OutUrl\": \"banco\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/moves/create",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"moves",
-						"create"
 					]
 				}
 			},
@@ -282,6 +803,14 @@
 		},
 		{
 			"key": "category_name",
+			"value": ""
+		},
+		{
+			"key": "log_id",
+			"value": ""
+		},
+		{
+			"key": "move_id",
 			"value": ""
 		}
 	]
