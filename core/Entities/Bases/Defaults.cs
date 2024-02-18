@@ -6,7 +6,7 @@ namespace DFM.Entities.Bases
 	public static class Defaults
 	{
 		public const String SettingsLanguage = "pt-BR";
-		public const String SettingsTimeZone = "E. South America Standard Time";
+		public const String SettingsTimeZone = "UTC-03:00";
 
 		public const Boolean SettingsUseCategories = false;
 		public const Boolean SettingsUseAccountsSigns = false;
