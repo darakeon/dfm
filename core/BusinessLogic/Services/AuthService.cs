@@ -10,6 +10,8 @@ using DFM.BusinessLogic.Response;
 using DFM.Entities.Bases;
 using Keon.Util.Extensions;
 using Error = DFM.BusinessLogic.Exceptions.Error;
+using DFM.Generic.Datetime;
+using DFM.Language;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -23,6 +25,12 @@ namespace DFM.BusinessLogic.Services
 			inTransaction("SaveUser", () =>
 			{
 				info.VerifyPassword();
+
+				if (!PlainText.AcceptLanguage(info.Language))
+					throw Error.LanguageUnknown.Throw();
+
+				if (!TZ.IsValid(info.TimeZone))
+					throw Error.TimeZoneUnknown.Throw();
 
 				var user = info.GetEntity();
 				user.Control.MiscDna = Misc.RandomDNA();
