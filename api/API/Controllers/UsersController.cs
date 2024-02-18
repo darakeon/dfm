@@ -8,18 +8,24 @@ namespace DFM.API.Controllers
 {
     public class UsersController : BaseApiController
     {
-        [HttpPost]
-        public IActionResult Login(String email, String password)
-        {
-            var model =
-                new UsersLoginModel
-                {
-                    Email = email,
-                    Password = password,
-                };
+	    [HttpPost]
+	    public IActionResult Login(String email, String password)
+	    {
+		    var model =
+			    new UsersLoginModel
+			    {
+				    Email = email,
+				    Password = password,
+			    };
 
-            return json(() => new { ticket = model.LogOn() });
-        }
+		    return json(() => new { ticket = model.LogOn() });
+	    }
+
+		[HttpPost]
+		public IActionResult SignUp([FromBody] UsersSignUpModel model)
+		{
+			return json(model.SignUp);
+		}
 
         [HttpPost]
         public IActionResult Logout()
@@ -44,7 +50,7 @@ namespace DFM.API.Controllers
         }
 
         [HttpPost, Auth(AuthParams.IgnoreTFA)]
-        public IActionResult TFA(string code)
+        public IActionResult TFA(String code)
         {
             var model = new UserTFAModel(code);
             return json(model.Validate);
