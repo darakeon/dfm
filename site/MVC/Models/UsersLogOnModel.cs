@@ -29,7 +29,17 @@ namespace DFM.MVC.Models
 
 		internal String LogOn()
 		{
-			return login(Email, Password, RememberMe);
+			try
+			{
+				return current.Set(Email, Password, RememberMe);
+			}
+			catch (CoreError e)
+			{
+				if (e.Type == Error.DisabledUser)
+					outside.SendUserVerify(Email);
+
+				throw;
+			}
 		}
 	}
 }
