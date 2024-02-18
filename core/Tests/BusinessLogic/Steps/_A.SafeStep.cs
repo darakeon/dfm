@@ -61,6 +61,18 @@ namespace DFM.BusinessLogic.Tests.Steps
 			set => set("CurrentPassword", value);
 		}
 
+		private String language
+		{
+			get => get<String>("Language");
+			set => set("Language", value);
+		}
+
+		private String timezone
+		{
+			get => get<String>("Timezone");
+			set => set("Timezone", value);
+		}
+
 		private SecurityAction action
 		{
 			get => get<SecurityAction>("Action");
@@ -112,6 +124,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			if (table.Header.Any(c => c == "Retype Password"))
 				retypePassword = table.Rows[0]["Retype Password"];
+
+			if (table.Header.Any(c => c == "Language"))
+				language = table.Rows[0]["Language"];
+
+			if (table.Header.Any(c => c == "Timezone"))
+				timezone = table.Rows[0]["Timezone"];
 		}
 
 		[When(@"I try to save the user")]
@@ -124,7 +142,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 					Email = email,
 					Password = password,
 					RetypePassword = retypePassword,
-					Language = Defaults.SettingsLanguage,
+					Language = language,
+					TimeZone = timezone,
 				};
 
 				service.Auth.SaveUser(info);

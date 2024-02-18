@@ -147,7 +147,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				Email = email,
 				Password = password,
 				RetypePassword = password,
-				Language = Defaults.SettingsLanguage,
+				Language = language ?? Defaults.SettingsLanguage
 			};
 
 			if (timezone != null)
@@ -157,6 +157,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 				var userHour = tzHourToRun + timezone;
 
 				info.TimeZone = $"UTC{userHour:+00;-00; 00}:00";
+			}
+			else
+			{
+				info.TimeZone = Defaults.SettingsTimeZone;
 			}
 
 			if (language != null)
