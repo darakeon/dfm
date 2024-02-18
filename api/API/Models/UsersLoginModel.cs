@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using DFM.BusinessLogic.Exceptions;
 
 namespace DFM.API.Models
 {
@@ -15,7 +16,17 @@ namespace DFM.API.Models
 
         internal string LogOn()
         {
-            return login(Email, Password, RememberMe);
+	        try
+	        {
+		        return current.Set(Email, Password, RememberMe);
+	        }
+	        catch (CoreError e)
+	        {
+		        if (e.Type == Error.DisabledUser)
+			        outside.SendUserVerify(Email);
+
+		        throw;
+	        }
         }
     }
 }

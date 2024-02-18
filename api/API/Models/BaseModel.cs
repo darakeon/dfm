@@ -3,11 +3,9 @@ using DFM.API.Helpers.Extensions;
 using DFM.API.Helpers.Global;
 using DFM.API.Starters;
 using DFM.BusinessLogic;
-using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
 using DFM.Generic;
 using Microsoft.AspNetCore.Http;
-using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.API.Models
 {
@@ -39,21 +37,6 @@ namespace DFM.API.Models
 		protected Boolean isUsingCategories => current.UseCategories;
 		protected Boolean isUsingAccountsSigns => current.UseAccountsSigns;
 		protected Boolean moveCheckingEnabled => current.MoveCheck;
-
-		protected String login(String email, String password, Boolean rememberMe)
-		{
-			try
-			{
-				return current.Set(email, password, rememberMe);
-			}
-			catch (CoreError e)
-			{
-				if (e.Type == Error.DisabledUser)
-					outside.SendUserVerify(email);
-
-				throw;
-			}
-		}
 
 		protected void logout()
 		{
