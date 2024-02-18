@@ -120,6 +120,64 @@
 			"response": []
 		},
 		{
+			"name": "Users Signup",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const json = pm.response.json()\r",
+							"\r",
+							"if (json.data) {\r",
+							"    pm.collectionVariables.set(\"ticket\", json.data.ticket)\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var email_number = pm.collectionVariables.get(\"email_number\");\r",
+							"email_number = (email_number * 1) + 1;\r",
+							"pm.collectionVariables.set(\"email_number\", email_number);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Email\": \"{{test_user_email}}\",\r\n    \"Password\": \"{{test_user_password}}\",\r\n    \"AcceptedContract\": true,\r\n    \"Language\": \"pt-BR\",\r\n    \"Timezone\": \"UTC-03:00\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users/signup",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Users Login",
 			"event": [
 				{
@@ -785,7 +843,7 @@
 		},
 		{
 			"key": "test_user_email",
-			"value": "",
+			"value": "test{{email_number}}@dontflymoney.com",
 			"type": "string"
 		},
 		{
@@ -812,6 +870,11 @@
 		{
 			"key": "move_id",
 			"value": ""
+		},
+		{
+			"key": "email_number",
+			"value": "1",
+			"type": "string"
 		}
 	]
 }
