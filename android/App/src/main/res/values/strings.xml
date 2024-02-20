@@ -98,4 +98,5 @@
 	<string name="wipe_explanation">"Here you can ask the removal of your data from the system.\n\nAfter that, this is not possible to login at the system anymore.\n\nThe permanent removal will take effect in a period of 24 hours.\n\nThere is no way to recover your data after the removal.\n\nIf you really want to proceed, type your password below and press the button."</string>
 	<string name="title_activity_terms">Terms of Use</string>
 	<string name="effective_date">effective date: %1$s</string>
+    <string name="accept_terms">I understood and agree with the Terms of Use</string>
 </resources>
