@@ -14,12 +14,13 @@ This is the list of project releases, past and current. To see tasks that are st
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="11.0.0.0"></a>11.0.0.0 :dragon: <sup>`8`</sup>
+## <a name="11.0.0.0"></a>11.0.0.0 :dragon: <sup>`9`</sup>
 - [ ] Automate execute non destrutive sql
 - [ ] Add transfer with conversion (value in/out)
 - [ ] Add category creation (mobile)
 - [ ] Add account creation (mobile)
 - [ ] Add schedule creation (mobile)
+- [ ] Make endpoints restful (redirect main site to /old/)
 - [ ] `240216>......` Add user creation (mobile)
 - [x] `240101>240214` [Reduce Docker Images] / Use multistaged (multiple FROM at dockerfiles) container
 - [x] `231213>231221` Separate MVC projects: site and api
