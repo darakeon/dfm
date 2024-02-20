@@ -124,6 +124,25 @@ class ApiTest: BaseTest() {
 	}
 
 	@Test
+	fun signup() {
+		server.enqueue("signup")
+
+		var called = false
+		api.signup(
+			"dfm@dontflymoney.com",
+			"password",
+			true,
+			"pt-BR",
+			"UTC-03:00",
+		) {
+			called = true
+		}
+		activity.waitTasks()
+
+		assertTrue(called)
+	}
+
+	@Test
 	fun login() {
 		server.enqueue("login")
 

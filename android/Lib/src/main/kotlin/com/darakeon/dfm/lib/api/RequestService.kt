@@ -9,6 +9,7 @@ import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
 import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
+import com.darakeon.dfm.lib.api.entities.signup.SignUp
 import com.darakeon.dfm.lib.api.entities.status.ErrorList
 import com.darakeon.dfm.lib.api.entities.summary.Summary
 import com.darakeon.dfm.lib.api.entities.terms.Terms
@@ -49,6 +50,11 @@ interface RequestService {
 	@POST("moves/delete/{id}")
 	fun delete(
 		@Path("id") id: UUID
+	): Call<Body<Any>>
+
+	@POST("users/signup")
+	fun signup(
+		@RetrofitBody signup: SignUp
 	): Call<Body<Any>>
 
 	@FormUrlEncoded

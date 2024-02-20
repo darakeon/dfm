@@ -1,4 +1,4 @@
-package com.darakeon.dfm.login
+package com.darakeon.dfm.signup
 
 import android.view.View
 import android.widget.Button
@@ -22,12 +22,12 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows.shadowOf
 
 @RunWith(RobolectricTestRunner::class)
-class LoginActivityTest: BaseTest() {
-	private lateinit var mocker: ActivityMock<LoginActivity>
+class SignUpActivityTest: BaseTest() {
+	private lateinit var mocker: ActivityMock<SignUpActivity>
 
 	@Before
 	fun setup() {
-		mocker = ActivityMock(LoginActivity::class)
+		mocker = ActivityMock(SignUpActivity::class)
 	}
 
 	@After
@@ -41,10 +41,12 @@ class LoginActivityTest: BaseTest() {
 
 		assertNotNull(activity.findViewById(R.id.email))
 		assertNotNull(activity.findViewById(R.id.password))
+		assertNotNull(activity.findViewById(R.id.accept_terms))
 	}
 
 	@Test
-	fun login() {
+	fun signUp() {
+		mocker.server.enqueue("signup")
 		mocker.server.enqueue("login")
 
 		val activity = mocker.create()
@@ -52,7 +54,7 @@ class LoginActivityTest: BaseTest() {
 
 		val view = View(activity)
 
-		activity.login(view)
+		activity.signUp(view)
 		activity.waitTasks(mocker.server)
 
 		val auth = activity.getPrivate<Authentication>("auth")
@@ -62,20 +64,6 @@ class LoginActivityTest: BaseTest() {
 		val intent = shadow.peekNextStartedActivity()
 
 		assertThat(intent.getCalledName(), `is`("WelcomeActivity"))
-	}
-
-	@Test
-	fun goToSignUp() {
-		val activity = mocker.create()
-
-		val link = activity.findViewById<Button>(R.id.signup_link)
-		link.performClick()
-
-		val called = shadowOf(activity)
-			.peekNextStartedActivity()
-			.getCalledName()
-
-		assertThat(called, `is`("SignUpActivity"))
 	}
 
 	@Test

@@ -98,4 +98,5 @@
 	<string name="wipe_explanation">"Aqui você pode pedir a remoção de seus dados do sistema.\n\nApós fazer isso, não é mais possível se logar no sistema.\n\nA remoção permanente ocorrerá dentro de 24h.\n\nNão haverá forma de recuperar os dados após a remoção.\n\nCaso deseje de fato prosseguir, digite sua senha abaixo e aperte o botão."</string>
 	<string name="title_activity_terms">Termos de Uso</string>
 	<string name="effective_date">início de vigência: %1$s</string>
+    <string name="accept_terms">Entendi e concordo com os Termos de Uso</string>
 </resources>

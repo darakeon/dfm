@@ -39,29 +39,19 @@
 				/>
 
 			<CheckBox
-				android:layout_width="wrap_content"
+				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:id="@+id/use_categories"
-				android:buttonTint="?attr/link"
-				/>
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
 				android:text="@string/use_categories"
-				android:layout_columnSpan="7"
+				android:layout_columnSpan="8"
 				/>
 
 			<CheckBox
-				android:layout_width="wrap_content"
+				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:id="@+id/move_check"
-				android:buttonTint="?attr/link"
-				/>
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
 				android:text="@string/move_check"
-				android:layout_columnSpan="7"
+				android:layout_columnSpan="8"
 				/>
 
 			<View

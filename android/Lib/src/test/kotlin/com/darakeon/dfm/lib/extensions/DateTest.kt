@@ -6,6 +6,7 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 import java.util.Calendar
 import java.util.Locale
+import java.util.TimeZone
 
 class DateTest: BaseTest() {
 	@Test
@@ -52,5 +53,26 @@ class DateTest: BaseTest() {
 		val calendar = Calendar.getInstance()
 		calendar.set(2020, Calendar.FEBRUARY, 25)
 		assertThat(calendar.time.formatNoDay(), `is`("Feb/2020"))
+	}
+
+	@Test
+	fun toFormattedHourBRT() {
+		val timezone = TimeZone.getTimeZone("America/Sao_Paulo")
+		val formatted = timezone.toFormattedHour()
+		assertThat(formatted, `is`("UTC-03:00"))
+	}
+
+	@Test
+	fun toFormattedHourDarwin() {
+		val timezone = TimeZone.getTimeZone("Australia/Darwin")
+		val formatted = timezone.toFormattedHour()
+		assertThat(formatted, `is`("UTC+09:30"))
+	}
+
+	@Test
+	fun toFormattedHourUTC() {
+		val timezone = TimeZone.getTimeZone("Europe/Lisbon")
+		val formatted = timezone.toFormattedHour()
+		assertThat(formatted, `is`("UTC 00:00"))
 	}
 }
