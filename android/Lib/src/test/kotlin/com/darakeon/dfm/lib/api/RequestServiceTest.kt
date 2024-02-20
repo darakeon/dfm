@@ -5,6 +5,7 @@ import com.darakeon.dfm.lib.api.entities.Theme
 import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
+import com.darakeon.dfm.lib.api.entities.signup.SignUp
 import com.darakeon.dfm.lib.api.entities.terms.Clause
 import com.darakeon.dfm.lib.api.entities.wipe.Wipe
 import com.darakeon.dfm.testutils.BaseTest
@@ -130,6 +131,27 @@ class RequestServiceTest: BaseTest() {
 		val environment = body.environment!!
 		assertThat(environment.language, `is`("pt-BR"))
 		assertThat(environment.theme, `is`(Theme.DarkMagic))
+
+		assertNotNull(body.data)
+	}
+
+	@Test
+	fun signup() {
+		server.enqueue("signup")
+
+		val response = service.signup(
+			SignUp(
+				"dfm@dontflymoney.com",
+				"password",
+				true,
+				"pt-BR",
+				"UTC-03:00",
+			)
+		).execute()
+
+		assertNotNull(response)
+
+		val body = response.body()!!
 
 		assertNotNull(body.data)
 	}
