@@ -91,6 +91,24 @@
 		</activity>
 
 		<activity
+			android:name=".signup.SignUpActivity"
+			android:exported="true">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+
+				<data
+					android:host="dontflymoney.com"
+					android:pathPrefix="/@SignUp"
+					android:scheme="https"
+					/>
+			</intent-filter>
+			<tools:validation testUrl="https://dontflymoney.com/@SignUp" />
+		</activity>
+
+		<activity
 			android:name=".accounts.AccountsActivity"
 			android:exported="true">
 			<intent-filter>
