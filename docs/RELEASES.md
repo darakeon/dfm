@@ -20,7 +20,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Add category creation (mobile)
 - [ ] Add account creation (mobile)
 - [ ] Add schedule creation (mobile)
-- [ ] `240216>......` Add user creation (mobile)
+- [x] `240216>240121` Add user creation (mobile)
 - [x] `240101>240214` [Reduce Docker Images] / Use multistaged (multiple FROM at dockerfiles) container
 - [x] `231213>231221` Separate MVC projects: site and api
 

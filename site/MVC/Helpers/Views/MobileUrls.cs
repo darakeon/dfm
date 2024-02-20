@@ -9,6 +9,7 @@ namespace DFM.MVC.Helpers.Views
 		private MobileUrls()
 		{
 			add("Users", "LogOn", "Login");
+			add("Users", "SignUp", "SignUp");
 			add("Accounts", "Index", "Accounts");
 			add("Reports", "Month", "Extract");
 			add("Reports", "Year", "Summary");
