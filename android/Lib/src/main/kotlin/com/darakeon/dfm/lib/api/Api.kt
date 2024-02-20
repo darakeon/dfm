@@ -10,6 +10,7 @@ import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
 import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
+import com.darakeon.dfm.lib.api.entities.signup.SignUp
 import com.darakeon.dfm.lib.api.entities.status.ErrorList
 import com.darakeon.dfm.lib.api.entities.summary.Summary
 import com.darakeon.dfm.lib.api.entities.terms.Terms
@@ -89,6 +90,19 @@ class Api<C>(
 		onSuccess: () -> Unit
 	) {
 		service.delete(id).call { onSuccess() }
+	}
+
+	fun signup(
+		email: String,
+		password: String,
+		acceptedContract: Boolean,
+		language: String,
+		timeZone: String,
+		onSuccess: () -> Unit
+	) {
+		service.signup(
+			SignUp(email, password, acceptedContract, language, timeZone)
+		).call { onSuccess() }
 	}
 
 	fun login(
