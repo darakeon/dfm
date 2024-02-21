@@ -20,6 +20,9 @@ stop:
 sleep:
 	@sleep 2
 
+bash:
+	@docker exec -it dkdroid bash
+
 apk:
 	@${GRADLE} :app:bundleRelease -Phide-test-deps
 
