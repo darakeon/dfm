@@ -60,7 +60,5 @@ allprojects {
 			showCauses true
 			showStackTraces true
 		}
-
-		ignoreFailures = true // Always try to run all tests for all modules
 	}
 }
