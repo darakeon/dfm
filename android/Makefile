@@ -77,3 +77,6 @@ ci-configure:
 	@${GRADLE} configure
 
 ci: ci-keystore ci-androidDeps ci-build ci-configure
+
+test:
+	@${GRADLE} test -x build -x androidDependencies -x packageRelease -x packageDebug
