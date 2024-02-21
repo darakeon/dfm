@@ -56,8 +56,15 @@ private fun Activity.alert(
 }
 
 fun Activity.createWaitDialog(): AlertDialog? {
-	return AlertDialog.Builder(this)
+	val builder = AlertDialog.Builder(this)
 		.setTitle(getString(R.string.wait_title))
 		.setMessage(R.string.wait_text)
-		?.show()
+
+	var dialog: AlertDialog? = null
+
+	runOnUiThread {
+		dialog = builder?.show()
+	}
+
+	return dialog
 }
