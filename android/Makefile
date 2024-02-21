@@ -70,13 +70,10 @@ ci-keystore:
 ci-androidDeps:
 	@${GRADLE} androidDependencies
 
-ci-robolectric:
-	@${GRADLE} robolectricSdkDownload
-
 ci-build:
-	@${GRADLE} build -x test -x androidDependencies -x robolectricSdkDownload -x packageRelease -x packageDebug
+	@${GRADLE} build -x test -x androidDependencies -x packageRelease -x packageDebug
 
 ci-configure:
 	@${GRADLE} configure
 
-ci: ci-keystore ci-androidDeps ci-robolectric ci-build ci-configure
+ci: ci-keystore ci-androidDeps ci-build ci-configure
