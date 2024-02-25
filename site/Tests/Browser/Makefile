@@ -1,4 +1,7 @@
 MAKEFLAGS += --no-print-directory
+.PHONY: help machine rm \
+	restore_site publish_site run_site install_proj_deps create_contract \
+	setup clear resetup test is_site_running
 
 MACHINE_NAME=dfm_bt
 IS_MACHINE_RUNNING:=$$(make _is_machine_running)
