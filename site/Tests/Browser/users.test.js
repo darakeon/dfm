@@ -174,8 +174,8 @@ describe('Users', () => {
 		await expect(message).toContain('Se existir este e-mail no sistema, você receberá as instruções para prosseguir.')
 	})
 
-	test('Forgot Password - not existente', async () => {
-		const email = 'not_existente@dontflymoney.com'
+	test('Forgot Password - not existent', async () => {
+		const email = 'not_existent@dontflymoney.com'
 
 		await puppy.call('Users/ForgotPassword')
 		await puppy.waitFor('#body form')
@@ -260,7 +260,7 @@ describe('Users', () => {
 		await expect(page.title()).resolves.toMatch('DfM - Contas')
 	})
 
-	test('SendWipedData', async () => {
+	test('Send Wiped Data', async () => {
 		email = 'deleted@dontflymoney.com'
 		await db.deleteWipe(email)
 
