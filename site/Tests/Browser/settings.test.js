@@ -1,10 +1,12 @@
-const puppy = require('./puppy.js')
+const puppy = require('./puppy')
+const { rand } = require('./utils')
+
 
 describe('Settings', () => {
 	let user = {};
 
 	beforeAll(async () => {
-		user = await puppy.logon('settings@dontflymoney.com')
+		user = await puppy.logon(`settings${rand()}@dontflymoney.com`)
 	})
 
 	test('Index', async () => {

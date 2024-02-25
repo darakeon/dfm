@@ -1,5 +1,7 @@
-const puppy = require('./puppy.js')
-const db = require('./db.js')
+const db = require('./db')
+const puppy = require('./puppy')
+const { rand } = require('./utils')
+
 
 describe('Open site', () => {
 	it('should be titled Don\'t fly Money', async () => {
@@ -21,7 +23,7 @@ describe('Open site', () => {
 	it('should record access when logged in', async () => {
 		const start = new Date()
 
-		const email = 'access@dontflymoney.com'
+		const email = `access${rand()}@dontflymoney.com`
 		await puppy.logon(email)
 
 		const lastAccess = await db.getLastAccess(email)
@@ -30,7 +32,7 @@ describe('Open site', () => {
 	})
 
 	it('should have a modal to change language (LOGGED IN)', async () => {
-		const email = 'language@dontflymoney.com'
+		const email = `language${rand()}@dontflymoney.com`
 		await puppy.logon(email)
 
 		await puppy.waitFor('ul.nav a.pt-br')

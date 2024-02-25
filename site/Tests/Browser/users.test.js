@@ -3,6 +3,7 @@ const fs = require('fs/promises');
 const db = require('./db')
 const puppy = require('./puppy')
 const tfa = require('./tfa')
+const { rand } = require('./utils')
 
 
 describe('Users', () => {
@@ -14,7 +15,7 @@ describe('Users', () => {
 		await puppy.call('Users/SignUp')
 		await puppy.waitFor('#body form')
 
-		await page.type('#Email', 'signup@dontflymoney.com')
+		await page.type('#Email', `signup${rand()}@dontflymoney.com`)
 		await page.type('#Password', db.password)
 		await page.type('#RetypePassword', db.password)
 		await page.click('#Accept')
@@ -187,7 +188,7 @@ describe('Users', () => {
 	})
 
 	test('LogOff', async () => {
-		const email = 'logoff@dontflymoney.com'
+		const email = `logoff${rand()}@dontflymoney.com`
 		await db.createUserIfNotExists(email, {active:true})
 
 		await puppy.call('Users/Logon')
@@ -237,7 +238,7 @@ describe('Users', () => {
 	})
 
 	test('TFA', async () => {
-		const email = 'tfa@dontflymoney.com'
+		const email = `tfa${rand()}@dontflymoney.com`
 		const user = await puppy.logon(email)
 
 		const secret = 'answer to the life universe and everything'
