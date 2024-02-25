@@ -1,5 +1,7 @@
-const db = require('./db.js')
-const puppy = require('./puppy.js')
+const db = require('./db')
+const puppy = require('./puppy')
+const { rand } = require('./utils')
+
 
 describe('Reports', () => {
 	let user = {};
@@ -8,7 +10,7 @@ describe('Reports', () => {
 
 	describe('Screen', () => {
 		beforeAll(async () => {
-			user = await puppy.logon('reports@dontflymoney.com')
+			user = await puppy.logon(`reports${rand()}@dontflymoney.com`)
 			account = await db.createAccountIfNotExists('Account Reports', user)
 			category = await db.createCategoryIfNotExists('Category Reports', user)
 		})
@@ -158,7 +160,7 @@ describe('Reports', () => {
 	})
 
 	test('Tips', async () => {
-		user = await puppy.logon('reports-tips@dontflymoney.com')
+		user = await puppy.logon(`reports-tips${rand()}@dontflymoney.com`)
 		const tipContainer = '<aside class="tip">'
 
 		const bodyInitial = await puppy.content('body')

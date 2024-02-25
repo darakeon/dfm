@@ -1,5 +1,7 @@
-const db = require('./db.js')
-const puppy = require('./puppy.js')
+const db = require('./db')
+const puppy = require('./puppy')
+const { rand } = require('./utils')
+
 
 describe('Schedules', () => {
 	let user = {};
@@ -8,7 +10,7 @@ describe('Schedules', () => {
 	let category = {};
 
 	beforeAll(async () => {
-		user = await puppy.logon('schedules@dontflymoney.com')
+		user = await puppy.logon(`schedules${rand()}@dontflymoney.com`)
 		accountIn = await db.createAccountIfNotExists('Account In', user)
 		accountOut = await db.createAccountIfNotExists('Account Out', user)
 		category = await db.createCategoryIfNotExists('Category Move', user)
