@@ -1,5 +1,6 @@
-const db = require('./db.js')
-const puppy = require('./puppy.js')
+const db = require('./db')
+const puppy = require('./puppy')
+
 
 describe('Ops', () => {
 	beforeAll(async () => {
