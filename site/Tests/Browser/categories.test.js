@@ -1,11 +1,13 @@
-const db = require('./db.js')
-const puppy = require('./puppy.js')
+const db = require('./db')
+const puppy = require('./puppy')
+const { rand } = require('./utils')
+
 
 describe('Categories', () => {
 	let user = {};
 
 	beforeAll(async () => {
-		user = await puppy.logon('categories@dontflymoney.com')
+		user = await puppy.logon(`categories${rand()}@dontflymoney.com`)
 	})
 
 	test('Empty List', async () => {
