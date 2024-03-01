@@ -66,11 +66,17 @@ namespace DFM.BusinessLogic.Tests.Steps
 			get => get<String>("Language");
 			set => set("Language", value);
 		}
-
+		
 		private String timezone
 		{
 			get => get<String>("Timezone");
 			set => set("Timezone", value);
+		}
+
+		private Boolean acceptedContract
+		{
+			get => get<Boolean>("AcceptedContract");
+			set => set("AcceptedContract", value);
 		}
 
 		private SecurityAction action
@@ -130,6 +136,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			if (table.Header.Any(c => c == "Timezone"))
 				timezone = table.Rows[0]["Timezone"];
+
+			if (table.Header.Any(c => c == "Accepted Contract"))
+				acceptedContract = table.Rows[0]["Accepted Contract"] == "true";
 		}
 
 		[When(@"I try to save the user")]
@@ -144,6 +153,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 					RetypePassword = retypePassword,
 					Language = language,
 					TimeZone = timezone,
+					AcceptedContract = acceptedContract
 				};
 
 				service.Auth.SaveUser(info);
@@ -1229,6 +1239,11 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the contract status will be (not )?accepted")]
 		public void ThenTheContractStatusWillBeAccepted(Boolean expectAccepted)
 		{
+			if (!current.IsAuthenticated)
+			{
+				current.Set(userEmail, userPassword, false);
+			}
+
 			accepted ??= service.Law.IsLastContractAccepted();
 
 			Assert.That(accepted, Is.EqualTo(expectAccepted));

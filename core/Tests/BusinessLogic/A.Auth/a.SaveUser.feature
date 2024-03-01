@@ -116,3 +116,13 @@ Scenario: Aa14. Save user with invalid timezone
 	When I try to save the user
 	Then I will receive this core error: TimeZoneUnknown
 		And the user will not be saved
+
+Scenario: Aa15. Save user accepting contract
+	Given I have this user data
+			| Email                           | Password | Retype Password | Language | Timezone  | Accepted Contract |
+			| {scenarioCode}@dontflymoney.com | password | password        | pt-BR    | UTC-03:00 | true              |
+	When I try to save the user
+	Then I will receive no core error
+		And the user will be saved
+		And it will have a misc
+		And the contract status will be accepted
