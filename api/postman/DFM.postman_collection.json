@@ -24,18 +24,18 @@
 			"response": []
 		},
 		{
-			"name": "Test Error",
+			"name": "Tests Throw",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/test/error",
+					"raw": "{{url}}/tests/throw",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"test",
-						"error"
+						"tests",
+						"throw"
 					]
 				}
 			},
