@@ -6,10 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace DFM.API.Controllers
 {
 	[Auth(AuthParams.Admin)]
-	public class TestController : Controller
+	public class TestsController : Controller
 	{
 		[HttpGetAndHead]
-		public IActionResult Error()
+		public IActionResult Throw()
 		{
 			throw new Exception("Logging right!");
 		}
