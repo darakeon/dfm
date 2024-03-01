@@ -54,8 +54,6 @@ namespace DFM.BusinessLogic.Repositories
 				CreateDate = user.Now()
 			};
 
-			SaveOrUpdate(acceptance);
-
 			return acceptance;
 		}
 	}
