@@ -13,7 +13,7 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (47)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (50)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
 | Add semgrep to dfm, dk-lib, meak and server                                    | :whale:  |  2  |  4  |  6  |                |
 | [clear headers on nginx](todo/clear-headers.png)                               | :whale:  |  2  |  4  |  6  |                |
@@ -32,6 +32,7 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Fix print contract                                                             | :ant:    |  1  |  3  |  6  |                |
 | Replace XML at UI android by [compose jetpack]                                 | :dragon: |  3  |  4  |  5  |                |
 | Implement security measures suggested by github                                | :sheep:  |  3  |  4  |  5  |                |
+| Check robot deleting users                                                     | :sheep:  |  3  |  4  |  5  |                |
 | add snyk/clair check to docker containers                                      | :whale:  |  2  |  3  |  5  |                |
 | Add plain text to emails                                                       | :whale:  |  2  |  3  |  5  |                |
 | Enable Copy Move (web+mobile)                                                  | :whale:  |  2  |  3  |  5  |                |
@@ -41,6 +42,7 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Make default language EN if browser is not PT, ES, IT or FR, otherwise PT      | :sheep:  |  1  |  2  |  5  |                |
 | Remove unused/duplicated errors                                                | :sheep:  |  1  |  2  |  5  |                |
 | Add test for unifying categories used in closed accounts                       | :ant:    |  1  |  2  |  5  |                |
+| Add user last access to Admin                                                  | :sheep:  |  1  |  2  |  5  |                |
 | Add accessibility to automated tests                                           | :whale:  |  4  |  4  |  4  |                |
 | Test android tests payloads x .net api objects                                 | :sheep:  |  4  |  4  |  4  | break site/api |
 | Report with more than one account                                              | :dragon: |  3  |  3  |  4  |                |
@@ -54,6 +56,7 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Add category url calculate without diacritics                                  | :sheep:  |  1  |  1  |  4  |                |
 | Add error for schedule with 0 times                                            | :ant:    |  1  |  1  |  4  |                |
 | Change putJson to putSerializable/Parcelable at extras in android              | :ant:    |  1  |  1  |  4  |                |
+| Add logs to Admin                                                              | :sheep:  |  1  |  1  |  4  |                |
 | Implement entities limits (acc opened, cat enabled, moves/month, active sched) | :dragon: |  3  |  2  |  3  |                |
 | Transform Error Logs notification into widget                                  | :ant:    |  2  |  1  |  3  |                |
 | Replace hardcoded scenario codes from tests                                    | :ant:    |  2  |  1  |  3  |                |
