@@ -5,10 +5,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.API.Controllers
 {
-	[Auth(AuthParams.Admin)]
-	public class TestsController : Controller
+	public class TestsController : BaseApiController
 	{
 		[HttpGetAndHead]
+		public IActionResult Index()
+		{
+			return json(() => new { status = "online" });
+		}
+
+		[HttpGetAndHead]
+		[Auth(AuthParams.Admin)]
 		public IActionResult Throw()
 		{
 			throw new Exception("Logging right!");

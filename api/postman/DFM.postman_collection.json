@@ -1,11 +1,51 @@
 {
 	"info": {
-		"_postman_id": "58b5bc68-79bf-4881-8a7f-a82c74facaaa",
+		"_postman_id": "fd27b227-0b5d-4402-ab78-544f28e9da7d",
 		"name": "DFM",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "16840310"
 	},
 	"item": [
+		{
+			"name": "Tests",
+			"item": [
+				{
+					"name": "Status",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}",
+							"host": [
+								"{{url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Throw",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/tests/throw",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tests",
+								"throw"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "Logs",
 			"item": [
@@ -87,41 +127,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "Status",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}",
-					"host": [
-						"{{url}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Tests Throw",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/tests/throw",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"tests",
-						"throw"
-					]
-				}
-			},
-			"response": []
 		},
 		{
 			"name": "Users Signup",
@@ -832,7 +837,7 @@
 	"variable": [
 		{
 			"key": "url",
-			"value": "",
+			"value": "{{url_dev}}",
 			"type": "string"
 		},
 		{
