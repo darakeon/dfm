@@ -196,7 +196,7 @@ class Api<C>(
 		service.countErrors().call { onSuccess(it) }
 	}
 
-	fun archiveErrors(id: Int, onSuccess: () -> Unit) {
+	fun archiveErrors(id: String, onSuccess: () -> Unit) {
 		service.archiveErrors(id).call { onSuccess() }
 	}
 }

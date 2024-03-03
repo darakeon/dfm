@@ -18,6 +18,7 @@ import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 import java.util.UUID
@@ -120,14 +121,14 @@ interface RequestService {
 	@GET("/")
 	fun wakeUpSite(): Call<Body<Any>>
 
-	@GET("log/count")
-	fun countErrors(): Call<Body<ErrorList>>
-
-	@GET("log/list")
+	@GET("logs")
 	fun listErrors(): Call<Body<ErrorList>>
 
-	@POST("log/archive/{id}")
+	@GET("logs/count")
+	fun countErrors(): Call<Body<ErrorList>>
+
+	@PATCH("logs/{id}/archive")
 	fun archiveErrors(
-		@Path("id") id: Int
+		@Path("id") id: String
 	): Call<Body<Any>>
 }

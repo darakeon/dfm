@@ -7,6 +7,88 @@
 	},
 	"item": [
 		{
+			"name": "Logs",
+			"item": [
+				{
+					"name": "List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body has properties\", function () {\r",
+									"    const json = pm.response.json();\r",
+									"    pm.expect(json).to.have.property(\"data\");\r",
+									"    pm.expect(json.data).to.have.property(\"logs\");\r",
+									"\r",
+									"    if (json.data.logs.length > 0) {\r",
+									"        pm.collectionVariables.set(\"log_id\", json.data.logs[0].id);\r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/logs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"logs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/logs/count",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"logs",
+								"count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Archive",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/logs/{{log_id}}/archive",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"logs",
+								"{{log_id}}",
+								"archive"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Status",
 			"request": {
 				"auth": {
@@ -36,84 +118,6 @@
 					"path": [
 						"tests",
 						"throw"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Log Count",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/log/count",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"log",
-						"count"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Log List",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Body has properties\", function () {\r",
-							"    const json = pm.response.json();\r",
-							"    pm.expect(json).to.have.property(\"data\");\r",
-							"    pm.expect(json.data).to.have.property(\"logs\");\r",
-							"\r",
-							"    if (json.data.logs.length > 0) {\r",
-							"        pm.collectionVariables.set(\"log_id\", json.data.logs[0].id);\r",
-							"    }\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/log/list",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"log",
-						"list"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Log Archive",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/log/archive/{{log_id}}",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"log",
-						"archive",
-						"{{log_id}}"
 					]
 				}
 			},

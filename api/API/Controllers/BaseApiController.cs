@@ -77,7 +77,7 @@ namespace DFM.API.Controllers
             return error(Error.TFANotVerified);
         }
 
-        private JsonResult error(Error error)
+        protected JsonResult error(Error error)
         {
             var result = new
             {
@@ -97,6 +97,8 @@ namespace DFM.API.Controllers
 			        return HttpStatusCode.Unauthorized;
 		        case Error.Uninvited:
 			        return HttpStatusCode.Forbidden;
+				case Error.LogNotFound:
+			        return HttpStatusCode.NotFound;
 		        default:
 			        return HttpStatusCode.BadRequest;
 	        }
