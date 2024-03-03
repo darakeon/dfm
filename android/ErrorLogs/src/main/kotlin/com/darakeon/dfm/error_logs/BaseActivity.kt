@@ -25,11 +25,14 @@ open class BaseActivity<Binding: ViewBinding>: Activity(), ApiCaller {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		auth = Authentication(this)
-		api = Api(this, serverUrl)
 		setEnvironment(Environment(Theme.DarkMagic))
+
+		api = Api(this, serverUrl)
+		auth = Authentication(this)
+
 		binding = inflateBinding()
-	}
+		setContentView(binding.root)
+ 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
 		val inflater: MenuInflater = menuInflater
