@@ -14,7 +14,6 @@ class StartActivity : BaseActivity<StartBinding>() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.start)
 
 		if (auth.isLoggedIn) {
 			startServiceAndGoToList()
