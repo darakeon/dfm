@@ -3,7 +3,7 @@
 		Given I have these patterns
 			| Name       | Pattern                                                     |
 			| ApiAccount | account-{accountUrl}/{controller=Moves}/{action=List}/{id?} |
-			| Api        | {controller=Status}/{action=Index}/{id?}                    |
+			| Api        | {controller=Tests}/{action=Index}/{id?}                     |
 
 Scenario: 01. Routes in use at MVC
 	When I ask the route for these values

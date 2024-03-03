@@ -9,13 +9,13 @@ namespace DFM.API.Starters.Routes
 		public class Main : Apis
 		{
 			public override String Path =>
-				"{controller=Status}/{action=Index}";
+				"{controller=Tests}/{action=Index}";
 		}
 
 		public class Object : Apis
 		{
 			public override String Path =>
-				"{controller=Status}/{id?}/{action=Index}";
+				"{controller=Tests}/{id?}/{action=Index}";
 		}
 
 		public class Accounts : Apis
