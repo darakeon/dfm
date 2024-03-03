@@ -57,10 +57,15 @@ namespace DfM.Logs
 			}
 		}
 
-		public void Archive(Int32 id)
+		public Boolean Archive(String id)
 		{
-			Logs.FirstOrDefault(l => l.Hash == id)
-				?.Archive(newLogs, readLogs);
+			var log = Logs.FirstOrDefault(l => l.ID == id);
+
+			if (log == null)
+				return false;
+
+			log.Archive(newLogs, readLogs);
+			return true;
 		}
 	}
 }
