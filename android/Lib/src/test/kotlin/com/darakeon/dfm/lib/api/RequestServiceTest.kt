@@ -512,7 +512,7 @@ class RequestServiceTest: BaseTest() {
 	fun archiveError() {
 		server.enqueue("empty")
 
-		val response = service.archiveErrors(0).execute()
+		val response = service.archiveErrors("id").execute()
 		assertNotNull(response)
 		val body = response.body()!!
 

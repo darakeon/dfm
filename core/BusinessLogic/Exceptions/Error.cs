@@ -92,6 +92,8 @@ namespace DFM.BusinessLogic.Exceptions
 
 		LanguageUnknown = 801,
 		TimeZoneUnknown = 802,
+
+		LogNotFound = 900,
 	}
 
 	public static class ErrorX

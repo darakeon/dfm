@@ -20,7 +20,7 @@ class ErrorAdapter(
 		}
 
 	private fun archiveAll(position: Int) {
-		api.archiveErrors(logs[position].hash) {
+		api.archiveErrors(logs[position].id) {
 			logs.removeAt(position)
 			notifyDataSetChanged()
 		}
