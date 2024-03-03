@@ -19,7 +19,6 @@ class ListActivity : BaseActivity<ListBinding>() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.list)
 
 		Handler(mainLooper).postDelayed({
 			api.listErrors(this::fillList)

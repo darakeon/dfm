@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
+	tools:context=".StartActivity"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:orientation="vertical"
 	android:gravity="center"
-	tools:context="com.darakeon.dfm.error_logs.StartActivity"
-	>
+	android:orientation="vertical">
 
 	<ImageView
 		android:layout_width="wrap_content"
@@ -17,17 +15,21 @@
 
 	<EditText
 		android:id="@+id/email"
-		android:inputType="textEmailAddress"
-		android:hint="@string/email"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:hint="@string/email"
+		android:inputType="textEmailAddress"
 		android:autofillHints="emailAddress"
+		android:imeOptions="actionNext"
+		android:nextFocusDown="@id/password"
+		android:text="@string/test_user"
 		/>
 
 	<EditText
 		android:id="@+id/password"
 		android:inputType="textPassword"
 		android:hint="@string/password"
+		android:text="@string/test_pass"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:importantForAutofill="no"
@@ -39,7 +41,6 @@
 		android:hint="@string/tfa"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:autofillHints="emailAddress"
 		/>
 
 	<Button
