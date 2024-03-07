@@ -3,7 +3,7 @@ package com.darakeon.dfm.lib.api
 import com.darakeon.dfm.lib.BuildConfig
 import com.darakeon.dfm.lib.api.entities.accounts.AccountList
 import com.darakeon.dfm.lib.api.entities.extract.Extract
-import com.darakeon.dfm.lib.api.entities.login.Login
+import com.darakeon.dfm.lib.api.entities.login.Ticket
 import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
 import com.darakeon.dfm.lib.api.entities.moves.Nature
@@ -146,7 +146,7 @@ class ApiTest: BaseTest() {
 	fun login() {
 		server.enqueue("login")
 
-		var login: Login? = null
+		var login: Ticket? = null
 		api.login("", "") {
 			login = it
 		}

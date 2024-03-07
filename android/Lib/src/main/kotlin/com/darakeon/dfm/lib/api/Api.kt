@@ -5,6 +5,7 @@ import com.darakeon.dfm.lib.api.entities.Body
 import com.darakeon.dfm.lib.api.entities.accounts.AccountList
 import com.darakeon.dfm.lib.api.entities.extract.Extract
 import com.darakeon.dfm.lib.api.entities.login.Login
+import com.darakeon.dfm.lib.api.entities.login.Ticket
 import com.darakeon.dfm.lib.api.entities.moves.Lists
 import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
@@ -14,6 +15,7 @@ import com.darakeon.dfm.lib.api.entities.signup.SignUp
 import com.darakeon.dfm.lib.api.entities.status.ErrorList
 import com.darakeon.dfm.lib.api.entities.summary.Summary
 import com.darakeon.dfm.lib.api.entities.terms.Terms
+import com.darakeon.dfm.lib.api.entities.tfa.TFA
 import com.darakeon.dfm.lib.api.entities.wipe.Wipe
 import retrofit2.Call
 import java.util.UUID
@@ -108,9 +110,9 @@ class Api<C>(
 	fun login(
 		email: String,
 		password: String,
-		onSuccess: (Login) -> Unit
+		onSuccess: (Ticket) -> Unit
 	) {
-		service.login(email, password).call { onSuccess(it) }
+		service.login(Login(email, password)).call { onSuccess(it) }
 	}
 
 	fun logout(
@@ -169,7 +171,7 @@ class Api<C>(
 		text: String,
 		onSuccess: () -> Unit
 	) {
-		service.validateTFA(text).call { onSuccess() }
+		service.validateTFA(TFA(text)).call { onSuccess() }
 	}
 
 	fun listsForMoves(onSuccess: (Lists) -> Unit) {

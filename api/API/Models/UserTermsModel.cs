@@ -8,6 +8,8 @@ public class UserTermsModel : BaseApiModel
     public UserTermsModel()
     {
         var contract = law.GetContract();
+        if (contract == null) return;
+
         Content = contract[language];
         date = contract.BeginDate;
     }
