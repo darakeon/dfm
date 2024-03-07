@@ -6,11 +6,11 @@
 	"day": 8,
 
 	"nature": 0,
-	"category-name": "category",
-	"out-url": "out",
-	"in-url": null,
+	"categoryName": "category",
+	"outUrl": "out",
+	"inUrl": null,
 	"value": 1,
-	"detail-list": [
+	"detailList": [
 		{
 			"description": "detail",
 			"amount": 1,

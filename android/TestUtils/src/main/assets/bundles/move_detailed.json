@@ -6,10 +6,10 @@
 	"day": 8,
 
 	"nature": 2,
-	"category-name": "category",
-	"out-url": "out",
-	"in-url": "in",
-	"detail-list": [
+	"categoryName": "category",
+	"outUrl": "out",
+	"inUrl": "in",
+	"detailList": [
 		{
 			"description": "detail 1",
 			"amount": 1,

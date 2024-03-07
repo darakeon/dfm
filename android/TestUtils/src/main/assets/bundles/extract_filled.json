@@ -1,5 +1,5 @@
 {
-	"move-list": [
+	"moveList": [
 		{
 			"description": "move",
 			"year": 2020,
@@ -12,5 +12,5 @@
 	],
 	"title": "account",
 	"total": 27,
-	"can-check": true
+	"canCheck": true
 }
