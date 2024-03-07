@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Serialization;
 
 namespace DFM.API
 {
@@ -29,7 +30,13 @@ namespace DFM.API
 			Context.Configure(services);
 
 			services.AddControllers()
-				.AddNewtonsoftJson();
+				.AddNewtonsoftJson(options =>
+				{
+					options.SerializerSettings.ContractResolver = new DefaultContractResolver()
+					{
+						NamingStrategy = new KebabCaseNamingStrategy()
+					};
+				});
 
 			services.AddAntiforgery();
 		}
