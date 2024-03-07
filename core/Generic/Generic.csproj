@@ -9,11 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Datetime\timezones.json" />
+    <None Remove="Datetime\time-zones.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Datetime\timezones.json">
+    <Content Include="Datetime\time-zones.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
