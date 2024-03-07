@@ -109,7 +109,11 @@ task ipAddress(type: Copy) {
 
 afterEvaluate {
 	tasks.forEach {task ->
-		if (task.name.contains('packageDebugResources')) {
+		if (
+			task.name.contains('packageDebugResources')
+			||
+			task.name.contains('generateDebugResources')
+		) {
 			task.dependsOn ipNetwork, ipAddress
 		}
 	}
