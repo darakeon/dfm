@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.darakeon.dfm.error_logs.databinding.StartBinding
 import com.darakeon.dfm.error_logs.service.SiteErrorService
-import com.darakeon.dfm.lib.api.entities.login.Login
+import com.darakeon.dfm.lib.api.entities.login.Ticket
 import com.darakeon.dfm.lib.extensions.redirect
 
 class StartActivity : BaseActivity<StartBinding>() {
@@ -29,7 +29,7 @@ class StartActivity : BaseActivity<StartBinding>() {
 	@Suppress("UNUSED_PARAMETER")
 	fun login(view: View) {
 		if (auth.isLoggedIn) {
-			proceedLogin(Login(auth.ticket))
+			proceedLogin(Ticket(auth.ticket))
 		} else {
 			api.login(
 				binding.email.text.toString(),
@@ -39,7 +39,7 @@ class StartActivity : BaseActivity<StartBinding>() {
 		}
 	}
 
-	private fun proceedLogin(it: Login) {
+	private fun proceedLogin(it: Ticket) {
 		auth.ticket = it.ticket
 		api.validateTFA(
 			binding.tfa.text.toString(),

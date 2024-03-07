@@ -98,7 +98,8 @@ namespace DFM.API.Controllers
 		        case Error.Uninvited:
 			        return HttpStatusCode.Forbidden;
 				case Error.LogNotFound:
-			        return HttpStatusCode.NotFound;
+				case Error.TermsNotFound:
+					return HttpStatusCode.NotFound;
 		        default:
 			        return HttpStatusCode.BadRequest;
 	        }

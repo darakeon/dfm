@@ -2,11 +2,13 @@ package com.darakeon.dfm.lib.api
 
 import com.darakeon.dfm.lib.api.entities.Date
 import com.darakeon.dfm.lib.api.entities.Theme
+import com.darakeon.dfm.lib.api.entities.login.Login
 import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
 import com.darakeon.dfm.lib.api.entities.signup.SignUp
 import com.darakeon.dfm.lib.api.entities.terms.Clause
+import com.darakeon.dfm.lib.api.entities.tfa.TFA
 import com.darakeon.dfm.lib.api.entities.wipe.Wipe
 import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.api.Server
@@ -160,7 +162,9 @@ class RequestServiceTest: BaseTest() {
 	fun login() {
 		server.enqueue("login")
 
-		val response = service.login("dfm@dontflymoney.com", "password").execute()
+		val response = service.login(
+			Login("dfm@dontflymoney.com", "password")
+		).execute()
 		assertNotNull(response)
 		val body = response.body()!!
 
@@ -339,7 +343,9 @@ class RequestServiceTest: BaseTest() {
 	fun validateTFA() {
 		server.enqueue("empty")
 
-		val response = service.validateTFA("123456").execute()
+		val response = service.validateTFA(
+			TFA("123456")
+		).execute()
 		assertNotNull(response)
 		val body = response.body()!!
 

@@ -4,6 +4,7 @@ import com.darakeon.dfm.lib.api.entities.Body
 import com.darakeon.dfm.lib.api.entities.accounts.AccountList
 import com.darakeon.dfm.lib.api.entities.extract.Extract
 import com.darakeon.dfm.lib.api.entities.login.Login
+import com.darakeon.dfm.lib.api.entities.login.Ticket
 import com.darakeon.dfm.lib.api.entities.moves.Lists
 import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
@@ -13,6 +14,7 @@ import com.darakeon.dfm.lib.api.entities.signup.SignUp
 import com.darakeon.dfm.lib.api.entities.status.ErrorList
 import com.darakeon.dfm.lib.api.entities.summary.Summary
 import com.darakeon.dfm.lib.api.entities.terms.Terms
+import com.darakeon.dfm.lib.api.entities.tfa.TFA
 import com.darakeon.dfm.lib.api.entities.wipe.Wipe
 import retrofit2.Call
 import retrofit2.http.Field
@@ -58,14 +60,12 @@ interface RequestService {
 		@RetrofitBody signup: SignUp
 	): Call<Body<Any>>
 
-	@FormUrlEncoded
 	@POST("users/login")
 	fun login(
-		@Field("email") email: String,
-		@Field("password") password: String
-	): Call<Body<Login>>
+		@RetrofitBody login: Login
+	): Call<Body<Ticket>>
 
-	@POST("users/logout")
+	@PATCH("users/logout")
 	fun logout(): Call<Body<Any>>
 
 	@GET("moves/create")
@@ -87,10 +87,10 @@ interface RequestService {
 		@RetrofitBody move: Move
 	): Call<Body<Any>>
 
-	@GET("users/getSettings")
+	@GET("settings")
 	fun getSettings(): Call<Body<Settings>>
 
-	@POST("users/saveSettings")
+	@PATCH("settings")
 	fun saveSettings(
 		@RetrofitBody settings: Settings
 	): Call<Body<Any>>
@@ -101,16 +101,15 @@ interface RequestService {
 		@Path("time") time: Int
 	): Call<Body<Summary>>
 
-	@FormUrlEncoded
-	@POST("account-{accountUrl}/users/tfa")
+	@PATCH("users/tfa")
 	fun validateTFA(
-		@Field("code") code: String
+		@RetrofitBody tfa: TFA
 	): Call<Body<Any>>
 
 	@GET("moves/lists")
 	fun listsForMoves(): Call<Body<Lists>>
 
-	@POST("users/wipe")
+	@PATCH("users/wipe")
 	fun wipe(
 		@RetrofitBody wipe: Wipe
 	): Call<Body<Any>>
