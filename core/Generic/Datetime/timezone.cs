@@ -2,7 +2,7 @@
 
 namespace DFM.Generic.Datetime
 {
-	class Timezone
+	class TimeZone
 	{
 		public Boolean Negative { get; set; }
 		public Int16 HourDiff { get; set; }
