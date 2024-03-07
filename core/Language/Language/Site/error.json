@@ -100,6 +100,7 @@
 		"CSVNotFound": "Data file not found",
 		"LoginRequested": "You need to login before accessing this resource",
 		"LogNotFound": "Log not found",
+		"TermsNotFound": "Terms not found",
 		"": null
 	},
 	"pt-BR": {
@@ -203,6 +204,7 @@
 		"CSVNotFound": "Arquivo de dados não encontrado",
 		"LoginRequested": "É necessário se logar antes de acessar este recurso",
 		"LogNotFound": "Log não encontrado",
+		"TermsNotFound": "Termos não encontrados",
 		"": null
 	}
 }

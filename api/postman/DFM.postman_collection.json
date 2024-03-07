@@ -129,304 +129,305 @@
 			]
 		},
 		{
-			"name": "Users Signup",
-			"event": [
+			"name": "Users",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const json = pm.response.json()\r",
-							"\r",
-							"if (json.data) {\r",
-							"    pm.collectionVariables.set(\"ticket\", json.data.ticket)\r",
-							"}\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							"var email_number = pm.collectionVariables.get(\"email_number\");\r",
-							"email_number = (email_number * 1) + 1;\r",
-							"pm.collectionVariables.set(\"email_number\", email_number);\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"Email\": \"{{test_user_email}}\",\r\n    \"Password\": \"{{test_user_password}}\",\r\n    \"AcceptedContract\": true,\r\n    \"Language\": \"pt-BR\",\r\n    \"Timezone\": \"UTC-03:00\"\r\n}\r\n",
-					"options": {
-						"raw": {
-							"language": "json"
+					"name": "Terms",
+					"protocolProfileBehavior": {
+						"followRedirects": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/terms",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"terms"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}/users/signup",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"users",
-						"signup"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Users Login",
-			"event": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const json = pm.response.json()\r",
-							"\r",
-							"if (json.data) {\r",
-							"    pm.collectionVariables.set(\"ticket\", json.data.ticket)\r",
-							"}\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
+					"name": "Signup",
+					"event": [
 						{
-							"key": "email",
-							"value": "{{test_user_email}}",
-							"type": "text"
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const json = pm.response.json()\r",
+									"\r",
+									"if (json.data) {\r",
+									"    pm.collectionVariables.set(\"ticket\", json.data.ticket)\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
 						},
 						{
-							"key": "password",
-							"value": "{{test_user_password}}",
-							"type": "text"
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var email_number = pm.collectionVariables.get(\"email_number\");\r",
+									"email_number = (email_number * 1) + 1;\r",
+									"pm.collectionVariables.set(\"email_number\", email_number);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
-				},
-				"url": {
-					"raw": "{{url}}/users/login",
-					"host": [
-						"{{url}}"
 					],
-					"path": [
-						"users",
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Users Logout",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.collectionVariables.set(\"ticket\", null)\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/users/logout",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"users",
-						"logout"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Users Settings",
-			"protocolProfileBehavior": {
-				"followRedirects": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/users/getsettings",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"users",
-						"getsettings"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Users Settings",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"UseCategories\": true,\r\n    \"MoveCheck\": true\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{test_user_email}}\",\r\n    \"password\": \"{{test_user_password}}\",\r\n    \"accepted-contract\": true,\r\n    \"language\": \"pt-BR\",\r\n    \"time-zone\": \"UTC-03:00\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/signup",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"signup"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}/users/savesettings",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"users",
-						"savesettings"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Users TFA",
-			"event": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
+					"name": "Login",
+					"event": [
 						{
-							"key": "code",
-							"value": "012345",
-							"type": "text"
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const json = pm.response.json()\r",
+									"\r",
+									"if (json.data) {\r",
+									"    pm.collectionVariables.set(\"ticket\", json.data.ticket)\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
-				},
-				"url": {
-					"raw": "{{url}}/users/tfa",
-					"host": [
-						"{{url}}"
 					],
-					"path": [
-						"users",
-						"tfa"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Users Wipe",
-			"event": [
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{test_user_email}}\",\r\n    \"password\": \"{{test_user_password}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"password\": \"{{test_user_password}}\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"name": "TFA",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/users/wipe",
-					"host": [
-						"{{url}}"
 					],
-					"path": [
-						"users",
-						"wipe"
-					]
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": \"761504\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/tfa",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"tfa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Wipe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"{{test_user_password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/wipe",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"wipe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"ticket\", null)\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"logout"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Users Terms",
-			"protocolProfileBehavior": {
-				"followRedirects": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/users/terms",
-					"host": [
-						"{{url}}"
+			"name": "Settings",
+			"item": [
+				{
+					"name": "Current",
+					"protocolProfileBehavior": {
+						"followRedirects": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/settings",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"path": [
-						"users",
-						"terms"
-					]
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"use-categories\": true,\r\n    \"move-check\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/settings",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"settings"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
 			"name": "Accounts List",

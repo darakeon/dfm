@@ -9,7 +9,7 @@ namespace DFM.BusinessLogic.Exceptions
 		UpdateApp = 27,
 
 		Uninvited = 207,
-		LoginRequested = 224, 
+		LoginRequested = 224,
 		NotSignedLastContract = 42,
 
 		FailOnEmailSend = 101,
@@ -36,6 +36,7 @@ namespace DFM.BusinessLogic.Exceptions
 		WipeUserAsked = 221,
 		WipeNoMoves = 222,
 		CSVNotFound = 223,
+		TermsNotFound = 225,
 
 		AccountNameRequired = 301,
 		AccountNameAlreadyExists = 302,
