@@ -19,39 +19,39 @@ namespace DFM.Generic.Datetime
 		public static IDictionary<String, String> All => tz.all;
 
 		public static String GetTimeZone(Int32 offset) => tz.getTimeZone(offset);
-		public static Boolean IsValid(String timezone) => tz.isValid(timezone);
-		public static DateTime Now(String timezoneName) => tz.now(timezoneName);
+		public static Boolean IsValid(String timeZone) => tz.isValid(timeZone);
+		public static DateTime Now(String timeZoneName) => tz.now(timeZoneName);
 
-		private readonly ReadOnlyCollection<Timezone> timezones;
-		private readonly IDictionary<String, Timezone> timezoneDic;
+		private readonly ReadOnlyCollection<TimeZone> timeZones;
+		private readonly IDictionary<String, TimeZone> timeZoneDic;
 		private readonly IDictionary<String, String> all;
 
 		private TZ(Boolean isDev)
 		{
-			timezones = getTimezones(isDev);
-			timezoneDic = timezones.ToDictionary(tz => tz.ToString(), tz => tz);
-			all = timezoneDic.ToDictionary(tz => tz.Key, tz => tz.Key);
+			timeZones = getTimeZones(isDev);
+			timeZoneDic = timeZones.ToDictionary(tz => tz.ToString(), tz => tz);
+			all = timeZoneDic.ToDictionary(tz => tz.Key, tz => tz.Key);
 		}
 
-		private ReadOnlyCollection<Timezone> getTimezones(Boolean isDev)
+		private ReadOnlyCollection<TimeZone> getTimeZones(Boolean isDev)
 		{
-			var path = Path.Combine("Datetime", "timezones.json");
+			var path = Path.Combine("Datetime", "time-zones.json");
 			if (isDev) path = Path.Combine("bin", path);
 
 			return File.Exists(path)
 				? JsonConvert.DeserializeObject
-					<ReadOnlyCollection<Timezone>>(
+					<ReadOnlyCollection<TimeZone>>(
 						File.ReadAllText(path)
 					)
-				: new ReadOnlyCollection<Timezone>(new List<Timezone>());
+				: new ReadOnlyCollection<TimeZone>(new List<TimeZone>());
 		}
 
-		private DateTime now(String timezoneName)
+		private DateTime now(String timeZoneName)
 		{
-			if (!isValid(timezoneName))
+			if (!isValid(timeZoneName))
 				return DateTime.UtcNow;
-
-			var timeZone = timezoneDic[timezoneName];
+			
+			var timeZone = timeZoneDic[timeZoneName];
 
 			return DateTime.UtcNow
 				.AddHours(timeZone.Hour)
@@ -59,9 +59,9 @@ namespace DFM.Generic.Datetime
 		}
 
 		private String getTimeZone(Int32 offset) =>
-			timezones.First(o => o.Is(offset)).ToString();
+			timeZones.First(o => o.Is(offset)).ToString();
 
 		private Boolean isValid(String timeZone) =>
-			all.ContainsKey(timeZone);
+			timeZone != null && all.ContainsKey(timeZone);
 	}
 }

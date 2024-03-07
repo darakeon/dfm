@@ -19,7 +19,7 @@ namespace DFM.API.Models
         public String Language { get; set; }
 
         [Required]
-        public String Timezone { get; set; }
+        public String TimeZone { get; set; }
 
 		internal void SignUp()
         {
@@ -30,7 +30,7 @@ namespace DFM.API.Models
 			        Password = Password,
 			        AcceptedContract = AcceptedContract,
 			        Language = Language,
-			        TimeZone = Timezone,
+			        TimeZone = TimeZone,
 			        RetypePassword = Password,
 		        }
 		    );
