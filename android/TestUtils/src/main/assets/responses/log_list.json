@@ -6,16 +6,16 @@
 				"id": "20200905021935886752",
 				"date": "2020-09-05T02:19:35.886752-03:00",
 				"exception": {
-					"className": "NHibernate.Exceptions.GenericADOException",
+					"class-name": "NHibernate.Exceptions.GenericADOException",
 					"message": "message 1",
-					"stackTrace": null,
+					"stack-trace": null,
 					"source": "NHibernate",
-					"innerException": {
-						"className": "MySql.Data.MySqlClient.MySqlException",
+					"inner-exception": {
+						"class-name": "MySql.Data.MySqlClient.MySqlException",
 						"message": "message 2",
-						"stackTrace": null,
+						"stack-trace": null,
 						"source": "MySql.Data",
-						"innerException": null
+						"inner-exception": null
 					}
 				}
 			},
@@ -23,38 +23,38 @@
 				"id": "20200905040939507282",
 				"date": "2020-09-05T04:09:39.5072828-03:00",
 				"exception": {
-					"className": "System.ObjectDisposedException",
+					"class-name": "System.ObjectDisposedException",
 					"message": "message 3",
-					"stackTrace": "stack 3",
+					"stack-trace": "stack 3",
 					"source": "Microsoft.AspNetCore.Http.Features",
-					"innerException": null
+					"inner-exception": null
 				}
 			},
 			{
 				"id": "20200905041255989527",
 				"date": "2020-09-05T04:12:55.9895278-03:00",
 				"exception": {
-					"className": "System.ObjectDisposedException",
+					"class-name": "System.ObjectDisposedException",
 					"message": "message 4",
-					"stackTrace": "stack 4",
+					"stack-trace": "stack 4",
 					"source": "Microsoft.AspNetCore.Http.Features",
-					"innerException": null
+					"inner-exception": null
 				}
 			},
 			{
 				"id": "20200905041338864402",
 				"date": "2020-09-05T04:13:38.8644029-03:00",
 				"exception": {
-					"className": "NHibernate.Exceptions.GenericADOException",
+					"class-name": "NHibernate.Exceptions.GenericADOException",
 					"message": "message 5",
-					"stackTrace": "stack 5",
+					"stack-trace": "stack 5",
 					"source": "NHibernate",
-					"innerException": {
-						"className": "MySql.Data.MySqlClient.MySqlException",
+					"inner-exception": {
+						"class-name": "MySql.Data.MySqlClient.MySqlException",
 						"message": "message 6",
-						"stackTrace": "stack 6",
+						"stack-trace": "stack 6",
 						"source": "MySql.Data",
-						"innerException": null
+						"inner-exception": null
 					}
 				}
 			}
