@@ -442,8 +442,9 @@ class RequestServiceTest: BaseTest() {
 		assertNull(body.environment)
 		assertNull(body.data)
 
-		assertThat(body.error, `is`("something went wrong"))
-		assertThat(body.code, `is`(2013))
+		assertNotNull(body.error)
+		assertThat(body.error?.code, `is`(2013))
+		assertThat(body.error?.text, `is`("something went wrong"))
 	}
 
 	@Test

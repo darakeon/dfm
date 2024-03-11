@@ -1,4 +1,6 @@
 {
-	"error": "something went wrong",
-	"code": 2013
+	"error": {
+		"code": 2013,
+		"text": "something went wrong"
+	}
 }

@@ -6,7 +6,7 @@ import com.darakeon.dfm.lib.BuildConfig
 import com.darakeon.dfm.lib.Log
 import com.darakeon.dfm.lib.R
 import com.darakeon.dfm.lib.api.entities.Body
-import com.darakeon.dfm.lib.api.entities.ErrorBody
+import com.darakeon.dfm.lib.api.entities.Error
 import com.darakeon.dfm.lib.auth.setEnvironment
 import com.google.gson.Gson
 import retrofit2.Call
@@ -35,13 +35,13 @@ class ResponseHandler<C, A>(
 			in 400 .. 499 -> {
 				val body = Gson().fromJson(
 					response.errorBody()?.string(),
-					ErrorBody::class.java
+					Body::class.java
 				)
 
 				if (body == null) {
 					caller.error(R.string.body_null)
 				} else {
-					assemblyResponse(body.code, body.error)
+					assemblyResponse(body.error)
 				}
 			}
 
@@ -51,8 +51,8 @@ class ResponseHandler<C, A>(
 				if (body == null) {
 					caller.error(R.string.body_null)
 
-				} else if (body.data == null || body.code != null) {
-					assemblyResponse(body.code, body.error)
+				} else if (body.data == null || body.error != null) {
+					assemblyResponse(body.error)
 
 				} else {
 					if (body.environment != null && caller is Activity) {
@@ -93,14 +93,14 @@ class ResponseHandler<C, A>(
 		}
 	}
 
-	private fun assemblyResponse(code: Int?, error: String?) {
+	private fun assemblyResponse(error: Error?) {
 		val tfa = caller.resources.getInteger(R.integer.TFA)
 		val uninvited = caller.resources.getInteger(R.integer.uninvited)
 
-		when (code) {
+		when (error?.code) {
 			tfa -> caller.checkTFA()
 			uninvited -> caller.logout()
-			else -> caller.error(getError(error))
+			else -> caller.error(getError(error?.text))
 		}
 	}
 
