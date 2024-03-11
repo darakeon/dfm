@@ -7,11 +7,11 @@ namespace DFM.API.Models
     {
         public Environment(Theme theme, string language)
         {
-            Theme = theme.ToString();
+            Theme = theme;
             Language = language;
         }
 
-        public string Theme { get; }
-        public string Language { get; }
+        public Theme Theme { get; }
+        public String Language { get; }
     }
 }

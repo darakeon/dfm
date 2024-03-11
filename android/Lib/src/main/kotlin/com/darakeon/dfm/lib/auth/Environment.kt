@@ -14,7 +14,7 @@ private const val themeKey = "Theme"
 private const val languageKey = "Language"
 
 fun Activity.setEnvironment(env: Environment) {
-	val changedTheme = themeChangeAndSave(env.theme)
+	val changedTheme = themeChangeAndSave(env.theme.enum)
 	val changedLanguage = languageChangeAndSave(env.language)
 
 	if (changedTheme || changedLanguage)
