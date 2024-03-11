@@ -81,8 +81,10 @@ namespace DFM.API.Controllers
         {
             var result = new
             {
-                error = HttpContext.Translate(error),
-                code = (Int32) error
+                error = new {
+	                code = (Int32)error,
+	                text = HttpContext.Translate(error),
+				}
             };
 
             Response.StatusCode = (Int32) getStatusCode(error);

@@ -4,6 +4,7 @@ import com.darakeon.dfm.lib.BuildConfig
 import com.darakeon.dfm.lib.R
 import com.darakeon.dfm.lib.api.entities.Body
 import com.darakeon.dfm.lib.api.entities.Environment
+import com.darakeon.dfm.lib.api.entities.Error
 import com.darakeon.dfm.lib.api.entities.Theme
 import com.darakeon.dfm.lib.auth.getValue
 import com.darakeon.dfm.lib.auth.setValue
@@ -64,7 +65,7 @@ internal class ResponseHandlerTest: BaseTest() {
 
 	@Test
 	fun onResponse_BodyChildrenNull() {
-		val body = Body<String>(null, null, null, null)
+		val body = Body<String>(null, null, null)
 		val response = Response.success(body)
 
 		handler.onResponse(CallMock(), response)
@@ -80,7 +81,7 @@ internal class ResponseHandlerTest: BaseTest() {
 
 	@Test
 	fun onResponse_BodySuccessAndFailed() {
-		val body = Body("success", null, "confusing result", 0)
+		val body = Body("success", null, Error(0, "confusing result"))
 		val response = Response.success(body)
 
 		handler.onResponse(CallMock(), response)
@@ -97,7 +98,7 @@ internal class ResponseHandlerTest: BaseTest() {
 	@Test
 	fun onResponse_ResponseBodyEnvironment() {
 		val env = Environment(Theme.LightNature, "pt-BR")
-		val body = Body("result", env, null, null)
+		val body = Body("result", env, null)
 		val response = Response.success(body)
 
 		handler.onResponse(CallMock(), response)
@@ -111,7 +112,7 @@ internal class ResponseHandlerTest: BaseTest() {
 
 	@Test
 	fun onResponse_BodySuccess() {
-		val body = Body("result", null, null, null)
+		val body = Body("result", null, null)
 		val response = Response.success(body)
 
 		handler.onResponse(CallMock(), response)
@@ -123,7 +124,7 @@ internal class ResponseHandlerTest: BaseTest() {
 	@Test
 	fun onResponse_ErrorOfTfa() {
 		val errorCode = activity.resources.getInteger(R.integer.TFA)
-		val body = Body<String>(null, null, "TFA", errorCode)
+		val body = Body<String>(null, null, Error(errorCode, "TFA"))
 		val response = Response.success(body)
 
 		handler.onResponse(CallMock(), response)
@@ -140,7 +141,7 @@ internal class ResponseHandlerTest: BaseTest() {
 	@Test
 	fun onResponse_ErrorOfUninvited() {
 		val errorCode = activity.resources.getInteger(R.integer.uninvited)
-		val body = Body<String>(null, null, "TFA", errorCode)
+		val body = Body<String>(null, null, Error(errorCode, "TFA"))
 		val response = Response.success(body)
 
 		activity.setValue("Ticket", "fake")
@@ -158,7 +159,7 @@ internal class ResponseHandlerTest: BaseTest() {
 
 	@Test
 	fun onResponse_ErrorOfAnotherType() {
-		val body = Body<String>(null, null, "generic", 273)
+		val body = Body<String>(null, null, Error(273, "generic"))
 		val response = Response.success(body)
 
 		handler.onResponse(CallMock(), response)
