@@ -1,6 +1,7 @@
 ﻿using System;
 using DFM.API.Helpers.Authorize;
 using DFM.API.Helpers.Controllers;
+using DFM.API.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.API.Controllers
@@ -10,7 +11,7 @@ namespace DFM.API.Controllers
 		[HttpGetAndHead]
 		public IActionResult Index()
 		{
-			return json(() => new { status = "online" });
+			return json(() => new TestsStatusModel());
 		}
 
 		[HttpGetAndHead]
