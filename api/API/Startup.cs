@@ -30,13 +30,7 @@ namespace DFM.API
 			Context.Configure(services);
 
 			services.AddControllers()
-				.AddNewtonsoftJson(options =>
-				{
-					options.SerializerSettings.ContractResolver = new DefaultContractResolver()
-					{
-						NamingStrategy = new KebabCaseNamingStrategy()
-					};
-				});
+				.AddNewtonsoftJson(Serialization.Set);
 
 			services.AddAntiforgery();
 		}
