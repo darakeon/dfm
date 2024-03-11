@@ -7,7 +7,7 @@ enum class Nature(val value: Int) {
 
 	companion object {
 		fun get(value: Int?) =
-			values().singleOrNull {
+			entries.singleOrNull {
 				it.value == value
 			}
 	}

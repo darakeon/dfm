@@ -6,6 +6,7 @@ import com.darakeon.dfm.lib.api.entities.Body
 import com.darakeon.dfm.lib.api.entities.Environment
 import com.darakeon.dfm.lib.api.entities.Error
 import com.darakeon.dfm.lib.api.entities.Theme
+import com.darakeon.dfm.lib.api.entities.ThemeEnum
 import com.darakeon.dfm.lib.auth.getValue
 import com.darakeon.dfm.lib.auth.setValue
 import com.darakeon.dfm.lib.utils.ActivityMock
@@ -97,7 +98,7 @@ internal class ResponseHandlerTest: BaseTest() {
 
 	@Test
 	fun onResponse_ResponseBodyEnvironment() {
-		val env = Environment(Theme.LightNature, "pt-BR")
+		val env = Environment(ThemeEnum(Theme.LightNature.code), "pt-BR")
 		val body = Body("result", env, null)
 		val response = Response.success(body)
 

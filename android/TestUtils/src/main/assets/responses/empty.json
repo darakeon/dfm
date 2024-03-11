@@ -1,7 +1,10 @@
 {
 	"data": {},
 	"environment": {
-		"theme": "DarkMagic",
+		"theme": {
+			"code": 1,
+			"text": "dark-magic"
+		},
 		"language": "pt-BR"
 	}
 }
