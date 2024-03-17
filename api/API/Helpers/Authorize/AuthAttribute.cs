@@ -85,11 +85,10 @@ namespace DFM.API.Helpers.Authorize
 			[AspMvcAction] String action)
 		{
 			var route = new Apis.Main();
-			var area = route.Area;
 
 			filterContext.Result = new RedirectToRouteResult(
 				route.Name,
-				new { action, controller, area }
+				new { action, controller }
 			);
 		}
 	}
