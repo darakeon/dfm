@@ -5,11 +5,11 @@ using DFM.API.Helpers.Models;
 
 namespace DFM.API.Models
 {
-    internal class MovesSummaryModel : BaseApiModel
+    internal class AccountsSummaryModel : BaseApiModel
     {
-        public MovesSummaryModel(string accountUrl, short id)
+        public AccountsSummaryModel(String accountUrl, Int16? year)
         {
-            var yearDate = DateFromInt.GetDateYear(id, now);
+            var yearDate = DateFromInt.GetDateYear(year, now);
 
             MonthList =
                 report.GetYearReport(accountUrl, yearDate)

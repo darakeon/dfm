@@ -5,16 +5,16 @@ using DFM.API.Helpers.Models;
 
 namespace DFM.API.Models
 {
-    internal class MovesExtractModel : BaseApiModel
+    internal class AccountsExtractModel : BaseApiModel
     {
-        public MovesExtractModel(string accountUrl, int id)
+        public AccountsExtractModel(String accountUrl, Int16? year, Int16? month)
         {
-            var monthDate = DateFromInt.GetDateMonth(id, now);
-            var yearDate = DateFromInt.GetDateYear(id, now);
+            var monthDate = DateFromInt.GetDateMonth(month, now);
+            var yearDate = DateFromInt.GetDateYear(year, now);
 
-            var month = report.GetMonthReport(accountUrl, yearDate, monthDate);
+            var extract = report.GetMonthReport(accountUrl, yearDate, monthDate);
 
-            MoveList = month.MoveList.Reverse()
+            MoveList = extract.MoveList.Reverse()
                 .Select(m => new SimpleMoveJson(m, accountUrl))
                 .ToList();
 

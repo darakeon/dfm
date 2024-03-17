@@ -26,7 +26,7 @@ namespace DFM.BusinessLogic.Services
 			var account = repos.Account.GetByUrl(accountUrl, user);
 
 			if (account == null)
-				throw Error.InvalidAccount.Throw();
+				throw Error.AccountNotFound.Throw();
 
 			var total = repos.Summary.GetTotal(account);
 
@@ -61,7 +61,7 @@ namespace DFM.BusinessLogic.Services
 			var account = repos.Account.GetByUrl(accountUrl, user);
 
 			if (account == null)
-				throw Error.InvalidAccount.Throw();
+				throw Error.AccountNotFound.Throw();
 
 			var total = repos.Summary.GetTotal(account);
 			var months = repos.Summary.YearReport(account, dateYear);

@@ -17,7 +17,6 @@ namespace DFM.API.Starters.Routes
 
 		public static void CreateRoutes()
 		{
-			addUrl<Apis.Accounts>();
 			addUrl<Apis.Main>();
 			addUrl<Apis.Object>();
 		}
