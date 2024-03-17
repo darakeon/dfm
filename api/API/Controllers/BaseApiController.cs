@@ -12,8 +12,10 @@ using Newtonsoft.Json;
 
 namespace DFM.API.Controllers
 {
-    [ApiController, Route(Apis.Object.ObjectPath)]
-    public class BaseApiController : Controller
+	[ApiController]
+	[Route(Apis.Main.ObjectPath)]
+	[Route(Apis.Object.ObjectPath)]
+	public class BaseApiController : Controller
     {
         protected JsonResult json(Action action)
         {
