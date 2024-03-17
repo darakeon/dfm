@@ -47,3 +47,9 @@ Scenario: Ad07. Not disable if user requested wipe
 		But the user asked data wipe
 	When I try to disable the ticket
 	Then I will receive this core error: UserAskedWipe
+
+Scenario: Ad08. Disable for non active user
+	Given I pass a ticket that exist
+		But I deactivate the user
+	When I try to disable the ticket
+	Then I will receive no core error
