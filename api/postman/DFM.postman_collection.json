@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "fd27b227-0b5d-4402-ab78-544f28e9da7d",
+		"_postman_id": "e53d9e14-d3e8-48a7-92e8-6ddebef9b674",
 		"name": "DFM",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "16840310"
@@ -430,123 +430,144 @@
 			]
 		},
 		{
-			"name": "Accounts List",
-			"event": [
+			"name": "Accounts",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Body has properties\", function () {\r",
-							"    const json = pm.response.json();\r",
-							"\r",
-							"    pm.expect(json).to.have.property(\"data\");\r",
-							"    pm.expect(json.data).to.have.property(\"accountList\");\r",
-							"\r",
-							"    if (json.data.accountList.length > 0) {\r",
-							"        pm.collectionVariables.set(\"account_url\", json.data.accountList[0].url)\r",
-							"    }\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/accounts/list",
-					"host": [
-						"{{url}}"
+					"name": "List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body has properties\", function () {\r",
+									"    const json = pm.response.json();\r",
+									"\r",
+									"    pm.expect(json).to.have.property(\"data\");\r",
+									"    pm.expect(json.data).to.have.property(\"account-list\");\r",
+									"\r",
+									"    if (json.data['account-list'].length > 0) {\r",
+									"        pm.collectionVariables.set(\"account_url\", json.data['account-list'][0].url)\r",
+									"    }\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
 					],
-					"path": [
-						"accounts",
-						"list"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Moves Extract",
-			"event": [
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/accounts",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Body has properties\", function () {\r",
-							"    const json = pm.response.json();\r",
-							"\r",
-							"    pm.expect(json).to.have.property(\"data\");\r",
-							"    pm.expect(json.data).to.have.property(\"moveList\");\r",
-							"\r",
-							"    if (json.data.moveList.length > 0) {\r",
-							"        pm.collectionVariables.set(\"move_id\", json.data.moveList[0].guid)\r",
-							"    }\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/account-{{account_url}}/moves/extract/202311",
-					"host": [
-						"{{url}}"
+					"name": "Extract",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body has properties\", function () {\r",
+									"    const json = pm.response.json();\r",
+									"\r",
+									"    pm.expect(json).to.have.property(\"data\");\r",
+									"    pm.expect(json.data).to.have.property(\"moveList\");\r",
+									"\r",
+									"    if (json.data.moveList.length > 0) {\r",
+									"        pm.collectionVariables.set(\"move_id\", json.data.moveList[0].guid)\r",
+									"    }\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
 					],
-					"path": [
-						"account-{{account_url}}",
-						"moves",
-						"extract",
-						"202311"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Moves Summary",
-			"event": [
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/accounts/{{account_url}}/extract?year=2023&month=02",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"accounts",
+								"{{account_url}}",
+								"extract"
+							],
+							"query": [
+								{
+									"key": "year",
+									"value": "2023"
+								},
+								{
+									"key": "month",
+									"value": "02"
+								}
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/account-{{account_url}}/moves/summary/2023",
-					"host": [
-						"{{url}}"
+					"name": "Summary",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
 					],
-					"path": [
-						"account-{{account_url}}",
-						"moves",
-						"summary",
-						"2023"
-					]
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/accounts/{{account_url}}/summary?year=2023",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"accounts",
+								"{{account_url}}",
+								"summary"
+							],
+							"query": [
+								{
+									"key": "year",
+									"value": "2023"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
 			"name": "Moves Create",

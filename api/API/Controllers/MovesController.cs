@@ -12,18 +12,6 @@ namespace DFM.API.Controllers
     public class MovesController : BaseApiController
     {
         [HttpGetAndHead]
-        public IActionResult Extract(string accountUrl, int id)
-        {
-            return json(() => new MovesExtractModel(accountUrl, id));
-        }
-
-        [HttpGetAndHead]
-        public IActionResult Summary(string accountUrl, short id)
-        {
-            return json(() => new MovesSummaryModel(accountUrl, id));
-        }
-
-        [HttpGetAndHead]
         public IActionResult Create(Guid? id)
         {
             return json(() => new MovesCreateModel(id));

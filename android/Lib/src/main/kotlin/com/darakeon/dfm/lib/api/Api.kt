@@ -3,6 +3,7 @@ package com.darakeon.dfm.lib.api
 import android.content.Context
 import com.darakeon.dfm.lib.api.entities.Body
 import com.darakeon.dfm.lib.api.entities.accounts.AccountList
+import com.darakeon.dfm.lib.api.entities.errors.ErrorList
 import com.darakeon.dfm.lib.api.entities.extract.Extract
 import com.darakeon.dfm.lib.api.entities.login.Login
 import com.darakeon.dfm.lib.api.entities.login.Ticket
@@ -12,7 +13,6 @@ import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
 import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
 import com.darakeon.dfm.lib.api.entities.signup.SignUp
-import com.darakeon.dfm.lib.api.entities.errors.ErrorList
 import com.darakeon.dfm.lib.api.entities.summary.Summary
 import com.darakeon.dfm.lib.api.entities.terms.Terms
 import com.darakeon.dfm.lib.api.entities.tfa.TFA
@@ -86,8 +86,9 @@ class Api<C>(
 		month: Int,
 		onSuccess: (Extract) -> Unit
 	) {
-		val time = year * 100 + month + 1
-		service.getExtract(accountUrl, time).callData(onSuccess)
+		service.getExtract(
+			accountUrl, year.toShort(), (month + 1).toShort()
+		).callData(onSuccess)
 	}
 
 	fun check(
@@ -183,7 +184,9 @@ class Api<C>(
 		year: Int,
 		onSuccess: (Summary) -> Unit
 	) {
-		service.getSummary(accountUrl, year).callData(onSuccess)
+		service.getSummary(
+			accountUrl, year.toShort()
+		).callData(onSuccess)
 	}
 
 	fun validateTFA(

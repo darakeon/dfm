@@ -4,7 +4,6 @@
 
 		"CheckErrors": "Check the fields and try again.",
 
-		"AccountNotFound": "Account not found.",
 		"AccountUrlRequired": "Account url required.",
 		"AccountUrlInvalid": "Account url invalid.",
 		"AccountUrlAlreadyExists": "Account url already exists.",
@@ -101,6 +100,7 @@
 		"LoginRequested": "You need to login before accessing this resource",
 		"LogNotFound": "Log not found",
 		"TermsNotFound": "Terms not found",
+		"AccountNotFound": "Account not found",
 		"": null
 	},
 	"pt-BR": {
@@ -108,7 +108,6 @@
 
 		"CheckErrors": "Verifique os erros e tente novamente.",
 
-		"AccountNotFound": "Conta não encontrada.",
 		"AccountUrlRequired": "Url da conta obrigatória.",
 		"AccountUrlInvalid": "Url da conta inválida.",
 		"AccountUrlAlreadyExists": "Url da conta já usada.",
@@ -205,6 +204,7 @@
 		"LoginRequested": "É necessário se logar antes de acessar este recurso",
 		"LogNotFound": "Log não encontrado",
 		"TermsNotFound": "Termos não encontrados",
+		"AccountNotFound": "Conta não encontrada",
 		"": null
 	}
 }

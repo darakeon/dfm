@@ -24,7 +24,7 @@ Scenario: Fa01. Get with invalid Account name
 			| Month | Year |
 			| 4     | 2012 |
 	When I try to get the month report
-	Then I will receive this core error: InvalidAccount
+	Then I will receive this core error: AccountNotFound
 		And I will receive no month report
 
 Scenario: Fa02. Get with Date Year Zero

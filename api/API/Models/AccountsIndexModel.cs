@@ -4,9 +4,9 @@ using DFM.BusinessLogic.Response;
 
 namespace DFM.API.Models
 {
-    internal class AccountsListModel : BaseApiModel
+    internal class AccountsIndexModel : BaseApiModel
     {
-        public AccountsListModel()
+        public AccountsIndexModel()
         {
             AccountList =
                 admin.GetAccountList(true)
