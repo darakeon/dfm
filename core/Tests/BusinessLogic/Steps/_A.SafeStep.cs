@@ -974,7 +974,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 				var days = userData.ContainsKey("Days")
 					? Int32.Parse(userData["Days"])
-					: default(Int32?);
+					: -27;
 
 				createUserIfNotExists(email, password, active, signed, timezone, theme, language, days);
 			}
