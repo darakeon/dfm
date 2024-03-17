@@ -7,6 +7,7 @@ import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
 import com.darakeon.dfm.lib.api.entities.signup.SignUp
+import com.darakeon.dfm.lib.api.entities.status.Status
 import com.darakeon.dfm.lib.api.entities.terms.Clause
 import com.darakeon.dfm.lib.api.entities.tfa.TFA
 import com.darakeon.dfm.lib.api.entities.wipe.Wipe
@@ -104,7 +105,7 @@ class RequestServiceTest: BaseTest() {
 		assertThat(environment.language, `is`("pt-BR"))
 		assertThat(environment.theme.enum, `is`(Theme.DarkMagic))
 
-		assertNotNull(body.data)
+		assertNull(body.data)
 	}
 
 	@Test
@@ -119,7 +120,7 @@ class RequestServiceTest: BaseTest() {
 		assertThat(environment.language, `is`("pt-BR"))
 		assertThat(environment.theme.enum, `is`(Theme.DarkMagic))
 
-		assertNotNull(body.data)
+		assertNull(body.data)
 	}
 
 	@Test
@@ -134,7 +135,7 @@ class RequestServiceTest: BaseTest() {
 		assertThat(environment.language, `is`("pt-BR"))
 		assertThat(environment.theme.enum, `is`(Theme.DarkMagic))
 
-		assertNotNull(body.data)
+		assertNull(body.data)
 	}
 
 	@Test
@@ -155,7 +156,7 @@ class RequestServiceTest: BaseTest() {
 
 		val body = response.body()!!
 
-		assertNotNull(body.data)
+		assertNull(body.data)
 	}
 
 	@Test
@@ -188,7 +189,7 @@ class RequestServiceTest: BaseTest() {
 		assertThat(environment.language, `is`("pt-BR"))
 		assertThat(environment.theme.enum, `is`(Theme.DarkMagic))
 
-		assertNotNull(body.data)
+		assertNull(body.data)
 	}
 
 	@Test
@@ -263,7 +264,7 @@ class RequestServiceTest: BaseTest() {
 		assertThat(environment.language, `is`("pt-BR"))
 		assertThat(environment.theme.enum, `is`(Theme.DarkMagic))
 
-		assertNotNull(body.data)
+		assertNull(body.data)
 	}
 
 	@Test
@@ -278,7 +279,7 @@ class RequestServiceTest: BaseTest() {
 		assertThat(environment.language, `is`("pt-BR"))
 		assertThat(environment.theme.enum, `is`(Theme.DarkMagic))
 
-		assertNotNull(body.data)
+		assertNull(body.data)
 	}
 
 	@Test
@@ -310,7 +311,7 @@ class RequestServiceTest: BaseTest() {
 		assertThat(environment.language, `is`("pt-BR"))
 		assertThat(environment.theme.enum, `is`(Theme.DarkMagic))
 
-		assertNotNull(body.data)
+		assertNull(body.data)
 	}
 
 	@Test
@@ -353,7 +354,7 @@ class RequestServiceTest: BaseTest() {
 		assertThat(environment.language, `is`("pt-BR"))
 		assertThat(environment.theme.enum, `is`(Theme.DarkMagic))
 
-		assertNotNull(body.data)
+		assertNull(body.data)
 	}
 
 	@Test
@@ -368,7 +369,7 @@ class RequestServiceTest: BaseTest() {
 		assertThat(environment.language, `is`("pt-BR"))
 		assertThat(environment.theme.enum, `is`(Theme.DarkMagic))
 
-		assertNotNull(body.data)
+		assertNull(body.data)
 	}
 
 	@Test
@@ -418,7 +419,7 @@ class RequestServiceTest: BaseTest() {
 
 	@Test
 	fun wakeUpSite() {
-		server.enqueue("empty")
+		server.enqueue("status")
 
 		val response = service.wakeUpSite().execute()
 		assertNotNull(response)
@@ -429,6 +430,9 @@ class RequestServiceTest: BaseTest() {
 		assertThat(environment.theme.enum, `is`(Theme.DarkMagic))
 
 		assertNotNull(body.data)
+
+		val data = body.data!!
+		assertThat(data.status.enum, `is`(Status.DbError))
 	}
 
 	@Test
@@ -523,6 +527,6 @@ class RequestServiceTest: BaseTest() {
 		assertNotNull(response)
 		val body = response.body()!!
 
-		assertNotNull(body.data)
+		assertNull(body.data)
 	}
 }

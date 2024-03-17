@@ -18,39 +18,45 @@ namespace DFM.API.Controllers
             return json(() =>
             {
                 action();
-                return new { success = true };
+                return (BaseApiModel) null;
             });
         }
 
+        protected JsonResult jsonNonBaseApi<T>(Func<T> action)
+        {
+	        try
+	        {
+		        var model = action();
+
+		        var result = model != null
+			        ? new ResponseModel(model, null)
+			        : new ResponseModel();
+
+		        return Json(result);
+	        }
+	        catch (CoreError e)
+	        {
+		        return error(e.Type);
+	        }
+        }
+
         protected JsonResult json<T>(Func<T> action)
-            where T : class
+            where T : BaseApiModel
         {
             try
             {
                 var model = action();
 
-                var result = makeResult(model);
+                var result = model != null
+	                ? new ResponseModel(model, model.Environment)
+	                : new ResponseModel();
 
-                return makeMvcActionResponse(result);
+                return Json(result);
             }
             catch (CoreError e)
             {
                 return error(e.Type);
             }
-        }
-
-        private object makeResult(object model)
-        {
-            if (model is BaseApiModel apiModel)
-            {
-                return new
-                {
-                    data = apiModel,
-                    environment = apiModel.Environment
-                };
-            }
-
-            return new { data = model };
         }
 
         [HttpGetAndHead]
@@ -79,16 +85,13 @@ namespace DFM.API.Controllers
 
         protected JsonResult error(Error error)
         {
-            var result = new
-            {
-                error = new {
-	                code = (Int32)error,
-	                text = HttpContext.Translate(error),
-				}
-            };
+            var result = new ResponseModel(
+	            (Int32)error, 
+	            HttpContext.Translate(error)
+	        );
 
             Response.StatusCode = (Int32) getStatusCode(error);
-            return makeMvcActionResponse(result);
+            return Json(result);
         }
 
         private HttpStatusCode getStatusCode(Error error)
@@ -106,11 +109,6 @@ namespace DFM.API.Controllers
 			        return HttpStatusCode.BadRequest;
 	        }
 	    }
-
-        private JsonResult makeMvcActionResponse(object result)
-        {
-            return Json(result);
-        }
 
         protected T getFromBody<T>()
         {

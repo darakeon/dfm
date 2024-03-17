@@ -1,4 +1,4 @@
-package com.darakeon.dfm.lib.api.entities.status
+package com.darakeon.dfm.lib.api.entities.errors
 
 data class Except(
 	val className: String,
