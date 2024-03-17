@@ -26,6 +26,24 @@ namespace DFM.API.Controllers
             });
         }
 
+        protected JsonResult jsonNonBaseApi<T>(Func<T> action)
+        {
+	        try
+	        {
+		        var model = action();
+
+		        var result = model != null
+			        ? new ResponseModel(model, null)
+			        : new ResponseModel();
+
+		        return Json(result);
+	        }
+	        catch (CoreError e)
+	        {
+		        return error(e.Type);
+	        }
+        }
+
         protected JsonResult json<T>(Func<T> action)
             where T : BaseApiModel
         {

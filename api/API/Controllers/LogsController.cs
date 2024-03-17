@@ -13,13 +13,13 @@ namespace DFM.API.Controllers
         [HttpGetAndHead]
         public IActionResult Count()
         {
-            return json(() => new LogFile(false));
+            return jsonNonBaseApi(() => new LogFile(false));
         }
 
         [HttpGetAndHead]
         public IActionResult Index()
         {
-            return json(() => new LogFile(true));
+            return jsonNonBaseApi(() => new LogFile(true));
         }
 
         [HttpPatch]
