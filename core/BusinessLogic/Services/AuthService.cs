@@ -115,7 +115,7 @@ namespace DFM.BusinessLogic.Services
 			return new(user);
 		}
 
-		private User getUserByTicket(String ticketKey)
+		private User getUserByTicket(String ticketKey, Boolean allowDisabled = false)
 		{
 			var ticket = repos.Ticket.GetByKey(ticketKey);
 
@@ -124,7 +124,7 @@ namespace DFM.BusinessLogic.Services
 
 			var user = ticket.User;
 
-			if (!user.Control.ActiveOrAllowedPeriod())
+			if (!allowDisabled && !user.Control.ActiveOrAllowedPeriod())
 				throw Error.DisabledUser.Throw();
 
 			return user;
@@ -136,7 +136,7 @@ namespace DFM.BusinessLogic.Services
 			{
 				if (ticketKey == null) return;
 
-				var user = GetCurrent();
+				var user = GetCurrent(true);
 
 				var ticket = ticketKey.Length == Defaults.TicketShowedPart
 					? repos.Ticket.GetByPartOfKey(user, ticketKey)
@@ -344,9 +344,9 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
-		internal User GetCurrent()
+		internal User GetCurrent(Boolean allowDisabled = false)
 		{
-			return getUserByTicket(parent.Current.TicketKey);
+			return getUserByTicket(parent.Current.TicketKey, allowDisabled);
 		}
 
 		internal User VerifyUser()
