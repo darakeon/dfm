@@ -1,7 +1,7 @@
 package com.darakeon.dfm.error_logs
 
 import com.darakeon.dfm.lib.api.Api
-import com.darakeon.dfm.lib.api.entities.status.ErrorLog
+import com.darakeon.dfm.lib.api.entities.errors.ErrorLog
 import com.darakeon.dfm.lib.ui.Adapter
 
 class ErrorAdapter(

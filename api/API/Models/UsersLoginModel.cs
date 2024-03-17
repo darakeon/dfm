@@ -7,18 +7,20 @@ namespace DFM.API.Models
 	public class UsersLoginModel : BaseApiModel
 	{
 		[Required(ErrorMessage = "*")]
-		public String Email { get; set; }
+		public String Email { private get; set; }
 
 		[Required(ErrorMessage = "*")]
-		public String Password { get; set; }
+		public String Password { private get; set; }
 
-		public Boolean RememberMe { get; set; }
+		public Boolean RememberMe { private get; set; }
 
-		internal String LogOn()
+		public String Ticket { get; private set; }
+
+		internal void LogOn()
 		{
 			try
 			{
-				return current.Set(Email, Password, RememberMe);
+				Ticket = current.Set(Email, Password, RememberMe);
 			}
 			catch (CoreError e)
 			{

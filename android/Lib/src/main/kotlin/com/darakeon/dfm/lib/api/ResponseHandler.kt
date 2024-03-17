@@ -17,7 +17,8 @@ import java.net.SocketTimeoutException
 
 class ResponseHandler<C, A>(
 	private val caller: C,
-	private val onSuccess: (A) -> Unit,
+	private val hasData: Boolean,
+	private val onSuccess: (A?) -> Unit,
 ) : Callback<Body<A>>
 	where C: Context, C: ApiCaller
 {
@@ -51,7 +52,7 @@ class ResponseHandler<C, A>(
 				if (body == null) {
 					caller.error(R.string.body_null)
 
-				} else if (body.data == null || body.error != null) {
+				} else if (body.error != null) {
 					assemblyResponse(body.error)
 
 				} else {
@@ -59,7 +60,15 @@ class ResponseHandler<C, A>(
 						caller.setEnvironment(body.environment)
 					}
 
-					onSuccess(body.data)
+					if (body.data == null) {
+						if (hasData) {
+							assemblyResponse(null)
+						} else {
+							onSuccess(null)
+						}
+					} else {
+						onSuccess(body.data)
+					}
 				}
 			}
 		}

@@ -1,4 +1,10 @@
 {
+	"data": {
+		"status": {
+			"code": 2,
+			"text": "db-error"
+		}
+	},
 	"environment": {
 		"theme": {
 			"code": 1,
@@ -7,4 +13,3 @@
 		"language": "pt-BR"
 	}
 }
-

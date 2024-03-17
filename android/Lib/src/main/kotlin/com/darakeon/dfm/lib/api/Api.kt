@@ -12,7 +12,7 @@ import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
 import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
 import com.darakeon.dfm.lib.api.entities.signup.SignUp
-import com.darakeon.dfm.lib.api.entities.status.ErrorList
+import com.darakeon.dfm.lib.api.entities.errors.ErrorList
 import com.darakeon.dfm.lib.api.entities.summary.Summary
 import com.darakeon.dfm.lib.api.entities.terms.Terms
 import com.darakeon.dfm.lib.api.entities.tfa.TFA
@@ -34,7 +34,26 @@ class Api<C>(
 	var cancelled = false
 		private set
 
-	private fun <T> Call<Body<T>>.call(onSuccess: (T) -> Unit) {
+	private fun <T> Call<Body<T>>.callData(
+		onSuccess: (T) -> Unit
+	) {
+		this.call(true) {
+			onSuccess(it!!)
+		}
+	}
+
+	private fun <T> Call<Body<T>>.callNoData(
+		onSuccess: () -> Unit
+	) {
+		this.call(false) {
+			onSuccess()
+		}
+	}
+
+	private fun <T> Call<Body<T>>.call(
+		hasData: Boolean,
+		onSuccess: (T?) -> Unit
+	) {
 		val call = currentCall
 
 		if (call != null && !call.isCanceled && !call.isExecuted) {
@@ -42,7 +61,7 @@ class Api<C>(
 		}
 
 		currentCall = this
-		requestHandler.call(this) {
+		requestHandler.call(this, hasData) {
 			currentCall = null
 			onSuccess(it)
 		}
@@ -58,7 +77,7 @@ class Api<C>(
 	fun listAccounts(
 		onSuccess: (AccountList) -> Unit
 	) {
-		service.listAccounts().call { onSuccess(it) }
+		service.listAccounts().callData(onSuccess)
 	}
 
 	fun getExtract(
@@ -68,7 +87,7 @@ class Api<C>(
 		onSuccess: (Extract) -> Unit
 	) {
 		val time = year * 100 + month + 1
-		service.getExtract(accountUrl, time).call { onSuccess(it) }
+		service.getExtract(accountUrl, time).callData(onSuccess)
 	}
 
 	fun check(
@@ -76,7 +95,7 @@ class Api<C>(
 		nature: Nature,
 		onSuccess: () -> Unit
 	) {
-		service.check(id, nature).call { onSuccess() }
+		service.check(id, nature).callNoData(onSuccess)
 	}
 
 	fun uncheck(
@@ -84,14 +103,14 @@ class Api<C>(
 		nature: Nature,
 		onSuccess: () -> Unit
 	) {
-		service.uncheck(id, nature).call { onSuccess() }
+		service.uncheck(id, nature).callNoData(onSuccess)
 	}
 
 	fun delete(
 		id: UUID,
 		onSuccess: () -> Unit
 	) {
-		service.delete(id).call { onSuccess() }
+		service.delete(id).callNoData(onSuccess)
 	}
 
 	fun signup(
@@ -104,7 +123,7 @@ class Api<C>(
 	) {
 		service.signup(
 			SignUp(email, password, acceptedContract, language, timeZone)
-		).call { onSuccess() }
+		).callNoData(onSuccess)
 	}
 
 	fun login(
@@ -112,13 +131,13 @@ class Api<C>(
 		password: String,
 		onSuccess: (Ticket) -> Unit
 	) {
-		service.login(Login(email, password)).call { onSuccess(it) }
+		service.login(Login(email, password)).callData(onSuccess)
 	}
 
 	fun logout(
 		onSuccess: () -> Unit
 	) {
-		service.logout().call { onSuccess() }
+		service.logout().callNoData(onSuccess)
 	}
 
 	fun getMove(
@@ -130,7 +149,7 @@ class Api<C>(
 				service.getMove()
 			else
 				service.getMove(id)
-		).call { onSuccess(it) }
+		).callData(onSuccess)
 	}
 
 	fun saveMove(
@@ -143,20 +162,20 @@ class Api<C>(
 				service.saveMove(move)
 			else
 				service.saveMove(id, move)
-		).call { onSuccess() }
+		).callNoData(onSuccess)
 	}
 
 	fun getSettings(
 		onSuccess: (Settings) -> Unit
 	) {
-		service.getSettings().call { onSuccess(it) }
+		service.getSettings().callData(onSuccess)
 	}
 
 	fun saveSettings(
 		settings: Settings,
 		onSuccess: () -> Unit
 	) {
-		service.saveSettings(settings).call { onSuccess() }
+		service.saveSettings(settings).callNoData(onSuccess)
 	}
 
 	fun getSummary(
@@ -164,41 +183,48 @@ class Api<C>(
 		year: Int,
 		onSuccess: (Summary) -> Unit
 	) {
-		service.getSummary(accountUrl, year).call { onSuccess(it) }
+		service.getSummary(accountUrl, year).callData(onSuccess)
 	}
 
 	fun validateTFA(
 		text: String,
 		onSuccess: () -> Unit
 	) {
-		service.validateTFA(TFA(text)).call { onSuccess() }
+		service.validateTFA(TFA(text)).callNoData(onSuccess)
 	}
 
-	fun listsForMoves(onSuccess: (Lists) -> Unit) {
-		service.listsForMoves().call { onSuccess(it) }
+	fun listsForMoves(
+		onSuccess: (Lists) -> Unit
+	) {
+		service.listsForMoves().callData(onSuccess)
 	}
 
-	fun wipe(wipe: Wipe, onSuccess: () -> Unit) {
-		service.wipe(wipe).call { onSuccess() }
+	fun wipe(
+		wipe: Wipe,
+		onSuccess: () -> Unit
+	) {
+		service.wipe(wipe).callNoData(onSuccess)
 	}
 
-	fun getTerms(onSuccess: (Terms) -> Unit) {
-		service.getTerms().call { onSuccess(it) }
+	fun getTerms(
+		onSuccess: (Terms) -> Unit
+	) {
+		service.getTerms().callData(onSuccess)
 	}
 
 	fun wakeUpSite(onSuccess: () -> Unit) {
-		service.wakeUpSite().call { onSuccess() }
+		service.wakeUpSite().callNoData(onSuccess)
 	}
 
 	fun listErrors(onSuccess: (ErrorList) -> Unit) {
-		service.listErrors().call { onSuccess(it) }
+		service.listErrors().callData(onSuccess)
 	}
 
 	fun countErrors(onSuccess: (ErrorList) -> Unit) {
-		service.countErrors().call { onSuccess(it) }
+		service.countErrors().callData(onSuccess)
 	}
 
 	fun archiveErrors(id: String, onSuccess: () -> Unit) {
-		service.archiveErrors(id).call { onSuccess() }
+		service.archiveErrors(id).callNoData(onSuccess)
 	}
 }

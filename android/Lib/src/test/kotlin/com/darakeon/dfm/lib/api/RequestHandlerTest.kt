@@ -31,12 +31,12 @@ class RequestHandlerTest: BaseTest() {
 
 	@Test
 	fun callOffline() {
-		var result = ""
+		var result: String? = ""
 
 		activity.simulateOffline()
 
 		val call = CallMock("result")
-		handler.call(call) { result = it }
+		handler.call(call, true) { result = it }
 
 		call.execute()
 
@@ -47,12 +47,12 @@ class RequestHandlerTest: BaseTest() {
 
 	@Test
 	fun callOnline() {
-		var result = ""
+		var result: String? = ""
 
 		activity.simulateNetwork()
 
 		val call = CallMock("result")
-		handler.call(call) { result = it }
+		handler.call(call, true) { result = it }
 
 		call.execute()
 
@@ -69,7 +69,7 @@ class RequestHandlerTest: BaseTest() {
 		activity.simulateNetwork()
 
 		val call = CallMock(TestException())
-		handler.call(call) { }
+		handler.call(call, false) { }
 
 		call.execute()
 	}
@@ -78,12 +78,12 @@ class RequestHandlerTest: BaseTest() {
 	fun callExceptionRelease() {
 		if (BuildConfig.DEBUG) return
 
-		var result = ""
+		var result: String? = ""
 
 		activity.simulateNetwork()
 
 		val call = CallMock(TestException())
-		handler.call(call) { result = it }
+		handler.call(call, true) { result = it }
 
 		call.execute()
 
@@ -97,7 +97,7 @@ class RequestHandlerTest: BaseTest() {
 		activity.simulateNetwork()
 
 		val call = CallMock("result")
-		handler.call(call) { }
+		handler.call(call, false) { }
 
 		assertTrue(activity.waitStarted)
 

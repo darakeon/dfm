@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Mvc;
@@ -36,9 +38,24 @@ namespace DFM.API.Starters
 				&& type.Name == typeof(Int32?).Name
 				&& type.GenericTypeArguments.Length == 1;
 
-			return isNullable 
+			return isNullable
 				? type.GenericTypeArguments[0] 
 				: type;
+		}
+
+		protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
+		{
+			var property = base.CreateProperty(member, memberSerialization);
+
+			property.ShouldSerialize = instance => shouldSerialize(member, instance);
+
+			return property;
+		}
+
+		private static bool shouldSerialize(MemberInfo member, object instance)
+		{
+			return member is not PropertyInfo info 
+			    || info.GetValue(instance, null) != null;
 		}
 
 		class EnumContract : JsonPrimitiveContract

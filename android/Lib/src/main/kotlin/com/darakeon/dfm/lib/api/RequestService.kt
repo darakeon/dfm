@@ -2,6 +2,7 @@ package com.darakeon.dfm.lib.api
 
 import com.darakeon.dfm.lib.api.entities.Body
 import com.darakeon.dfm.lib.api.entities.accounts.AccountList
+import com.darakeon.dfm.lib.api.entities.errors.ErrorList
 import com.darakeon.dfm.lib.api.entities.extract.Extract
 import com.darakeon.dfm.lib.api.entities.login.Login
 import com.darakeon.dfm.lib.api.entities.login.Ticket
@@ -11,7 +12,7 @@ import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
 import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
 import com.darakeon.dfm.lib.api.entities.signup.SignUp
-import com.darakeon.dfm.lib.api.entities.status.ErrorList
+import com.darakeon.dfm.lib.api.entities.status.StatusResponse
 import com.darakeon.dfm.lib.api.entities.summary.Summary
 import com.darakeon.dfm.lib.api.entities.terms.Terms
 import com.darakeon.dfm.lib.api.entities.tfa.TFA
@@ -118,7 +119,7 @@ interface RequestService {
 	fun getTerms(): Call<Body<Terms>>
 
 	@GET("/")
-	fun wakeUpSite(): Call<Body<Any>>
+	fun wakeUpSite(): Call<Body<StatusResponse>>
 
 	@GET("logs")
 	fun listErrors(): Call<Body<ErrorList>>

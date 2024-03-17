@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.GridLayout
 import com.darakeon.dfm.error_logs.databinding.ErrorLineBinding
-import com.darakeon.dfm.lib.api.entities.status.ErrorLog
+import com.darakeon.dfm.lib.api.entities.errors.ErrorLog
 
 class ErrorLine(
 	context: Context, attributeSet: AttributeSet

@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using DFM.API.Helpers.Authorize;
+﻿using DFM.API.Helpers.Authorize;
 using DFM.API.Helpers.Controllers;
 using DFM.API.Models;
 using DFM.BusinessLogic.Exceptions;
@@ -13,7 +11,8 @@ namespace DFM.API.Controllers
 		[HttpPost]
 		public IActionResult Login([FromBody] UsersLoginModel model)
 		{
-			return json(() => new { ticket = model.LogOn() });
+			model.LogOn();
+			return json(() => model);
 		}
 
 		[HttpPost]
