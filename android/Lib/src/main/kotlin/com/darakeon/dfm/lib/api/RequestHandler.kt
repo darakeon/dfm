@@ -32,7 +32,11 @@ class RequestHandler<C>(
 			.addHeader("ticket", caller.ticket)
 			.build()
 
-	fun <T> call(call: Call<Body<T>>, onSuccess: (T) -> Unit) {
+	fun <T> call(
+		call: Call<Body<T>>,
+		hasData: Boolean,
+		onSuccess: (T?) -> Unit
+	) {
 		if (Internet.isOffline(caller)) {
 			call.cancel()
 			caller.offline()
@@ -40,7 +44,7 @@ class RequestHandler<C>(
 		}
 
 		call.enqueue(
-			ResponseHandler(caller, onSuccess)
+			ResponseHandler(caller, hasData, onSuccess)
 		)
 
 		this.isExecuted = { call.isExecuted }

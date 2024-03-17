@@ -8,7 +8,7 @@ import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
 import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
-import com.darakeon.dfm.lib.api.entities.status.ErrorList
+import com.darakeon.dfm.lib.api.entities.errors.ErrorList
 import com.darakeon.dfm.lib.api.entities.summary.Summary
 import com.darakeon.dfm.lib.api.entities.terms.Terms
 import com.darakeon.dfm.lib.api.entities.wipe.Wipe

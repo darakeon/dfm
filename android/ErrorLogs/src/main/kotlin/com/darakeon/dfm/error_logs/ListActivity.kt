@@ -6,8 +6,8 @@ import android.view.View
 import com.darakeon.dfm.error_logs.databinding.ListBinding
 import com.darakeon.dfm.error_logs.service.SiteErrorService
 import com.darakeon.dfm.lib.Log
-import com.darakeon.dfm.lib.api.entities.status.ErrorList
-import com.darakeon.dfm.lib.api.entities.status.ErrorLog
+import com.darakeon.dfm.lib.api.entities.errors.ErrorList
+import com.darakeon.dfm.lib.api.entities.errors.ErrorLog
 import com.darakeon.dfm.lib.extensions.refresh
 
 class ListActivity : BaseActivity<ListBinding>() {
