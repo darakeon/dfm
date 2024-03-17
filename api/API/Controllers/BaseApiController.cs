@@ -5,12 +5,14 @@ using System.Text;
 using DFM.API.Helpers.Controllers;
 using DFM.API.Helpers.Extensions;
 using DFM.API.Models;
+using DFM.API.Starters.Routes;
 using DFM.BusinessLogic.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace DFM.API.Controllers
 {
+    [ApiController, Route(Apis.Object.ObjectPath)]
     public class BaseApiController : Controller
     {
         protected JsonResult json(Action action)
@@ -104,6 +106,7 @@ namespace DFM.API.Controllers
 			        return HttpStatusCode.Forbidden;
 				case Error.LogNotFound:
 				case Error.TermsNotFound:
+				case Error.AccountNotFound:
 					return HttpStatusCode.NotFound;
 		        default:
 			        return HttpStatusCode.BadRequest;

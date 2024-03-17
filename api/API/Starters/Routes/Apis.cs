@@ -14,14 +14,8 @@ namespace DFM.API.Starters.Routes
 
 		public class Object : Apis
 		{
-			public override String Path =>
-				"{controller=Tests}/{id?}/{action=Index}";
-		}
-
-		public class Accounts : Apis
-		{
-			public override String Path =>
-				"account-{accountUrl}/{controller=Moves}/{action=List}/{id?}";
+			public override String Path => ObjectPath;
+			public const String ObjectPath = "{controller=Tests}/{id?}/{action=Index}";
 		}
 	}
 }

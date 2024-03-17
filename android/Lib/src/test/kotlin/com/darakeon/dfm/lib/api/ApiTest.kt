@@ -2,13 +2,13 @@ package com.darakeon.dfm.lib.api
 
 import com.darakeon.dfm.lib.BuildConfig
 import com.darakeon.dfm.lib.api.entities.accounts.AccountList
+import com.darakeon.dfm.lib.api.entities.errors.ErrorList
 import com.darakeon.dfm.lib.api.entities.extract.Extract
 import com.darakeon.dfm.lib.api.entities.login.Ticket
 import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
 import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
-import com.darakeon.dfm.lib.api.entities.errors.ErrorList
 import com.darakeon.dfm.lib.api.entities.summary.Summary
 import com.darakeon.dfm.lib.api.entities.terms.Terms
 import com.darakeon.dfm.lib.api.entities.wipe.Wipe
@@ -76,12 +76,17 @@ class ApiTest: BaseTest() {
 		server.enqueue("extract")
 
 		var extract: Extract? = null
-		api.getExtract("", 0, 0) {
+		api.getExtract("lcsd", 1986, 2) {
 			extract = it
 		}
 		activity.waitTasks()
 
 		assertNotNull(extract)
+
+		assertEquals(
+			"/accounts/lcsd/extract?year=1986&month=3",
+			server.lastPath()
+		)
 	}
 
 	@Test
@@ -253,12 +258,17 @@ class ApiTest: BaseTest() {
 		server.enqueue("summary")
 
 		var summary: Summary? = null
-		api.getSummary("", 0) {
+		api.getSummary("lcsd", 1986) {
 			summary = it
 		}
 		activity.waitTasks()
 
 		assertNotNull(summary)
+
+		assertEquals(
+			"/accounts/lcsd/summary?year=1986",
+			server.lastPath()
+		)
 	}
 
 	@Test

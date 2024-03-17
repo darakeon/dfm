@@ -70,7 +70,7 @@ class RequestServiceTest: BaseTest() {
 	fun getExtract() {
 		server.enqueue("extract")
 
-		val response = service.getExtract("account", 202003).execute()
+		val response = service.getExtract("account", 2020, 3).execute()
 		assertNotNull(response)
 		val body = response.body()!!
 

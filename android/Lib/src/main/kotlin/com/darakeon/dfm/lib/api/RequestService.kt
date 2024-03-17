@@ -24,17 +24,19 @@ import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 import java.util.UUID
 import retrofit2.http.Body as RetrofitBody
 
 interface RequestService {
-	@GET("accounts/list")
+	@GET("accounts")
 	fun listAccounts(): Call<Body<AccountList>>
 
-	@GET("account-{accountUrl}/moves/extract/{time}")
+	@GET("accounts/{accountUrl}/extract")
 	fun getExtract(
 		@Path("accountUrl") accountUrl: String,
-		@Path("time") time: Int
+		@Query("year") year: Short,
+		@Query("month") month: Short,
 	): Call<Body<Extract>>
 
 	@FormUrlEncoded
@@ -96,10 +98,10 @@ interface RequestService {
 		@RetrofitBody settings: Settings
 	): Call<Body<Any>>
 
-	@GET("account-{accountUrl}/moves/summary/{time}")
+	@GET("accounts/{accountUrl}/summary")
 	fun getSummary(
 		@Path("accountUrl") accountUrl: String,
-		@Path("time") time: Int
+		@Query("year") year: Short,
 	): Call<Body<Summary>>
 
 	@PATCH("users/tfa")
