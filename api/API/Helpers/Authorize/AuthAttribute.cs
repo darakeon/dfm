@@ -1,10 +1,9 @@
 ﻿using System;
+using DFM.API.Controllers;
 using DFM.API.Helpers.Extensions;
-using DFM.API.Starters.Routes;
 using DFM.BusinessLogic;
+using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Enums;
-using JetBrains.Annotations;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace DFM.API.Helpers.Authorize
@@ -23,72 +22,42 @@ namespace DFM.API.Helpers.Authorize
 		private ServiceAccess access => service.Access;
 		private Boolean isAuthenticated => current.IsAuthenticated;
 
-		private Boolean denyByAdmin    => mandatory.HasFlag(AuthParams.Admin)
-											&& !current.IsAdm;
+		private Boolean denyByAdmin =>
+			mandatory.HasFlag(AuthParams.Admin)
+				&& !current.IsAdm;
 
-		private Boolean denyByContract => !mandatory.HasFlag(AuthParams.IgnoreContract)
-											&& !access.Law.IsLastContractAccepted();
+		private Boolean denyByContract =>
+			!mandatory.HasFlag(AuthParams.IgnoreContract)
+				&& !access.Law.IsLastContractAccepted();
 		
-		private Boolean denyByTFA      => !mandatory.HasFlag(AuthParams.IgnoreTFA)
-											&& !access.Auth.VerifyTicketTFA();
+		private Boolean denyByTFA =>
+			!mandatory.HasFlag(AuthParams.IgnoreTFA)
+				&& !access.Auth.VerifyTicketTFA();
 		
-		private Boolean denyByMobile   => !access.Auth.VerifyTicketType(TicketType.Mobile);
+		private Boolean denyByMobile =>
+			!access.Auth.VerifyTicketType(TicketType.Mobile);
 
 		public void OnAuthorization(AuthorizationFilterContext context)
 		{
 			service = context.HttpContext.GetService();
 
-			var goAhead = isAuthenticated
-							&& !denyByAdmin
-							&& !denyByContract
-							&& !denyByTFA
-							&& !denyByMobile;
-
-			if (goAhead) return;
-
 			if (!isAuthenticated)
-				goToLoginRequested(context);
+				makeResult(context, Error.LoginRequested);
 
 			else if (denyByTFA)
-				goToTFA(context);
+				makeResult(context, Error.TFANotVerified);
 
 			else if (denyByContract)
-				goToContractPage(context);
+				makeResult(context, Error.NotSignedLastContract);
 
-			else
-				goToUninvited(context);
+			else if (denyByAdmin || denyByMobile)
+				makeResult(context, Error.Uninvited);
 		}
 
-		protected virtual void goToContractPage(AuthorizationFilterContext filterContext)
+		protected void makeResult(AuthorizationFilterContext filterContext, Error error)
 		{
-			goTo(filterContext, "Users", "AcceptOnlineContract");
-		}
-
-		protected virtual void goToTFA(AuthorizationFilterContext filterContext)
-		{
-			goTo(filterContext, "Users", "OpenTFA");
-		}
-
-		protected virtual void goToLoginRequested(AuthorizationFilterContext filterContext)
-		{
-			goTo(filterContext, "Users", "LoginRequested");
-		}
-
-		protected virtual void goToUninvited(AuthorizationFilterContext filterContext)
-		{
-			goTo(filterContext, "Users", "Uninvited");
-		}
-
-		protected void goTo(
-			AuthorizationFilterContext filterContext,
-			[AspMvcController] String controller,
-			[AspMvcAction] String action)
-		{
-			var route = new Apis.Main();
-
-			filterContext.Result = new RedirectToRouteResult(
-				route.Name,
-				new { action, controller }
+			filterContext.Result = BaseApiController.ApiError(
+				filterContext.HttpContext, error
 			);
 		}
 	}
