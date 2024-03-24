@@ -2,7 +2,6 @@
 using System.Buffers;
 using System.Net;
 using System.Text;
-using DFM.API.Helpers.Controllers;
 using DFM.API.Helpers.Extensions;
 using DFM.API.Models;
 using DFM.API.Starters.Routes;
@@ -63,25 +62,25 @@ namespace DFM.API.Controllers
             }
         }
 
-        [HttpGetAndHead]
+        [HttpGet]
         public JsonResult Uninvited()
         {
 	        return error(Error.Uninvited);
         }
 
-        [HttpGetAndHead]
+        [HttpGet]
         public JsonResult LoginRequested()
         {
 	        return error(Error.LoginRequested);
         }
 
-		[HttpGetAndHead]
+		[HttpGet]
         public JsonResult AcceptOnlineContract()
         {
             return error(Error.NotSignedLastContract);
         }
 
-        [HttpGetAndHead]
+        [HttpGet]
         public JsonResult OpenTFA()
         {
             return error(Error.TFANotVerified);
