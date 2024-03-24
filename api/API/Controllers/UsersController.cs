@@ -1,17 +1,19 @@
 ﻿using DFM.API.Helpers.Authorize;
 using DFM.API.Models;
+using DFM.API.Starters.Routes;
 using DFM.BusinessLogic.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.API.Controllers
 {
+	[Route(Apis.Main.ObjectPath)]
+	[Route(Apis.Object.ObjectPath)]
 	public class UsersController : BaseApiController
 	{
 		[HttpPost]
 		public IActionResult Login([FromBody] UsersLoginModel model)
 		{
-			model.LogOn();
-			return json(() => model);
+			return json(model.LogOn);
 		}
 
 		[HttpPost]

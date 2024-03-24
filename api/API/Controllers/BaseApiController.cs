@@ -4,7 +4,6 @@ using System.Net;
 using System.Text;
 using DFM.API.Helpers.Extensions;
 using DFM.API.Models;
-using DFM.API.Starters.Routes;
 using DFM.BusinessLogic.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,8 +12,6 @@ using Newtonsoft.Json;
 namespace DFM.API.Controllers
 {
 	[ApiController]
-	[Route(Apis.Main.ObjectPath)]
-	[Route(Apis.Object.ObjectPath)]
 	public class BaseApiController : Controller
 	{
 		protected JsonResult json(Action action)
