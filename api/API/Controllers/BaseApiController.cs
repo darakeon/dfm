@@ -6,6 +6,7 @@ using DFM.API.Helpers.Extensions;
 using DFM.API.Models;
 using DFM.API.Starters.Routes;
 using DFM.BusinessLogic.Exceptions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -62,42 +63,23 @@ namespace DFM.API.Controllers
 			}
 		}
 
-		[HttpGet]
-		public JsonResult Uninvited()
-		{
-			return error(Error.Uninvited);
-		}
-
-		[HttpGet]
-		public JsonResult LoginRequested()
-		{
-			return error(Error.LoginRequested);
-		}
-
-		[HttpGet]
-		public JsonResult AcceptOnlineContract()
-		{
-			return error(Error.NotSignedLastContract);
-		}
-
-		[HttpGet]
-		public JsonResult OpenTFA()
-		{
-			return error(Error.TFANotVerified);
-		}
-
 		protected JsonResult error(Error error)
 		{
-			var result = new ResponseModel(
-				(Int32)error, 
-				HttpContext.Translate(error)
-			);
-
-			Response.StatusCode = (Int32) getStatusCode(error);
-			return Json(result);
+			return ApiError(HttpContext, error);
 		}
 
-		private HttpStatusCode getStatusCode(Error error)
+		public static JsonResult ApiError(HttpContext context, Error error)
+		{
+			var result = new ResponseModel(
+				(Int32)error,
+				context.Translate(error)
+			);
+
+			context.Response.StatusCode = (Int32)getStatusCode(error);
+			return new JsonResult(result);
+		}
+
+		private static HttpStatusCode getStatusCode(Error error)
 		{
 			switch (error)
 			{
