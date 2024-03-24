@@ -1,13 +1,13 @@
 {
-  "profiles": {
-    "MVC": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "http://localhost:2703",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_URLS": "http://localhost:2703;http://0.0.0.0:2703"
-      }
-    }
-  }
+	"profiles": {
+		"MVC": {
+			"commandName": "Project",
+			"launchBrowser": true,
+			"launchUrl": "http://localhost:2703",
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "Development",
+				"ASPNETCORE_URLS": "http://localhost:2703;http://0.0.0.0:2703"
+			}
+		}
+	}
 }
