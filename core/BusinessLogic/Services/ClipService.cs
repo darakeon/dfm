@@ -68,7 +68,7 @@ namespace DFM.BusinessLogic.Services
 			var type = parent.Current.TipType;
 
 			return repos.Tips.By(user, type)
-			       ?? createTip(user, type);
+					?? createTip(user, type);
 		}
 
 		private static Tips createTip(User user, TipType type)

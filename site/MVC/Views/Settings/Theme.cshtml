@@ -86,21 +86,21 @@
 				<td class="text-center col-sm-6">@Context.Translate("RowPositive")</td>
 				<td class="text-center col-sm-6 text-info">
 					@await Html.PartialAsync("Extensions/ValueWithSign",
-							 new ValueWithSign(1, Model.Language))
+								new ValueWithSign(1, Model.Language))
 				</td>
 			</tr>
 			<tr class="row">
 				<td class="text-center col-sm-6">@Context.Translate("RowTransfer")</td>
 				<td class="text-center col-sm-6 text-success">
 					@await Html.PartialAsync("Extensions/ValueWithSign",
-							 new ValueWithSign(0, Model.Language))
+								new ValueWithSign(0, Model.Language))
 				</td>
 			</tr>
 			<tr class="row">
 				<td class="text-center col-sm-6">@Context.Translate("RowNegative")</td>
 				<td class="text-center col-sm-6 text-danger">
 					@await Html.PartialAsync("Extensions/ValueWithSign",
-							 new ValueWithSign(-1, Model.Language))
+								new ValueWithSign(-1, Model.Language))
 				</td>
 			</tr>
 		</tbody>

@@ -1,14 +1,14 @@
 [
-  {
-    "relation": [
-      "delegate_permission/common.handle_all_urls"
-    ],
-    "target": {
-      "namespace": "android_app",
-      "package_name": "com.dontflymoney.view",
-      "sha256_cert_fingerprints": [
-        "4D:13:EB:7A:06:BB:5F:9E:58:EB:B5:54:BB:50:D0:66:54:A2:43:23:4F:2B:B2:1E:9B:13:9E:99:DE:31:E6:2F"
-      ]
-    }
-  }
+	{
+		"relation": [
+			"delegate_permission/common.handle_all_urls"
+		],
+		"target": {
+			"namespace": "android_app",
+			"package_name": "com.dontflymoney.view",
+			"sha256_cert_fingerprints": [
+				"4D:13:EB:7A:06:BB:5F:9E:58:EB:B5:54:BB:50:D0:66:54:A2:43:23:4F:2B:B2:1E:9B:13:9E:99:DE:31:E6:2F"
+			]
+		}
+	}
 ]

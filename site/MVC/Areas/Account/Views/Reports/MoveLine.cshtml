@@ -23,10 +23,10 @@
 		@if (hasDetails)
 		{
 			<span class="glyphicon glyphicon-folder-open"
-			      title="@Context.Translate("Details")"
-			      data-toggle='modal'
-			      data-target='#details-@move.Guid-modal'
-			      role='button'>
+					title="@Context.Translate("Details")"
+					data-toggle='modal'
+					data-target='#details-@move.Guid-modal'
+					role='button'>
 			</span>
 		}
 		@if (hasDetails && hasSchedule)
@@ -36,10 +36,10 @@
 		@if (hasSchedule)
 		{
 			<span class="glyphicon glyphicon-time"
-			      title="@Context.Translate("Schedule")"
-			      data-toggle='modal'
-			      data-target='#schedule-@move.Schedule.Guid-modal'
-			      role='button'>
+					title="@Context.Translate("Schedule")"
+					data-toggle='modal'
+					data-target='#schedule-@move.Schedule.Guid-modal'
+					role='button'>
 			</span>
 		}
 	</td>
@@ -94,7 +94,7 @@
 	
 		<td class="col-sm-1 text-center @wizardHighlightEdit">
 			<a href="@Url.Action("Edit", "Moves", new {id = move.Guid})"
-			   title="@editTitle">
+				title="@editTitle">
 				<span class="glyphicon glyphicon-pencil"
 					title="@editTitle"
 					role='button'>

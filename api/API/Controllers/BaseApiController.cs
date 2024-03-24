@@ -15,111 +15,111 @@ namespace DFM.API.Controllers
 	[Route(Apis.Main.ObjectPath)]
 	[Route(Apis.Object.ObjectPath)]
 	public class BaseApiController : Controller
-    {
-        protected JsonResult json(Action action)
-        {
-            return json(() =>
-            {
-                action();
-                return (BaseApiModel) null;
-            });
-        }
+	{
+		protected JsonResult json(Action action)
+		{
+			return json(() =>
+			{
+				action();
+				return (BaseApiModel) null;
+			});
+		}
 
-        protected JsonResult jsonNonBaseApi<T>(Func<T> action)
-        {
-	        try
-	        {
-		        var model = action();
+		protected JsonResult jsonNonBaseApi<T>(Func<T> action)
+		{
+			try
+			{
+				var model = action();
 
-		        var result = model != null
-			        ? new ResponseModel(model, null)
-			        : new ResponseModel();
+				var result = model != null
+					? new ResponseModel(model, null)
+					: new ResponseModel();
 
-		        return Json(result);
-	        }
-	        catch (CoreError e)
-	        {
-		        return error(e.Type);
-	        }
-        }
+				return Json(result);
+			}
+			catch (CoreError e)
+			{
+				return error(e.Type);
+			}
+		}
 
-        protected JsonResult json<T>(Func<T> action)
-            where T : BaseApiModel
-        {
-            try
-            {
-                var model = action();
+		protected JsonResult json<T>(Func<T> action)
+			where T : BaseApiModel
+		{
+			try
+			{
+				var model = action();
 
-                var result = model != null
-	                ? new ResponseModel(model, model.Environment)
-	                : new ResponseModel();
+				var result = model != null
+					? new ResponseModel(model, model.Environment)
+					: new ResponseModel();
 
-                return Json(result);
-            }
-            catch (CoreError e)
-            {
-                return error(e.Type);
-            }
-        }
-
-        [HttpGet]
-        public JsonResult Uninvited()
-        {
-	        return error(Error.Uninvited);
-        }
-
-        [HttpGet]
-        public JsonResult LoginRequested()
-        {
-	        return error(Error.LoginRequested);
-        }
+				return Json(result);
+			}
+			catch (CoreError e)
+			{
+				return error(e.Type);
+			}
+		}
 
 		[HttpGet]
-        public JsonResult AcceptOnlineContract()
-        {
-            return error(Error.NotSignedLastContract);
-        }
+		public JsonResult Uninvited()
+		{
+			return error(Error.Uninvited);
+		}
 
-        [HttpGet]
-        public JsonResult OpenTFA()
-        {
-            return error(Error.TFANotVerified);
-        }
+		[HttpGet]
+		public JsonResult LoginRequested()
+		{
+			return error(Error.LoginRequested);
+		}
 
-        protected JsonResult error(Error error)
-        {
-            var result = new ResponseModel(
-	            (Int32)error, 
-	            HttpContext.Translate(error)
-	        );
+		[HttpGet]
+		public JsonResult AcceptOnlineContract()
+		{
+			return error(Error.NotSignedLastContract);
+		}
 
-            Response.StatusCode = (Int32) getStatusCode(error);
-            return Json(result);
-        }
+		[HttpGet]
+		public JsonResult OpenTFA()
+		{
+			return error(Error.TFANotVerified);
+		}
 
-        private HttpStatusCode getStatusCode(Error error)
-        {
-	        switch (error)
-	        {
-		        case Error.LoginRequested:
-			        return HttpStatusCode.Unauthorized;
-		        case Error.Uninvited:
-			        return HttpStatusCode.Forbidden;
+		protected JsonResult error(Error error)
+		{
+			var result = new ResponseModel(
+				(Int32)error, 
+				HttpContext.Translate(error)
+			);
+
+			Response.StatusCode = (Int32) getStatusCode(error);
+			return Json(result);
+		}
+
+		private HttpStatusCode getStatusCode(Error error)
+		{
+			switch (error)
+			{
+				case Error.LoginRequested:
+					return HttpStatusCode.Unauthorized;
+				case Error.Uninvited:
+					return HttpStatusCode.Forbidden;
 				case Error.LogNotFound:
 				case Error.TermsNotFound:
 				case Error.AccountNotFound:
 					return HttpStatusCode.NotFound;
-		        default:
-			        return HttpStatusCode.BadRequest;
-	        }
-	    }
+				default:
+					return HttpStatusCode.BadRequest;
+			}
+		}
 
-        protected T getFromBody<T>()
-        {
-            var body = Request.BodyReader.ReadAsync();
-            var json = Encoding.UTF8.GetString(body.Result.Buffer.ToArray());
+		protected T getFromBody<T>()
+		{
+			var body = Request.BodyReader.ReadAsync();
+			var json = Encoding.UTF8.GetString(body.Result.Buffer.ToArray());
 
-            return JsonConvert.DeserializeObject<T>(json);
-        }
-    }
+			return JsonConvert.DeserializeObject<T>(json);
+		}
+	}
 }

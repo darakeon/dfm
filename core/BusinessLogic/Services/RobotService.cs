@@ -37,11 +37,11 @@ namespace DFM.BusinessLogic.Services
 			var user = parent.Auth.VerifyUser();
 			var x = repos.Schedule.Where(
 				s => s.User.ID == user.ID
-				     && s.Active
+						&& s.Active
 			);
 			return repos.Schedule.Any(
 				s => s.User.ID == user.ID
-				     && s.Active
+						&& s.Active
 			);
 		}
 

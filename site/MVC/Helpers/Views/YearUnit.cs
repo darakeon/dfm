@@ -27,19 +27,19 @@ namespace DFM.MVC.Helpers.Views
 		public Boolean LessThan(IPage other)
 		{
 			return other is YearUnit converted
-			       && ToDate() < converted.ToDate();
+					&& ToDate() < converted.ToDate();
 		}
 
 		public Boolean GreaterThan(IPage other)
 		{
 			return other is YearUnit converted
-			       && ToDate() > converted.ToDate();
+					&& ToDate() > converted.ToDate();
 		}
 
 		public Boolean Same(IPage other)
 		{
 			return other is YearUnit converted
-			       && ToDate() == converted.ToDate();
+					&& ToDate() == converted.ToDate();
 		}
 
 		public DateTime ToDate()

@@ -6,8 +6,8 @@
 		.ToMoney(Model.Language, Model.DifferentIfZero);
 
 	var color = Model.Nature ??
-	    (
-		    Model.Value > 0 ? MoveNature.In :
+		(
+			Model.Value > 0 ? MoveNature.In :
 			Model.Value < 0 ? MoveNature.Out :
 				MoveNature.Transfer
 		);
@@ -15,8 +15,8 @@
 	var className = await Html.PartialAsync("Extensions/NatureColor", color);
 
 	var nature = Model.Nature ??
-	    (
-		    Model.Value > 0 ? MoveNature.In :
+		(
+			Model.Value > 0 ? MoveNature.In :
 			Model.Value < 0 ? MoveNature.Out :
 				default(MoveNature?)
 		);

@@ -24,13 +24,13 @@ namespace DFM.API.Helpers.Authorize
 		private Boolean isAuthenticated => current.IsAuthenticated;
 
 		private Boolean denyByAdmin    => mandatory.HasFlag(AuthParams.Admin)
-		                                  && !current.IsAdm;
+											&& !current.IsAdm;
 
 		private Boolean denyByContract => !mandatory.HasFlag(AuthParams.IgnoreContract)
-		                                  && !access.Law.IsLastContractAccepted();
+											&& !access.Law.IsLastContractAccepted();
 		
 		private Boolean denyByTFA      => !mandatory.HasFlag(AuthParams.IgnoreTFA)
-		                                  && !access.Auth.VerifyTicketTFA();
+											&& !access.Auth.VerifyTicketTFA();
 		
 		private Boolean denyByMobile   => !access.Auth.VerifyTicketType(TicketType.Mobile);
 
@@ -39,10 +39,10 @@ namespace DFM.API.Helpers.Authorize
 			service = context.HttpContext.GetService();
 
 			var goAhead = isAuthenticated
-			              && !denyByAdmin
-			              && !denyByContract
-			              && !denyByTFA
-			              && !denyByMobile;
+							&& !denyByAdmin
+							&& !denyByContract
+							&& !denyByTFA
+							&& !denyByMobile;
 
 			if (goAhead) return;
 

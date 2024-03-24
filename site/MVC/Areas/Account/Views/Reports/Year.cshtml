@@ -10,7 +10,7 @@
 
 	var hasMonths = monthList.Any(
 		m => m.CurrentIn != 0 || m.CurrentOut != 0
-		     || m.ForeseenIn != 0 || m.ForeseenOut != 0
+				|| m.ForeseenIn != 0 || m.ForeseenOut != 0
 	);
 
 	var hl = new WizardHL(hasMonths)
@@ -33,7 +33,7 @@
 	var start = Model.Account.Start;
 	var date = new DateTime(Model.Year.Time, 1, 1);
 	var end = Model.Account.End ??
-	    (date < start ? start : date).AddYears(4);
+		(date < start ? start : date).AddYears(4);
 
 	var startPage = new YearUnit(start);
 	var endPage = new YearUnit(end);

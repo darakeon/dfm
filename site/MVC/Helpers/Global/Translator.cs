@@ -105,7 +105,7 @@ namespace DFM.MVC.Helpers.Global
 		private String browserLanguage()
 		{
 			return sessionLanguage()
-			    ?? headerLanguage();
+				?? headerLanguage();
 		}
 
 		private String sessionLanguage()

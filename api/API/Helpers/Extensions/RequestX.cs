@@ -14,7 +14,7 @@ namespace DFM.API.Helpers.Extensions
 			return request.getFields()
 				.Where(
 					p => !p.Key.Contains("Password")
-					     && !Decimal.TryParse(p.Value, out _)
+							&& !Decimal.TryParse(p.Value, out _)
 				)
 				.ToDictionary(p => p.Key, p => p.Value.ToString());
 		}
