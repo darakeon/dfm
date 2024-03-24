@@ -3,10 +3,13 @@ using DFM.API.Helpers.Authorize;
 using DFM.BusinessLogic.Exceptions;
 using DfM.Logs;
 using Microsoft.AspNetCore.Mvc;
+using DFM.API.Starters.Routes;
 
 namespace DFM.API.Controllers
 {
 	[Auth(AuthParams.Admin)]
+	[Route(Apis.Main.ObjectPath)]
+	[Route(Apis.Object.ObjectPath)]
 	public class LogsController : BaseApiController
 	{
 		[HttpGet]
