@@ -1,5 +1,4 @@
 ﻿using DFM.API.Helpers.Authorize;
-using DFM.API.Helpers.Controllers;
 using DFM.API.Models;
 using DFM.BusinessLogic.Exceptions;
 using Microsoft.AspNetCore.Mvc;
@@ -39,7 +38,7 @@ namespace DFM.API.Controllers
 			return json(model.AskWipe);
 		}
 
-		[HttpGetAndHead]
+		[HttpGet]
 		public IActionResult Terms()
 		{
 			var model = new UserTermsModel();

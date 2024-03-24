@@ -1,6 +1,5 @@
 ﻿using System;
 using DFM.API.Helpers.Authorize;
-using DFM.API.Helpers.Controllers;
 using DFM.API.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,19 +8,19 @@ namespace DFM.API.Controllers
 	[Auth]
 	public class AccountsController : BaseApiController
 	{
-		[HttpGetAndHead]
+		[HttpGet]
 		public IActionResult Index()
 		{
 			return json(() => new AccountsIndexModel());
 		}
 
-		[HttpGetAndHead]
+		[HttpGet]
 		public IActionResult Summary(String id, Int16? year)
 		{
 			return json(() => new AccountsSummaryModel(id, year));
 		}
 
-		[HttpGetAndHead]
+		[HttpGet]
 		public IActionResult Extract(String id, Int16? year, Int16? month)
 		{
 			return json(() => new AccountsExtractModel(id, year, month));

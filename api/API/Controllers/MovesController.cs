@@ -1,6 +1,5 @@
 ﻿using System;
 using DFM.API.Helpers.Authorize;
-using DFM.API.Helpers.Controllers;
 using DFM.API.Models;
 using DFM.BusinessLogic.Response;
 using DFM.Entities.Enums;
@@ -11,7 +10,7 @@ namespace DFM.API.Controllers
     [Auth]
     public class MovesController : BaseApiController
     {
-        [HttpGetAndHead]
+        [HttpGet]
         public IActionResult Create(Guid? id)
         {
             return json(() => new MovesCreateModel(id));
@@ -43,7 +42,7 @@ namespace DFM.API.Controllers
             return json(() => new MovesModel().Uncheck(id, nature));
         }
 
-        [HttpGetAndHead]
+        [HttpGet]
         public IActionResult Lists()
         {
             return json(() => new MovesListsModel());
