@@ -33,9 +33,8 @@ namespace DFM.API.Controllers
 		}
 
 		[HttpPatch, Auth]
-		public IActionResult Wipe()
+		public IActionResult Wipe([FromBody] UserWipeModel model)
 		{
-			var model = getFromBody<UserWipeModel>();
 			return json(model.AskWipe);
 		}
 
