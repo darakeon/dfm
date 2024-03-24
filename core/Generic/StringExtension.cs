@@ -51,7 +51,7 @@ namespace DFM.Generic
 		private static Boolean notAccent(Char c)
 		{
 			return CharUnicodeInfo.GetUnicodeCategory(c)
-			    != UnicodeCategory.NonSpacingMark;
+				!= UnicodeCategory.NonSpacingMark;
 		}
 
 		public static String ToBase64(this String text)

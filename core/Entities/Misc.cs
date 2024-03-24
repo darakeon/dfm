@@ -64,7 +64,7 @@ namespace DFM.Entities
 		public override Boolean Equals(Object other)
 		{
 			return other is Misc otherMisc
-			    && otherMisc.DNA == DNA;
+				&& otherMisc.DNA == DNA;
 		}
 
 		public override Int32 GetHashCode()

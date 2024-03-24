@@ -70,8 +70,8 @@
 @if (Model.ShowWizard)
 {
 	<input type="hidden"
-	       name="@Model.BackFieldName"
-	       value="@Context.Request.Path?wizard=post" />
+			name="@Model.BackFieldName"
+			value="@Context.Request.Path?wizard=post" />
 }
 
 <div class="form-group @hl["Language"]">

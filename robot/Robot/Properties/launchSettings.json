@@ -1,11 +1,11 @@
 {
-  "profiles": {
-    "Robot": {
-      "commandName": "Project",
-      "commandLineArgs": "1",
-      "environmentVariables": {
-        "ASPNET_CORE_ENVIRONMENT": "Development"
-      }
-    }
-  }
+	"profiles": {
+		"Robot": {
+			"commandName": "Project",
+			"commandLineArgs": "1",
+			"environmentVariables": {
+				"ASPNET_CORE_ENVIRONMENT": "Development"
+			}
+		}
+	}
 }

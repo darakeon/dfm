@@ -55,7 +55,7 @@ namespace DFM.API.Starters
 		private static bool shouldSerialize(MemberInfo member, object instance)
 		{
 			return member is not PropertyInfo info 
-			    || info.GetValue(instance, null) != null;
+				|| info.GetValue(instance, null) != null;
 		}
 
 		class EnumContract : JsonPrimitiveContract

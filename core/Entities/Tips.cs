@@ -26,7 +26,7 @@ namespace DFM.Entities
 			if (tip is TipTests tipTests)
 			{
 				return Type == TipType.Tests
-				    && ((TipTests)Permanent & tipTests) == tipTests;
+					&& ((TipTests)Permanent & tipTests) == tipTests;
 			}
 
 			if (tip is TipBrowser tipBrowser)

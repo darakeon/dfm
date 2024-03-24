@@ -200,8 +200,8 @@ namespace DFM.MVC.Tests
 		private Boolean shouldHaveWizard(Type type)
 		{
 			return typeof(Controller).IsAssignableFrom(type)
-			       && !type.IsAbstract
-			       && type.ShouldHaveWizard();
+					&& !type.IsAbstract
+					&& type.ShouldHaveWizard();
 		}
 
 		private static Phrase tryGetWizardPtBr(String phrase)

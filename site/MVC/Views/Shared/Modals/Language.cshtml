@@ -35,17 +35,17 @@
 					foreach (var lang in langList)
 					{
 						<button class="btn btn-primary @lang.Value"
-						        name="@settingsModel.LanguageFieldName"
-						        value="@(lang.Value)"
-						        title="@(lang.Text)"
-						        id="language-@(lang.Value)">
+								name="@settingsModel.LanguageFieldName"
+								value="@(lang.Value)"
+								title="@(lang.Text)"
+								id="language-@(lang.Value)">
 							@await Html.PartialAsync($"Flags/{lang.Value}")
 						</button>
 					}
 
 					<input type="hidden"
-					       name="@settingsModel.BackFieldName"
-					       value="@Context.Request.Path" />
+							name="@settingsModel.BackFieldName"
+							value="@Context.Request.Path" />
 				}
 			</div>
 		</div>

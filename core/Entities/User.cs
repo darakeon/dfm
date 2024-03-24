@@ -100,7 +100,7 @@ namespace DFM.Entities
 				new User {Email = email};
 
 			return u => u.Username == username
-			    && u.Domain == domain;
+				&& u.Domain == domain;
 		}
 	}
 }

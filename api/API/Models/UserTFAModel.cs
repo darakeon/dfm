@@ -2,13 +2,13 @@
 
 namespace DFM.API.Models
 {
-    public class UserTFAModel : BaseApiModel
-    {
-        public String Code { get; set; }
+	public class UserTFAModel : BaseApiModel
+	{
+		public String Code { get; set; }
 
-        internal void Validate()
-        {
-            auth.ValidateTicketTFA(Code);
-        }
-    }
+		internal void Validate()
+		{
+			auth.ValidateTicketTFA(Code);
+		}
+	}
 }

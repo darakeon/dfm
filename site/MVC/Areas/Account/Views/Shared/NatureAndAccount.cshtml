@@ -23,10 +23,10 @@
 				class="btn btn-sm btn-@nature btn-glyph
 					col-sm-4 button-toggle value-setter
 					@(Model.Nature == natureUI.Nature ? "active" : null)"
-			    data-to-enable="@natureUI.Enable"
-			    data-to-disable="@natureUI.Disable"
-			    data-target-id="@Html.IdFor(m => m.Nature)"
-			    data-target-value="@natureUI.Nature"
+				data-to-enable="@natureUI.Enable"
+				data-to-disable="@natureUI.Disable"
+				data-target-id="@Html.IdFor(m => m.Nature)"
+				data-target-value="@natureUI.Nature"
 				title="@Context.Translate(natureUI.Nature.ToString())"
 			>
 

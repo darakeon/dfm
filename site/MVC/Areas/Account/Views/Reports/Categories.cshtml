@@ -24,7 +24,7 @@
 		var start = Model.Account.Start;
 		var date = new DateTime(Model.Year, Model.Month.Value, 1);
 		var end = Model.Account.End ??
-		          (date < start ? start : date).AddMonths(4);
+					(date < start ? start : date).AddMonths(4);
 
 		var startPage = new MonthYearUnit(start);
 		var endPage = new MonthYearUnit(end);
@@ -37,7 +37,7 @@
 		var start = Model.Account.Start;
 		var date = new DateTime(Model.Year, 1, 1);
 		var end = Model.Account.End ??
-		          (date < start ? start : date).AddYears(4);
+					(date < start ? start : date).AddYears(4);
 
 		var startPage = new YearUnit(start);
 		var endPage = new YearUnit(end);
