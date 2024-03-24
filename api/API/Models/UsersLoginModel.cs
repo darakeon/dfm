@@ -16,11 +16,12 @@ namespace DFM.API.Models
 
 		public String Ticket { get; private set; }
 
-		internal void LogOn()
+		internal UsersLoginModel LogOn()
 		{
 			try
 			{
 				Ticket = current.Set(Email, Password, RememberMe);
+				return this;
 			}
 			catch (CoreError e)
 			{
