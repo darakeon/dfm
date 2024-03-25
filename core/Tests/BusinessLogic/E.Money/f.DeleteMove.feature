@@ -10,7 +10,7 @@ Scenario: Ef01. Try to delete Move with wrong ID
 	Given I have a move with value 10 (Out)
 		And I pass an id of Move that doesn't exist
 	When I try to delete the move
-	Then I will receive this core error: InvalidMove
+	Then I will receive this core error: MoveNotFound
 		And the accountOut value will not change
 
 Scenario: Ef02. Delete the Move Out by ID
@@ -110,7 +110,7 @@ Scenario: Ef10. Delete another user's Move
 		And I pass valid Move ID
 		But there is a bad person logged in
 	When I try to delete the move
-	Then I will receive this core error: InvalidMove
+	Then I will receive this core error: MoveNotFound
 	Given test user login
 	Then the move will not be deleted
 		And the accountOut value will not change
