@@ -25,7 +25,7 @@ class ResponseHandler<C, A>(
 	init { logDebug("INIT") }
 
 	override fun onResponse(call: Call<Body<A>>, response: Response<Body<A>>) {
-		logDebug("RESPONSE ${call.request().url()}")
+		logDebug("RESPONSE ${call.request().method()} ${call.request().url()}")
 
 		logDebug("STATUS ${response.code()}")
 
