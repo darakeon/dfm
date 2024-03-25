@@ -10,6 +10,7 @@ import com.darakeon.dfm.lib.api.entities.signup.SignUp
 import com.darakeon.dfm.lib.api.entities.status.Status
 import com.darakeon.dfm.lib.api.entities.terms.Clause
 import com.darakeon.dfm.lib.api.entities.tfa.TFA
+import com.darakeon.dfm.lib.api.entities.toggleCheck.ToggleCheck
 import com.darakeon.dfm.lib.api.entities.wipe.Wipe
 import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.api.Server
@@ -97,7 +98,7 @@ class RequestServiceTest: BaseTest() {
 	fun check() {
 		server.enqueue("empty")
 
-		val response = service.check(guid, Nature.Out).execute()
+		val response = service.check(guid, ToggleCheck(Nature.Out)).execute()
 		assertNotNull(response)
 		val body = response.body()!!
 
@@ -112,7 +113,7 @@ class RequestServiceTest: BaseTest() {
 	fun uncheck() {
 		server.enqueue("empty")
 
-		val response = service.uncheck(guid, Nature.Out).execute()
+		val response = service.uncheck(guid, ToggleCheck(Nature.Out)).execute()
 		assertNotNull(response)
 		val body = response.body()!!
 
@@ -190,36 +191,6 @@ class RequestServiceTest: BaseTest() {
 		assertThat(environment.theme.enum, `is`(Theme.DarkMagic))
 
 		assertNull(body.data)
-	}
-
-	@Test
-	fun getMoveNew() {
-		server.enqueue("move_get")
-
-		val response = service.getMove().execute()
-		assertNotNull(response)
-		val body = response.body()!!
-
-		val environment = body.environment!!
-		assertThat(environment.language, `is`("pt-BR"))
-		assertThat(environment.theme.enum, `is`(Theme.DarkMagic))
-
-		val data = body.data!!
-		val move = data.move!!
-		assertThat(move.guid, `is`(guid))
-		assertThat(move.description, `is`("move"))
-		assertThat(move.date, `is`(Date(2020, 3, 8)))
-		assertThat(move.categoryName, `is`("category"))
-		assertThat(move.outUrl, `is`("out"))
-		assertThat(move.inUrl, `is`("in"))
-		assertThat(move.value, `is`(1.0))
-		assertThat(move.checked, `is`(true))
-
-		val detailList = move.detailList
-		assertThat(detailList.size, `is`(1))
-		assertThat(detailList[0].description, `is`("detail"))
-		assertThat(detailList[0].amount, `is`(1))
-		assertThat(detailList[0].value, `is`(27.0))
 	}
 
 	@Test

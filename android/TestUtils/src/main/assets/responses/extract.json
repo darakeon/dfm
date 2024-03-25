@@ -6,6 +6,10 @@
 				"year": 2020,
 				"month": 3,
 				"day": 8,
+				"nature": {
+					"code": 0,
+					"text": "out"
+				},
 				"total": 27,
 				"checked": true,
 				"guid": "01234567-89AB-CDEF-FEDC-BA9876543210"

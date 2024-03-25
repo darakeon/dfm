@@ -3,7 +3,6 @@ package com.darakeon.dfm.lib.api.entities.moves
 import com.darakeon.dfm.lib.api.entities.Date
 import com.darakeon.dfm.lib.extensions.toDoubleByCulture
 import java.io.Serializable
-import java.util.ArrayList
 import java.util.UUID
 
 data class Move (
@@ -13,7 +12,7 @@ data class Move (
 	var month: Int = 0,
 	var day: Int = 0,
 
-	var nature: Int? = null,
+	var nature: NatureEnum? = null,
 
 	var categoryName: String? = null,
 
@@ -28,8 +27,8 @@ data class Move (
 	var isDetailed: Boolean = false
 
 	var natureEnum
-		get() = Nature.get(nature)
-		set(value) { nature = value?.value }
+		get() = nature?.enum
+		set(value) { nature = if (value == null) null else NatureEnum(value.value) }
 
 	var warnCategory: Boolean = false
 		private set

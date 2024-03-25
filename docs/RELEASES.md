@@ -16,7 +16,7 @@ This is the list of project releases, past and current. To see tasks that are st
 
 ## <a name="11.0.0.0"></a>11.0.0.0 :dragon: <sup>`5`</sup>
 - [ ] Automate execute non destrutive sql
-- [ ] `240227>......` Make endpoints restful
+- [x] `240227>240326` Make endpoints restful
 - [x] `240216>240121` Add user creation (mobile)
 - [x] `240101>240214` [Reduce Docker Images] / Use multistaged (multiple FROM at dockerfiles) container
 - [x] `231213>231221` Separate MVC projects: site and api

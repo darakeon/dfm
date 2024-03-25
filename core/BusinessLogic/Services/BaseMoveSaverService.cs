@@ -167,7 +167,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			var user = parent.Auth.GetCurrent();
 			if (move == null || repos.Move.GetUser(move).ID != user.ID)
-				throw Error.InvalidMove.Throw();
+				throw Error.MoveNotFound.Throw();
 		}
 	}
 }
