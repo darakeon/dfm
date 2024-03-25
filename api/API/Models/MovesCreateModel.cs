@@ -5,14 +5,14 @@ namespace DFM.API.Models
 {
 	internal class MovesCreateModel : BaseApiModel
 	{
-		public MovesCreateModel(Guid? guid = null)
+		public MovesCreateModel()
 		{
 			IsUsingCategories = isUsingCategories;
+		}
 
-			if (guid.HasValue && guid != Guid.Empty)
-			{
-				Move = money.GetMove(guid.Value);
-			}
+		public MovesCreateModel(Guid guid) : this()
+		{
+			Move = money.GetMove(guid);
 		}
 
 		public bool IsUsingCategories { get; }

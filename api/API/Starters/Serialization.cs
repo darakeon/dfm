@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
@@ -95,7 +96,7 @@ namespace DFM.API.Starters
 
 			public override object ReadJson(JsonReader reader, Type type, object existingValue, JsonSerializer serializer)
 			{
-				var value = serializer.Deserialize<String>(reader);
+				var value = readEnumValue(reader, serializer);
 
 				if (value == null) return null;
 
@@ -104,6 +105,19 @@ namespace DFM.API.Starters
 				Enum.TryParse(realType, value, true, out var result);
 
 				return result;
+			}
+
+			private static String readEnumValue(JsonReader reader, JsonSerializer serializer)
+			{
+				if (reader.TokenType != JsonToken.StartObject)
+					return serializer.Deserialize<String>(reader);
+
+				var jsonObject = serializer.Deserialize<Dictionary<String, String>>(reader);
+
+				return jsonObject == null ? null
+					: jsonObject.TryGetValue("code", out var code) ? code
+					: jsonObject.TryGetValue("text", out var text) ? text
+					: null;
 			}
 
 			public override bool CanConvert(Type objectType)

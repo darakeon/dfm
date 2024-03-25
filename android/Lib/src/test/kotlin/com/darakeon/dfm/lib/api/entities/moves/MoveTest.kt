@@ -3,8 +3,8 @@ package com.darakeon.dfm.lib.api.entities.moves
 import com.darakeon.dfm.lib.api.entities.Date
 import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.getDecimal
-import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.hasItem
+import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertFalse
@@ -19,23 +19,23 @@ class MoveTest: BaseTest() {
 	fun natureEnum() {
 		val move = Move()
 
-		move.nature = 0
+		move.nature = NatureEnum(0)
 		assertThat(move.natureEnum, `is`(Nature.Out))
 
-		move.nature = 1
+		move.nature = NatureEnum(1)
 		assertThat(move.natureEnum, `is`(Nature.In))
 
-		move.nature = 2
+		move.nature = NatureEnum(2)
 		assertThat(move.natureEnum, `is`(Nature.Transfer))
 
 		move.natureEnum = Nature.Out
-		assertThat(move.nature, `is`(0))
+		assertThat(move.nature?.code, `is`(0))
 
 		move.natureEnum = Nature.In
-		assertThat(move.nature, `is`(1))
+		assertThat(move.nature?.code, `is`(1))
 
 		move.natureEnum = Nature.Transfer
-		assertThat(move.nature, `is`(2))
+		assertThat(move.nature?.code, `is`(2))
 	}
 
 	@Test

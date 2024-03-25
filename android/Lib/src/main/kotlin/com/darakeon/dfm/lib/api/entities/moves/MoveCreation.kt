@@ -15,7 +15,6 @@ data class MoveCreation(
 	}
 
 	override fun hashCode(): Int {
-		var result = move.hashCode()
-		return result
+		return move.hashCode()
 	}
 }

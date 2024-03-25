@@ -13,39 +13,54 @@ namespace DFM.API.Controllers
 	public class MovesController : BaseApiController
 	{
 		[HttpGet]
-		public IActionResult Create(Guid? id)
+		[Route(Apis.IdPath)]
+		public IActionResult Get(Guid id)
 		{
 			return json(() => new MovesCreateModel(id));
 		}
 
 		[HttpPost]
-		public IActionResult Create()
+		public IActionResult Create([FromBody] MoveInfo move)
 		{
-			var move = getFromBody<MoveInfo>();
 			var model = new MovesCreateModel();
+			move.Guid = Guid.Empty;
 			return json(() => model.Save(move));
 		}
 
-		[HttpPost]
+		[HttpPut]
+		[Route(Apis.IdPath)]
+		public IActionResult Edit(Guid id, [FromBody] MoveInfo move)
+		{
+			var model = new MovesCreateModel();
+			move.Guid = id;
+			return json(() => model.Save(move));
+		}
+
+		[HttpDelete]
+		[Route(Apis.IdPath)]
 		public IActionResult Delete(Guid id)
 		{
-			return json(() => new MovesModel().Delete(id));
+			var model = new MovesDeleteModel();
+			return json(() => model.Delete(id));
 		}
 
-		[HttpPost]
-		public IActionResult Check(Guid id, PrimalMoveNature nature)
+		[HttpPatch]
+		[Route(Apis.IdActionPath)]
+		public IActionResult Check(Guid id, [FromBody] MovesToggleCheckModel model)
 		{
-			return json(() => new MovesModel().Check(id, nature));
+			return json(() => model.Check(id));
 		}
 
-		[HttpPost]
-		public IActionResult Uncheck(Guid id, PrimalMoveNature nature)
+		[HttpPatch]
+		[Route(Apis.IdActionPath)]
+		public IActionResult Uncheck(Guid id, [FromBody] MovesToggleCheckModel model)
 		{
-			return json(() => new MovesModel().Uncheck(id, nature));
+			return json(() => model.Uncheck(id));
 		}
 
 		[HttpGet]
-		public IActionResult Lists()
+		[Route(Apis.ActionPath)]
+		public IActionResult Relations()
 		{
 			return json(() => new MovesListsModel());
 		}

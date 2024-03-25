@@ -5,7 +5,10 @@
 	"month": 3,
 	"day": 8,
 
-	"nature": 1,
+	"nature": {
+		"code": 1,
+		"text": "in"
+	},
 	"categoryName": "category",
 	"outUrl": null,
 	"inUrl": "in",

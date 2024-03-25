@@ -9,20 +9,20 @@ import com.darakeon.dfm.lib.api.entities.login.Ticket
 import com.darakeon.dfm.lib.api.entities.moves.Lists
 import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
-import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
 import com.darakeon.dfm.lib.api.entities.signup.SignUp
 import com.darakeon.dfm.lib.api.entities.status.StatusResponse
 import com.darakeon.dfm.lib.api.entities.summary.Summary
 import com.darakeon.dfm.lib.api.entities.terms.Terms
 import com.darakeon.dfm.lib.api.entities.tfa.TFA
+import com.darakeon.dfm.lib.api.entities.toggleCheck.ToggleCheck
 import com.darakeon.dfm.lib.api.entities.wipe.Wipe
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 import java.util.UUID
@@ -39,21 +39,19 @@ interface RequestService {
 		@Query("month") month: Short,
 	): Call<Body<Extract>>
 
-	@FormUrlEncoded
-	@POST("moves/check/{id}")
+	@PATCH("moves/{id}/check")
 	fun check(
 		@Path("id") id: UUID,
-		@Field("nature") nature: Nature
+		@RetrofitBody toggleCheck: ToggleCheck
 	): Call<Body<Any>>
 
-	@FormUrlEncoded
-	@POST("moves/uncheck/{id}")
+	@PATCH("moves/{id}/uncheck")
 	fun uncheck(
 		@Path("id") id: UUID,
-		@Field("nature") nature: Nature
+		@RetrofitBody toggleCheck: ToggleCheck
 	): Call<Body<Any>>
 
-	@POST("moves/delete/{id}")
+	@DELETE("moves/{id}")
 	fun delete(
 		@Path("id") id: UUID
 	): Call<Body<Any>>
@@ -71,20 +69,17 @@ interface RequestService {
 	@PATCH("users/logout")
 	fun logout(): Call<Body<Any>>
 
-	@GET("moves/create")
-	fun getMove(): Call<Body<MoveCreation>>
-
-	@GET("moves/create/{id}")
+	@GET("moves/{id}")
 	fun getMove(
 		@Path("id") id: UUID
 	): Call<Body<MoveCreation>>
 
-	@POST("moves/create")
+	@POST("moves")
 	fun saveMove(
 		@RetrofitBody move: Move
 	): Call<Body<Any>>
 
-	@POST("moves/create/{id}")
+	@PUT("moves/{id}")
 	fun saveMove(
 		@Path("id") id: UUID,
 		@RetrofitBody move: Move
@@ -109,7 +104,7 @@ interface RequestService {
 		@RetrofitBody tfa: TFA
 	): Call<Body<Any>>
 
-	@GET("moves/lists")
+	@GET("moves/relations")
 	fun listsForMoves(): Call<Body<Lists>>
 
 	@PATCH("users/wipe")

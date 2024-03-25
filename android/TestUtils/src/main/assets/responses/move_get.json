@@ -1,13 +1,17 @@
 {
 	"data": {
+		"is-using-categories": true,
 		"move": {
 			"guid": "01234567-89AB-CDEF-FEDC-BA9876543210",
+			"foreseen": false,
 			"description": "move",
 			"year": 2020,
 			"month": 3,
 			"day": 8,
-
-			"nature": 2,
+			"nature": {
+				"code": 2,
+				"text": "transfer"
+			},
 			"category-name": "category",
 			"out-url": "out",
 			"in-url": "in",
