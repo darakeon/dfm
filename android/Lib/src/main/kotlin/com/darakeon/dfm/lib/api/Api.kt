@@ -16,6 +16,7 @@ import com.darakeon.dfm.lib.api.entities.signup.SignUp
 import com.darakeon.dfm.lib.api.entities.summary.Summary
 import com.darakeon.dfm.lib.api.entities.terms.Terms
 import com.darakeon.dfm.lib.api.entities.tfa.TFA
+import com.darakeon.dfm.lib.api.entities.toggleCheck.ToggleCheck
 import com.darakeon.dfm.lib.api.entities.wipe.Wipe
 import retrofit2.Call
 import java.util.UUID
@@ -96,7 +97,7 @@ class Api<C>(
 		nature: Nature,
 		onSuccess: () -> Unit
 	) {
-		service.check(id, nature).callNoData(onSuccess)
+		service.check(id, ToggleCheck(nature)).callNoData(onSuccess)
 	}
 
 	fun uncheck(
@@ -104,7 +105,7 @@ class Api<C>(
 		nature: Nature,
 		onSuccess: () -> Unit
 	) {
-		service.uncheck(id, nature).callNoData(onSuccess)
+		service.uncheck(id, ToggleCheck(nature)).callNoData(onSuccess)
 	}
 
 	fun delete(
@@ -142,15 +143,10 @@ class Api<C>(
 	}
 
 	fun getMove(
-		id: UUID?,
+		id: UUID,
 		onSuccess: (MoveCreation) -> Unit
 	) {
-		(
-			if (id == null)
-				service.getMove()
-			else
-				service.getMove(id)
-		).callData(onSuccess)
+		service.getMove(id).callData(onSuccess)
 	}
 
 	fun saveMove(

@@ -265,7 +265,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -274,7 +275,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"code\": \"761504\"\r\n}",
+							"raw": "{\r\n    \"code\": \"200138\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -490,10 +491,10 @@
 									"    const json = pm.response.json();\r",
 									"\r",
 									"    pm.expect(json).to.have.property(\"data\");\r",
-									"    pm.expect(json.data).to.have.property(\"moveList\");\r",
+									"    pm.expect(json.data).to.have.property(\"move-list\");\r",
 									"\r",
-									"    if (json.data.moveList.length > 0) {\r",
-									"        pm.collectionVariables.set(\"move_id\", json.data.moveList[0].guid)\r",
+									"    if (json.data[\"move-list\"].length > 0) {\r",
+									"        pm.collectionVariables.set(\"move_id\", json.data[\"move-list\"][0].guid)\r",
 									"    }\r",
 									"});\r",
 									""
@@ -507,7 +508,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/accounts/{{account_url}}/extract?year=2023&month=02",
+							"raw": "{{url}}/accounts/{{account_url}}/extract?year=2024&month=3",
 							"host": [
 								"{{url}}"
 							],
@@ -519,11 +520,11 @@
 							"query": [
 								{
 									"key": "year",
-									"value": "2023"
+									"value": "2024"
 								},
 								{
 									"key": "month",
-									"value": "02"
+									"value": "3"
 								}
 							]
 						}
@@ -570,255 +571,233 @@
 			]
 		},
 		{
-			"name": "Moves Create",
-			"event": [
+			"name": "Moves",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/account-{{account_url}}/moves/create",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"account-{{account_url}}",
-						"moves",
-						"create"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Moves Create",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"Description\": \"postman 2\",\r\n    \"Year\": 2023,\r\n    \"Month\": 11,\r\n    \"Day\": 16,\r\n    \"Nature\": 0,\r\n    \"Value\": 0,\r\n    \"DetailList\": [\r\n        {\r\n            \"Description\": \"Detail\",\r\n            \"Amount\": 2,\r\n            \"Value\": 3.00\r\n        }\r\n    ],\r\n    \"OutUrl\": \"{{account_url}}\",\r\n    \"InUrl\": null,\r\n    \"CategoryName\": \"{{category_name}}\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/account-{{account_url}}/moves/create",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"account-{{account_url}}",
-						"moves",
-						"create"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Moves Edit",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/account-{{account_url}}/moves/create/{{move_id}}",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"account-{{account_url}}",
-						"moves",
-						"create",
-						"{{move_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Moves Edit",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"Guid\": \"{{move_id}}\",\r\n    \"Description\": \"postman 3\",\r\n    \"Year\": 2024,\r\n    \"Month\": 2,\r\n    \"Day\": 16,\r\n    \"Nature\": 0,\r\n    \"Value\": 0,\r\n    \"DetailList\": [\r\n        {\r\n            \"Description\": \"Detail\",\r\n            \"Amount\": 2,\r\n            \"Value\": 3.00\r\n        }\r\n    ],\r\n    \"OutUrl\": \"{{account_url}}\",\r\n    \"InUrl\": null,\r\n    \"CategoryName\": \"{{category_name}}\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/account-{{account_url}}/moves/create",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"account-{{account_url}}",
-						"moves",
-						"create"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Moves Delete",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/moves/delete/{{move_id}}",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"moves",
-						"delete",
-						"{{move_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Moves Check",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
+					"name": "Get",
+					"event": [
 						{
-							"key": "nature",
-							"value": "0",
-							"type": "text"
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
 						}
-					]
-				},
-				"url": {
-					"raw": "{{url}}/moves/check/{{move_id}}",
-					"host": [
-						"{{url}}"
 					],
-					"path": [
-						"moves",
-						"check",
-						"{{move_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Moves Uncheck",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "nature",
-							"value": "0",
-							"type": "text"
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/moves/{{move_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"moves",
+								"{{move_id}}"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}/moves/uncheck/{{move_id}}",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"moves",
-						"uncheck",
-						"{{move_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Moves Lists",
-			"event": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const json = pm.response.json()\r",
-							"\r",
-							"if (json.data) {\r",
-							"    pm.collectionVariables.set(\"account_url\", json.data.accountList[0].value)\r",
-							"    pm.collectionVariables.set(\"category_name\", json.data.categoryList[0].value)\r",
-							"}\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/moves/lists",
-					"host": [
-						"{{url}}"
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
 					],
-					"path": [
-						"moves",
-						"lists"
-					]
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"postman 2\",\r\n    \"year\": 2024,\r\n    \"month\": 3,\r\n    \"day\": 25,\r\n    \"nature\": {\r\n        \"code\": 2   \r\n    },\r\n    \"value\": 0,\r\n    \"detail-list\": [\r\n        {\r\n            \"description\": \"Detail\",\r\n            \"amount\": 2,\r\n            \"value\": 3.00\r\n        }\r\n    ],\r\n    \"out-url\": \"{{account_url_out}}\",\r\n    \"in-url\": \"{{account_url_in}}\",\r\n    \"category-name\": \"{{category_name}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/moves",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"moves"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"postman 3\",\r\n    \"year\": 2024,\r\n    \"month\": 2,\r\n    \"day\": 16,\r\n    \"nature\": 0,\r\n    \"value\": 0,\r\n    \"detail-list\": [\r\n        {\r\n            \"description\": \"Detail\",\r\n            \"amount\": 2,\r\n            \"value\": 3.00\r\n        }\r\n    ],\r\n    \"out-url\": \"{{account_url}}\",\r\n    \"in-url\": null,\r\n    \"category-name\": \"{{category_name}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/moves/{{move_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"moves",
+								"{{move_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/moves/{{move_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"moves",
+								"{{move_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nature\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/moves/{{move_id}}/check",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"moves",
+								"{{move_id}}",
+								"check"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Uncheck",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nature\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/moves/{{move_id}}/uncheck",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"moves",
+								"{{move_id}}",
+								"uncheck"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Relations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const json = pm.response.json()\r",
+									"\r",
+									"if (json.data) {\r",
+									"    pm.collectionVariables.set(\r",
+									"        \"account_url\",\r",
+									"        json.data['account-list'][0].value\r",
+									"    )\r",
+									"    \r",
+									"    pm.collectionVariables.set(\r",
+									"        \"category_name\",\r",
+									"        json.data['category-list'][0].value\r",
+									"    )\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/moves/relations",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"moves",
+								"relations"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	],
 	"auth": {
@@ -889,6 +868,16 @@
 		{
 			"key": "account_url",
 			"value": ""
+		},
+		{
+			"key": "account_url_out",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "account_url_in",
+			"value": "",
+			"type": "string"
 		},
 		{
 			"key": "category_name",

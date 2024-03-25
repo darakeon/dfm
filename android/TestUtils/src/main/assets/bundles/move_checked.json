@@ -5,7 +5,10 @@
 	"month": 3,
 	"day": 8,
 
-	"nature": 2,
+	"nature": {
+		"code": 2,
+		"text": "transfer"
+	},
 	"categoryName": "category",
 	"outUrl": "out",
 	"inUrl": "in",

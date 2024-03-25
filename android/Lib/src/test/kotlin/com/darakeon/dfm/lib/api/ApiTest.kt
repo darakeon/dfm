@@ -174,20 +174,7 @@ class ApiTest: BaseTest() {
 	}
 
 	@Test
-	fun getMoveNew() {
-		server.enqueue("move_get")
-
-		var moveCreation: MoveCreation? = null
-		api.getMove(null) {
-			moveCreation = it
-		}
-		activity.waitTasks()
-
-		assertNotNull(moveCreation)
-	}
-
-	@Test
-	fun getMoveEdit() {
+	fun getMove() {
 		server.enqueue("move_get")
 
 		var moveCreation: MoveCreation? = null

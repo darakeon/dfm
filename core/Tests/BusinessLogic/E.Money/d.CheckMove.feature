@@ -81,7 +81,7 @@ Scenario: Ed10. Mark another user's move as not checked
 		And the move is not checked for account Out
 		But there is a bad person logged in
 	When I try to mark it as checked for account Out
-	Then I will receive this core error: InvalidMove
+	Then I will receive this core error: MoveNotFound
 	Given test user login
 	Then the move will not be checked for account Out
 

@@ -55,7 +55,7 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 			R.integer.amount_default
 		).toString()
 
-	override val refresh: SwipeRefreshLayout?
+	override val refresh: SwipeRefreshLayout
 		get() = binding.main
 
 	private var loadedScreen = false
@@ -72,16 +72,17 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 		).forEach { it.applyGlyphicon() }
 
 		accountUrl = getExtraOrUrl("accountUrl") ?: ""
-		val id = getExtraOrUrl("id")
+		val extraId = getExtraOrUrl("id")
 
-		if (id != null)
-			this.id = tryGetGuid(id)
+		if (extraId != null)
+			this.id = tryGetGuid(extraId)
 
 		binding.detailAmount.setText(amountDefault)
 
 		if (savedInstanceState == null) {
-			if (this.id != null) {
-				callApi { it.getMove(this.id, this::populateScreen) }
+			val id = this.id
+			if (id != null) {
+				callApi { it.getMove(id, this::populateScreen) }
 			} else {
 				move.date = Date()
 				populateResponse()

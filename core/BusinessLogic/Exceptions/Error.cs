@@ -70,7 +70,7 @@ namespace DFM.BusinessLogic.Exceptions
 		MoveDateRequired = 506,
 		MoveDateInvalid = 507,
 		MoveValueOrDetailRequired = 508,
-		InvalidMove = 509,
+		MoveNotFound = 509,
 		DetailWithoutParent = 510,
 		MoveDetailDescriptionRequired = 511,
 		MoveDetailAmountRequired = 512,

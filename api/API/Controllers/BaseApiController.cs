@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Buffers;
 using System.Net;
-using System.Text;
 using DFM.API.Helpers.Extensions;
 using DFM.API.Models;
 using DFM.BusinessLogic.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace DFM.API.Controllers
 {
@@ -87,18 +84,11 @@ namespace DFM.API.Controllers
 				case Error.LogNotFound:
 				case Error.TermsNotFound:
 				case Error.AccountNotFound:
+				case Error.MoveNotFound:
 					return HttpStatusCode.NotFound;
 				default:
 					return HttpStatusCode.BadRequest;
 			}
-		}
-
-		protected T getFromBody<T>()
-		{
-			var body = Request.BodyReader.ReadAsync();
-			var json = Encoding.UTF8.GetString(body.Result.Buffer.ToArray());
-
-			return JsonConvert.DeserializeObject<T>(json);
 		}
 	}
 }
