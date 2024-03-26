@@ -24,7 +24,7 @@ Scenario: Fb01. Get with invalid Account name
 			| Year |
 			| 2012 |
 	When I try to get the year report
-	Then I will receive this core error: InvalidAccount
+	Then I will receive this core error: AccountNotFound
 		And I will receive no year report
 
 Scenario: Fb02. Get with Date Year Zero
