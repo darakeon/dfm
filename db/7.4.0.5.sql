@@ -237,11 +237,21 @@ insert into migrations (name, executed) values ('4.1.3.3', '2019-09-08 03:40:20'
 insert into migrations (name, executed) values ('4.1.3.4', '2019-09-11 17:53:11');
 insert into migrations (name, executed) values ('4.1.3.6', '2019-09-25 23:43:30');
 insert into migrations (name, executed) values ('4.1.3.7', '2019-11-16 12:31:35');
+insert into migrations (name, executed) values ('4.1.3.8', '2019-11-24 22:21:22');
 insert into migrations (name, executed) values ('4.1.3.9', '2019-12-08 22:23:14');
+insert into migrations (name, executed) values ('4.1.4.0', '2020-01-12 03:44:23');
 insert into migrations (name, executed) values ('4.1.4.5', '2020-06-09 18:51:32');
+insert into migrations (name, executed) values ('4.2.0.0', '2020-07-13 14:40:31');
+insert into migrations (name, executed) values ('4.3.0.0', '2020-10-04 01:59:58');
 insert into migrations (name, executed) values ('4.4.0.0', '2020-10-17 01:22:26');
 insert into migrations (name, executed) values ('4.5.0.1', '2020-11-28 03:00:13');
+insert into migrations (name, executed) values ('4.6.2.0', '2020-12-29 17:51:10');
+insert into migrations (name, executed) values ('4.6.3.0', '2021-01-02 04:06:41');
+insert into migrations (name, executed) values ('5.0.0.0', '2021-03-15 21:53:41');
+insert into migrations (name, executed) values ('6.0.1.0', '2021-06-02 18:49:40');
+insert into migrations (name, executed) values ('6.0.2.0', '2021-07-10 01:28:16');
 insert into migrations (name, executed) values ('6.1.0.0', '2021-07-16 01:25:41');
+insert into migrations (name, executed) values ('7.3.0.0', '2021-08-28 16:47:40');
 insert into migrations (name, executed) values ('7.4.0.0', '2021-09-11 15:05:50');
 
 insert into migrations (name) values ('7.4.0.5');
