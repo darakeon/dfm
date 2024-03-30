@@ -3,8 +3,11 @@ import re
 
 class Migration:
 	def __init__(self, name, code):
+
 		self.name = name
 		self.code = code
+
+		self.insert_itself = code >= 7004000005
 
 	def set_queries(self, queries):
 		self.queries = queries
