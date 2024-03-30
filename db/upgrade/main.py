@@ -16,6 +16,10 @@ def main():
 
 
 def get_done_migrations(db: Db):
+	result = db.execute_uni("SHOW TABLES LIKE 'migrations'")
+	if len(result) == 0:
+		return []
+
 	result = db.execute_uni("SELECT name FROM migrations")
 	return [ name for (name,) in result ]
 
