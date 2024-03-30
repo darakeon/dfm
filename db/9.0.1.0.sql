@@ -1,3 +1,5 @@
+insert into migrations (name) values ('9.0.1.0');
+
 insert into contract (beginDate, version)
 	values (now(), '9.0.1.0');
 
