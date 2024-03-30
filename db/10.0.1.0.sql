@@ -448,31 +448,17 @@ alter table security
 			(@EN, 'en-US', @contract_id);
 -- contract end
 
+alter table wipe
+	modify HashedEmail varchar(60) not null,
+	drop Email;
 
-delimiter //
+drop view deleted_users_wipe;
 
-create procedure finish_wipe_table()
-begin
-	if exists(select * from wipe where HashedEmail is null) then
-		select "Run python script to fill HashedEmail";
-	else
-		alter table wipe
-			modify HashedEmail varchar(60) not null,
-			drop Email;
-
-		drop view deleted_users_wipe;
-
-		create view deleted_users_wipe as
-			select id,
-				HashedEmail as hashed_email,
-				UsernameStart as username_start,
-				DomainStart as domain_start,
-				when_ as `when`, why,
-				password, s3
-			from wipe;
-	end if;
-end //
-
-call finish_wipe_table;
-
-drop procedure finish_wipe_table;
+create view deleted_users_wipe as
+	select id,
+		HashedEmail as hashed_email,
+		UsernameStart as username_start,
+		DomainStart as domain_start,
+		when_ as `when`, why,
+		password, s3
+	from wipe;
