@@ -18,6 +18,9 @@ workflows:
       - push_docker_android:
           requires:
             - test_ci
+      - push_docker_sql_runner:
+          requires:
+            - test_ci
       - build_core:
           requires:
             - test_ci
@@ -115,6 +118,7 @@ workflows:
             - test_ci
             - push_docker_browser
             - push_docker_android
+            - push_docker_sql_runner
             - build_core
             - audit_core
             - test_core_generic
