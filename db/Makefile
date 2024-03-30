@@ -8,4 +8,4 @@ clear:
 reset: clear run
 
 logs:
-	@docker logs dfm-sql-runner
+	@docker logs -f dfm-sql-runner
