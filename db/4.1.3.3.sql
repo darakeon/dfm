@@ -88,9 +88,9 @@ alter table detail
 
 /* Month */
 alter table move
-	drop foreign key FK_Move_InMonth;
+	drop foreign key FK_Move_In;
 alter table move
-	drop foreign key FK_Move_OutMonth;
+	drop foreign key FK_Move_Out;
 alter table summary
 	drop foreign key FK_Summary_Month;
 
@@ -168,7 +168,7 @@ alter table category
 alter table schedule
 	drop foreign key FK_Schedule_User;
 alter table security
-	drop foreign key FKAAE052DE8EFD2E71;
+	drop foreign key FK_Security_User;
 alter table ticket
 	drop foreign key FK_Ticket_User;
 
