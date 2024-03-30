@@ -903,6 +903,25 @@ jobs:
             cd src
             python manage.py test deleted_users
 
+  test_sql_scripts:
+    docker:
+      - image: darakeon/sql-runner
+        environment:
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_DATABASE: dfm
+          MYSQL_USERNAME: root
+          MYSQL_PASSWORD: password
+      - image: mysql
+        environment:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: dfm
+    steps:
+      - checkout
+      - run:
+          name: run script
+          path: db
+          command: python upgrade/main.py
+
   audit_version_changer:
     docker:
       - image: rust
@@ -1091,6 +1110,10 @@ workflows:
       - test_midna:
           requires:
             - build_midna
+      - test_sql_scripts:
+          requires:
+            - test_ci
+            - push_docker_sql_runner
       - audit_version_changer:
           requires:
             - test_ci
@@ -1126,6 +1149,7 @@ workflows:
             - build_midna
             - audit_midna
             - test_midna
+            - test_sql_scripts
             - audit_version_changer
       #- approve_version:
       #    type: approval

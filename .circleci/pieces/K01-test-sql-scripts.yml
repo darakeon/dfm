@@ -1,0 +1,19 @@
+  test_sql_scripts:
+    docker:
+      - image: darakeon/sql-runner
+        environment:
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_DATABASE: dfm
+          MYSQL_USERNAME: root
+          MYSQL_PASSWORD: password
+      - image: mysql
+        environment:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: dfm
+    steps:
+      - checkout
+      - run:
+          name: run script
+          path: db
+          command: python upgrade/main.py
+

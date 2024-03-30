@@ -109,6 +109,10 @@ workflows:
       - test_midna:
           requires:
             - build_midna
+      - test_sql_scripts:
+          requires:
+            - test_ci
+            - push_docker_sql_runner
       - audit_version_changer:
           requires:
             - test_ci
@@ -144,6 +148,7 @@ workflows:
             - build_midna
             - audit_midna
             - test_midna
+            - test_sql_scripts
             - audit_version_changer
       #- approve_version:
       #    type: approval
