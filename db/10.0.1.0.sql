@@ -1,5 +1,3 @@
-insert into migrations (name) values ('9.0.0.0');
-insert into migrations (name) values ('9.0.1.0');
 insert into migrations (name) values ('10.0.1.0');
 
 drop trigger no_update_purge;
@@ -37,8 +35,7 @@ create view deleted_users_wipe as
 		UsernameStart as username_start,
 		DomainStart as domain_start,
 		when_ as `when`, why,
-		password, s3,
-		email
+		password, s3, email
 	from wipe;
 
 
