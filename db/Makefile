@@ -9,3 +9,6 @@ clear:
 	@sudo rm -r ~/mysql/data
 
 reset: clear run
+
+logs:
+	@docker logs dfm-sql-runner
