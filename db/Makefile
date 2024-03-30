@@ -1,7 +1,4 @@
 run:
-	@rm -f all.sql
-	@cat [0-9].*.sql > all.sql
-	@cat [0-9][0-9].*.sql >> all.sql
 	@docker compose up -d
 
 clear:
