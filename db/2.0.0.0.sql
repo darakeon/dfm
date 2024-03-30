@@ -61,7 +61,7 @@ SELECT CONCAT('ALTER TABLE ', table_schema, '.', table_name, '\n	DROP FOREIGN KE
 	WHERE REFERENCED_TABLE_SCHEMA IS NOT NULL
 		AND Constraint_Schema = 'dfm';
 
-SELECT table_name, column_name,REPLACE(column_name, '_ID', '') as parent_entity,
+SELECT /*table_name, column_name,REPLACE(column_name, '_ID', '') as parent_entity,*/
 	CONCAT(
 		'ALTER TABLE ', table_name, '\n',
 		'	ADD CONSTRAINT FK_', UPPER(SUBSTRING(table_name, 1, 1)), LOWER(SUBSTRING(table_name, 2, 100)), '_', REPLACE(column_name, '_ID', ''), '\n',
