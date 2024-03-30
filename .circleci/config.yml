@@ -81,6 +81,24 @@ jobs:
           path: architecture/ci
           command: make build_android PUSH=1
 
+  push_docker_sql_runner:
+    docker:
+      - image: docker
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Install make
+          command: apk add make
+      - run:
+          name: Login
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - run:
+          name: Build images
+          path: architecture/ci
+          command: make build_sql_runner PUSH=1
+
   build_core:
     docker:
       - image: darakeon/netcore
@@ -982,6 +1000,9 @@ workflows:
       - push_docker_android:
           requires:
             - test_ci
+      - push_docker_sql_runner:
+          requires:
+            - test_ci
       - build_core:
           requires:
             - test_ci
@@ -1079,6 +1100,7 @@ workflows:
             - test_ci
             - push_docker_browser
             - push_docker_android
+            - push_docker_sql_runner
             - build_core
             - audit_core
             - test_core_generic
