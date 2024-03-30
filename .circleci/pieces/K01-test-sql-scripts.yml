@@ -1,0 +1,18 @@
+  test_sql_scripts:
+    docker:
+      - image: darakeon/sql-runner
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: run database
+          path: db
+          command: |
+            docker run -v ./init.sql:/docker-entrypoint-initdb.d/init.sql --hostname dfm-mysql mysql
+      - run:
+          name: run script
+          path: db
+          command: |
+            python upgrade/main.py
+
