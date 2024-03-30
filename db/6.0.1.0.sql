@@ -4,6 +4,8 @@
  *                    *
 \**********************/
 
+SET GLOBAL log_bin_trust_function_creators = 1;
+
 create trigger no_update_contract
 	before update
 	on contract for each row
@@ -27,6 +29,8 @@ create trigger no_delete_terms
 	on terms for each row
 		signal sqlstate '45000'
 			set message_text = 'cannot delete terms';
+
+SET GLOBAL log_bin_trust_function_creators = 0;
 
 alter table terms
 	add unique key UK_Terms (Contract_ID, Language);
