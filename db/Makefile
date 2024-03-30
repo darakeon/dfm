@@ -3,7 +3,7 @@ run:
 
 clear:
 	@docker compose down
-	@sudo rm -r ~/mysql/data
+	@sudo rm -r data
 
 reset: clear run
 
