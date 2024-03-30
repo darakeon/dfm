@@ -16,10 +16,18 @@ class Db:
 		execution = cursor.execute(queries, multi=True)
 
 		statement = 0
-
 		for _ in execution:
 			statement += 1
-			print('statement', statement)
+			print("statement", statement)
+
+			sub_statement = 0
+			for (result,) in cursor.fetchall():
+				if not isinstance(result, str):
+					continue
+
+				sub_statement += 1
+				print("sub statement", sub_statement)
+				self.execute_uni(result)
 
 		connection.commit()
 
