@@ -11,6 +11,9 @@ build_browser:
 build_android:
 	@make single_build MACHINE=android TAG=gradle821-jdk17 PUSH=${PUSH}
 
+build_sql_runner:
+	@make single_build MACHINE=sql-runner PUSH=${PUSH}
+
 single_build:
 	@if [ "${MACHINE}" = "" ]; then \
 		make raise_error TEXT="please set the MACHINE to build"; \
