@@ -30,16 +30,9 @@ class Db:
 		return cursor.fetchall()
 
 	def connect_db(self):
-		if self.MYSQL_PASSWORD:
-			return connect(
-				host=self.MYSQL_HOST,
-				database=self.MYSQL_DATABASE,
-				user=self.MYSQL_USERNAME,
-				password=self.MYSQL_PASSWORD,
-			)
-		else:
-			return connect(
-				host=self.MYSQL_HOST,
-				database=self.MYSQL_DATABASE,
-				user=self.MYSQL_USERNAME,
-			)	
+		return connect(
+			host=self.MYSQL_HOST,
+			database=self.MYSQL_DATABASE,
+			user=self.MYSQL_USERNAME,
+			password=self.MYSQL_PASSWORD,
+		)
