@@ -1,8 +1,8 @@
 import os
-from datetime import datetime
 
 from migration import Migration
 from db import Db
+from ui import UI
 
 
 def main():
@@ -44,7 +44,7 @@ def get_pending_migrations(done_migrations):
 def execute_migration(db: Db, migration: Migration):
 	migration_insert = f"INSERT INTO migrations (name) VALUES ('{migration.name}')"
 
-	user_interface(migration.name)
+	UI.print_black(migration.name)
 
 	if migration_insert not in migration.queries:
 		print("Migration must insert itself in migrations table")
@@ -55,16 +55,7 @@ def execute_migration(db: Db, migration: Migration):
 	db.execute_multi(migration.queries)
 
 
-def user_interface(text):
-	print()
-	print("---------------------------------------------------------------------------------")
-	print(f"--- {text} {datetime.now()}")
-	print("---------------------------------------------------------------------------------")
-	print()
-
-
 if __name__ == "__main__":
-	user_interface("STARTING")
+	UI.print_red("STARTING")
 	main()
-	user_interface("ENDED")
-
+	UI.print_purple("ENDED")
