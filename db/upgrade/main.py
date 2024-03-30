@@ -1,7 +1,7 @@
 import os
 
-from migration import Migration
 from db import Db
+from migration import Migration
 from ui import UI
 
 
@@ -46,7 +46,7 @@ def execute_migration(db: Db, migration: Migration):
 
 	UI.print_black(migration.name)
 
-	if migration_insert not in migration.queries:
+	if migration.insert_itself and migration_insert.lower() not in migration.queries.lower():
 		print("Migration must insert itself in migrations table")
 		print("You can add this to the end of the file:")
 		print(migration_insert)
