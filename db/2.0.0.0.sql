@@ -84,4 +84,4 @@ SELECT /*table_name, column_name,REPLACE(column_name, '_ID', '') as parent_entit
 	) as query
 	FROM information_schema.columns
 	WHERE Table_Schema = 'dfm'
-		AND column_name LIKE '%_ID';
+		AND column_name LIKE '%\_ID';
