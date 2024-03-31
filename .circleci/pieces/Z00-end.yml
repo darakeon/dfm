@@ -445,6 +445,30 @@ workflows:
             - audit_version_changer
             - change_version
 
+  db:
+    jobs:
+      - trufflehog:
+          filters:
+            branches:
+              only:
+                - /^feature/db.+$/
+      - test_ci:
+          requires:
+            - trufflehog
+      - push_docker_sql_runner:
+          requires:
+            - test_ci
+      - test_sql_scripts:
+          requires:
+            - test_ci
+            - push_docker_sql_runner
+      - workflow_ran:
+          requires:
+            - trufflehog
+            - test_ci
+            - push_docker_sql_runner
+            - test_sql_scripts
+
   ci:
     jobs:
       - trufflehog:
