@@ -67,7 +67,7 @@ SELECT /*table_name, column_name,REPLACE(column_name, '_ID', '') as parent_entit
 		'	ADD CONSTRAINT FK_', UPPER(SUBSTRING(table_name, 1, 1)), LOWER(SUBSTRING(table_name, 2, 100)), '_', REPLACE(column_name, '_ID', ''), '\n',
 		'		FOREIGN KEY (', column_name, ')\n',
 		'		REFERENCES ',
-			CASE REPLACE(column_name, '_ID', '')
+			LOWER(CASE REPLACE(column_name, '_ID', '')
 				WHEN 'In' THEN
 					(CASE table_name
 						WHEN 'schedule' THEN 'account'
@@ -79,7 +79,7 @@ SELECT /*table_name, column_name,REPLACE(column_name, '_ID', '') as parent_entit
 						WHEN 'move' THEN 'month'
 					END)
 				ELSE REPLACE(column_name, '_ID', '')
-			END,
+			END),
 			' (ID);'
 	) as query
 	FROM information_schema.columns
