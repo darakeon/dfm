@@ -916,7 +916,6 @@ jobs:
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: dfm
     steps:
-      - checkout
       - run:
           name: run script
           path: db

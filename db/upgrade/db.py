@@ -51,5 +51,6 @@ class Db:
 			if count == 9:
 				raise
 
-			time.sleep(1)
+			print(f"Try: {count+2} (retry {count+1})")
+			time.sleep(2)
 			return self.connect_db(count + 1)
