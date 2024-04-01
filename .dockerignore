@@ -49,3 +49,11 @@ midna/gunicorn/run
 midna/src/db.sqlite3
 midna/src/.pytest_cache
 midna/**/__pycache__
+
+db/db.env
+db/data
+db/docker-compose.yml
+db/init.sql
+db/Makefile
+db/*.future
+db/**/__pycache__
