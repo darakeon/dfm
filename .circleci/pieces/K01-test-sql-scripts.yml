@@ -13,6 +13,6 @@
     steps:
       - run:
           name: run script
-          path: db
+          path: /var/db
           command: python upgrade/main.py
 
