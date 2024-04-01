@@ -6,6 +6,7 @@
           MYSQL_DATABASE: dfm
           MYSQL_USERNAME: root
           MYSQL_PASSWORD: password
+          RUN_DATA: 1
       - image: mysql
         environment:
           MYSQL_ROOT_PASSWORD: password
