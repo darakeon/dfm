@@ -14,5 +14,5 @@
       - run:
           name: Build images
           path: architecture/ci
-          command: make build_sql_runner PUSH=1 TAG=ci
+          command: make build_sql_runner_ci PUSH=1
 
