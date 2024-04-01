@@ -14,6 +14,9 @@ build_android:
 build_sql_runner:
 	@make single_build MACHINE=sql-runner PUSH=${PUSH}
 
+build_sql_runner_ci:
+	@make single_build MACHINE=sql-runner TAG=ci ONLY_TAG=1 PUSH=${PUSH}
+
 single_build:
 	@if [ "${MACHINE}" = "" ]; then \
 		make raise_error TEXT="please set the MACHINE to build"; \
@@ -30,7 +33,13 @@ single_build:
 	fi
 
 	@if [ "${PUSH}" ]; then \
-		docker push -a darakeon/${MACHINE}; \
+		if [ "${TAG}" ] && [ "${ONLY_TAG}" = "1" ]; then \
+			echo push ${TAG}; \
+			docker push darakeon/${MACHINE}:${TAG}; \
+		else \
+			echo push all; \
+			docker push -a darakeon/${MACHINE}; \
+		fi \
 	fi
 
 rebuild_fi:
