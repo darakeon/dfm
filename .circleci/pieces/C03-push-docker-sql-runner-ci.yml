@@ -1,4 +1,4 @@
-  push_docker_sql_runner:
+  push_docker_sql_runner_ci:
     docker:
       - image: docker
     steps:
@@ -14,5 +14,5 @@
       - run:
           name: Build images
           path: architecture/ci
-          command: make build_sql_runner PUSH=1
+          command: make build_sql_runner PUSH=1 TAG=ci
 

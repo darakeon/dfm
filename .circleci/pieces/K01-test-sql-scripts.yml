@@ -1,6 +1,6 @@
   test_sql_scripts:
     docker:
-      - image: darakeon/sql-runner
+      - image: darakeon/sql-runner:ci
         environment:
           MYSQL_HOST: 127.0.0.1
           MYSQL_DATABASE: dfm
