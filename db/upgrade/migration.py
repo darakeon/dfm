@@ -2,12 +2,13 @@ import re
 
 
 class Migration:
-	def __init__(self, name, code):
+	def __init__(self, name, code, is_data):
 
 		self.name = name
 		self.code = code
+		self.is_data = is_data
 
-		self.insert_itself = code >= 7004000005
+		self.insert_itself = not is_data and code >= 7004000005
 
 	def set_queries(self, queries):
 		self.queries = queries
@@ -33,4 +34,6 @@ class Migration:
 
 		code = dragon + whale + sheep + ant
 
-		return Migration(name, code)
+		is_data = "data" in text
+
+		return Migration(name, code, is_data)

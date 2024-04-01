@@ -12,7 +12,8 @@ def main():
 	pending_migrations = get_pending_migrations(done_migrations)
 
 	for migration in pending_migrations:
-		execute_migration(db, migration)
+		if not migration.is_data or os.environ.get("RUN_DATA"):
+			execute_migration(db, migration)
 
 
 def get_done_migrations(db: Db):
@@ -44,7 +45,7 @@ def get_pending_migrations(done_migrations):
 def execute_migration(db: Db, migration: Migration):
 	migration_insert = f"INSERT INTO migrations (name) VALUES ('{migration.name}')"
 
-	UI.print_black(migration.name)
+	UI.print_black(f"{migration.name} (data: {migration.is_data})")
 
 	if migration.insert_itself and migration_insert.lower() not in migration.queries.lower():
 		print("Migration must insert itself in migrations table")
