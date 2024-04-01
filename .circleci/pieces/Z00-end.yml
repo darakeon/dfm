@@ -18,7 +18,7 @@ workflows:
       - push_docker_android:
           requires:
             - test_ci
-      - push_docker_sql_runner:
+      - push_docker_sql_runner_ci:
           requires:
             - test_ci
       - build_core:
@@ -112,7 +112,7 @@ workflows:
       - test_sql_scripts:
           requires:
             - test_ci
-            - push_docker_sql_runner
+            - push_docker_sql_runner_ci
       - audit_version_changer:
           requires:
             - test_ci
@@ -122,7 +122,7 @@ workflows:
             - test_ci
             - push_docker_browser
             - push_docker_android
-            - push_docker_sql_runner
+            - push_docker_sql_runner_ci
             - build_core
             - audit_core
             - test_core_generic
@@ -455,18 +455,18 @@ workflows:
       - test_ci:
           requires:
             - trufflehog
-      - push_docker_sql_runner:
+      - push_docker_sql_runner_ci:
           requires:
             - test_ci
       - test_sql_scripts:
           requires:
             - test_ci
-            - push_docker_sql_runner
+            - push_docker_sql_runner_ci
       - workflow_ran:
           requires:
             - trufflehog
             - test_ci
-            - push_docker_sql_runner
+            - push_docker_sql_runner_ci
             - test_sql_scripts
 
   ci:
