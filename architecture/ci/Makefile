@@ -2,6 +2,7 @@ MAKEFLAGS += --no-print-directory
 
 ERROR=\033[0;31m
 CLEAR=\033[0m
+CONTEXT=.
 
 build_browser:
 	@make single_build MACHINE=netcore-libman-node PUSH=${PUSH}
@@ -12,10 +13,10 @@ build_android:
 	@make single_build MACHINE=android TAG=gradle821-jdk17 PUSH=${PUSH}
 
 build_sql_runner:
-	@make single_build MACHINE=sql-runner PUSH=${PUSH}
+	@make single_build MACHINE=sql-runner CONTEXT=../.. PUSH=${PUSH}
 
 build_sql_runner_ci:
-	@make single_build MACHINE=sql-runner TAG=ci ONLY_TAG=1 PUSH=${PUSH}
+	@make single_build MACHINE=sql-runner CONTEXT=../.. TAG=ci ONLY_TAG=1 PUSH=${PUSH}
 
 single_build:
 	@if [ "${MACHINE}" = "" ]; then \
@@ -24,7 +25,7 @@ single_build:
 
 	@docker context use default
 	@docker login
-	@docker build . -f ${MACHINE}.dockerfile -t darakeon/${MACHINE} --network=host
+	@docker build ${CONTEXT} -f ${MACHINE}.dockerfile -t darakeon/${MACHINE} --network=host
 	@docker tag darakeon/${MACHINE} ${MACHINE}
 	@docker image prune -f > /dev/null
 
