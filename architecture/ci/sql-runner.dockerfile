@@ -14,4 +14,6 @@ RUN apk add gcc libc-dev python3-dev; \
 
 WORKDIR /var/db
 
+COPY ./db /var/db/
+
 CMD bash
