@@ -1,6 +1,8 @@
 import os
+import time
 
 from mysql.connector import connect
+from mysql.connector.errors import InterfaceError
 
 
 class Db:
@@ -10,7 +12,7 @@ class Db:
 	MYSQL_PASSWORD=os.environ.get("MYSQL_PASSWORD")
 
 	def execute_multi(self, queries):
-		connection = self.connect_db()
+		connection = self.connect_db(0)
 		cursor = connection.cursor()
 		
 		execution = cursor.execute(queries, multi=True)
@@ -32,15 +34,22 @@ class Db:
 		connection.commit()
 
 	def execute_uni(self, query):
-		connection = self.connect_db()
+		connection = self.connect_db(0)
 		cursor = connection.cursor()
 		cursor.execute(query)
 		return cursor.fetchall()
 
-	def connect_db(self):
-		return connect(
-			host=self.MYSQL_HOST,
-			database=self.MYSQL_DATABASE,
-			user=self.MYSQL_USERNAME,
-			password=self.MYSQL_PASSWORD,
-		)
+	def connect_db(self, count):
+		try:
+			return connect(
+				host=self.MYSQL_HOST,
+				database=self.MYSQL_DATABASE,
+				user=self.MYSQL_USERNAME,
+				password=self.MYSQL_PASSWORD,
+			)
+		except InterfaceError:
+			if count == 9:
+				raise
+
+			time.sleep(1)
+			return self.connect_db(count + 1)
