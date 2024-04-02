@@ -12,7 +12,7 @@ buildscript {
 	ext.kotlin_version = '1.9.23'
 	ext.gradle_version = '8.3.0'
 	ext.play_version = '17.0.0'
-	ext.retrofit_version = '2.9.0'
+	ext.retrofit_version = '2.11.0'
 	ext.mockito_version = '5.11.0'
 	ext.junit_version = '4.13.2'
 	ext.robolectric_version = '4.11.1'
