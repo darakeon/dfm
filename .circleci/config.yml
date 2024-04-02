@@ -999,6 +999,24 @@ jobs:
               cargo run -q -- -c
             fi
 
+  deploy_sql_runner:
+    docker:
+      - image: docker
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Install make
+          command: apk add make
+      - run:
+          name: Login
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - run:
+          name: Build images
+          path: architecture/ci
+          command: make build_sql_runner PUSH=1
+
 workflows:
   version: 2.1
 
@@ -1151,10 +1169,17 @@ workflows:
             - test_midna
             - test_sql_scripts
             - audit_version_changer
-      #- approve_version:
-      #    type: approval
-      #    requires:
-      #      - change_version
+      - approve_deploy:
+          type: approval
+          requires:
+            - change_version
+          filters:
+            branches:
+              only:
+                - /^\d+\.\d+\.\d+\.\d+$/
+      - deploy_sql_runner:
+          requires:
+            - approve_deploy
 
   core:
     jobs:
