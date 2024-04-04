@@ -21,7 +21,6 @@ services:
     env_file: db.env
     volumes:
       - .:/var/db
-    command: python upgrade/main.py
     depends_on:
       mysql:
         condition: service_healthy
