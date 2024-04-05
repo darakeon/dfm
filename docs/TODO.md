@@ -13,7 +13,7 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (54)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (55)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
 | Add transfer with conversion (value in/out) (user really needing)              | :dragon: |  3  |  4  |  5  |                |
 | Add category creation (mobile)                                                 | :dragon: |  2  |  4  |  6  |                |
@@ -31,6 +31,7 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Check [android error no internet](todo/android-error-no-internet.log)          | :ant:    |  2  |  4  |  6  |                |
 | Inject ServiceAccess with AddScoped at MVC (because of Session NH)             | :ant:    |  2  |  4  |  6  |                |
 | Add rate limit to API and site                                                 | :whale:  |  1  |  3  |  6  |                |
+| Add [swagger] to API                                                           | :whale:  |  1  |  3  |  6  |                |
 | warning about 15 minutes windows for runnings schedules                        | :sheep:  |  1  |  3  |  6  |                |
 | Refactor Core Steps to improve their division to entities and given/when/then  | :sheep:  |  1  |  3  |  6  |                |
 | Fix print contract                                                             | :ant:    |  1  |  3  |  6  |                |
@@ -76,3 +77,4 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 [Lint C#]: https://medium.com/@michaelparkerdev/linting-c-in-2019-stylecop-sonar-resharper-and-roslyn-73e88af57ebd
 [OCR]: https://developers.google.com/ml-kit/vision/text-recognition/android
 [template]: dirigir-1tI0z29LBJJAQCYq1fptWCN8jgL6b2yj-
+[swagger]: https://learn.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger?view=aspnetcore-8.0
