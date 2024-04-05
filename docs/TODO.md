@@ -30,7 +30,7 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Check [android error socket](todo/android-error-socket-closed.log)             | :ant:    |  2  |  4  |  6  |                |
 | Check [android error no internet](todo/android-error-no-internet.log)          | :ant:    |  2  |  4  |  6  |                |
 | Inject ServiceAccess with AddScoped at MVC (because of Session NH)             | :ant:    |  2  |  4  |  6  |                |
-| Add rate limit to API and site                                                 | :whale:  |  1  |  3  |  6  | break site/api |
+| Add rate limit to API and site                                                 | :whale:  |  1  |  3  |  6  |                |
 | warning about 15 minutes windows for runnings schedules                        | :sheep:  |  1  |  3  |  6  |                |
 | Refactor Core Steps to improve their division to entities and given/when/then  | :sheep:  |  1  |  3  |  6  |                |
 | Fix print contract                                                             | :ant:    |  1  |  3  |  6  |                |
@@ -48,7 +48,7 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Add test for unifying categories used in closed accounts                       | :ant:    |  1  |  2  |  5  |                |
 | Add user last access to Admin                                                  | :sheep:  |  1  |  2  |  5  |                |
 | Add accessibility to automated tests                                           | :whale:  |  4  |  4  |  4  |                |
-| Test android tests payloads x .net api objects                                 | :sheep:  |  4  |  4  |  4  | break site/api |
+| Test android tests payloads x .net api objects                                 | :sheep:  |  4  |  4  |  4  |                |
 | Report with more than one account                                              | :dragon: |  3  |  3  |  4  |                |
 | Add schedule anticipation                                                      | :whale:  |  3  |  3  |  4  |                |
 | Handle split screen layout at android app                                      | :whale:  |  3  |  3  |  4  |                |
