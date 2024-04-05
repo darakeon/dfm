@@ -15,7 +15,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="11.0.0.0"></a>11.0.0.0 :dragon: <sup>`5`</sup>
-- [ ] `240326>......` Automate execute non destrutive sql
+- [x] `240326>240406` Automate execute non destrutive sql
 - [x] `240227>240326` Make endpoints restful
 - [x] `240216>240121` Add user creation (mobile)
 - [x] `240101>240214` [Reduce Docker Images] / Use multistaged (multiple FROM at dockerfiles) container

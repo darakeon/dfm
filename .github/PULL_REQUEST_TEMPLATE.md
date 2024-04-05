@@ -9,7 +9,6 @@
 ## Tasks to publish
 
 - [ ] Upgrade version and create new release
-- [ ] Execute non-destructive Sql
 - [ ] Deploy Site and Tag
 - [ ] Deploy API and Tag
 - [ ] Deploy Robot and Tag
@@ -18,7 +17,6 @@
 - [ ] Test API
 - [ ] Test error handler
 - [ ] Deploy APKs
-- [ ] Execute destructive Sql
 - [ ] Upload new mobile prints
 - [ ] Merge PR
 - [ ] Create branch of new dev version and tag of prod version
