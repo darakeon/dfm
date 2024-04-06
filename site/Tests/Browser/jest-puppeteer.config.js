@@ -1,6 +1,6 @@
 const args = []
 
-let browser = 'google-chrome'
+let browser = '/usr/bin/google-chrome'
 
 if (process.getuid && process.getuid() == 0) {
 	args.push("--no-sandbox")
