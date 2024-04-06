@@ -4,9 +4,9 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#11.0.0.0)
-- [go to version in development](#11.0.0.1)
-- [dev version state](../../11.0.0.1/docs/RELEASES.md#11.0.0.1)
+- [go to published version](#11.0.0.1)
+- [go to version in development](#12.0.0.0)
+- [dev version state](../../12.0.0.0/docs/RELEASES.md#12.0.0.0)
 
 ## Legend
 - :dragon:: at least one huge change (increases first number)

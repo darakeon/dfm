@@ -6,8 +6,8 @@
     <RootNamespace>DFM.API</RootNamespace>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <AssemblyVersion>11.0.0.0</AssemblyVersion>
-    <FileVersion>11.0.0.0</FileVersion>
+    <AssemblyVersion>11.0.0.1</AssemblyVersion>
+    <FileVersion>11.0.0.1</FileVersion>
     <ApplicationIcon>Assets/favicon.ico</ApplicationIcon>
   </PropertyGroup>
 
