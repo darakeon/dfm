@@ -2,6 +2,7 @@ MAKEFLAGS += --no-print-directory
 RED=\033[01;31m
 PURPLE=\033[01;35m
 RESET=\033[00m
+VERSION=$$(git branch --show-current)
 
 
 all: site api robot midna
@@ -39,9 +40,9 @@ single:
 
 push:
 	@make echo COLOR="${RED}" TEXT="Pushing ${MACHINE}..."
-	@docker tag darakeon/dfm-${MACHINE} darakeon/dfm-${MACHINE}:$(git branch --show-current)
+	@docker tag darakeon/dfm-${MACHINE} darakeon/dfm-${MACHINE}:${VERSION}
 	@docker push darakeon/dfm-${MACHINE}
-	@docker push darakeon/dfm-${MACHINE}:$(git branch --show-current)
+	@docker push darakeon/dfm-${MACHINE}:${VERSION}
 	@make echo COLOR="${PURPLE}" TEXT="${MACHINE} pushed!"
 
 echo:
