@@ -1,4 +1,7 @@
 {
+	"11.0.0.1": [
+		"Correção de verificação interna"
+	],
 	"11.0.0.0": [
 		"Automação de parte do processo de publicação de nova versão",
 		"Adicionada tela de cadastro no Aplicativo Android",
