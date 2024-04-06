@@ -1,4 +1,7 @@
 {
+	"11.0.0.1": [
+		"Fix internal check"
+	],
 	"11.0.0.0": [
 		"Automation of part of new version publish process",
 		"Add user sign up to Android App",
