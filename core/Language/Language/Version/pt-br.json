@@ -1,4 +1,10 @@
 {
+	"11.0.0.0": [
+		"Automação de parte do processo de publicação de nova versão",
+		"Adicionada tela de cadastro no Aplicativo Android",
+		"Melhorias de performance e uso de recursos",
+		"Criada interface para desenvolvimento de aplicações terceiras"
+	],
 	"10.2.1.0": [
 		"Adiciona link para desinscrever nos emails recorrentes enviados pelo site",
 		"Atualiza ferramentas de sistema",

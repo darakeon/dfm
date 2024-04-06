@@ -13,9 +13,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (55)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (54)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
-| Add transfer with conversion (value in/out) (user really needing)              | :dragon: |  3  |  4  |  5  |                |
 | Add category creation (mobile)                                                 | :dragon: |  2  |  4  |  6  |                |
 | Add account creation (mobile)                                                  | :dragon: |  2  |  4  |  6  |                |
 | Add schedule creation (mobile)                                                 | :dragon: |  2  |  4  |  6  |                |

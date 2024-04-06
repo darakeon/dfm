@@ -1,4 +1,10 @@
 {
+	"11.0.0.0": [
+		"Automation of part of new version publish process",
+		"Add user sign up to Android App",
+		"Performance and resource use improvement",
+		"Create interface for third part applications"
+	],
 	"10.2.1.0": [
 		"Add unsubscribe link to recurrent emails sent by the system",
 		"Update system tools",
