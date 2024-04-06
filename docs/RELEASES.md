@@ -15,7 +15,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="12.0.0.0"></a>12.0.0.0 :dragon: <sup>`2`</sup>
->>>>> ADD A DEPLOY AUTOMATION TASK
+- [ ] Deploy images to docker hub via CI
 - [ ] Add transfer with conversion (value in/out) (user really needing)
 
 ## <a name="11.0.0.1"></a>11.0.0.1 :ant: <sup>`1`</sup>
