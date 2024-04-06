@@ -1,18 +1,10 @@
 {
 	"en-us": {
-		"Automate execute non destrutive sql": "Automation of part of new version publish process",
-		"Make endpoints restful": "-",
-		"Add user creation (mobile)": "Add user sign up to Android App",
-		"[Reduce Docker Images] / Use multistaged (multiple FROM at dockerfiles) container": "Performance and resource use improvement",
-		"Separate MVC projects: site and api": "Create interface for third part applications",
+		"Fix version check in main": "Fix internal check",
 		"": null
 	},
 	"pt-br": {
-		"Automate execute non destrutive sql": "Automação de parte do processo de publicação de nova versão",
-		"Make endpoints restful": "-",
-		"Add user creation (mobile)": "Adicionada tela de cadastro no Aplicativo Android",
-		"[Reduce Docker Images] / Use multistaged (multiple FROM at dockerfiles) container": "Melhorias de performance e uso de recursos",
-		"Separate MVC projects: site and api": "Criada interface para desenvolvimento de aplicações terceiras",
+		"Fix version check in main": "Correção de verificação interna",
 		"": null
 	}
 }
