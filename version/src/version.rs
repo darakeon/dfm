@@ -41,7 +41,7 @@ pub fn create_version(option: &ProgramOption, numbers: Vec<usize>) -> Option<Ver
 		throw_format(12, format!("Branch is '{}', but release is of '{}'", branch, compare));
 	}
 
-	if version.tasks.len() == 0 {
+	if branch != "main" && version.tasks.len() == 0 {
 		throw(13, "Version without tasks");
 	}
 
