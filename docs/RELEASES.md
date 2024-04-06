@@ -17,7 +17,7 @@ This is the list of project releases, past and current. To see tasks that are st
 ## <a name="12.0.0.0"></a>12.0.0.0 :dragon: <sup>`3`</sup>
 - [ ] Deploy images to docker hub via CI
 - [ ] Check robot inactive auto deletion
-- [ ] Add transfer with conversion (value in/out) (user really needing)
+- [ ] `240406>......` Add transfer with conversion (value in/out)
 
 ## <a name="11.0.0.1"></a>11.0.0.1 :ant: <sup>`1`</sup>
 - [x] `240406>240406` Fix version check in main
