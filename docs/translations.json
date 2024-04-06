@@ -1,18 +1,18 @@
 {
 	"en-us": {
-		"Update dependabot file in version update": "-",
-		"Add tests to moves ordering at reports": "-",
-		"Make google see move unsubscribe link ([Google tips avoid being spam])": "Add unsubscribe link to recurrent emails sent by the system",
-		"Update to .NET 8": "Update system tools",
-		"Fix android density value in settings (pt-br)": "Fix settings footer data in Android App",
+		"Automate execute non destrutive sql": "Automation of part of new version publish process",
+		"Make endpoints restful": "-",
+		"Add user creation (mobile)": "Add user sign up to Android App",
+		"[Reduce Docker Images] / Use multistaged (multiple FROM at dockerfiles) container": "Performance and resource use improvement",
+		"Separate MVC projects: site and api": "Create interface for third part applications",
 		"": null
 	},
 	"pt-br": {
-		"Update dependabot file in version update": "-",
-		"Add tests to moves ordering at reports": "-",
-		"Make google see move unsubscribe link ([Google tips avoid being spam])": "Adiciona link para desinscrever nos emails recorrentes enviados pelo site",
-		"Update to .NET 8": "Atualiza ferramentas de sistema",
-		"Fix android density value in settings (pt-br)": "Ajuste de informação no rodapé das configurações no Aplicativo Android",
+		"Automate execute non destrutive sql": "Automação de parte do processo de publicação de nova versão",
+		"Make endpoints restful": "-",
+		"Add user creation (mobile)": "Adicionada tela de cadastro no Aplicativo Android",
+		"[Reduce Docker Images] / Use multistaged (multiple FROM at dockerfiles) container": "Melhorias de performance e uso de recursos",
+		"Separate MVC projects: site and api": "Criada interface para desenvolvimento de aplicações terceiras",
 		"": null
 	}
 }
