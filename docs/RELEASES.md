@@ -5,8 +5,8 @@
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
 - [go to published version](#11.0.0.0)
-- [go to version in development](#12.0.0.0)
-- [dev version state](../../12.0.0.0/docs/RELEASES.md#12.0.0.0)
+- [go to version in development](#11.0.0.1)
+- [dev version state](../../11.0.0.1/docs/RELEASES.md#11.0.0.1)
 
 ## Legend
 - :dragon:: at least one huge change (increases first number)
@@ -17,6 +17,9 @@ This is the list of project releases, past and current. To see tasks that are st
 ## <a name="12.0.0.0"></a>12.0.0.0 :dragon: <sup>`2`</sup>
 >>>>> ADD A DEPLOY AUTOMATION TASK
 - [ ] Add transfer with conversion (value in/out) (user really needing)
+
+## <a name="11.0.0.1"></a>11.0.0.1 :ant: <sup>`1`</sup>
+- [x] `240406>240406` Fix version check in main
 
 ## <a name="11.0.0.0"></a>11.0.0.0 :dragon: <sup>`5`</sup>
 - [x] `240326>240406` Automate execute non destrutive sql
