@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Entities.Enums;
@@ -22,12 +23,20 @@ namespace DFM.BusinessLogic.Tests
 
 			objects = new Dictionary<String, Func<User, IEntityLong>>
 			{
-				{nameof(Account), accountFor},
-				{nameof(Category), categoryFor},
+				{nameof(Control), controlFor},
+				{nameof(Settings), settingsFor},
+
 				{nameof(Acceptance), acceptanceFor},
 				{nameof(Security), securityFor},
 				{nameof(Ticket), ticketFor},
+				{nameof(Tips), tipsFor},
+
+				{nameof(Account), accountFor},
+				{nameof(Category), categoryFor},
+
 				{nameof(Move), moveFor},
+				{nameof(Detail), detailFor},
+				{nameof(Summary), summaryFor},
 				{nameof(Schedule), scheduleFor},
 			};
 		}
@@ -48,6 +57,22 @@ namespace DFM.BusinessLogic.Tests
 				{
 					User = user,
 					Key = "",
+				}
+			);
+		}
+
+		private Tips tipsFor(User user)
+		{
+			return repos.Tips.SaveOrUpdate(
+				new Tips
+				{
+					User = user,
+					Countdown = 0,
+					Last = 0,
+					Permanent = 0,
+					Repeat = 0,
+					Temporary = 0,
+					Type = TipType.Mobile,
 				}
 			);
 		}
@@ -122,9 +147,14 @@ namespace DFM.BusinessLogic.Tests
 
 		private Move moveFor(User user)
 		{
-			var category = categoryFor(user, "move");
-			var accountIn = accountFor(user, "in");
-			var accountOut = accountFor(user, "out");
+			return moveFor(user, null);
+		}
+
+		private Move moveFor(User user, String suffix)
+		{
+			var category = categoryFor(user, "move" + suffix);
+			var accountIn = accountFor(user, "in" + suffix);
+			var accountOut = accountFor(user, "out" + suffix);
 
 			var move = repos.Move.SaveOrUpdate(
 				new Move
@@ -150,17 +180,25 @@ namespace DFM.BusinessLogic.Tests
 		{
 			for (var d = 0; d < count; d++)
 			{
-				repos.Detail.SaveOrUpdate(
-					new Detail
-					{
-						Guid = Guid.NewGuid(),
-						Move = move,
-						Description = $"Detail {d+1}",
-						Amount = 3,
-						ValueCents = 9,
-					}
-				);
+				var detail = new Detail
+				{
+					Guid = Guid.NewGuid(),
+					Move = move,
+					Description = $"Detail {d+1}",
+					Amount = 3,
+					ValueCents = 9,
+				};
+
+				repos.Detail.SaveOrUpdate(detail);
+				move.DetailList.Add(detail);
 			}
+		}
+
+		private Detail detailFor(User user)
+		{
+			var move = moveFor(user, "detail");
+			
+			return move.DetailList[0];
 		}
 
 		private Schedule scheduleFor(User user)
@@ -187,6 +225,22 @@ namespace DFM.BusinessLogic.Tests
 					User = user,
 				}
 			);
+		}
+
+		private Control controlFor(User user)
+		{
+			return user.Control;
+		}
+
+		private Settings settingsFor(User user)
+		{
+			return user.Settings;
+		}
+
+		private Summary summaryFor(User user)
+		{
+			return repos.Summary.GetAll()
+				.FirstOrDefault(s => s.User().ID == user.ID);
 		}
 	}
 }
