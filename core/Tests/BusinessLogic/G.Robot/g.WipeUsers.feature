@@ -706,3 +706,27 @@ Scenario: Gg59. Do not wipe robots even if it "asks" too
 	Then I will receive no core error
 		And the user will still exist
 		And it will not be registered at wipe table
+
+Scenario: Gg60. Wipe complete user
+	Given the user have
+			| System Stuff |
+			| Control      |
+			| Settings     |
+			| Acceptance   |
+			| Security     |
+			| Ticket       |
+			| Tips         |
+			| Account      |
+			| Category     |
+			| Move         |
+			| Detail       |
+			| Summary      |
+			| Schedule     |
+		And data wipe was asked
+	When robot user login
+		And call wipe users
+	Then I will receive no core error
+		And the user won't exist
+		And it will be registered at wipe table
+			| Reason      | CSV file | Theme     | Language |
+			| PersonAsked | No       | DarkMagic | en-US    |
