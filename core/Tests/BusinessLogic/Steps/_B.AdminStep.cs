@@ -896,6 +896,71 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
+		[Then("the settings will be")]
+		public void ThenTheSettingsWillBe(Table table)
+		{
+			var settings = table.CreateInstance<SettingsInfo>();
+
+			var testUser = repos.User.GetByEmail(userEmail);
+
+			if (settings.UseCategories.HasValue)
+			{
+				Assert.That(
+					testUser.Settings.UseCategories,
+					Is.EqualTo(settings.UseCategories.Value)
+				);
+			}
+
+			if (settings.UseAccountsSigns.HasValue)
+			{
+				Assert.That(
+					testUser.Settings.UseAccountsSigns,
+					Is.EqualTo(settings.UseAccountsSigns.Value)
+				);
+			}
+
+			if (settings.SendMoveEmail.HasValue)
+			{
+				Assert.That(
+					testUser.Settings.SendMoveEmail,
+					Is.EqualTo(settings.SendMoveEmail.Value)
+				);
+			}
+
+			if (settings.MoveCheck.HasValue)
+			{
+				Assert.That(
+					testUser.Settings.MoveCheck,
+					Is.EqualTo(settings.MoveCheck.Value)
+				);
+			}
+
+			if (settings.Wizard.HasValue)
+			{
+				Assert.That(
+					testUser.Settings.Wizard,
+					Is.EqualTo(settings.Wizard.Value)
+				);
+			}
+
+			if (settings.Language != null)
+			{
+				Assert.That(
+					testUser.Settings.Language,
+					Is.EqualTo(settings.Language)
+				);
+			}
+
+			if (settings.TimeZone != null)
+			{
+				Assert.That(
+					testUser.Settings.TimeZone,
+					Is.EqualTo(settings.TimeZone)
+				);
+			}
+
+		}
+
 		[Then(@"the translation will be")]
 		public void ThenTheTranslationWillBe(Table table)
 		{
@@ -906,13 +971,6 @@ namespace DFM.BusinessLogic.Tests.Steps
 				].Text;
 				Assert.That(translated, Is.EqualTo(tableRow["Translated"]));
 			}
-		}
-
-		[Then(@"account sign will( not)? be available")]
-		public void ThenAccountSignWillBeAvailable(Boolean available)
-		{
-			var accountSign = service.Current.UseAccountsSigns;
-			Assert.That(accountSign, Is.EqualTo(available));
 		}
 
 		[Then(@"the account list will( not)? have sign")]

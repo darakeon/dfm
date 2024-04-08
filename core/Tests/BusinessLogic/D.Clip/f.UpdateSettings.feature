@@ -88,16 +88,28 @@ Scenario: Df06. Disable categories use and enable a category
 	Then I will receive this core error: CategoriesDisabled
 
 Scenario: Df07. Change language to one that doesn't exist
+	Given these settings
+			| Language |
+			| pt-BR    |
 	When try update the settings
 			| Language |
 			| zz-ZZ    |
 	Then I will receive this core error: LanguageUnknown
+		And the settings will be
+			| Language |
+			| pt-BR    |
 
 Scenario: Df08. Change timezone to one that doesn't exist
+	Given these settings
+			| Timezone  |
+			| UTC-03:00 |
 	When try update the settings
 			| Timezone  |
 			| UTC-99:99 |
 	Then I will receive this core error: TimeZoneUnknown
+		And the settings will be
+			| Timezone  |
+			| UTC-03:00 |
 
 Scenario: Df09. Disable categories use
 	Given these settings
@@ -107,6 +119,9 @@ Scenario: Df09. Disable categories use
 			| UseCategories |
 			| false         |
 	Then I will receive no core error
+		And the settings will be
+			| UseCategories |
+			| false         |			
 
 Scenario: Df10. Enable categories use
 	Given these settings
@@ -116,6 +131,9 @@ Scenario: Df10. Enable categories use
 			| UseCategories |
 			| true          |
 	Then I will receive no core error
+		And the settings will be
+			| UseCategories |
+			| true          |
 
 Scenario: Df11. Disable categories use and save move without category
 	Given these settings
@@ -155,6 +173,9 @@ Scenario: Df13. Change language to pt-BR
 			| Language |
 			| pt-BR    |
 	Then I will receive no core error
+		And the settings will be
+			| Language |
+			| pt-BR    |
 		And the translation will be
 			| Key             | Translated |
 			| CurrentLanguage | português  |
@@ -164,6 +185,9 @@ Scenario: Df14. Change language to en-US
 			| Language |
 			| en-US    |
 	Then I will receive no core error
+		And the settings will be
+			| Language |
+			| en-US    |
 		And the translation will be
 			| Key             | Translated |
 			| CurrentLanguage | english    |
@@ -173,6 +197,9 @@ Scenario: Df15. Change timezone
 			| Timezone  |
 			| UTC-03:00 |
 	Then I will receive no core error
+		And the settings will be
+			| Timezone  |
+			| UTC-03:00 |
 
 Scenario: Df16. Disable move send e-mail
 	Given these settings
@@ -182,6 +209,9 @@ Scenario: Df16. Disable move send e-mail
 			| SendMoveEmail |
 			| false         |
 	Then I will receive no core error
+		And the settings will be
+			| SendMoveEmail |
+			| false         |
 
 Scenario: Df17. Enable move send e-mail
 	Given these settings
@@ -191,6 +221,9 @@ Scenario: Df17. Enable move send e-mail
 			| SendMoveEmail |
 			| true          |
 	Then I will receive no core error
+		And the settings will be
+			| SendMoveEmail |
+			| true          |
 
 Scenario: Df18. Disable move check
 	Given these settings
@@ -200,6 +233,9 @@ Scenario: Df18. Disable move check
 			| MoveCheck |
 			| false     |
 	Then I will receive no core error
+		And the settings will be
+			| MoveCheck |
+			| false     |
 
 Scenario: Df19. Enable move check
 	Given these settings
@@ -209,6 +245,9 @@ Scenario: Df19. Enable move check
 			| MoveCheck |
 			| true      |
 	Then I will receive no core error
+		And the settings will be
+			| MoveCheck |
+			| true      |
 
 Scenario: Df20. Disable wizard
 	Given these settings
@@ -218,6 +257,9 @@ Scenario: Df20. Disable wizard
 			| Wizard |
 			| false  |
 	Then I will receive no core error
+		And the settings will be
+			| Wizard |
+			| false  |
 
 Scenario: Df21. Enable wizard
 	Given these settings
@@ -227,6 +269,9 @@ Scenario: Df21. Enable wizard
 			| Wizard |
 			| true   |
 	Then I will receive no core error
+		And the settings will be
+			| Wizard |
+			| true   |
 
 Scenario: Df22. Not update if user is marked for deletion
 	Given these settings
@@ -237,13 +282,22 @@ Scenario: Df22. Not update if user is marked for deletion
 			| Wizard |
 			| true   |
 	Then I will receive this core error: UserDeleted
+		And the settings will be
+			| Wizard |
+			| false  |
 
 Scenario: Df23. Not update if user requested wipe
-	Given the user asked data wipe
+	Given these settings
+			| UseCategories | UseAccountsSigns | SendMoveEmail | MoveCheck | Wizard | Language | TimeZone  |
+			| true          | true             | true          | true      | true   | pt-BR    | UTC-03:00 |
+		But the user asked data wipe
 	When try update the settings
-			| UseCategories | UseAccountsSigns | SendMoveEmail | MoveCheck | Wizard | Currency | Language | TimeZone  |
-			| false         | false            | false         | false     | false  | false    | en-US    | UTC+01:00 |
+			| UseCategories | UseAccountsSigns | SendMoveEmail | MoveCheck | Wizard | Language | TimeZone  |
+			| false         | false            | false         | false     | false  | en-US    | UTC+01:00 |
 	Then I will receive this core error: UserAskedWipe
+		And the settings will be
+			| UseCategories | UseAccountsSigns | SendMoveEmail | MoveCheck | Wizard | Language | TimeZone  |
+			| true          | true             | true          | true      | true   | pt-BR    | UTC-03:00 |
 
 Scenario: Df24. Disable accounts signs
 	Given these settings
@@ -256,7 +310,9 @@ Scenario: Df24. Disable accounts signs
 			| UseAccountsSigns |
 			| false            |
 	Then I will receive no core error
-		And account sign will not be available
+		And the settings will be
+			| UseAccountsSigns |
+			| false            |
 		And the account list will not have sign
 		And the year report will not have sign
 		And the month report will not have sign
@@ -275,14 +331,22 @@ Scenario: Df25. Enable accounts signs
 			| UseAccountsSigns |
 			| true             |
 	Then I will receive no core error
-		And account sign will be available
+		And the settings will be
+			| UseAccountsSigns |
+			| true             |
 		And the account list will have sign
 		And the year report will have sign
 		And the month report will have sign
 
 Scenario: Df26. Update Settings without signing contract
-	Given there is a new contract
+	Given these settings
+			| UseCategories | UseAccountsSigns | SendMoveEmail | MoveCheck | Wizard | Language | TimeZone  |
+			| true          | true             | true          | true      | true   | pt-BR    | UTC-03:00 |
+		And there is a new contract
 	When try update the settings
-			| UseCategories | UseAccountsSigns | SendMoveEmail | MoveCheck | Wizard | Currency | Language | TimeZone  |
-			| true          | true             | true          | true      | true   | true     | pt-BR    | UTC-03:00 |
+			| UseCategories | UseAccountsSigns | SendMoveEmail | MoveCheck | Wizard | Language | TimeZone  |
+			| false         | false            | false         | false     | false  | en-US    | UTC+01:00 |
 	Then I will receive this core error: NotSignedLastContract
+		And the settings will be
+			| UseCategories | UseAccountsSigns | SendMoveEmail | MoveCheck | Wizard | Language | TimeZone  |
+			| true          | true             | true          | true      | true   | pt-BR    | UTC-03:00 |
