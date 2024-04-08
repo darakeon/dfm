@@ -2,13 +2,13 @@
 
 Background:
 	Given test user login
-		And these settings
-			| UseCategories |
-			| true          |
-		And I have a category
 
 Scenario: Df01. Disable categories use and save move with category
 	Given these settings
+			| UseCategories |
+			| true          |
+		And I have a category
+		And these settings
 			| UseCategories |
 			| false         |
 		And I have this move to create
@@ -24,6 +24,10 @@ Scenario: Df01. Disable categories use and save move with category
 
 Scenario: Df02. Disable categories use and save schedule with category
 	Given these settings
+			| UseCategories |
+			| true          |
+		And I have a category
+		And these settings
 			| UseCategories |
 			| false         |
 		And I have this schedule to create
@@ -49,7 +53,11 @@ Scenario: Df03. Disable categories use and create a category
 		And the category will not be saved
 
 Scenario: Df04. Disable categories use and select a category
-	Given I pass a valid category name
+	Given these settings
+			| UseCategories |
+			| true          |
+		And I have a category
+		And I pass a valid category name
 		And these settings
 			| UseCategories |
 			| false         |
@@ -58,7 +66,10 @@ Scenario: Df04. Disable categories use and select a category
 		And I will receive no category
 
 Scenario: Df05. Disable categories use and disable a category
-	Given I give the enabled category Bk05
+	Given these settings
+			| UseCategories |
+			| true          |
+		And I give the enabled category Df05
 		And these settings
 			| UseCategories |
 			| false         |
@@ -66,7 +77,10 @@ Scenario: Df05. Disable categories use and disable a category
 	Then I will receive this core error: CategoriesDisabled
 
 Scenario: Df06. Disable categories use and enable a category
-	Given I give the disabled category Bk06
+	Given these settings
+			| UseCategories |
+			| true          |
+		And I give the disabled category Df06
 		And these settings
 			| UseCategories |
 			| false         |
@@ -225,10 +239,7 @@ Scenario: Df22. Not update if user is marked for deletion
 	Then I will receive this core error: UserDeleted
 
 Scenario: Df23. Not update if user requested wipe
-	Given these settings
-			| Wizard |
-			| false  |
-		But the user asked data wipe
+	Given the user asked data wipe
 	When try update the settings
 			| Wizard |
 			| true   |
