@@ -2,10 +2,11 @@
 
 Background:
 	Given test user login
-		And I enable Categories use
+		And these settings
+			| UseCategories | MoveCheck |
+			| true          | true      |
 		And I have two accounts
 		And I have a category
-		And I enable move check
 
 Scenario: Ed01. Mark a move Out as checked Out
 	Given I have a move with value 10 (Out)
@@ -71,7 +72,9 @@ Scenario: Ed08. Remark a checked move as checked
 Scenario: Ed09. Mark a move as not checked with disabled setting
 	Given I have a move with value 10 (Out)
 		And the move is not checked for account Out
-		And I disable move check
+		And these settings
+			| MoveCheck |
+			| false     |
 	When I try to mark it as checked for account Out
 	Then I will receive this core error: MoveCheckDisabled
 		And the move will not be checked for account Out

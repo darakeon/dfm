@@ -2,7 +2,9 @@
 
 Background:
 	Given test user login
-		And I enable Categories use
+		And these settings
+			| UseCategories |
+			| true          |
 		And I have a category
 
 Scenario: Cj01. Try to get Category with wrong Name
