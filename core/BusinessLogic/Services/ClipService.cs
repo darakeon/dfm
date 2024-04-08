@@ -197,6 +197,9 @@ namespace DFM.BusinessLogic.Services
 			if (info.Wizard.HasValue)
 				settings.Wizard = info.Wizard.Value;
 
+			if (info.UseCurrency.HasValue)
+				settings.UseCurrency = info.UseCurrency.Value;
+
 			repos.Settings.Update(settings);
 		}
 
