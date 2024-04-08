@@ -241,8 +241,8 @@ Scenario: Df22. Not update if user is marked for deletion
 Scenario: Df23. Not update if user requested wipe
 	Given the user asked data wipe
 	When try update the settings
-			| Wizard |
-			| true   |
+			| UseCategories | UseAccountsSigns | SendMoveEmail | MoveCheck | Wizard | Currency | Language | TimeZone  |
+			| false         | false            | false         | false     | false  | false    | en-US    | UTC+01:00 |
 	Then I will receive this core error: UserAskedWipe
 
 Scenario: Df24. Disable accounts signs
@@ -283,6 +283,6 @@ Scenario: Df25. Enable accounts signs
 Scenario: Df26. Update Settings without signing contract
 	Given there is a new contract
 	When try update the settings
-			| Wizard |
-			| true   |
+			| UseCategories | UseAccountsSigns | SendMoveEmail | MoveCheck | Wizard | Currency | Language | TimeZone  |
+			| true          | true             | true          | true      | true   | true     | pt-BR    | UTC-03:00 |
 	Then I will receive this core error: NotSignedLastContract
