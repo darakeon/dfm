@@ -943,6 +943,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 				);
 			}
 
+			if (settings.UseCurrency.HasValue)
+			{
+				Assert.That(
+					testUser.Settings.UseCurrency,
+					Is.EqualTo(settings.UseCurrency.Value)
+				);
+			}
+
 			if (settings.Language != null)
 			{
 				Assert.That(
