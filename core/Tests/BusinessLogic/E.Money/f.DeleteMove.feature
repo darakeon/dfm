@@ -2,7 +2,9 @@
 
 Background:
 	Given test user login
-		And I enable Categories use
+		And these settings
+			| UseCategories |
+			| true          |
 		And I have two accounts
 		And I have a category
 
@@ -67,10 +69,14 @@ Scenario: Ef07. Delete move from schedule with Category
 		And it has a Category
 		And it has an Account Out
 		And it has no Account In
-		And I enable Categories use
+		And these settings
+			| UseCategories |
+			| true          |
 		And I save the schedule
 		And robot run the scheduler and get the move
-		And I disable Categories use
+		And these settings
+			| UseCategories |
+			| false         |
 	When I try to delete the move
 	Then I will receive no core error
 		And the accountOut value will not change
@@ -83,10 +89,14 @@ Scenario: Ef08. Delete move from schedule without Category
 		And it has no Category
 		And it has an Account Out
 		And it has no Account In
-		And I disable Categories use
+		And these settings
+			| UseCategories |
+			| false         |
 		And I save the schedule
 		And robot run the scheduler and get the move
-		And I enable Categories use
+		And these settings
+			| UseCategories |
+			| true          |
 	When I try to delete the move
 	Then I will receive no core error
 		And the accountOut value will not change

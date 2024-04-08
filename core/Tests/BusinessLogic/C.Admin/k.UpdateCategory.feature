@@ -2,7 +2,9 @@
 
 Background:
 	Given test user login
-		And I enable Categories use
+		And these settings
+			| UseCategories |
+			| true          |
 
 Scenario: Ck01. Change the name
 	Given I have this category
@@ -45,7 +47,9 @@ Scenario: Ck04. Change the name of another user category
 			| Name          |
 			| Category Bh04 |
 		But there is a bad person logged in
-			And I enable Categories use
+		And these settings
+			| UseCategories |
+			| true          |
 		And I make this changes to the category
 			| Name            |
 			| Bh04 - new name |

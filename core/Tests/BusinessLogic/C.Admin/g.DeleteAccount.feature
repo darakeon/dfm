@@ -3,7 +3,9 @@
 Background:
 	Given test user login
 		And I have an account
-		And I disable Categories use
+		And these settings
+			| UseCategories |
+			| false         |
 
 Scenario: Cg01. Delete an Account that doesn't exist
 	Given I pass a url of account that doesn't exist

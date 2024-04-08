@@ -2,7 +2,9 @@
 
 Background:
 	Given test user login
-		And I enable Categories use
+		And these settings
+			| UseCategories |
+			| true          |
 
 Scenario: Cn01. Category to keep invalid
 	Given I have this category
@@ -25,7 +27,9 @@ Scenario: Cn03. Category use disabled
 			| Name |
 			| CatA |
 			| CatB |
-		But I disable Categories use
+		But these settings
+			| UseCategories |
+			| false         |
 	When unify categories CatB to CatA
 	Then I will receive this core error: CategoriesDisabled
 		And category CatA will exist

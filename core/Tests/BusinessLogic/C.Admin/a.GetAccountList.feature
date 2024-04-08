@@ -2,7 +2,9 @@
 
 Background:
 	Given test user login
-		And I disable Categories use
+		And these settings
+			| UseCategories |
+			| false         |
 
 Scenario: Ca01. Get all active accounts
 	Given I have this account

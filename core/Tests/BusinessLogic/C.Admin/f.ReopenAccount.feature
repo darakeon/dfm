@@ -2,7 +2,9 @@
 
 Background:
 	Given test user login
-		And I disable Categories use
+		And these settings
+			| UseCategories |
+			| false         |
 
 Scenario: Cf01. Reopen an Account that doesn't exist
 	Given I pass a url of account that doesn't exist

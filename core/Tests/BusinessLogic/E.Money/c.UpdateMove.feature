@@ -2,8 +2,9 @@
 
 Background:
 	Given test user login
-		And I enable Categories use
-		And I enable move check
+		And these settings
+			| UseCategories | MoveCheck |
+			| true          | true      |
 		And I have two accounts
 		And I have a category
 
@@ -263,7 +264,9 @@ Scenario: Ec17. Update the move of another user
 	Given I have a move with value 10 (Out)
 		And the move is checked for account Out
 		But there is a bad person logged in
-		And I enable Categories use
+		And these settings
+			| UseCategories |
+			| true          |
 	When I change the move value to 20
 		And I update the move
 	Then I will receive this core error: MoveNotFound

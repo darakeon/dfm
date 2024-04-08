@@ -2,7 +2,9 @@
 
 Background:
 	Given test user login
-		And I enable move send e-mail
+		And these settings
+			| SendMoveEmail |
+			| true          |
 
 Scenario: Hg01. Stop sending move mail
 	Given I pass a valid UnsubscribeMoveMail token
@@ -52,14 +54,18 @@ Scenario: Hg08. Stop sending move mail with already used token
 	When I unsubscribe move mail
 	Then I will receive no core error
 		And the move mail will not be enabled
-	Given I enable move send e-mail
+	Given these settings
+			| SendMoveEmail |
+			| true          |
 	# Same token
 	When I unsubscribe move mail
 	Then I will receive this core error: InvalidToken
 		And the move mail will be enabled
 
 Scenario: Hg09. Stop sending move mail reuse token
-	Given I enable Categories use
+	Given these settings
+			| UseCategories |
+			| true          |
 		And I have a category
 		And I have a move with value 20 (Out) at account Bq08
 		And I have a move with value 300 (In) at account Bq08

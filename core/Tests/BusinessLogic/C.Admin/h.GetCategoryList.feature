@@ -2,7 +2,9 @@
 
 Background:
 	Given test user login
-		And I enable Categories use
+		And these settings
+			| UseCategories |
+			| true          |
 
 Scenario: Ch01. Get all active categories
 	Given I have this category
