@@ -2,7 +2,9 @@
 
 Background:
 	Given test user login
-		And I enable Categories use
+		And these settings
+			| UseCategories |
+			| true          |
 
 Scenario: Ci01. Save Category without name
 	Given I have this category to create
@@ -55,7 +57,9 @@ Scenario: Ci06. Save Category with same name in another user
 	Then I will receive no core error
 		And the category will be saved
 	Given there is another person logged in
-		And I enable Categories use
+		And these settings
+			| UseCategories |
+			| true          |
 		And I have this category to create
 			| Name          |
 			| Category Bf06 |

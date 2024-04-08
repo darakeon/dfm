@@ -2,7 +2,9 @@
 
 Background:
 	Given test user login
-		And I enable Categories use
+		And these settings
+			| UseCategories |
+			| true          |
 		And I have an account
 		And I have moves of
 			| Date       |
@@ -63,7 +65,9 @@ Scenario: Fb03. Get with info all right
 			| 0          | 110         | -110          | 0           | 0            | 0              |
 
 Scenario: Fb04. Get foreseen ins, outs and balances
-	Given I disable Categories use
+	Given these settings
+			| UseCategories |
+			| false         |
 		And I have schedules of
 			| Description     | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Schedule Ea10 1 | 2220-10-08 | Out    | 10    | 3     | False     | Monthly   | True            |

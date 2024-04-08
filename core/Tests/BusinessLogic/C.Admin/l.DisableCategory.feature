@@ -2,7 +2,9 @@
 
 Background:
 	Given test user login
-		And I enable Categories use
+		And these settings
+			| UseCategories |
+			| true          |
 		And I have a category
 
 Scenario: Cl01. Disable a Category that doesn't exist

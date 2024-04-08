@@ -4,7 +4,9 @@ Background:
 	Given test user login
 
 Scenario: Da01. End wizard
-	Given I enable wizard
+	Given these settings
+			| Wizard |
+			| true   |
 	When I end wizard
 	Then I will receive no core error
 

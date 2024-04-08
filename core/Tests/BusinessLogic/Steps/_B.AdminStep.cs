@@ -12,6 +12,7 @@ using DFM.Language;
 using DFM.Tests.Util;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Tests.Steps
@@ -874,75 +875,19 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 		#region UpdateSettings
 
-		[Given(@"I (dis|en)able Categories use")]
-		public void GivenIDisableCategoriesUse(Boolean enable)
+		[Given("these settings")]
+		public void GivenTheseSettings(Table table)
 		{
-			var mainSettings = new SettingsInfo { UseCategories = enable };
+			var mainSettings = table.CreateInstance<SettingsInfo>();
 			service.Clip.UpdateSettings(mainSettings);
 		}
 
-		[When(@"I try to (dis|en)able Categories use")]
-		public void WhenEnableCategoriesUse(Boolean enable)
+		[When("try update the settings")]
+		public void WhenITryUpdateTheSettings(Table table)
 		{
 			try
 			{
-				var mainSettings = new SettingsInfo { UseCategories = enable };
-				service.Clip.UpdateSettings(mainSettings);
-			}
-			catch (CoreError e)
-			{
-				error = e;
-			}
-		}
-
-		[Given(@"I (dis|en)able move check")]
-		public void GivenIDisableMoveCheck(Boolean enable)
-		{
-			var mainSettings = new SettingsInfo { MoveCheck = enable };
-			service.Clip.UpdateSettings(mainSettings);
-		}
-
-		[When(@"I try to (dis|en)able move check")]
-		public void GivenIEnableMoveCheck(Boolean enable)
-		{
-			try
-			{
-				var mainSettings = new SettingsInfo { MoveCheck = enable };
-				service.Clip.UpdateSettings(mainSettings);
-			}
-			catch (CoreError e)
-			{
-				error = e;
-			}
-		}
-
-		[Given(@"I (dis|en)able wizard")]
-		public void GivenIDisableWizard(Boolean enable)
-		{
-			var mainSettings = new SettingsInfo { Wizard = enable };
-			service.Clip.UpdateSettings(mainSettings);
-		}
-
-		[When(@"I try to (dis|en)able wizard")]
-		public void WhenEnableWizard(Boolean enable)
-		{
-			try
-			{
-				var mainSettings = new SettingsInfo { Wizard = enable };
-				service.Clip.UpdateSettings(mainSettings);
-			}
-			catch (CoreError e)
-			{
-				error = e;
-			}
-		}
-
-		[When(@"I try to change the language to ([a-z]{2}-[A-Z]{2})")]
-		public void WhenITryToChangeTheLanguageTo(String language)
-		{
-			try
-			{
-				var mainSettings = new SettingsInfo { Language = language };
+				var mainSettings = table.CreateInstance<SettingsInfo>();
 				service.Clip.UpdateSettings(mainSettings);
 			}
 			catch (CoreError e)
@@ -960,62 +905,6 @@ namespace DFM.BusinessLogic.Tests.Steps
 					"general", service.Current.Language, tableRow["Key"]
 				].Text;
 				Assert.That(translated, Is.EqualTo(tableRow["Translated"]));
-			}
-		}
-
-		[When(@"I try to change the timezone to (.+)")]
-		public void WhenITryToChangeTheTimeZoneTo(String timeZone)
-		{
-			try
-			{
-				var mainSettings = new SettingsInfo { TimeZone = timeZone };
-				service.Clip.UpdateSettings(mainSettings);
-			}
-			catch (CoreError e)
-			{
-				error = e;
-			}
-		}
-
-		[Given(@"I (dis|en)able move send e-mail")]
-		public void GivenEnableMoveSendEmail(Boolean enable)
-		{
-			var mainSettings = new SettingsInfo { SendMoveEmail = enable };
-			service.Clip.UpdateSettings(mainSettings);
-		}
-
-		[When(@"I try to (dis|en)able move send e-mail")]
-		public void WhenEnableMoveSendEmail(Boolean enable)
-		{
-			try
-			{
-				var mainSettings = new SettingsInfo { SendMoveEmail = enable };
-				service.Clip.UpdateSettings(mainSettings);
-			}
-			catch (CoreError e)
-			{
-				error = e;
-			}
-		}
-
-		[Given(@"have (dis|en)abled accounts signs")]
-		public void GivenIDisableAccountsSign(Boolean enable)
-		{
-			var mainSettings = new SettingsInfo { UseAccountsSigns = enable };
-			service.Clip.UpdateSettings(mainSettings);
-		}
-
-		[When(@"(dis|en)able accounts signs")]
-		public void WhenEnableAccountsSign(Boolean enable)
-		{
-			try
-			{
-				var mainSettings = new SettingsInfo { UseAccountsSigns = enable };
-				service.Clip.UpdateSettings(mainSettings);
-			}
-			catch (CoreError e)
-			{
-				error = e;
 			}
 		}
 

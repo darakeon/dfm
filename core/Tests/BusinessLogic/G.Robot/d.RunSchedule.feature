@@ -2,7 +2,9 @@
 
 Background:
 	Given test user login
-		And I enable Categories use
+		And these settings
+			| UseCategories |
+			| true          |
 		And I have two accounts
 		And I have a category
 
@@ -216,7 +218,9 @@ Scenario: Gd13. Run with bugged schedule
 	Then I will receive a core error
 
 Scenario: Gd14. Run schedule with category and categories use disabled
-	Given I enable Categories use
+	Given these settings
+			| UseCategories |
+			| true          |
 		And I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Db14   | 2020-10-12 | Out    | 10    | 1     | False     | Daily     | False           |
@@ -225,13 +229,17 @@ Scenario: Gd14. Run schedule with category and categories use disabled
 		And it has an Account Out
 		And it has no Account In
 		And I save the schedule
-		And I disable Categories use
+		And these settings
+			| UseCategories |
+			| false         |
 	When robot user login
 		And run the scheduler
 	Then I will receive this core error: CategoriesDisabled
 
 Scenario: Gd15. Run schedule without category and categories use enabled
-	Given I disable Categories use
+	Given these settings
+			| UseCategories |
+			| false         |
 		And I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Db15   | 2020-10-12 | Out    | 10    | 1     | False     | Daily     | False           |
@@ -240,7 +248,9 @@ Scenario: Gd15. Run schedule without category and categories use enabled
 		And it has an Account Out
 		And it has no Account In
 		And I save the schedule
-		And I enable Categories use
+		And these settings
+			| UseCategories |
+			| true          |
 	When robot user login
 		And run the scheduler
 	Then I will receive this core error: InvalidCategory

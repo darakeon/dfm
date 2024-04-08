@@ -2,7 +2,9 @@
 
 Background:
 	Given test user login
-		And I enable Categories use
+		And these settings
+			| UseCategories |
+			| true          |
 		And I have two accounts
 		And I have a category
 
@@ -649,7 +651,9 @@ Scenario: Ea41. Save with e-mail sender system ok
 		And the move e-mail will have an unsubscribe link
 
 Scenario: Ea42. Save with e-mail sender system ok and without category
-	Given I disable Categories use
+	Given these settings
+			| UseCategories |
+			| false         |
 		And I have this move to create
 			| Description | Date       | Nature | Value |
 			| Move Ca42   | 2014-03-23 | Out    | 10    |
