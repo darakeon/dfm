@@ -16,6 +16,7 @@ namespace DFM.Entities
 		public virtual Boolean UseAccountsSigns { get; set; }
 		public virtual Boolean MoveCheck { get; set; }
 		public virtual Boolean SendMoveEmail { get; set; }
+		public virtual Boolean UseCurrency { get; set; }
 
 		public virtual Theme Theme { get; set; }
 

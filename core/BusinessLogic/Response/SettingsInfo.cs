@@ -9,6 +9,7 @@ namespace DFM.BusinessLogic.Response
 		public Boolean? SendMoveEmail { get; set; }
 		public Boolean? MoveCheck { get; set; }
 		public Boolean? Wizard { get; set; }
+		public Boolean? UseCurrency { get; set; }
 
 		public String Language { get; set; }
 		public String TimeZone { get; set; }

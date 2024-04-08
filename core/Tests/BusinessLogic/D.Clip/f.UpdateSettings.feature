@@ -288,16 +288,16 @@ Scenario: Df22. Not update if user is marked for deletion
 
 Scenario: Df23. Not update if user requested wipe
 	Given these settings
-			| UseCategories | UseAccountsSigns | SendMoveEmail | MoveCheck | Wizard | Language | TimeZone  |
-			| true          | true             | true          | true      | true   | pt-BR    | UTC-03:00 |
+			| UseCategories | UseAccountsSigns | SendMoveEmail | MoveCheck | Wizard | UseCurrency | Language | TimeZone  |
+			| true          | true             | true          | true      | true   | true        | pt-BR    | UTC-03:00 |
 		But the user asked data wipe
 	When try update the settings
-			| UseCategories | UseAccountsSigns | SendMoveEmail | MoveCheck | Wizard | Language | TimeZone  |
-			| false         | false            | false         | false     | false  | en-US    | UTC+01:00 |
+			| UseCategories | UseAccountsSigns | SendMoveEmail | MoveCheck | Wizard | UseCurrency | Language | TimeZone  |
+			| false         | false            | false         | false     | false  | false       | en-US    | UTC+01:00 |
 	Then I will receive this core error: UserAskedWipe
 		And the settings will be
-			| UseCategories | UseAccountsSigns | SendMoveEmail | MoveCheck | Wizard | Language | TimeZone  |
-			| true          | true             | true          | true      | true   | pt-BR    | UTC-03:00 |
+			| UseCategories | UseAccountsSigns | SendMoveEmail | MoveCheck | Wizard | UseCurrency | Language | TimeZone  |
+			| true          | true             | true          | true      | true   | true        | pt-BR    | UTC-03:00 |
 
 Scenario: Df24. Disable accounts signs
 	Given these settings
@@ -340,13 +340,37 @@ Scenario: Df25. Enable accounts signs
 
 Scenario: Df26. Update Settings without signing contract
 	Given these settings
-			| UseCategories | UseAccountsSigns | SendMoveEmail | MoveCheck | Wizard | Language | TimeZone  |
-			| true          | true             | true          | true      | true   | pt-BR    | UTC-03:00 |
+			| UseCategories | UseAccountsSigns | SendMoveEmail | MoveCheck | Wizard | UseCurrency | Language | TimeZone  |
+			| true          | true             | true          | true      | true   | true        | pt-BR    | UTC-03:00 |
 		And there is a new contract
 	When try update the settings
-			| UseCategories | UseAccountsSigns | SendMoveEmail | MoveCheck | Wizard | Language | TimeZone  |
-			| false         | false            | false         | false     | false  | en-US    | UTC+01:00 |
+			| UseCategories | UseAccountsSigns | SendMoveEmail | MoveCheck | Wizard | UseCurrency | Language | TimeZone  |
+			| false         | false            | false         | false     | false  | false       | en-US    | UTC+01:00 |
 	Then I will receive this core error: NotSignedLastContract
 		And the settings will be
-			| UseCategories | UseAccountsSigns | SendMoveEmail | MoveCheck | Wizard | Language | TimeZone  |
-			| true          | true             | true          | true      | true   | pt-BR    | UTC-03:00 |
+			| UseCategories | UseAccountsSigns | SendMoveEmail | MoveCheck | Wizard | UseCurrency | Language | TimeZone  |
+			| true          | true             | true          | true      | true   | true        | pt-BR    | UTC-03:00 |
+
+Scenario: Df27. Enable currency in accounts
+	Given these settings
+			| UseCurrency |
+			| false       |
+	When try update the settings
+			| UseCurrency |
+			| true        |
+	Then I will receive no core error
+		And the settings will be
+			| UseCurrency |
+			| true        |
+
+Scenario: Df28. Disable currency in accounts
+	Given these settings
+			| UseCurrency |
+			| true        |
+	When try update the settings
+			| UseCurrency |
+			| false       |
+	Then I will receive no core error
+		And the settings will be
+			| UseCurrency |
+			| false       |

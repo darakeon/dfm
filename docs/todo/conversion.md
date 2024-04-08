@@ -1,4 +1,4 @@
-- [ ] Add config to allow currency
+- [x] Add config to allow currency
 - [ ] Add currency to accounts
 - [ ] Add to TERMS that conversion is not calculated by the system
 
