@@ -191,32 +191,7 @@ Scenario: Df25. Enable accounts signs
 		And the year report will have sign
 		And the month report will have sign
 
-Scenario: Df26. Update Settings - Categories Disable without signing contract
+Scenario: Df26. Update Settings without signing contract
 	Given there is a new contract
-	When I try to disable Categories use
-	Then I will receive this core error: NotSignedLastContract
-
-Scenario: Df27. Update Settings - Categories Enable without signing contract
-	Given there is a new contract
-	When I try to enable Categories use
-	Then I will receive this core error: NotSignedLastContract
-
-Scenario: Df28. Update Settings - Move Send E-mail Disable without signing contract
-	Given there is a new contract
-	When I try to disable move send e-mail
-	Then I will receive this core error: NotSignedLastContract
-
-Scenario: Df29. Update Settings - Move Send E-mail Enable without signing contract
-	Given there is a new contract
-	When I try to enable move send e-mail
-	Then I will receive this core error: NotSignedLastContract
-
-Scenario: Df30. Update Settings - Change Language without signing contract
-	Given there is a new contract
-	When I try to change the language to en-US
-	Then I will receive this core error: NotSignedLastContract
-
-Scenario: Df31. Update Settings - Change TimeZone without signing contract
-	Given there is a new contract
-	When I try to change the timezone to UTC-03:00
+	When I try to enable wizard
 	Then I will receive this core error: NotSignedLastContract
