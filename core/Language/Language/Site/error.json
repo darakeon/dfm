@@ -101,6 +101,7 @@
 		"LogNotFound": "Log not found",
 		"TermsNotFound": "Terms not found",
 		"AccountNotFound": "Account not found",
+		"UseAccountsSignsDisabled": "Account Signs use is disabled",
 		"": null
 	},
 	"pt-BR": {
@@ -205,6 +206,7 @@
 		"LogNotFound": "Log não encontrado",
 		"TermsNotFound": "Termos não encontrados",
 		"AccountNotFound": "Conta não encontrada",
+		"UseAccountsSignsDisabled": "Uso de sinais nas contas está desabilitado",
 		"": null
 	}
 }

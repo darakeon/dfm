@@ -7,7 +7,7 @@ Background:
 			| false         |
 
 Scenario: Cd01. Change the name
-	Given I have this account
+	Given I already have this account
 			| Name                   | Yellow | Red |
 			| Account {scenarioCode} |        |     |
 	When I make this changes to the account
@@ -90,7 +90,7 @@ Scenario: Cd07. Not change if user requested wipe
 	Then I will receive this core error: UserAskedWipe
 
 Scenario: Cd08. Not change without signing contract
-	Given I have this account
+	Given I already have this account
 			| Name                   |
 			| Account {scenarioCode} |
 		But there is a new contract
@@ -99,3 +99,34 @@ Scenario: Cd08. Not change without signing contract
 			| {scenarioCode} - new name |
 		And I try to update the account
 	Then I will receive this core error: NotSignedLastContract
+
+Scenario: Cd09. Change the signs
+	Given these settings
+			| UseAccountsSigns |
+			| true             |
+		And I already have this account
+			| Name                   | Yellow | Red |
+			| Account {scenarioCode} | 20     | 10  |
+	When I make this changes to the account
+			| Name                      | Yellow | Red |
+			| {scenarioCode} - new name | 200    | 100 |
+		And I try to update the account
+	Then I will receive no core error
+		And the account will be changed
+
+Scenario: Cd10. Change the signs for disabled signs
+	Given these settings
+			| UseAccountsSigns |
+			| true             |
+		And I already have this account
+			| Name                   | Yellow | Red |
+			| Account {scenarioCode} | 20     | 10  |
+		And these settings
+			| UseAccountsSigns |
+			| false            |
+	When I make this changes to the account
+			| Name                      | Yellow | Red |
+			| {scenarioCode} - new name | 200    | 100 |
+		And I try to update the account
+	Then I will receive this core error: UseAccountsSignsDisabled
+		And the account will not be changed

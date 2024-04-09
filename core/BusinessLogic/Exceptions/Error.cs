@@ -50,6 +50,7 @@ namespace DFM.BusinessLogic.Exceptions
 		TooLargeAccountName = 310,
 		OpenedAccount = 311,
 		AccountNotFound = 312,
+		UseAccountsSignsDisabled = 313,
 
 		CategoryNameRequired = 401,
 		CategoryAlreadyExists = 402,
