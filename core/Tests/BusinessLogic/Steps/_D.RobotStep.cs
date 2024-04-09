@@ -154,7 +154,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"a schedule is created by (.+)")]
 		public void GivenTheCreatedUserHasASchedule(String email)
 		{
-			email = email.Replace("{scenarioCode}", scenarioCode);
+			email = email.ForScenario(scenarioCode);
 
 			resetTicket();
 			current.Set(email, userPassword, false);
@@ -182,7 +182,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			db.Execute(() =>
 			{
-				email = email.Replace("{scenarioCode}", scenarioCode);
+				email = email.ForScenario(scenarioCode);
 				var user = repos.User.GetByEmail(email);
 				user.SetRobotCheckDay();
 				repos.User.SaveOrUpdate(user);
@@ -200,7 +200,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"(.+\@.+) is a robot")]
 		public void GivenIsARobot(String email)
 		{
-			email = email.Replace("{scenarioCode}", scenarioCode);
+			email = email.ForScenario(scenarioCode);
 			var user = repos.User.GetByEmail(email);
 			user.Control.IsRobot = true;
 			db.Execute(() => repos.Control.SaveOrUpdate(user.Control));
@@ -264,7 +264,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the user (.+) will still have no moves")]
 		public void ThenTheUserWillStillHaveNoMoves(String email)
 		{
-			email = email.Replace("{scenarioCode}", scenarioCode);
+			email = email.ForScenario(scenarioCode);
 			var user = repos.User.GetByEmail(email);
 			var accounts = repos.Account.Get(user, true);
 
@@ -405,7 +405,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			email = String.IsNullOrWhiteSpace(email)
 				? userEmail
-				: email.Trim().Replace("{scenarioCode}", scenarioCode);
+				: email.Trim().ForScenario(scenarioCode);
 
 			var user = repos.User.GetByEmail(email);
 			foreach (var row in table.Rows)
@@ -454,7 +454,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			email = String.IsNullOrWhiteSpace(email)
 				? userEmail
-				: email.Trim().Replace("{scenarioCode}", scenarioCode);
+				: email.Trim().ForScenario(scenarioCode);
 
 			var user = repos.User.GetByEmail(email);
 			Assert.That(user, Is.Not.Null);
@@ -500,7 +500,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void ThenThereWillBeAnExportFileWithThisContent(Table table)
 		{
 			var expected = table.ToCsv()
-				.Select(r => r.Replace("{scenarioCode}", scenarioCode));
+				.Select(r => r.ForScenario(scenarioCode));
 
 			var file = Directory
 				.GetFiles(Cfg.S3.Directory, "*.csv")
