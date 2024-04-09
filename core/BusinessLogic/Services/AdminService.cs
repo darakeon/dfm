@@ -49,7 +49,10 @@ namespace DFM.BusinessLogic.Services
 
 		private void saveAccount(AccountInfo info, Account account)
 		{
-			parent.Auth.VerifyUser();
+			var user = parent.Auth.VerifyUser();
+
+			if (info.HasLimit && !user.Settings.UseAccountsSigns)
+				throw Error.UseAccountsSignsDisabled.Throw();
 
 			inTransaction("SaveAccount", () =>
 			{

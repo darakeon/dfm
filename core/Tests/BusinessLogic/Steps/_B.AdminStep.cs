@@ -77,8 +77,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 			{
 				Name = accountData["Name"]
 					.ForScenario(scenarioCode),
-				RedLimit = getInt(accountData["Red"]),
-				YellowLimit = getInt(accountData["Yellow"]),
+				RedLimit = accountData.ContainsKey("Red")
+					? getInt(accountData["Red"])
+					: null,
+				YellowLimit = accountData.ContainsKey("Yellow")
+					? getInt(accountData["Yellow"])
+					: null,
 			};
 		}
 
@@ -149,9 +153,11 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the account will be saved")]
 		public void ThenTheAccountWillBeSaved()
 		{
-			accountInfo = service.Admin.GetAccount(accountInfo.Name.IntoUrl());
+			var newAccount = service.Admin.GetAccount(accountInfo.Name.IntoUrl());
 
-			Assert.That(accountInfo, Is.Not.Null);
+			Assert.That(newAccount, Is.Not.Null);
+			Assert.That(newAccount.RedLimit, Is.EqualTo(accountInfo.RedLimit));
+			Assert.That(newAccount.YellowLimit, Is.EqualTo(accountInfo.YellowLimit));
 		}
 
 		[Then(@"the account url will be (.+)")]
