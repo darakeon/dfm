@@ -2,9 +2,6 @@
 
 Background:
 	Given test user login
-		And these settings
-			| UseCategories |
-			| false         |
 
 Scenario: Cd01. Change the name
 	Given I already have this account
