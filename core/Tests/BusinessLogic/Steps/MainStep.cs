@@ -79,7 +79,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			passedEmail = String.IsNullOrEmpty(passedEmail)
 				? null
-				: passedEmail.Trim().Replace("{scenarioCode}", scenarioCode);
+				: passedEmail.Trim().ForScenario(scenarioCode);
 
 			var user = repos.User.GetByEmail(
 				passedEmail ?? email ?? userEmail
@@ -93,7 +93,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			passedEmail = String.IsNullOrEmpty(passedEmail)
 				? null
-				: passedEmail.Trim().Replace("{scenarioCode}", scenarioCode);
+				: passedEmail.Trim().ForScenario(scenarioCode);
 
 			var user = repos.User.GetByEmail(
 				passedEmail ?? email ?? userEmail

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
+using DFM.BusinessLogic.Tests.Helpers;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
@@ -74,7 +75,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			accountInfo = new AccountInfo
 			{
-				Name = accountData["Name"],
+				Name = accountData["Name"]
+					.ForScenario(scenarioCode),
 				RedLimit = getInt(accountData["Red"]),
 				YellowLimit = getInt(accountData["Yellow"]),
 			};
@@ -87,7 +89,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			oldAccount = new AccountInfo
 			{
-				Name = accountData["Name"],
+				Name = accountData["Name"]
+					.ForScenario(scenarioCode),
 			};
 
 			if (accountData.ContainsKey("Red"))
@@ -154,6 +157,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the account url will be (.+)")]
 		public void ThenTheAccountUrlWillBe(String url)
 		{
+			url = url.ForScenario(scenarioCode.ToLower());
 			var newAccount = service.Admin.GetAccount(url);
 
 			Assert.That(accountInfo.Name, Is.Not.Null, newAccount.Name);
@@ -191,7 +195,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			accountInfo = new AccountInfo
 			{
-				Name = accountData["Name"],
+				Name = accountData["Name"].ForScenario(scenarioCode),
 			};
 
 			if (accountData.ContainsKey("Yellow") && accountData["Yellow"] != "")
@@ -239,7 +243,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 			accountInfo = new AccountInfo
 			{
 				OriginalUrl = (accountInfo ?? oldAccount).Name.IntoUrl(),
-				Name = accountData["Name"],
+				Name = accountData["Name"]
+					.ForScenario(scenarioCode),
 			};
 
 			if (accountData.ContainsKey("Red"))

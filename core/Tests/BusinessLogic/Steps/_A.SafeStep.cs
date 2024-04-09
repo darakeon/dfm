@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
+using DFM.BusinessLogic.Tests.Helpers;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
@@ -123,7 +124,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			if (table.Header.Any(c => c == "Email"))
 				email = table.Rows[0]["Email"]
-					.Replace("{scenarioCode}", scenarioCode);
+					.ForScenario(scenarioCode);
 
 			if (table.Header.Any(c => c == "Password"))
 				password = table.Rows[0]["Password"];
@@ -286,7 +287,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"I deactivate the user (.+)")]
 		public void GivenIDeactivateTheUser(String email)
 		{
-			email = email.Replace("{scenarioCode}", scenarioCode);
+			email = email.ForScenario(scenarioCode);
 			var user = repos.User.GetByEmail(email);
 			db.Execute(() => repos.Control.Deactivate(user));
 		}
@@ -674,7 +675,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			currentPassword = table.Rows[0]["Current Password"];
 
 			newEmail = table.Rows[0]["New E-mail"]
-				.Replace("{scenarioCode}", scenarioCode);
+				.ForScenario(scenarioCode);
 		}
 
 		[When(@"I try to change the e-mail")]
@@ -842,7 +843,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var row = table.Rows[0];
 			var email = row["Email"]
-				.Replace("{scenarioCode}", scenarioCode);
+				.ForScenario(scenarioCode);
 			var password = row["Password"];
 
 			try
@@ -948,7 +949,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			foreach (var userData in table.Rows)
 			{
 				var email = userData["Email"]
-					.Replace("{scenarioCode}", scenarioCode);
+					.ForScenario(scenarioCode);
 
 				var password = userData.ContainsKey("Password")
 					? userData["Password"]
@@ -1262,7 +1263,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var userTable = table.CreateInstance<UserTable>();
 			userTable.Email = userTable.Email
-				.Replace("{scenarioCode}", scenarioCode);
+				.ForScenario(scenarioCode);
 
 			var user = repos.User.GetByEmail(userTable.Email);
 
@@ -1271,9 +1272,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			var info = new SignInInfo
 			{
-				Email = userTable.Email.Replace(
-					"{scenarioCode}", scenarioCode
-				),
+				Email = userTable.Email.ForScenario(scenarioCode),
 				Password = userTable.Password,
 				TicketKey = ticketKey,
 				TicketType = TicketType.Tests,
