@@ -215,7 +215,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			if (accountData.ContainsKey("Yellow") && accountData["Yellow"] != "")
 				accountInfo.YellowLimit = Decimal.Parse(accountData["Yellow"]);
 
-			if (accountData.ContainsKey("Yellow") && accountData["Red"] != "")
+			if (accountData.ContainsKey("Red") && accountData["Red"] != "")
 				accountInfo.RedLimit = Decimal.Parse(accountData["Red"]);
 
 			if (accountData.ContainsKey("Currency") && accountData["Currency"] != "")
