@@ -1,5 +1,6 @@
 ﻿using System;
 using DFM.Entities;
+using DFM.Entities.Enums;
 
 namespace DFM.BusinessLogic.Response
 {
@@ -14,6 +15,7 @@ namespace DFM.BusinessLogic.Response
 
 			YellowLimit = account.YellowLimit;
 			RedLimit = account.RedLimit;
+			Currency = account.Currency;
 
 			IsOpen = account.Open;
 			Start = account.BeginDate;
@@ -28,6 +30,7 @@ namespace DFM.BusinessLogic.Response
 			account.Name = Name;
 			account.YellowLimit = YellowLimit;
 			account.RedLimit = RedLimit;
+			account.Currency = Currency;
 		}
 
 		public String OriginalUrl { get; set; }
@@ -35,6 +38,7 @@ namespace DFM.BusinessLogic.Response
 		public String Name { get; set; }
 		public Decimal? YellowLimit { get; set; }
 		public Decimal? RedLimit { get; set; }
+		public Currency? Currency { get; set; }
 		public Boolean IsOpen { get; set; }
 		public DateTime Start { get; set; }
 		public DateTime? End { get; set; }

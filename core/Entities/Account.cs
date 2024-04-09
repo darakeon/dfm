@@ -21,6 +21,8 @@ namespace DFM.Entities
 		public virtual Int32? RedLimitCents { get; set; }
 		public virtual Int32? YellowLimitCents { get; set; }
 
+		public virtual Currency? Currency { get; set; }
+
 		public virtual Decimal? RedLimit
 		{
 			get => RedLimitCents.ToVisual();

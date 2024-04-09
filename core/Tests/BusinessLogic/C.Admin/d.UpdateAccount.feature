@@ -130,3 +130,34 @@ Scenario: Cd10. Change the signs for disabled signs
 		And I try to update the account
 	Then I will receive this core error: UseAccountsSignsDisabled
 		And the account will not be changed
+
+Scenario: Cd11. Change the currency
+	Given these settings
+			| UseCurrency |
+			| true             |
+		And I already have this account
+			| Name                   | Currency |
+			| Account {scenarioCode} | EUR      |
+	When I make this changes to the account
+			| Name                      | Currency |
+			| {scenarioCode} - new name | BRL      |
+		And I try to update the account
+	Then I will receive no core error
+		And the account will be changed
+
+Scenario: Cd12. Change the currency for disabled use currency
+	Given these settings
+			| UseCurrency |
+			| true             |
+		And I already have this account
+			| Name                   | Currency |
+			| Account {scenarioCode} | EUR      |
+		And these settings
+			| UseCurrency |
+			| false       |
+	When I make this changes to the account
+			| Name                      | Currency |
+			| {scenarioCode} - new name | BRL      |
+		And I try to update the account
+	Then I will receive this core error: UseCurrencyDisabled
+		And the account will not be changed

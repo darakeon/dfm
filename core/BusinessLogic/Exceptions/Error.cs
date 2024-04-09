@@ -51,6 +51,7 @@ namespace DFM.BusinessLogic.Exceptions
 		OpenedAccount = 311,
 		AccountNotFound = 312,
 		UseAccountsSignsDisabled = 313,
+		UseCurrencyDisabled = 314,
 
 		CategoryNameRequired = 401,
 		CategoryAlreadyExists = 402,

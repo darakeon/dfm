@@ -54,6 +54,9 @@ namespace DFM.BusinessLogic.Services
 			if (info.HasLimit && !user.Settings.UseAccountsSigns)
 				throw Error.UseAccountsSignsDisabled.Throw();
 
+			if (info.Currency != null && !user.Settings.UseCurrency)
+				throw Error.UseCurrencyDisabled.Throw();
+
 			inTransaction("SaveAccount", () =>
 			{
 				info.Update(account);
