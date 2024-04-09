@@ -5,3 +5,6 @@ alter table settings
 
 alter table account
 	add column Currency smallint null;
+
+drop table month;
+drop table year;
