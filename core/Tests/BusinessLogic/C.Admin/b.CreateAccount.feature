@@ -13,19 +13,19 @@ Scenario: Cb01. Save Account without name
 
 Scenario: Cb02. Save Account with red limit bigger than yellow limit
 	Given I have this account to create
-			| Name         | Yellow | Red |
-			| Account Ba02 | 100    | 200 |
+			| Name                   | Yellow | Red |
+			| Account {scenarioCode} | 100    | 200 |
 	When I try to save the account
 	Then I will receive this core error: RedLimitAboveYellowLimit
 		And the account will not be saved
 
 Scenario: Cb03. Save Account with name that already exists
 	Given I have this account to create
-			| Name         | Yellow | Red |
-			| Account Ba03 |        |     |
+			| Name                   | Yellow | Red |
+			| Account {scenarioCode} |        |     |
 		And I already have this account
-			| Name         | Yellow | Red |
-			| Account Ba03 | 200    | 100 |
+			| Name                   | Yellow | Red |
+			| Account {scenarioCode} | 200    | 100 |
 	When I try to save the account
 	Then I will receive this core error: AccountNameAlreadyExists
 		And the account will not be changed
@@ -48,59 +48,59 @@ Scenario: Cb05. Save Account with exactly length name
 
 Scenario: Cb06. Save Account with special character
 	Given I have this account to create
-			| Name         | Yellow | Red |
-			| Account/Ba06 |        |     |
+			| Name                   | Yellow | Red |
+			| Account/{scenarioCode} |        |     |
 	When I try to save the account
 	Then I will receive no core error
 		And the account will be saved
 
 Scenario: Cb07. Save Account with with space
 	Given I have this account to create
-			| Name         | Yellow | Red |
-			| Account Ba07 |        |     |
+			| Name                   | Yellow | Red |
+			| Account {scenarioCode} |        |     |
 	When I try to save the account
 	Then I will receive no core error
 		And the account will be saved
 
 Scenario: Cb08. Save Account that already exists equal url
 	Given I have this account to create
-			| Name         | Yellow | Red |
-			| Account Ba08 |        |     |
+			| Name                   | Yellow | Red |
+			| Account {scenarioCode} |        |     |
 		And I already have this account
-			| Name         | Yellow | Red |
-			| Account_Ba08 |        |     |
+			| Name                   | Yellow | Red |
+			| Account_{scenarioCode} |        |     |
 	When I try to save the account
 	Then I will receive no core error
-		And the account url will be account_ba08_2
+		And the account url will be account_{scenarioCode}_2
 
 Scenario: Cb09. Save Account with info all right (without limits)
 	Given I have this account to create
-			| Name         | Yellow | Red |
-			| Account Ba09 |        |     |
+			| Name                   | Yellow | Red |
+			| Account {scenarioCode} |        |     |
 	When I try to save the account
 	Then I will receive no core error
 		And the account will be saved
 
 Scenario: Cb10. Save Account with just yellow limit
 	Given I have this account to create
-			| Name         | Yellow | Red |
-			| Account Ba10 | 100    |     |
+			| Name                   | Yellow | Red |
+			| Account {scenarioCode} | 100    |     |
 	When I try to save the account
 	Then I will receive no core error
 		And the account will be saved
 
 Scenario: Cb11. Save Account with just red limit
 	Given I have this account to create
-			| Name         | Yellow | Red |
-			| Account Ba11 |        | 100 |
+			| Name                   | Yellow | Red |
+			| Account {scenarioCode} |        | 100 |
 	When I try to save the account
 	Then I will receive no core error
 		And the account will be saved
 
 Scenario: Cb12. Save Account with info all right (with limits)
 	Given I have this account to create
-			| Name         | Yellow | Red |
-			| Account Ba12 | 200    | 100 |
+			| Name                   | Yellow | Red |
+			| Account {scenarioCode} | 200    | 100 |
 	When I try to save the account
 	Then I will receive no core error
 		And the account will be saved
@@ -108,39 +108,39 @@ Scenario: Cb12. Save Account with info all right (with limits)
 
 Scenario: Cb13. Save Account with same name in another user
 	Given I have this account to create
-			| Name         | Yellow | Red |
-			| Account Ba13 |        |     |
+			| Name                   | Yellow | Red |
+			| Account {scenarioCode} |        |     |
 	When I try to save the account
 	Then I will receive no core error
 		And the account will be saved
 	Given there is another person logged in
 		And I have this account to create
-			| Name         | Yellow | Red |
-			| Account Ba13 |        |     |
+			| Name                   | Yellow | Red |
+			| Account {scenarioCode} |        |     |
 	When I try to save the account
 	Then I will receive no core error
 		And the account will be saved
 
 Scenario: Cb14. Not save account if user is marked for deletion
 	Given I have this account to create
-			| Name         | Yellow | Red |
-			| Account Ba14 |        |     |
+			| Name                   | Yellow | Red |
+			| Account {scenarioCode} |        |     |
 		But the user is marked for deletion
 	When I try to save the account
 	Then I will receive this core error: UserDeleted
 
 Scenario: Cb15. Not save account if user requested wipe
 	Given I have this account to create
-			| Name         | Yellow | Red |
-			| Account Ba15 |        |     |
+			| Name                   | Yellow | Red |
+			| Account {scenarioCode} |        |     |
 		But the user asked data wipe
 	When I try to save the account
 	Then I will receive this core error: UserAskedWipe
 
 Scenario: Cb16. Not create account without signing contract
 	Given I have this account to create
-			| Name         | Yellow | Red |
-			| Account Ba16 |        |     |
+			| Name                   | Yellow | Red |
+			| Account {scenarioCode} |        |     |
 		But there is a new contract
 	When I try to save the account
 	Then I will receive this core error: NotSignedLastContract
