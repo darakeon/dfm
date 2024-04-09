@@ -1,5 +1,5 @@
 - [x] Add config to allow currency
-- [ ] Add currency to accounts
+- [x] Add currency to accounts
 - [ ] Add to TERMS that conversion is not calculated by the system
 
 - [ ] Add Value In e Value Out to Move
