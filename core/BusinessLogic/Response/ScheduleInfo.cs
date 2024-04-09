@@ -45,7 +45,7 @@ namespace DFM.BusinessLogic.Response
 		internal void Update(Schedule schedule)
 		{
 			if (Guid != schedule.Guid)
-				Error.InvalidSchedule.Throw();
+				throw Error.InvalidSchedule.Throw();
 
 			schedule.Description = Description;
 			schedule.Year = Year;
