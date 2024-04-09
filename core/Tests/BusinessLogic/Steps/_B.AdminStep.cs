@@ -83,6 +83,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 				YellowLimit = accountData.ContainsKey("Yellow")
 					? getInt(accountData["Yellow"])
 					: null,
+				Currency = accountData.ContainsKey("Currency")
+					? EnumX.Parse<Currency>(accountData["Currency"])
+					: null,
 			};
 		}
 
@@ -102,6 +105,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			if (accountData.ContainsKey("Yellow"))
 				oldAccount.YellowLimit = getInt(accountData["Yellow"]);
+
+			if (accountData.ContainsKey("Currency"))
+				oldAccount.Currency = EnumX.Parse<Currency>(accountData["Currency"]);
 
 			service.Admin.CreateAccount(oldAccount);
 		}
@@ -127,6 +133,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(account.Name, Is.EqualTo(oldAccount.Name));
 			Assert.That(account.RedLimit, Is.EqualTo(oldAccount.RedLimit));
 			Assert.That(account.YellowLimit, Is.EqualTo(oldAccount.YellowLimit));
+			Assert.That(account.Currency, Is.EqualTo(oldAccount.Currency));
 		}
 
 		[Then(@"the account will not be saved")]
@@ -158,6 +165,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(newAccount, Is.Not.Null);
 			Assert.That(newAccount.RedLimit, Is.EqualTo(accountInfo.RedLimit));
 			Assert.That(newAccount.YellowLimit, Is.EqualTo(accountInfo.YellowLimit));
+			Assert.That(newAccount.Currency, Is.EqualTo(accountInfo.Currency));
 		}
 
 		[Then(@"the account url will be (.+)")]
@@ -210,6 +218,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 			if (accountData.ContainsKey("Yellow") && accountData["Red"] != "")
 				accountInfo.RedLimit = Decimal.Parse(accountData["Red"]);
 
+			if (accountData.ContainsKey("Currency") && accountData["Currency"] != "")
+				accountInfo.Currency = EnumX.Parse<Currency>(accountData["Currency"]);
+
 			service.Admin.CreateAccount(accountInfo);
 		}
 
@@ -258,6 +269,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			if (accountData.ContainsKey("Yellow"))
 				accountInfo.YellowLimit = getInt(accountData["Yellow"]);
+
+			if (accountData.ContainsKey("Currency"))
+				accountInfo.Currency = EnumX.Parse<Currency>(accountData["Currency"]);
 		}
 
 		[When(@"I try to update the account")]
@@ -296,6 +310,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(account.HasLimit, Is.EqualTo(accountInfo.HasLimit));
 			Assert.That(account.RedLimit, Is.EqualTo(accountInfo.RedLimit));
 			Assert.That(account.YellowLimit, Is.EqualTo(accountInfo.YellowLimit));
+			Assert.That(account.Currency, Is.EqualTo(accountInfo.Currency));
 		}
 
 		[Then(@"the account value will not change")]

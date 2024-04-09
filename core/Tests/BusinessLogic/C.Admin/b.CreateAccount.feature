@@ -167,3 +167,36 @@ Scenario: Cb17. Save Account with with limits for AccountsSign disabled
 	When I try to save the account
 	Then I will receive this core error: UseAccountsSignsDisabled
 		And the account will not be saved
+
+Scenario: Cb18. Save Account with currency
+	Given I have this account to create
+			| Name                   | Yellow | Red | Currency |
+			| Account {scenarioCode} |        |     | BRL      |
+		And these settings
+			| UseCurrency |
+			| true        |
+	When I try to save the account
+	Then I will receive no core error
+		And the account will be saved
+
+Scenario: Cb19. Save Account with currency for use currency disabled
+	Given I have this account to create
+			| Name                   | Yellow | Red | Currency |
+			| Account {scenarioCode} |        |     | BRL      |
+		And these settings
+			| UseCurrency |
+			| false       |
+	When I try to save the account
+	Then I will receive this core error: UseCurrencyDisabled
+		And the account will not be saved
+
+Scenario: Cb20. Save Account without currency for use currency enabled
+	Given I have this account to create
+			| Name                   |
+			| Account {scenarioCode} |
+		And these settings
+			| UseCurrency |
+			| true        |
+	When I try to save the account
+	Then I will receive no core error
+		And the account will be saved
