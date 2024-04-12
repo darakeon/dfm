@@ -5,7 +5,6 @@ using DFM.BusinessLogic.Response;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Generic;
-using Google.Protobuf;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 

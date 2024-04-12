@@ -1,5 +1,4 @@
 ﻿using System;
-using DFM.Entities.Enums;
 
 namespace DFM.API.Models
 {

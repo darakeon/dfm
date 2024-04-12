@@ -3,7 +3,6 @@ using DFM.API.Helpers.Authorize;
 using DFM.API.Models;
 using DFM.API.Starters.Routes;
 using DFM.BusinessLogic.Response;
-using DFM.Entities.Enums;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.API.Controllers
