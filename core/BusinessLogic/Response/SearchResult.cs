@@ -12,7 +12,7 @@ namespace DFM.BusinessLogic.Response
 		public SearchResult(IList<Move> moveList)
 		{
 			MoveList = moveList
-				.Select(MoveInfo.Convert4Report)
+				.Select(MoveInfo.Convert4Search)
 				.ToList();
 		}
 

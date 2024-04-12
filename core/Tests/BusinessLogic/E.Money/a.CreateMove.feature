@@ -764,3 +764,307 @@ Scenario: Ea48. Not save if not signed last contract
 		But there is a new contract
 	When I try to save the move
 	Then I will receive this core error: NotSignedLastContract
+
+
+Scenario: Ea49. Save move transfer with unique value for same currency
+	Given these settings
+			| UseCurrency |
+			| true        |
+		And I have this move to create
+			| Description         | Date       | Nature   | Value |
+			| Move {scenarioCode} | 2024-04-09 | Transfer | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out BRL
+		And it has an Account In BRL
+	When I try to save the move
+	Then I will receive no core error
+		And the move will be saved
+		And the accountOut value will change in -10
+		And the month-category-accountOut value will change in 10
+		And the year-category-accountOut value will change in 10
+		And the accountIn value will change in 10
+		And the month-category-accountIn value will change in 10
+		And the year-category-accountIn value will change in 10
+
+Scenario: Ea50. Save move transfer with unique value for different currencies
+	Given these settings
+			| UseCurrency |
+			| true        |
+		And I have this move to create
+			| Description         | Date       | Nature   | Value |
+			| Move {scenarioCode} | 2024-04-09 | Transfer | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out EUR
+		And it has an Account In BRL
+	When I try to save the move
+	Then I will receive this core error: AccountsDifferentCurrencyNoConversion
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
+
+Scenario: Ea51. Save move transfer with conversion for same currency
+	Given these settings
+			| UseCurrency |
+			| true        |
+		And I have this move to create
+			| Description         | Date       | Nature   | Value | Conversion |
+			| Move {scenarioCode} | 2024-04-09 | Transfer | 1     | 5          |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out BRL
+		And it has an Account In BRL
+	When I try to save the move
+	Then I will receive this core error: AccountsSameCurrencyConversion
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
+
+Scenario: Ea52. Save move transfer with conversion for different currencies
+	Given these settings
+			| UseCurrency |
+			| true        |
+		And I have this move to create
+			| Description         | Date       | Nature   | Value | Conversion |
+			| Move {scenarioCode} | 2024-04-09 | Transfer | 1     | 5          |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out EUR
+		And it has an Account In BRL
+	When I try to save the move
+	Then I will receive no core error
+		And the move will be saved
+		And the accountOut value will change in -1
+		And the month-category-accountOut value will change in 1
+		And the year-category-accountOut value will change in 1
+		And the accountIn value will change in 5
+		And the month-category-accountIn value will change in 5
+		And the year-category-accountIn value will change in 5
+
+Scenario: Ea53. Save move transfer with conversion for disabled use currency
+	Given these settings
+			| UseCurrency |
+			| false       |
+		And I have this move to create
+			| Description         | Date       | Nature   | Value | Conversion |
+			| Move {scenarioCode} | 2024-04-09 | Transfer | 1     | 5          |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out EUR
+		And it has an Account In BRL
+	When I try to save the move
+	Then I will receive this core error: UseCurrencyDisabled
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
+
+Scenario: Ea54. Save move out with conversion
+	Given these settings
+			| UseCurrency |
+			| true        |
+		And I have this move to create
+			| Description         | Date       | Nature | Value | Conversion |
+			| Move {scenarioCode} | 2024-04-09 | Out    | 1     | 5          |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out BRL
+		And it has no Account In
+	When I try to save the move
+	Then I will receive this core error: CurrencyInOutValueWithoutTransfer
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+
+Scenario: Ea55. Save move in with conversion
+	Given these settings
+			| UseCurrency |
+			| true        |
+		And I have this move to create
+			| Description         | Date       | Nature | Value | Conversion |
+			| Move {scenarioCode} | 2024-04-09 | In     | 1     | 5          |
+		And it has no Details
+		And it has a Category
+		And it has no Account Out
+		And it has an Account In BRL
+	When I try to save the move
+	Then I will receive this core error: CurrencyInOutValueWithoutTransfer
+		And the move will not be saved
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
+
+
+Scenario: Ea56. Save move transfer with unique detailed value for same currency
+	Given these settings
+			| UseCurrency |
+			| true        |
+		And I have this move to create
+			| Description         | Date       | Nature   |
+			| Move {scenarioCode} | 2024-04-09 | Transfer |
+		And the move has this details
+			| Description | Amount | Value |
+			| Detail      | 1      | 10    |
+		And it has a Category
+		And it has an Account Out BRL
+		And it has an Account In BRL
+	When I try to save the move
+	Then I will receive no core error
+		And the move will be saved
+		And the accountOut value will change in -10
+		And the month-category-accountOut value will change in 10
+		And the year-category-accountOut value will change in 10
+		And the accountIn value will change in 10
+		And the month-category-accountIn value will change in 10
+		And the year-category-accountIn value will change in 10
+
+Scenario: Ea57. Save move transfer with unique detailed value for different currencies
+	Given these settings
+			| UseCurrency |
+			| true        |
+		And I have this move to create
+			| Description         | Date       | Nature   |
+			| Move {scenarioCode} | 2024-04-09 | Transfer |
+		And the move has this details
+			| Description | Amount | Value |
+			| Detail      | 1      | 10    |
+		And it has a Category
+		And it has an Account Out EUR
+		And it has an Account In BRL
+	When I try to save the move
+	Then I will receive this core error: AccountsDifferentCurrencyNoConversion
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
+
+Scenario: Ea58. Save move transfer with detailed conversion for same currency
+	Given these settings
+			| UseCurrency |
+			| true        |
+		And I have this move to create
+			| Description         | Date       | Nature   |
+			| Move {scenarioCode} | 2024-04-09 | Transfer |
+		And the move has this details
+			| Description | Amount | Value | Conversion |
+			| Detail      | 1      | 1     | 5          |
+		And it has a Category
+		And it has an Account Out BRL
+		And it has an Account In BRL
+	When I try to save the move
+	Then I will receive this core error: AccountsSameCurrencyConversion
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
+
+Scenario: Ea59. Save move transfer with detailed conversion for different currencies
+	Given these settings
+			| UseCurrency |
+			| true        |
+		And I have this move to create
+			| Description         | Date       | Nature   |
+			| Move {scenarioCode} | 2024-04-09 | Transfer |
+		And the move has this details
+			| Description | Amount | Value | Conversion |
+			| Detail      | 1      | 1     | 5          |
+		And it has a Category
+		And it has an Account Out EUR
+		And it has an Account In BRL
+	When I try to save the move
+	Then I will receive no core error
+		And the move will be saved
+		And the accountOut value will change in -1
+		And the month-category-accountOut value will change in 1
+		And the year-category-accountOut value will change in 1
+		And the accountIn value will change in 5
+		And the month-category-accountIn value will change in 5
+		And the year-category-accountIn value will change in 5
+
+Scenario: Ea60. Save move transfer with detailed conversion for disabled use currency
+	Given these settings
+			| UseCurrency |
+			| false       |
+		And I have this move to create
+			| Description         | Date       | Nature   |
+			| Move {scenarioCode} | 2024-04-09 | Transfer |
+		And the move has this details
+			| Description | Amount | Value | Conversion |
+			| Detail      | 1      | 1     | 5          |
+		And it has a Category
+		And it has an Account Out EUR
+		And it has an Account In BRL
+	When I try to save the move
+	Then I will receive this core error: UseCurrencyDisabled
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
+
+Scenario: Ea61. Save move out with detailed conversion
+	Given these settings
+			| UseCurrency |
+			| true        |
+		And I have this move to create
+			| Description         | Date       | Nature |
+			| Move {scenarioCode} | 2024-04-09 | Out    |
+		And the move has this details
+			| Description | Amount | Value | Conversion |
+			| Detail      | 1      | 1     | 5          |
+		And it has a Category
+		And it has an Account Out BRL
+		And it has no Account In
+	When I try to save the move
+	Then I will receive this core error: CurrencyInOutValueWithoutTransfer
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
+
+Scenario: Ea62. Save move in with detailed conversion
+	Given these settings
+			| UseCurrency |
+			| true        |
+		And I have this move to create
+			| Description         | Date       | Nature |
+			| Move {scenarioCode} | 2024-04-09 | In     |
+		And the move has this details
+			| Description | Amount | Value | Conversion |
+			| Detail      | 1      | 1     | 5          |
+		And it has a Category
+		And it has no Account Out
+		And it has an Account In BRL
+	When I try to save the move
+	Then I will receive this core error: CurrencyInOutValueWithoutTransfer
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change

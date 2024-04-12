@@ -14,5 +14,10 @@ namespace DFM.Exchange
 		{
 			return value == 0 ? "" : value.ToString("F2");
 		}
+
+		public static String ToCsv(this Decimal? value)
+		{
+			return value is null or 0 ? null : value.Value.ToString("F2");
+		}
 	}
 }

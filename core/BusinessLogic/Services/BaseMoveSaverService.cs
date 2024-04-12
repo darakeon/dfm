@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using DFM.Authentication;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
@@ -41,8 +42,50 @@ namespace DFM.BusinessLogic.Services
 
 			linkEntities(move, info);
 
+			TestCurrency(
+				info,
+				move.Out?.Currency,
+				move.In?.Currency
+			);
+
 			return SaveMove(move, operationType);
 		}
+
+		internal void TestCurrency(IMoveInfo move, Currency? currencyOut, Currency? currencyIn)
+		{
+			var moveHasConversion =
+				move.Conversion != null;
+
+			var detailHaveAnyConversion =
+				move.DetailList.Any(
+					d => d.Conversion != null
+				);
+
+			var detailHaveAllConversion =
+				move.DetailList.Any()
+					&& move.DetailList.All(
+						d => d.Conversion != null
+					);
+
+			if (moveHasConversion || detailHaveAnyConversion)
+			{
+				if (!parent.Current.UseCurrency)
+					throw Error.UseCurrencyDisabled.Throw();
+
+				if (move.Nature != MoveNature.Transfer)
+					throw Error.CurrencyInOutValueWithoutTransfer.Throw();
+
+				if (currencyIn == currencyOut)
+					throw Error.AccountsSameCurrencyConversion.Throw();
+			}
+
+			if (currencyIn != currencyOut)
+			{
+				if (!moveHasConversion && !detailHaveAllConversion)
+					throw Error.AccountsDifferentCurrencyNoConversion.Throw();
+			}
+		}
+
 
 		internal MoveResult SaveMove(Move move, OperationType operationType)
 		{

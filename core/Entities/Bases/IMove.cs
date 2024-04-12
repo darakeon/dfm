@@ -13,6 +13,7 @@ namespace DFM.Entities.Bases
 		MoveNature Nature { get; set; }
 
 		Decimal Value { get; set; }
+		Decimal? Conversion { get; set; }
 		IList<Detail> DetailList { get; set; }
 
 		Category Category { get; set; }

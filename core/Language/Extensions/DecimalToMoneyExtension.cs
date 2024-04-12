@@ -15,5 +15,12 @@ namespace DFM.Language.Extensions
 
 			return number.ToString("#,###0.00", format);
 		}
+
+		public static String ToMoney(this Decimal? number, String language, Boolean differentIfZero = false)
+		{
+			return number.HasValue
+				? number.Value.ToMoney(language, differentIfZero)
+				: "---";
+		}
 	}
 }

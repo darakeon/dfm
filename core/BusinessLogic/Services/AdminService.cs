@@ -270,7 +270,10 @@ namespace DFM.BusinessLogic.Services
 					move.Category = keep;
 
 					if (move.DetailList.Any())
+					{
 						move.Value = 0;
+						move.Conversion = null;
+					}
 
 					parent.BaseMove.SaveMove(move, OperationType.Edition);
 				}
