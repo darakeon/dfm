@@ -88,13 +88,19 @@
 		ViewBag.SettingsMenuClass = hl["SettingsMenu"];
 		ViewBag.SettingsMainMenuClass = hl["SettingsMainMenu"];
 	}
+
+	var columnNameSize = Model.IsUsingCurrency ? 4 : 7;
 }
 
 @section TableHeader
 {
 	<tr class="row">
-		<th class="col-sm-5">@Context.Translate("Name")</th>
-		<th class="col-sm-4 text-center" colspan="3">@Context.Translate("Total")</th>
+		<th class="col-sm-@columnNameSize">@Context.Translate("Name")</th>
+		@if (Model.IsUsingCurrency)
+		{
+			<th class="col-sm-3 text-center">@Context.Translate("Currency")</th>
+		}
+		<th class="col-sm-2 text-center">@Context.Translate("Total")</th>
 		<th class="col-sm-3 text-center" colspan="3">@Context.Translate("TODO")</th>
 	</tr>
 }
@@ -111,13 +117,21 @@
 	};
 
 	<tr class="row @hl["Row"]">
-		<td class="col-sm-5 @hl["Name"]">
+		<td class="col-sm-@columnNameSize @hl["Name"]">
 			@Html.RouteLink(name, route.Name, reports,
 				new { title = Context.Translate("AccountMoves").Format(name) }
 			)
 		</td>
 
-		<td class="col-sm-1"></td>
+		@if (Model.IsUsingCurrency)
+		{
+			<td class="col-sm-3 text-center">
+				@if (account.Currency.HasValue) {
+					@Context.Translate(account.Currency.Value.ToString())
+				}
+			</td>
+		}
+
 		<td class="col-sm-2 text-right">
 			@if (Model.IsUsingAccountsSigns)
 			{
@@ -133,7 +147,6 @@
 			@await Html.PartialAsync("Extensions/ValueWithSign",
 				new ValueWithSign(account.Total, Model.Language))
 		</td>
-		<td class="col-sm-1"></td>
 
 		<td class="col-sm-1 text-center @hl["Reports"]">
 			<a href="@Url.RouteUrl(route.Name, reports)">
