@@ -41,6 +41,7 @@ namespace DFM.MVC.Models
 		protected Boolean isUsingCategories => current.UseCategories;
 		protected Boolean isUsingAccountsSigns => current.UseAccountsSigns;
 		protected Boolean moveCheckingEnabled => current.MoveCheck;
+		protected Boolean isUsingCurrency => current.UseCurrency;
 
 		protected void logout()
 		{

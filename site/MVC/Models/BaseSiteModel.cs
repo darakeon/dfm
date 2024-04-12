@@ -20,6 +20,7 @@ namespace DFM.MVC.Models
 		public Boolean IsUsingCategories => isUsingCategories;
 		public Boolean IsUsingAccountsSigns => isUsingAccountsSigns;
 		public Boolean IsUsingMoveCheck => moveCheckingEnabled;
+		public Boolean IsUsingCurrency => isUsingCurrency;
 
 		public Theme Theme => theme;
 		public ThemeColor Color => theme.Color();
