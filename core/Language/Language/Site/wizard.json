@@ -141,6 +141,7 @@
 			"It is also possible to add symbols to the accounts about its health.",
 			"The system can send you an email each time a new move is registered.",
 			"You can mark the moves to make it easier to compare to real world stuff.",
+			"You can enable Currencies to allow register different values in transfers between Accounts.",
 			"Last but not least, you can enable or disable this wizard.",
 			"Let's enable the categories to see the effect into the system.",
 			null
@@ -534,6 +535,7 @@
 			"Também é possível adicionar às contas símbolos sobre a saúde da conta.",
 			"O sistema pode te enviar um e-mail cada vez que acontece uma movimentação.",
 			"Você pode querer marcar as movimentações, para facilitar comparar com extratos reais.",
+			"Você pode habilitar Moedas para permitir registro de diferentes valores nas transferências entre Contas.",
 			"Por último, você pode habilitar ou desabilitar este tutorial.",
 			"Vamos habilitar as categorias, para vermos o efeito no resto do sistema.",
 			null
