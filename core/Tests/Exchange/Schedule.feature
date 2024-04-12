@@ -13,11 +13,11 @@ Scenario: B02. Partially runned add only future part
 			| Schedule 2  | 2021-05-13 | Cat          | Transfer | In     | Out     | 10    | 7     | Daily     | False     | 4       |
 	When convert to csv
 	Then the file will have these lines
-			| File                                                  |
-			| Description,Date,Category,Nature,In,Out,Value,Details |
-			| Schedule 2,2021-05-17,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 2,2021-05-18,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 2,2021-05-19,Cat,Transfer,In,Out,10.00,      |
+			| File                                                             |
+			| Description,Date,Category,Nature,In,Out,Value,Conversion,Details |
+			| Schedule 2,2021-05-17,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 2,2021-05-18,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 2,2021-05-19,Cat,Transfer,In,Out,10.00,,                |
 
 Scenario: B03. Not runned add all
 	Given this schedule data
@@ -25,15 +25,15 @@ Scenario: B03. Not runned add all
 			| Schedule 3  | 2021-05-13 | Cat          | Transfer | In     | Out     | 10    | 7     | Daily     | False     | 0       |
 	When convert to csv
 	Then the file will have these lines
-			| File                                                  |
-			| Description,Date,Category,Nature,In,Out,Value,Details |
-			| Schedule 3,2021-05-13,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 3,2021-05-14,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 3,2021-05-15,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 3,2021-05-16,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 3,2021-05-17,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 3,2021-05-18,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 3,2021-05-19,Cat,Transfer,In,Out,10.00,      |
+			| File                                                             |
+			| Description,Date,Category,Nature,In,Out,Value,Conversion,Details |
+			| Schedule 3,2021-05-13,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 3,2021-05-14,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 3,2021-05-15,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 3,2021-05-16,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 3,2021-05-17,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 3,2021-05-18,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 3,2021-05-19,Cat,Transfer,In,Out,10.00,,                |
 
 Scenario: B04. With detail
 	Given this schedule data
@@ -44,9 +44,9 @@ Scenario: B04. With detail
 			| Schedule 4 | Detail 10   | 10     | 1.00  |
 	When convert to csv
 	Then the file will have these lines
-			| File                                                           |
-			| Description,Date,Category,Nature,In,Out,Value,Details          |
-			| Schedule 4,2021-05-13,Cat,Transfer,In,Out,,Detail 10 (10x1.00) |
+			| File                                                             |
+			| Description,Date,Category,Nature,In,Out,Value,Conversion,Details |
+			| Schedule 4,2021-05-13,Cat,Transfer,In,Out,,,Detail 10 [10x1.00]  |
 
 Scenario: B05. Bounded and boundless add boundless until bounded finishes
 	Given this schedule data
@@ -55,21 +55,21 @@ Scenario: B05. Bounded and boundless add boundless until bounded finishes
 			| Schedule 6  | 2021-05-14 | Cat          | Transfer | In     | Out     | 10    |       | Daily     | True      |
 	When convert to csv
 	Then the file will have these lines
-			| File                                                  |
-			| Description,Date,Category,Nature,In,Out,Value,Details |
-			| Schedule 5,2021-05-13,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 5,2021-05-14,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 6,2021-05-14,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 5,2021-05-15,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 6,2021-05-15,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 5,2021-05-16,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 6,2021-05-16,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 5,2021-05-17,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 6,2021-05-17,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 5,2021-05-18,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 6,2021-05-18,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 5,2021-05-19,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 6,2021-05-19,Cat,Transfer,In,Out,10.00,      |
+			| File                                                             |
+			| Description,Date,Category,Nature,In,Out,Value,Conversion,Details |
+			| Schedule 5,2021-05-13,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 5,2021-05-14,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 6,2021-05-14,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 5,2021-05-15,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 6,2021-05-15,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 5,2021-05-16,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 6,2021-05-16,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 5,2021-05-17,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 6,2021-05-17,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 5,2021-05-18,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 6,2021-05-18,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 5,2021-05-19,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 6,2021-05-19,Cat,Transfer,In,Out,10.00,,                |
 
 Scenario: B06. Just boundless don't add moves, because scheduler have runned it until now
 	Given this schedule data
@@ -85,12 +85,12 @@ Scenario: B07. Duplicated schedule
 			| 8    | Schedule 8  | 2021-05-13 | Cat          | Transfer | In     | Out     | 10    | 7     | Daily     | False     |
 	When convert to csv
 	Then the file will have these lines
-			| File                                                  |
-			| Description,Date,Category,Nature,In,Out,Value,Details |
-			| Schedule 8,2021-05-13,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 8,2021-05-14,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 8,2021-05-15,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 8,2021-05-16,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 8,2021-05-17,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 8,2021-05-18,Cat,Transfer,In,Out,10.00,      |
-			| Schedule 8,2021-05-19,Cat,Transfer,In,Out,10.00,      |
+			| File                                                             |
+			| Description,Date,Category,Nature,In,Out,Value,Conversion,Details |
+			| Schedule 8,2021-05-13,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 8,2021-05-14,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 8,2021-05-15,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 8,2021-05-16,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 8,2021-05-17,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 8,2021-05-18,Cat,Transfer,In,Out,10.00,,                |
+			| Schedule 8,2021-05-19,Cat,Transfer,In,Out,10.00,,                |

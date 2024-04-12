@@ -12,11 +12,13 @@ namespace DFM.Exchange
 			description = detail.Description;
 			amount = detail.Amount.ToString();
 			value = detail.Value.ToCsv();
+			conversion = detail.Conversion.ToCsv();
 		}
 
 		private String description { get; }
 		private String amount { get; }
 		private String value { get; }
+		private String conversion { get; }
 
 		public static String Convert(IEnumerable<Detail> details)
 		{
@@ -29,7 +31,13 @@ namespace DFM.Exchange
 
 		public override string ToString()
 		{
-			return $"{description} ({amount}x{value})";
+			var conversionText = conversion == null
+				? String.Empty
+				: $"({conversion})";
+
+			var valueText = $"{amount}x{value}{conversionText}";
+
+			return $"{description} [{valueText}]";
 		}
 	}
 }

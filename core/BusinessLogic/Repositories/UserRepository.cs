@@ -114,6 +114,8 @@ namespace DFM.BusinessLogic.Repositories
 			user.Settings.SendMoveEmail = Defaults.SettingsSendMoveEmail;
 			user.Settings.UseCategories = Defaults.SettingsUseCategories;
 			user.Settings.MoveCheck = Defaults.SettingsMoveCheck;
+			user.Settings.UseAccountsSigns = Defaults.SettingsUseAccountsSigns;
+			user.Settings.UseCurrency = Defaults.SettingsUseCurrency;
 
 			user.Settings.Theme = Defaults.DefaultTheme;
 

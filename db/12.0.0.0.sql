@@ -371,3 +371,12 @@ drop table year;
 			(@PT, 'pt-BR', @contract_id),
 			(@EN, 'en-US', @contract_id);
 -- contract end
+
+alter table schedule
+	add column ConversionCents int null;
+
+alter table move
+	add column ConversionCents int null;
+
+alter table detail
+	add column ConversionCents int null;

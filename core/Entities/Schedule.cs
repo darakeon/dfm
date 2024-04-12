@@ -28,6 +28,7 @@ namespace DFM.Entities
 		public virtual String Description { get; set; }
 		public virtual MoveNature Nature { get; set; }
 		public virtual Int32 ValueCents { get; set; }
+		public virtual Int32? ConversionCents { get; set; }
 
 		public virtual Boolean ShowInstallment { get; set; }
 
@@ -65,10 +66,17 @@ namespace DFM.Entities
 			set => ValueCents = value.ToCents();
 		}
 
+		public virtual Decimal? Conversion
+		{
+			get => ConversionCents.ToVisual();
+			set => ConversionCents = value.ToCents();
+		}
+
 		public virtual Move CreateMove()
 		{
 			var move = createMove(
 				DetailList.Any() ? 0 : ValueCents,
+				DetailList.Any() ? null : ConversionCents,
 				m => m.SetDate(LastDateRun())
 			);
 
@@ -140,9 +148,12 @@ namespace DFM.Entities
 			var run = times - LastRun;
 
 			var date = begin;
+
+			var valueCents = valueToShow(account);
+
 			while (date < firstNextMonthDay && run > 0)
 			{
-				value += ValueCents;
+				value += valueCents;
 				date = add(date)(1);
 				run--;
 			}
@@ -169,13 +180,15 @@ namespace DFM.Entities
 			if (end < firstMonthDay)
 				return 0;
 
+			var valueCents = valueToShow(account);
+
 			switch (Frequency)
 			{
 				case ScheduleFrequency.Yearly:
-					return Month == dateMonth ? ValueCents : 0;
+					return Month == dateMonth ? valueCents : 0;
 
 				case ScheduleFrequency.Monthly:
-					return ValueCents;
+					return valueCents;
 
 				case ScheduleFrequency.Daily:
 					{
@@ -185,7 +198,7 @@ namespace DFM.Entities
 						if (end > lastMonthDay)
 							end = lastMonthDay;
 
-						return ValueCents * (end.Day - begin.Day + 1);
+						return valueCents * (end.Day - begin.Day + 1);
 					}
 
 				default:
@@ -193,17 +206,28 @@ namespace DFM.Entities
 			}
 		}
 
-		private Move createMove(Int16 year, Int16 month, Int16? day = null)
+		private int valueToShow(Account account)
 		{
-			return createMove(ValueCents, move =>
-			{
-				move.Year = year;
-				move.Month = month;
-				move.Day = day ?? Day;
-			});
+			return In?.ID == account.ID
+					&& ConversionCents.HasValue
+				? ConversionCents.Value
+				: ValueCents;
 		}
 
-		private Move createMove(Int32 value, Action<Move> setDate)
+		private Move createMove(Int16 year, Int16 month, Int16? day = null)
+		{
+			return createMove(
+				ValueCents,
+				ConversionCents,
+				move => {
+					move.Year = year;
+					move.Month = month;
+					move.Day = day ?? Day;
+				}
+			);
+		}
+
+		private Move createMove(Int32 value, Int32? conversion, Action<Move> setDate)
 		{
 			var move =
 				new Move
@@ -215,6 +239,7 @@ namespace DFM.Entities
 					Out = Out,
 					Category = Category,
 					ValueCents = value,
+					ConversionCents = conversion,
 				};
 
 			foreach (var detail in DetailList)

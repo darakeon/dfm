@@ -82,7 +82,7 @@ namespace DFM.BusinessLogic.Repositories
 				{ "Nature", nature },
 				{ "Category", categoryName },
 				{ "Description", move.Description },
-				{ "Value", move.Value.ToMoney(settings.Language) },
+				{ "Value", moneyValue(settings.Language, move) },
 				{ "Details", detailsHTML(move) },
 				{ "UnsubscribePath", security.Action.ToString() },
 				{ "UnsubscribeToken", security.Token },
@@ -107,6 +107,20 @@ namespace DFM.BusinessLogic.Repositories
 			{
 				return e.Type;
 			}
+		}
+
+		private String moneyValue(String language, Move move, Decimal value = 0, Decimal? conversion = null)
+		{
+			value = value == 0 ? move.Value : value;
+			conversion ??= move.Conversion;
+
+			if (move.Nature != MoveNature.Transfer || conversion == null)
+				return value.ToMoney(language);
+
+			var inMoney = $"{value.ToMoney(language)} ({move.Out.Currency})";
+			var outMoney = $"{conversion.ToMoney(language)} ({move.In.Currency})";
+
+			return $"{inMoney} / {outMoney}";
 		}
 
 		internal Move GetNonCached(Guid guid)
@@ -138,8 +152,8 @@ namespace DFM.BusinessLogic.Repositories
 					new Dictionary<String, Object> {
 						{ "Description", detail.Description },
 						{ "Amount", detail.Amount },
-						{ "Value", detail.Value.ToMoney(language) },
-						{ "Total", detail.GetTotal().ToMoney(language) }
+						{ "Value", moneyValue(language, move, detail.Value, detail.Conversion) },
+						{ "Total", moneyValue(language, move, detail.GetTotalValue(), detail.GetTotalConversion()) }
 					},
 					misc
 				);
@@ -157,7 +171,7 @@ namespace DFM.BusinessLogic.Repositories
 				m => m.In != null && m.In.ID == summary.Account.ID
 			);
 
-			return get(query, summary);
+			return get(query, summary, m => m.Conversion ?? m.Value);
 		}
 
 		internal Decimal GetOut(Summary summary)
@@ -166,10 +180,10 @@ namespace DFM.BusinessLogic.Repositories
 				m => m.Out != null && m.Out.ID == summary.Account.ID
 			);
 
-			return get(query, summary);
+			return get(query, summary, m => m.Value);
 		}
 
-		private Decimal get(Query<Move, Int64> query, Summary summary)
+		private Decimal get(Query<Move, Int64> query, Summary summary, Func<Move, Decimal> field)
 		{
 			query = summary.Category == null
 				? query.Where(m => m.Category == null)
@@ -198,9 +212,7 @@ namespace DFM.BusinessLogic.Repositories
 			}
 
 			// TODO: use summarize from query
-			return query
-				.List
-				.Sum(m => m.Value);
+			return query.List.Sum(field);
 		}
 
 		internal override User GetUser(Move move)

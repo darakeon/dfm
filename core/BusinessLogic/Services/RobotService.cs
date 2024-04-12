@@ -62,13 +62,26 @@ namespace DFM.BusinessLogic.Services
 
 		private ScheduleResult save(ScheduleInfo info)
 		{
+			var accountOut = parent.BaseMove.GetAccount(info.OutUrl);
+			var accountIn = parent.BaseMove.GetAccount(info.InUrl);
+
+			var category = parent.BaseMove.GetCategory(info.CategoryName);
+
+			var user = parent.Auth.GetCurrent();
+
 			var schedule = new Schedule
 			{
-				Out = parent.BaseMove.GetAccount(info.OutUrl),
-				In = parent.BaseMove.GetAccount(info.InUrl),
-				Category = parent.BaseMove.GetCategory(info.CategoryName),
-				User = parent.Auth.GetCurrent()
+				Out = accountOut,
+				In = accountIn,
+				Category = category,
+				User = user
 			};
+
+			parent.BaseMove.TestCurrency(
+				info,
+				accountOut?.Currency,
+				accountIn?.Currency
+			);
 
 			info.Update(schedule);
 

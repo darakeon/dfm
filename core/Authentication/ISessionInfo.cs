@@ -23,6 +23,7 @@ namespace DFM.Authentication
 		Boolean UseAccountsSigns { get; }
 		Boolean MoveCheck { get; }
 		Boolean SendMoveEmail { get; }
+		Boolean UseCurrency { get; }
 
 		Boolean Wizard { get; }
 

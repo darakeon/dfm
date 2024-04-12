@@ -72,6 +72,7 @@ namespace DFM.BusinessLogic.Bases
 				case MoveNature.In:
 					if (!hasIn || hasOut)
 						throw Error.InMoveWrong.Throw();
+
 					break;
 
 				case MoveNature.Out:
@@ -143,9 +144,25 @@ namespace DFM.BusinessLogic.Bases
 		private static void adjustValue(T move)
 		{
 			if (move.DetailList.Any())
-				move.Value = move.DetailList.Sum(d => d.GetTotal());
-			else if (move.Value < 0)
-				move.Value = -move.Value;
+			{
+				move.Value = move.DetailList.Sum(d => d.GetTotalValue());
+
+				var detailList = move.DetailList
+					.Where(d => d.Conversion != null)
+					.ToList();
+
+				move.Conversion =
+					detailList.Any()
+						? detailList.Sum(d => d.GetTotalConversion())
+						: null;
+			}
+			else
+			{
+				if (move.Value < 0)
+					move.Value = -move.Value;
+				if (move.Conversion < 0)
+					move.Conversion = -move.Conversion;
+			}
 		}
 
 		private static void adjustDetailList(T move)
@@ -156,6 +173,14 @@ namespace DFM.BusinessLogic.Bases
 			foreach (var detail in wrongDetails)
 			{
 				detail.Value = -detail.Value;
+			}
+
+			wrongDetails = move.DetailList
+				.Where(detail => detail.Conversion < 0);
+
+			foreach (var detail in wrongDetails)
+			{
+				detail.Conversion = -detail.Conversion;
 			}
 		}
 		#endregion

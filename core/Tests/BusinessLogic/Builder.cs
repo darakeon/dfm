@@ -207,24 +207,24 @@ namespace DFM.BusinessLogic.Tests
 			var accountIn = accountFor(user, "in");
 			var accountOut = accountFor(user, "out");
 
-			return repos.Schedule.SaveOrUpdate(
-				new Schedule
-				{
-					Guid = Guid.NewGuid(),
-					Description = $"Schedule {code}",
-					Year = 3000,
-					Month = 3,
-					Day = 27,
-					Category = category,
-					Nature = MoveNature.Transfer,
-					In = accountIn,
-					Out = accountOut,
-					ValueCents = 27,
-					Boundless = false,
-					Times = 10,
-					User = user,
-				}
-			);
+			var schedule = new Schedule
+			{
+				Guid = Guid.NewGuid(),
+				Description = $"Schedule {code}",
+				Year = 3000,
+				Month = 3,
+				Day = 27,
+				Category = category,
+				Nature = MoveNature.Transfer,
+				In = accountIn,
+				Out = accountOut,
+				ValueCents = 27,
+				Boundless = false,
+				Times = 10,
+				User = user,
+			};
+
+			return repos.Schedule.SaveOrUpdate(schedule);
 		}
 
 		private Control controlFor(User user)
