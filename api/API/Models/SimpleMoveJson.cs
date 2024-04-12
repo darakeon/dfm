@@ -30,6 +30,8 @@ namespace DFM.API.Models
 			Month = move.Month;
 			Day = move.Day;
 
+			Nature = move.Nature;
+
 			var accountOut = move.Nature != MoveNature.In ? move.OutUrl : null;
 
 			Total = move.Value * (accountUrl == accountOut ? -1 : 1);
