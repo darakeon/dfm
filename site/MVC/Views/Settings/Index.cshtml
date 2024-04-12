@@ -34,9 +34,10 @@
 		.AddBox("AccountSigns", null, null, null, 0, null, 4)
 		.AddBox("MoveEmail", null, 0, null, null, null, 5)
 		.AddBox("MoveCheck", null, 3, null, null, null, 6)
-		.AddBox("Wizard", null, null, null, null, null, 7)
-		.AddBox("EnableCategories", null, null, null, null, null, 8)
-		.AddBox("Save", null, null, null, 1, null, 8)
+		.AddBox("Currency", null, null, null, null, null, 7)
+		.AddBox("Wizard", null, null, null, null, null, 8)
+		.AddBox("EnableCategories", null, null, null, null, null, 9)
+		.AddBox("Save", null, null, null, 1, null, 9)
 		.AddBox("CategoriesMenu", null, null, null, null, 0, null)
 		.AddBox("AccountsMenu", 0, null, 0, null, null, null)
 		.AddBox("EnableMoveCheck", null, 5, null, null, null, null)
@@ -151,6 +152,19 @@
 			@Html.CheckBoxFor(
 				m => m.MoveCheckCheck,
 				new { @class =  hl["EnableMoveCheck"] }
+			)
+		</span>
+	</div>
+
+	<div class="checkbox row @hl["Currency"]">
+		@Html.LabelFor(
+			m => m.UseCurrency,
+			Context.Translate("UseCurrency"),
+			new { @class = "col-sm-10 control-label" }
+		)
+		<span class="col-sm-2 text-right">
+			@Html.CheckBoxFor(
+				m => m.UseCurrency
 			)
 		</span>
 	</div>

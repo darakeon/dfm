@@ -15,3 +15,4 @@
 - [ ] Check robot with two fields for Detail
 - [ ] Add at mobile two fields to Move if it is conversion
 - [ ] Add at mobile two fields to Detail if it is conversion
+- [ ] Add to Wizard
