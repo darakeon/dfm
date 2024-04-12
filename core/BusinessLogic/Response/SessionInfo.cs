@@ -28,6 +28,7 @@ namespace DFM.BusinessLogic.Response
 			UseAccountsSigns = user.Settings.UseAccountsSigns;
 			MoveCheck = user.Settings.MoveCheck;
 			SendMoveEmail = user.Settings.SendMoveEmail;
+			UseCurrency = user.Settings.UseCurrency;
 
 			Wizard = user.Settings.Wizard;
 
@@ -63,6 +64,7 @@ namespace DFM.BusinessLogic.Response
 		public Boolean UseAccountsSigns { get; }
 		public Boolean MoveCheck { get; }
 		public Boolean SendMoveEmail { get; }
+		public Boolean UseCurrency { get; }
 
 		public Boolean Wizard { get; }
 

@@ -68,10 +68,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 
-		[Given(@"it has an Account Out")]
-		public void GivenItHasAnAccountOut()
+		[Given(@"it has an Account Out( [A-Z]{3})?")]
+		public void GivenItHasAnAccountOut(Currency? currency)
 		{
-			accountOut = getOrCreateAccount(accountOutUrl);
+			accountOut = getOrCreateAccount(accountOutUrl, currency);
 
 			accountOutTotal = repos.Summary.GetTotal(accountOut);
 
@@ -138,10 +138,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 
-		[Given(@"it has an Account In")]
-		public void GivenItHasAnAccountIn()
+		[Given(@"it has an Account In( [A-Z]{3})?")]
+		public void GivenItHasAnAccountIn(Currency? currency)
 		{
-			accountIn = getOrCreateAccount(accountInUrl);
+			accountIn = getOrCreateAccount(accountInUrl, currency);
 
 			accountInTotal = repos.Summary.GetTotal(accountIn);
 
@@ -321,7 +321,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 		[Then(@"the accountOut value will change in (\-?\d+\.?\d*)")]
-		public void ThenTheAccountOutValueWillDecreaseIn(Decimal change)
+		public void ThenTheAccountOutValueWillChangeIn(Decimal change)
 		{
 			var url = accountOut?.Url ?? accountOutUrl;
 			accountOut = getOrCreateAccount(url);

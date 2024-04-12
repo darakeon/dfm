@@ -127,6 +127,7 @@ namespace DFM.Authentication
 		public Boolean UseAccountsSigns => session?.UseAccountsSigns ?? Defaults.SettingsUseAccountsSigns;
 		public Boolean MoveCheck => session?.MoveCheck ?? Defaults.SettingsMoveCheck;
 		public Boolean SendMoveEmail => session?.SendMoveEmail ?? Defaults.SettingsSendMoveEmail;
+		public Boolean UseCurrency => session?.UseCurrency ?? Defaults.SettingsUseCurrency;
 
 		public Boolean Wizard => session?.Wizard ?? false;
 

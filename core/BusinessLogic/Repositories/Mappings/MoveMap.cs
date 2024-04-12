@@ -25,6 +25,7 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 				.Nullable();
 
 			mapping.IgnoreProperty(m => m.Value);
+			mapping.IgnoreProperty(m => m.Conversion);
 
 			mapping.References(m => m.Category)
 				.Nullable();

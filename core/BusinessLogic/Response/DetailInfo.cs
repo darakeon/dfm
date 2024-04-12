@@ -1,5 +1,6 @@
 ﻿using System;
 using DFM.Entities;
+using DFM.Entities.Enums;
 
 namespace DFM.BusinessLogic.Response
 {
@@ -13,6 +14,7 @@ namespace DFM.BusinessLogic.Response
 		public String Description { get; set; }
 		public Int16 Amount { get; set; }
 		public Decimal Value { get; set; }
+		public Decimal? Conversion { get; set; }
 
 		internal Detail Convert()
 		{
@@ -21,6 +23,7 @@ namespace DFM.BusinessLogic.Response
 				Description = Description,
 				Amount = Amount,
 				Value = Value,
+				Conversion = Conversion,
 			};
 		}
 
@@ -31,7 +34,16 @@ namespace DFM.BusinessLogic.Response
 				Description = detail.Description,
 				Amount = detail.Amount,
 				Value = detail.Value,
+				Conversion = detail.Conversion,
 			};
+		}
+
+		public void RemoveConversion(PrimalMoveNature reportNature)
+		{
+			if (reportNature == PrimalMoveNature.In)
+				Value = Conversion ?? Value;
+
+			Conversion = null;
 		}
 	}
 }

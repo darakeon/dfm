@@ -5,6 +5,7 @@ using DFM.BusinessLogic.Response;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Generic;
+using Google.Protobuf;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -186,7 +187,11 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 				if (row.ContainsKey("Date"))
 				{
-					var date = DateTime.Parse(row["Date"]);
+					var dateString = row["Date"];
+					var date = isRelative(dateString)
+						? current.Now.Date.AddDays(Int32.Parse(dateString))
+						: DateTime.Parse(dateString);
+
 					Assert.That(line.GetDate(), Is.EqualTo(date));
 				}
 
@@ -269,7 +274,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				.ByAccount(account)
 				.Sum(
 					m => m.In?.ID == account.ID
-						? m.Value
+						? m.Conversion ?? m.Value
 						: -m.Value
 				);
 
@@ -633,6 +638,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void GivenIPassAccountOutUrl()
 		{
 			accountUrl = accountOutUrl;
+		}
+
+		[Given(@"I pass Account In url")]
+		public void GivenIPassAccountInUrl()
+		{
+			accountUrl = accountInUrl;
 		}
 
 		[Given(@"I pass this date")]

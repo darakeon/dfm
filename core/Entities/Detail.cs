@@ -18,6 +18,7 @@ namespace DFM.Entities
 		public virtual String Description { get; set; }
 		public virtual Int16 Amount { get; set; }
 		public virtual Int32 ValueCents { get; set; }
+		public virtual Int32? ConversionCents { get; set; }
 
 		public virtual Move Move { get; set; }
 		public virtual Schedule Schedule { get; set; }
@@ -34,9 +35,20 @@ namespace DFM.Entities
 			set => ValueCents = value.ToCents();
 		}
 
-		public virtual Decimal GetTotal()
+		public virtual Decimal? Conversion
+		{
+			get => ConversionCents.ToVisual();
+			set => ConversionCents = value.ToCents();
+		}
+
+		public virtual Decimal GetTotalValue()
 		{
 			return Value * Amount;
+		}
+
+		public virtual Decimal? GetTotalConversion()
+		{
+			return Conversion * Amount;
 		}
 
 		public virtual Detail Clone()
@@ -46,6 +58,7 @@ namespace DFM.Entities
 				Description = Description,
 				Amount = Amount,
 				Value = Value,
+				Conversion = Conversion,
 				Move = Move,
 			};
 		}

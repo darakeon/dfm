@@ -18,6 +18,7 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 				.Unique();
 
 			mapping.IgnoreProperty(m => m.Value);
+			mapping.IgnoreProperty(m => m.Conversion);
 
 			mapping.Map(m => m.Description)
 				.Length(MaxLen.ScheduleDescription);

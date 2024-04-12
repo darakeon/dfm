@@ -84,6 +84,9 @@ namespace DFM.BusinessLogic.Exceptions
 		TooLargeDetailDescription = 518,
 		MoveValueAndDetailNotAllowed = 519,
 		MoveCheckWrongNature = 520,
+		AccountsSameCurrencyConversion = 521,
+		AccountsDifferentCurrencyNoConversion = 522,
+		CurrencyInOutValueWithoutTransfer = 523,
 
 		ScheduleRequired = 601,
 		ScheduleTimesCantBeZero = 602,
