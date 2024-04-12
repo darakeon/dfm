@@ -13,6 +13,7 @@ namespace DFM.BusinessLogic.Response
 		)
 		{
 			Name = account.Name;
+			Currency = account.Currency;
 			Url = account.Url;
 			Total = total;
 			Start = account.BeginDate;
@@ -31,6 +32,7 @@ namespace DFM.BusinessLogic.Response
 		) => new(account, total, hasMoves);
 
 		public String Name { get; }
+		public Currency? Currency { get; }
 		public String Url { get; }
 		public Decimal Total { get; }
 		public DateTime Start { get; }

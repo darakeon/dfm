@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
 using DFM.Entities.Enums;
+using Keon.MVC.Forms;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DFM.MVC.Models
 {
@@ -12,17 +14,21 @@ namespace DFM.MVC.Models
 		{
 			Type = OperationType.Creation;
 			Account = new AccountInfo();
+			makeCurrencyList();
 		}
 
-		public AccountsCreateEditModel(String id) : this()
+		public AccountsCreateEditModel(String id)
 		{
 			Type = OperationType.Edition;
 			Account = admin.GetAccount(id);
+			makeCurrencyList();
 		}
 
 		public OperationType Type { get; set; }
 
 		public AccountInfo Account { get; set; }
+
+		public SelectList CurrencySelectList { get; set; }
 
 		public Boolean HasLimit
 		{
@@ -60,6 +66,13 @@ namespace DFM.MVC.Models
 				Account.RedLimit = null;
 				Account.YellowLimit = null;
 			}
+		}
+
+		private void makeCurrencyList()
+		{
+			CurrencySelectList = SelectListExtension.CreateSelect(
+				translator.GetEnumNames<Currency>()
+			);
 		}
 
 		internal IList<String> CreateOrUpdate()
