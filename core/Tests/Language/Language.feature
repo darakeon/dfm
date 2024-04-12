@@ -22,6 +22,7 @@ Scenario: 02. Get translations of Enums
 			| Tokens    | Entities      | Enums      | SecurityAction    |
 			| General   | Entities      | Enums      | OperationType     |
 			| Tips      | Entities      | Enums      | TipBrowser        |
+			| General   | Entities      | Enums      | Currency          |
 			| Settings  | Generic       |            | Theme             |
 			| Settings  | Generic       |            | ThemeBrightness   |
 			| Settings  | Generic       |            | ThemeColor        |

@@ -70,6 +70,8 @@
 		"TheSchedule": "Schedule",
 		"Schedules": "Schedules",
 		"Logins": "Logins",
+		"Currency": "Currency",
+		"Currencies": "Currencies",
 
 		"In": "In",
 		"Out": "Out",
@@ -88,6 +90,9 @@
 		"Scheduling": "Scheduled Creation",
 		"Amount": "Amount",
 		"JustNumbers": "type just numbers at this field",
+		"BRL": "Real",
+		"EUR": "Euro",
+		"USD": "Dolar",
 
 		"BeginDate": "Begin",
 		"EndDate": "End",
@@ -240,6 +245,8 @@
 		"TheSchedule": "Agendamento",
 		"Schedules": "Agendamentos",
 		"Logins": "Logins",
+		"Currency": "Moeda",
+		"Currencies": "Moedas",
 
 		"In": "Entrada",
 		"Out": "Saída",
@@ -258,6 +265,9 @@
 		"Scheduling": "Criação Agendada",
 		"Amount": "Qte",
 		"JustNumbers": "digite apenas números neste campo",
+		"BRL": "Real",
+		"EUR": "Euro",
+		"USD": "Dólar",
 
 		"BeginDate": "Início",
 		"EndDate": "Fim",
