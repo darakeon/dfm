@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using DFM.Authentication;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;

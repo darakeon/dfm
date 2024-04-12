@@ -1,5 +1,4 @@
-﻿using System;
-using DFM.BusinessLogic.Response;
+﻿using DFM.BusinessLogic.Response;
 
 namespace DFM.API.Models
 {
