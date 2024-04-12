@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DFM.API.Models
+﻿namespace DFM.API.Models
 {
 	public class UserWipeModel : BaseApiModel
 	{

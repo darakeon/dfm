@@ -5,7 +5,6 @@ using DFM.Authentication;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
-using DFM.BusinessLogic.Tests.Helpers;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Bases;
