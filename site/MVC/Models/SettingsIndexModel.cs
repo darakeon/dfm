@@ -27,6 +27,7 @@ namespace DFM.MVC.Models
 				UseAccountsSigns = current.UseAccountsSigns,
 				SendMoveEmail = current.SendMoveEmail,
 				MoveCheck = current.MoveCheck,
+				UseCurrency = current.UseCurrency,
 				Wizard = current.Wizard,
 				Language = current.Language,
 				TimeZone = current.TimeZone,
@@ -73,6 +74,12 @@ namespace DFM.MVC.Models
 		{
 			get => Info.MoveCheck.HasValue && Info.MoveCheck.Value;
 			set => Info.MoveCheck = value;
+		}
+
+		public Boolean UseCurrency
+		{
+			get => Info.UseCurrency.HasValue && Info.UseCurrency.Value;
+			set => Info.UseCurrency = value;
 		}
 
 		public Boolean WizardCheck
