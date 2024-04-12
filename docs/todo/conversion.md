@@ -9,8 +9,8 @@
 
 - [ ] Add at site two fields to Move if it is conversion
 - [ ] Add at site two fields to Detail if it is conversion
-- [ ] Add at API two fields to Move
-- [ ] Add at API two fields to Detail
+- [x] Add at API two fields to Move
+- [x] Add at API two fields to Detail
 - [ ] Check robot with two fields for Move
 - [ ] Check robot with two fields for Detail
 - [ ] Add at mobile two fields to Move if it is conversion
