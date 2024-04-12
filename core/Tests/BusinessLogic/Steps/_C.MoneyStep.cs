@@ -14,6 +14,7 @@ using DFM.Language;
 using DFM.Tests.Util;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace DFM.BusinessLogic.Tests.Steps
 {
@@ -91,16 +92,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var moveData = table.Rows[0];
 
-			moveInfo = new MoveInfo { Description = moveData["Description"] };
+			moveInfo = moveData.CreateInstance<MoveInfo>();
 
 			if (!String.IsNullOrEmpty(moveData["Date"]))
 				moveInfo.SetDate(DateTime.Parse(moveData["Date"]));
-
-			if (!String.IsNullOrEmpty(moveData["Nature"]))
-				moveInfo.Nature = EnumX.Parse<MoveNature>(moveData["Nature"]);
-
-			if (!String.IsNullOrEmpty(moveData["Value"]))
-				moveInfo.Value = Decimal.Parse(moveData["Value"]);
 		}
 
 		[Given(@"the move has this details")]
@@ -299,20 +294,26 @@ namespace DFM.BusinessLogic.Tests.Steps
 			categoryName = newCategoryName;
 		}
 
-		[When(@"I change the account out of the move")]
-		public void GivenIChangeTheAccountOutOfTheMove()
+		[When(@"I change the account out of the move(?: to (\w+)(?: \(([A-Z]{3})\))?)?")]
+		public void GivenIChangeTheAccountOutOfTheMove(String url, Currency? currency)
 		{
-			accountOut = getOrCreateAccount(newAccountOutUrl);
+			if (String.IsNullOrEmpty(url))
+				url = newAccountOutUrl;
+
+			accountOut = getOrCreateAccount(url, currency);
 
 			var user = repos.User.GetByEmail(current.Email);
 			var category = repos.Category.GetByName(mainCategoryName, user);
 			setAccountOutNewTotals(accountOut, category, moveInfo);
 		}
 
-		[When(@"I change the account in of the move")]
-		public void GivenIChangeTheAccountInOfTheMove()
+		[When(@"I change the account in of the move(?: to (\w+)(?: \(([A-Z]{3})\))?)?")]
+		public void GivenIChangeTheAccountInOfTheMove(String url, Currency? currency)
 		{
-			accountIn = getOrCreateAccount(newAccountInUrl);
+			if (String.IsNullOrEmpty(url))
+				url = newAccountInUrl;
+
+			accountIn = getOrCreateAccount(url, currency);
 
 			var user = repos.User.GetByEmail(current.Email);
 			var category = repos.Category.GetByName(mainCategoryName, user);
@@ -805,25 +806,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"I have a move")]
 		public void GivenIHaveAMoveWithValue()
 		{
-			makeMove(10);
+			makeMove(10, MoveNature.Out, null, null);
 		}
 
 		[Given(@"I have a move with these details \((\w+)\)")]
 		public void GivenIHaveAMoveWithTheseDetails(MoveNature nature, Table details)
 		{
 			makeMove(details, nature);
-		}
-
-		[Given(@"I have a move with value (\-?\d+\.?\d*) \((\w+)\)(?: at account (\w+))?")]
-		public void GivenIHaveAMoveWithValue(Decimal value, MoveNature nature, String moveAccountUrl)
-		{
-			if (moveAccountUrl == "")
-				moveAccountUrl = null;
-
-			if (moveAccountUrl != null)
-				getOrCreateAccount(moveAccountUrl);
-
-			makeMove(value, nature, moveAccountUrl?.IntoUrl());
 		}
 
 		private void makeMove(Table details, MoveNature nature)
@@ -837,21 +826,72 @@ namespace DFM.BusinessLogic.Tests.Steps
 				moveInfo.DetailList.Add(newDetail);
 			}
 
-			setMoveExternals(nature);
+			setMoveExternals(nature, null, null);
 		}
 
-		private void makeMove(Decimal value, MoveNature nature = MoveNature.Out, String moveAccountUrl = null)
+		[Given(@"I have a move with value (\-?\d+\.?\d*) \((\w+)\)(?: at account (\w+))?")]
+		public void GivenIHaveAMoveWithValue(Decimal value, MoveNature nature, String moveAccountUrl)
+		{
+			if (moveAccountUrl == "")
+				moveAccountUrl = null;
+
+			if (moveAccountUrl != null)
+				getOrCreateAccount(moveAccountUrl);
+
+			if (nature == MoveNature.Transfer && moveAccountUrl != null)
+				throw new NotImplementedException();
+
+			makeMove(
+				value,
+				nature,
+				nature == MoveNature.Out ? moveAccountUrl?.IntoUrl() : null,
+				nature == MoveNature.In ? moveAccountUrl?.IntoUrl() : null
+			);
+		}
+
+		private void makeMove(Decimal value, MoveNature nature, String moveAccountOutUrl, String moveAccountInUrl)
 		{
 			makeJustMove(nature);
 
 			moveInfo.Value = value;
 
-			setMoveExternals(nature, moveAccountUrl);
+			setMoveExternals(
+				nature,
+				moveAccountOutUrl,
+				moveAccountInUrl
+			);
+		}
+
+		[Given(@"I have a move with value in (\-?\d+\.?\d*) at account (\w+) \(([A-Z]{3})\) and out (\-?\d+\.?\d*) at account (\w+) \(([A-Z]{3})\)")]
+		public void GivenIHaveAMoveWithValues(Decimal valueIn, String moveAccountIn, Currency moveAccountInCurrency, Decimal valueOut, String moveAccountOut, Currency moveAccountOutCurrency)
+		{
+			accountInUrl = moveAccountIn?.IntoUrl();
+			accountOutUrl = moveAccountOut?.IntoUrl();
+
+			getOrCreateAccount(accountInUrl, moveAccountInCurrency);
+			getOrCreateAccount(accountOutUrl, moveAccountOutCurrency);
+
+			makeMove(
+				valueOut,
+				valueIn,
+				accountOutUrl,
+				accountInUrl
+			);
+		}
+
+		private void makeMove(Decimal value, Decimal? conversion, String moveAccountOutUrl, String moveAccountInUrl)
+		{
+			makeJustMove(MoveNature.Transfer);
+
+			moveInfo.Value = value;
+			moveInfo.Conversion = conversion;
+
+			setMoveExternals(MoveNature.Transfer, moveAccountOutUrl, moveAccountInUrl);
 		}
 
 		private void makeJustMove(MoveNature nature)
 		{
-			oldDate = new DateTime(2014, 12, 31);
+			oldDate = current.Now.Date;
 
 			moveInfo = new MoveInfo
 			{
@@ -862,15 +902,15 @@ namespace DFM.BusinessLogic.Tests.Steps
 			moveInfo.SetDate(oldDate);
 		}
 
-		private void setMoveExternals(MoveNature nature, String moveAccountUrl = null)
+		private void setMoveExternals(MoveNature nature, String moveAccountOutUrl, String moveAccountInUrl)
 		{
 			moveInfo.OutUrl =
 				nature == MoveNature.In
-					? null : moveAccountUrl ?? accountOutUrl;
+					? null : moveAccountOutUrl ?? accountOutUrl;
 
 			moveInfo.InUrl =
 				nature == MoveNature.Out
-					? null : moveAccountUrl ?? accountInUrl;
+					? null : moveAccountInUrl ?? accountInUrl;
 
 			moveInfo.CategoryName =
 				categoryName = mainCategoryName;

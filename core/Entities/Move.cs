@@ -20,6 +20,7 @@ namespace DFM.Entities
 		public virtual String Description { get; set; }
 		public virtual MoveNature Nature { get; set; }
 		public virtual Int32 ValueCents { get; set; }
+		public virtual Int32? ConversionCents { get; set; }
 
 		public virtual Int16 Day { get; set; }
 		public virtual Int16 Month { get; set; }
@@ -48,6 +49,12 @@ namespace DFM.Entities
 		{
 			get => ValueCents.ToVisual();
 			set => ValueCents = value.ToCents();
+		}
+
+		public virtual Decimal? Conversion
+		{
+			get => ConversionCents.ToVisual();
+			set => ConversionCents = value.ToCents();
 		}
 
 		public virtual String GetDescriptionWithSchedulePosition()

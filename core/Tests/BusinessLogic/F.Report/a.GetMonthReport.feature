@@ -245,3 +245,29 @@ Scenario: Fa14. Get report with moves in right order
 			| 2023-12-01 | Move Fa14 7 |
 			| 2023-12-01 | Move Fa14 8 |
 			| 2023-12-01 | Move Fa14 9 |
+
+Scenario: Fa15. Month report for different currencies move
+	Given these settings
+			| UseCurrency |
+			| true        |
+		And I have a move with value in 5 at account Poupanca (BRL) and out 1 at account Ordenado (EUR)
+		And I pass Account In url
+		And I pass this date
+			| Month | Year |
+			| +0    | +0   |
+	When I try to get the month report
+	Then I will receive no core error
+		And I will receive the month report
+		And there will be these moves
+			| Date | Description | Value |
+			| +0   | Description | 5     |
+	Given I pass Account Out url
+		And I pass this date
+			| Month | Year |
+			| +0    | +0   |
+	When I try to get the month report
+	Then I will receive no core error
+		And I will receive the month report
+		And there will be these moves
+			| Date | Description | Value |
+			| +0   | Description | 1     |

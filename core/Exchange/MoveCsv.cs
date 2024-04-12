@@ -18,6 +18,7 @@ namespace DFM.Exchange
 			In = move.In?.Name;
 			Out = move.Out?.Name;
 			Value = move.Value.ToCsv();
+			Conversion = move.Conversion.ToCsv();
 
 			Details = DetailCsv.Convert(move.DetailList);
 		}
@@ -49,6 +50,7 @@ namespace DFM.Exchange
 		public String In { get; }
 		public String Out { get; }
 		public String Value { get; }
+		public String Conversion { get; }
 		public String Details { get; }
 
 		public Boolean Equals(IMove other)

@@ -103,6 +103,9 @@
 		"AccountNotFound": "Account not found",
 		"UseAccountsSignsDisabled": "Account Signs use is disabled",
 		"UseCurrencyDisabled": "Currency use is disabled",
+		"AccountsSameCurrencyConversion": "Accounts with same Currency need only one Value",
+		"AccountsDifferentCurrencyNoConversion": "Accounts with different Currency need Conversion",
+		"CurrencyInOutValueWithoutTransfer": "There is no need of Conversion for Moves that are only In or	 Out",
 		"": null
 	},
 	"pt-BR": {
@@ -209,6 +212,9 @@
 		"AccountNotFound": "Conta não encontrada",
 		"UseAccountsSignsDisabled": "Uso de sinais nas contas está desabilitado",
 		"UseCurrencyDisabled": "Uso de moeda está desabilitado",
+		"AccountsSameCurrencyConversion": "Contas com a mesma Moeda precisam apenas de um Valor",
+		"AccountsDifferentCurrencyNoConversion": "Contas com diferentes Moedas precisam de Conversão",
+		"CurrencyInOutValueWithoutTransfer": "Não é necessária Conversão em Movimentações apenas de Entrada ou Saída",
 		"": null
 	}
 }

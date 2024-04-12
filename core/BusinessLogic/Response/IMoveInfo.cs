@@ -13,6 +13,7 @@ namespace DFM.BusinessLogic.Response
 		MoveNature Nature { get; set; }
 
 		Decimal Value { get; set; }
+		Decimal? Conversion { get; set; }
 		IList<DetailInfo> DetailList { get; set; }
 
 		String CategoryName { get; set; }

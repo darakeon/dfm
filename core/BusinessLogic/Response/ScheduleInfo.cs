@@ -33,6 +33,7 @@ namespace DFM.BusinessLogic.Response
 		public MoveNature Nature { get; set; }
 
 		public Decimal Value { get; set; }
+		public Decimal? Conversion { get; set; }
 		public IList<DetailInfo> DetailList { get; set; }
 
 		public ScheduleFrequency Frequency { get; set; }
@@ -55,6 +56,7 @@ namespace DFM.BusinessLogic.Response
 			schedule.Nature = Nature;
 
 			schedule.Value = Value;
+			schedule.Conversion = Conversion;
 			schedule.DetailList = DetailList
 				.Select(d => d.Convert())
 				.ToList();
@@ -84,6 +86,7 @@ namespace DFM.BusinessLogic.Response
 				Nature = schedule.Nature,
 
 				Value = schedule.Value,
+				Conversion = schedule.Conversion,
 				DetailList = schedule.DetailList
 					.Select(DetailInfo.Convert)
 					.ToList(),

@@ -16,6 +16,7 @@ using DFM.Generic.Datetime;
 using DFM.Tests.Util;
 using Keon.Util.Extensions;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace DFM.BusinessLogic.Tests.Steps
 {
@@ -204,14 +205,28 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		protected Account getOrCreateAccount(String url)
+		protected Account getOrCreateAccount(String url, Currency? currency = null)
 		{
+			url = url.IntoUrl();
 			var user = repos.User.GetByEmail(current.Email);
-			var account = repos.Account.GetByUrl(url.IntoUrl(), user);
-			if (account != null) return account;
+			var account = repos.Account.GetByUrl(url, user);
+			if (account != null)
+			{
+				if (account.Currency != currency)
+				{
+					account.Currency = currency;
+					repos.Account.SaveOrUpdate(account);
+				}
+
+				return account;
+			}
 
 			service.Admin.CreateAccount(
-				new AccountInfo { Name = url }
+				new AccountInfo
+				{
+					Name = url,
+					Currency = currency,
+				}
 			);
 
 			return repos.Account.GetByUrl(url, user);
@@ -442,14 +457,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 		protected DetailInfo getDetailFromTable(TableRow detailData)
 		{
-			var newDetail = new DetailInfo { Description = detailData["Description"] };
-
-			if (!String.IsNullOrEmpty(detailData["Value"]))
-				newDetail.Value = Decimal.Parse(detailData["Value"]);
-
-			if (!String.IsNullOrEmpty(detailData["Amount"]))
-				newDetail.Amount = Int16.Parse(detailData["Amount"]);
-			return newDetail;
+			return detailData.CreateInstance<DetailInfo>();
 		}
 
 		protected void createFor(User user, String entityName)

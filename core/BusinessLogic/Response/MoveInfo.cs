@@ -26,6 +26,7 @@ namespace DFM.BusinessLogic.Response
 		public MoveNature Nature { get; set; }
 
 		public Decimal Value { get; set; }
+		public Decimal? Conversion { get; set; }
 		public IList<DetailInfo> DetailList { get; set; }
 
 		public Boolean Checked { get; private set; }
@@ -48,6 +49,7 @@ namespace DFM.BusinessLogic.Response
 
 			move.Nature = Nature;
 			move.Value = Value;
+			move.Conversion = Conversion;
 
 			move.DetailList = DetailList
 				.Select(d => d.Convert())
@@ -72,7 +74,7 @@ namespace DFM.BusinessLogic.Response
 		{
 			return convert4Report(
 				move,
-				info => info.OutUrl == accountUrl
+				move.Out?.Url == accountUrl
 					? PrimalMoveNature.Out
 					: PrimalMoveNature.In,
 				foreseen
@@ -81,28 +83,34 @@ namespace DFM.BusinessLogic.Response
 
 		internal static MoveInfo Convert4Report(Move move, PrimalMoveNature nature)
 		{
-			return convert4Report(move, _ => nature);
+			return convert4Report(move, nature);
 		}
 
-		internal static MoveInfo Convert4Report(Move move)
+		internal static MoveInfo Convert4Search(Move move)
 		{
 			return convert4Report(move);
 		}
 
 		private static MoveInfo convert4Report(
 			Move move,
-			Func<MoveInfo, PrimalMoveNature> getNature = null,
+			PrimalMoveNature? reportNature = null,
 			Boolean foreseen = false
 		)
 		{
 			var info = convert(move);
 
+			if (reportNature.HasValue)
+			{
+				info.removeConversion(reportNature.Value);
+				info.DetailList.ToList()
+					.ForEach(d => d.RemoveConversion(reportNature.Value));
+			}
+
 			info.Description = move.GetDescriptionWithSchedulePosition();
 
-			if (getNature != null)
+			if (reportNature.HasValue)
 			{
-				var nature = getNature(info);
-				info.Checked = move.IsChecked(nature);
+				info.Checked = move.IsChecked(reportNature.Value);
 			}
 
 			info.Foreseen = foreseen;
@@ -128,6 +136,7 @@ namespace DFM.BusinessLogic.Response
 				Nature = move.Nature,
 
 				Value = move.Value,
+				Conversion = move.Conversion,
 				DetailList = move.DetailList
 					.Select(DetailInfo.Convert)
 					.ToList(),
@@ -138,6 +147,14 @@ namespace DFM.BusinessLogic.Response
 				InUrl = move.In?.Url,
 				CategoryName = move.Category?.Name,
 			};
+		}
+
+		private void removeConversion(PrimalMoveNature reportNature)
+		{
+			if (reportNature == PrimalMoveNature.In)
+				Value = Conversion ?? Value;
+
+			Conversion = null;
 		}
 	}
 }
