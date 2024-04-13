@@ -1068,3 +1068,48 @@ Scenario: Ea62. Save move in with detailed conversion
 		And the accountIn value will not change
 		And the month-category-accountIn value will not change
 		And the year-category-accountIn value will not change
+
+
+Scenario: Ea63. Save move transfer with conversion ZERO for different currencies
+	Given these settings
+			| UseCurrency |
+			| true        |
+		And I have this move to create
+			| Description         | Date       | Nature   | Value | Conversion |
+			| Move {scenarioCode} | 2024-04-09 | Transfer | 1     | 0          |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out EUR
+		And it has an Account In BRL
+	When I try to save the move
+	Then I will receive this core error: AccountsDifferentCurrencyNoConversion
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
+
+Scenario: Ea64. Save move transfer with detailed conversion ZERO for different currencies
+	Given these settings
+			| UseCurrency |
+			| true        |
+		And I have this move to create
+			| Description         | Date       | Nature   |
+			| Move {scenarioCode} | 2024-04-09 | Transfer |
+		And the move has this details
+			| Description | Amount | Value | Conversion |
+			| Detail      | 1      | 1     | 0          |
+		And it has a Category
+		And it has an Account Out EUR
+		And it has an Account In BRL
+	When I try to save the move
+	Then I will receive this core error: AccountsDifferentCurrencyNoConversion
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
