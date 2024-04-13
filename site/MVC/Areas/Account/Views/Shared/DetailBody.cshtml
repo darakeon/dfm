@@ -4,7 +4,7 @@
 	@for (var d = 0; d < Model.DetailList.Count; d++)
 	{
 		<tr class="row @(Model.DetailList[d].Send ? null : "hidden")">
-			<td class="col-sm-6 form-group">
+			<td class="col-sm-7 form-group">
 				@Html.TextBoxFor(
 					m => m.DetailList[d].Detail.Description,
 					new
@@ -28,13 +28,24 @@
 				)
 			</td>
 
-			<td class="col-sm-3 form-group">
+			<td class="col-sm-2 form-group">
 				@Html.TextBoxFor(
 					m => m.DetailList[d].Value,
 					new
 					{
 						@class = "form-control text-right detail-value number",
 						aria_label = Context.Translate("Value"),
+					}
+				)
+			</td>
+
+			<td class="col-sm-2 form-group conversion-element">
+				@Html.TextBoxFor(
+					m => m.DetailList[d].Conversion,
+					new
+					{
+						@class = "form-control text-right detail-value number",
+						aria_label = Context.Translate("Conversion"),
 					}
 				)
 			</td>
