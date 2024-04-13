@@ -1,7 +1,7 @@
 {
 	"en-US": {
 		"Amount": "Amount",
-		"JustOneValue": "Just one value",
+		"JustOneValue": "Single value",
 		"Detailed": "Detailed",
 		"Boundless": "Boundless",
 		"Repeat": "Repeat",
@@ -10,6 +10,7 @@
 		"ConfirmDeleteSchedule": "Do you really want to DELETE Schedule '{0}'?",
 		"Run": "Run",
 		"Deleted": "Deleted",
+		"Conversion": "Conversion",
 		"": null
 	},
 	"pt-BR": {
@@ -23,6 +24,7 @@
 		"ConfirmDeleteSchedule": "Realmente deseja EXCLUIR o Agendamento '{0}'?",
 		"Run": "Rodadas",
 		"Deleted": "Excluídas",
+		"Conversion": "Conversão",
 		"": null
 	}
 }
