@@ -23,7 +23,9 @@ namespace DFM.BusinessLogic.Response
 				Description = Description,
 				Amount = Amount,
 				Value = Value,
-				Conversion = Conversion,
+				Conversion = Conversion != 0
+					? Conversion
+					: null,
 			};
 		}
 
@@ -41,7 +43,7 @@ namespace DFM.BusinessLogic.Response
 		public void RemoveConversion(PrimalMoveNature reportNature)
 		{
 			if (reportNature == PrimalMoveNature.In)
-				Value = Conversion ?? Value;
+				Value = Conversion != null && Conversion != 0 ? Conversion.Value : Value;
 
 			Conversion = null;
 		}

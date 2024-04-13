@@ -112,7 +112,9 @@ namespace DFM.BusinessLogic.Repositories
 		private String moneyValue(String language, Move move, Decimal value = 0, Decimal? conversion = null)
 		{
 			value = value == 0 ? move.Value : value;
-			conversion ??= move.Conversion;
+			conversion = conversion != null && conversion != 0
+				? conversion.Value
+				: move.Conversion;
 
 			if (move.Nature != MoveNature.Transfer || conversion == null)
 				return value.ToMoney(language);
@@ -171,7 +173,13 @@ namespace DFM.BusinessLogic.Repositories
 				m => m.In != null && m.In.ID == summary.Account.ID
 			);
 
-			return get(query, summary, m => m.Conversion ?? m.Value);
+			return get(
+				query,
+				summary,
+				m => m.Conversion != null && m.Conversion != 0
+					? m.Conversion.Value
+					: m.Value
+			);
 		}
 
 		internal Decimal GetOut(Summary summary)
