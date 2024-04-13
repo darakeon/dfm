@@ -55,7 +55,7 @@
 			m => m.AccountInUrl,
 			Model.AccountInSelectList,
 			"-- " + Context.Translate("Select") + " --",
-			new { @class = "form-control combo-account-in alert-info" }
+			new { @class = "form-control combo-account combo-account-in alert-info" }
 		)
 
 		@Html.ValidationMessageFor(m => m.AccountInUrl)
@@ -72,7 +72,7 @@
 			m => m.AccountOutUrl,
 			Model.AccountOutSelectList,
 			"-- " + Context.Translate("Select") + " --",
-			new { @class = "form-control combo-account-out alert-danger" }
+			new { @class = "form-control combo-account combo-account-out alert-danger" }
 		)
 
 		@Html.ValidationMessageFor(m => m.AccountOutUrl)
