@@ -573,26 +573,32 @@ namespace DFM.BusinessLogic.Tests.Steps
 						: categoryInfo.Name;
 
 				var nature =
-					row.ContainsKey("Nature") && row["Nature"] == "In"
-						? MoveNature.In
+					row.ContainsKey("Nature")
+						? EnumX.Parse<MoveNature>(row["Nature"])
 						: MoveNature.Out;
 
-				var accountOut =
-					nature == MoveNature.Out
-						? accountInfo.Name.IntoUrl()
-						: null;
+				var moveAccountOut =
+					nature switch
+					{
+						MoveNature.Out => accountInfo.Name.IntoUrl(),
+						MoveNature.Transfer => accountOutUrl,
+						_ => null
+					};
 
-				var accountIn =
-					nature == MoveNature.In
-						? accountInfo.Name.IntoUrl()
-						: null;
+				var moveAccountIn =
+					nature switch
+					{
+						MoveNature.In => accountInfo.Name.IntoUrl(),
+						MoveNature.Transfer => accountInUrl,
+						_ => null
+					};
 
 				var move = new MoveInfo
 				{
 					Description = description,
 					Nature = nature,
-					OutUrl = accountOut,
-					InUrl = accountIn,
+					OutUrl = moveAccountOut,
+					InUrl = moveAccountIn,
 					CategoryName = category,
 				};
 

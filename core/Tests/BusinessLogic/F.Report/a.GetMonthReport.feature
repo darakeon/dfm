@@ -271,3 +271,32 @@ Scenario: Fa15. Month report for different currencies move
 		And there will be these moves
 			| Date | Description | Value |
 			| +0   | Description | 1     |
+
+Scenario: Fa16. Month report for same currencies move
+	Given these settings
+			| UseCurrency |
+			| true        |
+		And I have two accounts with currency BRL
+		And I have moves of
+			| Date | Nature   |
+			| +0   | Transfer |
+		And I pass Account In url
+		And I pass this date
+			| Month | Year |
+			| +0    | +0   |
+	When I try to get the month report
+	Then I will receive no core error
+		And I will receive the month report
+		And there will be these moves
+			| Date | Description | Value |
+			| +0   | Description | 10    |
+	Given I pass Account Out url
+		And I pass this date
+			| Month | Year |
+			| +0    | +0   |
+	When I try to get the month report
+	Then I will receive no core error
+		And I will receive the month report
+		And there will be these moves
+			| Date | Description | Value |
+			| +0   | Description | 10    |
