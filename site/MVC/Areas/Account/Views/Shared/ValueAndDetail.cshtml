@@ -13,6 +13,15 @@
 				aria_label = Context.Translate("Value"),
 			}
 		)
+		@Html.TextBoxFor(
+			m => m.Conversion,
+			new
+			{
+				@class = "form-control number col-sm-6 conversion-element " + Model.HL["Conversion"],
+				placeholder = Context.Translate("Conversion"),
+				aria_label = Context.Translate("Conversion"),
+			}
+		)
 	</div>
 
 	<div class="tab-pane @(Model.IsDetailed ? "active" : null) form-group form-group-sm" id="detailed">
