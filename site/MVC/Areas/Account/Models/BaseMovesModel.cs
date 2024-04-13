@@ -156,6 +156,8 @@ namespace DFM.MVC.Areas.Account.Models
 			set => GenericMove.Nature = value;
 		}
 
+		public IDictionary<String, Currency?> AccountCurrencies =>
+			accountList.ToDictionary(a => a.Url, a => a.Currency);
 
 
 		[Required(ErrorMessage = "*")]
@@ -192,6 +194,18 @@ namespace DFM.MVC.Areas.Account.Models
 					: GenericMove.Value.ToString("0.00");
 			set =>
 				GenericMove.Value = value == null
+					? default
+					: Decimal.Parse(value);
+		}
+
+		public String Conversion
+		{
+			get =>
+				GenericMove.IsDetailed()
+					? null
+					: GenericMove.Conversion?.ToString("0.00");
+			set =>
+				GenericMove.Conversion = value == null
 					? default
 					: Decimal.Parse(value);
 		}
@@ -283,6 +297,15 @@ namespace DFM.MVC.Areas.Account.Models
 				set =>
 					Detail.Value = value == null
 						? 0
+						: Decimal.Parse(value);
+			}
+
+			public String Conversion
+			{
+				get => Detail.Conversion?.ToString("0.00");
+				set =>
+					Detail.Conversion = value == null
+						? null
 						: Decimal.Parse(value);
 			}
 		}

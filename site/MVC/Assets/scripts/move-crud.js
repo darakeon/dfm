@@ -1,4 +1,22 @@
-﻿$(document).ready(function() {
+﻿function toggleConversion() {
+	const currencyIn = $('.combo-account-in').val()
+	const currencyOut = $('.combo-account-out').val()
+
+	const differenceCurrency =
+		accountCurrencies[currencyIn] !== accountCurrencies[currencyOut]
+
+	const isTransfer = $('#Nature').val() == 'Transfer'
+
+	if (isTransfer && differenceCurrency) {
+		$('.conversion-element').show()
+		$('.detail-footer').attr('colspan', 4)
+	} else {
+		$('.conversion-element').hide()
+		$('.detail-footer').attr('colspan', 3)
+	}
+}
+
+$(document).ready(function () {
 	$('.btn-add-detail').click(function () {
 		const detailTable = $(this).closest('table').find('tbody')
 		const lastTrVisible = detailTable.find('tr:visible').last()
@@ -20,4 +38,10 @@
 		tr.find('.detail-amount').val('1')
 		tr.find('.detail-value').val('0')
 	})
+
+	$('.combo-account').change(function () {
+		toggleConversion()
+	})
+
+	toggleConversion()
 });
