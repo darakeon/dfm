@@ -13,6 +13,11 @@
 	} else {
 		$('.conversion-element').hide()
 		$('.detail-footer').attr('colspan', 3)
+
+		$('.conversion-element,.conversion-element input')
+			.each(function (index, obj) {
+				$(obj).val('')
+			})
 	}
 }
 
