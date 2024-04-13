@@ -49,7 +49,9 @@ namespace DFM.BusinessLogic.Response
 
 			move.Nature = Nature;
 			move.Value = Value;
-			move.Conversion = Conversion;
+			move.Conversion = Conversion != 0
+				? Conversion
+				: null;
 
 			move.DetailList = DetailList
 				.Select(d => d.Convert())
@@ -152,7 +154,7 @@ namespace DFM.BusinessLogic.Response
 		private void removeConversion(PrimalMoveNature reportNature)
 		{
 			if (reportNature == PrimalMoveNature.In)
-				Value = Conversion ?? Value;
+				Value = Conversion != null && Conversion != 0 ? Conversion.Value : Value;
 
 			Conversion = null;
 		}

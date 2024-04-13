@@ -273,7 +273,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 				.ByAccount(account)
 				.Sum(
 					m => m.In?.ID == account.ID
-						? m.Conversion ?? m.Value
+						? m.Conversion != null && m.Conversion != 0
+							? m.Conversion.Value
+							: m.Value
 						: -m.Value
 				);
 
@@ -573,7 +575,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 						: categoryInfo.Name;
 
 				var nature =
-					row.ContainsKey("Nature")
+					row.ContainsKey("Nature") && row["Nature"] != ""
 						? EnumX.Parse<MoveNature>(row["Nature"])
 						: MoveNature.Out;
 
