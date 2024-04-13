@@ -17,11 +17,11 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public MoneyRobotStep(ScenarioContext context)
 			: base(context) { }
 
-		[Given(@"I have two accounts")]
-		public void GivenIHaveTwoAccounts()
+		[Given(@"I have two accounts(?: with currency ([A-Z]{3}))?")]
+		public void GivenIHaveTwoAccounts(Currency? currency)
 		{
-			getOrCreateAccount(accountOutUrl);
-			getOrCreateAccount(accountInUrl);
+			getOrCreateAccount(accountOutUrl, currency);
+			getOrCreateAccount(accountInUrl, currency);
 		}
 
 		[Given(@"it has no Details")]
