@@ -20,10 +20,7 @@ namespace DFM.MVC.Areas.Account.Models
 		private BaseMovesModel()
 		{
 			accountList = admin.GetAccountList(true);
-
-			var transferIsPossible = accountList.Count > 1;
-
-			populateDropDowns(transferIsPossible);
+			populateDropDowns();
 		}
 
 		protected BaseMovesModel(IMoveInfo move)
@@ -51,11 +48,9 @@ namespace DFM.MVC.Areas.Account.Models
 
 
 
-		private void populateDropDowns(Boolean transferIsPossible)
+		private void populateDropDowns()
 		{
 			GenericMove ??= initIMove();
-
-			makeNatureList(transferIsPossible);
 
 			makeCategoryList();
 
@@ -70,14 +65,6 @@ namespace DFM.MVC.Areas.Account.Models
 				return new ScheduleInfo();
 
 			return new MoveInfo();
-		}
-
-		private void makeNatureList(Boolean transferIsPossible)
-		{
-			NatureSelectList =
-				transferIsPossible
-					? SelectListExtension.CreateSelect(translator.GetEnumNames<MoveNature>())
-					: SelectListExtension.CreateSelect(translator.GetEnumNames<PrimalMoveNature>());
 		}
 
 		private void makeCategoryList()
@@ -168,8 +155,6 @@ namespace DFM.MVC.Areas.Account.Models
 			get => GenericMove.Nature;
 			set => GenericMove.Nature = value;
 		}
-
-		public SelectList NatureSelectList { get; set; }
 
 
 
