@@ -98,7 +98,7 @@ async function createUser(email, active, wizard, creation) {
 	await execute(
 		`insert into settings (
 				language, timezone, sendMoveEmail,
-				useCategories, useAccountsSigns, moveCheck, theme, wizard
+				useCategories, useAccountsSigns, moveCheck, useCurrency, theme, wizard
 			) values (
 				'pt-BR', 'UTC-03:00', 0,
 				1, 1, 1, 1, ${wizard?1:0}
