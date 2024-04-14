@@ -7,7 +7,6 @@
 		"ScheduleRequired": "Schedule not found",
 		"MoveSave": "Move: {0}, but the data was saved successfully",
 		"MoveDeletedWithoutEmail": "{1}, but move '{0}' deleted successfully",
-		"Conversion": "Conversion",
 		"": null
 	},
 	"pt-BR": {
@@ -18,7 +17,6 @@
 		"ScheduleRequired": "Agendamento não encontrado",
 		"MoveSave": "Movimentação: {0}, mas os dados foram salvos sucesso",
 		"MoveDeletedWithoutEmail": "{1}, mas a movimentação '{0}' foi excluída com sucesso",
-		"Conversion": "Conversão",
 		"": null
 	}
 }
