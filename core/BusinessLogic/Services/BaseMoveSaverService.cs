@@ -52,6 +52,9 @@ namespace DFM.BusinessLogic.Services
 
 		internal void TestCurrency(IMoveInfo move, Currency? currencyOut, Currency? currencyIn)
 		{
+			var isTransfer = move.Nature == MoveNature.Transfer;
+			var sameCurrency = currencyIn == currencyOut;
+
 			var moveHasConversion =
 				move.Conversion != null
 					&& move.Conversion != 0;
@@ -74,17 +77,21 @@ namespace DFM.BusinessLogic.Services
 				if (!parent.Current.UseCurrency)
 					throw Error.UseCurrencyDisabled.Throw();
 
-				if (move.Nature != MoveNature.Transfer)
+				if (!isTransfer)
 					throw Error.CurrencyInOutValueWithoutTransfer.Throw();
 
-				if (currencyIn == currencyOut)
+				if (sameCurrency)
 					throw Error.AccountsSameCurrencyConversion.Throw();
 			}
 
-			if (currencyIn != currencyOut)
+			if (
+				isTransfer
+				&& !sameCurrency
+				&& !moveHasConversion
+				&& !detailHaveAllConversion
+			)
 			{
-				if (!moveHasConversion && !detailHaveAllConversion)
-					throw Error.AccountsDifferentCurrencyNoConversion.Throw();
+				throw Error.AccountsDifferentCurrencyNoConversion.Throw();
 			}
 		}
 
