@@ -575,7 +575,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 						: categoryInfo.Name;
 
 				var nature =
-					row.ContainsKey("Nature")
+					row.ContainsKey("Nature") && row["Nature"] != ""
 						? EnumX.Parse<MoveNature>(row["Nature"])
 						: MoveNature.Out;
 
