@@ -1042,9 +1042,6 @@ Scenario: Ea61. Save move out with detailed conversion
 		And the accountOut value will not change
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
-		And the accountIn value will not change
-		And the month-category-accountIn value will not change
-		And the year-category-accountIn value will not change
 
 Scenario: Ea62. Save move in with detailed conversion
 	Given these settings
@@ -1062,9 +1059,6 @@ Scenario: Ea62. Save move in with detailed conversion
 	When I try to save the move
 	Then I will receive this core error: CurrencyInOutValueWithoutTransfer
 		And the move will not be saved
-		And the accountOut value will not change
-		And the month-category-accountOut value will not change
-		And the year-category-accountOut value will not change
 		And the accountIn value will not change
 		And the month-category-accountIn value will not change
 		And the year-category-accountIn value will not change
@@ -1113,3 +1107,80 @@ Scenario: Ea64. Save move transfer with detailed conversion ZERO for different c
 		And the accountIn value will not change
 		And the month-category-accountIn value will not change
 		And the year-category-accountIn value will not change
+
+
+Scenario: Ea65. Save move out with unique value
+	Given these settings
+			| UseCurrency |
+			| true        |
+		And I have this move to create
+			| Description         | Date       | Nature | Value |
+			| Move {scenarioCode} | 2024-04-09 | Out    | 1     |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out BRL
+		And it has no Account In
+	When I try to save the move
+	Then I will receive no core error
+		And the move will be saved
+		And the accountOut value will change in -1
+		And the month-category-accountOut value will change in 1
+		And the year-category-accountOut value will change in 1
+
+Scenario: Ea66. Save move in with unique value
+	Given these settings
+			| UseCurrency |
+			| true        |
+		And I have this move to create
+			| Description         | Date       | Nature | Value |
+			| Move {scenarioCode} | 2024-04-09 | In     | 1     |
+		And it has no Details
+		And it has a Category
+		And it has no Account Out
+		And it has an Account In BRL
+	When I try to save the move
+	Then I will receive no core error
+		And the move will be saved
+		And the accountIn value will change in 1
+		And the month-category-accountIn value will change in 1
+		And the year-category-accountIn value will change in 1
+
+Scenario: Ea67. Save move out with detailed unique value
+	Given these settings
+			| UseCurrency |
+			| true        |
+		And I have this move to create
+			| Description         | Date       | Nature |
+			| Move {scenarioCode} | 2024-04-09 | Out    |
+		And the move has this details
+			| Description | Amount | Value |
+			| Detail      | 1      | 1     |
+		And it has a Category
+		And it has an Account Out BRL
+		And it has no Account In
+	When I try to save the move
+	Then I will receive no core error
+		And the move will be saved
+		And the accountOut value will change in -1
+		And the month-category-accountOut value will change in 1
+		And the year-category-accountOut value will change in 1
+
+Scenario: Ea68. Save move in with detailed unique value
+	Given these settings
+			| UseCurrency |
+			| true        |
+		And I have this move to create
+			| Description         | Date       | Nature |
+			| Move {scenarioCode} | 2024-04-09 | In     |
+		And the move has this details
+			| Description | Amount | Value |
+			| Detail      | 1      | 1     |
+		And it has a Category
+		And it has no Account Out
+		And it has an Account In BRL
+	When I try to save the move
+	Then I will receive no core error
+		And the move will be saved
+		And the accountIn value will change in 1
+		And the month-category-accountIn value will change in 1
+		And the year-category-accountIn value will change in 1
