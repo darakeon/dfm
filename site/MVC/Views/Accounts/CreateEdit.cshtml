@@ -52,10 +52,13 @@
 @Html.HiddenFor(m => m.Type)
 @Html.HiddenFor(m => m.Account.OriginalUrl)
 
-<div class="form-group">
-	@Html.LabelFor(m => m.Account.Currency, Context.Translate("Currency"), new { @class = "control-label" })
-	@Html.DropDownListFor(m => m.Account.Currency, Model.CurrencySelectList, "-- " + Context.Translate("Select") + " --", new {@class = "form-control " + hl["Currency"]})
-</div>
+@if (Model.IsUsingCurrency)
+{
+	<div class="form-group">
+		@Html.LabelFor(m => m.Account.Currency, Context.Translate("Currency"), new { @class = "control-label" })
+		@Html.DropDownListFor(m => m.Account.Currency, Model.CurrencySelectList, "-- " + Context.Translate("Select") + " --", new { @class = "form-control " + hl["Currency"] })
+	</div>
+}
 
 @if (Model.IsUsingAccountsSigns)
 {
