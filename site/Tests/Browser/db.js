@@ -101,7 +101,7 @@ async function createUser(email, active, wizard, creation) {
 				useCategories, useAccountsSigns, moveCheck, useCurrency, theme, wizard
 			) values (
 				'pt-BR', 'UTC-03:00', 0,
-				1, 1, 1, 1, ${wizard?1:0}
+				1, 1, 1, 1, 1, ${wizard?1:0}
 			)`
 	)
 
