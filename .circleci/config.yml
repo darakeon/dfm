@@ -292,7 +292,7 @@ jobs:
           path: outputs/logs/core
           destination: logs
 
-  test_core_business_logic:
+  test_core_business_logic_auth:
     docker:
       - image: darakeon/netcore
     resource_class: large
@@ -306,7 +306,182 @@ jobs:
       - run:
           path: core/Tests/BusinessLogic
           name: tests business logic
-          command: dotnet test -v m --no-build
+          command: dotnet test -v m --no-build --filter FullyQualifiedName~A_Auth
+      - run:
+          path: outputs/inbox
+          name: zip mails
+          command: zip inbox.zip *.eml && rm *.eml
+      - store_artifacts:
+          path: outputs/inbox
+      - store_artifacts:
+          path: outputs/logs/core
+          destination: logs
+
+  test_core_business_logic_law:
+    docker:
+      - image: darakeon/netcore
+    resource_class: large
+    steps:
+      - checkout
+      - attach_workspace:
+          at: core
+      - restore_cache:
+          keys:
+            - dotnet-{{ checksum "core/cache_key" }}
+      - run:
+          path: core/Tests/BusinessLogic
+          name: tests business logic
+          command: dotnet test -v m --no-build --filter FullyQualifiedName~B_Law
+      - run:
+          path: outputs/inbox
+          name: zip mails
+          command: zip inbox.zip *.eml && rm *.eml
+      - store_artifacts:
+          path: outputs/inbox
+      - store_artifacts:
+          path: outputs/logs/core
+          destination: logs
+
+  test_core_business_logic_admin:
+    docker:
+      - image: darakeon/netcore
+    resource_class: large
+    steps:
+      - checkout
+      - attach_workspace:
+          at: core
+      - restore_cache:
+          keys:
+            - dotnet-{{ checksum "core/cache_key" }}
+      - run:
+          path: core/Tests/BusinessLogic
+          name: tests business logic
+          command: dotnet test -v m --no-build --filter FullyQualifiedName~C_Admin
+      - run:
+          path: outputs/inbox
+          name: zip mails
+          command: zip inbox.zip *.eml && rm *.eml
+      - store_artifacts:
+          path: outputs/inbox
+      - store_artifacts:
+          path: outputs/logs/core
+          destination: logs
+
+  test_core_business_logic_clip:
+    docker:
+      - image: darakeon/netcore
+    resource_class: large
+    steps:
+      - checkout
+      - attach_workspace:
+          at: core
+      - restore_cache:
+          keys:
+            - dotnet-{{ checksum "core/cache_key" }}
+      - run:
+          path: core/Tests/BusinessLogic
+          name: tests business logic
+          command: dotnet test -v m --no-build --filter FullyQualifiedName~D_Clip
+      - run:
+          path: outputs/inbox
+          name: zip mails
+          command: zip inbox.zip *.eml && rm *.eml
+      - store_artifacts:
+          path: outputs/inbox
+      - store_artifacts:
+          path: outputs/logs/core
+          destination: logs
+
+  test_core_business_logic_money:
+    docker:
+      - image: darakeon/netcore
+    resource_class: large
+    steps:
+      - checkout
+      - attach_workspace:
+          at: core
+      - restore_cache:
+          keys:
+            - dotnet-{{ checksum "core/cache_key" }}
+      - run:
+          path: core/Tests/BusinessLogic
+          name: tests business logic
+          command: dotnet test -v m --no-build --filter FullyQualifiedName~E_Money
+      - run:
+          path: outputs/inbox
+          name: zip mails
+          command: zip inbox.zip *.eml && rm *.eml
+      - store_artifacts:
+          path: outputs/inbox
+      - store_artifacts:
+          path: outputs/logs/core
+          destination: logs
+
+  test_core_business_logic_report:
+    docker:
+      - image: darakeon/netcore
+    resource_class: large
+    steps:
+      - checkout
+      - attach_workspace:
+          at: core
+      - restore_cache:
+          keys:
+            - dotnet-{{ checksum "core/cache_key" }}
+      - run:
+          path: core/Tests/BusinessLogic
+          name: tests business logic
+          command: dotnet test -v m --no-build --filter FullyQualifiedName~F_Report
+      - run:
+          path: outputs/inbox
+          name: zip mails
+          command: zip inbox.zip *.eml && rm *.eml
+      - store_artifacts:
+          path: outputs/inbox
+      - store_artifacts:
+          path: outputs/logs/core
+          destination: logs
+
+  test_core_business_logic_robot:
+    docker:
+      - image: darakeon/netcore
+    resource_class: large
+    steps:
+      - checkout
+      - attach_workspace:
+          at: core
+      - restore_cache:
+          keys:
+            - dotnet-{{ checksum "core/cache_key" }}
+      - run:
+          path: core/Tests/BusinessLogic
+          name: tests business logic
+          command: dotnet test -v m --no-build --filter FullyQualifiedName~G_Robot
+      - run:
+          path: outputs/inbox
+          name: zip mails
+          command: zip inbox.zip *.eml && rm *.eml
+      - store_artifacts:
+          path: outputs/inbox
+      - store_artifacts:
+          path: outputs/logs/core
+          destination: logs
+
+  test_core_business_logic_outside:
+    docker:
+      - image: darakeon/netcore
+    resource_class: large
+    steps:
+      - checkout
+      - attach_workspace:
+          at: core
+      - restore_cache:
+          keys:
+            - dotnet-{{ checksum "core/cache_key" }}
+      - run:
+          path: core/Tests/BusinessLogic
+          name: tests business logic
+          command: dotnet test -v m --no-build --filter FullyQualifiedName~H_Outside
       - run:
           path: outputs/inbox
           name: zip mails
@@ -1061,7 +1236,28 @@ workflows:
       - test_core_entities:
           requires:
             - build_core
-      - test_core_business_logic:
+      - test_core_business_logic_auth:
+          requires:
+            - build_core
+      - test_core_business_logic_law:
+          requires:
+            - build_core
+      - test_core_business_logic_admin:
+          requires:
+            - build_core
+      - test_core_business_logic_clip:
+          requires:
+            - build_core
+      - test_core_business_logic_money:
+          requires:
+            - build_core
+      - test_core_business_logic_report:
+          requires:
+            - build_core
+      - test_core_business_logic_robot:
+          requires:
+            - build_core
+      - test_core_business_logic_outside:
           requires:
             - build_core
       - build_site:
@@ -1149,7 +1345,14 @@ workflows:
             - test_core_email
             - test_core_exchange
             - test_core_entities
-            - test_core_business_logic
+            - test_core_business_logic_auth
+            - test_core_business_logic_law
+            - test_core_business_logic_admin
+            - test_core_business_logic_clip
+            - test_core_business_logic_money
+            - test_core_business_logic_report
+            - test_core_business_logic_robot
+            - test_core_business_logic_outside
             - build_site
             - audit_site
             - test_site
@@ -1213,7 +1416,28 @@ workflows:
       - test_core_entities:
           requires:
             - build_core
-      - test_core_business_logic:
+      - test_core_business_logic_auth:
+          requires:
+            - build_core
+      - test_core_business_logic_law:
+          requires:
+            - build_core
+      - test_core_business_logic_admin:
+          requires:
+            - build_core
+      - test_core_business_logic_clip:
+          requires:
+            - build_core
+      - test_core_business_logic_money:
+          requires:
+            - build_core
+      - test_core_business_logic_report:
+          requires:
+            - build_core
+      - test_core_business_logic_robot:
+          requires:
+            - build_core
+      - test_core_business_logic_outside:
           requires:
             - build_core
       - workflow_ran:
@@ -1227,7 +1451,14 @@ workflows:
             - test_core_email
             - test_core_exchange
             - test_core_entities
-            - test_core_business_logic
+            - test_core_business_logic_auth
+            - test_core_business_logic_law
+            - test_core_business_logic_admin
+            - test_core_business_logic_clip
+            - test_core_business_logic_money
+            - test_core_business_logic_report
+            - test_core_business_logic_robot
+            - test_core_business_logic_outside
 
   site:
     jobs:
