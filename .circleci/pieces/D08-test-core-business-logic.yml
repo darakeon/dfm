@@ -12,7 +12,7 @@
       - run:
           path: core/Tests/BusinessLogic
           name: tests business logic
-          command: dotnet test -v m --no-build --filter FullyQualifiedName~A.Auth
+          command: dotnet test -v m --no-build --filter FullyQualifiedName~A_Auth
       - run:
           path: outputs/inbox
           name: zip mails
