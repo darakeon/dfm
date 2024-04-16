@@ -227,6 +227,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 				control.LastAccess = DateTime.UtcNow;
 				db.Execute(() => repos.Control.SaveOrUpdate(control));
 			}
+
+			Directory.GetFiles(Cfg.S3.Directory, "*.csv")
+				.ToList()
+				.ForEach(File.Delete);
 		}
 
 		// ReSharper disable once UnusedMember.Global
