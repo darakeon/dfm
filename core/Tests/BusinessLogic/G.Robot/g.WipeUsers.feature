@@ -108,6 +108,7 @@ Scenario: Gg10. Find abandoned user for 90 days not warned
 		And and the user warning count will be 1
 		And it will not be registered at wipe table
 
+# 5 sec
 Scenario: Gg11. Find abandoned user for 90 days warned once
 	Given the user last access was 90 days before
 		And the user have being warned once
@@ -119,6 +120,7 @@ Scenario: Gg11. Find abandoned user for 90 days warned once
 		And and the user warning count will be 2
 		And it will not be registered at wipe table
 
+# 0.593 sec
 Scenario: Gg12. Find abandoned user for 90 days warned twice
 	Given the user last access was 90 days before
 		And the user have being warned twice
