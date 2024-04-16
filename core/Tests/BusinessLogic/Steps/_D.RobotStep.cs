@@ -506,7 +506,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				.GetFiles(Cfg.S3.Directory, "*.csv")
 				.Where(f => f.Contains("_"))
 				.OrderByDescending(f => f.Split("_")[1])
-				.Last();
+				.First();
 
 			var content = File.ReadAllLines(file);
 
