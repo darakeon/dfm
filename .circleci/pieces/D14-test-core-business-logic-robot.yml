@@ -20,6 +20,8 @@
       - store_artifacts:
           path: outputs/inbox
       - store_artifacts:
+          path: outputs/s3
+      - store_artifacts:
           path: outputs/logs/core
           destination: logs
 
