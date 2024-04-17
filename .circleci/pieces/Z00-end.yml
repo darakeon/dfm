@@ -368,6 +368,9 @@ workflows:
       - push_docker_android:
           requires:
             - test_ci
+      - generate_android_metadata:
+          requires:
+            - test_ci
       - build_android:
           requires:
             - test_ci

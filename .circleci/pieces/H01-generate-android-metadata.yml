@@ -1,0 +1,14 @@
+  generate_android_metadata:
+    docker:
+      - image: darakeon/android
+    resource_class: large
+    steps:
+      - checkout
+      - run:
+          name: project dependencies
+          path: android
+          command: gradle --no-daemon build --write-verification-metadata sha256
+      - store_artifacts:
+          path: android/gradle/verification-metadata.xml
+          destination: verification-metadata.xml
+
