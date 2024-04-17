@@ -1,0 +1,34 @@
+  generate_android_metadata:
+    docker:
+      - image: darakeon/android
+    resource_class: large
+    steps:
+      - checkout
+      - run:
+          name: set checksums
+          command: |
+            KT_DOCK=$(md5sum architecture/ci/android.dockerfile | cut -d' ' -f1)
+            KT_MAIN=$(md5sum android/build.gradle | cut -d' ' -f1)
+            KT_UTIL=$(md5sum android/TestUtils/build.gradle | cut -d' ' -f1)
+            KT_LIBR=$(md5sum android/Lib/build.gradle | cut -d' ' -f1)
+            KT_APPL=$(md5sum android/App/build.gradle | cut -d' ' -f1)
+            KT_ERRO=$(md5sum android/ErrorLogs/build.gradle | cut -d' ' -f1)
+
+            CACHE_KEY=$KT_DOCK-$KT_MAIN-$KT_UTIL-$KT_LIBR-$KT_APPL-$KT_ERRO
+            echo $CACHE_KEY > android/cache_key
+      - run:
+          name: create empty credentials file
+          path: android
+          command: |
+            echo "" > fake.keystore
+            echo "storeFile=fake.keystore" > keystore.properties
+            echo "storePassword=" >> keystore.properties
+            echo "keyAlias=" >> keystore.properties
+            echo "keyPassword=" >> keystore.properties
+      - persist_to_workspace:
+          root: android
+          paths:
+            - cache_key
+            - App/fake.keystore
+            - keystore.properties
+

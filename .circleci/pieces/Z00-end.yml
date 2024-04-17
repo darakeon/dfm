@@ -370,10 +370,9 @@ workflows:
             - test_ci
       - generate_android_metadata:
           requires:
-            - test_ci
+            - push_docker_android
       - build_android:
           requires:
-            - test_ci
             - push_docker_android
       - audit_android:
           requires:

@@ -1,0 +1,34 @@
+  generate_android_metadata:
+    docker:
+      - image: darakeon/android
+    resource_class: large
+    steps:
+      - checkout
+      - attach_workspace:
+          at: android
+      - restore_cache:
+          keys:
+            - kotlin-{{ checksum "android/cache_key" }}
+      - run:
+          name: create new metadata
+          path: android
+          command: gradle --write-verification-metadata sha256 --no-daemon androidDependencies
+      - run:
+          name: commits new metadata
+          path: android
+          command: |
+            REMOVALS=$(git diff gradle/verification-metadata.xml | grep "^-[^\-]")
+            if [ "$REMOVALS" = "" ]; then
+              git add gradle/verification-metadata.xml;
+              git commit -m "tools: update dependency metadata";
+              git push origin $(git branch --show-current);
+            fi
+      - save_cache:
+          key: kotlin-{{ checksum "android/cache_key" }}
+          paths:
+            - /var/cache/gradle
+            - /root/.m2/repository
+      - store_artifacts:
+          path: android/gradle/verification-metadata.xml
+          destination: verification-metadata.xml
+
