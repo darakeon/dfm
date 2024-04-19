@@ -671,11 +671,17 @@ namespace DFM.BusinessLogic.Tests.Steps
 			{
 				Int16.TryParse(row["Times"], out var times);
 
+				var conversion =
+					row.ContainsKey("Conversion") && row["Conversion"] != ""
+						? Int32.Parse(row["Conversion"])
+						: default(Int32?);
+
 				scheduleInfo = new ScheduleInfo
 				{
-					Description = row["Description"],
+					Description = row["Description"].ForScenario(scenarioCode),
 					Nature = EnumX.Parse<MoveNature>(row["Nature"]),
 					Value = Int32.Parse(row["Value"]),
+					Conversion = conversion,
 					Times = times,
 					Boundless = Boolean.Parse(row["Boundless"]),
 					Frequency = EnumX.Parse<ScheduleFrequency>(row["Frequency"]),
@@ -689,11 +695,19 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 				var scenarioAccountUrl = $"{mainAccountUrl}_{scenarioCode}";
 
-				if (scheduleInfo.Nature != MoveNature.In)
+				if (scheduleInfo.Nature == MoveNature.Out)
+				{
 					scheduleInfo.OutUrl = scenarioAccountUrl;
+				}
+				else
+				{
+					if (scheduleInfo.Nature == MoveNature.Transfer)
+					{
+						scheduleInfo.OutUrl = accountOutUrl;
+					}
 
-				if (scheduleInfo.Nature != MoveNature.Out)
 					scheduleInfo.InUrl = scenarioAccountUrl;
+				}
 
 				service.Robot.SaveSchedule(scheduleInfo);
 			}
