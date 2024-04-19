@@ -278,8 +278,8 @@ Scenario: Fa16. Month report for same currencies move
 			| true        |
 		And I have two accounts with currency BRL
 		And I have moves of
-			| Date | Nature   |
-			| +0   | Transfer |
+			| Date | Nature   | Conversion |
+			| +0   | Transfer | 0          |
 		And I pass Account In url
 		And I pass this date
 			| Month | Year |
@@ -300,3 +300,25 @@ Scenario: Fa16. Month report for same currencies move
 		And there will be these moves
 			| Date | Description | Value |
 			| +0   | Description | 10    |
+
+Scenario: Fa17. Get report with Currency
+	Given these settings
+			| UseCategories | UseCurrency |
+			| false         | true        |
+		And it has an Account Out
+		And I have schedules of
+			| Description               | Date       | Nature   | Conversion | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Schedule {scenarioCode} 1 | 2220-10-08 | Transfer | 0          | 10    | 3     | False     | Monthly   | True            |
+			| Schedule {scenarioCode} 2 | 2220-10-08 | Transfer |            | 10    | 3     | False     | Monthly   | True            |
+	Given I pass a valid account url
+		And I pass this date
+			| Month | Year |
+			| 10    | 2220 |
+	When I try to get the month report
+	Then I will receive no core error
+		And I will receive the month report
+		And there will be these futures moves
+			| Description                     | Date       | Nature   | Value |
+			| Schedule {scenarioCode} 1 [1/3] | 2220-10-08 | Transfer | 10    |
+			| Schedule {scenarioCode} 2 [1/3] | 2220-10-08 | Transfer | 10    |
+		And the foreseen future value part will be +20

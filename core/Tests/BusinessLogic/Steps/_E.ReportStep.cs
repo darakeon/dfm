@@ -2,6 +2,7 @@
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
+using DFM.BusinessLogic.Tests.Helpers;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Generic;
@@ -145,7 +146,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			for (var m = 0; m < count; m++)
 			{
 				var row = table.Rows[m];
-				var description = row["Description"];
+				var description = row["Description"].ForScenario(scenarioCode);
 				var date = DateTime.Parse(row["Date"]);
 				var nature = EnumX.Parse<MoveNature>(row["Nature"]);
 				var value = Int32.Parse(row["Value"]);
@@ -605,9 +606,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 				};
 
 				var value = row.ContainsKey("Value")
-						&& row["Value"] != String.Empty
+				        && row["Value"] != String.Empty
 					? Int32.Parse(row["Value"])
 					: 10;
+
+				var conversion = row.ContainsKey("Conversion")
+				        && row["Conversion"] != String.Empty
+					? Int32.Parse(row["Conversion"])
+					: default(Int32?);
 
 				if (row.ContainsKey("Detail") && row["Detail"] != "")
 				{
@@ -616,12 +622,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 						Description = row["Detail"],
 						Amount = 1,
 						Value = value,
+						Conversion = conversion,
 					};
 					move.DetailList.Add(detail);
 				}
 				else
 				{
 					move.Value = value;
+					move.Conversion = conversion;
 				}
 
 				var dateString = row["Date"];

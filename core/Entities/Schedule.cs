@@ -210,6 +210,7 @@ namespace DFM.Entities
 		{
 			return In?.ID == account.ID
 					&& ConversionCents.HasValue
+					&& ConversionCents != 0
 				? ConversionCents.Value
 				: ValueCents;
 		}
