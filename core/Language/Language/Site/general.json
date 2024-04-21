@@ -4,6 +4,8 @@
 
 		"PinkPigAlt": "Pink Pig, icon of Don't fly Money",
 
+		"BuyMeAChocolate": "buy me a chocolate",
+
 		"Enter": "Enter",
 		"Login": "Login",
 		"SignUp": "Sign up",
@@ -103,7 +105,8 @@
 		"Index_Welcome": "Welcome!",
 		"Index_Introduction": "Don't fly Money is a personal financial management system. It is made thinking in the most generic way to manage money.",
 		"Index_Explanation": "To {0}sign up{1} you just need a valid e-mail and a password. Then you can create accounts and register the moves, see month extracts and year summaries of each account.",
-		"Index_Close": "Any doubt? Contact us: {0}",
+		"Index_Contact": "Any doubt? Contact us:",
+		"Index_Sponsor": "Want to help us?",
 
 		"TokenReceivedByEmail": "Token received by e-mail",
 
@@ -179,6 +182,8 @@
 		"CurrentLanguage": "português",
 
 		"PinkPigAlt": "Porquinho rosa, símbolo do Don't fly Money",
+
+		"BuyMeAChocolate": "me compre um chocolate",
 
 		"Enter": "Entrar",
 		"Login": "Entrar",
@@ -279,7 +284,8 @@
 		"Index_Welcome": "Bem-vindo!",
 		"Index_Introduction": "Don't fly Money é um sistema de gerenciamento financeiro pessoal. Foi feito pensando no modo mais genérico de gerenciar renda e despesa.",
 		"Index_Explanation": "Para {0}se cadastrar{1}, basta fornecer um e-mail válido e uma senha. Então você poderá criar contas e registrar movimentações, ver extratos mensais e resumos anuais de cada conta.",
-		"Index_Close": "Dúvidas? Entre em contato: {0}",
+		"Index_Contact": "Dúvidas? Entre em contato:",
+		"Index_Sponsor": "Deseja nos ajudar?",
 
 		"TokenReceivedByEmail": "Token recebido via e-mail",
 

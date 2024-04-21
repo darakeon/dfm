@@ -36,10 +36,13 @@
 				</p>
 
 				<p>
-					@Html.Raw(String.Format(
-						Context.Translate("Index_Close"),
-						"dfm@dontflymoney.com"
-					))
+					@Context.Translate("Index_Contact")
+					<a href="@Cfg.EmailContact" target="_blank">@Cfg.EmailContact</a>
+				</p>
+
+				<p>
+					@Context.Translate("Index_Sponsor")
+					<a href="@Cfg.BuyMeACoffee" target="_blank">@Cfg.BuyMeACoffee</a>
 				</p>
 			</div>
 			
