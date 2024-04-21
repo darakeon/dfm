@@ -5,6 +5,7 @@ import com.darakeon.dfm.lib.api.entities.accounts.AccountList
 import com.darakeon.dfm.lib.api.entities.errors.ErrorList
 import com.darakeon.dfm.lib.api.entities.extract.Extract
 import com.darakeon.dfm.lib.api.entities.login.Ticket
+import com.darakeon.dfm.lib.api.entities.moves.Lists
 import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
 import com.darakeon.dfm.lib.api.entities.moves.Nature
@@ -184,6 +185,19 @@ class ApiTest: BaseTest() {
 		activity.waitTasks()
 
 		assertNotNull(moveCreation)
+	}
+
+	@Test
+	fun relations() {
+		server.enqueue("relations")
+
+		var lists: Lists? = null
+		api.listsForMoves {
+			lists = it
+		}
+		activity.waitTasks()
+
+		assertNotNull(lists)
 	}
 
 	@Test
