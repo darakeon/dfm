@@ -13,26 +13,31 @@
 	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
 
 	var isAccountsSign = Model.IsUsingAccountsSigns;
+	var isCurrency = Model.IsUsingCurrency;
 
-	var hl = new WizardHL(isAccountsSign, isEdit)
-		.AddBox("Name", null, null, 1)
-		.AddBox("Button", null, null, 2)
-		.AddBox("Accounts", null, 3, null)
-		.AddBox("Currency", null, null, null)
-		.AddBox("SignsBlock", 0, null, null)
-		.AddBox("SignEnable", 1, null, null)
-		.AddBox("SignAttentionValue", 3, null, null)
-		.AddBox("SignDangerValue", 4, null, null)
-		.AddBox("SignNone", 5, null, null)
-		.AddBox("SignHealthy", 6, null, null)
-		.AddBox("SignAttention", 7, null, null)
-		.AddBox("SignDanger", 8, null, null)
+	var hl = new WizardHL(isCurrency, isAccountsSign, isEdit)
+		.AddBox("Name", null, null, null, 1)
+		.AddBox("Button", 1, null, null, 2)
+		.AddBox("Accounts", null, null, 3, null)
+		.AddBox("Currency", 0, null, null, null)
+		.AddBox("SignsBlock", null, 0, null, null)
+		.AddBox("SignEnable", null, 1, null, null)
+		.AddBox("SignAttentionValue", null, 3, null, null)
+		.AddBox("SignDangerValue", null, 4, null, null)
+		.AddBox("SignNone", null, 5, null, null)
+		.AddBox("SignHealthy", null, 6, null, null)
+		.AddBox("SignAttention", null, 7, null, null)
+		.AddBox("SignDanger", null, 8, null, null)
 		;
 
 	ViewBag.AccountsMenuClass = hl["Accounts"];
 	ViewBag.TitleClass = "wizard-scroll-9";
 
-	if (isAccountsSign)
+	if (isCurrency)
+	{
+		ViewBag.WizardPlus = "Currency";
+	}
+	else if (isAccountsSign)
 	{
 		ViewBag.WizardPlus = "Sign";
 	}
