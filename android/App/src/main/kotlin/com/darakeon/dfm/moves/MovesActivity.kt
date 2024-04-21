@@ -257,6 +257,7 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 		)
 		binding.accountOut.onChange {
 			setNatureFromAccounts()
+			setConversionVisibility()
 		}
 
 		accountCombo.setCombo(
@@ -267,6 +268,7 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 		)
 		binding.accountIn.onChange {
 			setNatureFromAccounts()
+			setConversionVisibility()
 		}
 	}
 
@@ -305,6 +307,22 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 				else -> {}
 			}
 		}
+	}
+
+	private fun setConversionVisibility() {
+		val outCurrency = accountCombo.find {
+				a -> a.text == binding.accountOut.text.toString()
+		}?.currency
+
+		val inCurrency = accountCombo.find {
+				a -> a.text == binding.accountOut.text.toString()
+		}?.currency
+
+		binding.conversion.visibility =
+			if (outCurrency == inCurrency) GONE else VISIBLE
+
+		binding.detailConversion.visibility =
+			if (outCurrency == inCurrency) GONE else VISIBLE
 	}
 
 	private fun populateValue() {

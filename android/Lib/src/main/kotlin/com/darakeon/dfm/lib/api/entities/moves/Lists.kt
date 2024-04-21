@@ -1,10 +1,11 @@
 package com.darakeon.dfm.lib.api.entities.moves
 
+import com.darakeon.dfm.lib.api.entities.AccountComboItem
 import com.darakeon.dfm.lib.api.entities.ComboItem
 
 data class Lists(
 	val isUsingCategories: Boolean,
-	val accountList: Array<ComboItem>,
+	val accountList: Array<AccountComboItem>,
 	val categoryList: Array<ComboItem>,
 ) {
 	override fun equals(other: Any?): Boolean {

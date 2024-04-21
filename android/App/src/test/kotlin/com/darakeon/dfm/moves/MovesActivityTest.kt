@@ -13,6 +13,7 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.databinding.MovesBinding
 import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
+import com.darakeon.dfm.lib.api.entities.AccountComboItem
 import com.darakeon.dfm.lib.api.entities.ComboItem
 import com.darakeon.dfm.lib.api.entities.Date
 import com.darakeon.dfm.lib.api.entities.moves.Move
@@ -58,9 +59,19 @@ class MovesActivityTest: BaseTest() {
 		activity = mocker.get()
 
 		activity.setValueTyped("isUsingCategories", true)
-		val categoryCombo = arrayListOf(ComboItem("My Category", "category"))
+
+		val categoryCombo = arrayListOf(
+			ComboItem("My Category", "category"),
+		)
 		activity.setValueTyped("categoryCombo", categoryCombo)
-		val accountCombo = arrayListOf(ComboItem("My Out", "out"),ComboItem("My In", "in"))
+
+		val accountCombo = arrayListOf(
+			AccountComboItem("My Out", "out", null),
+			AccountComboItem("My In", "in", null),
+			AccountComboItem("My In BRL", "in_brl", "BRL"),
+			AccountComboItem("My Out EUR", "out_eur", "EUR"),
+		)
+
 		activity.setValueTyped("accountCombo", accountCombo)
 	}
 
@@ -92,10 +103,12 @@ class MovesActivityTest: BaseTest() {
 		assertNotNull(activity.findViewById(R.id.account_in_picker))
 		assertNotNull(activity.findViewById(R.id.simple_value))
 		assertNotNull(activity.findViewById(R.id.value))
+		assertNotNull(activity.findViewById(R.id.conversion))
 		assertNotNull(activity.findViewById(R.id.detailed_value))
 		assertNotNull(activity.findViewById(R.id.detail_description))
 		assertNotNull(activity.findViewById(R.id.detail_amount))
 		assertNotNull(activity.findViewById(R.id.detail_value))
+		assertNotNull(activity.findViewById(R.id.detail_conversion))
 		assertNotNull(activity.findViewById(R.id.details))
 	}
 
@@ -979,5 +992,53 @@ class MovesActivityTest: BaseTest() {
 		val requestPath = mocker.server.lastPath()
 		val urlGuid = requestPath.split('/').last()
 		assertThat(urlGuid, `is`(guid.toString()))
+	}
+
+	@Test
+	fun accountWithoutConversion() {
+		val saved = Bundle()
+		activity.onCreate(saved, null)
+
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		val move = activity.getPrivate<Move>("move")
+
+		assertThat(binding.accountIn.text.toString(), `is`(""))
+		assert(move.inUrl.isNullOrEmpty())
+
+		binding.accountIn.append("My In")
+		binding.accountOut.append("My Out")
+
+		assertThat(binding.conversion.visibility, `is`(GONE))
+
+		activity.useDetailed(binding.detailedValue)
+
+		assertThat(binding.detailConversion.visibility, `is`(GONE))
+	}
+
+	@Test
+	fun accountWithConversion() {
+		val saved = Bundle()
+		activity.onCreate(saved, null)
+
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		val move = activity.getPrivate<Move>("move")
+
+		assertThat(binding.accountIn.text.toString(), `is`(""))
+		assert(move.inUrl.isNullOrEmpty())
+
+		binding.accountIn.append("My In BRL")
+		binding.accountOut.append("My Out EUR")
+
+		assertThat(binding.conversion.visibility, `is`(VISIBLE))
+
+		activity.useDetailed(binding.detailedValue)
+
+		assertThat(binding.detailConversion.visibility, `is`(VISIBLE))
 	}
 }

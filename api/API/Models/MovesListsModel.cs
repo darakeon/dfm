@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DFM.API.Helpers.Models;
 
@@ -11,19 +12,36 @@ namespace DFM.API.Models
 			IsUsingCategories = isUsingCategories;
 
 			AccountList = admin.GetAccountList(true)
-				.Select(a => new SelectItem<string, string>(a.Name, a.Url))
+				.Select(a => new AccountItem(a.Name, a.Url, a.Currency?.ToString()))
 				.ToList();
 
 			if (isUsingCategories)
 			{
 				CategoryList = admin.GetCategoryList(true)
-					.Select(a => new SelectItem<string, string>(a.Name, a.Name))
+					.Select(a => new CategoryItem(a.Name, a.Name))
 					.ToList();
 			}
 		}
 
 		public bool IsUsingCategories { get; set; }
-		public IList<SelectItem<string, string>> AccountList { get; set; }
-		public IList<SelectItem<string, string>> CategoryList { get; set; }
+		public IList<AccountItem> AccountList { get; set; }
+		public IList<CategoryItem> CategoryList { get; set; }
+
+		internal class AccountItem : SelectItem<String, String>
+		{
+			public String Currency { get; }
+
+			public AccountItem(String text, String value, String currency) : base(text, value)
+			{
+				Currency = currency;
+			}
+		}
+
+		internal class CategoryItem : SelectItem<String, String>
+		{
+			public CategoryItem(string text, string value) : base(text, value)
+			{
+			}
+		}
 	}
 }
