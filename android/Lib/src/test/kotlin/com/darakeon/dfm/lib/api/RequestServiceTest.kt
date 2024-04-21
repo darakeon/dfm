@@ -223,6 +223,37 @@ class RequestServiceTest: BaseTest() {
 		assertThat(detailList[0].value, `is`(27.0))
 	}
 
+
+	@Test
+	fun relations() {
+		server.enqueue("relations")
+
+		val response = service.listsForMoves().execute()
+		assertNotNull(response)
+		val body = response.body()!!
+
+		val environment = body.environment!!
+		assertThat(environment.language, `is`("pt-BR"))
+		assertThat(environment.theme.enum, `is`(Theme.DarkMagic))
+
+		val data = body.data!!
+		assertThat(data.isUsingCategories, `is`(true))
+
+		val accountList = data.accountList
+		assertThat(accountList.size, `is`(2))
+		assertThat(accountList[0].text, `is`("Reais"))
+		assertThat(accountList[0].value, `is`("reais"))
+		assertThat(accountList[0].currency, `is`("BRL"))
+		assertThat(accountList[1].text, `is`("Euros"))
+		assertThat(accountList[1].value, `is`("euros"))
+		assertThat(accountList[1].currency, `is`("EUR"))
+
+		val categoryList = data.categoryList
+		assertThat(categoryList.size, `is`(1))
+		assertThat(categoryList[0].text, `is`("Category"))
+		assertThat(categoryList[0].value, `is`("category"))
+	}
+
 	@Test
 	fun saveMoveNew() {
 		server.enqueue("empty")

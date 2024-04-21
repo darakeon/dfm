@@ -42,8 +42,8 @@ private fun getColor(value: Double): Int {
 	return R.attr.zero
 }
 
-fun Activity.showChangeList(
-	list: Array<ComboItem>,
+fun <T: ComboItem> Activity.showChangeList(
+	list: Array<T>,
 	titleId: Int,
 	setResult: (String, String?) -> Unit
 ) {
@@ -71,8 +71,8 @@ fun Activity.showChangeList(
 		}}.show()
 }
 
-fun AutoCompleteTextView.complete(
-	list: Array<ComboItem>,
+fun <T: ComboItem> AutoCompleteTextView.complete(
+	list: Array<T>,
 	setResult: (String?) -> Unit
 ) {
 	val adapter = ArrayAdapter(

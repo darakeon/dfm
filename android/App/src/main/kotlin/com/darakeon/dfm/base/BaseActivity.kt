@@ -22,6 +22,7 @@ import com.darakeon.dfm.extensions.logout
 import com.darakeon.dfm.extensions.logoutLocal
 import com.darakeon.dfm.lib.api.Api
 import com.darakeon.dfm.lib.api.ApiCaller
+import com.darakeon.dfm.lib.api.entities.AccountComboItem
 import com.darakeon.dfm.lib.api.entities.ComboItem
 import com.darakeon.dfm.lib.auth.Authentication
 import com.darakeon.dfm.lib.auth.getValue
@@ -92,7 +93,7 @@ abstract class BaseActivity<Binding: ViewBinding>: Activity(), ApiCaller {
 		get() = this.getValue("cachedCombos").toBoolean()
 		set(value) = this.setValue("cachedCombos", value.toString())
 
-	protected var accountCombo: Array<ComboItem>
+	protected var accountCombo: Array<AccountComboItem>
 		get() = this.getValueTyped("accountCombo") ?: emptyArray()
 		private set(value) = this.setValueTyped("accountCombo", value)
 
