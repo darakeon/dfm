@@ -13,62 +13,69 @@
 
 	var isUsingMoveCheckCreate = Model.IsUsingMoveCheck;
 	var isUsingMoveCheckEdit = isUsingMoveCheckCreate && hasMoves;
-	var hasChecked = isUsingMoveCheckCreate
-		&& Model.MoveList.Any(m => m.Move.Checked);
+
+	var isUsingCurrency = Model.IsUsingCurrency;
 
 	var hl = new WizardHL(
+		isUsingCurrency,
 		isUsingMoveCheckEdit, isUsingMoveCheckCreate,
 		hasCategory, isUsingCategoriesEdit, isUsingCategoriesCreate,
 		hasForeseenMoves, hasMoves
 	)
-		.AddBox("MoveMenuClass", null, 1, null, null, null, null, null, 2)
-		.AddBox("SummaryMenuClass", null, null, null, null, null, null, 5, null)
-		.AddBox("HomeMenuClass", null, null, null, null, null, 4, null, null)
-		.AddBox("TitleClass", null, null, null, null, null, null, 2, null)
-		.AddBox("Pagination", null, 2, null, null, null, null, 3, null)
-		.AddBox("Total", null, null, null, null, null, 2, 4, null)
-		.AddBox("Foreseen", null, null, null, null, null, 3, null, null)
-		.AddBox("Button", null, 1, null, null, 1, null, null, 2)
-		.AddBox("CategoriesMenuClass", null, null, 1, null, null, null, null, null)
-		.AddBox("SettingsMenuClass", 5, null, null, null, null, null, null, null)
-		.AddBox("SettingsEmailMenuClass", 5, null, null, null, null, null, null, null)
+		.AddBox("MoveMenuClass", 0, null, 1, null, null, null, null, null, 2)
+		.AddBox("SummaryMenuClass", null, null, null, null, null, null, null, 5, null)
+		.AddBox("HomeMenuClass", null, null, null, null, null, null, 4, null, null)
+		.AddBox("TitleClass", null, null, null, null, null, null, null, 2, null)
+		.AddBox("Pagination", null, null, 2, null, null, null, null, 3, null)
+		.AddBox("Total", null, null, null, null, null, null, 2, 4, null)
+		.AddBox("Foreseen", null, null, null, null, null, null, 3, null, null)
+		.AddBox("Button", null, null, 1, null, null, 1, null, null, 2)
+		.AddBox("CategoriesMenuClass", null, null, null, 1, null, null, null, null, null)
+		.AddBox("SettingsMenuClass", null, 5, null, null, null, null, null, null, null)
+		.AddBox("SettingsMainMenuClass", null, 5, null, null, null, null, null, null, null)
 		;
 
 	var hlPastMove = new WizardHL(
+		isUsingCurrency,
 		isUsingMoveCheckEdit, isUsingMoveCheckCreate,
 		hasCategory, isUsingCategoriesEdit, isUsingCategoriesCreate,
 		hasForeseenMoves
 	)
-		.AddBox("MoveRow", null, null, null, null, null, null, 0)
-		.AddBox("MoveEdit", null, null, null, 1, null, null, 1)
-		.AddBox("MoveDelete", null, null, null, null, null, null, 1)
-		.AddBox("MoveDate", null, null, null, null, null, null, null)
-		.AddBox("MoveCategory", null, null, 0, 0, null, null, null)
-		.AddBox("MoveStatus", 0, null, null, null, null, null, null)
-		.AddBox("MoveCheck", 4, null, null, null, null, null, null);
+		.AddBox("MoveRow", null, null, null, null, null, null, null, 0)
+		.AddBox("MoveEdit", null, null, null, null, 1, null, null, 1)
+		.AddBox("MoveDelete", null, null, null, null, null, null, null, 1)
+		.AddBox("MoveDate", null, null, null, null, null, null, null, null)
+		.AddBox("MoveCategory", null, null, null, 0, 0, null, null, null)
+		.AddBox("MoveStatus", null, 0, null, null, null, null, null, null)
+		.AddBox("MoveCheck", null, 4, null, null, null, null, null, null);
 
 	var hlFutureMove = new WizardHL(
+		isUsingCurrency,
 		isUsingMoveCheckEdit, isUsingMoveCheckCreate,
 		hasCategory, isUsingCategoriesEdit, isUsingCategoriesCreate,
 		hasForeseenMoves
 	)
-		.AddBox("MoveRow", null, null, null, null, null, 0, null)
-		.AddBox("MoveEdit", null, null, null, null, null, null, null)
-		.AddBox("MoveDelete", null, null, null, null, null, null, null)
-		.AddBox("MoveDate", null, null, null, null, null, 1, null)
-		.AddBox("MoveCategory", null, null, null, null, null, null, null)
-		.AddBox("MoveStatus", null, null, null, null, null, null, null)
-		.AddBox("MoveCheck", null, null, null, null, null, null, null);
+		.AddBox("MoveRow", null, null, null, null, null, null, 0, null)
+		.AddBox("MoveEdit", null, null, null, null, null, null, null, null)
+		.AddBox("MoveDelete", null, null, null, null, null, null, null, null)
+		.AddBox("MoveDate", null, null, null, null, null, null, 1, null)
+		.AddBox("MoveCategory", null, null, null, null, null, null, null, null)
+		.AddBox("MoveStatus", null, null, null, null, null, null, null, null)
+		.AddBox("MoveCheck", null, null, null, null, null, null, null, null);
 
 	ViewBag.MoveMenuClass = hl["MoveMenuClass"];
 	ViewBag.SummaryMenuClass = hl["SummaryMenuClass"];
 	ViewBag.HomeMenuClass = hl["HomeMenuClass"];
 	ViewBag.CategoriesMenuClass = hl["CategoriesMenuClass"];
 	ViewBag.SettingsMenuClass = hl["SettingsMenuClass"];
-	ViewBag.SettingsEmailMenuClass = hl["SettingsEmailMenuClass"];
+	ViewBag.SettingsMainMenuClass = hl["SettingsMainMenuClass"];
 	ViewBag.TitleClass = hl["TitleClass"];
 
-	if (isUsingMoveCheckCreate)
+	if (isUsingCurrency)
+	{
+		ViewBag.WizardPlus = "Currency";
+	}
+	else if (isUsingMoveCheckCreate)
 	{
 		if (!hasMoves)
 			ViewBag.WizardPlus = "MoveCheckCreate";

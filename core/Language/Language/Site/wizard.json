@@ -144,6 +144,7 @@
 			"You can enable Currencies to allow register different values in transfers between Accounts.",
 			"Last but not least, you can enable or disable this wizard.",
 			"Let's enable the categories to see the effect into the system.",
+			"Save after enabling.",
 			null
 		],
 		"Wizard_SettingsIndexCategory": [
@@ -300,6 +301,51 @@
 			"For example to compare with your bank extract...",
 			"...to check if you've really annotated all the moves here.",
 			"This way you can mark the move as checked.",
+			"Once more, lets go to Settings > Main Options.",
+			null
+		],
+		"Wizard_SettingsIndexCurrencyGet": [
+			"One more options available in the system is the use of currencies.",
+			"This is a configuration in case you have accounts that use different currencies.",
+			"Enable this configuration to see how it works.",
+			null
+		],
+		"Wizard_SettingsIndexCurrencyPost": [
+			"Let's go back to Accounts screen.",
+			null
+		],
+		"Wizard_AccountsIndexCurrency": [
+			"Click to edit an Account.",
+			null
+		],
+		"Wizard_AccountsEditCurrency": [
+			"Now you can choose the Account currency.",
+			"Don't forget to save.",
+			null
+		],
+		"Wizard_AccountsCreateCurrency": [
+			"Now you can choose the Account currency.",
+			"Don't forget to save.",
+			null
+		],
+		"Wizard_AccountsIndexCurrencyOneMore": [
+			"Add a different currency in at least one other Account.",
+			null
+		],
+		"Wizard_AccountsIndexCurrencyEnough": [
+			"Click at Account's name, or at the report button, to enter into the Account Area.",
+			null
+		],
+		"Wizard_ReportsMonthCurrency": [
+			"Enter in the Move creation screen",
+			null
+		],
+		"Wizard_MovesCreateCurrency": [
+			"For the Move type select Transfer.",
+			"After that, select different currency Accounts.",
+			"When the Accounts have different currencies a new field is shown.",
+			"This field is for inserting converted value for this Move.",
+			"This way it is possible to put right value by Account.",
 			"Now let's check what we have in Settings > Email.",
 			null
 		],
@@ -538,6 +584,7 @@
 			"Você pode habilitar Moedas para permitir registro de diferentes valores nas transferências entre Contas.",
 			"Por último, você pode habilitar ou desabilitar este tutorial.",
 			"Vamos habilitar as categorias, para vermos o efeito no resto do sistema.",
+			"Salve após habilitar.",
 			null
 		],
 		"Wizard_SettingsIndexCategory": [
@@ -694,6 +741,51 @@
 			"Por exemplo comparar com o extrato do banco...",
 			"...para ver se anotou de fato todas as movimentações aqui.",
 			"Assim você pode marcar que a movimentação foi conferida.",
+			"Mais uma vez, vamos às Configurações > Opções Gerais.",
+			null
+		],
+		"Wizard_SettingsIndexCurrencyGet": [
+			"Mais uma opção disponível no sistema é o uso de moedas.",
+			"Essa é uma configuração para caso você possua contas que usam moedas diferentes.",
+			"Habilite essa configuração para ver como ela funciona.",
+			null
+		],
+		"Wizard_SettingsIndexCurrencyPost": [
+			"Vamos voltar a tela de Contas.",
+			null
+		],
+		"Wizard_AccountsIndexCurrency": [
+			"Clique para editar uma Conta.",
+			null
+		],
+		"Wizard_AccountsEditCurrency": [
+			"Agora você pode escolher a moeda usada na Conta.",
+			"Não esqueça de salvar.",
+			null
+		],
+		"Wizard_AccountsCreateCurrency": [
+			"Agora você pode escolher a moeda usada na Conta.",
+			"Não esqueça de salvar.",
+			null
+		],
+		"Wizard_AccountsIndexCurrencyOneMore": [
+			"Adicione uma moeda diferente em pelo menos mais uma Conta.",
+			null
+		],
+		"Wizard_AccountsIndexCurrencyEnough": [
+			"Clique no nome da Conta ou no botão de relatório para ir para a Área da Conta.",
+			null
+		],
+		"Wizard_ReportsMonthCurrency": [
+			"Entre na tela de criação de movimentação",
+			null
+		],
+		"Wizard_MovesCreateCurrency": [
+			"Para o tipo da movimentação selecione Transferência.",
+			"Após isso, selecione contas que tenham moedas diferentes.",
+			"Quando as contas possuem moedas diferentes, aparece um novo campo.",
+			"Esse campo serve para inserir qual o valor convertido daquela movimentação.",
+			"Dessa forma é possível colocar os valores corretos das duas contas.",
 			"Agora vamos olhar o que temos em Configurações > E-mail.",
 			null
 		],

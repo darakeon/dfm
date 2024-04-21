@@ -13,7 +13,7 @@
 
 <div class="row">
 
-	<div class="col-sm-4 btn-group-vertical btn-group-sm">
+	<div class="col-sm-4 btn-group-vertical btn-group-sm @Model.HL["Nature"]">
 		@foreach (var natureUI in natureUiList)
 		{
 			var nature = await Html.PartialAsync("Extensions/NatureColor", natureUI.Nature);
@@ -45,7 +45,11 @@
 	</div>
 
 	<div class="col-sm-4 form-group side-vertical-button">
-		@Html.LabelFor(m => m.AccountInUrl, Context.Translate("Account", "In"), new { @class = "control-label" })
+		@Html.LabelFor(
+			m => m.AccountInUrl, 
+			Context.Translate("Account", "In"), 
+			new { @class = "control-label" }
+		)
 		<span
 			class="@await Html.PartialAsync("Extensions/NatureIcon", MoveNature.In)"
 			title="@Context.Translate(MoveNature.In.ToString())"
@@ -55,14 +59,18 @@
 			m => m.AccountInUrl,
 			Model.AccountInSelectList,
 			"-- " + Context.Translate("Select") + " --",
-			new { @class = "form-control combo-account combo-account-in alert-info" }
+			new { @class = "form-control combo-account combo-account-in alert-info " + Model.HL["AccountIn"] }
 		)
 
 		@Html.ValidationMessageFor(m => m.AccountInUrl)
 	</div>
 
 	<div class="col-sm-4 form-group side-vertical-button">
-		@Html.LabelFor(m => m.AccountOutUrl, Context.Translate("Account", "Out"), new { @class = "control-label" })
+		@Html.LabelFor(
+			m => m.AccountOutUrl,
+			Context.Translate("Account", "Out"),
+			new { @class = "control-label" }
+		)
 		<span
 			class="@await Html.PartialAsync("Extensions/NatureIcon", MoveNature.Out)"
 			title="@Context.Translate(MoveNature.Out.ToString())"
@@ -72,7 +80,7 @@
 			m => m.AccountOutUrl,
 			Model.AccountOutSelectList,
 			"-- " + Context.Translate("Select") + " --",
-			new { @class = "form-control combo-account combo-account-out alert-danger" }
+			new { @class = "form-control combo-account combo-account-out alert-danger " + Model.HL["AccountOut"] }
 		)
 
 		@Html.ValidationMessageFor(m => m.AccountOutUrl)
