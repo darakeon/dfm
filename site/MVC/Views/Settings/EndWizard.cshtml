@@ -75,11 +75,11 @@ else
 		<p class="text-center">
 			@Html.Raw(String.Format(
 				Context.Translate("Wizard_EndTextContact").BreakLines(),
-				"<a href='mailto:dfm@dontflymoney.com' " +
+				$"<a href='mailto:{Cfg.EmailContact}' " +
 					"rel='noopener noreferrer' " +
 					"target='_blank'" +
 				">" +
-					"dfm@dontflymoney.com" +
+					Cfg.EmailContact +
 				"</a>"
 			))
 		</p>

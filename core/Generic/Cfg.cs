@@ -71,5 +71,8 @@ namespace DFM.Generic
 		public static String RobotPassword => robot["Password"];
 
 		public static Tips Tips => new Tips(dic.GetSection("Tips"));
+
+		public const String EmailContact = "dfm@dontflymoney.com";
+		public const String BuyMeACoffee = "https://buymeacoffee.com/darakeon";
 	}
 }

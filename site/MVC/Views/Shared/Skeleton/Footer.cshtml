@@ -19,7 +19,7 @@
 
 	<div class="row">
 
-		<div class="col-lg-1 col-sm-2">
+		<div class="col-lg-1 col-sm-2 col-xs-2">
 			<a href="@Url.RouteUrl(newRoute.Name, newRouteValues)"
 				target="_blank"
 				rel="noopener noreferrer"
@@ -28,23 +28,27 @@
 			</a>
 		</div>
 
-		<div class="col-lg-4 col-sm-6">
+		<div class="col-lg-4 col-sm-4 col-xs-10">
 			<small>@Context.Translate("AndroidRobotLicenseText")</small>
 		</div>
 
-		<div class="col-lg-7 col-sm-4 text-right">
+		<div class="col-lg-5 col-sm-4 col-xs-12 text-center">
+			@await Html.PartialAsync("Sponsor")
+		</div>
+
+		<div class="col-lg-2 col-sm-2 col-xs-12 text-right text-nowrap">
 			Don't fly Money<br/>
 
 			@Html.RouteLink(
 				Context.Translate("ContractTitle"),
 				area,
-				new { controller = "Users", action = "Contract"},
+				new { controller = "Users", action = "Contract" },
 				new { target = "_blank", rel = "noopener noreferrer" }
-			)<br />
+				)<br/>
 
 			@Cfg.Version<br/>
 
-			2011<br />
+			2011<br/>
 		</div>
 
 	</div>
