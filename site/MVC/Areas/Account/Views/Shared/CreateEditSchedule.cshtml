@@ -17,7 +17,15 @@
 		Model.Type == OperationType.Creation
 			&& Model.IsUsingMoveCheck;
 
-	if (moveCheckWizard)
+	var currencyWizard =
+		Model.Type == OperationType.Creation
+			&& Model.IsUsingCurrency;
+
+	if (currencyWizard)
+	{
+		ViewBag.WizardPlus = "Currency"; // MovesCreate
+	}
+	else if (moveCheckWizard)
 	{
 		ViewBag.WizardPlus = "Check"; // MovesCreate
 	}
@@ -27,26 +35,35 @@
 	}
 
 	Model.HL = new WizardHL(
+		currencyWizard,
 		moveCheckWizard,
 		categoriesWizard,
 		Model.Type == OperationType.Creation,
 		Model.Type == OperationType.Edition,
 		Model.Type == OperationType.Scheduling 
 	)
-		.AddBox("Button", null, null, 5, null, 5, null)
-		.AddBox("Installment", null, null, null, null, 4, null)
-		.AddBox("Frequency", null, null, null, null, 1, null)
-		.AddBox("Boundless", null, null, null, null, 3, null)
-		.AddBox("Times", null, null, null, null, 2, null)
-		.AddBox("DetailTab", null, null, 4, null, null, null)
-		.AddBox("Description", null, null, 1, null, null, null)
-		.AddBox("Date", null, null, 2, null, null, null)
-		.AddBox("Value", null, null, 3, null, null, null)
-		.AddBox("Conversion", null, null, null, null, null, null)
-		.AddBox("Category", null, 0, null, null, null, null)
-		.AddBox("Reports", null, null, null, 2, null, null);
+		.AddBox("Button", null, null, null, 5, null, 5, null)
+		.AddBox("Installment", null, null, null, null, null, 4, null)
+		.AddBox("Frequency", null, null, null, null, null, 1, null)
+		.AddBox("Boundless", null, null, null, null, null, 3, null)
+		.AddBox("Times", null, null, null, null, null, 2, null)
+		.AddBox("DetailTab", null, null, null, 4, null, null, null)
+		.AddBox("Description", null, null, null, 1, null, null, null)
+		.AddBox("Date", null, null, null, 2, null, null, null)
+		.AddBox("Value", null, null, null, 3, null, null, null)
+		.AddBox("Category", null, null, 0, null, null, null, null)
+		.AddBox("Reports", null, null, null, null, 2, null, null)
+		.AddBox("Nature", 0, null, null, null, null, null, null)
+		.AddBox("AccountIn", 1, null, null, null, null, null, null)
+		.AddBox("AccountOut", 1, null, null, null, null, null, null)
+		.AddBox("Conversion", 2, null, null, null, null, null, null)
+		.AddBox("SettingsMenuClass", 5, null, null, null, null, null, null)
+		.AddBox("SettingsEmailMenuClass", 5, null, null, null, null, null, null)
+		;
 
 	ViewBag.ExtractMenuClass = Model.HL["Reports"];
+	ViewBag.SettingsMenuClass = Model.HL["SettingsMenuClass"];
+	ViewBag.SettingsEmailMenuClass = Model.HL["SettingsEmailMenuClass"];
 }
 
 @if (Model.BlockScreen)

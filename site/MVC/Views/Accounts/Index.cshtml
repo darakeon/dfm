@@ -9,30 +9,46 @@
 	var isUsingAccountsSigns = Model.IsUsingAccountsSigns;
 	var hasAccountsSigns = Model.AccountList.Any(a => a.Sign != AccountSign.None);
 	var isUsingMoveCheck = Model.IsUsingMoveCheck;
+	var isUsingCurrency = Model.IsUsingCurrency;
+	var currencies = Model.AccountList.Select(a => a.Currency).Where(c => c != null).Distinct().Count();
+	var isUsingCurrencyOneMore = Model.IsUsingCurrency && currencies == 1;
+	var isUsingCurrencyEnough = Model.IsUsingCurrency && currencies >= 2;
 
-	var hl = new WizardHL(isUsingMoveCheck, hasAccountsSigns, isUsingAccountsSigns, isUsingCategories, anySchedule, anyAccount)
-		.AddBox("WizardButton", null, null, null, null, null, null, 0)
-		.AddBox("StopButton", null, null, null, null, null, null, 2)
-		.AddBox("TitleClass", null, null, null, null, null, null, 4)
-		.AddBox("NoContent", null, null, null, null, null, null, 6)
-		.AddBox("CreateButton", null, null, 1, null, null, null, 7)
-		.AddBox("Row", null, null, null, null, null, 0, null)
-		.AddBox("Edit", null, null, null, null, null, 1, null)
-		.AddBox("DeleteButton", null, null, null, null, null, 2, null)
-		.AddBox("CloseButton", null, null, null, null, null, 3, null)
-		.AddBox("Name", 0, null, null, 0, null, 4, null)
-		.AddBox("Reports", 0, null, null, 0, null, 4, null)
-		.AddBox("SchedulesMenu", null, null, null, null, 0, null, null)
-		.AddBox("Sign", null, null, 0, null, null, null, null)
-		.AddBox("SignSome", null, 0, null, null, null, null, null)
-		.AddBox("SettingsMenu", null, 2, null, null, null, null, null)
-		.AddBox("SettingsMainMenu", null, 2, null, null, null, null, null)
+	var hl = new WizardHL(isUsingCurrencyEnough, isUsingCurrencyOneMore, isUsingCurrency, isUsingMoveCheck, hasAccountsSigns, isUsingAccountsSigns, isUsingCategories, anySchedule, anyAccount)
+		.AddBox("WizardButton", null, null, null, null, null, null, null, null, null, 0)
+		.AddBox("StopButton", null, null, null, null, null, null, null, null, null, 2)
+		.AddBox("TitleClass", null, null, null, null, null, null, null, null, null, 4)
+		.AddBox("NoContent", null, null, null, null, null, null, null, null, null, 6)
+		.AddBox("CreateButton", null, null, null, null, null, 1, null, null, null, 7)
+		.AddBox("Row", null, null, null, null, null, null, null, null, 0, null)
+		.AddBox("Edit", null, null, 0, null, null, null, null, null, 1, null)
+		.AddBox("DeleteButton", null, null, null, null, null, null, null, null, 2, null)
+		.AddBox("CloseButton", null, null, null, null, null, null, null, null, 3, null)
+		.AddBox("Name", null, null, null, 0, null, null, 0, null, 4, null)
+		.AddBox("Reports", null, null, null, 0, null, null, 0, null, 4, null)
+		.AddBox("SchedulesMenu", null, null, null, null, null, null, null, 0, null, null)
+		.AddBox("Sign", null, null, null, null, null, 0, null, null, null, null)
+		.AddBox("SignSome", null, null, null, null, 0, null, null, null, null, null)
+		.AddBox("SettingsMenu", null, null, null, null, 2, null, null, null, null, null)
+		.AddBox("SettingsMainMenu", null, null, null, null, 2, null, null, null, null, null)
 		;
 
 	ViewBag.WizardButtonClass = hl["WizardButton"];
 	ViewBag.StopButtonClass = hl["StopButton"];
 
-	if (isUsingMoveCheck)
+	if (isUsingCurrencyEnough)
+	{
+		ViewBag.WizardPlus = "CurrencyEnough";
+	}
+	else if (isUsingCurrencyOneMore)
+	{
+		ViewBag.WizardPlus = "CurrencyOneMore";
+	}
+	else if (isUsingCurrency)
+	{
+		ViewBag.WizardPlus = "Currency";
+	}
+	else if (isUsingMoveCheck)
 	{
 		ViewBag.WizardPlus = "MoveCheck";
 	}
