@@ -206,10 +206,6 @@ namespace DFM.BusinessLogic.Tests.Steps
 				repos.Schedule.Disable(schedule.Guid, schedule.User);
 			}
 
-			Directory.GetFiles(Cfg.LogErrorsPath, "*.log")
-				.ToList()
-				.ForEach(File.Delete);
-
 			if (current.IsAuthenticated)
 				current.Clear();
 
