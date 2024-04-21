@@ -1,0 +1,30 @@
+{
+	"data": {
+		"is-using-categories": true,
+		"account-list": [
+			{
+				"currency": "BRL",
+				"text": "Reais",
+				"value": "reais"
+			},
+			{
+				"currency": "EUR",
+				"text": "Euros",
+				"value": "euros"
+			}
+		],
+		"category-list": [
+			{
+				"text": "Category",
+				"value": "category"
+			}
+		]
+	},
+	"environment": {
+		"theme": {
+			"code": -2,
+			"text": "light-sober"
+		},
+		"language": "pt-br"
+	}
+}
