@@ -14,8 +14,9 @@ This is the list of project releases, past and current. To see tasks that are st
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="12.0.0.0"></a>12.0.0.0 :dragon: <sup>`3`</sup>
+## <a name="12.0.0.0"></a>12.0.0.0 :dragon: <sup>`4`</sup>
 - [ ] Deploy images to docker hub via CI
+- [x] `240421>240421` Add buy me a coffee (chocolate) button
 - [x] `240406>240407` Check robot inactive auto deletion
 - [ ] `240406>......` Add transfer with conversion (value in/out)
 
