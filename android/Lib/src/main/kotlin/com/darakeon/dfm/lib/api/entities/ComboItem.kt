@@ -6,18 +6,19 @@ import android.widget.TextView
 import com.darakeon.dfm.lib.extensions.complete
 import kotlin.reflect.KMutableProperty0
 
-data class ComboItem(
+open class ComboItem(
 	val text: String,
 	val value: String?,
-) {
-	constructor(text: String, value: String?, currency: String) : this(text, value) {
-		this.currency = currency
-	}
+)
 
-	var currency: String? = null
-}
+class AccountComboItem(
+	text: String,
+	value: String?,
+	val currency: String,
+) : ComboItem(text, value)
 
-fun Array<ComboItem>.setLabel(field: TextView, value: String?) {
+
+fun <T: ComboItem> Array<T>.setLabel(field: TextView, value: String?) {
 	val saved = this.firstOrNull {
 		it.value == value
 	} ?: return
@@ -25,7 +26,7 @@ fun Array<ComboItem>.setLabel(field: TextView, value: String?) {
 	field.text = saved.text
 }
 
-fun Array<ComboItem>.setCombo(
+fun <T: ComboItem> Array<T>.setCombo(
 	autoComplete: AutoCompleteTextView,
 	picker: Button,
 	field: KMutableProperty0<String?>,
