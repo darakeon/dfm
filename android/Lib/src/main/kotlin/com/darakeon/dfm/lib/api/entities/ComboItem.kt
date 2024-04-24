@@ -8,8 +8,14 @@ import kotlin.reflect.KMutableProperty0
 
 data class ComboItem(
 	val text: String,
-	val value: String?
-)
+	val value: String?,
+) {
+	constructor(text: String, value: String?, currency: String) : this(text, value) {
+		this.currency = currency
+	}
+
+	var currency: String? = null
+}
 
 fun Array<ComboItem>.setLabel(field: TextView, value: String?) {
 	val saved = this.firstOrNull {

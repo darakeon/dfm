@@ -22,9 +22,9 @@
 	},
 	"environment": {
 		"theme": {
-			"code": -2,
-			"text": "light-sober"
+			"code": 1,
+			"text": "dark-magic"
 		},
-		"language": "pt-br"
+		"language": "pt-BR"
 	}
 }
