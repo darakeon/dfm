@@ -14,7 +14,7 @@ open class ComboItem(
 class AccountComboItem(
 	text: String,
 	value: String?,
-	val currency: String,
+	val currency: String?,
 ) : ComboItem(text, value)
 
 
