@@ -31,7 +31,15 @@ class DetailBoxTest: BaseTest() {
 		val detail = Detail("desc", 3, 2.7)
 		move.detailList.add(detail)
 
-		box = DetailBox(activity, move, detail.description, detail.amount, detail.value)
+		box = DetailBox(
+			activity,
+			move,
+			detail.description,
+			detail.amount,
+			detail.value,
+			detail.conversion,
+			false,
+		)
 
 		box.tag = "detail"
 	}

@@ -13,18 +13,24 @@ class DetailBox(
 	private var move: Move,
 	private var description: String,
 	private var amount: Int,
-	private var value: Double
+	private var value: Double,
+	private var conversion: Double?,
+	showConversion: Boolean,
 ) : LinearLayout(context) {
 	constructor(context: Context) : this(
 		context,
 		Move(),
 		"",
 		context.resources.getInteger(R.integer.amount_default),
-		0.0
+		0.0,
+		null,
+		false,
 	)
 
 	init {
 		inflate(context, R.layout.moves_detail, this)
+
+		val decimalFormatter = DecimalFormat("0.00")
 
 		val descriptionField = findViewById<TextView>(R.id.detail_description)
 		descriptionField.text = description
@@ -33,15 +39,24 @@ class DetailBox(
 		amountField.text = String.format("%d", amount)
 
 		val valueField = findViewById<TextView>(R.id.detail_value)
-		val formatter = DecimalFormat("0.00")
-		valueField.text = formatter.format(value)
+		valueField.text = decimalFormatter.format(value)
+
+		val conversionField = findViewById<TextView>(R.id.detail_conversion)
+		conversionField.text =
+			if (conversion != null)
+				decimalFormatter.format(conversion)
+			else
+				null
+
+		conversionField.visibility =
+			if (showConversion) VISIBLE else GONE
 
 		val buttonField = findViewById<TextView>(R.id.detail_remove)
 		buttonField.setOnClickListener { removeDetail() }
 	}
 
 	private fun removeDetail() : Boolean {
-		move.remove(description, amount, value)
+		move.remove(description, amount, value, conversion)
 		(parent as ViewGroup).removeView(this)
 		return true
 	}

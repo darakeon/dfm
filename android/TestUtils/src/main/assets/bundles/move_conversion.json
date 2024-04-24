@@ -1,0 +1,17 @@
+{
+	"guid": "01234567-89AB-CDEF-FEDC-BA9876543210",
+	"description": "move",
+	"year": 2020,
+	"month": 3,
+	"day": 8,
+
+	"nature": {
+		"code": 2,
+		"text": "transfer"
+	},
+	"categoryName": "category",
+	"outUrl": "out_eur",
+	"inUrl": "in_brl",
+	"value": 1,
+	"conversion": 5
+}
