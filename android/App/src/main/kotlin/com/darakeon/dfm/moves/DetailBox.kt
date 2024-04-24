@@ -40,7 +40,11 @@ class DetailBox(
 		valueField.text = decimalFormatter.format(value)
 
 		val conversionField = findViewById<TextView>(R.id.detail_conversion)
-		conversionField.text = decimalFormatter.format(conversion)
+		conversionField.text =
+			if (conversion != null)
+				decimalFormatter.format(conversion)
+			else
+				null
 
 		val buttonField = findViewById<TextView>(R.id.detail_remove)
 		buttonField.setOnClickListener { removeDetail() }
