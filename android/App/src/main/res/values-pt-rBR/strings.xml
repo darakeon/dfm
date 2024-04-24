@@ -47,6 +47,8 @@
 	<string name="category">categoria</string>
 	<string name="account">conta</string>
 	<string name="value">valor</string>
+	<string name="conversion">conversão</string>
+	<string name="conversion_abbreviation">convers.</string>
 	<string name="amount">qte</string>
 	<string name="use_detailed">ir para detalhados</string>
 	<string name="use_simple">usar valor simplificado</string>

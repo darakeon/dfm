@@ -3,4 +3,10 @@
 	<integer name="welcome_columns">2</integer>
 	<integer name="welcome_column_move">2</integer>
 	<integer name="service_seconds_interval">300</integer>
+
+	<integer name="move_detail_description_weight">7</integer>
+	<integer name="move_detail_amount_weight">3</integer>
+	<integer name="move_detail_value_weight">4</integer>
+	<integer name="move_detail_conversion_weight">4</integer>
+	<integer name="move_detail_button_weight">2</integer>
 </resources>

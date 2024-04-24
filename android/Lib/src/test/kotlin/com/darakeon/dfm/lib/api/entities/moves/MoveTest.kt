@@ -57,7 +57,7 @@ class MoveTest: BaseTest() {
 	fun add() {
 		val move = Move()
 
-		move.add("desc", 1, 1.0)
+		move.add("desc", 1, 1.0, null)
 
 		assertThat(
 			move.detailList,
@@ -66,15 +66,40 @@ class MoveTest: BaseTest() {
 	}
 
 	@Test
+	fun addConversion() {
+		val move = Move()
+
+		move.add("desc", 1, 1.0, 5.0)
+
+		assertThat(
+			move.detailList,
+			hasItem(Detail("desc", 1, 1.0, 5.0))
+		)
+	}
+
+	@Test
 	fun remove() {
 		val move = Move()
 
-		move.add("desc", 1, 1.0)
-		move.remove("desc", 1, 1.0)
+		move.add("desc", 1, 1.0, null)
+		move.remove("desc", 1, 1.0, null)
 
 		assertThat(
 			move.detailList,
 			not(hasItem(Detail("desc", 1, 1.0)))
+		)
+	}
+
+	@Test
+	fun removeConversion() {
+		val move = Move()
+
+		move.add("desc", 1, 1.0, 5.0)
+		move.remove("desc", 1, 1.0, 5.0)
+
+		assertThat(
+			move.detailList,
+			not(hasItem(Detail("desc", 1, 1.0, 5.0)))
 		)
 	}
 
@@ -86,6 +111,16 @@ class MoveTest: BaseTest() {
 		move.setValue(value)
 
 		assertThat(move.value, `is`(3.27))
+	}
+
+	@Test
+	fun setConversion() {
+		val move = Move()
+
+		val conversion = "3.27".getDecimal()
+		move.setConversion(conversion)
+
+		assertThat(move.conversion, `is`(3.27))
 	}
 
 	@Test
