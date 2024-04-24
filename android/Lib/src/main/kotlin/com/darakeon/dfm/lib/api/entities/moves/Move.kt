@@ -20,6 +20,7 @@ data class Move (
 	var inUrl: String? = null,
 
 	var value: Double? = null,
+	var conversion: Double? = null,
 	var detailList: MutableList<Detail> = ArrayList(),
 
 	var checked: Boolean = false
@@ -41,14 +42,14 @@ data class Move (
 			day = value.day
 		}
 
-	fun add(description: String, amount: Int, value: Double) {
-		val detail = Detail(description, amount, value)
+	fun add(description: String, amount: Int, value: Double, conversion: Double?) {
+		val detail = Detail(description, amount, value, conversion)
 		detailList.add(detail)
 	}
 
-	fun remove(description: String, amount: Int, value: Double) {
+	fun remove(description: String, amount: Int, value: Double, conversion: Double?) {
 		for (detail in detailList) {
-			if (detail == Detail(description, amount, value)) {
+			if (detail == Detail(description, amount, value, conversion)) {
 				detailList.remove(detail)
 				return
 			}
@@ -57,6 +58,10 @@ data class Move (
 
 	fun setValue(value: String) {
 		this.value = value.toDoubleByCulture() ?: 0.0
+	}
+
+	fun setConversion(conversion: String) {
+		this.conversion = conversion.toDoubleByCulture() ?: 0.0
 	}
 
 	fun setDefaultData(accountUrl: String, useCategories: Boolean) {

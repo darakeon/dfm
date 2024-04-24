@@ -30,6 +30,15 @@
 		android:id="@+id/detail_value"
 		/>
 
+	<TextView
+		android:layout_width="0dp"
+		android:layout_weight="6"
+		android:layout_height="wrap_content"
+		android:paddingHorizontal="@dimen/padding_detail_field"
+		android:id="@+id/detail_conversion"
+		android:visibility="gone"
+		/>
+
 	<Button
 		android:id="@+id/detail_remove"
 		android:layout_width="0dp"

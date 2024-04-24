@@ -13,6 +13,7 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.databinding.MovesBinding
 import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
+import com.darakeon.dfm.lib.api.entities.AccountComboItem
 import com.darakeon.dfm.lib.api.entities.ComboItem
 import com.darakeon.dfm.lib.api.entities.Date
 import com.darakeon.dfm.lib.api.entities.moves.Move
@@ -58,9 +59,19 @@ class MovesActivityTest: BaseTest() {
 		activity = mocker.get()
 
 		activity.setValueTyped("isUsingCategories", true)
-		val categoryCombo = arrayListOf(ComboItem("My Category", "category"))
+
+		val categoryCombo = arrayListOf(
+			ComboItem("My Category", "category"),
+		)
 		activity.setValueTyped("categoryCombo", categoryCombo)
-		val accountCombo = arrayListOf(ComboItem("My Out", "out"),ComboItem("My In", "in"))
+
+		val accountCombo = arrayListOf(
+			AccountComboItem("My Out", "out", null),
+			AccountComboItem("My In", "in", null),
+			AccountComboItem("My In BRL", "in_brl", "BRL"),
+			AccountComboItem("My Out EUR", "out_eur", "EUR"),
+		)
+
 		activity.setValueTyped("accountCombo", accountCombo)
 	}
 
@@ -92,10 +103,12 @@ class MovesActivityTest: BaseTest() {
 		assertNotNull(activity.findViewById(R.id.account_in_picker))
 		assertNotNull(activity.findViewById(R.id.simple_value))
 		assertNotNull(activity.findViewById(R.id.value))
+		assertNotNull(activity.findViewById(R.id.conversion))
 		assertNotNull(activity.findViewById(R.id.detailed_value))
 		assertNotNull(activity.findViewById(R.id.detail_description))
 		assertNotNull(activity.findViewById(R.id.detail_amount))
 		assertNotNull(activity.findViewById(R.id.detail_value))
+		assertNotNull(activity.findViewById(R.id.detail_conversion))
 		assertNotNull(activity.findViewById(R.id.details))
 	}
 
@@ -473,6 +486,41 @@ class MovesActivityTest: BaseTest() {
 	}
 
 	@Test
+	fun populateResponseDetailsConversion() {
+		val saved = Bundle()
+		saved.putString("move", readBundle("move_detailed_conversion"))
+
+		activity.onCreate(saved, null)
+
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		val move = activity.getPrivate<Move>("move")
+
+		assertTrue(move.isDetailed)
+
+		assertThat(binding.simpleValue.visibility, `is`(GONE))
+		assertThat(binding.detailedValue.visibility, `is`(VISIBLE))
+
+		assertThat(binding.details.childCount, `is`(2))
+
+		val detail1 = binding.details.getChildAt(0) as DetailBox
+		val getText1 = { id: Int -> detail1.findViewById<TextView>(id).text.toString() }
+		assertThat(getText1(R.id.detail_description), `is`("detail 1"))
+		assertThat(getText1(R.id.detail_amount), `is`("1"))
+		assertThat(getText1(R.id.detail_value), `is`("27.00".getDecimal()))
+		assertThat(getText1(R.id.detail_conversion), `is`("135.00".getDecimal()))
+
+		val detail2 = binding.details.getChildAt(1) as DetailBox
+		val getText2 = { id: Int -> detail2.findViewById<TextView>(id).text.toString() }
+		assertThat(getText2(R.id.detail_description), `is`("detail 2"))
+		assertThat(getText2(R.id.detail_amount), `is`("2"))
+		assertThat(getText2(R.id.detail_value), `is`("54.00".getDecimal()))
+		assertThat(getText2(R.id.detail_conversion), `is`("270.00".getDecimal()))
+	}
+
+	@Test
 	fun populateResponseValue() {
 		val saved = Bundle()
 		saved.putString("move", readBundle("move_single_value"))
@@ -494,6 +542,36 @@ class MovesActivityTest: BaseTest() {
 
 		binding.value.setText("2")
 		assertThat(move.value, `is`(2.0))
+
+		assertThat(binding.details.childCount, `is`(0))
+	}
+
+	@Test
+	fun populateResponseConversion() {
+		val saved = Bundle()
+		saved.putString("move", readBundle("move_conversion"))
+
+		activity.onCreate(saved, null)
+
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		val move = activity.getPrivate<Move>("move")
+
+		assertFalse(move.isDetailed)
+
+		assertThat(binding.simpleValue.visibility, `is`(VISIBLE))
+		assertThat(binding.detailedValue.visibility, `is`(GONE))
+
+		assertThat(binding.value.text.toString(), `is`("1.00".getDecimal()))
+		assertThat(binding.conversion.text.toString(), `is`("5.00".getDecimal()))
+
+		binding.value.setText("2")
+		assertThat(move.value, `is`(2.0))
+
+		binding.conversion.setText("10")
+		assertThat(move.conversion, `is`(10.0))
 
 		assertThat(binding.details.childCount, `is`(0))
 	}
@@ -682,7 +760,7 @@ class MovesActivityTest: BaseTest() {
 		val move = activity.getPrivate<Move>("move")
 
 		assertThat(binding.accountIn.text.toString(), `is`(""))
-		assert(move.inUrl.isNullOrEmpty())
+		assertNull(move.inUrl)
 
 		activity.changeAccountIn()
 		shadowOf(getLatestAlertDialog()).clickOnItem(2)
@@ -843,6 +921,44 @@ class MovesActivityTest: BaseTest() {
 	}
 
 	@Test
+	fun addDetailConversion() {
+		val saved = Bundle()
+		activity.onCreate(saved, null)
+
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		val move = activity.getPrivate<Move>("move")
+
+		binding.detailDescription.setText("cat")
+		binding.detailAmount.setText("18")
+		binding.detailValue.setText("3.14".getDecimal())
+		binding.detailConversion.setText("15.70".getDecimal())
+
+		activity.addDetail(View(activity))
+
+		assertThat(binding.detailDescription.text.toString(), `is`(""))
+		assertThat(binding.detailAmount.text.toString(), `is`("1"))
+		assertThat(binding.detailValue.text.toString(), `is`(""))
+		assertThat(binding.detailConversion.text.toString(), `is`(""))
+
+		assertThat(move.detailList.size, `is`(1))
+		assertThat(move.detailList[0].description, `is`("cat"))
+		assertThat(move.detailList[0].amount, `is`(18))
+		assertThat(move.detailList[0].value, `is`(3.14))
+		assertThat(move.detailList[0].conversion, `is`(15.7))
+
+		assertThat(binding.details.childCount, `is`(1))
+		val detail = binding.details.getChildAt(0) as DetailBox
+		val getText = { id: Int -> detail.findViewById<TextView>(id).text.toString() }
+		assertThat(getText(R.id.detail_description), `is`("cat"))
+		assertThat(getText(R.id.detail_amount), `is`("18"))
+		assertThat(getText(R.id.detail_value), `is`("3.14".getDecimal()))
+		assertThat(getText(R.id.detail_conversion), `is`("15.70".getDecimal()))
+	}
+
+	@Test
 	fun addDetailNoDescription() {
 		val saved = Bundle()
 		activity.onCreate(saved, null)
@@ -979,5 +1095,57 @@ class MovesActivityTest: BaseTest() {
 		val requestPath = mocker.server.lastPath()
 		val urlGuid = requestPath.split('/').last()
 		assertThat(urlGuid, `is`(guid.toString()))
+	}
+
+	@Test
+	fun accountWithoutConversion() {
+		val saved = Bundle()
+		activity.onCreate(saved, null)
+
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		val move = activity.getPrivate<Move>("move")
+
+		assertThat(binding.accountIn.text.toString(), `is`(""))
+		assert(move.inUrl.isNullOrEmpty())
+
+		binding.accountIn.append("My In")
+		binding.accountOut.append("My Out")
+
+		assertThat(move.inUrl, `is`("in"))
+		assertThat(move.outUrl, `is`("out"))
+		assertThat(binding.conversion.visibility, `is`(GONE))
+
+		activity.useDetailed(binding.detailedValue)
+
+		assertThat(binding.detailConversion.visibility, `is`(GONE))
+	}
+
+	@Test
+	fun accountWithConversion() {
+		val saved = Bundle()
+		activity.onCreate(saved, null)
+
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		val move = activity.getPrivate<Move>("move")
+
+		assertThat(binding.accountIn.text.toString(), `is`(""))
+		assert(move.inUrl.isNullOrEmpty())
+
+		binding.accountIn.append("My In BRL")
+		binding.accountOut.append("My Out EUR")
+
+		assertThat(move.inUrl, `is`("in_brl"))
+		assertThat(move.outUrl, `is`("out_eur"))
+		assertThat(binding.conversion.visibility, `is`(VISIBLE))
+
+		activity.useDetailed(binding.detailedValue)
+
+		assertThat(binding.detailConversion.visibility, `is`(VISIBLE))
 	}
 }

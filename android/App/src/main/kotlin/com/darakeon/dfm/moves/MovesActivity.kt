@@ -151,6 +151,7 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 
 		populateAccounts()
 		setNatureFromAccounts()
+		setConversionVisibility()
 		populateValue()
 
 		loadedScreen = true
@@ -257,6 +258,7 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 		)
 		binding.accountOut.onChange {
 			setNatureFromAccounts()
+			setConversionVisibility()
 		}
 
 		accountCombo.setCombo(
@@ -267,6 +269,7 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 		)
 		binding.accountIn.onChange {
 			setNatureFromAccounts()
+			setConversionVisibility()
 		}
 	}
 
@@ -307,18 +310,36 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 		}
 	}
 
+	private fun setConversionVisibility() {
+		val outCurrency = accountCombo.find {
+				a -> a.text == binding.accountOut.text.toString()
+		}?.currency
+
+		val inCurrency = accountCombo.find {
+				a -> a.text == binding.accountIn.text.toString()
+		}?.currency
+
+		binding.conversion.visibility =
+			if (outCurrency == inCurrency) GONE else VISIBLE
+
+		binding.detailConversion.visibility =
+			if (outCurrency == inCurrency) GONE else VISIBLE
+	}
+
 	private fun populateValue() {
 		if (move.detailList.isNotEmpty()) {
 			useDetailed()
 			move.detailList.forEach {
-				addViewDetail(move, it.description, it.amount, it.value)
+				addViewDetail(move, it.description, it.amount, it.value, it.conversion)
 			}
 		} else if (move.value != null) {
 			useSimple()
 			binding.value.setText(String.format("%1$,.2f", move.value))
+			binding.conversion.setText(String.format("%1$,.2f", move.conversion))
 		}
 
 		binding.value.onChange { move.setValue(it) }
+		binding.conversion.onChange { move.setConversion(it) }
 	}
 
 	private fun useDetailed() {
@@ -332,8 +353,16 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 		scrollToTheEnd(binding.detailDescription)
 	}
 
-	private fun addViewDetail(move: Move, description: String, amount: Int, value: Double) {
-		val row = DetailBox(this, move, description, amount, value)
+	private fun addViewDetail(
+		move: Move,
+		description: String,
+		amount: Int,
+		value: Double,
+		conversion: Double?,
+	) {
+		val row = DetailBox(
+			this, move, description, amount, value, conversion
+		)
 		binding.details.addView(row)
 	}
 
@@ -374,6 +403,7 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 		val description = binding.detailDescription.text.toString()
 		val amount = binding.detailAmount.text.toString().toIntOrNull()
 		val value = binding.detailValue.text.toString().toDoubleByCulture()
+		val conversion = binding.detailConversion.text.toString().toDoubleByCulture()
 
 		if (description.isEmpty() || amount == null || value == null) {
 			alertError(R.string.fill_all)
@@ -383,10 +413,11 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 		binding.detailDescription.setText("")
 		binding.detailAmount.setText(amountDefault)
 		binding.detailValue.setText("")
+		binding.detailConversion.setText("")
 
-		move.add(description, amount, value)
+		move.add(description, amount, value, conversion)
 
-		addViewDetail(move, description, amount, value)
+		addViewDetail(move, description, amount, value, conversion)
 
 		scrollToTheEnd(binding.detailDescription)
 	}

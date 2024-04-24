@@ -99,4 +99,5 @@
 	<string name="title_activity_terms">Termos de Uso</string>
 	<string name="effective_date">início de vigência: %1$s</string>
     <string name="accept_terms">Entendi e concordo com os Termos de Uso</string>
+    <string name="conversion">conversão</string>
 </resources>

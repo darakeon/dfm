@@ -99,4 +99,5 @@
 	<string name="title_activity_terms">Terms of Use</string>
 	<string name="effective_date">effective date: %1$s</string>
     <string name="accept_terms">I understood and agree with the Terms of Use</string>
+    <string name="conversion">conversion</string>
 </resources>

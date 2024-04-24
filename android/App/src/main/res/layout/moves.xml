@@ -236,23 +236,42 @@
 					android:orientation="horizontal"
 					>
 
-					<EditText
-						android:id="@+id/value"
+					<LinearLayout
 						android:layout_width="0dp"
 						android:layout_weight="1"
 						android:layout_height="wrap_content"
-						android:inputType="numberDecimal"
-						android:digits="0123456789,."
-						android:hint="@string/value"
-						android:autofillHints="value"
-						android:imeOptions="actionDone"
-						/>
+						android:orientation="vertical">
+
+						<EditText
+							android:id="@+id/value"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:inputType="numberDecimal"
+							android:digits="0123456789,."
+							android:hint="@string/value"
+							android:autofillHints="value"
+							android:imeOptions="actionDone"
+							/>
+
+						<EditText
+							android:id="@+id/conversion"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:inputType="numberDecimal"
+							android:digits="0123456789,."
+							android:hint="@string/conversion"
+							android:autofillHints="value"
+							android:imeOptions="actionDone"
+							android:visibility="gone"
+							/>
+
+					</LinearLayout>
 
 					<Button
 						android:text="@string/use_detailed"
 						android:textSize="@dimen/mini_button_font"
 						android:layout_width="wrap_content"
-						android:layout_height="@dimen/mini_button_height"
+						android:layout_height="match_parent"
 						android:layout_margin="@dimen/button_margin"
 						android:onClick="useDetailed"
 						/>
@@ -313,6 +332,19 @@
 						android:hint="@string/value"
 						android:autofillHints="value"
 						android:imeOptions="actionDone"
+						/>
+					<EditText
+						android:id="@+id/detail_conversion"
+						android:textSize="14sp"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_columnWeight="6"
+						android:inputType="numberDecimal"
+						android:digits="0123456789,."
+						android:hint="@string/conversion"
+						android:autofillHints="conversion"
+						android:imeOptions="actionDone"
+						android:visibility="gone"
 						/>
 					<Button
 						android:text="@string/add_detail"
