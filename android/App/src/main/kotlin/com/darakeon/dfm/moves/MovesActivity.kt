@@ -319,11 +319,15 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 				a -> a.text == binding.accountIn.text.toString()
 		}?.currency
 
-		binding.conversion.visibility =
-			if (outCurrency == inCurrency) GONE else VISIBLE
+		val showConversion =
+			outCurrency != inCurrency
+				&& outCurrency != null
+				&& inCurrency != null
 
-		binding.detailConversion.visibility =
-			if (outCurrency == inCurrency) GONE else VISIBLE
+		val conversionVisibility = if (showConversion) VISIBLE else GONE
+
+		binding.conversion.visibility = conversionVisibility
+		binding.detailConversion.visibility = conversionVisibility
 	}
 
 	private fun populateValue() {

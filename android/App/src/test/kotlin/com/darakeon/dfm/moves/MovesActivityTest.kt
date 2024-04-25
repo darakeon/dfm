@@ -1148,4 +1148,54 @@ class MovesActivityTest: BaseTest() {
 
 		assertThat(binding.detailConversion.visibility, `is`(VISIBLE))
 	}
+
+	@Test
+	fun accountWithoutConversionBecauseJustOut() {
+		val saved = Bundle()
+		activity.onCreate(saved, null)
+
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		val move = activity.getPrivate<Move>("move")
+
+		assertThat(binding.accountIn.text.toString(), `is`(""))
+		assert(move.inUrl.isNullOrEmpty())
+
+		binding.accountOut.append("My Out EUR")
+
+		assertNull(move.inUrl)
+		assertThat(move.outUrl, `is`("out_eur"))
+		assertThat(binding.conversion.visibility, `is`(GONE))
+
+		activity.useDetailed(binding.detailedValue)
+
+		assertThat(binding.detailConversion.visibility, `is`(GONE))
+	}
+
+	@Test
+	fun accountWithoutConversionBecauseJustIn() {
+		val saved = Bundle()
+		activity.onCreate(saved, null)
+
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		val move = activity.getPrivate<Move>("move")
+
+		assertThat(binding.accountIn.text.toString(), `is`(""))
+		assert(move.inUrl.isNullOrEmpty())
+
+		binding.accountIn.append("My In BRL")
+
+		assertThat(move.inUrl, `is`("in_brl"))
+		assertNull(move.outUrl)
+		assertThat(binding.conversion.visibility, `is`(GONE))
+
+		activity.useDetailed(binding.detailedValue)
+
+		assertThat(binding.detailConversion.visibility, `is`(GONE))
+	}
 }
