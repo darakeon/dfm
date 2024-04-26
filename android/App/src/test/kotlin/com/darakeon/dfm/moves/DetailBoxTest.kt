@@ -38,6 +38,7 @@ class DetailBoxTest: BaseTest() {
 			detail.amount,
 			detail.value,
 			detail.conversion,
+			false,
 		)
 
 		box.tag = "detail"

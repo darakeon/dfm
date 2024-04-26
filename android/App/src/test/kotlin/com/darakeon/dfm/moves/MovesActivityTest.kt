@@ -913,11 +913,15 @@ class MovesActivityTest: BaseTest() {
 		assertThat(move.detailList[0].value, `is`(3.14))
 
 		assertThat(binding.details.childCount, `is`(1))
+
 		val detail = binding.details.getChildAt(0) as DetailBox
-		val getText = { id: Int -> detail.findViewById<TextView>(id).text.toString() }
+		val getField = { id: Int -> detail.findViewById<TextView>(id) }
+		val getText = { id: Int -> getField(id).text.toString() }
+
 		assertThat(getText(R.id.detail_description), `is`("cat"))
 		assertThat(getText(R.id.detail_amount), `is`("18"))
 		assertThat(getText(R.id.detail_value), `is`("3.14".getDecimal()))
+		assertThat(getField(R.id.detail_conversion).visibility, `is`(GONE))
 	}
 
 	@Test
@@ -930,6 +934,9 @@ class MovesActivityTest: BaseTest() {
 		)
 
 		val move = activity.getPrivate<Move>("move")
+
+		binding.accountIn.append("My In BRL")
+		binding.accountOut.append("My Out EUR")
 
 		binding.detailDescription.setText("cat")
 		binding.detailAmount.setText("18")
@@ -950,12 +957,16 @@ class MovesActivityTest: BaseTest() {
 		assertThat(move.detailList[0].conversion, `is`(15.7))
 
 		assertThat(binding.details.childCount, `is`(1))
+
 		val detail = binding.details.getChildAt(0) as DetailBox
-		val getText = { id: Int -> detail.findViewById<TextView>(id).text.toString() }
+		val getField = { id: Int -> detail.findViewById<TextView>(id) }
+		val getText = { id: Int -> getField(id).text.toString() }
+
 		assertThat(getText(R.id.detail_description), `is`("cat"))
 		assertThat(getText(R.id.detail_amount), `is`("18"))
 		assertThat(getText(R.id.detail_value), `is`("3.14".getDecimal()))
 		assertThat(getText(R.id.detail_conversion), `is`("15.70".getDecimal()))
+		assertThat(getField(R.id.detail_conversion).visibility, `is`(VISIBLE))
 	}
 
 	@Test

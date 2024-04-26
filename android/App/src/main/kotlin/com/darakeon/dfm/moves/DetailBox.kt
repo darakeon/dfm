@@ -15,6 +15,7 @@ class DetailBox(
 	private var amount: Int,
 	private var value: Double,
 	private var conversion: Double?,
+	showConversion: Boolean,
 ) : LinearLayout(context) {
 	constructor(context: Context) : this(
 		context,
@@ -23,6 +24,7 @@ class DetailBox(
 		context.resources.getInteger(R.integer.amount_default),
 		0.0,
 		null,
+		false,
 	)
 
 	init {
@@ -45,6 +47,9 @@ class DetailBox(
 				decimalFormatter.format(conversion)
 			else
 				null
+
+		conversionField.visibility =
+			if (showConversion) VISIBLE else GONE
 
 		val buttonField = findViewById<TextView>(R.id.detail_remove)
 		buttonField.setOnClickListener { removeDetail() }

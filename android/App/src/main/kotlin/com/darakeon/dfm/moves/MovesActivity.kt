@@ -311,23 +311,24 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 	}
 
 	private fun setConversionVisibility() {
-		val outCurrency = accountCombo.find {
-				a -> a.text == binding.accountOut.text.toString()
-		}?.currency
-
-		val inCurrency = accountCombo.find {
-				a -> a.text == binding.accountIn.text.toString()
-		}?.currency
-
-		val showConversion =
-			outCurrency != inCurrency
-				&& outCurrency != null
-				&& inCurrency != null
-
-		val conversionVisibility = if (showConversion) VISIBLE else GONE
+		val conversionVisibility = if (showConversion()) VISIBLE else GONE
 
 		binding.conversion.visibility = conversionVisibility
 		binding.detailConversion.visibility = conversionVisibility
+	}
+
+	private fun showConversion(): Boolean {
+		val outCurrency = accountCombo.find {
+			a -> a.text == binding.accountOut.text.toString()
+		}?.currency
+
+		val inCurrency = accountCombo.find {
+			a -> a.text == binding.accountIn.text.toString()
+		}?.currency
+
+		return outCurrency != inCurrency
+			&& outCurrency != null
+			&& inCurrency != null
 	}
 
 	private fun populateValue() {
@@ -365,8 +366,15 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 		conversion: Double?,
 	) {
 		val row = DetailBox(
-			this, move, description, amount, value, conversion
+			this,
+			move,
+			description,
+			amount,
+			value,
+			conversion,
+			showConversion(),
 		)
+
 		binding.details.addView(row)
 	}
 
@@ -419,9 +427,13 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 		binding.detailValue.setText("")
 		binding.detailConversion.setText("")
 
-		move.add(description, amount, value, conversion)
+		move.add(
+			description, amount, value, conversion
+		)
 
-		addViewDetail(move, description, amount, value, conversion)
+		addViewDetail(
+			move, description, amount, value, conversion
+		)
 
 		scrollToTheEnd(binding.detailDescription)
 	}
