@@ -13,14 +13,13 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (54)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (53)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
 | Add category creation (mobile)                                                 | :dragon: |  2  |  4  |  6  |                |
 | Add account creation (mobile)                                                  | :dragon: |  2  |  4  |  6  |                |
 | Add schedule creation (mobile)                                                 | :dragon: |  2  |  4  |  6  |                |
 | Add semgrep to dfm, dk-lib, meak and server                                    | :whale:  |  2  |  4  |  6  |                |
 | [clear headers on nginx](todo/clear-headers.png)                               | :whale:  |  2  |  4  |  6  |                |
-| Create docker core to make publish faster                                      | :sheep:  |  2  |  4  |  6  |                |
 | Check [nginx example configuration](todo/nginx-example.conf)                   | :sheep:  |  2  |  4  |  6  |                |
 | Expire tickets with more than 30 days without access (add to contract)         | :sheep:  |  2  |  4  |  6  |                |
 | Implement [password rules]                                                     | :sheep:  |  2  |  4  |  6  |                |
