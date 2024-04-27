@@ -192,4 +192,7 @@
       - publish_api:
           requires:
             - approve_deploy
+      - publish_robot:
+          requires:
+            - approve_deploy
 
