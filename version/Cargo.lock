@@ -117,7 +117,7 @@ checksum = "06ea2b9bc92be3c2baa9334a323ebca2d6f074ff852cd1d7b11064035cd3868f"
 
 [[package]]
 name = "dfm-version"
-version = "1100.0.1"
+version = "1200.0.0"
 dependencies = [
  "dirs",
  "git2",

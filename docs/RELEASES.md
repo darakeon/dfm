@@ -4,15 +4,21 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#11.0.0.1)
-- [go to version in development](#12.0.0.0)
-- [dev version state](../../12.0.0.0/docs/RELEASES.md#12.0.0.0)
+- [go to published version](#12.0.0.0)
+- [go to version in development](#13.0.0.0)
+- [dev version state](../../13.0.0.0/docs/RELEASES.md#13.0.0.0)
 
 ## Legend
 - :dragon:: at least one huge change (increases first number)
 - :whale:: at least one big change, like a new feature (increases second number)
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="13.0.0.0"></a>13.0.0.0 :dragon: <sup>`4`</sup>
+>>>>> ADD A DEPLOY AUTOMATION TASK
+- [ ] Data import and export (csv, json) (with max request length) [template]
+- [ ] Fix print contract
+- [ ] Warning about 15 minutes windows for runnings schedules
 
 ## <a name="12.0.0.0"></a>12.0.0.0 :dragon: <sup>`4`</sup>
 - [x] `240427>240427` Deploy images to docker hub via CI
