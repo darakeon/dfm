@@ -1248,6 +1248,24 @@ jobs:
           path: architecture/publish
           command: make robot_push
 
+  publish_midna:
+    docker:
+      - image: docker
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Install make
+          command: apk add make
+      - run:
+          name: Login
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - run:
+          name: Build images
+          path: architecture/publish
+          command: make midna_push
+
 workflows:
   version: 2.1
 
@@ -1446,6 +1464,9 @@ workflows:
           requires:
             - approve_deploy
       - publish_robot:
+          requires:
+            - approve_deploy
+      - publish_midna:
           requires:
             - approve_deploy
 

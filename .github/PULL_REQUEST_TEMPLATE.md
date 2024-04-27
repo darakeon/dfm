@@ -9,7 +9,6 @@
 ## Tasks to publish
 
 - [ ] Upgrade version and create new release
-- [ ] Deploy Admin and Tag
 - [ ] Test Site
 - [ ] Test API
 - [ ] Test error handler
