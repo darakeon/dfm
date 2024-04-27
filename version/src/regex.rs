@@ -25,3 +25,8 @@ pub fn replace(text: &str, pattern: &str, replacer: &str) -> Option<String> {
 		None
 	}
 }
+
+pub fn is_match(text: &str, pattern: &str) -> bool {
+	let regex = Regex::new(pattern).unwrap();
+	return regex.is_match(text)
+}

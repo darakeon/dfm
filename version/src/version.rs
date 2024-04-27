@@ -4,7 +4,7 @@ use crate::arguments::ProgramOption;
 use crate::end::{success,throw,throw_format};
 use crate::file::{get_path, get_lines};
 use crate::git::{current_branch,has_pull_request};
-use crate::regex::{extract, extract_line};
+use crate::regex::{extract, extract_line, is_match};
 use crate::todos::add_release;
 
 fn path() -> String { get_path(vec!["..", "docs", "RELEASES.md"]) }
@@ -37,12 +37,17 @@ pub fn create_version(option: &ProgramOption, numbers: Vec<usize>) -> Option<Ver
 	let just_check = option == &ProgramOption::Check;
 
 	let compare = if just_check { prod } else { dev };
-	if branch != "main" && branch != compare {
-		throw_format(12, format!("Branch is '{}', but release is of '{}'", branch, compare));
-	}
 
-	if branch != "main" && version.tasks.len() == 0 {
-		throw(13, "Version without tasks");
+	let should_check = is_match(&branch, pattern);
+
+	if should_check {
+		if branch != compare {
+			throw_format(12, format!("Branch is '{}', but release is of '{}'", branch, compare));
+		}
+
+		if branch != "main" && version.tasks.len() == 0 {
+			throw(13, "Version without tasks");
+		}
 	}
 
 	Some(version)
