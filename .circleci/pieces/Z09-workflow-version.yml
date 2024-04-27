@@ -1,0 +1,25 @@
+  version_:
+    jobs:
+      - trufflehog:
+          filters:
+            branches:
+              only:
+                - /^feature/version.+$/
+                - /^dependabot/cargo/version/.+$/
+      - test_ci:
+          requires:
+            - trufflehog
+      - audit_version_changer:
+          requires:
+            - test_ci
+      - change_version:
+          requires:
+            - test_ci
+            - audit_version_changer
+      - workflow_ran:
+          requires:
+            - trufflehog
+            - test_ci
+            - audit_version_changer
+            - change_version
+

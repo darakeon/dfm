@@ -1,0 +1,45 @@
+  android:
+    jobs:
+      - trufflehog:
+          filters:
+            branches:
+              only:
+                - /^feature/android.+$/
+                - /^dependabot/gradle/android/.+$/
+      - test_ci:
+          requires:
+            - trufflehog
+      - push_docker_android:
+          requires:
+            - test_ci
+      - build_android:
+          requires:
+            - test_ci
+            - push_docker_android
+      - audit_android:
+          requires:
+            - build_android
+      - test_android_lib_debug:
+          requires:
+            - build_android
+      - test_android_lib_release:
+          requires:
+            - build_android
+      - test_android_app_debug:
+          requires:
+            - build_android
+      - test_android_app_release:
+          requires:
+            - build_android
+      - workflow_ran:
+          requires:
+            - trufflehog
+            - test_ci
+            - push_docker_android
+            - build_android
+            - audit_android
+            - test_android_lib_debug
+            - test_android_lib_release
+            - test_android_app_debug
+            - test_android_app_release
+
