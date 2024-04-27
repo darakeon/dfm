@@ -195,4 +195,7 @@
       - publish_robot:
           requires:
             - approve_deploy
+      - publish_midna:
+          requires:
+            - approve_deploy
 
