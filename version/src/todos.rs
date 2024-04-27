@@ -31,7 +31,7 @@ fn process_tasks(mut numbers: Vec<usize>) -> (Vec<String>, Vec<String>) {
 
 	let old_size = todo_list.len();
 
-	while numbers.len() > 0 && line_number <= todo_list.len() {
+	while numbers.len() > 0 && line_number < todo_list.len() {
 		let line = todo_list.get(line_number).unwrap();
 		line_number += 1;
 
