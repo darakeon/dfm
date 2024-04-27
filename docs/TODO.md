@@ -13,7 +13,7 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (52)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (51)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
 | Add category creation (mobile)                                                 | :dragon: |  2  |  4  |  6  |                |
 | Add account creation (mobile)                                                  | :dragon: |  2  |  4  |  6  |                |
@@ -39,7 +39,6 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Add plain text to emails                                                       | :whale:  |  2  |  3  |  5  |                |
 | Enable Copy Move (web+mobile)                                                  | :whale:  |  2  |  3  |  5  |                |
 | Add weekly scheduling                                                          | :sheep:  |  2  |  3  |  5  |                |
-| Check tests of inactive user                                                   | :sheep:  |  2  |  3  |  5  |                |
 | [Lint C#]                                                                      | :ant:    |  2  |  3  |  5  |                |
 | Make default language EN if browser is not PT, ES, IT or FR, otherwise PT      | :sheep:  |  1  |  2  |  5  |                |
 | Remove unused/duplicated errors                                                | :sheep:  |  1  |  2  |  5  |                |
