@@ -13,11 +13,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (49)                                                                      | Type     | Dif | Imp | Pts |
+| Task (46)                                                                      | Type     | Dif | Imp | Pts |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- |
-| Warning about 15 minutes windows for runnings schedules                        | :sheep:  |  1  |  4  |  7  |
-| Fix print contract                                                             | :ant:    |  1  |  4  |  7  |
-| Data import and export (csv, json) (with max request length) [template]        | :dragon: |  2  |  4  |  6  |
 | Implement entities limits (acc opened, cat enabled, moves/month, active sched) | :dragon: |  2  |  4  |  6  |
 | Add semgrep to dfm, dk-lib, meak and server                                    | :whale:  |  2  |  4  |  6  |
 | [clear headers on nginx](todo/clear-headers.png)                               | :whale:  |  2  |  4  |  6  |
