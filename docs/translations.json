@@ -1,10 +1,16 @@
 {
 	"en-us": {
-		"Fix version check in main": "Fix internal check",
+		"Deploy images to docker hub via CI": "Automate one more System deploy step",
+		"Add buy me a coffee (chocolate) button": "Add donation button",
+		"Check robot inactive auto deletion": "Fix in inactive People data deletion",
+		"Add transfer with conversion (value in/out)": "Add possibility of move with currency conversion - feature need to be enabled at Settings",
 		"": null
 	},
 	"pt-br": {
-		"Fix version check in main": "Correção de verificação interna",
+		"Deploy images to docker hub via CI": "Automatização de parte da publicação do Sistema",
+		"Add buy me a coffee (chocolate) button": "Adicionado botão para doações",
+		"Check robot inactive auto deletion": "Correção de exclusão de dados de Pessoas inativas",
+		"Add transfer with conversion (value in/out)": "Adicionada possibilidade de movimentação com conversão de moeda - funcionalidade precisa ser ativada nas Configurações",
 		"": null
 	}
 }
