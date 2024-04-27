@@ -13,7 +13,7 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (53)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (52)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
 | Add category creation (mobile)                                                 | :dragon: |  2  |  4  |  6  |                |
 | Add account creation (mobile)                                                  | :dragon: |  2  |  4  |  6  |                |
@@ -35,7 +35,6 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Fix print contract                                                             | :ant:    |  1  |  3  |  6  |                |
 | Replace XML at UI android by [compose jetpack]                                 | :dragon: |  3  |  4  |  5  |                |
 | Implement security measures suggested by github                                | :sheep:  |  3  |  4  |  5  |                |
-| Check robot deleting users                                                     | :sheep:  |  3  |  4  |  5  |                |
 | add snyk/clair check to docker containers                                      | :whale:  |  2  |  3  |  5  |                |
 | Add plain text to emails                                                       | :whale:  |  2  |  3  |  5  |                |
 | Enable Copy Move (web+mobile)                                                  | :whale:  |  2  |  3  |  5  |                |
