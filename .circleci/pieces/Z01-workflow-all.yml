@@ -189,4 +189,7 @@
       - publish_site:
           requires:
             - approve_deploy
+      - publish_api:
+          requires:
+            - approve_deploy
 
