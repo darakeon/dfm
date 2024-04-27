@@ -1403,6 +1403,9 @@ workflows:
       - deploy_sql_runner:
           requires:
             - approve_deploy
+      - publish_site:
+          requires:
+            - approve_deploy
 
   core:
     jobs:
