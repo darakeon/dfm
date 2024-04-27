@@ -43,7 +43,7 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Make default language EN if browser is not PT, ES, IT or FR, otherwise PT      | :sheep:  |  1  |  2  |  5  |
 | Remove unused/duplicated errors                                                | :sheep:  |  1  |  2  |  5  |
 | Add test for unifying categories used in closed accounts                       | :ant:    |  1  |  2  |  5  |
-| Add user last access to Admin                                                  | :sheep:  |  1  |  2  |  5  |
+| Add user last access reports to Admin (hide username)                          | :sheep:  |  1  |  2  |  5  |
 | Add accessibility to automated tests                                           | :whale:  |  4  |  4  |  4  |
 | Test android tests payloads x .net api objects                                 | :sheep:  |  4  |  4  |  4  |
 | Report with more than one account                                              | :dragon: |  3  |  3  |  4  |
