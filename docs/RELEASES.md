@@ -18,7 +18,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Deploy images to docker hub via CI
 - [x] `240421>240421` Add buy me a coffee (chocolate) button
 - [x] `240406>240407` Check robot inactive auto deletion
-- [ ] `240406>......` Add transfer with conversion (value in/out)
+- [x] `240406>240427` Add transfer with conversion (value in/out)
 
 ## <a name="11.0.0.1"></a>11.0.0.1 :ant: <sup>`1`</sup>
 - [x] `240406>240406` Fix version check in main
