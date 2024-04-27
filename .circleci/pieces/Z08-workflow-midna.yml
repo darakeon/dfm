@@ -1,0 +1,28 @@
+  midna:
+    jobs:
+      - trufflehog:
+          filters:
+            branches:
+              only:
+                - /^feature/midna.+$/
+                - /^dependabot/pip/midna/.+$/
+      - test_ci:
+          requires:
+            - trufflehog
+      - build_midna:
+          requires:
+            - test_ci
+      - audit_midna:
+          requires:
+            - build_midna
+      - test_midna:
+          requires:
+            - build_midna
+      - workflow_ran:
+          requires:
+            - trufflehog
+            - test_ci
+            - build_midna
+            - audit_midna
+            - test_midna
+

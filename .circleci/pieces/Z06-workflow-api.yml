@@ -1,0 +1,32 @@
+  api:
+    jobs:
+      - trufflehog:
+          filters:
+            branches:
+              only:
+                - /^feature/api.+$/
+                - /^dependabot/nuget/api/.+$/
+      - test_ci:
+          requires:
+            - trufflehog
+      - build_core:
+          requires:
+            - test_ci
+      - build_api:
+          requires:
+            - build_core
+      - audit_api:
+          requires:
+            - build_api
+      - test_api:
+          requires:
+            - build_api
+      - workflow_ran:
+          requires:
+            - trufflehog
+            - test_ci
+            - build_core
+            - build_api
+            - audit_api
+            - test_api
+

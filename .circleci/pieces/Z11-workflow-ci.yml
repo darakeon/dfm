@@ -1,0 +1,13 @@
+  ci:
+    jobs:
+      - trufflehog:
+          filters:
+            branches:
+              only:
+                - /^feature/ci.+$/
+      - test_ci:
+          requires:
+            - trufflehog
+      - workflow_ran:
+          requires:
+            - test_ci

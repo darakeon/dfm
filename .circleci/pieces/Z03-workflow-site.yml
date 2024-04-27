@@ -1,0 +1,41 @@
+  site:
+    jobs:
+      - trufflehog:
+          filters:
+            branches:
+              only:
+                - /^feature/site.+$/
+                - /^dependabot/nuget/site/.+$/
+      - test_ci:
+          requires:
+            - trufflehog
+      - push_docker_browser:
+          requires:
+            - test_ci
+      - build_core:
+          requires:
+            - test_ci
+      - build_site:
+          requires:
+            - build_core
+      - audit_site:
+          requires:
+            - build_site
+      - test_site:
+          requires:
+            - build_site
+      - test_browser:
+          requires:
+            - build_site
+            - push_docker_browser
+      - workflow_ran:
+          requires:
+            - trufflehog
+            - test_ci
+            - push_docker_browser
+            - build_core
+            - build_site
+            - audit_site
+            - test_site
+            - test_browser
+

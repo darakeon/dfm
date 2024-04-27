@@ -1,0 +1,32 @@
+  robot:
+    jobs:
+      - trufflehog:
+          filters:
+            branches:
+              only:
+                - /^feature/robot.+$/
+                - /^dependabot/nuget/robot/.+$/
+      - test_ci:
+          requires:
+            - trufflehog
+      - build_core:
+          requires:
+            - test_ci
+      - build_robot:
+          requires:
+            - build_core
+      - audit_robot:
+          requires:
+            - build_robot
+      - check_robot:
+          requires:
+            - build_robot
+      - workflow_ran:
+          requires:
+            - trufflehog
+            - test_ci
+            - build_core
+            - build_robot
+            - audit_robot
+            - check_robot
+
