@@ -1,4 +1,10 @@
 {
+	"12.0.0.0": [
+		"Automatização de parte da publicação do Sistema",
+		"Adicionado botão para doações",
+		"Correção de exclusão de dados de Pessoas inativas",
+		"Adicionada possibilidade de movimentação com conversão de moeda - funcionalidade precisa ser ativada nas Configurações"
+	],
 	"11.0.0.1": [
 		"Correção de verificação interna"
 	],

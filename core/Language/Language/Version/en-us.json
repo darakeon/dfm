@@ -1,4 +1,10 @@
 {
+	"12.0.0.0": [
+		"Automate one more System deploy step",
+		"Add donation button",
+		"Fix in inactive People data deletion",
+		"Add possibility of move with currency conversion - feature need to be enabled at Settings"
+	],
 	"11.0.0.1": [
 		"Fix internal check"
 	],

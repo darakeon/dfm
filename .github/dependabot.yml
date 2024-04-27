@@ -7,7 +7,7 @@ version: 2
 updates:
   - package-ecosystem: "nuget"
     directory: "/core/"
-    target-branch: "12.0.0.0"
+    target-branch: "13.0.0.0"
     schedule:
       interval: "weekly"
     labels:
@@ -18,7 +18,7 @@ updates:
 
   - package-ecosystem: "nuget"
     directory: "/site/"
-    target-branch: "12.0.0.0"
+    target-branch: "13.0.0.0"
     schedule:
       interval: "weekly"
     labels:
@@ -29,7 +29,7 @@ updates:
 
   - package-ecosystem: "nuget"
     directory: "/api/"
-    target-branch: "12.0.0.0"
+    target-branch: "13.0.0.0"
     schedule:
       interval: "weekly"
     labels:
@@ -40,7 +40,7 @@ updates:
 
   - package-ecosystem: "nuget"
     directory: "/robot/"
-    target-branch: "12.0.0.0"
+    target-branch: "13.0.0.0"
     schedule:
       interval: "weekly"
     labels:
@@ -51,7 +51,7 @@ updates:
 
   - package-ecosystem: "npm"
     directory: "/site/Tests/Browser/"
-    target-branch: "12.0.0.0"
+    target-branch: "13.0.0.0"
     schedule:
       interval: "weekly"
     labels:
@@ -62,7 +62,7 @@ updates:
 
   - package-ecosystem: "gradle"
     directory: "/android/"
-    target-branch: "12.0.0.0"
+    target-branch: "13.0.0.0"
     schedule:
       interval: "weekly"
     labels:
@@ -73,7 +73,7 @@ updates:
 
   - package-ecosystem: "docker"
     directory: "/ci/"
-    target-branch: "12.0.0.0"
+    target-branch: "13.0.0.0"
     schedule:
       interval: "weekly"
     labels:
@@ -84,7 +84,7 @@ updates:
 
   - package-ecosystem: "docker"
     directory: "/publish/"
-    target-branch: "12.0.0.0"
+    target-branch: "13.0.0.0"
     schedule:
       interval: "weekly"
     labels:
@@ -95,7 +95,7 @@ updates:
 
   - package-ecosystem: "cargo"
     directory: "/version/"
-    target-branch: "12.0.0.0"
+    target-branch: "13.0.0.0"
     schedule:
       interval: "weekly"
     labels:
@@ -106,7 +106,7 @@ updates:
 
   - package-ecosystem: "pip"
     directory: "/midna/"
-    target-branch: "12.0.0.0"
+    target-branch: "13.0.0.0"
     schedule:
       interval: "weekly"
     labels:

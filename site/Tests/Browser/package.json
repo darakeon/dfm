@@ -1,6 +1,6 @@
 {
 	"name": "browser-tests",
-	"version": "1100.0.1",
+	"version": "1200.0.0",
 	"description": "DfM Site Tests",
 	"main": "index.js",
 	"dependencies": {
