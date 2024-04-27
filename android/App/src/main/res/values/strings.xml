@@ -47,6 +47,8 @@
 	<string name="category">category</string>
 	<string name="account">account</string>
 	<string name="value">value</string>
+	<string name="conversion">conversion</string>
+	<string name="conversion_abbreviation">convers.</string>
 	<string name="amount">qty</string>
 	<string name="use_detailed">go to detailed</string>
 	<string name="use_simple">back to single value</string>
@@ -99,5 +101,4 @@
 	<string name="title_activity_terms">Terms of Use</string>
 	<string name="effective_date">effective date: %1$s</string>
     <string name="accept_terms">I understood and agree with the Terms of Use</string>
-    <string name="conversion">conversion</string>
 </resources>

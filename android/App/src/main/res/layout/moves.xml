@@ -341,7 +341,7 @@
 						android:layout_columnWeight="@integer/move_detail_conversion_weight"
 						android:inputType="numberDecimal"
 						android:digits="0123456789,."
-						android:hint="@string/conversion"
+						android:hint="@string/conversion_abbreviation"
 						android:autofillHints="conversion"
 						android:imeOptions="actionDone"
 						android:visibility="gone"
