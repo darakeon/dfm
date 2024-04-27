@@ -11,6 +11,7 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.databinding.BottomMenuBinding
 import com.darakeon.dfm.databinding.MovesBinding
+import com.darakeon.dfm.databinding.MovesDetailBinding
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.dialogs.getDateDialog
 import com.darakeon.dfm.extensions.ON_CLICK
@@ -311,20 +312,27 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 	}
 
 	private fun setConversionVisibility() {
-		val conversionVisibility = if (showConversion()) VISIBLE else GONE
+		val visibility = if (showConversion()) VISIBLE else GONE
 
-		binding.conversion.visibility = conversionVisibility
-		binding.detailConversion.visibility = conversionVisibility
+		binding.conversion.visibility = visibility
+		binding.detailConversion.visibility = visibility
+
+		for (d: Int in 0..<binding.details.childCount) {
+			val detailBinding = MovesDetailBinding.bind(binding.details.getChildAt(d))
+			detailBinding.detailConversion.visibility = visibility
+		}
 	}
 
 	private fun showConversion(): Boolean {
-		val outCurrency = accountCombo.find {
-			a -> a.text == binding.accountOut.text.toString()
-		}?.currency
+		val accountOut = binding.accountOut.text.toString()
+		val outCurrency = accountCombo
+			.find { a -> a.text == accountOut }
+			?.currency
 
-		val inCurrency = accountCombo.find {
-			a -> a.text == binding.accountIn.text.toString()
-		}?.currency
+		val accountIn = binding.accountIn.text.toString()
+		val inCurrency = accountCombo
+			.find { a -> a.text == accountIn }
+			?.currency
 
 		return outCurrency != inCurrency
 			&& outCurrency != null

@@ -739,7 +739,7 @@ class MovesActivityTest: BaseTest() {
 		assertThat(binding.accountOut.text.toString(), `is`(""))
 		assert(move.outUrl.isNullOrEmpty())
 
-		binding.accountOut.append("My Out")
+		binding.accountOut.setText("My Out")
 
 		assertThat(move.outUrl, `is`("out"))
 
@@ -787,7 +787,7 @@ class MovesActivityTest: BaseTest() {
 		assertThat(binding.accountIn.text.toString(), `is`(""))
 		assert(move.inUrl.isNullOrEmpty())
 
-		binding.accountIn.append("My In")
+		binding.accountIn.setText("My In")
 
 		assertThat(move.inUrl, `is`("in"))
 
@@ -841,8 +841,8 @@ class MovesActivityTest: BaseTest() {
 		assertThat(binding.accountIn.text.toString(), `is`(""))
 		assert(move.inUrl.isNullOrEmpty())
 
-		binding.accountIn.append("My In")
-		binding.accountOut.append("My Out")
+		binding.accountIn.setText("My In")
+		binding.accountOut.setText("My Out")
 
 		assertThat(move.inUrl, `is`("in"))
 		assertThat(move.outUrl, `is`("out"))
@@ -935,8 +935,8 @@ class MovesActivityTest: BaseTest() {
 
 		val move = activity.getPrivate<Move>("move")
 
-		binding.accountIn.append("My In BRL")
-		binding.accountOut.append("My Out EUR")
+		binding.accountIn.setText("My In BRL")
+		binding.accountOut.setText("My Out EUR")
 
 		binding.detailDescription.setText("cat")
 		binding.detailAmount.setText("18")
@@ -966,6 +966,66 @@ class MovesActivityTest: BaseTest() {
 		assertThat(getText(R.id.detail_amount), `is`("18"))
 		assertThat(getText(R.id.detail_value), `is`("3.14".getDecimal()))
 		assertThat(getText(R.id.detail_conversion), `is`("15.70".getDecimal()))
+		assertThat(getField(R.id.detail_conversion).visibility, `is`(VISIBLE))
+	}
+
+	@Test
+	fun addDetailConversionThenHideConversion() {
+		val saved = Bundle()
+		activity.onCreate(saved, null)
+
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		binding.accountIn.setText("My In BRL")
+		binding.accountOut.setText("My Out EUR")
+
+		binding.detailDescription.setText("cat")
+		binding.detailAmount.setText("18")
+		binding.detailValue.setText("3.14".getDecimal())
+		binding.detailConversion.setText("15.70".getDecimal())
+
+		activity.addDetail(View(activity))
+
+		val detail = binding.details.getChildAt(0) as DetailBox
+		val getField = { id: Int -> detail.findViewById<TextView>(id) }
+
+		assertThat(getField(R.id.detail_conversion).visibility, `is`(VISIBLE))
+
+		binding.accountIn.setText("My In")
+		binding.accountOut.setText("My Out")
+
+		assertThat(getField(R.id.detail_conversion).visibility, `is`(GONE))
+	}
+
+	@Test
+	fun addDetailThenShowConversion() {
+		val saved = Bundle()
+		activity.onCreate(saved, null)
+
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		binding.accountIn.setText("My In")
+		binding.accountOut.setText("My Out")
+
+		binding.detailDescription.setText("cat")
+		binding.detailAmount.setText("18")
+		binding.detailValue.setText("3.14".getDecimal())
+		binding.detailConversion.setText("15.70".getDecimal())
+
+		activity.addDetail(View(activity))
+
+		val detail = binding.details.getChildAt(0) as DetailBox
+		val getField = { id: Int -> detail.findViewById<TextView>(id) }
+
+		assertThat(getField(R.id.detail_conversion).visibility, `is`(GONE))
+
+		binding.accountIn.setText("My In BRL")
+		binding.accountOut.setText("My Out EUR")
+
 		assertThat(getField(R.id.detail_conversion).visibility, `is`(VISIBLE))
 	}
 
@@ -1122,8 +1182,8 @@ class MovesActivityTest: BaseTest() {
 		assertThat(binding.accountIn.text.toString(), `is`(""))
 		assert(move.inUrl.isNullOrEmpty())
 
-		binding.accountIn.append("My In")
-		binding.accountOut.append("My Out")
+		binding.accountIn.setText("My In")
+		binding.accountOut.setText("My Out")
 
 		assertThat(move.inUrl, `is`("in"))
 		assertThat(move.outUrl, `is`("out"))
@@ -1148,8 +1208,8 @@ class MovesActivityTest: BaseTest() {
 		assertThat(binding.accountIn.text.toString(), `is`(""))
 		assert(move.inUrl.isNullOrEmpty())
 
-		binding.accountIn.append("My In BRL")
-		binding.accountOut.append("My Out EUR")
+		binding.accountIn.setText("My In BRL")
+		binding.accountOut.setText("My Out EUR")
 
 		assertThat(move.inUrl, `is`("in_brl"))
 		assertThat(move.outUrl, `is`("out_eur"))
@@ -1174,7 +1234,7 @@ class MovesActivityTest: BaseTest() {
 		assertThat(binding.accountIn.text.toString(), `is`(""))
 		assert(move.inUrl.isNullOrEmpty())
 
-		binding.accountOut.append("My Out EUR")
+		binding.accountOut.setText("My Out EUR")
 
 		assertNull(move.inUrl)
 		assertThat(move.outUrl, `is`("out_eur"))
@@ -1199,7 +1259,7 @@ class MovesActivityTest: BaseTest() {
 		assertThat(binding.accountIn.text.toString(), `is`(""))
 		assert(move.inUrl.isNullOrEmpty())
 
-		binding.accountIn.append("My In BRL")
+		binding.accountIn.setText("My In BRL")
 
 		assertThat(move.inUrl, `is`("in_brl"))
 		assertNull(move.outUrl)
