@@ -13,7 +13,7 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (50)                                                                      | Type     | Dif | Imp | Pts |
+| Task (49)                                                                      | Type     | Dif | Imp | Pts |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- |
 | Add category creation (mobile)                                                 | :dragon: |  2  |  4  |  6  |
 | Add account creation (mobile)                                                  | :dragon: |  2  |  4  |  6  |
@@ -52,7 +52,6 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Data import and export (csv, json) (with max request length) [template]        | :dragon: |  2  |  2  |  4  |
 | Create service to translate site ("put in your language")                      | :dragon: |  2  |  2  |  4  |
 | Add nickname field - show it at every screen and e-mail                        | :whale:  |  2  |  2  |  4  |
-| Make ci ignore jobs (nothing changed) (record commit hash in cache)            | :sheep:  |  2  |  2  |  4  |
 | If session drop, call history.go(-2) after re-login                            | :sheep:  |  1  |  1  |  4  |
 | Add category url calculate without diacritics                                  | :sheep:  |  1  |  1  |  4  |
 | Add error for schedule with 0 times                                            | :ant:    |  1  |  1  |  4  |
