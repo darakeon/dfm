@@ -9,7 +9,6 @@
 ## Tasks to publish
 
 - [ ] Upgrade version and create new release
-- [ ] Deploy Robot and Tag
 - [ ] Deploy Admin and Tag
 - [ ] Test Site
 - [ ] Test API
