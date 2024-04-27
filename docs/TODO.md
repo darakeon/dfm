@@ -13,7 +13,7 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (51)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
+| Task (50)                                                                      | Type     | Dif | Imp | Pts | Dependency     |
 | ------------------------------------------------------------------------------ | -------- | --- | --- | --- | -------------- |
 | Add category creation (mobile)                                                 | :dragon: |  2  |  4  |  6  |                |
 | Add account creation (mobile)                                                  | :dragon: |  2  |  4  |  6  |                |
@@ -64,7 +64,6 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Remove GetOrCreate                                                             | :ant:    |  2  |  1  |  3  |                |
 | Separate validators from service/repository                                    | :sheep:  |  4  |  2  |  2  |                |
 | [OCR] to add values to system                                                  | :dragon: |  4  |  2  |  2  |                |
-| Add categorization by detail (configurable)                                    | :dragon: |  4  |  1  |  1  |                |
 | Add [gherkin jest]                                                             | :sheep:  |  4  |  1  |  1  |                |
 
 [compose jetpack]: https://medium.com/@nglauber/jetpack-compose-o-framework-de-ui-do-android-para-os-pr%C3%B3ximos-10-anos-e19adf28e57e
