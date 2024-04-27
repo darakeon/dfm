@@ -1194,6 +1194,24 @@ jobs:
           path: architecture/ci
           command: make build_sql_runner PUSH=1
 
+  publish_site:
+    docker:
+      - image: docker
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Install make
+          command: apk add make
+      - run:
+          name: Login
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - run:
+          name: Build images
+          path: architecture/publish
+          command: make site_push
+
 workflows:
   version: 2.1
 

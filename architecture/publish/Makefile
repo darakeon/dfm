@@ -41,7 +41,7 @@ single:
 push:
 	@make echo COLOR="${RED}" TEXT="Pushing ${MACHINE}..."
 	@docker tag darakeon/dfm-${MACHINE} darakeon/dfm-${MACHINE}:${VERSION}
-	@docker push darakeon/dfm-${MACHINE}
+#	@docker push darakeon/dfm-${MACHINE}
 	@docker push darakeon/dfm-${MACHINE}:${VERSION}
 	@make echo COLOR="${PURPLE}" TEXT="${MACHINE} pushed!"
 
