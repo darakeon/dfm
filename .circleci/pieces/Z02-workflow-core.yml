@@ -1,0 +1,76 @@
+  core:
+    jobs:
+      - trufflehog:
+          filters:
+            branches:
+              only:
+                - /^feature/core.+$/
+                - /^dependabot/nuget/core/.+$/
+      - test_ci:
+          requires:
+            - trufflehog
+      - build_core:
+          requires:
+            - test_ci
+      - audit_core:
+          requires:
+            - build_core
+      - test_core_generic:
+          requires:
+            - build_core
+      - test_core_language:
+          requires:
+            - build_core
+      - test_core_email:
+          requires:
+            - build_core
+      - test_core_exchange:
+          requires:
+            - build_core
+      - test_core_entities:
+          requires:
+            - build_core
+      - test_core_business_logic_auth:
+          requires:
+            - build_core
+      - test_core_business_logic_law:
+          requires:
+            - build_core
+      - test_core_business_logic_admin:
+          requires:
+            - build_core
+      - test_core_business_logic_clip:
+          requires:
+            - build_core
+      - test_core_business_logic_money:
+          requires:
+            - build_core
+      - test_core_business_logic_report:
+          requires:
+            - build_core
+      - test_core_business_logic_robot:
+          requires:
+            - build_core
+      - test_core_business_logic_outside:
+          requires:
+            - build_core
+      - workflow_ran:
+          requires:
+            - trufflehog
+            - test_ci
+            - build_core
+            - audit_core
+            - test_core_generic
+            - test_core_language
+            - test_core_email
+            - test_core_exchange
+            - test_core_entities
+            - test_core_business_logic_auth
+            - test_core_business_logic_law
+            - test_core_business_logic_admin
+            - test_core_business_logic_clip
+            - test_core_business_logic_money
+            - test_core_business_logic_report
+            - test_core_business_logic_robot
+            - test_core_business_logic_outside
+

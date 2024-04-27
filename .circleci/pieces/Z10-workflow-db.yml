@@ -1,0 +1,24 @@
+  db:
+    jobs:
+      - trufflehog:
+          filters:
+            branches:
+              only:
+                - /^feature/db.+$/
+      - test_ci:
+          requires:
+            - trufflehog
+      - push_docker_sql_runner_ci:
+          requires:
+            - test_ci
+      - test_sql_scripts:
+          requires:
+            - test_ci
+            - push_docker_sql_runner_ci
+      - workflow_ran:
+          requires:
+            - trufflehog
+            - test_ci
+            - push_docker_sql_runner_ci
+            - test_sql_scripts
+
