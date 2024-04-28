@@ -18,7 +18,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Deploy APKs using CI
 - [ ] Data import and export (csv, json) (with max request length) [template]
 - [ ] Fix print contract
-- [ ] Warning about 15 minutes windows for runnings schedules
+- [x] `240428>240429` Warning about 15 minutes windows for runnings schedules
 
 ## <a name="12.1.0.0"></a>12.1.0.0 🐳 <sup>`1`</sup>
 - [x] `240803>240803` Put contract in MD at github (change in google play)
