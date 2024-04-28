@@ -75,7 +75,7 @@ fn process_tasks(mut numbers: Vec<usize>) -> (Vec<String>, Vec<String>) {
 
 fn extract_task(text: &str) -> Option<(String, String)> {
 	let pattern =
-		r#"^\| ([^|]+) +\| :(ant|sheep|whale|dragon): +\|  \d  \|  \d  \|  \d  \|$"#;
+		r#"^\| ([^|]+) +\| . +\|  \d  \|  \d  \|  \d  \|$"#;
 
 	let regex = Regex::new(pattern).unwrap();
 
@@ -121,23 +121,23 @@ fn get_next(sizes: Vec<String>, current: String) -> Option<(String, String)> {
 }
 
 fn get_new_version(sizes: Vec<String>) -> Option<(String, String, String)> {
-	let dragon = "dragon".to_string();
+	let dragon = "🐉".to_string();
 
 	if sizes.contains(&dragon) {
 		return Some((r"()(\d+)\.\d+\.\d+\.\d+".to_string(), r".0.0.0".to_string(), dragon));
 	}
 
-	let whale = "whale".to_string();
+	let whale = "🐳".to_string();
 	if sizes.contains(&whale) {
 		return Some((r"(\d+\.)(\d+)\.\d+\.\d+".to_string(), r".0.0".to_string(), whale));
 	}
 
-	let sheep = "sheep".to_string();
+	let sheep = "🐑".to_string();
 	if sizes.contains(&sheep) {
 		return Some((r"(\d+\.\d+\.)(\d+)\.\d+".to_string(), r".0".to_string(), sheep));
 	}
 
-	let ant = "ant".to_string();
+	let ant = "🐜".to_string();
 	if sizes.contains(&ant) {
 		return Some((r"(\d+\.\d+\.\d+\.)(\d+)".to_string(), r"".to_string(), ant));
 	}
