@@ -18,7 +18,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Deploy APKs
 - [ ] Data import and export (csv, json) (with max request length) [template]
 - [ ] Fix print contract
-- [ ] Warning about 15 minutes windows for runnings schedules
+- [x] `240428>240429` Warning about 15 minutes windows for runnings schedules
 
 ## <a name="12.0.0.0"></a>12.0.0.0 🐉 <sup>`4`</sup>
 - [x] `240427>240427` Deploy images to docker hub via CI
