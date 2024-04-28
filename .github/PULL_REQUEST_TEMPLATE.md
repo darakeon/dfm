@@ -12,7 +12,6 @@
 - [ ] Test Site
 - [ ] Test API
 - [ ] Test error handler
-- [ ] Deploy APKs
 - [ ] Upload new mobile prints
 - [ ] Merge PR
 - [ ] Create branch of new dev version and tag of prod version
