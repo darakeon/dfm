@@ -15,7 +15,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="13.0.0.0"></a>13.0.0.0 🐉 <sup>`4`</sup>
->>>>> ADD A DEPLOY AUTOMATION TASK
+- [ ] Deploy APKs
 - [ ] Data import and export (csv, json) (with max request length) [template]
 - [ ] Fix print contract
 - [ ] Warning about 15 minutes windows for runnings schedules
