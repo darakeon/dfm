@@ -24,15 +24,23 @@
 	margin-top: 5px;
 }
 
-.contract .new-clause {
-	font-size: 120%;
-	border: 1px solid var(--highlight-0);
-	padding: 0 0.25em;
-	vertical-align: top;
+@media screen {
+	.contract .new-clause {
+		font-size: 120%;
+		border: 1px solid var(--highlight-0);
+		padding: 0 0.25em;
+		vertical-align: top;
+	}
+
+		.contract .new-clause.new-clause-explain {
+			text-align: right;
+			width: 50%;
+			margin: 0 0 1em 50%;
+		}
 }
 
-	.contract .new-clause.new-clause-explain {
-		text-align: right;
-		width: 50%;
-		margin: 0 0 1em 50%;
+@media print {
+	.contract a[href]::after {
+		content: "";
 	}
+}
