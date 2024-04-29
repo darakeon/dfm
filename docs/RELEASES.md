@@ -16,7 +16,7 @@ This is the list of project releases, past and current. To see tasks that are st
 
 ## <a name="13.0.0.0"></a>13.0.0.0 🐉 <sup>`6`</sup>
 - [ ] Deploy APKs
-- [ ] Data import and export (csv, json) (with max request length) [template]
+- [ ] `240429>......` Data import and export (csv, json) (with max request length) [template]
 - [x] `240429>240429` Fix email links and images
 - [x] `240429>240429` Fix sponsor link to open in another window
 - [x] `240429>240429` Fix print contract
