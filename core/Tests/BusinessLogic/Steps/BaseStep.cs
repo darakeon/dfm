@@ -10,7 +10,7 @@ using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
-using DFM.Exchange;
+using DFM.Exchange.Exporter;
 using DFM.Generic;
 using DFM.Generic.Datetime;
 using DFM.Tests.Util;
@@ -209,6 +209,11 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 		protected Account getOrCreateAccount(String url, Currency? currency = null)
 		{
+			return getOrCreateAccount(url, url, currency);
+		}
+
+		protected Account getOrCreateAccount(String name, String url, Currency? currency = null)
+		{
 			url = url.IntoUrl();
 			var user = repos.User.GetByEmail(current.Email);
 			var account = repos.Account.GetByUrl(url, user);
@@ -226,7 +231,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			service.Admin.CreateAccount(
 				new AccountInfo
 				{
-					Name = url,
+					Name = name,
 					Currency = currency,
 				}
 			);
@@ -449,8 +454,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 		protected const String robotEmail = "robot@dontflymoney.com";
 
 		protected static String userPassword = "password";
-		protected const String mainAccountUrl = "first_account";
-		protected const String mainCategoryName = "first category";
+		protected const String mainAccountUrl = "Account";
+		protected const String mainCategoryName = "Category";
 
 		protected const String accountOutName = "Account Out";
 		protected const String accountInName = "Account In";

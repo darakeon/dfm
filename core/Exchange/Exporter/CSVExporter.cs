@@ -8,9 +8,9 @@ using DFM.Entities;
 using DFM.Generic;
 using DFM.Generic.Datetime;
 
-namespace DFM.Exchange
+namespace DFM.Exchange.Exporter
 {
-	public class CSV : IDisposable
+	public class CSVExporter : IDisposable
 	{
 		private readonly List<MoveCsv> moves = new();
 		private readonly List<Schedule> schedules = new();

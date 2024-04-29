@@ -3,7 +3,7 @@ using System.IO;
 using CsvHelper.Configuration;
 using DFM.Generic;
 
-namespace DFM.Exchange
+namespace DFM.Exchange.Exporter
 {
 	public class LocalFileService : IFileService
 	{

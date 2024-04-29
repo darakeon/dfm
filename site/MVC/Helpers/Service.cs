@@ -1,6 +1,6 @@
 ﻿using System;
 using DFM.BusinessLogic;
-using DFM.Exchange;
+using DFM.Exchange.Exporter;
 using DFM.Generic;
 using Keon.MVC.Cookies;
 using Microsoft.AspNetCore.Http;

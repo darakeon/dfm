@@ -583,7 +583,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				var moveAccountOut =
 					nature switch
 					{
-						MoveNature.Out => accountInfo.Name.IntoUrl(),
+						MoveNature.Out => accountInfo.Name,
 						MoveNature.Transfer => accountOutUrl,
 						_ => null
 					};
@@ -591,7 +591,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				var moveAccountIn =
 					nature switch
 					{
-						MoveNature.In => accountInfo.Name.IntoUrl(),
+						MoveNature.In => accountInfo.Name,
 						MoveNature.Transfer => accountInUrl,
 						_ => null
 					};
@@ -600,8 +600,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 				{
 					Description = description,
 					Nature = nature,
-					OutUrl = moveAccountOut,
-					InUrl = moveAccountIn,
+					OutUrl = moveAccountOut?.IntoUrl(),
+					InUrl = moveAccountIn?.IntoUrl(),
 					CategoryName = category,
 				};
 

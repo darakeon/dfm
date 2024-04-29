@@ -22,6 +22,7 @@ namespace DFM.Entities
 
 		public virtual Move Move { get; set; }
 		public virtual Schedule Schedule { get; set; }
+		public virtual Line Line { get; set; }
 
 		public virtual Guid Guid
 		{

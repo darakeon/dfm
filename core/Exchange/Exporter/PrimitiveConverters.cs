@@ -1,7 +1,7 @@
 ﻿using System;
 using DFM.Generic.Datetime;
 
-namespace DFM.Exchange
+namespace DFM.Exchange.Exporter
 {
 	static class PrimitiveConverters
 	{

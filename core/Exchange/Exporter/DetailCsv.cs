@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities;
 
-namespace DFM.Exchange
+namespace DFM.Exchange.Exporter
 {
 	class DetailCsv
 	{
@@ -15,24 +15,24 @@ namespace DFM.Exchange
 			conversion = detail.Conversion.ToCsv();
 		}
 
-		private String description { get; }
-		private String amount { get; }
-		private String value { get; }
-		private String conversion { get; }
+		private string description { get; }
+		private string amount { get; }
+		private string value { get; }
+		private string conversion { get; }
 
-		public static String Convert(IEnumerable<Detail> details)
+		public static string Convert(IEnumerable<Detail> details)
 		{
 			var list = details
 				.Select(d => new DetailCsv(d))
 				.Select(d => d.ToString());
 
-			return String.Join(" + ", list);
+			return string.Join(" + ", list);
 		}
 
 		public override string ToString()
 		{
 			var conversionText = conversion == null
-				? String.Empty
+				? string.Empty
 				: $"({conversion})";
 
 			var valueText = $"{amount}x{value}{conversionText}";

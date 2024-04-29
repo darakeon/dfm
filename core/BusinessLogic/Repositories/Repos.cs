@@ -1,6 +1,6 @@
 using DFM.Authentication;
 using DFM.BusinessLogic.Response;
-using DFM.Exchange;
+using DFM.Exchange.Exporter;
 using DFM.BusinessLogic.Validators;
 
 namespace DFM.BusinessLogic.Repositories
@@ -9,6 +9,7 @@ namespace DFM.BusinessLogic.Repositories
 	{
 		internal AcceptanceRepository Acceptance;
 		internal AccountRepository Account;
+		internal ArchiveRepository Archive;
 		internal CategoryRepository Category;
 		internal SettingsRepository Settings;
 		internal ContractRepository Contract;
@@ -31,6 +32,7 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			Acceptance = new AcceptanceRepository();
 			Account = new AccountRepository();
+			Archive = new ArchiveRepository();
 			Category = new CategoryRepository();
 			Settings = new SettingsRepository();
 			Contract = new ContractRepository();
@@ -45,5 +47,6 @@ namespace DFM.BusinessLogic.Repositories
 			Tips = new TipsRepository();
 			User = new UserRepository();
 		}
+
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DFM.Entities;
 using TechTalk.SpecFlow;
 
 namespace DFM.Tests.Util
@@ -20,6 +21,35 @@ namespace DFM.Tests.Util
 				",",
 				fields.Select(v => v.Replace("\"", "\\\""))
 			);
+		}
+
+		public static String ToCsv(Line line)
+		{
+			var result =
+				$"{line.Description}," +
+				$"{line.Date:yyyy-MM-dd}," +
+				$"{line.Category}," +
+				$"{line.Nature}," +
+				$"{line.Out}," +
+				$"{line.In}," +
+				$"{line.Value}";
+
+			if (line.Conversion != null)
+			{
+				result += $",{line.Conversion}";
+			}
+
+			foreach (var detail in line.DetailList)
+			{
+				result += $",{detail.Description},{detail.Amount},{detail.Value}";
+
+				if (detail.Conversion != null)
+				{
+					result += $",{detail.Conversion}";
+				}
+			}
+
+			return result;
 		}
 	}
 }

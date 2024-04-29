@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DFM.Exchange;
+namespace DFM.Exchange.Exporter;
 
 public interface IFileService
 {

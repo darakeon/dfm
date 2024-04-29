@@ -29,7 +29,7 @@ namespace DFM.BusinessLogic.Repositories
 			if (account.Name.Length > MaxLen.AccountName)
 				throw Error.TooLargeAccountName.Throw();
 
-			var otherAccount = getByName(account.Name, account.User);
+			var otherAccount = GetByName(account.Name, account.User);
 
 			var accountExistsForUser =
 				otherAccount != null
@@ -51,9 +51,7 @@ namespace DFM.BusinessLogic.Repositories
 		private void complete(Account account)
 		{
 			if (account.Name != null)
-			{
 				account.Url = generateUniqueUrl(account);
-			}
 
 			if (account.ID == 0)
 				account.BeginDate = account.User.Now();
@@ -78,7 +76,7 @@ namespace DFM.BusinessLogic.Repositories
 				: otherAccount;
 		}
 
-		private Account getByName(String name, User user)
+		internal Account GetByName(String name, User user, Error? erroOnNull = null)
 		{
 			var accountList = Where(
 					a => a.Name == name
@@ -88,7 +86,12 @@ namespace DFM.BusinessLogic.Repositories
 			if (accountList.Count > 1)
 				throw Error.DuplicatedAccountName.Throw();
 
-			return accountList.SingleOrDefault();
+			var account = accountList.SingleOrDefault();
+
+			if (account == null && erroOnNull.HasValue)
+				throw erroOnNull.Value.Throw();
+
+			return account;
 		}
 
 		internal Account GetByUrl(String url, User user)

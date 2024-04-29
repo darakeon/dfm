@@ -71,12 +71,18 @@ namespace DFM.BusinessLogic.Exceptions
 		MoveDescriptionRequired = 505,
 		MoveDateRequired = 506,
 		MoveDateInvalid = 507,
+		MoveNatureRequired = 524,
+		MoveNatureInvalid = 525,
 		MoveValueOrDetailRequired = 508,
+		MoveValueInvalid = 508,
 		MoveNotFound = 509,
 		DetailWithoutParent = 510,
 		MoveDetailDescriptionRequired = 511,
 		MoveDetailAmountRequired = 512,
-		MoveDetailValueRequired = 513,
+		MoveDetailAmountInvalid = 512,
+		MoveDetailValueRequired = 527,
+		MoveDetailValueInvalid = 526,
+		MoveDetailConversionInvalid = 528,
 		MoveAlreadyChecked = 514,
 		MoveAlreadyUnchecked = 515,
 		MoveCheckDisabled = 516,
@@ -101,6 +107,9 @@ namespace DFM.BusinessLogic.Exceptions
 		TimeZoneUnknown = 802,
 
 		LogNotFound = 900,
+
+		InvalidArchive = 1000,
+		InvalidArchiveColumn = 1001,
 	}
 
 	public static class ErrorX

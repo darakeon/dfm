@@ -7,7 +7,7 @@ using Amazon.S3.Transfer;
 using CsvHelper.Configuration;
 using DFM.Generic;
 
-namespace DFM.Exchange
+namespace DFM.Exchange.Exporter
 {
 	public class S3Service : IDisposable, IFileService
 	{

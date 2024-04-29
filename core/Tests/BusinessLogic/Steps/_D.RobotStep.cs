@@ -654,8 +654,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"I save the schedule")]
 		public void GivenISaveTheSchedule()
 		{
-			scheduleInfo.OutUrl = accountOut?.Name;
-			scheduleInfo.InUrl = accountIn?.Name;
+			scheduleInfo.OutUrl = accountOut?.Url;
+			scheduleInfo.InUrl = accountIn?.Url;
 			scheduleInfo.CategoryName = categoryName;
 
 			var schedule = service.Robot.SaveSchedule(scheduleInfo);
@@ -693,7 +693,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 				if (row.ContainsKey("Category"))
 					scheduleInfo.CategoryName = row["Category"];
 
-				var scenarioAccountUrl = $"{mainAccountUrl}_{scenarioCode}";
+				var scenarioAccountUrl =
+					$"{mainAccountUrl}_{scenarioCode}".IntoUrl();
 
 				if (scheduleInfo.Nature == MoveNature.Out)
 				{
