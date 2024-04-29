@@ -20,7 +20,7 @@
 
 <div>
 	<div class="contract">
-		<div class="new-clause new-clause-explain">
+		<div class="new-clause new-clause-explain no-print">
 			@Context.Translate("NewClausesHighlighted")
 		</div>
 
@@ -32,7 +32,7 @@
 		var text = Context.Translate("ContractAccept");
 		var link = Context.Translate("ContractTitle");
 
-		<div class="checkbox text-center form-group">
+		<div class="checkbox text-center form-group no-print">
 			<label for="@Html.IdFor(m => m.Accept)">
 				@Html.CheckBoxFor(m => m.Accept)
 				@String.Format(text, link)
@@ -50,7 +50,7 @@
 
 	@if (canSign)
 	{
-		<button class="btn btn-success">
+		<button class="btn btn-success no-print">
 			@Context.Translate("Accept")
 		</button>
 	}
