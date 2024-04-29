@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
@@ -12,6 +13,7 @@ using DFM.Generic;
 using DFM.Generic.Datetime;
 using DFM.Language;
 using DFM.Tests.Util;
+using Keon.Eml;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -800,6 +802,43 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
+		#endregion
+
+		#region Import Moves File
+		[Given(@"a moves file with this content")]
+		public void GivenAMovesFileWithThisContent(Table table)
+		{
+			throw new PendingStepException();
+		}
+
+		[When(@"import moves file")]
+		public void WhenImportMovesFile()
+		{
+			throw new PendingStepException();
+		}
+
+		[Then(@"the pre-import data will be recorded")]
+		public void ThenThePre_ImportDataWillBeRecorded()
+		{
+			throw new PendingStepException();
+		}
+
+		[Then("no email will be sent")]
+		public void ThenNoEmailWillBeSent()
+		{
+			var inboxPath = Path.Combine(
+				"..", "..", "..", "..", "..", "..", "outputs", "inbox"
+			);
+			var inbox = new DirectoryInfo(inboxPath);
+
+			var emails = inbox.GetFiles("*.eml")
+				.Where(f => f.CreationTimeUtc >= testStart)
+				.Select(f => EmlReader.FromFile(f.FullName))
+				.Where(e => e.Headers["To"] == userEmail)
+				.ToList();
+
+			Assert.That(emails.Count, Is.EqualTo(0));
+		}
 		#endregion
 
 		#region MoreThanOne
