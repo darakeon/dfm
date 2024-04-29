@@ -9,7 +9,7 @@ internal class DetailValidator
 {
 	public void Validate(Detail detail)
 	{
-		if (detail.Move == null && detail.Schedule == null)
+		if (detail.Move == null && detail.Schedule == null && detail.Line == null)
 			throw Error.DetailWithoutParent.Throw();
 
 		if (String.IsNullOrEmpty(detail.Description))

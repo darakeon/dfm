@@ -32,6 +32,9 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 			mapping.References(d => d.Schedule)
 				.Nullable();
 
+			mapping.References(d => d.Line)
+				.Nullable();
+
 		}
 	}
 }
