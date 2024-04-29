@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
 using DFM.BusinessLogic.Validators;
 using DFM.Entities;
 using DFM.Entities.Enums;
+using DFM.Exchange.Importer;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Services
@@ -141,6 +144,84 @@ namespace DFM.BusinessLogic.Services
 			var emailStatus = repos.Move.SendEmail(move, OperationType.Deletion, security);
 
 			return new MoveResult(move, emailStatus);
+		}
+
+		public void ImportMovesFile(String csv)
+		{
+			var user = parent.Auth.VerifyUser();
+
+			var importer = new CSVImporter(csv);
+
+			var errors = new Dictionary<ImporterError, Error>
+			{
+				{ ImporterError.Header, Error.InvalidArchiveColumn },
+				{ ImporterError.Empty, Error.InvalidArchive },
+				{ ImporterError.DateRequired, Error.MoveDateRequired },
+				{ ImporterError.DateInvalid, Error.MoveDateInvalid },
+				{ ImporterError.NatureRequired, Error.MoveNatureRequired },
+				{ ImporterError.NatureInvalid, Error.MoveNatureInvalid },
+				{ ImporterError.ValueInvalid, Error.MoveValueInvalid },
+				{ ImporterError.DetailAmountRequired, Error.MoveDetailAmountRequired },
+				{ ImporterError.DetailAmountInvalid, Error.MoveDetailAmountInvalid },
+				{ ImporterError.DetailValueRequired, Error.MoveDetailValueRequired },
+				{ ImporterError.DetailValueInvalid, Error.MoveDetailValueInvalid },
+				{ ImporterError.DetailConversionInvalid, Error.MoveDetailConversionInvalid },
+			};
+
+			if (importer.Error.HasValue)
+				throw errors[importer.Error.Value].Throw();
+
+			var accountsIn = importer.MoveList.Select(m => m.In);
+			var accountsOut = importer.MoveList.Select(m => m.Out);
+
+			var accounts =
+				accountsIn
+					.Union(accountsOut)
+					.Where(a => !String.IsNullOrEmpty(a))
+					.Distinct()
+					.ToDictionary(
+						a => a,
+						a => repos.Account.GetByName(a, user, Error.InvalidAccount)
+					);
+
+			var categories =
+				importer.MoveList
+					.Where(m => !String.IsNullOrEmpty(m.Category))
+					.Select(m => m.Category)
+					.Distinct()
+					.ToDictionary(
+						name => name,
+						name => repos.Category.GetByName(name, user, Error.InvalidCategory)
+					);
+
+			importer.MoveList
+				.Select(m => m.ToMove(accounts, categories))
+				.ToList()
+				.ForEach(m => validate(m, user));
+
+			var archive = new Archive
+			{
+				User = user
+			};
+
+			archive.LineList =
+				importer.MoveList
+					.Select(m => m.ToLine(archive))
+					.ToList();
+
+			inTransaction(
+				"ImportMovesFile",
+				() => repos.Archive.SaveOrUpdate(archive)
+			);
+		}
+
+		private void validate(Move move, User user)
+		{
+			valids.Move.Validate(move, user);
+
+			move.DetailList
+				.ToList()
+				.ForEach(valids.Detail.Validate);
 		}
 	}
 }

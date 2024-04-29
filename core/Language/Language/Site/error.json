@@ -105,7 +105,15 @@
 		"UseCurrencyDisabled": "Currency use is disabled",
 		"AccountsSameCurrencyConversion": "Accounts with same Currency need only one Value",
 		"AccountsDifferentCurrencyNoConversion": "Accounts with different Currency need Conversion",
-		"CurrencyInOutValueWithoutTransfer": "There is no need of Conversion for Moves that are only In or	 Out",
+		"CurrencyInOutValueWithoutTransfer": "There is no need of Conversion for Moves that are only In or Out",
+		"MoveValueInvalid": "Move value is invalid",
+		"MoveNatureRequired": "Move nature is required",
+		"MoveNatureInvalid": "Move nature is invalid",
+		"MoveDetailAmountInvalid": "Move detail amount is invalid",
+		"MoveDetailValueInvalid": "Move detail value is invalid",
+		"MoveDetailConversionInvalid": "Move detail conversion is invalid",
+		"InvalidArchive": "Invalid archive",
+		"InvalidArchiveColumn": "Invalid archive column",
 		"": null
 	},
 	"pt-BR": {
@@ -215,6 +223,14 @@
 		"AccountsSameCurrencyConversion": "Contas com a mesma Moeda precisam apenas de um Valor",
 		"AccountsDifferentCurrencyNoConversion": "Contas com diferentes Moedas precisam de Conversão",
 		"CurrencyInOutValueWithoutTransfer": "Não é necessária Conversão em Movimentações apenas de Entrada ou Saída",
+		"MoveValueInvalid": "Valor de movimentação inválido",
+		"MoveNatureRequired": "Natureza da movimentação obrigatória",
+		"MoveNatureInvalid": "Natureza da movimentação inválida",
+		"MoveDetailAmountInvalid": "Quantidade do detalhe da movimentação inválida",
+		"MoveDetailValueInvalid": "Valor do detalhe da movimentação inválido",
+		"MoveDetailConversionInvalid": "Conversão do detalhe da movimentação inválida",
+		"InvalidArchive": "Arquivo inválido",
+		"InvalidArchiveColumn": "Coluna inválida no arquivo",
 		"": null
 	}
 }

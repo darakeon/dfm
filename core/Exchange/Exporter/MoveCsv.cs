@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using DFM.Entities;
 using DFM.Entities.Bases;
 
-namespace DFM.Exchange
+namespace DFM.Exchange.Exporter
 {
 	class MoveCsv
 	{
@@ -43,17 +43,17 @@ namespace DFM.Exchange
 
 		private Guid guid { get; }
 
-		public String Description { get; }
-		public String Date { get; }
-		public String Category { get; }
-		public String Nature { get; }
-		public String In { get; }
-		public String Out { get; }
-		public String Value { get; }
-		public String Conversion { get; }
-		public String Details { get; }
+		public string Description { get; }
+		public string Date { get; }
+		public string Category { get; }
+		public string Nature { get; }
+		public string In { get; }
+		public string Out { get; }
+		public string Value { get; }
+		public string Conversion { get; }
+		public string Details { get; }
 
-		public Boolean Equals(IMove other)
+		public bool Equals(IMove other)
 		{
 			return guid == other.Guid;
 		}
