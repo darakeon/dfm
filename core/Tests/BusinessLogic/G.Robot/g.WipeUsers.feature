@@ -87,7 +87,7 @@ Scenario: Gg08. Find abandoned user for 60 days warned twice
 		And and the user warning count will be 2
 		And it will not be registered at wipe table
 
-Scenario: Gg09.	Find abandoned user for 75 days warned twice
+Scenario: Gg09. Find abandoned user for 75 days warned twice
 	Given the user last access was 75 days before
 		And the user have being warned twice
 	When robot user login
@@ -405,7 +405,7 @@ Scenario: Gg35. Find never accessed user after 60 days warned twice
 		And and the user warning count will be 2
 		And it will not be registered at wipe table
 
-Scenario: Gg36.	Find never accessed user after 75 days warned twice
+Scenario: Gg36. Find never accessed user after 75 days warned twice
 	Given the user creation was 75 days before
 		And the user have being warned twice
 	When robot user login
