@@ -904,7 +904,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given("these settings")]
 		public void GivenTheseSettings(Table table)
 		{
-			var mainSettings = table.CreateInstance<SettingsInfo>();
+			var options = new InstanceCreationOptions
+			{
+				VerifyAllColumnsBound = true
+			};
+
+			var mainSettings = table.CreateInstance<SettingsInfo>(options);
+
 			service.Clip.UpdateSettings(mainSettings);
 		}
 
