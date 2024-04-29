@@ -424,10 +424,49 @@ namespace DFM.BusinessLogic.Tests.Steps
 		#endregion
 
 		#region GetAccountList
+		[Given(@"I open the account (.+)")]
+		public void GivenIOpenTheAccount(String url)
+		{
+			url = url.IntoUrl();
+			var user = repos.User.GetByEmail(current.Email);
+			var account = repos.Account.GetByUrl(url, user);
+
+			if (!account.Open)
+				service.Admin.ReopenAccount(url);
+		}
+
 		[Given(@"I close the account (.+)")]
 		public void GivenICloseTheAccount(String url)
 		{
-			service.Admin.CloseAccount(url.IntoUrl());
+			url = url.IntoUrl();
+			var user = repos.User.GetByEmail(current.Email);
+			var account = repos.Account.GetByUrl(url, user);
+
+			if (account.Open)
+			{
+				var hasMoves = repos.Move.Any(
+					m => m.In.ID == account.ID || m.Out.ID == account.ID
+				);
+
+				if (!hasMoves)
+				{
+					var move = new MoveInfo
+					{
+						Description = "for closing",
+						Nature = MoveNature.Out,
+						OutUrl = account.Url,
+						Value = 1,
+					};
+					move.SetDate(user.Now());
+
+					if (user.Settings.UseCategories)
+						move.CategoryName = mainCategoryName;
+
+					service.Money.SaveMove(move);
+				}
+
+				service.Admin.CloseAccount(url);
+			}
 		}
 
 		[When(@"ask for the (not )?active account list")]
@@ -766,10 +805,24 @@ namespace DFM.BusinessLogic.Tests.Steps
 		#endregion
 
 		#region GetCategoryList
-		[Given(@"I disable the category (.+)")]
-		public void GivenICloseTheCategory(String name)
+		[Given(@"I enable the category (.+)")]
+		public void GivenIEnableTheCategory(String name)
 		{
-			service.Admin.DisableCategory(name);
+			var user = repos.User.GetByEmail(current.Email);
+			var category = repos.Category.GetByName(name, user);
+
+			if (!category.Active)
+				service.Admin.EnableCategory(name);
+		}
+
+		[Given(@"I disable the category (.+)")]
+		public void GivenIDisableTheCategory(String name)
+		{
+			var user = repos.User.GetByEmail(current.Email);
+			var category = repos.Category.GetByName(name, user);
+
+			if (category.Active)
+				service.Admin.DisableCategory(name);
 		}
 
 		[When(@"ask for all the category list")]
@@ -904,7 +957,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given("these settings")]
 		public void GivenTheseSettings(Table table)
 		{
-			var mainSettings = table.CreateInstance<SettingsInfo>();
+			var options = new InstanceCreationOptions
+			{
+				VerifyAllColumnsBound = true
+			};
+
+			var mainSettings = table.CreateInstance<SettingsInfo>(options);
+
 			service.Clip.UpdateSettings(mainSettings);
 		}
 

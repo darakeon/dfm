@@ -2,8 +2,8 @@
 
 ## Importer
 
-- [ ] Validate all lines
-- [ ] Insert each line of the file in the database
+- [x] Validate all lines
+- [x] Insert each line of the file in the database
 - [ ] Freeze system?
 - [ ] Robot will read all lines and insert moves (without sending emails)
 

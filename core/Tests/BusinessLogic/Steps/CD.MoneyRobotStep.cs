@@ -20,8 +20,11 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"I have two accounts(?: with currency ([A-Z]{3}))?")]
 		public void GivenIHaveTwoAccounts(Currency? currency)
 		{
-			getOrCreateAccount(accountOutUrl, currency);
-			getOrCreateAccount(accountInUrl, currency);
+			accountOutUrl = accountOutName.IntoUrl();
+			accountInUrl = accountInName.IntoUrl();
+
+			getOrCreateAccount(accountOutName, accountOutUrl, currency);
+			getOrCreateAccount(accountInName, accountInUrl, currency);
 		}
 
 		[Given(@"it has no Details")]
