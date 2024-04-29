@@ -3,7 +3,7 @@ using DFM.Authentication;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Enums;
-using DFM.Exchange;
+using DFM.Exchange.Exporter;
 using DFM.Generic;
 using DFM.Generic.Datetime;
 using DfM.Logs;
