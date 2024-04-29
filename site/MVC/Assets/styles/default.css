@@ -351,3 +351,13 @@ table a.link-glyphicon,
 #body > .number-error {
 	display: none;
 }
+
+@media print {
+	#body {
+		margin-top: 0;
+	}
+
+	.no-print {
+		display: none;
+	}
+}
