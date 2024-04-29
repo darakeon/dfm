@@ -35,7 +35,8 @@ namespace DFM.API.Helpers
 
 		private String getUrl()
 		{
-			return $"{request.Scheme}://{request.Host}";
+			var requestHost = request.Host.Value.Replace("api.", "");
+			return $"{request.Scheme}://{requestHost}";
 		}
 	}
 }
