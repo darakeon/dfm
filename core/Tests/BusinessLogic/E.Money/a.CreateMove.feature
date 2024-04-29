@@ -302,7 +302,7 @@ Scenario: Ea20. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal t
 		And the month-category-accountIn value will not change
 		And the year-category-accountIn value will not change
 
-Scenario: Ea21. Save without Value or Details
+Scenario: Ea21. Save without Value nor Details
 	Given I have this move to create
 			| Description | Date       | Nature | Value |
 			| Move Ca21   | 2012-03-31 | Out    |       |
@@ -1109,7 +1109,7 @@ Scenario: Ea64. Save move transfer with detailed conversion ZERO for different c
 		And the year-category-accountIn value will not change
 
 
-Scenario: Ea65. Save move out with unique value
+Scenario: Ea65. Save move out with unique value for enabled conversion
 	Given these settings
 			| UseCurrency |
 			| true        |
@@ -1127,7 +1127,7 @@ Scenario: Ea65. Save move out with unique value
 		And the month-category-accountOut value will change in 1
 		And the year-category-accountOut value will change in 1
 
-Scenario: Ea66. Save move in with unique value
+Scenario: Ea66. Save move in with unique value for enabled conversion
 	Given these settings
 			| UseCurrency |
 			| true        |
@@ -1145,7 +1145,7 @@ Scenario: Ea66. Save move in with unique value
 		And the month-category-accountIn value will change in 1
 		And the year-category-accountIn value will change in 1
 
-Scenario: Ea67. Save move out with detailed unique value
+Scenario: Ea67. Save move out with detailed unique value for enabled conversion
 	Given these settings
 			| UseCurrency |
 			| true        |
@@ -1165,7 +1165,7 @@ Scenario: Ea67. Save move out with detailed unique value
 		And the month-category-accountOut value will change in 1
 		And the year-category-accountOut value will change in 1
 
-Scenario: Ea68. Save move in with detailed unique value
+Scenario: Ea68. Save move in with detailed unique value for enabled conversion
 	Given these settings
 			| UseCurrency |
 			| true        |
