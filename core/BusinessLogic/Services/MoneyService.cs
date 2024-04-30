@@ -141,5 +141,10 @@ namespace DFM.BusinessLogic.Services
 
 			return new MoveResult(move, emailStatus);
 		}
+
+		public void ImportMovesFile(String csv)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
