@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
 using DFM.BusinessLogic.Tests.Helpers;
@@ -14,6 +15,7 @@ using DFM.Generic.Datetime;
 using DFM.Language;
 using DFM.Tests.Util;
 using Keon.Eml;
+using Microsoft.Extensions.Primitives;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -85,6 +87,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			get => get<Decimal>("NewMonthCategoryAccountInTotal");
 			set => set("NewMonthCategoryAccountInTotal", value);
+		}
+
+		protected String csv
+		{
+			get => get<String>("csv");
+			set => set("csv", value);
 		}
 		#endregion
 
@@ -808,13 +816,36 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"a moves file with this content")]
 		public void GivenAMovesFileWithThisContent(Table table)
 		{
-			throw new PendingStepException();
+			var lines = new List<List<String>>
+			{
+				table.Header.ToList()
+			};
+
+			lines.AddRange(
+				table.Rows.Select(
+					r => r.Values.ToList()
+				).ToList()
+			);
+
+			csv = String.Join(
+				"\n",
+				lines.Select(
+					l => String.Join(",", l)
+				)
+			);
 		}
 
 		[When(@"import moves file")]
 		public void WhenImportMovesFile()
 		{
-			throw new PendingStepException();
+			try
+			{
+				service.Money.ImportMovesFile(csv);
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
 		}
 
 		[Then(@"the pre-import data will be recorded")]

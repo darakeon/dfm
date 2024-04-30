@@ -545,3 +545,13 @@ Scenario: Eg74. Import move in with detailed unique value for enabled conversion
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+
+Scenario: Eg01. Import multiple lines
+	Given a moves file with this content
+			| Description           | Date       | Category | Nature   | Out         | In         | Value |
+			| Move {scenarioCode} 1 | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
+			| Move {scenarioCode} 2 | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
+			| Move {scenarioCode} 3 | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
+	When import moves file
+	Then I will receive no core error
+		And the pre-import data will be recorded
