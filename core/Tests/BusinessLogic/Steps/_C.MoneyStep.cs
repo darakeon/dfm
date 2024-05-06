@@ -832,7 +832,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				lines.Select(
 					l => String.Join(",", l)
 				)
-			);
+			).ForScenario(scenarioCode);
 		}
 
 		[When(@"import moves file")]
