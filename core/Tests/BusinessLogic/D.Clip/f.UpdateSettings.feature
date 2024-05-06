@@ -101,14 +101,14 @@ Scenario: Df07. Change language to one that doesn't exist
 
 Scenario: Df08. Change timezone to one that doesn't exist
 	Given these settings
-			| Timezone  |
+			| TimeZone  |
 			| UTC-03:00 |
 	When try update the settings
-			| Timezone  |
+			| TimeZone  |
 			| UTC-99:99 |
 	Then I will receive this core error: TimeZoneUnknown
 		And the settings will be
-			| Timezone  |
+			| TimeZone  |
 			| UTC-03:00 |
 
 Scenario: Df09. Disable categories use
