@@ -101,6 +101,9 @@ namespace DFM.BusinessLogic.Exceptions
 		TimeZoneUnknown = 802,
 
 		LogNotFound = 900,
+
+		InvalidArchive = 1000,
+		InvalidArchiveColumn = 1001,
 	}
 
 	public static class ErrorX

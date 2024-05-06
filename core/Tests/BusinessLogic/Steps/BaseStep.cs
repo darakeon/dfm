@@ -10,6 +10,7 @@ using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Exchange;
+using DFM.Exchange.Exporter;
 using DFM.Generic;
 using DFM.Generic.Datetime;
 using DFM.Tests.Util;

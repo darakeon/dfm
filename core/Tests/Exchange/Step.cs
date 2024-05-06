@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using DFM.Entities;
 using DFM.Entities.Bases;
+using DFM.Exchange.Exporter;
 using DFM.Generic;
 using DFM.Tests.Util;
 using NUnit.Framework;
@@ -69,16 +70,16 @@ namespace DFM.Exchange.Tests
 		[When(@"convert to csv")]
 		public void WhenConvertToCsv()
 		{
-			using var csv = new CSV();
+			using var csvExporter = new CSVExporter();
 
-			csv.Add(moves);
-			csv.Add(schedules);
+			csvExporter.Add(moves);
+			csvExporter.Add(schedules);
 
 			var email = $"{scenarioCode}@dontflymoney.com";
 			var user = new User {Email = email, Password = "password"};
 			var wipe = Wipe.FromUser(user);
 
-			csv.Create(wipe);
+			csvExporter.Create(wipe);
 
 			var filename = Directory
 				.GetFiles(

@@ -35,16 +35,15 @@ Scenario: Eg03. Import without sign last contract
 Scenario: Eg04. Import empty
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
-		But there is a new contract
 	When import moves file
-	Then I will receive this core error: CSVInvalidFile
+	Then I will receive this core error: InvalidArchive
 
 Scenario: Eg05. Import with unknown column
 	Given a moves file with this content
 			| Description         | Magic              | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | make me earn money | 2024-04-29 | Category | Transfer | Account Out | Account In |       |
 	When import moves file
-	Then I will receive this core error: CSVInvalidColumn
+	Then I will receive this core error: InvalidArchiveColumn
 
 Scenario: Eg06. Import with 20 details
 	Given a moves file with this content
@@ -59,7 +58,7 @@ Scenario: Eg07. Import with 21 details
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1 | Amount1 | Value1 | Description2 | Amount2 | Value2 | Description3 | Amount3 | Value3 | Description4 | Amount4 | Value4 | Description5 | Amount5 | Value5 | Description6 | Amount6 | Value6 | Description7 | Amount7 | Value7 | Description8 | Amount8 | Value8 | Description9 | Amount9 | Value9 | Description10 | Amount10 | Value10 | Description11 | Amount11 | Value11 | Description12 | Amount12 | Value12 | Description13 | Amount13 | Value13 | Description14 | Amount14 | Value14 | Description15 | Amount15 | Value15 | Description16 | Amount16 | Value16 | Description17 | Amount17 | Value17 | Description18 | Amount18 | Value18 | Description19 | Amount19 | Value19 | Description20 | Amount20 | Value20 | Description21 | Amount21 | Value21 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | D            | 1       | 1      | D            | 1       | 1      | D            | 1       | 1      | D            | 1       | 1      | D            | 1       | 1      | D            | 1       | 1      | D            | 1       | 1      | D            | 1       | 1      | D            | 1       | 1      | D             | 1        | 1       | D             | 1        | 1       | D             | 1        | 1       | D             | 1        | 1       | D             | 1        | 1       | D             | 1        | 1       | D             | 1        | 1       | D             | 1        | 1       | D             | 1        | 1       | D             | 1        | 1       | D             | 1        | 1       | D             | 1        | 1       |
 	When import moves file
-	Then I will receive this core error: CSVInvalidColumn
+	Then I will receive this core error: InvalidArchiveColumn
 
 Scenario: Eg08. Import without Description
 	Given a moves file with this content
@@ -87,8 +86,8 @@ Scenario: Eg11. Import without Category but using Categories
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 |          | Transfer | Account Out | Account In | 1     |
 		And these settings
-			| UseCategory |
-			| true        |
+			| UseCategories |
+			| true          |
 	When import moves file
 	Then I will receive this core error: InvalidCategory
 
@@ -97,8 +96,8 @@ Scenario: Eg12. Import with Category but not using Categories
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
 		And these settings
-			| UseCategory |
-			| false       |
+			| UseCategories |
+			| false         |
 	When import moves file
 	Then I will receive this core error: CategoriesDisabled
 
@@ -354,8 +353,8 @@ Scenario: Eg47. Import with e-mail sender system ok
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
 		And these settings
-			| SendMoveEmail | X     |
-			| true          | false |
+			| SendMoveEmail |
+			| true          |
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
