@@ -4,6 +4,7 @@ using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using DFM.Entities.Enums;
+using DFM.Exchange.Importer;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Services
@@ -144,7 +145,17 @@ namespace DFM.BusinessLogic.Services
 
 		public void ImportMovesFile(String csv)
 		{
-			throw new NotImplementedException();
+			parent.Auth.VerifyUser();
+
+			var importer = new CSVImporter(csv);
+
+			switch (importer.Error)
+			{
+				case ImporterError.Header:
+					throw Error.InvalidArchiveColumn.Throw();
+				case ImporterError.Empty:
+					throw Error.InvalidArchive.Throw();
+			}
 		}
 	}
 }

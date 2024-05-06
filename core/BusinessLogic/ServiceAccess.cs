@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Services;
-using DFM.Exchange;
+using DFM.Exchange.Exporter;
 
 [assembly: InternalsVisibleTo("DFM.BusinessLogic.Tests")]
 namespace DFM.BusinessLogic

@@ -8,6 +8,7 @@ using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Exchange;
+using DFM.Exchange.Exporter;
 using Keon.Util.Crypto;
 using Keon.Util.DB;
 using Keon.Util.Extensions;
@@ -76,7 +77,7 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			String s3 = null;
 
-			using var csv = new CSV();
+			using var csv = new CSVExporter();
 
 			foreach (var account in accounts)
 			{

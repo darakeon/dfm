@@ -851,7 +851,19 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the pre-import data will be recorded")]
 		public void ThenThePre_ImportDataWillBeRecorded()
 		{
-			throw new PendingStepException();
+			var archive = repos.Archive.NewQuery()
+				.OrderBy(a => a.ID, false)
+				.FirstOrDefault;
+
+			Assert.That(archive, Is.Not.Null);
+
+			Assert.That(archive.LineList.Count, Is.EqualTo(csv.Length));
+
+			for (var l = 0; l < archive.LineList.Count; l++)
+			{
+				var line = archive.LineList[l];
+				Assert.That(line, Is.EqualTo(csv[l]));
+			}
 		}
 
 		[Then("no email will be sent")]
