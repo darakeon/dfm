@@ -1,10 +1,18 @@
 ﻿using System;
+using System.Linq;
 using DFM.Entities;
 
 namespace DFM.Exchange.Importer;
 
 public class MoveCsv : Line
 {
+	public MoveCsv()
+	{
+		DetailList = new Detail[20]
+			.Select(d => new Detail())
+			.ToList();
+	}
+
 	public String Description1 { set => DetailList[0].Description = value; }
 	public Int16 Amount1 { set => DetailList[0].Amount = value; }
 	public Decimal Value1 { set => DetailList[0].Value = value; }

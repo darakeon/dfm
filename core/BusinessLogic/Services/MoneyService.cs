@@ -155,6 +155,8 @@ namespace DFM.BusinessLogic.Services
 					throw Error.InvalidArchiveColumn.Throw();
 				case ImporterError.Empty:
 					throw Error.InvalidArchive.Throw();
+				case ImporterError.Date:
+					throw Error.MoveDateRequired.Throw();
 			}
 		}
 	}
