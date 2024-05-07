@@ -4,4 +4,5 @@ public enum ImporterError
 {
 	Header,
 	Empty,
+	Date,
 }

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using CsvHelper;
 using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 
 namespace DFM.Exchange.Importer
 {
@@ -14,16 +15,31 @@ namespace DFM.Exchange.Importer
 		{
 			using TextReader reader = new StringReader(content);
 
-			IReaderConfiguration config =
-				new CsvConfiguration(CultureInfo.CurrentCulture)
-				{
-					MissingFieldFound = null,
-					HeaderValidated = null,
-				};
+			var config = new CsvConfiguration(CultureInfo.CurrentCulture)
+			{
+				MissingFieldFound = null,
+				HeaderValidated = null,
+			};
 
 			using var csv = new CsvReader(reader, config);
 
-			var moves = csv.GetRecords<MoveCsv>().ToList();
+			List<MoveCsv> moves = new List<MoveCsv>();
+
+			try
+			{
+				moves = csv.GetRecords<MoveCsv>().ToList();
+			}
+			catch (TypeConverterException exception)
+			{
+				switch (exception.MemberMapData.Member.Name)
+				{
+					case "Date":
+						Error = ImporterError.Date;
+						return;
+					default:
+						throw;
+				}
+			}
 
 			var validHeaders =
 				typeof(MoveCsv)
