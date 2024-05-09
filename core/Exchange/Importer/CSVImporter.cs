@@ -13,6 +13,8 @@ namespace DFM.Exchange.Importer
 	{
 		public CSVImporter(String content)
 		{
+			MoveList = new List<MoveCsv>();
+
 			using TextReader reader = new StringReader(content);
 
 			var config = new CsvConfiguration(CultureInfo.CurrentCulture)
@@ -31,14 +33,8 @@ namespace DFM.Exchange.Importer
 			}
 			catch (TypeConverterException exception)
 			{
-				switch (exception.MemberMapData.Member.Name)
-				{
-					case "Date":
-						Error = ImporterError.Date;
-						return;
-					default:
-						throw;
-				}
+				Error = handleFieldError(exception);
+				return;
 			}
 
 			var validHeaders =
@@ -66,7 +62,46 @@ namespace DFM.Exchange.Importer
 			MoveList = moves;
 		}
 
+		private ImporterError handleFieldError(TypeConverterException exception)
+		{
+			var name = exception.MemberMapData.Member.Name;
+			var value = exception.Text;
+
+			switch (name)
+			{
+				case "Date":
+					return value == ""
+						? ImporterError.DateRequired
+						: ImporterError.DateInvalid;
+
+				case "Nature":
+					return value == ""
+						? ImporterError.NatureRequired
+						: ImporterError.NatureInvalid;
+
+				case "Value":
+					return ImporterError.ValueInvalid;
+
+				default:
+
+					if (name.StartsWith("Value"))
+						return value == ""
+							? ImporterError.DetailValueRequired
+							: ImporterError.DetailValueInvalid;
+
+					if (name.StartsWith("Amount"))
+						return value == ""
+							? ImporterError.DetailAmountRequired
+							: ImporterError.DetailAmountInvalid;
+
+					if (name.StartsWith("Conversion"))
+						return ImporterError.DetailConversionInvalid;
+
+					throw exception;
+			}
+		}
+
 		public ImporterError? Error { get; }
-		public IList<MoveCsv> MoveList { get; } = new List<MoveCsv>();
+		public IList<MoveCsv> MoveList { get; }
 	}
 }

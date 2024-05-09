@@ -74,21 +74,21 @@ Scenario: Eg09. Import without Date
 	When import moves file
 	Then I will receive this core error: MoveDateRequired
 
-Scenario: Eg09. Import with invalid Date
+Scenario: Eg10. Import with invalid Date
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-31 | Category | Transfer | Account Out | Account In | 1     |
 	When import moves file
 	Then I will receive this core error: MoveDateInvalid
 
-Scenario: Eg10. Import with future Date
+Scenario: Eg11. Import with future Date
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 3024-04-29 | Category | Transfer | Account Out | Account In | 1     |
 	When import moves file
 	Then I will receive this core error: MoveDateInvalid
 
-Scenario: Eg11. Import without Category but using Categories
+Scenario: Eg12. Import without Category but using Categories
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 |          | Transfer | Account Out | Account In | 1     |
@@ -98,7 +98,7 @@ Scenario: Eg11. Import without Category but using Categories
 	When import moves file
 	Then I will receive this core error: InvalidCategory
 
-Scenario: Eg12. Import with Category but not using Categories
+Scenario: Eg13. Import with Category but not using Categories
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
@@ -108,210 +108,231 @@ Scenario: Eg12. Import with Category but not using Categories
 	When import moves file
 	Then I will receive this core error: CategoriesDisabled
 
-Scenario: Eg13. Import with unknown Category
+Scenario: Eg14. Import with unknown Category
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Unknown  | Transfer | Account Out | Account In | 1     |
 	When import moves file
 	Then I will receive this core error: InvalidCategory
 
-Scenario: Eg14. Import with Description too large
+Scenario: Eg15. Import with Description too large
 	Given a moves file with this content
 			| Description                                         | Date       | Category | Nature   | Out         | In         | Value |
 			| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
 	When import moves file
 	Then I will receive this core error: TooLargeMoveDescription
 
-Scenario: Eg15. Import with (Nature: Out) (AccountOut:No) (AccountIn:No)
+Scenario: Eg16. Import with (Nature: Out) (AccountOut:No) (AccountIn:No)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out | In | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Out    |     |    | 1     |
 	When import moves file
 	Then I will receive this core error: OutMoveWrong
 
-Scenario: Eg15. Import with invalid Nature
+Scenario: Eg17. Import without Nature
+	Given a moves file with this content
+			| Description         | Date       | Category | Nature | Out | In | Value |
+			| Move {scenarioCode} | 2024-04-29 | Category |        |     |    | 1     |
+	When import moves file
+	Then I will receive this core error: MoveNatureRequired
+
+Scenario: Eg18. Import with invalid Nature
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out | In | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Alien  |     |    | 1     |
 	When import moves file
 	Then I will receive this core error: MoveNatureInvalid
 
-Scenario: Eg16. Import with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes)
+Scenario: Eg19. Import with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Out    | Account Out | Account In | 1     |
 	When import moves file
 	Then I will receive this core error: OutMoveWrong
 
-Scenario: Eg17. Import with (Nature: Out) (AccountOut:No) (AccountIn:Yes)
+Scenario: Eg20. Import with (Nature: Out) (AccountOut:No) (AccountIn:Yes)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Out    |     | Account In | 1     |
 	When import moves file
 	Then I will receive this core error: OutMoveWrong
 
-Scenario: Eg18. Import with (Nature: Out) (AccountOut:Unknown) (AccountIn:No)
+Scenario: Eg21. Import with (Nature: Out) (AccountOut:Unknown) (AccountIn:No)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out     | In | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Out    | Unknown |    | 1     |
 	When import moves file
 	Then I will receive this core error: InvalidAccount
 
-Scenario: Eg19. Import with (Nature: In) (AccountOut:No) (AccountIn:No)
+Scenario: Eg22. Import with (Nature: In) (AccountOut:No) (AccountIn:No)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out | In | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | In     |     |    | 1     |
 	When import moves file
 	Then I will receive this core error: InMoveWrong
 
-Scenario: Eg20. Import with (Nature: In) (AccountOut:Yes) (AccountIn:Yes)
+Scenario: Eg23. Import with (Nature: In) (AccountOut:Yes) (AccountIn:Yes)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | In     | Account Out | Account In | 1     |
 	When import moves file
 	Then I will receive this core error: InMoveWrong
 
-Scenario: Eg21. Import with (Nature: In) (AccountOut:Yes) (AccountIn:No)
+Scenario: Eg24. Import with (Nature: In) (AccountOut:Yes) (AccountIn:No)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out         | In | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | In     | Account Out |    | 1     |
 	When import moves file
 	Then I will receive this core error: InMoveWrong
 
-Scenario: Eg22. Import with (Nature: In) (AccountOut:No) (AccountIn:Unknown)
+Scenario: Eg25. Import with (Nature: In) (AccountOut:No) (AccountIn:Unknown)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out | In      | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | In     |     | Unknown | 1     |
 	When import moves file
 	Then I will receive this core error: InvalidAccount
 
-Scenario: Eg23. Import with (Nature: Transfer) (AccountOut:No) (AccountIn:No)
+Scenario: Eg26. Import with (Nature: Transfer) (AccountOut:No) (AccountIn:No)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer |             |            | 1     |
 	When import moves file
 	Then I will receive this core error: TransferMoveWrong
 
-Scenario: Eg24. Import with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes)
+Scenario: Eg27. Import with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer |     | Account In | 1     |
 	When import moves file
 	Then I will receive this core error: TransferMoveWrong
 
-Scenario: Eg25. Import with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No)
+Scenario: Eg28. Import with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out |    | 1     |
 	When import moves file
 	Then I will receive this core error: TransferMoveWrong
 
-Scenario: Eg26. Import with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown)
+Scenario: Eg29. Import with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In      | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Unknown | 1     |
 	When import moves file
 	Then I will receive this core error: InvalidAccount
 
-Scenario: Eg27. Import with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes)
+Scenario: Eg30. Import with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out     | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Unknown | Account In | 1     |
 	When import moves file
 	Then I will receive this core error: InvalidAccount
 
-Scenario: Eg28. Import with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out)
+Scenario: Eg31. Import with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In          | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account Out | 1     |
 	When import moves file
 	Then I will receive this core error: CircularTransfer
 
-Scenario: Eg29. Import without Value nor Details
+Scenario: Eg32. Import without Value nor Details
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       |
 	When import moves file
 	Then I will receive this core error: MoveValueOrDetailRequired
 
-Scenario: Eg30. Import with Value zero and no Details
+Scenario: Eg33. Import with Value zero and no Details
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 0     |
 	When import moves file
 	Then I will receive this core error: MoveValueOrDetailRequired
 
-Scenario: Eg30. Import with invalid Value
+Scenario: Eg34. Import with invalid Value
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value  |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | MMXXIV |
 	When import moves file
-	Then I will receive this core error: MoveValueOrDetailRequired
+	Then I will receive this core error: MoveValueInvalid
 
-Scenario: Eg31. Import without Description in Detail
+Scenario: Eg35. Import without Description in Detail
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1 | Amount1 | Value1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       |              | 1       | 1      |
 	When import moves file
 	Then I will receive this core error: MoveDetailDescriptionRequired
 
-Scenario: Eg32. Import with Amount zero in Detail
+Scenario: Eg36. Import with Amount zero in Detail
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1 | Amount1 | Value1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | D            | 0       | 1      |
 	When import moves file
 	Then I will receive this core error: MoveDetailAmountRequired
 
-Scenario: Eg32. Import with Amount invalid in Detail
+Scenario: Eg37. Import with Amount invalid in Detail
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1 | Amount1 | Value1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | D            | I       | 1      |
 	When import moves file
+	Then I will receive this core error: MoveDetailAmountInvalid
+
+Scenario: Eg38. Import without Amount in Detail
+	Given a moves file with this content
+			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1 | Amount1 | Value1 |
+			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | D            |         | 1      |
+	When import moves file
 	Then I will receive this core error: MoveDetailAmountRequired
 
-Scenario: Eg33. Import with Value zero in Detail
+Scenario: Eg39. Import with Value zero in Detail
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1 | Amount1 | Value1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | D            | 1       | 0      |
 	When import moves file
 	Then I will receive this core error: MoveDetailValueRequired
 
-Scenario: Eg33. Import with Value invalid in Detail
+Scenario: Eg40. Import without Value in Detail
+	Given a moves file with this content
+			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1 | Amount1 | Value1 |
+			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | D            | 1       |        |
+	When import moves file
+	Then I will receive this core error: MoveDetailValueRequired
+
+Scenario: Eg41. Import with Value invalid in Detail
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1 | Amount1 | Value1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | D            | 1       | XXVII  |
 	When import moves file
-	Then I will receive this core error: MoveDetailValueRequired
+	Then I will receive this core error: MoveDetailValueInvalid
 
-Scenario: Eg34. Import with Description too large in Detail
+Scenario: Eg42. Import with Description too large in Detail
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1                                        | Amount1 | Value1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy | 1       | 1      |
 	When import moves file
 	Then I will receive this core error: TooLargeDetailDescription
 
-Scenario: Eg35. Import with disabled Category
+Scenario: Eg43. Import with disabled Category
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
 	When import moves file
 	Then I will receive this core error: DisabledCategory
 
-Scenario: Eg36. Import with closed AccountOut
+Scenario: Eg44. Import with closed AccountOut
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
 	When import moves file
 	Then I will receive this core error: ClosedAccount
 
-Scenario: Eg37. Import with closed AccountIn
+Scenario: Eg45. Import with closed AccountIn
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
 	When import moves file
 	Then I will receive this core error: ClosedAccount
 
-Scenario: Eg38. Import with info all right (Out)
+Scenario: Eg46. Import with info all right (Out)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out         | In | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Out    | Account Out |    | 1     |
@@ -319,7 +340,7 @@ Scenario: Eg38. Import with info all right (Out)
 	Then I will receive no core error
 		And the pre-import data will be recorded
 
-Scenario: Eg39. Import with info all right (In)
+Scenario: Eg47. Import with info all right (In)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | In     |     | Account In | 1     |
@@ -327,7 +348,7 @@ Scenario: Eg39. Import with info all right (In)
 	Then I will receive no core error
 		And the pre-import data will be recorded
 
-Scenario: Eg40. Import with info all right (Transfer)
+Scenario: Eg48. Import with info all right (Transfer)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
@@ -335,7 +356,7 @@ Scenario: Eg40. Import with info all right (Transfer)
 	Then I will receive no core error
 		And the pre-import data will be recorded
 
-Scenario: Eg41. Import negative (value)
+Scenario: Eg49. Import negative (value)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | -1    |
@@ -343,7 +364,7 @@ Scenario: Eg41. Import negative (value)
 	Then I will receive no core error
 		And the pre-import data will be recorded
 
-Scenario: Eg42. Import negative (details)
+Scenario: Eg50. Import negative (details)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1 | Amount1 | Value1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | D            | 1       | -1     |
@@ -351,7 +372,7 @@ Scenario: Eg42. Import negative (details)
 	Then I will receive no core error
 		And the pre-import data will be recorded
 
-Scenario: Eg43. Import with exactly length in Description of Detail
+Scenario: Eg51. Import with exactly length in Description of Detail
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1                                       | Amount1 | Value1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx | 1       | 1      |
@@ -359,7 +380,7 @@ Scenario: Eg43. Import with exactly length in Description of Detail
 	Then I will receive no core error
 		And the pre-import data will be recorded
 
-Scenario: Eg44. Import with exactly length in Description
+Scenario: Eg52. Import with exactly length in Description
 	Given a moves file with this content
 			| Description                                        | Date       | Category | Nature   | Out         | In         | Value |
 			| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
@@ -367,7 +388,7 @@ Scenario: Eg44. Import with exactly length in Description
 	Then I will receive no core error
 		And the pre-import data will be recorded
 
-Scenario: Eg45. Import with details with same Description
+Scenario: Eg53. Import with details with same Description
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1 | Amount1 | Value1 | Description2 | Amount2 | Value2 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | Same         | 1       | 1      | Same         | 1       | 1      |
@@ -375,7 +396,7 @@ Scenario: Eg45. Import with details with same Description
 	Then I will receive no core error
 		And the pre-import data will be recorded
 
-Scenario: Eg46. Import with e-mail sender system out
+Scenario: Eg54. Import with e-mail sender system out
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
@@ -383,7 +404,7 @@ Scenario: Eg46. Import with e-mail sender system out
 	Then I will receive no core error
 		And the pre-import data will be recorded
 
-Scenario: Eg47. Import with e-mail sender system ok
+Scenario: Eg55. Import with e-mail sender system ok
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
@@ -395,7 +416,7 @@ Scenario: Eg47. Import with e-mail sender system ok
 		And the pre-import data will be recorded
 		And no email will be sent
 
-Scenario: Eg48. Import with decimals
+Scenario: Eg56. Import with decimals
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1.1   |
@@ -403,7 +424,7 @@ Scenario: Eg48. Import with decimals
 	Then I will receive no core error
 		And the pre-import data will be recorded
 
-Scenario: Eg49. Import with decimals in details
+Scenario: Eg57. Import with decimals in details
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1 | Amount1 | Value1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | D            | 1       | 1.1    |
@@ -411,7 +432,7 @@ Scenario: Eg49. Import with decimals in details
 	Then I will receive no core error
 		And the pre-import data will be recorded
 
-Scenario: Eg50. Import move transfer with unique value for same currency
+Scenario: Eg58. Import move transfer with unique value for same currency
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Conversion |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |            |
@@ -419,21 +440,21 @@ Scenario: Eg50. Import move transfer with unique value for same currency
 	Then I will receive no core error
 		And the pre-import data will be recorded
 
-Scenario: Eg51. Import move transfer with unique value for different currencies
+Scenario: Eg59. Import move transfer with unique value for different currencies
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out             | In             | Value | Conversion |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL | 1     |            |
 	When import moves file
 	Then I will receive this core error: AccountsDifferentCurrencyNoConversion
 
-Scenario: Eg52. Import move transfer with conversion for same currency
+Scenario: Eg60. Import move transfer with conversion for same currency
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Conversion |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     | 5          |
 	When import moves file
 	Then I will receive this core error: AccountsSameCurrencyConversion
 
-Scenario: Eg53. Import move transfer with conversion for different currencies
+Scenario: Eg61. Import move transfer with conversion for different currencies
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out             | In             | Value | Conversion |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL | 1     | 5          |
@@ -441,7 +462,7 @@ Scenario: Eg53. Import move transfer with conversion for different currencies
 	Then I will receive no core error
 		And the pre-import data will be recorded
 
-Scenario: Eg54. Import move transfer with conversion for disabled use currency
+Scenario: Eg62. Import move transfer with conversion for disabled use currency
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out             | In             | Value | Conversion |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL | 1     | 5          |
@@ -451,7 +472,7 @@ Scenario: Eg54. Import move transfer with conversion for disabled use currency
 	When import moves file
 	Then I will receive this core error: UseCurrencyDisabled
 
-Scenario: Eg55. Import move out with conversion
+Scenario: Eg63. Import move out with conversion
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out             | In | Value | Conversion |
 			| Move {scenarioCode} | 2024-04-29 | Category | Out    | Account Out EUR |    | 1     | 5          |
@@ -461,21 +482,21 @@ Scenario: Eg55. Import move out with conversion
 	When import moves file
 	Then I will receive this core error: CurrencyInOutValueWithoutTransfer
 
-Scenario: Eg56. Import move in with conversion
+Scenario: Eg64. Import move in with conversion
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out | In             | Value | Conversion |
-			| Move {scenarioCode} | 2024-04-29 | Category | Int    |     | Account In BRL | 1     | 5          |
+			| Move {scenarioCode} | 2024-04-29 | Category | In     |     | Account In BRL | 1     | 5          |
 	When import moves file
 	Then I will receive this core error: CurrencyInOutValueWithoutTransfer
 
-Scenario: Eg57. Import move transfer with conversion ZERO for different currencies
+Scenario: Eg65. Import move transfer with conversion ZERO for different currencies
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out             | In             | Value | Conversion |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL | 1     | 0          |
 	When import moves file
 	Then I will receive this core error: AccountsDifferentCurrencyNoConversion
 
-Scenario: Eg58. Import move out with unique value for enabled conversion
+Scenario: Eg66. Import move out with unique value for enabled conversion
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out             | In | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Out    | Account Out EUR |    | 1     |
@@ -486,7 +507,7 @@ Scenario: Eg58. Import move out with unique value for enabled conversion
 	Then I will receive no core error
 		And the pre-import data will be recorded
 
-Scenario: Eg59. Import move in with unique value for enabled conversion
+Scenario: Eg67. Import move in with unique value for enabled conversion
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out | In             | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | In     |     | Account In BRL | 1     |
@@ -497,7 +518,7 @@ Scenario: Eg59. Import move in with unique value for enabled conversion
 	Then I will receive no core error
 		And the pre-import data will be recorded
 
-Scenario: Eg60. Import move transfer with unique detailed value for same currency
+Scenario: Eg68. Import move transfer with unique detailed value for same currency
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1 | Amount1 | Value1 | Conversion1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | D            | 1       | 1      |             |
@@ -505,21 +526,21 @@ Scenario: Eg60. Import move transfer with unique detailed value for same currenc
 	Then I will receive no core error
 		And the pre-import data will be recorded
 
-Scenario: Eg61. Import move transfer with unique detailed value for different currencies
+Scenario: Eg69. Import move transfer with unique detailed value for different currencies
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out             | In             | Value | Description1 | Amount1 | Value1 | Conversion1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL |       | D            | 1       | 1      |             |
 	When import moves file
 	Then I will receive this core error: AccountsDifferentCurrencyNoConversion
 
-Scenario: Eg62. Import move transfer with detailed conversion for same currency
+Scenario: Eg70. Import move transfer with detailed conversion for same currency
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1 | Amount1 | Value1 | Conversion1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | D            | 1       | 1      | 5           |
 	When import moves file
 	Then I will receive this core error: AccountsSameCurrencyConversion
 
-Scenario: Eg63. Import move transfer with detailed conversion for different currencies
+Scenario: Eg71. Import move transfer with detailed conversion for different currencies
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out             | In             | Value | Description1 | Amount1 | Value1 | Conversion1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL |       | D            | 1       | 1      | 5           |
@@ -527,7 +548,7 @@ Scenario: Eg63. Import move transfer with detailed conversion for different curr
 	Then I will receive no core error
 		And the pre-import data will be recorded
 
-Scenario: Eg64. Import move transfer with detailed conversion for disabled use currency
+Scenario: Eg72. Import move transfer with detailed conversion for disabled use currency
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out             | In             | Value | Description1 | Amount1 | Value1 | Conversion1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL |       | D            | 1       | 1      | 5           |
@@ -537,35 +558,35 @@ Scenario: Eg64. Import move transfer with detailed conversion for disabled use c
 	When import moves file
 	Then I will receive this core error: UseCurrencyDisabled
 
-Scenario: Eg65. Import move out with detailed conversion
+Scenario: Eg73. Import move out with detailed conversion
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out | In             | Value | Description1 | Amount1 | Value1 | Conversion1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Out    |     | Account In BRL |       | D            | 1       | 1      | 5           |
 	When import moves file
 	Then I will receive this core error: CurrencyInOutValueWithoutTransfer
 
-Scenario: Eg66. Import move in with detailed conversion
+Scenario: Eg74. Import move in with detailed conversion
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out | In             | Value | Description1 | Amount1 | Value1 | Conversion1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | In     |     | Account In BRL |       | D            | 1       | 1      | 5           |
 	When import moves file
 	Then I will receive this core error: CurrencyInOutValueWithoutTransfer
 
-Scenario: Eg67. Import move transfer with detailed conversion ZERO for different currencies
+Scenario: Eg75. Import move transfer with detailed conversion ZERO for different currencies
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out             | In             | Value | Description1 | Amount1 | Value1 | Conversion1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL |       | D            | 1       | 1      | 0           |
 	When import moves file
 	Then I will receive this core error: AccountsDifferentCurrencyNoConversion
 
-Scenario: Eg67. Import move transfer with detailed conversion invalid for different currencies
+Scenario: Eg76. Import move transfer with detailed conversion invalid for different currencies
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out             | In             | Value | Description1 | Amount1 | Value1 | Conversion1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL |       | D            | 1       | 1      | V           |
 	When import moves file
 	Then I will receive this core error: AccountsDifferentCurrencyNoConversion
 
-Scenario: Eg68. Import move out with detailed unique value for enabled conversion
+Scenario: Eg77. Import move out with detailed unique value for enabled conversion
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out             | In | Value | Description1 | Amount1 | Value1 | Conversion1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Out    | Account Out EUR |    |       | D            | 1       | 1      |             |
@@ -576,7 +597,7 @@ Scenario: Eg68. Import move out with detailed unique value for enabled conversio
 	Then I will receive no core error
 		And the pre-import data will be recorded
 
-Scenario: Eg69. Import move in with detailed unique value for enabled conversion
+Scenario: Eg78. Import move in with detailed unique value for enabled conversion
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out | In             | Value | Description1 | Amount1 | Value1 | Conversion1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | In     |     | Account In BRL |       | D            | 1       | 1      |             |
@@ -587,7 +608,7 @@ Scenario: Eg69. Import move in with detailed unique value for enabled conversion
 	Then I will receive no core error
 		And the pre-import data will be recorded
 
-Scenario: Eg70. Import multiple lines
+Scenario: Eg79. Import multiple lines
 	Given a moves file with this content
 			| Description           | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} 1 | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
@@ -595,4 +616,18 @@ Scenario: Eg70. Import multiple lines
 			| Move {scenarioCode} 3 | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
 	When import moves file
 	Then I will receive no core error
+		And the pre-import data will be recorded
+
+Scenario: Eg80. Error in multiple lines
+	Given a moves file with this content
+			| Description           | Date       | Category | Nature   | Out         | In         | Value |
+			| Move {scenarioCode} 1 | 3024-04-29 | Category | Transfer | Account Out | Account In | 1     |
+			| Move {scenarioCode} 2 | 2024-04-29 | Category | Alien    | Account Out | Account In | 1     |
+			| Move {scenarioCode} 3 | 2024-04-29 | Category | Transfer |             |            | 1     |
+	When import moves file
+	Then I will receive these core errors
+			| Error             |
+			| MoveDateInvalid   |
+			| MoveNatureInvalid |
+			| TransferMoveWrong |
 		And the pre-import data will be recorded

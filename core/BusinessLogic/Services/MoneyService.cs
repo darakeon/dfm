@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
@@ -149,15 +150,24 @@ namespace DFM.BusinessLogic.Services
 
 			var importer = new CSVImporter(csv);
 
-			switch (importer.Error)
+			var errors = new Dictionary<ImporterError, Error>
 			{
-				case ImporterError.Header:
-					throw Error.InvalidArchiveColumn.Throw();
-				case ImporterError.Empty:
-					throw Error.InvalidArchive.Throw();
-				case ImporterError.Date:
-					throw Error.MoveDateRequired.Throw();
-			}
+				{ ImporterError.Header, Error.InvalidArchiveColumn },
+				{ ImporterError.Empty, Error.InvalidArchive },
+				{ ImporterError.DateRequired, Error.MoveDateRequired },
+				{ ImporterError.DateInvalid, Error.MoveDateInvalid },
+				{ ImporterError.NatureRequired, Error.MoveNatureRequired },
+				{ ImporterError.NatureInvalid, Error.MoveNatureInvalid },
+				{ ImporterError.ValueInvalid, Error.MoveValueInvalid },
+				{ ImporterError.DetailAmountRequired, Error.MoveDetailAmountRequired },
+				{ ImporterError.DetailAmountInvalid, Error.MoveDetailAmountInvalid },
+				{ ImporterError.DetailValueRequired, Error.MoveDetailValueRequired },
+				{ ImporterError.DetailValueInvalid, Error.MoveDetailValueInvalid },
+				{ ImporterError.DetailConversionInvalid, Error.MoveDetailConversionInvalid },
+			};
+
+			if (importer.Error.HasValue)
+				throw errors[importer.Error.Value].Throw();
 		}
 	}
 }

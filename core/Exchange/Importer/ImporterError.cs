@@ -4,5 +4,14 @@ public enum ImporterError
 {
 	Header,
 	Empty,
-	Date,
+	DateRequired,
+	DateInvalid,
+	NatureRequired,
+	NatureInvalid,
+	ValueInvalid,
+	DetailAmountRequired,
+	DetailAmountInvalid,
+	DetailValueRequired,
+	DetailValueInvalid,
+	DetailConversionInvalid,
 }
