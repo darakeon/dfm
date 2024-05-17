@@ -1,4 +1,7 @@
 {
+	"12.0.0.1": [
+		"Fix in internal tool"
+	],
 	"12.0.0.0": [
 		"Automate one more System deploy step",
 		"Add donation button",
