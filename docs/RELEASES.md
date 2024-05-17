@@ -5,8 +5,8 @@
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
 - [go to published version](#12.0.0.0)
-- [go to version in development](#13.0.0.0)
-- [dev version state](../../13.0.0.0/docs/RELEASES.md#13.0.0.0)
+- [go to version in development](#12.0.0.1)
+- [dev version state](../../12.0.0.1/docs/RELEASES.md#12.0.0.1)
 
 ## Legend
 - :dragon:: at least one huge change (increases first number)
@@ -19,6 +19,9 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Data import and export (csv, json) (with max request length) [template]
 - [ ] Fix print contract
 - [ ] Warning about 15 minutes windows for runnings schedules
+
+## <a name="12.0.0.1"></a>12.0.0.1 :dragon: <sup>`1`</sup>
+- [x] `240517>240517` Hotfix midna machine superuser creation
 
 ## <a name="12.0.0.0"></a>12.0.0.0 :dragon: <sup>`4`</sup>
 - [x] `240427>240427` Deploy images to docker hub via CI
