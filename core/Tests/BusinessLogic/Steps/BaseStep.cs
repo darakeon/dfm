@@ -10,7 +10,6 @@ using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
-using DFM.Exchange;
 using DFM.Exchange.Exporter;
 using DFM.Generic;
 using DFM.Generic.Datetime;
@@ -210,6 +209,11 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 		protected Account getOrCreateAccount(String url, Currency? currency = null)
 		{
+			return getOrCreateAccount(url, url, currency);
+		}
+
+		protected Account getOrCreateAccount(String name, String url, Currency? currency = null)
+		{
 			url = url.IntoUrl();
 			var user = repos.User.GetByEmail(current.Email);
 			var account = repos.Account.GetByUrl(url, user);
@@ -227,7 +231,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			service.Admin.CreateAccount(
 				new AccountInfo
 				{
-					Name = url,
+					Name = name,
 					Currency = currency,
 				}
 			);

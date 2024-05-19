@@ -7,7 +7,6 @@ using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
-using DFM.Exchange;
 using DFM.Exchange.Exporter;
 using Keon.Util.Crypto;
 using Keon.Util.DB;

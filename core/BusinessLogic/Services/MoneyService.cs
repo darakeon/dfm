@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
@@ -147,7 +148,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void ImportMovesFile(String csv)
 		{
-			parent.Auth.VerifyUser();
+			var user = parent.Auth.VerifyUser();
 
 			var importer = new CSVImporter(csv);
 
@@ -169,6 +170,38 @@ namespace DFM.BusinessLogic.Services
 
 			if (importer.Error.HasValue)
 				throw errors[importer.Error.Value].Throw();
+
+			var accountsIn = importer.MoveList
+				.ToDictionary(m => m.In, _ => Error.InMoveWrong);
+
+			var accountsOut = importer.MoveList
+				.ToDictionary(m => m.Out, _ => Error.OutMoveWrong);
+
+			var accounts =
+				accountsIn
+					.Union(accountsOut)
+					.Distinct()
+					.ToDictionary(
+						name => name.Key,
+						name => repos.Account.GetByName(name.Key, user, name.Value)
+					);
+
+			var categories =
+				importer.MoveList.Select(m => m.Category)
+					.Distinct()
+					.ToDictionary(
+						name => name,
+						name => repos.Category.GetByName(name, user)
+					);
+
+			importer.MoveList
+				.Select(
+					m => m.Transform(accounts, categories)
+				)
+				.ToList()
+				.ForEach(
+					m => valids.Move.Validate(m, user)
+				);
 		}
 	}
 }

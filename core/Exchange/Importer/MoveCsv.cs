@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities;
+using DFM.Entities.Bases;
 
 namespace DFM.Exchange.Importer;
 
@@ -9,7 +11,7 @@ public class MoveCsv : Line
 	public MoveCsv()
 	{
 		DetailList = new Detail[20]
-			.Select(d => new Detail())
+			.Select(d => new Detail{Amount = 0})
 			.ToList();
 	}
 
@@ -93,4 +95,40 @@ public class MoveCsv : Line
 	public Int16 Amount20 { set => DetailList[19].Amount = value; }
 	public Decimal Value20 { set => DetailList[19].Value = value; }
 	public Decimal? Conversion20 { set => DetailList[19].Conversion = value; }
+
+	public Move Move { get; private set; }
+
+	public Move Transform(
+		IDictionary<String, Account> accounts,
+		IDictionary<String, Category> categories
+	)
+	{
+		if (Move == null)
+		{
+			Move = new Move
+			{
+				Description = Description,
+				Nature = Nature,
+
+				In = accounts[In],
+				Out = accounts[Out],
+				Category = categories[Category],
+
+				Value = Value ?? 0,
+				Conversion = Conversion,
+				DetailList = DetailList.Where(isFilled).ToList()
+			};
+
+			Move.SetDate(Date);
+		}
+
+		return Move;
+	}
+
+	private Boolean isFilled(Detail detail)
+	{
+		return !String.IsNullOrEmpty(detail.Description)
+			|| detail.Amount != 0
+			|| detail.Value != 0;
+	}
 }
