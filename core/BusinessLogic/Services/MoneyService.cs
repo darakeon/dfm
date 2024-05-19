@@ -172,9 +172,11 @@ namespace DFM.BusinessLogic.Services
 				throw errors[importer.Error.Value].Throw();
 
 			var accountsIn = importer.MoveList
+				.Where(m => !String.IsNullOrEmpty(m.In))
 				.ToDictionary(m => m.In, _ => Error.InMoveWrong);
 
 			var accountsOut = importer.MoveList
+				.Where(m => !String.IsNullOrEmpty(m.Out))
 				.ToDictionary(m => m.Out, _ => Error.OutMoveWrong);
 
 			var accounts =
@@ -187,7 +189,9 @@ namespace DFM.BusinessLogic.Services
 					);
 
 			var categories =
-				importer.MoveList.Select(m => m.Category)
+				importer.MoveList
+					.Where(m => !String.IsNullOrEmpty(m.Category))
+					.Select(m => m.Category)
 					.Distinct()
 					.ToDictionary(
 						name => name,
@@ -195,13 +199,18 @@ namespace DFM.BusinessLogic.Services
 					);
 
 			importer.MoveList
-				.Select(
-					m => m.Transform(accounts, categories)
-				)
+				.Select(m => m.Transform(accounts, categories))
 				.ToList()
-				.ForEach(
-					m => valids.Move.Validate(m, user)
-				);
+				.ForEach(m => validate(m, user));
+		}
+
+		private void validate(Move move, User user)
+		{
+			valids.Move.Validate(move, user);
+
+			move.DetailList
+				.ToList()
+				.ForEach(valids.Detail.Validate);
 		}
 	}
 }
