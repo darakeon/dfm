@@ -183,7 +183,7 @@ namespace DFM.BusinessLogic.Services
 					.Distinct()
 					.ToDictionary(
 						name => name.Key,
-						name => repos.Account.GetByName(name.Key, user, name.Value)
+						name => repos.Account.GetByName(name.Key, user, Error.InvalidAccount)
 					);
 
 			var categories =
@@ -191,7 +191,7 @@ namespace DFM.BusinessLogic.Services
 					.Distinct()
 					.ToDictionary(
 						name => name,
-						name => repos.Category.GetByName(name, user)
+						name => repos.Category.GetByName(name, user, Error.InvalidCategory)
 					);
 
 			importer.MoveList
