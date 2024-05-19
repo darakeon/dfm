@@ -2,6 +2,7 @@
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
+using DFM.BusinessLogic.Validators;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using Error = DFM.BusinessLogic.Exceptions.Error;
@@ -10,8 +11,8 @@ namespace DFM.BusinessLogic.Services
 {
 	public class MoneyService : Service
 	{
-		internal MoneyService(ServiceAccess serviceAccess, Repos repos)
-			: base(serviceAccess, repos) { }
+		internal MoneyService(ServiceAccess serviceAccess, Repos repos, Valids valids)
+			: base(serviceAccess, repos, valids) { }
 
 		public MoveResult SaveMove(MoveInfo move)
 		{

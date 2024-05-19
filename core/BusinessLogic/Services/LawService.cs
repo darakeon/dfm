@@ -3,13 +3,14 @@ using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using System;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Validators;
 
 namespace DFM.BusinessLogic.Services
 {
 	public class LawService : Service
 	{
-		internal LawService(ServiceAccess serviceAccess, Repos repos)
-			: base(serviceAccess, repos) { }
+		internal LawService(ServiceAccess serviceAccess, Repos repos, Valids valids)
+			: base(serviceAccess, repos, valids) { }
 
 		public ContractInfo GetContract()
 		{

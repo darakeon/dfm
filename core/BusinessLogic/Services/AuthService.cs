@@ -12,13 +12,14 @@ using Keon.Util.Extensions;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 using DFM.Generic.Datetime;
 using DFM.Language;
+using DFM.BusinessLogic.Validators;
 
 namespace DFM.BusinessLogic.Services
 {
 	public class AuthService: Service, IAuthService<SignInInfo, SessionInfo>
 	{
-		internal AuthService(ServiceAccess serviceAccess, Repos repos)
-			: base(serviceAccess, repos) { }
+		internal AuthService(ServiceAccess serviceAccess, Repos repos, Valids valids)
+			: base(serviceAccess, repos, valids) { }
 
 		public void SaveUser(SignUpInfo info)
 		{

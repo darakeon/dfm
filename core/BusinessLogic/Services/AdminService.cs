@@ -4,6 +4,7 @@ using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
+using DFM.BusinessLogic.Validators;
 using DFM.Entities;
 using DFM.Entities.Enums;
 
@@ -11,8 +12,8 @@ namespace DFM.BusinessLogic.Services
 {
 	public class AdminService : Service
 	{
-		internal AdminService(ServiceAccess serviceAccess, Repos repos)
-			: base(serviceAccess, repos) { }
+		internal AdminService(ServiceAccess serviceAccess, Repos repos, Valids valids)
+			: base(serviceAccess, repos, valids) { }
 
 
 		public IList<AccountListItem> GetAccountList(Boolean open)
