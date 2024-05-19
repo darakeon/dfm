@@ -424,10 +424,24 @@ namespace DFM.BusinessLogic.Tests.Steps
 		#endregion
 
 		#region GetAccountList
+		[Given(@"I open the account (.+)")]
+		public void GivenIOpenTheAccount(String url)
+		{
+			url = url.IntoUrl();
+			var account = service.Admin.GetAccount(url);
+
+			if (!account.IsOpen)
+				service.Admin.ReopenAccount(url);
+		}
+
 		[Given(@"I close the account (.+)")]
 		public void GivenICloseTheAccount(String url)
 		{
-			service.Admin.CloseAccount(url.IntoUrl());
+			url = url.IntoUrl();
+			var account = service.Admin.GetAccount(url);
+
+			if (account.IsOpen)
+				service.Admin.CloseAccount(url);
 		}
 
 		[When(@"ask for the (not )?active account list")]
@@ -766,10 +780,24 @@ namespace DFM.BusinessLogic.Tests.Steps
 		#endregion
 
 		#region GetCategoryList
-		[Given(@"I disable the category (.+)")]
-		public void GivenICloseTheCategory(String name)
+		[Given(@"I enable the category (.+)")]
+		public void GivenIEnableTheCategory(String name)
 		{
-			service.Admin.DisableCategory(name);
+			var user = repos.User.GetByEmail(current.Email);
+			var category = repos.Category.GetByName(name, user);
+
+			if (!category.Active)
+				service.Admin.EnableCategory(name);
+		}
+
+		[Given(@"I disable the category (.+)")]
+		public void GivenIDisableTheCategory(String name)
+		{
+			var user = repos.User.GetByEmail(current.Email);
+			var category = repos.Category.GetByName(name, user);
+
+			if (category.Active)
+				service.Admin.DisableCategory(name);
 		}
 
 		[When(@"ask for all the category list")]

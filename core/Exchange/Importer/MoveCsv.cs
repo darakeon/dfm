@@ -119,6 +119,10 @@ public class MoveCsv : Line
 				DetailList = DetailList.Where(isFilled).ToList()
 			};
 
+			Move.DetailList
+				.ToList()
+				.ForEach(d => d.Move = Move);
+
 			Move.SetDate(Date);
 		}
 

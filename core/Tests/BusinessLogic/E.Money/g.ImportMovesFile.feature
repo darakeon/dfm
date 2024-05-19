@@ -6,7 +6,10 @@ Background:
 			| UseCategories |
 			| true          |
 		And I have two accounts
+		And I open the account Account Out
+		And I open the account Account In
 		And I have a category
+		And I enable the category Category
 
 Scenario: Eg01. Import with user marked for deletion
 	Given a moves file with this content
@@ -315,6 +318,7 @@ Scenario: Eg43. Import with disabled Category
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
+		But I disable the category Category
 	When import moves file
 	Then I will receive this core error: DisabledCategory
 
@@ -322,6 +326,7 @@ Scenario: Eg44. Import with closed AccountOut
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
+		But I close the account Account Out
 	When import moves file
 	Then I will receive this core error: ClosedAccount
 
@@ -329,6 +334,7 @@ Scenario: Eg45. Import with closed AccountIn
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
+		But I close the account Account In
 	When import moves file
 	Then I will receive this core error: ClosedAccount
 
