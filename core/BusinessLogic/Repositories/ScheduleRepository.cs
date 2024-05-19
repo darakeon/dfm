@@ -11,11 +11,11 @@ using Keon.NHibernate.Queries;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class ScheduleRepository : GenericMoveRepository<Schedule>
+	internal class ScheduleRepository() : GenericMoveRepository<Schedule>(
+		MaxLen.ScheduleDescription,
+		Error.TooLargeScheduleDescription
+	)
 	{
-		protected override Int32 descriptionMaxSize => MaxLen.ScheduleDescription;
-		protected override Error descriptionError => Error.TooLargeScheduleDescription;
-
 		internal Schedule Save(Schedule schedule)
 		{
 			if (schedule.ID == 0)

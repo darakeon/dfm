@@ -17,18 +17,11 @@ using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class MoveRepository : GenericMoveRepository<Move>
+	internal class MoveRepository(Current.GetUrl getUrl) : GenericMoveRepository<Move>(
+		MaxLen.MoveDescription,
+		Error.TooLargeMoveDescription
+	)
 	{
-		protected override Int32 descriptionMaxSize => MaxLen.MoveDescription;
-		protected override Error descriptionError => Error.TooLargeMoveDescription;
-
-		private readonly Current.GetUrl getUrl;
-
-		public MoveRepository(Current.GetUrl getUrl)
-		{
-			this.getUrl = getUrl;
-		}
-
 		internal Move Get(Guid guid)
 		{
 			return SingleOrDefault(m => m.ExternalId == guid.ToByteArray());
