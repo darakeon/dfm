@@ -59,8 +59,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 		protected static void setRepositories()
 		{
 			fileService = new LocalFileService();
-			repos = new Repos(getSite, fileService);
 			valids = new Valids();
+			repos = new Repos(getSite, valids, fileService);
 		}
 
 		protected static String getSite()
