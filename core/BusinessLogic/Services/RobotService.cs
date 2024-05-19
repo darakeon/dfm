@@ -5,6 +5,7 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
+using DFM.BusinessLogic.Validators;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
@@ -15,8 +16,8 @@ namespace DFM.BusinessLogic.Services
 {
 	public class RobotService : Service
 	{
-		internal RobotService(ServiceAccess serviceAccess, Repos repos)
-			: base(serviceAccess, repos) { }
+		internal RobotService(ServiceAccess serviceAccess, Repos repos, Valids valids)
+			: base(serviceAccess, repos, valids) { }
 
 		public IList<ScheduleInfo> GetScheduleList()
 		{

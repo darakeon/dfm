@@ -45,6 +45,5 @@ namespace DFM.BusinessLogic.Repositories
 			Tips = new TipsRepository();
 			User = new UserRepository();
 		}
-
 	}
 }

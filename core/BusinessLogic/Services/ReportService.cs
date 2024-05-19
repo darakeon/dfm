@@ -3,14 +3,15 @@ using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
+using DFM.BusinessLogic.Validators;
 using DFM.Entities.Enums;
 
 namespace DFM.BusinessLogic.Services
 {
 	public class ReportService : Service
 	{
-		internal ReportService(ServiceAccess serviceAccess, Repos repos)
-			: base(serviceAccess, repos) { }
+		internal ReportService(ServiceAccess serviceAccess, Repos repos, Valids valids)
+			: base(serviceAccess, repos, valids) { }
 
 		public MonthReport GetMonthReport(String accountUrl, Int16 dateYear, Int16 dateMonth)
 		{

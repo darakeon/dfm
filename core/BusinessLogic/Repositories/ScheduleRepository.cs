@@ -24,11 +24,9 @@ namespace DFM.BusinessLogic.Repositories
 			return SaveOrUpdate(schedule, validate, complete);
 		}
 
-		private void validate(Schedule schedule)
+		new void validate(Schedule schedule)
 		{
-			var now = schedule.User.Now();
-
-			validate(schedule, now);
+			base.validate(schedule);
 
 			if (!schedule.Boundless && schedule.Times <= 0)
 				throw Error.ScheduleTimesCantBeZero.Throw();

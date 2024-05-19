@@ -1,6 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Services;
+using DFM.BusinessLogic.Validators;
 using DFM.Exchange.Exporter;
 
 [assembly: InternalsVisibleTo("DFM.BusinessLogic.Tests")]
@@ -15,17 +16,18 @@ namespace DFM.BusinessLogic
 		)
 		{
 			var repos = new Repos(getUrl, fileService);
+			var valids = new Valids();
 
-			BaseMove = new BaseMoveSaverService(this, repos);
+			BaseMove = new BaseMoveSaverService(this, repos, valids);
 
-			Auth = new AuthService(this, repos);
-			Law = new LawService(this, repos);
-			Admin = new AdminService(this, repos);
-			Clip = new ClipService(this, repos);
-			Money = new MoneyService(this, repos);
-			Report = new ReportService(this, repos);
-			Robot = new RobotService(this, repos);
-			Outside = new OutsideService(this, repos);
+			Auth = new AuthService(this, repos, valids);
+			Law = new LawService(this, repos, valids);
+			Admin = new AdminService(this, repos, valids);
+			Clip = new ClipService(this, repos, valids);
+			Money = new MoneyService(this, repos, valids);
+			Report = new ReportService(this, repos, valids);
+			Robot = new RobotService(this, repos, valids);
+			Outside = new OutsideService(this, repos, valids);
 
 			Current = new Current(Auth, getTicket);
 			File = fileService;

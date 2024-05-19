@@ -34,12 +34,12 @@ namespace DFM.BusinessLogic.Repositories
 			return SingleOrDefault(m => m.ExternalId == guid.ToByteArray());
 		}
 
-		internal Move SaveMainInfo(Move move, DateTime now)
+		internal Move SaveMainInfo(Move move)
 		{
 			//Keep this order, weird errors happen if invert
 			return SaveOrUpdate(
 				move,
-				m => validate(m, now),
+				validate,
 				complete
 			);
 		}

@@ -3,6 +3,7 @@ using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
+using DFM.BusinessLogic.Validators;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
@@ -13,8 +14,8 @@ namespace DFM.BusinessLogic.Services
 {
 	internal class BaseMoveSaverService : Service
 	{
-		internal BaseMoveSaverService(ServiceAccess serviceAccess, Repos repos)
-			: base(serviceAccess, repos) { }
+		internal BaseMoveSaverService(ServiceAccess serviceAccess, Repos repos, Valids valids)
+			: base(serviceAccess, repos, valids) { }
 
 		internal MoveResult SaveMove(MoveInfo info, OperationType operationType)
 		{
@@ -100,18 +101,17 @@ namespace DFM.BusinessLogic.Services
 		{
 			breakSummaries(move);
 
-			var today = parent.Current.Now;
 			var moveIsNew = operationType != OperationType.Edition;
 
 			if (moveIsNew || !move.IsDetailed())
 			{
-				move = repos.Move.SaveMainInfo(move, today);
+				move = repos.Move.SaveMainInfo(move);
 				repos.Detail.SaveDetails(move);
 			}
 			else
 			{
 				repos.Detail.SaveDetails(move);
-				move = repos.Move.SaveMainInfo(move, today);
+				move = repos.Move.SaveMainInfo(move);
 			}
 
 			if (!moveIsNew)
