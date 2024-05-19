@@ -7,13 +7,14 @@ using DFM.Generic.Datetime;
 using DFM.Language;
 using DFM.Generic;
 using DFM.Entities.Enums;
+using DFM.BusinessLogic.Validators;
 
 namespace DFM.BusinessLogic.Services
 {
 	public class ClipService : Service
 	{
-		internal ClipService(ServiceAccess serviceAccess, Repos repos)
-			: base(serviceAccess, repos) { }
+		internal ClipService(ServiceAccess serviceAccess, Repos repos, Valids valids)
+			: base(serviceAccess, repos, valids) { }
 
 		public void EndWizard()
 		{

@@ -5,6 +5,7 @@ using DFM.Authentication;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
+using DFM.BusinessLogic.Validators;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Bases;
@@ -30,12 +31,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 		protected static ServiceAccess service;
 		protected static Current current => service.Current;
 
+		private protected static Valids valids;
 		private protected static Repos repos;
 		private protected static IFileService fileService;
 
 		private static String logFileName;
 
-		protected static TestService db = new(service, repos);
+		protected static TestService db = new(service, repos, valids);
 
 		protected static void setLogName()
 		{
@@ -57,7 +59,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 		protected static void setRepositories()
 		{
 			fileService = new LocalFileService();
-			repos = new Repos(getSite, fileService);
+			valids = new Valids();
+			repos = new Repos(getSite, valids, fileService);
 		}
 
 		protected static String getSite()
