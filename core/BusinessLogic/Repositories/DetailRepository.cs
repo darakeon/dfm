@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Validators;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
@@ -11,6 +11,8 @@ namespace DFM.BusinessLogic.Repositories
 {
 	internal class DetailRepository : Repo<Detail>
 	{
+		private readonly DetailValidator validator = new();
+
 		internal void SaveDetails(Move move)
 		{
 			foreach (var detail in move.DetailList)
@@ -38,26 +40,8 @@ namespace DFM.BusinessLogic.Repositories
 				if (detail.Guid == Guid.Empty)
 					detail.Guid = Guid.NewGuid();
 
-				SaveOrUpdate(detail, validate);
+				SaveOrUpdate(detail, validator.Validate);
 			}
-		}
-
-		private static void validate(Detail detail)
-		{
-			if (detail.Move == null && detail.Schedule == null)
-				throw Error.DetailWithoutParent.Throw();
-
-			if (String.IsNullOrEmpty(detail.Description))
-				throw Error.MoveDetailDescriptionRequired.Throw();
-
-			if (detail.Description.Length > MaxLen.DetailDescription)
-				throw Error.TooLargeDetailDescription.Throw();
-
-			if (detail.Amount == 0)
-				throw Error.MoveDetailAmountRequired.Throw();
-
-			if (detail.ValueCents == 0)
-				throw Error.MoveDetailValueRequired.Throw();
 		}
 
 		public IList<Detail> ByDescription(String userEmail, params String[] terms)

@@ -9,17 +9,13 @@ using DFM.Entities.Bases;
 namespace DFM.BusinessLogic.Bases
 {
 	public abstract class GenericMoveRepository<T>(
-		Int32 descriptionMaxSize,
-		Error descriptionError
+		GenericMoveValidator<T> validator
 	) : Repo<T>
 		where T : class, IMove, new()
 	{
 		internal abstract User GetUser(T entity);
 
-		private readonly MoveValidator<T> validator = new(
-			descriptionMaxSize,
-			descriptionError
-		);
+		private GenericMoveValidator<T> validator;
 
 		protected void validate(T move)
 		{

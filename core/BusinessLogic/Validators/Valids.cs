@@ -1,19 +1,16 @@
-using DFM.BusinessLogic.Exceptions;
-using DFM.Entities;
-using DFM.Entities.Bases;
-
 namespace DFM.BusinessLogic.Validators;
 
 internal class Valids
 {
-	internal MoveValidator<Move> Move;
+	internal MoveValidator Move;
+	internal ScheduleValidator Schedule;
+	internal DetailValidator Detail;
 
 	internal Valids()
 	{
-		Move = new MoveValidator<Move>(
-			MaxLen.MoveDescription,
-			Error.MoveDescriptionRequired
-		);
+		Schedule = new ScheduleValidator();
+		Move = new MoveValidator();
+		Detail = new DetailValidator();
 	}
 
 }

@@ -15,8 +15,8 @@ namespace DFM.BusinessLogic
 			IFileService fileService
 		)
 		{
-			var repos = new Repos(getUrl, fileService);
 			var valids = new Valids();
+			var repos = new Repos(getUrl, valids, fileService);
 
 			BaseMove = new BaseMoveSaverService(this, repos, valids);
 

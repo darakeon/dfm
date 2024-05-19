@@ -4,6 +4,7 @@ using System.Linq;
 using DFM.BusinessLogic.Bases;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
+using DFM.BusinessLogic.Validators;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
@@ -11,10 +12,8 @@ using Keon.NHibernate.Queries;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class ScheduleRepository() : GenericMoveRepository<Schedule>(
-		MaxLen.ScheduleDescription,
-		Error.TooLargeScheduleDescription
-	)
+	internal class ScheduleRepository(ScheduleValidator validator)
+		: GenericMoveRepository<Schedule>(validator)
 	{
 		internal Schedule Save(Schedule schedule)
 		{

@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using Keon.Util.Extensions;
 using DFM.BusinessLogic.Bases;
+using DFM.BusinessLogic.Validators;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Bases;
@@ -13,14 +14,11 @@ using DFM.Language;
 using DFM.Language.Emails;
 using DFM.Language.Extensions;
 using Keon.NHibernate.Queries;
-using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class MoveRepository(Current.GetUrl getUrl) : GenericMoveRepository<Move>(
-		MaxLen.MoveDescription,
-		Error.TooLargeMoveDescription
-	)
+	internal class MoveRepository(Current.GetUrl getUrl, MoveValidator validator)
+		: GenericMoveRepository<Move>(validator)
 	{
 		internal Move Get(Guid guid)
 		{

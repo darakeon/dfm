@@ -1,5 +1,6 @@
 using DFM.Authentication;
 using DFM.BusinessLogic.Response;
+using DFM.BusinessLogic.Validators;
 using DFM.Exchange.Exporter;
 
 namespace DFM.BusinessLogic.Repositories
@@ -25,6 +26,7 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal Repos(
 			Current<SignInInfo, SessionInfo>.GetUrl getUrl,
+			Valids valids,
 			IFileService fileService
 		)
 		{
@@ -36,9 +38,9 @@ namespace DFM.BusinessLogic.Repositories
 			Contract = new ContractRepository();
 			Control = new ControlRepository(getUrl);
 			Detail = new DetailRepository();
-			Move = new MoveRepository(getUrl);
+			Move = new MoveRepository(getUrl, valids.Move);
 			Wipe = new WipeRepository(this, getUrl, fileService);
-			Schedule = new ScheduleRepository();
+			Schedule = new ScheduleRepository(valids.Schedule);
 			Security = new SecurityRepository(getUrl);
 			Summary = new SummaryRepository();
 			Ticket = new TicketRepository();
