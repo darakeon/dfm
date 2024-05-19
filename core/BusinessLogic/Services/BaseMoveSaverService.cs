@@ -3,6 +3,7 @@ using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
+using DFM.BusinessLogic.Validators;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
@@ -13,8 +14,8 @@ namespace DFM.BusinessLogic.Services
 {
 	internal class BaseMoveSaverService : Service
 	{
-		internal BaseMoveSaverService(ServiceAccess serviceAccess, Repos repos)
-			: base(serviceAccess, repos) { }
+		internal BaseMoveSaverService(ServiceAccess serviceAccess, Repos repos, Valids valids)
+			: base(serviceAccess, repos, valids) { }
 
 		internal MoveResult SaveMove(MoveInfo info, OperationType operationType)
 		{
@@ -41,58 +42,7 @@ namespace DFM.BusinessLogic.Services
 
 			linkEntities(move, info);
 
-			TestCurrency(
-				info,
-				move.Out?.Currency,
-				move.In?.Currency
-			);
-
 			return SaveMove(move, operationType);
-		}
-
-		internal void TestCurrency(IMoveInfo move, Currency? currencyOut, Currency? currencyIn)
-		{
-			var isTransfer = move.Nature == MoveNature.Transfer;
-			var sameCurrency = currencyIn == currencyOut;
-
-			var moveHasConversion =
-				move.Conversion != null
-					&& move.Conversion != 0;
-
-			var detailHaveAnyConversion =
-				move.DetailList.Any(
-					d => d.Conversion != null
-					    && move.Conversion != 0
-				);
-
-			var detailHaveAllConversion =
-				move.DetailList.Any()
-					&& move.DetailList.All(
-						d => d.Conversion != null
-						     && d.Conversion != 0
-					);
-
-			if (moveHasConversion || detailHaveAnyConversion)
-			{
-				if (!parent.Current.UseCurrency)
-					throw Error.UseCurrencyDisabled.Throw();
-
-				if (!isTransfer)
-					throw Error.CurrencyInOutValueWithoutTransfer.Throw();
-
-				if (sameCurrency)
-					throw Error.AccountsSameCurrencyConversion.Throw();
-			}
-
-			if (
-				isTransfer
-				&& !sameCurrency
-				&& !moveHasConversion
-				&& !detailHaveAllConversion
-			)
-			{
-				throw Error.AccountsDifferentCurrencyNoConversion.Throw();
-			}
 		}
 
 
@@ -100,18 +50,17 @@ namespace DFM.BusinessLogic.Services
 		{
 			breakSummaries(move);
 
-			var today = parent.Current.Now;
 			var moveIsNew = operationType != OperationType.Edition;
 
 			if (moveIsNew || !move.IsDetailed())
 			{
-				move = repos.Move.SaveMainInfo(move, today);
+				move = repos.Move.SaveMainInfo(move);
 				repos.Detail.SaveDetails(move);
 			}
 			else
 			{
 				repos.Detail.SaveDetails(move);
-				move = repos.Move.SaveMainInfo(move, today);
+				move = repos.Move.SaveMainInfo(move);
 			}
 
 			if (!moveIsNew)

@@ -5,13 +5,14 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Enums;
 using DFM.Entities;
 using DFM.BusinessLogic.Response;
+using DFM.BusinessLogic.Validators;
 
 namespace DFM.BusinessLogic.Services
 {
 	public class OutsideService : Service
 	{
-		internal OutsideService(ServiceAccess serviceAccess, Repos repos)
-			: base(serviceAccess, repos) { }
+		internal OutsideService(ServiceAccess serviceAccess, Repos repos, Valids valids)
+			: base(serviceAccess, repos, valids) { }
 
 		public void TestSecurityToken(String token, SecurityAction securityAction)
 		{

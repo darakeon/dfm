@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using Keon.Util.Extensions;
 using DFM.BusinessLogic.Bases;
+using DFM.BusinessLogic.Validators;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Bases;
@@ -13,33 +14,23 @@ using DFM.Language;
 using DFM.Language.Emails;
 using DFM.Language.Extensions;
 using Keon.NHibernate.Queries;
-using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class MoveRepository : GenericMoveRepository<Move>
+	internal class MoveRepository(Current.GetUrl getUrl, MoveValidator validator)
+		: GenericMoveRepository<Move>(validator)
 	{
-		protected override Int32 descriptionMaxSize => MaxLen.MoveDescription;
-		protected override Error descriptionError => Error.TooLargeMoveDescription;
-
-		private readonly Current.GetUrl getUrl;
-
-		public MoveRepository(Current.GetUrl getUrl)
-		{
-			this.getUrl = getUrl;
-		}
-
 		internal Move Get(Guid guid)
 		{
 			return SingleOrDefault(m => m.ExternalId == guid.ToByteArray());
 		}
 
-		internal Move SaveMainInfo(Move move, DateTime now)
+		internal Move SaveMainInfo(Move move)
 		{
 			//Keep this order, weird errors happen if invert
 			return SaveOrUpdate(
 				move,
-				m => validate(m, now),
+				validate,
 				complete
 			);
 		}
@@ -228,8 +219,10 @@ namespace DFM.BusinessLogic.Repositories
 			if (move.ID != 0)
 				move = Get(move.ID) ?? move;
 
-			var account = move.Out ?? move.In;
-			return account?.User;
+			return move.Out?.User
+			    ?? move.In?.User
+			    ?? move.Category?.User
+			    ?? move.Schedule?.User;
 		}
 
 		public IList<Move> ByAccount(Account account)
