@@ -454,8 +454,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 		protected const String robotEmail = "robot@dontflymoney.com";
 
 		protected static String userPassword = "password";
-		protected const String mainAccountUrl = "first_account";
-		protected const String mainCategoryName = "first category";
+		protected const String mainAccountUrl = "Account";
+		protected const String mainCategoryName = "Category";
 
 		protected const String accountOutName = "Account Out";
 		protected const String accountInName = "Account In";
