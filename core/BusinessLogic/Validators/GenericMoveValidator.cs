@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Bases;
@@ -26,6 +27,13 @@ public class GenericMoveValidator<T>(
 
 		testAccounts(move);
 		testCategory(user, move);
+
+		testCurrency(
+			move,
+			user.Settings.UseCurrency,
+			move.Out?.Currency,
+			move.In?.Currency
+		);
 	}
 
 	private void testDescription(T move)
@@ -119,5 +127,48 @@ public class GenericMoveValidator<T>(
 		}
 	}
 
+	private void testCurrency(T move, Boolean useCurrency, Currency? currencyOut, Currency? currencyIn)
+	{
+		var isTransfer = move.Nature == MoveNature.Transfer;
+		var sameCurrency = currencyIn == currencyOut;
 
+		var moveHasConversion =
+			move.Conversion != null
+			&& move.Conversion != 0;
+
+		var detailHaveAnyConversion =
+			move.DetailList.Any(
+				d => d.Conversion != null
+				     && move.Conversion != 0
+			);
+
+		var detailHaveAllConversion =
+			move.DetailList.Any()
+			&& move.DetailList.All(
+				d => d.Conversion != null
+				     && d.Conversion != 0
+			);
+
+		if (moveHasConversion || detailHaveAnyConversion)
+		{
+			if (!useCurrency)
+				throw Error.UseCurrencyDisabled.Throw();
+
+			if (!isTransfer)
+				throw Error.CurrencyInOutValueWithoutTransfer.Throw();
+
+			if (sameCurrency)
+				throw Error.AccountsSameCurrencyConversion.Throw();
+		}
+
+		if (
+			isTransfer
+			&& !sameCurrency
+			&& !moveHasConversion
+			&& !detailHaveAllConversion
+		)
+		{
+			throw Error.AccountsDifferentCurrencyNoConversion.Throw();
+		}
+	}
 }

@@ -78,12 +78,6 @@ namespace DFM.BusinessLogic.Services
 				User = user
 			};
 
-			parent.BaseMove.TestCurrency(
-				info,
-				accountOut?.Currency,
-				accountIn?.Currency
-			);
-
 			info.Update(schedule);
 
 			if (schedule.ID == 0 || !schedule.IsDetailed())

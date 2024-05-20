@@ -42,58 +42,7 @@ namespace DFM.BusinessLogic.Services
 
 			linkEntities(move, info);
 
-			TestCurrency(
-				info,
-				move.Out?.Currency,
-				move.In?.Currency
-			);
-
 			return SaveMove(move, operationType);
-		}
-
-		internal void TestCurrency(IMoveInfo move, Currency? currencyOut, Currency? currencyIn)
-		{
-			var isTransfer = move.Nature == MoveNature.Transfer;
-			var sameCurrency = currencyIn == currencyOut;
-
-			var moveHasConversion =
-				move.Conversion != null
-					&& move.Conversion != 0;
-
-			var detailHaveAnyConversion =
-				move.DetailList.Any(
-					d => d.Conversion != null
-					    && move.Conversion != 0
-				);
-
-			var detailHaveAllConversion =
-				move.DetailList.Any()
-					&& move.DetailList.All(
-						d => d.Conversion != null
-						     && d.Conversion != 0
-					);
-
-			if (moveHasConversion || detailHaveAnyConversion)
-			{
-				if (!parent.Current.UseCurrency)
-					throw Error.UseCurrencyDisabled.Throw();
-
-				if (!isTransfer)
-					throw Error.CurrencyInOutValueWithoutTransfer.Throw();
-
-				if (sameCurrency)
-					throw Error.AccountsSameCurrencyConversion.Throw();
-			}
-
-			if (
-				isTransfer
-				&& !sameCurrency
-				&& !moveHasConversion
-				&& !detailHaveAllConversion
-			)
-			{
-				throw Error.AccountsDifferentCurrencyNoConversion.Throw();
-			}
 		}
 
 
