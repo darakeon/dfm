@@ -172,20 +172,24 @@ namespace DFM.BusinessLogic.Services
 				throw errors[importer.Error.Value].Throw();
 
 			var accountsIn = importer.MoveList
-				.Where(m => !String.IsNullOrEmpty(m.In))
-				.ToDictionary(m => m.In, _ => Error.InMoveWrong);
+				.Select(m => m.In)
+				.Distinct()
+				.Where(m => !String.IsNullOrEmpty(m))
+				.ToDictionary(m => m, _ => Error.InMoveWrong);
 
 			var accountsOut = importer.MoveList
-				.Where(m => !String.IsNullOrEmpty(m.Out))
-				.ToDictionary(m => m.Out, _ => Error.OutMoveWrong);
+				.Select(m => m.Out)
+				.Distinct()
+				.Where(m => !String.IsNullOrEmpty(m))
+				.ToDictionary(m => m, _ => Error.OutMoveWrong);
 
 			var accounts =
 				accountsIn
 					.Union(accountsOut)
-					.Distinct()
+					.DistinctBy(a => a.Key)
 					.ToDictionary(
-						name => name.Key,
-						name => repos.Account.GetByName(name.Key, user, Error.InvalidAccount)
+						a => a.Key,
+						a => repos.Account.GetByName(a.Key, user, Error.InvalidAccount)
 					);
 
 			var categories =

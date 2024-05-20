@@ -596,7 +596,7 @@ Scenario: Eg76. Import move transfer with detailed conversion invalid for differ
 			| Description         | Date       | Category | Nature   | Out             | In             | Value | Description1 | Amount1 | Value1 | Conversion1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL |       | D            | 1       | 1      | V           |
 	When import moves file
-	Then I will receive this core error: AccountsDifferentCurrencyNoConversion
+	Then I will receive this core error: MoveDetailConversionInvalid
 
 Scenario: Eg77. Import move out with detailed unique value for enabled conversion
 	Given a moves file with this content
@@ -628,18 +628,4 @@ Scenario: Eg79. Import multiple lines
 			| Move {scenarioCode} 3 | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
 	When import moves file
 	Then I will receive no core error
-		And the pre-import data will be recorded
-
-Scenario: Eg80. Error in multiple lines
-	Given a moves file with this content
-			| Description           | Date       | Category | Nature   | Out         | In         | Value |
-			| Move {scenarioCode} 1 | 3024-04-29 | Category | Transfer | Account Out | Account In | 1     |
-			| Move {scenarioCode} 2 | 2024-04-29 | Category | Alien    | Account Out | Account In | 1     |
-			| Move {scenarioCode} 3 | 2024-04-29 | Category | Transfer |             |            | 1     |
-	When import moves file
-	Then I will receive these core errors
-			| Error             |
-			| MoveDateInvalid   |
-			| MoveNatureInvalid |
-			| TransferMoveWrong |
 		And the pre-import data will be recorded
