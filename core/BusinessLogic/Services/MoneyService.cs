@@ -148,6 +148,8 @@ namespace DFM.BusinessLogic.Services
 
 		public void ImportMovesFile(String csv)
 		{
+			using var error = new CoreError();
+
 			var user = parent.Auth.VerifyUser();
 
 			var importer = new CSVImporter(csv);
@@ -168,8 +170,13 @@ namespace DFM.BusinessLogic.Services
 				{ ImporterError.DetailConversionInvalid, Error.MoveDetailConversionInvalid },
 			};
 
-			if (importer.Error.HasValue)
-				throw errors[importer.Error.Value].Throw();
+			if (importer.ErrorList.Any())
+			{
+				importer.ErrorList
+					.ToList()
+					.ForEach(e => error.AddError(errors[e]));
+				return;
+			}
 
 			var accountsIn = importer.MoveList
 				.Select(m => m.In)

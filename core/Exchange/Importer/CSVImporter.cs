@@ -14,6 +14,7 @@ namespace DFM.Exchange.Importer
 		public CSVImporter(String content)
 		{
 			MoveList = new List<MoveCsv>();
+			ErrorList = new List<ImporterError>();
 
 			using TextReader reader = new StringReader(content);
 
@@ -25,15 +26,13 @@ namespace DFM.Exchange.Importer
 
 			using var csv = new CsvReader(reader, config);
 
-			List<MoveCsv> moves = new List<MoveCsv>();
-
 			try
 			{
-				moves = csv.GetRecords<MoveCsv>().ToList();
+				MoveList = csv.GetRecords<MoveCsv>().ToList();
 			}
 			catch (TypeConverterException exception)
 			{
-				Error = handleFieldError(exception);
+				ErrorList.Add(handleFieldError(exception));
 				return;
 			}
 
@@ -49,17 +48,18 @@ namespace DFM.Exchange.Importer
 
 			if (hasNonValidHeaders)
 			{
-				Error = ImporterError.Header;
-				return;
+				ErrorList.Add(ImporterError.Header);
 			}
 
-			if (moves.Count == 0)
+			if (!MoveList.Any())
 			{
-				Error = ImporterError.Empty;
-				return;
+				ErrorList.Add(ImporterError.Empty);
 			}
 
-			MoveList = moves;
+			if (ErrorList.Any())
+			{
+				MoveList.Clear();
+			}
 		}
 
 		private ImporterError handleFieldError(TypeConverterException exception)
@@ -101,7 +101,7 @@ namespace DFM.Exchange.Importer
 			}
 		}
 
-		public ImporterError? Error { get; }
+		public IList<ImporterError> ErrorList { get; }
 		public IList<MoveCsv> MoveList { get; }
 	}
 }
