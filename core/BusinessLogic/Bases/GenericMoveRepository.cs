@@ -15,8 +15,6 @@ namespace DFM.BusinessLogic.Bases
 	{
 		internal abstract User GetUser(T entity);
 
-		private GenericMoveValidator<T> validator;
-
 		protected void validate(T move)
 		{
 			var user = GetUser(move);
