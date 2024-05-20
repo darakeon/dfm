@@ -15,6 +15,7 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 
 | Task (46)                                                                      | Typ | Dif | Imp | Pts |
 | ------------------------------------------------------------------------------ | --- | --- | --- | --- |
+| Refactor Core Steps to improve their division to entities and given/when/then  | 🐑 |  1  |  3  |  6  |
 | Implement entities limits (acc opened, cat enabled, moves/month, active sched) | 🐉 |  2  |  4  |  6  |
 | Add semgrep to dfm, dk-lib, meak and server                                    | 🐳 |  2  |  4  |  6  |
 | [clear headers on nginx](todo/clear-headers.png)                               | 🐳 |  2  |  4  |  6  |
@@ -27,7 +28,6 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Inject ServiceAccess with AddScoped at MVC (because of Session NH)             | 🐜 |  2  |  4  |  6  |
 | Add rate limit to API and site                                                 | 🐳 |  1  |  3  |  6  |
 | Add [swagger] to API                                                           | 🐳 |  1  |  3  |  6  |
-| Refactor Core Steps to improve their division to entities and given/when/then  | 🐑 |  1  |  3  |  6  |
 | Replace XML at UI android by [compose jetpack]                                 | 🐉 |  3  |  4  |  5  |
 | Implement security measures suggested by github                                | 🐑 |  3  |  4  |  5  |
 | Add schedule creation (mobile)                                                 | 🐉 |  2  |  3  |  5  |
