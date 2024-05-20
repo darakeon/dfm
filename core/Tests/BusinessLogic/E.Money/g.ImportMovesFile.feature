@@ -3,11 +3,17 @@
 Background:
 	Given test user login
 		And these settings
-			| UseCategories |
-			| true          |
+			| UseCategories | UseCurrency |
+			| true          | true        |
 		And I have two accounts
 		And I open the account Account Out
 		And I open the account Account In
+		And I already have this account
+			| Name            | Currency |
+			| Account Out EUR | EUR      |
+		And I already have this account
+			| Name            | Currency |
+			| Account In BRL  | BRL      |
 		And I have a category
 		And I enable the category Category
 
@@ -566,8 +572,8 @@ Scenario: Eg72. Import move transfer with detailed conversion for disabled use c
 
 Scenario: Eg73. Import move out with detailed conversion
 	Given a moves file with this content
-			| Description         | Date       | Category | Nature | Out | In             | Value | Description1 | Amount1 | Value1 | Conversion1 |
-			| Move {scenarioCode} | 2024-04-29 | Category | Out    |     | Account In BRL |       | D            | 1       | 1      | 5           |
+			| Description         | Date       | Category | Nature | Out             | In | Value | Description1 | Amount1 | Value1 | Conversion1 |
+			| Move {scenarioCode} | 2024-04-29 | Category | Out    | Account Out EUR |    |       | D            | 1       | 1      | 5           |
 	When import moves file
 	Then I will receive this core error: CurrencyInOutValueWithoutTransfer
 
