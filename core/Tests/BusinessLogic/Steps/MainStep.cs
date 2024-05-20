@@ -12,6 +12,7 @@ using Keon.NHibernate.Schema;
 using Keon.NHibernate.Sessions;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Tests.Steps
@@ -125,6 +126,21 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			Assert.That(error, Is.Not.Null);
 			Assert.That(error.Type, Is.EqualTo(expectedError));
+		}
+
+		[Then(@"I will receive these core errors")]
+		public void ThenIWillReceiveTheseCoreErrors(Table table)
+		{
+			Assert.That(error, Is.Not.Null);
+
+			var expectedErrors = table.CreateSet<Error>().ToList();
+
+			Assert.That(error.Types.Count, Is.EqualTo(expectedErrors.Count));
+
+			foreach (var expectedError in expectedErrors)
+			{
+				Assert.That(error.Types, Contains.Value(expectedError));
+			}
 		}
 
 		[Then(@"I will receive no core error")]

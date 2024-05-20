@@ -629,3 +629,17 @@ Scenario: Eg79. Import multiple lines
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+
+Scenario: Eg80. Error in multiple lines
+	Given a moves file with this content
+			| Description           | Date       | Category | Nature   | Out         | In         | Value |
+			| Move {scenarioCode} 1 | 3024-04-29 | Category | Transfer | Account Out | Account In | 1     |
+			| Move {scenarioCode} 2 | 2024-04-29 | Category | Alien    | Account Out | Account In | 1     |
+			| Move {scenarioCode} 3 | 2024-04-29 | Category | Transfer |             |            | 1     |
+	When import moves file
+	Then I will receive these core errors
+			| Error             |
+			| MoveDateInvalid   |
+			| MoveNatureInvalid |
+			| TransferMoveWrong |
+		And the pre-import data will be recorded
