@@ -110,9 +110,9 @@ public class MoveCsv : Line
 				Description = Description,
 				Nature = Nature,
 
-				In = accounts[In],
-				Out = accounts[Out],
-				Category = categories[Category],
+				In = String.IsNullOrEmpty(In) ? null : accounts[In],
+				Out = String.IsNullOrEmpty(Out) ? null : accounts[Out],
+				Category = String.IsNullOrEmpty(Category) ? null : categories[Category],
 
 				Value = Value ?? 0,
 				Conversion = Conversion,

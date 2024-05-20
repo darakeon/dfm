@@ -428,9 +428,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void GivenIOpenTheAccount(String url)
 		{
 			url = url.IntoUrl();
-			var account = service.Admin.GetAccount(url);
+			var user = repos.User.GetByEmail(current.Email);
+			var account = repos.Account.GetByUrl(url, user);
 
-			if (!account.IsOpen)
+			if (!account.Open)
 				service.Admin.ReopenAccount(url);
 		}
 
@@ -438,10 +439,34 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void GivenICloseTheAccount(String url)
 		{
 			url = url.IntoUrl();
-			var account = service.Admin.GetAccount(url);
+			var user = repos.User.GetByEmail(current.Email);
+			var account = repos.Account.GetByUrl(url, user);
 
-			if (account.IsOpen)
+			if (account.Open)
+			{
+				var hasMoves = repos.Move.Any(
+					m => m.In.ID == account.ID || m.Out.ID == account.ID
+				);
+
+				if (!hasMoves)
+				{
+					var move = new MoveInfo
+					{
+						Description = "for closing",
+						Nature = MoveNature.Out,
+						OutUrl = account.Url,
+						Value = 1,
+					};
+					move.SetDate(user.Now());
+
+					if (user.Settings.UseCategories)
+						move.CategoryName = mainCategoryName;
+
+					service.Money.SaveMove(move);
+				}
+
 				service.Admin.CloseAccount(url);
+			}
 		}
 
 		[When(@"ask for the (not )?active account list")]
