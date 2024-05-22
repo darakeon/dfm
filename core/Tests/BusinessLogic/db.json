@@ -4,7 +4,7 @@
 
 		"ConnectionString": "Data Source=test.db;Version=3;",
 
-		"ShowSQL": "false",
+		"ShowSQL": "true",
 		"DBAction": "Recreate",
 		"ScriptFileFullName": "NH_DB.txt",
 
