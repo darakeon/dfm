@@ -171,22 +171,14 @@ namespace DFM.BusinessLogic.Services
 			if (importer.Error.HasValue)
 				throw errors[importer.Error.Value].Throw();
 
-			var accountsIn = importer.MoveList
-				.Select(m => m.In)
-				.Distinct()
-				.Where(m => !String.IsNullOrEmpty(m))
-				.ToList();
-
-			var accountsOut = importer.MoveList
-				.Select(m => m.Out)
-				.Distinct()
-				.Where(m => !String.IsNullOrEmpty(m))
-				.ToList();
+			var accountsIn = importer.MoveList.Select(m => m.In);
+			var accountsOut = importer.MoveList.Select(m => m.Out);
 
 			var accounts =
 				accountsIn
 					.Union(accountsOut)
-					.DistinctBy(a => a)
+					.Where(a => !String.IsNullOrEmpty(a))
+					.Distinct()
 					.ToDictionary(
 						a => a,
 						a => repos.Account.GetByName(a, user, Error.InvalidAccount)
