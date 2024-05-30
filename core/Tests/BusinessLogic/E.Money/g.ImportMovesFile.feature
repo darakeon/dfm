@@ -24,6 +24,7 @@ Scenario: Eg01. Import with user marked for deletion
 		But the user is marked for deletion
 	When import moves file
 	Then I will receive this core error: UserDeleted
+		And the pre-import data will not be recorded
 
 Scenario: Eg02. Import with user requested wipe
 	Given a moves file with this content
@@ -32,6 +33,7 @@ Scenario: Eg02. Import with user requested wipe
 		But the user asked data wipe
 	When import moves file
 	Then I will receive this core error: UserAskedWipe
+		And the pre-import data will not be recorded
 
 Scenario: Eg03. Import without sign last contract
 	Given a moves file with this content
@@ -40,12 +42,14 @@ Scenario: Eg03. Import without sign last contract
 		But there is a new contract
 	When import moves file
 	Then I will receive this core error: NotSignedLastContract
+		And the pre-import data will not be recorded
 
 Scenario: Eg04. Import empty
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 	When import moves file
 	Then I will receive this core error: InvalidArchive
+		And the pre-import data will not be recorded
 
 Scenario: Eg05. Import with unknown column
 	Given a moves file with this content
@@ -53,6 +57,7 @@ Scenario: Eg05. Import with unknown column
 			| Move {scenarioCode} | make me earn money | 2024-04-29 | Category | Transfer | Account Out | Account In |       |
 	When import moves file
 	Then I will receive this core error: InvalidArchiveColumn
+		And the pre-import data will not be recorded
 
 Scenario: Eg06. Import with 20 details
 	Given a moves file with this content
@@ -68,6 +73,7 @@ Scenario: Eg07. Import with 21 details
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | D            | 1       | 1      | D            | 1       | 1      | D            | 1       | 1      | D            | 1       | 1      | D            | 1       | 1      | D            | 1       | 1      | D            | 1       | 1      | D            | 1       | 1      | D            | 1       | 1      | D             | 1        | 1       | D             | 1        | 1       | D             | 1        | 1       | D             | 1        | 1       | D             | 1        | 1       | D             | 1        | 1       | D             | 1        | 1       | D             | 1        | 1       | D             | 1        | 1       | D             | 1        | 1       | D             | 1        | 1       | D             | 1        | 1       |
 	When import moves file
 	Then I will receive this core error: InvalidArchiveColumn
+		And the pre-import data will not be recorded
 
 Scenario: Eg08. Import without Description
 	Given a moves file with this content
@@ -75,6 +81,7 @@ Scenario: Eg08. Import without Description
 			|             | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
 	When import moves file
 	Then I will receive this core error: MoveDescriptionRequired
+		And the pre-import data will not be recorded
 
 Scenario: Eg09. Import without Date
 	Given a moves file with this content
@@ -82,6 +89,7 @@ Scenario: Eg09. Import without Date
 			| Move {scenarioCode} |      | Category | Transfer | Account Out | Account In | 1     |
 	When import moves file
 	Then I will receive this core error: MoveDateRequired
+		And the pre-import data will not be recorded
 
 Scenario: Eg10. Import with invalid Date
 	Given a moves file with this content
@@ -89,6 +97,7 @@ Scenario: Eg10. Import with invalid Date
 			| Move {scenarioCode} | 2024-04-31 | Category | Transfer | Account Out | Account In | 1     |
 	When import moves file
 	Then I will receive this core error: MoveDateInvalid
+		And the pre-import data will not be recorded
 
 Scenario: Eg11. Import with future Date
 	Given a moves file with this content
@@ -96,6 +105,7 @@ Scenario: Eg11. Import with future Date
 			| Move {scenarioCode} | 3024-04-29 | Category | Transfer | Account Out | Account In | 1     |
 	When import moves file
 	Then I will receive this core error: MoveDateInvalid
+		And the pre-import data will not be recorded
 
 Scenario: Eg12. Import without Category but using Categories
 	Given a moves file with this content
@@ -106,6 +116,7 @@ Scenario: Eg12. Import without Category but using Categories
 			| true          |
 	When import moves file
 	Then I will receive this core error: InvalidCategory
+		And the pre-import data will not be recorded
 
 Scenario: Eg13. Import with Category but not using Categories
 	Given a moves file with this content
@@ -116,6 +127,7 @@ Scenario: Eg13. Import with Category but not using Categories
 			| false         |
 	When import moves file
 	Then I will receive this core error: CategoriesDisabled
+		And the pre-import data will not be recorded
 
 Scenario: Eg14. Import with unknown Category
 	Given a moves file with this content
@@ -123,6 +135,7 @@ Scenario: Eg14. Import with unknown Category
 			| Move {scenarioCode} | 2024-04-29 | Unknown  | Transfer | Account Out | Account In | 1     |
 	When import moves file
 	Then I will receive this core error: InvalidCategory
+		And the pre-import data will not be recorded
 
 Scenario: Eg15. Import with Description too large
 	Given a moves file with this content
@@ -130,6 +143,7 @@ Scenario: Eg15. Import with Description too large
 			| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
 	When import moves file
 	Then I will receive this core error: TooLargeMoveDescription
+		And the pre-import data will not be recorded
 
 Scenario: Eg16. Import with (Nature: Out) (AccountOut:No) (AccountIn:No)
 	Given a moves file with this content
@@ -137,6 +151,7 @@ Scenario: Eg16. Import with (Nature: Out) (AccountOut:No) (AccountIn:No)
 			| Move {scenarioCode} | 2024-04-29 | Category | Out    |     |    | 1     |
 	When import moves file
 	Then I will receive this core error: OutMoveWrong
+		And the pre-import data will not be recorded
 
 Scenario: Eg17. Import without Nature
 	Given a moves file with this content
@@ -144,6 +159,7 @@ Scenario: Eg17. Import without Nature
 			| Move {scenarioCode} | 2024-04-29 | Category |        |     |    | 1     |
 	When import moves file
 	Then I will receive this core error: MoveNatureRequired
+		And the pre-import data will not be recorded
 
 Scenario: Eg18. Import with invalid Nature
 	Given a moves file with this content
@@ -151,6 +167,7 @@ Scenario: Eg18. Import with invalid Nature
 			| Move {scenarioCode} | 2024-04-29 | Category | Alien  |     |    | 1     |
 	When import moves file
 	Then I will receive this core error: MoveNatureInvalid
+		And the pre-import data will not be recorded
 
 Scenario: Eg19. Import with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes)
 	Given a moves file with this content
@@ -158,6 +175,7 @@ Scenario: Eg19. Import with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes)
 			| Move {scenarioCode} | 2024-04-29 | Category | Out    | Account Out | Account In | 1     |
 	When import moves file
 	Then I will receive this core error: OutMoveWrong
+		And the pre-import data will not be recorded
 
 Scenario: Eg20. Import with (Nature: Out) (AccountOut:No) (AccountIn:Yes)
 	Given a moves file with this content
@@ -165,6 +183,7 @@ Scenario: Eg20. Import with (Nature: Out) (AccountOut:No) (AccountIn:Yes)
 			| Move {scenarioCode} | 2024-04-29 | Category | Out    |     | Account In | 1     |
 	When import moves file
 	Then I will receive this core error: OutMoveWrong
+		And the pre-import data will not be recorded
 
 Scenario: Eg21. Import with (Nature: Out) (AccountOut:Unknown) (AccountIn:No)
 	Given a moves file with this content
@@ -172,6 +191,7 @@ Scenario: Eg21. Import with (Nature: Out) (AccountOut:Unknown) (AccountIn:No)
 			| Move {scenarioCode} | 2024-04-29 | Category | Out    | Unknown |    | 1     |
 	When import moves file
 	Then I will receive this core error: InvalidAccount
+		And the pre-import data will not be recorded
 
 Scenario: Eg22. Import with (Nature: In) (AccountOut:No) (AccountIn:No)
 	Given a moves file with this content
@@ -179,6 +199,7 @@ Scenario: Eg22. Import with (Nature: In) (AccountOut:No) (AccountIn:No)
 			| Move {scenarioCode} | 2024-04-29 | Category | In     |     |    | 1     |
 	When import moves file
 	Then I will receive this core error: InMoveWrong
+		And the pre-import data will not be recorded
 
 Scenario: Eg23. Import with (Nature: In) (AccountOut:Yes) (AccountIn:Yes)
 	Given a moves file with this content
@@ -186,6 +207,7 @@ Scenario: Eg23. Import with (Nature: In) (AccountOut:Yes) (AccountIn:Yes)
 			| Move {scenarioCode} | 2024-04-29 | Category | In     | Account Out | Account In | 1     |
 	When import moves file
 	Then I will receive this core error: InMoveWrong
+		And the pre-import data will not be recorded
 
 Scenario: Eg24. Import with (Nature: In) (AccountOut:Yes) (AccountIn:No)
 	Given a moves file with this content
@@ -193,6 +215,7 @@ Scenario: Eg24. Import with (Nature: In) (AccountOut:Yes) (AccountIn:No)
 			| Move {scenarioCode} | 2024-04-29 | Category | In     | Account Out |    | 1     |
 	When import moves file
 	Then I will receive this core error: InMoveWrong
+		And the pre-import data will not be recorded
 
 Scenario: Eg25. Import with (Nature: In) (AccountOut:No) (AccountIn:Unknown)
 	Given a moves file with this content
@@ -200,6 +223,7 @@ Scenario: Eg25. Import with (Nature: In) (AccountOut:No) (AccountIn:Unknown)
 			| Move {scenarioCode} | 2024-04-29 | Category | In     |     | Unknown | 1     |
 	When import moves file
 	Then I will receive this core error: InvalidAccount
+		And the pre-import data will not be recorded
 
 Scenario: Eg26. Import with (Nature: Transfer) (AccountOut:No) (AccountIn:No)
 	Given a moves file with this content
@@ -207,6 +231,7 @@ Scenario: Eg26. Import with (Nature: Transfer) (AccountOut:No) (AccountIn:No)
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer |             |            | 1     |
 	When import moves file
 	Then I will receive this core error: TransferMoveWrong
+		And the pre-import data will not be recorded
 
 Scenario: Eg27. Import with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes)
 	Given a moves file with this content
@@ -214,6 +239,7 @@ Scenario: Eg27. Import with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes)
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer |     | Account In | 1     |
 	When import moves file
 	Then I will receive this core error: TransferMoveWrong
+		And the pre-import data will not be recorded
 
 Scenario: Eg28. Import with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No)
 	Given a moves file with this content
@@ -221,6 +247,7 @@ Scenario: Eg28. Import with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No)
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out |    | 1     |
 	When import moves file
 	Then I will receive this core error: TransferMoveWrong
+		And the pre-import data will not be recorded
 
 Scenario: Eg29. Import with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown)
 	Given a moves file with this content
@@ -228,6 +255,7 @@ Scenario: Eg29. Import with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unkno
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Unknown | 1     |
 	When import moves file
 	Then I will receive this core error: InvalidAccount
+		And the pre-import data will not be recorded
 
 Scenario: Eg30. Import with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes)
 	Given a moves file with this content
@@ -235,6 +263,7 @@ Scenario: Eg30. Import with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Y
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Unknown | Account In | 1     |
 	When import moves file
 	Then I will receive this core error: InvalidAccount
+		And the pre-import data will not be recorded
 
 Scenario: Eg31. Import with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out)
 	Given a moves file with this content
@@ -242,6 +271,7 @@ Scenario: Eg31. Import with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account Out | 1     |
 	When import moves file
 	Then I will receive this core error: CircularTransfer
+		And the pre-import data will not be recorded
 
 Scenario: Eg32. Import without Value nor Details
 	Given a moves file with this content
@@ -249,6 +279,7 @@ Scenario: Eg32. Import without Value nor Details
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       |
 	When import moves file
 	Then I will receive this core error: MoveValueOrDetailRequired
+		And the pre-import data will not be recorded
 
 Scenario: Eg33. Import with Value zero and no Details
 	Given a moves file with this content
@@ -256,6 +287,7 @@ Scenario: Eg33. Import with Value zero and no Details
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 0     |
 	When import moves file
 	Then I will receive this core error: MoveValueOrDetailRequired
+		And the pre-import data will not be recorded
 
 Scenario: Eg34. Import with invalid Value
 	Given a moves file with this content
@@ -263,6 +295,7 @@ Scenario: Eg34. Import with invalid Value
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | MMXXIV |
 	When import moves file
 	Then I will receive this core error: MoveValueInvalid
+		And the pre-import data will not be recorded
 
 Scenario: Eg35. Import without Description in Detail
 	Given a moves file with this content
@@ -270,6 +303,7 @@ Scenario: Eg35. Import without Description in Detail
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       |              | 1       | 1      |
 	When import moves file
 	Then I will receive this core error: MoveDetailDescriptionRequired
+		And the pre-import data will not be recorded
 
 Scenario: Eg36. Import with Amount zero in Detail
 	Given a moves file with this content
@@ -277,6 +311,7 @@ Scenario: Eg36. Import with Amount zero in Detail
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | D            | 0       | 1      |
 	When import moves file
 	Then I will receive this core error: MoveDetailAmountRequired
+		And the pre-import data will not be recorded
 
 Scenario: Eg37. Import with Amount invalid in Detail
 	Given a moves file with this content
@@ -284,6 +319,7 @@ Scenario: Eg37. Import with Amount invalid in Detail
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | D            | I       | 1      |
 	When import moves file
 	Then I will receive this core error: MoveDetailAmountInvalid
+		And the pre-import data will not be recorded
 
 Scenario: Eg38. Import without Amount in Detail
 	Given a moves file with this content
@@ -291,6 +327,7 @@ Scenario: Eg38. Import without Amount in Detail
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | D            |         | 1      |
 	When import moves file
 	Then I will receive this core error: MoveDetailAmountRequired
+		And the pre-import data will not be recorded
 
 Scenario: Eg39. Import with Value zero in Detail
 	Given a moves file with this content
@@ -298,6 +335,7 @@ Scenario: Eg39. Import with Value zero in Detail
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | D            | 1       | 0      |
 	When import moves file
 	Then I will receive this core error: MoveDetailValueRequired
+		And the pre-import data will not be recorded
 
 Scenario: Eg40. Import without Value in Detail
 	Given a moves file with this content
@@ -305,6 +343,7 @@ Scenario: Eg40. Import without Value in Detail
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | D            | 1       |        |
 	When import moves file
 	Then I will receive this core error: MoveDetailValueRequired
+		And the pre-import data will not be recorded
 
 Scenario: Eg41. Import with Value invalid in Detail
 	Given a moves file with this content
@@ -312,6 +351,7 @@ Scenario: Eg41. Import with Value invalid in Detail
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | D            | 1       | XXVII  |
 	When import moves file
 	Then I will receive this core error: MoveDetailValueInvalid
+		And the pre-import data will not be recorded
 
 Scenario: Eg42. Import with Description too large in Detail
 	Given a moves file with this content
@@ -319,6 +359,7 @@ Scenario: Eg42. Import with Description too large in Detail
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy | 1       | 1      |
 	When import moves file
 	Then I will receive this core error: TooLargeDetailDescription
+		And the pre-import data will not be recorded
 
 Scenario: Eg43. Import with disabled Category
 	Given a moves file with this content
@@ -327,6 +368,7 @@ Scenario: Eg43. Import with disabled Category
 		But I disable the category Category
 	When import moves file
 	Then I will receive this core error: DisabledCategory
+		And the pre-import data will not be recorded
 
 Scenario: Eg44. Import with closed AccountOut
 	Given a moves file with this content
@@ -335,6 +377,7 @@ Scenario: Eg44. Import with closed AccountOut
 		But I close the account Account Out
 	When import moves file
 	Then I will receive this core error: ClosedAccount
+		And the pre-import data will not be recorded
 
 Scenario: Eg45. Import with closed AccountIn
 	Given a moves file with this content
@@ -343,6 +386,7 @@ Scenario: Eg45. Import with closed AccountIn
 		But I close the account Account In
 	When import moves file
 	Then I will receive this core error: ClosedAccount
+		And the pre-import data will not be recorded
 
 Scenario: Eg46. Import with info all right (Out)
 	Given a moves file with this content
@@ -446,6 +490,7 @@ Scenario: Eg58. Import move transfer with unique value for different currencies
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL | 1     |            |
 	When import moves file
 	Then I will receive this core error: AccountsDifferentCurrencyNoConversion
+		And the pre-import data will not be recorded
 
 Scenario: Eg59. Import move transfer with conversion for same currency
 	Given a moves file with this content
@@ -453,6 +498,7 @@ Scenario: Eg59. Import move transfer with conversion for same currency
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     | 5          |
 	When import moves file
 	Then I will receive this core error: AccountsSameCurrencyConversion
+		And the pre-import data will not be recorded
 
 Scenario: Eg60. Import move transfer with conversion for different currencies
 	Given a moves file with this content
@@ -471,6 +517,7 @@ Scenario: Eg61. Import move transfer with conversion for disabled use currency
 			| false       |
 	When import moves file
 	Then I will receive this core error: UseCurrencyDisabled
+		And the pre-import data will not be recorded
 
 Scenario: Eg62. Import move out with conversion
 	Given a moves file with this content
@@ -481,6 +528,7 @@ Scenario: Eg62. Import move out with conversion
 			| true        |
 	When import moves file
 	Then I will receive this core error: CurrencyInOutValueWithoutTransfer
+		And the pre-import data will not be recorded
 
 Scenario: Eg63. Import move in with conversion
 	Given a moves file with this content
@@ -488,6 +536,7 @@ Scenario: Eg63. Import move in with conversion
 			| Move {scenarioCode} | 2024-04-29 | Category | In     |     | Account In BRL | 1     | 5          |
 	When import moves file
 	Then I will receive this core error: CurrencyInOutValueWithoutTransfer
+		And the pre-import data will not be recorded
 
 Scenario: Eg64. Import move transfer with conversion ZERO for different currencies
 	Given a moves file with this content
@@ -495,6 +544,7 @@ Scenario: Eg64. Import move transfer with conversion ZERO for different currenci
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL | 1     | 0          |
 	When import moves file
 	Then I will receive this core error: AccountsDifferentCurrencyNoConversion
+		And the pre-import data will not be recorded
 
 Scenario: Eg65. Import move out with unique value for enabled conversion
 	Given a moves file with this content
@@ -532,6 +582,7 @@ Scenario: Eg68. Import move transfer with unique detailed value for different cu
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL |       | D            | 1       | 1      |             |
 	When import moves file
 	Then I will receive this core error: AccountsDifferentCurrencyNoConversion
+		And the pre-import data will not be recorded
 
 Scenario: Eg69. Import move transfer with detailed conversion for same currency
 	Given a moves file with this content
@@ -539,6 +590,7 @@ Scenario: Eg69. Import move transfer with detailed conversion for same currency
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | D            | 1       | 1      | 5           |
 	When import moves file
 	Then I will receive this core error: AccountsSameCurrencyConversion
+		And the pre-import data will not be recorded
 
 Scenario: Eg70. Import move transfer with detailed conversion for different currencies
 	Given a moves file with this content
@@ -557,6 +609,7 @@ Scenario: Eg71. Import move transfer with detailed conversion for disabled use c
 			| false       |
 	When import moves file
 	Then I will receive this core error: UseCurrencyDisabled
+		And the pre-import data will not be recorded
 
 Scenario: Eg72. Import move out with detailed conversion
 	Given a moves file with this content
@@ -564,6 +617,7 @@ Scenario: Eg72. Import move out with detailed conversion
 			| Move {scenarioCode} | 2024-04-29 | Category | Out    | Account Out EUR |    |       | D            | 1       | 1      | 5           |
 	When import moves file
 	Then I will receive this core error: CurrencyInOutValueWithoutTransfer
+		And the pre-import data will not be recorded
 
 Scenario: Eg73. Import move in with detailed conversion
 	Given a moves file with this content
@@ -571,6 +625,7 @@ Scenario: Eg73. Import move in with detailed conversion
 			| Move {scenarioCode} | 2024-04-29 | Category | In     |     | Account In BRL |       | D            | 1       | 1      | 5           |
 	When import moves file
 	Then I will receive this core error: CurrencyInOutValueWithoutTransfer
+		And the pre-import data will not be recorded
 
 Scenario: Eg74. Import move transfer with detailed conversion ZERO for different currencies
 	Given a moves file with this content
@@ -578,6 +633,7 @@ Scenario: Eg74. Import move transfer with detailed conversion ZERO for different
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL |       | D            | 1       | 1      | 0           |
 	When import moves file
 	Then I will receive this core error: AccountsDifferentCurrencyNoConversion
+		And the pre-import data will not be recorded
 
 Scenario: Eg75. Import move transfer with detailed conversion invalid for different currencies
 	Given a moves file with this content
@@ -585,6 +641,7 @@ Scenario: Eg75. Import move transfer with detailed conversion invalid for differ
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL |       | D            | 1       | 1      | V           |
 	When import moves file
 	Then I will receive this core error: MoveDetailConversionInvalid
+		And the pre-import data will not be recorded
 
 Scenario: Eg76. Import move out with detailed unique value for enabled conversion
 	Given a moves file with this content

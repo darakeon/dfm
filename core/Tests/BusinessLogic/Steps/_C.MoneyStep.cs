@@ -849,7 +849,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 		[Then(@"the pre-import data will be recorded")]
-		public void ThenThePre_ImportDataWillBeRecorded()
+		public void ThenThePreImportDataWillBeRecorded()
 		{
 			var archive = repos.Archive.NewQuery()
 				.OrderBy(a => a.ID, false)
@@ -867,6 +867,16 @@ namespace DFM.BusinessLogic.Tests.Steps
 				var csvLine = CSVHelper.ToCsv(line);
 				Assert.That(csvLine, Is.EqualTo(csvLines[l+1]));
 			}
+		}
+		
+		[Then(@"the pre-import data will not be recorded")]
+		public void ThenThePreImportDataWillNotBeRecorded()
+		{
+			var archive = repos.Archive.NewQuery()
+				.OrderBy(a => a.ID, false)
+				.FirstOrDefault;
+
+			Assert.That(archive, Is.Null);
 		}
 
 		[Then("no email will be sent")]
