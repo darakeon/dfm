@@ -868,7 +868,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				Assert.That(csvLine, Is.EqualTo(csvLines[l+1]));
 			}
 		}
-		
+
 		[Then(@"the pre-import data will not be recorded")]
 		public void ThenThePreImportDataWillNotBeRecorded()
 		{
