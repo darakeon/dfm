@@ -17,6 +17,24 @@ namespace DFM.BusinessLogic.Services
 		internal MoneyService(ServiceAccess serviceAccess, Repos repos, Valids valids)
 			: base(serviceAccess, repos, valids) { }
 
+		private readonly IDictionary<ImporterError, Error> errors =
+			new Dictionary<ImporterError, Error>
+			{
+				{ ImporterError.Header, Error.InvalidArchiveColumn },
+				{ ImporterError.Empty, Error.InvalidArchive },
+				{ ImporterError.DateRequired, Error.MoveDateRequired },
+				{ ImporterError.DateInvalid, Error.MoveDateInvalid },
+				{ ImporterError.NatureRequired, Error.MoveNatureRequired },
+				{ ImporterError.NatureInvalid, Error.MoveNatureInvalid },
+				{ ImporterError.ValueInvalid, Error.MoveValueInvalid },
+				{ ImporterError.DetailAmountRequired, Error.MoveDetailAmountRequired },
+				{ ImporterError.DetailAmountInvalid, Error.MoveDetailAmountInvalid },
+				{ ImporterError.DetailValueRequired, Error.MoveDetailValueRequired },
+				{ ImporterError.DetailValueInvalid, Error.MoveDetailValueInvalid },
+				{ ImporterError.DetailConversionInvalid, Error.MoveDetailConversionInvalid },
+			};
+
+
 		public MoveResult SaveMove(MoveInfo move)
 		{
 			parent.Auth.VerifyUser();
@@ -150,26 +168,36 @@ namespace DFM.BusinessLogic.Services
 		{
 			var user = parent.Auth.VerifyUser();
 
-			var importer = new CSVImporter(csv);
+			var importer = validateArchive(csv, user);
 
-			var errors = new Dictionary<ImporterError, Error>
+			var archive = new Archive
 			{
-				{ ImporterError.Header, Error.InvalidArchiveColumn },
-				{ ImporterError.Empty, Error.InvalidArchive },
-				{ ImporterError.DateRequired, Error.MoveDateRequired },
-				{ ImporterError.DateInvalid, Error.MoveDateInvalid },
-				{ ImporterError.NatureRequired, Error.MoveNatureRequired },
-				{ ImporterError.NatureInvalid, Error.MoveNatureInvalid },
-				{ ImporterError.ValueInvalid, Error.MoveValueInvalid },
-				{ ImporterError.DetailAmountRequired, Error.MoveDetailAmountRequired },
-				{ ImporterError.DetailAmountInvalid, Error.MoveDetailAmountInvalid },
-				{ ImporterError.DetailValueRequired, Error.MoveDetailValueRequired },
-				{ ImporterError.DetailValueInvalid, Error.MoveDetailValueInvalid },
-				{ ImporterError.DetailConversionInvalid, Error.MoveDetailConversionInvalid },
+				User = user
 			};
 
-			if (importer.Error.HasValue)
-				throw errors[importer.Error.Value].Throw();
+			archive.LineList =
+				importer.MoveList
+					.Select(m => m.ToLine(archive))
+					.ToList();
+
+			inTransaction(
+				"ImportMovesFile",
+				() => repos.Archive.SaveOrUpdate(archive)
+			);
+		}
+
+		private CSVImporter validateArchive(String csv, User user)
+		{
+			using var error = new CoreError();
+
+			var importer = new CSVImporter(csv);
+
+			if (importer.ErrorList.Any())
+			{
+				importer.ErrorList
+					.ToList()
+					.ForEach(e => error.AddError(errors[e.Value], e.Key));
+			}
 
 			var accountsIn = importer.MoveList.Select(m => m.In);
 			var accountsOut = importer.MoveList.Select(m => m.Out);
@@ -194,34 +222,25 @@ namespace DFM.BusinessLogic.Services
 						name => repos.Category.GetByName(name, user, Error.InvalidCategory)
 					);
 
-			importer.MoveList
-				.Select(m => m.ToMove(accounts, categories))
-				.ToList()
-				.ForEach(m => validate(m, user));
-
-			var archive = new Archive
+			foreach (var line in importer.MoveList)
 			{
-				User = user
-			};
+				try
+				{
+					var move = line.ToMove(accounts, categories);
 
-			archive.LineList =
-				importer.MoveList
-					.Select(m => m.ToLine(archive))
-					.ToList();
+					valids.Move.Validate(move, user);
 
-			inTransaction(
-				"ImportMovesFile",
-				() => repos.Archive.SaveOrUpdate(archive)
-			);
-		}
+					move.DetailList
+						.ToList()
+						.ForEach(valids.Detail.Validate);
+				}
+				catch (CoreError moveError)
+				{
+					error.AddError(moveError.Type, line.Position);
+				}
+			}
 
-		private void validate(Move move, User user)
-		{
-			valids.Move.Validate(move, user);
-
-			move.DetailList
-				.ToList()
-				.ForEach(valids.Detail.Validate);
+			return importer;
 		}
 	}
 }
