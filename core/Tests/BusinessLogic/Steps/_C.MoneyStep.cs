@@ -851,7 +851,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the pre-import data will be recorded")]
 		public void ThenThePreImportDataWillBeRecorded()
 		{
-			var user = repos.User.GetByEmail(current.Email); 
+			var user = repos.User.GetByEmail(current.Email);
 
 			var archive = repos.Archive
 				.SingleOrDefault(a => a.User == user);
@@ -873,7 +873,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the pre-import data will not be recorded")]
 		public void ThenThePreImportDataWillNotBeRecorded()
 		{
-			var user = repos.User.GetByEmail(current.Email); 
+			var user = repos.User.GetByEmail(current.Email);
 
 			var archive = repos.Archive
 				.SingleOrDefault(a => a.User == user);
