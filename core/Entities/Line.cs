@@ -9,6 +9,8 @@ public class Line : IEntityLong
 {
 	public virtual Int64 ID { get; set; }
 
+	public virtual Int16 Position { get; set; }
+
 	public virtual String Description { get; set; }
 	public virtual DateTime Date { get; set; }
 	public virtual String Category { get; set; }

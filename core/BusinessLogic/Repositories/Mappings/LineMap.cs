@@ -9,6 +9,12 @@ public class LineMap : IAutoMappingOverride<Line>
 {
 	public void Override(AutoMapping<Line> mapping)
 	{
+		mapping.Map(l => l.Position)
+			.UniqueKey("Line_NumberArchive");
+
+		mapping.References(l => l.Archive)
+			.UniqueKey("Line_NumberArchive");
+
 		mapping.HasMany(l => l.DetailList)
 			.Cascade.SaveUpdate();
 
