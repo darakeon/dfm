@@ -11,5 +11,7 @@ public class Archive : IEntityLong
 
 	public virtual ImportStatus Status { get; set; }
 
+	public virtual User User { get; set; }
+
 	public virtual IList<Line> LineList { get; set; }
 }

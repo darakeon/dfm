@@ -9,6 +9,9 @@ public class ArchiveMap : IAutoMappingOverride<Archive>
 {
 	public void Override(AutoMapping<Archive> mapping)
 	{
+		mapping.References(m => m.User)
+			.Not.Nullable();
+
 		mapping.HasMany(a => a.LineList)
 			.Cascade.SaveUpdate();
 	}

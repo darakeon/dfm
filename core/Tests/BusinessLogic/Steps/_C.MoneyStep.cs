@@ -851,9 +851,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the pre-import data will be recorded")]
 		public void ThenThePreImportDataWillBeRecorded()
 		{
-			var archive = repos.Archive.NewQuery()
-				.OrderBy(a => a.ID, false)
-				.FirstOrDefault;
+			var user = repos.User.GetByEmail(current.Email); 
+
+			var archive = repos.Archive
+				.SingleOrDefault(a => a.User == user);
 
 			Assert.That(archive, Is.Not.Null);
 
@@ -872,9 +873,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the pre-import data will not be recorded")]
 		public void ThenThePreImportDataWillNotBeRecorded()
 		{
-			var archive = repos.Archive.NewQuery()
-				.OrderBy(a => a.ID, false)
-				.FirstOrDefault;
+			var user = repos.User.GetByEmail(current.Email); 
+
+			var archive = repos.Archive
+				.SingleOrDefault(a => a.User == user);
 
 			Assert.That(archive, Is.Null);
 		}

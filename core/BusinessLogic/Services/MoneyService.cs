@@ -199,7 +199,10 @@ namespace DFM.BusinessLogic.Services
 				.ToList()
 				.ForEach(m => validate(m, user));
 
-			var archive = new Archive();
+			var archive = new Archive
+			{
+				User = user
+			};
 
 			archive.LineList =
 				importer.MoveList
