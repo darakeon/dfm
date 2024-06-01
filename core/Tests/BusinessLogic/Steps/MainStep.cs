@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.BusinessLogic.Response;
@@ -125,6 +124,30 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			Assert.That(error, Is.Not.Null);
 			Assert.That(error.Type, Is.EqualTo(expectedError));
+		}
+
+		[Then(@"I will receive these core errors")]
+		public void ThenIWillReceiveTheseCoreErrors(Table table)
+		{
+			Assert.That(error, Is.Not.Null);
+
+			var expectedErrors = table.Rows
+				.Select(r => r["Error"])
+				.Select(EnumX.Parse<Error>)
+				.ToList();
+
+			Assert.That(error.Types.Count, Is.EqualTo(expectedErrors.Count));
+
+			for (var e = 0; e < expectedErrors.Count; e++)
+			{
+				var actualError = error.Types.Single(
+					type => type.Metadata is Int16 metadata && metadata == e+1
+				);
+
+				var expectedError = expectedErrors[e];
+
+				Assert.That(actualError.Error, Is.EqualTo(expectedError));
+			}
 		}
 
 		[Then(@"I will receive no core error")]
