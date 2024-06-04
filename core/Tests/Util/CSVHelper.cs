@@ -25,7 +25,14 @@ namespace DFM.Tests.Util
 
 		public static String ToCsv(Line line)
 		{
-			var result = $"{line.Description},{line.Date.ToShortDateString()},{line.Category},{line.Nature},{line.Out},{line.In},{line.Value}";
+			var result =
+				$"{line.Description}," +
+				$"{line.Date:yyyy-MM-dd}," +
+				$"{line.Category}," +
+				$"{line.Nature}," +
+				$"{line.Out}," +
+				$"{line.In}," +
+				$"{line.Value}";
 
 			if (line.Conversion != null)
 			{
