@@ -13,9 +13,10 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (46)                                                                      | Typ | Dif | Imp | Pts |
+| Task (47)                                                                      | Typ | Dif | Imp | Pts |
 | ------------------------------------------------------------------------------ | --- | --- | --- | --- |
 | Refactor Core Steps to improve their division to entities and given/when/then  | 🐑 |  1  |  3  |  6  |
+| Put terms of use in static site on S3                                          | 🐳 |  2  |  4  |  6  |
 | Implement entities limits (acc opened, cat enabled, moves/month, active sched) | 🐉 |  2  |  4  |  6  |
 | Add semgrep to dfm, dk-lib, meak and server                                    | 🐳 |  2  |  4  |  6  |
 | [clear headers on nginx](todo/clear-headers.png)                               | 🐳 |  2  |  4  |  6  |
