@@ -1039,3 +1039,4 @@ This is the list of project releases, past and current. To see tasks that are st
 [django-nginx]:https://realpython.com/django-nginx-gunicorn/
 [Google tips avoid being spam]:https://support.google.com/mail/answer/81126?hl=en&sjid=2044805771675957069-EU
 [Reduce Docker Images]:https://www.ecloudcontrol.com/best-practices-to-reduce-docker-images-size/
+[template]: dirigir-1tI0z29LBJJAQCYq1fptWCN8jgL6b2yj-
