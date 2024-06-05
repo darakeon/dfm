@@ -10,6 +10,7 @@ updates:
     target-branch: "13.0.0.0"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
     labels:
       - internal
       - dependencies
@@ -21,6 +22,7 @@ updates:
     target-branch: "13.0.0.0"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
     labels:
       - site
       - dependencies
@@ -32,6 +34,7 @@ updates:
     target-branch: "13.0.0.0"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
     labels:
       - api
       - dependencies
@@ -43,6 +46,7 @@ updates:
     target-branch: "13.0.0.0"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
     labels:
       - robot
       - dependencies
@@ -54,6 +58,7 @@ updates:
     target-branch: "13.0.0.0"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
     labels:
       - tests
       - dependencies
@@ -65,6 +70,7 @@ updates:
     target-branch: "13.0.0.0"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
     labels:
       - mobile
       - dependencies
@@ -76,6 +82,7 @@ updates:
     target-branch: "13.0.0.0"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
     labels:
       - tests
       - dependencies
@@ -87,6 +94,7 @@ updates:
     target-branch: "13.0.0.0"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
     labels:
       - internal
       - dependencies
@@ -98,6 +106,7 @@ updates:
     target-branch: "13.0.0.0"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
     labels:
       - version
       - dependencies
@@ -109,6 +118,7 @@ updates:
     target-branch: "13.0.0.0"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
     labels:
       - midna
       - dependencies
