@@ -9,6 +9,7 @@ using DFM.BusinessLogic.Validators;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
+using DFM.Exchange.Importer;
 using DFM.Generic;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
@@ -18,6 +19,23 @@ namespace DFM.BusinessLogic.Services
 	{
 		internal RobotService(ServiceAccess serviceAccess, Repos repos, Valids valids)
 			: base(serviceAccess, repos, valids) { }
+
+		private readonly IDictionary<ImporterError, Error> errors =
+			new Dictionary<ImporterError, Error>
+			{
+				{ ImporterError.Header, Error.InvalidArchiveColumn },
+				{ ImporterError.Empty, Error.InvalidArchive },
+				{ ImporterError.DateRequired, Error.MoveDateRequired },
+				{ ImporterError.DateInvalid, Error.MoveDateInvalid },
+				{ ImporterError.NatureRequired, Error.MoveNatureRequired },
+				{ ImporterError.NatureInvalid, Error.MoveNatureInvalid },
+				{ ImporterError.ValueInvalid, Error.MoveValueInvalid },
+				{ ImporterError.DetailAmountRequired, Error.MoveDetailAmountRequired },
+				{ ImporterError.DetailAmountInvalid, Error.MoveDetailAmountInvalid },
+				{ ImporterError.DetailValueRequired, Error.MoveDetailValueRequired },
+				{ ImporterError.DetailValueInvalid, Error.MoveDetailValueInvalid },
+				{ ImporterError.DetailConversionInvalid, Error.MoveDetailConversionInvalid },
+			};
 
 		public IList<ScheduleInfo> GetScheduleList()
 		{
@@ -370,6 +388,85 @@ namespace DFM.BusinessLogic.Services
 				"DeleteUser",
 				() => repos.Wipe.Execute(user, date, reason)
 			);
+		}
+
+		public void ImportMovesFile(String csv)
+		{
+			var user = parent.Auth.VerifyUser();
+
+			var importer = validateArchive(csv, user);
+
+			var archive = new Archive
+			{
+				User = user
+			};
+
+			archive.LineList =
+				importer.MoveList
+					.Select(m => m.ToLine(archive))
+					.ToList();
+
+			inTransaction(
+				"ImportMovesFile",
+				() => repos.Archive.SaveOrUpdate(archive)
+			);
+		}
+
+		private CSVImporter validateArchive(String csv, User user)
+		{
+			using var error = new CoreError();
+
+			var importer = new CSVImporter(csv);
+
+			if (importer.ErrorList.Any())
+			{
+				importer.ErrorList
+					.ToList()
+					.ForEach(e => error.AddError(errors[e.Value], e.Key));
+			}
+
+			var accountsIn = importer.MoveList.Select(m => m.In);
+			var accountsOut = importer.MoveList.Select(m => m.Out);
+
+			var accounts =
+				accountsIn
+					.Union(accountsOut)
+					.Where(a => !String.IsNullOrEmpty(a))
+					.Distinct()
+					.ToDictionary(
+						a => a,
+						a => repos.Account.GetByName(a, user, Error.InvalidAccount)
+					);
+
+			var categories =
+				importer.MoveList
+					.Where(m => !String.IsNullOrEmpty(m.Category))
+					.Select(m => m.Category)
+					.Distinct()
+					.ToDictionary(
+						name => name,
+						name => repos.Category.GetByName(name, user, Error.InvalidCategory)
+					);
+
+			foreach (var line in importer.MoveList)
+			{
+				try
+				{
+					var move = line.ToMove(accounts, categories);
+
+					valids.Move.Validate(move, user);
+
+					move.DetailList
+						.ToList()
+						.ForEach(valids.Detail.Validate);
+				}
+				catch (CoreError moveError)
+				{
+					error.AddError(moveError.Type, line.Position);
+				}
+			}
+
+			return importer;
 		}
 	}
 }
