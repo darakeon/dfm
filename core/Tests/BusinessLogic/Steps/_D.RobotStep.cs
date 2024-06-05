@@ -678,8 +678,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 			for (var l = 0; l < archive.LineList.Count; l++)
 			{
 				var line = archive.LineList[l];
-				var csvLine = CSVHelper.ToCsv(line);
-				Assert.That(csvLine, Is.EqualTo(csvLines[l+1]));
+				var actual = CSVHelper.ToCsv(line);
+
+				var expected = csvLines[l + 1];
+				while (expected.EndsWith(",,,"))
+					expected = expected.Substring(0, expected.Length - 3);
+
+				Assert.That(actual, Is.EqualTo(expected));
 			}
 		}
 

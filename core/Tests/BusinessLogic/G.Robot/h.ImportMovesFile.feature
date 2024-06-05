@@ -678,3 +678,11 @@ Scenario: Gh78. Error in multiple lines
 			| MoveNatureInvalid |
 			| TransferMoveWrong |
 		And the pre-import data will not be recorded
+
+Scenario: Gh79. Import with empty details
+	Given a moves file with this content
+			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1 | Amount1 | Value1 | Description2 | Amount2 | Value2 | Description3 | Amount3 | Value3 |
+			| Move {scenarioCode} | 2024-06-05 | Category | Transfer | Account Out | Account In |       | D            | 1       | 1      | D            | 1       | 1      |              |         |        |
+	When import moves file
+	Then I will receive no core error
+		And the pre-import data will be recorded
