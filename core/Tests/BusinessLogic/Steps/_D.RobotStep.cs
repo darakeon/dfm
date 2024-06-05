@@ -11,6 +11,7 @@ using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Language.Emails;
 using DFM.Tests.Util;
+using Keon.Eml;
 using Keon.Util.Crypto;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -40,6 +41,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			get => get<Boolean>("hasSchedule");
 			set => set("hasSchedule", value);
+		}
+
+		protected String csv
+		{
+			get => get<String>("csv");
+			set => set("csv", value);
 		}
 		#endregion
 
@@ -617,6 +624,94 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(this.hasSchedule, Is.EqualTo(hasSchedule));
 		}
 		#endregion
+
+		#region Import Moves File
+		[Given(@"a moves file with this content")]
+		public void GivenAMovesFileWithThisContent(Table table)
+		{
+			var lines = new List<List<String>>
+			{
+				table.Header.ToList()
+			};
+
+			lines.AddRange(
+				table.Rows.Select(
+					r => r.Values.ToList()
+				).ToList()
+			);
+
+			csv = String.Join(
+				"\n",
+				lines.Select(
+					l => String.Join(",", l)
+				)
+			).ForScenario(scenarioCode);
+		}
+
+		[When(@"import moves file")]
+		public void WhenImportMovesFile()
+		{
+			try
+			{
+				service.Robot.ImportMovesFile(csv);
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[Then(@"the pre-import data will be recorded")]
+		public void ThenThePreImportDataWillBeRecorded()
+		{
+			var user = repos.User.GetByEmail(current.Email);
+
+			var archive = repos.Archive
+				.SingleOrDefault(a => a.User == user);
+
+			Assert.That(archive, Is.Not.Null);
+
+			var csvLines = csv.Split("\n");
+
+			Assert.That(archive.LineList.Count, Is.EqualTo(csvLines.Length - 1));
+
+			for (var l = 0; l < archive.LineList.Count; l++)
+			{
+				var line = archive.LineList[l];
+				var csvLine = CSVHelper.ToCsv(line);
+				Assert.That(csvLine, Is.EqualTo(csvLines[l+1]));
+			}
+		}
+
+		[Then(@"the pre-import data will not be recorded")]
+		public void ThenThePreImportDataWillNotBeRecorded()
+		{
+			var user = repos.User.GetByEmail(current.Email);
+
+			var archive = repos.Archive
+				.SingleOrDefault(a => a.User == user);
+
+			Assert.That(archive, Is.Null);
+		}
+
+		[Then("no email will be sent")]
+		public void ThenNoEmailWillBeSent()
+		{
+			var inboxPath = Path.Combine(
+				"..", "..", "..", "..", "..", "..", "outputs", "inbox"
+			);
+			var inbox = new DirectoryInfo(inboxPath);
+
+			var emails = inbox.GetFiles("*.eml")
+				.Where(f => f.CreationTimeUtc >= testStart)
+				.Select(f => EmlReader.FromFile(f.FullName))
+				.Where(e => e.Headers["To"] == userEmail)
+				.ToList();
+
+			Assert.That(emails.Count, Is.EqualTo(0));
+		}
+		#endregion
+
 
 		#region MoreThanOne
 		[Given(@"I have this schedule to create")]
