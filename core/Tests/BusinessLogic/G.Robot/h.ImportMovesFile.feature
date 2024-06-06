@@ -686,3 +686,13 @@ Scenario: Gh79. Import with empty details
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+
+Scenario: Gh80. Without explicit Nature
+	Given a moves file with this content
+			| Description         | Date       | Category | Out         | In         | Value |
+			| Move {scenarioCode} | 2024-06-05 | Category | Account Out | Account In | 1     |
+			| Move {scenarioCode} | 2024-06-05 | Category |             | Account In | 1     |
+			| Move {scenarioCode} | 2024-06-05 | Category | Account Out |            | 1     |
+	When import moves file
+	Then I will receive no core error
+		And the pre-import data will be recorded

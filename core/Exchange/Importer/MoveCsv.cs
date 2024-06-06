@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities;
 using DFM.Entities.Bases;
+using DFM.Entities.Enums;
 
 namespace DFM.Exchange.Importer;
 
@@ -147,14 +148,19 @@ public class MoveCsv : Line
 	{
 		if (Move == null)
 		{
+			var hasIn = !String.IsNullOrEmpty(In);
+			var hasOut = !String.IsNullOrEmpty(Out);
+
+			var hasCategory = !String.IsNullOrEmpty(Category);
+
 			Move = new Move
 			{
 				Description = Description,
-				Nature = Nature,
+				Nature = getNature(hasIn, hasOut),
 
-				In = String.IsNullOrEmpty(In) ? null : accounts[In],
-				Out = String.IsNullOrEmpty(Out) ? null : accounts[Out],
-				Category = String.IsNullOrEmpty(Category) ? null : categories[Category],
+				In = hasIn ? accounts[In] : null,
+				Out = hasOut ? accounts[Out] : null,
+				Category = hasCategory ? categories[Category] : null,
 
 				Value = Value ?? 0,
 				Conversion = Conversion,
@@ -173,6 +179,20 @@ public class MoveCsv : Line
 		}
 
 		return Move;
+	}
+
+	private MoveNature getNature(Boolean hasIn, Boolean hasOut)
+	{
+		if (Nature.HasValue)
+			return Nature.Value;
+
+		if (!hasIn)
+			return MoveNature.Out;
+
+		if (!hasOut)
+			return MoveNature.In;
+
+		return MoveNature.Transfer;
 	}
 
 	public Line ToLine(Archive archive)
