@@ -28,8 +28,12 @@ namespace DFM.Tests.Util
 			var result =
 				$"{line.Description}," +
 				$"{line.Date:yyyy-MM-dd}," +
-				$"{line.Category}," +
-				$"{line.Nature}," +
+				$"{line.Category},";
+
+			if (line.Nature != null)
+				result += $"{line.Nature},";
+
+			result +=
 				$"{line.Out}," +
 				$"{line.In}," +
 				$"{line.Value}";
