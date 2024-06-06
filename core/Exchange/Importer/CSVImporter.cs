@@ -34,13 +34,7 @@ namespace DFM.Exchange.Importer
 				{
 					line++;
 
-					var move = csv.GetRecord<MoveCsv>();
-
-					if (move != null)
-					{
-						move.Position = line;
-						MoveList.Add(move);
-					}
+					readMove(csv, line);
 				}
 				catch (TypeConverterException exception)
 				{
@@ -67,6 +61,28 @@ namespace DFM.Exchange.Importer
 			{
 				ErrorList.Add(0, ImporterError.Empty);
 			}
+		}
+
+		private void readMove(CsvReader csv, Int16 line)
+		{
+			var move = csv.GetRecord<MoveCsv>();
+
+			if (move == null) return;
+
+			var noNature = move.Nature == null;
+
+			var noAccounts =
+				String.IsNullOrEmpty(move.In)
+			        && String.IsNullOrEmpty(move.Out);
+
+			if (noNature && noAccounts)
+			{
+				ErrorList.Add(line, ImporterError.NatureRequired);
+				return;
+			}
+
+			move.Position = line;
+			MoveList.Add(move);
 		}
 
 		private ImporterError handleFieldError(TypeConverterException exception)
