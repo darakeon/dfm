@@ -14,7 +14,7 @@ public class Line : IEntityLong
 	public virtual String Description { get; set; }
 	public virtual DateTime Date { get; set; }
 	public virtual String Category { get; set; }
-	public virtual MoveNature Nature { get; set; }
+	public virtual MoveNature? Nature { get; set; }
 	public virtual String In { get; set; }
 	public virtual String Out { get; set; }
 	public virtual Decimal? Value { get; set; }
