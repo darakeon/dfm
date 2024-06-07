@@ -671,12 +671,18 @@ Scenario: Gh78. Error in multiple lines
 			| Move {scenarioCode} 1 | 3024-04-29 | Category | Transfer | Account Out | Account In | 1     |
 			| Move {scenarioCode} 2 | 2024-04-29 | Category | Alien    | Account Out | Account In | 1     |
 			| Move {scenarioCode} 3 | 2024-04-29 | Category | Transfer |             |            | 1     |
+			| Move {scenarioCode} 4 | 2024-04-29 | Alien    | Transfer | Account Out | Account In | 1     |
+			| Move {scenarioCode} 5 | 2024-04-29 | Category | Transfer | Alien       | Account In | 1     |
+			| Move {scenarioCode} 6 | 2024-04-29 | Category | Transfer | Account Out | Alien      | 1     |
 	When import moves file
 	Then I will receive these core errors
 			| Error             |
 			| MoveDateInvalid   |
 			| MoveNatureInvalid |
 			| TransferMoveWrong |
+			| InvalidCategory   |
+			| InvalidAccount    |
+			| InvalidAccount    |
 		And the pre-import data will not be recorded
 
 Scenario: Gh79. Import with empty details
