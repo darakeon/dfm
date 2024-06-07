@@ -43,7 +43,7 @@ namespace DFM.BusinessLogic.Repositories
 				category.Active = true;
 		}
 
-		internal Category GetByName(String name, User user, Error? errorOnNull = null)
+		internal Category GetByName(String name, User user)
 		{
 			var categoryList = Where(
 					a => a.Name == name
@@ -53,12 +53,7 @@ namespace DFM.BusinessLogic.Repositories
 			if (categoryList.Count > 1)
 				throw Error.DuplicatedCategoryName.Throw();
 
-			var category = categoryList.SingleOrDefault();
-
-			if (category == null && errorOnNull.HasValue)
-				throw errorOnNull.Value.Throw();
-
-			return category;
+			return categoryList.SingleOrDefault();
 		}
 
 		internal void Disable(Category category)

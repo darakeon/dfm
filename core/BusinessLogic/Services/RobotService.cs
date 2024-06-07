@@ -436,7 +436,7 @@ namespace DFM.BusinessLogic.Services
 					.Distinct()
 					.ToDictionary(
 						a => a,
-						a => repos.Account.GetByName(a, user, Error.InvalidAccount)
+						a => repos.Account.GetByName(a, user)
 					);
 
 			var categories =
@@ -446,7 +446,7 @@ namespace DFM.BusinessLogic.Services
 					.Distinct()
 					.ToDictionary(
 						name => name,
-						name => repos.Category.GetByName(name, user, Error.InvalidCategory)
+						name => repos.Category.GetByName(name, user)
 					);
 
 			foreach (var line in importer.MoveList)
@@ -454,6 +454,28 @@ namespace DFM.BusinessLogic.Services
 				try
 				{
 					var move = line.ToMove(accounts, categories);
+					var valid = true;
+
+					if (!String.IsNullOrEmpty(line.In) && move.In == null)
+					{
+						error.AddError(Error.InvalidAccount, line.Position);
+						valid = false;
+					}
+
+					if (!String.IsNullOrEmpty(line.Out) && move.Out == null)
+					{
+						error.AddError(Error.InvalidAccount, line.Position);
+						valid = false;
+					}
+
+					if (!String.IsNullOrEmpty(line.Category) && move.Category == null)
+					{
+						error.AddError(Error.InvalidCategory, line.Position);
+						valid = false;
+					}
+
+					if (!valid)
+						continue;
 
 					valids.Move.Validate(move, user);
 
