@@ -16,4 +16,9 @@ public class Archive : IEntityLong
 	public virtual User User { get; set; }
 
 	public virtual IList<Line> LineList { get; set; }
+
+	public override String ToString()
+	{
+		return $"[{ID}] {Filename}";
+	}
 }
