@@ -25,4 +25,9 @@ public class Line : IEntityLong
 	public virtual IList<Detail> DetailList { get; set; }
 
 	public virtual ImportStatus Status { get; set; }
+
+	public override String ToString()
+	{
+		return $"[{ID}] {Position} of {Archive}";
+	}
 }
