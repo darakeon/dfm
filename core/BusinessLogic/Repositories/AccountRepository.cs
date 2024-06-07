@@ -76,7 +76,7 @@ namespace DFM.BusinessLogic.Repositories
 				: otherAccount;
 		}
 
-		internal Account GetByName(String name, User user, Error? erroOnNull = null)
+		internal Account GetByName(String name, User user)
 		{
 			var accountList = Where(
 					a => a.Name == name
@@ -86,12 +86,7 @@ namespace DFM.BusinessLogic.Repositories
 			if (accountList.Count > 1)
 				throw Error.DuplicatedAccountName.Throw();
 
-			var account = accountList.SingleOrDefault();
-
-			if (account == null && erroOnNull.HasValue)
-				throw erroOnNull.Value.Throw();
-
-			return account;
+			return accountList.SingleOrDefault();
 		}
 
 		internal Account GetByUrl(String url, User user)
