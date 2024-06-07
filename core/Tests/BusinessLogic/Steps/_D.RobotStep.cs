@@ -43,10 +43,16 @@ namespace DFM.BusinessLogic.Tests.Steps
 			set => set("hasSchedule", value);
 		}
 
-		protected String csv
+		protected String csvName
 		{
-			get => get<String>("csv");
-			set => set("csv", value);
+			get => get<String>("csvName");
+			set => set("csvName", value);
+		}
+
+		protected String csvContent
+		{
+			get => get<String>("csvContent");
+			set => set("csvContent", value);
 		}
 		#endregion
 
@@ -640,7 +646,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 				).ToList()
 			);
 
-			csv = String.Join(
+			csvName = $"{scenarioCode}.csv";
+
+			csvContent = String.Join(
 				"\n",
 				lines.Select(
 					l => String.Join(",", l)
@@ -653,7 +661,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Robot.ImportMovesFile(csv);
+				service.Robot.ImportMovesFile(csvName, csvContent);
 			}
 			catch (CoreError e)
 			{
@@ -671,7 +679,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			Assert.That(archive, Is.Not.Null);
 
-			var csvLines = csv.Split("\n");
+			var csvLines = csvContent.Split("\n");
 
 			Assert.That(archive.LineList.Count, Is.EqualTo(csvLines.Length - 1));
 
