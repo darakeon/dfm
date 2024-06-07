@@ -390,7 +390,7 @@ namespace DFM.BusinessLogic.Services
 			);
 		}
 
-		public void ImportMovesFile(String csv)
+		public void ImportMovesFile(String filename, String csv)
 		{
 			var user = parent.Auth.VerifyUser();
 
@@ -398,7 +398,8 @@ namespace DFM.BusinessLogic.Services
 
 			var archive = new Archive
 			{
-				User = user
+				Filename = filename,
+				User = user,
 			};
 
 			archive.LineList =
