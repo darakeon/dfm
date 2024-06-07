@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Generic;
+using Newtonsoft.Json;
 
 namespace DFM.BusinessLogic.Exceptions
 {
@@ -34,6 +35,14 @@ namespace DFM.BusinessLogic.Exceptions
 			{
 				throw this;
 			}
+		}
+
+		public override String ToString()
+		{
+			return JsonConvert.SerializeObject(
+				Types.Select(e => e.ToString()),
+				Formatting.Indented
+			);
 		}
 	}
 }
