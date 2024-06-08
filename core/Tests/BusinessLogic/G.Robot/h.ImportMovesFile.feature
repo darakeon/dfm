@@ -8,11 +8,9 @@ Background:
 		And I have two accounts
 		And I open the account Account Out
 		And I open the account Account In
-		And I already have this account
+		And I have these accounts
 			| Name            | Currency |
 			| Account Out EUR | EUR      |
-		And I already have this account
-			| Name            | Currency |
 			| Account In BRL  | BRL      |
 		And I have a category
 		And I enable the category Category
