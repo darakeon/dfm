@@ -112,6 +112,30 @@ namespace DFM.BusinessLogic.Tests.Steps
 			service.Admin.CreateAccount(oldAccount);
 		}
 
+		[Given(@"I have these accounts")]
+		public void GivenIHaveTheseAccounts(Table table)
+		{
+			foreach (var accountData in table.Rows)
+			{
+				var account = new AccountInfo
+				{
+					Name = accountData["Name"]
+						.ForScenario(scenarioCode),
+				};
+
+				if (accountData.ContainsKey("Red"))
+					account.RedLimit = getInt(accountData["Red"]);
+
+				if (accountData.ContainsKey("Yellow"))
+					account.YellowLimit = getInt(accountData["Yellow"]);
+
+				if (accountData.ContainsKey("Currency"))
+					account.Currency = EnumX.Parse<Currency>(accountData["Currency"]);
+
+				service.Admin.CreateAccount(account);
+			}
+		}
+
 		[When(@"I try to save the account")]
 		public void WhenITryToSaveTheAccount()
 		{
