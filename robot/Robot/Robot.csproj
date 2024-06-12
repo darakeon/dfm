@@ -3,8 +3,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
-    <AssemblyName>DFM.Robot</AssemblyName>
-    <RootNamespace>DFM.Robot</RootNamespace>
+    <AssemblyName>DFM.$(MSBuildProjectName)</AssemblyName>
+    <RootNamespace>DFM.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
     <AssemblyVersion>12.1.0.0</AssemblyVersion>
     <FileVersion>12.1.0.0</FileVersion>
   </PropertyGroup>

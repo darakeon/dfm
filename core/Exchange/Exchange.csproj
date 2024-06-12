@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <AssemblyName>DFM.Exchange</AssemblyName>
-    <RootNamespace>DFM.Exchange</RootNamespace>
+    <AssemblyName>DFM.$(MSBuildProjectName)</AssemblyName>
+    <RootNamespace>DFM.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
     <AssemblyVersion>12.1.0.0</AssemblyVersion>
     <FileVersion>12.1.0.0</FileVersion>
   </PropertyGroup>

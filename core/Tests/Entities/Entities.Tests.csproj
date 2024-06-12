@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <IsPackable>false</IsPackable>
-    <AssemblyName>DFM.Entities.Tests</AssemblyName>
-    <RootNamespace>DFM.Entities.Tests</RootNamespace>
+    <AssemblyName>DFM.$(MSBuildProjectName)</AssemblyName>
+    <RootNamespace>DFM.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
     <AssemblyVersion>7.3.1.0</AssemblyVersion>
     <FileVersion>7.3.1.0</FileVersion>
     <Nullable>enable</Nullable>
