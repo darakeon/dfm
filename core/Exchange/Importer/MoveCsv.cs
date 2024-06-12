@@ -139,21 +139,21 @@ public class MoveCsv : Line
 		}
 	}
 
-	public Move Move { get; private set; }
+	private Move move { get; set; }
 
 	public Move ToMove(
 		IDictionary<String, Account> accounts,
 		IDictionary<String, Category> categories
 	)
 	{
-		if (Move == null)
+		if (move == null)
 		{
 			var hasIn = !String.IsNullOrEmpty(In);
 			var hasOut = !String.IsNullOrEmpty(Out);
 
 			var hasCategory = !String.IsNullOrEmpty(Category);
 
-			Move = new Move
+			move = new Move
 			{
 				Description = Description,
 				Nature = getNature(hasIn, hasOut),
@@ -167,7 +167,7 @@ public class MoveCsv : Line
 				DetailList = DetailList
 			};
 
-			Move.DetailList
+			move.DetailList
 				.ToList()
 				.ForEach(d =>
 				{
@@ -175,10 +175,10 @@ public class MoveCsv : Line
 					d.Guid = Guid.NewGuid();
 				});
 
-			Move.SetDate(Date);
+			move.SetDate(Date);
 		}
 
-		return Move;
+		return move;
 	}
 
 	private MoveNature getNature(Boolean hasIn, Boolean hasOut)
