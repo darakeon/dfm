@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <AssemblyName>DFM.MVC</AssemblyName>
-    <RootNamespace>DFM.MVC</RootNamespace>
+    <AssemblyName>DFM.$(MSBuildProjectName)</AssemblyName>
+    <RootNamespace>DFM.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <AssemblyVersion>12.1.0.0</AssemblyVersion>
