@@ -1,0 +1,10 @@
+{
+	"SQS": {
+		"local": false,
+		"queueImporter": "",
+		"region": "",
+		"account": "",
+		"accessKey": "",
+		"secretKey": ""
+	}
+}

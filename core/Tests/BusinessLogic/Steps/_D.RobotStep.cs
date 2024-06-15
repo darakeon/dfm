@@ -696,6 +696,38 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
+		[Then(@"the lines will be queued")]
+		public void ThenTheLinesWillBeQueued()
+		{
+			var user = repos.User.GetByEmail(current.Email);
+
+			var archive = repos.Archive
+				.SingleOrDefault(a => a.User == user);
+
+			var lineIds = archive.LineList
+				.Select(l => l.ID)
+				.ToList();
+
+			KeyValuePair<String, Line>? item;
+
+			do
+			{
+				var task = queueService.Dequeue();
+
+				task.Wait();
+
+				item = task.Result;
+
+				if (item.HasValue)
+				{
+					queueService.Delete(item.Value.Key);
+					lineIds.Remove(item.Value.Value.ID);
+				}
+			} while (item != null);
+
+			Assert.That(lineIds, Is.Empty);
+		}
+
 		[Then(@"the pre-import data will not be recorded")]
 		public void ThenThePreImportDataWillNotBeRecorded()
 		{
@@ -705,6 +737,17 @@ namespace DFM.BusinessLogic.Tests.Steps
 				.SingleOrDefault(a => a.User == user);
 
 			Assert.That(archive, Is.Null);
+		}
+
+		[Then(@"the lines will not be queued")]
+		public void ThenTheLinesWillNotBeQueued()
+		{
+			var task = queueService.Dequeue();
+			task.Wait();
+
+			var line = task.Result;
+
+			Assert.That(line, Is.Null);
 		}
 
 		[Then("no email will be sent")]

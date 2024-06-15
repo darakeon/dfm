@@ -3,6 +3,7 @@ using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Services;
 using DFM.Exchange.Exporter;
 using DFM.BusinessLogic.Validators;
+using DFM.Queue;
 
 [assembly: InternalsVisibleTo("DFM.BusinessLogic.Tests")]
 namespace DFM.BusinessLogic
@@ -12,7 +13,8 @@ namespace DFM.BusinessLogic
 		public ServiceAccess(
 			Current.GetTicket getTicket,
 			Current.GetUrl getUrl,
-			IFileService fileService
+			IFileService fileService,
+			IQueueService queueService
 		)
 		{
 			var valids = new Valids();
@@ -26,7 +28,7 @@ namespace DFM.BusinessLogic
 			Clip = new ClipService(this, repos, valids);
 			Money = new MoneyService(this, repos, valids);
 			Report = new ReportService(this, repos, valids);
-			Robot = new RobotService(this, repos, valids);
+			Robot = new RobotService(this, repos, valids, queueService);
 			Outside = new OutsideService(this, repos, valids);
 
 			Current = new Current(Auth, getTicket);
