@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.452
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7EB84316-3CE2-4426-AA5E-7234811CA5BB}"
 	ProjectSection(SolutionItems) = preProject
@@ -29,6 +29,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVC.Tests", "Tests\MVC\MVC.Tests.csproj", "{02E9F72D-A580-42FF-946D-AA4F252E4754}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exchange", "..\core\Exchange\Exchange.csproj", "{3C8B9241-5BBE-4403-8E32-BC219FB19C0F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Queue", "..\core\Queue\Queue.csproj", "{AEEFBEC1-8ACB-4BC3-9C32-C4D160D258E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,6 +80,10 @@ Global
 		{3C8B9241-5BBE-4403-8E32-BC219FB19C0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C8B9241-5BBE-4403-8E32-BC219FB19C0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C8B9241-5BBE-4403-8E32-BC219FB19C0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEEFBEC1-8ACB-4BC3-9C32-C4D160D258E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEEFBEC1-8ACB-4BC3-9C32-C4D160D258E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEEFBEC1-8ACB-4BC3-9C32-C4D160D258E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEEFBEC1-8ACB-4BC3-9C32-C4D160D258E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

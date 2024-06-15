@@ -11,14 +11,20 @@ using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 using DFM.Exchange.Importer;
 using DFM.Generic;
+using DFM.Queue;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Services
 {
 	public class RobotService : Service
 	{
-		internal RobotService(ServiceAccess serviceAccess, Repos repos, Valids valids)
-			: base(serviceAccess, repos, valids) { }
+		private readonly IQueueService queueService;
+
+		internal RobotService(ServiceAccess serviceAccess, Repos repos, Valids valids, IQueueService queueService)
+			: base(serviceAccess, repos, valids)
+		{
+			this.queueService = queueService;
+		}
 
 		private readonly IDictionary<ImporterError, Error> errors =
 			new Dictionary<ImporterError, Error>
@@ -411,6 +417,8 @@ namespace DFM.BusinessLogic.Services
 				"ImportMovesFile",
 				() => repos.Archive.SaveOrUpdate(archive)
 			);
+
+			queueService.Enqueue(archive.LineList);
 		}
 
 		private CSVImporter validateArchive(String csv, User user)
