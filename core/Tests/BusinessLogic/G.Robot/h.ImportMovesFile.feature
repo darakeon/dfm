@@ -23,6 +23,7 @@ Scenario: Gh01. Import with user marked for deletion
 	When import moves file
 	Then I will receive this core error: UserDeleted
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh02. Import with user requested wipe
 	Given a moves file with this content
@@ -32,6 +33,7 @@ Scenario: Gh02. Import with user requested wipe
 	When import moves file
 	Then I will receive this core error: UserAskedWipe
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh03. Import without sign last contract
 	Given a moves file with this content
@@ -41,6 +43,7 @@ Scenario: Gh03. Import without sign last contract
 	When import moves file
 	Then I will receive this core error: NotSignedLastContract
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh04. Import empty
 	Given a moves file with this content
@@ -48,6 +51,7 @@ Scenario: Gh04. Import empty
 	When import moves file
 	Then I will receive this core error: InvalidArchive
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh05. Import with unknown column
 	Given a moves file with this content
@@ -56,6 +60,7 @@ Scenario: Gh05. Import with unknown column
 	When import moves file
 	Then I will receive this core error: InvalidArchiveColumn
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh06. Import with 20 details
 	Given a moves file with this content
@@ -64,6 +69,7 @@ Scenario: Gh06. Import with 20 details
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+		And the lines will be queued
 
 Scenario: Gh07. Import with 21 details
 	Given a moves file with this content
@@ -72,6 +78,7 @@ Scenario: Gh07. Import with 21 details
 	When import moves file
 	Then I will receive this core error: InvalidArchiveColumn
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh08. Import without Description
 	Given a moves file with this content
@@ -80,6 +87,7 @@ Scenario: Gh08. Import without Description
 	When import moves file
 	Then I will receive this core error: MoveDescriptionRequired
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh09. Import without Date
 	Given a moves file with this content
@@ -88,6 +96,7 @@ Scenario: Gh09. Import without Date
 	When import moves file
 	Then I will receive this core error: MoveDateRequired
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh10. Import with invalid Date
 	Given a moves file with this content
@@ -96,6 +105,7 @@ Scenario: Gh10. Import with invalid Date
 	When import moves file
 	Then I will receive this core error: MoveDateInvalid
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh11. Import with future Date
 	Given a moves file with this content
@@ -104,6 +114,7 @@ Scenario: Gh11. Import with future Date
 	When import moves file
 	Then I will receive this core error: MoveDateInvalid
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh12. Import without Category but using Categories
 	Given a moves file with this content
@@ -115,6 +126,7 @@ Scenario: Gh12. Import without Category but using Categories
 	When import moves file
 	Then I will receive this core error: InvalidCategory
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh13. Import with Category but not using Categories
 	Given a moves file with this content
@@ -126,6 +138,7 @@ Scenario: Gh13. Import with Category but not using Categories
 	When import moves file
 	Then I will receive this core error: CategoriesDisabled
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh14. Import with unknown Category
 	Given a moves file with this content
@@ -134,6 +147,7 @@ Scenario: Gh14. Import with unknown Category
 	When import moves file
 	Then I will receive this core error: InvalidCategory
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh15. Import with Description too large
 	Given a moves file with this content
@@ -142,6 +156,7 @@ Scenario: Gh15. Import with Description too large
 	When import moves file
 	Then I will receive this core error: TooLargeMoveDescription
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh16. Import with (Nature: Out) (AccountOut:No) (AccountIn:No)
 	Given a moves file with this content
@@ -150,6 +165,7 @@ Scenario: Gh16. Import with (Nature: Out) (AccountOut:No) (AccountIn:No)
 	When import moves file
 	Then I will receive this core error: OutMoveWrong
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh17. Import without Nature
 	Given a moves file with this content
@@ -158,6 +174,7 @@ Scenario: Gh17. Import without Nature
 	When import moves file
 	Then I will receive this core error: MoveNatureRequired
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh18. Import with invalid Nature
 	Given a moves file with this content
@@ -166,6 +183,7 @@ Scenario: Gh18. Import with invalid Nature
 	When import moves file
 	Then I will receive this core error: MoveNatureInvalid
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh19. Import with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes)
 	Given a moves file with this content
@@ -174,6 +192,7 @@ Scenario: Gh19. Import with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes)
 	When import moves file
 	Then I will receive this core error: OutMoveWrong
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh20. Import with (Nature: Out) (AccountOut:No) (AccountIn:Yes)
 	Given a moves file with this content
@@ -182,6 +201,7 @@ Scenario: Gh20. Import with (Nature: Out) (AccountOut:No) (AccountIn:Yes)
 	When import moves file
 	Then I will receive this core error: OutMoveWrong
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh21. Import with (Nature: Out) (AccountOut:Unknown) (AccountIn:No)
 	Given a moves file with this content
@@ -190,6 +210,7 @@ Scenario: Gh21. Import with (Nature: Out) (AccountOut:Unknown) (AccountIn:No)
 	When import moves file
 	Then I will receive this core error: InvalidAccount
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh22. Import with (Nature: In) (AccountOut:No) (AccountIn:No)
 	Given a moves file with this content
@@ -198,6 +219,7 @@ Scenario: Gh22. Import with (Nature: In) (AccountOut:No) (AccountIn:No)
 	When import moves file
 	Then I will receive this core error: InMoveWrong
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh23. Import with (Nature: In) (AccountOut:Yes) (AccountIn:Yes)
 	Given a moves file with this content
@@ -206,6 +228,7 @@ Scenario: Gh23. Import with (Nature: In) (AccountOut:Yes) (AccountIn:Yes)
 	When import moves file
 	Then I will receive this core error: InMoveWrong
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh24. Import with (Nature: In) (AccountOut:Yes) (AccountIn:No)
 	Given a moves file with this content
@@ -214,6 +237,7 @@ Scenario: Gh24. Import with (Nature: In) (AccountOut:Yes) (AccountIn:No)
 	When import moves file
 	Then I will receive this core error: InMoveWrong
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh25. Import with (Nature: In) (AccountOut:No) (AccountIn:Unknown)
 	Given a moves file with this content
@@ -222,6 +246,7 @@ Scenario: Gh25. Import with (Nature: In) (AccountOut:No) (AccountIn:Unknown)
 	When import moves file
 	Then I will receive this core error: InvalidAccount
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh26. Import with (Nature: Transfer) (AccountOut:No) (AccountIn:No)
 	Given a moves file with this content
@@ -230,6 +255,7 @@ Scenario: Gh26. Import with (Nature: Transfer) (AccountOut:No) (AccountIn:No)
 	When import moves file
 	Then I will receive this core error: TransferMoveWrong
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh27. Import with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes)
 	Given a moves file with this content
@@ -238,6 +264,7 @@ Scenario: Gh27. Import with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes)
 	When import moves file
 	Then I will receive this core error: TransferMoveWrong
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh28. Import with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No)
 	Given a moves file with this content
@@ -246,6 +273,7 @@ Scenario: Gh28. Import with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No)
 	When import moves file
 	Then I will receive this core error: TransferMoveWrong
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh29. Import with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown)
 	Given a moves file with this content
@@ -254,6 +282,7 @@ Scenario: Gh29. Import with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unkno
 	When import moves file
 	Then I will receive this core error: InvalidAccount
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh30. Import with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes)
 	Given a moves file with this content
@@ -262,6 +291,7 @@ Scenario: Gh30. Import with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Y
 	When import moves file
 	Then I will receive this core error: InvalidAccount
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh31. Import with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out)
 	Given a moves file with this content
@@ -270,6 +300,7 @@ Scenario: Gh31. Import with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal
 	When import moves file
 	Then I will receive this core error: CircularTransfer
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh32. Import without Value nor Details
 	Given a moves file with this content
@@ -278,6 +309,7 @@ Scenario: Gh32. Import without Value nor Details
 	When import moves file
 	Then I will receive this core error: MoveValueOrDetailRequired
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh33. Import with Value zero and no Details
 	Given a moves file with this content
@@ -286,6 +318,7 @@ Scenario: Gh33. Import with Value zero and no Details
 	When import moves file
 	Then I will receive this core error: MoveValueOrDetailRequired
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh34. Import with invalid Value
 	Given a moves file with this content
@@ -294,6 +327,7 @@ Scenario: Gh34. Import with invalid Value
 	When import moves file
 	Then I will receive this core error: MoveValueInvalid
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh35. Import without Description in Detail
 	Given a moves file with this content
@@ -302,6 +336,7 @@ Scenario: Gh35. Import without Description in Detail
 	When import moves file
 	Then I will receive this core error: MoveDetailDescriptionRequired
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh36. Import with Amount zero in Detail
 	Given a moves file with this content
@@ -310,6 +345,7 @@ Scenario: Gh36. Import with Amount zero in Detail
 	When import moves file
 	Then I will receive this core error: MoveDetailAmountRequired
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh37. Import with Amount invalid in Detail
 	Given a moves file with this content
@@ -318,6 +354,7 @@ Scenario: Gh37. Import with Amount invalid in Detail
 	When import moves file
 	Then I will receive this core error: MoveDetailAmountInvalid
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh38. Import without Amount in Detail
 	Given a moves file with this content
@@ -326,6 +363,7 @@ Scenario: Gh38. Import without Amount in Detail
 	When import moves file
 	Then I will receive this core error: MoveDetailAmountRequired
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh39. Import with Value zero in Detail
 	Given a moves file with this content
@@ -334,6 +372,7 @@ Scenario: Gh39. Import with Value zero in Detail
 	When import moves file
 	Then I will receive this core error: MoveDetailValueRequired
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh40. Import without Value in Detail
 	Given a moves file with this content
@@ -342,6 +381,7 @@ Scenario: Gh40. Import without Value in Detail
 	When import moves file
 	Then I will receive this core error: MoveDetailValueRequired
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh41. Import with Value invalid in Detail
 	Given a moves file with this content
@@ -350,6 +390,7 @@ Scenario: Gh41. Import with Value invalid in Detail
 	When import moves file
 	Then I will receive this core error: MoveDetailValueInvalid
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh42. Import with Description too large in Detail
 	Given a moves file with this content
@@ -358,6 +399,7 @@ Scenario: Gh42. Import with Description too large in Detail
 	When import moves file
 	Then I will receive this core error: TooLargeDetailDescription
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh43. Import with disabled Category
 	Given a moves file with this content
@@ -367,6 +409,7 @@ Scenario: Gh43. Import with disabled Category
 	When import moves file
 	Then I will receive this core error: DisabledCategory
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh44. Import with closed AccountOut
 	Given a moves file with this content
@@ -376,6 +419,7 @@ Scenario: Gh44. Import with closed AccountOut
 	When import moves file
 	Then I will receive this core error: ClosedAccount
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh45. Import with closed AccountIn
 	Given a moves file with this content
@@ -385,6 +429,7 @@ Scenario: Gh45. Import with closed AccountIn
 	When import moves file
 	Then I will receive this core error: ClosedAccount
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh46. Import with info all right (Out)
 	Given a moves file with this content
@@ -393,6 +438,7 @@ Scenario: Gh46. Import with info all right (Out)
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+		And the lines will be queued
 
 Scenario: Gh47. Import with info all right (In)
 	Given a moves file with this content
@@ -401,6 +447,7 @@ Scenario: Gh47. Import with info all right (In)
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+		And the lines will be queued
 
 Scenario: Gh48. Import with info all right (Transfer)
 	Given a moves file with this content
@@ -409,6 +456,7 @@ Scenario: Gh48. Import with info all right (Transfer)
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+		And the lines will be queued
 
 Scenario: Gh49. Import negative (value)
 	Given a moves file with this content
@@ -417,6 +465,7 @@ Scenario: Gh49. Import negative (value)
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+		And the lines will be queued
 
 Scenario: Gh50. Import negative (details)
 	Given a moves file with this content
@@ -425,6 +474,7 @@ Scenario: Gh50. Import negative (details)
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+		And the lines will be queued
 
 Scenario: Gh51. Import with exactly length in Description of Detail
 	Given a moves file with this content
@@ -433,6 +483,7 @@ Scenario: Gh51. Import with exactly length in Description of Detail
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+		And the lines will be queued
 
 Scenario: Gh52. Import with exactly length in Description
 	Given a moves file with this content
@@ -441,6 +492,7 @@ Scenario: Gh52. Import with exactly length in Description
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+		And the lines will be queued
 
 Scenario: Gh53. Import with details with same Description
 	Given a moves file with this content
@@ -449,6 +501,7 @@ Scenario: Gh53. Import with details with same Description
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+		And the lines will be queued
 
 Scenario: Gh54. Import with e-mail sender system out
 	Given a moves file with this content
@@ -457,6 +510,7 @@ Scenario: Gh54. Import with e-mail sender system out
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+		And the lines will be queued
 
 Scenario: Gh55. Import with decimals
 	Given a moves file with this content
@@ -465,6 +519,7 @@ Scenario: Gh55. Import with decimals
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+		And the lines will be queued
 
 Scenario: Gh56. Import with decimals in details
 	Given a moves file with this content
@@ -473,6 +528,7 @@ Scenario: Gh56. Import with decimals in details
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+		And the lines will be queued
 
 Scenario: Gh57. Import move transfer with unique value for same currency
 	Given a moves file with this content
@@ -481,6 +537,7 @@ Scenario: Gh57. Import move transfer with unique value for same currency
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+		And the lines will be queued
 
 Scenario: Gh58. Import move transfer with unique value for different currencies
 	Given a moves file with this content
@@ -489,6 +546,7 @@ Scenario: Gh58. Import move transfer with unique value for different currencies
 	When import moves file
 	Then I will receive this core error: AccountsDifferentCurrencyNoConversion
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh59. Import move transfer with conversion for same currency
 	Given a moves file with this content
@@ -497,6 +555,7 @@ Scenario: Gh59. Import move transfer with conversion for same currency
 	When import moves file
 	Then I will receive this core error: AccountsSameCurrencyConversion
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh60. Import move transfer with conversion for different currencies
 	Given a moves file with this content
@@ -505,6 +564,7 @@ Scenario: Gh60. Import move transfer with conversion for different currencies
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+		And the lines will be queued
 
 Scenario: Gh61. Import move transfer with conversion for disabled use currency
 	Given a moves file with this content
@@ -516,6 +576,7 @@ Scenario: Gh61. Import move transfer with conversion for disabled use currency
 	When import moves file
 	Then I will receive this core error: UseCurrencyDisabled
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh62. Import move out with conversion
 	Given a moves file with this content
@@ -527,6 +588,7 @@ Scenario: Gh62. Import move out with conversion
 	When import moves file
 	Then I will receive this core error: CurrencyInOutValueWithoutTransfer
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh63. Import move in with conversion
 	Given a moves file with this content
@@ -535,6 +597,7 @@ Scenario: Gh63. Import move in with conversion
 	When import moves file
 	Then I will receive this core error: CurrencyInOutValueWithoutTransfer
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh64. Import move transfer with conversion ZERO for different currencies
 	Given a moves file with this content
@@ -543,6 +606,7 @@ Scenario: Gh64. Import move transfer with conversion ZERO for different currenci
 	When import moves file
 	Then I will receive this core error: AccountsDifferentCurrencyNoConversion
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh65. Import move out with unique value for enabled conversion
 	Given a moves file with this content
@@ -554,6 +618,7 @@ Scenario: Gh65. Import move out with unique value for enabled conversion
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+		And the lines will be queued
 
 Scenario: Gh66. Import move in with unique value for enabled conversion
 	Given a moves file with this content
@@ -565,6 +630,7 @@ Scenario: Gh66. Import move in with unique value for enabled conversion
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+		And the lines will be queued
 
 Scenario: Gh67. Import move transfer with unique detailed value for same currency
 	Given a moves file with this content
@@ -573,6 +639,7 @@ Scenario: Gh67. Import move transfer with unique detailed value for same currenc
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+		And the lines will be queued
 
 Scenario: Gh68. Import move transfer with unique detailed value for different currencies
 	Given a moves file with this content
@@ -581,6 +648,7 @@ Scenario: Gh68. Import move transfer with unique detailed value for different cu
 	When import moves file
 	Then I will receive this core error: AccountsDifferentCurrencyNoConversion
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh69. Import move transfer with detailed conversion for same currency
 	Given a moves file with this content
@@ -589,6 +657,7 @@ Scenario: Gh69. Import move transfer with detailed conversion for same currency
 	When import moves file
 	Then I will receive this core error: AccountsSameCurrencyConversion
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh70. Import move transfer with detailed conversion for different currencies
 	Given a moves file with this content
@@ -597,6 +666,7 @@ Scenario: Gh70. Import move transfer with detailed conversion for different curr
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+		And the lines will be queued
 
 Scenario: Gh71. Import move transfer with detailed conversion for disabled use currency
 	Given a moves file with this content
@@ -608,6 +678,7 @@ Scenario: Gh71. Import move transfer with detailed conversion for disabled use c
 	When import moves file
 	Then I will receive this core error: UseCurrencyDisabled
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh72. Import move out with detailed conversion
 	Given a moves file with this content
@@ -616,6 +687,7 @@ Scenario: Gh72. Import move out with detailed conversion
 	When import moves file
 	Then I will receive this core error: CurrencyInOutValueWithoutTransfer
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh73. Import move in with detailed conversion
 	Given a moves file with this content
@@ -624,6 +696,7 @@ Scenario: Gh73. Import move in with detailed conversion
 	When import moves file
 	Then I will receive this core error: CurrencyInOutValueWithoutTransfer
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh74. Import move transfer with detailed conversion ZERO for different currencies
 	Given a moves file with this content
@@ -632,6 +705,7 @@ Scenario: Gh74. Import move transfer with detailed conversion ZERO for different
 	When import moves file
 	Then I will receive this core error: AccountsDifferentCurrencyNoConversion
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh75. Import move transfer with detailed conversion invalid for different currencies
 	Given a moves file with this content
@@ -640,6 +714,7 @@ Scenario: Gh75. Import move transfer with detailed conversion invalid for differ
 	When import moves file
 	Then I will receive this core error: MoveDetailConversionInvalid
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh76. Import move out with detailed unique value for enabled conversion
 	Given a moves file with this content
@@ -651,6 +726,7 @@ Scenario: Gh76. Import move out with detailed unique value for enabled conversio
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+		And the lines will be queued
 
 Scenario: Gh77. Import move in with detailed unique value for enabled conversion
 	Given a moves file with this content
@@ -662,6 +738,7 @@ Scenario: Gh77. Import move in with detailed unique value for enabled conversion
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+		And the lines will be queued
 
 Scenario: Gh78. Error in multiple lines
 	Given a moves file with this content
@@ -682,6 +759,7 @@ Scenario: Gh78. Error in multiple lines
 			| InvalidAccount    |
 			| InvalidAccount    |
 		And the pre-import data will not be recorded
+		And the lines will not be queued
 
 Scenario: Gh79. Import with empty details
 	Given a moves file with this content
@@ -690,6 +768,7 @@ Scenario: Gh79. Import with empty details
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+		And the lines will be queued
 
 Scenario: Gh80. Without explicit Nature
 	Given a moves file with this content
@@ -700,3 +779,4 @@ Scenario: Gh80. Without explicit Nature
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
+		And the lines will be queued

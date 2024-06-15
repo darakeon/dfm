@@ -13,6 +13,7 @@ using DFM.Entities.Enums;
 using DFM.Exchange.Exporter;
 using DFM.Generic;
 using DFM.Generic.Datetime;
+using DFM.Queue;
 using DFM.Tests.Util;
 using Keon.Util.Extensions;
 using TechTalk.SpecFlow;
@@ -34,6 +35,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		private protected static Valids valids;
 		private protected static Repos repos;
 		private protected static IFileService fileService;
+		private protected static IQueueService queueService;
 
 		private static String logFileName;
 
@@ -59,6 +61,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		protected static void setRepositories()
 		{
 			fileService = new LocalFileService();
+			queueService = new LocalQueueService();
 			valids = new Valids();
 			repos = new Repos(getSite, valids, fileService);
 		}
