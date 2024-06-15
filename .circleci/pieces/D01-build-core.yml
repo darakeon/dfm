@@ -6,21 +6,13 @@
       - run:
           name: set checksums
           command: |
-            CS_AUTH=$(md5sum core/Authentication/Authentication.csproj | cut -d' ' -f1)
-            CS_BUSI=$(md5sum core/BusinessLogic/BusinessLogic.csproj | cut -d' ' -f1)
-            CS_MAIL=$(md5sum core/Email/Email.csproj | cut -d' ' -f1)
-            CS_ENTI=$(md5sum core/Entities/Entities.csproj | cut -d' ' -f1)
-            CS_GENE=$(md5sum core/Generic/Generic.csproj | cut -d' ' -f1)
-            CS_LANG=$(md5sum core/Language/Language.csproj | cut -d' ' -f1)
-            CS_EXCH=$(md5sum core/Exchange/Exchange.csproj | cut -d' ' -f1)
-            CS_TBUS=$(md5sum core/Tests/BusinessLogic/BusinessLogic.Tests.csproj | cut -d' ' -f1)
-            CS_TMAI=$(md5sum core/Tests/Email/Email.Tests.csproj | cut -d' ' -f1)
-            CS_TLAN=$(md5sum core/Tests/Language/Language.Tests.csproj | cut -d' ' -f1)
-            CS_TEXC=$(md5sum core/Tests/Exchange/Exchange.Tests.csproj | cut -d' ' -f1)
-            CS_TGEN=$(md5sum core/Tests/Generic/Generic.Tests.csproj | cut -d' ' -f1)
+            cat core/*/*.csproj > core_cache_key
+            CS_CORE=$(md5sum core_cache_key | cut -d' ' -f1)
 
-            CACHE_KEY=$CS_AUTH-$CS_BUSI-$CS_MAIL-$CS_ENTI-$CS_GENE-$CS_LANG-$CS_EXCH
-            CACHE_KEY=$CACHE_KEY-$CS_TBUS-$CS_TMAI-$CS_TLAN-$CS_TEXC-$CS_TGEN
+            cat core/*/*/*.csproj >> tests_cache_key
+            CS_TEST=$(md5sum tests_cache_key | cut -d' ' -f1)
+
+            CACHE_KEY=$CS_CORE-$CS_TEST
             echo $CACHE_KEY > core/cache_key
       - restore_cache:
           keys:
@@ -39,34 +31,8 @@
           root: core
           paths:
             - cache_key
-            - Authentication/bin
-            - BusinessLogic/bin
-            - Email/bin
-            - Entities/bin
-            - Exchange/bin
-            - Generic/bin
-            - Language/bin
-            - Logs/bin
-            - Authentication/obj
-            - BusinessLogic/obj
-            - Email/obj
-            - Entities/obj
-            - Exchange/obj
-            - Generic/obj
-            - Language/obj
-            - Logs/obj
-            - Tests/BusinessLogic/bin
-            - Tests/Email/bin
-            - Tests/Entities/bin
-            - Tests/Exchange/bin
-            - Tests/Generic/bin
-            - Tests/Language/bin
-            - Tests/Util/bin
-            - Tests/BusinessLogic/obj
-            - Tests/Email/obj
-            - Tests/Entities/obj
-            - Tests/Exchange/obj
-            - Tests/Generic/obj
-            - Tests/Language/obj
-            - Tests/Util/obj
+            - "*/bin"
+            - "*/obj"
+            - "Tests/*/bin"
+            - "Tests/*/obj"
 
