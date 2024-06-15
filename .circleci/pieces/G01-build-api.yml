@@ -8,17 +8,13 @@
       - run:
           name: set checksums
           command: |
-            CS_AUTH=$(md5sum core/Authentication/Authentication.csproj | cut -d' ' -f1)
-            CS_BUSI=$(md5sum core/BusinessLogic/BusinessLogic.csproj | cut -d' ' -f1)
-            CS_MAIL=$(md5sum core/Email/Email.csproj | cut -d' ' -f1)
-            CS_ENTI=$(md5sum core/Entities/Entities.csproj | cut -d' ' -f1)
-            CS_GENE=$(md5sum core/Generic/Generic.csproj | cut -d' ' -f1)
-            CS_LANG=$(md5sum core/Language/Language.csproj | cut -d' ' -f1)
-            CS_EXCH=$(md5sum core/Exchange/Exchange.csproj | cut -d' ' -f1)
+            cat core/*/*.csproj > core_cache_key
+            CS_CORE=$(md5sum core_cache_key | cut -d' ' -f1)
+
             CS_API_=$(md5sum api/API/API.csproj | cut -d' ' -f1)
             CS_TAPI=$(md5sum api/Tests/API/API.Tests.csproj | cut -d' ' -f1)
 
-            CACHE_KEY=$CS_AUTH-$CS_BUSI-$CS_MAIL-$CS_ENTI-$CS_GENE-$CS_LANG-$CS_EXCH-$CS_API_-$CS_TAPI
+            CACHE_KEY=$CS_CORE-$CS_API_-$CS_TAPI
             echo $CACHE_KEY > api/cache_key
       - restore_cache:
           keys:
