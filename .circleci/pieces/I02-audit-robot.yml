@@ -21,7 +21,7 @@
 
             echo "$RESULT"
 
-            NUMBER_OF_PROJECTS=9
+            NUMBER_OF_PROJECTS=$(cat Robot.sln | grep .csproj | wc -l)
             CURRENT=$(echo "$RESULT" | wc -l)
 
             if [ $CURRENT != $NUMBER_OF_PROJECTS ]; then

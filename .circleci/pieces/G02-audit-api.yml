@@ -18,7 +18,7 @@
 
             echo "$RESULT"
 
-            NUMBER_OF_PROJECTS=11
+            NUMBER_OF_PROJECTS=$(cat API.sln | grep .csproj | wc -l)
             CURRENT=$(echo "$RESULT" | wc -l)
 
             if [ $CURRENT != $NUMBER_OF_PROJECTS ]; then
