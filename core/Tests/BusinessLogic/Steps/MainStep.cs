@@ -175,7 +175,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			SessionManager.Init(getTicketKey);
 
 			service = new ServiceAccess(
-				getTicket, getSite, fileService
+				getTicket, getSite, fileService, queueService
 			);
 
 			createContract();
