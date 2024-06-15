@@ -1432,6 +1432,9 @@ workflows:
             - test_site
             - audit_test_browser
             - test_browser
+            - build_api
+            - audit_api
+            - test_api
             - build_android
             - audit_android
             - test_android_lib_debug
