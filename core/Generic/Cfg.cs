@@ -16,6 +16,7 @@ namespace DFM.Generic
 				.AddJsonFile("smtp.json", true)
 				.AddJsonFile("login.json", true)
 				.AddJsonFile("s3.json", true)
+				.AddJsonFile("sqs.json", true)
 				.AddJsonFile("tips.json", true)
 				;
 
@@ -26,6 +27,7 @@ namespace DFM.Generic
 					.AddJsonFile($"smtp.{environment}.json", true)
 					.AddJsonFile($"login.{environment}.json", true)
 					.AddJsonFile($"s3.{environment}.json", true)
+					.AddJsonFile($"sqs.{environment}.json", true)
 					.AddJsonFile($"tips.{environment}.json", true)
 					;
 			}
@@ -57,6 +59,7 @@ namespace DFM.Generic
 		public static Smtp Smtp => new(dic.GetSection("Smtp"));
 		public static Rewrite Rewrites => new("rewrites.json");
 		public static S3 S3 => new(dic.GetSection("S3"));
+		public static SQS SQS => new(dic.GetSection("SQS"));
 
 		public static String LanguagePath { get; set; }
 

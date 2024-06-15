@@ -22,6 +22,7 @@
     <ProjectReference Include="..\Entities\Entities.csproj" />
     <ProjectReference Include="..\Exchange\Exchange.csproj" />
     <ProjectReference Include="..\Language\Language.csproj" />
+    <ProjectReference Include="..\Queue\Queue.csproj" />
   </ItemGroup>
 
 </Project>

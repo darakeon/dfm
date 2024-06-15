@@ -2,6 +2,7 @@
 using DFM.BusinessLogic;
 using DFM.Exchange.Exporter;
 using DFM.Generic;
+using DFM.Queue;
 using Keon.MVC.Cookies;
 using Microsoft.AspNetCore.Http;
 
@@ -18,10 +19,16 @@ namespace DFM.MVC.Helpers
 					? new LocalFileService()
 					: new S3Service();
 
+			IQueueService queueService =
+				Cfg.SQS.Local
+					? new LocalQueueService()
+					: new SQSService();
+
 			Access = new ServiceAccess(
 				new Session(getContext).GetTicket,
 				getUrl,
-				fileService
+				fileService,
+				queueService
 			);
 		}
 

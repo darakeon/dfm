@@ -7,6 +7,7 @@ using DFM.Exchange.Exporter;
 using DFM.Generic;
 using DFM.Generic.Datetime;
 using DfM.Logs;
+using DFM.Queue;
 
 namespace DFM.Robot
 {
@@ -15,6 +16,7 @@ namespace DFM.Robot
 		private readonly Task task;
 		private readonly ServiceAccess service;
 		private readonly S3Service s3;
+		private readonly SQSService sqs;
 
 		public Service(String task)
 		{
@@ -23,8 +25,9 @@ namespace DFM.Robot
 			TZ.Init(false);
 
 			s3 = this.task == Task.Wipe ? new S3Service() : null;
+			sqs = this.task == Task.Import ? new SQSService() : null;
 
-			service = new ServiceAccess(getTicket, getSite, s3);
+			service = new ServiceAccess(getTicket, getSite, s3, sqs);
 
 			if (this.task != Task.Check)
 				service.Current.Set(Cfg.RobotEmail, Cfg.RobotPassword, false);
