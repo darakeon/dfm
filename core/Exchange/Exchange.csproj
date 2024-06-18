@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.S3" Version="3.7.309.1" />
+    <PackageReference Include="AWSSDK.S3" Version="3.7.309.5" />
     <PackageReference Include="CsvHelper" Version="32.0.3" />
   </ItemGroup>
 
