@@ -62,8 +62,10 @@ clean:
 	fi
 
 ci-keystore:
-	@if [ ! -e keystore.properties ]; then \
+	@if [ ! -e fake.keystore ]; then \
 		echo "" > fake.keystore; \
+	fi
+	@if [ ! -e keystore.properties ]; then \
 		echo "storeFile=fake.keystore\nstorePassword=\nkeyAlias=\nkeyPassword=" > keystore.properties; \
 	fi
 
