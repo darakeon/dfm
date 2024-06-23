@@ -9,10 +9,15 @@ Background:
 		And I open the account Account Out
 		And I open the account Account In
 		And I have these accounts
-			| Name            | Currency |
-			| Account Out EUR | EUR      |
-			| Account In BRL  | BRL      |
+			| Name                 | Currency |
+			| Account Out EUR      | EUR      |
+			| Account In BRL       | BRL      |
+			| ABCDEFGHIJKLMNOPQRST | EUR      |
+			| GHIJKLMNOPQRSTUVWXYZ | BRL      |
 		And I have a category
+		And I have this category
+			| Name                 |
+			| ABCDEFGHIJKLMNOPQRST |
 		And I enable the category Category
 
 Scenario: Gh01. Import with user marked for deletion
@@ -771,3 +776,24 @@ Scenario: Gh79. Without explicit Nature
 	Then I will receive no core error
 		And the pre-import data will be recorded
 		And the lines will be queued
+
+Scenario: Gh81. Allowed file size and lines
+	Given a moves file with allowed file size and lines
+	When import moves file
+	Then I will receive no core error
+		And the pre-import data will be recorded
+		And the lines will be queued
+
+Scenario: Gh82. Not allowed file size
+	Given a moves file with not allowed file size
+	When import moves file
+	Then I will receive this core error: InvalidArchiveSize
+		And the pre-import data will not be recorded
+		And the lines will not be queued
+
+Scenario: Gh83. Not allowed file lines
+	Given a moves file with not allowed file lines
+	When import moves file
+	Then I will receive this core error: InvalidArchiveLines
+		And the pre-import data will not be recorded
+		And the lines will not be queued

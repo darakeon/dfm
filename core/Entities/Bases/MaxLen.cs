@@ -23,5 +23,7 @@ namespace DFM.Entities.Bases
 
 		public const Int16 SettingsLanguage = 5;
 
+		public const Int32 ArchiveSize = 352101;
+		public const Int16 ArchiveLines = 200;
 	}
 }
