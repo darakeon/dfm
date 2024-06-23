@@ -6,6 +6,7 @@ using System.Linq;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using DFM.Entities.Bases;
 
 namespace DFM.Exchange.Importer
 {
@@ -13,8 +14,11 @@ namespace DFM.Exchange.Importer
 	{
 		public CSVImporter(String content)
 		{
-			MoveList = new List<MoveCsv>();
-			ErrorList = new Dictionary<Int16, ImporterError>();
+			if (content.Length > MaxLen.ArchiveSize)
+			{
+				ErrorList.Add(0, ImporterError.Size);
+				return;
+			}
 
 			using TextReader reader = new StringReader(content);
 
@@ -40,6 +44,11 @@ namespace DFM.Exchange.Importer
 				{
 					ErrorList.Add(line, handleFieldError(exception));
 				}
+			}
+
+			if (line > MaxLen.ArchiveLines)
+			{
+				ErrorList.Add(0, ImporterError.Lines);
 			}
 
 			var validHeaders =
@@ -125,6 +134,9 @@ namespace DFM.Exchange.Importer
 		}
 
 		public IDictionary<Int16, ImporterError> ErrorList { get; }
+			= new Dictionary<Int16, ImporterError>();
+
 		public IList<MoveCsv> MoveList { get; }
+			= new List<MoveCsv>();
 	}
 }

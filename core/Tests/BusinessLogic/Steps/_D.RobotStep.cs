@@ -656,6 +656,16 @@ namespace DFM.BusinessLogic.Tests.Steps
 			).ForScenario(scenarioCode);
 		}
 
+		[Given(@"a moves file with ([\w ]+)")]
+		public void GivenAMovesFile(String filename)
+		{
+			csvName = $"{filename.Replace(" ", "_")}.csv";
+
+			csvContent = File.ReadAllText(
+				Path.Combine("..", "..", "..", "CSVExamples", csvName)
+			);
+		}
+
 		[When(@"import moves file")]
 		public void WhenImportMovesFile()
 		{
@@ -679,14 +689,15 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			Assert.That(archive, Is.Not.Null);
 
-			var csvLines = csvContent.Split("\n");
+			var csvLines = csvContent.Trim().Split("\n");
+			var hasConversion = csvLines[0].Contains(",Conversion,");
 
 			Assert.That(archive.LineList.Count, Is.EqualTo(csvLines.Length - 1));
 
 			for (var l = 0; l < archive.LineList.Count; l++)
 			{
 				var line = archive.LineList[l];
-				var actual = CSVHelper.ToCsv(line);
+				var actual = CSVHelper.ToCsv(line, hasConversion);
 
 				var expected = csvLines[l + 1];
 				while (expected.EndsWith(",,,"))
