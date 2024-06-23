@@ -23,7 +23,7 @@ namespace DFM.Tests.Util
 			);
 		}
 
-		public static String ToCsv(Line line)
+		public static String ToCsv(Line line, Boolean addConversion)
 		{
 			var result =
 				$"{line.Description}," +
@@ -38,7 +38,7 @@ namespace DFM.Tests.Util
 				$"{line.In}," +
 				$"{line.Value}";
 
-			if (line.Conversion != null)
+			if (line.Conversion != null || addConversion)
 			{
 				result += $",{line.Conversion}";
 			}
