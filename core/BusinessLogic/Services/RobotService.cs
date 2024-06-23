@@ -29,6 +29,8 @@ namespace DFM.BusinessLogic.Services
 		private readonly IDictionary<ImporterError, Error> errors =
 			new Dictionary<ImporterError, Error>
 			{
+				{ ImporterError.Size, Error.InvalidArchiveSize },
+				{ ImporterError.Lines, Error.InvalidArchiveLines },
 				{ ImporterError.Header, Error.InvalidArchiveColumn },
 				{ ImporterError.Empty, Error.InvalidArchive },
 				{ ImporterError.DateRequired, Error.MoveDateRequired },

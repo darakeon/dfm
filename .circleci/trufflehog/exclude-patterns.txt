@@ -7,3 +7,6 @@ android/LVL/src/main/java/com/google/android/vending/licensing
 site/DFM.MVC/Assets/Bootstrap/Themes
 android/gradle/verification-metadata.xml
 version/Cargo.lock
+core/Tests/BusinessLogic/CSVExamples/allowed_file_size_and_lines.csv
+core/Tests/BusinessLogic/CSVExamples/not_allowed_file_lines.csv
+core/Tests/BusinessLogic/CSVExamples/not_allowed_file_size.csv
