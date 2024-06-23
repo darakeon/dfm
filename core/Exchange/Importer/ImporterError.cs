@@ -2,6 +2,8 @@
 
 public enum ImporterError
 {
+	Size,
+	Lines,
 	Header,
 	Empty,
 	DateRequired,
