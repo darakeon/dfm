@@ -108,7 +108,7 @@ namespace DFM.BusinessLogic.Exceptions
 
 		LogNotFound = 900,
 
-		InvalidArchive = 1000,
+		EmptyArchive = 1000,
 		InvalidArchiveSize = 1002,
 		InvalidArchiveLines = 1003,
 		InvalidArchiveColumn = 1001,

@@ -54,7 +54,7 @@ Scenario: Gh04. Import empty
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 	When import moves file
-	Then I will receive this core error: InvalidArchive
+	Then I will receive this core error: EmptyArchive
 		And the pre-import data will not be recorded
 		And the lines will not be queued
 
