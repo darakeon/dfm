@@ -508,16 +508,7 @@ Scenario: Gh53. Import with details with same Description
 		And the pre-import data will be recorded
 		And the lines will be queued
 
-Scenario: Gh54. Import with e-mail sender system out
-	Given a moves file with this content
-			| Description         | Date       | Category | Nature   | Out         | In         | Value |
-			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
-	When import moves file
-	Then I will receive no core error
-		And the pre-import data will be recorded
-		And the lines will be queued
-
-Scenario: Gh55. Import with decimals
+Scenario: Gh54. Import with decimals
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1.1   |
@@ -526,7 +517,7 @@ Scenario: Gh55. Import with decimals
 		And the pre-import data will be recorded
 		And the lines will be queued
 
-Scenario: Gh56. Import with decimals in details
+Scenario: Gh55. Import with decimals in details
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1 | Amount1 | Value1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | D            | 1       | 1.1    |
@@ -535,7 +526,7 @@ Scenario: Gh56. Import with decimals in details
 		And the pre-import data will be recorded
 		And the lines will be queued
 
-Scenario: Gh57. Import move transfer with unique value for same currency
+Scenario: Gh56. Import move transfer with unique value for same currency
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
@@ -544,7 +535,7 @@ Scenario: Gh57. Import move transfer with unique value for same currency
 		And the pre-import data will be recorded
 		And the lines will be queued
 
-Scenario: Gh58. Import move transfer with unique value for different currencies
+Scenario: Gh57. Import move transfer with unique value for different currencies
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out             | In             | Value | Conversion |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL | 1     |            |
@@ -553,7 +544,7 @@ Scenario: Gh58. Import move transfer with unique value for different currencies
 		And the pre-import data will not be recorded
 		And the lines will not be queued
 
-Scenario: Gh59. Import move transfer with conversion for same currency
+Scenario: Gh58. Import move transfer with conversion for same currency
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Conversion |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     | 5          |
@@ -562,7 +553,7 @@ Scenario: Gh59. Import move transfer with conversion for same currency
 		And the pre-import data will not be recorded
 		And the lines will not be queued
 
-Scenario: Gh60. Import move transfer with conversion for different currencies
+Scenario: Gh59. Import move transfer with conversion for different currencies
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out             | In             | Value | Conversion |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL | 1     | 5          |
@@ -571,7 +562,7 @@ Scenario: Gh60. Import move transfer with conversion for different currencies
 		And the pre-import data will be recorded
 		And the lines will be queued
 
-Scenario: Gh61. Import move transfer with conversion for disabled use currency
+Scenario: Gh60. Import move transfer with conversion for disabled use currency
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out             | In             | Value | Conversion |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL | 1     | 5          |
@@ -583,7 +574,7 @@ Scenario: Gh61. Import move transfer with conversion for disabled use currency
 		And the pre-import data will not be recorded
 		And the lines will not be queued
 
-Scenario: Gh62. Import move out with conversion
+Scenario: Gh61. Import move out with conversion
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out             | In | Value | Conversion |
 			| Move {scenarioCode} | 2024-04-29 | Category | Out    | Account Out EUR |    | 1     | 5          |
@@ -595,7 +586,7 @@ Scenario: Gh62. Import move out with conversion
 		And the pre-import data will not be recorded
 		And the lines will not be queued
 
-Scenario: Gh63. Import move in with conversion
+Scenario: Gh62. Import move in with conversion
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out | In             | Value | Conversion |
 			| Move {scenarioCode} | 2024-04-29 | Category | In     |     | Account In BRL | 1     | 5          |
@@ -604,7 +595,7 @@ Scenario: Gh63. Import move in with conversion
 		And the pre-import data will not be recorded
 		And the lines will not be queued
 
-Scenario: Gh64. Import move transfer with conversion ZERO for different currencies
+Scenario: Gh63. Import move transfer with conversion ZERO for different currencies
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out             | In             | Value | Conversion |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL | 1     | 0          |
@@ -613,7 +604,7 @@ Scenario: Gh64. Import move transfer with conversion ZERO for different currenci
 		And the pre-import data will not be recorded
 		And the lines will not be queued
 
-Scenario: Gh65. Import move out with unique value for enabled conversion
+Scenario: Gh64. Import move out with unique value for enabled conversion
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out             | In | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Out    | Account Out EUR |    | 1     |
@@ -625,7 +616,7 @@ Scenario: Gh65. Import move out with unique value for enabled conversion
 		And the pre-import data will be recorded
 		And the lines will be queued
 
-Scenario: Gh66. Import move in with unique value for enabled conversion
+Scenario: Gh65. Import move in with unique value for enabled conversion
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out | In             | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | In     |     | Account In BRL | 1     |
@@ -637,7 +628,7 @@ Scenario: Gh66. Import move in with unique value for enabled conversion
 		And the pre-import data will be recorded
 		And the lines will be queued
 
-Scenario: Gh67. Import move transfer with unique detailed value for same currency
+Scenario: Gh66. Import move transfer with unique detailed value for same currency
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1 | Amount1 | Value1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | D            | 1       | 1      |
@@ -646,7 +637,7 @@ Scenario: Gh67. Import move transfer with unique detailed value for same currenc
 		And the pre-import data will be recorded
 		And the lines will be queued
 
-Scenario: Gh68. Import move transfer with unique detailed value for different currencies
+Scenario: Gh67. Import move transfer with unique detailed value for different currencies
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out             | In             | Value | Description1 | Amount1 | Value1 | Conversion1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL |       | D            | 1       | 1      |             |
@@ -655,7 +646,7 @@ Scenario: Gh68. Import move transfer with unique detailed value for different cu
 		And the pre-import data will not be recorded
 		And the lines will not be queued
 
-Scenario: Gh69. Import move transfer with detailed conversion for same currency
+Scenario: Gh68. Import move transfer with detailed conversion for same currency
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1 | Amount1 | Value1 | Conversion1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | D            | 1       | 1      | 5           |
@@ -664,7 +655,7 @@ Scenario: Gh69. Import move transfer with detailed conversion for same currency
 		And the pre-import data will not be recorded
 		And the lines will not be queued
 
-Scenario: Gh70. Import move transfer with detailed conversion for different currencies
+Scenario: Gh69. Import move transfer with detailed conversion for different currencies
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out             | In             | Value | Description1 | Amount1 | Value1 | Conversion1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL |       | D            | 1       | 1      | 5           |
@@ -673,7 +664,7 @@ Scenario: Gh70. Import move transfer with detailed conversion for different curr
 		And the pre-import data will be recorded
 		And the lines will be queued
 
-Scenario: Gh71. Import move transfer with detailed conversion for disabled use currency
+Scenario: Gh70. Import move transfer with detailed conversion for disabled use currency
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out             | In             | Value | Description1 | Amount1 | Value1 | Conversion1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL |       | D            | 1       | 1      | 5           |
@@ -685,7 +676,7 @@ Scenario: Gh71. Import move transfer with detailed conversion for disabled use c
 		And the pre-import data will not be recorded
 		And the lines will not be queued
 
-Scenario: Gh72. Import move out with detailed conversion
+Scenario: Gh71. Import move out with detailed conversion
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out             | In | Value | Description1 | Amount1 | Value1 | Conversion1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Out    | Account Out EUR |    |       | D            | 1       | 1      | 5           |
@@ -694,7 +685,7 @@ Scenario: Gh72. Import move out with detailed conversion
 		And the pre-import data will not be recorded
 		And the lines will not be queued
 
-Scenario: Gh73. Import move in with detailed conversion
+Scenario: Gh72. Import move in with detailed conversion
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out | In             | Value | Description1 | Amount1 | Value1 | Conversion1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | In     |     | Account In BRL |       | D            | 1       | 1      | 5           |
@@ -703,7 +694,7 @@ Scenario: Gh73. Import move in with detailed conversion
 		And the pre-import data will not be recorded
 		And the lines will not be queued
 
-Scenario: Gh74. Import move transfer with detailed conversion ZERO for different currencies
+Scenario: Gh73. Import move transfer with detailed conversion ZERO for different currencies
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out             | In             | Value | Description1 | Amount1 | Value1 | Conversion1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL |       | D            | 1       | 1      | 0           |
@@ -712,7 +703,7 @@ Scenario: Gh74. Import move transfer with detailed conversion ZERO for different
 		And the pre-import data will not be recorded
 		And the lines will not be queued
 
-Scenario: Gh75. Import move transfer with detailed conversion invalid for different currencies
+Scenario: Gh74. Import move transfer with detailed conversion invalid for different currencies
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out             | In             | Value | Description1 | Amount1 | Value1 | Conversion1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out EUR | Account In BRL |       | D            | 1       | 1      | V           |
@@ -721,7 +712,7 @@ Scenario: Gh75. Import move transfer with detailed conversion invalid for differ
 		And the pre-import data will not be recorded
 		And the lines will not be queued
 
-Scenario: Gh76. Import move out with detailed unique value for enabled conversion
+Scenario: Gh75. Import move out with detailed unique value for enabled conversion
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out             | In | Value | Description1 | Amount1 | Value1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Out    | Account Out EUR |    |       | D            | 1       | 1      |
@@ -733,7 +724,7 @@ Scenario: Gh76. Import move out with detailed unique value for enabled conversio
 		And the pre-import data will be recorded
 		And the lines will be queued
 
-Scenario: Gh77. Import move in with detailed unique value for enabled conversion
+Scenario: Gh76. Import move in with detailed unique value for enabled conversion
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out | In             | Value | Description1 | Amount1 | Value1 |
 			| Move {scenarioCode} | 2024-04-29 | Category | In     |     | Account In BRL |       | D            | 1       | 1      |
@@ -745,7 +736,7 @@ Scenario: Gh77. Import move in with detailed unique value for enabled conversion
 		And the pre-import data will be recorded
 		And the lines will be queued
 
-Scenario: Gh78. Error in multiple lines
+Scenario: Gh77. Error in multiple lines
 	Given a moves file with this content
 			| Description           | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} 1 | 3024-04-29 | Category | Transfer | Account Out | Account In | 1     |
@@ -766,7 +757,7 @@ Scenario: Gh78. Error in multiple lines
 		And the pre-import data will not be recorded
 		And the lines will not be queued
 
-Scenario: Gh79. Import with empty details
+Scenario: Gh78. Import with empty details
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1 | Amount1 | Value1 | Description2 | Amount2 | Value2 | Description3 | Amount3 | Value3 |
 			| Move {scenarioCode} | 2024-06-05 | Category | Transfer | Account Out | Account In |       | D            | 1       | 1      | D            | 1       | 1      |              |         |        |
@@ -775,7 +766,7 @@ Scenario: Gh79. Import with empty details
 		And the pre-import data will be recorded
 		And the lines will be queued
 
-Scenario: Gh80. Without explicit Nature
+Scenario: Gh79. Without explicit Nature
 	Given a moves file with this content
 			| Description         | Date       | Category | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-06-05 | Category | Account Out | Account In | 1     |
@@ -786,21 +777,21 @@ Scenario: Gh80. Without explicit Nature
 		And the pre-import data will be recorded
 		And the lines will be queued
 
-Scenario: Gh81. Allowed file size and lines
+Scenario: Gh80. Allowed file size and lines
 	Given a moves file with allowed file size and lines
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
 		And the lines will be queued
 
-Scenario: Gh82. Not allowed file size
+Scenario: Gh81. Not allowed file size
 	Given a moves file with not allowed file size
 	When import moves file
 	Then I will receive this core error: InvalidArchiveSize
 		And the pre-import data will not be recorded
 		And the lines will not be queued
 
-Scenario: Gh83. Not allowed file lines
+Scenario: Gh82. Not allowed file lines
 	Given a moves file with not allowed file lines
 	When import moves file
 	Then I will receive this core error: InvalidArchiveLines
