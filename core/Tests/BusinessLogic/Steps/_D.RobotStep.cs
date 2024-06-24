@@ -646,6 +646,17 @@ namespace DFM.BusinessLogic.Tests.Steps
 				).ToList()
 			);
 
+			if (table.RowCount == 1)
+			{
+				accountInUrl = table.Rows[0]["In"];
+				accountOutUrl = table.Rows[0]["Out"];
+
+				categoryName = table.Rows[0]["Category"];
+
+				if (table.Rows[0]["Date"] != null)
+					summaryDate = DateTime.Parse(table.Rows[0]["Date"]);
+			}
+
 			csvName = $"{scenarioCode}.csv";
 
 			csvContent = String.Join(
@@ -786,6 +797,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 			service.Robot.ImportMovesFile(csvName, csvContent);
 		}
 
+		[Given(@"the account (.+) is deleted")]
+		public void GivenTheAccountIsDeleted(String account)
+		{
+			service.Admin.DeleteAccount(account.IntoUrl());
+		}
+
 		[When(@"make move from imported")]
 		public void WhenMakeMoveFromImported()
 		{
@@ -793,11 +810,40 @@ namespace DFM.BusinessLogic.Tests.Steps
 			{
 				var result = service.Robot.MakeMoveFromImported();
 				result.Wait();
+
+				moveResult = result.Result;
 			}
-			catch (CoreError e)
+			catch (AggregateException e)
 			{
-				error = e;
+				var inner = e.InnerExceptions;
+
+				if (inner.Count == 1 && inner[0] is CoreError realError)
+				{
+					error = realError;
+				}
+				else
+				{
+					throw;
+				}
 			}
+		}
+
+		[Then("the line status will change to (Success|Error)")]
+		public void ThenTheLineStatusWillChangeTo(ImportStatus status)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			var archive = repos.Archive.SingleOrDefault(a => a.User == user);
+			var line = repos.Line.SingleOrDefault(l => l.Archive == archive);
+
+			Assert.That(line.Status, Is.EqualTo(status));
+		}
+
+		[Then("the lines will be dequeued")]
+		public void ThenTheLinesWillBeDequeued()
+		{
+			var task = queueService.Dequeue();
+			task.Wait();
+			Assert.That(task.Result, Is.Null);
 		}
 		#endregion
 

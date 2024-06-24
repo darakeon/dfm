@@ -29,7 +29,8 @@ Scenario: Gi02. Non robot user
 	Then I will receive this core error: Uninvited
 
 Scenario: Gi03. Nothing to import
-	When make move from imported
+	When robot user login
+		And make move from imported
 	Then I will receive no core error
 
 Scenario: Gi04. Import with user marked for deletion
@@ -42,15 +43,7 @@ Scenario: Gi04. Import with user marked for deletion
 		And make move from imported
 	Then I will receive this core error: UserDeleted
 		And the line status will change to Error
-		And the lines will be unqueued
-	Given test user login
-	Then the move will not be saved
-		And the accountOut value will not change
-		And the month-category-accountOut value will not change
-		And the year-category-accountOut value will not change
-		And the accountIn value will not change
-		And the month-category-accountIn value will not change
-		And the year-category-accountIn value will not change
+		And the lines will be dequeued
 
 Scenario: Gi05. Import with user requested wipe
 	Given a moves file with this content
@@ -62,15 +55,7 @@ Scenario: Gi05. Import with user requested wipe
 		And make move from imported
 	Then I will receive this core error: UserAskedWipe
 		And the line status will change to Error
-		And the lines will be unqueued
-	Given test user login
-	Then the move will not be saved
-		And the accountOut value will not change
-		And the month-category-accountOut value will not change
-		And the year-category-accountOut value will not change
-		And the accountIn value will not change
-		And the month-category-accountIn value will not change
-		And the year-category-accountIn value will not change
+		And the lines will be dequeued
 
 Scenario: Gi06. Import without sign last contract
 	Given a moves file with this content
@@ -82,15 +67,7 @@ Scenario: Gi06. Import without sign last contract
 		And make move from imported
 	Then I will receive this core error: NotSignedLastContract
 		And the line status will change to Error
-		And the lines will be unqueued
-	Given test user login
-	Then the move will not be saved
-		And the accountOut value will not change
-		And the month-category-accountOut value will not change
-		And the year-category-accountOut value will not change
-		And the accountIn value will not change
-		And the month-category-accountIn value will not change
-		And the year-category-accountIn value will not change
+		And the lines will be dequeued
 
 Scenario: Gi07. Import with 20 details
 	Given a moves file with this content
@@ -101,15 +78,15 @@ Scenario: Gi07. Import with 20 details
 		And make move from imported
 	Then I will receive no core error
 		And the line status will change to Success
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will be saved
-		And the accountOut value will change in 
-		And the month-category-accountOut value will change in
-		And the year-category-accountOut value will change in
-		And the accountIn value will change in 
-		And the month-category-accountIn value will change in
-		And the year-category-accountIn value will change in
+		And the accountOut value will change in -289870
+		And the month-category-accountOut value will change in 289870
+		And the year-category-accountOut value will change in 289870
+		And the accountIn value will change in 289870
+		And the month-category-accountIn value will change in 289870
+		And the year-category-accountIn value will change in 289870
 
 Scenario: Gi08. Import without Category but using Categories
 	Given a moves file with this content
@@ -117,13 +94,16 @@ Scenario: Gi08. Import without Category but using Categories
 			| Move {scenarioCode} | 2024-06-23 |          | Transfer | Account Out | Account In | 1     |
 		And these settings
 			| UseCategories |
-			| true          |
+			| false         |
 		And the moves file was imported
+		But these settings
+			| UseCategories |
+			| true          |
 	When robot user login
 		And make move from imported
 	Then I will receive this core error: InvalidCategory
 		And the line status will change to Error
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will not be saved
 		And the accountOut value will not change
@@ -139,13 +119,16 @@ Scenario: Gi09. Import with Category but not using Categories
 			| Move {scenarioCode} | 2024-06-23 | Category | Transfer | Account Out | Account In | 1     |
 		And these settings
 			| UseCategories |
-			| false         |
+			| true          |
 		And the moves file was imported
+		But these settings
+			| UseCategories |
+			| false         |
 	When robot user login
 		And make move from imported
 	Then I will receive this core error: CategoriesDisabled
 		And the line status will change to Error
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will not be saved
 		And the accountOut value will not change
@@ -155,74 +138,57 @@ Scenario: Gi09. Import with Category but not using Categories
 		And the month-category-accountIn value will not change
 		And the year-category-accountIn value will not change
 
-Scenario: Gi10. Import with unknown Category
-	Given a moves file with this content
-			| Description         | Date       | Category | Nature   | Out         | In         | Value |
-			| Move {scenarioCode} | 2024-06-23 | Unknown  | Transfer | Account Out | Account In | 1     |
-		And the moves file was imported
-	When robot user login
-		And make move from imported
-	Then I will receive this core error: InvalidCategory
-		And the line status will change to Error
-		And the lines will be unqueued
-	Given test user login
-	Then the move will not be saved
-		And the accountOut value will not change
-		And the month-category-accountOut value will not change
-		And the year-category-accountOut value will not change
-		And the accountIn value will not change
-		And the month-category-accountIn value will not change
-		And the year-category-accountIn value will not change
-
-Scenario: Gi11. Import with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown)
-	Given a moves file with this content
-			| Description         | Date       | Category | Nature   | Out         | In      | Value |
-			| Move {scenarioCode} | 2024-06-23 | Category | Transfer | Account Out | Unknown | 1     |
-		And the moves file was imported
-	When robot user login
-		And make move from imported
-	Then I will receive this core error: InvalidAccount
-		And the line status will change to Error
-		And the lines will be unqueued
-	Given test user login
-	Then the move will not be saved
-		And the accountOut value will not change
-		And the month-category-accountOut value will not change
-		And the year-category-accountOut value will not change
-		And the accountIn value will not change
-		And the month-category-accountIn value will not change
-		And the year-category-accountIn value will not change
-
-Scenario: Gi12. Import with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes)
-	Given a moves file with this content
-			| Description         | Date       | Category | Nature   | Out     | In         | Value |
-			| Move {scenarioCode} | 2024-06-23 | Category | Transfer | Unknown | Account In | 1     |
-		And the moves file was imported
-	When robot user login
-		And make move from imported
-	Then I will receive this core error: InvalidAccount
-		And the line status will change to Error
-		And the lines will be unqueued
-	Given test user login
-	Then the move will not be saved
-		And the accountOut value will not change
-		And the month-category-accountOut value will not change
-		And the year-category-accountOut value will not change
-		And the accountIn value will not change
-		And the month-category-accountIn value will not change
-		And the year-category-accountIn value will not change
-
-Scenario: Gi13. Import with disabled Category
+Scenario: Gi10. Import with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Deleted)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-06-23 | Category | Transfer | Account Out | Account In | 1     |
-		But I disable the category Category
 		And the moves file was imported
+		But the account Account In is deleted
+	When robot user login
+		And make move from imported
+	Then I will receive this core error: InvalidAccount
+		And the line status will change to Error
+		And the lines will be dequeued
+	Given test user login
+	Then the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
+
+Scenario: Gi11. Import with (Nature: Transfer) (AccountOut:Deleted) (AccountIn:Yes)
+	Given a moves file with this content
+			| Description         | Date       | Category | Nature   | Out         | In         | Value |
+			| Move {scenarioCode} | 2024-06-23 | Category | Transfer | Account Out | Account In | 1     |
+		And the moves file was imported
+		But the account Account Out is deleted
+	When robot user login
+		And make move from imported
+	Then I will receive this core error: InvalidAccount
+		And the line status will change to Error
+		And the lines will be dequeued
+	Given test user login
+	Then the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
+
+Scenario: Gi12. Import with disabled Category
+	Given a moves file with this content
+			| Description         | Date       | Category | Nature   | Out         | In         | Value |
+			| Move {scenarioCode} | 2024-06-23 | Category | Transfer | Account Out | Account In | 1     |
+		And the moves file was imported
+		But I disable the category Category
 	When robot user login
 		And make move from imported
 	Then I will receive this core error: DisabledCategory
 		And the line status will change to Error
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will not be saved
 		And the accountOut value will not change
@@ -232,17 +198,17 @@ Scenario: Gi13. Import with disabled Category
 		And the month-category-accountIn value will not change
 		And the year-category-accountIn value will not change
 
-Scenario: Gi14. Import with closed AccountOut
+Scenario: Gi13. Import with closed AccountOut
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-06-23 | Category | Transfer | Account Out | Account In | 1     |
+		And the moves file was imported
 		But I close the account Account Out
-		And the moves file was imported
 	When robot user login
 		And make move from imported
 	Then I will receive this core error: ClosedAccount
 		And the line status will change to Error
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will not be saved
 		And the accountOut value will not change
@@ -252,17 +218,17 @@ Scenario: Gi14. Import with closed AccountOut
 		And the month-category-accountIn value will not change
 		And the year-category-accountIn value will not change
 
-Scenario: Gi15. Import with closed AccountIn
+Scenario: Gi14. Import with closed AccountIn
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-06-23 | Category | Transfer | Account Out | Account In | 1     |
-		But I close the account Account In
 		And the moves file was imported
+		But I close the account Account In
 	When robot user login
 		And make move from imported
 	Then I will receive this core error: ClosedAccount
 		And the line status will change to Error
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will not be saved
 		And the accountOut value will not change
@@ -272,7 +238,7 @@ Scenario: Gi15. Import with closed AccountIn
 		And the month-category-accountIn value will not change
 		And the year-category-accountIn value will not change
 
-Scenario: Gi16. Import with info all right (Out)
+Scenario: Gi15. Import with info all right (Out)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out         | In | Value |
 			| Move {scenarioCode} | 2024-06-23 | Category | Out    | Account Out |    | 1     |
@@ -281,17 +247,14 @@ Scenario: Gi16. Import with info all right (Out)
 		And make move from imported
 	Then I will receive no core error
 		And the line status will change to Success
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will be saved
-		And the accountOut value will change in 
-		And the month-category-accountOut value will change in
-		And the year-category-accountOut value will change in
-		And the accountIn value will change in 
-		And the month-category-accountIn value will change in
-		And the year-category-accountIn value will change in
+		And the accountOut value will change in -1
+		And the month-category-accountOut value will change in 1
+		And the year-category-accountOut value will change in 1
 
-Scenario: Gi17. Import with info all right (In)
+Scenario: Gi16. Import with info all right (In)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out | In         | Value |
 			| Move {scenarioCode} | 2024-06-23 | Category | In     |     | Account In | 1     |
@@ -300,17 +263,14 @@ Scenario: Gi17. Import with info all right (In)
 		And make move from imported
 	Then I will receive no core error
 		And the line status will change to Success
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will be saved
-		And the accountOut value will change in 
-		And the month-category-accountOut value will change in
-		And the year-category-accountOut value will change in
-		And the accountIn value will change in 
-		And the month-category-accountIn value will change in
-		And the year-category-accountIn value will change in
+		And the accountIn value will change in 1
+		And the month-category-accountIn value will change in 1
+		And the year-category-accountIn value will change in 1
 
-Scenario: Gi18. Import with info all right (Transfer)
+Scenario: Gi17. Import with info all right (Transfer)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-06-23 | Category | Transfer | Account Out | Account In | 1     |
@@ -319,17 +279,17 @@ Scenario: Gi18. Import with info all right (Transfer)
 		And make move from imported
 	Then I will receive no core error
 		And the line status will change to Success
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will be saved
-		And the accountOut value will change in 
-		And the month-category-accountOut value will change in
-		And the year-category-accountOut value will change in
-		And the accountIn value will change in 
-		And the month-category-accountIn value will change in
-		And the year-category-accountIn value will change in
+		And the accountOut value will change in -1
+		And the month-category-accountOut value will change in 1
+		And the year-category-accountOut value will change in 1
+		And the accountIn value will change in 1
+		And the month-category-accountIn value will change in 1
+		And the year-category-accountIn value will change in 1
 
-Scenario: Gi19. Import negative (value)
+Scenario: Gi18. Import negative (value)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-06-23 | Category | Transfer | Account Out | Account In | -1    |
@@ -338,17 +298,17 @@ Scenario: Gi19. Import negative (value)
 		And make move from imported
 	Then I will receive no core error
 		And the line status will change to Success
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will be saved
-		And the accountOut value will change in 
-		And the month-category-accountOut value will change in
-		And the year-category-accountOut value will change in
-		And the accountIn value will change in 
-		And the month-category-accountIn value will change in
-		And the year-category-accountIn value will change in
+		And the accountOut value will change in -1
+		And the month-category-accountOut value will change in 1
+		And the year-category-accountOut value will change in 1
+		And the accountIn value will change in 1
+		And the month-category-accountIn value will change in 1
+		And the year-category-accountIn value will change in 1
 
-Scenario: Gi20. Import negative (details)
+Scenario: Gi19. Import negative (details)
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1 | Amount1 | Value1 |
 			| Move {scenarioCode} | 2024-06-23 | Category | Transfer | Account Out | Account In |       | D            | 1       | -1     |
@@ -357,17 +317,17 @@ Scenario: Gi20. Import negative (details)
 		And make move from imported
 	Then I will receive no core error
 		And the line status will change to Success
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will be saved
-		And the accountOut value will change in 
-		And the month-category-accountOut value will change in
-		And the year-category-accountOut value will change in
-		And the accountIn value will change in 
-		And the month-category-accountIn value will change in
-		And the year-category-accountIn value will change in
+		And the accountOut value will change in -1
+		And the month-category-accountOut value will change in 1
+		And the year-category-accountOut value will change in 1
+		And the accountIn value will change in 1
+		And the month-category-accountIn value will change in 1
+		And the year-category-accountIn value will change in 1
 
-Scenario: Gi21. Import with exactly length in Description of Detail
+Scenario: Gi20. Import with exactly length in Description of Detail
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1                                       | Amount1 | Value1 |
 			| Move {scenarioCode} | 2024-06-23 | Category | Transfer | Account Out | Account In |       | ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx | 1       | 1      |
@@ -376,17 +336,17 @@ Scenario: Gi21. Import with exactly length in Description of Detail
 		And make move from imported
 	Then I will receive no core error
 		And the line status will change to Success
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will be saved
-		And the accountOut value will change in 
-		And the month-category-accountOut value will change in
-		And the year-category-accountOut value will change in
-		And the accountIn value will change in 
-		And the month-category-accountIn value will change in
-		And the year-category-accountIn value will change in
+		And the accountOut value will change in -1
+		And the month-category-accountOut value will change in 1
+		And the year-category-accountOut value will change in 1
+		And the accountIn value will change in 1
+		And the month-category-accountIn value will change in 1
+		And the year-category-accountIn value will change in 1
 
-Scenario: Gi22. Import with exactly length in Description
+Scenario: Gi21. Import with exactly length in Description
 	Given a moves file with this content
 			| Description                                        | Date       | Category | Nature   | Out         | In         | Value |
 			| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx | 2024-06-23 | Category | Transfer | Account Out | Account In | 1     |
@@ -395,17 +355,17 @@ Scenario: Gi22. Import with exactly length in Description
 		And make move from imported
 	Then I will receive no core error
 		And the line status will change to Success
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will be saved
-		And the accountOut value will change in 
-		And the month-category-accountOut value will change in
-		And the year-category-accountOut value will change in
-		And the accountIn value will change in 
-		And the month-category-accountIn value will change in
-		And the year-category-accountIn value will change in
+		And the accountOut value will change in -1
+		And the month-category-accountOut value will change in 1
+		And the year-category-accountOut value will change in 1
+		And the accountIn value will change in 1
+		And the month-category-accountIn value will change in 1
+		And the year-category-accountIn value will change in 1
 
-Scenario: Gi23. Import with details with same Description
+Scenario: Gi22. Import with details with same Description
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1 | Amount1 | Value1 | Description2 | Amount2 | Value2 |
 			| Move {scenarioCode} | 2024-06-23 | Category | Transfer | Account Out | Account In |       | Same         | 1       | 1      | Same         | 1       | 1      |
@@ -414,17 +374,17 @@ Scenario: Gi23. Import with details with same Description
 		And make move from imported
 	Then I will receive no core error
 		And the line status will change to Success
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will be saved
-		And the accountOut value will change in 
-		And the month-category-accountOut value will change in
-		And the year-category-accountOut value will change in
-		And the accountIn value will change in 
-		And the month-category-accountIn value will change in
-		And the year-category-accountIn value will change in
+		And the accountOut value will change in -2
+		And the month-category-accountOut value will change in 2
+		And the year-category-accountOut value will change in 2
+		And the accountIn value will change in 2
+		And the month-category-accountIn value will change in 2
+		And the year-category-accountIn value will change in 2
 
-Scenario: Gi24. Import with decimals
+Scenario: Gi23. Import with decimals
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-06-23 | Category | Transfer | Account Out | Account In | 1.1   |
@@ -433,17 +393,17 @@ Scenario: Gi24. Import with decimals
 		And make move from imported
 	Then I will receive no core error
 		And the line status will change to Success
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will be saved
-		And the accountOut value will change in 
-		And the month-category-accountOut value will change in
-		And the year-category-accountOut value will change in
-		And the accountIn value will change in 
-		And the month-category-accountIn value will change in
-		And the year-category-accountIn value will change in
+		And the accountOut value will change in -1.1
+		And the month-category-accountOut value will change in 1.1
+		And the year-category-accountOut value will change in 1.1
+		And the accountIn value will change in 1.1
+		And the month-category-accountIn value will change in 1.1
+		And the year-category-accountIn value will change in 1.1
 
-Scenario: Gi25. Import with decimals in details
+Scenario: Gi24. Import with decimals in details
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1 | Amount1 | Value1 |
 			| Move {scenarioCode} | 2024-06-23 | Category | Transfer | Account Out | Account In |       | D            | 1       | 1.1    |
@@ -452,17 +412,17 @@ Scenario: Gi25. Import with decimals in details
 		And make move from imported
 	Then I will receive no core error
 		And the line status will change to Success
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will be saved
-		And the accountOut value will change in 
-		And the month-category-accountOut value will change in
-		And the year-category-accountOut value will change in
-		And the accountIn value will change in 
-		And the month-category-accountIn value will change in
-		And the year-category-accountIn value will change in
+		And the accountOut value will change in -1.1
+		And the month-category-accountOut value will change in 1.1
+		And the year-category-accountOut value will change in 1.1
+		And the accountIn value will change in 1.1
+		And the month-category-accountIn value will change in 1.1
+		And the year-category-accountIn value will change in 1.1
 
-Scenario: Gi26. Import move transfer with unique value for same currency
+Scenario: Gi25. Import move transfer with unique value for same currency
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-06-23 | Category | Transfer | Account Out | Account In | 1     |
@@ -471,17 +431,17 @@ Scenario: Gi26. Import move transfer with unique value for same currency
 		And make move from imported
 	Then I will receive no core error
 		And the line status will change to Success
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will be saved
-		And the accountOut value will change in 
-		And the month-category-accountOut value will change in
-		And the year-category-accountOut value will change in
-		And the accountIn value will change in 
-		And the month-category-accountIn value will change in
-		And the year-category-accountIn value will change in
+		And the accountOut value will change in -1
+		And the month-category-accountOut value will change in 1
+		And the year-category-accountOut value will change in 1
+		And the accountIn value will change in 1
+		And the month-category-accountIn value will change in 1
+		And the year-category-accountIn value will change in 1
 
-Scenario: Gi27. Import move transfer with conversion for different currencies
+Scenario: Gi26. Import move transfer with conversion for different currencies
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out             | In             | Value | Conversion |
 			| Move {scenarioCode} | 2024-06-23 | Category | Transfer | Account Out EUR | Account In BRL | 1     | 5          |
@@ -490,29 +450,32 @@ Scenario: Gi27. Import move transfer with conversion for different currencies
 		And make move from imported
 	Then I will receive no core error
 		And the line status will change to Success
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will be saved
-		And the accountOut value will change in 
-		And the month-category-accountOut value will change in
-		And the year-category-accountOut value will change in
-		And the accountIn value will change in 
-		And the month-category-accountIn value will change in
-		And the year-category-accountIn value will change in
+		And the accountOut value will change in -1
+		And the month-category-accountOut value will change in 1
+		And the year-category-accountOut value will change in 1
+		And the accountIn value will change in 5
+		And the month-category-accountIn value will change in 5
+		And the year-category-accountIn value will change in 5
 
-Scenario: Gi28. Import move transfer with conversion for disabled use currency
+Scenario: Gi27. Import move transfer with conversion for disabled use currency
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out             | In             | Value | Conversion |
 			| Move {scenarioCode} | 2024-06-23 | Category | Transfer | Account Out EUR | Account In BRL | 1     | 5          |
+		And these settings
+			| UseCurrency |
+			| true        |
+		And the moves file was imported
 		But these settings
 			| UseCurrency |
 			| false       |
-		And the moves file was imported
 	When robot user login
 		And make move from imported
 	Then I will receive this core error: UseCurrencyDisabled
 		And the line status will change to Error
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will not be saved
 		And the accountOut value will not change
@@ -522,7 +485,7 @@ Scenario: Gi28. Import move transfer with conversion for disabled use currency
 		And the month-category-accountIn value will not change
 		And the year-category-accountIn value will not change
 
-Scenario: Gi29. Import move out with unique value for enabled conversion
+Scenario: Gi28. Import move out with unique value for enabled conversion
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out             | In | Value |
 			| Move {scenarioCode} | 2024-06-23 | Category | Out    | Account Out EUR |    | 1     |
@@ -534,17 +497,14 @@ Scenario: Gi29. Import move out with unique value for enabled conversion
 		And make move from imported
 	Then I will receive no core error
 		And the line status will change to Success
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will be saved
-		And the accountOut value will change in 
-		And the month-category-accountOut value will change in
-		And the year-category-accountOut value will change in
-		And the accountIn value will change in 
-		And the month-category-accountIn value will change in
-		And the year-category-accountIn value will change in
+		And the accountOut value will change in -1
+		And the month-category-accountOut value will change in 1
+		And the year-category-accountOut value will change in 1
 
-Scenario: Gi30. Import move in with unique value for enabled conversion
+Scenario: Gi29. Import move in with unique value for enabled conversion
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out | In             | Value |
 			| Move {scenarioCode} | 2024-06-23 | Category | In     |     | Account In BRL | 1     |
@@ -556,17 +516,14 @@ Scenario: Gi30. Import move in with unique value for enabled conversion
 		And make move from imported
 	Then I will receive no core error
 		And the line status will change to Success
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will be saved
-		And the accountOut value will change in 
-		And the month-category-accountOut value will change in
-		And the year-category-accountOut value will change in
-		And the accountIn value will change in 
-		And the month-category-accountIn value will change in
-		And the year-category-accountIn value will change in
+		And the accountIn value will change in 1
+		And the month-category-accountIn value will change in 1
+		And the year-category-accountIn value will change in 1
 
-Scenario: Gi31. Import move transfer with unique detailed value for same currency
+Scenario: Gi30. Import move transfer with unique detailed value for same currency
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1 | Amount1 | Value1 |
 			| Move {scenarioCode} | 2024-06-23 | Category | Transfer | Account Out | Account In |       | D            | 1       | 1      |
@@ -575,17 +532,17 @@ Scenario: Gi31. Import move transfer with unique detailed value for same currenc
 		And make move from imported
 	Then I will receive no core error
 		And the line status will change to Success
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will be saved
-		And the accountOut value will change in 
-		And the month-category-accountOut value will change in
-		And the year-category-accountOut value will change in
-		And the accountIn value will change in 
-		And the month-category-accountIn value will change in
-		And the year-category-accountIn value will change in
+		And the accountOut value will change in -1
+		And the month-category-accountOut value will change in 1
+		And the year-category-accountOut value will change in 1
+		And the accountIn value will change in 1
+		And the month-category-accountIn value will change in 1
+		And the year-category-accountIn value will change in 1
 
-Scenario: Gi32. Import move transfer with detailed conversion for different currencies
+Scenario: Gi31. Import move transfer with detailed conversion for different currencies
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out             | In             | Value | Description1 | Amount1 | Value1 | Conversion1 |
 			| Move {scenarioCode} | 2024-06-23 | Category | Transfer | Account Out EUR | Account In BRL |       | D            | 1       | 1      | 5           |
@@ -594,29 +551,32 @@ Scenario: Gi32. Import move transfer with detailed conversion for different curr
 		And make move from imported
 	Then I will receive no core error
 		And the line status will change to Success
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will be saved
-		And the accountOut value will change in 
-		And the month-category-accountOut value will change in
-		And the year-category-accountOut value will change in
-		And the accountIn value will change in 
-		And the month-category-accountIn value will change in
-		And the year-category-accountIn value will change in
+		And the accountOut value will change in -1
+		And the month-category-accountOut value will change in 1
+		And the year-category-accountOut value will change in 1
+		And the accountIn value will change in 5
+		And the month-category-accountIn value will change in 5
+		And the year-category-accountIn value will change in 5
 
-Scenario: Gi33. Import move transfer with detailed conversion for disabled use currency
+Scenario: Gi32. Import move transfer with detailed conversion for disabled use currency
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out             | In             | Value | Description1 | Amount1 | Value1 | Conversion1 |
 			| Move {scenarioCode} | 2024-06-23 | Category | Transfer | Account Out EUR | Account In BRL |       | D            | 1       | 1      | 5           |
+		And these settings
+			| UseCurrency |
+			| true        |
+		And the moves file was imported
 		But these settings
 			| UseCurrency |
 			| false       |
-		And the moves file was imported
 	When robot user login
 		And make move from imported
 	Then I will receive this core error: UseCurrencyDisabled
 		And the line status will change to Error
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will not be saved
 		And the accountOut value will not change
@@ -626,7 +586,7 @@ Scenario: Gi33. Import move transfer with detailed conversion for disabled use c
 		And the month-category-accountIn value will not change
 		And the year-category-accountIn value will not change
 
-Scenario: Gi34. Import move out with detailed unique value for enabled conversion
+Scenario: Gi33. Import move out with detailed unique value for enabled conversion
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out             | In | Value | Description1 | Amount1 | Value1 |
 			| Move {scenarioCode} | 2024-06-23 | Category | Out    | Account Out EUR |    |       | D            | 1       | 1      |
@@ -638,17 +598,14 @@ Scenario: Gi34. Import move out with detailed unique value for enabled conversio
 		And make move from imported
 	Then I will receive no core error
 		And the line status will change to Success
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will be saved
-		And the accountOut value will change in 
-		And the month-category-accountOut value will change in
-		And the year-category-accountOut value will change in
-		And the accountIn value will change in 
-		And the month-category-accountIn value will change in
-		And the year-category-accountIn value will change in
+		And the accountOut value will change in -1
+		And the month-category-accountOut value will change in 1
+		And the year-category-accountOut value will change in 1
 
-Scenario: Gi35. Import move in with detailed unique value for enabled conversion
+Scenario: Gi34. Import move in with detailed unique value for enabled conversion
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature | Out | In             | Value | Description1 | Amount1 | Value1 |
 			| Move {scenarioCode} | 2024-06-23 | Category | In     |     | Account In BRL |       | D            | 1       | 1      |
@@ -660,12 +617,9 @@ Scenario: Gi35. Import move in with detailed unique value for enabled conversion
 		And make move from imported
 	Then I will receive no core error
 		And the line status will change to Success
-		And the lines will be unqueued
+		And the lines will be dequeued
 	Given test user login
 	Then the move will be saved
-		And the accountOut value will change in 
-		And the month-category-accountOut value will change in
-		And the year-category-accountOut value will change in
-		And the accountIn value will change in 
-		And the month-category-accountIn value will change in
-		And the year-category-accountIn value will change in
+		And the accountIn value will change in 1
+		And the month-category-accountIn value will change in 1
+		And the year-category-accountIn value will change in 1

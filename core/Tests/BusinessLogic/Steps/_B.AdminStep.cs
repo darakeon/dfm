@@ -487,6 +487,20 @@ namespace DFM.BusinessLogic.Tests.Steps
 						move.CategoryName = mainCategoryName;
 
 					service.Money.SaveMove(move);
+
+					if (account.Url == accountOutUrl)
+					{
+						accountOutTotal -= move.Value;
+						yearCategoryAccountOutTotal += move.Value;
+						monthCategoryAccountOutTotal += move.Value;
+					}
+
+					if (account.Url == accountInUrl)
+					{
+						accountInTotal += move.Value;
+						yearCategoryAccountInTotal += move.Value;
+						monthCategoryAccountInTotal += move.Value;
+					}
 				}
 
 				service.Admin.CloseAccount(url);

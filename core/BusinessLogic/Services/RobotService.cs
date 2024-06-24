@@ -8,6 +8,7 @@ using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
 using DFM.BusinessLogic.Validators;
 using DFM.Entities;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 using DFM.Exchange.Importer;
@@ -503,17 +504,85 @@ namespace DFM.BusinessLogic.Services
 			return importer;
 		}
 
-		public async Task MakeMoveFromImported()
+		public async Task<MoveResult> MakeMoveFromImported()
 		{
 			if (!parent.Current.IsRobot)
 				throw Error.Uninvited.Throw();
 
-			var line = await queueService.Dequeue();
+			var dequeued = await queueService.Dequeue();
 
-			
-			//var user = parent.Auth.VerifyUser();
+			if (!dequeued.HasValue)
+				return null;
 
-			//throw new NotImplementedException();
+			var key = dequeued.Value.Key;
+			var line = repos.Line.Get(dequeued.Value.Value.ID);
+			var user = line.Archive.User;
+
+			try
+			{
+				var move = inTransaction("MakeMoveFromImported", () =>
+				{
+					parent.Auth.VerifyUser(user);
+
+					var newMove = createMove(line);
+
+					var result = parent.BaseMove.SaveMove(
+						newMove, OperationType.Importing
+					);
+
+					line.Status = ImportStatus.Success;
+					repos.Line.SaveOrUpdate(line);
+
+					return result;
+				});
+
+				parent.BaseMove.FixSummaries(user);
+
+				return move;
+			}
+			catch (CoreError e)
+			{
+				inTransaction("MakeMoveFromImported", () =>
+				{
+					line.Status = ImportStatus.Error;
+					repos.Line.SaveOrUpdate(line);
+				});
+
+				throw;
+			}
+			finally
+			{
+				queueService.Delete(key);
+			}
 		}
+
+		private Move createMove(Line line)
+		{
+			var move =
+				new Move
+				{
+					Description = line.Description,
+					Nature = line.GetNature(),
+					In = line.In == null ? null : repos.Account.GetByName(line.In, line.Archive.User),
+					Out = line.Out == null ? null : repos.Account.GetByName(line.Out, line.Archive.User),
+					Category = line.Category == null ? null : repos.Category.GetByName(line.Category, line.Archive.User),
+					Value = line.DetailList.Any() ? 0 : line.Value ?? 0,
+					Conversion = line.DetailList.Any() ? null : line.Conversion,
+				};
+
+			foreach (var detail in line.DetailList)
+			{
+				var newDetail = detail.Clone();
+				newDetail.Move = move;
+				move.DetailList.Add(newDetail);
+			}
+
+			move.SetDate(line.Date);
+
+			move.SetPositionInSchedule();
+
+			return move;
+		}
+
 	}
 }
