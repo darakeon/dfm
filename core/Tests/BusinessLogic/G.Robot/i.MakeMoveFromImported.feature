@@ -623,3 +623,26 @@ Scenario: Gi34. Import move in with detailed unique value for enabled conversion
 		And the accountIn value will change in 1
 		And the month-category-accountIn value will change in 1
 		And the year-category-accountIn value will change in 1
+
+Scenario: Gi35. Import without sending email
+	Given a moves file with this content
+			| Description         | Date       | Category | Nature   | Out         | In         | Value |
+			| Move {scenarioCode} | 2024-06-23 | Category | Transfer | Account Out | Account In | 1     |
+		And the moves file was imported
+		And these settings
+			| SendMoveEmail |
+			| true          |
+	When robot user login
+		And make move from imported
+	Then I will receive no core error
+		And the line status will change to Success
+		And the lines will be dequeued
+	Given test user login
+	Then the move will be saved
+		And the accountOut value will change in -1
+		And the month-category-accountOut value will change in 1
+		And the year-category-accountOut value will change in 1
+		And the accountIn value will change in 1
+		And the month-category-accountIn value will change in 1
+		And the year-category-accountIn value will change in 1
+		And no email will be sent
