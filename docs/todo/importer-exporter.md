@@ -5,7 +5,7 @@
 - [x] Validate all lines
 - [x] Insert each line of the file in the database
 - [ ] Freeze system?
-- [ ] Robot will read all lines and insert moves (without sending emails)
+- [x] Robot will read all lines and insert moves (without sending emails)
 - [ ] Integrate to site
 - [ ] Integrate to robot
 

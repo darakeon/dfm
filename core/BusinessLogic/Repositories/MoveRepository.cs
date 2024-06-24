@@ -43,6 +43,9 @@ namespace DFM.BusinessLogic.Repositories
 		#region SendEmail
 		internal EmailStatus SendEmail(Move move, OperationType operationType, Security security)
 		{
+			if (operationType == OperationType.Importing)
+				return EmailStatus.EmailNotSent;
+
 			var user = GetUser(move);
 			var settings = user.Settings;
 
