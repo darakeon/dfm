@@ -33,7 +33,7 @@ namespace DFM.BusinessLogic.Services
 				{ ImporterError.Size, Error.InvalidArchiveSize },
 				{ ImporterError.Lines, Error.InvalidArchiveLines },
 				{ ImporterError.Header, Error.InvalidArchiveColumn },
-				{ ImporterError.Empty, Error.InvalidArchive },
+				{ ImporterError.Empty, Error.EmptyArchive },
 				{ ImporterError.DateRequired, Error.MoveDateRequired },
 				{ ImporterError.DateInvalid, Error.MoveDateInvalid },
 				{ ImporterError.NatureRequired, Error.MoveNatureRequired },
