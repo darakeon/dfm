@@ -689,7 +689,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			Assert.That(archive, Is.Not.Null);
 
-			var csvLines = csvContent.Split("\n");
+			var csvLines = csvContent.Trim().Split("\n");
 			var hasConversion = csvLines[0].Contains(",Conversion,");
 
 			Assert.That(archive.LineList.Count, Is.EqualTo(csvLines.Length - 1));
