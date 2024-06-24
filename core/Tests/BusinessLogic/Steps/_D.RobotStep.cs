@@ -646,6 +646,22 @@ namespace DFM.BusinessLogic.Tests.Steps
 				).ToList()
 			);
 
+			if (table.RowCount == 1)
+			{
+				accountInUrl = table.Rows[0]["In"].IntoUrl();
+				accountOutUrl = table.Rows[0]["Out"].IntoUrl();
+
+				categoryName = table.Rows[0]["Category"];
+
+				var parsed = DateTime.TryParse(
+					table.Rows[0]["Date"],
+					out var date
+				);
+
+				if (parsed)
+					summaryDate = date;
+			}
+
 			csvName = $"{scenarioCode}.csv";
 
 			csvContent = String.Join(
@@ -761,6 +777,21 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(line, Is.Null);
 		}
 
+		[Given("sent emails are cleared")]
+		public void GivenSentEmailsAreCleared()
+		{
+			var inboxPath = Path.Combine(
+				"..", "..", "..", "..", "..", "..", "outputs", "inbox"
+			);
+			var inbox = new DirectoryInfo(inboxPath);
+
+			inbox.GetFiles("*.eml")
+				.Where(f => f.CreationTimeUtc >= testStart)
+				.Where(f => EmlReader.FromFile(f.FullName).Headers["To"] == userEmail)
+				.ToList()
+				.ForEach(e => File.Delete(e.FullName));
+		}
+
 		[Then("no email will be sent")]
 		public void ThenNoEmailWillBeSent()
 		{
@@ -776,6 +807,63 @@ namespace DFM.BusinessLogic.Tests.Steps
 				.ToList();
 
 			Assert.That(emails.Count, Is.EqualTo(0));
+		}
+		#endregion
+
+		#region MakeMoveFromLine
+		[Given(@"the moves file was imported")]
+		public void GivenTheMovesFileWasImported()
+		{
+			service.Robot.ImportMovesFile(csvName, csvContent);
+		}
+
+		[Given(@"the account (.+) is deleted")]
+		public void GivenTheAccountIsDeleted(String account)
+		{
+			service.Admin.DeleteAccount(account.IntoUrl());
+		}
+
+		[When(@"make move from imported")]
+		public void WhenMakeMoveFromImported()
+		{
+			try
+			{
+				var result = service.Robot.MakeMoveFromImported();
+				result.Wait();
+
+				moveResult = result.Result;
+			}
+			catch (AggregateException e)
+			{
+				var inner = e.InnerExceptions;
+
+				if (inner.Count == 1 && inner[0] is CoreError realError)
+				{
+					error = realError;
+				}
+				else
+				{
+					throw;
+				}
+			}
+		}
+
+		[Then("the line status will change to (Success|Error)")]
+		public void ThenTheLineStatusWillChangeTo(ImportStatus status)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			var archive = repos.Archive.SingleOrDefault(a => a.User == user);
+			var line = repos.Line.SingleOrDefault(l => l.Archive == archive);
+
+			Assert.That(line.Status, Is.EqualTo(status));
+		}
+
+		[Then("the lines will be dequeued")]
+		public void ThenTheLinesWillBeDequeued()
+		{
+			var task = queueService.Dequeue();
+			task.Wait();
+			Assert.That(task.Result, Is.Null);
 		}
 		#endregion
 
