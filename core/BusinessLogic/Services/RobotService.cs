@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Repositories;
@@ -500,6 +501,19 @@ namespace DFM.BusinessLogic.Services
 			}
 
 			return importer;
+		}
+
+		public async Task MakeMoveFromImported()
+		{
+			if (!parent.Current.IsRobot)
+				throw Error.Uninvited.Throw();
+
+			var line = await queueService.Dequeue();
+
+			
+			//var user = parent.Auth.VerifyUser();
+
+			//throw new NotImplementedException();
 		}
 	}
 }

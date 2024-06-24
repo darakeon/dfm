@@ -779,6 +779,28 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 		#endregion
 
+		#region MakeMoveFromLine
+		[Given(@"the moves file was imported")]
+		public void GivenTheMovesFileWasImported()
+		{
+			service.Robot.ImportMovesFile(csvName, csvContent);
+		}
+
+		[When(@"make move from imported")]
+		public void WhenMakeMoveFromImported()
+		{
+			try
+			{
+				var result = service.Robot.MakeMoveFromImported();
+				result.Wait();
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+		#endregion
+
 
 		#region MoreThanOne
 		[Given(@"I have this schedule to create")]
