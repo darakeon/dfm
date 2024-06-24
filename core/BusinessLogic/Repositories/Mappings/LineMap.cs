@@ -23,5 +23,9 @@ public class LineMap : IAutoMappingOverride<Line>
 
 		mapping.Map(l => l.Out)
 			.Column("Out_");
+
+		mapping.IgnoreProperty(l => l.HasIn);
+		mapping.IgnoreProperty(l => l.HasOut);
+		mapping.IgnoreProperty(l => l.HasCategory);
 	}
 }
