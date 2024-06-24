@@ -481,12 +481,22 @@ namespace DFM.BusinessLogic.Tests.Steps
 						OutUrl = account.Url,
 						Value = 1,
 					};
-					move.SetDate(user.Now());
+					move.SetDate(new DateTime(1986, 3, 27));
 
 					if (user.Settings.UseCategories)
 						move.CategoryName = mainCategoryName;
 
 					service.Money.SaveMove(move);
+
+					if (account.Url == accountOutUrl)
+					{
+						accountOutTotal -= move.Value;
+					}
+
+					if (account.Url == accountInUrl)
+					{
+						accountInTotal -= move.Value;
+					}
 				}
 
 				service.Admin.CloseAccount(url);

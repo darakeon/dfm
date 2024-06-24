@@ -2,6 +2,7 @@
 using Keon.Util.DB;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DFM.Entities;
 
@@ -25,6 +26,24 @@ public class Line : IEntityLong
 	public virtual IList<Detail> DetailList { get; set; }
 
 	public virtual ImportStatus Status { get; set; }
+
+	public virtual Boolean HasIn => !String.IsNullOrEmpty(In);
+	public virtual Boolean HasOut => !String.IsNullOrEmpty(Out);
+	public virtual Boolean HasCategory => !String.IsNullOrEmpty(Category);
+
+	public virtual MoveNature GetNature()
+	{
+		if (Nature.HasValue)
+			return Nature.Value;
+
+		if (!HasIn)
+			return MoveNature.Out;
+
+		if (!HasOut)
+			return MoveNature.In;
+
+		return MoveNature.Transfer;
+	}
 
 	public override String ToString()
 	{
