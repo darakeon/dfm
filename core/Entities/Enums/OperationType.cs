@@ -6,5 +6,6 @@
 		Edition = 1,
 		Deletion = 2,
 		Scheduling = 3,
+		Importing = 4,
 	}
 }

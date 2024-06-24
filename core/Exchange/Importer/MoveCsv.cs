@@ -148,19 +148,14 @@ public class MoveCsv : Line
 	{
 		if (move == null)
 		{
-			var hasIn = !String.IsNullOrEmpty(In);
-			var hasOut = !String.IsNullOrEmpty(Out);
-
-			var hasCategory = !String.IsNullOrEmpty(Category);
-
 			move = new Move
 			{
 				Description = Description,
-				Nature = getNature(hasIn, hasOut),
+				Nature = GetNature(),
 
-				In = hasIn ? accounts[In] : null,
-				Out = hasOut ? accounts[Out] : null,
-				Category = hasCategory ? categories[Category] : null,
+				In = HasIn ? accounts[In] : null,
+				Out = HasOut ? accounts[Out] : null,
+				Category = HasCategory ? categories[Category] : null,
 
 				Value = Value ?? 0,
 				Conversion = Conversion,
@@ -179,20 +174,6 @@ public class MoveCsv : Line
 		}
 
 		return move;
-	}
-
-	private MoveNature getNature(Boolean hasIn, Boolean hasOut)
-	{
-		if (Nature.HasValue)
-			return Nature.Value;
-
-		if (!hasIn)
-			return MoveNature.Out;
-
-		if (!hasOut)
-			return MoveNature.In;
-
-		return MoveNature.Transfer;
 	}
 
 	public Line ToLine(Archive archive)

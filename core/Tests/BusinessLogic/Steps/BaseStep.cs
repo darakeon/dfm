@@ -443,7 +443,15 @@ namespace DFM.BusinessLogic.Tests.Steps
 			set => set("Email", value);
 		}
 
+		protected DateTime? summaryDate
+		{
+			get => get<DateTime?>("SummaryDate");
+			set => set("SummaryDate", value);
+		}
+
+
 		protected DateTime entityDate =>
+			summaryDate ??
 			moveInfo?.GetDate() ??
 			scheduleInfo?.GetDate() ??
 			DateTime.MinValue;

@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
 using DFM.BusinessLogic.Validators;
 using DFM.Entities;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 using DFM.Exchange.Importer;
@@ -500,6 +502,112 @@ namespace DFM.BusinessLogic.Services
 			}
 
 			return importer;
+		}
+
+		public async Task<MoveResult> MakeMoveFromImported()
+		{
+			if (!parent.Current.IsRobot)
+				throw Error.Uninvited.Throw();
+
+			var dequeued = await queueService.Dequeue();
+
+			if (!dequeued.HasValue)
+				return null;
+
+			var key = dequeued.Value.Key;
+			var line = repos.Line.Get(dequeued.Value.Value.ID);
+			var user = line.Archive.User;
+
+			try
+			{
+				parent.Auth.VerifyUser(user);
+
+				var newMove = createMove(line);
+
+				var move = inTransaction("MakeMoveFromImported", () =>
+				{
+					var result = parent.BaseMove.SaveMove(
+						newMove, OperationType.Importing
+					);
+
+					line.Status = ImportStatus.Success;
+					repos.Line.SaveOrUpdate(line);
+
+					return result;
+				});
+
+				parent.BaseMove.FixSummaries(user);
+
+				return move;
+			}
+			catch (CoreError e)
+			{
+				inTransaction("MakeMoveFromImported", () =>
+				{
+					line.Status = ImportStatus.Error;
+					repos.Line.SaveOrUpdate(line);
+				});
+
+				throw;
+			}
+			finally
+			{
+				queueService.Delete(key);
+			}
+		}
+
+		private Move createMove(Line line)
+		{
+			var move =
+				new Move
+				{
+					Description = line.Description,
+					Nature = line.GetNature(),
+					In = getAccountOrThrow(line.In, line.Archive.User),
+					Out = getAccountOrThrow(line.Out, line.Archive.User),
+					Category = getCategoryOrThrow(line.Category, line.Archive.User),
+					Value = line.DetailList.Any() ? 0 : line.Value ?? 0,
+					Conversion = line.DetailList.Any() ? null : line.Conversion,
+				};
+
+			foreach (var detail in line.DetailList)
+			{
+				var newDetail = detail.Clone();
+				newDetail.Move = move;
+				move.DetailList.Add(newDetail);
+			}
+
+			move.SetDate(line.Date);
+
+			move.SetPositionInSchedule();
+
+			return move;
+		}
+
+		private Account getAccountOrThrow(String name, User user)
+		{
+			if (String.IsNullOrEmpty(name))
+				return null;
+
+			var account = repos.Account.GetByName(name, user);
+
+			if (account == null)
+				throw Error.InvalidAccount.Throw();
+
+			return account;
+		}
+
+		private Category getCategoryOrThrow(String name, User user)
+		{
+			if (String.IsNullOrEmpty(name))
+				return null;
+
+			var category = repos.Category.GetByName(name, user);
+
+			if (category == null)
+				throw Error.InvalidCategory.Throw();
+
+			return category;
 		}
 	}
 }
