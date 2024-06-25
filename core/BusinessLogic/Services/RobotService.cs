@@ -599,7 +599,7 @@ namespace DFM.BusinessLogic.Services
 
 		private Category getCategoryOrThrow(String name, User user)
 		{
-			if (name == null)
+			if (String.IsNullOrEmpty(name))
 				return null;
 
 			var category = repos.Category.GetByName(name, user);
