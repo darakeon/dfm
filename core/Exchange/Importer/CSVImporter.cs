@@ -44,6 +44,10 @@ namespace DFM.Exchange.Importer
 				{
 					ErrorList.Add(line, handleFieldError(exception));
 				}
+				catch (ReaderException exception)
+				{
+					ErrorList.Add(line, handleFieldError(exception));
+				}
 			}
 
 			if (line > MaxLen.ArchiveLines)
@@ -131,6 +135,14 @@ namespace DFM.Exchange.Importer
 
 					throw exception;
 			}
+		}
+
+		private ImporterError handleFieldError(ReaderException exception)
+		{
+			if (exception.Data.Count == 0)
+				return ImporterError.Empty;
+
+			throw exception;
 		}
 
 		public IDictionary<Int16, ImporterError> ErrorList { get; }
