@@ -586,7 +586,7 @@ namespace DFM.BusinessLogic.Services
 
 		private Account getAccountOrThrow(String name, User user)
 		{
-			if (name == null)
+			if (String.IsNullOrEmpty(name))
 				return null;
 
 			var account = repos.Account.GetByName(name, user);
