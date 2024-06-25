@@ -497,9 +497,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 					if (account.Url == accountInUrl)
 					{
-						accountInTotal += move.Value;
-						yearCategoryAccountInTotal += move.Value;
-						monthCategoryAccountInTotal += move.Value;
+						accountInTotal -= move.Value;
 					}
 				}
 

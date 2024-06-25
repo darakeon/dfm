@@ -520,12 +520,12 @@ namespace DFM.BusinessLogic.Services
 
 			try
 			{
+				parent.Auth.VerifyUser(user);
+
+				var newMove = createMove(line);
+
 				var move = inTransaction("MakeMoveFromImported", () =>
 				{
-					parent.Auth.VerifyUser(user);
-
-					var newMove = createMove(line);
-
 					var result = parent.BaseMove.SaveMove(
 						newMove, OperationType.Importing
 					);
@@ -563,9 +563,9 @@ namespace DFM.BusinessLogic.Services
 				{
 					Description = line.Description,
 					Nature = line.GetNature(),
-					In = line.In == null ? null : repos.Account.GetByName(line.In, line.Archive.User),
-					Out = line.Out == null ? null : repos.Account.GetByName(line.Out, line.Archive.User),
-					Category = line.Category == null ? null : repos.Category.GetByName(line.Category, line.Archive.User),
+					In = getAccountOrThrow(line.In, line.Archive.User),
+					Out = getAccountOrThrow(line.Out, line.Archive.User),
+					Category = getCategoryOrThrow(line.Category, line.Archive.User),
 					Value = line.DetailList.Any() ? 0 : line.Value ?? 0,
 					Conversion = line.DetailList.Any() ? null : line.Conversion,
 				};
@@ -584,5 +584,30 @@ namespace DFM.BusinessLogic.Services
 			return move;
 		}
 
+		private Account getAccountOrThrow(String name, User user)
+		{
+			if (name == null)
+				return null;
+
+			var account = repos.Account.GetByName(name, user);
+
+			if (account == null)
+				throw Error.InvalidAccount.Throw();
+
+			return account;
+		}
+
+		private Category getCategoryOrThrow(String name, User user)
+		{
+			if (name == null)
+				return null;
+
+			var category = repos.Category.GetByName(name, user);
+
+			if (category == null)
+				throw Error.InvalidCategory.Throw();
+
+			return category;
+		}
 	}
 }

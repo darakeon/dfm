@@ -632,6 +632,7 @@ Scenario: Gi35. Import without sending email
 		And these settings
 			| SendMoveEmail |
 			| true          |
+		And sent emails are cleared
 	When robot user login
 		And make move from imported
 	Then I will receive no core error
