@@ -116,6 +116,16 @@ namespace DFM.BusinessLogic.Tests.Steps
 			resetTicket();
 		}
 
+		protected void robotRunMakeMoves()
+		{
+			createLogoffLoginRobot();
+
+			var task = service.Robot.MakeMoveFromImported();
+			task.Wait();
+
+			resetTicket();
+		}
+
 		protected void createLogoffLoginRobot()
 		{
 			createLogoffLogin(robotEmail);

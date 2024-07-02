@@ -631,7 +631,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 		#endregion
 
-		#region Import Moves File
+		#region ImportMovesFile
 		[Given(@"a moves file with this content")]
 		public void GivenAMovesFileWithThisContent(Table table)
 		{
@@ -864,6 +864,40 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var task = queueService.Dequeue();
 			task.Wait();
 			Assert.That(task.Result, Is.Null);
+		}
+		#endregion
+
+		#region FinishArchives
+		[Given(@"robot made move from imported")]
+		public void GivenRobotMadeMoveFromImported()
+		{
+			try
+			{
+				robotRunMakeMoves();
+			}
+			catch (AggregateException) { }
+		}
+
+		[When(@"finish imported archives")]
+		public void WhenFinishImportedArchives()
+		{
+			try
+			{
+				service.Robot.FinishArchives();
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[Then(@"the archive status will change to (Pending|Success|Error)")]
+		public void ThenTheArchiveStatusWillChangeTo(ImportStatus status)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			var archive = repos.Archive.SingleOrDefault(a => a.User == user);
+
+			Assert.That(archive.Status, Is.EqualTo(status));
 		}
 		#endregion
 
