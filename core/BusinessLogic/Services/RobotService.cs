@@ -609,5 +609,10 @@ namespace DFM.BusinessLogic.Services
 
 			return category;
 		}
+
+		public void FinishArchives()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
