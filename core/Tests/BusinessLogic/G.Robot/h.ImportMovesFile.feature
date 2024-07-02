@@ -777,21 +777,21 @@ Scenario: Gh79. Without explicit Nature
 		And the pre-import data will be recorded
 		And the lines will be queued
 
-Scenario: Gh81. Allowed file size and lines
+Scenario: Gh80. Allowed file size and lines
 	Given a moves file with allowed file size and lines
 	When import moves file
 	Then I will receive no core error
 		And the pre-import data will be recorded
 		And the lines will be queued
 
-Scenario: Gh82. Not allowed file size
+Scenario: Gh81. Not allowed file size
 	Given a moves file with not allowed file size
 	When import moves file
 	Then I will receive this core error: InvalidArchiveSize
 		And the pre-import data will not be recorded
 		And the lines will not be queued
 
-Scenario: Gh83. Not allowed file lines
+Scenario: Gh82. Not allowed file lines
 	Given a moves file with not allowed file lines
 	When import moves file
 	Then I will receive this core error: InvalidArchiveLines
