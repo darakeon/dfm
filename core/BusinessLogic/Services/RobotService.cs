@@ -609,5 +609,24 @@ namespace DFM.BusinessLogic.Services
 
 			return category;
 		}
+
+		public void FinishArchives()
+		{
+			if (!parent.Current.IsRobot)
+				throw Error.Uninvited.Throw();
+
+			var archivesLineStati = repos.Line.GetArchivesPending();
+
+			foreach (var archiveLineStati in archivesLineStati)
+			{
+				var archive = archiveLineStati.Archive;
+				archive.Status = archiveLineStati.LineStati;
+
+				inTransaction("FinishArchives", () =>
+				{
+					repos.Archive.SaveOrUpdate(archive);
+				});
+			}
+		}
 	}
 }
