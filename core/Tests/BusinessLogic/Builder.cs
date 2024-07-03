@@ -39,7 +39,7 @@ namespace DFM.BusinessLogic.Tests
 				{nameof(Detail), detailFor},
 				{nameof(Summary), summaryFor},
 				{nameof(Schedule), scheduleFor},
-				{ $"{nameof(Schedule)} with Detail", scheduleFor},
+				{ $"{nameof(Schedule)} with Detail", scheduleDetailedFor},
 			};
 		}
 
@@ -154,7 +154,7 @@ namespace DFM.BusinessLogic.Tests
 
 		private Move moveDetailedFor(User user)
 		{
-			return moveFor(user, null, true);
+			return moveFor(user, " detailed", true);
 		}
 
 		private Move moveFor(User user, String suffix, Boolean detailed)
@@ -235,17 +235,17 @@ namespace DFM.BusinessLogic.Tests
 
 		private Schedule scheduleFor(User user)
 		{
-			return scheduleFor(user, false);
+			return scheduleFor(user, null, false);
 		}
 
 		private Schedule scheduleDetailedFor(User user)
 		{
-			return scheduleFor(user, true);
+			return scheduleFor(user, " detailed", true);
 		}
 
-		private Schedule scheduleFor(User user, Boolean detailed)
+		private Schedule scheduleFor(User user, String suffix, Boolean detailed)
 		{
-			var category = categoryFor(user, "schedule");
+			var category = categoryFor(user, "schedule" + suffix);
 			var accountIn = accountFor(user, "in");
 			var accountOut = accountFor(user, "out");
 
