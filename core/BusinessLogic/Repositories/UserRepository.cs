@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Repositories.DataObjects;
 using DFM.Entities.Bases;
 using Keon.TwoFactorAuth;
 using Keon.Util.Crypto;
@@ -18,7 +19,7 @@ namespace DFM.BusinessLogic.Repositories
 			return SingleOrDefault(User.Compare(email));
 		}
 
-		internal Authentication ValidateAndGet(String email, String password)
+		internal UserTFA ValidateAndGet(String email, String password)
 		{
 			if (password == null)
 				throw Error.InvalidUser.Throw();
@@ -37,7 +38,7 @@ namespace DFM.BusinessLogic.Repositories
 			if (!user.Control.ActiveOrAllowedPeriod())
 				throw Error.DisabledUser.Throw();
 
-			return new Authentication(user, validCode);
+			return new UserTFA(user, validCode);
 		}
 
 		internal User Save(User user)
