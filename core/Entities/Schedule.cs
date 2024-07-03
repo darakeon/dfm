@@ -75,8 +75,8 @@ namespace DFM.Entities
 		public virtual Move CreateMove()
 		{
 			var move = createMove(
-				ValueCents,
-				ConversionCents,
+				DetailList.Any() ? 0 : ValueCents,
+				DetailList.Any() ? null : ConversionCents,
 				m => m.SetDate(LastDateRun())
 			);
 
