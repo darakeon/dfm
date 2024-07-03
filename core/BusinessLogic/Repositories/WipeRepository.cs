@@ -65,6 +65,13 @@ namespace DFM.BusinessLogic.Repositories
 			wipeAll(repos.Account, a => a.User, u => u.ID == user.ID);
 			wipeAll(repos.Category, c => c.User, u => u.ID == user.ID);
 
+			var archives = repos.Archive.Where(a => a.User.ID == user.ID);
+			foreach (var archive in archives)
+			{
+				wipeAll(repos.Line, m => m.Archive, a => a.ID == archive.ID);
+			}
+			wipeAll(repos.Archive, c => c.User, u => u.ID == user.ID);
+
 			wipeAll(repos.Tips, a => a.User, u => u.ID == user.ID);
 
 			repos.User.Delete(user);
