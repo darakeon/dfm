@@ -16,13 +16,13 @@ Scenario: 01. Get layouts of e-mails
 Scenario: 02. Get translations of Enums
 	Given I have these enums
 			| Section   | Project       | Path       | Enum              |
-			| Moves     | Entities      | Enums      | MoveNature        |
-			| Schedules | Entities      | Enums      | ScheduleFrequency |
-			| Users     | Entities      | Enums      | RemovalReason     |
-			| Tokens    | Entities      | Enums      | SecurityAction    |
-			| General   | Entities      | Enums      | OperationType     |
-			| Tips      | Entities      | Enums      | TipBrowser        |
 			| General   | Entities      | Enums      | Currency          |
+			| Moves     | Entities      | Enums      | MoveNature        |
+			| General   | Entities      | Enums      | OperationType     |
+			| Users     | Entities      | Enums      | RemovalReason     |
+			| Schedules | Entities      | Enums      | ScheduleFrequency |
+			| Tokens    | Entities      | Enums      | SecurityAction    |
+			| Tips      | Entities      | Enums      | TipBrowser        |
 			| Settings  | Generic       |            | Theme             |
 			| Settings  | Generic       |            | ThemeBrightness   |
 			| Settings  | Generic       |            | ThemeColor        |
