@@ -40,6 +40,10 @@ namespace DFM.BusinessLogic.Tests
 				{nameof(Summary), summaryFor},
 				{nameof(Schedule), scheduleFor},
 				{ $"{nameof(Schedule)} with Detail", scheduleDetailedFor},
+
+				{nameof(Archive), archiveFor},
+				{nameof(Line), lineFor},
+				{ $"{nameof(Line)} with Detail", lineDetailedFor},
 			};
 		}
 
@@ -287,6 +291,54 @@ namespace DFM.BusinessLogic.Tests
 		{
 			return repos.Summary.GetAll()
 				.FirstOrDefault(s => s.User().ID == user.ID);
+		}
+
+		private Archive archiveFor(User user)
+		{
+			var archive = new Archive
+			{
+				Filename = $"File {code}",
+				LineList = new List<Line>(),
+				Status = ImportStatus.Pending,
+				User = user,
+			};
+
+			return repos.Archive.SaveOrUpdate(archive);
+		}
+
+		private Line lineFor(User user)
+		{
+			return lineFor(user, false);
+		}
+
+		private Line lineDetailedFor(User user)
+		{
+			return lineFor(user, true);
+		}
+
+		private Line lineFor(User user, Boolean detailed)
+		{
+			var archive = archiveFor(user);
+
+			var line = new Line
+			{
+				Description = $"Schedule {code}",
+				Date = new DateTime(1986, 3, 27),
+				Category = "Category",
+				Nature = MoveNature.Transfer,
+				In = "Account In",
+				Out = "Account Out",
+				Status = ImportStatus.Pending,
+				Archive = archive,
+				Position = 1,
+			};
+
+			if (!detailed)
+				line.Value = 27;
+			else
+				detailFor(3, line);
+
+			return repos.Line.SaveOrUpdate(line);
 		}
 	}
 }

@@ -16,7 +16,8 @@ public class LineMap : IAutoMappingOverride<Line>
 			.UniqueKey("Line_NumberArchive");
 
 		mapping.HasMany(l => l.DetailList)
-			.Cascade.SaveUpdate();
+			.Cascade.AllDeleteOrphan()
+			.Not.LazyLoad();
 
 		mapping.Map(l => l.In)
 			.Column("In_");
