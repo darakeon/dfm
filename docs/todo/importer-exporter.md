@@ -6,7 +6,7 @@
 - [x] Insert each line of the file in the database
 - [x] Robot will read all lines and insert moves (without sending emails)
 - [x] Finish archives
-- [ ] Add archives and lines to user deletion test
+- [x] Add archives and lines to user deletion test
 - [ ] Requeue pending lines
 - [ ] List archives for user
 - [ ] Allow retry lines
