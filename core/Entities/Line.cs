@@ -2,12 +2,16 @@
 using Keon.Util.DB;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace DFM.Entities;
 
 public class Line : IEntityLong
 {
+	public Line()
+	{
+		DetailList = new List<Detail>();
+	}
+
 	public virtual Int64 ID { get; set; }
 
 	public virtual Int16 Position { get; set; }

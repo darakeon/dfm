@@ -724,19 +724,22 @@ Scenario: Gg59. Do not wipe robots even if it "asks" too
 
 Scenario: Gg60. Wipe complete user
 	Given the user have
-			| System Stuff |
-			| Control      |
-			| Settings     |
-			| Acceptance   |
-			| Security     |
-			| Ticket       |
-			| Tips         |
-			| Account      |
-			| Category     |
-			| Move         |
-			| Detail       |
-			| Summary      |
-			| Schedule     |
+			| System Stuff     |
+			| Control          |
+			| Settings         |
+			| Acceptance       |
+			| Security         |
+			| Ticket           |
+			| Tips             |
+			| Account          |
+			| Category         |
+			| Move             |
+			| Detail           |
+			| Summary          |
+			| Schedule         |
+			| Archive          |
+			| Line             |
+			| Line with Detail |
 		And data wipe was asked
 	When robot user login
 		And call wipe users
