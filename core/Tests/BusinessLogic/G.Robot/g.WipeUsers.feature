@@ -565,27 +565,40 @@ Scenario: Gg49. Remove User with moves and schedules
 	Given the user last access was 578 days before
 		And the user have being warned twice
 		And the user have
-			| System Stuff |
-			| Move         |
-			| Schedule     |
+			| System Stuff         |
+			| Move                 |
+			| Schedule             |
+			| Move with Detail     |
+			| Schedule with Detail |
 	When robot user login
 		And call wipe users
 	Then I will receive no core error
 		And the user won't exist
 		And the count of warnings sent will be 0
 		And there will be an export file with this content
-			| Description             | Date       | Category                         | Nature   | In                        | Out                        | Value | Conversion | Details                                                   |
-			| Move {scenarioCode}     | 2021-05-07 | Category {scenarioCode} move     | Transfer | Account {scenarioCode} in | Account {scenarioCode} out |       |            | Detail 1 [3x0.09] + Detail 2 [3x0.09] + Detail 3 [3x0.09] |
-			| Schedule {scenarioCode} | 3000-03-27 | Category {scenarioCode} schedule | Transfer | Account {scenarioCode} in | Account {scenarioCode} out | 0.27  |            |                                                           |
-			| Schedule {scenarioCode} | 3000-04-27 | Category {scenarioCode} schedule | Transfer | Account {scenarioCode} in | Account {scenarioCode} out | 0.27  |            |                                                           |
-			| Schedule {scenarioCode} | 3000-05-27 | Category {scenarioCode} schedule | Transfer | Account {scenarioCode} in | Account {scenarioCode} out | 0.27  |            |                                                           |
-			| Schedule {scenarioCode} | 3000-06-27 | Category {scenarioCode} schedule | Transfer | Account {scenarioCode} in | Account {scenarioCode} out | 0.27  |            |                                                           |
-			| Schedule {scenarioCode} | 3000-07-27 | Category {scenarioCode} schedule | Transfer | Account {scenarioCode} in | Account {scenarioCode} out | 0.27  |            |                                                           |
-			| Schedule {scenarioCode} | 3000-08-27 | Category {scenarioCode} schedule | Transfer | Account {scenarioCode} in | Account {scenarioCode} out | 0.27  |            |                                                           |
-			| Schedule {scenarioCode} | 3000-09-27 | Category {scenarioCode} schedule | Transfer | Account {scenarioCode} in | Account {scenarioCode} out | 0.27  |            |                                                           |
-			| Schedule {scenarioCode} | 3000-10-27 | Category {scenarioCode} schedule | Transfer | Account {scenarioCode} in | Account {scenarioCode} out | 0.27  |            |                                                           |
-			| Schedule {scenarioCode} | 3000-11-27 | Category {scenarioCode} schedule | Transfer | Account {scenarioCode} in | Account {scenarioCode} out | 0.27  |            |                                                           |
-			| Schedule {scenarioCode} | 3000-12-27 | Category {scenarioCode} schedule | Transfer | Account {scenarioCode} in | Account {scenarioCode} out | 0.27  |            |                                                           |
+			| Description             | Date       | Category                                  | Nature   | In                                 | Out                                 | Value | Conversion | Details                                                   |
+			| Move {scenarioCode}     | 2021-05-07 | Category {scenarioCode} move              | Transfer | Account {scenarioCode} in          | Account {scenarioCode} out          | 0.27  |            |                                                           |
+			| Move {scenarioCode}     | 2021-05-07 | Category {scenarioCode} move detailed     | Transfer | Account {scenarioCode} in detailed | Account {scenarioCode} out detailed |       |            | Detail 1 [3x0.09] + Detail 2 [3x0.09] + Detail 3 [3x0.09] |
+			| Schedule {scenarioCode} | 3000-03-27 | Category {scenarioCode} schedule          | Transfer | Account {scenarioCode} in          | Account {scenarioCode} out          | 0.27  |            |                                                           |
+			| Schedule {scenarioCode} | 3000-03-27 | Category {scenarioCode} schedule detailed | Transfer | Account {scenarioCode} in          | Account {scenarioCode} out          |       |            | Detail 1 [3x0.09] + Detail 2 [3x0.09] + Detail 3 [3x0.09] |
+			| Schedule {scenarioCode} | 3000-04-27 | Category {scenarioCode} schedule          | Transfer | Account {scenarioCode} in          | Account {scenarioCode} out          | 0.27  |            |                                                           |
+			| Schedule {scenarioCode} | 3000-04-27 | Category {scenarioCode} schedule detailed | Transfer | Account {scenarioCode} in          | Account {scenarioCode} out          |       |            | Detail 1 [3x0.09] + Detail 2 [3x0.09] + Detail 3 [3x0.09] |
+			| Schedule {scenarioCode} | 3000-05-27 | Category {scenarioCode} schedule          | Transfer | Account {scenarioCode} in          | Account {scenarioCode} out          | 0.27  |            |                                                           |
+			| Schedule {scenarioCode} | 3000-05-27 | Category {scenarioCode} schedule detailed | Transfer | Account {scenarioCode} in          | Account {scenarioCode} out          |       |            | Detail 1 [3x0.09] + Detail 2 [3x0.09] + Detail 3 [3x0.09] |
+			| Schedule {scenarioCode} | 3000-06-27 | Category {scenarioCode} schedule          | Transfer | Account {scenarioCode} in          | Account {scenarioCode} out          | 0.27  |            |                                                           |
+			| Schedule {scenarioCode} | 3000-06-27 | Category {scenarioCode} schedule detailed | Transfer | Account {scenarioCode} in          | Account {scenarioCode} out          |       |            | Detail 1 [3x0.09] + Detail 2 [3x0.09] + Detail 3 [3x0.09] |
+			| Schedule {scenarioCode} | 3000-07-27 | Category {scenarioCode} schedule          | Transfer | Account {scenarioCode} in          | Account {scenarioCode} out          | 0.27  |            |                                                           |
+			| Schedule {scenarioCode} | 3000-07-27 | Category {scenarioCode} schedule detailed | Transfer | Account {scenarioCode} in          | Account {scenarioCode} out          |       |            | Detail 1 [3x0.09] + Detail 2 [3x0.09] + Detail 3 [3x0.09] |
+			| Schedule {scenarioCode} | 3000-08-27 | Category {scenarioCode} schedule          | Transfer | Account {scenarioCode} in          | Account {scenarioCode} out          | 0.27  |            |                                                           |
+			| Schedule {scenarioCode} | 3000-08-27 | Category {scenarioCode} schedule detailed | Transfer | Account {scenarioCode} in          | Account {scenarioCode} out          |       |            | Detail 1 [3x0.09] + Detail 2 [3x0.09] + Detail 3 [3x0.09] |
+			| Schedule {scenarioCode} | 3000-09-27 | Category {scenarioCode} schedule          | Transfer | Account {scenarioCode} in          | Account {scenarioCode} out          | 0.27  |            |                                                           |
+			| Schedule {scenarioCode} | 3000-09-27 | Category {scenarioCode} schedule detailed | Transfer | Account {scenarioCode} in          | Account {scenarioCode} out          |       |            | Detail 1 [3x0.09] + Detail 2 [3x0.09] + Detail 3 [3x0.09] |
+			| Schedule {scenarioCode} | 3000-10-27 | Category {scenarioCode} schedule          | Transfer | Account {scenarioCode} in          | Account {scenarioCode} out          | 0.27  |            |                                                           |
+			| Schedule {scenarioCode} | 3000-10-27 | Category {scenarioCode} schedule detailed | Transfer | Account {scenarioCode} in          | Account {scenarioCode} out          |       |            | Detail 1 [3x0.09] + Detail 2 [3x0.09] + Detail 3 [3x0.09] |
+			| Schedule {scenarioCode} | 3000-11-27 | Category {scenarioCode} schedule          | Transfer | Account {scenarioCode} in          | Account {scenarioCode} out          | 0.27  |            |                                                           |
+			| Schedule {scenarioCode} | 3000-11-27 | Category {scenarioCode} schedule detailed | Transfer | Account {scenarioCode} in          | Account {scenarioCode} out          |       |            | Detail 1 [3x0.09] + Detail 2 [3x0.09] + Detail 3 [3x0.09] |
+			| Schedule {scenarioCode} | 3000-12-27 | Category {scenarioCode} schedule          | Transfer | Account {scenarioCode} in          | Account {scenarioCode} out          | 0.27  |            |                                                           |
+			| Schedule {scenarioCode} | 3000-12-27 | Category {scenarioCode} schedule detailed | Transfer | Account {scenarioCode} in          | Account {scenarioCode} out          |       |            | Detail 1 [3x0.09] + Detail 2 [3x0.09] + Detail 3 [3x0.09] |
 		And it will be registered at wipe table
 			| Reason        | CSV file | Theme     | Language |
 			| NoInteraction | Yes      | DarkMagic | en-US    |

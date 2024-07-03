@@ -35,9 +35,11 @@ namespace DFM.BusinessLogic.Tests
 				{nameof(Category), categoryFor},
 
 				{nameof(Move), moveFor},
+				{ $"{nameof(Move)} with Detail", moveDetailedFor},
 				{nameof(Detail), detailFor},
 				{nameof(Summary), summaryFor},
 				{nameof(Schedule), scheduleFor},
+				{ $"{nameof(Schedule)} with Detail", scheduleDetailedFor},
 			};
 		}
 
@@ -147,63 +149,103 @@ namespace DFM.BusinessLogic.Tests
 
 		private Move moveFor(User user)
 		{
-			return moveFor(user, null);
+			return moveFor(user, null, false);
 		}
 
-		private Move moveFor(User user, String suffix)
+		private Move moveDetailedFor(User user)
+		{
+			return moveFor(user, " detailed", true);
+		}
+
+		private Move moveFor(User user, String suffix, Boolean detailed)
 		{
 			var category = categoryFor(user, "move" + suffix);
 			var accountIn = accountFor(user, "in" + suffix);
 			var accountOut = accountFor(user, "out" + suffix);
 
-			var move = repos.Move.SaveOrUpdate(
-				new Move
-				{
-					Guid = Guid.NewGuid(),
-					Description = $"Move {code}",
-					Year = 2021,
-					Month = 5,
-					Day = 7,
-					Category = category,
-					Nature = MoveNature.Transfer,
-					In = accountIn,
-					Out = accountOut,
-				}
-			);
+			var move = new Move
+			{
+				Guid = Guid.NewGuid(),
+				Description = $"Move {code}",
+				Year = 2021,
+				Month = 5,
+				Day = 7,
+				Category = category,
+				Nature = MoveNature.Transfer,
+				In = accountIn,
+				Out = accountOut,
+			};
 
-			detailFor(3, move);
+			if (!detailed)
+				move.ValueCents = 27;
+
+			move = repos.Move.SaveOrUpdate(move);
+
+			if (detailed)
+				detailFor(3, move);
 
 			return move;
 		}
 
-		private void detailFor(Int32 count, Move move)
+		private void detailFor(Int32 count, IEntityLong parent)
 		{
 			for (var d = 0; d < count; d++)
 			{
 				var detail = new Detail
 				{
 					Guid = Guid.NewGuid(),
-					Move = move,
 					Description = $"Detail {d+1}",
 					Amount = 3,
 					ValueCents = 9,
 				};
 
+				Action<Detail> addToParent;
+
+				if (parent is Move move)
+				{
+					detail.Move = move;
+					addToParent = move.DetailList.Add;
+				}
+				else if (parent is Schedule schedule)
+				{
+					detail.Schedule = schedule;
+					addToParent = schedule.DetailList.Add;
+				}
+				else if (parent is Line line)
+				{
+					detail.Line = line;
+					addToParent = line.DetailList.Add;
+				}
+				else
+				{
+					throw new NotImplementedException();
+				}
+
 				repos.Detail.SaveOrUpdate(detail);
-				move.DetailList.Add(detail);
+				addToParent(detail);
 			}
 		}
 
 		private Detail detailFor(User user)
 		{
-			var move = moveFor(user, "detail");
-			
+			var move = moveFor(user, "detail", true);
+
 			return move.DetailList[0];
 		}
 
 		private Schedule scheduleFor(User user)
 		{
-			var category = categoryFor(user, "schedule");
+			return scheduleFor(user, null, false);
+		}
+
+		private Schedule scheduleDetailedFor(User user)
+		{
+			return scheduleFor(user, " detailed", true);
+		}
+
+		private Schedule scheduleFor(User user, String suffix, Boolean detailed)
+		{
+			var category = categoryFor(user, "schedule" + suffix);
 			var accountIn = accountFor(user, "in");
 			var accountOut = accountFor(user, "out");
 
@@ -218,11 +260,15 @@ namespace DFM.BusinessLogic.Tests
 				Nature = MoveNature.Transfer,
 				In = accountIn,
 				Out = accountOut,
-				ValueCents = 27,
 				Boundless = false,
 				Times = 10,
 				User = user,
 			};
+
+			if (!detailed)
+				schedule.ValueCents = 27;
+			else
+				detailFor(3, schedule);
 
 			return repos.Schedule.SaveOrUpdate(schedule);
 		}
