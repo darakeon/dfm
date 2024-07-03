@@ -1,11 +1,11 @@
 ﻿using System;
 using DFM.Entities;
 
-namespace DFM.BusinessLogic.Repositories
+namespace DFM.BusinessLogic.Repositories.DataObjects
 {
-	class Authentication
+	class UserTFA
 	{
-		public Authentication(User user, Boolean usedTFAPassword)
+		public UserTFA(User user, Boolean usedTFAPassword)
 		{
 			User = user;
 			UsedTFAPassword = usedTFAPassword;
