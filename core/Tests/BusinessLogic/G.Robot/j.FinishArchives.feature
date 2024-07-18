@@ -22,7 +22,7 @@ Scenario: Gj03. Nothing to finish
 		And finish imported archives
 	Then I will receive no core error
 
-Scenario: Gj04. One success archive
+Scenario: Gj04. Success archive
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-07-02 | Category | Transfer | Account Out | Account In | 1     |
@@ -30,12 +30,14 @@ Scenario: Gj04. One success archive
 			| Move {scenarioCode} | 2024-07-02 | Category | In       |             | Account In | 1     |
 		And the moves file was imported
 		And robot made move from imported
+		And robot made move from imported
+		And robot made move from imported
 	When robot user login
 		And finish imported archives
 	Then I will receive no core error
 		And the archive status will change to Success
 
-Scenario: Gj05. One failed archive
+Scenario: Gj05. Failed archive
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-07-02 | Category | Transfer | Account Out | Account In | 1     |
@@ -44,7 +46,22 @@ Scenario: Gj05. One failed archive
 		And the moves file was imported
 		But I close the account Account Out
 		And robot made move from imported
+		And robot made move from imported
+		And robot made move from imported
 	When robot user login
 		And finish imported archives
 	Then I will receive no core error
 		And the archive status will change to Error
+
+Scenario: Gj06. Half processed archive
+	Given a moves file with this content
+			| Description         | Date       | Category | Nature   | Out         | In         | Value |
+			| Move {scenarioCode} | 2024-07-02 | Category | Transfer | Account Out | Account In | 1     |
+			| Move {scenarioCode} | 2024-07-02 | Category | Out      | Account Out |            | 1     |
+			| Move {scenarioCode} | 2024-07-02 | Category | In       |             | Account In | 1     |
+		And the moves file was imported
+		And robot made move from imported
+	When robot user login
+		And finish imported archives
+	Then I will receive no core error
+		And the archive status will change to Pending

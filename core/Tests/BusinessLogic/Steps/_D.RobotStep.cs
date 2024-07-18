@@ -891,7 +891,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the archive status will change to (Success|Error)")]
+		[Then(@"the archive status will change to (Pending|Success|Error)")]
 		public void ThenTheArchiveStatusWillChangeTo(ImportStatus status)
 		{
 			var user = repos.User.GetByEmail(userEmail);

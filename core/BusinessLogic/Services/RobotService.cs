@@ -619,8 +619,11 @@ namespace DFM.BusinessLogic.Services
 
 			foreach (var archiveLineStati in archivesLineStati)
 			{
+				if (archiveLineStati.MinLineStati == ImportStatus.Pending)
+					continue;
+
 				var archive = archiveLineStati.Archive;
-				archive.Status = archiveLineStati.LineStati;
+				archive.Status = archiveLineStati.MaxLineStati;
 
 				inTransaction("FinishArchives", () =>
 				{
