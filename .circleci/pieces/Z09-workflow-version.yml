@@ -4,7 +4,8 @@
           filters:
             branches:
               only:
-                - /^feature/version.+$/
+                - /^feature/version/.+$/
+                - /^fix/version/.+$/
                 - /^dependabot/cargo/version/.+$/
       - test_ci:
           requires:

@@ -4,7 +4,8 @@
           filters:
             branches:
               only:
-                - /^feature/browser.+$/
+                - /^feature/browser/.+$/
+                - /^fix/browser/.+$/
                 - /^dependabot/npm_and_yarn/site/Tests/Browser.+$/
       - test_ci:
           requires:
