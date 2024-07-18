@@ -4,7 +4,8 @@
           filters:
             branches:
               only:
-                - /^feature/midna.+$/
+                - /^feature/midna/.+$/
+                - /^fix/midna/.+$/
                 - /^dependabot/pip/midna/.+$/
       - test_ci:
           requires:
