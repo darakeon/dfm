@@ -4,7 +4,8 @@
           filters:
             branches:
               only:
-                - /^feature/core.+$/
+                - /^feature/core/.+$/
+                - /^fix/core/.+$/
                 - /^dependabot/nuget/core/.+$/
       - test_ci:
           requires:
