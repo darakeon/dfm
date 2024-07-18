@@ -4,7 +4,8 @@
           filters:
             branches:
               only:
-                - /^feature/android.+$/
+                - /^feature/android/.+$/
+                - /^fix/android/.+$/
                 - /^dependabot/gradle/android/.+$/
       - test_ci:
           requires:
