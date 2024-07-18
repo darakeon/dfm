@@ -1433,7 +1433,8 @@ workflows:
           filters:
             branches:
               only:
-                - /^feature/core.+$/
+                - /^feature/core/.+$/
+                - /^fix/core/.+$/
                 - /^dependabot/nuget/core/.+$/
       - test_ci:
           requires:
@@ -1509,7 +1510,8 @@ workflows:
           filters:
             branches:
               only:
-                - /^feature/site.+$/
+                - /^feature/site/.+$/
+                - /^fix/site/.+$/
                 - /^dependabot/nuget/site/.+$/
       - test_ci:
           requires:
@@ -1550,7 +1552,8 @@ workflows:
           filters:
             branches:
               only:
-                - /^feature/browser.+$/
+                - /^feature/browser/.+$/
+                - /^fix/browser/.+$/
                 - /^dependabot/npm_and_yarn/site/Tests/Browser.+$/
       - test_ci:
           requires:
@@ -1589,7 +1592,8 @@ workflows:
           filters:
             branches:
               only:
-                - /^feature/robot.+$/
+                - /^feature/robot/.+$/
+                - /^fix/robot/.+$/
                 - /^dependabot/nuget/robot/.+$/
       - test_ci:
           requires:
@@ -1621,7 +1625,8 @@ workflows:
           filters:
             branches:
               only:
-                - /^feature/api.+$/
+                - /^feature/api/.+$/
+                - /^fix/api/.+$/
                 - /^dependabot/nuget/api/.+$/
       - test_ci:
           requires:
@@ -1653,7 +1658,8 @@ workflows:
           filters:
             branches:
               only:
-                - /^feature/android.+$/
+                - /^feature/android/.+$/
+                - /^fix/android/.+$/
                 - /^dependabot/gradle/android/.+$/
       - test_ci:
           requires:
@@ -1698,7 +1704,8 @@ workflows:
           filters:
             branches:
               only:
-                - /^feature/midna.+$/
+                - /^feature/midna/.+$/
+                - /^fix/midna/.+$/
                 - /^dependabot/pip/midna/.+$/
       - test_ci:
           requires:
@@ -1726,7 +1733,8 @@ workflows:
           filters:
             branches:
               only:
-                - /^feature/version.+$/
+                - /^feature/version/.+$/
+                - /^fix/version/.+$/
                 - /^dependabot/cargo/version/.+$/
       - test_ci:
           requires:
@@ -1751,7 +1759,8 @@ workflows:
           filters:
             branches:
               only:
-                - /^feature/db.+$/
+                - /^feature/db/.+$/
+                - /^fix/db/.+$/
       - test_ci:
           requires:
             - trufflehog
@@ -1775,7 +1784,8 @@ workflows:
           filters:
             branches:
               only:
-                - /^feature/ci.+$/
+                - /^feature/ci/.+$/
+                - /^fix/ci/.+$/
       - test_ci:
           requires:
             - trufflehog
