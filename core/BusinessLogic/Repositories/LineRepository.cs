@@ -10,12 +10,12 @@ internal class LineRepository : Repo<Line>
 	public IList<ArchiveLineStati> GetArchivesPending()
 	{
 		return NewQuery()
-			.Where(l => l.Status != ImportStatus.Pending)
 			.LeftJoin(l => l.Archive)
 			.Where(l => l.Archive.Status == ImportStatus.Pending)
 			.TransformResult<ArchiveLineStati>()
 			.GroupBy(l => l.Archive, als => als.Archive)
-			.Max(l => l.Status, als => als.LineStati)
+			.Max(l => l.Status, als => als.MaxLineStati)
+			.Min(l => l.Status, als => als.MinLineStati)
 			.List;
 	}
 }
