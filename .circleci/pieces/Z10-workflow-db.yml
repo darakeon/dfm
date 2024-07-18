@@ -4,7 +4,8 @@
           filters:
             branches:
               only:
-                - /^feature/db.+$/
+                - /^feature/db/.+$/
+                - /^fix/db/.+$/
       - test_ci:
           requires:
             - trufflehog

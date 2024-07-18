@@ -4,7 +4,8 @@
           filters:
             branches:
               only:
-                - /^feature/robot.+$/
+                - /^feature/robot/.+$/
+                - /^fix/robot/.+$/
                 - /^dependabot/nuget/robot/.+$/
       - test_ci:
           requires:
