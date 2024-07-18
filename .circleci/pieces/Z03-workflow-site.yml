@@ -4,7 +4,8 @@
           filters:
             branches:
               only:
-                - /^feature/site.+$/
+                - /^feature/site/.+$/
+                - /^fix/site/.+$/
                 - /^dependabot/nuget/site/.+$/
       - test_ci:
           requires:
