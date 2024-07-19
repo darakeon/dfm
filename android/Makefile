@@ -10,6 +10,7 @@ start:
 		-v ${PWD}:/var/android \
 		-v ${PROJECTS}/keon/access:/var/keys \
 		-w /var/android \
+		-e NVD_API_KEY=${NVD_API_KEY} \
 		--name dkdroid \
 		darakeon/android \
 		tail -f /dev/null
