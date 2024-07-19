@@ -29,11 +29,18 @@ buildscript {
 	dependencies {
 		classpath "com.android.tools.build:gradle:$gradle_version"
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+		classpath "org.bouncycastle:bcutil-jdk18on:1.79"
 	}
 }
 
 plugins {
 	id "org.owasp.dependencycheck" version "12.0.1"
+}
+
+dependencyCheck  {
+    nvd {
+        apiKey="${System.env.NVD_API_KEY}"
+    }
 }
 
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
