@@ -36,6 +36,12 @@ plugins {
 	id "org.owasp.dependencycheck" version "8.4.3"
 }
 
+dependencyCheck  {
+    nvd {
+        apiKey='${System.env.NVD_API_KEY}'
+    }
+}
+
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 
