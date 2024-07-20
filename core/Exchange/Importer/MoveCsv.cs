@@ -178,6 +178,7 @@ public class MoveCsv : Line
 
 	public Line ToLine(Archive archive)
 	{
+		Scheduled = DateTime.Now;
 		Archive = archive;
 		return this;
 	}
