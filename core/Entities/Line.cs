@@ -29,6 +29,7 @@ public class Line : IEntityLong
 
 	public virtual IList<Detail> DetailList { get; set; }
 
+	public virtual DateTime Scheduled { get; set; }
 	public virtual ImportStatus Status { get; set; }
 
 	public virtual Boolean HasIn => !String.IsNullOrEmpty(In);
