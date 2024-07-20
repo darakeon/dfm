@@ -7,7 +7,7 @@
 - [x] Robot will read all lines and insert moves (without sending emails)
 - [x] Finish archives
 - [x] Add archives and lines to user deletion test
-- [ ] Requeue pending lines
+- [x] Requeue pending lines
 - [ ] List archives for user
 - [ ] Allow retry lines
 - [ ] Integrate to site
