@@ -35,7 +35,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		private protected static Valids valids;
 		private protected static Repos repos;
 		private protected static IFileService fileService;
-		private protected static IQueueService queueService;
+		private protected static LocalQueueService queueService;
 
 		private static String logFileName;
 
