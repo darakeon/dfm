@@ -1,7 +1,8 @@
-﻿using DFM.Entities;
+﻿using System.Runtime.CompilerServices;
+using DFM.Entities;
 using DFM.Generic;
-using Newtonsoft.Json;
 
+[assembly: InternalsVisibleTo("DFM.BusinessLogic.Tests")]
 namespace DFM.Queue;
 
 public class LocalQueueService : IQueueService
@@ -36,7 +37,7 @@ public class LocalQueueService : IQueueService
 		return Task.Run(dequeue);
 	}
 
-	private new KeyValuePair<String, Line>? dequeue()
+	private KeyValuePair<String, Line>? dequeue()
 	{
 		if (!importer.Any())
 			return null;
@@ -55,5 +56,11 @@ public class LocalQueueService : IQueueService
 	public void Delete(String key)
 	{
 		importer.Remove(key);
+	}
+
+	// for tests purposes only
+	internal void Expire(Line line)
+	{
+		importer.Remove(line.ID.ToString());
 	}
 }

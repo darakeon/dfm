@@ -631,5 +631,24 @@ namespace DFM.BusinessLogic.Services
 				});
 			}
 		}
+
+		public void RequeueLines()
+		{
+			if (!parent.Current.IsRobot)
+				throw Error.Uninvited.Throw();
+
+			var lines = repos.Line.Where(
+				l => l.Status == ImportStatus.Pending
+					&& l.Scheduled < DateTime.Now.AddDays(-1)
+			);
+
+			queueService.Enqueue(lines);
+
+			foreach (var line in lines)
+			{
+				line.Scheduled = DateTime.Now;
+				repos.Line.SaveOrUpdate(line);
+			}
+		}
 	}
 }

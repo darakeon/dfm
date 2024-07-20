@@ -54,6 +54,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 			get => get<String>("csvContent");
 			set => set("csvContent", value);
 		}
+
+		private DateTime requeueTime
+		{
+			get => get<DateTime>("requeueTime");
+			set => set("requeueTime", value);
+		}
 		#endregion
 
 		#region SaveSchedule
@@ -726,7 +732,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the lines will be queued")]
 		public void ThenTheLinesWillBeQueued()
 		{
-			var user = repos.User.GetByEmail(current.Email);
+			var user = repos.User.GetByEmail(userEmail);
 
 			var archive = repos.Archive
 				.SingleOrDefault(a => a.User == user);
@@ -901,6 +907,58 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 		#endregion
 
+		#region RequeueLines
+		[Given(@"the line is from before the queue period")]
+		public void GivenTheLineIsFromBeforeTheQueuePeriod()
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			var line = repos.Line
+				.NewQuery()
+				.LeftJoin(l => l.Archive)
+				.Where(l => l.Archive.User == user)
+				.SingleOrDefault;
+
+			line.Scheduled = DateTime.Now.AddDays(-1);
+
+			repos.Line.SaveOrUpdate(line);
+
+			queueService.Expire(line);
+		}
+
+		[When(@"requeue lines")]
+		public void WhenRequeueLines()
+		{
+			try
+			{
+				requeueTime = DateTime.Now;
+				service.Robot.RequeueLines();
+			}
+			catch (CoreError coreError)
+			{
+				error = coreError;
+			}
+		}
+
+		[Then(@"the scheduled time will( not)? change")]
+		public void ThenTheScheduledTimeWillChange(Boolean change)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			var line = repos.Line
+				.NewQuery()
+				.LeftJoin(l => l.Archive)
+				.Where(l => l.Archive.User == user)
+				.SingleOrDefault;
+
+			if (change)
+			{
+				Assert.That(line.Scheduled, Is.GreaterThan(requeueTime));
+			}
+			else
+			{
+				Assert.That(line.Scheduled, Is.LessThan(requeueTime));
+			}
+		}
+		#endregion
 
 		#region MoreThanOne
 		[Given(@"I have this schedule to create")]
