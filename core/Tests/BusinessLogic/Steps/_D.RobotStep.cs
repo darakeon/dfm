@@ -56,7 +56,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			set => set("csvContent", value);
 		}
 
-		private DateTime requeueTime
+		private DateTime requeueOrRetryTime
 		{
 			get => get<DateTime>("requeueTime");
 			set => set("requeueTime", value);
@@ -72,6 +72,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			get => get<Guid>("archiveGuid");
 			set => set("archiveGuid", value);
+		}
+
+		private Int16 linePosition
+		{
+			get => get<Int16>("linePosition");
+			set => set("linePosition", value);
 		}
 
 		private ArchiveInfo archiveInfo
@@ -842,11 +848,18 @@ namespace DFM.BusinessLogic.Tests.Steps
 			service.Robot.ImportMovesFile(csvName, csvContent);
 
 			var user = repos.User.GetByEmail(userEmail);
-			archiveGuid = repos.Archive
+
+			var archive = repos.Archive
 				.Where(a => a.User == user)
 				.OrderByDescending(a => a.ID)
-				.Last()
-				.Guid;
+				.Last();
+
+			archiveGuid = archive.Guid;
+
+			var line = archive.LineList.FirstOrDefault();
+
+			if (line != null)
+				linePosition = line.Position;
 		}
 
 		[Given(@"the account (.+) is deleted")]
@@ -956,7 +969,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				requeueTime = DateTime.Now;
+				requeueOrRetryTime = DateTime.Now;
 				service.Robot.RequeueLines();
 			}
 			catch (CoreError coreError)
@@ -977,11 +990,11 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			if (change)
 			{
-				Assert.That(line.Scheduled, Is.GreaterThan(requeueTime));
+				Assert.That(line.Scheduled, Is.GreaterThan(requeueOrRetryTime));
 			}
 			else
 			{
-				Assert.That(line.Scheduled, Is.LessThan(requeueTime));
+				Assert.That(line.Scheduled, Is.LessThan(requeueOrRetryTime));
 			}
 		}
 		#endregion
@@ -1105,6 +1118,36 @@ namespace DFM.BusinessLogic.Tests.Steps
 					Assert.That(actualDetail.Conversion, Is.EqualTo(expectedDetail.Conversion));
 				}
 			}
+		}
+		#endregion
+
+		#region RetryLine
+		[When(@"retry line")]
+		public void WhenRetryLine()
+		{
+			try
+			{
+				requeueOrRetryTime = DateTime.Now;
+				service.Robot.RetryLine(archiveGuid, linePosition);
+			}
+			catch (CoreError coreError)
+			{
+				error = coreError;
+			}
+		}
+
+		[Then(@"the line will be (Pending|Success|Error)")]
+		public void ThenTheLineWillBe(ImportStatus status)
+		{
+			var line = repos.Line.Get(archiveGuid, linePosition);
+			Assert.That(line.Status, Is.EqualTo(status));
+		}
+
+		[Then(@"the archive will be (Pending|Success|Error)")]
+		public void ThenTheArchiveWillBe(ImportStatus status)
+		{
+			var archive = repos.Archive.Get(archiveGuid);
+			Assert.That(archive.Status, Is.EqualTo(status));
 		}
 		#endregion
 
