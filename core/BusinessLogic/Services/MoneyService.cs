@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
 using DFM.BusinessLogic.Validators;
 using DFM.Entities;
 using DFM.Entities.Enums;
-using DFM.Exchange.Importer;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Services
