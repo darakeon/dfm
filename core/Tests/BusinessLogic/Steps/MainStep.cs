@@ -229,6 +229,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 				repos.Schedule.Disable(schedule.Guid, schedule.User);
 			}
 
+			queueService.Clear();
+
 			if (current.IsAuthenticated)
 				current.Clear();
 
