@@ -112,6 +112,7 @@ namespace DFM.BusinessLogic.Exceptions
 		InvalidArchiveSize = 1002,
 		InvalidArchiveLines = 1003,
 		InvalidArchiveColumn = 1001,
+		ArchiveNotFound = 1004,
 	}
 
 	public static class ErrorX
