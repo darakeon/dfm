@@ -13,13 +13,28 @@ Scenario: Gl01. Unlogged user
 	When get archive list
 	Then I will receive this core error: Uninvited
 
-Scenario: Gl02. No archives
+Scenario: Gl02. User marked for deletion
+	Given the user is marked for deletion
+	When get archive list
+	Then I will receive this core error: UserDeleted
+
+Scenario: Gl03. User requested wipe
+	Given the user asked data wipe
+	When get archive list
+	Then I will receive this core error: UserAskedWipe
+
+Scenario: Gl04. Without sign last contract
+	Given there is a new contract
+	When get archive list
+	Then I will receive this core error: NotSignedLastContract
+
+Scenario: Gl05. No archives
 	When get archive list
 	Then I will receive no core error
 		And the archive list will be
 			| Lines | Status  |
 
-Scenario: Gl03. Get archives
+Scenario: Gl06. Get archives
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-07-20 | Category | Transfer | Account Out | Account In | 1     |
