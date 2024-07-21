@@ -674,5 +674,29 @@ namespace DFM.BusinessLogic.Services
 					.Select(LineInfo.Convert).ToList(),
 			};
 		}
+
+		public void RetryLine(Guid archiveGuid, Int16 linePosition)
+		{
+			var user = parent.Auth.VerifyUser();
+			var line = repos.Line.Get(archiveGuid, linePosition);
+
+			if (line == null || line.Archive.User.ID != user.ID)
+				throw Error.LineNotFound.Throw();
+
+			if (line.Status != ImportStatus.Error)
+				throw Error.LineRetryOnlyError.Throw();
+
+			inTransaction("RetryLine", () =>
+			{
+				line.Scheduled = DateTime.Now;
+				line.Status = ImportStatus.Pending;
+
+				repos.Line.SaveOrUpdate(line);
+
+				line.Archive.Status = ImportStatus.Pending;
+
+				repos.Archive.SaveOrUpdate(line.Archive);
+			});
+		}
 	}
 }
