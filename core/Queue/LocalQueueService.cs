@@ -63,4 +63,10 @@ public class LocalQueueService : IQueueService
 	{
 		importer.Remove(line.ID.ToString());
 	}
+
+	// for tests purposes only
+	internal void Clear()
+	{
+		importer.Clear();
+	}
 }
