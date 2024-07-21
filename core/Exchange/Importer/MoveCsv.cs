@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities;
 using DFM.Entities.Bases;
-using DFM.Entities.Enums;
 
 namespace DFM.Exchange.Importer;
 
