@@ -25,7 +25,7 @@ Scenario: Gk03. No lines
 Scenario: Gk04. All pending within period
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
-			| Move {scenarioCode} | 2024-07-02 | Category | Transfer | Account Out | Account In | 1     |
+			| Move {scenarioCode} | 2024-07-20 | Category | Transfer | Account Out | Account In | 1     |
 		And the moves file was imported
 	When robot user login
 		And requeue lines
@@ -36,7 +36,7 @@ Scenario: Gk04. All pending within period
 Scenario: Gk05. Only success lines
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
-			| Move {scenarioCode} | 2024-07-02 | Category | Transfer | Account Out | Account In | 1     |
+			| Move {scenarioCode} | 2024-07-20 | Category | Transfer | Account Out | Account In | 1     |
 		And the moves file was imported
 		And robot made move from imported
 		And the line is from before the queue period
@@ -49,7 +49,7 @@ Scenario: Gk05. Only success lines
 Scenario: Gk06. Only error lines
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
-			| Move {scenarioCode} | 2024-07-02 | Category | Transfer | Account Out | Account In | 1     |
+			| Move {scenarioCode} | 2024-07-20 | Category | Transfer | Account Out | Account In | 1     |
 		And the moves file was imported
 		But I close the account Account Out
 		And robot made move from imported
@@ -63,7 +63,7 @@ Scenario: Gk06. Only error lines
 Scenario: Gk07. Requeue line
 	Given a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
-			| Move {scenarioCode} | 2024-07-02 | Category | Transfer | Account Out | Account In | 1     |
+			| Move {scenarioCode} | 2024-07-20 | Category | Transfer | Account Out | Account In | 1     |
 		And the moves file was imported
 		And the line is from before the queue period
 	When robot user login
