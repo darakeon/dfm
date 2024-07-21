@@ -408,6 +408,7 @@ namespace DFM.BusinessLogic.Services
 
 			var archive = new Archive
 			{
+				Guid = Guid.NewGuid(),
 				Filename = filename,
 				User = user,
 			};
@@ -649,6 +650,13 @@ namespace DFM.BusinessLogic.Services
 				line.Scheduled = DateTime.Now;
 				repos.Line.SaveOrUpdate(line);
 			}
+		}
+
+		public IList<ArchiveInfo> GetArchiveList()
+		{
+			var user = parent.Auth.VerifyUser();
+
+			return repos.Line.GetArchives(user);
 		}
 	}
 }
