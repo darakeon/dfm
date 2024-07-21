@@ -8,6 +8,7 @@ namespace DFM.Entities;
 public class Archive : IEntityLong
 {
 	public virtual Int64 ID { get; set; }
+	public virtual Byte[] ExternalId { get; set; }
 
 	public virtual String Filename { get; set; }
 
@@ -16,6 +17,12 @@ public class Archive : IEntityLong
 	public virtual User User { get; set; }
 
 	public virtual IList<Line> LineList { get; set; }
+
+	public virtual Guid Guid
+	{
+		get => new(ExternalId);
+		set => ExternalId = value.ToByteArray();
+	}
 
 	public override String ToString()
 	{

@@ -8,7 +8,7 @@
 - [x] Finish archives
 - [x] Add archives and lines to user deletion test
 - [x] Requeue pending lines
-- [ ] List archives for user
+- [x] List archives for user
 - [ ] Allow retry lines
 - [ ] Integrate to site
 - [ ] Integrate to robot
