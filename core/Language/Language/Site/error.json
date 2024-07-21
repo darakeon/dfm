@@ -116,6 +116,7 @@
 		"InvalidArchiveSize": "Too big file size, try break into files with 300kb or less",
 		"InvalidArchiveLines": "The allowed amount for import files is 200 lines at most each file",
 		"InvalidArchiveColumn": "Invalid archive column",
+		"ArchiveNotFound": "Archive not found",
 		"": null
 	},
 	"pt-BR": {
@@ -235,6 +236,7 @@
 		"InvalidArchiveSize": "Arquivo muito grande, tente quebrar em arquivos de 300kb ou menos",
 		"InvalidArchiveLines": "A quantidade permitida para importar arquivos é 200 linhas no máximo por arquivo",
 		"InvalidArchiveColumn": "Coluna inválida no arquivo",
+		"ArchiveNotFound": "Arquivo não encontrado",
 		"": null
 	}
 }

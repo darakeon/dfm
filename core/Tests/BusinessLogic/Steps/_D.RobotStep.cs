@@ -67,6 +67,18 @@ namespace DFM.BusinessLogic.Tests.Steps
 			get => get<IList<ArchiveInfo>>("archiveList");
 			set => set("archiveList", value);
 		}
+
+		private Guid archiveGuid
+		{
+			get => get<Guid>("archiveGuid");
+			set => set("archiveGuid", value);
+		}
+
+		private ArchiveInfo archiveInfo
+		{
+			get => get<ArchiveInfo>("archiveInfo");
+			set => set("archiveInfo", value);
+		}
 		#endregion
 
 		#region SaveSchedule
@@ -828,6 +840,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void GivenTheMovesFileWasImported()
 		{
 			service.Robot.ImportMovesFile(csvName, csvContent);
+
+			var user = repos.User.GetByEmail(userEmail);
+			archiveGuid = repos.Archive
+				.Where(a => a.User == user)
+				.OrderByDescending(a => a.ID)
+				.Last()
+				.Guid;
 		}
 
 		[Given(@"the account (.+) is deleted")]
@@ -1002,6 +1021,89 @@ namespace DFM.BusinessLogic.Tests.Steps
 			{
 				Assert.That(archiveList[l].LineCount, Is.EqualTo(expected[l].LineCount));
 				Assert.That(archiveList[l].Status, Is.EqualTo(expected[l].Status));
+			}
+		}
+		#endregion
+
+
+		#region GetLineList
+
+		[When(@"get line list")]
+		public void WhenGetLineList()
+		{
+			try
+			{
+				archiveInfo = service.Robot.GetLineList(archiveGuid);
+			}
+			catch (CoreError coreError)
+			{
+				error = coreError;
+			}
+		}
+
+		[Then(@"the line list will be")]
+		public void ThenTheLineListWillBe(Table table)
+		{
+			var expectedList = table.CreateSet<LineInfo>().ToList();
+
+			for (var r = 0; r < table.Rows.Count; r++)
+			{
+				var row = table.Rows[r];
+
+				for (var d = 1; d < 4; d++)
+				{
+					var description = row[$"Description{d}"];
+
+					if (String.IsNullOrEmpty(description))
+						break;
+
+					var detail = new DetailInfo
+					{
+						Description = description,
+						Amount = (Int16)row.GetInt32($"Amount{d}"),
+						Value = row.GetDecimal($"Value{d}"),
+						Conversion = row.GetDecimal($"Conversion{d}")
+					};
+
+					expectedList[r].DetailList.Add(detail);
+				}
+			}
+
+			var actualList = archiveInfo.LineList;
+
+			Assert.That(actualList.Count, Is.EqualTo(expectedList.Count));
+
+			for (var l = 0; l < actualList.Count; l++)
+			{
+				var actual = actualList[l];
+				var expected = expectedList[l];
+
+				expected.Description =
+					expected.Description.ForScenario(scenarioCode);
+
+				Assert.That(actual.Position, Is.EqualTo(expected.Position));
+				Assert.That(actual.Description, Is.EqualTo(expected.Description));
+				Assert.That(actual.Date, Is.EqualTo(expected.Date));
+				Assert.That(actual.Category, Is.EqualTo(expected.Category));
+				Assert.That(actual.Nature, Is.EqualTo(expected.Nature));
+				Assert.That(actual.In, Is.EqualTo(expected.In));
+				Assert.That(actual.Out, Is.EqualTo(expected.Out));
+				Assert.That(actual.Value, Is.EqualTo(expected.Value));
+				Assert.That(actual.Conversion, Is.EqualTo(expected.Conversion));
+				Assert.That(actual.Status, Is.EqualTo(expected.Status));
+
+				Assert.That(actual.DetailList.Count, Is.EqualTo(expected.DetailList.Count));
+
+				for (var d = 0; d < actual.DetailList.Count; d++)
+				{
+					var actualDetail = actual.DetailList[d];
+					var expectedDetail = expected.DetailList[d];
+
+					Assert.That(actualDetail.Description, Is.EqualTo(expectedDetail.Description));
+					Assert.That(actualDetail.Amount, Is.EqualTo(expectedDetail.Amount));
+					Assert.That(actualDetail.Value, Is.EqualTo(expectedDetail.Value));
+					Assert.That(actualDetail.Conversion, Is.EqualTo(expectedDetail.Conversion));
+				}
 			}
 		}
 		#endregion
