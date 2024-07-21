@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DFM.BusinessLogic.Repositories.DataObjects;
 using DFM.BusinessLogic.Response;
 using DFM.Entities;
@@ -30,5 +31,16 @@ internal class LineRepository : Repo<Line>
 			.GroupBy(l => l.Archive, ai => ai.Archive)
 			.Count(l => l.ID, ai => ai.LineCount)
 			.List;
+	}
+
+	public Line Get(Guid archiveGuid, Int16 linePosition)
+	{
+		return NewQuery()
+			.LeftJoin(l => l.Archive)
+			.Where(
+				l => l.Archive.ExternalId == archiveGuid.ToByteArray()
+					&& l.Position == linePosition
+			)
+			.SingleOrDefault;
 	}
 }
