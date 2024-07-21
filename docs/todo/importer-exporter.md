@@ -9,7 +9,7 @@
 - [x] Add archives and lines to user deletion test
 - [x] Requeue pending lines
 - [x] List archives for user
-- [ ] Allow retry lines
+- [x] Allow retry lines
 - [ ] Integrate to site
 - [ ] Integrate to robot
 
