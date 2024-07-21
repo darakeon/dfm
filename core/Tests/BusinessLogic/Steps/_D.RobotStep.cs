@@ -15,6 +15,7 @@ using Keon.Eml;
 using Keon.Util.Crypto;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace DFM.BusinessLogic.Tests.Steps
 {
@@ -59,6 +60,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			get => get<DateTime>("requeueTime");
 			set => set("requeueTime", value);
+		}
+
+		private IList<ArchiveInfo> archiveList
+		{
+			get => get<IList<ArchiveInfo>>("archiveList");
+			set => set("archiveList", value);
 		}
 		#endregion
 
@@ -956,6 +963,45 @@ namespace DFM.BusinessLogic.Tests.Steps
 			else
 			{
 				Assert.That(line.Scheduled, Is.LessThan(requeueTime));
+			}
+		}
+		#endregion
+
+		#region GetArchiveList
+		[Given(@"robot finish archives")]
+		public void GivenRobotFinishArchives()
+		{
+			try
+			{
+				robotFinishArchives();
+			}
+			catch (CoreError) { }
+		}
+
+		[When(@"get archive list")]
+		public void WhenGetArchiveList()
+		{
+			try
+			{
+				archiveList = service.Robot.GetArchiveList();
+			}
+			catch (CoreError coreError)
+			{
+				error = coreError;
+			}
+		}
+
+		[Then(@"the archive list will be")]
+		public void ThenTheArchiveListWillBe(Table table)
+		{
+			var expected = table.CreateSet<ArchiveInfo>().ToList();
+
+			Assert.That(archiveList.Count, Is.EqualTo(expected.Count()));
+
+			for (var l = 0; l < archiveList.Count; l++)
+			{
+				Assert.That(archiveList[l].LineCount, Is.EqualTo(expected[l].LineCount));
+				Assert.That(archiveList[l].Status, Is.EqualTo(expected[l].Status));
 			}
 		}
 		#endregion

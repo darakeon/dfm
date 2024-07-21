@@ -126,6 +126,15 @@ namespace DFM.BusinessLogic.Tests.Steps
 			resetTicket();
 		}
 
+		protected void robotFinishArchives()
+		{
+			createLogoffLoginRobot();
+
+			service.Robot.FinishArchives();
+
+			resetTicket();
+		}
+
 		protected void createLogoffLoginRobot()
 		{
 			createLogoffLogin(robotEmail);
