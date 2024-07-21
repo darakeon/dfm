@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DFM.Entities;
 using DFM.Entities.Enums;
 
@@ -27,4 +28,6 @@ public class ArchiveInfo
 			Status = value.Status;
 		}
 	}
+
+	public IList<LineInfo> LineList { get; set; } = new List<LineInfo>();
 }

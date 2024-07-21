@@ -658,5 +658,21 @@ namespace DFM.BusinessLogic.Services
 
 			return repos.Line.GetArchives(user);
 		}
+
+		public ArchiveInfo GetLineList(Guid archiveGuid)
+		{
+			var user = parent.Auth.VerifyUser();
+			var archive = repos.Archive.Get(archiveGuid);
+
+			if (archive == null || archive.User.ID != user.ID)
+				throw Error.ArchiveNotFound.Throw();
+
+			return new ArchiveInfo
+			{
+				Archive = archive,
+				LineList = archive.LineList
+					.Select(LineInfo.Convert).ToList(),
+			};
+		}
 	}
 }
