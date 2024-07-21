@@ -297,6 +297,7 @@ namespace DFM.BusinessLogic.Tests
 		{
 			var archive = new Archive
 			{
+				Guid = Guid.NewGuid(),
 				Filename = $"File {code}",
 				LineList = new List<Line>(),
 				Status = ImportStatus.Pending,
