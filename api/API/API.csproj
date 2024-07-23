@@ -36,7 +36,7 @@
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
     <PackageReference Include="JetBrains.Annotations" Version="2024.2.0" />
-    <PackageReference Include="Keon.MVC" Version="5.0.2" />
+    <PackageReference Include="Keon.MVC" Version="5.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.7" />
     <PackageReference Include="MySql.Data" Version="9.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
