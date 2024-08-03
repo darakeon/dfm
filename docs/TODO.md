@@ -13,8 +13,10 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (47)                                                                      | Typ | Dif | Imp | Pts |
+| Task (49)                                                                      | Typ | Dif | Imp | Pts |
 | ------------------------------------------------------------------------------ | --- | --- | --- | --- |
+| Get contract text from DB to create README in terms                            | 🐑 |  1  |  4  |  7  |
+| Add create README contract in CI                                               | 🐑 |  1  |  4  |  7  |
 | Refactor Core Steps to improve their division to entities and given/when/then  | 🐑 |  1  |  3  |  6  |
 | Put terms of use in static site on S3                                          | 🐳 |  2  |  4  |  6  |
 | Implement entities limits (acc opened, cat enabled, moves/month, active sched) | 🐉 |  2  |  4  |  6  |
