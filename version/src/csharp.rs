@@ -10,6 +10,8 @@ pub fn update_csharp(version: &Version) {
 	update_csharp_file(&version, vec!["core", "Generic", "Generic.csproj"]);
 	update_csharp_file(&version, vec!["core", "Language", "Language.csproj"]);
 	update_csharp_file(&version, vec!["core", "Logs", "Logs.csproj"]);
+	update_csharp_file(&version, vec!["core", "Tests", "Generic", "Generic.Tests.csproj"]);
+	update_csharp_file(&version, vec!["core", "Tests", "Entities", "Entities.Tests.csproj"]);
 	update_csharp_file(&version, vec!["core", "Tests", "BusinessLogic", "BusinessLogic.Tests.csproj"]);
 	update_csharp_file(&version, vec!["core", "Tests", "Email", "Email.Tests.csproj"]);
 	update_csharp_file(&version, vec!["core", "Tests", "Exchange", "Exchange.Tests.csproj"]);
