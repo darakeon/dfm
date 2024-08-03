@@ -1,4 +1,7 @@
 {
+	"12.1.0.0": [
+		"Put contract in a external address"
+	],
 	"12.0.0.1": [
 		"Fix in internal tool"
 	],
