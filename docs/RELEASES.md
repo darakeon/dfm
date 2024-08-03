@@ -21,7 +21,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Warning about 15 minutes windows for runnings schedules
 
 ## <a name="12.1.0.0"></a>12.1.0.0 🐳 <sup>`1`</sup>
-- [ ] Put contract in MD at github (change in google play)
+- [x] `240803>240803` Put contract in MD at github (change in google play)
 
 ## <a name="12.0.0.1"></a>12.0.0.1 🐜 <sup>`1`</sup>
 - [x] `240517>240517` Hotfix midna machine superuser creation
