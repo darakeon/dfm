@@ -78,7 +78,7 @@ updates:
       prefix: "tools: update mobile\n\n"
 
   - package-ecosystem: "docker"
-    directory: "/ci/"
+    directory: "/architecture/ci/"
     target-branch: "13.0.0.0"
     schedule:
       interval: "weekly"
@@ -90,7 +90,7 @@ updates:
       prefix: "tools: update tests\n\n"
 
   - package-ecosystem: "docker"
-    directory: "/publish/"
+    directory: "/architecture/publish/"
     target-branch: "13.0.0.0"
     schedule:
       interval: "weekly"
