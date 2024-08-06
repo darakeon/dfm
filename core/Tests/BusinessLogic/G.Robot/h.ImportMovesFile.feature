@@ -797,3 +797,23 @@ Scenario: Gh82. Not allowed file lines
 	Then I will receive this core error: InvalidArchiveLines
 		And the pre-import data will not be recorded
 		And the lines will not be queued
+
+Scenario: Gh83. Is not CSV
+	Given a moves file with this content
+			| Description         | Date       | Category | Nature   | Out         | In         | Value |
+			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
+		But the file is not CSV
+	When import moves file
+	Then I will receive this core error: InvalidArchiveType
+		And the pre-import data will not be recorded
+		And the lines will not be queued
+
+Scenario: Gh84. Too long file name
+	Given a moves file with this content
+			| Description         | Date       | Category | Nature   | Out         | In         | Value |
+			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1     |
+		But the file name is 257 characters long
+	When import moves file
+	Then I will receive this core error: InvalidArchiveName
+		And the pre-import data will not be recorded
+		And the lines will not be queued

@@ -713,6 +713,18 @@ namespace DFM.BusinessLogic.Tests.Steps
 			);
 		}
 
+		[Given(@"the file is not CSV")]
+		public void GivenTheFileIsNotCSV()
+		{
+			csvName = $"{scenarioCode}.exe";
+		}
+
+		[Given(@"the file name is (\d+) characters long")]
+		public void GivenTheFileNameIsCharactersLong(Int32 nameSize)
+		{
+			csvName = $"{new String('D', nameSize - 4)}.csv";
+		}
+
 		[When(@"import moves file")]
 		public void WhenImportMovesFile()
 		{

@@ -404,7 +404,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			var user = parent.Auth.VerifyUser();
 
-			var importer = validateArchive(csv, user);
+			var importer = validateArchive(filename, csv, user);
 
 			var archive = new Archive
 			{
@@ -426,11 +426,22 @@ namespace DFM.BusinessLogic.Services
 			queueService.Enqueue(archive.LineList);
 		}
 
-		private CSVImporter validateArchive(String csv, User user)
+		private CSVImporter validateArchive(String filename, String csv, User user)
 		{
 			using var error = new CoreError();
-
 			var importer = new CSVImporter(csv);
+
+			if (!filename.EndsWith(".csv"))
+			{
+				error.AddError(Error.InvalidArchiveType);
+				return importer;
+			}
+
+			if (filename.Length > MaxLen.ArchiveFileName)
+			{
+				error.AddError(Error.InvalidArchiveName);
+				return importer;
+			}
 
 			if (importer.ErrorList.Any())
 			{
