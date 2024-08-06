@@ -10,6 +10,7 @@ namespace DFM.Entities.Bases
 		public const Int16 DetailDescription = 50;
 		public const Int16 MoveDescription = DetailDescription;
 		public const Int16 ScheduleDescription = DetailDescription;
+		public const Int16 LineDescription = DetailDescription;
 		public const Int16 SecurityToken = 50;
 		public const Int16 TicketKey = 52;
 		public const Int16 UserPassword = 60;
