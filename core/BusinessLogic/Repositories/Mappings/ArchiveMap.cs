@@ -1,4 +1,5 @@
 ﻿using DFM.Entities;
+using DFM.Entities.Bases;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Automapping.Alterations;
 
@@ -9,6 +10,9 @@ public class ArchiveMap : IAutoMappingOverride<Archive>
 {
 	public void Override(AutoMapping<Archive> mapping)
 	{
+		mapping.Map(a => a.Filename)
+			.Length(MaxLen.ArchiveFileName);
+
 		mapping.IgnoreProperty(a => a.Guid);
 
 		mapping.References(a => a.User)
