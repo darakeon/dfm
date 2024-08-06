@@ -51,6 +51,9 @@ contracts = {
 					{ "Text": "Os valores para cada uma das duas moedas precisam ser inseridos pela Pessoa." }
 				]
 			},
+			{
+				"Text": "A funcionalidade de Agendamento permite agendar Movimentações para serem criadas no futuro. Existe uma automação executando a cada 15 minutos para inserir as Movimentações de agendamentos pendentes. Se a Pessoa agendar uma Movimentação para uma data passada, esta será criada na próxima vez que esta automação executar.",
+			},
 			{ 
 				"Text": "Dados apresentados em Sistema e decisões tomadas com base nestes dados são de total responsabilidade da Pessoa:",
 				"Items": [
@@ -62,7 +65,7 @@ contracts = {
 				"Text": "Os meios de comunicação do Sistema com a Pessoa são:",
 				"Items": [
 					{ "Text": "E-mail cadastrado pela Pessoa ao se registrar em Sistema, cujo contato é feito somente pelos endereços no-reply@dontflymoney.com - apenas para alertas automatizados - e dfm@dontflymoney.com - para suporte;" },
-					{ "Text": "Sistema web, disponível em https://dontflymoney.com;" },
+					{ "Text": "Sistema web, disponível em https://dontflymoney.com ;" },
 					{ "Text": "Aplicativo para Dispositivos Android \'Don\'t fly Money\', que pode ser instalado via Play Store no endereço https://play.google.com/store/apps/details?id=com.dontflymoney.view ." }
 				]
 			},
@@ -210,6 +213,9 @@ contracts = {
 					{ "Text": "The values of both currency need to be input by the Person." }
 				]
 			},
+			{
+				"Text": "Schedule feature allow to schedule Moves to be created at the future. There is an automation running every 15 minutes to insert the Moves for the pending Schedules. If the Person schedule a Move for a past date, it will be created in the next time this automation runs.",
+			},
 			{ 
 				"Text": "System data and decisions made based on this data are sole responsibility of the Person:",
 				"Items": [
@@ -221,14 +227,14 @@ contracts = {
 				"Text": "Communication vehicles from System to the Person are:",
 				"Items": [
 					{ "Text": "E-mail informed by the Person on the registration at the System, which is only contacted by the addresses no-reply@dontflymoney.com - just for automated alerts - and dfm@dontflymoney.com - for support;" },
-					{ "Text": "Website, available at the address https://dontflymoney.com;" },
+					{ "Text": "Website, available at the address https://dontflymoney.com ;" },
 					{ "Text": "Android Mobile App \'Don\'t fly Money\', that can be installed via Play Store at the address https://play.google.com/store/apps/details?id=com.dontflymoney.view ." }
 				]
 			},
 			{
 				"Text": "The System source code - instructions to computer which rule the System - is hosted at a web address:",
 				"Items": [
-					{ "Text": "The address is public: https://github.com/darakeon/dfm;" },
+					{ "Text": "The address is public: https://github.com/darakeon/dfm ;" },
 					{ "Text": "The source code is OPEN and ANY person using uncensored internet access can see it and suggest changes, using a github login." }
 				]
 			},
