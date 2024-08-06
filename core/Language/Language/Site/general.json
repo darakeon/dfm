@@ -54,6 +54,7 @@
 		"NoneLimit": "No limit",
 		"Zero": "Zero",
 		"Settings": "Settings",
+		"Administration": "Administration",
 		"Code": "Code",
 		"WipedData": "Deleted Data",
 
@@ -234,6 +235,7 @@
 		"NoneLimit": "Sem limites",
 		"Zero": "Zero",
 		"Settings": "Configurações",
+		"Administration": "Administração",
 		"Code": "Código",
 		"WipedData": "Dados removidos",
 
