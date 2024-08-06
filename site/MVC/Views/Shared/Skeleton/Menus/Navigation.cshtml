@@ -8,8 +8,6 @@
 }
 
 <ul class="nav navbar-nav navbar-right">
-	@await Html.PartialAsync("Skeleton/Menus/Now")
-
 	<li class="flag @lang" title="@Context.Translate("Aria_OpenLanguage")" data-toggle='modal' data-target='#language-modal'>
 		<a role='button' class="@lang" title="@Context.Translate("Aria_OpenLanguage")">
 			@await Html.PartialAsync($"Flags/{lang}")
