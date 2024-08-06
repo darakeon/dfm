@@ -2,43 +2,54 @@
 
 @{
 	const String menuHL = " wl-other-color";
+
+	var adminClass = ViewBag.AdminMenuClass + menuHL;
+
 	var schedulesClass = ViewBag.SchedulesMenuClass + menuHL;
 	var accountsClass = ViewBag.AccountsMenuClass + menuHL;
 	var categoriesClass = ViewBag.CategoriesMenuClass + menuHL;
 	var loginsClass = ViewBag.LoginsMenuClass + menuHL;
 }
 
-<li>
-	@Html.ActionLink(
-		Context.Translate("Accounts"),
-		"Index", "Accounts",
-		null, new { @class = accountsClass }
-	)
-</li>
+<li class="dropdown">
+	<a class="dropdown-toggle @adminClass hide-whl-after-click" data-toggle="dropdown" role="button">
+		@Context.Translate("Administration")
+	</a>
 
-@if (Model.IsUsingCategories)
-{
-	<li>
-		@Html.ActionLink(
-			Context.Translate("Categories"),
-			"Index", "Categories",
-			null, new { @class = categoriesClass }
-		)
-	</li>
-}
+	<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+		<li>
+			@Html.ActionLink(
+				Context.Translate("Accounts"),
+				"Index", "Accounts",
+				null, new { @class = $"text-right {accountsClass}" }
+			)
+		</li>
 
-<li>
-	@Html.ActionLink(
-		Context.Translate("Schedules"),
-		"Index", "Schedules",
-		null, new { @class = schedulesClass }
-	)
-</li>
+		@if (Model.IsUsingCategories)
+		{
+			<li>
+				@Html.ActionLink(
+					Context.Translate("Categories"),
+					"Index", "Categories",
+					null, new { @class = $"text-right {categoriesClass}" }
+				)
+			</li>
+		}
 
-<li>
-	@Html.ActionLink(
-		Context.Translate("Logins"),
-		"Index", "Logins",
-		null, new { @class = loginsClass }
-	)
+		<li>
+			@Html.ActionLink(
+				Context.Translate("Schedules"),
+				"Index", "Schedules",
+				null, new { @class = $"text-right {schedulesClass}" }
+			)
+		</li>
+
+		<li>
+			@Html.ActionLink(
+				Context.Translate("Logins"),
+				"Index", "Logins",
+				null, new { @class = $"text-right {loginsClass}" }
+			)
+		</li>
+	</ul>
 </li>

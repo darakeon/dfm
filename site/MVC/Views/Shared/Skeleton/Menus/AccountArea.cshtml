@@ -39,31 +39,39 @@
 	</li>
 }
 
-@if (Model.IsUsingCategories)
-{
-	<li>
-		@Html.ActionLink(
-			Context.Translate("CategorySummary"),
-			"Categories", "Reports",
-			null, new { @class = categoriesClass }
-		)
-	</li>
-}
+<li class="dropdown">
+	<a class="dropdown-toggle @moveClass hide-whl-after-click" data-toggle="dropdown" role="button">
+		@Context.Translate("Reports")
+	</a>
 
-<li>
-	@Html.ActionLink(
-		Context.Translate("MonthMoves"),
-		"Month", "Reports",
-		null, new { @class = extractClass }
-	)
-</li>
+	<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+		<li>
+			@Html.ActionLink(
+				Context.Translate("MonthMoves"),
+				"Month", "Reports",
+				null, new { @class = $"text-right {extractClass}" }
+			)
+		</li>
 
-<li>
-	@Html.ActionLink(
-		Context.Translate("YearMoves"),
-		"Year", "Reports",
-		null, new { @class = summaryClass }
-	)
+		<li>
+			@Html.ActionLink(
+				Context.Translate("YearMoves"),
+				"Year", "Reports",
+				null, new { @class = $"text-right {summaryClass}" }
+			)
+		</li>
+
+		@if (Model.IsUsingCategories)
+		{
+			<li>
+				@Html.ActionLink(
+					Context.Translate("CategorySummary"),
+					"Categories", "Reports",
+					null, new { @class = $"text-right {categoriesClass}" }
+				)
+			</li>
+		}
+	</ul>
 </li>
 
 <li>
