@@ -1,4 +1,5 @@
 ﻿using DFM.Entities;
+using DFM.Entities.Bases;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Automapping.Alterations;
 
@@ -10,20 +11,34 @@ public class LineMap : IAutoMappingOverride<Line>
 	public void Override(AutoMapping<Line> mapping)
 	{
 		mapping.Map(l => l.Position)
-			.UniqueKey("Line_NumberArchive");
+			.UniqueKey("UK_Line");
 
 		mapping.References(l => l.Archive)
-			.UniqueKey("Line_NumberArchive");
+			.UniqueKey("UK_Line");
+
+		mapping.Map(l => l.Description)
+			.Length(MaxLen.LineDescription);
+
+		mapping.IgnoreProperty(l => l.Value);
+		mapping.IgnoreProperty(l => l.Conversion);
+
+		mapping.Map(l => l.Category)
+			.Length(MaxLen.CategoryName)
+			.Nullable();
 
 		mapping.HasMany(l => l.DetailList)
 			.Cascade.AllDeleteOrphan()
 			.Not.LazyLoad();
 
 		mapping.Map(l => l.In)
-			.Column("In_");
+			.Length(MaxLen.AccountName)
+			.Column("In_")
+			.Nullable();
 
 		mapping.Map(l => l.Out)
-			.Column("Out_");
+			.Length(MaxLen.AccountName)
+			.Column("Out_")
+			.Nullable();
 
 		mapping.IgnoreProperty(l => l.HasIn);
 		mapping.IgnoreProperty(l => l.HasOut);
