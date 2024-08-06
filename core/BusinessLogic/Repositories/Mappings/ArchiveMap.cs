@@ -9,9 +9,9 @@ public class ArchiveMap : IAutoMappingOverride<Archive>
 {
 	public void Override(AutoMapping<Archive> mapping)
 	{
-		mapping.IgnoreProperty(m => m.Guid);
+		mapping.IgnoreProperty(a => a.Guid);
 
-		mapping.References(m => m.User)
+		mapping.References(a => a.User)
 			.Not.Nullable();
 
 		mapping.HasMany(a => a.LineList)
