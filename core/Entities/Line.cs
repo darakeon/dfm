@@ -1,4 +1,5 @@
 ﻿using DFM.Entities.Enums;
+using DFM.Generic;
 using Keon.Util.DB;
 using System;
 using System.Collections.Generic;
@@ -20,10 +21,10 @@ public class Line : IEntityLong
 	public virtual DateTime Date { get; set; }
 	public virtual String Category { get; set; }
 	public virtual MoveNature? Nature { get; set; }
+	public virtual Int32? ValueCents { get; set; }
+	public virtual Int32? ConversionCents { get; set; }
 	public virtual String In { get; set; }
 	public virtual String Out { get; set; }
-	public virtual Decimal? Value { get; set; }
-	public virtual Decimal? Conversion { get; set; }
 
 	public virtual Archive Archive { get; set; }
 
@@ -31,6 +32,17 @@ public class Line : IEntityLong
 
 	public virtual DateTime Scheduled { get; set; }
 	public virtual ImportStatus Status { get; set; }
+
+	public virtual Decimal? Value
+	{
+		get => ValueCents.ToVisual();
+		set => ValueCents = value.ToCents();
+	}
+
+	public virtual Decimal? Conversion 		{
+		get => ConversionCents.ToVisual();
+		set => ConversionCents = value.ToCents();
+	}
 
 	public virtual Boolean HasIn => !String.IsNullOrEmpty(In);
 	public virtual Boolean HasOut => !String.IsNullOrEmpty(Out);

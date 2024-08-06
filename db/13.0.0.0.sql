@@ -366,3 +366,55 @@ insert into migrations (name) values ('13.0.0.0');
 			(@PT, 'pt-BR', @contract_id),
 			(@EN, 'en-US', @contract_id);
 -- contract end
+
+
+create table archive (
+	ID BIGINT NOT NULL AUTO_INCREMENT,
+	ExternalId LONGBLOB NOT NULL,
+	Filename VARCHAR(256) NOT NULL,
+	Status SMALLINT NOT NULL,
+	User_ID BIGINT NOT NULL,
+
+    CONSTRAINT PK_Archive
+		PRIMARY KEY (ID),
+
+	CONSTRAINT UK_Archive
+		UNIQUE(ExternalId(16)),
+
+	CONSTRAINT FK_Archive_User
+		FOREIGN KEY (User_ID)
+		REFERENCES user (ID)
+);
+
+create table line (
+	ID BIGINT NOT NULL AUTO_INCREMENT,
+	Position SMALLINT NOT NULL,
+	Description VARCHAR(50) NOT NULL,
+	Date DATE NOT NULL,
+	Category VARCHAR(20) NOT NULL,
+	Nature SMALLINT NOT NULL,
+	In_ VARCHAR(20) NOT NULL,
+	Out_ VARCHAR(20) NOT NULL,
+	ValueCents INT NOT NULL,
+	ConversionCents INT NOT NULL,
+	Scheduled DATETIME NOT NULL,
+	Status SMALLINT NOT NULL,
+
+	Archive_ID BIGINT NOT NULL,
+
+    CONSTRAINT PK_Line
+		PRIMARY KEY (ID),
+
+	CONSTRAINT UK_Line
+		UNIQUE(Position, Archive_ID),
+
+	CONSTRAINT FK_Line_Archive
+		FOREIGN KEY (Archive_ID)
+		REFERENCES archive (ID)
+);
+
+ALTER TABLE detail
+	ADD Line_ID BIGINT NULL,
+	ADD CONSTRAINT FK_Detail_Line
+		FOREIGN KEY (Line_ID)
+		REFERENCES line (ID);

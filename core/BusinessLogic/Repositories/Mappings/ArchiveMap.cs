@@ -15,6 +15,9 @@ public class ArchiveMap : IAutoMappingOverride<Archive>
 
 		mapping.IgnoreProperty(a => a.Guid);
 
+		mapping.Map(a => a.ExternalId)
+			.UniqueKey("UK_Archive");
+
 		mapping.References(a => a.User)
 			.Not.Nullable();
 
