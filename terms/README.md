@@ -18,6 +18,8 @@ O sistema Don't fly Money, abaixo constando como Sistema, e a pessoa que registr
 
     - Os valores para cada uma das duas moedas precisam ser inseridos pela Pessoa.
 
+- A funcionalidade de Agendamento permite agendar Movimentações para serem criadas no futuro. Existe uma automação executando a cada 15 minutos para inserir as Movimentações de agendamentos pendentes. Se a Pessoa agendar uma Movimentação para uma data passada, esta será criada na próxima vez que esta automação executar.
+
 - Dados apresentados em Sistema e decisões tomadas com base nestes dados são de total responsabilidade da Pessoa:
 
     - Este contrato é firmado apenas com a Pessoa, não com qualquer indivíduo mesmo que esteja relacionado à Pessoa;
@@ -28,7 +30,7 @@ O sistema Don't fly Money, abaixo constando como Sistema, e a pessoa que registr
 
     - E-mail cadastrado pela Pessoa ao se registrar em Sistema, cujo contato é feito somente pelos endereços no-reply@dontflymoney.com - apenas para alertas automatizados - e dfm@dontflymoney.com - para suporte;
 
-    - Sistema web, disponível em https://dontflymoney.com;
+    - Sistema web, disponível em https://dontflymoney.com ;
 
     - Aplicativo para Dispositivos Android 'Don't fly Money', que pode ser instalado via Play Store no endereço https://play.google.com/store/apps/details?id=com.dontflymoney.view .
 
@@ -170,6 +172,8 @@ The Don't fly Money system, below referred as System, and the person who is regi
 
     - The values of both currency need to be input by the Person.
 
+- Schedule feature allow to schedule Moves to be created at the future. There is an automation running every 15 minutes to insert the Moves for the pending Schedules. If the Person schedule a Move for a past date, it will be created in the next time this automation runs.
+
 - System data and decisions made based on this data are sole responsibility of the Person:
 
     - This contract is only agreed with the Person, not with anyone not registered into the System even though related to the Person;
@@ -180,13 +184,13 @@ The Don't fly Money system, below referred as System, and the person who is regi
 
     - E-mail informed by the Person on the registration at the System, which is only contacted by the addresses no-reply@dontflymoney.com - just for automated alerts - and dfm@dontflymoney.com - for support;
 
-    - Website, available at the address https://dontflymoney.com;
+    - Website, available at the address https://dontflymoney.com ;
 
     - Android Mobile App 'Don't fly Money', that can be installed via Play Store at the address https://play.google.com/store/apps/details?id=com.dontflymoney.view .
 
 - The System source code - instructions to computer which rule the System - is hosted at a web address:
 
-    - The address is public: https://github.com/darakeon/dfm;
+    - The address is public: https://github.com/darakeon/dfm ;
 
     - The source code is OPEN and ANY person using uncensored internet access can see it and suggest changes, using a github login.
 
