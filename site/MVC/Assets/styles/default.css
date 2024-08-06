@@ -27,6 +27,10 @@ a.navbar-brand {
 		margin: -1em 0.2em -0.5em 0;
 	}
 
+.navbar-nav {
+	max-width: 564px;
+}
+
 .move-down {
 	margin-top: 25px;
 }
