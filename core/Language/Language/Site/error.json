@@ -119,6 +119,8 @@
 		"ArchiveNotFound": "Archive not found",
 		"LineNotFound": "Line not found",
 		"LineRetryOnlyError": "Line can only be retried on error",
+		"InvalidArchiveName": "Invalid archive name",
+		"InvalidArchiveType": "Invalid archive type",
 		"": null
 	},
 	"pt-BR": {
@@ -241,6 +243,8 @@
 		"ArchiveNotFound": "Arquivo não encontrado",
 		"LineNotFound": "Linha não encontrada",
 		"LineRetryOnlyError": "Linha só pode ser retentada em caso de erro",
+		"InvalidArchiveName": "Nome de arquivo inválido",
+		"InvalidArchiveType": "Tipo de arquivo inválido",
 		"": null
 	}
 }
