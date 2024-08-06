@@ -75,6 +75,8 @@
 	@await Html.PartialAsync("Skeleton/Header")
 
 	<div id="body" class="container" role="main">
+		@await Html.PartialAsync("Skeleton/Now")
+
 		@await Html.PartialAsync("Skeleton/ActivateWarning")
 
 		@if (Model.ShowWizard && Model.HasWizard())

@@ -101,11 +101,11 @@ input[type="date"] {
 		display: none;
 	}
 
-.clock a {
+.clock {
 	font-size: 70%;
-	text-align: center;
-	line-height: 1em !important;
-	cursor: default;
+	text-align: right;
+	position: absolute;
+	right: 20px;
 }
 
 dt {
@@ -211,10 +211,6 @@ dd {
 	#language-modal .en-us .white {
 		stroke: #ffffff;
 	}
-
-.clock > a:hover, .clock > a:focus {
-	text-shadow: none;
-}
 
 :focus {
 	outline: none;
