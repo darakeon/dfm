@@ -1,6 +1,6 @@
 ﻿@model DFM.Generic.Pages.Pages
 
-<ul class="pagination">
+<ul class="pagination pagination-sm">
 
 	<li class="@(Model.HasMoreBack ? null : "disabled")">
 		@Html.ActionLink("«", null, new { id = Model.MoreBack.Url })
