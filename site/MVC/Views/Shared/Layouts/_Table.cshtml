@@ -27,24 +27,26 @@
 @if (!ViewBag.HasContent)
 {
 	<div class="well text-center @ViewBag.NoContentClass">
-		@ViewBag.NoContentText
-	</div>
+		<p>
+			@ViewBag.NoContentText
+		</p>
 
-	if (buttonList != null)
-	{
-		<div id="table-buttons" class="text-center">
-			@foreach (var button in buttonList.OrderByDescending(b => b.PullLeft))
-			{
-				@Html.ActionLink(
-					button.Text,
-					button.Action,
-					button.Controller,
-					null,
-					new {@class = "btn btn-info " + button.Class}
-				)
-			}
-		</div>
-	}
+		@if (buttonList != null)
+		{
+			<div id="table-buttons" class="text-center">
+				@foreach (var button in buttonList.OrderByDescending(b => b.PullLeft))
+				{
+					@Html.ActionLink(
+						button.Text,
+						button.Action,
+						button.Controller,
+						null,
+						new {@class = "btn btn-info btn-sm " + button.Class}
+					)
+				}
+			</div>
+		}
+	</div>
 
 	@* No, it shouldn't be here *@
 	<div class="hidden">
