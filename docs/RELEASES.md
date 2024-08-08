@@ -14,9 +14,10 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐑: at least one little change, as a change at an existing feature (increases third number)
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="13.0.0.0"></a>13.0.0.0 🐉 <sup>`7`</sup>
+## <a name="13.0.0.0"></a>13.0.0.0 🐉 <sup>`8`</sup>
 - [ ] Deploy APKs using CI
 - [ ] Data export (csv) [template]
+- [x] `270807>270807` Adjust menus to avoid responsiviness problem
 - [ ] `240429>......` Data import (csv) (with max request length) [template]
 - [x] `240429>240429` Fix email links and images
 - [x] `240429>240429` Fix sponsor link to open in another window
