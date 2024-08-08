@@ -8,9 +8,11 @@
 
 	var hl = new WizardHL()
 		.AddBox("Explanation", 5)
+		.AddBox("AdminMenu", 6)
 		.AddBox("LoginsMenu", 6)
 		;
 
+	ViewBag.AdminMenuClass = hl["AdminMenu"];
 	ViewBag.LoginsMenuClass = hl["LoginsMenu"];
 }
 
