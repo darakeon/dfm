@@ -363,6 +363,6 @@ insert into migrations (name) values ('12.1.0.0');
 			(@EN, 'en-US', @contract_id);
 -- contract end
 
-update money_dont_fly_database.control set LastAccess = TIMESTAMP('2026-03-27 01:20:00') where LastAccess < DATE('2024-08-04') and ID <> 0
-update money_dont_fly_database.control set RemovalWarningSent = 0 where RemovalWarningSent > 0 and ID <> 0;
-update money_dont_fly_database.control set ProcessingDeletion = 0 where ProcessingDeletion > 0 and ID <> 0;
+update control set LastAccess = TIMESTAMP('2026-03-27 01:20:00') where LastAccess < DATE('2024-08-04') and ID <> 0
+update control set RemovalWarningSent = 0 where RemovalWarningSent > 0 and ID <> 0;
+update control set ProcessingDeletion = 0 where ProcessingDeletion > 0 and ID <> 0;
