@@ -12,13 +12,19 @@
 		}
 	);
 
-	const String menuHL = " wl-other-color";
-	var moveClass = ViewBag.MoveMenuClass + menuHL;
-	var scheduleClass = ViewBag.ScheduleMenuClass + menuHL;
-	var categoriesClass = ViewBag.CategoriesMenuClass + menuHL;
-	var extractClass = ViewBag.ExtractMenuClass + menuHL;
-	var summaryClass = ViewBag.SummaryMenuClass + menuHL;
-	var homeClass = ViewBag.HomeMenuClass + menuHL;
+	String hlClass(dynamic viewBag)
+	{
+		if (viewBag == null) return null;
+		return viewBag + " wl-other-color";
+	}
+
+	var moveClass = hlClass(ViewBag.MoveMenuClass);
+	var scheduleClass = hlClass(ViewBag.ScheduleMenuClass);
+	var categoriesClass = hlClass(ViewBag.CategoriesMenuClass);
+	var reportsClass = hlClass(ViewBag.ReportsMenuClass);
+	var extractClass = hlClass(ViewBag.ExtractMenuClass);
+	var summaryClass = hlClass(ViewBag.SummaryMenuClass);
+	var homeClass = hlClass(ViewBag.HomeMenuClass);
 }
 
 @if (Model.Account.IsOpen)
@@ -40,7 +46,7 @@
 }
 
 <li class="dropdown">
-	<a class="dropdown-toggle @moveClass hide-whl-after-click" data-toggle="dropdown" role="button">
+	<a class="dropdown-toggle @reportsClass hide-whl-after-click" data-toggle="dropdown" role="button">
 		@Context.Translate("Reports")
 	</a>
 
