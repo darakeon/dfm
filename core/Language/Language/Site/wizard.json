@@ -73,7 +73,7 @@
 			"This is a month report.",
 			"If you want to change the month, use the navigation below.",
 			"Here you can see the account balance too.",
-			"Let's check 'Year Summary' clicking at top menu.",
+			"Let's check 'Reports' clicking at top menu then click 'Year Summary'.",
 			null
 		],
 		"Wizard_MovesEdit": [
@@ -117,7 +117,7 @@
 			null
 		],
 		"Wizard_AccountsIndexSchedule": [
-			"...now click into Schedules menu...",
+			"...now click into Administration then Schedules menu...",
 			null
 		],
 		"Wizard_SchedulesIndexFilled": [
@@ -513,7 +513,7 @@
 			"Este é um relatório mensal.",
 			"Quando quiser mudar o mês, use a navegação abaixo.",
 			"Nesta tela também é visível o Saldo atual da conta.",
-			"Vamos ver agora o 'Resumo Anual', clicando no menu to topo.",
+			"Vamos ver agora em 'Relatórios', clicando no menu to topo e clicando em 'Resumo Anual'.",
 			null
 		],
 		"Wizard_MovesEdit": [
@@ -557,7 +557,7 @@
 			null
 		],
 		"Wizard_AccountsIndexSchedule": [
-			"...clique no menu de Agendamentos...",
+			"...clique no menu de Administração e então em Agendamentos...",
 			null
 		],
 		"Wizard_SchedulesIndexFilled": [

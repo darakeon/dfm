@@ -18,6 +18,7 @@
 		.AddBox("Edit", 1, null)
 		.AddBox("Disable", 2, null)
 		.AddBox("Unify", 3, null)
+		.AddBox("Admin", 4, null)
 		.AddBox("Accounts", 4, null);
 
 	ViewBag.Buttons = new List<Button>
@@ -25,6 +26,7 @@
 		new(createCategoryLabel, "Create", hl["New"])
 	};
 
+	ViewBag.AdminMenuClass = hl["Admin"];
 	ViewBag.AccountsMenuClass = hl["Accounts"];
 }
 

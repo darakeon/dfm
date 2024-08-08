@@ -26,6 +26,7 @@
 		.AddBox("CloseButton", null, null, null, null, null, null, null, null, 3, null)
 		.AddBox("Name", null, null, null, 0, null, null, 0, null, 4, null)
 		.AddBox("Reports", null, null, null, 0, null, null, 0, null, 4, null)
+		.AddBox("AdminMenu", null, null, null, null, null, null, null, 0, null, null)
 		.AddBox("SchedulesMenu", null, null, null, null, null, null, null, 0, null, null)
 		.AddBox("Sign", null, null, null, null, null, 0, null, null, null, null)
 		.AddBox("SignSome", null, null, null, null, 0, null, null, null, null, null)
@@ -70,6 +71,7 @@
 	}
 
 	ViewBag.TitleClass = hl["TitleClass"];
+	ViewBag.AdminMenuClass = hl["AdminMenu"];
 	ViewBag.SchedulesMenuClass = hl["SchedulesMenu"];
 
 	var createAccountLabel = anyAccount

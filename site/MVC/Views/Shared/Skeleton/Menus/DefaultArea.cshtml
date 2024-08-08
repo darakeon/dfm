@@ -1,14 +1,17 @@
 ﻿@model BaseSiteModel
 
 @{
-	const String menuHL = " wl-other-color";
+	String hlClass(dynamic viewBag)
+	{
+		if (viewBag == null) return null;
+		return viewBag + " wl-other-color";
+	}
 
-	var adminClass = ViewBag.AdminMenuClass + menuHL;
-
-	var schedulesClass = ViewBag.SchedulesMenuClass + menuHL;
-	var accountsClass = ViewBag.AccountsMenuClass + menuHL;
-	var categoriesClass = ViewBag.CategoriesMenuClass + menuHL;
-	var loginsClass = ViewBag.LoginsMenuClass + menuHL;
+	var adminClass = hlClass(ViewBag.AdminMenuClass);
+	var schedulesClass = hlClass(ViewBag.SchedulesMenuClass);
+	var accountsClass = hlClass(ViewBag.AccountsMenuClass);
+	var categoriesClass = hlClass(ViewBag.CategoriesMenuClass);
+	var loginsClass = hlClass(ViewBag.LoginsMenuClass);
 }
 
 <li class="dropdown">
