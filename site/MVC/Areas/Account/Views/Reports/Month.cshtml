@@ -23,6 +23,8 @@
 		hasForeseenMoves, hasMoves
 	)
 		.AddBox("MoveMenuClass", 0, null, 1, null, null, null, null, null, 2)
+		.AddBox("ReportsMenuClass", null, null, null, 1, null, null, null, 5, null)
+		.AddBox("ExtractMenuClass", null, null, null, null, null, null, null, null, null)
 		.AddBox("SummaryMenuClass", null, null, null, null, null, null, null, 5, null)
 		.AddBox("HomeMenuClass", null, null, null, null, null, null, 4, null, null)
 		.AddBox("TitleClass", null, null, null, null, null, null, null, 2, null)
@@ -64,6 +66,8 @@
 		.AddBox("MoveCheck", null, null, null, null, null, null, null, null);
 
 	ViewBag.MoveMenuClass = hl["MoveMenuClass"];
+	ViewBag.ReportsMenuClass = hl["ReportsMenuClass"];
+	ViewBag.ExtractMenuClass = hl["ExtractMenuClass"];
 	ViewBag.SummaryMenuClass = hl["SummaryMenuClass"];
 	ViewBag.HomeMenuClass = hl["HomeMenuClass"];
 	ViewBag.CategoriesMenuClass = hl["CategoriesMenuClass"];

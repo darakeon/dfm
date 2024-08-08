@@ -47,12 +47,14 @@
 		.AddBox("EnableCategories", null, null, null, null, null, null, null, 9)
 		.AddBox("EnableAccountSigns", null, null, null, null, null, 0, null, null)
 		.AddBox("EnableMoveCheck", null, null, null, 5, null, null, null, null)
-		.AddBox("EnableCurrency", null, 2, null, 5, null, null, null, null)
+		.AddBox("EnableCurrency", null, 2, null, null, null, null, null, null)
+		.AddBox("AdminMenu", 0, null, 0, null, 0, null, 0, null)
 		.AddBox("CategoriesMenu", null, null, null, null, null, null, 0, null)
 		.AddBox("AccountsMenu", 0, null, 0, null, 0, null, null, null)
 		.AddBox("Save", null, null, null, null, null, 1, null, 10)
 		;
 
+	ViewBag.AdminMenuClass = hl["AdminMenu"];
 	ViewBag.CategoriesMenuClass = hl["CategoriesMenu"];
 	ViewBag.AccountsMenuClass = hl["AccountsMenu"];
 
