@@ -11,6 +11,11 @@
 	var formSizeLg = ViewBag.FormSizeLg ?? 4;
 	if (formSizeLg % 2 == 1) { formSizeLg++; }
 	var pushLg = 6 - formSizeLg / 2;
+
+	var html =
+		ViewBag.HasFile is true
+			? new { enctype = "multipart/form-data" }
+			: null;
 }
 
 <div class="row move-down">
@@ -26,7 +31,7 @@
 				</h1>
 			</div>
 
-			@using (Html.BeginForm(action, controller, routeValues))
+			@using (Html.BeginForm(action, controller, routeValues, FormMethod.Post, true, html))
 			{
 				@Html.AntiForgeryToken()
 

@@ -1,0 +1,85 @@
+﻿@model ArchivesIndexModel
+
+@{
+	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
+
+	var hasArchives = Model.ArchiveList.Any();
+
+	ViewBag.Title = Context.Translate("Archives");
+
+	ViewBag.HasContent = hasArchives;
+	ViewBag.NoContentText = Context.Translate("NoArchives");
+	ViewBag.NoContentClass = "";//hl["NoContent"];
+
+	var hl = new WizardHL(hasArchives)
+		.AddBox("SettingsMenu", null, 3)
+		.AddBox("SettingsMainMenu", null, 3)
+		.AddBox("TemplateButton", null, 4)
+		.AddBox("CreateButton", null, 5)
+		.AddBox("Row", 0, null)
+		.AddBox("Filename", 1, null)
+		.AddBox("Uploaded", 2, null)
+		.AddBox("Status", 3, null)
+		.AddBox("Lines", 4, null)
+		;
+
+	ViewBag.SettingsMenuClass = hl["SettingsMenu"];
+	ViewBag.SettingsMainMenuClass = hl["SettingsMainMenu"];
+
+	var importFileName = "import_moves";
+	if (Model.IsUsingCategories)
+		importFileName += "_categories";
+	if (Model.IsUsingCurrency)
+		importFileName += "_conversions";
+
+	var buttons = new List<Button>
+	{
+		Button.ForAsset(
+			Context.Translate("Download", "Template"),
+			$"templates/{importFileName}.csv",
+			hl["TemplateButton"],
+			true
+			),
+		Button.ForAction(
+			Context.Translate("Upload", "Archive"),
+			"Upload",
+			hl["CreateButton"]
+		),
+	};
+
+	ViewBag.Buttons = buttons;
+}
+
+@section TableHeader
+{
+	<tr class="row">
+		<th class="col-sm-6">@Context.Translate("Filename")</th>
+		<th class="col-sm-2">@Context.Translate("Uploaded")</th>
+		<th class="col-sm-2 text-center">@Context.Translate("Status")</th>
+		<th class="col-sm-2 text-center">@Context.Translate("TODO")</th>
+	</tr>
+}
+
+@foreach (var archive in Model.ArchiveList)
+{
+	<tr class="row @hl["Row"]">
+		<td class="col-sm-6 @hl["Filename"]">
+			@archive.Filename
+		</td>
+
+		<td class="col-sm-2 @hl["Uploaded"]">
+			@archive.Uploaded
+		</td>
+
+		<td class="col-sm-2 text-center @hl["Status"]">
+			@await Html.PartialAsync("ImportStatus", archive.Status)
+		</td>
+
+		<td class="col-sm-2 text-center @hl["Lines"]">
+			<a href="@Url.Action("Lines", new { id = archive.Guid })">
+				<span class="glyphicon glyphicon-th-list"
+					title="@Context.Translate("ArchiveLines").Format(archive.Filename)"></span>
+			</a>
+		</td>
+	</tr>
+}

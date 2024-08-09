@@ -1,0 +1,35 @@
+﻿@model ArchivesUploadModel
+
+@{
+	ViewBag.Title = Context.Translate("Upload", "Archive");
+	ViewBag.HasFile = true;
+
+	var hasErrors = !Html.ViewData.ModelState.IsValid;
+
+	if (hasErrors)
+	{
+		ViewBag.WizardPlus = "Error";
+	}
+
+	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
+
+	var hl = new WizardHL(hasErrors)
+		.AddBox("Filename", 2, 0)
+		.AddBox("Button", 2, 1)
+		.AddBox("Errors", 0, null)
+		;
+
+	ViewBag.FormErrorsClass = hl["Errors"];
+}
+
+<div class="form-group">
+	@Html.LabelFor(m => m.File, Context.Translate("Name"), new { @class = "control-label" })
+	@Html.TextBoxFor(m => m.File, new { type = "file", maxlength = MaxLen.ArchiveFileName, @class = "form-control " + hl["Filename"] })
+	<small>@String.Format(Context.Translate("CharactersMax"), MaxLen.ArchiveFileName)</small>
+</div>
+
+@section Footer {
+	<button class="btn btn-success @hl["Button"]" type="submit">
+		@Context.Translate("Upload")
+	</button>
+}

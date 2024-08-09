@@ -33,6 +33,10 @@
 		"EnableWizard": "Enable Wizard",
 		"Continue": "Continue",
 		"Conversion": "Conversion",
+		"Pending": "Pending",
+		"Success": "Success",
+		"Error": "Error",
+		"Retry": "Try again",
 
 		"Status": "Status",
 		"Available": "Available",
@@ -56,6 +60,7 @@
 		"Settings": "Settings",
 		"Administration": "Administration",
 		"Reports": "Reports",
+		"Import": "Import",
 		"Code": "Code",
 		"WipedData": "Deleted Data",
 
@@ -215,6 +220,10 @@
 		"EnableWizard": "Habilitar Tutorial",
 		"Continue": "Continuar",
 		"Conversion": "Conversão",
+		"Pending": "Pendente",
+		"Success": "Sucesso",
+		"Error": "Erro",
+		"Retry": "Tentar novamente",
 
 		"Status": "Status",
 		"Available": "Disponível",
@@ -238,6 +247,7 @@
 		"Settings": "Configurações",
 		"Administration": "Administração",
 		"Reports": "Relatórios",
+		"Import": "Importação",
 		"Code": "Código",
 		"WipedData": "Dados removidos",
 
