@@ -8,9 +8,10 @@
 	}
 
 	var adminClass = hlClass(ViewBag.AdminMenuClass);
-	var schedulesClass = hlClass(ViewBag.SchedulesMenuClass);
 	var accountsClass = hlClass(ViewBag.AccountsMenuClass);
 	var categoriesClass = hlClass(ViewBag.CategoriesMenuClass);
+	var schedulesClass = hlClass(ViewBag.SchedulesMenuClass);
+	var archivesClass = hlClass(ViewBag.ArchivesMenuClass);
 	var loginsClass = hlClass(ViewBag.LoginsMenuClass);
 }
 
@@ -44,6 +45,14 @@
 				Context.Translate("Schedules"),
 				"Index", "Schedules",
 				null, new { @class = $"text-right {schedulesClass}" }
+			)
+		</li>
+
+		<li>
+			@Html.ActionLink(
+				Context.Translate("Import"),
+				"Index", "Archives",
+				null, new { @class = $"text-right {archivesClass}" }
 			)
 		</li>
 
