@@ -49,6 +49,14 @@
 
 		<li>
 			@Html.ActionLink(
+				Context.Translate("Import"),
+				"Index", "Archives",
+				null, new { @class = $"text-right {schedulesClass}" }
+			)
+		</li>
+
+		<li>
+			@Html.ActionLink(
 				Context.Translate("Logins"),
 				"Index", "Logins",
 				null, new { @class = $"text-right {loginsClass}" }

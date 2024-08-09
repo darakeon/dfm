@@ -1,0 +1,16 @@
+{
+	"en-US": {
+		"Archive": "Archive",
+		"Archives": "Archives",
+		"Upload": "Upload",
+		"NoArchives": "There's no Archives yet.",
+		"": null
+	},
+	"pt-BR": {
+		"Archive": "Arquivo",
+		"Archives": "Arquivos",
+		"Upload": "Subir",
+		"NoArchives": "Não há Arquivos ainda.",
+		"": null
+	}
+}

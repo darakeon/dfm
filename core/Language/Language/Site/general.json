@@ -56,6 +56,7 @@
 		"Settings": "Settings",
 		"Administration": "Administration",
 		"Reports": "Reports",
+		"Import": "Import",
 		"Code": "Code",
 		"WipedData": "Deleted Data",
 
@@ -238,6 +239,7 @@
 		"Settings": "Configurações",
 		"Administration": "Administração",
 		"Reports": "Relatórios",
+		"Import": "Importação",
 		"Code": "Código",
 		"WipedData": "Dados removidos",
 
