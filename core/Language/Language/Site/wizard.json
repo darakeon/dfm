@@ -130,6 +130,51 @@
 		"Wizard_SchedulesIndexEmpty": [
 			"Now you have no schedules to be run.",
 			"To make more in another time go to Accounts screen and enter in the account where you want them.",
+			"There is one more way to add moves to the System.",
+			"Click on Administration then Import.",
+			null
+		],
+		"Wizard_ArchivesIndexEmpty": [
+			"Sometimes one can have financial data in archives and inserting each move manually can be hard.",
+			"This part of the System is for importing archives to create moves.",
+			"Not everyone need to import moves via files to the System.",
+			"If you want to skip this part of the wizard, go to Settings > Main Options.",
+			"But if you want to learn more about import, you can download a template clicking at this button.",
+			"Then let's make an upload using the template file.",
+			null
+		],
+		"Wizard_ArchivesUpload": [
+			"After filling the downloaded template file with your own data, you can upload the file.",
+			"Use the template to see how it works.",
+			null
+		],
+		"Wizard_ArchivesUploadError": [
+			"Seems like the file contains errors.",
+			"Each error has the number of the line where the error is.",
+			"Fix the file and try to upload it again.",
+			null
+		],
+		"Wizard_ArchivesIndexFilled": [
+			"Now that you uploaded a file, it is being processed.",
+			"You can check the original file name, ...",
+			"... the date and time it was uploaded ...",
+			"... and the current processing status.",
+			"Click in icon to check the details of the lines imported.",
+			null
+		],
+		"Wizard_ArchivesLinesEmpty": [
+			"Something went wrong, an Archive should always have Lines.",
+			"Please contact us if you believe this can be a problem for you.",
+			"If not, let's keep going with Wizard. Click Settings > Main Options.",
+			null
+		],
+		"Wizard_ArchivesLinesFilled": [
+			"Here you will see more details of the imported content.",
+			"Each line will become a Move in the System.",
+			"It is possible to check the line position in the original file.",
+			"The importation status will appear for each line.",
+			"In case of error, you will see a button for retry.",
+			"So now you will only need to wait to the System to finish importing everything.",
 			"We have more options in the system, let's check Settings > Main Options.",
 			null
 		],
@@ -570,6 +615,51 @@
 		"Wizard_SchedulesIndexEmpty": [
 			"Agora não há mais agendamentos para rodar.",
 			"Para fazer mais, vá outra hora até a tela de Contas e entre na conta onde quer agendamentos.",
+			"Existe mais uma forma de adicionar Movimentações no Sistema.",
+			"Clique em Administração e então em Importação.",
+			null
+		],
+		"Wizard_ArchivesIndexEmpty": [
+			"Às vezes uma pessoa pode ter dados em arquivos e inserir manualmente cada Movimentação pode ser difícil.",
+			"Esta parte do Sistema serve para importar arquivos para criar Movimentações.",
+			"Nem todo mundo precisa importar Movimentações via arquivos no Sistema.",
+			"Se quiser pular essa parte do Tutorial, vá em Configurações e clique em Opções Gerais.",
+			"Mas se quiser aprender sobre Importação, você pode baixar um modelo clicando neste botão.",
+			"E então criar Movimentações subindo um arquivo usando o modelo.",
+			null
+		],
+		"Wizard_ArchivesUpload": [
+			"Depois de preencher o modelo baixado com seus dados, você pode subir o arquivo novamente.",
+			"Use o modelo para testar como funciona.",
+			null
+		],
+		"Wizard_ArchivesUploadError": [
+			"Parece que o arquivo contém erros.",
+			"Cada error tem o número da linha onde ele se encontra no arquivo.",
+			"Corrija o arquivo e tente novamente.",
+			null
+		],
+		"Wizard_ArchivesIndexFilled": [
+			"Agora que você subiu o arquivo ele está sendo processado.",
+			"Você pode ver o nome original do arquivo, ...",
+			"... data e hora em que foi subido ...",
+			"... e o estado atual de processamento.",
+			"Clique no ícone para verificar mais detalhes das linhas importadas.",
+			null
+		],
+		"Wizard_ArchivesLinesEmpty": [
+			"Algo está errado, um arquivo sempre deveria ter linhas.",
+			"Por favor nos contate se acredita que isso possa ser um problema para você.",
+			"Se não, vamos seguir com o Tutorial. Clique em Configurações > Opções Gerais.",
+			null
+		],
+		"Wizard_ArchivesLinesFilled": [
+			"Aqui você pode ver mais detalhes do conteúdo importado.",
+			"Cada linha irá se tornar uma Movimentação no Sistema.",
+			"É possível ver a posição da linha no arquivo original.",
+			"O estado de importação aparecerá para cada linha.",
+			"Em caso de erro, você verá um botão para tentar novamente.",
+			"Agora tudo que você precisa fazer é esperar o Sistema terminar de importar tudo.",
 			"Existem mais opções no sistema, vamos até Configurações > Opções Gerais.",
 			null
 		],

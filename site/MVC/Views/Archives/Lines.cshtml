@@ -1,0 +1,102 @@
+﻿@model ArchivesLinesModel
+
+@{
+	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
+
+	var hasLines = Model.LineList.Any();
+
+	ViewBag.Title = Context.Translate("ArchiveLines");
+	ViewBag.Subtitle = Model.ArchiveName;
+
+	ViewBag.HasContent = hasLines;
+	ViewBag.NoContentText = Context.Translate("NoLines");
+	
+	var hl = new WizardHL(hasLines)
+		.AddBox("Row", 1, null)
+		.AddBox("Position", 2, null)
+		.AddBox("Status", 3, null)
+		.AddBox("Retry", 4, null)
+		.AddBox("SettingsMenu", 6, 2)
+		.AddBox("SettingsMainMenu", 6, 2)
+		.AddBox("NoContent", null, 0)
+		.AddBox("Contact", null, 1)
+		;
+	
+	ViewBag.SettingsMenuClass = hl["SettingsMenu"];
+	ViewBag.SettingsMainMenuClass = hl["SettingsMainMenu"];
+	ViewBag.NoContentClass = hl["NoContent"];
+	ViewBag.ContactMenuClass = hl["Contact"];
+
+	var noAction = "-";
+}
+
+@section TableHeader
+{
+	<tr class="row">
+		<th class="col-sm-1">@Context.Translate("Position")</th>
+		<th class="col-sm-3">@Context.Translate("Description")</th>
+		<th class="col-sm-2 text-center">@Context.Translate("Account")</th>
+		<th class="col-sm-2 text-center">@Context.Translate("Category")</th>
+		<th class="col-sm-2 text-center">@Context.Translate("Value")</th>
+		<th class="col-sm-1 text-center">@Context.Translate("Status")</th>
+		<th class="col-sm-1 text-center">@Context.Translate("TODO")</th>
+	</tr>
+}
+
+@foreach (var line in Model.LineList)
+{
+	var value = line.Value ?? line.DetailList.Sum(d => d.Amount * d.Value);
+
+	<tr class="row @hl["Row"]">
+		<td class="col-sm-1 @hl["Position"]">
+			@line.Position
+		</td>
+
+		<td class="col-sm-3">
+			@line.Description
+		</td>
+
+		<td class="col-sm-2 text-center">
+			@line.Out
+			@if (!String.IsNullOrEmpty(line.In) && !String.IsNullOrEmpty(line.Out))
+			{
+				@(" > ")
+			}
+			@line.In
+		</td>
+
+		<td class="col-sm-2 text-center">
+			@line.Category
+		</td>
+
+		<td class="col-sm-2 text-right">
+			@await Html.PartialAsync(
+				"Extensions/ValueWithSign",
+				new ValueWithSign(value, Model.Language)
+			)
+		</td>
+
+		<td class="col-sm-1 text-center @hl["Status"]">
+			<span id="l@(line.Position)">
+				@await Html.PartialAsync("ImportStatus", line.Status)
+			</span>
+		</td>
+
+		<td class="col-sm-1 text-center @hl["Retry"]" id="bl@(line.Position)">
+			@if (line.Status == ImportStatus.Error)
+			{
+				@await Html.PartialAsync(
+					"Extensions/MicroForm",
+					MicroForm.WithGlyph(Context, "flash", "Retry")
+						.AddIdUrl("Archives", "RetryLine", Model.ArchiveGuid)
+						.AddHidden("position", line.Position)
+						.AsAjax($"l{line.Position}", $"bl{line.Position}", noAction)
+				)
+			}
+			else
+			{
+				@noAction
+			}
+		</td>
+	</tr>
+}

@@ -50,6 +50,8 @@ namespace DFM.MVC.Helpers.Views
 
 		public Boolean Ajax { get; private set; }
 		public String UpdateTargetId { get; private set; }
+		public String ResetTargetId { get; private set; }
+		public String ResetText { get; private set; }
 
 		public IDictionary<String, Object> HiddenList { get; }
 
@@ -146,6 +148,13 @@ namespace DFM.MVC.Helpers.Views
 			Ajax = true;
 			UpdateTargetId = updateTargetId;
 			return this;
+		}
+
+		public MicroForm AsAjax(String updateTargetId, String resetTargetId, String resetText)
+		{
+			ResetTargetId = resetTargetId;
+			ResetText = resetText;
+			return AsAjax(updateTargetId);
 		}
 
 		public MicroForm EntityName(String entity)

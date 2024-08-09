@@ -15,17 +15,15 @@
 		.AddBox("Deleted", 2, null)
 		.AddBox("Delete", 3, null)
 		.AddBox("NoContent", null, 0)
-		.AddBox("Accounts", null, 1)
-		.AddBox("Settings", null, 2)
-		.AddBox("SettingsMain", null, 2);
+		.AddBox("AdminMenu", null, 3)
+		.AddBox("ArchivesMenu", null, 3);
 
 	ViewBag.HasContent = anySchedules;
 	ViewBag.NoContentText = Context.Translate("NoSchedules");
 	ViewBag.NoContentClass = hl["NoContent"];
 	
-	ViewBag.AccountsMenuClass = hl["Accounts"];
-	ViewBag.SettingsMenuClass = hl["Settings"];
-	ViewBag.SettingsMainMenuClass = hl["SettingsMain"];
+	ViewBag.AdminMenuClass = hl["AdminMenu"];
+	ViewBag.ArchivesMenuClass = hl["ArchivesMenu"];
 
 	var useCategories = Model.IsUsingCategories;
 	var descriptionSize = useCategories ? 2 : 3;
