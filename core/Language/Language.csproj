@@ -22,6 +22,7 @@
     <None Remove="Language\Email\UserVerification.json" />
     <None Remove="Language\Email\WipeNotice.json" />
     <None Remove="Language\Site\accounts.json" />
+    <None Remove="Language\Site\archives.json" />
     <None Remove="Language\Site\categories.json" />
     <None Remove="Language\Site\email.json" />
     <None Remove="Language\Site\error.json" />
@@ -81,6 +82,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Language\Site\accounts.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Language\Site\archives.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Language\Site\categories.json">
