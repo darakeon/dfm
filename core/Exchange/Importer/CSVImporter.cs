@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
@@ -20,9 +21,11 @@ namespace DFM.Exchange.Importer
 				return;
 			}
 
+			content = content.Replace("\r", "\n");
+
 			using TextReader reader = new StringReader(content);
 
-			var config = new CsvConfiguration(CultureInfo.CurrentCulture)
+			var config = new CsvConfiguration(CultureInfo.InvariantCulture)
 			{
 				MissingFieldFound = null,
 				HeaderValidated = null,
