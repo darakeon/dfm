@@ -38,6 +38,8 @@
 	ViewBag.TitleClass = hl["TitleClass"];
 	ViewBag.AdminMenuClass = hl["AdminMenu"];
 	ViewBag.SchedulesMenuClass = hl["SchedulesMenu"];
+
+	var noAction = "-";
 }
 
 @section TableHeader
@@ -82,12 +84,12 @@
 		</td>
 
 		<td class="col-sm-1 text-center">
-			<span class="@hl["Status"]">
+			<span class="@hl["Status"]" id="l@(line.Position)">
 				@await Html.PartialAsync("ImportStatus", line.Status)
 			</span>
 		</td>
 
-		<td class="col-sm-1 text-center @hl["Retry"]">
+		<td class="col-sm-1 text-center @hl["Retry"]" id="bl@(line.Position)">
 			@if (line.Status == ImportStatus.Error)
 			{
 				@await Html.PartialAsync(
@@ -95,12 +97,12 @@
 					MicroForm.WithGlyph(Context, "flash", "Retry")
 						.AddIdUrl("Archives", "RetryLine", Model.ArchiveGuid)
 						.AddHidden("position", line.Position)
-						.AsAjax($"m{Model.ArchiveGuid}{line.Position}")
+						.AsAjax($"l{line.Position}", $"bl{line.Position}", noAction)
 				)
 			}
 			else
 			{
-				@("-")
+				@noAction
 			}
 		</td>
 	</tr>

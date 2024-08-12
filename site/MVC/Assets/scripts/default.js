@@ -52,6 +52,14 @@
 	$('input[type="text"]').first().trigger('focus')
 })
 
+function microFormSuccess(response, result, promise, a) {
+	checkIfReload(response)
+
+	const resetId = $(this).data('ajax-reset-id')
+	const resetText = $(this).data('ajax-reset-text')
+	$(resetId).html(resetText)
+}
+
 function checkIfReload(response) {
 	if (response === ' ')
 		history.go(0)
