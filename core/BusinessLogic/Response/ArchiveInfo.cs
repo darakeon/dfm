@@ -9,6 +9,7 @@ public class ArchiveInfo
 {
 	public Guid Guid { get; set; }
 	public String Filename { get; set; }
+	public DateTime Uploaded { get; set; }
 	public ImportStatus Status { get; set; }
 
 	public Int64 LineCount { get; set; }
@@ -19,12 +20,14 @@ public class ArchiveInfo
 		{
 			Guid = Guid,
 			Filename = Filename,
+			Uploaded = Uploaded,
 			Status = Status,
 		};
 		set
 		{
 			Guid = value.Guid;
 			Filename = value.Filename;
+			Uploaded = value.Uploaded;
 			Status = value.Status;
 		}
 	}
