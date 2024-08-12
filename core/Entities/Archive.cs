@@ -12,6 +12,7 @@ public class Archive : IEntityLong
 
 	public virtual String Filename { get; set; }
 
+	public virtual DateTime Uploaded { get; set; }
 	public virtual ImportStatus Status { get; set; }
 
 	public virtual User User { get; set; }

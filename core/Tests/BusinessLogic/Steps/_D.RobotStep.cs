@@ -747,6 +747,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				.SingleOrDefault(a => a.User == user);
 
 			Assert.That(archive, Is.Not.Null);
+			Assert.That(archive.Uploaded, Is.Not.EqualTo(DateTime.MinValue));
 
 			var csvLines = csvContent.Trim().Split("\n");
 			var hasConversion = csvLines[0].Contains(",Conversion,");
