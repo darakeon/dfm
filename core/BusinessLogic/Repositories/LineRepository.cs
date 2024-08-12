@@ -26,7 +26,6 @@ internal class LineRepository : Repo<Line>
 		return NewQuery()
 			.LeftJoin(l => l.Archive)
 			.Where(l => l.Archive.User == user)
-			.OrderBy(l => l.ID, false)
 			.TransformResult<ArchiveInfo>()
 			.GroupBy(l => l.Archive, ai => ai.Archive)
 			.Count(l => l.ID, ai => ai.LineCount)
