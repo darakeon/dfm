@@ -392,11 +392,11 @@ create table line (
 	Description VARCHAR(50) NOT NULL,
 	Date DATE NOT NULL,
 	Category VARCHAR(20) NOT NULL,
-	Nature SMALLINT NOT NULL,
+	Nature SMALLINT NULL,
 	In_ VARCHAR(20) NOT NULL,
 	Out_ VARCHAR(20) NOT NULL,
 	ValueCents INT NOT NULL,
-	ConversionCents INT NOT NULL,
+	ConversionCents INT NULL,
 	Scheduled DATETIME NOT NULL,
 	Status SMALLINT NOT NULL,
 
