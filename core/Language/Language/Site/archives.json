@@ -11,6 +11,7 @@
 		"ArchiveLines": "Archive Lines",
 		"NoLines": "There's no Lines in this Archive.",
 		"Position": "Position",
+		"Retry": "Try again",
 		"": null
 	},
 	"pt-BR": {
@@ -25,6 +26,7 @@
 		"ArchiveLines": "Linhas do Arquivo",
 		"NoLines": "Não há Linhas nesse Arquivo.",
 		"Position": "Posição",
+		"Retry": "Tentar novamente",
 		"": null
 	}
 }
