@@ -2,15 +2,29 @@
 	"en-US": {
 		"Archive": "Archive",
 		"Archives": "Archives",
-		"Upload": "Upload",
 		"NoArchives": "There's no Archives yet.",
+		"Filename": "File name",
+		"Upload": "Upload",
+		"Pending": "Pending",
+		"Success": "Success",
+		"Error": "Error",
+		"ArchiveLines": "Archive Lines",
+		"NoLines": "There's no Lines in this Archive.",
+		"Position": "Position",
 		"": null
 	},
 	"pt-BR": {
 		"Archive": "Arquivo",
 		"Archives": "Arquivos",
-		"Upload": "Subir",
 		"NoArchives": "Não há Arquivos ainda.",
+		"Filename": "Nome do arquivo",
+		"Upload": "Subir",
+		"Pending": "Pendente",
+		"Success": "Sucesso",
+		"Error": "Erro",
+		"ArchiveLines": "Linhas do Arquivo",
+		"NoLines": "Não há Linhas nesse Arquivo.",
+		"Position": "Posição",
 		"": null
 	}
 }

@@ -12,15 +12,14 @@
 	ViewBag.NoContentClass = "";//hl["NoContent"];
 
 	var hl = new WizardHL(hasArchives)
-		.AddBox("WizardButton", null, null)
-		.AddBox("StopButton", null, null)
+		.AddBox("Filename", null, null)
 		.AddBox("TitleClass", null, null)
 		.AddBox("NoContent", null, null)
 		.AddBox("CreateButton", null, null)
 		.AddBox("Row", null, null)
 		.AddBox("Edit", null, null)
-		.AddBox("DeleteButton", null, null)
-		.AddBox("CloseButton", null, null)
+		.AddBox("Status", null, null)
+		.AddBox("Lines", null, null)
 		.AddBox("Name", null, null)
 		.AddBox("Reports", null, null)
 		.AddBox("AdminMenu", null, null)
@@ -49,26 +48,26 @@
 @section TableHeader
 {
 	<tr class="row">
-		<th class="col-sm-1">@Context.Translate("Name")</th>
+		<th class="col-sm-8">@Context.Translate("Filename")</th>
 		<th class="col-sm-2 text-center">@Context.Translate("Status")</th>
-		<th class="col-sm-3 text-center">@Context.Translate("TODO")</th>
+		<th class="col-sm-2 text-center">@Context.Translate("TODO")</th>
 	</tr>
 }
 
 @foreach (var archive in Model.ArchiveList)
 {
 	<tr class="row @hl["Row"]">
-		<td class="col-sm-1 @hl["Filename"]">
+		<td class="col-sm-8 @hl["Filename"]">
 			@archive.Filename
 		</td>
 
-		<td class="col-sm-2 text-right">
-			<span class="pull-left @hl["Status"]">
+		<td class="col-sm-2 text-center">
+			<span class="@hl["Status"]">
 				@await Html.PartialAsync("ImportStatus", archive.Status)
 			</span>
 		</td>
 
-		<td class="col-sm-1 text-center @hl["Reports"]">
+		<td class="col-sm-2 text-center @hl["Lines"]">
 			<a href="@Url.Action("Lines", new { id = archive.Guid })">
 				<span class="glyphicon glyphicon-th-list"
 					title="@Context.Translate("ArchiveLines").Format(archive.Filename)"></span>

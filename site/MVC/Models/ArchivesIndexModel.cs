@@ -6,5 +6,5 @@ namespace DFM.MVC.Models;
 public class ArchivesIndexModel : BaseSiteModel
 {
 	public IList<ArchiveInfo> ArchiveList { get; set; }
-		= new List<ArchiveInfo>();
+		= service.Robot.GetArchiveList();
 }

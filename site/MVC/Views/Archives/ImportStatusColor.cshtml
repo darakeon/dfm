@@ -1,0 +1,16 @@
+﻿@model ImportStatus
+@switch (Model)
+{
+	case ImportStatus.Pending:
+		@("warning")
+		break;
+	case ImportStatus.Success:
+		@("success")
+		break;
+	case ImportStatus.Error:
+		@("danger")
+		break;
+	default:
+		@("default")
+		break;
+}

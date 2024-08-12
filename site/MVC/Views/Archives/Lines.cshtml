@@ -1,0 +1,108 @@
+﻿@model ArchivesLinesModel
+
+@{
+	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
+
+	var hasLines = Model.LineList.Any();
+
+	ViewBag.Title = Context.Translate("ArchiveLines");
+
+	ViewBag.HasContent = hasLines;
+	ViewBag.NoContentText = Context.Translate("NoLines");
+	ViewBag.NoContentClass = "";//hl["NoContent"];
+
+	var hl = new WizardHL(hasLines)
+		.AddBox("WizardButton", null, null)
+		.AddBox("StopButton", null, null)
+		.AddBox("TitleClass", null, null)
+		.AddBox("NoContent", null, null)
+		.AddBox("CreateButton", null, null)
+		.AddBox("Row", null, null)
+		.AddBox("Edit", null, null)
+		.AddBox("DeleteButton", null, null)
+		.AddBox("CloseButton", null, null)
+		.AddBox("Name", null, null)
+		.AddBox("Reports", null, null)
+		.AddBox("AdminMenu", null, null)
+		.AddBox("SchedulesMenu", null, null)
+		.AddBox("Sign", null, null)
+		.AddBox("SignSome", null, null)
+		.AddBox("SettingsMenu", null, null)
+		.AddBox("SettingsMainMenu", null, null)
+		.AddBox("Position", null, null)
+		.AddBox("Description", null, null)
+		.AddBox("Status", null, null)
+		.AddBox("Retry", null, null)
+		;
+
+	ViewBag.TitleClass = hl["TitleClass"];
+	ViewBag.AdminMenuClass = hl["AdminMenu"];
+	ViewBag.SchedulesMenuClass = hl["SchedulesMenu"];
+}
+
+@section TableHeader
+{
+	<tr class="row">
+		<th class="col-sm-1">@Context.Translate("Position")</th>
+		<th class="col-sm-2">@Context.Translate("Description")</th>
+		<th class="col-sm-2">@Context.Translate("Out")</th>
+		<th class="col-sm-2">@Context.Translate("In")</th>
+		<th class="col-sm-2">@Context.Translate("Category")</th>
+		<th class="col-sm-1">@Context.Translate("Value")</th>
+		<th class="col-sm-1 text-center">@Context.Translate("Status")</th>
+		<th class="col-sm-1 text-center">@Context.Translate("TODO")</th>
+	</tr>
+}
+
+@foreach (var line in Model.LineList)
+{
+	<tr class="row @hl["Row"]">
+		<td class="col-sm-1 @hl["Position"]">
+			@line.Position
+		</td>
+
+		<td class="col-sm-2 @hl["Description"]">
+			@line.Description
+		</td>
+
+		<td class="col-sm-2">
+			@line.Out
+		</td>
+
+		<td class="col-sm-2">
+			@line.In
+		</td>
+
+		<td class="col-sm-2">
+			@line.Category
+		</td>
+
+		<td class="col-sm-1">
+			@line.Value
+		</td>
+
+		<td class="col-sm-1 text-center">
+			<span class="@hl["Status"]">
+				@await Html.PartialAsync("ImportStatus", line.Status)
+			</span>
+		</td>
+
+		<td class="col-sm-1 text-center @hl["Retry"]">
+			@if (line.Status == ImportStatus.Error)
+			{
+				@await Html.PartialAsync(
+					"Extensions/MicroForm",
+					MicroForm.WithGlyph(Context, "sign", "Retry")
+						.AddIdUrl("Archives", "RetryLine", Model.ArchiveGuid)
+						.AddHidden("position", line.Position)
+						.AsAjax($"m{Model.ArchiveGuid}{line.Position}")
+						.EntityName(line.Description)
+				)
+			}
+			else
+			{
+				@("-")
+			}
+		</td>
+	</tr>
+}
