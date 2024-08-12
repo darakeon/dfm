@@ -410,6 +410,7 @@ namespace DFM.BusinessLogic.Services
 			{
 				Guid = Guid.NewGuid(),
 				Filename = filename,
+				Uploaded = user.Now(),
 				User = user,
 			};
 
