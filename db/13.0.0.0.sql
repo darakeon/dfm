@@ -373,9 +373,10 @@ create table archive (
 	ExternalId LONGBLOB NOT NULL,
 	Filename VARCHAR(256) NOT NULL,
 	Status SMALLINT NOT NULL,
+	Uploaded DATETIME NOT NULL,
 	User_ID BIGINT NOT NULL,
 
-    CONSTRAINT PK_Archive
+	CONSTRAINT PK_Archive
 		PRIMARY KEY (ID),
 
 	CONSTRAINT UK_Archive
@@ -402,7 +403,7 @@ create table line (
 
 	Archive_ID BIGINT NOT NULL,
 
-    CONSTRAINT PK_Line
+	CONSTRAINT PK_Line
 		PRIMARY KEY (ID),
 
 	CONSTRAINT UK_Line
