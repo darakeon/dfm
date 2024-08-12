@@ -92,11 +92,10 @@
 			{
 				@await Html.PartialAsync(
 					"Extensions/MicroForm",
-					MicroForm.WithGlyph(Context, "sign", "Retry")
+					MicroForm.WithGlyph(Context, "flash", "Retry")
 						.AddIdUrl("Archives", "RetryLine", Model.ArchiveGuid)
 						.AddHidden("position", line.Position)
 						.AsAjax($"m{Model.ArchiveGuid}{line.Position}")
-						.EntityName(line.Description)
 				)
 			}
 			else
