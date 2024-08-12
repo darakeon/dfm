@@ -25,13 +25,10 @@ namespace DFM.Exchange.Importer
 
 			using TextReader reader = new StringReader(content);
 
-			var delimiter = findDelimiter(content);
-
-			var config = new CsvConfiguration(CultureInfo.CurrentCulture)
+			var config = new CsvConfiguration(CultureInfo.InvariantCulture)
 			{
 				MissingFieldFound = null,
 				HeaderValidated = null,
-				Delimiter = delimiter,
 			};
 
 			using var csv = new CsvReader(reader, config);
@@ -80,21 +77,6 @@ namespace DFM.Exchange.Importer
 			{
 				ErrorList.Add(0, ImporterError.Empty);
 			}
-		}
-
-		private String findDelimiter(string content)
-		{
-			var header = content.Split("\n").FirstOrDefault();
-
-			if (header == null)
-				return null;
-
-			var match = Regex.Match(header, "\\w+([^\\w])");
-
-			if (!match.Success)
-				return null;
-
-			return match.Groups[1].Value;
 		}
 
 		private void readMove(CsvReader csv, Int16 line)
