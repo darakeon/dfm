@@ -1,6 +1,10 @@
 ﻿@model SchedulesCreateModel
 
-<div class="row">
+<div class="row vertical-middle-inside">
+
+	<div class="col-sm-4 @Model.HL["Frequency"]">
+		@await Html.PartialAsync("Frequency")
+	</div>
 
 	<div class="col-sm-4">
 		@await Html.PartialAsync("Repeating")
@@ -8,10 +12,6 @@
 
 	<div class="col-sm-4 @Model.HL["Installment"]">
 		@await Html.PartialAsync("Installment")
-	</div>
-
-	<div class="col-sm-4 @Model.HL["Frequency"]">
-		@await Html.PartialAsync("Frequency")
 	</div>
 
 </div>
