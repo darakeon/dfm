@@ -57,7 +57,10 @@ function microFormSuccess(response, result, promise, a) {
 
 	const resetId = $(this).data('ajax-reset-id')
 	const resetText = $(this).data('ajax-reset-text')
-	$(resetId).html(resetText)
+
+	if (resetId != '#' && resetText) {
+		$(resetId).html(resetText)
+	}
 }
 
 function checkIfReload(response) {
