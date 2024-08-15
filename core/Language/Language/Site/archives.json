@@ -6,13 +6,9 @@
 		"Upload": "Upload",
 		"Filename": "File name",
 		"Uploaded": "Uploaded",
-		"Pending": "Pending",
-		"Success": "Success",
-		"Error": "Error",
 		"ArchiveLines": "Archive Lines",
 		"NoLines": "There's no Lines in this Archive.",
 		"Position": "Position",
-		"Retry": "Try again",
 		"": null
 	},
 	"pt-BR": {
@@ -22,13 +18,9 @@
 		"Upload": "Subir",
 		"Filename": "Nome do arquivo",
 		"Uploaded": "Subido",
-		"Pending": "Pendente",
-		"Success": "Sucesso",
-		"Error": "Erro",
 		"ArchiveLines": "Linhas do Arquivo",
 		"NoLines": "Não há Linhas nesse Arquivo.",
 		"Position": "Posição",
-		"Retry": "Tentar novamente",
 		"": null
 	}
 }

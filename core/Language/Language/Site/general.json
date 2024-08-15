@@ -33,6 +33,10 @@
 		"EnableWizard": "Enable Wizard",
 		"Continue": "Continue",
 		"Conversion": "Conversion",
+		"Pending": "Pending",
+		"Success": "Success",
+		"Error": "Error",
+		"Retry": "Try again",
 
 		"Status": "Status",
 		"Available": "Available",
@@ -216,6 +220,10 @@
 		"EnableWizard": "Habilitar Tutorial",
 		"Continue": "Continuar",
 		"Conversion": "Conversão",
+		"Pending": "Pendente",
+		"Success": "Sucesso",
+		"Error": "Erro",
+		"Retry": "Tentar novamente",
 
 		"Status": "Status",
 		"Available": "Disponível",
