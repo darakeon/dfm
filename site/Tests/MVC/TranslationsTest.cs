@@ -91,7 +91,7 @@ namespace DFM.MVC.Tests
 
 				foreach (var phrase in phrases)
 				{
-					var exception = checkPhrase(phrase, section);
+					var exception = checkPhrase(phrase, section, file);
 					if (exception != null) yield return exception;
 				}
 			}
@@ -112,7 +112,7 @@ namespace DFM.MVC.Tests
 			return matches;
 		}
 
-		private static Exception checkPhrase(String phrase, String section)
+		private static Exception checkPhrase(String phrase, String section, String file)
 		{
 			// this means a variable is being used inside the phrase
 			if (phrase.Contains("{"))
@@ -129,7 +129,7 @@ namespace DFM.MVC.Tests
 			}
 			catch (Exception e)
 			{
-				return new Exception($"Error on {phrase}: {e.Message}", e);
+				return new Exception($"Error on {file} for {phrase}: {e.Message}", e);
 			}
 		}
 
