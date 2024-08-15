@@ -23,7 +23,7 @@
 
 	ViewBag.Buttons = new List<Button>
 	{
-		new(createCategoryLabel, "Create", hl["New"])
+		Button.ForAction(createCategoryLabel, "Create", hl["New"])
 	};
 
 	ViewBag.AdminMenuClass = hl["Admin"];
