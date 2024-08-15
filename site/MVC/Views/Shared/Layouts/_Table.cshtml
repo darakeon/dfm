@@ -36,13 +36,22 @@
 			<div id="table-buttons" class="text-center">
 				@foreach (var button in buttonList.OrderByDescending(b => b.PullLeft))
 				{
-					@Html.ActionLink(
-						button.Text,
-						button.Action,
-						button.Controller,
-						null,
-						new {@class = "btn btn-info btn-sm " + button.Class}
-					)
+					if (!String.IsNullOrEmpty(button.Action))
+					{
+						@Html.ActionLink(
+							button.Text,
+							button.Action,
+							button.Controller,
+							null,
+							new {@class = "btn btn-info btn-sm " + button.Class}
+						)
+					}
+					else
+					{
+						<a href="~/Assets/@button.Asset" class="btn btn-info btn-sm @button.Class">
+							@button.Text
+						</a>
+					}
 				}
 			</div>
 		}

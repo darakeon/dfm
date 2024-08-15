@@ -128,9 +128,9 @@
 	{
 		ViewBag.Buttons = new List<Button>
 		{
-			new(
+			Button.ForAction(
 				Context.Translate("Create", "Move"),
-				"Moves", "Create",
+				"Create", "Moves",
 				hl["Button"]
 			)
 		};
