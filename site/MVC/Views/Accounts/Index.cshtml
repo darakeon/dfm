@@ -86,15 +86,17 @@
 
 	var buttons = new List<Button>
 	{
-		new(createAccountLabel, "Create", hl["CreateButton"])
+		Button.ForAction(createAccountLabel, "Create", hl["CreateButton"])
 	};
 
 	if (Model.HasClosed)
 	{
-		buttons.Add(new(
-			Context.Translate("ClosedAccounts"),
-			"ListClosed", true
-		));
+		buttons.Add(
+			Button.ForAction(
+				Context.Translate("ClosedAccounts"),
+				"ListClosed", true
+			)
+		);
 	}
 
 	ViewBag.Buttons = buttons;
