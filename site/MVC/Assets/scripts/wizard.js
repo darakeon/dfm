@@ -10,11 +10,6 @@ const sides = [
 	'Right',
 ]
 
-function printAll() {
-	const current = $(`#wizard-text-${wizardCount}`);
-	current.html(current.data('text'))
-}
-
 function nextWizard() {
 	const current = $('#wizard-text-' + wizardCount);
 
@@ -186,6 +181,11 @@ function disableContinueIfLastMessage() {
 
 function clearHighlight() {
 	$(`.wl${wizardCount - 1}`).remove()
+}
+
+function printAll() {
+	const current = $(`#wizard-text-${wizardCount}`);
+	current.html(current.data('text'))
 }
 
 $(document).ready(function () {
