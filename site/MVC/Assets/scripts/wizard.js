@@ -11,9 +11,9 @@ const sides = [
 ]
 
 function nextWizard() {
-	const current = $('#wizard-text-' + wizardCount);
+	const current = $(`#wizard-text-${wizardCount}`);
 
-	if (current.length === 0 || current.html() === current.data('text')) {
+	if (current.length === 0 || handleArrow(current.html()) === current.data('text')) {
 
 		if (wizardCount + 1 < wizardMax) {
 			wizardCount++
@@ -31,9 +31,13 @@ function changeMessage(current) {
 	current.html('')
 
 	const element = $('#wizard-text-' + wizardCount);
-	const text = element.data('text');
+	const text = handleArrow(element.data('text'));
 
 	addText(element, text, 1)
+}
+
+function handleArrow(text) {
+	return text.replace('&gt;', '>')
 }
 
 function addText(element, text, chars) {
