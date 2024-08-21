@@ -24,12 +24,16 @@ if [ "$ERROR" != "" ]; then
 
         echyellow "Let's now create a branch and a pull request"
 
-        git checkout -b $CIRCLE_BRANCH-metadata
+        eval "$(ssh-agent -s)"
+        cat $GITHUB_CIRCLE_PK > ~/.ssh/id_ed25519
+        ssh-add ~/.ssh/id_ed25519
+
+        git config --global user.email "$GITHUB_CIRCLE_EMAIL"
+        git config --global user.name "$GITHUB_CIRCLE_NAME"
+
         git add *verification-metadata.xml
-        git config --global user.email "$GIT_CIRCLE_EMAIL"
-        git config --global user.name "$GIT_CIRCLE_NAME"
         git commit -m "android: update deps metadata"
-        git push -q https://$GIT_CIRCLE_TOKEN@github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git $CIRCLE_BRANCH-metadata
+        git push
 
         echyellow "Open the pull request and merge it to have fresh metadata"
 
