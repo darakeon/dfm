@@ -22,11 +22,11 @@ if [ "$ERROR" != "" ]; then
 
     if [ "$HAS_METADATA" != "" ]; then
 
-        echyellow "Let's now create a branch and a pull request"
+        echyellow "Let's commit the verification metadata"
 
         eval "$(ssh-agent -s)"
-        cat $GITHUB_CIRCLE_PK > ~/.ssh/id_ed25519
-        chmod 444 ~/.ssh/id_ed25519
+        echo "$GITHUB_CIRCLE_PK" > ~/.ssh/id_ed25519
+        chmod 400 ~/.ssh/id_ed25519
         ssh-add ~/.ssh/id_ed25519
 
         git config --global user.email "$GITHUB_CIRCLE_EMAIL"
@@ -34,7 +34,7 @@ if [ "$ERROR" != "" ]; then
 
         git add *verification-metadata.xml
         git commit -m "android: update deps metadata"
-        git push -u $CIRCLE_BRANCH
+        git push -u origin $CIRCLE_BRANCH
 
         echyellow "Branch updated, CI will run again"
 
