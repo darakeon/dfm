@@ -32,6 +32,8 @@ if [ "$ERROR" != "" ]; then
         git config --global user.email "$GITHUB_CIRCLE_EMAIL"
         git config --global user.name "$GITHUB_CIRCLE_NAME"
 
+        git remote get-url origin
+
         git add *verification-metadata.xml
         git commit -m "android: update deps metadata"
         git push -u origin $CIRCLE_BRANCH
