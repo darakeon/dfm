@@ -17,9 +17,35 @@ gradle $* \
 if [ "$ERROR" != "" ]; then
     echyellow "Something ended wrong, let's generate metadata"
     gradle --write-verification-metadata sha256 $*
-    echyellow "Done. If you are using this in CI," \
-        "  don't forget to make CI give you the file in" \
-        "  $PWD/gradle/verification-metadata.xml"
+
+    export HAS_METADATA=$(git status | grep "verification-metadata.xml")
+
+    if [ "$HAS_METADATA" != "" ]; then
+
+        echyellow "Let's commit the verification metadata"
+
+        eval "$(ssh-agent -s)"
+        echo "$GITHUB_CIRCLE_PK" | sed "s/\\\n/\n/g" > ~/.ssh/id_ed25519
+        chmod 600 ~/.ssh/id_ed25519
+        ssh-add ~/.ssh/id_ed25519
+
+        git config --global user.email "$GITHUB_CIRCLE_EMAIL"
+        git config --global user.name "$GITHUB_CIRCLE_NAME"
+
+        git remote get-url origin
+
+        git add *verification-metadata.xml
+        git commit -m "android: update deps metadata"
+        git push -u origin $CIRCLE_BRANCH
+
+        echyellow "Branch updated, CI will run again"
+
+    else
+
+        echyellow "The error was not metadata. Wish you luck."
+
+    fi
+
     echyellow "Now finishing with the original error"
     exit $ERROR
 fi
