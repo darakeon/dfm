@@ -12,7 +12,7 @@
 {
 	if (hasSummaryToShow)
 	{
-		<div class="alert alert-danger">
+		<div class="alert alert-danger @ViewBag.FormErrorsClass">
 			@Html.ValidationSummary(true, null, new {@class = "text-center"})
 		</div>
 	}

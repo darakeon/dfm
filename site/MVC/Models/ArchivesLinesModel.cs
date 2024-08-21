@@ -8,15 +8,23 @@ public class ArchivesLinesModel : BaseSiteModel
 {
     public ArchivesLinesModel(Guid guid, Boolean loadArchive = true)
     {
-        ArchiveGuid = guid;
+	    ArchiveGuid = guid;
 
-        LineList = loadArchive
-	        ? service.Robot.GetLineList(guid).LineList
-	        : new List<LineInfo>();
+	    if (loadArchive)
+	    {
+		    var archiveInfo = service.Robot.GetLineList(guid);
+		    ArchiveName = archiveInfo.Filename;
+		    LineList = archiveInfo.LineList;
+	    }
+	    else
+	    {
+		    LineList = new List<LineInfo>();
+	    }
     }
 
-    public IList<LineInfo> LineList { get; set; }
     public Guid ArchiveGuid { get; set; }
+    public String ArchiveName { get; set; }
+    public IList<LineInfo> LineList { get; set; }
 
     public void Retry(Int16 position)
     {

@@ -4,13 +4,22 @@
 	ViewBag.Title = Context.Translate("Upload", "Archive");
 	ViewBag.HasFile = true;
 
+	var hasErrors = !Html.ViewData.ModelState.IsValid;
+
+	if (hasErrors)
+	{
+		ViewBag.WizardPlus = "Error";
+	}
+
 	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
 
-	var hl = new WizardHL()
-		.AddBox("Filename", 1)
-		.AddBox("Button", 1)
-		.AddBox("Menu", 1)
+	var hl = new WizardHL(hasErrors)
+		.AddBox("Filename", 2, 0)
+		.AddBox("Button", 2, 1)
+		.AddBox("Errors", 0, null)
 		;
+
+	ViewBag.FormErrorsClass = hl["Errors"];
 }
 
 <div class="form-group">

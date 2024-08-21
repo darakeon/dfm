@@ -12,35 +12,39 @@
 	ViewBag.NoContentClass = "";//hl["NoContent"];
 
 	var hl = new WizardHL(hasArchives)
-		.AddBox("Filename", null, null)
-		.AddBox("Uploaded", null, null)
-		.AddBox("TitleClass", null, null)
-		.AddBox("NoContent", null, null)
-		.AddBox("CreateButton", null, null)
-		.AddBox("Row", null, null)
-		.AddBox("Edit", null, null)
-		.AddBox("Status", null, null)
-		.AddBox("Lines", null, null)
-		.AddBox("Name", null, null)
-		.AddBox("Reports", null, null)
-		.AddBox("AdminMenu", null, null)
-		.AddBox("SchedulesMenu", null, null)
-		.AddBox("Sign", null, null)
-		.AddBox("SignSome", null, null)
-		.AddBox("SettingsMenu", null, null)
-		.AddBox("SettingsMainMenu", null, null)
+		.AddBox("SettingsMenu", null, 3)
+		.AddBox("SettingsMainMenu", null, 3)
+		.AddBox("TemplateButton", null, 4)
+		.AddBox("CreateButton", null, 5)
+		.AddBox("Row", 0, null)
+		.AddBox("Filename", 1, null)
+		.AddBox("Uploaded", 2, null)
+		.AddBox("Status", 3, null)
+		.AddBox("Lines", 4, null)
 		;
 
-	ViewBag.TitleClass = hl["TitleClass"];
-	ViewBag.AdminMenuClass = hl["AdminMenu"];
-	ViewBag.SchedulesMenuClass = hl["SchedulesMenu"];
+	ViewBag.SettingsMenuClass = hl["SettingsMenu"];
+	ViewBag.SettingsMainMenuClass = hl["SettingsMainMenu"];
+
+	var importFileName = "import_moves";
+	if (Model.IsUsingCategories)
+		importFileName += "_categories";
+	if (Model.IsUsingCurrency)
+		importFileName += "_conversions";
 
 	var buttons = new List<Button>
 	{
-		new(
+		Button.ForAsset(
+			Context.Translate("Download", "Template"),
+			$"templates/{importFileName}.csv",
+			hl["TemplateButton"],
+			true
+			),
+		Button.ForAction(
 			Context.Translate("Upload", "Archive"),
-			"Upload", hl["CreateButton"]
-		)
+			"Upload",
+			hl["CreateButton"]
+		),
 	};
 
 	ViewBag.Buttons = buttons;
@@ -67,10 +71,8 @@
 			@archive.Uploaded
 		</td>
 
-		<td class="col-sm-2 text-center">
-			<span class="@hl["Status"]">
-				@await Html.PartialAsync("ImportStatus", archive.Status)
-			</span>
+		<td class="col-sm-2 text-center @hl["Status"]">
+			@await Html.PartialAsync("ImportStatus", archive.Status)
 		</td>
 
 		<td class="col-sm-2 text-center @hl["Lines"]">

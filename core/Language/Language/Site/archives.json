@@ -4,11 +4,13 @@
 		"Archives": "Archives",
 		"NoArchives": "There's no Archives yet.",
 		"Upload": "Upload",
+		"Download": "Download",
 		"Filename": "File name",
 		"Uploaded": "Uploaded",
 		"ArchiveLines": "Archive Lines",
 		"NoLines": "There's no Lines in this Archive.",
 		"Position": "Position",
+		"Template": "Template",
 		"": null
 	},
 	"pt-BR": {
@@ -16,11 +18,13 @@
 		"Archives": "Arquivos",
 		"NoArchives": "Não há Arquivos ainda.",
 		"Upload": "Subir",
+		"Download": "Baixar",
 		"Filename": "Nome do arquivo",
 		"Uploaded": "Subido",
 		"ArchiveLines": "Linhas do Arquivo",
 		"NoLines": "Não há Linhas nesse Arquivo.",
 		"Position": "Posição",
+		"Template": "Modelo",
 		"": null
 	}
 }
