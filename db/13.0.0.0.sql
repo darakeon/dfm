@@ -396,7 +396,7 @@ create table line (
 	Nature SMALLINT NULL,
 	In_ VARCHAR(20) NOT NULL,
 	Out_ VARCHAR(20) NOT NULL,
-	ValueCents INT NOT NULL,
+	ValueCents INT NULL,
 	ConversionCents INT NULL,
 	Scheduled DATETIME NOT NULL,
 	Status SMALLINT NOT NULL,
