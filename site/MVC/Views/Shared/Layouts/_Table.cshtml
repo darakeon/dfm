@@ -100,12 +100,23 @@ else
 					+ (button.PullLeft ? "pull-left " : null)
 					+ button.Class;
 
-				@Html.ActionLink(
-					button.Text,
-					button.Action,
-					null, null,
-					new { @class = classes }
-				)
+				if (!String.IsNullOrEmpty(button.Action))
+				{
+					@Html.ActionLink(
+						button.Text,
+						button.Action,
+						button.Controller,
+						null,
+						new { @class = classes }
+					)
+				}
+				else
+				{
+					<a href="~/Assets/@button.Asset" class="@classes">
+						@button.Text
+					</a>
+				}
+
 			}
 		</div>
 	}
