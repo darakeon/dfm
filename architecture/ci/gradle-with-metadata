@@ -26,8 +26,8 @@ if [ "$ERROR" != "" ]; then
 
         git checkout -b $CIRCLE_BRANCH-metadata
         git add *verification-metadata.xml
-        git config --global user.email $GIT_EMAIL
-        git config --global user.name $GIT_NAME
+        git config --global user.email $GIT_CIRCLE_EMAIL
+        git config --global user.name $GIT_CIRCLE_NAME
         git commit -m "android: update deps metadata"
         git push -u origin $CIRCLE_BRANCH-metadata
 
