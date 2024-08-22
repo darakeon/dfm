@@ -23,7 +23,8 @@ public class LineMap : IAutoMappingOverride<Line>
 		mapping.IgnoreProperty(l => l.Conversion);
 
 		mapping.Map(l => l.Category)
-			.Length(MaxLen.CategoryName);
+			.Length(MaxLen.CategoryName)
+			.Nullable();
 
 		mapping.HasMany(l => l.DetailList)
 			.Cascade.AllDeleteOrphan()
@@ -31,11 +32,13 @@ public class LineMap : IAutoMappingOverride<Line>
 
 		mapping.Map(l => l.In)
 			.Length(MaxLen.AccountName)
-			.Column("In_");
+			.Column("In_")
+			.Nullable();
 
 		mapping.Map(l => l.Out)
 			.Length(MaxLen.AccountName)
-			.Column("Out_");
+			.Column("Out_")
+			.Nullable();
 
 		mapping.IgnoreProperty(l => l.HasIn);
 		mapping.IgnoreProperty(l => l.HasOut);
