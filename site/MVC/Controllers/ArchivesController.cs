@@ -18,6 +18,16 @@ public class ArchivesController : BaseController
 		return View(model);
 	}
 
+	[JsonAuth, HttpPost, ValidateAntiForgeryToken, Wizard.Avoid]
+	public IActionResult Cancel(Guid id)
+	{
+		var model = new ArchivesIndexModel();
+
+		model.Cancel(id);
+
+		return PartialView("ArchiveRow", model.Archive);
+	}
+
 	[HttpGetAndHead]
 	public IActionResult Upload()
 	{

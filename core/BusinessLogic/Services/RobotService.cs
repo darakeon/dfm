@@ -739,7 +739,7 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
-		public void CancelArchive(Guid archiveGuid)
+		public ArchiveInfo CancelArchive(Guid archiveGuid)
 		{
 			var user = parent.Auth.VerifyUser();
 			var archive = repos.Archive.Get(archiveGuid);
@@ -767,6 +767,8 @@ namespace DFM.BusinessLogic.Services
 
 				repos.Archive.SaveOrUpdate(archive);
 			});
+
+			return new ArchiveInfo { Archive = archive };
 		}
 	}
 }
