@@ -736,5 +736,35 @@ namespace DFM.BusinessLogic.Services
 				repos.Line.SaveOrUpdate(line);
 			});
 		}
+
+		public void CancelArchive(Guid archiveGuid)
+		{
+			var user = parent.Auth.VerifyUser();
+			var archive = repos.Archive.Get(archiveGuid);
+
+			if (archive == null || archive.User.ID != user.ID)
+				throw Error.ArchiveNotFound.Throw();
+
+			if (archive.Status == ImportStatus.Success)
+				throw Error.ArchiveCancelNoSuccess.Throw();
+
+			inTransaction("CancelArchive", () =>
+			{
+				var success =
+					archive.LineList
+						.Any(l => l.Status == ImportStatus.Success);
+
+				archive.Status = success
+					? ImportStatus.Success
+					: ImportStatus.Canceled;
+
+				archive.LineList
+					.Where(l => l.Status != ImportStatus.Success)
+					.ToList()
+					.ForEach(l => l.Status = ImportStatus.Canceled);
+
+				repos.Archive.SaveOrUpdate(archive);
+			});
+		}
 	}
 }
