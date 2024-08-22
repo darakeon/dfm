@@ -1168,6 +1168,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(line.Status, Is.EqualTo(status));
 		}
 
+		[Then(@"the line (\d+) will be (Pending|Success|Error|Canceled)")]
+		public void ThenTheLineWillBe(Int16 lineNumber, ImportStatus status)
+		{
+			var line = repos.Line.Get(archiveGuid, lineNumber);
+			Assert.That(line.Status, Is.EqualTo(status));
+		}
+
 		[Then(@"the archive will be (Pending|Success|Error|Canceled)")]
 		public void ThenTheArchiveWillBe(ImportStatus status)
 		{
@@ -1183,6 +1190,21 @@ namespace DFM.BusinessLogic.Tests.Steps
 			try
 			{
 				service.Robot.CancelLine(archiveGuid, linePosition);
+			}
+			catch (CoreError coreError)
+			{
+				error = coreError;
+			}
+		}
+		#endregion
+
+		#region CancelArchive
+		[When(@"cancel archive")]
+		public void WhenCancelArchive()
+		{
+			try
+			{
+				service.Robot.CancelArchive(archiveGuid);
 			}
 			catch (CoreError coreError)
 			{
