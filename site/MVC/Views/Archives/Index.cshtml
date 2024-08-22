@@ -20,7 +20,8 @@
 		.AddBox("Filename", 1, null)
 		.AddBox("Uploaded", 2, null)
 		.AddBox("Status", 3, null)
-		.AddBox("Lines", 4, null)
+		.AddBox("Cancel", 4, null)
+		.AddBox("Lines", 5, null)
 		;
 
 	ViewBag.SettingsMenuClass = hl["SettingsMenu"];
@@ -56,30 +57,12 @@
 		<th class="col-sm-6">@Context.Translate("Filename")</th>
 		<th class="col-sm-2">@Context.Translate("Uploaded")</th>
 		<th class="col-sm-2 text-center">@Context.Translate("Status")</th>
-		<th class="col-sm-2 text-center">@Context.Translate("TODO")</th>
+		<th class="col-sm-2 text-center" colspan="2">@Context.Translate("TODO")</th>
 	</tr>
 }
 
 @foreach (var archive in Model.ArchiveList)
 {
-	<tr class="row @hl["Row"]">
-		<td class="col-sm-6 @hl["Filename"]">
-			@archive.Filename
-		</td>
-
-		<td class="col-sm-2 @hl["Uploaded"]">
-			@archive.Uploaded
-		</td>
-
-		<td class="col-sm-2 text-center @hl["Status"]">
-			@await Html.PartialAsync("ImportStatus", archive.Status)
-		</td>
-
-		<td class="col-sm-2 text-center @hl["Lines"]">
-			<a href="@Url.Action("Lines", new { id = archive.Guid })">
-				<span class="glyphicon glyphicon-th-list"
-					title="@Context.Translate("ArchiveLines").Format(archive.Filename)"></span>
-			</a>
-		</td>
-	</tr>
+	var submodel = new ArchiveRowModel(archive, hl);
+	@await Html.PartialAsync("ArchiveRow", submodel)
 }

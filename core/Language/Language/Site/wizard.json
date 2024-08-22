@@ -159,6 +159,7 @@
 			"You can check the original file name, ...",
 			"... the date and time it was uploaded ...",
 			"... and the current processing status.",
+			"You can cancel the archive import, but it will only cancel lines not yet imported.",
 			"Click in icon to check the details of the lines imported.",
 			null
 		],
@@ -644,6 +645,7 @@
 			"Você pode ver o nome original do arquivo, ...",
 			"... data e hora em que foi subido ...",
 			"... e o estado atual de processamento.",
+			"Você pode cancelar a importação, mas irá cancelar apenas o que ainda não foi importado.",
 			"Clique no ícone para verificar mais detalhes das linhas importadas.",
 			null
 		],
