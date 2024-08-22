@@ -730,7 +730,7 @@ namespace DFM.BusinessLogic.Services
 			if (line.Status == ImportStatus.Success)
 				throw Error.LineCancelNoSuccess.Throw();
 
-			inTransaction("RetryLine", () =>
+			inTransaction("CancelLine", () =>
 			{
 				line.Status = ImportStatus.Canceled;
 				repos.Line.SaveOrUpdate(line);
