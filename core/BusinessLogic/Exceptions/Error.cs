@@ -118,6 +118,7 @@ namespace DFM.BusinessLogic.Exceptions
 		InvalidArchiveName = 1007,
 		InvalidArchiveType = 1008,
 		LineCancelNoSuccess = 1009,
+		ArchiveCancelNoSuccess = 1010,
 	}
 
 	public static class ErrorX

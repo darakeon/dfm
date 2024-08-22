@@ -11,7 +11,7 @@
 - [x] List archives for user
 - [x] Allow retry lines
 - [x] Allow cancel lines
-- [ ] Allow cancel files
+- [x] Allow cancel files
 - [x] Record datetime archive was uploaded and show
 - [ ] Integrate to site
 - [ ] Integrate to robot

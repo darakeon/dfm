@@ -122,6 +122,7 @@
 		"InvalidArchiveName": "Invalid archive name",
 		"InvalidArchiveType": "Invalid archive type",
 		"LineCancelNoSuccess": "Line cannot be canceled after being successfully imported",
+		"ArchiveCancelNoSuccess": "Archive cannot be canceled after being successfully imported",
 		"": null
 	},
 	"pt-BR": {
@@ -247,6 +248,7 @@
 		"InvalidArchiveName": "Nome de arquivo inválido",
 		"InvalidArchiveType": "Tipo de arquivo inválido",
 		"LineCancelNoSuccess": "Linha não pode ser cancelada após ser importada com sucesso",
+		"ArchiveCancelNoSuccess": "Arquivo não pode ser cancelado após ser importado com sucesso",
 		"": null
 	}
 }
