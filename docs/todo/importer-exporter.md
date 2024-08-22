@@ -10,7 +10,7 @@
 - [x] Requeue pending lines
 - [x] List archives for user
 - [x] Allow retry lines
-- [ ] Allow cancel lines
+- [x] Allow cancel lines
 - [ ] Allow cancel files
 - [x] Record datetime archive was uploaded and show
 - [ ] Integrate to site

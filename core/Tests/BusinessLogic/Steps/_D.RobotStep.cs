@@ -682,7 +682,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 				accountInUrl = table.Rows[0]["In"].IntoUrl();
 				accountOutUrl = table.Rows[0]["Out"].IntoUrl();
 
-				categoryName = table.Rows[0]["Category"];
+				if (table.Rows[0].ContainsKey("Category"))
+				{
+					categoryName = table.Rows[0]["Category"];
+				}
 
 				var parsed = DateTime.TryParse(
 					table.Rows[0]["Date"],
@@ -875,7 +878,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				linePosition = line.Position;
 		}
 
-		[Given(@"line (\d+) is (Pending|Success|Error)")]
+		[Given(@"line (\d+) is (Pending|Success|Error|Canceled)")]
 		public void GivenLineIs(Int16 lineNumber, ImportStatus status)
 		{
 			var line = repos.Line.Get(archiveGuid, lineNumber);
@@ -916,7 +919,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then("the line status will change to (Success|Error)")]
+		[Then("the line status will change to (Success|Error|Canceled)")]
 		public void ThenTheLineStatusWillChangeTo(ImportStatus status)
 		{
 			var user = repos.User.GetByEmail(userEmail);
@@ -959,7 +962,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the archive status will change to (Pending|Success|Error)")]
+		[Then(@"the archive status will change to (Pending|Success|Error|Canceled)")]
 		public void ThenTheArchiveStatusWillChangeTo(ImportStatus status)
 		{
 			var user = repos.User.GetByEmail(userEmail);
@@ -1061,7 +1064,6 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 		#endregion
 
-
 		#region GetLineList
 
 		[When(@"get line list")]
@@ -1159,18 +1161,33 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the line will be (Pending|Success|Error)")]
+		[Then(@"the line will be (Pending|Success|Error|Canceled)")]
 		public void ThenTheLineWillBe(ImportStatus status)
 		{
 			var line = repos.Line.Get(archiveGuid, linePosition);
 			Assert.That(line.Status, Is.EqualTo(status));
 		}
 
-		[Then(@"the archive will be (Pending|Success|Error)")]
+		[Then(@"the archive will be (Pending|Success|Error|Canceled)")]
 		public void ThenTheArchiveWillBe(ImportStatus status)
 		{
 			var archive = repos.Archive.Get(archiveGuid);
 			Assert.That(archive.Status, Is.EqualTo(status));
+		}
+		#endregion
+
+		#region CancelLine
+		[When(@"cancel line")]
+		public void WhenCancelLine()
+		{
+			try
+			{
+				service.Robot.CancelLine(archiveGuid, linePosition);
+			}
+			catch (CoreError coreError)
+			{
+				error = coreError;
+			}
 		}
 		#endregion
 
