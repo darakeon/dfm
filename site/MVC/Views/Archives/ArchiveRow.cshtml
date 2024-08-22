@@ -1,0 +1,37 @@
+﻿@model ArchiveRowModel
+
+@{
+	var hl = Model.WizardHL;
+	var archive = Model.Archive;
+}
+
+<tr class="row @hl?["Row"]" id="a@(archive.Guid)">
+	<td class="col-sm-6 @hl?["Filename"]">
+		@archive.Filename
+	</td>
+
+	<td class="col-sm-2 @hl?["Uploaded"]">
+		@archive.Uploaded
+	</td>
+
+	<td class="col-sm-2 text-center @hl?["Status"]">
+		@await Html.PartialAsync("ImportStatus", archive.Status)
+	</td>
+
+	<td class="col-sm-1 text-center @hl?["Lines"]">
+		<a href="@Url.Action("Lines", new { id = archive.Guid })">
+			<span class="glyphicon glyphicon-th-list"
+			    title="@Context.Translate("ArchiveLines").Format(archive.Filename)"></span>
+		</a>
+	</td>
+
+	<td class="col-sm-1 text-center @hl?["Cancel"]">
+		@await Html.PartialAsync(
+	       "Extensions/MicroForm",
+	       MicroForm.WithGlyph(Context, "ban-circle", "Cancel")
+		       .AddIdUrl("Archives", "Cancel", archive.Guid)
+		       .AsAjax($"a{archive.Guid}")
+		       .EntityName(archive.Filename)
+	    )
+	</td>
+</tr>
