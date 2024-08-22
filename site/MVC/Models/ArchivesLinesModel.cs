@@ -29,7 +29,13 @@ public class ArchivesLinesModel : BaseSiteModel
 
     public void Retry(Int16 position)
     {
-		var line = service.Robot.RetryLine(ArchiveGuid, position);
-		Line = new LineRowModel(ArchiveGuid, line, Language);
+	    var line = service.Robot.RetryLine(ArchiveGuid, position);
+	    Line = new LineRowModel(ArchiveGuid, line, Language);
+    }
+
+    public void Cancel(Int16 position)
+    {
+	    var line = service.Robot.CancelLine(ArchiveGuid, position);
+	    Line = new LineRowModel(ArchiveGuid, line, Language);
     }
 }
