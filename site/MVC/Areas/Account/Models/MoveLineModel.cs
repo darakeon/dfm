@@ -11,7 +11,8 @@ namespace DFM.MVC.Areas.Account.Models
 			Boolean isUsingCategories,
 			String currentAccountUrl,
 			String language,
-			Boolean canCheck)
+			Boolean canCheck
+		)
 		{
 			Move = move;
 			IsUsingCategories = isUsingCategories;
