@@ -24,10 +24,12 @@ public class ArchivesLinesModel : BaseSiteModel
 
     public Guid ArchiveGuid { get; set; }
     public String ArchiveName { get; set; }
+    public LineRowModel Line { get; set; }
     public IList<LineInfo> LineList { get; set; }
 
     public void Retry(Int16 position)
     {
-        service.Robot.RetryLine(ArchiveGuid, position);
+		var line = service.Robot.RetryLine(ArchiveGuid, position);
+		Line = new LineRowModel(ArchiveGuid, line, Language);
     }
 }

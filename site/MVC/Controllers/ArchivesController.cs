@@ -53,6 +53,6 @@ public class ArchivesController : BaseController
 
 		model.Retry(position);
 
-		return PartialView("ImportStatus", ImportStatus.Pending);
+		return PartialView("LineRow", model.Line);
 	}
 }

@@ -695,7 +695,7 @@ namespace DFM.BusinessLogic.Services
 			};
 		}
 
-		public void RetryLine(Guid archiveGuid, Int16 linePosition)
+		public LineInfo RetryLine(Guid archiveGuid, Int16 linePosition)
 		{
 			var user = parent.Auth.VerifyUser();
 			var line = repos.Line.Get(archiveGuid, linePosition);
@@ -717,6 +717,8 @@ namespace DFM.BusinessLogic.Services
 
 				repos.Archive.SaveOrUpdate(line.Archive);
 			});
+
+			return LineInfo.Convert(line);
 		}
 
 		public void CancelLine(Guid archiveGuid, Int16 linePosition)
