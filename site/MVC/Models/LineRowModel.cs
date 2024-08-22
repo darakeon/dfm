@@ -4,23 +4,17 @@ using DFM.MVC.Helpers.Views;
 
 namespace DFM.MVC.Models;
 
-public class LineRowModel
+public class LineRowModel(
+	Guid archiveGuid,
+	LineInfo line,
+	String language,
+	WizardHL wizardHL = null
+)
 {
-	public LineRowModel(
-		Guid archiveGuid,
-		LineInfo line,
-		String language
-	)
-	{
-		ArchiveGuid = archiveGuid;
-		Line = line;
-		Language = language;
-	}
-
-	public Guid ArchiveGuid { get; }
-	public LineInfo Line { get; }
-	public String Language { get; }
+	public Guid ArchiveGuid { get; } = archiveGuid;
+	public LineInfo Line { get; } = line;
+	public String Language { get; } = language;
 
 	# nullable enable
-	public WizardHL? WizardHL { get; set; }
+	public WizardHL? WizardHL { get; } = wizardHL;
 }

@@ -46,10 +46,8 @@
 @foreach (var line in Model.LineList)
 {
 	var submodel = new LineRowModel(
-		Model.ArchiveGuid, line, Model.Language
+		Model.ArchiveGuid, line, Model.Language, hl
 	);
-
-	submodel.WizardHL = hl;
 
 	@await Html.PartialAsync("LineRow", submodel)
 }
