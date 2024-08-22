@@ -1,7 +1,10 @@
 ﻿@model ImportStatus
 
-<span class="
-	text-@await Html.PartialAsync("ImportStatusColor", Model)
-	@await Html.PartialAsync("ImportStatusIcon", Model)
-" title="@Context.Translate(Model.ToString())">
+<span 
+	class="
+		glyphicon
+		glyphicon-@await Html.PartialAsync("ImportStatusIcon", Model)
+		text-@await Html.PartialAsync("ImportStatusColor", Model)
+	"
+	title="@Context.Translate(Model.ToString())">
 </span>
