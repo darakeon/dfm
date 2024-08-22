@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DFM.Entities.Enums;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
@@ -62,6 +61,16 @@ public class ArchivesController : BaseController
 		var model = new ArchivesLinesModel(id, false);
 
 		model.Retry(position);
+
+		return PartialView("LineRow", model.Line);
+	}
+
+	[JsonAuth, HttpPost, ValidateAntiForgeryToken, Wizard.Avoid]
+	public IActionResult CancelLine(Guid id, Int16 position)
+	{
+		var model = new ArchivesLinesModel(id, false);
+
+		model.Cancel(position);
 
 		return PartialView("LineRow", model.Line);
 	}
