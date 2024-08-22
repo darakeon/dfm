@@ -875,6 +875,16 @@ namespace DFM.BusinessLogic.Tests.Steps
 				linePosition = line.Position;
 		}
 
+		[Given(@"line (\d+) is (Pending|Success|Error)")]
+		public void GivenLineIs(Int16 lineNumber, ImportStatus status)
+		{
+			var line = repos.Line.Get(archiveGuid, lineNumber);
+			line.Status = status;
+			db.Execute(
+				() => repos.Line.SaveOrUpdate(line)
+			);
+		}
+
 		[Given(@"the account (.+) is deleted")]
 		public void GivenTheAccountIsDeleted(String account)
 		{
