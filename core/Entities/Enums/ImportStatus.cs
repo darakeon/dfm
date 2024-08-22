@@ -3,6 +3,7 @@
 public enum ImportStatus
 {
 	Pending = 0,
-	Success = 1,
-	Error = 2,
+	Canceled = 1,
+	Success = 2,
+	Error = 3,
 }

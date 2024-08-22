@@ -118,9 +118,10 @@
 		"InvalidArchiveColumn": "Invalid archive column",
 		"ArchiveNotFound": "Archive not found",
 		"LineNotFound": "Line not found",
-		"LineRetryOnlyError": "Line can only be retried on error",
+		"LineRetryOnlyErrorOrCanceled": "Line can only be retried after error or cancellation",
 		"InvalidArchiveName": "Invalid archive name",
 		"InvalidArchiveType": "Invalid archive type",
+		"LineCancelNoSuccess": "Line cannot be canceled after being successfully imported",
 		"": null
 	},
 	"pt-BR": {
@@ -242,9 +243,10 @@
 		"InvalidArchiveColumn": "Coluna inválida no arquivo",
 		"ArchiveNotFound": "Arquivo não encontrado",
 		"LineNotFound": "Linha não encontrada",
-		"LineRetryOnlyError": "Linha só pode ser retentada em caso de erro",
+		"LineRetryOnlyErrorOrCanceled": "Linha só pode ser retentada em caso de erro ou cancelamento",
 		"InvalidArchiveName": "Nome de arquivo inválido",
 		"InvalidArchiveType": "Tipo de arquivo inválido",
+		"LineCancelNoSuccess": "Linha não pode ser cancelada após ser importada com sucesso",
 		"": null
 	}
 }

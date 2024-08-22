@@ -54,7 +54,7 @@ Scenario: Gn07. Line pending
 		And the moves file was imported
 		And test user login
 	When retry line
-	Then I will receive this core error: LineRetryOnlyError
+	Then I will receive this core error: LineRetryOnlyErrorOrCanceled
 		And the line will be Pending
 		And the archive will be Pending
 		And the scheduled time will not change
@@ -68,7 +68,7 @@ Scenario: Gn08. Line success
 		And robot finish archives
 		And test user login
 	When retry line
-	Then I will receive this core error: LineRetryOnlyError
+	Then I will receive this core error: LineRetryOnlyErrorOrCanceled
 		And the line will be Success
 		And the archive will be Success
 		And the scheduled time will not change
@@ -82,6 +82,19 @@ Scenario: Gn09. Line error
 		And robot made move from imported
 		And robot finish archives
 		And test user login
+	When retry line
+	Then I will receive no core error
+		And the line will be Pending
+		And the archive will be Pending
+		And the scheduled time will change
+
+Scenario: Gn10. Line canceled
+	Given a moves file with this content
+			| Description         | Date       | Category | Nature   | Out         | In         | Value |
+			| Move {scenarioCode} | 2024-07-21 | Category | Transfer | Account Out | Account In | 1     |
+		And the moves file was imported
+		And test user login
+		And line 1 is Canceled
 	When retry line
 	Then I will receive no core error
 		And the line will be Pending
