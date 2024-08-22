@@ -687,3 +687,23 @@ Scenario: Gi37. Import already errored
 		And the accountIn value will not change
 		And the month-category-accountIn value will not change
 		And the year-category-accountIn value will not change
+
+Scenario: Gi38. Import canceled
+	Given a moves file with this content
+			| Description         | Date       | Category | Nature   | Out         | In         | Value |
+			| Move {scenarioCode} | 2024-08-22 | Category | Transfer | Account Out | Account In | 1     |
+		And the moves file was imported
+		But line 1 is Canceled
+	When robot user login
+		And make move from imported
+	Then I will receive no core error
+		And the line will be Canceled
+		And the lines will be dequeued
+	Given test user login
+	Then the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
