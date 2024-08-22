@@ -175,6 +175,7 @@
 			"It is possible to check the line position in the original file.",
 			"The importation status will appear for each line.",
 			"In case of error, you will see a button for retry.",
+			"It is also possible to cancel a line not imported yet.",
 			"So now you will only need to wait to the System to finish importing everything.",
 			"We have more options in the system, let's check Settings > Main Options.",
 			null
@@ -661,6 +662,7 @@
 			"É possível ver a posição da linha no arquivo original.",
 			"O estado de importação aparecerá para cada linha.",
 			"Em caso de erro, você verá um botão para tentar novamente.",
+			"Também é possível cancelar uma linha que ainda não tenha sido importada.",
 			"Agora tudo que você precisa fazer é esperar o Sistema terminar de importar tudo.",
 			"Existem mais opções no sistema, vamos até Configurações > Opções Gerais.",
 			null

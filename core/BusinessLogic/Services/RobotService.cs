@@ -721,7 +721,7 @@ namespace DFM.BusinessLogic.Services
 			return LineInfo.Convert(line);
 		}
 
-		public void CancelLine(Guid archiveGuid, Int16 linePosition)
+		public LineInfo CancelLine(Guid archiveGuid, Int16 linePosition)
 		{
 			var user = parent.Auth.VerifyUser();
 			var line = repos.Line.Get(archiveGuid, linePosition);
@@ -737,6 +737,8 @@ namespace DFM.BusinessLogic.Services
 				line.Status = ImportStatus.Canceled;
 				repos.Line.SaveOrUpdate(line);
 			});
+
+			return LineInfo.Convert(line);
 		}
 
 		public ArchiveInfo CancelArchive(Guid archiveGuid)

@@ -13,7 +13,7 @@
 - [x] Allow cancel lines
 - [x] Allow cancel files
 - [x] Record datetime archive was uploaded and show
-- [ ] Integrate to site
+- [x] Integrate to site
 - [ ] Integrate to robot
 
 ## Exporter
