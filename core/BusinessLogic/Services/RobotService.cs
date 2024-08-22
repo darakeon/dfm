@@ -535,25 +535,9 @@ namespace DFM.BusinessLogic.Services
 			{
 				parent.Auth.VerifyUser(user);
 
-				var newMove = createMove(line);
-
-				var move = inTransaction("MakeMoveFromImported", () =>
-				{
-					var result = parent.BaseMove.SaveMove(
-						newMove, OperationType.Importing
-					);
-
-					line.Status = ImportStatus.Success;
-					repos.Line.SaveOrUpdate(line);
-
-					return result;
-				});
-
-				parent.BaseMove.FixSummaries(user);
-
-				return move;
+				return makeMove(user, line);
 			}
-			catch (CoreError e)
+			catch (CoreError)
 			{
 				inTransaction("MakeMoveFromImported", () =>
 				{
@@ -567,6 +551,30 @@ namespace DFM.BusinessLogic.Services
 			{
 				queueService.Delete(key);
 			}
+		}
+
+		private MoveResult makeMove(User user, Line line)
+		{
+			if (line.Status != ImportStatus.Pending)
+				return null;
+
+			var newMove = createMove(line);
+
+			var move = inTransaction("MakeMoveFromImported", () =>
+			{
+				var result = parent.BaseMove.SaveMove(
+					newMove, OperationType.Importing
+				);
+
+				line.Status = ImportStatus.Success;
+				repos.Line.SaveOrUpdate(line);
+
+				return result;
+			});
+
+			parent.BaseMove.FixSummaries(user);
+
+			return move;
 		}
 
 		private Move createMove(Line line)
