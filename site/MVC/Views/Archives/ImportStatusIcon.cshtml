@@ -1,17 +1,16 @@
 ﻿@model ImportStatus
-
 @switch (Model)
 {
 	case ImportStatus.Pending:
-		@("glyphicon glyphicon-hourglass")
+		@("hourglass")
 		break;
 	case ImportStatus.Success:
-		@("glyphicon glyphicon-ok")
+		@("ok")
 		break;
 	case ImportStatus.Error:
-		@("glyphicon glyphicon-remove")
+		@("remove")
 		break;
 	default:
-		@("glyphicon glyphicon-ban-circle")
+		@("ban-circle")
 		break;
 }
