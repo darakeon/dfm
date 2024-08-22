@@ -37,6 +37,7 @@
 		"Success": "Success",
 		"Error": "Error",
 		"Retry": "Try again",
+		"Canceled": "Canceled",
 
 		"Status": "Status",
 		"Available": "Available",
@@ -223,6 +224,7 @@
 		"Success": "Sucesso",
 		"Error": "Erro",
 		"Retry": "Tentar novamente",
+		"Canceled": "Cancelado",
 
 		"Status": "Status",
 		"Available": "Disponível",
