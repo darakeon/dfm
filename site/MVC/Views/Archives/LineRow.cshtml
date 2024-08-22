@@ -1,0 +1,63 @@
+﻿@model LineRowModel
+
+@{
+	var noAction = "-";
+
+	var line = Model.Line;
+	var value = line.Value ?? line.DetailList.Sum(d => d.Amount * d.Value);
+
+	var hl = Model.WizardHL;
+}
+
+<tr class="row @hl?["Row"]" id="l@(line.Position)">
+	<td class="col-sm-1 @hl?["Position"]">
+		@line.Position
+	</td>
+
+	<td class="col-sm-3">
+		@line.Description
+	</td>
+
+	<td class="col-sm-2 text-center">
+		@line.Out
+		@if (!String.IsNullOrEmpty(line.In) && !String.IsNullOrEmpty(line.Out))
+		{
+			@(" > ")
+		}
+		@line.In
+	</td>
+
+	<td class="col-sm-2 text-center">
+		@line.Category
+	</td>
+
+	<td class="col-sm-2 text-right">
+		@await Html.PartialAsync(
+			"Extensions/ValueWithSign",
+			new ValueWithSign(value, Model.Language)
+		)
+	</td>
+
+	<td class="col-sm-1 text-center @hl?["Status"]">
+		<span id="l@(line.Position)">
+			@await Html.PartialAsync("ImportStatus", line.Status)
+		</span>
+	</td>
+
+	<td class="col-sm-1 text-center @hl?["Retry"]">
+		@if (line.Status == ImportStatus.Error)
+		{
+			@await Html.PartialAsync(
+				"Extensions/MicroForm",
+				MicroForm.WithGlyph(Context, "repeat", "Retry")
+					.AddIdUrl("Archives", "RetryLine", Model.ArchiveGuid)
+					.AddHidden("position", line.Position)
+					.AsAjax($"l{line.Position}")
+			)
+		}
+		else
+		{
+			@noAction
+		}
+	</td>
+</tr>
