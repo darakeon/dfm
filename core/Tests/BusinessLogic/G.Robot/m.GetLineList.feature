@@ -54,18 +54,21 @@ Scenario: Gm07. Get lines
 			| Move {scenarioCode} 2 | 2024-07-21 | Category | Transfer | Account Out EUR | Account In BRL | 1     | 5          |               |         |        |             |               |         |        |             |               |         |        |             |
 			| Move {scenarioCode} 3 | 2024-07-21 | Category | Out      | Account Out     |                | 1     |            |               |         |        |             |               |         |        |             |               |         |        |             |
 			| Move {scenarioCode} 4 | 2024-07-21 | Category | In       |                 | Account In     | 1     |            |               |         |        |             |               |         |        |             |               |         |        |             |
+			| Move {scenarioCode} 5 | 2024-07-21 | Category | In       |                 | Account In     | 1     |            |               |         |        |             |               |         |        |             |               |         |        |             |
 		And the moves file was imported
 		And robot made move from imported
 		And robot made move from imported
 		But test user login
 		And I close the account Account Out
 		And robot made move from imported
+		And line 5 is Canceled
 		And test user login
 	When get line list
 	Then I will receive no core error
 		And the line list will be
-			| Position | Description           | Date       | Category | Nature   | Out             | In             | Value | Conversion | Status  | Description1  | Amount1 | Value1 | Conversion1 | Description2  | Amount2 | Value2 | Conversion2 | Description3  | Amount3 | Value3 | Conversion3 |
-			| 1        | Move {scenarioCode} 1 | 2024-07-21 | Category | Transfer | Account Out EUR | Account In BRL |       |            | Success | Description 1 | 1       | 1      | 5           | Description 2 | 2       | 2      | 6           | Description 3 | 3       | 3      | 7           |
-			| 2        | Move {scenarioCode} 2 | 2024-07-21 | Category | Transfer | Account Out EUR | Account In BRL | 1     | 5          | Success |               |         |        |             |               |         |        |             |               |         |        |             |
-			| 3        | Move {scenarioCode} 3 | 2024-07-21 | Category | Out      | Account Out     |                | 1     |            | Error   |               |         |        |             |               |         |        |             |               |         |        |             |
-			| 4        | Move {scenarioCode} 4 | 2024-07-21 | Category | In       |                 | Account In     | 1     |            | Pending |               |         |        |             |               |         |        |             |               |         |        |             |
+			| Position | Description           | Date       | Category | Nature   | Out             | In             | Value | Conversion | Status   | Description1  | Amount1 | Value1 | Conversion1 | Description2  | Amount2 | Value2 | Conversion2 | Description3  | Amount3 | Value3 | Conversion3 |
+			| 1        | Move {scenarioCode} 1 | 2024-07-21 | Category | Transfer | Account Out EUR | Account In BRL |       |            | Success  | Description 1 | 1       | 1      | 5           | Description 2 | 2       | 2      | 6           | Description 3 | 3       | 3      | 7           |
+			| 2        | Move {scenarioCode} 2 | 2024-07-21 | Category | Transfer | Account Out EUR | Account In BRL | 1     | 5          | Success  |               |         |        |             |               |         |        |             |               |         |        |             |
+			| 3        | Move {scenarioCode} 3 | 2024-07-21 | Category | Out      | Account Out     |                | 1     |            | Error    |               |         |        |             |               |         |        |             |               |         |        |             |
+			| 4        | Move {scenarioCode} 4 | 2024-07-21 | Category | In       |                 | Account In     | 1     |            | Pending  |               |         |        |             |               |         |        |             |               |         |        |             |
+			| 5        | Move {scenarioCode} 5 | 2024-07-21 | Category | In       |                 | Account In     | 1     |            | Canceled |               |         |        |             |               |         |        |             |               |         |        |             |
