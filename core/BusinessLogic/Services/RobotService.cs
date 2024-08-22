@@ -703,8 +703,8 @@ namespace DFM.BusinessLogic.Services
 			if (line == null || line.Archive.User.ID != user.ID)
 				throw Error.LineNotFound.Throw();
 
-			if (line.Status != ImportStatus.Error)
-				throw Error.LineRetryOnlyError.Throw();
+			if (line.Status != ImportStatus.Error && line.Status != ImportStatus.Canceled)
+				throw Error.LineRetryOnlyErrorOrCanceled.Throw();
 
 			inTransaction("RetryLine", () =>
 			{
@@ -716,6 +716,24 @@ namespace DFM.BusinessLogic.Services
 				line.Archive.Status = ImportStatus.Pending;
 
 				repos.Archive.SaveOrUpdate(line.Archive);
+			});
+		}
+
+		public void CancelLine(Guid archiveGuid, Int16 linePosition)
+		{
+			var user = parent.Auth.VerifyUser();
+			var line = repos.Line.Get(archiveGuid, linePosition);
+
+			if (line == null || line.Archive.User.ID != user.ID)
+				throw Error.LineNotFound.Throw();
+
+			if (line.Status == ImportStatus.Success)
+				throw Error.LineCancelNoSuccess.Throw();
+
+			inTransaction("RetryLine", () =>
+			{
+				line.Status = ImportStatus.Canceled;
+				repos.Line.SaveOrUpdate(line);
 			});
 		}
 	}

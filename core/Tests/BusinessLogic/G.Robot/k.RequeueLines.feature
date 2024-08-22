@@ -71,3 +71,16 @@ Scenario: Gk07. Requeue line
 	Then I will receive no core error
 		And the lines will be queued
 		And the scheduled time will change
+
+Scenario: Gk08. No requeue canceled line
+	Given a moves file with this content
+			| Description         | Date       | Category | Nature   | Out         | In         | Value |
+			| Move {scenarioCode} | 2024-07-20 | Category | Transfer | Account Out | Account In | 1     |
+		And the moves file was imported
+		And the line is from before the queue period
+		But line 1 is Canceled
+	When robot user login
+		And requeue lines
+	Then I will receive no core error
+		And the lines will not be queued
+		And the scheduled time will not change
