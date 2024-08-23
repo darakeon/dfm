@@ -2,7 +2,7 @@
 	"profiles": {
 		"Robot": {
 			"commandName": "Project",
-			"commandLineArgs": "1",
+			"commandLineArgs": "5",
 			"environmentVariables": {
 				"ASPNET_CORE_ENVIRONMENT": "Development"
 			}

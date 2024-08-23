@@ -14,7 +14,7 @@
 - [x] Allow cancel files
 - [x] Record datetime archive was uploaded and show
 - [x] Integrate to site
-- [ ] Integrate to robot
+- [x] Integrate to robot
 
 ## Exporter
 
