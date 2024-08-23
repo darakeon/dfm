@@ -18,7 +18,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Deploy APKs using CI
 - [ ] Data export (csv) [template]
 - [x] `270807>270807` Adjust menus to avoid responsiviness problem
-- [ ] `240429>......` Data import (csv) (with max request length) [template]
+- [x] `240429>240823` Data import (csv) (with max request length) [template]
 - [x] `240429>240429` Fix email links and images
 - [x] `240429>240429` Fix sponsor link to open in another window
 - [x] `240429>240429` Fix print contract

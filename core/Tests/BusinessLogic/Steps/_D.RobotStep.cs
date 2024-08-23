@@ -996,12 +996,26 @@ namespace DFM.BusinessLogic.Tests.Steps
 			try
 			{
 				requeueOrRetryTime = DateTime.Now;
-				service.Robot.RequeueLines();
+
+				var result = service.Robot.RequeueLines();
+				result.Wait();
 			}
-			catch (CoreError coreError)
+			catch (AggregateException e)
 			{
-				error = coreError;
+				var inner = e.InnerExceptions;
+
+				if (inner.Count == 1 && inner[0] is CoreError realError)
+				{
+					error = realError;
+				}
+				else
+				{
+					throw;
+				}
 			}
+
+
+
 		}
 
 		[Then(@"the scheduled time will( not)? change")]

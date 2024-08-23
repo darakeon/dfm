@@ -653,7 +653,7 @@ namespace DFM.BusinessLogic.Services
 			}
 		}
 
-		public void RequeueLines()
+		public async Task RequeueLines()
 		{
 			if (!parent.Current.IsRobot)
 				throw Error.Uninvited.Throw();
@@ -663,7 +663,7 @@ namespace DFM.BusinessLogic.Services
 			if (!lines.Any())
 				return;
 
-			queueService.Enqueue(lines);
+			await queueService.Enqueue(lines);
 
 			foreach (var line in lines)
 			{

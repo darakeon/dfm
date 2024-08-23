@@ -23,7 +23,11 @@ namespace DFM.Robot
 			Connection.Run(() =>
 			{
 				var service = new Service(task);
-				service.Execute();
+				var process = service.Execute();
+				process.Wait();
+
+				if (process.Exception != null)
+					log(process.Exception);
 			});
 
 			log($"Ended {task}");
