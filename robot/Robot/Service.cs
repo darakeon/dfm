@@ -76,6 +76,7 @@ namespace DFM.Robot
 		public void Dispose()
 		{
 			s3?.Dispose();
+			sqs?.Dispose();
 		}
 	}
 }

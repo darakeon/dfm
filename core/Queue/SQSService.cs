@@ -8,7 +8,7 @@ using DFM.Generic;
 
 namespace DFM.Queue;
 
-public class SQSService : IQueueService
+public class SQSService : IQueueService, IDisposable
 {
 	public SQSService()
 	{
@@ -95,5 +95,10 @@ public class SQSService : IQueueService
 	{
 		if (response.HttpStatusCode >= HttpStatusCode.BadRequest)
 			throw new QueueError($"{operation} failed: {response.HttpStatusCode}");
+	}
+
+	public void Dispose()
+	{
+		sqsClient.Dispose();
 	}
 }
