@@ -4,6 +4,7 @@ using DFM.BusinessLogic.Repositories.DataObjects;
 using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using DFM.Entities.Enums;
+using DFM.Generic;
 
 namespace DFM.BusinessLogic.Repositories;
 
@@ -42,5 +43,16 @@ internal class LineRepository : Repo<Line>
 					&& l.Position == linePosition
 			)
 			.SingleOrDefault;
+	}
+
+	public IList<Line> GetToRequeue()
+	{
+		return NewQuery()
+			.Where(
+				l => l.Status == ImportStatus.Pending
+				     && l.Scheduled < DateTime.Now.AddDays(-1)
+			)
+			.Take(Cfg.SQS.QueueLimit)
+			.List;
 	}
 }

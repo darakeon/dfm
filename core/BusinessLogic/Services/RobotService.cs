@@ -658,10 +658,7 @@ namespace DFM.BusinessLogic.Services
 			if (!parent.Current.IsRobot)
 				throw Error.Uninvited.Throw();
 
-			var lines = repos.Line.Where(
-				l => l.Status == ImportStatus.Pending
-					&& l.Scheduled < DateTime.Now.AddDays(-1)
-			);
+			var lines = repos.Line.GetToRequeue();
 
 			queueService.Enqueue(lines);
 
