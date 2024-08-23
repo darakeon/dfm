@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Threading.Tasks;
 using DFM.Authentication;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Response;
 using DFM.Entities.Enums;
 using DFM.Exchange.Exporter;
 using DFM.Generic;
@@ -13,23 +15,31 @@ namespace DFM.Robot
 {
 	internal class Service : IDisposable
 	{
-		private readonly Task task;
+		private readonly RobotTask task;
 		private readonly ServiceAccess service;
 		private readonly S3Service s3;
 		private readonly SQSService sqs;
 
-		public Service(Task task)
+		public Service(RobotTask task)
 		{
 			this.task = task;
 
 			TZ.Init(false);
 
-			s3 = this.task == Task.Wipe ? new S3Service() : null;
-			sqs = this.task == Task.Import ? new SQSService() : null;
+			switch (this.task)
+			{
+				case RobotTask.Wipe:
+					s3 = new S3Service();
+					break;
+				case RobotTask.Import:
+				case RobotTask.Requeue:
+					sqs = new SQSService();
+					break;
+			}
 
 			service = new ServiceAccess(getTicket, getSite, s3, sqs);
 
-			if (this.task != Task.Check)
+			if (this.task != RobotTask.Check)
 				service.Current.Set(Cfg.RobotEmail, Cfg.RobotPassword, false);
 		}
 
@@ -43,21 +53,40 @@ namespace DFM.Robot
 			return "https://dontflymoney.com";
 		}
 
-		public void Execute()
+		public async Task Execute()
 		{
 			switch (task)
 			{
-				case Task.Check:
+				case RobotTask.Check:
 					Console.WriteLine("Sunariom");
 					break;
 
-				case Task.Schedules:
+				case RobotTask.Schedules:
 					var userErrors = service.Robot.RunSchedule();
 					handleScheduleErrors(userErrors);
 					break;
 
-				case Task.Wipe:
+				case RobotTask.Wipe:
 					service.Robot.WipeUsers();
+					break;
+
+				case RobotTask.Import:
+					MoveResult result;
+					Int32 count = 0;
+					do
+					{
+						result = await service.Robot.MakeMoveFromImported();
+						count++;
+					} while (result != null && count < 10);
+
+					break;
+
+				case RobotTask.Finish:
+					service.Robot.FinishArchives();
+					break;
+
+				case RobotTask.Requeue:
+					await service.Robot.RequeueLines();
 					break;
 			}
 		}
