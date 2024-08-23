@@ -660,6 +660,9 @@ namespace DFM.BusinessLogic.Services
 
 			var lines = repos.Line.GetToRequeue();
 
+			if (!lines.Any())
+				return;
+
 			queueService.Enqueue(lines);
 
 			foreach (var line in lines)
