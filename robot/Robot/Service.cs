@@ -18,9 +18,9 @@ namespace DFM.Robot
 		private readonly S3Service s3;
 		private readonly SQSService sqs;
 
-		public Service(String task)
+		public Service(Task task)
 		{
-			this.task = EnumX.Parse<Task>(task);
+			this.task = task;
 
 			TZ.Init(false);
 
