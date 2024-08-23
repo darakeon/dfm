@@ -14,6 +14,7 @@ public class SQS
 
 		if (!Local)
 		{
+			QueueLimit = Int32.Parse(sqs["QueueLimit"]);
 			Account = sqs["Account"];
 			Region = sqs["region"];
 			AccessKey = sqs["accessKey"];
@@ -21,6 +22,7 @@ public class SQS
 		}
 	}
 
+	public readonly Int32 QueueLimit = Int32.MaxValue;
 	public readonly String Account;
 	public readonly String Region;
 	public readonly String QueueImporter;
