@@ -69,6 +69,9 @@ public class SQSService : IQueueService
 
 		validateResponse(response, "Dequeue");
 
+		if (!response.Messages.Any())
+			return null;
+
 		var message = response.Messages.Single();
 
 		var line = SafeSerial.Deserialize<Line>(message.Body);
