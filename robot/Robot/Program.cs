@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DFM.Generic;
+using System;
 using System.Linq;
 
 namespace DFM.Robot
@@ -12,15 +13,20 @@ namespace DFM.Robot
 			if (arg == null)
 				throw new ArgumentException("Not task passed");
 
-			Console.WriteLine($"Starting {arg}");
+			var task = EnumX.Parse<RobotTask>(arg);
+
+			if (!EnumX.AllValues<RobotTask>().Contains(task))
+				throw new ArgumentException("Invalid task");
+
+			Console.WriteLine($"Starting {task}");
 
 			Connection.Run(() =>
 			{
-				var service = new Service(arg);
+				var service = new Service(task);
 				service.Execute();
 			});
 
-			Console.WriteLine($"Ended {arg}");
+			Console.WriteLine($"Ended {task}");
 		}
 	}
 }
