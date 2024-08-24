@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities;
 
@@ -14,24 +15,24 @@ namespace DFM.Exchange.Exporter
 			conversion = detail.Conversion.ToCsv();
 		}
 
-		private string description { get; }
-		private string amount { get; }
-		private string value { get; }
-		private string conversion { get; }
+		private String description { get; }
+		private String amount { get; }
+		private String value { get; }
+		private String conversion { get; }
 
-		public static string Convert(IEnumerable<Detail> details)
+		public static String Convert(IEnumerable<Detail> details)
 		{
 			var list = details
 				.Select(d => new DetailCsv(d))
 				.Select(d => d.ToString());
 
-			return string.Join(" + ", list);
+			return String.Join(" + ", list);
 		}
 
-		public override string ToString()
+		public override String ToString()
 		{
 			var conversionText = conversion == null
-				? string.Empty
+				? String.Empty
 				: $"({conversion})";
 
 			var valueText = $"{amount}x{value}{conversionText}";
