@@ -21,6 +21,7 @@
     <ProjectReference Include="..\Email\Email.csproj" />
     <ProjectReference Include="..\Entities\Entities.csproj" />
     <ProjectReference Include="..\Exchange\Exchange.csproj" />
+    <ProjectReference Include="..\Files\Files.csproj" />
     <ProjectReference Include="..\Language\Language.csproj" />
     <ProjectReference Include="..\Queue\Queue.csproj" />
   </ItemGroup>
