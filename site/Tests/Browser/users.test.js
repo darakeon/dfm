@@ -204,7 +204,7 @@ describe('Users', () => {
 
 		const nav = await puppy.content('.nav')
 		await expect(nav).not.toContain('form')
-		await expect(nav).toContain('Sign up')
+		await expect(nav).toContain('Users/SignUp')
 	})
 
 	test('End Wizard', async () => {
