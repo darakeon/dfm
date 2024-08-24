@@ -7,6 +7,12 @@ namespace DFM.Queue;
 
 public class LocalQueueService : IQueueService
 {
+	public LocalQueueService()
+	{
+		if (!Cfg.SQS.LocalFilled)
+			throw new SystemError("Must have section SQS whole configured for local files");
+	}
+
 	private IDictionary<String, IDictionary<String, String>> queues =
 		new Dictionary<String, IDictionary<String, String>>
 		{
