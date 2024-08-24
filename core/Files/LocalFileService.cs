@@ -1,16 +1,13 @@
-﻿using System;
-using System.IO;
-using CsvHelper.Configuration;
-using DFM.Generic;
+﻿using DFM.Generic;
 
-namespace DFM.Exchange.Exporter
+namespace DFM.Files
 {
 	public class LocalFileService : IFileService
 	{
 		public LocalFileService()
 		{
 			if (!Cfg.S3.LocalFilled)
-				throw new ConfigurationException("Must have section S3 whole configured for local files");
+				throw new SystemError("Must have section S3 whole configured for local files");
 		}
 
 		public void Upload(String path)

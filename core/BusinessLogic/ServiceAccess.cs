@@ -1,8 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Services;
-using DFM.Exchange.Exporter;
 using DFM.BusinessLogic.Validators;
+using DFM.Files;
 using DFM.Queue;
 
 [assembly: InternalsVisibleTo("DFM.BusinessLogic.Tests")]

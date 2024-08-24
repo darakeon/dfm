@@ -10,7 +10,7 @@ using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
-using DFM.Exchange.Exporter;
+using DFM.Files;
 using DFM.Generic;
 using DFM.Generic.Datetime;
 using DFM.Queue;
@@ -34,7 +34,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 		private protected static Valids valids;
 		private protected static Repos repos;
-		private protected static IFileService fileService;
+		private protected static LocalFileService fileService;
 		private protected static LocalQueueService queueService;
 
 		private static String logFileName;

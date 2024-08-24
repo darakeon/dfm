@@ -1,20 +1,17 @@
-﻿using System;
-using System.IO;
-using System.Net;
+﻿using System.Net;
 using Amazon;
 using Amazon.S3;
 using Amazon.S3.Transfer;
-using CsvHelper.Configuration;
 using DFM.Generic;
 
-namespace DFM.Exchange.Exporter
+namespace DFM.Files
 {
 	public class S3Service : IDisposable, IFileService
 	{
 		public S3Service()
 		{
 			if (!Cfg.S3.S3Filled)
-				throw new ConfigurationException("Must have section S3 whole configured for aws");
+				throw new SystemError("Must have section S3 whole configured for aws");
 
 			var region = RegionEndpoint.GetBySystemName(Cfg.S3.Region);
 			var accessKey = Cfg.S3.AccessKey;

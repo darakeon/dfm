@@ -12,6 +12,9 @@ public class SQSService : IQueueService, IDisposable
 {
 	public SQSService()
 	{
+		if (!Cfg.SQS.SQSFilled)
+			throw new SystemError("Must have section SQS whole configured for aws");
+
 		var region = RegionEndpoint.GetBySystemName(Cfg.SQS.Region);
 		var accessKey = Cfg.SQS.AccessKey;
 		var secretKey = Cfg.SQS.SecretKey;
