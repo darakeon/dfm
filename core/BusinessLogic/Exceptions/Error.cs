@@ -119,6 +119,10 @@ namespace DFM.BusinessLogic.Exceptions
 		InvalidArchiveType = 1008,
 		LineCancelNoSuccess = 1009,
 		ArchiveCancelNoSuccess = 1010,
+
+		InvalidDateRange = 1100,
+		OrderNoCategories = 1101,
+		OrderNoAccounts = 1102,
 	}
 
 	public static class ErrorX
