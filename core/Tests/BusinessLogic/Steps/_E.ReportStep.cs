@@ -581,20 +581,24 @@ namespace DFM.BusinessLogic.Tests.Steps
 						: MoveNature.Out;
 
 				var moveAccountOut =
-					nature switch
-					{
-						MoveNature.Out => accountInfo.Name,
-						MoveNature.Transfer => accountOutUrl,
-						_ => null
-					};
+					row.ContainsKey("Out") && row["Out"] != ""
+						? row["Out"]
+						: nature switch
+						{
+							MoveNature.Out => accountInfo.Name,
+							MoveNature.Transfer => accountOutUrl,
+							_ => null
+						};
 
 				var moveAccountIn =
-					nature switch
-					{
-						MoveNature.In => accountInfo.Name,
-						MoveNature.Transfer => accountInUrl,
-						_ => null
-					};
+					row.ContainsKey("In") && row["In"] != ""
+						? row["In"]
+						: nature switch
+						{
+							MoveNature.In => accountInfo.Name,
+							MoveNature.Transfer => accountInUrl,
+							_ => null
+						};
 
 				var move = new MoveInfo
 				{

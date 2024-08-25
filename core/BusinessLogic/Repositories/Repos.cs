@@ -17,6 +17,7 @@ namespace DFM.BusinessLogic.Repositories
 		internal DetailRepository Detail;
 		internal LineRepository Line;
 		internal MoveRepository Move;
+		internal OrderRepository Order;
 		internal WipeRepository Wipe;
 		internal ScheduleRepository Schedule;
 		internal SecurityRepository Security;
@@ -41,6 +42,7 @@ namespace DFM.BusinessLogic.Repositories
 			Detail = new DetailRepository();
 			Line = new LineRepository();
 			Move = new MoveRepository(getUrl, valids.Move);
+			Order = new OrderRepository();
 			Wipe = new WipeRepository(this, getUrl, fileService);
 			Schedule = new ScheduleRepository(valids.Schedule);
 			Security = new SecurityRepository(getUrl);
