@@ -1,4 +1,4 @@
-﻿Feature: Ec. Update move
+﻿Feature: Gq. Order Export
 
 Background:
 	Given test user login
@@ -35,31 +35,31 @@ Background:
 			| Sample Move Transfer with Conversion and Details | 2024-08-25 | Category 2 | Transfer | Account Out EUR | Account In BRL |       |            | D1     |
 
 
-Scenario: Gp01. Unlogged user
+Scenario: Gq01. Unlogged user
 	Given I have no logged user (logoff)
 	When order export
 	Then I will receive this core error: Uninvited
 		And no order will be recorded
 
-Scenario: Gp02. User marked for deletion
+Scenario: Gq02. User marked for deletion
 	Given the user is marked for deletion
 	When order export
 	Then I will receive this core error: UserDeleted
 		And no order will be recorded
 
-Scenario: Gp03. User requested wipe
+Scenario: Gq03. User requested wipe
 	Given the user asked data wipe
 	When order export
 	Then I will receive this core error: UserAskedWipe
 		And no order will be recorded
 
-Scenario: Gp04. Without sign last contract
+Scenario: Gq04. Without sign last contract
 	Given there is a new contract
 	When order export
 	Then I will receive this core error: NotSignedLastContract
 		And no order will be recorded
 
-Scenario: Gp04. Start Date empty
+Scenario: Gq05. Start Date empty
 	Given order end date 2024-08-25
 		And order account Account Out
 		And order account Account In
@@ -71,7 +71,7 @@ Scenario: Gp04. Start Date empty
 	Then I will receive this core error: InvalidDateRange
 		And no order will be recorded
 
-Scenario: Gp04. End Date empty
+Scenario: Gq06. End Date empty
 	Given order start date 1986-03-27
 		And order account Account Out
 		And order account Account In
@@ -83,7 +83,7 @@ Scenario: Gp04. End Date empty
 	Then I will receive this core error: InvalidDateRange
 		And no order will be recorded
 
-Scenario: Gp04. Start Date after End Date
+Scenario: Gq07. Start Date after End Date
 	Given order start date 2024-08-25
 		And order end date 1986-03-27
 		And order account Account Out
@@ -96,7 +96,7 @@ Scenario: Gp04. Start Date after End Date
 	Then I will receive this core error: InvalidDateRange
 		And no order will be recorded
 
-Scenario: Gp04. End Date after today
+Scenario: Gq08. End Date after today
 	Given order start date 1986-03-27
 		And order end date 3024-08-25
 		And order account Account Out
@@ -109,7 +109,7 @@ Scenario: Gp04. End Date after today
 	Then I will receive this core error: InvalidDateRange
 		And no order will be recorded
 
-Scenario: Gp04. No Categories
+Scenario: Gq09. No Categories
 	Given order start date 1986-03-27
 		And order end date 2024-08-25
 		And order account Account Out
@@ -120,7 +120,7 @@ Scenario: Gp04. No Categories
 	Then I will receive this core error: NoCategories
 		And no order will be recorded
 
-Scenario: Gp04. No Categories with Categories use disabled
+Scenario: Gq10. No Categories with Categories use disabled
 	Given these settings
 			| UseCategories |
 			| False         |
@@ -152,7 +152,7 @@ Scenario: Gp04. No Categories with Categories use disabled
 			| Sample Move Transfer with Conversion             | 2022-02-01 | Category 2 | Transfer | Account Out EUR | Account In BRL | 1     | 10         |              |         |        |             |
 			| Sample Move Transfer with Conversion and Details | 2024-08-25 | Category 2 | Transfer | Account Out EUR | Account In BRL |       |            | D1           | 1       | 1      | 10          |
 
-Scenario: Gp04. Invalid Category
+Scenario: Gq11. Invalid Category
 	Given order start date 1986-03-27
 		And order end date 2024-08-25
 		And order account Account Out
@@ -166,7 +166,7 @@ Scenario: Gp04. Invalid Category
 	Then I will receive this core error: InvalidCategory
 		And no order will be recorded
 
-Scenario: Gp04. No Accounts
+Scenario: Gq12. No Accounts
 	Given order start date 1986-03-27
 		And order end date 2024-08-25
 		And order category Category 1
@@ -175,7 +175,7 @@ Scenario: Gp04. No Accounts
 	Then I will receive this core error: NoAccounts
 		And no order will be recorded
 
-Scenario: Gp04. Invalid Account
+Scenario: Gq13. Invalid Account
 	Given order start date 1986-03-27
 		And order end date 2024-08-25
 		And order account Account Out
@@ -189,7 +189,7 @@ Scenario: Gp04. Invalid Account
 	Then I will receive this core error: InvalidAccount
 		And no order will be recorded
 
-Scenario: Gp04. All data
+Scenario: Gq14. All data
 	Given order start date 1986-03-27
 		And order end date 2024-08-25
 		And order account Account Out
@@ -220,7 +220,7 @@ Scenario: Gp04. All data
 			| Sample Move Transfer with Conversion             | 2022-02-01 | Category 2 | Transfer | Account Out EUR | Account In BRL | 1     | 10         |              |         |        |             |
 			| Sample Move Transfer with Conversion and Details | 2024-08-25 | Category 2 | Transfer | Account Out EUR | Account In BRL |       |            | D1           | 1       | 1      | 10          |
 
-Scenario: Gp04. Not all Categories
+Scenario: Gq15. Not all Categories
 	Given order start date 1986-03-27
 		And order end date 2024-08-25
 		And order account Account Out
@@ -242,7 +242,7 @@ Scenario: Gp04. Not all Categories
 			| Sample Move Transfer with Conversion             | 2001-08-07 | Category 1 | Transfer | Account Out EUR | Account In BRL | 1     | 10         |              |         |        |             |
 			| Sample Move Transfer with Conversion and Details | 2004-02-28 | Category 1 | Transfer | Account Out EUR | Account In BRL |       |            | D1           | 1       | 1      | 10          |
 
-Scenario: Gp04. Not all Accounts
+Scenario: Gq16. Not all Accounts
 	Given order start date 1986-03-27
 		And order end date 2024-08-25
 		And order account Account Out
@@ -262,7 +262,7 @@ Scenario: Gp04. Not all Accounts
 			| Sample Move Transfer                             | 2016-12-18 | Category 2 | Transfer | Account Out     | Account In     | 1     |            |              |         |        |             |
 			| Sample Move Transfer with Details                | 2019-07-12 | Category 2 | Transfer | Account Out     | Account In     |       |            | D1           | 1       | 1      |             |
 
-Scenario: Gp04. Not all dates
+Scenario: Gq17. Not all dates
 	Given order start date 1996-12-12
 		And order end date 2011-01-08
 		And order account Account Out

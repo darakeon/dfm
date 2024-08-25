@@ -9,6 +9,8 @@ public class OrderMap : IAutoMappingOverride<Order>
 {
 	public void Override(AutoMapping<Order> mapping)
 	{
+		mapping.Table("Order_");
+
 		mapping.IgnoreProperty(o => o.Guid);
 
 		mapping.Map(o => o.ExternalId)
