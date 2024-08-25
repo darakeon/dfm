@@ -60,10 +60,10 @@ Scenario: Gq04. Without sign last contract
 
 Scenario: Gq05. Start Date empty
 	Given order end date 2024-08-24
-		And order account Account Out
-		And order account Account In
-		And order account Account Out EUR
-		And order account Account In BRL
+		And order account account_out
+		And order account account_in
+		And order account account_out_eur
+		And order account account_in_brl
 		And order category Category 1
 		And order category Category 2
 	When order export
@@ -72,10 +72,10 @@ Scenario: Gq05. Start Date empty
 
 Scenario: Gq06. End Date empty
 	Given order start date 1986-03-27
-		And order account Account Out
-		And order account Account In
-		And order account Account Out EUR
-		And order account Account In BRL
+		And order account account_out
+		And order account account_in
+		And order account account_out_eur
+		And order account account_in_brl
 		And order category Category 1
 		And order category Category 2
 	When order export
@@ -85,10 +85,10 @@ Scenario: Gq06. End Date empty
 Scenario: Gq07. Start Date after End Date
 	Given order start date 2024-08-24
 		And order end date 1986-03-27
-		And order account Account Out
-		And order account Account In
-		And order account Account Out EUR
-		And order account Account In BRL
+		And order account account_out
+		And order account account_in
+		And order account account_out_eur
+		And order account account_in_brl
 		And order category Category 1
 		And order category Category 2
 	When order export
@@ -98,10 +98,10 @@ Scenario: Gq07. Start Date after End Date
 Scenario: Gq08. End Date after today
 	Given order start date 1986-03-27
 		And order end date 3024-08-24
-		And order account Account Out
-		And order account Account In
-		And order account Account Out EUR
-		And order account Account In BRL
+		And order account account_out
+		And order account account_in
+		And order account account_out_eur
+		And order account account_in_brl
 		And order category Category 1
 		And order category Category 2
 	When order export
@@ -111,24 +111,40 @@ Scenario: Gq08. End Date after today
 Scenario: Gq09. No Categories
 	Given order start date 1986-03-27
 		And order end date 2024-08-24
-		And order account Account Out
-		And order account Account In
-		And order account Account Out EUR
-		And order account Account In BRL
+		And order account account_out
+		And order account account_in
+		And order account account_out_eur
+		And order account account_in_brl
 	When order export
-	Then I will receive this core error: NoCategories
+	Then I will receive this core error: OrderNoCategories
 		And no order will be recorded
 
-Scenario: Gq10. No Categories with Categories use disabled
+Scenario: Gq10. Categories with Categories use disabled
 	Given these settings
 			| UseCategories |
 			| False         |
 		And order start date 1986-03-27
 		And order end date 2024-08-24
-		And order account Account Out
-		And order account Account In
-		And order account Account Out EUR
-		And order account Account In BRL
+		And order account account_out
+		And order account account_in
+		And order account account_out_eur
+		And order account account_in_brl
+		And order category Category 1
+		And order category Category 2
+	When order export
+	Then I will receive this core error: CategoriesDisabled
+		And no order will be recorded
+
+Scenario: Gq11. No Categories with Categories use disabled
+	Given these settings
+			| UseCategories |
+			| False         |
+		And order start date 1986-03-27
+		And order end date 2024-08-24
+		And order account account_out
+		And order account account_in
+		And order account account_out_eur
+		And order account account_in_brl
 	When order export
 	Then I will receive no core error
 		And order will be recorded
@@ -151,13 +167,13 @@ Scenario: Gq10. No Categories with Categories use disabled
 			| Sample Move Transfer with Conversion             | 2022-01-31 | Category 2 | Transfer | Account Out EUR | Account In BRL | 1     | 10         |              |         |        |             |
 			| Sample Move Transfer with Conversion and Details | 2024-08-24 | Category 2 | Transfer | Account Out EUR | Account In BRL |       |            | D1           | 1       | 1      | 10          |
 
-Scenario: Gq11. Invalid Category
+Scenario: Gq12. Invalid Category
 	Given order start date 1986-03-27
 		And order end date 2024-08-24
-		And order account Account Out
-		And order account Account In
-		And order account Account Out EUR
-		And order account Account In BRL
+		And order account account_out
+		And order account account_in
+		And order account account_out_eur
+		And order account account_in_brl
 		And order category Category 1
 		And order category Category 2
 		And order category Category 3
@@ -165,22 +181,22 @@ Scenario: Gq11. Invalid Category
 	Then I will receive this core error: InvalidCategory
 		And no order will be recorded
 
-Scenario: Gq12. No Accounts
+Scenario: Gq13. No Accounts
 	Given order start date 1986-03-27
 		And order end date 2024-08-24
 		And order category Category 1
 		And order category Category 2
 	When order export
-	Then I will receive this core error: NoAccounts
+	Then I will receive this core error: OrderNoAccounts
 		And no order will be recorded
 
-Scenario: Gq13. Invalid Account
+Scenario: Gq14. Invalid Account
 	Given order start date 1986-03-27
 		And order end date 2024-08-24
-		And order account Account Out
-		And order account Account In
-		And order account Account Out EUR
-		And order account Account In BRL
+		And order account account_out
+		And order account account_in
+		And order account account_out_eur
+		And order account account_in_brl
 		And order account Account
 		And order category Category 1
 		And order category Category 2
@@ -188,13 +204,13 @@ Scenario: Gq13. Invalid Account
 	Then I will receive this core error: InvalidAccount
 		And no order will be recorded
 
-Scenario: Gq14. All data
+Scenario: Gq15. All data
 	Given order start date 1986-03-27
 		And order end date 2024-08-24
-		And order account Account Out
-		And order account Account In
-		And order account Account Out EUR
-		And order account Account In BRL
+		And order account account_out
+		And order account account_in
+		And order account account_out_eur
+		And order account account_in_brl
 		And order category Category 1
 		And order category Category 2
 	When order export
@@ -219,13 +235,13 @@ Scenario: Gq14. All data
 			| Sample Move Transfer with Conversion             | 2022-01-31 | Category 2 | Transfer | Account Out EUR | Account In BRL | 1     | 10         |              |         |        |             |
 			| Sample Move Transfer with Conversion and Details | 2024-08-24 | Category 2 | Transfer | Account Out EUR | Account In BRL |       |            | D1           | 1       | 1      | 10          |
 
-Scenario: Gq15. Not all Categories
+Scenario: Gq16. Not all Categories
 	Given order start date 1986-03-27
 		And order end date 2024-08-24
-		And order account Account Out
-		And order account Account In
-		And order account Account Out EUR
-		And order account Account In BRL
+		And order account account_out
+		And order account account_in
+		And order account account_out_eur
+		And order account account_in_brl
 		And order category Category 1
 	When order export
 	Then I will receive no core error
@@ -241,10 +257,10 @@ Scenario: Gq15. Not all Categories
 			| Sample Move Transfer with Conversion             | 2001-08-07 | Category 1 | Transfer | Account Out EUR | Account In BRL | 1     | 10         |              |         |        |             |
 			| Sample Move Transfer with Conversion and Details | 2004-02-28 | Category 1 | Transfer | Account Out EUR | Account In BRL |       |            | D1           | 1       | 1      | 10          |
 
-Scenario: Gq16. Not all Accounts
+Scenario: Gq17. Not all Accounts
 	Given order start date 1986-03-27
 		And order end date 2024-08-24
-		And order account Account Out
+		And order account account_out
 		And order category Category 1
 		And order category Category 2
 	When order export
@@ -261,13 +277,13 @@ Scenario: Gq16. Not all Accounts
 			| Sample Move Transfer                             | 2016-12-18 | Category 2 | Transfer | Account Out     | Account In     | 1     |            |              |         |        |             |
 			| Sample Move Transfer with Details                | 2019-07-11 | Category 2 | Transfer | Account Out     | Account In     |       |            | D1           | 1       | 1      |             |
 
-Scenario: Gq17. Not all dates
+Scenario: Gq18. Not all dates
 	Given order start date 1996-12-12
 		And order end date 2011-01-08
-		And order account Account Out
-		And order account Account In
-		And order account Account Out EUR
-		And order account Account In BRL
+		And order account account_out
+		And order account account_in
+		And order account account_out_eur
+		And order account account_in_brl
 		And order category Category 1
 		And order category Category 2
 	When order export

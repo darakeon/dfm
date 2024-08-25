@@ -14,8 +14,8 @@ namespace DFM.Entities
 
 		public virtual User User { get; set; }
 
-		public virtual IList<Account> AccountList { get; set; }
-		public virtual IList<Category> CategoryList { get; set; }
+		public virtual IList<Account> AccountList { get; set; } = new List<Account>();
+		public virtual IList<Category> CategoryList { get; set; } = new List<Category>();
 
 		public virtual Guid Guid
 		{
