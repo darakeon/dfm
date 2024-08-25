@@ -17,7 +17,7 @@ This is the list of project releases, past and current. To see tasks that are st
 ## <a name="13.0.0.0"></a>13.0.0.0 🐉 <sup>`8`</sup>
 - [ ] Deploy APKs using CI
 - [ ] Data export (csv) [template]
-- [x] `270807>270807` Adjust menus to avoid responsiviness problem
+- [x] `240807>240807` Adjust menus to avoid responsiviness problem
 - [x] `240429>240823` Data import (csv) (with max request length) [template]
 - [x] `240429>240429` Fix email links and images
 - [x] `240429>240429` Fix sponsor link to open in another window
