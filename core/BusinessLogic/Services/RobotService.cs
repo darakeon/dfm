@@ -772,5 +772,10 @@ namespace DFM.BusinessLogic.Services
 
 			return new ArchiveInfo { Archive = archive };
 		}
+
+		public void OrderExport(OrderInfo orderInfo)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

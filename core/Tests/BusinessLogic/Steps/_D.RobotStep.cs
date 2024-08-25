@@ -85,6 +85,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 			get => get<ArchiveInfo>("archiveInfo");
 			set => set("archiveInfo", value);
 		}
+
+		private OrderInfo orderInfo
+		{
+			get => get<OrderInfo>("orderInfo");
+			set => set("orderInfo", value);
+		}
 		#endregion
 
 		#region SaveSchedule
@@ -1224,6 +1230,59 @@ namespace DFM.BusinessLogic.Tests.Steps
 			{
 				error = coreError;
 			}
+		}
+		#endregion
+
+		#region OrderExport
+		[Given(@"order start date (\d{4}-\d{2}-\d{2})")]
+		public void GivenOrderStartDate(DateTime date)
+		{
+			orderInfo ??= new OrderInfo();
+			orderInfo.Start = date;
+		}
+
+		[Given(@"order end date (\d{4}-\d{2}-\d{2})")]
+		public void GivenOrderEndDate(DateTime date)
+		{
+			orderInfo ??= new OrderInfo();
+			orderInfo.End = date;
+		}
+
+		[Given(@"order account (.+)")]
+		public void GivenOrderAccount(String accountUrl)
+		{
+			orderInfo ??= new OrderInfo();
+			orderInfo.AccountList.Add(accountUrl);
+		}
+
+		[Given(@"order category (.+)")]
+		public void GivenOrderCategory(String categoryName)
+		{
+			orderInfo ??= new OrderInfo();
+			orderInfo.CategoryList.Add(categoryName);
+		}
+
+		[When(@"order export")]
+		public void WhenOrderExport()
+		{
+			try
+			{
+				service.Robot.OrderExport(orderInfo);
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[Then(@"(no )?order will be recorded")]
+		public void ThenOrderWillBeRecorded(Boolean expectedRecorded)
+		{
+			var user = repos.User.GetByEmail(current.Email);
+
+			var actualRecorded = repos.Order.Any(o => o.User == user);
+
+			Assert.That(actualRecorded, Is.EqualTo(expectedRecorded));
 		}
 		#endregion
 
