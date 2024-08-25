@@ -129,7 +129,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				if (accountData.ContainsKey("Yellow"))
 					account.YellowLimit = getInt(accountData["Yellow"]);
 
-				if (accountData.ContainsKey("Currency"))
+				if (accountData.ContainsKey("Currency") && accountData["Currency"] != "")
 					account.Currency = EnumX.Parse<Currency>(accountData["Currency"]);
 
 				service.Admin.CreateAccount(account);
