@@ -775,6 +775,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void OrderExport(OrderInfo orderInfo)
 		{
+			var user = parent.Auth.VerifyUser();
 			throw new NotImplementedException();
 		}
 	}
