@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
@@ -776,7 +777,33 @@ namespace DFM.BusinessLogic.Services
 		public void OrderExport(OrderInfo orderInfo)
 		{
 			var user = parent.Auth.VerifyUser();
-			throw new NotImplementedException();
+
+			var order = orderInfo.Create(user);
+
+			foreach (var accountUrl in orderInfo.AccountList)
+			{
+				var account = repos.Account.GetByUrl(accountUrl, user);
+
+				if (account == null)
+					throw Error.InvalidAccount.Throw();
+
+				order.AccountList.Add(account);
+			}
+
+			foreach (var categoryName in orderInfo.CategoryList)
+			{
+				var category = repos.Category.GetByName(categoryName, user);
+
+				if (category == null)
+					throw Error.InvalidCategory.Throw();
+
+				order.CategoryList.Add(category);
+			}
+
+			inTransaction("OrderExport", () =>
+			{
+				repos.Order.SaveOrUpdate(order);
+			});
 		}
 	}
 }
