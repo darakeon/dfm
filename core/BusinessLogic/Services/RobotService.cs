@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
@@ -771,6 +772,38 @@ namespace DFM.BusinessLogic.Services
 			});
 
 			return new ArchiveInfo { Archive = archive };
+		}
+
+		public void OrderExport(OrderInfo orderInfo)
+		{
+			var user = parent.Auth.VerifyUser();
+
+			var order = orderInfo.Create(user);
+
+			foreach (var accountUrl in orderInfo.AccountList)
+			{
+				var account = repos.Account.GetByUrl(accountUrl, user);
+
+				if (account == null)
+					throw Error.InvalidAccount.Throw();
+
+				order.AccountList.Add(account);
+			}
+
+			foreach (var categoryName in orderInfo.CategoryList)
+			{
+				var category = repos.Category.GetByName(categoryName, user);
+
+				if (category == null)
+					throw Error.InvalidCategory.Throw();
+
+				order.CategoryList.Add(category);
+			}
+
+			inTransaction("OrderExport", () =>
+			{
+				repos.Order.SaveOrUpdate(order);
+			});
 		}
 	}
 }
