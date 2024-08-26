@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Principal;
 using System.Threading.Tasks;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
@@ -12,6 +11,7 @@ using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
+using DFM.Exchange.Exporter;
 using DFM.Exchange.Importer;
 using DFM.Generic;
 using DFM.Queue;
@@ -803,6 +803,33 @@ namespace DFM.BusinessLogic.Services
 			inTransaction("OrderExport", () =>
 			{
 				repos.Order.SaveOrUpdate(order);
+			});
+		}
+
+		public void ExportOrder()
+		{
+			if (!parent.Current.IsRobot)
+				throw Error.Uninvited.Throw();
+
+			var order = repos.Order.GetNext();
+
+			try
+			{
+				parent.Auth.VerifyUser(order.User);
+			}
+			catch (CoreError)
+			{
+				inTransaction("ExportOrder", () =>
+				{
+					repos.Order.Error(order);
+				});
+
+				throw;
+			}
+
+			inTransaction("ExportOrder", () =>
+			{
+				repos.Order.ExtractToFile(order);
 			});
 		}
 	}

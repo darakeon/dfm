@@ -51,7 +51,7 @@ namespace DFM.Exchange.Exporter
 		public String Out { get; }
 		public String Value { get; }
 		public String Conversion { get; }
-		public String Details { get; }
+		public IList<DetailCsv> Details { get; }
 
 		public bool Equals(IMove other)
 		{

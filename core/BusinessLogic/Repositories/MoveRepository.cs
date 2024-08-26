@@ -299,5 +299,20 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			return Where(m => m.Category.ID == category.ID);
 		}
+
+		public IList<Move> Filter(Order order)
+		{
+			var query = NewQuery()
+				.In(m => m.In.ID, order.AccountList.Select(a => a.ID))
+				.Where(m => m.Year * 10000 + m.Month * 100 + m.Day >= order.StartNumber)
+				.Where(m => m.Year * 10000 + m.Month * 100 + m.Day <= order.EndNumber);
+
+			if (order.CategoryList.Any())
+			{
+				query.In(m => m.Category.ID, order.CategoryList.Select(a => a.ID));
+			}
+
+			return query.List;
+		}
 	}
 }
