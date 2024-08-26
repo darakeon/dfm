@@ -81,10 +81,26 @@ namespace DFM.Exchange.Exporter
 			var now = DateTime.UtcNow.UntilSecond();
 			Path = $"{hashedEmail}_{now}.csv";
 
+			write();
+		}
+
+		private void write()
+		{
 			using var writer = new StreamWriter(Path);
 
 			using var csv = new CsvWriter(writer, CultureInfo.CurrentCulture);
 			csv.WriteRecords(moves.OrderBy(s => s.Date));
+		}
+
+		public void Create(Order order)
+		{
+			if (!moves.Any())
+				return;
+
+			var now = DateTime.UtcNow.UntilSecond();
+			Path = $"{order.Guid}_{now}.csv";
+
+			write();
 		}
 
 		public void Dispose()

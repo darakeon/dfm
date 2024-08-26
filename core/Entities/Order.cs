@@ -1,6 +1,7 @@
 ﻿using Keon.Util.DB;
 using System;
 using System.Collections.Generic;
+using DFM.Entities.Enums;
 
 namespace DFM.Entities
 {
@@ -8,6 +9,8 @@ namespace DFM.Entities
 	{
 		public virtual Int64 ID { get; set; }
 		public virtual Byte[] ExternalId { get; set; }
+
+		public virtual ExportStatus Status { get; set; }
 
 		public virtual DateTime Start { get; set; }
 		public virtual DateTime End { get; set; }
@@ -22,5 +25,11 @@ namespace DFM.Entities
 			get => new(ExternalId);
 			set => ExternalId = value.ToByteArray();
 		}
+
+		public virtual Int32 StartNumber =>
+			Start.Year * 10000 + Start.Month * 100 + Start.Day;
+
+		public virtual Int32 EndNumber =>
+			End.Year * 10000 + End.Month * 100 + End.Day;
 	}
 }
