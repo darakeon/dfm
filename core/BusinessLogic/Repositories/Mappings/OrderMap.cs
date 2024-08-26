@@ -14,7 +14,7 @@ public class OrderMap : IAutoMappingOverride<Order>
 		mapping.IgnoreProperty(o => o.Guid);
 
 		mapping.Map(o => o.ExternalId)
-			.UniqueKey("UK_Search");
+			.UniqueKey("UK_Order");
 
 		mapping.References(o => o.User)
 			.Not.Nullable();
