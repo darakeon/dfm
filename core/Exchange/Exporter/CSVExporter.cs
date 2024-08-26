@@ -96,7 +96,8 @@ namespace DFM.Exchange.Exporter
 			if (!moves.Any())
 				return;
 
-			Path = $"{order.Guid}.csv";
+			var now = DateTime.UtcNow.UntilSecond();
+			Path = $"{order.Guid}_{now}.csv";
 
 			write();
 		}
