@@ -93,6 +93,46 @@ public class MoveCsv : Line
 	public Int16? Amount20 { set => setAmount(19, value); }
 	public Decimal? Value20 { set => setValue(19, value); }
 	public Decimal? Conversion20 { set => setConversion(19, value); }
+	public String Description21 { set => setDescription(20, value); }
+	public Int16? Amount21 { set => setAmount(20, value); }
+	public Decimal? Value21 { set => setValue(20, value); }
+	public Decimal? Conversion21 { set => setConversion(20, value); }
+	public String Description22 { set => setDescription(21, value); }
+	public Int16? Amount22 { set => setAmount(21, value); }
+	public Decimal? Value22 { set => setValue(21, value); }
+	public Decimal? Conversion22 { set => setConversion(21, value); }
+	public String Description23 { set => setDescription(22, value); }
+	public Int16? Amount23 { set => setAmount(22, value); }
+	public Decimal? Value23 { set => setValue(22, value); }
+	public Decimal? Conversion23 { set => setConversion(22, value); }
+	public String Description24 { set => setDescription(23, value); }
+	public Int16? Amount24 { set => setAmount(23, value); }
+	public Decimal? Value24 { set => setValue(23, value); }
+	public Decimal? Conversion24 { set => setConversion(23, value); }
+	public String Description25 { set => setDescription(24, value); }
+	public Int16? Amount25 { set => setAmount(24, value); }
+	public Decimal? Value25 { set => setValue(24, value); }
+	public Decimal? Conversion25 { set => setConversion(24, value); }
+	public String Description26 { set => setDescription(25, value); }
+	public Int16? Amount26 { set => setAmount(25, value); }
+	public Decimal? Value26 { set => setValue(25, value); }
+	public Decimal? Conversion26 { set => setConversion(25, value); }
+	public String Description27 { set => setDescription(26, value); }
+	public Int16? Amount27 { set => setAmount(26, value); }
+	public Decimal? Value27 { set => setValue(26, value); }
+	public Decimal? Conversion27 { set => setConversion(26, value); }
+	public String Description28 { set => setDescription(27, value); }
+	public Int16? Amount28 { set => setAmount(27, value); }
+	public Decimal? Value28 { set => setValue(27, value); }
+	public Decimal? Conversion28 { set => setConversion(27, value); }
+	public String Description29 { set => setDescription(28, value); }
+	public Int16? Amount29 { set => setAmount(28, value); }
+	public Decimal? Value29 { set => setValue(28, value); }
+	public Decimal? Conversion29 { set => setConversion(28, value); }
+	public String Description30 { set => setDescription(29, value); }
+	public Int16? Amount30 { set => setAmount(29, value); }
+	public Decimal? Value30 { set => setValue(29, value); }
+	public Decimal? Conversion30 { set => setConversion(29, value); }
 
 	private void setDescription(Int32 index, String value)
 	{
