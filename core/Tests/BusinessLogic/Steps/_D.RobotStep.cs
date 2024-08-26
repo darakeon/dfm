@@ -546,6 +546,16 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(user.Control.RemovalWarningSent, Is.EqualTo(count));
 		}
 
+		[Then(@"there will be no export file")]
+		public void ThenThereWillBeNoExportFile()
+		{
+			var file = Directory
+				.GetFiles(Cfg.S3.Directory, "*.csv")
+				.FirstOrDefault(f => f.Contains(scenarioCode));
+
+			Assert.That(file, Is.Null);
+		}
+
 		[Then(@"there will be an export file with this content")]
 		public void ThenThereWillBeAnExportFileWithThisContent(Table table)
 		{
@@ -1278,11 +1288,45 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"(no )?order will be recorded")]
 		public void ThenOrderWillBeRecorded(Boolean expectedRecorded)
 		{
-			var user = repos.User.GetByEmail(current.Email);
+			var user = repos.User.GetByEmail(userEmail);
 
 			var actualRecorded = repos.Order.Any(o => o.User == user);
 
 			Assert.That(actualRecorded, Is.EqualTo(expectedRecorded));
+		}
+		#endregion
+
+		#region ExportOrder
+		[Given(@"an export is ordered")]
+		public void GivenAnExportIsOrdered()
+		{
+			service.Robot.OrderExport(orderInfo);
+		}
+
+		[When(@"export order")]
+		public void WhenExportOrder()
+		{
+			try
+			{
+				service.Robot.ExportOrder();
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[Then(@"order status will be (Pending|Canceled|Success|Error)")]
+		public void ThenOrderStatusWillBe(ExportStatus status)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+
+			var order =
+				repos.Order.SingleOrDefault(
+					o => o.User == user
+				);
+
+			Assert.That(order.Status, Is.EqualTo(status));
 		}
 		#endregion
 

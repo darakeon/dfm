@@ -42,7 +42,7 @@ namespace DFM.BusinessLogic.Repositories
 			Detail = new DetailRepository();
 			Line = new LineRepository();
 			Move = new MoveRepository(getUrl, valids.Move);
-			Order = new OrderRepository();
+			Order = new OrderRepository(this, fileService);
 			Wipe = new WipeRepository(this, getUrl, fileService);
 			Schedule = new ScheduleRepository(valids.Schedule);
 			Security = new SecurityRepository(getUrl);

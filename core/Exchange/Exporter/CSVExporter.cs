@@ -47,8 +47,7 @@ namespace DFM.Exchange.Exporter
 			if (schedules.Any())
 				addSchedules();
 
-			if (moves.Any())
-				write(wipe);
+			write(wipe);
 		}
 
 		private void addSchedules()
@@ -81,10 +80,25 @@ namespace DFM.Exchange.Exporter
 			var now = DateTime.UtcNow.UntilSecond();
 			Path = $"{hashedEmail}_{now}.csv";
 
+			write();
+		}
+
+		private void write()
+		{
 			using var writer = new StreamWriter(Path);
 
 			using var csv = new CsvWriter(writer, CultureInfo.CurrentCulture);
 			csv.WriteRecords(moves.OrderBy(s => s.Date));
+		}
+
+		public void Create(Order order)
+		{
+			if (!moves.Any())
+				return;
+
+			Path = $"{order.Guid}.csv";
+
+			write();
 		}
 
 		public void Dispose()

@@ -4,6 +4,7 @@ using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.BusinessLogic.Response;
 using DFM.BusinessLogic.Tests.Helpers;
 using DFM.Entities;
+using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Generic.Datetime;
 using DFM.Language;
@@ -223,10 +224,17 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			log("After scenario");
 
-			var pendentSchedules = repos.Schedule.Where(s => s.Active);
-			foreach (var schedule in pendentSchedules)
+			var pendingSchedules = repos.Schedule.Where(s => s.Active);
+			foreach (var schedule in pendingSchedules)
 			{
 				repos.Schedule.Disable(schedule.Guid, schedule.User);
+			}
+
+			var pendingOrders = repos.Order
+				.Where(s => s.Status == ExportStatus.Pending);
+			foreach (var order in pendingOrders)
+			{
+				repos.Order.Cancel(order);
 			}
 
 			queueService.Clear();
