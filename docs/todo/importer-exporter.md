@@ -19,7 +19,7 @@
 ## Exporter
 
 - [x] Save options of exporting (accounts, categories, dates)
-- [x] Robot will create the file (or block of files)
+- [ ] Robot will create the file (or block of files)
 - [ ] Add order expiration date
 - [ ] Clear order files on expiration date
 - [ ] Integrate to site
