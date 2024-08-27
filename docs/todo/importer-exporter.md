@@ -19,7 +19,7 @@
 ## Exporter
 
 - [x] Save options of exporting (accounts, categories, dates)
-- [ ] Robot will create the file (or block of files)
+- [x] Robot will create the file (or block of files)
 - [ ] Add order expiration date
 - [ ] Clear order files on expiration date
 - [ ] Add order to user deletion test
