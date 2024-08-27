@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DFM.Entities;
 using DFM.Entities.Bases;
 
@@ -17,8 +18,10 @@ namespace DFM.Exchange.Exporter
 			Nature = move.Nature.ToString();
 			In = move.In?.Name;
 			Out = move.Out?.Name;
-			Value = move.Value.ToCsv();
-			Conversion = move.Conversion.ToCsv();
+
+			var hasDetails = move.DetailList.Any();
+			Value = hasDetails ? null : move.Value.ToCsv();
+			Conversion = hasDetails ? null : move.Conversion.ToCsv();
 
 			DetailList = DetailCsv.Convert(move.DetailList);
 		}
