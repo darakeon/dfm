@@ -30,3 +30,7 @@
 - [ ] Exported can be imported
 - [ ] Integrate to site
 - [ ] Integrate to robot
+
+## Consequence
+
+- [ ] Break robot into attendant and executor
