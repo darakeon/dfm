@@ -47,7 +47,8 @@ namespace DFM.Exchange.Exporter
 			if (schedules.Any())
 				addSchedules();
 
-			write(wipe);
+			if (moves.Any())
+				write(wipe);
 		}
 
 		private void addSchedules()

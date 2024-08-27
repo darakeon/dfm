@@ -86,17 +86,16 @@ namespace DFM.Exchange.Tests
 					Directory.GetCurrentDirectory(),
 					$"{wipe.HashedEmail.ToBase64()}*.csv"
 				)
-				.OrderByDescending(s => s)
-				.FirstOrDefault();
+				.MaxBy(s => s);
 
 			if (filename != null)
-				this.csv = File.ReadAllLines(filename);
+				csv = File.ReadAllLines(filename);
 		}
 
-		[Then(@"the file will have these lines")]
-		public void ThenTheFileWillHaveTheseLines(Table table)
+		[Then(@"the csv will have these lines")]
+		public void ThenTheCsvWillHaveTheseLines(Table table)
 		{
-			var expected = table.Rows.Select(r => r["File"]);
+			var expected = table.ToCsv();
 
 			Assert.That(csv, Is.EqualTo(expected));
 		}
