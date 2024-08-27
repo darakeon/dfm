@@ -562,9 +562,20 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var expected = table.ToCsv()
 				.Select(r => r.ForScenario(scenarioCode));
 
+			var textToFindFile = "_";
+
+			if (orderInfo != null)
+			{
+				var user = repos.User.GetByEmail(userEmail);
+				var order = repos.Order.SingleOrDefault(o => o.User == user);
+
+				if (order != null)
+					textToFindFile = order.Guid + textToFindFile;
+			}
+
 			var file = Directory
 				.GetFiles(Cfg.S3.Directory, "*.csv")
-				.Where(f => f.Contains("_"))
+				.Where(f => f.Contains(textToFindFile))
 				.OrderByDescending(f => f.Split("_")[1])
 				.First();
 
