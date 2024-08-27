@@ -27,5 +27,6 @@
 - [ ] Allow retry orders
 - [ ] Allow cancel orders
 - [ ] Record order creation / export and show
+- [ ] Exported can be imported
 - [ ] Integrate to site
 - [ ] Integrate to robot
