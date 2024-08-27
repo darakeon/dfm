@@ -18,7 +18,7 @@
 
 ## Exporter
 
-- [ ] Save options of exporting (accounts, categories, dates)
+- [x] Save options of exporting (accounts, categories, dates)
 - [ ] Robot will create the file (or block of files) and make it available at site with expiration date
 - [ ] Integrate to site
 - [ ] Integrate to robot
