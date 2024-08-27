@@ -22,5 +22,10 @@
 - [ ] Robot will create the file (or block of files)
 - [ ] Add order expiration date
 - [ ] Clear order files on expiration date
+- [ ] Add order to user deletion test
+- [ ] List orders for user
+- [ ] Allow retry orders
+- [ ] Allow cancel orders
+- [ ] Record order creation / export and show
 - [ ] Integrate to site
 - [ ] Integrate to robot
