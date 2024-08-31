@@ -208,7 +208,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 		#region SendPasswordReset
 		[When(@"I try to send the e-mail of password reset")]
-		public void WhenITryToSendTheEMailOfPasswordReset()
+		public void WhenITryToSendTheEmailOfPasswordReset()
 		{
 			try
 			{
@@ -1018,7 +1018,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 		[Given(@"I pass an e-mail that doesn't exist")]
-		public void GivenIPassAnEMailThatDoesNotExist()
+		public void GivenIPassAnEmailThatDoesNotExist()
 		{
 			email = "dont_exist@dontflymoney.com";
 		}
@@ -1128,7 +1128,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 		[When(@"I try to send the e-mail of user verify")]
-		public void WhenITryToSendTheEMailOfUserVerify()
+		public void WhenITryToSendTheEmailOfUserVerify()
 		{
 			try
 			{
