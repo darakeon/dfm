@@ -126,7 +126,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 		[When(@"I try to save the move with e-mail system out")]
-		public void WhenITryToSaveTheMoveWithEMailSystemOut()
+		public void WhenITryToSaveTheMoveWithEmailSystemOut()
 		{
 			TestSettings.ActivateMoveEmailForUser(service);
 			TestSettings.BreakTheEmailSystem();
@@ -150,7 +150,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 		[When(@"I try to save the move with e-mail system ok")]
-		public void WhenITryToSaveTheMoveWithEMailSystemOk()
+		public void WhenITryToSaveTheMoveWithEmailSystemOk()
 		{
 			TestSettings.ActivateMoveEmailForUser(service);
 
@@ -397,7 +397,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 
 		[When(@"I update the move with e-mail system out")]
-		public void WhenIUpdateTheMoveWithEMailSystemOut()
+		public void WhenIUpdateTheMoveWithEmailSystemOut()
 		{
 			TestSettings.ActivateMoveEmailForUser(service);
 			TestSettings.BreakTheEmailSystem();
@@ -421,7 +421,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 		[When(@"I update the move with e-mail system ok")]
-		public void WhenIUpdateTheMoveWithEMailSystemOk()
+		public void WhenIUpdateTheMoveWithEmailSystemOk()
 		{
 			TestSettings.ActivateMoveEmailForUser(service);
 
@@ -704,7 +704,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 		[When(@"I try to delete the move with e-mail system ok")]
-		public void WhenITryToDeleteTheMoveWithEMailSystemOk()
+		public void WhenITryToDeleteTheMoveWithEmailSystemOk()
 		{
 			TestSettings.ActivateMoveEmailForUser(service);
 
@@ -722,7 +722,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 		[When(@"I try to delete the move with e-mail system out")]
-		public void WhenITryToDeleteTheMoveWithEMailSystemOut()
+		public void WhenITryToDeleteTheMoveWithEmailSystemOut()
 		{
 			TestSettings.ActivateMoveEmailForUser(service);
 			TestSettings.BreakTheEmailSystem();
@@ -991,7 +991,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 		[Then(@"the move e-mail will have an unsubscribe link")]
-		public void ThenTheMoveE_MailWillHaveAnUnsubscribeLink()
+		public void ThenTheMoveEmailWillHaveAnUnsubscribeLink()
 		{
 			var email = EmlHelper.ByPosition(-1);
 
