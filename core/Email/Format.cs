@@ -76,6 +76,10 @@ namespace DFM.Email
 					"MiscImageReading",
 					PlainText.GetMiscText(misc, talkable.Language)
 				);
+
+				replaces.Add(
+					"DaysWipe", DayLimits.WIPE.ToString()
+				);
 			}
 
 			Subject = replaces["Subject"];
