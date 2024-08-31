@@ -1230,7 +1230,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 		[Then(@"the last two e-mails will have same unsubscribe token")]
-		public void ThenTheLastTwoE_MailsWillHaveSameUnsubscribeToken()
+		public void ThenTheLastTwoEmailsWillHaveSameUnsubscribeToken()
 		{
 			var regex = new Regex("UnsubscribeMoveMail>(\\w+)");
 
