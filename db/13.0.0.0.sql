@@ -368,6 +368,8 @@ insert into migrations (name) values ('13.0.0.0');
 -- contract end
 
 
+-- import
+
 create table archive (
 	ID BIGINT NOT NULL AUTO_INCREMENT,
 	ExternalId LONGBLOB NOT NULL,
@@ -419,3 +421,57 @@ ALTER TABLE detail
 	ADD CONSTRAINT FK_Detail_Line
 		FOREIGN KEY (Line_ID)
 		REFERENCES line (ID);
+
+
+-- export
+
+create table order_ (
+	ID BIGINT NOT NULL AUTO_INCREMENT,
+	ExternalId LONGBLOB NOT NULL,
+	Status SMALLINT NOT NULL,
+	Start DATETIME NOT NULL,
+	End DATETIME NOT NULL,
+	User_ID BIGINT NOT NULL,
+
+	CONSTRAINT PK_Order
+		PRIMARY KEY (ID),
+
+	CONSTRAINT UK_Order
+		UNIQUE(ExternalId(16)),
+
+	CONSTRAINT FK_Order_User
+		FOREIGN KEY (User_ID)
+		REFERENCES user (ID)
+);
+
+create table order_account (
+	Order_ID BIGINT NOT NULL,
+	Account_ID BIGINT NOT NULL,
+
+	CONSTRAINT PK_Order_Account
+		PRIMARY KEY (Order_ID, Account_ID),
+
+	CONSTRAINT FK_Order_Account_Order
+		FOREIGN KEY (Order_ID)
+		REFERENCES order_ (ID),
+
+	CONSTRAINT FK_Order_Account_Account
+		FOREIGN KEY (Account_ID)
+		REFERENCES account (ID)
+);
+
+create table order_category (
+	Order_ID BIGINT NOT NULL,
+	Category_ID BIGINT NOT NULL,
+
+	CONSTRAINT PK_Order_Category
+		PRIMARY KEY (Order_ID, Category_ID),
+
+	CONSTRAINT FK_Order_Category_Order
+		FOREIGN KEY (Order_ID)
+		REFERENCES order_ (ID),
+
+	CONSTRAINT FK_Order_Category_Category
+		FOREIGN KEY (Category_ID)
+		REFERENCES category (ID)
+);
