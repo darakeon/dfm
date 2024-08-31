@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Email;
 using DFM.Entities;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using Keon.Util.Extensions;
 using Error = DFM.BusinessLogic.Exceptions.Error;
@@ -37,7 +38,9 @@ namespace DFM.BusinessLogic.Repositories
 
 		public void WarnRemoval(User user, DateTime dateTime, RemovalReason removalReason)
 		{
-			var wipeDate = dateTime.ToUniversalTime().AddDays(90).Date;
+			var wipeDate = dateTime.ToUniversalTime()
+				.AddDays(DayLimits.WIPE).Date;
+
 			var now = DateTime.UtcNow.Date;
 			var diff = wipeDate - now;
 			var count = (Int32) diff.TotalDays;

@@ -1,4 +1,5 @@
 ﻿using System;
+using DFM.Entities.Bases;
 
 namespace DFM.BusinessLogic.Helpers
 {
@@ -13,9 +14,9 @@ namespace DFM.BusinessLogic.Helpers
 			return date.ToUniversalTime() < limit;
 		}
 
-		public static DateTime Limit1() => limit(30);
-		public static DateTime Limit2() => limit(60);
-		public static DateTime LimitRemoval() => limit(90);
+		public static DateTime Limit1() => limit(DayLimits.WIPE_WARN_1);
+		public static DateTime Limit2() => limit(DayLimits.WIPE_WARN_2);
+		public static DateTime LimitRemoval() => limit(DayLimits.WIPE);
 
 		private static DateTime limit(Int32 days)
 		{
