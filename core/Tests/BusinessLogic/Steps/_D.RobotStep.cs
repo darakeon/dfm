@@ -276,7 +276,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 		[When(@"run the scheduler with e-mail system out")]
-		public void WhenITryToRunTheSchedulerWithEMailSystemOut()
+		public void WhenITryToRunTheSchedulerWithEmailSystemOut()
 		{
 			TestSettings.ActivateMoveEmailForUser(service);
 			TestSettings.BreakTheEmailSystem();
@@ -295,7 +295,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 		[When(@"run the scheduler with e-mail system ok")]
-		public void WhenITryToRunTheSchedulerWithEMailSystemOk()
+		public void WhenITryToRunTheSchedulerWithEmailSystemOk()
 		{
 			TestSettings.ActivateMoveEmailForUser(service);
 
@@ -643,14 +643,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 		[Then(@"the e-mail subject will be ""(.*)""")]
-		public void ThenTheE_MailSubjectWillBe(String subject)
+		public void ThenTheEmailSubjectWillBe(String subject)
 		{
 			var email = EmlHelper.ByEmail(userEmail);
 			Assert.That(email.Subject, Is.EqualTo(subject));
 		}
 
 		[Then(@"the e-mail body will contain ""(.*)""")]
-		public void ThenTheE_MailBodyWillContain(String bodyPart)
+		public void ThenTheEmailBodyWillContain(String bodyPart)
 		{
 			var email = EmlHelper.ByEmail(userEmail);
 			var body = email.Body

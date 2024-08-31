@@ -20,7 +20,7 @@ namespace DFM.Email.Tests
 		}
 
 		[Given(@"I have this e-mail to send")]
-		public void GivenIHaveThisEMailToSend(Table table)
+		public void GivenIHaveThisEmailToSend(Table table)
 		{
 			var email = table.Rows[0];
 
@@ -36,7 +36,7 @@ namespace DFM.Email.Tests
 		}
 
 		[Given(@"I have this e-mail to send to default")]
-		public void GivenIHaveThisEMailToSendToDefault(Table table)
+		public void GivenIHaveThisEmailToSendToDefault(Table table)
 		{
 			var email = table.Rows[0];
 
@@ -62,7 +62,7 @@ namespace DFM.Email.Tests
 		}
 
 		[When(@"I try to send the e-mail")]
-		public void WhenITryToSendTheEMail()
+		public void WhenITryToSendTheEmail()
 		{
 			try
 			{
@@ -99,7 +99,7 @@ namespace DFM.Email.Tests
 		}
 
 		[When(@"the e-mail is sent")]
-		public void WhenTheEMailIsSent()
+		public void WhenTheEmailIsSent()
 		{
 			var fileContent = format.Layout;
 
@@ -124,7 +124,7 @@ namespace DFM.Email.Tests
 		}
 
 		[Then(@"there will be a ([\w\-]+) e-mail sent")]
-		public void ThenThereWillBeAE_MailSent(String template)
+		public void ThenThereWillBeATemplateEmailSent(String template)
 		{
 			var path = Path.Combine("Templates", $"{template}.html");
 			var pattern = File.ReadAllText(path)
