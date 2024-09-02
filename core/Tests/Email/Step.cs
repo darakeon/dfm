@@ -7,6 +7,7 @@ using DFM.Language;
 using DFM.Tests.Util;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using static NHibernate.Engine.Query.CallableParser;
 
 namespace DFM.Email.Tests
 {
@@ -32,6 +33,12 @@ namespace DFM.Email.Tests
 			if (email.ContainsKey("Unsubscribe Link"))
 			{
 				sender.UnsubscribeLink(email["Unsubscribe Link"]);
+			}
+
+			if (email.ContainsKey("Attachment"))
+			{
+				var path = Path.Combine("Templates", email["Attachment"]);
+				sender.Attach(path);
 			}
 		}
 
@@ -161,6 +168,24 @@ namespace DFM.Email.Tests
 				emailSent.Headers["List-Unsubscribe"],
 				Is.EqualTo(headerLink)
 			);
+		}
+
+		[Then(@"there will be an attachment in the email sent to (.+) with the content of (.+)")]
+		public void ThenThereWillBeAnAttachmentInTheEmailSentToWithTheContentOf(String email, String file)
+		{
+			var emailSent = EmlHelper.ByEmail(email);
+
+			file = Path.Combine("Templates", file);
+			var content = File.ReadAllText(file);
+
+			var defaultAttachmentStart =
+				"<div style='text-align: center; font-family: courier new; padding: 3px; background: #000; border-top: 6px double #C00; border-bottom: 6px double #80C; color: #CCC; font-weight: bold;'>OCTET-STREAM</div>\n\ufeff";
+
+			content = (defaultAttachmentStart + content).Trim();
+
+			Assert.That(emailSent.Attachments, Is.Not.Empty);
+			Assert.That(emailSent.Attachments.Count, Is.EqualTo(1));
+			Assert.That(emailSent.Attachments[0], Is.EqualTo(content));
 		}
 
 		private MailError error
