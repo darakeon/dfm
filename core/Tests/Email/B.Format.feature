@@ -47,3 +47,8 @@ Scenario: B09. Format csv recover
 	When a security action is formatted to DeleteCsvData
 		And the e-mail is sent
 	Then there will be a security-action-delete-csv-data e-mail sent
+
+Scenario: B10. Format export csv
+	When an export data is formatted
+		And the e-mail is sent
+	Then there will be a export-data e-mail sent
