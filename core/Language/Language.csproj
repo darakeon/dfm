@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="Language\Email\DeleteCsvData.json" />
+    <None Remove="Language\Email\ExportData.json" />
     <None Remove="Language\Email\general.json" />
     <None Remove="Language\Email\misc.json" />
     <None Remove="Language\Email\MoveNotification.json" />
@@ -46,6 +47,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Language\Email\PersonAsked.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Language\Email\ExportData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Language\Email\WipeNotice.json">

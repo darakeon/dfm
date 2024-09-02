@@ -44,6 +44,9 @@
     <None Update="Templates\attach.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Templates\export-data.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Templates\move-notification.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
