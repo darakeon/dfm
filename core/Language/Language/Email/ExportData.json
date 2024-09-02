@@ -1,0 +1,24 @@
+{
+	"en-US": {
+		"Subject": "Exported data from System",
+		"Title": "Exported data",
+		"MainText": "We are sending attached to this email the data exported from the system.",
+		"OrderDateLabel": "This export was requested at:",
+		"DateRangeLabel": "The order was to export data between these dates:",
+		"AccountsLabel": "Accounts included in the exported data:",
+		"CategoriesLabel": "Categories included in the exported data:",
+		"AvailableUntilLabel": "The file attached will be available to download from the System until",
+		"": null
+	},
+	"pt-BR": {
+		"Subject": "Dados exportados do Sistema",
+		"Title": "Dados exportados",
+		"MainText": "Estamos enviando em anexo dados exportados do sistema.",
+		"OrderDateLabel": "Essa exportação foi requisitada em:",
+		"DateRangeLabel": "O pedido foi para exportar os dados entre as datas:",
+		"AccountsLabel": "Contas inclusas na exportação:",
+		"CategoriesLabel": "Categorias inclusas na exportação:",
+		"AvailableUntilLabel": "O arquivo anexo estará disponível para baixar do Sistema até",
+		"": null
+	}
+}
