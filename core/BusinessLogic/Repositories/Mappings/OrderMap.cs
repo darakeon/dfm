@@ -9,7 +9,7 @@ public class OrderMap : IAutoMappingOverride<Order>
 {
 	public void Override(AutoMapping<Order> mapping)
 	{
-		mapping.Table("Order_");
+		mapping.Table("order_");
 
 		mapping.IgnoreProperty(o => o.Guid);
 		mapping.IgnoreProperty(o => o.StartNumber);
