@@ -36,6 +36,11 @@ namespace DFM.Email
 			return new(user, EmailType.WipeNotice, removalReason);
 		}
 
+		public static Format ExportData(User user)
+		{
+			return new(user, EmailType.ExportData, EmailType.ExportData);
+		}
+
 		public static Format WipeCSVRecover(Wipe wipe)
 		{
 			return new(
