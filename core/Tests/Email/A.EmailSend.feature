@@ -42,3 +42,11 @@ Scenario: A06. Send an e-mail with unsubscribe link
 	When I try to send the e-mail
 	Then I will receive no e-mail error
 		And there will be a header in the email sent to unsub@dontflymoney.com with the link https://dontlfymoney.com/fake-unsub
+
+Scenario: A07. With attachments
+	Given I have this e-mail to send
+			| Subject | Body   | To                      | Attachment |
+			| attach  | attach | attach@dontflymoney.com | attach.txt |
+	When I try to send the e-mail
+	Then I will receive no e-mail error
+		And there will be an attachment in the email sent to attach@dontflymoney.com with the content of attach.txt
