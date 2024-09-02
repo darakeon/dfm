@@ -105,6 +105,12 @@ namespace DFM.Email.Tests
 			format = Format.WipeNotice(user, reason);
 		}
 
+		[When(@"an export data is formatted")]
+		public void WhenAnExportDataIsFormatted()
+		{
+			format = Format.ExportData(user);
+		}
+
 		[When(@"the e-mail is sent")]
 		public void WhenTheEmailIsSent()
 		{
