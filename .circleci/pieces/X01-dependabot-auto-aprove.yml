@@ -1,0 +1,24 @@
+  dependabot_auto_aprove:
+    docker:
+      - image: darakeon/github-cli
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: List PRs
+          command: |
+            gh pr list --base $CIRCLE_BRANCH --author app/dependabot --state open --limit 1 --json author,autoMergeRequest,baseRefName,closed,commits,headRefName,headRepository,headRepositoryOwner,id,isCrossRepository,isDraft,labels,number,state,statusCheckRollup > prs-$CIRCLE_BRANCH.json
+      - run:
+          name: Get PR to merge
+          command: |
+            export PR=$(python .circleci/auto-merge/get_next_auto_merge.py)
+      - run:
+          name: Merge PR
+          command: |
+            echo $PR
+            if [ "$PR" != "" ]; then
+              gh pr merge --auto --rebase $PR
+            else
+              echo "No PRs to merge"
+            fi
+
