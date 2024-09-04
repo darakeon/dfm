@@ -1061,9 +1061,6 @@ jobs:
       RUST_BACKTRACE: 1
     steps:
       - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - "ca:b3:cd:ca:06:0d:42:99:78:27:26:e2:5b:b7:94:a3"
       - restore_cache:
           keys:
             - cargo-version-{{ checksum "version/Cargo.toml" }}-{{ checksum "version/Cargo.lock" }}
