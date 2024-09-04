@@ -1053,6 +1053,19 @@ jobs:
           path: /var/db
           command: python upgrade/main.py
 
+  dependabot-auto-aprove:
+    docker:
+      - image: darakeon/github-ci
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: List PRs
+          command: |
+            gh pr list --base $CIRCLE_BRANCH --author app/dependabot --state open --limit 1 --json author,autoMergeRequest,baseRefName,closed,commits,headRefName,headRepository,headRepositoryOwner,id,isCrossRepository,isDraft,labels,number,state,statusCheckRollup > prs-$CIRCLE_BRANCH.json
+
+
+
   audit_version_changer:
     docker:
       - image: rust
