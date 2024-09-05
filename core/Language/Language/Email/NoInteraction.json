@@ -3,12 +3,14 @@
 		"Subject": "You seem to be not using the system anymore",
 		"Title": "No Interaction",
 		"DeleteReason": "The system using is free, but there are costs for whom maintains it online. There is some time that the inserted data at the System are not accessed or changed. So there is no meaning in keeping it, given they are not being used. The last access was at:",
+		"WipeTime": "The deletion was not immediate. There was a deadline of {{DaysWipe}} days and two warnings was sent. When the data is removed from the system without the person asking to and there are moves, the moves are recorded to a file, but there is not guarantee of how much time the file is kept. You can try to request the file but it can be not available anymore.",
 		"": null
 	},
 	"pt-BR": {
 		"Subject": "Parece que você não está mais usando o sistema",
 		"Title": "Sem interação",
 		"DeleteReason": "O sistema é de uso gratuito, porém gera custos para quem o mantém no ar. Faz algum tempo que os dados inseridos no Sistema não são acessados ou alterados. Sendo assim, não faz sentido mantê-los, já que não estão sendo usados. O último acesso foi em:",
+		"WipeTime": "A exclusão não foi imediata. Havia um prazo de {{DaysWipe}} dias e dois avisos foram enviados. Quando os dados são removidos do sistema sem que a pessoa requisite e se houver movimentações, as movimentações são gravadas em um arquivo, mas não há garantias de quanto tempo o arquivo é mantido. Você pode tentar requisitar esse arquivo, porém ele pode não estar mais disponível.",
 		"": null
 	}
 }
