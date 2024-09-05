@@ -2,8 +2,7 @@
 	"en-US": {
 		"Subject": "Deleted data",
 		"DeleteNotice": "Your user and data inserted<br />into Don't fly Money system<br />were deleted.",
-		"IfYouAsked": "If you asked the deletion, it was made some time after the request. When the data is removed from the system by person request, no copy is kept.",
-		"TimeoutAndDataRecover": "If you did not asked it, the deletion was not immediate. There was a deadline of {{DaysWipe}} days and two warnings was sent. When the data is removed from the system without the person asking to and there are moves, the moves are recorded to a file, but there is not guarantee of how much time the file is kept. You can try to request the file but it can be not available anymore. The e-mail you used to register was:",
+		"RegisteredEmail": "The e-mail you used to register was:",
 		"ReadTerms": "Read the terms of use at the website",
 		"ToUnderstand": "to understand more about data deletion",
 		"": null
@@ -11,8 +10,7 @@
 	"pt-BR": {
 		"Subject": "Dados excluídos",
 		"DeleteNotice": "Seu registro e os dados inseridos<br />no sistema Don't fly Money<br />foram excluídos.",
-		"IfYouAsked": "Se você requisitou a remoção, ela aconteceu algum tempo após a requisição. Quando os dados são removidos por requisição da pessoa, não é mantida cópia deles.",
-		"TimeoutAndDataRecover": "Caso não tenha requisitado, a exclusão não foi imediata. Havia um prazo de {{DaysWipe}} dias e dois avisos foram enviados. Quando os dados são removidos do sistema sem que a pessoa requisite e se houver movimentações, as movimentações são gravadas em um arquivo, mas não há garantias de quanto tempo o arquivo é mantido. Você pode tentar requisitar esse arquivo, porém ele pode não estar mais disponível. O e-mail que você usou para se registrar foi:",
+		"RegisteredEmail": "O e-mail que você usou para se registrar foi:",
 		"ReadTerms": "Leia os termos de uso no site",
 		"ToUnderstand": "para entender mais sobre a exclusão de dados",
 		"": null
