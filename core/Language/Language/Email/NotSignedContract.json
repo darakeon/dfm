@@ -3,12 +3,14 @@
 		"Subject": "Terms of Use of Don't fly Money System",
 		"Title": "Not signed contract",
 		"DeleteReason": "The system terms of use guide who uses and keep safe the relation between the Person and the System. Some time ago a newer version of these terms was published. In case you do not agree with those, it is not possible to keep using the System. The effective date of the terms is:",
+		"WipeTime": "The deletion was not immediate. There was a deadline of {{DaysWipe}} days and two warnings was sent. When the data is removed from the system without the person asking to and there are moves, the moves are recorded to a file, but there is not guarantee of how much time the file is kept. You can try to request the file but it can be not available anymore.",
 		"": null
 	},
 	"pt-BR": {
 		"Subject": "Termos de uso do sistema Don't fly Money",
 		"Title": "Contrato não assinado",
 		"DeleteReason": "Os termos de uso do sistema servem para orientar quem usa e manter segura a relação entre a Pessoa e o Sistema. Faz algum tempo que foi instituída uma nova versão desses termos. Caso não sejam assinados, não é possível seguir usando o Sistema. A data de entrada em vigor dos novos termos foi:",
+		"WipeTime": "A exclusão não foi imediata. Havia um prazo de {{DaysWipe}} dias e dois avisos foram enviados. Quando os dados são removidos do sistema sem que a pessoa requisite e se houver movimentações, as movimentações são gravadas em um arquivo, mas não há garantias de quanto tempo o arquivo é mantido. Você pode tentar requisitar esse arquivo, porém ele pode não estar mais disponível.",
 		"": null
 	}
 }
