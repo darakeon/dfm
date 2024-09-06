@@ -1413,6 +1413,9 @@ workflows:
             - test_midna
             - test_sql_scripts
             - audit_version_changer
+      - dependabot-auto-aprove:
+          requires:
+            - change_version
       - approve_deploy:
           type: approval
           requires:
