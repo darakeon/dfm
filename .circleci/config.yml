@@ -1802,6 +1802,9 @@ workflows:
       - test_ci:
           requires:
             - trufflehog
+      - dependabot_auto_aprove:
+          requires:
+            - trufflehog
       - workflow_ran:
           requires:
             - test_ci
