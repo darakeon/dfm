@@ -9,9 +9,7 @@
       - test_ci:
           requires:
             - trufflehog
-      - dependabot_auto_aprove:
-          requires:
-            - trufflehog
+      - dependabot_auto_aprove
       - workflow_ran:
           requires:
             - test_ci
