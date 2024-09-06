@@ -7,7 +7,7 @@ repo_name = 'dfm'
 repo_owner = 'darakeon'
 dependabot_pr = 'app/dependabot'
 dependabot_commit = 'dependabot[bot]'
-dk_ci_commit = 'darakeon-ci'
+dk_ci_commit = 'darakeon-circleci'
 allowed_to_commit = [dependabot_commit, dk_ci_commit]
 mandatory_workflow = 'ci/circleci: workflow_ran'
 
