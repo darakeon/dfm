@@ -1,4 +1,4 @@
-  dependabot-auto-aprove:
+  dependabot_auto_aprove:
     docker:
       - image: darakeon/github-cli
     resource_class: small

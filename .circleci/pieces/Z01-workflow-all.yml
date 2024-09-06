@@ -178,7 +178,7 @@
             - test_midna
             - test_sql_scripts
             - audit_version_changer
-      - dependabot-auto-aprove:
+      - dependabot_auto_aprove:
           requires:
             - change_version
       - approve_deploy:
