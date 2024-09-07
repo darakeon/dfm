@@ -1063,7 +1063,7 @@ jobs:
           name: List PRs
           command: |
             export CIRCLE_BRANCH=13.0.0.0
-            gh pr list --base $BRANCH --author app/dependabot --state open --limit 1 --json author,autoMergeRequest,baseRefName,closed,commits,headRefName,headRepository,headRepositoryOwner,id,isCrossRepository,isDraft,labels,number,state,statusCheckRollup > prs-$BRANCH.json
+            gh pr list --base $CIRCLE_BRANCH --author app/dependabot --state open --limit 1 --json author,autoMergeRequest,baseRefName,closed,commits,headRefName,headRepository,headRepositoryOwner,id,isCrossRepository,isDraft,labels,number,state,statusCheckRollup > prs-$CIRCLE_BRANCH.json
 
 
 
