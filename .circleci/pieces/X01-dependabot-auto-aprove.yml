@@ -11,7 +11,7 @@
             gh pr list --base $CIRCLE_BRANCH --author app/dependabot --state open --limit 1 --json author,autoMergeRequest,baseRefName,closed,commits,headRefName,headRepository,headRepositoryOwner,id,isCrossRepository,isDraft,labels,number,state,statusCheckRollup > prs-$CIRCLE_BRANCH.json
             export PR=$(python .circleci/auto-merge/get_next_auto_merge.py)
             echo $PR
-            gh pr merge $PR
+            gh pr merge --auto --rebase $PR
 
 
 
