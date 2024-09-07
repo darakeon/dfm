@@ -14,10 +14,6 @@ mandatory_workflow = 'ci/circleci: workflow_ran'
 with open(f'prs-{branch}.json') as prs_file:
 	prs = loads(prs_file.read())
 
-for i in range(30):
-	print("---------------------------------------------------------------------------------")
-
-print(len(prs))
 prs = list(filter(
 	lambda pr:
 		pr['baseRefName'] == branch
@@ -48,7 +44,6 @@ prs = list(filter(
 		))) > 0
 	, prs
 ))
-print(len(prs))
 
 for pr in prs:
 	id = pr['id']
