@@ -14,6 +14,7 @@ namespace DFM.Entities
 		public virtual ExportStatus Status { get; set; }
 
 		public virtual DateTime? Creation { get; set; }
+		public virtual Boolean? Sent { get; set; }
 
 		public virtual DateTime Start { get; set; }
 		public virtual DateTime End { get; set; }

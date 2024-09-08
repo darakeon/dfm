@@ -1,12 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Keon.Util.Extensions;
+using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Exchange.Exporter;
 using DFM.Files;
+using DFM.Generic.Datetime;
 
 namespace DFM.BusinessLogic.Repositories;
 
-internal class OrderRepository(Repos repos, IFileService fileService) : Repo<Order>
+internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService fileService) : Repo<Order>
 {
 	public Order GetNext()
 	{
@@ -22,7 +26,7 @@ internal class OrderRepository(Repos repos, IFileService fileService) : Repo<Ord
 		SaveOrUpdate(order);
 	}
 
-	public void ExtractToFile(Order order)
+	public void ExtractToFileAndSend(Order order)
 	{
 		var moves = repos.Move.Filter(order);
 
@@ -32,21 +36,56 @@ internal class OrderRepository(Repos repos, IFileService fileService) : Repo<Ord
 
 		if (csv.Path == null)
 		{
-			order.Status = ExportStatus.Error;
-		}
-		else
-		{
-			fileService.Upload(csv.Path);
-			order.Status = ExportStatus.Success;
-			order.Creation = order.User.Now();
+			Error(order);
+			return;
 		}
 
+		fileService.Upload(csv.Path);
+		order.Status = ExportStatus.Success;
+		order.Creation = order.User.Now();
+
+		sendEmail(order, csv.Path);
+
 		SaveOrUpdate(order);
+	}
+
+	private void sendEmail(Order order, String filename)
+	{
+		var dic = new Dictionary<String, String>
+		{
+			{ "Url", getUrl() },
+			{ "OrderDate", order.Creation?.UniversalWithTime() },
+			{ "DateRangeStart", order.Start.ToShortDateString() },
+			{ "DateRangeEnd", order.End.ToShortDateString() },
+			{ "Accounts", String.Join('\n', order.AccountList) },
+			{ "Categories", String.Join('\n', order.CategoryList) },
+			{ "AvailableUntil", order.Expiration?.UniversalWithTime() },
+		};
+
+		var format = Format.ExportData(order.User);
+		var fileContent = format.Layout.Format(dic);
+
+		var sender = new Sender()
+			.To(order.User.Email)
+			.Subject(format.Subject)
+			.Body(fileContent)
+			.Attach(filename);
+
+		try
+		{
+			sender.Send();
+			order.Sent = true;
+		}
+		catch (MailError)
+		{
+			order.Sent = false;
+		}
 	}
 
 	public void Error(Order order)
 	{
 		order.Status = ExportStatus.Error;
+		order.Sent = false;
 		SaveOrUpdate(order);
 	}
 }

@@ -66,7 +66,7 @@ Scenario: Hh07. User with moves
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |
 	Then I will receive no core error
-		And 1 email with csv will be sent
+		And 1 email with csv will be sent with a link to delete it
 
 Scenario: Hh08. Wiped twice
 	Given the user creation was 100 days before
@@ -89,7 +89,7 @@ Scenario: Hh08. Wiped twice
 			| Email                           | Password |
 			| {scenarioCode}@dontflymoney.com | password |
 	Then I will receive no core error
-		And 2 emails with csv will be sent
+		And 2 emails with csv will be sent with a link to delete it
 
 Scenario: Hh09. Recover wiped file
 	Given the user creation was 100 days before
