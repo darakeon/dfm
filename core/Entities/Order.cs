@@ -1,6 +1,7 @@
 ﻿using Keon.Util.DB;
 using System;
 using System.Collections.Generic;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 
 namespace DFM.Entities
@@ -12,6 +13,8 @@ namespace DFM.Entities
 
 		public virtual ExportStatus Status { get; set; }
 
+		public virtual DateTime? Creation { get; set; }
+
 		public virtual DateTime Start { get; set; }
 		public virtual DateTime End { get; set; }
 
@@ -20,11 +23,15 @@ namespace DFM.Entities
 		public virtual IList<Account> AccountList { get; set; } = new List<Account>();
 		public virtual IList<Category> CategoryList { get; set; } = new List<Category>();
 
+
 		public virtual Guid Guid
 		{
 			get => new(ExternalId);
 			set => ExternalId = value.ToByteArray();
 		}
+
+		public virtual DateTime? Expiration =>
+			Creation?.AddDays(DayLimits.EXPORT_EXPIRATION);
 
 		public virtual Int32 StartNumber =>
 			Start.Year * 10000 + Start.Month * 100 + Start.Day;
