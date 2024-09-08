@@ -856,8 +856,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"(\d+ )?emails? with csv will (not )?be sent")]
-		public void ThenCSVWill_BeSent(Int32 emailCount, Boolean csvSent)
+		[Then(@"(\d+ )?emails? with csv will (not )?be sent( with a link to delete it)?")]
+		public void ThenCSVWill_BeSent(Int32 emailCount, Boolean csvSent, String hasLink)
 		{
 			var inboxPath = Path.Combine(
 				"..", "..", "..", "..", "..", "..", "outputs", "inbox"
@@ -881,12 +881,15 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 					Assert.That(countAttachments, Is.EqualTo(1));
 
-					var link = $"https://dontflymoney.com/>DeleteCsvData>{token}";
+					if (hasLink != "")
+					{
+						var link = $"https://dontflymoney.com/>DeleteCsvData>{token}";
 
-					Assert.That(
-						email.Body.Contains(link),
-						() => $"{link}\nnot found at\n{email.Body}"
-					);
+						Assert.That(
+							email.Body.Contains(link),
+							() => $"{link}\nnot found at\n{email.Body}"
+						);
+					}
 				}
 			}
 			else
