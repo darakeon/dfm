@@ -21,6 +21,7 @@ namespace DFM.Generic.Datetime
 		public static String GetTimeZone(Int32 offset) => tz.getTimeZone(offset);
 		public static Boolean IsValid(String timeZone) => tz.isValid(timeZone);
 		public static DateTime Now(String timeZoneName) => tz.now(timeZoneName);
+		public static DateTime Convert(String timeZoneName, DateTime dateTime) => tz.convert(timeZoneName, dateTime);
 
 		private readonly ReadOnlyCollection<TimeZone> timeZones;
 		private readonly IDictionary<String, TimeZone> timeZoneDic;
@@ -48,12 +49,17 @@ namespace DFM.Generic.Datetime
 
 		private DateTime now(String timeZoneName)
 		{
+			return convert(timeZoneName, DateTime.UtcNow);
+		}
+
+		private DateTime convert(String timeZoneName, DateTime dateTime)
+		{
 			if (!isValid(timeZoneName))
-				return DateTime.UtcNow;
+				return dateTime;
 			
 			var timeZone = timeZoneDic[timeZoneName];
 
-			return DateTime.UtcNow
+			return dateTime
 				.AddHours(timeZone.Hour)
 				.AddMinutes(timeZone.Minute);
 		}
