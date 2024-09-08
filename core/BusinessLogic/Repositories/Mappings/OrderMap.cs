@@ -14,6 +14,7 @@ public class OrderMap : IAutoMappingOverride<Order>
 		mapping.IgnoreProperty(o => o.Guid);
 		mapping.IgnoreProperty(o => o.StartNumber);
 		mapping.IgnoreProperty(o => o.EndNumber);
+		mapping.IgnoreProperty(o => o.Expiration);
 
 		mapping.Map(o => o.ExternalId)
 			.UniqueKey("UK_Order");
