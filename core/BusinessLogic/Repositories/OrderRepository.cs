@@ -41,6 +41,7 @@ internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService 
 		}
 
 		fileService.Upload(csv.Path);
+		order.Path = csv.Path;
 		order.Status = ExportStatus.Success;
 		order.Creation = order.User.Now();
 

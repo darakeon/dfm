@@ -24,5 +24,8 @@ public class OrderMap : IAutoMappingOverride<Order>
 
 		mapping.HasManyToMany(o => o.AccountList);
 		mapping.HasManyToMany(o => o.CategoryList);
+
+		mapping.Map(o => o.Path)
+			.Nullable();
 	}
 }
