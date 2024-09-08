@@ -113,12 +113,10 @@ namespace DFM.Email.Tests
 		[When(@"the e-mail is sent")]
 		public void WhenTheEmailIsSent()
 		{
-			var fileContent = format.Layout;
-
 			new Sender()
 				.To(user.Email)
 				.Subject(format.Subject)
-				.Body(fileContent)
+				.Body(format.Layout)
 				.Send();
 		}
 
