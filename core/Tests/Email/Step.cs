@@ -7,7 +7,6 @@ using DFM.Language;
 using DFM.Tests.Util;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
-using static NHibernate.Engine.Query.CallableParser;
 
 namespace DFM.Email.Tests
 {
