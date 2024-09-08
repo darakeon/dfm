@@ -11,7 +11,6 @@ using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
-using DFM.Exchange.Exporter;
 using DFM.Exchange.Importer;
 using DFM.Generic;
 using DFM.Queue;
@@ -829,7 +828,7 @@ namespace DFM.BusinessLogic.Services
 
 			inTransaction("ExportOrder", () =>
 			{
-				repos.Order.ExtractToFile(order);
+				repos.Order.ExtractToFileAndSend(order);
 			});
 		}
 	}

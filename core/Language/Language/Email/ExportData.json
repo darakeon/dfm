@@ -1,7 +1,7 @@
 {
 	"en-US": {
-		"Subject": "Exported data from System",
-		"Title": "Exported data",
+		"Subject": "Data exported",
+		"Title": "Data exported",
 		"MainText": "We are sending attached to this email the data exported from the system.",
 		"OrderDateLabel": "This export was requested at:",
 		"DateRangeLabel": "The order was to export data between these dates:",
@@ -11,7 +11,7 @@
 		"": null
 	},
 	"pt-BR": {
-		"Subject": "Dados exportados do Sistema",
+		"Subject": "Dados exportados",
 		"Title": "Dados exportados",
 		"MainText": "Estamos enviando em anexo dados exportados do sistema.",
 		"OrderDateLabel": "Essa exportação foi requisitada em:",
