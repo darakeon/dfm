@@ -1392,6 +1392,23 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			Assert.That(order.Sent, Is.EqualTo(sent));
 		}
+
+		[Then(@"the order file will (not )?exist")]
+		public void ThenTheOrderFileWillExist(Boolean expectedExists)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+
+			var order =
+				repos.Order.SingleOrDefault(
+					o => o.User == user
+				);
+
+			var actualExists =
+				!String.IsNullOrEmpty(order.Path)
+					&& fileService.Exists(order.Path);
+
+			Assert.That(actualExists, Is.EqualTo(expectedExists));
+		}
 		#endregion
 
 		#region MoreThanOne

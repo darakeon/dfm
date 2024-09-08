@@ -51,6 +51,7 @@ Scenario: Gr01. Unlogged user
 		And order status will be Pending
 		And the will have creation and expiration not set
 		And email with csv will not be sent
+		And the order file will not exist
 
 Scenario: Gr02. No robot user
 	Given order start date 1986-03-27
@@ -68,6 +69,7 @@ Scenario: Gr02. No robot user
 		And order status will be Pending
 		And the will have creation and expiration not set
 		And email with csv will not be sent
+		And the order file will not exist
 
 Scenario: Gr03. User marked for deletion
 	Given order start date 1986-03-27
@@ -88,6 +90,7 @@ Scenario: Gr03. User marked for deletion
 		And the will have creation and expiration not set
 		And email with csv will not be sent
 		And the order will be marked as not sent
+		And the order file will not exist
 
 Scenario: Gr04. User requested wipe
 	Given order start date 1986-03-27
@@ -108,6 +111,7 @@ Scenario: Gr04. User requested wipe
 		And the will have creation and expiration not set
 		And email with csv will not be sent
 		And the order will be marked as not sent
+		And the order file will not exist
 
 Scenario: Gr05. Without sign last contract
 	Given order start date 1986-03-27
@@ -128,6 +132,7 @@ Scenario: Gr05. Without sign last contract
 		And the will have creation and expiration not set
 		And email with csv will not be sent
 		And the order will be marked as not sent
+		And the order file will not exist
 
 Scenario: Gr06. No Categories
 	Given these settings
@@ -165,6 +170,7 @@ Scenario: Gr06. No Categories
 			| Sample Move Transfer with Conversion and Details | 2024-08-24 | Category 2 | Transfer | Account In BRL | Account Out EUR |       |            | D1           | 1       | 1.00   | 10.00       |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |
 		And 1 email with csv will be sent
 		And the order will be marked as sent
+		And the order file will exist
 
 Scenario: Gr07. All data
 	Given order start date 1986-03-27
@@ -201,6 +207,7 @@ Scenario: Gr07. All data
 			| Sample Move Transfer with Conversion and Details | 2024-08-24 | Category 2 | Transfer | Account In BRL | Account Out EUR |       |            | D1           | 1       | 1.00   | 10.00       |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |
 		And 1 email with csv will be sent
 		And the order will be marked as sent
+		And the order file will exist
 
 Scenario: Gr08. Not all Categories
 	Given order start date 1986-03-27
@@ -228,6 +235,7 @@ Scenario: Gr08. Not all Categories
 			| Sample Move Transfer with Conversion and Details | 2004-02-28 | Category 1 | Transfer | Account In BRL | Account Out EUR |       |            | D1           | 1       | 1.00   | 10.00       |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |
 		And 1 email with csv will be sent
 		And the order will be marked as sent
+		And the order file will exist
 
 Scenario: Gr09. Not all Accounts (Out)
 	Given order start date 1986-03-27
@@ -253,6 +261,7 @@ Scenario: Gr09. Not all Accounts (Out)
 			| Sample Move Transfer with Details | 2019-07-11 | Category 2 | Transfer | Account In | Account Out |       |            | D1           | 1       | 1.00   |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |
 		And 1 email with csv will be sent
 		And the order will be marked as sent
+		And the order file will exist
 
 Scenario: Gr10. Not all Accounts (In)
 	Given order start date 1986-03-27
@@ -278,6 +287,7 @@ Scenario: Gr10. Not all Accounts (In)
 			| Sample Move Transfer with Details | 2019-07-11 | Category 2 | Transfer | Account In | Account Out |       |            | D1           | 1       | 1.00   |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |
 		And 1 email with csv will be sent
 		And the order will be marked as sent
+		And the order file will exist
 
 Scenario: Gr11. Not all dates
 	Given order start date 1996-12-12
@@ -303,6 +313,7 @@ Scenario: Gr11. Not all dates
 			| Sample Move Out with Details                     | 2009-04-13 | Category 2 | Out      |                | Account Out     |       |            | D1           | 1       | 1.00   |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |
 		And 1 email with csv will be sent
 		And the order will be marked as sent
+		And the order file will exist
 
 Scenario: Gr12. No moves to export
 	Given order start date 1955-03-15
@@ -318,6 +329,7 @@ Scenario: Gr12. No moves to export
 		And there will be no export file
 		And email with csv will not be sent
 		And the order will be marked as not sent
+		And the order file will not exist
 
 Scenario: Gr13. Not able to send email
 	Given order start date 1986-03-27
@@ -337,3 +349,4 @@ Scenario: Gr13. Not able to send email
 			| Sample Move Out with Details                     | 1988-10-17 | Category 1 | Out      |                | Account Out     |       |            | D1           | 1       | 1.00   |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |              |         |        |             |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |               |          |         |              |
 		But email with csv will not be sent
 		And the order will be marked as not sent
+		But the order file will exist
