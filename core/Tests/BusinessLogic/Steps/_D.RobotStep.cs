@@ -1314,6 +1314,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 			service.Robot.OrderExport(orderInfo);
 		}
 
+		[Given(@"email system is out")]
+		public void GivenEmailSystemIsOut()
+		{
+			TestSettings.BreakTheEmailSystem();
+		}
+
 		[When(@"export order")]
 		public void WhenExportOrder()
 		{
@@ -1372,6 +1378,19 @@ namespace DFM.BusinessLogic.Tests.Steps
 				Assert.That(order.Creation, Is.Null);
 				Assert.That(order.Expiration, Is.Null);
 			}
+		}
+
+		[Then(@"the order will be marked as (not )?sent")]
+		public void ThenTheOrderWillBeMarkedAsSent(Boolean sent)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+
+			var order =
+				repos.Order.SingleOrDefault(
+					o => o.User == user
+				);
+
+			Assert.That(order.Sent, Is.EqualTo(sent));
 		}
 		#endregion
 
