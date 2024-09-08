@@ -62,6 +62,11 @@ namespace DFM.Entities
 			return TZ.Now(Settings.TimeZone);
 		}
 
+		public virtual DateTime Convert(DateTime dateTime)
+		{
+			return TZ.Convert(Settings.TimeZone, dateTime);
+		}
+
 		public virtual void SetRobotCheckDay()
 		{
 			var firstTime = Control.RobotCheck == DateTime.MinValue;

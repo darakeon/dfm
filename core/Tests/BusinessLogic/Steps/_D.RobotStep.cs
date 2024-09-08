@@ -1339,6 +1339,40 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			Assert.That(order.Status, Is.EqualTo(status));
 		}
+
+		[Then(@"the will have creation and expiration (not )?set")]
+		public void ThenTheWillHaveCreationAndExpirationSet(Boolean set)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+
+			var order =
+				repos.Order.SingleOrDefault(
+					o => o.User == user
+				);
+
+			Assert.That(order, Is.Not.Null);
+
+			if (set)
+			{
+				Assert.That(order.Creation, Is.Not.Null);
+				Assert.That(order.Expiration, Is.Not.Null);
+
+				var testStartForUser = order.User.Convert(testStart);
+				Assert.That(
+					order.Creation.Value.ToUniversalTime(),
+					Is.GreaterThan(testStartForUser)
+				);
+				Assert.That(
+					order.Expiration.Value.ToUniversalTime(),
+					Is.GreaterThan(testStartForUser.AddDays(90))
+				);
+			}
+			else
+			{
+				Assert.That(order.Creation, Is.Null);
+				Assert.That(order.Expiration, Is.Null);
+			}
+		}
 		#endregion
 
 		#region MoreThanOne
