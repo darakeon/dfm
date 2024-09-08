@@ -6,6 +6,7 @@ using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
+using DFM.Entities.Bases;
 using DFM.Generic.Datetime;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
@@ -116,7 +117,7 @@ namespace DFM.BusinessLogic.Repositories
 			{
 				Action = SecurityAction.DeleteCsvData,
 				Active = true,
-				Expire = DateTime.UtcNow.AddDays(7),
+				Expire = DateTime.UtcNow.AddDays(DayLimits.SECURITY_EXPIRATION),
 				Wipe = wipe,
 			};
 
