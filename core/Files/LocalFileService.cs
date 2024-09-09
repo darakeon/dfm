@@ -1,5 +1,7 @@
 ﻿using DFM.Generic;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("DFM.BusinessLogic.Tests")]
 namespace DFM.Files
 {
 	public class LocalFileService : IFileService
@@ -43,6 +45,11 @@ namespace DFM.Files
 		{
 			var s3Path = getS3Path(path);
 			File.Delete(s3Path);
+		}
+
+		internal IList<String> List()
+		{
+			return Directory.GetFiles(Cfg.S3.Directory);
 		}
 
 		private static String getS3Path(String path)

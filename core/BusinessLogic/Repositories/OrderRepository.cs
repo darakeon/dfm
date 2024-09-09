@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Keon.Util.Extensions;
 using DFM.Email;
 using DFM.Entities;
@@ -108,5 +109,16 @@ internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService 
 
 		order.Status = ExportStatus.Expired;
 		SaveOrUpdate(order);
+	}
+
+	public IList<String> GetFiles(User user)
+	{
+		return Where(
+			o => o.User.ID == user.ID
+				&& o.Path != null
+				&& o.Status != ExportStatus.Expired
+		)
+			.Select(o => o.Path)
+			.ToList();
 	}
 }
