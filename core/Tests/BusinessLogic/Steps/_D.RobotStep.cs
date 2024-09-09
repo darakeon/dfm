@@ -633,6 +633,17 @@ namespace DFM.BusinessLogic.Tests.Steps
 				"
 			);
 		}
+
+		[Then(@"no order files will exist")]
+		public void ThenNoOrderFilesWillExist()
+		{
+			var orders = fileService.List()
+				.Select(f => new FileInfo(f))
+				.Where(fi => fi.CreationTime >= testStart)
+				.Where(fi => fi.Name == $"{scenarioCode}_remove.csv");
+
+			Assert.That(orders, Is.Empty);
+		}
 		#endregion
 
 		#region HasSchedules

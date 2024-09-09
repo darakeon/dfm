@@ -504,7 +504,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 		protected void createFor(User user, String entityName)
 		{
-			new Builder(repos, db.Execute, scenarioCode)
+			new Builder(repos, db.Execute, fileService, scenarioCode)
 				.CreateFor(user, entityName);
 		}
 	}

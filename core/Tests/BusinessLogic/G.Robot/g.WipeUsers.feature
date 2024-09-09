@@ -722,7 +722,21 @@ Scenario: Gg59. Do not wipe robots even if it "asks" too
 		And the user will still exist
 		And it will not be registered at wipe table
 
-Scenario: Gg60. Wipe complete user
+Scenario: Gg60. Wipe user order with file
+	Given the user have
+			| System Stuff     |
+			| Order            |
+		And data wipe was asked
+	When robot user login
+		And call wipe users
+	Then I will receive no core error
+		And the user won't exist
+		And it will be registered at wipe table
+			| Reason      | CSV file | Theme     | Language |
+			| PersonAsked | No       | DarkMagic | en-US    |
+		And no order files will exist
+
+Scenario: Gg61. Wipe complete user
 	Given the user have
 			| System Stuff     |
 			| Control          |
@@ -740,6 +754,7 @@ Scenario: Gg60. Wipe complete user
 			| Archive          |
 			| Line             |
 			| Line with Detail |
+			| Order            |
 		And data wipe was asked
 	When robot user login
 		And call wipe users
@@ -748,3 +763,4 @@ Scenario: Gg60. Wipe complete user
 		And it will be registered at wipe table
 			| Reason      | CSV file | Theme     | Language |
 			| PersonAsked | No       | DarkMagic | en-US    |
+		And no order files will exist
