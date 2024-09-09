@@ -170,8 +170,11 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"I have no logged user \(logoff\)")]
 		public void GivenIHaveNoLoggedUserLogoff()
 		{
-			current.Clear();
-			resetTicket();
+			if (current.IsAuthenticated)
+			{
+				current.Clear();
+				resetTicket();
+			}
 		}
 
 		[Given(@"its Date is (\-?\d+\.?\d*) (day|month|year)s? ago")]
@@ -1291,7 +1294,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"order status will be (Pending|Canceled|Success|Error)")]
+		[Then(@"order status will be (Pending|Canceled|Success|Error|Expired)")]
 		public void ThenOrderStatusWillBe(ExportStatus status)
 		{
 			var user = repos.User.GetByEmail(userEmail);
@@ -1366,6 +1369,54 @@ namespace DFM.BusinessLogic.Tests.Steps
 					&& fileService.Exists(order.Path);
 
 			Assert.That(actualExists, Is.EqualTo(expectedExists));
+		}
+		#endregion
+
+		#region DeleteExpiredOrders
+		[Given(@"the order is exported (\d+) days ago")]
+		public void GivenTheOrderIsExported(Int32 days)
+		{
+			robotExportOrders();
+
+			var user = repos.User.GetByEmail(userEmail);
+
+			var order =
+				repos.Order.SingleOrDefault(
+					o => o.User == user
+				);
+
+			order.Creation = user.Now().AddDays(-days);
+
+			repos.Order.SaveOrUpdate(order);
+
+		}
+
+		[Given(@"the order is (Pending|Success|Error|Canceled|Expired)")]
+		public void GivenTheOrderIsError(ExportStatus status)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+
+			var order =
+				repos.Order.SingleOrDefault(
+					o => o.User == user
+				);
+
+			order.Status = status;
+
+			repos.Order.SaveOrUpdate(order);
+		}
+
+		[When(@"delete expired orders")]
+		public void WhenDeleteExpiredOrders()
+		{
+			try
+			{
+				service.Robot.DeleteExpiredOrders();
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
 		}
 		#endregion
 

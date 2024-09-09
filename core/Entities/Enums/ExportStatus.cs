@@ -6,4 +6,5 @@ public enum ExportStatus
 	Canceled = 1,
 	Success = 2,
 	Error = 3,
+	Expired = 4,
 }
