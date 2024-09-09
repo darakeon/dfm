@@ -118,57 +118,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 				moveInfo.CategoryName = categoryName;
 
 				moveResult = service.Money.SaveMove(moveInfo);
-			}
-			catch (CoreError e)
-			{
-				error = e;
-			}
-		}
-
-		[When(@"I try to save the move with e-mail system out")]
-		public void WhenITryToSaveTheMoveWithEmailSystemOut()
-		{
-			TestSettings.ActivateMoveEmailForUser(service);
-			TestSettings.BreakTheEmailSystem();
-
-			try
-			{
-				moveInfo.OutUrl = accountOut?.Url;
-				moveInfo.InUrl = accountIn?.Url;
-				moveInfo.CategoryName = categoryName;
-
-				moveResult = service.Money.SaveMove(moveInfo);
 				currentEmailStatus = moveResult.Email;
 			}
 			catch (CoreError e)
 			{
 				error = e;
 			}
-
-			TestSettings.FixTheEmailSystem();
-			TestSettings.DeactivateMoveEmailForUser(service);
-		}
-
-		[When(@"I try to save the move with e-mail system ok")]
-		public void WhenITryToSaveTheMoveWithEmailSystemOk()
-		{
-			TestSettings.ActivateMoveEmailForUser(service);
-
-			try
-			{
-				moveInfo.OutUrl = accountOut?.Url;
-				moveInfo.InUrl = accountIn?.Url;
-				moveInfo.CategoryName = categoryName;
-
-				moveResult = service.Money.SaveMove(moveInfo);
-				currentEmailStatus = moveResult.Email;
-			}
-			catch (CoreError e)
-			{
-				error = e;
-			}
-
-			TestSettings.DeactivateMoveEmailForUser(service);
 		}
 
 		[Then(@"the move value will be (\d+\.?\d*)")]
@@ -197,15 +152,15 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"I will receive the notification")]
 		public void ThenIWillReceiveTheNotification()
 		{
-			Assert.That(currentEmailStatus.HasValue, Is.True);
-			Assert.That(currentEmailStatus.Value, Is.EqualTo(EmailStatus.EmailNotSent));
+			Assert.That(currentEmailStatus, Is.Not.Null);
+			Assert.That(currentEmailStatus, Is.EqualTo(EmailStatus.EmailNotSent));
 		}
 
 		[Then(@"I will receive no notification")]
 		public void ThenIWillReceiveNoNotification()
 		{
-			Assert.That(currentEmailStatus.HasValue, Is.True);
-			Assert.That(currentEmailStatus.Value, Is.EqualTo(EmailStatus.EmailSent));
+			Assert.That(currentEmailStatus, Is.Not.Null);
+			Assert.That(currentEmailStatus, Is.EqualTo(EmailStatus.EmailSent));
 		}
 
 		[Then(@"the accountIn begin date will be (\d{4}\-\d{2}\-\d{2})")]
@@ -388,58 +343,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 				moveInfo.CategoryName = categoryName;
 
 				moveResult = service.Money.SaveMove(moveInfo);
-			}
-			catch (CoreError e)
-			{
-				error = e;
-			}
-		}
-
-
-		[When(@"I update the move with e-mail system out")]
-		public void WhenIUpdateTheMoveWithEmailSystemOut()
-		{
-			TestSettings.ActivateMoveEmailForUser(service);
-			TestSettings.BreakTheEmailSystem();
-
-			try
-			{
-				moveInfo.OutUrl = accountOut?.Url;
-				moveInfo.InUrl = accountIn?.Url;
-				moveInfo.CategoryName = categoryName;
-
-				moveResult = service.Money.SaveMove(moveInfo);
 				currentEmailStatus = moveResult.Email;
 			}
 			catch (CoreError e)
 			{
 				error = e;
 			}
-
-			TestSettings.FixTheEmailSystem();
-			TestSettings.DeactivateMoveEmailForUser(service);
-		}
-
-		[When(@"I update the move with e-mail system ok")]
-		public void WhenIUpdateTheMoveWithEmailSystemOk()
-		{
-			TestSettings.ActivateMoveEmailForUser(service);
-
-			try
-			{
-				moveInfo.OutUrl = accountOut?.Url;
-				moveInfo.InUrl = accountIn?.Url;
-				moveInfo.CategoryName = categoryName;
-
-				moveResult = service.Money.SaveMove(moveInfo);
-				currentEmailStatus = moveResult.Email;
-			}
-			catch (CoreError e)
-			{
-				error = e;
-			}
-
-			TestSettings.DeactivateMoveEmailForUser(service);
 		}
 
 		[Then(@"the old-accountOut value will change in (\-?\d+\.?\d*)")]
@@ -679,7 +588,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Money.DeleteMove(guid);
+				var result = service.Money.DeleteMove(guid);
+				currentEmailStatus = result.Email;
 			}
 			catch (CoreError e)
 			{
@@ -701,44 +611,6 @@ namespace DFM.BusinessLogic.Tests.Steps
 			{
 				error = e;
 			}
-		}
-
-		[When(@"I try to delete the move with e-mail system ok")]
-		public void WhenITryToDeleteTheMoveWithEmailSystemOk()
-		{
-			TestSettings.ActivateMoveEmailForUser(service);
-
-			try
-			{
-				var result = service.Money.DeleteMove(guid);
-				currentEmailStatus = result.Email;
-			}
-			catch (CoreError e)
-			{
-				error = e;
-			}
-
-			TestSettings.DeactivateMoveEmailForUser(service);
-		}
-
-		[When(@"I try to delete the move with e-mail system out")]
-		public void WhenITryToDeleteTheMoveWithEmailSystemOut()
-		{
-			TestSettings.ActivateMoveEmailForUser(service);
-			TestSettings.BreakTheEmailSystem();
-
-			try
-			{
-				var result = service.Money.DeleteMove(guid);
-				currentEmailStatus = result.Email;
-			}
-			catch (CoreError e)
-			{
-				error = e;
-			}
-
-			TestSettings.FixTheEmailSystem();
-			TestSettings.DeactivateMoveEmailForUser(service);
 		}
 
 		[Then(@"the move will (not )?be deleted")]
