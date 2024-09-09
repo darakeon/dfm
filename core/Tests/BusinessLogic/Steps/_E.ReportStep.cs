@@ -559,9 +559,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"I have moves of")]
 		public void GivenIHaveMovesOf(Table table)
 		{
-			categoryInfo = CategoryInfo.Convert(
-				getOrCreateCategory(mainCategoryName)
-			);
+			var user = repos.User.GetByEmail(userEmail);
+
+			if (user.Settings.UseCategories)
+			{
+				categoryInfo = CategoryInfo.Convert(
+					getOrCreateCategory(mainCategoryName)
+				);
+			}
 
 			foreach (var row in table.Rows)
 			{
@@ -606,8 +611,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 					Nature = nature,
 					OutUrl = moveAccountOut?.IntoUrl(),
 					InUrl = moveAccountIn?.IntoUrl(),
-					CategoryName = category,
 				};
+
+				if (user.Settings.UseCategories)
+				{
+					move.CategoryName = category;
+				}
 
 				var value = row.ContainsKey("Value")
 				        && row["Value"] != String.Empty

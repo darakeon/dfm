@@ -245,6 +245,15 @@ namespace DFM.BusinessLogic.Tests.Steps
 				repos.Order.Cancel(order);
 			}
 
+			var ordersToExpire = repos.Order
+				.Where(s => s.Path != null);
+			foreach (var order in ordersToExpire)
+			{
+				order.Path = null;
+				order.Status = ExportStatus.Expired;
+				repos.Order.SaveOrUpdate(order);
+			}
+
 			queueService.Clear();
 
 			if (current.IsAuthenticated)

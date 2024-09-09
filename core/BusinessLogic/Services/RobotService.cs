@@ -831,5 +831,20 @@ namespace DFM.BusinessLogic.Services
 				repos.Order.ExtractToFileAndSend(order);
 			});
 		}
+
+		public void DeleteExpiredOrders()
+		{
+			if (!parent.Current.IsRobot)
+				throw Error.Uninvited.Throw();
+
+			var orders = repos.Order.GetExpired();
+
+			foreach (var order in orders)
+			{
+				parent.Auth.VerifyUserIgnoreContract(order.User);
+
+				repos.Order.Expire(order);
+			}
+		}
 	}
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Keon.Util.Extensions;
 using DFM.Email;
 using DFM.Entities;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Exchange.Exporter;
 using DFM.Files;
@@ -87,6 +88,25 @@ internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService 
 	{
 		order.Status = ExportStatus.Error;
 		order.Sent = false;
+		SaveOrUpdate(order);
+	}
+
+	public IList<Order> GetExpired()
+	{
+		var limitDaysAgo = DateTime.Now.AddDays(-DayLimits.EXPORT_EXPIRATION);
+
+		return Where(
+			o => o.Status != ExportStatus.Expired
+			    && o.Creation <= limitDaysAgo
+				&& o.Path != null
+		);
+	}
+
+	public void Expire(Order order)
+	{
+		fileService.Delete(order.Path);
+
+		order.Status = ExportStatus.Expired;
 		SaveOrUpdate(order);
 	}
 }
