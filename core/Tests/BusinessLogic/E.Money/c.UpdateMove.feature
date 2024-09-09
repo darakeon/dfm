@@ -291,13 +291,20 @@ Scenario: Ec18. Update the move adding details, but not removing value
 
 Scenario: Ec19. Update the move value with e-mail system out
 	Given I have a move with value 10 (Out)
-	When I update the move with e-mail system out
+		And these settings
+			| SendMoveEmail |
+			| true          |
+		But email system is out
+	When I update the move
 	Then I will receive no core error
 		And I will receive the notification
 
 Scenario: Ec20. Update the move value with e-mail system ok
 	Given I have a move with value 10 (Out)
-	When I update the move with e-mail system ok
+		And these settings
+			| SendMoveEmail |
+			| true          |
+	When I update the move
 	Then I will receive no core error
 		And I will receive no notification
 		And the move e-mail will have an unsubscribe link

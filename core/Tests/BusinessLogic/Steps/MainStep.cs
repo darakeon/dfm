@@ -22,6 +22,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public MainStep(ScenarioContext context)
 			: base(context) { }
 
+		[Given(@"email system is out")]
+		public void GivenEmailSystemIsOut()
+		{
+			Cfg.ForceEmailError = true;
+		}
+
 		[Given(@"test user login")]
 		public void GivenIHaveACompleteUserLoggedIn()
 		{
@@ -223,6 +229,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void CleanSchedulesAndLogoff()
 		{
 			log("After scenario");
+
+			Cfg.ForceEmailError = false;
 
 			var pendingSchedules = repos.Schedule.Where(s => s.Active);
 			foreach (var schedule in pendingSchedules)

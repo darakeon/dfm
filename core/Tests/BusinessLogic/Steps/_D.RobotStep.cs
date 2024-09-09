@@ -275,42 +275,6 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[When(@"run the scheduler with e-mail system out")]
-		public void WhenITryToRunTheSchedulerWithEmailSystemOut()
-		{
-			TestSettings.ActivateMoveEmailForUser(service);
-			TestSettings.BreakTheEmailSystem();
-
-			try
-			{
-				robotRunSchedule();
-			}
-			catch (CoreError e)
-			{
-				error = e;
-			}
-
-			TestSettings.FixTheEmailSystem();
-			TestSettings.DeactivateMoveEmailForUser(service);
-		}
-
-		[When(@"run the scheduler with e-mail system ok")]
-		public void WhenITryToRunTheSchedulerWithEmailSystemOk()
-		{
-			TestSettings.ActivateMoveEmailForUser(service);
-
-			try
-			{
-				robotRunSchedule();
-			}
-			catch (CoreError e)
-			{
-				error = e;
-			}
-
-			TestSettings.DeactivateMoveEmailForUser(service);
-		}
-
 		[Then(@"the user (.+) will still have no moves")]
 		public void ThenTheUserWillStillHaveNoMoves(String email)
 		{
