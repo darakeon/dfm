@@ -363,6 +363,14 @@ namespace DFM.BusinessLogic.Services
 
 		internal void VerifyUser(User user)
 		{
+			VerifyUserIgnoreContract(user);
+
+			if (!parent.Law.IsLastContractAccepted(user))
+				throw Error.NotSignedLastContract.Throw();
+		}
+
+		internal void VerifyUserIgnoreContract(User user)
+		{
 			if (user == null || !user.Control.ActiveOrAllowedPeriod())
 				throw Error.Uninvited.Throw();
 
@@ -371,9 +379,6 @@ namespace DFM.BusinessLogic.Services
 
 			if (user.Control.WipeRequest != null)
 				throw Error.UserAskedWipe.Throw();
-
-			if (!parent.Law.IsLastContractAccepted(user))
-				throw Error.NotSignedLastContract.Throw();
 		}
 	}
 }

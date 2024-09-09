@@ -129,9 +129,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 		protected void robotFinishArchives()
 		{
 			createLogoffLoginRobot();
-
 			service.Robot.FinishArchives();
+			resetTicket();
+		}
 
+		protected void robotExportOrders()
+		{
+			createLogoffLoginRobot();
+			service.Robot.ExportOrder();
 			resetTicket();
 		}
 
