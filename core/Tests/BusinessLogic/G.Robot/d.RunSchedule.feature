@@ -168,8 +168,12 @@ Scenario: Gd10. Run with e-mail system out
 		And it has an Account Out
 		And it has no Account In
 		And I save the schedule
+		And these settings
+			| SendMoveEmail |
+			| true          |
+		But email system is out
 	When robot user login
-		And run the scheduler with e-mail system out
+		And run the scheduler
 	Then I will receive no core error
 	Given test user login
 		Then the accountOut value will change in -10
@@ -185,8 +189,11 @@ Scenario: Gd11. Run with e-mail system ok
 		And it has an Account Out
 		And it has no Account In
 		And I save the schedule
+		And these settings
+			| SendMoveEmail |
+			| true          |
 	When robot user login
-		And run the scheduler with e-mail system ok
+		And run the scheduler
 	Then I will receive no core error
 	Given test user login
 		Then the accountOut value will change in -10
