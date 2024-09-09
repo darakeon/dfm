@@ -11,7 +11,7 @@ dk_ci_commit = 'darakeon-circleci'
 allowed_to_commit = [dependabot_commit, dk_ci_commit]
 mandatory_workflow = 'ci/circleci: workflow_ran'
 
-with open(f'prs-{branch}.json') as prs_file:
+with open(f'prs.json') as prs_file:
 	prs = loads(prs_file.read())
 
 prs = list(filter(
