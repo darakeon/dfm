@@ -1062,7 +1062,7 @@ jobs:
       - run:
           name: List PRs
           command: |
-            gh pr list --base $CIRCLE_BRANCH --author app/dependabot --state open --limit 1 --json author,autoMergeRequest,baseRefName,closed,commits,headRefName,headRepository,headRepositoryOwner,id,isCrossRepository,isDraft,labels,number,state,statusCheckRollup > prs-$CIRCLE_BRANCH.json
+            gh pr list --base $CIRCLE_BRANCH --author app/dependabot --state open --limit 1 --json author,autoMergeRequest,baseRefName,closed,commits,headRefName,headRepository,headRepositoryOwner,id,isCrossRepository,isDraft,labels,number,state,statusCheckRollup > prs.json
       - run:
           name: Get PR to merge
           command: |
@@ -1076,6 +1076,9 @@ jobs:
             else
               echo "No PRs to merge"
             fi
+      - store_artifacts:
+          path: prs.json
+          destination: prs
 
   audit_version_changer:
     docker:
