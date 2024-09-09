@@ -12,6 +12,7 @@
           name: Get PR to merge
           command: |
             export PR=$(python .circleci/auto-merge/get_next_auto_merge.py)
+            echo $PR
       - run:
           name: Merge PR
           command: |
