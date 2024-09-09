@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Entities.Enums;
+using DFM.Files;
 using Keon.Util.DB;
 using Keon.Util.Extensions;
 
@@ -13,12 +15,14 @@ namespace DFM.BusinessLogic.Tests
 	{
 		private readonly Repos repos;
 		private readonly Action<Action> inTransaction;
+		private readonly IFileService fileService;
 		private readonly String code;
 
-		public Builder(Repos repos, Action<Action> inTransaction, String code)
+		public Builder(Repos repos, Action<Action> inTransaction, IFileService fileService, String code)
 		{
 			this.repos = repos;
 			this.inTransaction = inTransaction;
+			this.fileService = fileService;
 			this.code = code;
 
 			objects = new Dictionary<String, Func<User, IEntityLong>>
@@ -44,6 +48,8 @@ namespace DFM.BusinessLogic.Tests
 				{nameof(Archive), archiveFor},
 				{nameof(Line), lineFor},
 				{ $"{nameof(Line)} with Detail", lineDetailedFor},
+
+				{nameof(Order), orderFor},
 			};
 		}
 
@@ -340,6 +346,31 @@ namespace DFM.BusinessLogic.Tests
 				detailFor(3, line);
 
 			return repos.Line.SaveOrUpdate(line);
+		}
+
+		private Order orderFor(User user)
+		{
+			var file = $"{user.Username}_remove.csv";
+
+			var order = new Order
+			{
+				Guid = Guid.NewGuid(),
+				Status = ExportStatus.Success,
+				Creation = user.Now(),
+				Sent = true,
+				Start = DateTime.MinValue,
+				End = user.Now(),
+				AccountList = new List<Account> { accountFor(user, "order") },
+				CategoryList = new List<Category> { categoryFor(user, "order") },
+				Path = file,
+				User = user,
+			};
+
+			File.WriteAllText(file, "remove");
+			fileService.Upload(file);
+			File.Delete(file);
+
+			return repos.Order.SaveOrUpdate(order);
 		}
 	}
 }

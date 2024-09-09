@@ -23,7 +23,7 @@
 - [x] Send email about file extracted
 - [x] Add order expiration date
 - [x] Clear order files on expiration date
-- [ ] Add order to user deletion test
+- [x] Add order to user deletion test
 - [ ] List orders for user
 - [ ] Allow retry orders
 - [ ] Allow cancel orders
