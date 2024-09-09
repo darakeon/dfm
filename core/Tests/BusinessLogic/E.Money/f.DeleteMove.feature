@@ -43,7 +43,11 @@ Scenario: Ef04. Delete the Move Transfer by ID
 Scenario: Ef05. Delete with e-mail sender system out
 	Given I have a move with value 10 (Transfer)
 		And I pass valid Move ID
-	When I try to delete the move with e-mail system out
+		And these settings
+			| SendMoveEmail |
+			| true          |
+		But email system is out
+	When I try to delete the move
 	Then I will receive no core error
 		And I will receive the notification
 		And the move will be deleted
@@ -53,7 +57,10 @@ Scenario: Ef05. Delete with e-mail sender system out
 Scenario: Ef06. Delete with e-mail sender system ok
 	Given I have a move with value 10 (Transfer)
 		And I pass valid Move ID
-	When I try to delete the move with e-mail system ok
+		And these settings
+			| SendMoveEmail |
+			| true          |
+	When I try to delete the move
 	Then I will receive no core error
 		And I will receive no notification
 		And the move will be deleted

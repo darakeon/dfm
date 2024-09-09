@@ -623,7 +623,11 @@ Scenario: Ea40. Save with e-mail sender system out
 		And it has a Category
 		And it has an Account Out
 		And it has no Account In
-	When I try to save the move with e-mail system out
+		And these settings
+			| SendMoveEmail |
+			| true          |
+		But email system is out
+	When I try to save the move
 	Then I will receive no core error
 		And I will receive the notification
 		And the move will be saved
@@ -640,7 +644,10 @@ Scenario: Ea41. Save with e-mail sender system ok
 		And it has a Category
 		And it has an Account Out
 		And it has no Account In
-	When I try to save the move with e-mail system ok
+		And these settings
+			| SendMoveEmail |
+			| true          |
+	When I try to save the move
 	Then I will receive no core error
 		And I will receive no notification
 		And the move will be saved
@@ -661,7 +668,10 @@ Scenario: Ea42. Save with e-mail sender system ok and without category
 		And it has no Category
 		And it has an Account Out
 		And it has no Account In
-	When I try to save the move with e-mail system ok
+		And these settings
+			| SendMoveEmail |
+			| true          |
+	When I try to save the move
 	Then I will receive no core error
 		And I will receive no notification
 		And the move will be saved
