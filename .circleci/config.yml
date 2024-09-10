@@ -1060,25 +1060,28 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Make folder
+          command: |
+            mkdir prs
+      - run:
           name: List PRs
           command: |
-            gh pr list --base $CIRCLE_BRANCH --author app/dependabot --state open --limit 1 --json author,autoMergeRequest,baseRefName,closed,commits,headRefName,headRepository,headRepositoryOwner,id,isCrossRepository,isDraft,labels,number,state,statusCheckRollup > prs.json
+            gh pr list --base $CIRCLE_BRANCH --author app/dependabot --state open --limit 1 --json author,autoMergeRequest,baseRefName,closed,commits,headRefName,headRepository,headRepositoryOwner,id,isCrossRepository,isDraft,labels,number,state,statusCheckRollup > prs/list.json
       - run:
           name: Get PR to merge
           command: |
-            export PR=$(python .circleci/auto-merge/get_next_auto_merge.py)
-            echo $PR
+            python .circleci/auto-merge/get_next_auto_merge.py prs/list.json > prs/chosen
       - run:
           name: Merge PR
           command: |
-            echo $PR
+            export PR=$(cat prs/chosen)
             if [ "$PR" != "" ]; then
               gh pr merge --auto --rebase $PR
             else
               echo "No PRs to merge"
             fi
       - store_artifacts:
-          path: prs.json
+          path: prs
           destination: prs
 
   audit_version_changer:

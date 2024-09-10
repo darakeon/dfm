@@ -1,5 +1,6 @@
 from json import dumps, loads
 from os import environ
+from sys import argv
 
 
 branch = environ['CIRCLE_BRANCH']
@@ -12,7 +13,7 @@ dk_commit = 'darakeon'
 allowed_to_commit = [dependabot_commit, dk_ci_commit, dk_commit]
 mandatory_workflow = 'ci/circleci: workflow_ran'
 
-with open(f'prs.json') as prs_file:
+with open(argv[1]) as prs_file:
 	prs = loads(prs_file.read())
 
 prs = list(filter(
