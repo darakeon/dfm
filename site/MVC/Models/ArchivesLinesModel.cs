@@ -12,7 +12,7 @@ public class ArchivesLinesModel : BaseSiteModel
 
 	    if (loadArchive)
 	    {
-		    var archiveInfo = service.Robot.GetLineList(guid);
+		    var archiveInfo = attendant.GetLineList(guid);
 		    ArchiveName = archiveInfo.Filename;
 		    LineList = archiveInfo.LineList;
 	    }
@@ -29,13 +29,13 @@ public class ArchivesLinesModel : BaseSiteModel
 
     public void Retry(Int16 position)
     {
-	    var line = service.Robot.RetryLine(ArchiveGuid, position);
+	    var line = attendant.RetryLine(ArchiveGuid, position);
 	    Line = new LineRowModel(ArchiveGuid, line, Language);
     }
 
     public void Cancel(Int16 position)
     {
-	    var line = service.Robot.CancelLine(ArchiveGuid, position);
+	    var line = attendant.CancelLine(ArchiveGuid, position);
 	    Line = new LineRowModel(ArchiveGuid, line, Language);
     }
 }

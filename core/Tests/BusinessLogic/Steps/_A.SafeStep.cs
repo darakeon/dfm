@@ -1455,7 +1455,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Robot.AskWipe(password);
+				service.Attendant.AskWipe(password);
 			}
 			catch (CoreError e)
 			{

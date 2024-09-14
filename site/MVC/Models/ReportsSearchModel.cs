@@ -11,7 +11,7 @@ namespace DFM.MVC.Models
 
 		public void Search()
 		{
-			var result = service.Report.SearchByDescription(Terms);
+			var result = report.SearchByDescription(Terms);
 			MoveList = result.MoveList;
 		}
 

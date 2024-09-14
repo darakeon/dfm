@@ -6,12 +6,16 @@ namespace DFM.MVC.Models;
 
 public class ArchivesIndexModel : BaseSiteModel
 {
+	public ArchivesIndexModel()
+	{
+		ArchiveList = attendant.GetArchiveList();
+	}
+
 	public IList<ArchiveInfo> ArchiveList { get; set; }
-		= service.Robot.GetArchiveList();
 
 	public void Cancel(Guid id)
 	{
-		var archive = service.Robot.CancelArchive(id);
+		var archive = attendant.CancelArchive(id);
 		Archive = new ArchiveRowModel(archive);
 	}
 

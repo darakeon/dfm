@@ -34,4 +34,4 @@
 
 ## Consequence
 
-- [ ] Break robot into attendant and executor
+- [x] Break robot into attendant and executor

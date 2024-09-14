@@ -18,7 +18,7 @@ namespace DFM.MVC.Areas.Account.Models
 
 		internal override void Save()
 		{
-			robot.SaveSchedule(Schedule);
+			attendant.SaveSchedule(Schedule);
 		}
 
 
