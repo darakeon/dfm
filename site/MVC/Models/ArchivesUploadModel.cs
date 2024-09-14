@@ -30,7 +30,7 @@ public class ArchivesUploadModel : BaseSiteModel
 
 			var content = await reader.ReadToEndAsync();
 
-			robot.ImportMovesFile(filename, content);
+			attendant.ImportMovesFile(filename, content);
 		}
 		catch (CoreError error)
 		{

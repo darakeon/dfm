@@ -1329,7 +1329,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				scheduleInfo.DetailList.Add(detail);
 			}
 
-			var schedule = service.Robot.SaveSchedule(scheduleInfo);
+			var schedule = service.Attendant.SaveSchedule(scheduleInfo);
 			scheduleInfo.Guid = schedule.Guid;
 		}
 
@@ -1364,10 +1364,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 				scheduleInfo.DetailList.Add(detail);
 			}
 
-			var schedule = service.Robot.SaveSchedule(scheduleInfo);
+			var schedule = service.Attendant.SaveSchedule(scheduleInfo);
 			scheduleInfo.Guid = schedule.Guid;
 
-			service.Robot.DisableSchedule(scheduleInfo.Guid);
+			service.Attendant.DisableSchedule(scheduleInfo.Guid);
 		}
 
 		[Then(@"I will receive no account")]

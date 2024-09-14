@@ -17,7 +17,7 @@ namespace DFM.API.Models
 
 		protected Translator translator => context.GetTranslator();
 
-		protected static ServiceAccess service => context.GetService().Access;
+		private static ServiceAccess service => context.GetService().Access;
 
 		protected AuthService auth => service.Auth;
 		protected LawService law => service.Law;
@@ -25,8 +25,8 @@ namespace DFM.API.Models
 		protected ClipService clip => service.Clip;
 		protected MoneyService money => service.Money;
 		protected ReportService report => service.Report;
-		protected RobotService robot => service.Robot;
 		protected OutsideService outside => service.Outside;
+		protected AttendantService attendant => service.Attendant;
 
 		protected Current current => service.Current;
 

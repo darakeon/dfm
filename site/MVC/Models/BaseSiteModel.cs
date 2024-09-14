@@ -61,7 +61,7 @@ namespace DFM.MVC.Models
 				&& current.IsVerified
 				&& IsLastContractAccepted
 				&& !ShowWizard
-			? service.Clip.ShowTip()
+			? clip.ShowTip()
 			: null;
 
 		public Boolean IsExternal

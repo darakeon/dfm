@@ -9,7 +9,7 @@ namespace DFM.MVC.Models
 		{
 			try
 			{
-				robot.DisableSchedule(guid);
+				attendant.DisableSchedule(guid);
 			}
 			catch (CoreError e)
 			{

@@ -18,7 +18,7 @@ namespace DFM.MVC.Models
 
 		public Boolean AnySchedule()
 		{
-			return service.Robot.HasSchedule();
+			return attendant.HasSchedule();
 		}
 	}
 }

@@ -62,12 +62,12 @@ namespace DFM.Robot
 					break;
 
 				case RobotTask.Schedules:
-					var userErrors = service.Robot.RunSchedule();
+					var userErrors = service.Executor.RunSchedule();
 					handleScheduleErrors(userErrors);
 					break;
 
 				case RobotTask.Wipe:
-					service.Robot.WipeUsers();
+					service.Executor.WipeUsers();
 					break;
 
 				case RobotTask.Import:
@@ -75,18 +75,18 @@ namespace DFM.Robot
 					Int32 count = 0;
 					do
 					{
-						result = await service.Robot.MakeMoveFromImported();
+						result = await service.Executor.MakeMoveFromImported();
 						count++;
 					} while (result != null && count < 10);
 
 					break;
 
 				case RobotTask.Finish:
-					service.Robot.FinishArchives();
+					service.Executor.FinishArchives();
 					break;
 
 				case RobotTask.Requeue:
-					await service.Robot.RequeueLines();
+					await service.Executor.RequeueLines();
 					break;
 			}
 		}

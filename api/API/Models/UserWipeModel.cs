@@ -6,7 +6,7 @@
 
 		internal void AskWipe()
 		{
-			robot.AskWipe(Password);
+			attendant.AskWipe(Password);
 		}
 	}
 }

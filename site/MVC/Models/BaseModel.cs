@@ -20,16 +20,16 @@ namespace DFM.MVC.Models
 		protected ErrorAlert errorAlert => context.GetErrorAlert();
 		protected Dictionary<String, String> route => context.GetRouteText();
 
-		protected static ServiceAccess service => context.GetService().Access;
+		private static ServiceAccess service => context.GetService().Access;
 
-		protected AuthService auth => service.Auth;
-		protected LawService law => service.Law;
-		protected AdminService admin => service.Admin;
-		protected ClipService clip => service.Clip;
-		protected MoneyService money => service.Money;
-		protected ReportService report => service.Report;
-		protected RobotService robot => service.Robot;
-		protected OutsideService outside => service.Outside;
+		protected static AuthService auth => service.Auth;
+		protected static LawService law => service.Law;
+		protected static AdminService admin => service.Admin;
+		protected static ClipService clip => service.Clip;
+		protected static MoneyService money => service.Money;
+		protected static ReportService report => service.Report;
+		protected static OutsideService outside => service.Outside;
+		protected static AttendantService attendant => service.Attendant;
 
 		protected Current current => service.Current;
 
