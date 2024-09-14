@@ -35,10 +35,11 @@ jobs:
             The title of the commit message must have the format
             "{scope}: {message in infinitive tense}".
             The valid scopes are: `core`, `auth`, `law`, `clip`,
-            `admin`, `money`, `report`, `robot`, `outside`, `site`,
-            `api`, `android`, `chore`, `version`, `docs`, `tests`,
-            `tools`, `security`, `db`, `ci`, `mail`, `language`,
-            `publish`, `accessibility`, `legal`, `midna`, `struct`
+            `admin`, `money`, `report`, `outside`, `attendant`,
+            `executor`, `robot`, `site`, `api`, `android`, `chore`,
+            `version`, `docs`, `tests`, `tools`, `security`, `db`,
+            `ci`, `mail`, `language`, `publish`, `accessibility`,
+            `legal`, `midna`, `struct`
             
             For more explanations:
             https://github.com/darakeon/dfm/blob/main/CONTRIBUTING.md

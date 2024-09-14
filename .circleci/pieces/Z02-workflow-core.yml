@@ -49,10 +49,13 @@
       - test_core_business_logic_report:
           requires:
             - build_core
-      - test_core_business_logic_robot:
+      - test_core_business_logic_outside:
           requires:
             - build_core
-      - test_core_business_logic_outside:
+      - test_core_business_logic_attendant:
+          requires:
+            - build_core
+      - test_core_business_logic_executor:
           requires:
             - build_core
       - workflow_ran:
@@ -72,6 +75,7 @@
             - test_core_business_logic_clip
             - test_core_business_logic_money
             - test_core_business_logic_report
-            - test_core_business_logic_robot
             - test_core_business_logic_outside
+            - test_core_business_logic_attendant
+            - test_core_business_logic_executor
 

@@ -117,7 +117,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			{
 				if (scheduleInfo == null)
 				{
-					service.Robot.SaveSchedule(null);
+					service.Attendant.SaveSchedule(null);
 				}
 				else
 				{
@@ -125,7 +125,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 					scheduleInfo.InUrl = accountIn?.Url;
 					scheduleInfo.CategoryName = categoryName;
 
-					scheduleResult = service.Robot.SaveSchedule(scheduleInfo);
+					scheduleResult = service.Attendant.SaveSchedule(scheduleInfo);
 					scheduleInfo.Guid = scheduleResult.Guid;
 				}
 			}
@@ -227,7 +227,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				Value = 8,
 			};
 
-			service.Robot.SaveSchedule(info);
+			service.Attendant.SaveSchedule(info);
 		}
 
 		[Given(@"robot already ran for (.+)")]
@@ -264,7 +264,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				var errors = service.Robot.RunSchedule();
+				var errors = service.Executor.RunSchedule();
 
 				error = errors
 					.SingleOrDefault(
@@ -303,7 +303,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"I already have disabled the Schedule")]
 		public void GivenIAlreadyHaveDisabledTheSchedule()
 		{
-			service.Robot.DisableSchedule(guid);
+			service.Attendant.DisableSchedule(guid);
 		}
 
 		[When(@"I try to disable the Schedule")]
@@ -311,7 +311,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Robot.DisableSchedule(guid);
+				service.Attendant.DisableSchedule(guid);
 			}
 			catch (CoreError e)
 			{
@@ -324,7 +324,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"I disable the schedule")]
 		public void GivenICloseTheSchedule()
 		{
-			service.Robot.DisableSchedule(guid);
+			service.Attendant.DisableSchedule(guid);
 		}
 
 		[When(@"ask for the schedule list")]
@@ -332,7 +332,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				scheduleList = service.Robot.GetScheduleList();
+				scheduleList = service.Attendant.GetScheduleList();
 			}
 			catch (CoreError e)
 			{
@@ -458,7 +458,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Robot.WipeUsers();
+				service.Executor.WipeUsers();
 			}
 			catch (CoreError e)
 			{
@@ -652,7 +652,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				hasSchedule = service.Robot.HasSchedule();
+				hasSchedule = service.Attendant.HasSchedule();
 			}
 			catch (CoreError e)
 			{
@@ -738,7 +738,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Robot.ImportMovesFile(csvName, csvContent);
+				service.Attendant.ImportMovesFile(csvName, csvContent);
 			}
 			catch (CoreError e)
 			{
@@ -866,7 +866,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"the moves file was imported")]
 		public void GivenTheMovesFileWasImported()
 		{
-			service.Robot.ImportMovesFile(csvName, csvContent);
+			service.Attendant.ImportMovesFile(csvName, csvContent);
 
 			var user = repos.User.GetByEmail(userEmail);
 
@@ -904,7 +904,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				var result = service.Robot.MakeMoveFromImported();
+				var result = service.Executor.MakeMoveFromImported();
 				result.Wait();
 
 				moveResult = result.Result;
@@ -959,7 +959,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Robot.FinishArchives();
+				service.Executor.FinishArchives();
 			}
 			catch (CoreError e)
 			{
@@ -1002,7 +1002,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			{
 				requeueOrRetryTime = DateTime.Now;
 
-				var result = service.Robot.RequeueLines();
+				var result = service.Executor.RequeueLines();
 				result.Wait();
 			}
 			catch (AggregateException e)
@@ -1060,7 +1060,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				archiveList = service.Robot.GetArchiveList();
+				archiveList = service.Attendant.GetArchiveList();
 			}
 			catch (CoreError coreError)
 			{
@@ -1090,7 +1090,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				archiveInfo = service.Robot.GetLineList(archiveGuid);
+				archiveInfo = service.Attendant.GetLineList(archiveGuid);
 			}
 			catch (CoreError coreError)
 			{
@@ -1172,7 +1172,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			try
 			{
 				requeueOrRetryTime = DateTime.Now;
-				service.Robot.RetryLine(archiveGuid, linePosition);
+				service.Attendant.RetryLine(archiveGuid, linePosition);
 			}
 			catch (CoreError coreError)
 			{
@@ -1208,7 +1208,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Robot.CancelLine(archiveGuid, linePosition);
+				service.Attendant.CancelLine(archiveGuid, linePosition);
 			}
 			catch (CoreError coreError)
 			{
@@ -1223,7 +1223,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Robot.CancelArchive(archiveGuid);
+				service.Attendant.CancelArchive(archiveGuid);
 			}
 			catch (CoreError coreError)
 			{
@@ -1266,7 +1266,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Robot.OrderExport(orderInfo);
+				service.Attendant.OrderExport(orderInfo);
 			}
 			catch (CoreError e)
 			{
@@ -1289,7 +1289,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"an export is ordered")]
 		public void GivenAnExportIsOrdered()
 		{
-			service.Robot.OrderExport(orderInfo);
+			service.Attendant.OrderExport(orderInfo);
 		}
 
 		[When(@"export order")]
@@ -1297,7 +1297,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Robot.ExportOrder();
+				service.Executor.ExportOrder();
 			}
 			catch (CoreError e)
 			{
@@ -1422,7 +1422,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Robot.DeleteExpiredOrders();
+				service.Executor.DeleteExpiredOrders();
 			}
 			catch (CoreError e)
 			{
@@ -1471,7 +1471,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			scheduleInfo.InUrl = accountIn?.Url;
 			scheduleInfo.CategoryName = categoryName;
 
-			var schedule = service.Robot.SaveSchedule(scheduleInfo);
+			var schedule = service.Attendant.SaveSchedule(scheduleInfo);
 
 			guid = schedule.Guid;
 			scheduleInfo.Guid = schedule.Guid;
@@ -1523,7 +1523,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 					scheduleInfo.InUrl = scenarioAccountUrl;
 				}
 
-				service.Robot.SaveSchedule(scheduleInfo);
+				service.Attendant.SaveSchedule(scheduleInfo);
 			}
 		}
 

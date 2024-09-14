@@ -28,8 +28,9 @@ namespace DFM.BusinessLogic
 			Clip = new ClipService(this, repos, valids);
 			Money = new MoneyService(this, repos, valids);
 			Report = new ReportService(this, repos, valids);
-			Robot = new RobotService(this, repos, valids, queueService);
 			Outside = new OutsideService(this, repos, valids);
+			Attendant = new AttendantService(this, repos, valids, queueService);
+			Executor = new ExecutorService(this, repos, valids, queueService);
 
 			Current = new Current(Auth, getTicket);
 			File = fileService;
@@ -43,8 +44,9 @@ namespace DFM.BusinessLogic
 		public ClipService Clip { get; }
 		public MoneyService Money { get; }
 		public ReportService Report { get; }
-		public RobotService Robot { get; }
 		public OutsideService Outside { get; }
+		public AttendantService Attendant { get; }
+		public ExecutorService Executor { get; }
 
 		public Current Current { get; }
 

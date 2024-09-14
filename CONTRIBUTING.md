@@ -52,8 +52,10 @@ The allowed types are:
 - `admin`: core > accounts and categories;
 - `money`: core > moves;
 - `report`: core > reports;
-- `robot`: core > schedules;
 - `outside`: core > handle not logged actions;
+- `attendant`: core > automated actions registrator;
+- `executor`: core > automated actions executor;
+- `robot`: executor of automated actions;
 - `site`: website ui, mvc;
 - `api`: api of the system;
 - `android`: app;

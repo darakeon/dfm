@@ -10,7 +10,7 @@ namespace DFM.MVC.Models
 		public SchedulesIndexModel()
 		{
 			ScheduleList =
-				robot.GetScheduleList()
+				attendant.GetScheduleList()
 					.OrderByDescending(a => a.GetDate())
 					.ToList();
 		}

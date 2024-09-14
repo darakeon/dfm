@@ -105,14 +105,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 		protected void robotRunSchedule()
 		{
 			createLogoffLoginRobot();
-			service.Robot.RunSchedule();
+			service.Executor.RunSchedule();
 			createLogoffLogin(userEmail);
 		}
 
 		protected void robotRunWipe()
 		{
 			createLogoffLoginRobot();
-			service.Robot.WipeUsers();
+			service.Executor.WipeUsers();
 			resetTicket();
 		}
 
@@ -120,7 +120,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			createLogoffLoginRobot();
 
-			var task = service.Robot.MakeMoveFromImported();
+			var task = service.Executor.MakeMoveFromImported();
 			task.Wait();
 
 			resetTicket();
@@ -129,14 +129,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 		protected void robotFinishArchives()
 		{
 			createLogoffLoginRobot();
-			service.Robot.FinishArchives();
+			service.Executor.FinishArchives();
 			resetTicket();
 		}
 
 		protected void robotExportOrders()
 		{
 			createLogoffLoginRobot();
-			service.Robot.ExportOrder();
+			service.Executor.ExportOrder();
 			resetTicket();
 		}
 
