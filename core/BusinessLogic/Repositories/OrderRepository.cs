@@ -121,4 +121,9 @@ internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService 
 			.Select(o => o.Path)
 			.ToList();
 	}
+
+	public IList<Order> ByUser(User user)
+	{
+		return Where(o => o.User == user);
+	}
 }
