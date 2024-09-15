@@ -829,19 +829,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(line, Is.Null);
 		}
 
-		[Given("sent emails are cleared")]
+		[Given("sent emails before are ignored")]
 		public void GivenSentEmailsAreCleared()
 		{
-			var inboxPath = Path.Combine(
-				"..", "..", "..", "..", "..", "..", "outputs", "inbox"
-			);
-			var inbox = new DirectoryInfo(inboxPath);
-
-			inbox.GetFiles("*.eml")
-				.Where(f => f.CreationTimeUtc >= testStart)
-				.Where(f => EmlReader.FromFile(f.FullName).Headers["To"] == userEmail)
-				.ToList()
-				.ForEach(e => File.Delete(e.FullName));
+			ignoreEmailsBefore = DateTime.Now;
 		}
 
 		[Then("no email will be sent")]
@@ -853,7 +844,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var inbox = new DirectoryInfo(inboxPath);
 
 			var emails = inbox.GetFiles("*.eml")
-				.Where(f => f.CreationTimeUtc >= testStart)
+				.Where(f => f.CreationTimeUtc >= (ignoreEmailsBefore ?? testStart))
 				.Select(f => EmlReader.FromFile(f.FullName))
 				.Where(e => e.Headers["To"] == userEmail)
 				.ToList();
