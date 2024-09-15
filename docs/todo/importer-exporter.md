@@ -24,7 +24,7 @@
 - [x] Add order expiration date
 - [x] Clear order files on expiration date
 - [x] Add order to user deletion test
-- [ ] List orders for user
+- [x] List orders for user
 - [ ] Allow retry orders
 - [ ] Allow cancel orders
 - [ ] Record order creation / export and show

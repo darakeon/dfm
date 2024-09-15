@@ -412,4 +412,13 @@ public class AttendantService : Service
 		});
 	}
 
+
+	public IList<OrderItem> GetOrderList()
+	{
+		var user = parent.Auth.VerifyUser();
+
+		return repos.Order.ByUser(user)
+			.Select(o => new OrderItem(o))
+			.ToList();
+	}
 }

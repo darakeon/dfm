@@ -91,6 +91,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 			get => get<OrderInfo>("orderInfo");
 			set => set("orderInfo", value);
 		}
+
+		private IList<OrderItem> orderInfoList
+		{
+			get => get<IList<OrderItem>>("orderInfoList");
+			set => set("orderInfoList", value);
+		}
 		#endregion
 
 		#region SaveSchedule
@@ -1418,6 +1424,95 @@ namespace DFM.BusinessLogic.Tests.Steps
 			catch (CoreError e)
 			{
 				error = e;
+			}
+		}
+		#endregion
+
+		#region GetOrderList
+		[Given(@"robot export the order")]
+		public void GivenRobotExportTheOrder()
+		{
+			robotExportOrders();
+		}
+
+		[When(@"get order list")]
+		public void WhenGetOrderList()
+		{
+			try
+			{
+				orderInfoList = service.Attendant.GetOrderList();
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[Then(@"order list will be")]
+		public void ThenOrderListWillBe(Table table)
+		{
+			var actualList = orderInfoList;
+
+			var expectedList =
+				table.CreateSet<OrderItem>().ToList();
+
+			Assert.That(actualList.Count, Is.EqualTo(expectedList.Count));
+
+			var user = repos.User.GetByEmail(userEmail);
+
+			var expectedCreation = user.Convert(testStart);
+			var expectedExpiration = expectedCreation.AddDays(90);
+
+			for (var o = 0; o < actualList.Count; o++)
+			{
+				var actual = actualList[o];
+				var expected = expectedList[o];
+
+				Assert.That(actual.Status, Is.EqualTo(expected.Status));
+
+				if (table.Rows[o]["Creation"] == "Filled")
+				{
+					Assert.That(
+						actual.Creation,
+						Is.GreaterThan(expectedCreation)
+					);
+				}
+
+				if (table.Rows[o]["Expiration"] == "Filled")
+				{
+					Assert.That(
+						actual.Expiration,
+						Is.GreaterThan(expectedExpiration)
+					);
+				}
+
+				Assert.That(actual.Sent, Is.EqualTo(expected.Sent));
+
+				Assert.That(actual.Start, Is.EqualTo(expected.Start));
+				Assert.That(actual.End, Is.EqualTo(expected.End));
+
+				Assert.That(actual.AccountList.Count, Is.EqualTo(expected.AccountList.Count));
+				for (var a = 0; a < actual.AccountList.Count; a++)
+				{
+					Assert.That(actual.AccountList[a], Is.EqualTo(expected.AccountList[a]));
+				}
+
+				Assert.That(actual.CategoryList, Is.EqualTo(expected.CategoryList));
+				for (var c = 0; c < actual.CategoryList.Count; c++)
+				{
+					Assert.That(actual.CategoryList[c], Is.EqualTo(expected.CategoryList[c]));
+				}
+
+				if (expected.Path == "exists")
+				{
+					Assert.That(actual.Path, Is.Not.Null);
+					var path = Path.Combine(Cfg.S3.Directory, actual.Path);
+					Assert.That(File.Exists(path), Is.True);
+				}
+				else
+				{
+					Assert.That(actual.Path, Is.Null);
+				}
 			}
 		}
 		#endregion
