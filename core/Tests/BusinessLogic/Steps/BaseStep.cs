@@ -455,6 +455,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 			set => set("testStart", value);
 		}
 
+		protected DateTime? ignoreEmailsBefore
+		{
+			get => get<DateTime?>("ignoreEmailsBefore");
+			set => set("ignoreEmailsBefore", value);
+		}
+
 		protected String token
 		{
 			get => get<String>("Token");
