@@ -632,7 +632,7 @@ Scenario: Ic35. Import without sending email
 		And these settings
 			| SendMoveEmail |
 			| true          |
-		And sent emails are cleared
+		And sent emails before are ignored
 	When robot user login
 		And make move from imported
 	Then I will receive no core error
