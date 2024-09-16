@@ -25,7 +25,7 @@
 - [x] Clear order files on expiration date
 - [x] Add order to user deletion test
 - [x] List orders for user
-- [ ] Allow retry orders
+- [x] Allow retry orders
 - [ ] Allow cancel orders
 - [ ] Record order creation / export and show
 - [ ] Exported can be imported
