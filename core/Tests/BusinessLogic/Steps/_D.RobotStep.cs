@@ -97,6 +97,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 			get => get<IList<OrderItem>>("orderInfoList");
 			set => set("orderInfoList", value);
 		}
+
+		private Guid orderGuid
+		{
+			get => get<Guid>("orderGuid");
+			set => set("orderGuid", value);
+		}
 		#endregion
 
 		#region SaveSchedule
@@ -1287,6 +1293,15 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void GivenAnExportIsOrdered()
 		{
 			service.Attendant.OrderExport(orderInfo);
+
+			var user = repos.User.GetByEmail(userEmail);
+
+			var order = repos.Order
+				.Where(a => a.User == user)
+				.OrderByDescending(a => a.ID)
+				.Last();
+
+			orderGuid = order.Guid;
 		}
 
 		[When(@"export order")]
@@ -1513,6 +1528,21 @@ namespace DFM.BusinessLogic.Tests.Steps
 				{
 					Assert.That(actual.Path, Is.Null);
 				}
+			}
+		}
+		#endregion
+
+		#region RetryOrder
+		[When(@"retry order")]
+		public void WhenRetryOrder()
+		{
+			try
+			{
+				service.Attendant.RetryOrder(orderGuid);
+			}
+			catch (CoreError e)
+			{
+				error = e;
 			}
 		}
 		#endregion

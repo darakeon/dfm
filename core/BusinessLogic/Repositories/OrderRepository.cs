@@ -126,4 +126,17 @@ internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService 
 	{
 		return Where(o => o.User == user);
 	}
+
+	public Order Get(Guid guid)
+	{
+		return SingleOrDefault(
+			m => m.ExternalId == guid.ToByteArray()
+		);
+	}
+
+	public Order Retry(Order order)
+	{
+		order.Status = ExportStatus.Pending;
+		return SaveOrUpdate(order);
+	}
 }
