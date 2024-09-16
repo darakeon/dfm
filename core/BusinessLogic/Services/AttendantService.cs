@@ -421,4 +421,25 @@ public class AttendantService : Service
 			.Select(o => new OrderItem(o))
 			.ToList();
 	}
+
+
+	public OrderItem RetryOrder(Guid orderGuid)
+	{
+		var user = parent.Auth.VerifyUser();
+
+		var order = repos.Order.Get(orderGuid);
+
+		if (order == null || order.User.ID != user.ID)
+			throw Error.OrderNotFound.Throw();
+
+		if (order.Status != ExportStatus.Error && order.Status != ExportStatus.Canceled)
+			throw Error.OrderRetryOnlyErrorOrCanceled.Throw();
+
+		inTransaction("RetryOrder", () =>
+		{
+			order = repos.Order.Retry(order);
+		});
+
+		return new OrderItem(order);
+	}
 }

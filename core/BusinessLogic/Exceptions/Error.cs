@@ -123,6 +123,8 @@ namespace DFM.BusinessLogic.Exceptions
 		InvalidDateRange = 1100,
 		OrderNoCategories = 1101,
 		OrderNoAccounts = 1102,
+		OrderNotFound = 1103,
+		OrderRetryOnlyErrorOrCanceled = 1104,
 	}
 
 	public static class ErrorX

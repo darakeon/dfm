@@ -126,6 +126,8 @@
 		"InvalidDateRange": "Invalid Date Range",
 		"OrderNoCategories": "Categories selection is mandatatory to order export",
 		"OrderNoAccounts": "Accounts selection is mandatatory to order export",
+		"OrderNotFound": "Order not found",
+		"OrderRetryOnlyErrorOrCanceled": "Order can only be retried after error or cancellation",
 		"": null
 	},
 	"pt-BR": {
@@ -255,6 +257,8 @@
 		"InvalidDateRange": "Intervalo de datas inválido",
 		"OrderNoCategories": "É necessário selecionar as Categorias para pedir exportação",
 		"OrderNoAccounts": "É necessário selecionar as Contas para pedir exportação",
+		"OrderNotFound": "Pedido não encontrado",
+		"OrderRetryOnlyErrorOrCanceled": "Pedido só pode ser retentado em caso de erro ou cancelamento",
 		"": null
 	}
 }
