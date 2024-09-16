@@ -58,7 +58,7 @@ Scenario: Hm05. No orders
 	When get order list
 	Then I will receive no core error
 		And order list will be
-			| Status | Creation | Expiration | Sent | Start | End | CategoryList | AccountList | Path |
+			| Status | Creation | Exportation | Expiration | Sent | Start | End | CategoryList | AccountList | Path |
 
 Scenario: Hm06. Not exported
 	Given order start date 1986-03-27
@@ -73,8 +73,8 @@ Scenario: Hm06. Not exported
 	When get order list
 	Then I will receive no core error
 		And order list will be
-			| Status  | Creation | Expiration | Sent | Start      | End        | CategoryList          | AccountList                                           | Path |
-			| Pending |          |            |      | 1986-03-27 | 2024-08-24 | Category 1,Category 2 | Account Out,Account In,Account Out EUR,Account In BRL |      |
+			| Status  | Creation | Exportation | Expiration | Sent | Start      | End        | CategoryList          | AccountList                                           | Path |
+			| Pending | Filled   |             |            |      | 1986-03-27 | 2024-08-24 | Category 1,Category 2 | Account Out,Account In,Account Out EUR,Account In BRL |      |
 
 Scenario: Hm07. Order exported
 	Given order start date 1986-03-27
@@ -91,8 +91,8 @@ Scenario: Hm07. Order exported
 	When get order list
 	Then I will receive no core error
 		And order list will be
-			| Status  | Creation | Expiration | Sent | Start      | End        | CategoryList          | AccountList                                           | Path   |
-			| Success | Filled   | Filled     | true | 1986-03-27 | 2024-08-24 | Category 1,Category 2 | Account Out,Account In,Account Out EUR,Account In BRL | exists |
+			| Status  | Creation | Exportation | Expiration | Sent | Start      | End        | CategoryList          | AccountList                                           | Path   |
+			| Success | Filled   | Filled      | Filled     | true | 1986-03-27 | 2024-08-24 | Category 1,Category 2 | Account Out,Account In,Account Out EUR,Account In BRL | exists |
 
 Scenario: Hm08. No Categories
 	Given these settings
@@ -110,8 +110,8 @@ Scenario: Hm08. No Categories
 	When get order list
 	Then I will receive no core error
 		And order list will be
-			| Status  | Creation | Expiration | Sent | Start      | End        | CategoryList | AccountList                                           | Path   |
-			| Success | Filled   | Filled     | true | 1986-03-27 | 2024-08-24 |              | Account Out,Account In,Account Out EUR,Account In BRL | exists |
+			| Status  | Creation | Exportation | Expiration | Sent | Start      | End        | CategoryList | AccountList                                           | Path   |
+			| Success | Filled   | Filled      | Filled     | true | 1986-03-27 | 2024-08-24 |              | Account Out,Account In,Account Out EUR,Account In BRL | exists |
 
 Scenario: Hm09. No moves to export
 	Given order start date 1955-03-15
@@ -124,8 +124,8 @@ Scenario: Hm09. No moves to export
 	When get order list
 	Then I will receive no core error
 		And order list will be
-			| Status | Creation | Expiration | Sent  | Start      | End        | CategoryList | AccountList | Path |
-			| Error  |          |            | False | 1955-03-15 | 1959-03-11 | Category 1   | Account Out |      |
+			| Status | Creation | Exportation | Expiration | Sent  | Start      | End        | CategoryList | AccountList | Path |
+			| Error  | Filled   |             |            | False | 1955-03-15 | 1959-03-11 | Category 1   | Account Out |      |
 
 Scenario: Hm10. Not able to send email
 	Given order start date 1986-03-27
@@ -139,5 +139,5 @@ Scenario: Hm10. Not able to send email
 	When get order list
 	Then I will receive no core error
 		And order list will be
-			| Status  | Creation | Expiration | Sent  | Start      | End        | CategoryList | AccountList | Path   |
-			| Success | Filled   | Filled     | false | 1986-03-27 | 1989-03-17 | Category 1   | Account Out | exists |
+			| Status  | Creation | Exportation | Expiration | Sent  | Start      | End        | CategoryList | AccountList | Path   |
+			| Success | Filled   | Filled      | Filled     | false | 1986-03-27 | 1989-03-17 | Category 1   | Account Out | exists |
