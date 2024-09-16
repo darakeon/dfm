@@ -39,7 +39,7 @@ internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService 
 		fileService.Upload(csv.Path);
 		order.Path = csv.Path;
 		order.Status = ExportStatus.Success;
-		order.Creation = order.User.Now();
+		order.Exportation = order.User.Now();
 
 		sendEmail(order, csv.Path);
 
@@ -51,7 +51,7 @@ internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService 
 		var dic = new Dictionary<String, String>
 		{
 			{ "Url", getUrl() },
-			{ "OrderDate", order.Creation?.UniversalWithTime() },
+			{ "OrderDate", order.Exportation?.UniversalWithTime() },
 			{ "DateRangeStart", order.Start.ToShortDateString() },
 			{ "DateRangeEnd", order.End.ToShortDateString() },
 			{ "Accounts", String.Join('\n', order.AccountList) },
@@ -92,7 +92,7 @@ internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService 
 
 		return Where(
 			o => o.Status != ExportStatus.Expired
-			    && o.Creation <= limitDaysAgo
+			    && o.Exportation <= limitDaysAgo
 				&& o.Path != null
 		);
 	}

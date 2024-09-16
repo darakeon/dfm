@@ -27,7 +27,7 @@
 - [x] List orders for user
 - [x] Allow retry orders
 - [x] Allow cancel orders
-- [ ] Record order creation / export and show
+- [x] Record order creation / export and show
 - [ ] Exported can be imported
 - [ ] Integrate to site
 - [ ] Integrate to robot
