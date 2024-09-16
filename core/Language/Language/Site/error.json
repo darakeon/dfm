@@ -128,6 +128,7 @@
 		"OrderNoAccounts": "Accounts selection is mandatatory to order export",
 		"OrderNotFound": "Order not found",
 		"OrderRetryOnlyErrorOrCanceled": "Order can only be retried after error or cancellation",
+		"OrderCancelNoSuccessExpired": "Order cannot be canceled after being successfully exported (even after it expires)",
 		"": null
 	},
 	"pt-BR": {
@@ -259,6 +260,7 @@
 		"OrderNoAccounts": "É necessário selecionar as Contas para pedir exportação",
 		"OrderNotFound": "Pedido não encontrado",
 		"OrderRetryOnlyErrorOrCanceled": "Pedido só pode ser retentado em caso de erro ou cancelamento",
+		"OrderCancelNoSuccessExpired": "Pedido não pode ser cancelado após ser exportado com sucesso (mesmo após expirar)",
 		"": null
 	}
 }

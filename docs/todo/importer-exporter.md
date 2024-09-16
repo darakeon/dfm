@@ -26,7 +26,7 @@
 - [x] Add order to user deletion test
 - [x] List orders for user
 - [x] Allow retry orders
-- [ ] Allow cancel orders
+- [x] Allow cancel orders
 - [ ] Record order creation / export and show
 - [ ] Exported can be imported
 - [ ] Integrate to site

@@ -22,12 +22,6 @@ internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService 
 			.FirstOrDefault;
 	}
 
-	public void Cancel(Order order)
-	{
-		order.Status = ExportStatus.Canceled;
-		SaveOrUpdate(order);
-	}
-
 	public void ExtractToFileAndSend(Order order)
 	{
 		var moves = repos.Move.Filter(order);
@@ -137,6 +131,12 @@ internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService 
 	public Order Retry(Order order)
 	{
 		order.Status = ExportStatus.Pending;
+		return SaveOrUpdate(order);
+	}
+
+	public Order Cancel(Order order)
+	{
+		order.Status = ExportStatus.Canceled;
 		return SaveOrUpdate(order);
 	}
 }

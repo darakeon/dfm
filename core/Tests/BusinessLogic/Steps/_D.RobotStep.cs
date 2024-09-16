@@ -1547,6 +1547,21 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 		#endregion
 
+		#region CancelOrder
+		[When(@"cancel order")]
+		public void WhenCancelOrder()
+		{
+			try
+			{
+				service.Attendant.CancelOrder(orderGuid);
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+		#endregion
+
 		#region MoreThanOne
 		[Given(@"I have this schedule to create")]
 		public void GivenIHaveThisMoveToCreate(Table table)
