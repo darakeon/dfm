@@ -2,7 +2,7 @@ django==5.1.1
 mysqlclient==2.2.4
 bcrypt==4.2.0
 boto3==1.35.19
-pytest==8.3.2
+pytest==8.3.3
 pip-audit==2.7.3
 gunicorn==23.0.0
 tzdata==2024.1
