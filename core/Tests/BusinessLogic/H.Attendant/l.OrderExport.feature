@@ -233,3 +233,12 @@ Scenario: Hl18. Not all dates
 	When order export
 	Then I will receive no core error
 		And order will be recorded
+
+Scenario: Hl19. Only one day
+	Given order start date 2021-03-27
+		And order end date 2021-03-27
+		And order account account_out
+		And order category Category 1
+	When order export
+	Then I will receive no core error
+		And order will be recorded
