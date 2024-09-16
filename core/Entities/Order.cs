@@ -13,7 +13,8 @@ namespace DFM.Entities
 
 		public virtual ExportStatus Status { get; set; }
 
-		public virtual DateTime? Creation { get; set; }
+		public virtual DateTime Creation { get; set; }
+		public virtual DateTime? Exportation { get; set; }
 		public virtual Boolean? Sent { get; set; }
 
 		public virtual DateTime Start { get; set; }
@@ -34,7 +35,7 @@ namespace DFM.Entities
 		}
 
 		public virtual DateTime? Expiration =>
-			Creation?.AddDays(DayLimits.EXPORT_EXPIRATION);
+			Exportation?.AddDays(DayLimits.EXPORT_EXPIRATION);
 
 		public virtual Int32 StartNumber =>
 			Start.Year * 10000 + Start.Month * 100 + Start.Day;
