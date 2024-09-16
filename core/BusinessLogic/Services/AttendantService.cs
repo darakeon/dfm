@@ -425,12 +425,7 @@ public class AttendantService : Service
 
 	public OrderItem RetryOrder(Guid orderGuid)
 	{
-		var user = parent.Auth.VerifyUser();
-
-		var order = repos.Order.Get(orderGuid);
-
-		if (order == null || order.User.ID != user.ID)
-			throw Error.OrderNotFound.Throw();
+		var order = validateOrder(orderGuid);
 
 		if (order.Status != ExportStatus.Error && order.Status != ExportStatus.Canceled)
 			throw Error.OrderRetryOnlyErrorOrCanceled.Throw();
@@ -442,4 +437,32 @@ public class AttendantService : Service
 
 		return new OrderItem(order);
 	}
+
+	public OrderItem CancelOrder(Guid orderGuid)
+	{
+		var order = validateOrder(orderGuid);
+
+		if (order.Status == ExportStatus.Success || order.Status == ExportStatus.Expired)
+			throw Error.OrderCancelNoSuccessExpired.Throw();
+
+		inTransaction("CancelOrder", () =>
+		{
+			order = repos.Order.Cancel(order);
+		});
+
+		return new OrderItem(order);
+	}
+
+	private Order validateOrder(Guid orderGuid)
+	{
+		var user = parent.Auth.VerifyUser();
+
+		var order = repos.Order.Get(orderGuid);
+
+		if (order == null || order.User.ID != user.ID)
+			throw Error.OrderNotFound.Throw();
+
+		return order;
+	}
+
 }
