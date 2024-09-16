@@ -1344,12 +1344,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			if (set)
 			{
-				Assert.That(order.Creation, Is.Not.Null);
+				Assert.That(order.Exportation, Is.Not.Null);
 				Assert.That(order.Expiration, Is.Not.Null);
 
 				var testStartForUser = order.User.Convert(testStart);
 				Assert.That(
-					order.Creation.Value.ToUniversalTime(),
+					order.Exportation.Value.ToUniversalTime(),
 					Is.GreaterThan(testStartForUser)
 				);
 				Assert.That(
@@ -1359,7 +1359,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			else
 			{
-				Assert.That(order.Creation, Is.Null);
+				Assert.That(order.Exportation, Is.Null);
 				Assert.That(order.Expiration, Is.Null);
 			}
 		}
@@ -1408,7 +1408,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 					o => o.User == user
 				);
 
-			order.Creation = user.Now().AddDays(-days);
+			order.Exportation = user.Now().AddDays(-days);
 
 			repos.Order.SaveOrUpdate(order);
 
@@ -1489,6 +1489,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 				{
 					Assert.That(
 						actual.Creation,
+						Is.GreaterThan(expectedCreation)
+					);
+				}
+
+				if (table.Rows[o]["Exportation"] == "Filled")
+				{
+					Assert.That(
+						actual.Exportation,
 						Is.GreaterThan(expectedCreation)
 					);
 				}
