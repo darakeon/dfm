@@ -36,20 +36,20 @@ namespace DFM.Tests.Util
 			result +=
 				$"{line.Out}," +
 				$"{line.In}," +
-				$"{line.Value}";
+				$"{line.Value:F2}";
 
 			if (line.Conversion != null || addConversion)
 			{
-				result += $",{line.Conversion}";
+				result += $",{line.Conversion:F2}";
 			}
 
 			foreach (var detail in line.DetailList)
 			{
-				result += $",{detail.Description},{detail.Amount},{detail.Value}";
+				result += $",{detail.Description},{detail.Amount},{detail.Value:F2}";
 
 				if (detail.Conversion != null)
 				{
-					result += $",{detail.Conversion}";
+					result += $",{detail.Conversion:F2}";
 				}
 			}
 
