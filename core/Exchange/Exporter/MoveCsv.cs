@@ -16,8 +16,8 @@ namespace DFM.Exchange.Exporter
 			Date = move.GetDate().ToCsv();
 			Category = move.Category?.Name;
 			Nature = move.Nature.ToString();
-			In = move.In?.Name;
 			Out = move.Out?.Name;
+			In = move.In?.Name;
 
 			var hasDetails = move.DetailList.Any();
 			Value = hasDetails ? null : move.Value.ToCsv();
@@ -50,8 +50,8 @@ namespace DFM.Exchange.Exporter
 		public String Date { get; }
 		public String Category { get; }
 		public String Nature { get; }
-		public String In { get; }
 		public String Out { get; }
+		public String In { get; }
 		public String Value { get; }
 		public String Conversion { get; }
 		public IList<DetailCsv> DetailList { get; }
