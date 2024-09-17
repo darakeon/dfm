@@ -620,13 +620,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 				var value = row.ContainsKey("Value")
 				        && row["Value"] != String.Empty
-					? Int32.Parse(row["Value"])
+					? Decimal.Parse(row["Value"])
 					: 10;
 
 				var conversion = row.ContainsKey("Conversion")
 				        && row["Conversion"] != String.Empty
-					? Int32.Parse(row["Conversion"])
-					: default(Int32?);
+					? Decimal.Parse(row["Conversion"])
+					: default(Decimal?);
 
 				if (row.ContainsKey("Detail") && row["Detail"] != "")
 				{
