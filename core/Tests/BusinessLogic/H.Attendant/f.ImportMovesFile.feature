@@ -817,3 +817,30 @@ Scenario: Hf84. Too long file name
 	Then I will receive this core error: InvalidArchiveName
 		And the pre-import data will not be recorded
 		And the lines will not be queued
+
+Scenario: Hf85. Import exported file
+	Given I have moves of
+			| Description                                      | Date       | Category | Nature   | Out             | In             | Value | Conversion | Detail |
+			| Sample Move Out                                  | 2024-09-16 | Category | Out      | Account Out     |                | 1     |            |        |
+			| Sample Move Out with Details                     | 2024-09-16 | Category | Out      | Account Out     |                | 1     |            | D1     |
+			| Sample Move In                                   | 2024-09-16 | Category | In       |                 | Account In     | 1     |            |        |
+			| Sample Move In with Details                      | 2024-09-16 | Category | In       |                 | Account In     | 1     |            | D1     |
+			| Sample Move Transfer                             | 2024-09-16 | Category | Transfer | Account Out     | Account In     | 1     |            |        |
+			| Sample Move Transfer with Details                | 2024-09-16 | Category | Transfer | Account Out     | Account In     | 1     |            | D1     |
+			| Sample Move Transfer with Conversion             | 2024-09-16 | Category | Transfer | Account Out EUR | Account In BRL | 1     | 10         |        |
+			| Sample Move Transfer with Conversion and Details | 2024-09-16 | Category | Transfer | Account Out EUR | Account In BRL | 1     | 10         | D1     |
+		And order start date 2024-09-16
+		And order end date 2024-09-16
+		And order account account_out
+		And order account account_in
+		And order account account_out_eur
+		And order account account_in_brl
+		And order category Category
+		And an export is ordered
+		And robot export the order
+		And test user login
+		And the order file is chosen to import
+	When import moves file
+	Then I will receive no core error
+		And the pre-import data will be recorded
+		And the lines will be queued
