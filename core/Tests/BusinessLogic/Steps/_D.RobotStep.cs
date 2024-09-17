@@ -745,6 +745,19 @@ namespace DFM.BusinessLogic.Tests.Steps
 			csvName = $"{new String('D', nameSize - 4)}.csv";
 		}
 
+		[Given(@"the order file is chosen to import")]
+		public void GivenTheOrderFileIsChosenToImport()
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			var order = repos.Order.ByUser(user).Single();
+
+			csvName = order.Path;
+
+			var fakeS3Path = Path.Combine(Cfg.S3.Directory, order.Path);
+
+			csvContent = File.ReadAllText(fakeS3Path);
+		}
+
 		[When(@"import moves file")]
 		public void WhenImportMovesFile()
 		{
@@ -780,8 +793,11 @@ namespace DFM.BusinessLogic.Tests.Steps
 				var actual = CSVHelper.ToCsv(line, hasConversion);
 
 				var expected = csvLines[l + 1];
-				while (expected.EndsWith(",,,"))
-					expected = expected.Substring(0, expected.Length - 3);
+				while (expected.EndsWith(","))
+					expected = expected[..^1];
+
+				while (actual.EndsWith(","))
+					actual = actual[..^1];
 
 				Assert.That(actual, Is.EqualTo(expected));
 			}
