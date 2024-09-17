@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using CsvHelper;
+using CsvHelper.Configuration;
 using DFM.Entities;
 using DFM.Generic;
 using DFM.Generic.Datetime;
@@ -86,9 +87,14 @@ namespace DFM.Exchange.Exporter
 
 		private void write()
 		{
-			using var writer = new StreamWriter(Path);
+			var config = new CsvConfiguration(CultureInfo.CurrentCulture)
+			{
+				NewLine = "\n"
+			};
 
-			using var csv = new CsvWriter(writer, CultureInfo.CurrentCulture);
+			using var writer = new StreamWriter(Path);
+			using var csv = new CsvWriter(writer, config);
+
 			csv.WriteRecords(moves.OrderBy(s => s.Date));
 		}
 
