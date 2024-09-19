@@ -24,13 +24,12 @@ public class OrderItem
 		Exportation = order.Exportation;
 		Expiration = order.Expiration;
 		Sent = order.Sent;
+		Path = order.Path;
 
 		Start = order.Start;
 		End = order.End;
 		AccountList = order.AccountList.Select(a => a.Name).ToList();
 		CategoryList = order.CategoryList.Select(a => a.Name).ToList();
-
-		Path = order.Path;
 	}
 
 
@@ -42,11 +41,10 @@ public class OrderItem
 	public DateTime? Exportation { get; set; }
 	public DateTime? Expiration { get; set; }
 	public Boolean? Sent { get; set; }
+	public String Path { get; set; }
 
 	public DateTime Start { get; set; }
 	public DateTime End { get; set; }
 	public IList<String> AccountList { get; set; }
 	public IList<String> CategoryList { get; set; }
-
-	public String Path { get; set; }
 }

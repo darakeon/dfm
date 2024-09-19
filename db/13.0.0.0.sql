@@ -428,9 +428,17 @@ ALTER TABLE detail
 create table order_ (
 	ID BIGINT NOT NULL AUTO_INCREMENT,
 	ExternalId LONGBLOB NOT NULL,
+
 	Status SMALLINT NOT NULL,
+
+    Creation DATETIME NOT NULL,
+    Exportation DATETIME NULL,
+    Sent BIT NULL,
+    Path VARCHAR(50) NULL,
+
 	Start DATETIME NOT NULL,
 	End DATETIME NOT NULL,
+
 	User_ID BIGINT NOT NULL,
 
 	CONSTRAINT PK_Order
