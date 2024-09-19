@@ -16,6 +16,7 @@ namespace DFM.Entities
 		public virtual DateTime Creation { get; set; }
 		public virtual DateTime? Exportation { get; set; }
 		public virtual Boolean? Sent { get; set; }
+		public virtual String Path { get; set; }
 
 		public virtual DateTime Start { get; set; }
 		public virtual DateTime End { get; set; }
@@ -24,8 +25,6 @@ namespace DFM.Entities
 
 		public virtual IList<Account> AccountList { get; set; } = new List<Account>();
 		public virtual IList<Category> CategoryList { get; set; } = new List<Category>();
-
-		public virtual String Path { get; set; }
 
 
 		public virtual Guid Guid
