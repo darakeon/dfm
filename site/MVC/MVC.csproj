@@ -1149,4 +1149,12 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Archives\NoAction.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Archives\NoAction.cshtml" />
+  </ItemGroup>
+
 </Project>

@@ -187,6 +187,8 @@
 
 		"UpdateApp": "Update the Mobile App to version ",
 
+		"NoAction": "This action is not available for this Status",
+
 		"": null
 	},
 	"pt-BR": {
@@ -376,6 +378,8 @@
 		"NoLinkReminder3": "SENDO MERAMENTE REGISTROS NESTE SISTEMA.",
 
 		"UpdateApp": "Atualize seu Aplicativo Android para a versão ",
+
+		"NoAction": "Esta ação não está disponível para esse Status",
 
 		"": null
 	}
