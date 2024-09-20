@@ -129,6 +129,8 @@
 		"OrderNotFound": "Order not found",
 		"OrderRetryOnlyErrorOrCanceled": "Order can only be retried after error or cancellation",
 		"OrderCancelNoSuccessExpired": "Order cannot be canceled after being successfully exported (even after it expires)",
+		"OrderDownloadOnlySuccess": "Order cannot be downloaded before successfully exported or after expired",
+		"OrderFileDeleted": "Order file was deleted, retry making another order",
 		"": null
 	},
 	"pt-BR": {
@@ -261,6 +263,8 @@
 		"OrderNotFound": "Pedido não encontrado",
 		"OrderRetryOnlyErrorOrCanceled": "Pedido só pode ser retentado em caso de erro ou cancelamento",
 		"OrderCancelNoSuccessExpired": "Pedido não pode ser cancelado após ser exportado com sucesso (mesmo após expirar)",
+		"OrderDownloadOnlySuccess": "Pedido não pode ser baixado antes de ser exportado com sucesso ou após expirado",
+		"OrderFileDeleted": "Arquivo do pedido excluído, tente realizar um novo pedido",
 		"": null
 	}
 }

@@ -453,6 +453,21 @@ public class AttendantService : Service
 		return new OrderItem(order);
 	}
 
+	public OrderFile DownloadOrder(Guid orderGuid)
+	{
+		var order = validateOrder(orderGuid);
+
+		if (order.Status != ExportStatus.Success)
+			throw Error.OrderDownloadOnlySuccess.Throw();
+
+		var content = repos.Order.GetFile(order);
+
+		if (content == null)
+			throw Error.OrderFileDeleted.Throw();
+
+		return new OrderFile(order.Path, content);
+	}
+
 	private Order validateOrder(Guid orderGuid)
 	{
 		var user = parent.Auth.VerifyUser();
@@ -464,5 +479,4 @@ public class AttendantService : Service
 
 		return order;
 	}
-
 }
