@@ -285,7 +285,7 @@ describe('Users', () => {
 		)
 
 		const s3 = await db.createWipe(email)
-		const path = `../../../outputs/s3/${s3}`
+		const path = `../../../outputs/s3/Wipe/${s3}`
 		await fs.writeFile(path, 'test')
 
 		await page.type('#Password', db.password)

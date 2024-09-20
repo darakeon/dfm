@@ -14,10 +14,11 @@ namespace DFM.MVC.Helpers
 		{
 			this.getContext = getContext;
 
-			IFileService fileService =
-				Cfg.S3.Local
-					? new LocalFileService()
-					: new S3Service();
+			var wipeFileService =
+				createFileService(StoragePurpose.Wipe);
+
+			var exportFileService =
+				createFileService(StoragePurpose.Export);
 
 			IQueueService queueService =
 				Cfg.SQS.Local
@@ -27,9 +28,17 @@ namespace DFM.MVC.Helpers
 			Access = new ServiceAccess(
 				new Session(getContext).GetTicket,
 				getUrl,
-				fileService,
+				wipeFileService,
+				exportFileService,
 				queueService
 			);
+		}
+
+		private static IFileService createFileService(StoragePurpose purpose)
+		{
+			return Cfg.S3.Local
+				? new LocalFileService(purpose)
+				: new S3Service(purpose);
 		}
 
 		private readonly GetContext getContext;

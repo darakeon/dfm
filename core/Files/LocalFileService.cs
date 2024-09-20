@@ -6,11 +6,15 @@ namespace DFM.Files
 {
 	public class LocalFileService : IFileService
 	{
-		public LocalFileService()
+		public LocalFileService(StoragePurpose purpose)
 		{
 			if (!Cfg.S3.LocalFilled)
 				throw new SystemError("Must have section S3 whole configured for local files");
+
+			fakeS3Path = Path.Combine(Cfg.S3.Directory, purpose.ToString());
 		}
+
+		private String fakeS3Path;
 
 		public void Upload(String path)
 		{
@@ -46,14 +50,14 @@ namespace DFM.Files
 
 		internal IList<String> List()
 		{
-			return Directory.GetFiles(Cfg.S3.Directory);
+			return Directory.GetFiles(fakeS3Path);
 		}
 
-		private static String getS3Path(String path)
+		private String getS3Path(String path)
 		{
 			var info = new FileInfo(path);
 			var filename = info.Name;
-			return Path.Combine(Cfg.S3.Directory, filename);
+			return Path.Combine(fakeS3Path, filename);
 		}
 	}
 }

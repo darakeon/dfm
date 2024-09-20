@@ -549,6 +549,15 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			var textToFindFile = "_";
 
+			var purpose = orderInfo != null
+				? StoragePurpose.Export
+				: StoragePurpose.Wipe;
+
+			var path = Path.Combine(
+				Cfg.S3.Directory,
+				purpose.ToString()
+			);
+
 			if (orderInfo != null)
 			{
 				var user = repos.User.GetByEmail(userEmail);
@@ -559,7 +568,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 
 			var file = Directory
-				.GetFiles(Cfg.S3.Directory, "*.csv")
+				.GetFiles(path, "*.csv")
 				.Where(f => f.Contains(textToFindFile))
 				.OrderByDescending(f => f.Split("_")[1])
 				.First();
@@ -655,7 +664,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"no order files will exist")]
 		public void ThenNoOrderFilesWillExist()
 		{
-			var orders = fileService.List()
+			var orders = exportFileService.List()
 				.Select(f => new FileInfo(f))
 				.Where(fi => fi.CreationTime >= testStart)
 				.Where(fi => fi.Name == $"{scenarioCode}_remove.csv");
@@ -759,7 +768,11 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			csvName = order.Path;
 
-			var fakeS3Path = Path.Combine(Cfg.S3.Directory, order.Path);
+			var fakeS3Path = Path.Combine(
+				Cfg.S3.Directory,
+				StoragePurpose.Export.ToString(),
+				order.Path
+			);
 
 			csvContent = File.ReadAllText(fakeS3Path);
 		}
@@ -1411,7 +1424,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			var actualExists =
 				!String.IsNullOrEmpty(order.Path)
-					&& fileService.Exists(order.Path);
+					&& exportFileService.Exists(order.Path);
 
 			Assert.That(actualExists, Is.EqualTo(expectedExists));
 		}
@@ -1551,7 +1564,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 				if (expected.Path == "exists")
 				{
 					Assert.That(actual.Path, Is.Not.Null);
-					var path = Path.Combine(Cfg.S3.Directory, actual.Path);
+
+					var path = Path.Combine(
+						Cfg.S3.Directory,
+						StoragePurpose.Export.ToString(),
+						actual.Path
+					);
+
 					Assert.That(File.Exists(path), Is.True);
 				}
 				else
@@ -1598,7 +1617,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var user = repos.User.GetByEmail(userEmail);
 			var order = repos.Order.ByUser(user).Single();
-			fileService.Delete(order.Path);
+			exportFileService.Delete(order.Path);
 		}
 
 		[When(@"download order")]

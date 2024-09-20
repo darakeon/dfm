@@ -13,12 +13,13 @@ namespace DFM.BusinessLogic
 		public ServiceAccess(
 			Current.GetTicket getTicket,
 			Current.GetUrl getUrl,
-			IFileService fileService,
+			IFileService wipeFileService,
+			IFileService exportFileService,
 			IQueueService queueService
 		)
 		{
 			var valids = new Valids();
-			var repos = new Repos(getUrl, valids, fileService);
+			var repos = new Repos(getUrl, valids, wipeFileService, exportFileService);
 
 			BaseMove = new BaseMoveSaverService(this, repos, valids);
 
@@ -33,7 +34,6 @@ namespace DFM.BusinessLogic
 			Executor = new ExecutorService(this, repos, valids, queueService);
 
 			Current = new Current(Auth, getTicket);
-			File = fileService;
 		}
 
 		internal BaseMoveSaverService BaseMove { get; }
@@ -49,7 +49,5 @@ namespace DFM.BusinessLogic
 		public ExecutorService Executor { get; }
 
 		public Current Current { get; }
-
-		internal IFileService File { get; }
 	}
 }

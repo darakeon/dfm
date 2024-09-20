@@ -8,7 +8,7 @@ namespace DFM.Files
 {
 	public class S3Service : IDisposable, IFileService
 	{
-		public S3Service()
+		public S3Service(StoragePurpose purpose)
 		{
 			if (!Cfg.S3.S3Filled)
 				throw new SystemError("Must have section S3 whole configured for aws");
@@ -17,7 +17,7 @@ namespace DFM.Files
 			var accessKey = Cfg.S3.AccessKey;
 			var secretKey = Cfg.S3.SecretKey;
 
-			bucket = Cfg.S3.Bucket;
+			bucket = Cfg.S3.Buckets[purpose];
 
 			s3 = new TransferUtility(accessKey, secretKey, region);
 		}

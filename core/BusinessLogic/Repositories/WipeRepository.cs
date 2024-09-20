@@ -20,17 +20,20 @@ namespace DFM.BusinessLogic.Repositories
 	internal class WipeRepository : Repo<Wipe>
 	{
 		public WipeRepository(
-			Repos repos, Current.GetUrl getUrl, IFileService fileService
+			Repos repos, Current.GetUrl getUrl,
+			IFileService wipeFileService, IFileService exportFileService
 		)
 		{
 			this.repos = repos;
 			this.getUrl = getUrl;
-			this.fileService = fileService;
+			this.wipeFileService = wipeFileService;
+			this.exportFileService = exportFileService;
 		}
 
 		private readonly Repos repos;
 		private readonly Current.GetUrl getUrl;
-		private readonly IFileService fileService;
+		private readonly IFileService wipeFileService;
+		private readonly IFileService exportFileService;
 
 		public void Execute(User user, DateTime date, RemovalReason reason)
 		{
@@ -67,9 +70,9 @@ namespace DFM.BusinessLogic.Repositories
 
 			foreach (var file in files)
 			{
-				if (fileService.Exists(file))
+				if (exportFileService.Exists(file))
 				{
-					fileService.Delete(file);
+					exportFileService.Delete(file);
 				}
 			}
 
@@ -108,7 +111,7 @@ namespace DFM.BusinessLogic.Repositories
 
 			if (csv.Path != null)
 			{
-				fileService.Upload(csv.Path);
+				wipeFileService.Upload(csv.Path);
 				s3 = csv.Path;
 			}
 
@@ -183,7 +186,7 @@ namespace DFM.BusinessLogic.Repositories
 
 		public void SendCSV(String email, Security security)
 		{
-			if (!fileService.Exists(security.Wipe.S3))
+			if (!wipeFileService.Exists(security.Wipe.S3))
 				throw Error.CSVNotFound.Throw();
 
 			var dic = new Dictionary<String, String>
@@ -202,7 +205,7 @@ namespace DFM.BusinessLogic.Repositories
 				.Subject(format.Subject)
 				.Body(fileContent);
 
-			fileService.Download(security.Wipe.S3);
+			wipeFileService.Download(security.Wipe.S3);
 			sender.Attach(security.Wipe.S3);
 
 			try
@@ -213,6 +216,14 @@ namespace DFM.BusinessLogic.Repositories
 			{
 				throw Error.FailOnEmailSend.Throw(e);
 			}
+		}
+
+		public void DeleteFile(String csv)
+		{
+			if (!wipeFileService.Exists(csv))
+				throw Error.CSVNotFound.Throw();
+
+			wipeFileService.Delete(csv);
 		}
 	}
 }

@@ -17,7 +17,8 @@ namespace DFM.Robot
 	{
 		private readonly RobotTask task;
 		private readonly ServiceAccess service;
-		private readonly S3Service s3;
+		private readonly S3Service wipeS3;
+		private readonly S3Service exportS3;
 		private readonly SQSService sqs;
 
 		public Service(RobotTask task)
@@ -29,7 +30,8 @@ namespace DFM.Robot
 			switch (this.task)
 			{
 				case RobotTask.Wipe:
-					s3 = new S3Service();
+					wipeS3 = new S3Service(StoragePurpose.Wipe);
+					exportS3 = new S3Service(StoragePurpose.Export);
 					break;
 				case RobotTask.Import:
 				case RobotTask.Requeue:
@@ -37,7 +39,9 @@ namespace DFM.Robot
 					break;
 			}
 
-			service = new ServiceAccess(getTicket, getSite, s3, sqs);
+			service = new ServiceAccess(
+				getTicket, getSite, wipeS3, exportS3, sqs
+			);
 
 			if (this.task != RobotTask.Check)
 				service.Current.Set(Cfg.RobotEmail, Cfg.RobotPassword, false);
@@ -104,7 +108,8 @@ namespace DFM.Robot
 
 		public void Dispose()
 		{
-			s3?.Dispose();
+			wipeS3?.Dispose();
+			exportS3?.Dispose();
 			sqs?.Dispose();
 		}
 	}
