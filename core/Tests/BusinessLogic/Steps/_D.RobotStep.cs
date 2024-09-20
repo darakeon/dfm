@@ -103,6 +103,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 			get => get<Guid>("orderGuid");
 			set => set("orderGuid", value);
 		}
+
+		private OrderFile orderFile
+		{
+			get => get<OrderFile>("orderFile");
+			set => set("orderFile", value);
+		}
 		#endregion
 
 		#region SaveSchedule
@@ -1583,6 +1589,38 @@ namespace DFM.BusinessLogic.Tests.Steps
 			{
 				error = e;
 			}
+		}
+		#endregion
+
+		#region DownloadOrder
+		[Given(@"the order file is deleted")]
+		public void GivenTheOrderFileIsDeleted()
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			var order = repos.Order.ByUser(user).Single();
+			fileService.Delete(order.Path);
+		}
+
+		[When(@"download order")]
+		public void WhenDownloadOrder()
+		{
+			try
+			{
+				orderFile = service.Attendant.DownloadOrder(orderGuid);
+			}
+			catch (CoreError e)
+			{
+				error = e;
+			}
+		}
+
+		[Then(@"order will (not )?be downloaded")]
+		public void ThenOrderWillBeDownloaded(Boolean downloaded)
+		{
+			Assert.That(
+				orderFile,
+				downloaded ? Is.Not.Null : Is.Null
+			);
 		}
 		#endregion
 

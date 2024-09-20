@@ -126,6 +126,8 @@ namespace DFM.BusinessLogic.Exceptions
 		OrderNotFound = 1103,
 		OrderRetryOnlyErrorOrCanceled = 1104,
 		OrderCancelNoSuccessExpired = 1105,
+		OrderDownloadOnlySuccess = 1106,
+		OrderFileDeleted = 1107,
 	}
 
 	public static class ErrorX

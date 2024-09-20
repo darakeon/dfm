@@ -63,7 +63,7 @@ namespace DFM.BusinessLogic.Repositories
 				wipeAll(repos.Schedule, m => m.Out, a => a.ID == account.ID);
 			}
 
-			var files = repos.Order.GetFiles(user);
+			var files = repos.Order.ListFiles(user);
 
 			foreach (var file in files)
 			{

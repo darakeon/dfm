@@ -29,6 +29,7 @@
 - [x] Allow cancel orders
 - [x] Record order creation / export and show
 - [x] Exported can be imported
+- [x] Download file
 - [ ] Integrate to site
 - [ ] Integrate to robot
 

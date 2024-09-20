@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Keon.Util.Extensions;
 using DFM.Email;
@@ -105,7 +106,7 @@ internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService 
 		SaveOrUpdate(order);
 	}
 
-	public IList<String> GetFiles(User user)
+	public IList<String> ListFiles(User user)
 	{
 		return Where(
 			o => o.User.ID == user.ID
@@ -114,6 +115,15 @@ internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService 
 		)
 			.Select(o => o.Path)
 			.ToList();
+	}
+
+	public String GetFile(Order order)
+	{
+		if (!fileService.Exists(order.Path))
+			return null;
+
+		fileService.Download(order.Path);
+		return File.ReadAllText(order.Path);
 	}
 
 	public IList<Order> ByUser(User user)
