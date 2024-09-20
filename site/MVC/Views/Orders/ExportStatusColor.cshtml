@@ -1,0 +1,22 @@
+﻿@model ExportStatus
+@switch (Model)
+{
+	case ExportStatus.Pending:
+		@("warning")
+		break;
+	case ExportStatus.Canceled:
+		@("info")
+		break;
+	case ExportStatus.Success:
+		@("success")
+		break;
+	case ExportStatus.Error:
+		@("danger")
+		break;
+	case ExportStatus.Expired:
+		@("default")
+		break;
+	default:
+		@("muted")
+		break;
+}

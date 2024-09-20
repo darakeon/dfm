@@ -1,0 +1,87 @@
+﻿@model OrderRowModel
+
+@{
+	var hl = Model.WizardHL;
+	var order = Model.Order;
+
+	var criteriaColumnsSize = Model.IsUsingCategories ? 2 : 3;
+}
+
+<tr class="row @hl?["Row"]" id="a@(order.Guid)">
+	<td class="col-sm-@criteriaColumnsSize text-center @hl?["DateRange"]">
+		@order.Start.ToShortDateString()
+		-
+		@order.End.ToShortDateString()
+	</td>
+
+	<td class="col-sm-@criteriaColumnsSize text-center @hl?["Accounts"]">
+		@foreach (var account in order.AccountList)
+		{
+			@account<br />
+		}
+	</td>
+	
+	@if (Model.IsUsingCategories)
+	{
+		<td class="col-sm-2 text-center @hl?["Categories"]">
+			@foreach (var category in order.CategoryList)
+			{
+				@category<br/>
+			}
+		</td>
+	}
+
+	<td class="col-sm-1 text-center @hl?["Expiration"]">
+		@(order.Expiration?.ToShortDateString() ?? "-")
+	</td>
+
+	<td class="col-sm-1 text-center @hl?["Status"]">
+		@await Html.PartialAsync("ExportStatus", order.Status)
+	</td>
+
+	<td class="col-sm-1 text-center @hl?["Cancel"]">
+		@if (order.Status == ExportStatus.Error || order.Status == ExportStatus.Pending)
+		{
+			@await Html.PartialAsync(
+		       "Extensions/MicroForm",
+		       MicroForm.WithGlyph(Context, "ban-circle", "Cancel")
+			       .AddIdUrl("Orders", "Cancel", order.Guid)
+			       .AsAjax($"a{order.Guid}")
+		    )
+		}
+		else
+		{
+			@await Html.PartialAsync("NoAction", "ban-circle")
+		}
+	</td>
+
+	<td class="col-sm-1 text-center @hl?["Retry"]">
+		@if (order.Status == ExportStatus.Error || order.Status == ExportStatus.Canceled)
+		{
+			@await Html.PartialAsync(
+		       "Extensions/MicroForm",
+		       MicroForm.WithGlyph(Context, "repeat", "Retry")
+			       .AddIdUrl("Orders", "Retry", order.Guid)
+			       .AsAjax($"a{order.Guid}")
+		    )
+		}
+		else
+		{
+			@await Html.PartialAsync("NoAction", "repeat")
+		}
+	</td>
+
+	<td class="col-sm-1 text-center @hl?["Download"]">
+		@if (order.Status == ExportStatus.Success)
+		{
+			<a href="@Url.Action("Download", new { id = order.Guid })">
+				<span class="glyphicon glyphicon-download"
+					title="@Context.Translate("Download")"></span>
+			</a>			
+		}
+		else
+		{
+			@await Html.PartialAsync("NoAction", "download")
+		}
+	</td>
+</tr>

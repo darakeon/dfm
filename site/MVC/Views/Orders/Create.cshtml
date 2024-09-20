@@ -1,0 +1,92 @@
+﻿@model OrdersCreateModel
+
+@{
+	ViewBag.Title = Context.Translate("Create", "Order");
+	ViewBag.FormSizeSm = 12;
+	ViewBag.FormSizeLg = 8;
+
+	var hasErrors = !Html.ViewData.ModelState.IsValid;
+
+	if (hasErrors)
+	{
+		ViewBag.WizardPlus = "Error";
+	}
+
+	Layout = "~/Views/Shared/Layouts/_Form.cshtml";
+
+	var hl = new WizardHL(hasErrors)
+		.AddBox("DateRange", null, 1)
+		.AddBox("Begin", null, 2)
+		.AddBox("End", null, 3)
+		.AddBox("Accounts", null, 4)
+		.AddBox("Button", null, 6)
+		.AddBox("Errors", 0, null)
+		;
+
+	ViewBag.FormErrorsClass = hl["Errors"];
+}
+
+<div class="row @hl["DateRange"]">
+	<div class="form-group col-lg-6 col-sm-12">
+		@Html.LabelFor(m => m.Start, Context.Translate("BeginDate"), new { @class = "control-label" })
+		@Html.ValidationMessageFor(m => m.Start)<br />
+		@Html.TextBoxFor(m => m.Start, new { type = "date", @class = "form-control " + hl["Begin"] })
+	</div>
+
+	<div class="form-group col-lg-6 col-sm-12">
+		@Html.LabelFor(m => m.End, Context.Translate("EndDate"), new { @class = "control-label" })
+		@Html.ValidationMessageFor(m => m.End)<br />
+		@Html.TextBoxFor(m => m.End, new { type = "date", @class = "form-control " + hl["End"] })
+	</div>
+</div>
+
+<div class="form-group @hl["Accounts"]">
+	@Html.LabelFor(m => m.Order.AccountList, Context.Translate("Accounts"))
+	@Html.ValidationMessageFor(m => m.Order.AccountList)
+
+	<div class="row">
+		@foreach (var key in Model.AccountList.Keys)
+		{
+			<div class="col-sm-6 col-lg-4">
+				<div class="input-group">
+					<div class="input-group-addon">
+						@Html.CheckBoxFor(m => m.AccountList[key])
+					</div>
+					<div class="form-control">
+						@Html.LabelFor(m => m.AccountList[key], Model.AllAccountList[key].Name, new { @class = "control-label" })
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+</div>
+
+@if (Model.IsUsingCategories)
+{
+	<div class="form-group">
+		@Html.LabelFor(m => m.Order.CategoryList, Context.Translate("Categories"))
+		@Html.ValidationMessageFor(m => m.Order.CategoryList)
+
+		<div class="row">
+			@foreach (var key in Model.CategoryList.Keys)
+			{
+				<div class="col-sm-6 col-lg-4">
+					<div class="input-group">
+						<div class="input-group-addon">
+							@Html.CheckBoxFor(m => m.CategoryList[key])
+						</div>
+						<div class="form-control">
+							@Html.LabelFor(m => m.CategoryList[key], Model.AllCategoryList[key].Name, new { @class = "control-label" })
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+}
+
+@section Footer {
+	<button class="btn btn-success @hl["Button"]" type="submit">
+		@Context.Translate("Create")
+	</button>
+}

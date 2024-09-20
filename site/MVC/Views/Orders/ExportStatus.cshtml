@@ -1,0 +1,10 @@
+﻿@model ExportStatus
+
+<span 
+	class="
+		glyphicon
+		glyphicon-@await Html.PartialAsync("ExportStatusIcon", Model)
+		text-@await Html.PartialAsync("ExportStatusColor", Model)
+	"
+	title="@Context.Translate(Model.ToString())">
+</span>

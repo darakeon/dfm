@@ -1,0 +1,66 @@
+﻿@model OrdersIndexModel
+
+@{
+	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
+
+	var hasOrders = Model.OrderList.Any();
+
+	ViewBag.Title = Context.Translate("Orders");
+
+	ViewBag.HasContent = hasOrders;
+	ViewBag.NoContentText = Context.Translate("NoOrders");
+
+	var hl = new WizardHL(hasOrders)
+		.AddBox("SettingsMenu", 8, null)
+		.AddBox("SettingsMainMenu", 8, null)
+		.AddBox("NoContent", null, 1)
+		.AddBox("CreateButton", null, 2)
+		.AddBox("Row", 0, null)
+		.AddBox("DateRange", 1, null)
+		.AddBox("Accounts", 1, null)
+		.AddBox("Categories", 1, null)
+		.AddBox("Expiration", 6, null)
+		.AddBox("Status", 2, null)
+		.AddBox("Cancel", 3, null)
+		.AddBox("Retry", 4, null)
+		.AddBox("Download", 5, null)
+		;
+
+	ViewBag.SettingsMenuClass = hl["SettingsMenu"];
+	ViewBag.SettingsMainMenuClass = hl["SettingsMainMenu"];
+	ViewBag.NoContentClass = hl["NoContent"];
+
+	var buttons = new List<Button>
+	{
+		Button.ForAction(
+			Context.Translate("Create", "Order"),
+			"Create",
+			hl["CreateButton"]
+		),
+	};
+
+	ViewBag.Buttons = buttons;
+
+	var columns = Model.IsUsingCategories ? 2 : 3;
+}
+
+@section TableHeader
+{
+	<tr class="row">
+		<th class="col-sm-@columns text-center">@Context.Translate("DateRange")</th>
+		<th class="col-sm-@columns text-center">@Context.Translate("Accounts")</th>
+		@if (Model.IsUsingCategories)
+		{
+			<th class="col-sm-2 text-center">@Context.Translate("Categories")</th>
+		}
+		<th class="col-sm-2 text-center">@Context.Translate("Expiration")</th>
+		<th class="col-sm-1 text-center">@Context.Translate("Status")</th>
+		<th class="col-sm-3 text-center" colspan="3">@Context.Translate("TODO")</th>
+	</tr>
+}
+
+@foreach (var order in Model.OrderList)
+{
+	var submodel = new OrderRowModel(order, Model.IsUsingCategories, hl);
+	@await Html.PartialAsync("OrderRow", submodel)
+}
