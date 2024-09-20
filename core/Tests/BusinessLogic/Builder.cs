@@ -15,14 +15,14 @@ namespace DFM.BusinessLogic.Tests
 	{
 		private readonly Repos repos;
 		private readonly Action<Action> inTransaction;
-		private readonly IFileService fileService;
+		private readonly IFileService exportFileService;
 		private readonly String code;
 
-		public Builder(Repos repos, Action<Action> inTransaction, IFileService fileService, String code)
+		public Builder(Repos repos, Action<Action> inTransaction, IFileService exportFileService, String code)
 		{
 			this.repos = repos;
 			this.inTransaction = inTransaction;
-			this.fileService = fileService;
+			this.exportFileService = exportFileService;
 			this.code = code;
 
 			objects = new Dictionary<String, Func<User, IEntityLong>>
@@ -367,7 +367,7 @@ namespace DFM.BusinessLogic.Tests
 			};
 
 			File.WriteAllText(file, "remove");
-			fileService.Upload(file);
+			exportFileService.Upload(file);
 			File.Delete(file);
 
 			return repos.Order.SaveOrUpdate(order);

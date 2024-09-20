@@ -29,7 +29,8 @@ namespace DFM.BusinessLogic.Repositories
 		internal Repos(
 			Current<SignInInfo, SessionInfo>.GetUrl getUrl,
 			Valids valids,
-			IFileService fileService
+			IFileService wipeFileService,
+			IFileService exportFileService
 		)
 		{
 			Acceptance = new AcceptanceRepository();
@@ -42,8 +43,8 @@ namespace DFM.BusinessLogic.Repositories
 			Detail = new DetailRepository();
 			Line = new LineRepository();
 			Move = new MoveRepository(getUrl, valids.Move);
-			Order = new OrderRepository(this, getUrl, fileService);
-			Wipe = new WipeRepository(this, getUrl, fileService);
+			Order = new OrderRepository(this, getUrl, exportFileService);
+			Wipe = new WipeRepository(this, getUrl, wipeFileService, exportFileService);
 			Schedule = new ScheduleRepository(valids.Schedule);
 			Security = new SecurityRepository(getUrl);
 			Summary = new SummaryRepository();

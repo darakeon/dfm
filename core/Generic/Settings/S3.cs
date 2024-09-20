@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 
 namespace DFM.Generic.Settings
@@ -17,16 +18,22 @@ namespace DFM.Generic.Settings
 			else
 			{
 				Region = s3["region"];
-				Bucket = s3["bucket"];
 				AccessKey = s3["accessKey"];
 				SecretKey = s3["secretKey"];
+
+				Buckets = new Dictionary<StoragePurpose, String>
+				{
+					{ StoragePurpose.Wipe, s3["bucketWipe"] },
+					{ StoragePurpose.Export, s3["bucketExport"] },
+				};
 			}
 		}
 
 		public readonly String Region;
-		public readonly String Bucket;
 		public readonly String AccessKey;
 		public readonly String SecretKey;
+
+		public readonly IDictionary<StoragePurpose, String> Buckets;
 
 		public readonly Boolean Local;
 		public readonly String Directory;
@@ -38,7 +45,6 @@ namespace DFM.Generic.Settings
 		public Boolean S3Filled =>
 			!Local
 			&& !String.IsNullOrEmpty(Region)
-			&& !String.IsNullOrEmpty(Bucket)
 			&& !String.IsNullOrEmpty(AccessKey)
 			&& !String.IsNullOrEmpty(SecretKey);
 	}

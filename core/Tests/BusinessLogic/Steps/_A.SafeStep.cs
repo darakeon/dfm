@@ -912,7 +912,11 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			repos.Wipe.SaveOrUpdate(wipe);
 
-			var path = Path.Combine(Cfg.S3.Directory, wipe.S3);
+			var path = Path.Combine(
+				Cfg.S3.Directory,
+				StoragePurpose.Wipe.ToString(),
+				wipe.S3
+			);
 			File.WriteAllText(path, "hey, listen!");
 		}
 
@@ -934,6 +938,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var path = Path.Combine(
 				Cfg.S3.Directory,
+				StoragePurpose.Wipe.ToString(),
 				$"{scenarioCode}.csv"
 			);
 			

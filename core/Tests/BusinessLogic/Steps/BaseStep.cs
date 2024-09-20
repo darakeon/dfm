@@ -34,7 +34,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 		private protected static Valids valids;
 		private protected static Repos repos;
-		private protected static LocalFileService fileService;
+		private protected static LocalFileService wipeFileService;
+		private protected static LocalFileService exportFileService;
 		private protected static LocalQueueService queueService;
 
 		private static String logFileName;
@@ -60,10 +61,11 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 		protected static void setRepositories()
 		{
-			fileService = new LocalFileService();
+			wipeFileService = new LocalFileService(StoragePurpose.Wipe);
+			exportFileService = new LocalFileService(StoragePurpose.Export);
 			queueService = new LocalQueueService();
 			valids = new Valids();
-			repos = new Repos(getSite, valids, fileService);
+			repos = new Repos(getSite, valids, wipeFileService, exportFileService);
 		}
 
 		protected static String getSite()
@@ -510,7 +512,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 		protected void createFor(User user, String entityName)
 		{
-			new Builder(repos, db.Execute, fileService, scenarioCode)
+			new Builder(repos, db.Execute, exportFileService, scenarioCode)
 				.CreateFor(user, entityName);
 		}
 	}

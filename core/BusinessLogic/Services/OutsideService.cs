@@ -185,13 +185,10 @@ namespace DFM.BusinessLogic.Services
 
 			var csv = security.Wipe.S3;
 
-			if (!parent.File.Exists(csv))
-				throw Error.CSVNotFound.Throw();
-
 			inTransaction("WipeCsv", () =>
 			{
+				repos.Wipe.DeleteFile(csv);
 				repos.Security.Disable(token);
-				parent.File.Delete(csv);
 			});
 		}
 	}
