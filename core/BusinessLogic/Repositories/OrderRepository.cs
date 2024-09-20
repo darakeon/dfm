@@ -26,7 +26,7 @@ internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService 
 	{
 		var moves = repos.Move.Filter(order);
 
-		var csv = new CSVExporter();
+		using var csv = new CSVExporter();
 		csv.Add(moves);
 		csv.Create(order);
 
