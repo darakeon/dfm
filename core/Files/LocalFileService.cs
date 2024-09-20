@@ -29,10 +29,7 @@ namespace DFM.Files
 		{
 			var s3Path = getS3Path(path);
 
-			if (File.Exists(path))
-				File.Delete(path);
-
-			File.Copy(s3Path, path);
+			File.Copy(s3Path, path, true);
 		}
 
 		public Boolean Exists(String path)
