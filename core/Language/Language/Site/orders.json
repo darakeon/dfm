@@ -1,0 +1,16 @@
+{
+	"en-US": {
+		"Order": "Order",
+		"Orders": "Orders",
+		"NoOrders": "There's no Orders yet.",
+		"DateRange": "Date Range",
+		"": null
+	},
+	"pt-BR": {
+		"Order": "Pedido",
+		"Orders": "Pedidos",
+		"NoOrders": "Não há Pedidos ainda.",
+		"DateRange": "Intervalo",
+		"": null
+	}
+}

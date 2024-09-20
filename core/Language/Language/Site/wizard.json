@@ -138,7 +138,7 @@
 			"Sometimes one can have financial data in archives and inserting each move manually can be hard.",
 			"This part of the System is for importing archives to create moves.",
 			"Not everyone need to import moves via files to the System.",
-			"If you want to skip this part of the wizard, go to Settings > Main Options.",
+			"If you want to skip this part of the wizard, go to Administration > Export.",
 			"But if you want to learn more about import, you can download a template clicking at this button.",
 			"Then let's make an upload using the template file.",
 			null
@@ -166,7 +166,7 @@
 		"Wizard_ArchivesLinesEmpty": [
 			"Something went wrong, an Archive should always have Lines.",
 			"Please contact us if you believe this can be a problem for you.",
-			"If not, let's keep going with Wizard. Click Settings > Main Options.",
+			"If not, let's keep going with Wizard. Click Administration > Export.",
 			null
 		],
 		"Wizard_ArchivesLinesFilled": [
@@ -177,6 +177,39 @@
 			"In case of error, you will see a button for retry.",
 			"It is also possible to cancel a line not imported yet.",
 			"So now you will only need to wait to the System to finish importing everything.",
+			"Let's see another way to visualize data in Administration > Export.",
+			null
+		],
+		"Wizard_OrdersIndexEmpty": [
+			"Besides reports inside the System it is also possible export Moves.",
+			"There are still no registered export Orders.",
+			"Click at the button to create a new Order.",
+			null
+		],
+		"Wizard_OrdersCreate": [
+			"To export Moves it is necessary to define some criteria.",
+			"A date range needs to be specified to the exportation.",
+			"Only Move with date equal to or after Begin...",
+			"... and equal to or before the End will be exported.",
+			"Moreover it is mandatory to choose which Account will be included in the Order.",
+			"After the exportation a file with Moves will be sent to the email registered in the System.",
+			"Select some options and click to Create.",
+			null
+		],
+		"Wizard_OrdersCreateError": [
+			"Some error happened while trying to make the Order.",
+			"Check the message, fix what was requested and try again.",
+			null
+		],
+		"Wizard_OrdersIndexFilled": [
+			"An export Order was created.",
+			"Here are the chosen criteria...",
+			"... and the Order status.",
+			"The exportation can be canceled in case not done yet.",
+			"There will be also a button to try again if an error happens.",
+			"If the exportation Succeeds, there will be a button to download the file.",
+			"In this case there will be also a date limit to download it.",
+			"The exportation will happen separately, so all that remains is to wait.",
 			"We have more options in the system, let's check Settings > Main Options.",
 			null
 		],
@@ -625,7 +658,7 @@
 			"Às vezes uma pessoa pode ter dados em arquivos e inserir manualmente cada Movimentação pode ser difícil.",
 			"Esta parte do Sistema serve para importar arquivos para criar Movimentações.",
 			"Nem todo mundo precisa importar Movimentações via arquivos no Sistema.",
-			"Se quiser pular essa parte do Tutorial, vá em Configurações e clique em Opções Gerais.",
+			"Se quiser pular essa parte do Tutorial, vá em Administração e clique em Exportação.",
 			"Mas se quiser aprender sobre Importação, você pode baixar um modelo clicando neste botão.",
 			"E então criar Movimentações subindo um arquivo usando o modelo.",
 			null
@@ -653,7 +686,7 @@
 		"Wizard_ArchivesLinesEmpty": [
 			"Algo está errado, um arquivo sempre deveria ter linhas.",
 			"Por favor nos contate se acredita que isso possa ser um problema para você.",
-			"Se não, vamos seguir com o Tutorial. Clique em Configurações > Opções Gerais.",
+			"Se não, vamos seguir com o Tutorial. Clique em Administração > Exportação.",
 			null
 		],
 		"Wizard_ArchivesLinesFilled": [
@@ -664,6 +697,39 @@
 			"Em caso de erro, você verá um botão para tentar novamente.",
 			"Também é possível cancelar uma linha que ainda não tenha sido importada.",
 			"Agora tudo que você precisa fazer é esperar o Sistema terminar de importar tudo.",
+			"Vamos conhecer mais uma forma de visualizar dados em Administração > Exportação.",
+			null
+		],
+		"Wizard_OrdersIndexEmpty": [
+			"Além de visualizar as Movimentações no Sistema também é possível exportá-las.",
+			"Ainda não existem Pedidos de exportação registrados.",
+			"Clique no botão para criar um novo Pedido.",
+			null
+		],
+		"Wizard_OrdersCreate": [
+			"Para exportar as Movimentações é necessário definir alguns critérios.",
+			"Precisam ser especificadas as datas limite para a exportação.",
+			"Apenas Movimentações com data igual ou posterior ao Início...",
+			"... e igual ou anterior ao Fim serão exportadas.",
+			"Além disso é necessário escolher quais Contas serão incluídas no Pedido.",
+			"Após a exportação o arquivo é enviado para seu email registrado no Sistema.",
+			"Selecione algumas opções e clique em Criar.",
+			null
+		],
+		"Wizard_OrdersCreateError": [
+			"Algum erro ocorreu ao tentar realizar o Pedido.",
+			"Verifique a mensagem, corrija o que foi requisitado e tente novamente.",
+			null
+		],
+		"Wizard_OrdersIndexFilled": [
+			"Um Pedido de exportação foi criado.",
+			"É possível ver os critérios escolhidos...",
+			"... e o status do Pedido.",
+			"É possível cancelar a exportação caso ainda não tenha sido feita.",
+			"Também haverá um botão para tentar novamente se houver erro.",
+			"Se a exportação ocorrer com Sucesso, haverá um botão para baixar o arquivo.",
+			"Nesse caso, haverá uma data limite para baixar o arquivo.",
+			"A exportação é um processo que o Sistema executará a parte, portanto resta aguardar.",
 			"Existem mais opções no sistema, vamos até Configurações > Opções Gerais.",
 			null
 		],

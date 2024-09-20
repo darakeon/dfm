@@ -9,11 +9,10 @@
 
 	ViewBag.HasContent = hasArchives;
 	ViewBag.NoContentText = Context.Translate("NoArchives");
-	ViewBag.NoContentClass = "";//hl["NoContent"];
 
 	var hl = new WizardHL(hasArchives)
-		.AddBox("SettingsMenu", null, 3)
-		.AddBox("SettingsMainMenu", null, 3)
+		.AddBox("AdminMenu", null, 3)
+		.AddBox("OrdersMenu", null, 3)
 		.AddBox("TemplateButton", null, 4)
 		.AddBox("CreateButton", null, 5)
 		.AddBox("Row", 0, null)
@@ -24,8 +23,8 @@
 		.AddBox("Lines", 5, null)
 		;
 
-	ViewBag.SettingsMenuClass = hl["SettingsMenu"];
-	ViewBag.SettingsMainMenuClass = hl["SettingsMainMenu"];
+	ViewBag.AdminMenuClass = hl["AdminMenu"];
+	ViewBag.OrdersMenuClass = hl["OrdersMenu"];
 
 	var importFileName = "import_moves";
 	if (Model.IsUsingCategories)

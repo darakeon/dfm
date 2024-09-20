@@ -41,6 +41,7 @@
 		"Retry": "Try again",
 		"Cancel": "Cancel",
 		"Canceled": "Canceled",
+		"Expired": "Expired",
 
 		"Status": "Status",
 		"Available": "Available",
@@ -65,6 +66,7 @@
 		"Administration": "Administration",
 		"Reports": "Reports",
 		"Import": "Import",
+		"Export": "Export",
 		"Code": "Code",
 		"WipedData": "Deleted Data",
 
@@ -101,6 +103,8 @@
 		"Creation": "Creation",
 		"Edition": "Edition",
 		"Deletion": "Deletion",
+		"Expiration": "Expiration",
+		"Exportation": "Exportation",
 		"Scheduling": "Scheduled Creation",
 		"Importing": "Imported Creation",
 		"Amount": "Amount",
@@ -233,6 +237,7 @@
 		"Retry": "Tentar novamente",
 		"Cancel": "Cancelar",
 		"Canceled": "Cancelado",
+		"Expired": "Expirado",
 
 		"Status": "Status",
 		"Available": "Disponível",
@@ -257,6 +262,7 @@
 		"Administration": "Administração",
 		"Reports": "Relatórios",
 		"Import": "Importação",
+		"Export": "Exportação",
 		"Code": "Código",
 		"WipedData": "Dados removidos",
 
@@ -293,6 +299,8 @@
 		"Creation": "Criação",
 		"Edition": "Edição",
 		"Deletion": "Exclusão",
+		"Expiration": "Expiração",
+		"Exportation": "Exportação",
 		"Scheduling": "Criação Agendada",
 		"Importing": "Criação Importada",
 		"Amount": "Qte",

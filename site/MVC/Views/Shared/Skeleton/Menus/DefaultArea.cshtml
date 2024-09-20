@@ -12,6 +12,7 @@
 	var categoriesClass = hlClass(ViewBag.CategoriesMenuClass);
 	var schedulesClass = hlClass(ViewBag.SchedulesMenuClass);
 	var archivesClass = hlClass(ViewBag.ArchivesMenuClass);
+	var ordersClass = hlClass(ViewBag.OrdersMenuClass);
 	var loginsClass = hlClass(ViewBag.LoginsMenuClass);
 }
 
@@ -53,6 +54,14 @@
 				Context.Translate("Import"),
 				"Index", "Archives",
 				null, new { @class = $"text-right {archivesClass}" }
+			)
+		</li>
+
+		<li>
+			@Html.ActionLink(
+				Context.Translate("Export"),
+				"Index", "Orders",
+				null, new { @class = $"text-right {ordersClass}" }
 			)
 		</li>
 

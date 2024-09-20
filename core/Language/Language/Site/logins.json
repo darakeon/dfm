@@ -1,6 +1,5 @@
 {
 	"en-US": {
-		"Expiration": "Expiration",
 		"Type": "Type",
 		"Mobile": "Mobile",
 		"Browser": "Browser",
@@ -12,7 +11,6 @@
 		"": null
 	},
 	"pt-BR": {
-		"Expiration": "Expiração",
 		"Type": "Tipo",
 		"Mobile": "Mobile",
 		"Browser": "Web",
