@@ -1,8 +1,6 @@
 ﻿@model LineRowModel
 
 @{
-	var noAction = "-";
-
 	var line = Model.Line;
 	var value = line.Value ?? line.DetailList.Sum(d => d.Amount * d.Value);
 
@@ -57,7 +55,7 @@
 		}
 		else
 		{
-			@noAction
+			@await Html.PartialAsync("NoAction", "repeat")
 		}
 	</td>
 
@@ -74,7 +72,7 @@
 		}
 		else
 		{
-			@noAction
+			@await Html.PartialAsync("NoAction", "ban-circle")
 		}
 	</td>
 </tr>
