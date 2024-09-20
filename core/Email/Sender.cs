@@ -86,21 +86,18 @@ namespace DFM.Email
 				smtp.Password
 			);
 
-			using var client = new SmtpClient(smtp.Host, smtp.Port)
-			{
-				Timeout = 60000,
-				DeliveryMethod = smtp.DeliveryMethod,
-				EnableSsl = smtp.EnableSsl,
-				UseDefaultCredentials = smtp.DefaultCredentials,
-				Credentials = credentials,
-				PickupDirectoryLocation = smtp.PickupDirectory
-			};
+			using var client = new SmtpClient(smtp.Host, smtp.Port);
+			client.Timeout = 60000;
+			client.DeliveryMethod = smtp.DeliveryMethod;
+			client.EnableSsl = smtp.EnableSsl;
+			client.UseDefaultCredentials = smtp.DefaultCredentials;
+			client.Credentials = credentials;
+			client.PickupDirectoryLocation = smtp.PickupDirectory;
 
 			try
 			{
-				var message =
-					new MailMessage(from, to, subject, body)
-						{IsBodyHtml = true};
+				using var message = new MailMessage(from, to, subject, body);
+				message.IsBodyHtml = true;
 
 				var attachments = files.Select(
 					fileFullName => new Attachment(fileFullName)
