@@ -1,4 +1,13 @@
 {
+	"13.0.0.0": [
+		"Data Export",
+		"Improvements at menus",
+		"Data Import",
+		"Fix email images",
+		"Fix sponsor link",
+		"Fix print Terms",
+		"Notice about scheduling times"
+	],
 	"12.1.0.0": [
 		"Put contract in a external address"
 	],

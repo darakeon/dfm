@@ -4,15 +4,21 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#12.1.0.0)
-- [go to version in development](#13.0.0.0)
-- [dev version state](../../13.0.0.0/docs/RELEASES.md#13.0.0.0)
+- [go to published version](#13.0.0.0)
+- [go to version in development](#13.1.0.0)
+- [dev version state](../../13.1.0.0/docs/RELEASES.md#13.1.0.0)
 
 ## Legend
 - 🐉: at least one huge change (increases first number)
 - 🐳: at least one big change, like a new feature (increases second number)
 - 🐑: at least one little change, as a change at an existing feature (increases third number)
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="13.1.0.0"></a>13.1.0.0 :🐳: <sup>`4`</sup>
+- [ ] Put terms of use in static site on S3
+- [ ] Add create README contract in CI
+- [ ] Get contract text from DB to create README in terms
+- [ ] Deploy APKs using CI
 
 ## <a name="13.0.0.0"></a>13.0.0.0 🐉 <sup>`7`</sup>
 - [x] `240825>240921` Data export (csv) [template]
