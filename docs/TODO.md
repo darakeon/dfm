@@ -13,11 +13,11 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (49)                                                                      | Typ | Dif | Imp | Pts |
+| Task (50)                                                                      | Typ | Dif | Imp | Pts |
 | ------------------------------------------------------------------------------ | --- | --- | --- | --- |
+| Deploy APKs using CI                                                           | 🐑 |  2  |  4  |  6  |
 | Get contract text from DB to create README in terms                            | 🐑 |  1  |  4  |  7  |
 | Add create README contract in CI                                               | 🐑 |  1  |  4  |  7  |
-| Refactor Core Steps to improve their division to entities and given/when/then  | 🐑 |  1  |  3  |  6  |
 | Put terms of use in static site on S3                                          | 🐳 |  2  |  4  |  6  |
 | Implement entities limits (acc opened, cat enabled, moves/month, active sched) | 🐉 |  2  |  4  |  6  |
 | Add semgrep to dfm, dk-lib, meak and server                                    | 🐳 |  2  |  4  |  6  |
@@ -31,6 +31,7 @@ The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend)
 | Inject ServiceAccess with AddScoped at MVC (because of Session NH)             | 🐜 |  2  |  4  |  6  |
 | Add rate limit to API and site                                                 | 🐳 |  1  |  3  |  6  |
 | Add [swagger] to API                                                           | 🐳 |  1  |  3  |  6  |
+| Refactor Core Steps to improve their division to entities and given/when/then  | 🐑 |  1  |  3  |  6  |
 | Replace XML at UI android by [compose jetpack]                                 | 🐉 |  3  |  4  |  5  |
 | Implement security measures suggested by github                                | 🐑 |  3  |  4  |  5  |
 | Add schedule creation (mobile)                                                 | 🐉 |  2  |  3  |  5  |
