@@ -14,7 +14,7 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend).
 
-| Task (46)                                                                      | Typ | Siz | Dif | Imp | Pts |
+| Task (48)                                                                      | Typ | Siz | Dif | Imp | Pts |
 | ------------------------------------------------------------------------------ | --- | --- | --- | --- | --- |
 | Implement entities limits (acc opened, cat enabled, moves/month, active sched) |  F  | 🐉 |  2  |  4  |  6  |
 | Add semgrep to dfm, dk-lib, meak and server                                    |  S  | 🐳 |  2  |  4  |  6  |
@@ -26,6 +26,7 @@ The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend)
 | Check [android error socket](todo/android-error-socket-closed.log)             |  B  | 🐜 |  2  |  4  |  6  |
 | Check [android error no internet](todo/android-error-no-internet.log)          |  B  | 🐜 |  2  |  4  |  6  |
 | Inject ServiceAccess with AddScoped at MVC (because of Session NH)             |  M  | 🐜 |  2  |  4  |  6  |
+| Move all logs to CloudWatch                                                    |  S  | 🐜 |  2  |  4  |  6  |
 | Add rate limit to API and site                                                 |  S  | 🐳 |  1  |  3  |  6  |
 | Add [swagger] to API                                                           |  F  | 🐳 |  1  |  3  |  6  |
 | Refactor Core Steps to improve their division to entities and given/when/then  |  M  | 🐑 |  1  |  3  |  6  |
@@ -35,6 +36,7 @@ The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend)
 | add snyk/clair check to docker containers                                      |  S  | 🐳 |  2  |  3  |  5  |
 | Add plain text to emails                                                       |  F  | 🐳 |  2  |  3  |  5  |
 | Add weekly scheduling                                                          |  F  | 🐑 |  2  |  3  |  5  |
+| Complete all screens in E2E, with all its cases (empty/filled, normal,error)   |  M  | 🐑 |  2  |  3  |  5  |
 | [Lint C#]                                                                      |  M  | 🐜 |  2  |  3  |  5  |
 | Make default language EN if browser is not PT, ES, IT or FR, otherwise PT      |  F  | 🐑 |  1  |  2  |  5  |
 | Remove unused/duplicated errors                                                |  M  | 🐑 |  1  |  2  |  5  |
