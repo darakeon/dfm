@@ -30,6 +30,8 @@ namespace DFM.Robot
 			switch (this.task)
 			{
 				case RobotTask.Wipe:
+				case RobotTask.Export:
+				case RobotTask.Expire:
 					wipeS3 = new S3Service(StoragePurpose.Wipe);
 					exportS3 = new S3Service(StoragePurpose.Export);
 					break;
@@ -91,6 +93,14 @@ namespace DFM.Robot
 
 				case RobotTask.Requeue:
 					await service.Executor.RequeueLines();
+					break;
+
+				case RobotTask.Export:
+					service.Executor.ExportOrder();
+					break;
+
+				case RobotTask.Expire:
+					service.Executor.DeleteExpiredOrders();
 					break;
 			}
 		}

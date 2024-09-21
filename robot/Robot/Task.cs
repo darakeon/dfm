@@ -8,5 +8,7 @@
 		Import = 3,
 		Finish = 4,
 		Requeue = 5,
+		Export = 6,
+		Expire = 7,
 	}
 }

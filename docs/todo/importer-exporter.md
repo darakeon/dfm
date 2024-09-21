@@ -31,7 +31,7 @@
 - [x] Exported can be imported
 - [x] Download file
 - [x] Integrate to site
-- [ ] Integrate to robot
+- [x] Integrate to robot
 
 ## Consequence
 
