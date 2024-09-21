@@ -27,7 +27,7 @@ fn process_tasks(mut numbers: Vec<usize>) -> (Vec<String>, Vec<String>) {
 	let mut sizes: Vec<String> = Vec::new();
 
 	let mut todo_list = get_lines(path_todo());
-	let mut line_number = 15;
+	let mut line_number = 16;
 
 	let old_size = todo_list.len();
 
@@ -75,7 +75,7 @@ fn process_tasks(mut numbers: Vec<usize>) -> (Vec<String>, Vec<String>) {
 
 fn extract_task(text: &str) -> Option<(String, String)> {
 	let pattern =
-		r#"^\| ([^|]+) +\| (.) +\|  \d  \|  \d  \|  \d  \|$"#;
+		r#"^\| ([^|]+) +\|  \w  \| (.) +\|  \d  \|  \d  \|  \d  \|$"#;
 
 	let regex = Regex::new(pattern).unwrap();
 
