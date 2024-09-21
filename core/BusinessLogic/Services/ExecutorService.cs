@@ -466,7 +466,10 @@ namespace DFM.BusinessLogic.Services
 			{
 				parent.Auth.VerifyUserIgnoreContract(order.User);
 
-				repos.Order.Expire(order);
+				inTransaction(
+					"DeleteExpiredOrders",
+					() => repos.Order.Expire(order)
+				);
 			}
 		}
 	}
