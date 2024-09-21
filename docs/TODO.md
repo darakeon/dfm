@@ -4,7 +4,7 @@
 
 This is the task list for the project.
 
-- Typ(e): Feature, Security, Bug or Maintenance
+- Typ(e): Security, Bug, Feature or Maintenance
 - Siz(e): how does it changes the version number (check [RELEASES](RELEASES.md))
 - Dif(ficulty): how hard is to do the job \[1-4\]
 - Imp(ortance): how positive is the impact caused on system \[1-4\]
@@ -12,7 +12,7 @@ This is the task list for the project.
 - Dependency: which other task it depends on (if it exists)
 - Issue: github issue about the task (if it exists)
 
-The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend).
+The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend) then Type.
 
 | Task (48)                                                                      | Typ | Siz | Dif | Imp | Pts |
 | ------------------------------------------------------------------------------ | --- | --- | --- | --- | --- |
@@ -23,10 +23,10 @@ The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend)
 | Expire tickets with more than 30 days without access (add to contract)         |  F  | 🐑 |  2  |  4  |  6  |
 | Implement [password rules]                                                     |  F  | 🐑 |  2  |  4  |  6  |
 | Create measure of recovering after lost authy                                  |  F  | 🐑 |  2  |  4  |  6  |
+| Move all logs to CloudWatch                                                    |  S  | 🐜 |  2  |  4  |  6  |
 | Check [android error socket](todo/android-error-socket-closed.log)             |  B  | 🐜 |  2  |  4  |  6  |
 | Check [android error no internet](todo/android-error-no-internet.log)          |  B  | 🐜 |  2  |  4  |  6  |
 | Inject ServiceAccess with AddScoped at MVC (because of Session NH)             |  M  | 🐜 |  2  |  4  |  6  |
-| Move all logs to CloudWatch                                                    |  S  | 🐜 |  2  |  4  |  6  |
 | Add rate limit to API and site                                                 |  S  | 🐳 |  1  |  3  |  6  |
 | Add [swagger] to API                                                           |  F  | 🐳 |  1  |  3  |  6  |
 | Refactor Core Steps to improve their division to entities and given/when/then  |  M  | 🐑 |  1  |  3  |  6  |
