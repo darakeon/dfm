@@ -434,7 +434,7 @@ create table order_ (
     Creation DATETIME NOT NULL,
     Exportation DATETIME NULL,
     Sent BIT NULL,
-    Path VARCHAR(50) NULL,
+    Path VARCHAR(55) NULL,
 
 	Start DATETIME NOT NULL,
 	End DATETIME NOT NULL,
