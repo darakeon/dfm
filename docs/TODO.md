@@ -13,12 +13,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Type](RELEASES.md#legend).
 
-| Task (50)                                                                      | Typ | Dif | Imp | Pts |
+| Task (46)                                                                      | Typ | Dif | Imp | Pts |
 | ------------------------------------------------------------------------------ | --- | --- | --- | --- |
-| Deploy APKs using CI                                                           | 🐑 |  2  |  4  |  6  |
-| Get contract text from DB to create README in terms                            | 🐑 |  1  |  4  |  7  |
-| Add create README contract in CI                                               | 🐑 |  1  |  4  |  7  |
-| Put terms of use in static site on S3                                          | 🐳 |  2  |  4  |  6  |
 | Implement entities limits (acc opened, cat enabled, moves/month, active sched) | 🐉 |  2  |  4  |  6  |
 | Add semgrep to dfm, dk-lib, meak and server                                    | 🐳 |  2  |  4  |  6  |
 | [clear headers on nginx](todo/clear-headers.png)                               | 🐳 |  2  |  4  |  6  |
