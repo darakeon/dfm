@@ -1,10 +1,22 @@
 {
 	"en-us": {
-		"Put contract in MD at github (change in google play)": "Put contract in a external address",
+		"Data export (csv) [template]": "Data Export",
+		"Adjust menus to avoid responsiviness problem": "Improvements at menus",
+		"Data import (csv) (with max request length) [template]": "Data Import",
+		"Fix email links and images": "Fix email images",
+		"Fix sponsor link to open in another window": "Fix sponsor link",
+		"Fix print contract": "Fix print Terms",
+		"Warning about 15 minutes windows for runnings schedules": "Notice about scheduling times",
 		"": null
 	},
 	"pt-br": {
-		"Put contract in MD at github (change in google play)": "Colocado contrato em endereço externo",
+		"Data export (csv) [template]": "Exportação de Movimentações",
+		"Adjust menus to avoid responsiviness problem": "Ajustes nos menus",
+		"Data import (csv) (with max request length) [template]": "Importação de Movimentações",
+		"Fix email links and images": "Arrumadas imagens dos e-mails",
+		"Fix sponsor link to open in another window": "Arrumado botão de patrocínio",
+		"Fix print contract": "Arrumada impressão de Termos",
+		"Warning about 15 minutes windows for runnings schedules": "Aviso sobre tempo de Agendamentos",
 		"": null
 	}
 }
