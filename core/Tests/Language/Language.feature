@@ -23,6 +23,7 @@ Scenario: 02. Get translations of Enums
 			| Users     | Entities      | Enums      | RemovalReason     |
 			| Schedules | Entities      | Enums      | ScheduleFrequency |
 			| Tokens    | Entities      | Enums      | SecurityAction    |
+			| Summary   | Entities      | Enums      | SummaryNature     |
 			| Tips      | Entities      | Enums      | TipBrowser        |
 			| Archives  | Entities      | Enums      | ImportStatus      |
 			| Settings  | Generic       |            | Theme             |
