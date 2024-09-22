@@ -58,6 +58,10 @@ footer {
 	margin-right: -1px;
 }
 
+.glyphicon {
+	font-weight: normal;
+}
+
 .side-vertical-button {
 	margin-top: 10px;
 }
