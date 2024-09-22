@@ -43,20 +43,12 @@ fn update_csharp_file(version: &Version, file_relative: Vec<&str>) {
 	let old_assembly = assembly_version(&version.prev);
 	let new_assembly = assembly_version(&version.code);
 
-	let old_file = assembly_file_version(&version.prev);
-	let new_file = assembly_file_version(&version.code);
-
 	let content = get_content(file.clone())
-		.replace(&old_assembly, &new_assembly)
-		.replace(&old_file, &new_file);
+		.replace(&old_assembly, &new_assembly);
 
 	set_content(file, content)
 }
 
 fn assembly_version(version: &str) -> String {
 	format!(r#"    <AssemblyVersion>{}</AssemblyVersion>"#, version)
-}
-
-fn assembly_file_version(version: &str) -> String {
-	format!(r#"<FileVersion>{}</FileVersion>"#, version)
 }
