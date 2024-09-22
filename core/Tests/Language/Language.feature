@@ -16,6 +16,7 @@ Scenario: 01. Get layouts of e-mails
 Scenario: 02. Get translations of Enums
 	Given I have these enums
 			| Section   | Project       | Path       | Enum              |
+			| Accounts  | Entities      | Enums      | AccountSign       |
 			| General   | Entities      | Enums      | Currency          |
 			| Moves     | Entities      | Enums      | MoveNature        |
 			| General   | Entities      | Enums      | OperationType     |
