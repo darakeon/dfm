@@ -115,6 +115,11 @@
 		"EUR": "Euro",
 		"USD": "Dolar",
 
+		"Local": "Local",
+		"Mobile": "Mobile",
+		"Browser": "Browser",
+		"Tests": "Tests",
+
 		"BeginDate": "Begin",
 		"EndDate": "End",
 		"Frequency": "Frequency",
@@ -312,6 +317,11 @@
 		"BRL": "Real",
 		"EUR": "Euro",
 		"USD": "Dólar",
+
+		"Local": "Local",
+		"Mobile": "Mobile",
+		"Browser": "Web",
+		"Tests": "Testes",
 
 		"BeginDate": "Início",
 		"EndDate": "Fim",
