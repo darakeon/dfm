@@ -1,7 +1,7 @@
 ﻿@model DFM.MVC.Areas.Account.Models.SubModels.Subtotal
 
 @{
-	var hasSign = Model.Sign != AccountSign.None;
+	var hasSign = Model.Sign != AccountSign.NoneLimit;
 	var valueClass = hasSign ? "pull-right" : null;
 }
 

@@ -50,15 +50,15 @@ namespace DFM.Entities
 			var hasYellow = YellowLimit != null;
 
 			if (hasRed && value < RedLimit)
-				return AccountSign.Red;
+				return AccountSign.RedLimit;
 
 			if (hasYellow && value < YellowLimit)
-				return AccountSign.Yellow;
+				return AccountSign.YellowLimit;
 
 			if (hasRed || hasYellow)
-				return AccountSign.Green;
+				return AccountSign.GreenLimit;
 
-			return AccountSign.None;
+			return AccountSign.NoneLimit;
 		}
 
 		public override String ToString()

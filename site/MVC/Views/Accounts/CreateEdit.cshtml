@@ -92,14 +92,14 @@
 			
 			@Context.Translate("GreenLimit") =
 			<span class="@hl["SignHealthy"]">
-				(@await Html.PartialAsync("AccountSign", AccountSign.Green))
+				(@await Html.PartialAsync("AccountSign", AccountSign.GreenLimit))
 			</span>
 			
 			//
 
 			@Context.Translate("NoneLimit") =
 			<span class="@hl["SignNone"]">
-				(@await Html.PartialAsync("AccountSign", AccountSign.None))
+				(@await Html.PartialAsync("AccountSign", AccountSign.NoneLimit))
 			</span>
 		</div>
 
@@ -111,7 +111,7 @@
 			)
 
 			<span class="@hl["SignAttention"]">
-				(@await Html.PartialAsync("AccountSign", AccountSign.Yellow))
+				(@await Html.PartialAsync("AccountSign", AccountSign.YellowLimit))
 			</span>
 			
 			@Html.TextBoxFor(
@@ -133,7 +133,7 @@
 			)
 			
 			<span class="@hl["SignDanger"]">
-				(@await Html.PartialAsync("AccountSign", AccountSign.Red))
+				(@await Html.PartialAsync("AccountSign", AccountSign.RedLimit))
 			</span>
 			
 			@Html.TextBoxFor(

@@ -1,16 +1,16 @@
 ﻿@model AccountSign
 @switch (Model)
 {
-	case AccountSign.Green:
+	case AccountSign.GreenLimit:
 		@("thumbs-up")
 		break;
-	case AccountSign.Yellow:
+	case AccountSign.YellowLimit:
 		@("thumbs-down")
 		break;
-	case AccountSign.Red:
+	case AccountSign.RedLimit:
 		@("fire")
 		break;
-	case AccountSign.None:
+	case AccountSign.NoneLimit:
 		@("minus")
 		break;
 	default:
