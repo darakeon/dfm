@@ -16,3 +16,5 @@ Tests/Core/log
 
 MVC/Assets/Libs
 MVC/Assets/themes/bootstrap.min.css
+
+*.nupkg

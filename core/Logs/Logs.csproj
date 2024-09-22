@@ -5,8 +5,26 @@
     <AssemblyName>DFM.$(MSBuildProjectName)</AssemblyName>
     <RootNamespace>DFM.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
     <AssemblyVersion>13.0.0.0</AssemblyVersion>
-    <FileVersion>13.0.0.0</FileVersion>
+    <FileVersion>$(AssemblyVersion)</FileVersion>
+    <Title>DFM $(MSBuildProjectName)</Title>
+    <Version>$(AssemblyVersion)</Version>
+    <Authors>darakeon</Authors>
+    <Description>DFM $(MSBuildProjectName)</Description>
+    <PackageProjectUrl>https://github.com/darakeon/dfm</PackageProjectUrl>
+    <PackageIcon>face-pig-on.png</PackageIcon>
+    <RepositoryUrl>https://github.com/darakeon/dfm</RepositoryUrl>
   </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="dotnet pack &quot;$(ProjectPath)&quot; --no-build --include-source --include-symbols --output &quot;../nuget&quot; -c Debug" />
+  </Target>
+
+  <ItemGroup>
+    <None Include="..\..\site\MVC\Assets\images\face-pig-on.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
