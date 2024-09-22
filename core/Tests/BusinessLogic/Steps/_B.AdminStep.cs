@@ -1108,9 +1108,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var account = accountList.Single(a => a.Url == url);
 
 			if (hasSign)
-				Assert.That(account.Sign, Is.Not.EqualTo(AccountSign.None));
+				Assert.That(account.Sign, Is.Not.EqualTo(AccountSign.NoLimit));
 			else
-				Assert.That(account.Sign, Is.EqualTo(AccountSign.None));
+				Assert.That(account.Sign, Is.EqualTo(AccountSign.NoLimit));
 		}
 
 		[Then(@"the year report will( not)? have sign")]
@@ -1122,13 +1122,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			if (hasSign)
 			{
-				Assert.That(yearReport.AccountSign, Is.Not.EqualTo(AccountSign.None));
-				Assert.That(yearReport.AccountForeseenSign, Is.Not.EqualTo(AccountSign.None));
+				Assert.That(yearReport.AccountSign, Is.Not.EqualTo(AccountSign.NoLimit));
+				Assert.That(yearReport.AccountForeseenSign, Is.Not.EqualTo(AccountSign.NoLimit));
 			}
 			else
 			{
-				Assert.That(yearReport.AccountSign, Is.EqualTo(AccountSign.None));
-				Assert.That(yearReport.AccountForeseenSign, Is.EqualTo(AccountSign.None));
+				Assert.That(yearReport.AccountSign, Is.EqualTo(AccountSign.NoLimit));
+				Assert.That(yearReport.AccountForeseenSign, Is.EqualTo(AccountSign.NoLimit));
 			}
 		}
 
@@ -1142,13 +1142,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			if (hasSign)
 			{
-				Assert.That(monthReport.AccountTotalSign, Is.Not.EqualTo(AccountSign.None));
-				Assert.That(monthReport.ForeseenTotalSign, Is.Not.EqualTo(AccountSign.None));
+				Assert.That(monthReport.AccountTotalSign, Is.Not.EqualTo(AccountSign.NoLimit));
+				Assert.That(monthReport.ForeseenTotalSign, Is.Not.EqualTo(AccountSign.NoLimit));
 			}
 			else
 			{
-				Assert.That(monthReport.AccountTotalSign, Is.EqualTo(AccountSign.None));
-				Assert.That(monthReport.ForeseenTotalSign, Is.EqualTo(AccountSign.None));
+				Assert.That(monthReport.AccountTotalSign, Is.EqualTo(AccountSign.NoLimit));
+				Assert.That(monthReport.ForeseenTotalSign, Is.EqualTo(AccountSign.NoLimit));
 			}
 		}
 		#endregion
