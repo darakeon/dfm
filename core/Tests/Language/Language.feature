@@ -18,13 +18,18 @@ Scenario: 02. Get translations of Enums
 			| Section   | Project       | Path       | Enum              |
 			| Accounts  | Entities      | Enums      | AccountSign       |
 			| General   | Entities      | Enums      | Currency          |
+			| Archives  | Entities      | Enums      | ImportStatus      |
 			| Moves     | Entities      | Enums      | MoveNature        |
+			| Moves     | Entities      | Enums      | PrimalMoveNature  |
 			| General   | Entities      | Enums      | OperationType     |
 			| Users     | Entities      | Enums      | RemovalReason     |
 			| Schedules | Entities      | Enums      | ScheduleFrequency |
 			| Tokens    | Entities      | Enums      | SecurityAction    |
 			| Summary   | Entities      | Enums      | SummaryNature     |
+			| Logins    | Entities      | Enums      | TicketType        |
+			| Tips      | Entities      | Enums      | TipType           |
 			| Tips      | Entities      | Enums      | TipBrowser        |
+			| Tips      | Entities      | Enums      | TipMobile         |
 			| Archives  | Entities      | Enums      | ImportStatus      |
 			| Settings  | Generic       |            | Theme             |
 			| Settings  | Generic       |            | ThemeBrightness   |
