@@ -1,8 +1,10 @@
 run:
 	@docker compose up -d
 
-clear:
+stop:
 	@docker compose down
+
+clear: stop
 	@sudo rm -r data
 
 reset: clear run
