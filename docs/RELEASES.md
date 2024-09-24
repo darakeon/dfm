@@ -14,7 +14,8 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐑: at least one little change, as a change at an existing feature (increases third number)
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="13.1.0.0"></a>13.1.0.0 :🐳: <sup>`4`</sup>
+## <a name="13.1.0.0"></a>13.1.0.0 :🐳: <sup>`5`</sup>
+- [ ] Fix date and currency with wrong localization on site
 - [ ] Put terms of use in static site on S3
 - [ ] Add create README contract in CI
 - [ ] Get contract text from DB to create README in terms
