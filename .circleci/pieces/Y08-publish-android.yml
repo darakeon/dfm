@@ -1,0 +1,29 @@
+  publish_android:
+    docker:
+      - image: darakeon/android
+    steps:
+      - checkout
+      - run:
+          name: Create file keystore properties
+          path: android
+          command: echo ${ANDROID_BUNDLE_PROPERTIES} | base64 -d > keystore.properties
+      - run:
+          name: Create file keystore
+          path: /var/keys
+          command: echo ${ANDROID_BUNDLE_KEYSTORE} | base64 -d > keon.keystore
+      - run:
+          name: Build bundle
+          path: android
+          command: gradle --no-daemon :app:bundleRelease -Phide-test-deps
+      - run:
+          name: Remove file keystore
+          path: /var/keys
+          command: rm keon.keystore
+      - run:
+          name: Remove file keystore properties
+          path: android
+          command: rm keystore.properties
+      - store_artifacts:
+          path: android/App/build/outputs/bundle/release/
+          destination: bundle
+
