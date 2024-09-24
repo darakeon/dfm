@@ -19,7 +19,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Put terms of use in static site on S3
 - [ ] Add create README contract in CI
 - [ ] Get contract text from DB to create README in terms
-- [ ] [Deploy APKs using CI]
+- [ ] `240924>......` [Deploy APKs using CI]
 
 ## <a name="13.0.0.0"></a>13.0.0.0 🐉 <sup>`7`</sup>
 - [x] `240825>240921` Data export (csv) [template]
