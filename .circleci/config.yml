@@ -80,6 +80,10 @@ jobs:
           name: Build images
           path: architecture/ci
           command: make build_android PUSH=1
+      - run:
+          name: Build images
+          path: architecture/ci
+          command: make build_android_publish PUSH=1
 
   push_docker_sql_runner_ci:
     docker:
@@ -1277,7 +1281,7 @@ jobs:
 
   publish_android:
     docker:
-      - image: darakeon/android
+      - image: darakeon/android-publish
     steps:
       - checkout
       - run:
@@ -1300,6 +1304,11 @@ jobs:
           name: Remove file keystore properties
           path: android
           command: rm keystore.properties
+      - run:
+          name: Publish to Play Store
+          command: |
+            export ANDROID_BUNDLE=android/App/build/outputs/bundle/release/App-release.aab
+            python3 .circleci/android/publish.py
       - store_artifacts:
           path: android/App/build/outputs/bundle/release/
           destination: bundle
