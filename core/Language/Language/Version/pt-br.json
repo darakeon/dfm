@@ -59,7 +59,8 @@
 	"9.0.1.0": [
 		"Melhoria no gráfico de categories quando não possui dados",
 		"Melhorias das ferramentas de desenvolvimento",
-		"Aviso nos termos de uso sobre login no aplicativo e no navegador ficarem ativos"
+		"Aviso nos termos de uso sobre login no aplicativo e no navegador ficarem ativos",
+		"Melhorias de segurança"
 	],
 	"9.0.0.1": [
 		"Arrumado erro na tela de configuração do aplicativo",
@@ -250,7 +251,7 @@
 	],
 	"4.4.0.0": [
 		"Mostradas movimentações e saldos previstos em Extrato e Resumo Anual",
-		"Colocados apenas botões na tela inicial do aplicativo",
+		"Colocados apenas botões na tela inicial do aplicativo"
 	],
 	"4.3.0.0": [
 		"Colocado ícone para trocar língua do site",
@@ -283,7 +284,7 @@
 	"4.1.5.0": [
 		"Adicionada lista completa de formas de contato",
 		"Melhorado link para a área da conta que fica na listagem de conta",
-		"Adicionados sinais de + e - no aplicativo, por causa de acessibilidade",
+		"Adicionados sinais de + e - no aplicativo, por causa de acessibilidade"
 	],
 	"4.1.4.6": [
 		"Reorganizando e re-priorizando lista de tarefas"
