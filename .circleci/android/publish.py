@@ -1,4 +1,5 @@
 # pip install google-api-python-client
+from base64 import b64decode
 from json import loads
 from os import environ
 from apiclient.discovery import build
@@ -9,7 +10,7 @@ SERVICE_ACCOUNT = environ['ANDROID_SERVICE_ACCOUNT']
 PACKAGE_NAME = environ['ANDROID_PACKAGE_NAME']
 BUNDLE = environ['ANDROID_BUNDLE']
 TRACK = environ['ANDROID_TRACK']
-VERSION = environ['CIRCLE_BRANCH']
+VERSION = environ['ANDROID_APP_VERSION']
 
 
 def main():
@@ -27,13 +28,15 @@ def main():
 
 	bundle = upload_bundle(edits, edit_id)
 
-	track = update_track(edits, edit_id, bundle, en_us, pt_br)
+	update_track(edits, edit_id, bundle, en_us, pt_br)
 
-	print(track)
+	result = commit(edits, edit_id)
+
+	print(result)
 
 
 def get_translation(title, lang, key):
-	with open(f'../../core/Language/Language/Version/{lang}.json') as file:
+	with open(f'core/Language/Language/Version/{lang}.json') as file:
 		content = file.read()
 
 	all_versions = loads(content)
@@ -46,7 +49,7 @@ def get_translation(title, lang, key):
 
 def get_edits():
 	credentials = service_account.Credentials.from_service_account_info(
-		loads(SERVICE_ACCOUNT),
+		loads(b64decode(SERVICE_ACCOUNT)),
 		scopes=['https://www.googleapis.com/auth/androidpublisher']
 	)
 
@@ -97,6 +100,13 @@ def update_track(edits, edit_id, bundle, en_us, pt_br):
 				}
 			]
 		}
+	).execute()
+
+
+def commit(edits, edit_id):
+	return edits.commit(
+		editId=edit_id,
+		packageName=PACKAGE_NAME,
 	).execute()
 
 

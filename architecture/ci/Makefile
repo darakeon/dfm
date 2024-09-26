@@ -11,6 +11,9 @@ build_browser:
 build_android:
 	@make single_build MACHINE=android TAG=gradle88-jdk17 PUSH=${PUSH}
 
+build_android_publish:
+	@make single_build MACHINE=android-publish TAG=gradle88-jdk17 PUSH=${PUSH}
+
 build_sql_runner:
 	@make single_build MACHINE=sql-runner CONTEXT=../.. PUSH=${PUSH}
 
