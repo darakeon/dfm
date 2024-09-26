@@ -13,10 +13,6 @@
       - push_docker_android:
           requires:
             - test_ci
-      - publish_android:
-          requires:
-            - test_ci
-            - push_docker_android
       - build_android:
           requires:
             - test_ci

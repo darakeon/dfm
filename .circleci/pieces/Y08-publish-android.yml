@@ -1,8 +1,13 @@
   publish_android:
     docker:
-      - image: darakeon/android
+      - image: darakeon/android-publish
     steps:
       - checkout
+      - attach_workspace:
+          at: android
+      - restore_cache:
+          keys:
+            - kotlin-{{ checksum "android/cache_key" }}
       - run:
           name: Create file keystore properties
           path: android
@@ -23,6 +28,12 @@
           name: Remove file keystore properties
           path: android
           command: rm keystore.properties
+      - run:
+          name: Publish to Play Store
+          command: |
+            export ANDROID_BUNDLE=android/App/build/outputs/bundle/release/App-release.aab
+            export ANDROID_APP_VERSION=$(git tag -l --sort=-creatordate | head -n1)
+            python3 .circleci/android/publish.py
       - store_artifacts:
           path: android/App/build/outputs/bundle/release/
           destination: bundle
