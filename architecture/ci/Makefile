@@ -9,7 +9,7 @@ build_browser:
 	@make single_build MACHINE=dfm-browser-tests PUSH=${PUSH}
 
 build_android:
-	@make single_build MACHINE=android TAG=gradle821-jdk17 PUSH=${PUSH}
+	@make single_build MACHINE=android TAG=gradle88-jdk17 PUSH=${PUSH}
 
 build_sql_runner:
 	@make single_build MACHINE=sql-runner CONTEXT=../.. PUSH=${PUSH}
