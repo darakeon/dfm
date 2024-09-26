@@ -1,0 +1,4 @@
+service-account.json
+*.aab
+*.apk
+.env
