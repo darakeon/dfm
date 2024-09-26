@@ -15,4 +15,8 @@
           name: Build images
           path: architecture/ci
           command: make build_android PUSH=1
+      - run:
+          name: Build images
+          path: architecture/ci
+          command: make build_android_publish PUSH=1
 

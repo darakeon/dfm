@@ -208,4 +208,7 @@
       - publish_midna:
           requires:
             - approve_deploy
+      - publish_android:
+          requires:
+            - approve_deploy
 
