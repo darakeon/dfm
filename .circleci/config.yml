@@ -1107,6 +1107,7 @@ jobs:
           command: |
             export PR=$(tail -n 1 prs/chosen)
             if [ "$PR" != "" ]; then
+              gh pr comment $PR --body "@dependabot recreate"
               gh pr merge --auto --rebase $PR
             else
               echo "No PRs to merge"
