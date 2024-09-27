@@ -11,7 +11,7 @@
       - run:
           name: List PRs
           command: |
-            gh pr list --base $CIRCLE_BRANCH --author app/dependabot --state open --limit 1 --json author,autoMergeRequest,baseRefName,closed,commits,headRefName,headRepository,headRepositoryOwner,id,isCrossRepository,isDraft,labels,number,state,statusCheckRollup > prs/list.json
+            gh pr list --base $CIRCLE_BRANCH --author app/dependabot --state open --json author,autoMergeRequest,baseRefName,closed,commits,headRefName,headRepository,headRepositoryOwner,id,isCrossRepository,isDraft,labels,number,state,statusCheckRollup > prs/list.json
       - run:
           name: Get PR to merge
           command: |
@@ -19,7 +19,7 @@
       - run:
           name: Merge PR
           command: |
-            export PR=$(cat prs/chosen)
+            export PR=$(tail -n 1 prs/chosen)
             if [ "$PR" != "" ]; then
               gh pr merge --auto --rebase $PR
             else
