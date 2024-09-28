@@ -130,7 +130,7 @@
       - test_midna:
           requires:
             - build_midna
-      - test_sql_scripts:
+      - export_terms:
           requires:
             - test_ci
             - push_docker_sql_runner_ci
@@ -180,7 +180,7 @@
             - build_midna
             - audit_midna
             - test_midna
-            - test_sql_scripts
+            - export_terms
             - audit_version_changer
       - dependabot_auto_aprove:
           requires:

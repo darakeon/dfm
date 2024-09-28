@@ -6,10 +6,10 @@ from mysql.connector.errors import InterfaceError
 
 
 class Db:
-	MYSQL_HOST=os.environ.get("MYSQL_HOST")
-	MYSQL_DATABASE=os.environ.get("MYSQL_DATABASE")
-	MYSQL_USERNAME=os.environ.get("MYSQL_USERNAME")
-	MYSQL_PASSWORD=os.environ.get("MYSQL_PASSWORD")
+	DATABASE_HOST=os.environ.get("DATABASE_HOST")
+	DATABASE_NAME=os.environ.get("DATABASE_NAME")
+	DATABASE_USER=os.environ.get("DATABASE_USER")
+	DATABASE_PASS=os.environ.get("DATABASE_PASS")
 
 	def execute_multi(self, queries):
 		connection = self.connect_db(0)
@@ -42,10 +42,10 @@ class Db:
 	def connect_db(self, count):
 		try:
 			return connect(
-				host=self.MYSQL_HOST,
-				database=self.MYSQL_DATABASE,
-				user=self.MYSQL_USERNAME,
-				password=self.MYSQL_PASSWORD,
+				host=self.DATABASE_HOST,
+				database=self.DATABASE_NAME,
+				user=self.DATABASE_USER,
+				password=self.DATABASE_PASS,
 			)
 		except InterfaceError:
 			if count == 9:
