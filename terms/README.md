@@ -308,4 +308,3 @@ The Don't fly Money system, below referred as System, and the person who is regi
 
     - There are links inside the Android App in login and settings screens.
 
-
