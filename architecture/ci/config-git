@@ -1,0 +1,13 @@
+#!/bin/bash
+
+eval "$(ssh-agent -s)"
+echo "$GITHUB_CIRCLE_PK" | sed "s/\\\n/\n/g" > ~/.ssh/id_ed25519
+chmod 600 ~/.ssh/id_ed25519
+
+git config --global user.email "$GITHUB_CIRCLE_EMAIL"
+git config --global user.name "$GITHUB_CIRCLE_NAME"
+
+git branch -u origin/$CIRCLE_BRANCH
+
+ssh-add -D
+ssh-add ~/.ssh/id_ed25519
