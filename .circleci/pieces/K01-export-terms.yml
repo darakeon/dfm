@@ -1,12 +1,13 @@
-  test_sql_scripts:
+  export_terms:
     docker:
       - image: darakeon/sql-runner:ci
         environment:
-          MYSQL_HOST: 127.0.0.1
-          MYSQL_DATABASE: dfm
-          MYSQL_USERNAME: root
-          MYSQL_PASSWORD: password
+          DATABASE_HOST: 127.0.0.1
+          DATABASE_NAME: dfm
+          DATABASE_USER: root
+          DATABASE_PASS: password
           RUN_DATA: 1
+          VERSION: 13.0.0.0
       - image: mysql
         environment:
           MYSQL_ROOT_PASSWORD: password
@@ -16,4 +17,9 @@
           name: run script
           path: /var/db
           command: python upgrade/main.py
+      - checkout
+      - run:
+          name: update terms
+          path: terms
+          command: python update_contract.py
 
