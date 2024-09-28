@@ -76,19 +76,3 @@ clear:
 	@git checkout ${BRANCH}
 	@git branch -d main
 	@rm branch.git
-
-
-to_commit_ci:
-	eval "$(ssh-agent -s)"
-	echo "${GITHUB_CIRCLE_PK}" | sed "s/\\\n/\n/g" > ~/.ssh/id_ed25519
-	chmod 600 ~/.ssh/id_ed25519
-	ssh-add ~/.ssh/id_ed25519
-
-	git config --global user.email "${GITHUB_CIRCLE_EMAIL}"
-	git config --global user.name "${GITHUB_CIRCLE_NAME}"
-
-	git remote get-url origin
-
-	git add ...
-	git commit -m "${MESSAGE}"
-	git push -u origin ${CIRCLE_BRANCH}

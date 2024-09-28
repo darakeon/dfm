@@ -25,6 +25,8 @@ COPY echyellow /usr/bin
 RUN chmod +x /usr/bin/echyellow
 COPY gradle-with-metadata /usr/bin
 RUN chmod +x /usr/bin/gradle-with-metadata
+COPY config-git /usr/bin
+RUN chmod +x /usr/bin/config-git
 
 RUN echo "echo" >> ~/.bashrc
 RUN echo "printf '\e[38;5;46m'" >> ~/.bashrc
