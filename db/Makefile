@@ -10,4 +10,4 @@ clear: stop
 reset: clear run
 
 logs:
-	@docker logs -f dfm-sql-runner
+	@docker logs -f dfm-migrator
