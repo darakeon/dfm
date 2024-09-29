@@ -22,4 +22,19 @@
           name: update terms
           path: terms
           command: python update_contract.py
+      - run:
+          name: commit readme if changed
+          path: terms
+          command: |
+            DIFF=$(git diff)
+            if [ "$DIFF" == "" ]; then
+              echo "Nothing to commit"
+            else
+              source config-git
+              git add README.md
+              git commit -m "legal: add new contract to git"
+              git push
+            fi
+      - store_artifacts:
+          path: terms/README.md
 
