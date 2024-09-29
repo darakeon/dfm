@@ -16,7 +16,7 @@ This is the list of project releases, past and current. To see tasks that are st
 
 ## <a name="13.1.0.0"></a>13.1.0.0 :🐳: <sup>`5`</sup>
 - [ ] Fix date and currency with wrong localization on site
-- [ ] Put terms of use in static site on S3
+- [ ] `240929>......` Put terms of use in static site on S3
 - [x] `240929>240929` Add create README contract in CI
 - [x] `240927>240929` Get contract text from DB to create README in terms
 - [x] `240924>240927` [Deploy APKs using CI]
