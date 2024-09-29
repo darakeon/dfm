@@ -27,6 +27,16 @@
           path: terms
           command: python update_contract_html.py
       - run:
+          name: upload terms html to S3
+          path: terms
+          command: |
+            DIFF=$(git diff)
+            if [ "$DIFF" == "" ]; then
+              echo "Nothing to upload"
+            else
+              python publish_contract_html.py
+            fi
+      - run:
           name: commit readme if changed
           path: terms
           command: |
@@ -40,10 +50,6 @@
               git commit -m "legal: add new contract to git"
               git push
             fi
-      - run:
-          name: upload terms html to S3
-          path: terms
-          command: python publish_contract_html.py
       - store_artifacts:
           path: terms/README.md
 
