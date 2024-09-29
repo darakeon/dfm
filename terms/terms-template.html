@@ -1,0 +1,164 @@
+<html lang="pt-br">
+
+<head>
+    <title>Don't fly Money</title>
+    <link rel="shortcut icon" type="image/ico" href="dfm.ico">
+
+	<style>
+		* {
+			font-family: Calibri, "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			body {
+				color: #EEE;
+				background: #000;
+			}
+		}
+
+		@media (prefers-color-scheme: light) {
+			body {
+				color: #000;
+				background: #EEE;
+			}
+		}
+
+		nav {
+			margin: 0;
+			padding: 16px 64px;
+			background-color: #FFEEEE;
+			border-bottom: #FAA solid 1px;
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+		}
+
+		nav ul {
+			float: right;
+			margin: 8px 0;
+			padding: 0;
+		}
+
+		nav ul li {
+			list-style: none;
+			display: inline;
+			margin: 0 12px;
+		}
+
+		nav ul li svg {
+			width: 40px;
+			height: 28px;
+		}
+
+		img {
+			float: left;
+			height: 48px;
+			margin-right: 20px;
+		}
+
+		a {
+			text-decoration: none;
+			color: #000;
+		}
+
+		h1 {
+			margin: 3px 0 0 0;
+			padding: 0;
+			font-size: 36px;
+			font-weight: normal;
+		}
+
+		h2 {
+			margin: 0 0 32px 0;
+			padding: 0;
+			font-size: 28px;
+			font-weight: normal;
+			text-align: center;
+		}
+
+		article {
+			max-width: 800px;
+			margin: auto;
+			padding-top: 128px;
+			text-align: justify;
+		}
+	</style>
+
+	<link href="contract.css?v=13.0.0.0" rel="stylesheet" type="text/css" id="bootstrap-theme">
+</head>
+
+<body>
+
+	<nav>
+		<a href="https://dontflymoney.com" target="_blank" title="Site Don't fly Money">
+			<img src="dfm.png" alt="Don't fly Money" />
+		</a>
+
+		<ul>
+			<li onClick="location='#pt-br'" role="button" title="Ir para o topo dos termos em Português">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 742" width="100" height="70">
+					<!-- based on flag find at https://commons.wikimedia.org/ -->
+					<path fill="#009b3a" d="M0 0H 1060V 742H 0z"></path>
+				
+					<path fill="#fedf00" d="M 95,371 530,649 965,371 530,93 Z"></path>
+				
+					<circle fill="#002776" r="183" cx="530" cy="371"></circle>
+				
+					<clipPath id="crop-circle-6acbc666-69ef-4f87-9cfc-d4b30f9414f1">
+						<circle r="184" cx="530" cy="371"></circle>
+					</clipPath>
+					<path fill="#ffffff" clip-path="url(#crop-circle-6acbc666-69ef-4f87-9cfc-d4b30f9414f1)" d="m -21,738 a 446,446 0 0 1 892,0 h -26 a 420,420 0 1 0 -840,0 z"></path>
+				</svg>		
+			</li>
+
+			<li onClick="location='#en-us'" role="button" title="Go to the top of the terms in English">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 42" width="100" height="70">
+					<!-- based on flag find at https://commons.wikimedia.org/ -->
+					<clipPath id="edges-5c52f6ed-474d-46c5-ab8e-116d9133d100">
+						<path d="M0,0 v42 h60 v-42 z"></path>
+					</clipPath>
+				
+					<clipPath id="crop-red-5c52f6ed-474d-46c5-ab8e-116d9133d100">
+						<path d="M30,21 h30 v21 z v21 h-30 z h-30 v-21 z v-21 h30 z"></path>
+					</clipPath>
+				
+					<g clip-path="url(#edges-5c52f6ed-474d-46c5-ab8e-116d9133d100)">
+						<path fill="#012169" d="M0,0 v42 h60 v-42 z" ></path>
+						<path stroke="#ffffff" d="M0,0 L60,42 M60,0 L0,42" stroke-width="6"></path>
+						<path stroke="#C8102E" d="M0,0 L60,42 M60,0 L0,42" clip-path="url(#crop-red-5c52f6ed-474d-46c5-ab8e-116d9133d100)" stroke-width="4"></path>
+						<path stroke="#ffffff" d="M30,0 v42 M0,21 h60" stroke-width="10"></path>
+						<path stroke="#C8102E" d="M30,0 v42 M0,21 h60" stroke-width="6"></path>
+					</g>
+				</svg>
+			</li>
+		</ul>
+
+		<a href="https://dontflymoney.com" target="_blank" title="Site Don't fly Money">
+			<h1>Don't fly Money</h1>
+		</a>
+
+	</nav>
+
+	<article id="pt-br">
+		<h2>{{pt-BR-title}}</h2>
+		<div class="contract">
+			{{pt-BR-content}}
+		</div>
+	</article>
+
+	<article id="en-us">
+		<h2>{{en-US-title}}</h2>
+		<div class="contract">
+			{{en-US-content}}
+		</div>
+	</article>
+
+</body>
+
+</html>
