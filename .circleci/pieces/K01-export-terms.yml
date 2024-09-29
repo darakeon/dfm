@@ -36,9 +36,13 @@
               git push
             fi
       - run:
-          name: update terms S3
+          name: update terms html
           path: terms
           command: python update_contract_html.py
+      - run:
+          name: upload terms html to S3
+          path: terms
+          command: python publish_contract_html.py
       - store_artifacts:
           path: terms/README.md
 
