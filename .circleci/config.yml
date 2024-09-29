@@ -1086,9 +1086,9 @@ jobs:
           command: python upgrade/main.py
       - checkout
       - run:
-          name: update terms
+          name: update terms README
           path: terms
-          command: python update_contract.py
+          command: python update_contract_readme.py
       - run:
           name: commit readme if changed
           path: terms
@@ -1102,6 +1102,10 @@ jobs:
               git commit -m "legal: add new contract to git"
               git push
             fi
+      - run:
+          name: update terms S3
+          path: terms
+          command: python update_contract_html.py
       - store_artifacts:
           path: terms/README.md
 
