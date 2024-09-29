@@ -1090,6 +1090,10 @@ jobs:
           path: terms
           command: python update_contract_readme.py
       - run:
+          name: update terms html
+          path: terms
+          command: python update_contract_html.py
+      - run:
           name: commit readme if changed
           path: terms
           command: |
@@ -1099,17 +1103,21 @@ jobs:
             else
               source config-git
               git add README.md
+              git add terms.html
               git commit -m "legal: add new contract to git"
               git push
             fi
       - run:
-          name: update terms html
-          path: terms
-          command: python update_contract_html.py
-      - run:
           name: upload terms html to S3
           path: terms
-          command: python publish_contract_html.py
+          command: |
+            DIFF=$(git diff)
+            if [ "$DIFF" == "" ]; then
+              echo "Nothing to upload"
+            else
+              python publish_contract_html.py
+            fi
+          command: 
       - store_artifacts:
           path: terms/README.md
 
