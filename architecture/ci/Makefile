@@ -14,11 +14,9 @@ build_android:
 build_android_publish:
 	@make single_build MACHINE=android-publish TAG=gradle88-jdk17 PUSH=${PUSH}
 
-build_sql_runner:
-	@make single_build MACHINE=sql-runner CONTEXT=../.. PUSH=${PUSH}
-
-build_sql_runner_ci:
-	@make single_build MACHINE=sql-runner CONTEXT=../.. TAG=ci ONLY_TAG=1 PUSH=${PUSH}
+build_migrator:
+	@cd ../publish && make migrator
+	@make single_build MACHINE=dfm-migrator-ci CONTEXT=../.. PUSH=${PUSH}
 
 single_build:
 	@if [ "${MACHINE}" = "" ]; then \

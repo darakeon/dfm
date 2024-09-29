@@ -1,6 +1,6 @@
   export_terms:
     docker:
-      - image: darakeon/sql-runner:ci
+      - image: darakeon/dfm-migrator-ci
         environment:
           DATABASE_HOST: 127.0.0.1
           DATABASE_NAME: dfm

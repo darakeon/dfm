@@ -85,7 +85,7 @@ jobs:
           path: architecture/ci
           command: make build_android_publish PUSH=1
 
-  push_docker_sql_runner_ci:
+  push_docker_migrator_ci:
     docker:
       - image: docker
     steps:
@@ -101,7 +101,7 @@ jobs:
       - run:
           name: Build images
           path: architecture/ci
-          command: make build_sql_runner_ci PUSH=1
+          command: make build_migrator PUSH=1
 
   build_core:
     docker:
@@ -1067,7 +1067,7 @@ jobs:
 
   export_terms:
     docker:
-      - image: darakeon/sql-runner:ci
+      - image: darakeon/dfm-migrator-ci
         environment:
           DATABASE_HOST: 127.0.0.1
           DATABASE_NAME: dfm
@@ -1196,7 +1196,7 @@ jobs:
               cargo run -q -- -c
             fi
 
-  deploy_sql_runner:
+  publish_migrator:
     docker:
       - image: docker
     steps:
@@ -1211,8 +1211,8 @@ jobs:
           command: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - run:
           name: Build images
-          path: architecture/ci
-          command: make build_sql_runner PUSH=1
+          path: architecture/publish
+          command: make migrator_push
 
   publish_site:
     docker:
@@ -1346,7 +1346,7 @@ workflows:
       - push_docker_android:
           requires:
             - test_ci
-      - push_docker_sql_runner_ci:
+      - push_docker_migrator_ci:
           requires:
             - test_ci
       - build_core:
@@ -1464,7 +1464,7 @@ workflows:
       - export_terms:
           requires:
             - test_ci
-            - push_docker_sql_runner_ci
+            - push_docker_migrator_ci
       - audit_version_changer:
           requires:
             - test_ci
@@ -1474,7 +1474,7 @@ workflows:
             - test_ci
             - push_docker_browser
             - push_docker_android
-            - push_docker_sql_runner_ci
+            - push_docker_migrator_ci
             - build_core
             - audit_core
             - test_core_generic
@@ -1524,7 +1524,7 @@ workflows:
             branches:
               only:
                 - /^\d+\.\d+\.\d+\.\d+$/
-      - deploy_sql_runner:
+      - publish_migrator:
           requires:
             - approve_deploy
       - publish_site:
@@ -1884,18 +1884,18 @@ workflows:
       - test_ci:
           requires:
             - trufflehog
-      - push_docker_sql_runner_ci:
+      - push_docker_migrator_ci:
           requires:
             - test_ci
       - export_terms:
           requires:
             - test_ci
-            - push_docker_sql_runner_ci
+            - push_docker_migrator_ci
       - workflow_ran:
           requires:
             - trufflehog
             - test_ci
-            - push_docker_sql_runner_ci
+            - push_docker_migrator_ci
             - export_terms
 
   ci:
