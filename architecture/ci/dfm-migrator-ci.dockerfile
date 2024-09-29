@@ -6,3 +6,5 @@ RUN apk add openssh
 
 COPY architecture/ci/config-git /usr/bin
 RUN chmod +x /usr/bin/config-git
+
+RUN pip install boto3 --break-system-packages
