@@ -15,7 +15,7 @@
       - push_docker_android:
           requires:
             - test_ci
-      - push_docker_sql_runner_ci:
+      - push_docker_migrator_ci:
           requires:
             - test_ci
       - build_core:
@@ -133,7 +133,7 @@
       - export_terms:
           requires:
             - test_ci
-            - push_docker_sql_runner_ci
+            - push_docker_migrator_ci
       - audit_version_changer:
           requires:
             - test_ci
@@ -143,7 +143,7 @@
             - test_ci
             - push_docker_browser
             - push_docker_android
-            - push_docker_sql_runner_ci
+            - push_docker_migrator_ci
             - build_core
             - audit_core
             - test_core_generic
@@ -193,7 +193,7 @@
             branches:
               only:
                 - /^\d+\.\d+\.\d+\.\d+$/
-      - deploy_sql_runner:
+      - publish_migrator:
           requires:
             - approve_deploy
       - publish_site:

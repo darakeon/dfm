@@ -33,6 +33,12 @@ midna:
 midna_push: midna
 	@make push MACHINE=midna
 
+migrator:
+	@make single MACHINE=migrator
+
+migrator_push: migrator
+	@make push MACHINE=migrator
+
 single:
 	@make echo COLOR="${RED}" TEXT="Building ${MACHINE}..."
 	@docker build ../.. --pull --progress plain -t darakeon/dfm-${MACHINE} -f "${PWD}/dfm-${MACHINE}.dockerfile"
