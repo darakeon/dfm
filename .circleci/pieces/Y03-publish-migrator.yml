@@ -1,4 +1,4 @@
-  deploy_sql_runner:
+  publish_migrator:
     docker:
       - image: docker
     steps:
@@ -13,6 +13,6 @@
           command: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - run:
           name: Build images
-          path: architecture/ci
-          command: make build_sql_runner PUSH=1
+          path: architecture/publish
+          command: make migrator_push
 

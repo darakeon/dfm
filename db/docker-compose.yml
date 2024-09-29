@@ -15,9 +15,9 @@ services:
       timeout: 10s
       retries: 5
 
-  sql-runner:
-    image: darakeon/sql-runner:ci
-    container_name: dfm-sql-runner
+  migrator:
+    image: darakeon/dfm-migrator
+    container_name: dfm-migrator
     env_file: db.env
     volumes:
       - .:/var/db
