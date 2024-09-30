@@ -3,7 +3,7 @@ LABEL maintainer="Dara Keon <laboon@darakeon.com>"
 
 COPY core /var/dfm/core
 RUN cd /var/dfm/core/BusinessLogic \
-	&& dotnet build BusinessLogic.csproj -o /var/www
+	&& dotnet build BusinessLogic.csproj -o /var/www --property WarningLevel=0
 
 COPY site /var/dfm/site
 RUN cd /var/dfm/site/MVC \
