@@ -31,7 +31,7 @@
     <PackageReference Include="Keon.NHibernate" Version="5.1.0" />
     <PackageReference Include="Keon.TwoFactorAuth" Version="4.0.1" />
     <PackageReference Include="sqlite" Version="3.13.0" />
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.119" />
   </ItemGroup>
 
   <ItemGroup>
