@@ -18,7 +18,7 @@ pub fn update_csharp(version: &Version) {
 	update_csharp_file(&version, vec!["core", "Tests", "Email", "Email.Tests.csproj"]);
 	update_csharp_file(&version, vec!["core", "Tests", "Exchange", "Exchange.Tests.csproj"]);
 	update_csharp_file(&version, vec!["core", "Tests", "Language", "Language.Tests.csproj"]);
-	update_csharp_file(&version, vec!["core", "Tests", "Queue", "Queue.Tests.csproj"]);
+	update_csharp_file(&version, vec!["core", "Tests", "Queue.TestApp", "Queue.TestApp.csproj"]);
 	update_csharp_file(&version, vec!["core", "Tests", "Util", "Tests.Util.csproj"]);
 
 	update_csharp_file(&version, vec!["robot", "Robot", "Robot.csproj"]);
