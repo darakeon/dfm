@@ -8,7 +8,7 @@
     <RootNamespace>DFM.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <AssemblyVersion>13.0.0.0</AssemblyVersion>
+    <AssemblyVersion>13.1.0.0</AssemblyVersion>
     <FileVersion>$(AssemblyVersion)</FileVersion>
     <Title>DFM $(MSBuildProjectName)</Title>
     <Version>$(AssemblyVersion)</Version>

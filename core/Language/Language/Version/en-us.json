@@ -1,4 +1,9 @@
 {
+	"13.1.0.0": [
+		"Fix date and currency with wrong localization on site",
+		"Add website only for terms: http://terms.dontflymoney.com",
+		"Improvements in System deployment"
+	],
 	"13.0.0.0": [
 		"Data Export",
 		"Improvements at menus",

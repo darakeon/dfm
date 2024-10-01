@@ -1,4 +1,9 @@
 {
+	"13.1.0.0": [
+		"Arrumado problema com datas e moedas erradas no site",
+		"Adicionado endereço novo para os termos de uso: http://terms.dontflymoney.com",
+		"Melhorias na publicação do Sistema"
+	],
 	"13.0.0.0": [
 		"Exportação de Movimentações",
 		"Ajustes nos menus",

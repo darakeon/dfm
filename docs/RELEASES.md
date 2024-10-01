@@ -4,15 +4,19 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#13.0.0.0)
-- [go to version in development](#13.1.0.0)
-- [dev version state](../../13.1.0.0/docs/RELEASES.md#13.1.0.0)
+- [go to published version](#13.1.0.0)
+- [go to version in development](#14.0.0.0)
+- [dev version state](../../14.0.0.0/docs/RELEASES.md#14.0.0.0)
 
 ## Legend
 - 🐉: at least one huge change (increases first number)
 - 🐳: at least one big change, like a new feature (increases second number)
 - 🐑: at least one little change, as a change at an existing feature (increases third number)
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="14.0.0.0"></a>14.0.0.0 :🐉: <sup>`2`</sup>
+>>>>> ADD A DEPLOY AUTOMATION TASK
+- [ ] Implement entities limits (acc opened, cat enabled, moves/month, active sched)
 
 ## <a name="13.1.0.0"></a>13.1.0.0 :🐳: <sup>`5`</sup>
 - [x] `240930>241001` Fix date and currency with wrong localization on site
