@@ -15,7 +15,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="13.1.0.0"></a>13.1.0.0 :🐳: <sup>`5`</sup>
-- [ ] `240930>......` Fix date and currency with wrong localization on site
+- [x] `240930>241001` Fix date and currency with wrong localization on site
 - [x] `240929>240929` Put terms of use in static site on S3
 - [x] `240929>240929` Add create README contract in CI
 - [x] `240927>240929` Get contract text from DB to create README in terms
