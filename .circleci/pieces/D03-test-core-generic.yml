@@ -7,7 +7,7 @@
           at: core
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "core/cache_key" }}
+            - dotnet-{{ checksum "core/core_cache_key" }}
       - run:
           path: core/Tests/Generic
           name: tests generic

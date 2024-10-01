@@ -111,22 +111,22 @@ jobs:
       - run:
           name: set checksums
           command: |
-            cat core/*/*.csproj > core_cache_key
-            CS_CORE=$(md5sum core_cache_key | cut -d' ' -f1)
+            cat core/*/*.csproj > lib_cache_key
+            CS_CORE=$(md5sum lib_cache_key | cut -d' ' -f1)
 
             cat core/*/*/*.csproj >> tests_cache_key
             CS_TEST=$(md5sum tests_cache_key | cut -d' ' -f1)
 
-            CACHE_KEY=$CS_CORE-$CS_TEST
-            echo $CACHE_KEY > core/cache_key
+            CORE_CACHE_KEY=$CS_CORE-$CS_TEST
+            echo $CORE_CACHE_KEY > core/core_cache_key
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "core/cache_key" }}
+            - dotnet-{{ checksum "core/core_cache_key" }}
       - run:
           name: dependencies
           command: dotnet restore core/Core.sln
       - save_cache:
-          key: dotnet-{{ checksum "core/cache_key" }}
+          key: dotnet-{{ checksum "core/core_cache_key" }}
           paths:
             - ~/.nuget/packages
       - run:
@@ -135,7 +135,7 @@ jobs:
       - persist_to_workspace:
           root: core
           paths:
-            - cache_key
+            - core_cache_key
             - "*/bin"
             - "*/obj"
             - "Tests/*/bin"
@@ -150,7 +150,7 @@ jobs:
           at: core
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "core/cache_key" }}
+            - dotnet-{{ checksum "core/core_cache_key" }}
       - run:
           path: core
           name: check vulnerability
@@ -175,7 +175,7 @@ jobs:
           at: core
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "core/cache_key" }}
+            - dotnet-{{ checksum "core/core_cache_key" }}
       - run:
           path: core/Tests/Generic
           name: tests generic
@@ -193,7 +193,7 @@ jobs:
           at: core
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "core/cache_key" }}
+            - dotnet-{{ checksum "core/core_cache_key" }}
       - run:
           path: core/Tests/Language
           name: tests language
@@ -211,7 +211,7 @@ jobs:
           at: core
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "core/cache_key" }}
+            - dotnet-{{ checksum "core/core_cache_key" }}
       - run:
           path: core/Tests/Email
           name: tests email
@@ -235,7 +235,7 @@ jobs:
           at: core
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "core/cache_key" }}
+            - dotnet-{{ checksum "core/core_cache_key" }}
       - run:
           path: core/Tests/Exchange
           name: tests exchange
@@ -253,7 +253,7 @@ jobs:
           at: core
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "core/cache_key" }}
+            - dotnet-{{ checksum "core/core_cache_key" }}
       - run:
           path: core/Tests/Entities
           name: tests entities
@@ -272,7 +272,7 @@ jobs:
           at: core
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "core/cache_key" }}
+            - dotnet-{{ checksum "core/core_cache_key" }}
       - run:
           path: core/Tests/BusinessLogic
           name: tests business logic
@@ -297,7 +297,7 @@ jobs:
           at: core
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "core/cache_key" }}
+            - dotnet-{{ checksum "core/core_cache_key" }}
       - run:
           path: core/Tests/BusinessLogic
           name: tests business logic
@@ -322,7 +322,7 @@ jobs:
           at: core
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "core/cache_key" }}
+            - dotnet-{{ checksum "core/core_cache_key" }}
       - run:
           path: core/Tests/BusinessLogic
           name: tests business logic
@@ -347,7 +347,7 @@ jobs:
           at: core
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "core/cache_key" }}
+            - dotnet-{{ checksum "core/core_cache_key" }}
       - run:
           path: core/Tests/BusinessLogic
           name: tests business logic
@@ -372,7 +372,7 @@ jobs:
           at: core
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "core/cache_key" }}
+            - dotnet-{{ checksum "core/core_cache_key" }}
       - run:
           path: core/Tests/BusinessLogic
           name: tests business logic
@@ -397,7 +397,7 @@ jobs:
           at: core
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "core/cache_key" }}
+            - dotnet-{{ checksum "core/core_cache_key" }}
       - run:
           path: core/Tests/BusinessLogic
           name: tests business logic
@@ -422,7 +422,7 @@ jobs:
           at: core
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "core/cache_key" }}
+            - dotnet-{{ checksum "core/core_cache_key" }}
       - run:
           path: core/Tests/BusinessLogic
           name: tests business logic
@@ -447,7 +447,7 @@ jobs:
           at: core
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "core/cache_key" }}
+            - dotnet-{{ checksum "core/core_cache_key" }}
       - run:
           path: core/Tests/BusinessLogic
           name: tests business logic
@@ -474,7 +474,7 @@ jobs:
           at: core
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "core/cache_key" }}
+            - dotnet-{{ checksum "core/core_cache_key" }}
       - run:
           path: core/Tests/BusinessLogic
           name: tests business logic
@@ -507,16 +507,16 @@ jobs:
             CS_MVC_=$(md5sum site/MVC/MVC.csproj | cut -d' ' -f1)
             CS_TMVC=$(md5sum site/Tests/MVC/MVC.Tests.csproj | cut -d' ' -f1)
 
-            CACHE_KEY=$CS_CORE-$CS_MVC_-$CS_TMVC
-            echo $CACHE_KEY > site/cache_key
+            SITE_CACHE_KEY=$CS_CORE-$CS_MVC_-$CS_TMVC
+            echo $SITE_CACHE_KEY > site/site_cache_key
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "site/cache_key" }}
+            - dotnet-{{ checksum "site/site_cache_key" }}
       - run:
           name: dependencies
           command: dotnet restore site/Site.sln
       - save_cache:
-          key: dotnet-{{ checksum "site/cache_key" }}
+          key: dotnet-{{ checksum "site/site_cache_key" }}
           paths:
             - ~/.nuget/packages
       - run:
@@ -525,7 +525,7 @@ jobs:
       - persist_to_workspace:
           root: site
           paths:
-            - cache_key
+            - site_cache_key
             - MVC/bin
             - MVC/obj
             - Tests/MVC/bin
@@ -542,7 +542,7 @@ jobs:
           at: site
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "site/cache_key" }}
+            - dotnet-{{ checksum "site/site_cache_key" }}
       - run:
           path: site
           name: check vulnerability
@@ -567,7 +567,7 @@ jobs:
           at: site
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "site/cache_key" }}
+            - dotnet-{{ checksum "site/site_cache_key" }}
       - run:
           path: site/Tests/MVC
           name: tests mvc
@@ -616,7 +616,7 @@ jobs:
           at: site
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "site/cache_key" }}
+            - dotnet-{{ checksum "site/site_cache_key" }}
       - restore_cache:
           keys:
             - dotnet-libman-{{ checksum "site/MVC/libman.json" }}
@@ -663,16 +663,16 @@ jobs:
             CS_API_=$(md5sum api/API/API.csproj | cut -d' ' -f1)
             CS_TAPI=$(md5sum api/Tests/API/API.Tests.csproj | cut -d' ' -f1)
 
-            CACHE_KEY=$CS_CORE-$CS_API_-$CS_TAPI
-            echo $CACHE_KEY > api/cache_key
+            API_CACHE_KEY=$CS_CORE-$CS_API_-$CS_TAPI
+            echo $API_CACHE_KEY > api/api_cache_key
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "api/cache_key" }}
+            - dotnet-{{ checksum "api/api_cache_key" }}
       - run:
           name: dependencies
           command: dotnet restore api/API.sln
       - save_cache:
-          key: dotnet-{{ checksum "api/cache_key" }}
+          key: dotnet-{{ checksum "api/api_cache_key" }}
           paths:
             - ~/.nuget/packages
       - run:
@@ -681,7 +681,7 @@ jobs:
       - persist_to_workspace:
           root: api
           paths:
-            - cache_key
+            - api_cache_key
             - API/bin
             - API/obj
             - Tests/API/bin
@@ -698,7 +698,7 @@ jobs:
           at: api
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "api/cache_key" }}
+            - dotnet-{{ checksum "api/api_cache_key" }}
       - run:
           path: api
           name: check vulnerability
@@ -723,7 +723,7 @@ jobs:
           at: api
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "api/cache_key" }}
+            - dotnet-{{ checksum "api/api_cache_key" }}
       - run:
           path: api/Tests/API
           name: tests api
@@ -754,17 +754,17 @@ jobs:
             KT_APPL=$(md5sum android/App/build.gradle | cut -d' ' -f1)
             KT_ERRO=$(md5sum android/ErrorLogs/build.gradle | cut -d' ' -f1)
 
-            CACHE_KEY=$KT_DOCK-$KT_MAIN-$KT_UTIL-$KT_LIBR-$KT_APPL-$KT_ERRO
-            echo $CACHE_KEY > android/cache_key
+            ANDROID_CACHE_KEY=$KT_DOCK-$KT_MAIN-$KT_UTIL-$KT_LIBR-$KT_APPL-$KT_ERRO
+            echo $ANDROID_CACHE_KEY > android/android_cache_key
       - restore_cache:
           keys:
-            - kotlin-{{ checksum "android/cache_key" }}
+            - kotlin-{{ checksum "android/android_cache_key" }}
       - run:
           name: project dependencies
           path: android
           command: gradle-with-metadata --no-daemon androidDependencies
       - save_cache:
-          key: kotlin-{{ checksum "android/cache_key" }}
+          key: kotlin-{{ checksum "android/android_cache_key" }}
           paths:
             - /var/cache/gradle
             - /root/.m2/repository
@@ -797,7 +797,7 @@ jobs:
       - persist_to_workspace:
           root: android
           paths:
-            - cache_key
+            - android_cache_key
             - keystore.properties
             - build
             - Lib/build
@@ -814,7 +814,7 @@ jobs:
           at: android
       - restore_cache:
           keys:
-            - kotlin-{{ checksum "android/cache_key" }}
+            - kotlin-{{ checksum "android/android_cache_key" }}
       - run:
           name: check vulnerability
           path: android
@@ -830,7 +830,7 @@ jobs:
           at: android
       - restore_cache:
           keys:
-            - kotlin-{{ checksum "android/cache_key" }}
+            - kotlin-{{ checksum "android/android_cache_key" }}
       - run:
           name: tests lib debug
           path: android
@@ -854,7 +854,7 @@ jobs:
           at: android
       - restore_cache:
           keys:
-            - kotlin-{{ checksum "android/cache_key" }}
+            - kotlin-{{ checksum "android/android_cache_key" }}
       - run:
           name: tests lib release
           path: android
@@ -878,7 +878,7 @@ jobs:
           at: android
       - restore_cache:
           keys:
-            - kotlin-{{ checksum "android/cache_key" }}
+            - kotlin-{{ checksum "android/android_cache_key" }}
       - run:
           name: tests app debug
           path: android
@@ -902,7 +902,7 @@ jobs:
           at: android
       - restore_cache:
           keys:
-            - kotlin-{{ checksum "android/cache_key" }}
+            - kotlin-{{ checksum "android/android_cache_key" }}
       - run:
           name: tests app release
           path: android
@@ -934,16 +934,16 @@ jobs:
 
             CS_ROBT=$(md5sum robot/Robot/Robot.csproj | cut -d' ' -f1)
 
-            CACHE_KEY=$CS_CORE-$CS_ROBT
-            echo $CACHE_KEY > robot/cache_key
+            ROBOT_CACHE_KEY=$CS_CORE-$CS_ROBT
+            echo $ROBOT_CACHE_KEY > robot/robot_cache_key
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "robot/cache_key" }}
+            - dotnet-{{ checksum "robot/robot_cache_key" }}
       - run:
           name: dependencies
           command: dotnet restore robot/Robot.sln
       - save_cache:
-          key: dotnet-{{ checksum "robot/cache_key" }}
+          key: dotnet-{{ checksum "robot/robot_cache_key" }}
           paths:
             - ~/.nuget/packages
       - run:
@@ -953,7 +953,7 @@ jobs:
       - persist_to_workspace:
           root: robot
           paths:
-            - cache_key
+            - robot_cache_key
             - Robot/bin
             - Robot/obj
 
@@ -971,7 +971,7 @@ jobs:
           at: robot
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "robot/cache_key" }}
+            - dotnet-{{ checksum "robot/robot_cache_key" }}
       - run:
           path: robot
           name: check vulnerability
@@ -999,7 +999,7 @@ jobs:
           at: robot
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "robot/cache_key" }}
+            - dotnet-{{ checksum "robot/robot_cache_key" }}
       - run:
           name: check
           path: robot/Robot/bin/Release/net8.0
@@ -1328,7 +1328,7 @@ jobs:
           at: android
       - restore_cache:
           keys:
-            - kotlin-{{ checksum "android/cache_key" }}
+            - kotlin-{{ checksum "android/android_cache_key" }}
       - run:
           name: Create file keystore properties
           path: android

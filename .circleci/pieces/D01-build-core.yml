@@ -6,22 +6,22 @@
       - run:
           name: set checksums
           command: |
-            cat core/*/*.csproj > core_cache_key
-            CS_CORE=$(md5sum core_cache_key | cut -d' ' -f1)
+            cat core/*/*.csproj > lib_cache_key
+            CS_CORE=$(md5sum lib_cache_key | cut -d' ' -f1)
 
             cat core/*/*/*.csproj >> tests_cache_key
             CS_TEST=$(md5sum tests_cache_key | cut -d' ' -f1)
 
-            CACHE_KEY=$CS_CORE-$CS_TEST
-            echo $CACHE_KEY > core/cache_key
+            CORE_CACHE_KEY=$CS_CORE-$CS_TEST
+            echo $CORE_CACHE_KEY > core/core_cache_key
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "core/cache_key" }}
+            - dotnet-{{ checksum "core/core_cache_key" }}
       - run:
           name: dependencies
           command: dotnet restore core/Core.sln
       - save_cache:
-          key: dotnet-{{ checksum "core/cache_key" }}
+          key: dotnet-{{ checksum "core/core_cache_key" }}
           paths:
             - ~/.nuget/packages
       - run:
@@ -30,7 +30,7 @@
       - persist_to_workspace:
           root: core
           paths:
-            - cache_key
+            - core_cache_key
             - "*/bin"
             - "*/obj"
             - "Tests/*/bin"

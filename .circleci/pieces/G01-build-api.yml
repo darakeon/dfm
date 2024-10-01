@@ -14,16 +14,16 @@
             CS_API_=$(md5sum api/API/API.csproj | cut -d' ' -f1)
             CS_TAPI=$(md5sum api/Tests/API/API.Tests.csproj | cut -d' ' -f1)
 
-            CACHE_KEY=$CS_CORE-$CS_API_-$CS_TAPI
-            echo $CACHE_KEY > api/cache_key
+            API_CACHE_KEY=$CS_CORE-$CS_API_-$CS_TAPI
+            echo $API_CACHE_KEY > api/api_cache_key
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "api/cache_key" }}
+            - dotnet-{{ checksum "api/api_cache_key" }}
       - run:
           name: dependencies
           command: dotnet restore api/API.sln
       - save_cache:
-          key: dotnet-{{ checksum "api/cache_key" }}
+          key: dotnet-{{ checksum "api/api_cache_key" }}
           paths:
             - ~/.nuget/packages
       - run:
@@ -32,7 +32,7 @@
       - persist_to_workspace:
           root: api
           paths:
-            - cache_key
+            - api_cache_key
             - API/bin
             - API/obj
             - Tests/API/bin

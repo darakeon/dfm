@@ -16,16 +16,16 @@
 
             CS_ROBT=$(md5sum robot/Robot/Robot.csproj | cut -d' ' -f1)
 
-            CACHE_KEY=$CS_CORE-$CS_ROBT
-            echo $CACHE_KEY > robot/cache_key
+            ROBOT_CACHE_KEY=$CS_CORE-$CS_ROBT
+            echo $ROBOT_CACHE_KEY > robot/robot_cache_key
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "robot/cache_key" }}
+            - dotnet-{{ checksum "robot/robot_cache_key" }}
       - run:
           name: dependencies
           command: dotnet restore robot/Robot.sln
       - save_cache:
-          key: dotnet-{{ checksum "robot/cache_key" }}
+          key: dotnet-{{ checksum "robot/robot_cache_key" }}
           paths:
             - ~/.nuget/packages
       - run:
@@ -35,7 +35,7 @@
       - persist_to_workspace:
           root: robot
           paths:
-            - cache_key
+            - robot_cache_key
             - Robot/bin
             - Robot/obj
 

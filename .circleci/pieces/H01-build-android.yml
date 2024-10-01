@@ -18,17 +18,17 @@
             KT_APPL=$(md5sum android/App/build.gradle | cut -d' ' -f1)
             KT_ERRO=$(md5sum android/ErrorLogs/build.gradle | cut -d' ' -f1)
 
-            CACHE_KEY=$KT_DOCK-$KT_MAIN-$KT_UTIL-$KT_LIBR-$KT_APPL-$KT_ERRO
-            echo $CACHE_KEY > android/cache_key
+            ANDROID_CACHE_KEY=$KT_DOCK-$KT_MAIN-$KT_UTIL-$KT_LIBR-$KT_APPL-$KT_ERRO
+            echo $ANDROID_CACHE_KEY > android/android_cache_key
       - restore_cache:
           keys:
-            - kotlin-{{ checksum "android/cache_key" }}
+            - kotlin-{{ checksum "android/android_cache_key" }}
       - run:
           name: project dependencies
           path: android
           command: gradle-with-metadata --no-daemon androidDependencies
       - save_cache:
-          key: kotlin-{{ checksum "android/cache_key" }}
+          key: kotlin-{{ checksum "android/android_cache_key" }}
           paths:
             - /var/cache/gradle
             - /root/.m2/repository
@@ -61,7 +61,7 @@
       - persist_to_workspace:
           root: android
           paths:
-            - cache_key
+            - android_cache_key
             - keystore.properties
             - build
             - Lib/build

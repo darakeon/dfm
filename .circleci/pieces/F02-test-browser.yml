@@ -9,7 +9,7 @@
           at: site
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "site/cache_key" }}
+            - dotnet-{{ checksum "site/site_cache_key" }}
       - restore_cache:
           keys:
             - dotnet-libman-{{ checksum "site/MVC/libman.json" }}
