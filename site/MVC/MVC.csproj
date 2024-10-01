@@ -282,6 +282,7 @@
     <None Remove="Assets\styles\qrcode.css" />
     <None Remove="Assets\styles\tip.css" />
     <None Remove="Assets\styles\updates.css" />
+    <None Remove="Assets\styles\wizard.css" />
     <None Remove="Assets\themes\bootstrap.min.css" />
     <None Remove="Assets\themes\colors-dark.css" />
     <None Remove="Assets\themes\colors-darkmagic.css" />
@@ -1020,6 +1021,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\styles\updates.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\styles\wizard.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\themes\bootstrap.min.css">
