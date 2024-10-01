@@ -264,6 +264,7 @@
     <None Remove="Assets\scripts\chart.js" />
     <None Remove="Assets\scripts\table-sum.js" />
     <None Remove="Assets\scripts\tip.js" />
+    <None Remove="Assets\scripts\wizard.js" />
     <None Remove="Assets\styles\chart.css" />
     <None Remove="Assets\styles\misc.css" />
     <None Remove="Assets\styles\reports.css" />
@@ -986,6 +987,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\scripts\toggle.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\scripts\wizard.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\styles\android.css">
