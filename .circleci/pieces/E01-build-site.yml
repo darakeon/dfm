@@ -14,16 +14,16 @@
             CS_MVC_=$(md5sum site/MVC/MVC.csproj | cut -d' ' -f1)
             CS_TMVC=$(md5sum site/Tests/MVC/MVC.Tests.csproj | cut -d' ' -f1)
 
-            CACHE_KEY=$CS_CORE-$CS_MVC_-$CS_TMVC
-            echo $CACHE_KEY > site/cache_key
+            SITE_CACHE_KEY=$CS_CORE-$CS_MVC_-$CS_TMVC
+            echo $SITE_CACHE_KEY > site/site_cache_key
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "site/cache_key" }}
+            - dotnet-{{ checksum "site/site_cache_key" }}
       - run:
           name: dependencies
           command: dotnet restore site/Site.sln
       - save_cache:
-          key: dotnet-{{ checksum "site/cache_key" }}
+          key: dotnet-{{ checksum "site/site_cache_key" }}
           paths:
             - ~/.nuget/packages
       - run:
@@ -32,7 +32,7 @@
       - persist_to_workspace:
           root: site
           paths:
-            - cache_key
+            - site_cache_key
             - MVC/bin
             - MVC/obj
             - Tests/MVC/bin

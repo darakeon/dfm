@@ -7,7 +7,7 @@
           at: api
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "api/cache_key" }}
+            - dotnet-{{ checksum "api/api_cache_key" }}
       - run:
           path: api/Tests/API
           name: tests api

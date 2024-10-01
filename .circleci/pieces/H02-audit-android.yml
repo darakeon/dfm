@@ -7,7 +7,7 @@
           at: android
       - restore_cache:
           keys:
-            - kotlin-{{ checksum "android/cache_key" }}
+            - kotlin-{{ checksum "android/android_cache_key" }}
       - run:
           name: check vulnerability
           path: android

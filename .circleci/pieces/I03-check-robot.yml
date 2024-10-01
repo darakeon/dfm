@@ -10,7 +10,7 @@
           at: robot
       - restore_cache:
           keys:
-            - dotnet-{{ checksum "robot/cache_key" }}
+            - dotnet-{{ checksum "robot/robot_cache_key" }}
       - run:
           name: check
           path: robot/Robot/bin/Release/net8.0
