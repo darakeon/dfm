@@ -283,6 +283,10 @@
     <None Remove="Assets\styles\tip.css" />
     <None Remove="Assets\styles\updates.css" />
     <None Remove="Assets\styles\wizard.css" />
+    <None Remove="Assets\templates\import_moves.csv" />
+    <None Remove="Assets\templates\import_moves_categories.csv" />
+    <None Remove="Assets\templates\import_moves_categories_conversions.csv" />
+    <None Remove="Assets\templates\import_moves_conversions.csv" />
     <None Remove="Assets\themes\bootstrap.min.css" />
     <None Remove="Assets\themes\colors-dark.css" />
     <None Remove="Assets\themes\colors-darkmagic.css" />
@@ -1024,6 +1028,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\styles\wizard.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\templates\import_moves.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\templates\import_moves_categories.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\templates\import_moves_categories_conversions.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\templates\import_moves_conversions.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\themes\bootstrap.min.css">
