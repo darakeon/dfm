@@ -2,6 +2,8 @@
 from base64 import b64decode
 from json import loads
 from os import environ
+from re import search
+
 from apiclient.discovery import build
 from google.oauth2 import service_account
 
@@ -25,6 +27,12 @@ def main():
 
 	edits = get_edits()
 	edit_id = start_edit(edits)
+
+	bundle_already_uploaded = check_bundle_for(edits, edit_id)
+
+	if bundle_already_uploaded:
+		print('Version already on store')
+		return
 
 	bundle = upload_bundle(edits, edit_id)
 
@@ -65,6 +73,26 @@ def start_edit(edits):
 		body={},
 		packageName=PACKAGE_NAME
 	).execute()['id']
+
+
+def check_bundle_for(edits, edit_id):
+	with open('android/App/build.gradle') as gradle:
+		gradle_content = gradle.read()
+
+	versionCode = int(
+		search(
+			r'versionCode (\d+)', gradle_content
+		).groups()[0]
+	)
+
+	existent_bundles = edits.bundles().list(
+		editId=edit_id, packageName=PACKAGE_NAME
+	).execute()['bundles']
+
+	return list(filter(
+		lambda b: b['versionCode'] == versionCode,
+		existent_bundles
+	))
 
 
 def upload_bundle(edits, edit_id):
