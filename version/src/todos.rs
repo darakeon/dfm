@@ -56,7 +56,7 @@ fn process_tasks(mut numbers: Vec<usize>) -> (Vec<String>, Vec<String>) {
 
 	let new_size = todo_list.len();
 
-	if let Some(title) = todo_list.get_mut(15) {
+	if let Some(title) = todo_list.get_mut(16) {
 		let old_count = extract_count(title);
 		let new_count = old_count - (old_size - new_size);
 
