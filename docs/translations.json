@@ -1,22 +1,18 @@
 {
 	"en-us": {
-		"Data export (csv) [template]": "Data Export",
-		"Adjust menus to avoid responsiviness problem": "Improvements at menus",
-		"Data import (csv) (with max request length) [template]": "Data Import",
-		"Fix email links and images": "Fix email images",
-		"Fix sponsor link to open in another window": "Fix sponsor link",
-		"Fix print contract": "Fix print Terms",
-		"Warning about 15 minutes windows for runnings schedules": "Notice about scheduling times",
+		"Fix date and currency with wrong localization on site": "Fix date and currency with wrong localization on site",
+		"Put terms of use in static site on S3": "Add website only for terms: http://terms.dontflymoney.com",
+		"Add create README contract in CI": "-",
+		"Get contract text from DB to create README in terms": "-",
+		"[Deploy APKs using CI]": "Improvements in System deployment",
 		"": null
 	},
 	"pt-br": {
-		"Data export (csv) [template]": "Exportação de Movimentações",
-		"Adjust menus to avoid responsiviness problem": "Ajustes nos menus",
-		"Data import (csv) (with max request length) [template]": "Importação de Movimentações",
-		"Fix email links and images": "Arrumadas imagens dos e-mails",
-		"Fix sponsor link to open in another window": "Arrumado botão de patrocínio",
-		"Fix print contract": "Arrumada impressão de Termos",
-		"Warning about 15 minutes windows for runnings schedules": "Aviso sobre tempo de Agendamentos",
+		"Fix date and currency with wrong localization on site": "Arrumado problema com datas e moedas erradas no site",
+		"Put terms of use in static site on S3": "Adicionado endereço novo para os termos de uso: http://terms.dontflymoney.com",
+		"Add create README contract in CI": "-",
+		"Get contract text from DB to create README in terms": "-",
+		"[Deploy APKs using CI]": "Melhorias na publicação do Sistema",
 		"": null
 	}
 }
