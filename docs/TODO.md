@@ -14,7 +14,7 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend) then Type.
 
-| Task (47)                                                                      | Typ | Siz | Dif | Imp | Pts |
+| Task (48)                                                                      | Typ | Siz | Dif | Imp | Pts |
 | ------------------------------------------------------------------------------ | --- | --- | --- | --- | --- |
 | Add semgrep to dfm, dk-lib, meak and server                                    |  S  | 🐳 |  2  |  4  |  6  |
 | [clear headers on nginx](todo/clear-headers.png)                               |  S  | 🐳 |  2  |  4  |  6  |
@@ -33,6 +33,7 @@ The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend)
 | Implement security measures suggested by github                                |  S  | 🐑 |  3  |  4  |  5  |
 | Add schedule creation (mobile)                                                 |  F  | 🐉 |  2  |  3  |  5  |
 | add snyk/clair check to docker containers                                      |  S  | 🐳 |  2  |  3  |  5  |
+| Add schedule edit                                                              |  F  | 🐳 |  2  |  3  |  5  |
 | Add plain text to emails                                                       |  F  | 🐳 |  2  |  3  |  5  |
 | Add weekly scheduling                                                          |  F  | 🐑 |  2  |  3  |  5  |
 | Complete all screens in E2E, with all its cases (empty/filled, normal,error)   |  M  | 🐑 |  2  |  3  |  5  |
