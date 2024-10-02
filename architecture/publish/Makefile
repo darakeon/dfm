@@ -5,15 +5,25 @@ RESET=\033[00m
 VERSION=$$(git branch --show-current)
 
 
+aws_login:
+	@echo "[default]\nregion = ${AWS_ECR_REGION}\noutput = json" >> ~/.aws/config
+	@echo "[default]\naws_access_key_id = ${AWS_ECR_USER}\naws_secret_access_key = ${AWS_ECR_PASS}" >> ~/.aws/credentials
+	@aws ecr get-login-password --region ${AWS_ECR_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT}.dkr.ecr.${AWS_ECR_REGION}.amazonaws.com
+
+
 all: site api robot midna
 
-all_push: site_push api_push robot_push midna_push
+all_push: site_push api_push robot_push robot_aws_push midna_push
 
 robot:
 	@make single MACHINE=robot
 
 robot_push: robot
 	@make push MACHINE=robot
+
+robot_aws_push: robot
+	@docker tag darakeon/dfm-robot:latest ${AWS_ACCOUNT}.dkr.ecr.${AWS_ECR_REGION}.amazonaws.com/${AWS_ECR_REPO}:latest
+	@docker push ${AWS_ACCOUNT}.dkr.ecr.${AWS_ECR_REGION}.amazonaws.com/${AWS_ECR_REPO}:latest
 
 site:
 	@make single MACHINE=site
