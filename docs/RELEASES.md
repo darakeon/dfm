@@ -16,7 +16,7 @@ This is the list of project releases, past and current. To see tasks that are st
 
 ## <a name="14.0.0.0"></a>14.0.0.0 :🐉: <sup>`4`</sup>
 - [ ] Run robots at Lambda
-- [ ] Fix admin python site
+- [x] `241001>241002` Fix admin python site
 - [ ] Make CI run version change
 - [ ] `241002>......` Implement entities limits
 
