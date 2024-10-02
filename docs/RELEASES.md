@@ -15,9 +15,9 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="14.0.0.0"></a>14.0.0.0 :🐉: <sup>`4`</sup>
-- [ ] Run robots at Lambda
 - [ ] Make CI run version change
 - [ ] `241002>......` Implement entities limits
+- [ ] Run robots at Lambda
 - [x] `241001>241002` Fix admin python site
 
 ## <a name="13.1.0.0"></a>13.1.0.0 :🐳: <sup>`5`</sup>
