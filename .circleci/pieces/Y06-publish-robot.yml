@@ -9,10 +9,18 @@
           name: Install make
           command: apk add make
       - run:
+          name: Install aws
+          command: apk add aws-cli
+      - run:
           name: Login
           command: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - run:
-          name: Build images
+          name: Build image
           path: architecture/publish
-          command: make robot_push
-
+          command: make robot
+      - run:
+          name: Push image to AWS
+          path: architecture/publish
+          command: |
+            make aws_login
+            make robot_aws_push
