@@ -17,7 +17,7 @@ This is the list of project releases, past and current. To see tasks that are st
 ## <a name="14.0.0.0"></a>14.0.0.0 :🐉: <sup>`3`</sup>
 - [ ] Fix admin python site
 - [ ] Make CI run version change
-- [ ] Implement entities limits (acc opened, cat enabled, moves/month, active sched)
+- [ ] Implement entities limits
 
 ## <a name="13.1.0.0"></a>13.1.0.0 :🐳: <sup>`5`</sup>
 - [x] `240930>241001` Fix date and currency with wrong localization on site

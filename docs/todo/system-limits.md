@@ -1,0 +1,10 @@
+- [ ] Create Plan entity (only plan free for now)
+- [ ] Add Account opened limit
+- [ ] Add Archive uploads limit / month
+- [ ] Add Category enabled limit
+- [ ] Add Detail limit to Move, Schedule and Line
+- [ ] Review Lines limit to Archive (and move to Plan)
+- [ ] Add Move created limit / month - remember about edit / schedule
+- [ ] Add Order export limit / month
+- [ ] Add Order export Moves qty limit
+- [ ] Add Schedule active limit
