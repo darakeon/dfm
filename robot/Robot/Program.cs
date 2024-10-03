@@ -27,7 +27,8 @@ namespace DFM.Robot
 
 		private static RobotTask getTask(string[] args)
 		{
-			var arg = args.FirstOrDefault();
+			var arg = args.FirstOrDefault()
+			    ?? Environment.GetEnvironmentVariable("TASK");
 
 			if (arg == null)
 				throw new ArgumentException("Not task passed");
