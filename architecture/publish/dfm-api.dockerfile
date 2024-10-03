@@ -1,4 +1,4 @@
-FROM darakeon/netcore-libman as builder
+FROM darakeon/netcore-libman AS builder
 LABEL maintainer="Dara Keon <laboon@darakeon.com>"
 
 COPY core /var/dfm/core
