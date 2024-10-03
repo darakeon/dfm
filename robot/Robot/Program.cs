@@ -8,15 +8,7 @@ namespace DFM.Robot
 	{
 		public static void Main(String[] args)
 		{
-			var arg = args.FirstOrDefault();
-
-			if (arg == null)
-				throw new ArgumentException("Not task passed");
-
-			var task = EnumX.Parse<RobotTask>(arg);
-
-			if (!EnumX.AllValues<RobotTask>().Contains(task))
-				throw new ArgumentException("Invalid task");
+			var task = getTask(args);
 
 			LogJson.Ok($"Starting {task}");
 
@@ -31,6 +23,21 @@ namespace DFM.Robot
 			});
 
 			LogJson.Ok($"Ended {task}");
+		}
+
+		private static RobotTask getTask(string[] args)
+		{
+			var arg = args.FirstOrDefault();
+
+			if (arg == null)
+				throw new ArgumentException("Not task passed");
+
+			var task = EnumX.Parse<RobotTask>(arg);
+
+			if (!EnumX.AllValues<RobotTask>().Contains(task))
+				throw new ArgumentException("Invalid task");
+			
+			return task;
 		}
 	}
 }
