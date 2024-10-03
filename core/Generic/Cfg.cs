@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Immutable;
 using System.IO;
+using System.Text;
 using DFM.Generic.Settings;
 using Microsoft.Extensions.Configuration;
 
@@ -7,33 +9,63 @@ namespace DFM.Generic
 {
 	public class Cfg
 	{
+		private static readonly ImmutableList<String> configTypes =
+			ImmutableList.Create("db", "smtp", "login", "s3", "sqs");
+
 		public static void Init(String environment = null)
 		{
 			var builder = new ConfigurationBuilder()
-				.SetBasePath(Directory.GetCurrentDirectory())
-				.AddJsonFile("appSettings.json", true)
-				.AddJsonFile("db.json", true)
-				.AddJsonFile("smtp.json", true)
-				.AddJsonFile("login.json", true)
-				.AddJsonFile("s3.json", true)
-				.AddJsonFile("sqs.json", true)
-				.AddJsonFile("tips.json", true)
-				;
+				.SetBasePath(Directory.GetCurrentDirectory());
 
-			if (environment != null)
-			{
-				builder
-					.AddJsonFile($"db.{environment}.json", true)
-					.AddJsonFile($"smtp.{environment}.json", true)
-					.AddJsonFile($"login.{environment}.json", true)
-					.AddJsonFile($"s3.{environment}.json", true)
-					.AddJsonFile($"sqs.{environment}.json", true)
-					.AddJsonFile($"tips.{environment}.json", true)
-					;
-			}
+			fromDefaultFiles(builder);
+
+			fromDifferentEnvironment(builder, environment);
+
+			fromBase64EnvVars(builder);
 
 			dic = builder.Build();
 		}
+
+		private static void fromDefaultFiles(IConfigurationBuilder builder)
+		{
+			builder
+				.AddJsonFile("appSettings.json", true)
+				.AddJsonFile("tips.json", true);
+
+			configTypes.ForEach(
+				ct => builder.AddJsonFile($"{ct}.json", true)
+			);
+		}
+
+		private static void fromDifferentEnvironment(IConfigurationBuilder builder, String? environment)
+		{
+			if (environment == null) return;
+
+			configTypes.ForEach(
+				ct => builder.AddJsonFile($"{ct}.{environment}.json", true)
+			);
+		}
+		
+		private static void fromBase64EnvVars(IConfigurationBuilder builder)
+		{
+			foreach (var configType in configTypes)
+			{
+				var envVarName = $"CFG_{configType.ToUpper()}";
+				var envVar = Environment.GetEnvironmentVariable(envVarName);
+
+				if (envVar == null)
+					continue;
+
+				var bytes = Convert.FromBase64String(envVar);
+				var json = Encoding.UTF8.GetString(bytes);
+
+				var filePath = $"/tmp/{configType}.envVar.json";
+				File.WriteAllText(filePath, json);
+
+				builder.AddJsonFile(filePath, true);
+			}
+		}
+
 
 		private static IConfiguration dic;
 
