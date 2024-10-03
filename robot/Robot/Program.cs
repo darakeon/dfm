@@ -18,24 +18,19 @@ namespace DFM.Robot
 			if (!EnumX.AllValues<RobotTask>().Contains(task))
 				throw new ArgumentException("Invalid task");
 
-			log($"Starting {task}");
+			LogJson.Ok($"Starting {task}");
 
 			Connection.Run(() =>
 			{
 				var service = new Service(task);
-				var process = service.Execute();
+				var process = service.Execute(LogJson.Ok);
 				process.Wait();
 
 				if (process.Exception != null)
-					log(process.Exception);
+					LogJson.Error(process.Exception);
 			});
 
-			log($"Ended {task}");
-		}
-
-		static void log(object msg)
-		{
-			Console.WriteLine($"{DateTime.Now:yyyy-MM-dd_HH-mm-ss}\t{msg}");
+			LogJson.Ok($"Ended {task}");
 		}
 	}
 }

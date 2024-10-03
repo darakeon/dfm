@@ -59,12 +59,12 @@ namespace DFM.Robot
 			return "https://dontflymoney.com";
 		}
 
-		public async Task Execute()
+		public async Task Execute(Action<object> logOk)
 		{
 			switch (task)
 			{
 				case RobotTask.Check:
-					Console.WriteLine("Sunariom");
+					logOk("Sunariom");
 					break;
 
 				case RobotTask.Schedules:
