@@ -1309,6 +1309,7 @@ jobs:
           command: |
             make aws_login
             make robot_aws_push
+            make robot_aws_deploy
   publish_midna:
     docker:
       - image: docker
