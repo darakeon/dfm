@@ -25,7 +25,7 @@ namespace DFM.Robot
 			LogJson.Ok($"Ended {task}");
 		}
 
-		private static RobotTask getTask(string[] args)
+		private static RobotTask getTask(String[] args)
 		{
 			var arg = args.FirstOrDefault()
 			    ?? Environment.GetEnvironmentVariable("TASK");
@@ -33,7 +33,12 @@ namespace DFM.Robot
 			if (arg == null)
 				throw new ArgumentException("Not task passed");
 
-			var task = EnumX.Parse<RobotTask>(arg);
+			return getTask(arg);
+		}
+
+		private static RobotTask getTask(String taskName)
+		{
+			var task = EnumX.Parse<RobotTask>(taskName);
 
 			if (!EnumX.AllValues<RobotTask>().Contains(task))
 				throw new ArgumentException("Invalid task");
