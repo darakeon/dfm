@@ -1,28 +1,58 @@
 ﻿using DFM.Generic;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
+using Amazon.Lambda.Core;
+using Amazon.Lambda.RuntimeSupport;
+using Amazon.Lambda.Serialization.SystemTextJson;
 
 namespace DFM.Robot
 {
 	class Program
 	{
-		public static void Main(String[] args)
+		public static async Task Main(String[] args)
 		{
-			var task = getTask(args);
+			Log.Ok("Starting lambda async");
 
-			LogJson.Ok($"Starting {task}");
+			try
+			{
+				var handler = FunctionHandler;
+				await LambdaBootstrapBuilder
+					.Create(handler, new DefaultLambdaJsonSerializer())
+					.Build()
+					.RunAsync();
+			}
+			catch (UriFormatException) // not lambda
+			{
+				var task = getTask(args);
+				main(task);
+			}
+
+			Log.Ok("Ended lambda async");
+		}
+		
+		public static String FunctionHandler(String input, ILambdaContext context)
+		{
+			var task = getTask(input);
+			main(task);
+			return input.ToUpper();
+		}
+
+		private static void main(RobotTask task)
+		{
+			Log.Ok($"Starting {task}");
 
 			Connection.Run(() =>
 			{
 				var service = new Service(task);
-				var process = service.Execute(LogJson.Ok);
+				var process = service.Execute(Log.Ok);
 				process.Wait();
 
 				if (process.Exception != null)
-					LogJson.Error(process.Exception);
+					Log.Error(process.Exception);
 			});
 
-			LogJson.Ok($"Ended {task}");
+			Log.Ok($"Ended {task}");
 		}
 
 		private static RobotTask getTask(String[] args)
@@ -42,7 +72,7 @@ namespace DFM.Robot
 
 			if (!EnumX.AllValues<RobotTask>().Contains(task))
 				throw new ArgumentException("Invalid task");
-			
+
 			return task;
 		}
 	}
