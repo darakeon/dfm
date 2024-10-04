@@ -4,10 +4,28 @@ PURPLE=\033[01;35m
 RESET=\033[00m
 VERSION=$$(git branch --show-current)
 
+-include .env
 
-aws_login:
-	@echo "[default]\nregion = ${AWS_ECR_REGION}\noutput = json" >> ~/.aws/config
-	@echo "[default]\naws_access_key_id = ${AWS_ECR_USER}\naws_secret_access_key = ${AWS_ECR_PASS}" >> ~/.aws/credentials
+
+env:
+	@if [ ! -e .env ] && [ "${AWS_ACCOUNT}" = "" ]; then \
+		echo "AWS_ACCOUNT=" >> .env; \
+		echo "AWS_ECR_REGION=" >> .env; \
+		echo "AWS_ECR_REPO=" >> .env; \
+	fi
+
+
+aws_login: env
+	@if [ "${AWS_ACCOUNT}" = "" ]; then \
+		echo "Fill .env file or set environment variables in the terminal"; \
+		exit 1; \
+	fi
+	@if [ ! -e ~/.aws/config ]; then \
+		echo "[default]\nregion = ${AWS_ECR_REGION}\noutput = json" > ~/.aws/config; \
+	fi
+	@if [ ! -e ~/.aws/credentials ]; then \
+		echo "[default]\naws_access_key_id = ${AWS_ECR_USER}\naws_secret_access_key = ${AWS_ECR_PASS}" >> ~/.aws/credentials; \
+	fi
 	@aws ecr get-login-password --region ${AWS_ECR_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT}.dkr.ecr.${AWS_ECR_REGION}.amazonaws.com
 
 
