@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.Entities;
 using DFM.Generic;
@@ -17,14 +18,14 @@ namespace DFM.Robot
 		private static readonly String name = 
 			Environment.GetEnvironmentVariable(envVarName);
 
-		public static void Run(Action action)
+		public static async Task Run(Func<Task> action)
 		{
 			Cfg.Init(name);
 			PlainText.Initialize();
 
 			try
 			{
-				sessionFactory(() => session(action));
+				await sessionFactory(() => session(action));
 			}
 			catch (Exception e)
 			{
@@ -33,13 +34,13 @@ namespace DFM.Robot
 			}
 		}
 
-		private static void sessionFactory(Action action)
+		private static async Task sessionFactory(Func<Task> action)
 		{
 			SessionFactoryManager.Initialize<UserMap, User>(Cfg.DB);
 
 			try
 			{
-				action();
+				await action();
 			}
 			finally
 			{
@@ -47,13 +48,13 @@ namespace DFM.Robot
 			}
 		}
 
-		private static void session(Action action)
+		private static async Task session(Func<Task> action)
 		{
 			SessionManager.Init(() => sessionName);
 
 			try
 			{
-				action();
+				await action();
 			}
 			finally
 			{

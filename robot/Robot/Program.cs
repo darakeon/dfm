@@ -14,19 +14,22 @@ namespace DFM.Robot
 		{
 			Log.Ok("Starting lambda async");
 
-			try
+			await Connection.Run(async () =>
 			{
-				var handler = FunctionHandler;
-				await LambdaBootstrapBuilder
-					.Create(handler, new DefaultLambdaJsonSerializer())
-					.Build()
-					.RunAsync();
-			}
-			catch (UriFormatException) // not lambda
-			{
-				var task = getTask(args);
-				main(task);
-			}
+				try
+				{
+					var handler = FunctionHandler;
+					await LambdaBootstrapBuilder
+						.Create(handler, new DefaultLambdaJsonSerializer())
+						.Build()
+						.RunAsync();
+				}
+				catch (UriFormatException) // not lambda
+				{
+					var task = getTask(args);
+					main(task);
+				}
+			});
 
 			Log.Ok("Ended lambda async");
 		}
@@ -42,15 +45,12 @@ namespace DFM.Robot
 		{
 			Log.Ok($"Starting {task}");
 
-			Connection.Run(() =>
-			{
-				var service = new Service(task);
-				var process = service.Execute(Log.Ok);
-				process.Wait();
+			var service = new Service(task);
+			var process = service.Execute(Log.Ok);
+			process.Wait();
 
-				if (process.Exception != null)
-					Log.Error(process.Exception);
-			});
+			if (process.Exception != null)
+				Log.Error(process.Exception);
 
 			Log.Ok($"Ended {task}");
 		}
