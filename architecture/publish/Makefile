@@ -6,12 +6,15 @@ VERSION=$$(git branch --show-current)
 
 -include .env
 
+AWS_IMAGE=${AWS_ACCOUNT}.dkr.ecr.${AWS_ECR_REGION}.amazonaws.com/${AWS_ECR_REPO}:latest
+
 
 env:
 	@if [ ! -e .env ] && [ "${AWS_ACCOUNT}" = "" ]; then \
 		echo "AWS_ACCOUNT=" >> .env; \
 		echo "AWS_ECR_REGION=" >> .env; \
 		echo "AWS_ECR_REPO=" >> .env; \
+		echo "AWS_LAMBDA_NAME=" >> .env; \
 	fi
 
 
@@ -40,8 +43,20 @@ robot_push: robot
 	@make push MACHINE=robot
 
 robot_aws_push: robot
-	@docker tag darakeon/dfm-robot:latest ${AWS_ACCOUNT}.dkr.ecr.${AWS_ECR_REGION}.amazonaws.com/${AWS_ECR_REPO}:latest
-	@docker push ${AWS_ACCOUNT}.dkr.ecr.${AWS_ECR_REGION}.amazonaws.com/${AWS_ECR_REPO}:latest
+	@docker tag darakeon/dfm-robot:latest ${AWS_IMAGE}
+	@docker push ${AWS_IMAGE}
+
+robot_aws_deploy:
+	@aws lambda update-function-code \
+		--function-name ${AWS_LAMBDA_NAME} \
+		--image-uri ${AWS_IMAGE} \
+		--publish \
+		--region ${AWS_ECR_REGION} \
+		| grep StateReasonCode \
+		| sed 's/"//g' \
+		| sed 's/StateReasonCode://g' \
+		| sed 's/,//g' \
+		| sed 's/ //g'
 
 site:
 	@make single MACHINE=site
