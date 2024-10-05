@@ -84,6 +84,14 @@ robot_aws_deploy:
 		| sed 's/,//g' \
 		| sed 's/ //g'
 
+robot_aws_invoke_check:
+	@aws lambda invoke \
+		--cli-binary-format raw-in-base64-out \
+		--function-name ${AWS_LAMBDA_NAME} \
+		--invocation-type Event \
+		--payload '"check"' \
+		response.json
+
 site:
 	@make single MACHINE=site
 
