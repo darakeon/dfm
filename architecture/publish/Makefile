@@ -14,7 +14,17 @@ env:
 		echo "AWS_ACCOUNT=" >> .env; \
 		echo "AWS_ECR_REGION=" >> .env; \
 		echo "AWS_ECR_REPO=" >> .env; \
+		echo "" >> .env; \
 		echo "AWS_LAMBDA_NAME=" >> .env; \
+		echo "AWS_LAMBDA_ROLE=" >> .env; \
+		echo "AWS_SUBNETS=" >> .env; \
+		echo "AWS_SG=" >> .env; \
+		echo "" >> .env; \
+		echo "CFG_DB=" >> .env; \
+		echo "CFG_LOGIN=" >> .env; \
+		echo "CFG_S3=" >> .env; \
+		echo "CFG_SMTP=" >> .env; \
+		echo "CFG_SQS=" >> .env; \
 	fi
 
 
@@ -41,6 +51,22 @@ robot:
 
 robot_push: robot
 	@make push MACHINE=robot
+
+robot_aws_create:
+	@aws lambda create-function \
+		--function-name ${AWS_LAMBDA_NAME} \
+		--role arn:aws:iam::${AWS_ACCOUNT}:role/${AWS_LAMBDA_ROLE} \
+		--region ${AWS_ECR_REGION} \
+		--package-type Image \
+		--code ImageUri=${AWS_IMAGE} \
+		--vpc-config SubnetIds=${AWS_SUBNETS},SecurityGroupIds=${AWS_SG},Ipv6AllowedForDualStack=false \
+		--environment Variables={CFG_DB=${CFG_DB},CFG_LOGIN=${CFG_LOGIN},CFG_S3=${CFG_S3},CFG_SMTP=${CFG_SMTP},CFG_SQS=${CFG_SQS}} \
+		--timeout 600 \
+		| grep StateReasonCode \
+		| sed 's/"//g' \
+		| sed 's/StateReasonCode://g' \
+		| sed 's/,//g' \
+		| sed 's/ //g'
 
 robot_aws_push: robot
 	@docker tag darakeon/dfm-robot:latest ${AWS_IMAGE}
