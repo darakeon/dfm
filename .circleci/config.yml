@@ -1118,7 +1118,7 @@ jobs:
               git add README.md
               git add terms.html
               git commit -m "legal: add new contract to git"
-              git push
+              git push --force-with-lease
             fi
       - store_artifacts:
           path: terms/README.md
