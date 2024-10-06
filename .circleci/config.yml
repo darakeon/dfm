@@ -1115,10 +1115,16 @@ jobs:
               echo "Nothing to commit"
             else
               source config-git
+
+              git checkout -b feature/terms
+
               git add README.md
               git add terms.html
               git commit -m "legal: add new contract to git"
-              git push --force-with-lease
+
+              git push -u origin feature/terms
+              gh pr create --assignee darakeon --base $CIRCLE_BRANCH --fill --label legal
+              gh pr list --base $CIRCLE_BRANCH --head feature/terms --state open --json id
             fi
       - store_artifacts:
           path: terms/README.md
