@@ -8,3 +8,6 @@
 - [ ] Add Order export limit / month
 - [ ] Add Order export Moves qty limit
 - [ ] Add Schedule active limit
+- [ ] Add plan to admin
+- [ ] Add warning about schedule not working because limit achieved
+- [ ] Add screen with limits
