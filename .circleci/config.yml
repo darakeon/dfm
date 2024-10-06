@@ -1929,6 +1929,7 @@ workflows:
               only:
                 - /^feature/db/.+$/
                 - /^fix/db/.+$/
+                - /^feature/terms$/
       - test_ci:
           requires:
             - trufflehog
