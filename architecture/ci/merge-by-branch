@@ -1,0 +1,9 @@
+#!/bin/bash
+
+NEW_BRANCH=$1
+LABEL=$1
+
+git checkout -b $NEW_BRANCH
+git push -u origin $NEW_BRANCH
+export PR=$(gh pr create --assignee $CIRCLE_PROJECT_USERNAME --base $CIRCLE_BRANCH --fill --label $LABEL | sed "s/http:\/\/github.com\/${CIRCLE_PROJECT_USERNAME}\/${CIRCLE_PROJECT_REPONAME}\/pull\///g")
+gh pr merge --auto --rebase $PR
