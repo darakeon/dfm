@@ -1123,8 +1123,8 @@ jobs:
               git commit -m "legal: add new contract to git"
 
               git push -u origin feature/terms
-              gh pr create --assignee darakeon --base $CIRCLE_BRANCH --fill --label legal
-              gh pr list --base $CIRCLE_BRANCH --head feature/terms --state open --json id
+              export PR=$(gh pr create --assignee darakeon --base $CIRCLE_BRANCH --fill --label legal | sed "s/http:\/\/github.com\/${CIRCLE_PROJECT_USERNAME}\/${CIRCLE_PROJECT_REPONAME}\/pull\///g")
+              gh pr merge --auto --rebase $PR
             fi
       - store_artifacts:
           path: terms/README.md
