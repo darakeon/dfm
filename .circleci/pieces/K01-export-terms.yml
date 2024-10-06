@@ -48,10 +48,12 @@
               echo "Nothing to commit"
             else
               source config-git
+
               git add README.md
               git add terms.html
               git commit -m "legal: add new contract to git"
-              git push
+
+              merge-by-branch feature/terms legal
             fi
       - store_artifacts:
           path: terms/README.md
