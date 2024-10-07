@@ -32,6 +32,10 @@ namespace DFM.Entities
 
 		public virtual Int32 MiscDna { get; set; }
 
+
+		public virtual Plan Plan { get; set; }
+
+
 		public virtual Boolean WrongPassExceeded()
 		{
 			return WrongLogin >= Cfg.PasswordErrorLimit;

@@ -186,6 +186,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			);
 
 			createContract();
+			createPlan();
 
 			PlainText.Initialize(runPath);
 		}
@@ -199,6 +200,25 @@ namespace DFM.BusinessLogic.Tests.Steps
 			};
 
 			repos.Contract.SaveOrUpdate(contract);
+		}
+
+		private static void createPlan()
+		{
+			var plan = new Plan
+			{
+				Name = "Test",
+				AccountOpened = 0,
+				CategoryEnabled = 0,
+				ScheduleActive = 0,
+				MoveByAccountByMonth = 0,
+				DetailByParent = 0,
+				ArchiveUploadMonth = 0,
+				LineByArchive = 0,
+				OrderByMonth = 0,
+				MoveByOrder = 0,
+			};
+
+			repos.Plan.SaveOrUpdate(plan);
 		}
 
 		[AfterTestRun]

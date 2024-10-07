@@ -1,4 +1,4 @@
-- [ ] Create Plan entity (only plan free for now)
+- [x] Create Plan entity (only plan free for now)
 - [ ] Add Account opened limit
 - [ ] Add Archive uploads limit / month
 - [ ] Add Category enabled limit
