@@ -72,7 +72,7 @@
   <ItemGroup>
     <PackageReference Include="Amazon.Lambda.Core" Version="2.3.0" />
     <PackageReference Include="Amazon.Lambda.RuntimeSupport" Version="1.11.0" />
-    <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.4.1" />
+    <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.4.3" />
     <PackageReference Include="MySql.Data" Version="9.0.0" />
     <PackageReference Include="System.Text.Json" Version="8.0.4" />
   </ItemGroup>
