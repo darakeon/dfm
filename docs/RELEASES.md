@@ -14,7 +14,8 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐑: at least one little change, as a change at an existing feature (increases third number)
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="14.0.0.0"></a>14.0.0.0 :🐉: <sup>`4`</sup>
+## <a name="14.0.0.0"></a>14.0.0.0 :🐉: <sup>`5`</sup>
+- [ ] Avoid deploy terms.dfm before general update
 - [ ] Make CI run version change
 - [ ] `241002>......` Implement entities limits
 - [x] `241002>241005` Run robots at Lambda
