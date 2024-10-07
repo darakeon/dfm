@@ -25,6 +25,26 @@ async function createContract() {
 	)
 }
 
+async function createPlan() {
+	await execute(
+		`insert into plan (
+			name, priceCents,
+			accountOpened, categoryEnabled,
+			scheduleActive,
+			moveByAccountByMonth, detailByParent,
+			archiveUploadMonth, lineByArchive,
+			orderByMonth, moveByOrder
+		) values (
+			'browser', 0,
+			20, 30,
+			50,
+			70, 30,
+			5, 500,
+			2, 500
+		)`
+	)
+}
+
 async function createUserIfNotExists(email, props) {
 	const users = await getUser(email)
 
@@ -112,10 +132,10 @@ async function createUser(email, active, wizard, creation) {
 	await execute(
 		`insert into control (
 				creation, active, isAdm, isRobot,
-				wrongLogin, removalWarningSent, robotCheck
+				wrongLogin, removalWarningSent, robotCheck, plan_id
 			) values (
 				datetime('now','${creation??0} day'), ${active?1:0}, 0, 0,
-				0, 0, datetime('now')
+				0, 0, datetime('now'), 1
 			)`
 	)
 
@@ -518,6 +538,7 @@ module.exports = {
 	password,
 	language,
 	createContract,
+	createPlan,
 	createUserIfNotExists,
 	cleanupTickets,
 	createToken,

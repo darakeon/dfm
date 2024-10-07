@@ -30,7 +30,7 @@ cd ..
 
 call %TESTS_PATH%\scripts\check-server .
 
-call node contract.js
+call node setup.js
 
 REM Run sequentially because of page sessions
 REM There are tests that login and logoff
