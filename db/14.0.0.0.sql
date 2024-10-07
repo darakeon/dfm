@@ -21,7 +21,10 @@ create table plan (
 	MoveByOrder int not null,
 
 	constraint PK_Plan
-		primary key (ID)
+		primary key (ID),
+
+	constraint UK_Plan
+		unique key (Name)
 );
 
 insert into plan (
