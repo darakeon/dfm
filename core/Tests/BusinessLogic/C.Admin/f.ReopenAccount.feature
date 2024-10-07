@@ -51,3 +51,20 @@ Scenario: Cf07. Not reopen an Account if not signed last contract
 		But there is a new contract
 	When I try to reopen the account
 	Then I will receive this core error: NotSignedLastContract
+
+Scenario: Cf08. Not reopen an Account above limits
+	Given these limits in user plan
+			| AccountOpened |
+			| 3             |
+		And I have these accounts
+			| Name      |
+			| Account 1 |
+			| Account 2 |
+			| Account 3 |
+		And I close the account Account 1
+		And I have these accounts
+			| Name      |
+			| Account 4 |
+	When I try to reopen the account
+	Then I will receive this core error: PlanLimitAccountOpenedAchieved
+		And the account will not be open

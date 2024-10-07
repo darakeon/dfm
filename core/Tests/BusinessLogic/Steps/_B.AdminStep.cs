@@ -466,6 +466,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var user = repos.User.GetByEmail(current.Email);
 			var account = repos.Account.GetByUrl(url, user);
 
+			accountUrl = url;
+
 			if (account.Open)
 			{
 				var hasMoves = repos.Move.Any(
@@ -565,12 +567,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the account will be open")]
-		public void ThenTheAccountWillBeOpen()
+		[Then(@"the account will (not )?be open")]
+		public void ThenTheAccountWillBeOpen(Boolean opened)
 		{
 			var url = accountUrl ?? accountInfo?.Name.IntoUrl();
 			var account = service.Admin.GetAccount(url);
-			Assert.That(account.IsOpen, Is.True);
+			Assert.That(account.IsOpen, Is.EqualTo(opened));
 		}
 		#endregion
 		#endregion Account

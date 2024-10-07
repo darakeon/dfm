@@ -131,6 +131,7 @@
 		"OrderCancelNoSuccessExpired": "Order cannot be canceled after being successfully exported (even after it expires)",
 		"OrderDownloadOnlySuccess": "Order cannot be downloaded before successfully exported or after expired",
 		"OrderFileDeleted": "Order file was deleted, retry making another order",
+		"PlanLimitAccountOpenedAchieved": "Limit for Accounts opened achieved. To create or reopen Accounts you need to delete or close some of the opened Accounts.",
 		"": null
 	},
 	"pt-BR": {
@@ -265,6 +266,7 @@
 		"OrderCancelNoSuccessExpired": "Pedido não pode ser cancelado após ser exportado com sucesso (mesmo após expirar)",
 		"OrderDownloadOnlySuccess": "Pedido não pode ser baixado antes de ser exportado com sucesso ou após expirado",
 		"OrderFileDeleted": "Arquivo do pedido excluído, tente realizar um novo pedido",
+		"PlanLimitAccountOpenedAchieved": "O limite de Contas abertas atingido. Para criar ou reabrir Contas é necessário excluir ou fechar alguma das Contas abertas.",
 		"": null
 	}
 }

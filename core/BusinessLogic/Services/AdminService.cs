@@ -39,11 +39,15 @@ namespace DFM.BusinessLogic.Services
 
 		public void CreateAccount(AccountInfo info)
 		{
+			var user = parent.Auth.GetCurrent();
+
 			var account = new Account
 			{
-				User = parent.Auth.GetCurrent(),
+				User = user,
 				Open = true,
 			};
+
+			repos.Account.ValidatePlanLimit(user);
 
 			saveAccount(info, account);
 		}
@@ -115,7 +119,8 @@ namespace DFM.BusinessLogic.Services
 
 		public void ReopenAccount(String url)
 		{
-			parent.Auth.VerifyUser();
+			var user = parent.Auth.VerifyUser();
+			repos.Account.ValidatePlanLimit(user);
 
 			inTransaction("ReopenAccount", () =>
 			{

@@ -127,5 +127,16 @@ namespace DFM.BusinessLogic.Repositories
 				.OrderBy(a => a.Name)
 				.List;
 		}
+
+		public void ValidatePlanLimit(User user)
+		{
+			var count = Count(
+				a => a.User == user
+					&& a.Open
+			);
+
+			if (count >= user.Control.Plan.AccountOpened)
+				throw Error.PlanLimitAccountOpenedAchieved.Throw();
+		}
 	}
 }

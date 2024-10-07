@@ -6,7 +6,9 @@ namespace DFM.BusinessLogic.Repositories
 	{
 		public Plan GetFree()
 		{
-			return SingleOrDefault(p => p.PriceCents == 0);
+			return NewQuery()
+				.Where(p => p.PriceCents == 0)
+				.FirstOrDefault;
 		}
 	}
 }

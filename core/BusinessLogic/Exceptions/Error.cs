@@ -128,6 +128,8 @@ namespace DFM.BusinessLogic.Exceptions
 		OrderCancelNoSuccessExpired = 1105,
 		OrderDownloadOnlySuccess = 1106,
 		OrderFileDeleted = 1107,
+
+		PlanLimitAccountOpenedAchieved = 1201,
 	}
 
 	public static class ErrorX
