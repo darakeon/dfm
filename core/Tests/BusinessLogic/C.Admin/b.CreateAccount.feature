@@ -200,3 +200,36 @@ Scenario: Cb20. Save Account without currency for use currency enabled
 	When I try to save the account
 	Then I will receive no core error
 		And the account will be saved
+
+Scenario: Cb21. Save Account above limits
+	Given these limits in user plan
+			| AccountOpened |
+			| 3             |
+		And I have these accounts
+			| Name      |
+			| Account 1 |
+			| Account 2 |
+			| Account 3 |
+	Given I have this account to create
+			| Name      |
+			| Account 4 |
+	When I try to save the account
+	Then I will receive this core error: PlanLimitAccountOpenedAchieved
+		And the account will not be saved
+
+Scenario: Cb22. Save Account after close one account
+	Given these limits in user plan
+			| AccountOpened |
+			| 3             |
+		And I have these accounts
+			| Name      |
+			| Account 1 |
+			| Account 2 |
+			| Account 3 |
+		And I close the account Account 3
+	Given I have this account to create
+			| Name      |
+			| Account 4 |
+	When I try to save the account
+	Then I will receive no core error
+		And the account will be saved

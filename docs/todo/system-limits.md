@@ -1,5 +1,5 @@
 - [x] Create Plan entity (only plan free for now)
-- [ ] Add Account opened limit - create / open
+- [x] Add Account opened limit - create / open
 - [ ] Add Archive uploads limit / month - upload
 - [ ] Add Category enabled limit - create / enable
 - [ ] Add Detail limit to Move, Schedule and Line - create, edit, schedule, upload
