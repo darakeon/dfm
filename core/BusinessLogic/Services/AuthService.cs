@@ -35,6 +35,7 @@ namespace DFM.BusinessLogic.Services
 
 				var user = info.GetEntity();
 				user.Control.MiscDna = Misc.RandomDNA();
+				user.Control.Plan = repos.Plan.GetFree();
 
 				user = repos.User.Save(user);
 

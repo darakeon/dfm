@@ -15,6 +15,6 @@ cd ../
 
 echo
 echo "Initializing DB data"
-node contract.js
+node setup.js
 
 npm test $1
