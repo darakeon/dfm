@@ -7,3 +7,11 @@ db.createContract()
 	.catch(e => {
 		process.exit(1)
 	})
+
+db.createPlan()
+	.then(() => {
+		console.log('plan created!')
+	})
+	.catch(e => {
+		process.exit(1)
+	})
