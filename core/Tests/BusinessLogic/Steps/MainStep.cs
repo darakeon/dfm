@@ -12,6 +12,7 @@ using Keon.NHibernate.Schema;
 using Keon.NHibernate.Sessions;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Tests.Steps
@@ -106,6 +107,19 @@ namespace DFM.BusinessLogic.Tests.Steps
 			);
 
 			db.Execute(() => repos.Control.RequestWipe(user));
+		}
+
+		[Given(@"these limits in user plan")]
+		public void GivenTheseLimitsInUserPlan(Table table)
+		{
+			var plan = table.CreateInstance<Plan>();
+			plan.Name = $"Plan {scenarioCode}";
+			repos.Plan.SaveOrUpdate(plan);
+
+			var user = repos.User.GetByEmail(userEmail);
+			user.Control.Plan = plan;
+
+			repos.Control.SaveOrUpdate(user.Control);
 		}
 
 		[When(@"test user login")]
@@ -207,7 +221,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var plan = new Plan
 			{
 				Name = "Test",
-				AccountOpened = 0,
+				AccountOpened = 10,
 				CategoryEnabled = 0,
 				ScheduleActive = 0,
 				MoveByAccountByMonth = 0,
