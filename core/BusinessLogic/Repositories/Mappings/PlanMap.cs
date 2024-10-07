@@ -11,7 +11,8 @@ public class PlanMap : IAutoMappingOverride<Plan>
 	public void Override(AutoMapping<Plan> mapping)
 	{
 		mapping.Map(l => l.Name)
-			.Length(MaxLen.PlanName);
+			.Length(MaxLen.PlanName)
+			.UniqueKey("UK_Plan");
 
 		mapping.IgnoreProperty(l => l.Price);
 	}
