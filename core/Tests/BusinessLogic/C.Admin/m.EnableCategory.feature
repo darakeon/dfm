@@ -41,3 +41,20 @@ Scenario: Cm06. Enable Category without signing contract
 		But there is a new contract
 	When I try to enable the category
 	Then I will receive this core error: NotSignedLastContract
+
+Scenario: Cm07. Not reopen an Category above limits
+	Given these limits in user plan
+			| CategoryEnabled |
+			| 4               |
+		And I have these categories
+			| Name       |
+			| Category 1 |
+			| Category 2 |
+			| Category 3 |
+		And I disable the category Category 1
+		And I have these categories
+			| Name       |
+			| Category 4 |
+	When I try to enable the category
+	Then I will receive this core error: PlanLimitCategoryEnabledAchieved
+		And the category will not be enabled

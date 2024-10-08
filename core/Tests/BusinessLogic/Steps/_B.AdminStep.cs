@@ -831,12 +831,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the category will be enabled")]
-		public void ThenTheCategoryWillBeEnabled()
+		[Then(@"the category will (not )?be enabled")]
+		public void ThenTheCategoryWillBeEnabled(Boolean enabled)
 		{
 			var user = repos.User.GetByEmail(current.Email);
 			var category = repos.Category.GetByName(categoryName, user);
-			Assert.That(category.Active, Is.True);
+			Assert.That(category.Active, Is.EqualTo(enabled));
 		}
 		#endregion
 
@@ -856,6 +856,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var user = repos.User.GetByEmail(current.Email);
 			var category = repos.Category.GetByName(name, user);
+
+			categoryName = name;
 
 			if (category.Active)
 				service.Admin.DisableCategory(name);

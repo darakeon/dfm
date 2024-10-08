@@ -90,3 +90,36 @@ Scenario: Ci09. Not save Category without signing contract
 		But there is a new contract
 	When I try to save the category
 	Then I will receive this core error: NotSignedLastContract
+
+Scenario: Ci10. Save Category above limits
+	Given these limits in user plan
+			| CategoryEnabled |
+			| 3               |
+		And I have these categories
+			| Name       |
+			| Category 1 |
+			| Category 2 |
+			| Category 3 |
+	Given I have this category to create
+			| Name       |
+			| Category 4 |
+	When I try to save the category
+	Then I will receive this core error: PlanLimitCategoryEnabledAchieved
+		And the category will not be saved
+
+Scenario: Ci11. Save Category after close one category
+	Given these limits in user plan
+			| CategoryEnabled |
+			| 3               |
+		And I have these categories
+			| Name       |
+			| Category 1 |
+			| Category 2 |
+			| Category 3 |
+		And I disable the category Category 3
+	Given I have this category to create
+			| Name       |
+			| Category 4 |
+	When I try to save the category
+	Then I will receive no core error
+		And the category will be saved
