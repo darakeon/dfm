@@ -130,6 +130,7 @@ namespace DFM.BusinessLogic.Exceptions
 		OrderFileDeleted = 1107,
 
 		PlanLimitAccountOpenedAchieved = 1201,
+		PlanLimitCategoryEnabledAchieved = 1202,
 	}
 
 	public static class ErrorX
