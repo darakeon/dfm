@@ -222,7 +222,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			{
 				Name = "Test",
 				AccountOpened = 10,
-				CategoryEnabled = 0,
+				CategoryEnabled = 10,
 				ScheduleActive = 0,
 				MoveByAccountByMonth = 0,
 				DetailByParent = 0,

@@ -93,5 +93,16 @@ namespace DFM.BusinessLogic.Repositories
 
 			return query.OrderBy(a => a.Name).List;
 		}
+
+		public void ValidatePlanLimit(User user)
+		{
+			var count = Count(
+				c => c.User == user
+					&& c.Active
+			);
+
+			if (count >= user.Control.Plan.CategoryEnabled)
+				throw Error.PlanLimitCategoryEnabledAchieved.Throw();
+		}
 	}
 }
