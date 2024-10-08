@@ -166,9 +166,12 @@ namespace DFM.BusinessLogic.Services
 
 		public void CreateCategory(CategoryInfo info)
 		{
+			var user = parent.Auth.GetCurrent();
+			repos.Category.ValidatePlanLimit(user);
+
 			var category = new Category
 			{
-				User = parent.Auth.GetCurrent()
+				User = user
 			};
 
 			saveCategory(info, category);
@@ -236,8 +239,10 @@ namespace DFM.BusinessLogic.Services
 
 		public void EnableCategory(String name)
 		{
-			parent.Auth.VerifyUser();
+			var user = parent.Auth.VerifyUser();
 			verifyCategoriesEnabled();
+
+			repos.Category.ValidatePlanLimit(user);
 
 			var category = GetCategoryEntity(name);
 

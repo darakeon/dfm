@@ -132,6 +132,7 @@
 		"OrderDownloadOnlySuccess": "Order cannot be downloaded before successfully exported or after expired",
 		"OrderFileDeleted": "Order file was deleted, retry making another order",
 		"PlanLimitAccountOpenedAchieved": "Limit for Accounts opened achieved. To create or reopen Accounts you need to delete or close some of the opened Accounts.",
+		"PlanLimitCategoryEnabledAchieved": "Limit for Categories enabled achieved. To create or enable Categories you need to disable some of the enabled Categories.",
 		"": null
 	},
 	"pt-BR": {
@@ -267,6 +268,7 @@
 		"OrderDownloadOnlySuccess": "Pedido não pode ser baixado antes de ser exportado com sucesso ou após expirado",
 		"OrderFileDeleted": "Arquivo do pedido excluído, tente realizar um novo pedido",
 		"PlanLimitAccountOpenedAchieved": "O limite de Contas abertas atingido. Para criar ou reabrir Contas é necessário excluir ou fechar alguma das Contas abertas.",
+		"PlanLimitCategoryEnabledAchieved": "O limite de Categorias ativas atingido. Para criar ou reativar Categorias é necessário desativar alguma das Categorias ativar.",
 		"": null
 	}
 }
