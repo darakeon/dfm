@@ -103,7 +103,7 @@ namespace DFM.MVC.Controllers
 
 			model.ReopenAccount(id);
 
-			return RedirectToAction("Index");
+			return RedirectToAction("ListClosed");
 		}
 	}
 }
