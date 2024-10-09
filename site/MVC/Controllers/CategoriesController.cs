@@ -32,7 +32,7 @@ namespace DFM.MVC.Controllers
 		{
 			model.Type = OperationType.Creation;
 
-			return createEditForHtmlForm(model);
+			return createEdit(model);
 		}
 
 		[HttpGetAndHead]
@@ -50,17 +50,15 @@ namespace DFM.MVC.Controllers
 		public IActionResult Edit(String id, CategoriesCreateEditModel model)
 		{
 			model.Type = OperationType.Edition;
-			return createEditForHtmlForm(model);
+			return createEdit(model);
 		}
 
-		private IActionResult createEditForHtmlForm(CategoriesCreateEditModel model)
+		private IActionResult createEdit(CategoriesCreateEditModel model)
 		{
 			if (ModelState.IsValid)
 			{
-				var error = model.CreateEdit();
-
-				if (error != null)
-					ModelState.AddModelError("Category.Name", HttpContext.Translate(error));
+				var errors = model.CreateEdit();
+				addErrors(errors);
 			}
 
 			if (ModelState.IsValid)
