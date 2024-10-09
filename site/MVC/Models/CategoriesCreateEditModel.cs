@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
 using DFM.Entities.Enums;
@@ -23,8 +24,10 @@ namespace DFM.MVC.Models
 
 		public CategoryInfo Category { get; set; }
 
-		internal CoreError CreateEdit()
+		internal List<String> CreateEdit()
 		{
+			var errors = new List<String>();
+
 			try
 			{
 				if (Type == OperationType.Creation)
@@ -34,11 +37,10 @@ namespace DFM.MVC.Models
 			}
 			catch (CoreError e)
 			{
-				if (e.Type != Error.CategoryAlreadyExists)
-					return e;
+				errors.Add(translator[e]);
 			}
 
-			return null;
+			return errors;
 		}
 	}
 }
