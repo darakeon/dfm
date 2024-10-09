@@ -61,7 +61,7 @@
     <PackageReference Include="prometheus-net.AspNetCore" Version="8.2.1" />
     <PackageReference Include="prometheus-net.DotNetRuntime" Version="4.4.1" />
     <PackageReference Include="System.IO.Pipelines" Version="8.0.0" />
-    <PackageReference Include="System.Text.Json" Version="8.0.4" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
   </ItemGroup>
 
   <ItemGroup>
