@@ -777,9 +777,24 @@ namespace DFM.BusinessLogic.Tests.Steps
 			csvContent = File.ReadAllText(fakeS3Path);
 		}
 
+		[Given(@"archive is from (\d+) month\(s\) ago")]
+		public void GivenArchiveIsFromMonthsAgo(Int32 months)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+
+			var archive = repos.Archive
+				.SingleOrDefault(a => a.User == user);
+
+			archive.Uploaded = DateTime.Today.AddMonths(-months);
+
+			repos.Archive.SaveOrUpdate(archive);
+		}
+
 		[When(@"import moves file")]
 		public void WhenImportMovesFile()
 		{
+			whenStart = DateTime.UtcNow;
+
 			try
 			{
 				service.Attendant.ImportMovesFile(csvName, csvContent);
@@ -796,7 +811,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var user = repos.User.GetByEmail(current.Email);
 
 			var archive = repos.Archive
-				.SingleOrDefault(a => a.User == user);
+				.SingleOrDefault(
+					a => a.User == user
+						&& a.Uploaded >= whenStart
+				);
 
 			Assert.That(archive, Is.Not.Null);
 			Assert.That(archive.Uploaded, Is.Not.EqualTo(DateTime.MinValue));
@@ -828,7 +846,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var user = repos.User.GetByEmail(userEmail);
 
 			var archive = repos.Archive
-				.SingleOrDefault(a => a.User == user);
+				.SingleOrDefault(
+					a => a.User == user
+						&& a.Uploaded >= whenStart
+				);
 
 			var lineIds = archive.LineList
 				.Select(l => l.ID)
@@ -860,7 +881,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var user = repos.User.GetByEmail(current.Email);
 
 			var archive = repos.Archive
-				.SingleOrDefault(a => a.User == user);
+				.SingleOrDefault(
+					a => a.User == user
+						&& a.Uploaded >= whenStart
+				);
 
 			Assert.That(archive, Is.Null);
 		}

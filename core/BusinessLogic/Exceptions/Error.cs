@@ -131,6 +131,7 @@ namespace DFM.BusinessLogic.Exceptions
 
 		PlanLimitAccountOpenedAchieved = 1201,
 		PlanLimitCategoryEnabledAchieved = 1202,
+		PlanLimitArchiveUploadMonthAchieved = 1206,
 	}
 
 	public static class ErrorX
