@@ -1194,3 +1194,26 @@ Scenario: Ea68. Save move in with detailed unique value for enabled conversion
 		And the accountIn value will change in 1
 		And the month-category-accountIn value will change in 1
 		And the year-category-accountIn value will change in 1
+
+Scenario: Ea69. Save with Details above limits
+	Given these limits in user plan
+			| DetailByParent |
+			| 3              |
+		And I have this move to create
+			| Description         | Date       | Nature | Value |
+			| Move {scenarioCode} | 2024-10-10 | Out    |       |
+		And the move has this details
+			| Description | Amount | Value |
+			| Detail 1    | 1      | 10    |
+			| Detail 2    | 2      | 20    |
+			| Detail 3    | 3      | 30    |
+			| Detail 4    | 4      | 40    |
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+	When I try to save the move
+	Then I will receive this core error: PlanLimitDetailByParentAchieved
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
