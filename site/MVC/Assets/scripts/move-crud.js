@@ -32,6 +32,10 @@ $(document).ready(function () {
 
 		nextTrInvisible.removeClass('hidden')
 		nextTrInvisible.find('.hidden-send').val('True')
+
+		if (detailTable.find('tr:visible').length >= $(this).data('limit')) {
+			$(this).prop('disabled', true)
+		}
 	})
 
 	$('.btn-remove-detail').click(function () {
@@ -42,6 +46,10 @@ $(document).ready(function () {
 		tr.find('.detail-description').val('')
 		tr.find('.detail-amount').val('1')
 		tr.find('.detail-value').val('0')
+
+		if ($('.btn-add-detail').prop('disabled')) {
+			$('.btn-add-detail').prop('disabled', false)
+		}
 	})
 
 	$('.combo-account').change(function () {
