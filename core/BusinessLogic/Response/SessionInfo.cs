@@ -32,6 +32,8 @@ namespace DFM.BusinessLogic.Response
 
 			Wizard = user.Settings.Wizard;
 
+			PlanLimitDetailByParent = user.Control.Plan.DetailByParent;
+
 			var age = DateTime.UtcNow - user.Control.Creation;
 			Age = (Int32)age.TotalDays;
 
@@ -67,6 +69,8 @@ namespace DFM.BusinessLogic.Response
 		public Boolean UseCurrency { get; }
 
 		public Boolean Wizard { get; }
+
+		public Int32 PlanLimitDetailByParent { get; }
 
 		public Int32 Age { get; }
 		public ActivateWarningLevel ActivateWarning { get; }

@@ -129,6 +129,8 @@ namespace DFM.Authentication
 		public Boolean SendMoveEmail => session?.SendMoveEmail ?? Defaults.SettingsSendMoveEmail;
 		public Boolean UseCurrency => session?.UseCurrency ?? Defaults.SettingsUseCurrency;
 
+		public Int32 PlanLimitDetailByParent => session?.PlanLimitDetailByParent ?? 0;
+
 		public Boolean Wizard => session?.Wizard ?? false;
 
 		public ActivateWarningLevel ActivateWarning =>
