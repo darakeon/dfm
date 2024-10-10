@@ -15,7 +15,7 @@ namespace DFM.API.Models
 			Move = money.GetMove(guid);
 		}
 
-		public bool IsUsingCategories { get; }
+		public Boolean IsUsingCategories { get; }
 		public MoveInfo Move { get; set; }
 
 		public void Save(MoveInfo info)
