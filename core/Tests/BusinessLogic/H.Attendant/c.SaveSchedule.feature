@@ -639,3 +639,23 @@ Scenario: Hc41. Not save if not signed last contract
 		But there is a new contract
 	When I try to save the schedule
 	Then I will receive this core error: NotSignedLastContract
+
+Scenario: Hc42. Save with details above limits
+	Given these limits in user plan
+			| DetailByParent |
+			| 3              |
+		And I have this schedule to create
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da25   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
+		And the schedule has this details
+			| Description | Amount | Value |
+			| Detail 1    | 1      | 10    |
+			| Detail 2    | 2      | 20    |
+			| Detail 3    | 3      | 30    |
+			| Detail 4    | 4      | 40    |
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+	When I try to save the schedule
+	Then I will receive this core error: PlanLimitDetailByParentAchieved
+		And the schedule will not be saved
