@@ -421,7 +421,7 @@ namespace DFM.BusinessLogic.Services
 
 			foreach (var line in lines)
 			{
-				line.Scheduled = DateTime.Now;
+				line.Scheduled = DateTime.UtcNow;
 				repos.Line.SaveOrUpdate(line);
 			}
 		}

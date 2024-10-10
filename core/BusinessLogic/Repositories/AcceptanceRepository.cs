@@ -51,7 +51,7 @@ namespace DFM.BusinessLogic.Repositories
 			{
 				Contract = contract,
 				User = user,
-				CreateDate = user.Now()
+				CreateDate = DateTime.UtcNow
 			};
 
 			return acceptance;

@@ -50,7 +50,7 @@ internal class LineRepository : Repo<Line>
 		return NewQuery()
 			.Where(
 				l => l.Status == ImportStatus.Pending
-				     && l.Scheduled < DateTime.Now.AddDays(-1)
+					&& l.Scheduled < DateTime.UtcNow.AddDays(-1)
 			)
 			.Take(Cfg.SQS.QueueLimit)
 			.List;

@@ -40,7 +40,7 @@ internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService 
 		fileService.Upload(csv.Path);
 		order.Path = csv.Path;
 		order.Status = ExportStatus.Success;
-		order.Exportation = order.User.Now();
+		order.Exportation = DateTime.UtcNow;
 
 		sendEmail(order, csv.Path);
 
@@ -89,7 +89,7 @@ internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService 
 
 	public IList<Order> GetExpired()
 	{
-		var limitDaysAgo = DateTime.Now.AddDays(-DayLimits.EXPORT_EXPIRATION);
+		var limitDaysAgo = DateTime.UtcNow.AddDays(-DayLimits.EXPORT_EXPIRATION);
 
 		return Where(
 			o => o.Status != ExportStatus.Expired
