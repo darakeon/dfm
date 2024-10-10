@@ -166,7 +166,7 @@ public class AttendantService : Service
 		{
 			Guid = Guid.NewGuid(),
 			Filename = filename,
-			Uploaded = user.Now(),
+			Uploaded = DateTime.UtcNow,
 			User = user,
 		};
 
@@ -312,7 +312,7 @@ public class AttendantService : Service
 
 		inTransaction("RetryLine", () =>
 		{
-			line.Scheduled = DateTime.Now;
+			line.Scheduled = DateTime.UtcNow;
 			line.Status = ImportStatus.Pending;
 
 			repos.Line.SaveOrUpdate(line);

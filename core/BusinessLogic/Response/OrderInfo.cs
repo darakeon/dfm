@@ -36,7 +36,7 @@ public class OrderInfo
 		return new Order
 		{
 			Guid = Guid.NewGuid(),
-			Creation = user.Now(),
+			Creation = DateTime.UtcNow,
 			Start = Start.Value,
 			End = End.Value,
 			User = user,
