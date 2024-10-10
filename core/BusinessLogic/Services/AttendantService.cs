@@ -160,6 +160,8 @@ public class AttendantService : Service
 	{
 		var user = parent.Auth.VerifyUser();
 
+		repos.Archive.ValidatePlanLimit(user);
+
 		var importer = validateArchive(filename, csv, user);
 
 		var archive = new Archive

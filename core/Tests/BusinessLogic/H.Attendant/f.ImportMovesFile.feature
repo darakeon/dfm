@@ -844,3 +844,35 @@ Scenario: Hf85. Import exported file
 	Then I will receive no core error
 		And the pre-import data will be recorded
 		And the lines will be queued
+
+Scenario: Hf86. Import above limits
+	Given these limits in user plan
+			| ArchiveUploadMonth |
+			| 1                  |
+		And a moves file with this content
+			| Description         | Date       | Category | Nature   | Out         | In         | Value |
+			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1.00  |
+		And the moves file was imported
+		And a moves file with this content
+			| Description         | Date       | Category | Nature   | Out         | In         | Value |
+			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1.00  |
+	When import moves file
+	Then I will receive this core error: PlanLimitArchiveUploadMonthAchieved
+		And the pre-import data will not be recorded
+
+Scenario: Hf87. Import reset limit
+	Given these limits in user plan
+			| ArchiveUploadMonth |
+			| 1                  |
+		And a moves file with this content
+			| Description         | Date       | Category | Nature   | Out         | In         | Value |
+			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1.00  |
+		And the moves file was imported
+		But archive is from 1 month(s) ago
+		And a moves file with this content
+			| Description         | Date       | Category | Nature   | Out         | In         | Value |
+			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1.00  |
+	When import moves file
+	Then I will receive no core error
+		And the pre-import data will be recorded
+		And the lines will be queued
