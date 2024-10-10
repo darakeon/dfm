@@ -75,4 +75,10 @@ public class LocalQueueService : IQueueService
 	{
 		importer.Clear();
 	}
+
+	// for tests purposes only
+	internal Int32 Count()
+	{
+		return importer.Count;
+	}
 }
