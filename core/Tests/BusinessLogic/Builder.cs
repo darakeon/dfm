@@ -356,7 +356,7 @@ namespace DFM.BusinessLogic.Tests
 			{
 				Guid = Guid.NewGuid(),
 				Status = ExportStatus.Success,
-				Exportation = user.Now(),
+				Exportation = DateTime.UtcNow,
 				Sent = true,
 				Start = DateTime.MinValue,
 				End = user.Now(),
