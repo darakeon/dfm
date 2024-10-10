@@ -82,7 +82,12 @@ alter table control
 				"Text": "A funcionalidade de Agendamento permite agendar Movimentações para serem criadas no futuro. Existe uma automação executando a cada 15 minutos para inserir as Movimentações de agendamentos pendentes. Se a Pessoa agendar uma Movimentação para uma data passada, esta será criada na próxima vez que esta automação executar."
 			},
 			{
-				"Text": "As funcionalidade disponíveis no Sistema possuem limites de uso. Esses limites podem ser encontrados após realizar o login no site, no menu de Adminitração > Limites de Uso.",
+				"Text": "Algumas funcionalidades disponíveis no Sistema possuem limites de uso:",
+				"Items": [
+					{ "Text": "Esses limites podem ser encontrados após realizar o login no site, no menu de Adminitração > Limites de Uso;" },
+					{ "Text": "Os limites podem ser alterados de acordo com a necessidade do Sistema;" },
+					{ "Text": "Limites mensais usam o horário UTC." }
+				],
 				"New": true
 			},
 			{ 
@@ -251,7 +256,12 @@ alter table control
 				"Text": "Schedule feature allow to schedule Moves to be created at the future. There is an automation running every 15 minutes to insert the Moves for the pending Schedules. If the Person schedule a Move for a past date, it will be created in the next time this automation runs."
 			},
 			{
-				"Text": "System features have usage limitation. There limits can be found after login in the website inside menu Administration > Usage Limits.",
+				"Text": "Some system features have usage limitation:",
+				"Items": [
+					{ "Text": "These limits can be found after login in the website inside menu Administration > Usage Limits;" },
+					{ "Text": "The limits can be changed according to the System needs;" },
+					{ "Text": "Monthly limits use UTC time." }
+				],
 				"New": true
 			},
 			{ 
