@@ -1026,7 +1026,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				.Where(l => l.Archive.User == user)
 				.SingleOrDefault;
 
-			line.Scheduled = DateTime.Now.AddDays(-1);
+			line.Scheduled = DateTime.UtcNow.AddDays(-1);
 
 			repos.Line.SaveOrUpdate(line);
 
@@ -1443,7 +1443,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 					o => o.User == user
 				);
 
-			order.Exportation = user.Now().AddDays(-days);
+			order.Exportation = DateTime.UtcNow.AddDays(-days);
 
 			repos.Order.SaveOrUpdate(order);
 
