@@ -133,6 +133,7 @@
 		"OrderFileDeleted": "Order file was deleted, retry making another order",
 		"PlanLimitAccountOpenedAchieved": "Limit for Accounts opened achieved. To create or reopen Accounts you need to delete or close some of the opened Accounts.",
 		"PlanLimitCategoryEnabledAchieved": "Limit for Categories enabled achieved. To create or enable Categories you need to disable some of the enabled Categories.",
+		"PlanLimitDetailByParentAchieved": "The Details quantity exceed the allowed limit.",
 		"PlanLimitArchiveUploadMonthAchieved": "Limit for Archives upload per month achieved. Wait to the next month to upload more Archives.",
 		"": null
 	},
@@ -270,6 +271,7 @@
 		"OrderFileDeleted": "Arquivo do pedido excluído, tente realizar um novo pedido",
 		"PlanLimitAccountOpenedAchieved": "O limite de Contas abertas atingido. Para criar ou reabrir Contas é necessário excluir ou fechar alguma das Contas abertas.",
 		"PlanLimitCategoryEnabledAchieved": "O limite de Categorias ativas atingido. Para criar ou reativar Categorias é necessário desativar alguma das Categorias ativar.",
+		"PlanLimitDetailByParentAchieved": "A quantidade de Detalhes ultrapassa a quantidade permitida.",
 		"PlanLimitArchiveUploadMonthAchieved": "O limite de Arquivos subidos atingido. Espere o próximo mês para subir mais Arquivos.",
 		"": null
 	}
