@@ -34,6 +34,8 @@ public class GenericMoveValidator<T>(
 			move.Out?.Currency,
 			move.In?.Currency
 		);
+
+		testDetails(user, move);
 	}
 
 	private void testDescription(T move)
@@ -170,5 +172,11 @@ public class GenericMoveValidator<T>(
 		{
 			throw Error.AccountsDifferentCurrencyNoConversion.Throw();
 		}
+	}
+
+	private void testDetails(User user, T move)
+	{
+		if (move.DetailList.Count > user.Control.Plan.DetailByParent)
+			throw Error.PlanLimitDetailByParentAchieved.Throw();
 	}
 }

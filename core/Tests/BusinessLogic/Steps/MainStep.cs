@@ -225,7 +225,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				CategoryEnabled = 10,
 				ScheduleActive = 0,
 				MoveByAccountByMonth = 0,
-				DetailByParent = 0,
+				DetailByParent = 30,
 				ArchiveUploadMonth = 3,
 				LineByArchive = 0,
 				OrderByMonth = 0,

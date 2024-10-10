@@ -367,3 +367,22 @@ Scenario: Ec25. Update the move Account Transfer different Currency
 		And the old-month-category-accountIn value will change in -5
 		And the new-year-category-accountIn value will change in 5
 		And the old-year-category-accountIn value will change in -5
+
+Scenario: Ec26. Add details to the move above limits
+	Given these limits in user plan
+			| DetailByParent |
+			| 3              |
+		And I have a move with these details (Out)
+			| Description | Amount | Value |
+			| Detail 1    | 1      | 10    |
+			| Detail 2    | 2      | 20    |
+			| Detail 3    | 3      | 30    |
+		And the move is checked for account Out
+	When I add these details to the move
+			| Description | Amount | Value |
+			| Detail 4    | 4      | 40    |
+		And I update the move
+	Then I will receive this core error: PlanLimitDetailByParentAchieved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
