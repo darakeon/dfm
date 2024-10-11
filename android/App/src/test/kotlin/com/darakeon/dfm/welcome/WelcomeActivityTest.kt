@@ -1,6 +1,9 @@
 package com.darakeon.dfm.welcome
 
 import com.darakeon.dfm.R
+import com.darakeon.dfm.lib.api.entities.AccountComboItem
+import com.darakeon.dfm.lib.api.entities.ComboItem
+import com.darakeon.dfm.lib.auth.getValueTyped
 import com.darakeon.dfm.lib.auth.setValue
 import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.context.getCalledName
@@ -66,5 +69,38 @@ class WelcomeActivityTest: BaseTest() {
 		val intent = shadow.peekNextStartedActivity()
 		val name = intent.getCalledName()
 		assertThat(name, `is`("LoginActivity"))
+	}
+
+	@Test
+	fun populateCache() {
+		val activity = mocker.get()
+		activity.setValue("Ticket", "ticket")
+		activity.simulateNetwork()
+		mocker.server.enqueue("relations")
+
+		activity.onCreate(null, null)
+		activity.waitTasks(mocker.server)
+
+		val isUsingCategories: Boolean =
+			activity.getValueTyped("isUsingCategories")
+		assertThat(isUsingCategories, `is`(true))
+
+		val accountList: Array<AccountComboItem> =
+			activity.getValueTyped("accountCombo")
+
+		assertThat(accountList.size, `is`(2))
+		assertThat(accountList[0].text, `is`("Reais"))
+		assertThat(accountList[0].value, `is`("reais"))
+		assertThat(accountList[0].currency, `is`("BRL"))
+		assertThat(accountList[1].text, `is`("Euros"))
+		assertThat(accountList[1].value, `is`("euros"))
+		assertThat(accountList[1].currency, `is`("EUR"))
+
+		val categoryList: Array<ComboItem> =
+			activity.getValueTyped("categoryCombo")
+
+		assertThat(categoryList.size, `is`(1))
+		assertThat(categoryList[0].text, `is`("Category"))
+		assertThat(categoryList[0].value, `is`("category"))
 	}
 }

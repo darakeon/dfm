@@ -18,6 +18,7 @@ import com.darakeon.dfm.lib.api.entities.ComboItem
 import com.darakeon.dfm.lib.api.entities.Date
 import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.Nature
+import com.darakeon.dfm.lib.auth.getValueTyped
 import com.darakeon.dfm.lib.auth.setValueTyped
 import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.api.guid
@@ -88,6 +89,7 @@ class MovesActivityTest: BaseTest() {
 		assertNotNull(activity.findViewById(R.id.no_accounts))
 		assertNotNull(activity.findViewById(R.id.no_categories))
 		assertNotNull(activity.findViewById(R.id.remove_check))
+		assertNotNull(activity.findViewById(R.id.update_cache))
 		assertNotNull(activity.findViewById(R.id.form))
 		assertNotNull(activity.findViewById(R.id.description))
 		assertNotNull(activity.findViewById(R.id.date))
@@ -1268,5 +1270,44 @@ class MovesActivityTest: BaseTest() {
 		activity.useDetailed(binding.detailedValue)
 
 		assertThat(binding.detailConversion.visibility, `is`(GONE))
+	}
+
+	@Test
+	fun updateCache() {
+		val saved = Bundle()
+		activity.onCreate(saved, null)
+
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		activity.simulateNetwork()
+		mocker.server.enqueue("relations")
+
+		binding.updateCache.performClick()
+		activity.waitTasks(mocker.server)
+
+		val isUsingCategories: Boolean =
+			activity.getValueTyped("isUsingCategories")
+		assertThat(isUsingCategories, `is`(true))
+
+
+		val accountList: Array<AccountComboItem> =
+			activity.getValueTyped("accountCombo")
+
+		assertThat(accountList.size, `is`(2))
+		assertThat(accountList[0].text, `is`("Reais"))
+		assertThat(accountList[0].value, `is`("reais"))
+		assertThat(accountList[0].currency, `is`("BRL"))
+		assertThat(accountList[1].text, `is`("Euros"))
+		assertThat(accountList[1].value, `is`("euros"))
+		assertThat(accountList[1].currency, `is`("EUR"))
+
+		val categoryList: Array<ComboItem> =
+			activity.getValueTyped("categoryCombo")
+
+		assertThat(categoryList.size, `is`(1))
+		assertThat(categoryList[0].text, `is`("Category"))
+		assertThat(categoryList[0].value, `is`("category"))
 	}
 }
