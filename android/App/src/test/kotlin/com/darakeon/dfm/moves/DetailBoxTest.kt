@@ -4,6 +4,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.darakeon.dfm.R
+import com.darakeon.dfm.databinding.MovesBinding
 import com.darakeon.dfm.lib.api.entities.moves.Detail
 import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.testutils.BaseTest
@@ -17,12 +18,14 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.Shadows.shadowOf
 
 @RunWith(RobolectricTestRunner::class)
 class DetailBoxTest: BaseTest() {
 	private lateinit var activity: MovesActivity
 	private lateinit var box: DetailBox
 	private var move: Move = Move()
+	private var removed = false
 
 	@Before
 	fun setup() {
@@ -30,6 +33,10 @@ class DetailBoxTest: BaseTest() {
 
 		val detail = Detail("desc", 3, 2.7)
 		move.detailList.add(detail)
+
+		val onRemove = {
+			removed = true
+		}
 
 		box = DetailBox(
 			activity,
@@ -39,6 +46,7 @@ class DetailBoxTest: BaseTest() {
 			detail.value,
 			detail.conversion,
 			false,
+			onRemove,
 		)
 
 		box.tag = "detail"
@@ -77,5 +85,13 @@ class DetailBoxTest: BaseTest() {
 
 		assertThat(move.detailList.size, `is`(0))
 		assertNull(layout.findViewWithTag("detail"))
+
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		assertThat(binding.addDetail.isEnabled, `is`(true))
+
+		assertThat(removed, `is`(true))
 	}
 }

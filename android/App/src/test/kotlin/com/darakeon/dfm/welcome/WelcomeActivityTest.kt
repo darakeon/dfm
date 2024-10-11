@@ -85,6 +85,10 @@ class WelcomeActivityTest: BaseTest() {
 			activity.getValueTyped("isUsingCategories")
 		assertThat(isUsingCategories, `is`(true))
 
+		val planLimitDetailByParent: Int =
+			activity.getValueTyped("planLimitDetailByParent")
+		assertThat(planLimitDetailByParent, `is`(3))
+
 		val accountList: Array<AccountComboItem> =
 			activity.getValueTyped("accountCombo")
 
