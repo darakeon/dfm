@@ -348,6 +348,7 @@
 						android:visibility="gone"
 						/>
 					<Button
+						android:id="@+id/add_detail"
 						android:text="@string/add_detail"
 						android:textSize="@dimen/mini_button_font"
 						android:layout_width="0dp"
