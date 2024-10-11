@@ -8,7 +8,6 @@ namespace DFM.API.Models
 		public MovesCreateModel()
 		{
 			IsUsingCategories = isUsingCategories;
-			PlanLimitDetailByParent = planLimitDetailByParent;
 		}
 
 		public MovesCreateModel(Guid guid) : this()
@@ -17,7 +16,6 @@ namespace DFM.API.Models
 		}
 
 		public Boolean IsUsingCategories { get; }
-		public Int32 PlanLimitDetailByParent { get; }
 		public MoveInfo Move { get; set; }
 
 		public void Save(MoveInfo info)
