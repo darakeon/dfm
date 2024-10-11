@@ -1,6 +1,7 @@
 {
 	"data": {
 		"is-using-categories": true,
+		"plan-limit-detail-by-parent": 3,
 		"account-list": [
 			{
 				"currency": "BRL",
