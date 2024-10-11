@@ -16,6 +16,7 @@ class DetailBox(
 	private var value: Double,
 	private var conversion: Double?,
 	showConversion: Boolean,
+	private var onRemove: () -> Unit,
 ) : LinearLayout(context) {
 	constructor(context: Context) : this(
 		context,
@@ -25,6 +26,7 @@ class DetailBox(
 		0.0,
 		null,
 		false,
+		{},
 	)
 
 	init {
@@ -57,7 +59,11 @@ class DetailBox(
 
 	private fun removeDetail() : Boolean {
 		move.remove(description, amount, value, conversion)
+
 		(parent as ViewGroup).removeView(this)
+
+		onRemove()
+
 		return true
 	}
 }

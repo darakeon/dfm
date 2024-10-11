@@ -381,7 +381,7 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 			value,
 			conversion,
 			showConversion(),
-		)
+		) { binding.addDetail.isEnabled = true }
 
 		binding.details.addView(row)
 	}
@@ -442,6 +442,9 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 		addViewDetail(
 			move, description, amount, value, conversion
 		)
+
+		binding.addDetail.isEnabled =
+			move.detailList.count() < planLimitDetailByParent
 
 		scrollToTheEnd(binding.detailDescription)
 	}
