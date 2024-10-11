@@ -74,6 +74,8 @@ class MovesActivityTest: BaseTest() {
 		)
 
 		activity.setValueTyped("accountCombo", accountCombo)
+
+		activity.setValueTyped("planLimitDetailByParent", 3)
 	}
 
 	@After
@@ -106,6 +108,7 @@ class MovesActivityTest: BaseTest() {
 		assertNotNull(activity.findViewById(R.id.simple_value))
 		assertNotNull(activity.findViewById(R.id.value))
 		assertNotNull(activity.findViewById(R.id.conversion))
+		assertNotNull(activity.findViewById(R.id.add_detail))
 		assertNotNull(activity.findViewById(R.id.detailed_value))
 		assertNotNull(activity.findViewById(R.id.detail_description))
 		assertNotNull(activity.findViewById(R.id.detail_amount))
@@ -1119,6 +1122,39 @@ class MovesActivityTest: BaseTest() {
 	}
 
 	@Test
+	fun addDetailUntilLimit() {
+		val saved = Bundle()
+		activity.onCreate(saved, null)
+
+		val binding = MovesBinding.bind(
+			shadowOf(activity).contentView
+		)
+
+		binding.detailDescription.setText("d1")
+		binding.detailAmount.setText("1")
+		binding.detailValue.setText("1.00".getDecimal())
+		activity.addDetail(View(activity))
+
+		binding.detailDescription.setText("d2")
+		binding.detailAmount.setText("2")
+		binding.detailValue.setText("2.00".getDecimal())
+		activity.addDetail(View(activity))
+
+		binding.detailDescription.setText("d3")
+		binding.detailAmount.setText("3")
+		binding.detailValue.setText("3.00".getDecimal())
+		activity.addDetail(View(activity))
+
+		assertThat(binding.addDetail.isEnabled, `is`(false))
+
+		val detail = binding.details.getChildAt(0) as DetailBox
+		val getField = { id: Int -> detail.findViewById<TextView>(id) }
+
+		getField(R.id.detail_remove).performClick()
+		assertThat(binding.addDetail.isEnabled, `is`(true))
+	}
+
+	@Test
 	fun save() {
 		activity.simulateNetwork()
 
@@ -1291,6 +1327,9 @@ class MovesActivityTest: BaseTest() {
 			activity.getValueTyped("isUsingCategories")
 		assertThat(isUsingCategories, `is`(true))
 
+		val planLimitDetailByParent: Int =
+			activity.getValueTyped("planLimitDetailByParent")
+		assertThat(planLimitDetailByParent, `is`(3))
 
 		val accountList: Array<AccountComboItem> =
 			activity.getValueTyped("accountCombo")

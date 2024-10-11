@@ -2,7 +2,7 @@
 - [x] Add Account opened limit - create / open
 - [x] Add Archive uploads limit / month - upload
 - [x] Add Category enabled limit - create / enable
-- [ ] Add Detail limit to Move, Schedule and Line - create, edit, schedule, upload
+- [x] Add Detail limit to Move, Schedule and Line - create, edit, schedule, upload
 - [ ] Review Lines limit to Archive (and move to Plan) - upload
 - [ ] Add Move created limit / month - create / edit / schedule upload
 - [ ] Add Order export limit / month - order
