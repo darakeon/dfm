@@ -16,6 +16,7 @@ create table plan (
 
 	ArchiveUploadMonth int not null,
 	LineByArchive int not null,
+	SizeByArchive int not null,
 
 	OrderByMonth int not null,
 	MoveByOrder int not null,
@@ -32,14 +33,14 @@ insert into plan (
 	AccountOpened, CategoryEnabled,
 	ScheduleActive,
 	MoveByAccountByMonth, DetailByParent,
-	ArchiveUploadMonth, LineByArchive,
+	ArchiveUploadMonth, LineByArchive, SizeByArchive,
 	OrderByMonth, MoveByOrder
 ) values (
 	'Free', 0,
 	20, 30,
 	50,
 	70, 30,
-	5, 500,
+	5, 500, 352101,
 	2, 500
 );
 

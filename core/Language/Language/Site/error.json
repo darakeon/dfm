@@ -113,8 +113,6 @@
 		"MoveDetailValueInvalid": "Move detail value is invalid",
 		"MoveDetailConversionInvalid": "Move detail conversion is invalid",
 		"EmptyArchive": "Invalid archive",
-		"InvalidArchiveSize": "Too big file size, try break into files with 300kb or less",
-		"InvalidArchiveLines": "The allowed amount for import files is 200 lines at most each file",
 		"InvalidArchiveColumn": "Invalid archive column",
 		"ArchiveNotFound": "Archive not found",
 		"LineNotFound": "Line not found",
@@ -135,6 +133,8 @@
 		"PlanLimitCategoryEnabledAchieved": "Limit for Categories enabled achieved. To create or enable Categories you need to disable some of the enabled Categories.",
 		"PlanLimitDetailByParentAchieved": "The Details quantity exceed the allowed limit.",
 		"PlanLimitArchiveUploadMonthAchieved": "Limit for Archives upload per month achieved. Wait to the next month to upload more Archives.",
+		"PlanLimitLineByArchiveAchieved": "The Lines quantity exceed the allowed limit",
+		"PlanLimitSizeByArchiveAchieved": "Too big file size, try break into smaller files",
 		"": null
 	},
 	"pt-BR": {
@@ -251,8 +251,6 @@
 		"MoveDetailValueInvalid": "Valor do detalhe da movimentação inválido",
 		"MoveDetailConversionInvalid": "Conversão do detalhe da movimentação inválida",
 		"EmptyArchive": "Arquivo inválido",
-		"InvalidArchiveSize": "Arquivo muito grande, tente quebrar em arquivos de 300kb ou menos",
-		"InvalidArchiveLines": "A quantidade permitida para importar arquivos é 200 linhas no máximo por arquivo",
 		"InvalidArchiveColumn": "Coluna inválida no arquivo",
 		"ArchiveNotFound": "Arquivo não encontrado",
 		"LineNotFound": "Linha não encontrada",
@@ -273,6 +271,8 @@
 		"PlanLimitCategoryEnabledAchieved": "O limite de Categorias ativas atingido. Para criar ou reativar Categorias é necessário desativar alguma das Categorias ativar.",
 		"PlanLimitDetailByParentAchieved": "A quantidade de Detalhes ultrapassa a quantidade permitida.",
 		"PlanLimitArchiveUploadMonthAchieved": "O limite de Arquivos subidos atingido. Espere o próximo mês para subir mais Arquivos.",
+		"PlanLimitLineByArchiveAchieved": "A quantidade de Linhas ultrapassa a quantidade permitida",
+		"PlanLimitSizeByArchiveAchieved": "Arquivo muito grande, tente quebrar em arquivos menores",
 		"": null
 	}
 }

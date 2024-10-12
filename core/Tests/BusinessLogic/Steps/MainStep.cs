@@ -227,7 +227,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 				MoveByAccountByMonth = 0,
 				DetailByParent = 30,
 				ArchiveUploadMonth = 3,
-				LineByArchive = 0,
+				LineByArchive = 10,
+				SizeByArchive = 3000,
 				OrderByMonth = 0,
 				MoveByOrder = 0,
 			};
