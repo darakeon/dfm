@@ -28,8 +28,8 @@ public class AttendantService : Service
 	private readonly IDictionary<ImporterError, Error> importErrors =
 		new Dictionary<ImporterError, Error>
 		{
-			{ ImporterError.Size, Error.InvalidArchiveSize },
-			{ ImporterError.Lines, Error.InvalidArchiveLines },
+			{ ImporterError.Size, Error.PlanLimitSizeByArchiveAchieved },
+			{ ImporterError.Lines, Error.PlanLimitLineByArchiveAchieved },
 			{ ImporterError.Header, Error.InvalidArchiveColumn },
 			{ ImporterError.Empty, Error.EmptyArchive },
 			{ ImporterError.DateRequired, Error.MoveDateRequired },
@@ -188,7 +188,7 @@ public class AttendantService : Service
 	private CSVImporter validateArchive(String filename, String csv, User user)
 	{
 		using var error = new CoreError();
-		var importer = new CSVImporter(csv);
+		var importer = new CSVImporter(user.Control.Plan, csv);
 
 		if (!filename.EndsWith(".csv"))
 		{
