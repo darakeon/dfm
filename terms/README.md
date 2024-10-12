@@ -20,7 +20,13 @@ O sistema Don't fly Money, abaixo constando como Sistema, e a pessoa que registr
 
 - A funcionalidade de Agendamento permite agendar Movimentações para serem criadas no futuro. Existe uma automação executando a cada 15 minutos para inserir as Movimentações de agendamentos pendentes. Se a Pessoa agendar uma Movimentação para uma data passada, esta será criada na próxima vez que esta automação executar.
 
-- As funcionalidade disponíveis no Sistema possuem limites de uso. Esses limites podem ser encontrados após realizar o login no site, no menu de Adminitração > Limites de Uso.
+- Algumas funcionalidades disponíveis no Sistema possuem limites de uso:
+
+    - Esses limites podem ser encontrados após realizar o login no site, no menu de Adminitração > Limites de Uso;
+
+    - Os limites podem ser alterados de acordo com a necessidade do Sistema;
+
+    - Limites mensais usam o horário UTC.
 
 - Dados apresentados em Sistema e decisões tomadas com base nestes dados são de total responsabilidade da Pessoa:
 
@@ -176,7 +182,13 @@ The Don't fly Money system, below referred as System, and the person who is regi
 
 - Schedule feature allow to schedule Moves to be created at the future. There is an automation running every 15 minutes to insert the Moves for the pending Schedules. If the Person schedule a Move for a past date, it will be created in the next time this automation runs.
 
-- System features have usage limitation. There limits can be found after login in the website inside menu Administration > Usage Limits.
+- Some system features have usage limitation:
+
+    - These limits can be found after login in the website inside menu Administration > Usage Limits;
+
+    - The limits can be changed according to the System needs;
+
+    - Monthly limits use UTC time.
 
 - System data and decisions made based on this data are sole responsibility of the Person:
 
