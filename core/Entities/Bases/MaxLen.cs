@@ -24,8 +24,6 @@ namespace DFM.Entities.Bases
 
 		public const Int16 SettingsLanguage = 5;
 
-		public const Int32 ArchiveSize = 352101;
-		public const Int16 ArchiveLines = 200;
 		public const Int16 ArchiveFileName = 255;
 
 		public const Int16 PlanName = 20;
