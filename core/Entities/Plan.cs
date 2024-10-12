@@ -18,6 +18,7 @@ public class Plan : IEntityLong
 	public virtual Int32 DetailByParent { get; set; }
 	public virtual Int32 ArchiveUploadMonth { get; set; }
 	public virtual Int32 LineByArchive { get; set; }
+	public virtual Int32 SizeByArchive { get; set; }
 	public virtual Int32 OrderByMonth { get; set; }
 	public virtual Int32 MoveByOrder { get; set; }
 
