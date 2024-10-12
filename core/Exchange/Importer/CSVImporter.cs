@@ -6,15 +6,15 @@ using System.Linq;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using DFM.Entities.Bases;
+using DFM.Entities;
 
 namespace DFM.Exchange.Importer
 {
 	public class CSVImporter
 	{
-		public CSVImporter(String content)
+		public CSVImporter(Plan plan, string content)
 		{
-			if (content.Length > MaxLen.ArchiveSize)
+			if (content.Length > plan.SizeByArchive)
 			{
 				ErrorList.Add(0, ImporterError.Size);
 				return;
@@ -52,7 +52,7 @@ namespace DFM.Exchange.Importer
 				}
 			}
 
-			if (line > MaxLen.ArchiveLines)
+			if (line > plan.LineByArchive)
 			{
 				ErrorList.Add(0, ImporterError.Lines);
 			}

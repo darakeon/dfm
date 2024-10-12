@@ -32,14 +32,14 @@ async function createPlan() {
 			accountOpened, categoryEnabled,
 			scheduleActive,
 			moveByAccountByMonth, detailByParent,
-			archiveUploadMonth, lineByArchive,
+			archiveUploadMonth, lineByArchive, sizeByArchive,
 			orderByMonth, moveByOrder
 		) values (
 			'browser', 0,
 			20, 30,
 			50,
 			70, 30,
-			5, 500,
+			5, 500, 352101,
 			2, 500
 		)`
 	)

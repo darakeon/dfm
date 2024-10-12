@@ -109,8 +109,6 @@ namespace DFM.BusinessLogic.Exceptions
 		LogNotFound = 900,
 
 		EmptyArchive = 1000,
-		InvalidArchiveSize = 1002,
-		InvalidArchiveLines = 1003,
 		InvalidArchiveColumn = 1001,
 		ArchiveNotFound = 1004,
 		LineNotFound = 1005,
@@ -133,6 +131,8 @@ namespace DFM.BusinessLogic.Exceptions
 		PlanLimitCategoryEnabledAchieved = 1202,
 		PlanLimitDetailByParentAchieved = 1205,
 		PlanLimitArchiveUploadMonthAchieved = 1206,
+		PlanLimitLineByArchiveAchieved = 1207,
+		PlanLimitSizeByArchiveAchieved = 1208,
 	}
 
 	public static class ErrorX
