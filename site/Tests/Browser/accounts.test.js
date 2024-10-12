@@ -145,9 +145,11 @@ describe('Accounts', () => {
 		await puppy.call('Accounts/ListClosed')
 		await puppy.submit(`/Accounts/Reopen/${url}`)
 
-		const body = await puppy.content('#body')
+		await puppy.content('#body')
 
 		await puppy.call('Accounts')
+
+		const body = await puppy.content('#body')
 
 		expect(body).toContain(
 			`<a href="/Account/account_reopened" title="Movimentações de Account Reopened">Account Reopened</a>`
