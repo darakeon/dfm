@@ -590,7 +590,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 						? row["Out"]
 						: nature switch
 						{
-							MoveNature.Out => accountInfo.Name,
+							MoveNature.Out => accountInfo?.Name ?? accountOutUrl,
 							MoveNature.Transfer => accountOutUrl,
 							_ => null
 						};
@@ -600,7 +600,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 						? row["In"]
 						: nature switch
 						{
-							MoveNature.In => accountInfo.Name,
+							MoveNature.In => accountInfo?.Name ?? accountInUrl,
 							MoveNature.Transfer => accountInUrl,
 							_ => null
 						};

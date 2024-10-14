@@ -1197,8 +1197,8 @@ Scenario: Ea68. Save move in with detailed unique value for enabled conversion
 
 Scenario: Ea69. Save with Details above limits
 	Given these limits in user plan
-			| DetailByParent |
-			| 3              |
+			| MoveByAccountByMonth | DetailByParent |
+			| 3                    | 3              |
 		And I have this move to create
 			| Description         | Date       | Nature | Value |
 			| Move {scenarioCode} | 2024-10-10 | Out    |       |
@@ -1217,3 +1217,47 @@ Scenario: Ea69. Save with Details above limits
 		And the accountOut value will not change
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
+
+Scenario: Ea70. Save account out + month above limits
+	Given these limits in user plan
+			| MoveByAccountByMonth |
+			| 3                    |
+		And I have moves of
+			| Description           | Date       | Nature | Value | 
+			| Move {scenarioCode} 1 | 2024-10-13 | Out    | 1     |
+			| Move {scenarioCode} 2 | 2024-10-13 | Out    | 2     |
+			| Move {scenarioCode} 3 | 2024-10-13 | Out    | 3     |
+		And I have this move to create
+			| Description           | Date       | Nature | Value |
+			| Move {scenarioCode} 4 | 2024-10-13 | Out    | 4     |
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+	When I try to save the move
+	Then I will receive this core error: PlanLimitMoveByAccountByMonthAchieved
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+
+Scenario: Ea71. Save account in + month above limits
+	Given these limits in user plan
+			| MoveByAccountByMonth |
+			| 3                    |
+		And I have moves of
+			| Description           | Date       | Nature | Value |
+			| Move {scenarioCode} 1 | 2024-10-13 | In     | 1     |
+			| Move {scenarioCode} 2 | 2024-10-13 | In     | 2     |
+			| Move {scenarioCode} 3 | 2024-10-13 | In     | 3     |
+		And I have this move to create
+			| Description           | Date       | Nature | Value |
+			| Move {scenarioCode} 4 | 2024-10-13 | In     | 4     |
+		And it has a Category
+		And it has no Account Out
+		And it has an Account In
+	When I try to save the move
+	Then I will receive this core error: PlanLimitMoveByAccountByMonthAchieved
+		And the move will not be saved
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change

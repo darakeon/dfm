@@ -219,8 +219,8 @@ Scenario: Cb21. Save Account above limits
 
 Scenario: Cb22. Save Account after close one account
 	Given these limits in user plan
-			| AccountOpened |
-			| 3             |
+			| AccountOpened | MoveByAccountByMonth |
+			| 3             | 3                    |
 		And I have these accounts
 			| Name      |
 			| Account 1 |

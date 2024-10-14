@@ -241,88 +241,6 @@ namespace DFM.BusinessLogic.Tests.Steps
 				)?.Out ?? 0;
 		}
 
-		[Then(@"the accountOut value will not change")]
-		public void ThenTheAccountOutValueWillNotChange()
-		{
-			var url = accountOut?.Url ?? accountOutUrl;
-			accountOut = getOrCreateAccount(url);
-
-			Assert.That(repos.Summary.GetTotal(accountOut), Is.EqualTo(accountOutTotal));
-		}
-
-		[Then(@"the month-category-accountOut value will not change")]
-		public void ThenTheMonthCategoryAccountOutValueWillNotChange()
-		{
-			var url = accountOut?.Url ?? accountOutUrl;
-			accountOut = getOrCreateAccount(url);
-
-			var user = repos.User.GetByEmail(current.Email);
-			var category = repos.Category.GetByName(categoryName, user);
-
-			var currentTotal = repos.Summary.Get(
-				accountOut, category, entityDate.ToMonthYear()
-			)?.Out ?? 0;
-
-			Assert.That(currentTotal, Is.EqualTo(monthCategoryAccountOutTotal));
-		}
-
-		[Then(@"the year-category-accountOut value will not change")]
-		public void ThenTheYearCategoryAccountOutValueWillNotChange()
-		{
-			var url = accountOut?.Url ?? accountOutUrl;
-			accountOut = getOrCreateAccount(url);
-
-			var user = repos.User.GetByEmail(current.Email);
-			var category = repos.Category.GetByName(categoryName, user);
-
-			var currentTotal = repos.Summary.Get(
-				accountOut, category, entityDate.Year
-			)?.Out ?? 0;
-
-			Assert.That(currentTotal, Is.EqualTo(yearCategoryAccountOutTotal));
-		}
-
-		[Then(@"the accountIn value will not change")]
-		public void ThenTheAccountInValueWillNotChange()
-		{
-			var url = accountIn?.Url ?? accountInUrl;
-			accountIn = getOrCreateAccount(url);
-
-			Assert.That(repos.Summary.GetTotal(accountIn), Is.EqualTo(accountInTotal));
-		}
-
-		[Then(@"the month-category-accountIn value will not change")]
-		public void ThenTheMonthCategoryAccountInValueWillNotChange()
-		{
-			var url = accountIn?.Url ?? accountInUrl;
-			accountIn = getOrCreateAccount(url);
-
-			var user = repos.User.GetByEmail(current.Email);
-			var category = repos.Category.GetByName(categoryName, user);
-
-			var currentTotal = repos.Summary.Get(
-				accountIn, category, entityDate.ToMonthYear()
-			)?.In ?? 0;
-
-			Assert.That(currentTotal, Is.EqualTo(monthCategoryAccountInTotal));
-		}
-
-		[Then(@"the year-category-accountIn value will not change")]
-		public void ThenTheYearCategoryAccountInValueWillNotChange()
-		{
-			var url = accountIn?.Url ?? accountInUrl;
-			accountIn = getOrCreateAccount(url);
-
-			var user = repos.User.GetByEmail(current.Email);
-			var category = repos.Category.GetByName(categoryName, user);
-
-			var currentTotal = repos.Summary.Get(
-				accountIn, category, entityDate.Year
-			)?.In ?? 0;
-
-			Assert.That(currentTotal, Is.EqualTo(yearCategoryAccountInTotal));
-		}
-
 		[Then(@"the accountOut value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheAccountOutValueWillChangeIn(Decimal change)
 		{
@@ -332,6 +250,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var currentTotal = repos.Summary.GetTotal(accountOut);
 
 			Assert.That(currentTotal, Is.EqualTo(accountOutTotal + change));
+		}
+
+		[Then(@"the accountOut value will not change")]
+		public void ThenTheAccountOutValueWillNotChange()
+		{
+			ThenTheAccountOutValueWillChangeIn(0);
 		}
 
 		[Then(@"the month-category-accountOut value will change in (\-?\d+\.?\d*)")]
@@ -350,6 +274,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(currentTotal, Is.EqualTo(monthCategoryAccountOutTotal + change));
 		}
 
+		[Then(@"the month-category-accountOut value will not change")]
+		public void ThenTheMonthCategoryAccountOutValueWillNotChange()
+		{
+			ThenTheMonthCategoryAccountOutValueWillChangeIn(0);
+		}
+
 		[Then(@"the year-category-accountOut value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheYearCategoryAccountOutValueWillChangeIn(Decimal change)
 		{
@@ -366,9 +296,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(currentTotal, Is.EqualTo(yearCategoryAccountOutTotal + change));
 		}
 
+		[Then(@"the year-category-accountOut value will not change")]
+		public void ThenTheYearCategoryAccountOutValueWillNotChange()
+		{
+			ThenTheYearCategoryAccountOutValueWillChangeIn(0);
+		}
 
 		[Then(@"the accountIn value will change in (\-?\d+\.?\d*)")]
-		public void ThenTheAccountInValueWillIncreaseIn(Decimal change)
+		public void ThenTheAccountInValueWillChangeIn(Decimal change)
 		{
 			var url = accountIn?.Url ?? accountInUrl;
 			accountIn = getOrCreateAccount(url);
@@ -376,6 +311,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var currentTotal = repos.Summary.GetTotal(accountIn);
 
 			Assert.That(currentTotal, Is.EqualTo(accountInTotal + change));
+		}
+
+		[Then(@"the accountIn value will not change")]
+		public void ThenTheAccountInValueWillNotChange()
+		{
+			ThenTheAccountInValueWillChangeIn(0);
 		}
 
 		[Then(@"the month-category-accountIn value will change in (\-?\d+\.?\d*)")]
@@ -394,6 +335,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(currentTotal, Is.EqualTo(monthCategoryAccountInTotal + change));
 		}
 
+		[Then(@"the month-category-accountIn value will not change")]
+		public void ThenTheMonthCategoryAccountInValueWillNotChange()
+		{
+			ThenTheMonthCategoryAccountInValueWillChangeIn(0);
+		}
+
 		[Then(@"the year-category-accountIn value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheYearCategoryAccountInValueWillChangeIn(Decimal change)
 		{
@@ -408,6 +355,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 			)?.In ?? 0;
 
 			Assert.That(currentTotal, Is.EqualTo(yearCategoryAccountInTotal + change));
+		}
+
+		[Then(@"the year-category-accountIn value will not change")]
+		public void ThenTheYearCategoryAccountInValueWillNotChange()
+		{
+			ThenTheYearCategoryAccountInValueWillChangeIn(0);
 		}
 	}
 }

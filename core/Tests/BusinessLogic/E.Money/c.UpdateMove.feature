@@ -370,8 +370,8 @@ Scenario: Ec25. Update the move Account Transfer different Currency
 
 Scenario: Ec26. Add details to the move above limits
 	Given these limits in user plan
-			| DetailByParent |
-			| 3              |
+			| MoveByAccountByMonth | DetailByParent |
+			| 1                    | 3              |
 		And I have a move with these details (Out)
 			| Description | Amount | Value |
 			| Detail 1    | 1      | 10    |
@@ -386,3 +386,43 @@ Scenario: Ec26. Add details to the move above limits
 		And the accountOut value will not change
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
+
+Scenario: Ec27. Update account out + month above limits
+	Given these limits in user plan
+			| MoveByAccountByMonth |
+			| 3                    |
+		And I have moves of
+			| Description           | Date       | Nature | Value | 
+			| Move {scenarioCode} 1 | 2024-09-13 | Out    | 1     |
+			| Move {scenarioCode} 2 | 2024-09-13 | Out    | 2     |
+			| Move {scenarioCode} 3 | 2024-09-13 | Out    | 3     |
+		And I have a move with value 10 (Out)
+		And I change the move date to 2024-09-13
+	When I update the move
+	Then I will receive this core error: PlanLimitMoveByAccountByMonthAchieved
+		And the move will not be saved
+		And the accountOut value will not change
+		And the new-month-category-accountOut value will not change
+		And the old-month-category-accountOut value will not change
+		And the new-year-category-accountOut value will not change
+		And the old-year-category-accountOut value will not change
+
+Scenario: Ec28. Update account in + month above limits
+	Given these limits in user plan
+			| MoveByAccountByMonth |
+			| 3                    |
+		And I have moves of
+			| Description           | Date       | Nature | Value | 
+			| Move {scenarioCode} 1 | 2024-09-13 | In     | 1     |
+			| Move {scenarioCode} 2 | 2024-09-13 | In     | 2     |
+			| Move {scenarioCode} 3 | 2024-09-13 | In     | 3     |
+		And I have a move with value 10 (In)
+		And I change the move date to 2024-09-13
+	When I update the move
+	Then I will receive this core error: PlanLimitMoveByAccountByMonthAchieved
+		And the move will not be saved
+		And the accountIn value will not change
+		And the new-month-category-accountIn value will not change
+		And the old-month-category-accountIn value will not change
+		And the new-year-category-accountIn value will not change
+		And the old-year-category-accountIn value will not change

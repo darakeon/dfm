@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using Keon.Util.Extensions;
 using DFM.BusinessLogic.Bases;
+using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Validators;
 using DFM.Email;
 using DFM.Entities;
@@ -14,6 +15,7 @@ using DFM.Language;
 using DFM.Language.Emails;
 using DFM.Language.Extensions;
 using Keon.NHibernate.Queries;
+using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Repositories
 {
@@ -328,6 +330,19 @@ namespace DFM.BusinessLogic.Repositories
 			}
 
 			return query;
+		}
+
+		public void ValidatePlanLimit(Account account, Int16 year, Int16 month, Int64 existentMoveID)
+		{
+			var count = Count(
+				m => (m.In == account || m.Out == account)
+					&& m.Year == year
+					&& m.Month == month
+					&& m.ID != existentMoveID
+			);
+
+			if (count >= account.User.Control.Plan.MoveByAccountByMonth)
+				throw Error.PlanLimitMoveByAccountByMonthAchieved.Throw();
 		}
 	}
 }
