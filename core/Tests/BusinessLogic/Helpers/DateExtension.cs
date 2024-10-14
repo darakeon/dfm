@@ -18,10 +18,13 @@ namespace DFM.BusinessLogic.Tests.Helpers
 			switch (frequency)
 			{
 				case "day":
+				case "days":
 					return start.AddDays(qty);
 				case "month":
+				case "months":
 					return start.AddMonths(qty);
 				case "year":
+				case "years":
 					return start.AddYears(qty);
 				default:
 					throw new NotImplementedException();
