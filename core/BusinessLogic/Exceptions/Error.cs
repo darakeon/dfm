@@ -129,6 +129,7 @@ namespace DFM.BusinessLogic.Exceptions
 
 		PlanLimitAccountOpenedAchieved = 1201,
 		PlanLimitCategoryEnabledAchieved = 1202,
+		PlanLimitMoveByAccountByMonthAchieved = 1204,
 		PlanLimitDetailByParentAchieved = 1205,
 		PlanLimitArchiveUploadMonthAchieved = 1206,
 		PlanLimitLineByArchiveAchieved = 1207,
