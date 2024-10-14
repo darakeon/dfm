@@ -185,7 +185,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		#endregion
 
 		#region UpdateMove
-		[Given(@"I change the move date in (\-?\d+\.?\d*) (day|month|year)s?")]
+		[Given(@"I change the move date in (\-?\d+\.?\d*) (days?|months?|years?)")]
 		public void GivenIChangeTheMoveDateIn(Int32 count, String frequency)
 		{
 			moveInfo.AddByFrequency(frequency, count);
