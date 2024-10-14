@@ -54,8 +54,8 @@ Scenario: Cf07. Not reopen an Account if not signed last contract
 
 Scenario: Cf08. Not reopen an Account above limits
 	Given these limits in user plan
-			| AccountOpened |
-			| 3             |
+			| AccountOpened | MoveByAccountByMonth |
+			| 3             | 3                    |
 		And I have these accounts
 			| Name      |
 			| Account 1 |
