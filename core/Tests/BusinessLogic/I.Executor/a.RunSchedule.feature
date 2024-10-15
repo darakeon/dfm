@@ -382,3 +382,53 @@ Scenario: Ia23. Not run scheduler if user requested wipe
 	When robot user login
 		And run the scheduler
 	Then the user askedwipe_{scenarioCode}@dontflymoney.com will still have no moves
+
+Scenario: Ia24. Run account out + month above limits
+	Given these limits in user plan
+			| MoveByAccountByMonth |
+			| 5                    |
+		And I have moves of
+			| Description           | Date       | Nature | Value | 
+			| Move {scenarioCode} 1 | 2024-09-13 | Out    | 1     |
+			| Move {scenarioCode} 2 | 2024-09-13 | Out    | 2     |
+			| Move {scenarioCode} 3 | 2024-09-13 | Out    | 3     |
+		And I have this schedule to create
+			| Description         | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move {scenarioCode} | 2024-09-13 | Out    | 10    | 10    | False     | Daily     | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
+	When robot user login
+		And run the scheduler
+	Then I will receive this core error: PlanLimitMoveByAccountByMonthAchieved
+	Given test user login
+		Then the accountOut value will change in -20
+		And the schedule last run will be 2
+		And the schedule will be enabled
+
+Scenario: Ia25. Run account in + month above limits
+	Given these limits in user plan
+			| MoveByAccountByMonth |
+			| 5                    |
+		And I have moves of
+			| Description           | Date       | Nature | Value | 
+			| Move {scenarioCode} 1 | 2024-09-13 | In     | 1     |
+			| Move {scenarioCode} 2 | 2024-09-13 | In     | 2     |
+			| Move {scenarioCode} 3 | 2024-09-13 | In     | 3     |
+		And I have this schedule to create
+			| Description         | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move {scenarioCode} | 2024-09-13 | In     | 10    | 10    | False     | Daily     | False           |
+		And it has no Details
+		And it has a Category
+		And it has no Account Out
+		And it has an Account In
+		And I save the schedule
+	When robot user login
+		And run the scheduler
+	Then I will receive this core error: PlanLimitMoveByAccountByMonthAchieved
+	Given test user login
+		Then the accountIn value will change in 20
+		And the schedule last run will be 2
+		And the schedule will be enabled

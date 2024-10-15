@@ -29,6 +29,12 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal Move SaveMainInfo(Move move)
 		{
+			if (move.Out != null)
+				ValidatePlanLimit(move.Out, move.Year, move.Month, move.ID);
+
+			if (move.In != null)
+				ValidatePlanLimit(move.In, move.Year, move.Month, move.ID);
+
 			//Keep this order, weird errors happen if invert
 			return SaveOrUpdate(
 				move,
