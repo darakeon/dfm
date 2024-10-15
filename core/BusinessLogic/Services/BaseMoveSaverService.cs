@@ -154,9 +154,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			inTransaction("FixSummaries", () =>
 			{
-				repos.Summary
-					.Where(s => s.Broken)
-					.Where(s => s.User() == user)
+				repos.Summary.GetBroken(user)
 					.ToList()
 					.ForEach(fixSummaries);
 			});
