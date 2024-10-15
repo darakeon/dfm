@@ -121,5 +121,14 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			return Where(s => s.Category.ID == category.ID);
 		}
+
+		public IList<Summary> GetBroken(User user)
+		{
+			return NewQuery()
+				.Where(s => s.Broken)
+				.LeftJoin(s => s.Account)
+				.Where(s => s.Account.User == user)
+				.List;
+		}
 	}
 }
