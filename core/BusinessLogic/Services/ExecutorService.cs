@@ -85,39 +85,44 @@ namespace DFM.BusinessLogic.Services
 		{
 			foreach (var schedule in scheduleList)
 			{
-				try
+				while (schedule.CanRunNow())
 				{
-					inTransaction(
-						"RunSchedule",
-						() => addNewMoves(schedule)
-					);
-				}
-				catch (CoreError e)
-				{
-					errors.Add(schedule.User.Email, e);
+					tryAddNewMove(errors, schedule);
 				}
 			}
 		}
 
-		private void addNewMoves(Schedule schedule)
+		private void tryAddNewMove(DicList<CoreError> errors, Schedule schedule)
 		{
-			while (schedule.CanRunNow())
+			try
 			{
-				var newMove = schedule.CreateMove();
-
-				var result = parent.BaseMove.SaveMove(
-					newMove, OperationType.Scheduling
+				inTransaction(
+					"RunSchedule",
+					() => addNewMove(schedule)
 				);
-
-				var move = repos.Move.Get(result.Guid);
-
-				schedule.MoveList.Add(move);
 			}
+			catch (CoreError e)
+			{
+				errors.Add(schedule.User.Email, e);
+			}
+		}
+
+		private void addNewMove(Schedule schedule)
+		{
+			var newMove = schedule.CreateMove();
+
+			var result = parent.BaseMove.SaveMove(
+				newMove, OperationType.Scheduling
+			);
+
+			var move = repos.Move.Get(result.Guid);
+
+			schedule.MoveList.Add(move);
 
 			repos.Schedule.UpdateState(schedule);
 		}
 
-		
+
 		public void WipeUsers()
 		{
 			if (!parent.Current.IsRobot)

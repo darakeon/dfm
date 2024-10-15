@@ -707,3 +707,45 @@ Scenario: Ic38. Import canceled
 		And the accountIn value will not change
 		And the month-category-accountIn value will not change
 		And the year-category-accountIn value will not change
+
+Scenario: Ic39. Import account out + month above limits
+	Given these limits in user plan
+			| ArchiveUploadMonth | LineByArchive | SizeByArchive | MoveByAccountByMonth |
+			| 1                  | 1             | 3000          | 3                    |
+		And I have moves of
+			| Description           | Date       | Nature | Value | 
+			| Move {scenarioCode} 1 | 2024-09-15 | Out    | 1     |
+			| Move {scenarioCode} 2 | 2024-09-15 | Out    | 2     |
+			| Move {scenarioCode} 3 | 2024-09-15 | Out    | 3     |
+		And a moves file with this content
+			| Description         | Date       | Category | Nature | Out         | In | Value |
+			| Move {scenarioCode} | 2024-09-15 | Category | Out    | Account Out |    | 1     |
+		And the moves file was imported
+	When robot user login
+		And make move from imported
+	Then I will receive this core error: PlanLimitMoveByAccountByMonthAchieved
+	Then the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+
+Scenario: Ic40. Import account in + month above limits
+	Given these limits in user plan
+			| ArchiveUploadMonth | LineByArchive | SizeByArchive | MoveByAccountByMonth |
+			| 1                  | 1             | 3000          | 3                    |
+		And I have moves of
+			| Description           | Date       | Nature | Value | 
+			| Move {scenarioCode} 1 | 2024-09-15 | In     | 1     |
+			| Move {scenarioCode} 2 | 2024-09-15 | In     | 2     |
+			| Move {scenarioCode} 3 | 2024-09-15 | In     | 3     |
+		And a moves file with this content
+			| Description         | Date       | Category | Nature | Out | In         | Value |
+			| Move {scenarioCode} | 2024-09-15 | Category | In     |     | Account In | 1     |
+		And the moves file was imported
+	When robot user login
+		And make move from imported
+	Then I will receive this core error: PlanLimitMoveByAccountByMonthAchieved
+	Then the move will not be saved
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change

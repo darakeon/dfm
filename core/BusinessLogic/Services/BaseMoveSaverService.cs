@@ -111,12 +111,6 @@ namespace DFM.BusinessLogic.Services
 			move.Category = GetCategory(info.CategoryName);
 			move.Out = GetAccount(info.OutUrl);
 			move.In = GetAccount(info.InUrl);
-
-			if (move.Out != null)
-				repos.Move.ValidatePlanLimit(move.Out, info.Year, info.Month, move.ID);
-
-			if (move.In != null)
-				repos.Move.ValidatePlanLimit(move.In, info.Year, info.Month, move.ID);
 		}
 
 		internal void BreakSummaries(Move move)
