@@ -137,6 +137,7 @@
 		"PlanLimitLineByArchiveAchieved": "The Lines quantity exceed the allowed limit",
 		"PlanLimitSizeByArchiveAchieved": "Too big file size, try break into smaller files",
 		"PlanLimitOrderByMonthAchieved": "Limit for export Orders per month achieved. Wait to the next month to order more exports.",
+		"PlanLimitMoveByOrderAchieved": "The Moves quantity exceed the allowed limit",
 		"": null
 	},
 	"pt-BR": {
@@ -277,6 +278,7 @@
 		"PlanLimitLineByArchiveAchieved": "A quantidade de Linhas ultrapassa a quantidade permitida",
 		"PlanLimitSizeByArchiveAchieved": "Arquivo muito grande, tente quebrar em arquivos menores",
 		"PlanLimitOrderByMonthAchieved": "Limite de Pedidos de Exportação atingido. Espere o próximo mês para realizar mais Pedidos.",
+		"PlanLimitMoveByOrderAchieved": "A quantidade de Movimentações ultrapassa a quantidade permitida",
 		"": null
 	}
 }

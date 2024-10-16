@@ -410,6 +410,8 @@ public class AttendantService : Service
 			order.CategoryList.Add(category);
 		}
 
+		repos.Move.ValidatePlanLimit(user, order);
+
 		inTransaction("OrderExport", () =>
 		{
 			repos.Order.SaveOrUpdate(order);
