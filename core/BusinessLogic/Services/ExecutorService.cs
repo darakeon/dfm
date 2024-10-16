@@ -447,7 +447,7 @@ namespace DFM.BusinessLogic.Services
 			{
 				inTransaction("ExportOrder", () =>
 				{
-					repos.Order.Error(order);
+					repos.Order.SetError(order);
 				});
 
 				throw;

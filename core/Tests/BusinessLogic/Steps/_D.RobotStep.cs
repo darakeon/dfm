@@ -1322,12 +1322,26 @@ namespace DFM.BusinessLogic.Tests.Steps
 			orderInfo ??= new OrderInfo();
 			orderInfo.CategoryList.Add(categoryName);
 		}
+		
+		[Given(@"order is from (\d+) month\(s\) ago")]
+		public void GivenOrderIsFromMonthSAgo(Int32 months)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+
+			var order = repos.Order
+				.SingleOrDefault(a => a.User == user);
+
+			order.Creation = DateTime.Today.AddMonths(-months);
+
+			repos.Order.SaveOrUpdate(order);
+		}
 
 		[When(@"order export")]
 		public void WhenOrderExport()
 		{
 			try
 			{
+				whenStart = DateTime.UtcNow;
 				service.Attendant.OrderExport(orderInfo);
 			}
 			catch (CoreError e)
@@ -1341,7 +1355,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var user = repos.User.GetByEmail(userEmail);
 
-			var actualRecorded = repos.Order.Any(o => o.User == user);
+			var actualRecorded = repos.Order.Any(
+				o => o.User == user
+					&& o.Creation >= whenStart
+			);
 
 			Assert.That(actualRecorded, Is.EqualTo(expectedRecorded));
 		}

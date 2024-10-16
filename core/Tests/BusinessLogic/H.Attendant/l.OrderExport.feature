@@ -242,3 +242,38 @@ Scenario: Hl19. Only one day
 	When order export
 	Then I will receive no core error
 		And order will be recorded
+
+Scenario: Hl20. Order above limits
+	Given these limits in user plan
+			| OrderByMonth |
+			| 1            |
+		And order start date 2024-09-16
+		And order end date 2024-09-16
+		And order account account_out
+		And order category Category 1
+		And an export is ordered
+		And order start date 2024-10-16
+		And order end date 2024-10-16
+		And order account account_out
+		And order category Category 1
+	When order export
+	Then I will receive this core error: PlanLimitOrderByMonthAchieved
+		And no order will be recorded
+
+Scenario: Hl21. Order reset limit
+	Given these limits in user plan
+			| OrderByMonth |
+			| 1            |
+		And order start date 2024-09-16
+		And order end date 2024-09-16
+		And order account account_out
+		And order category Category 1
+		And an export is ordered
+		But order is from 1 month(s) ago
+		And order start date 2024-10-16
+		And order end date 2024-10-16
+		And order account account_out
+		And order category Category 1
+	When order export
+	Then I will receive no core error
+		And order will be recorded

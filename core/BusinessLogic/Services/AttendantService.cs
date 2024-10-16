@@ -386,6 +386,8 @@ public class AttendantService : Service
 	{
 		var user = parent.Auth.VerifyUser();
 
+		repos.Order.ValidatePlanLimit(user);
+
 		var order = orderInfo.Create(user);
 
 		foreach (var accountUrl in orderInfo.AccountList)

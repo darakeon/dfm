@@ -134,6 +134,7 @@ namespace DFM.BusinessLogic.Exceptions
 		PlanLimitArchiveUploadMonthAchieved = 1206,
 		PlanLimitLineByArchiveAchieved = 1207,
 		PlanLimitSizeByArchiveAchieved = 1208,
+		PlanLimitOrderByMonthAchieved = 1209,
 	}
 
 	public static class ErrorX
