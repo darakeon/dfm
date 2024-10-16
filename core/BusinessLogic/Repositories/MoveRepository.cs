@@ -310,29 +310,40 @@ namespace DFM.BusinessLogic.Repositories
 
 		public IList<Move> Filter(Order order)
 		{
-			var movesIn = filterDateAndCategory(order)
-				.In(m => m.In.ID, order.AccountList.Select(a => a.ID))
-				.List;
-
-			var movesOut = filterDateAndCategory(order)
-				.In(m => m.Out.ID, order.AccountList.Select(a => a.ID))
-				.NotIn(m => m.ID, movesIn.Select(m => m.ID))
-				.List;
+			var movesIn = filter(order, m => m.In.ID).List;
+			var movesOut = filter(order, m => m.Out.ID, m => m.In.ID).List;
 
 			return movesIn
 				.Union(movesOut)
 				.ToList();
 		}
 
-		private Query<Move, Int64> filterDateAndCategory(Order order)
+		private Query<Move, Int64> filter(
+			Order order,
+			Expression<Func<Move, Int64>> accountIDField,
+			Expression<Func<Move, Int64>> accountIDFieldAlreadyGet = null
+		)
 		{
+			var accountIds =
+				order.AccountList
+					.Select(a => a.ID)
+					.ToList();
+
 			var query = NewQuery()
 				.Where(m => m.Year * 10000 + m.Month * 100 + m.Day >= order.StartNumber)
-				.Where(m => m.Year * 10000 + m.Month * 100 + m.Day <= order.EndNumber);
+				.Where(m => m.Year * 10000 + m.Month * 100 + m.Day <= order.EndNumber)
+				.In(accountIDField, accountIds);
 
 			if (order.CategoryList.Any())
 			{
-				query.In(m => m.Category.ID, order.CategoryList.Select(a => a.ID));
+				var categoryIds = order.CategoryList.Select(a => a.ID);
+
+				query.In(m => m.Category.ID, categoryIds);
+			}
+
+			if (accountIDFieldAlreadyGet != null)
+			{
+				query.NotIn(accountIDFieldAlreadyGet, accountIds);
 			}
 
 			return query;
@@ -349,6 +360,15 @@ namespace DFM.BusinessLogic.Repositories
 
 			if (count >= account.User.Control.Plan.MoveByAccountByMonth)
 				throw Error.PlanLimitMoveByAccountByMonthAchieved.Throw();
+		}
+
+		public void ValidatePlanLimit(User user, Order order)
+		{
+			var count = filter(order, m => m.In.ID).Count
+				+ filter(order, m => m.Out.ID, m => m.In.ID).Count;
+
+			if (count >= user.Control.Plan.MoveByOrder)
+				throw Error.PlanLimitMoveByOrderAchieved.Throw();
 		}
 	}
 }
