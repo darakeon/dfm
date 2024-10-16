@@ -310,29 +310,25 @@ namespace DFM.BusinessLogic.Repositories
 
 		public IList<Move> Filter(Order order)
 		{
-			var movesIn = filterDateAndCategory(order)
-				.In(m => m.In.ID, order.AccountList.Select(a => a.ID))
+			var moves = filter(order)
+				.OrderBy(m => m.ID)
 				.List;
 
-			var movesOut = filterDateAndCategory(order)
-				.In(m => m.Out.ID, order.AccountList.Select(a => a.ID))
-				.NotIn(m => m.ID, movesIn.Select(m => m.ID))
-				.List;
-
-			return movesIn
-				.Union(movesOut)
-				.ToList();
+			return moves;
 		}
 
-		private Query<Move, Int64> filterDateAndCategory(Order order)
+		private Query<Move, Int64> filter(Order order)
 		{
 			var query = NewQuery()
 				.Where(m => m.Year * 10000 + m.Month * 100 + m.Day >= order.StartNumber)
-				.Where(m => m.Year * 10000 + m.Month * 100 + m.Day <= order.EndNumber);
+				.Where(m => m.Year * 10000 + m.Month * 100 + m.Day <= order.EndNumber)
+				.In(order.AccountList, m => m.In, m => m.Out);
 
 			if (order.CategoryList.Any())
 			{
-				query.In(m => m.Category.ID, order.CategoryList.Select(a => a.ID));
+				var categoryIds = order.CategoryList.Select(a => a.ID);
+
+				query.In(m => m.Category.ID, categoryIds);
 			}
 
 			return query;
@@ -349,6 +345,14 @@ namespace DFM.BusinessLogic.Repositories
 
 			if (count >= account.User.Control.Plan.MoveByAccountByMonth)
 				throw Error.PlanLimitMoveByAccountByMonthAchieved.Throw();
+		}
+
+		public void ValidatePlanLimit(User user, Order order)
+		{
+			var count = filter(order).Count;
+
+			if (count > user.Control.Plan.MoveByOrder)
+				throw Error.PlanLimitMoveByOrderAchieved.Throw();
 		}
 	}
 }

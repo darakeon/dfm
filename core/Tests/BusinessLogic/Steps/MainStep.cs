@@ -230,7 +230,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				LineByArchive = 10,
 				SizeByArchive = 3000,
 				OrderByMonth = 3,
-				MoveByOrder = 0,
+				MoveByOrder = 16,
 			};
 
 			repos.Plan.SaveOrUpdate(plan);

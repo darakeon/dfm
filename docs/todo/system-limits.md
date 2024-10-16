@@ -6,7 +6,7 @@
 - [x] Review Lines limit to Archive (and move to Plan) - upload
 - [x] Add Move created limit / month - create / edit / schedule / upload
 - [x] Add Order export limit / month - order
-- [ ] Add Order export Moves qty limit - export
+- [ ] Add Order export Moves qty limit - order / export
 - [ ] Add Schedule active limit - schedule
 - [ ] Add plan to admin
 - [ ] Add warning about schedule not working because move month limit achieved
