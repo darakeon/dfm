@@ -229,7 +229,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				ArchiveUploadMonth = 3,
 				LineByArchive = 10,
 				SizeByArchive = 3000,
-				OrderByMonth = 0,
+				OrderByMonth = 3,
 				MoveByOrder = 0,
 			};
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using DFM.BusinessLogic.Exceptions;
 using Keon.Util.Extensions;
 using DFM.Email;
 using DFM.Entities;
@@ -10,6 +11,7 @@ using DFM.Entities.Enums;
 using DFM.Exchange.Exporter;
 using DFM.Files;
 using DFM.Generic.Datetime;
+using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Repositories;
 
@@ -33,7 +35,7 @@ internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService 
 
 		if (csv.Path == null)
 		{
-			Error(order);
+			SetError(order);
 			return;
 		}
 
@@ -80,7 +82,7 @@ internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService 
 		}
 	}
 
-	public void Error(Order order)
+	public void SetError(Order order)
 	{
 		order.Status = ExportStatus.Error;
 		order.Sent = false;
@@ -148,5 +150,17 @@ internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService 
 	{
 		order.Status = ExportStatus.Canceled;
 		return SaveOrUpdate(order);
+	}
+
+	public void ValidatePlanLimit(User user)
+	{
+		var count = Count(
+			a => a.User == user
+			    && a.Creation >= firstDayThisMonth
+			    && a.Creation <= lastDayThisMonth
+		);
+
+		if (count >= user.Control.Plan.OrderByMonth)
+			throw Error.PlanLimitOrderByMonthAchieved.Throw();
 	}
 }
