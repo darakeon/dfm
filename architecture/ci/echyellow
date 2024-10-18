@@ -1,6 +1,6 @@
 #!/bin/bash
 
-printf '\e[38;5;228m'
+printf '\[\e[38;5;228m\]'
 
 echo
 
@@ -11,4 +11,4 @@ done
 
 echo
 
-printf '\e[38;5;253m'
+printf '\[\e[38;5;253m\]'
