@@ -1,7 +1,7 @@
 MAKEFLAGS += --no-print-directory
-RED=\033[01;31m
-PURPLE=\033[01;35m
-RESET=\033[00m
+RED=\e[01;31m
+PURPLE=\e[01;35m
+RESET=\e[00m
 VERSION=$$(git branch --show-current)
 
 -include .env

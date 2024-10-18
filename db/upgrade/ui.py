@@ -16,10 +16,10 @@ class UI:
         UI.print_color(text, UI.PURPLE)
 
     def print_color(text, color):
-        print("\033[01;{color}m".format(color=color))
+        print("\e[01;{color}m".format(color=color))
         print()
         print("---------------------------------------------------------------------------------")
         print(f"--- {text} {datetime.now()}")
         print("---------------------------------------------------------------------------------")
         print()
-        print("\033[00m")
+        print("\e[00m")
