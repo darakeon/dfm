@@ -7,7 +7,7 @@
 - [x] Add Move created limit / month - create / edit / schedule / upload
 - [x] Add Order export limit / month - order
 - [x] Add Order export Moves qty limit - order / export
-- [ ] Add Schedule active limit - schedule
+- [x] Add Schedule active limit - schedule
 - [ ] Add plan to admin
 - [ ] Add warning about schedule not working because move month limit achieved
 - [ ] Add screen with limits - Administration - look into contract for menu

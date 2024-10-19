@@ -91,19 +91,21 @@ public class AttendantService : Service
 
 	private ScheduleResult save(ScheduleInfo info)
 	{
+		var user = parent.Auth.GetCurrent();
+
+		repos.Schedule.ValidatePlanLimit(user);
+
 		var accountOut = parent.BaseMove.GetAccount(info.OutUrl);
 		var accountIn = parent.BaseMove.GetAccount(info.InUrl);
 
 		var category = parent.BaseMove.GetCategory(info.CategoryName);
-
-		var user = parent.Auth.GetCurrent();
 
 		var schedule = new Schedule
 		{
 			Out = accountOut,
 			In = accountIn,
 			Category = category,
-			User = user
+			User = user,
 		};
 
 		info.Update(schedule);
