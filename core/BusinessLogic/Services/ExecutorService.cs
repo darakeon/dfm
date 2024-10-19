@@ -442,21 +442,24 @@ namespace DFM.BusinessLogic.Services
 			try
 			{
 				parent.Auth.VerifyUser(order.User);
+
+				inTransaction(
+					"ExportOrder",
+					() => repos.Order.ExtractToFileAndSend(order)
+				);
 			}
 			catch (CoreError)
 			{
-				inTransaction("ExportOrder", () =>
+				if (order.Status != ExportStatus.Error)
 				{
-					repos.Order.SetError(order);
-				});
+					inTransaction(
+						"ExportOrder",
+						() => repos.Order.SetError(order)
+					);
+				}
 
 				throw;
 			}
-
-			inTransaction("ExportOrder", () =>
-			{
-				repos.Order.ExtractToFileAndSend(order);
-			});
 		}
 
 
