@@ -223,7 +223,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				Name = "Test",
 				AccountOpened = 10,
 				CategoryEnabled = 10,
-				ScheduleActive = 0,
+				ScheduleActive = 10,
 				MoveByAccountByMonth = 10,
 				DetailByParent = 30,
 				ArchiveUploadMonth = 3,
