@@ -385,8 +385,8 @@ Scenario: Ia23. Not run scheduler if user requested wipe
 
 Scenario: Ia24. Run account out + month above limits
 	Given these limits in user plan
-			| MoveByAccountByMonth |
-			| 5                    |
+			| ScheduleActive | MoveByAccountByMonth |
+			| 1              | 5                    |
 		And I have moves of
 			| Description           | Date       | Nature | Value | 
 			| Move {scenarioCode} 1 | 2024-09-13 | Out    | 1     |
@@ -410,8 +410,8 @@ Scenario: Ia24. Run account out + month above limits
 
 Scenario: Ia25. Run account in + month above limits
 	Given these limits in user plan
-			| MoveByAccountByMonth |
-			| 5                    |
+			| ScheduleActive | MoveByAccountByMonth |
+			| 1              | 5                    |
 		And I have moves of
 			| Description           | Date       | Nature | Value | 
 			| Move {scenarioCode} 1 | 2024-09-13 | In     | 1     |

@@ -642,8 +642,8 @@ Scenario: Hc41. Not save if not signed last contract
 
 Scenario: Hc42. Save with details above limits
 	Given these limits in user plan
-			| DetailByParent |
-			| 3              |
+			| ScheduleActive | DetailByParent |
+			| 1              | 3              |
 		And I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da25   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
@@ -659,3 +659,50 @@ Scenario: Hc42. Save with details above limits
 	When I try to save the schedule
 	Then I will receive this core error: PlanLimitDetailByParentAchieved
 		And the schedule will not be saved
+
+Scenario: Hc43. Save above limits
+	Given these limits in user plan
+			| ScheduleActive |
+			| 1              |
+		And I have this schedule to create
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da28   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
+		And I have this schedule to create
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da28   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+	When I try to save the schedule
+	Then I will receive this core error: PlanLimitScheduleActiveAchieved
+		And the schedule will not be saved
+
+Scenario: Hc44. Save but deactivate to reset limit
+	Given these limits in user plan
+			| ScheduleActive |
+			| 1              |
+		And I have this schedule to create
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da28   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
+		And I disable the schedule
+		And I have this schedule to create
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da28   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+	When I try to save the schedule
+	Then I will receive no core error
+		And the schedule will be saved

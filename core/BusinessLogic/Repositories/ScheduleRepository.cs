@@ -232,5 +232,15 @@ namespace DFM.BusinessLogic.Repositories
 			schedule.Category = category;
 			SaveOrUpdate(schedule);
 		}
+
+		public void ValidatePlanLimit(User user)
+		{
+			var count = Count(
+				a => a.User == user && a.Active
+			);
+
+			if (count >= user.Control.Plan.ScheduleActive)
+				throw Error.PlanLimitScheduleActiveAchieved.Throw();
+		}
 	}
 }
