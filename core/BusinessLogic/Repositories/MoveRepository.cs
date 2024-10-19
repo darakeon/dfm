@@ -314,6 +314,8 @@ namespace DFM.BusinessLogic.Repositories
 				.OrderBy(m => m.ID)
 				.List;
 
+			validatePlanLimitMoveByOrder(order.User, moves.Count);
+
 			return moves;
 		}
 
@@ -351,6 +353,11 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			var count = filter(order).Count;
 
+			validatePlanLimitMoveByOrder(user, count);
+		}
+
+		private static void validatePlanLimitMoveByOrder(User user, Int32 count)
+		{
 			if (count > user.Control.Plan.MoveByOrder)
 				throw Error.PlanLimitMoveByOrderAchieved.Throw();
 		}
