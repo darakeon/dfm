@@ -1,10 +1,12 @@
 ﻿using DFM.Generic;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Amazon.Lambda.Core;
 using Amazon.Lambda.RuntimeSupport;
 using Amazon.Lambda.Serialization.SystemTextJson;
+using Newtonsoft.Json;
 
 namespace DFM.Robot
 {
@@ -68,6 +70,16 @@ namespace DFM.Robot
 
 		private static RobotTask getTask(String taskName)
 		{
+			if (taskName.StartsWith("{"))
+			{
+				var taskJson = JsonConvert
+					.DeserializeObject<
+						Dictionary<String, String>
+					>(taskName);
+
+				taskName = taskJson["Task"];
+			}
+
 			var task = EnumX.Parse<RobotTask>(taskName);
 
 			if (!EnumX.AllValues<RobotTask>().Contains(task))
