@@ -14,7 +14,8 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐑: at least one little change, as a change at an existing feature (increases third number)
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="14.0.0.0"></a>14.0.0.0 :🐉: <sup>`7`</sup>
+## <a name="14.0.0.0"></a>14.0.0.0 :🐉: <sup>`8`</sup>
+- [ ] Allow lambda robot to send emails
 - [ ] Add database location to terms
 - [ ] Add terms.dfm address to final clause
 - [ ] Avoid deploy terms.dfm before general update
