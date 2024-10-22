@@ -47,8 +47,8 @@ namespace DFM.Robot
 		{
 			Log.Ok($"Starting {task}");
 
-			var service = new Service(task);
-			var process = service.Execute(Log.Ok);
+			var service = new Service(task, Log.Ok);
+			var process = service.Execute();
 			process.Wait();
 
 			if (process.Exception != null)
