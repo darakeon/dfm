@@ -84,7 +84,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -220,7 +220,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -325,7 +325,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -383,7 +383,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -452,7 +452,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -465,7 +465,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -478,7 +478,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -491,7 +491,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
