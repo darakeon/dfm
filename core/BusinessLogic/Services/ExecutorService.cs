@@ -274,7 +274,7 @@ namespace DFM.BusinessLogic.Services
 		}
 
 		
-		public async Task<MoveResult> MakeMoveFromImported()
+		public async Task<MoveImportResult> MakeMoveFromImported()
 		{
 			if (!parent.Current.IsRobot)
 				throw Error.Uninvited.Throw();
@@ -294,7 +294,7 @@ namespace DFM.BusinessLogic.Services
 
 				return makeMove(user, line);
 			}
-			catch (CoreError)
+			catch (CoreError e)
 			{
 				inTransaction("MakeMoveFromImported", () =>
 				{
@@ -302,7 +302,7 @@ namespace DFM.BusinessLogic.Services
 					repos.Line.SaveOrUpdate(line);
 				});
 
-				throw;
+				return new MoveImportResult(user, e);
 			}
 			finally
 			{
@@ -310,7 +310,7 @@ namespace DFM.BusinessLogic.Services
 			}
 		}
 
-		private MoveResult makeMove(User user, Line line)
+		private MoveImportResult makeMove(User user, Line line)
 		{
 			if (line.Status != ImportStatus.Pending)
 				return null;
@@ -331,7 +331,7 @@ namespace DFM.BusinessLogic.Services
 
 			parent.BaseMove.FixSummaries(user);
 
-			return move;
+			return new MoveImportResult(user, move);
 		}
 
 		private Move createMove(Line line)

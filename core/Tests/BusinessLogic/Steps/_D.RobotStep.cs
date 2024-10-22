@@ -966,23 +966,27 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				var result = service.Executor.MakeMoveFromImported();
-				result.Wait();
+				var task = service.Executor.MakeMoveFromImported();
+				task.Wait();
 
-				moveResult = result.Result;
+				var result = task.Result;
+
+				if (result == null)
+					return;
+
+				if (result.Success)
+					moveResult = result.Move;
+				else
+					error = result.Error;
 			}
 			catch (AggregateException e)
 			{
 				var inner = e.InnerExceptions;
 
 				if (inner.Count == 1 && inner[0] is CoreError realError)
-				{
 					error = realError;
-				}
 				else
-				{
 					throw;
-				}
 			}
 		}
 
