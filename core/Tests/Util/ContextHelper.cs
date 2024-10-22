@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using DFM.Generic;
 using TechTalk.SpecFlow;
@@ -16,26 +17,26 @@ namespace DFM.Tests.Util
 			this.context = context;
 		}
 
-		protected T get<T>(String key)
+		protected T get<T>([CallerMemberName] String key = null)
 		{
 			return exists(key)
-				? (T)context[key]
+				? (T)context[key!]
 				: default;
 		}
 
-		protected IEnumerable<T> getList<T>(String key)
+		protected IEnumerable<T> getList<T>([CallerMemberName] String key = null)
 		{
 			return get<IEnumerable<T>>(key) ?? Array.Empty<T>();
 		}
 
-		protected Boolean exists(String key)
+		protected Boolean exists([CallerMemberName] String key = null)
 		{
-			return context.ContainsKey(key);
+			return context.ContainsKey(key!);
 		}
 
-		protected void set(String key, Object value)
+		protected void set(Object value, [CallerMemberName] String key = null)
 		{
-			context[key] = value;
+			context[key!] = value;
 		}
 
 		protected static String runPath =>
