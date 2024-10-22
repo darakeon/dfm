@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using DFM.Authentication;
 using DFM.BusinessLogic;
@@ -16,14 +17,19 @@ namespace DFM.Robot
 	internal class Service : IDisposable
 	{
 		private readonly RobotTask task;
+		private readonly Action<Object> logOk;
+		
 		private readonly ServiceAccess service;
 		private readonly S3Service wipeS3;
 		private readonly S3Service exportS3;
 		private readonly SQSService sqs;
 
-		public Service(RobotTask task)
+		private readonly IDictionary<RobotTask, Func<Task>> actions;
+
+		public Service(RobotTask task, Action<object> logOk)
 		{
 			this.task = task;
+			this.logOk = logOk;
 
 			TZ.Init(false);
 
@@ -47,6 +53,18 @@ namespace DFM.Robot
 
 			if (this.task != RobotTask.Check)
 				service.Current.Set(Cfg.RobotEmail, Cfg.RobotPassword, false);
+
+			actions = new Dictionary<RobotTask, Func<Task>>
+			{
+				{ RobotTask.Check, check },
+				{ RobotTask.Schedules, schedules },
+				{ RobotTask.Wipe, wipe },
+				{ RobotTask.Import, import },
+				{ RobotTask.Finish, finish },
+				{ RobotTask.Requeue, requeue },
+				{ RobotTask.Export, export },
+				{ RobotTask.Expire, expire },
+			};
 		}
 
 		private static ClientTicket getTicket(Boolean remember)
@@ -59,55 +77,20 @@ namespace DFM.Robot
 			return "https://dontflymoney.com";
 		}
 
-		public async Task Execute(Action<object> logOk)
+		public async Task Execute()
 		{
-			switch (task)
-			{
-				case RobotTask.Check:
-					logOk("Sunariom");
-					break;
-
-				case RobotTask.Schedules:
-					var userErrors = service.Executor.RunSchedule();
-					handleScheduleErrors(userErrors);
-					break;
-
-				case RobotTask.Wipe:
-					service.Executor.WipeUsers();
-					break;
-
-				case RobotTask.Import:
-					MoveImportResult result;
-					Int32 count = 0;
-					do
-					{
-						result = await service.Executor.MakeMoveFromImported();
-						handleImportErrors(result);
-						count++;
-					} while (result != null && count < 100);
-
-					break;
-
-				case RobotTask.Finish:
-					service.Executor.FinishArchives();
-					break;
-
-				case RobotTask.Requeue:
-					await service.Executor.RequeueLines();
-					break;
-
-				case RobotTask.Export:
-					service.Executor.ExportOrder();
-					break;
-
-				case RobotTask.Expire:
-					service.Executor.DeleteExpiredOrders();
-					break;
-			}
+			await actions[task]();
 		}
 
-		private void handleScheduleErrors(DicList<CoreError> userErrors)
+		private async Task check()
 		{
+			logOk("Sunariom");
+		}
+
+		private async Task schedules()
+		{
+			var userErrors = service.Executor.RunSchedule();
+
 			foreach (var (email, errors) in userErrors)
 			{
 				foreach (var error in errors)
@@ -117,10 +100,43 @@ namespace DFM.Robot
 			}
 		}
 
-		private void handleImportErrors(MoveImportResult result)
+		private async Task wipe()
 		{
-			if (!result.Success)
-				result.Error.TryLogHandled($"User: {result.User.Email}");
+			service.Executor.WipeUsers();
+		}
+
+		private async Task import()
+		{
+			for(var m = 0; m < 100; m++)
+			{
+				var result = await service.Executor.MakeMoveFromImported();
+
+				if (result == null)
+					return;
+
+				if (!result.Success)
+					result.Error.TryLogHandled($"User: {result.User.Email}");
+			}
+		}
+
+		private async Task finish()
+		{
+			service.Executor.FinishArchives();
+		}
+
+		private async Task requeue()
+		{
+			await service.Executor.RequeueLines();
+		}
+
+		private async Task export()
+		{
+			service.Executor.ExportOrder();
+		}
+
+		private async Task expire()
+		{
+			service.Executor.DeleteExpiredOrders();
 		}
 
 		public void Dispose()
