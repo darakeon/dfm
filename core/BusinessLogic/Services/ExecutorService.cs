@@ -423,11 +423,14 @@ namespace DFM.BusinessLogic.Services
 
 			await queueService.Enqueue(lines);
 
-			foreach (var line in lines)
+			inTransaction("RequeueLines", () =>
 			{
-				line.Scheduled = DateTime.UtcNow;
-				repos.Line.SaveOrUpdate(line);
-			}
+				foreach (var line in lines)
+				{
+					line.Scheduled = DateTime.UtcNow;
+					repos.Line.SaveOrUpdate(line);
+				}
+			});
 		}
 
 
