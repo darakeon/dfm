@@ -149,7 +149,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -284,7 +284,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			{
 				var errors = service.Executor.RunSchedule();
 
-				error = errors
+				testCoreError = errors
 					.SingleOrDefault(
 						e => e.Key == userEmail
 					).Value?
@@ -292,7 +292,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -333,7 +333,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 		#endregion
@@ -354,7 +354,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -480,7 +480,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -683,7 +683,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -801,7 +801,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -977,14 +977,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 				if (result.Success)
 					moveResult = result.Move;
 				else
-					error = result.Error;
+					testCoreError = result.Error;
 			}
 			catch (AggregateException e)
 			{
 				var inner = e.InnerExceptions;
 
 				if (inner.Count == 1 && inner[0] is CoreError realError)
-					error = realError;
+					testCoreError = realError;
 				else
 					throw;
 			}
@@ -1029,7 +1029,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -1077,7 +1077,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 				if (inner.Count == 1 && inner[0] is CoreError realError)
 				{
-					error = realError;
+					testCoreError = realError;
 				}
 				else
 				{
@@ -1130,7 +1130,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError coreError)
 			{
-				error = coreError;
+				testCoreError = coreError;
 			}
 		}
 
@@ -1160,7 +1160,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError coreError)
 			{
-				error = coreError;
+				testCoreError = coreError;
 			}
 		}
 
@@ -1242,7 +1242,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError coreError)
 			{
-				error = coreError;
+				testCoreError = coreError;
 			}
 		}
 
@@ -1278,7 +1278,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError coreError)
 			{
-				error = coreError;
+				testCoreError = coreError;
 			}
 		}
 		#endregion
@@ -1293,7 +1293,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError coreError)
 			{
-				error = coreError;
+				testCoreError = coreError;
 			}
 		}
 		#endregion
@@ -1350,7 +1350,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -1393,7 +1393,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -1518,7 +1518,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 		#endregion
@@ -1539,7 +1539,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -1636,7 +1636,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 		#endregion
@@ -1651,7 +1651,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 		#endregion
@@ -1674,7 +1674,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 

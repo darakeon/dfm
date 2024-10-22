@@ -161,7 +161,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -216,7 +216,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -251,7 +251,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -311,7 +311,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -345,7 +345,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			catch (CoreError e)
 			{
 				if (isCurrent(ScenarioBlock.When))
-					error = e;
+					testCoreError = e;
 			}
 		}
 
@@ -379,7 +379,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 		#endregion
@@ -427,7 +427,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -469,7 +469,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 		#endregion
@@ -484,7 +484,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -517,7 +517,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -586,7 +586,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -655,7 +655,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -689,7 +689,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -722,7 +722,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -769,7 +769,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -851,7 +851,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -928,7 +928,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -1143,7 +1143,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -1214,7 +1214,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -1227,7 +1227,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -1240,7 +1240,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -1315,7 +1315,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			catch (CoreError e)
 			{
 				if (isCurrent(ScenarioBlock.When))
-					error = e;
+					testCoreError = e;
 				else
 					throw;
 			}
@@ -1332,7 +1332,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			catch (CoreError e)
 			{
 				if (isCurrent(ScenarioBlock.When))
-					error = e;
+					testCoreError = e;
 				else
 					throw;
 			}
@@ -1383,7 +1383,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			catch (CoreError exception)
 			{
 				if (isCurrent(ScenarioBlock.When))
-					error = exception;
+					testCoreError = exception;
 				else
 					throw;
 			}
@@ -1398,7 +1398,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError exception)
 			{
-				error = exception;
+				testCoreError = exception;
 			}
 		}
 
@@ -1411,7 +1411,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError exception)
 			{
-				error = exception;
+				testCoreError = exception;
 			}
 		}
 
@@ -1463,7 +1463,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 
@@ -1495,7 +1495,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				testCoreError = e;
 			}
 		}
 

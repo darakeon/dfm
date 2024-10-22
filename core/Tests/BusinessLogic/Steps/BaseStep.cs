@@ -310,7 +310,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			set => set("mainTicket", value);
 		}
 
-		protected CoreError error
+		protected CoreError testCoreError
 		{
 			get => get<CoreError>("error");
 			set => set("error", value);
