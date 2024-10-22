@@ -13,7 +13,6 @@ using Keon.Util.Crypto;
 using Keon.Util.DB;
 using Keon.Util.Extensions;
 using Error = DFM.BusinessLogic.Exceptions.Error;
-using Security = DFM.Entities.Security;
 
 namespace DFM.BusinessLogic.Repositories
 {

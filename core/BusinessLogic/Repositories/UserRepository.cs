@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories.DataObjects;
+using DFM.Entities;
 using DFM.Entities.Bases;
 using Keon.TwoFactorAuth;
 using Keon.Util.Crypto;
-using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Repositories
 {

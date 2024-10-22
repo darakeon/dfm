@@ -1,11 +1,11 @@
-﻿using DFM.BusinessLogic.Repositories;
-using System;
+﻿using System;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
-using DFM.Entities.Enums;
-using DFM.Entities;
+using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
 using DFM.BusinessLogic.Validators;
+using DFM.Entities;
+using DFM.Entities.Enums;
 
 namespace DFM.BusinessLogic.Services
 {

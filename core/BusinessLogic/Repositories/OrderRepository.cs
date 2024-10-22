@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
-using Keon.Util.Extensions;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Bases;
@@ -11,6 +10,7 @@ using DFM.Entities.Enums;
 using DFM.Exchange.Exporter;
 using DFM.Files;
 using DFM.Generic.Datetime;
+using Keon.Util.Extensions;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Repositories;

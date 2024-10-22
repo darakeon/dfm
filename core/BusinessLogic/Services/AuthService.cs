@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DFM.Authentication;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
-using DFM.Entities;
-using DFM.Entities.Enums;
-using DFM.Authentication;
 using DFM.BusinessLogic.Response;
+using DFM.BusinessLogic.Validators;
+using DFM.Entities;
 using DFM.Entities.Bases;
-using Keon.Util.Extensions;
-using Error = DFM.BusinessLogic.Exceptions.Error;
+using DFM.Entities.Enums;
 using DFM.Generic.Datetime;
 using DFM.Language;
-using DFM.BusinessLogic.Validators;
+using Keon.Util.Extensions;
 
 namespace DFM.BusinessLogic.Services
 {
