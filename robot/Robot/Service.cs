@@ -77,11 +77,12 @@ namespace DFM.Robot
 					break;
 
 				case RobotTask.Import:
-					MoveResult result;
+					MoveImportResult result;
 					Int32 count = 0;
 					do
 					{
 						result = await service.Executor.MakeMoveFromImported();
+						handleImportErrors(result);
 						count++;
 					} while (result != null && count < 10);
 
@@ -114,6 +115,12 @@ namespace DFM.Robot
 					error.TryLogHandled($"User: {email}");
 				}
 			}
+		}
+
+		private void handleImportErrors(MoveImportResult result)
+		{
+			if (!result.Success)
+				result.Error.TryLogHandled($"User: {result.User.Email}");
 		}
 
 		public void Dispose()
