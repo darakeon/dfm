@@ -27,20 +27,20 @@ namespace DFM.BusinessLogic.Tests.Steps
 		#region Variables
 		private Guid guid
 		{
-			get => get<Guid>("guid");
-			set => set("guid", value);
+			get => get<Guid>();
+			set => set(value);
 		}
 
 		private List<Guid> guids
 		{
-			get => get<List<Guid>>("guids");
-			set => set("guids", value);
+			get => get<List<Guid>>();
+			set => set(value);
 		}
 
 		private DateTime oldDate
 		{
-			get => get<DateTime>("OldDate");
-			set => set("OldDate", value);
+			get => get<DateTime>();
+			set => set(value);
 		}
 
 		private static String newAccountOutUrl => "new_" + accountOutUrl;
@@ -51,38 +51,38 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 		private Decimal newAccountOutTotal
 		{
-			get => get<Decimal>("NewAccountOutTotal");
-			set => set("NewAccountOutTotal", value);
+			get => get<Decimal>();
+			set => set(value);
 		}
 
 		private Decimal newYearCategoryAccountOutTotal
 		{
-			get => get<Decimal>("NewYearCategoryAccountOutTotal");
-			set => set("NewYearCategoryAccountOutTotal", value);
+			get => get<Decimal>();
+			set => set(value);
 		}
 
 		private Decimal newMonthCategoryAccountOutTotal
 		{
-			get => get<Decimal>("NewMonthCategoryAccountOutTotal");
-			set => set("NewMonthCategoryAccountOutTotal", value);
+			get => get<Decimal>();
+			set => set(value);
 		}
 
 		private Decimal newAccountInTotal
 		{
-			get => get<Decimal>("NewAccountInTotal");
-			set => set("NewAccountInTotal", value);
+			get => get<Decimal>();
+			set => set(value);
 		}
 
 		private Decimal newYearCategoryAccountInTotal
 		{
-			get => get<Decimal>("NewYearCategoryAccountInTotal");
-			set => set("NewYearCategoryAccountInTotal", value);
+			get => get<Decimal>();
+			set => set(value);
 		}
 
 		private Decimal newMonthCategoryAccountInTotal
 		{
-			get => get<Decimal>("NewMonthCategoryAccountInTotal");
-			set => set("NewMonthCategoryAccountInTotal", value);
+			get => get<Decimal>();
+			set => set(value);
 		}
 		#endregion
 

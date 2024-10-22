@@ -20,56 +20,56 @@ namespace DFM.BusinessLogic.Tests.Steps
 		#region Variables
 		private Int16 month
 		{
-			get => get<Int16>("Month");
-			set => set("Month", value);
+			get => get<Int16>();
+			set => set(value);
 		}
 
 		private Int16? optionalMonth
 		{
-			get => get<Int16?>("OptionalMonth");
-			set => set("OptionalMonth", value);
+			get => get<Int16?>();
+			set => set(value);
 		}
 
 		private Int16 year
 		{
-			get => get<Int16>("Year");
-			set => set("Year", value);
+			get => get<Int16>();
+			set => set(value);
 		}
 
 		private MonthReport monthReport
 		{
-			get => get<MonthReport>("MonthReport");
-			set => set("MonthReport", value);
+			get => get<MonthReport>();
+			set => set(value);
 		}
 
 		private YearReport yearReport
 		{
-			get => get<YearReport>("YearReport");
-			set => set("YearReport", value);
+			get => get<YearReport>();
+			set => set(value);
 		}
 
 		private SearchResult searchResult
 		{
-			get => get<SearchResult>("SearchResult");
-			set => set("SearchResult", value);
+			get => get<SearchResult>();
+			set => set(value);
 		}
 
 		private CategoryReport categoryReport
 		{
-			get => get<CategoryReport>("CategoryReport");
-			set => set("CategoryReport", value);
+			get => get<CategoryReport>();
+			set => set(value);
 		}
 
 		private String tip
 		{
-			get => get<String>("Tip");
-			set => set("Tip", value);
+			get => get<String>();
+			set => set(value);
 		}
 
 		private String otherTip
 		{
-			get => get<String>("OtherTip");
-			set => set("OtherTip", value);
+			get => get<String>();
+			set => set(value);
 		}
 		#endregion
 

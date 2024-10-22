@@ -308,50 +308,50 @@ namespace DFM.Language.Tests
 
 		private StringBuilder errors
 		{
-			get => get<StringBuilder>("errors");
-			init => set("errors", value);
+			get => get<StringBuilder>();
+			init => set(value);
 		}
 
 		private IList<String> languages
 		{
-			get => get<IList<String>>("languages");
-			set => set("languages", value);
+			get => get<IList<String>>();
+			set => set(value);
 		}
 
 		private IList<Pair> keys
 		{
-			get => get<IList<Pair>>("keys");
-			set => set("keys", value);
+			get => get<IList<Pair>>();
+			set => set(value);
 		}
 
 		private IList<EmailType> emailTypes
 		{
-			get => get<IList<EmailType>>("emailTypes");
-			set => set("emailTypes", value);
+			get => get<IList<EmailType>>();
+			set => set(value);
 		}
 
 		private IList<Theme> themes
 		{
-			get => get<IList<Theme>>("themes");
-			set => set("themes", value);
+			get => get<IList<Theme>>();
+			set => set(value);
 		}
 
 		private String phrase
 		{
-			get => get<String>("phrase");
-			set => set("phrase", value);
+			get => get<String>();
+			set => set(value);
 		}
 
 		private String section
 		{
-			get => get<String>("section");
-			set => set("section", value);
+			get => get<String>();
+			set => set(value);
 		}
 
 		private IDictionary<String, Queue<String>> translations
 		{
-			get => get<IDictionary<String, Queue<String>>>("translations");
-			set => set("translations", value);
+			get => get<IDictionary<String, Queue<String>>>();
+			set => set(value);
 		}
 
 		private class Pair

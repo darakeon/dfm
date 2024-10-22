@@ -306,185 +306,185 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 		private String mainTicket
 		{
-			get => get<String>("mainTicket");
-			set => set("mainTicket", value);
+			get => get<String>();
+			set => set(value);
 		}
 
 		protected CoreError testCoreError
 		{
-			get => get<CoreError>("error");
-			set => set("error", value);
+			get => get<CoreError>();
+			set => set(value);
 		}
 
 		protected SessionInfo session
 		{
-			get => get<SessionInfo>("Session");
-			set => set("Session", value);
+			get => get<SessionInfo>();
+			set => set(value);
 		}
 
 		protected AccountInfo accountInfo
 		{
-			get => get<AccountInfo>("AccountInfo");
-			set => set("AccountInfo", value);
+			get => get<AccountInfo>();
+			set => set(value);
 		}
 
 		protected CategoryInfo categoryInfo
 		{
-			get => get<CategoryInfo>("CategoryInfo");
-			set => set("CategoryInfo", value);
+			get => get<CategoryInfo>();
+			set => set(value);
 		}
 
 
 		protected Account accountOut
 		{
-			get => get<Account>("AccountOut");
-			set => set("AccountOut", value);
+			get => get<Account>();
+			set => set(value);
 		}
 
 		protected Decimal accountOutTotal
 		{
-			get => get<Decimal>("AccountOutTotal");
-			set => set("AccountOutTotal", value);
+			get => get<Decimal>();
+			set => set(value);
 		}
 
 		protected Decimal yearAccountOutTotal
 		{
-			get => get<Decimal>("YearAccountOutTotal");
-			set => set("YearAccountOutTotal", value);
+			get => get<Decimal>();
+			set => set(value);
 		}
 
 		protected Decimal monthAccountOutTotal
 		{
-			get => get<Decimal>("MonthAccountOutTotal");
-			set => set("MonthAccountOutTotal", value);
+			get => get<Decimal>();
+			set => set(value);
 		}
 
 		protected Decimal yearCategoryAccountOutTotal
 		{
-			get => get<Decimal>("YearCategoryAccountOutTotal");
-			set => set("YearCategoryAccountOutTotal", value);
+			get => get<Decimal>();
+			set => set(value);
 		}
 
 		protected Decimal monthCategoryAccountOutTotal
 		{
-			get => get<Decimal>("MonthCategoryAccountOutTotal");
-			set => set("MonthCategoryAccountOutTotal", value);
+			get => get<Decimal>();
+			set => set(value);
 		}
 
 
 		protected Account accountIn
 		{
-			get => get<Account>("AccountIn");
-			set => set("AccountIn", value);
+			get => get<Account>();
+			set => set(value);
 		}
 
 		protected Decimal accountInTotal
 		{
-			get => get<Decimal>("AccountInTotal");
-			set => set("AccountInTotal", value);
+			get => get<Decimal>();
+			set => set(value);
 		}
 
 		protected Decimal yearAccountInTotal
 		{
-			get => get<Decimal>("YearAccountInTotal");
-			set => set("YearAccountInTotal", value);
+			get => get<Decimal>();
+			set => set(value);
 		}
 
 		protected Decimal monthAccountInTotal
 		{
-			get => get<Decimal>("MonthAccountInTotal");
-			set => set("MonthAccountInTotal", value);
+			get => get<Decimal>();
+			set => set(value);
 		}
 
 		protected Decimal yearCategoryAccountInTotal
 		{
-			get => get<Decimal>("YearCategoryAccountInTotal");
-			set => set("YearCategoryAccountInTotal", value);
+			get => get<Decimal>();
+			set => set(value);
 		}
 
 		protected Decimal monthCategoryAccountInTotal
 		{
-			get => get<Decimal>("MonthCategoryAccountInTotal");
-			set => set("MonthCategoryAccountInTotal", value);
+			get => get<Decimal>();
+			set => set(value);
 		}
 
 
 		protected String accountUrl
 		{
-			get => get<String>("AccountUrl");
-			set => set("AccountUrl", value);
+			get => get<String>();
+			set => set(value);
 		}
 
 		protected String categoryName
 		{
-			get => get<String>("CategoryName");
-			set => set("CategoryName", value);
+			get => get<String>();
+			set => set(value);
 		}
 
 		protected EmailStatus? currentEmailStatus
 		{
-			get => get<EmailStatus?>("CurrentEmailStatus");
-			set => set("CurrentEmailStatus", value);
+			get => get<EmailStatus?>();
+			set => set(value);
 		}
 
 		protected MoveInfo moveInfo
 		{
-			get => get<MoveInfo>("MoveInfo");
-			set => set("MoveInfo", value);
+			get => get<MoveInfo>();
+			set => set(value);
 		}
 
 		protected MoveResult moveResult
 		{
-			get => get<MoveResult>("MoveResult");
-			set => set("MoveResult", value);
+			get => get<MoveResult>();
+			set => set(value);
 		}
 
 		protected ScheduleInfo scheduleInfo
 		{
-			get => get<ScheduleInfo>("ScheduleInfo");
-			set => set("ScheduleInfo", value);
+			get => get<ScheduleInfo>();
+			set => set(value);
 		}
 
 		protected ScheduleResult scheduleResult
 		{
-			get => get<ScheduleResult>("ScheduleResult");
-			set => set("ScheduleResult", value);
+			get => get<ScheduleResult>();
+			set => set(value);
 		}
 
 		protected DateTime testStart
 		{
-			get => get<DateTime>("testStart");
-			set => set("testStart", value);
+			get => get<DateTime>();
+			set => set(value);
 		}
 
 		protected DateTime whenStart
 		{
-			get => get<DateTime>("whenStart");
-			set => set("whenStart", value);
+			get => get<DateTime>();
+			set => set(value);
 		}
 
 		protected DateTime? ignoreEmailsBefore
 		{
-			get => get<DateTime?>("ignoreEmailsBefore");
-			set => set("ignoreEmailsBefore", value);
+			get => get<DateTime?>();
+			set => set(value);
 		}
 
 		protected String token
 		{
-			get => get<String>("Token");
-			set => set("Token", value);
+			get => get<String>();
+			set => set(value);
 		}
 
 		protected String email
 		{
-			get => get<String>("Email");
-			set => set("Email", value);
+			get => get<String>();
+			set => set(value);
 		}
 
 		protected DateTime? summaryDate
 		{
-			get => get<DateTime?>("SummaryDate");
-			set => set("SummaryDate", value);
+			get => get<DateTime?>();
+			set => set(value);
 		}
 
 

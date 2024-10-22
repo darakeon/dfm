@@ -193,26 +193,26 @@ namespace DFM.Email.Tests
 
 		private MailError error
 		{
-			get => get<MailError>("error");
-			set => set("error", value);
+			get => get<MailError>();
+			set => set(value);
 		}
 
 		private Sender sender
 		{
-			get => get<Sender>("sender");
-			set => set("sender", value);
+			get => get<Sender>();
+			set => set(value);
 		}
 
 		private User user
 		{
-			get => get<User>("user");
-			set => set("user", value);
+			get => get<User>();
+			set => set(value);
 		}
 
 		private Format format
 		{
-			get => get<Format>("format");
-			set => set("format", value);
+			get => get<Format>();
+			set => set(value);
 		}
 	}
 }

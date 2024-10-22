@@ -28,86 +28,86 @@ namespace DFM.BusinessLogic.Tests.Steps
 		#region Variables
 		private Guid guid
 		{
-			get => get<Guid>("ID");
-			set => set("ID", value);
+			get => get<Guid>();
+			set => set(value);
 		}
 
 		private IList<ScheduleInfo> scheduleList
 		{
-			get => get<IList<ScheduleInfo>>("scheduleList");
-			set => set("scheduleList", value);
+			get => get<IList<ScheduleInfo>>();
+			set => set(value);
 		}
 
 		private Boolean hasSchedule
 		{
-			get => get<Boolean>("hasSchedule");
-			set => set("hasSchedule", value);
+			get => get<Boolean>();
+			set => set(value);
 		}
 
 		protected String csvName
 		{
-			get => get<String>("csvName");
-			set => set("csvName", value);
+			get => get<String>();
+			set => set(value);
 		}
 
 		protected String csvContent
 		{
-			get => get<String>("csvContent");
-			set => set("csvContent", value);
+			get => get<String>();
+			set => set(value);
 		}
 
 		private DateTime requeueOrRetryTime
 		{
-			get => get<DateTime>("requeueTime");
-			set => set("requeueTime", value);
+			get => get<DateTime>();
+			set => set(value);
 		}
 
 		private IList<ArchiveInfo> archiveList
 		{
-			get => get<IList<ArchiveInfo>>("archiveList");
-			set => set("archiveList", value);
+			get => get<IList<ArchiveInfo>>();
+			set => set(value);
 		}
 
 		private Guid archiveGuid
 		{
-			get => get<Guid>("archiveGuid");
-			set => set("archiveGuid", value);
+			get => get<Guid>();
+			set => set(value);
 		}
 
 		private Int16 linePosition
 		{
-			get => get<Int16>("linePosition");
-			set => set("linePosition", value);
+			get => get<Int16>();
+			set => set(value);
 		}
 
 		private ArchiveInfo archiveInfo
 		{
-			get => get<ArchiveInfo>("archiveInfo");
-			set => set("archiveInfo", value);
+			get => get<ArchiveInfo>();
+			set => set(value);
 		}
 
 		private OrderInfo orderInfo
 		{
-			get => get<OrderInfo>("orderInfo");
-			set => set("orderInfo", value);
+			get => get<OrderInfo>();
+			set => set(value);
 		}
 
 		private IList<OrderItem> orderInfoList
 		{
-			get => get<IList<OrderItem>>("orderInfoList");
-			set => set("orderInfoList", value);
+			get => get<IList<OrderItem>>();
+			set => set(value);
 		}
 
 		private Guid orderGuid
 		{
-			get => get<Guid>("orderGuid");
-			set => set("orderGuid", value);
+			get => get<Guid>();
+			set => set(value);
 		}
 
 		private OrderFile orderFile
 		{
-			get => get<OrderFile>("orderFile");
-			set => set("orderFile", value);
+			get => get<OrderFile>();
+			set => set(value);
 		}
 		#endregion
 
