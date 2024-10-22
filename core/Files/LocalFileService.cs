@@ -1,5 +1,5 @@
-﻿using DFM.Generic;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
+using DFM.Generic;
 
 [assembly: InternalsVisibleTo("DFM.BusinessLogic.Tests")]
 namespace DFM.Files

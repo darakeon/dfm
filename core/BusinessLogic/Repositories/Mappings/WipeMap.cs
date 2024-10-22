@@ -1,8 +1,8 @@
-﻿using DFM.Entities;
+﻿using System;
+using DFM.Entities;
 using DFM.Entities.Bases;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Automapping.Alterations;
-using System;
 
 namespace DFM.BusinessLogic.Repositories.Mappings
 {

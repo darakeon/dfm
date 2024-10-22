@@ -12,7 +12,6 @@ using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Queue;
-using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Services
 {

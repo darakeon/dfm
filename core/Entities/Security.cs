@@ -1,6 +1,6 @@
 ﻿using System;
-using Keon.Util.DB;
 using DFM.Entities.Enums;
+using Keon.Util.DB;
 using token = Keon.Util.Extensions.Token;
 
 namespace DFM.Entities
