@@ -137,31 +137,31 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"I will receive a core error")]
 		public void ThenIWillReceiveACoreError()
 		{
-			Assert.That(error, Is.Not.Null);
+			Assert.That(testCoreError, Is.Not.Null);
 		}
 
 		[Then(@"I will receive this core error: ([A-Za-z]+)")]
 		public void ThenIWillReceiveThisError(Error expectedError)
 		{
-			Assert.That(error, Is.Not.Null);
-			Assert.That(error.Type, Is.EqualTo(expectedError));
+			Assert.That(testCoreError, Is.Not.Null);
+			Assert.That(testCoreError.Type, Is.EqualTo(expectedError));
 		}
 
 		[Then(@"I will receive these core errors")]
 		public void ThenIWillReceiveTheseCoreErrors(Table table)
 		{
-			Assert.That(error, Is.Not.Null);
+			Assert.That(testCoreError, Is.Not.Null);
 
 			var expectedErrors = table.Rows
 				.Select(r => r["Error"])
 				.Select(EnumX.Parse<Error>)
 				.ToList();
 
-			Assert.That(error.Types.Count, Is.EqualTo(expectedErrors.Count));
+			Assert.That(testCoreError.Types.Count, Is.EqualTo(expectedErrors.Count));
 
 			for (var e = 0; e < expectedErrors.Count; e++)
 			{
-				var actualError = error.Types.Single(
+				var actualError = testCoreError.Types.Single(
 					type => type.Metadata is Int16 metadata && metadata == e+1
 				);
 
@@ -174,7 +174,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"I will receive no core error")]
 		public void ThenIWillReceiveNoCoreError()
 		{
-			Assert.That(error, Is.Null);
+			Assert.That(testCoreError, Is.Null);
 		}
 
 		[BeforeTestRun]
