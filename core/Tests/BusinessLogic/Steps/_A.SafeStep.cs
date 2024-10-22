@@ -296,7 +296,6 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void WhenITryToGetTheTicket()
 		{
 			ticket = null;
-			error = null;
 
 			try
 			{
@@ -345,7 +344,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			catch (CoreError e)
 			{
-				error = e;
+				if (isCurrent(ScenarioBlock.When))
+					error = e;
 			}
 		}
 
@@ -491,6 +491,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the token will not be valid anymore")]
 		public void ThenTheTokenWillNotBeValidAnymore()
 		{
+			CoreError error = null;
+
 			try
 			{
 				service.Outside.TestSecurityToken(token, action);
@@ -522,7 +524,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the ticket will not be valid anymore")]
 		public void ThenTheTicketWillNotBeValidAnymore()
 		{
-			error = null;
+			CoreError error = null;
 
 			try
 			{
@@ -540,7 +542,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the ticket will still be valid")]
 		public void ThenTheTicketWillStillBeValid()
 		{
-			error = null;
+			CoreError error = null;
 
 			try
 			{
@@ -694,7 +696,6 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the e-mail will not be changed")]
 		public void ThenTheEmailWillNotBeChanged()
 		{
-			error = null;
 			var user = service.Auth.GetSession(ticketKey);
 			Assert.That(user.Email, Is.EqualTo(email));
 		}
@@ -702,8 +703,6 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the e-mail will be changed")]
 		public void ThenTheEmailWillBeChanged()
 		{
-			error = null;
-
 			var actualTicket = repos.Ticket.GetByKey(ticketKey);
 			var actualEmail = actualTicket?.User?.Email;
 			Assert.That(actualEmail, Is.EqualTo(newEmail));

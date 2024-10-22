@@ -163,7 +163,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the account will not be saved")]
 		public void ThenTheAccountWillNotBeSaved()
 		{
-			error = null;
+			CoreError error = null;
 			var url = accountInfo.Name.IntoUrl();
 			accountInfo = null;
 
@@ -315,7 +315,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void ThenTheAccountWillBeChanged()
 		{
 			AccountInfo account = null;
-			error = null;
+			CoreError error = null;
 
 			try
 			{
@@ -428,7 +428,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the account will be deleted")]
 		public void ThenTheAccountWillBeDeleted()
 		{
-			error = null;
+			CoreError error = null;
 			var url = accountInfo.Name.IntoUrl();
 			accountInfo = null;
 
@@ -619,7 +619,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the category will not be saved")]
 		public void ThenTheCategoryWillNotBeSaved()
 		{
-			error = null;
+			CoreError error = null;
 			var name = categoryInfo.Name;
 			categoryInfo = null;
 
@@ -712,7 +712,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void ThenTheCategoryWillBeChanged(Boolean changed)
 		{
 			CategoryInfo category = null;
-			error = null;
+			CoreError error = null;
 
 			try
 			{

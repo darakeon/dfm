@@ -624,7 +624,6 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void WhenITryToGetTheMove()
 		{
 			moveInfo = null;
-			error = null;
 
 			try
 			{
