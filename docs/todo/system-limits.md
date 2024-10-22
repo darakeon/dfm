@@ -9,7 +9,7 @@
 - [x] Add Order export Moves qty limit - order / export
 - [x] Add Schedule active limit - schedule
 - [x] Handle Schedule error by Move/Month limit at Robot - the error is logged and one user does not keep other user from run schedules
-- [ ] Handle Import error by Move/Month limit at Robot
+- [x] Handle Import error by Move/Month limit at Robot
 - [ ] Handle Export error by Move/Order limit at Robot
 - [ ] Show Schedule error by Move/Month limit at Site
 - [ ] Show Import error by Move/Month limit at Site
