@@ -26,41 +26,41 @@ namespace DFM.BusinessLogic.Tests.Steps
 		#region Variables
 		private AccountInfo oldAccount
 		{
-			get => get<AccountInfo>("oldAccount");
-			set => set("oldAccount", value);
+			get => get<AccountInfo>();
+			set => set(value);
 		}
 
 		private Decimal accountTotal
 		{
-			get => get<Decimal>("accountTotal");
-			set => set("accountTotal", value);
+			get => get<Decimal>();
+			set => set(value);
 		}
 
 		private IList<AccountListItem> accountList
 		{
-			get => get<IList<AccountListItem>>("accountList");
-			set => set("accountList", value);
+			get => get<IList<AccountListItem>>();
+			set => set(value);
 		}
 
 		private IList<CategoryListItem> categoryList
 		{
-			get => get<IList<CategoryListItem>>("categoryList");
-			set => set("categoryList", value);
+			get => get<IList<CategoryListItem>>();
+			set => set(value);
 		}
 
 
 
 		private CategoryInfo oldCategory
 		{
-			get => get<CategoryInfo>("oldCategory");
-			set => set("oldCategory", value);
+			get => get<CategoryInfo>();
+			set => set(value);
 		}
 
 
 		private Theme theme
 		{
-			get => get<Theme>("theme");
-			set => set("theme", value);
+			get => get<Theme>();
+			set => set(value);
 		}
 
 		#endregion
