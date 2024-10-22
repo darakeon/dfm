@@ -13,14 +13,14 @@ namespace DFM.Generic.Tests
 
 		private String original
 		{
-			get => get<String>("original");
-			set => set("original", value);
+			get => get<String>();
+			set => set(value);
 		}
 
 		private String transformed
 		{
-			get => get<String>("transformed");
-			set => set("transformed", value);
+			get => get<String>();
+			set => set(value);
 		}
 
 		[Given(@"the text (.+)")]

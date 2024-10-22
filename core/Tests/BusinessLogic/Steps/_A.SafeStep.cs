@@ -28,92 +28,92 @@ namespace DFM.BusinessLogic.Tests.Steps
 		#region Variables
 		private String newEmail
 		{
-			get => get<String>("NewEmail");
-			set => set("NewEmail", value);
+			get => get<String>();
+			set => set(value);
 		}
 
 		private String ticket
 		{
-			get => get<String>("ticket");
-			set => set("ticket", value);
+			get => get<String>();
+			set => set(value);
 		}
 
 		private String password
 		{
-			get => get<String>("Password");
-			set => set("Password", value);
+			get => get<String>();
+			set => set(value);
 		}
 
 		private String retypePassword
 		{
-			get => get<String>("RetypePassword");
-			set => set("RetypePassword", value);
+			get => get<String>();
+			set => set(value);
 		}
 
 		private String newPassword
 		{
-			get => get<String>("NewPassword");
-			set => set("NewPassword", value);
+			get => get<String>();
+			set => set(value);
 		}
 
 		private String currentPassword
 		{
-			get => get<String>("CurrentPassword");
-			set => set("CurrentPassword", value);
+			get => get<String>();
+			set => set(value);
 		}
 
 		private String language
 		{
-			get => get<String>("Language");
-			set => set("Language", value);
+			get => get<String>();
+			set => set(value);
 		}
 		
 		private String timezone
 		{
-			get => get<String>("Timezone");
-			set => set("Timezone", value);
+			get => get<String>();
+			set => set(value);
 		}
 
 		private Boolean acceptedContract
 		{
-			get => get<Boolean>("AcceptedContract");
-			set => set("AcceptedContract", value);
+			get => get<Boolean>();
+			set => set(value);
 		}
 
 		private SecurityAction action
 		{
-			get => get<SecurityAction>("Action");
-			set => set("Action", value);
+			get => get<SecurityAction>();
+			set => set(value);
 		}
 
 		private IList<TicketInfo> logins
 		{
-			get => get<IList<TicketInfo>>("logins");
-			set => set("logins", value);
+			get => get<IList<TicketInfo>>();
+			set => set(value);
 		}
 
 		private Boolean? accepted
 		{
-			get => get<Boolean?>("accepted");
-			set => set("accepted", value);
+			get => get<Boolean?>();
+			set => set(value);
 		}
 
 		private TFAInfo tfa
 		{
-			get => get<TFAInfo>("tfa");
-			set => set("tfa", value);
+			get => get<TFAInfo>();
+			set => set(value);
 		}
 
 		private Boolean? ticketVerified
 		{
-			get => get<Boolean?>("ticketVerified");
-			set => set("ticketVerified", value);
+			get => get<Boolean?>();
+			set => set(value);
 		}
 
 		private Misc misc
 		{
-			get => get<Misc>("Misc");
-			set => set("Misc", value);
+			get => get<Misc>();
+			set => set(value);
 		}
 		#endregion
 

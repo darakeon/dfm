@@ -21,14 +21,14 @@ namespace DFM.Exchange.Tests
 
 		private IEnumerable<TestMove> moves
 		{
-			get => getList<TestMove>("moves");
-			set => set("moves", value);
+			get => getList<TestMove>();
+			set => set(value);
 		}
 
 		private IEnumerable<TestSchedule> schedules
 		{
-			get => getList<TestSchedule>("schedules");
-			set => set("schedules", value);
+			get => getList<TestSchedule>();
+			set => set(value);
 		}
 
 		private IMove this[String description]
@@ -42,8 +42,8 @@ namespace DFM.Exchange.Tests
 
 		private IList<String> csv
 		{
-			get => get<IList<String>>("csv");
-			set => set("csv", value);
+			get => get<IList<String>>();
+			set => set(value);
 		}
 
 		[Given(@"this move data")]
