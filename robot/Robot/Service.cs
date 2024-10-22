@@ -84,7 +84,7 @@ namespace DFM.Robot
 						result = await service.Executor.MakeMoveFromImported();
 						handleImportErrors(result);
 						count++;
-					} while (result != null && count < 10);
+					} while (result != null && count < 100);
 
 					break;
 
