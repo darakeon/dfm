@@ -1,8 +1,8 @@
-﻿using DFM.Entities.Enums;
+﻿using System;
+using System.Collections.Generic;
+using DFM.Entities.Enums;
 using DFM.Generic;
 using Keon.Util.DB;
-using System;
-using System.Collections.Generic;
 
 namespace DFM.Entities;
 

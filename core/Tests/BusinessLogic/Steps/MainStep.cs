@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.BusinessLogic.Response;
 using DFM.BusinessLogic.Tests.Helpers;
@@ -13,7 +14,6 @@ using Keon.NHibernate.Sessions;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Tests.Steps
 {

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using Keon.Util.Extensions;
 using DFM.BusinessLogic.Bases;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Validators;
@@ -15,6 +14,7 @@ using DFM.Language;
 using DFM.Language.Emails;
 using DFM.Language.Extensions;
 using Keon.NHibernate.Queries;
+using Keon.Util.Extensions;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Repositories
