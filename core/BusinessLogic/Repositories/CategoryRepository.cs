@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Entities;
 using DFM.Entities.Bases;
 
 namespace DFM.BusinessLogic.Repositories

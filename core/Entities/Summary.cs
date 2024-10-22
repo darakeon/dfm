@@ -1,7 +1,7 @@
 ﻿using System;
-using Keon.Util.DB;
 using DFM.Entities.Enums;
 using DFM.Generic;
+using Keon.Util.DB;
 
 namespace DFM.Entities
 {

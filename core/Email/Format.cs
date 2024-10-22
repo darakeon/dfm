@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities;
 using DFM.Entities.Bases;
-using DFM.Language;
-using DFM.Language.Emails;
 using DFM.Entities.Enums;
 using DFM.Generic;
+using DFM.Language;
+using DFM.Language.Emails;
 using Keon.Util.Extensions;
 
 namespace DFM.Email

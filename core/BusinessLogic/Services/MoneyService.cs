@@ -5,7 +5,6 @@ using DFM.BusinessLogic.Response;
 using DFM.BusinessLogic.Validators;
 using DFM.Entities;
 using DFM.Entities.Enums;
-using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Services
 {
