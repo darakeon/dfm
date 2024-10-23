@@ -18,7 +18,7 @@
   </PropertyGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="dotnet pack &quot;$(ProjectPath)&quot; --no-build --include-source --include-symbols --output &quot;../nuget&quot; -c $(Configuration)" ContinueOnError="WarnAndContinue" />
+    <Exec Command="if not exist $(SolutionDir)nuget/$(AssemblyName)/$(AssemblyVersion) mkdir $(SolutionDir)nuget/$(AssemblyName)/$(AssemblyVersion)&#xD;&#xA;dotnet pack --no-build --include-source --include-symbols --output $(SolutionDir)/nuget/$(AssemblyName)/$(AssemblyVersion) -c $(Configuration)" ContinueOnError="WarnAndContinue" />
   </Target>
 
   <ItemGroup>
