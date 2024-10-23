@@ -1389,7 +1389,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Executor.ExportOrder();
+				var result = service.Executor.ExportOrder();
+
+				if (!result.Success)
+					testCoreError = result.Error;
 			}
 			catch (CoreError e)
 			{

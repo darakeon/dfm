@@ -131,7 +131,10 @@ namespace DFM.Robot
 
 		private async Task export()
 		{
-			service.Executor.ExportOrder();
+			var result = service.Executor.ExportOrder();
+
+			if (!result.Success)
+				result.Error.TryLogHandled($"User: {result.User.Email}");
 		}
 
 		private async Task expire()

@@ -434,7 +434,7 @@ namespace DFM.BusinessLogic.Services
 		}
 
 
-		public void ExportOrder()
+		public ExportResult ExportOrder()
 		{
 			if (!parent.Current.IsRobot)
 				throw Error.Uninvited.Throw();
@@ -449,8 +449,10 @@ namespace DFM.BusinessLogic.Services
 					"ExportOrder",
 					() => repos.Order.ExtractToFileAndSend(order)
 				);
+
+				return new ExportResult(order.User);
 			}
-			catch (CoreError)
+			catch (CoreError e)
 			{
 				if (order.Status != ExportStatus.Error)
 				{
@@ -460,7 +462,7 @@ namespace DFM.BusinessLogic.Services
 					);
 				}
 
-				throw;
+				return new ExportResult(order.User, e);
 			}
 		}
 
