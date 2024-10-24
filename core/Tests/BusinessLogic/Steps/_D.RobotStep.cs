@@ -1517,7 +1517,11 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Executor.DeleteExpiredOrders();
+				var results = service.Executor.DeleteExpiredOrders();
+				testCoreError =
+					results.FirstOrDefault(
+						r => !r.Success
+					)?.Error;
 			}
 			catch (CoreError e)
 			{
