@@ -273,7 +273,7 @@ namespace DFM.BusinessLogic.Services
 		}
 
 		
-		public async Task<MoveImportResult> MakeMoveFromImported()
+		public async Task<ExecutorResult<MoveResult>> MakeMoveFromImported()
 		{
 			if (!parent.Current.IsRobot)
 				throw Error.Uninvited.Throw();
@@ -301,7 +301,7 @@ namespace DFM.BusinessLogic.Services
 					repos.Line.SaveOrUpdate(line);
 				});
 
-				return new MoveImportResult(user, e);
+				return new ExecutorResult<MoveResult>(user, e);
 			}
 			finally
 			{
@@ -309,7 +309,7 @@ namespace DFM.BusinessLogic.Services
 			}
 		}
 
-		private MoveImportResult makeMove(User user, Line line)
+		private ExecutorResult<MoveResult> makeMove(User user, Line line)
 		{
 			if (line.Status != ImportStatus.Pending)
 				return null;
@@ -330,7 +330,7 @@ namespace DFM.BusinessLogic.Services
 
 			parent.BaseMove.FixSummaries(user);
 
-			return new MoveImportResult(user, move);
+			return new ExecutorResult<MoveResult>(user, move);
 		}
 
 		private Move createMove(Line line)
@@ -434,7 +434,7 @@ namespace DFM.BusinessLogic.Services
 		}
 
 
-		public ExportResult ExportOrder()
+		public ExecutorResult ExportOrder()
 		{
 			if (!parent.Current.IsRobot)
 				throw Error.Uninvited.Throw();
@@ -450,7 +450,7 @@ namespace DFM.BusinessLogic.Services
 					() => repos.Order.ExtractToFileAndSend(order)
 				);
 
-				return new ExportResult(order.User);
+				return new ExecutorResult(order.User);
 			}
 			catch (CoreError e)
 			{
@@ -462,7 +462,7 @@ namespace DFM.BusinessLogic.Services
 					);
 				}
 
-				return new ExportResult(order.User, e);
+				return new ExecutorResult(order.User, e);
 			}
 		}
 
