@@ -975,7 +975,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 					return;
 
 				if (result.Success)
-					moveResult = result.Move;
+					moveResult = result.Entity;
 				else
 					testCoreError = result.Error;
 			}
