@@ -467,14 +467,26 @@ namespace DFM.BusinessLogic.Services
 		}
 
 
-		public void DeleteExpiredOrders()
+		public IList<ExecutorResult> DeleteExpiredOrders()
 		{
 			if (!parent.Current.IsRobot)
 				throw Error.Uninvited.Throw();
 
 			var orders = repos.Order.GetExpired();
+			var results = new List<ExecutorResult>();
 
 			foreach (var order in orders)
+			{
+				var result = expire(order);
+				results.Add(result);
+			}
+
+			return results;
+		}
+
+		private ExecutorResult expire(Order order)
+		{
+			try
 			{
 				parent.Auth.VerifyUserIgnoreContract(order.User);
 
@@ -482,6 +494,12 @@ namespace DFM.BusinessLogic.Services
 					"DeleteExpiredOrders",
 					() => repos.Order.Expire(order)
 				);
+
+				return new ExecutorResult(order.User);
+			}
+			catch (CoreError e)
+			{
+				return new ExecutorResult(order.User, e);
 			}
 		}
 	}

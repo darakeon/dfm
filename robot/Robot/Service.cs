@@ -139,7 +139,13 @@ namespace DFM.Robot
 
 		private async Task expire()
 		{
-			service.Executor.DeleteExpiredOrders();
+			var results = service.Executor.DeleteExpiredOrders();
+
+			foreach (var result in results)
+			{
+				if (!result.Success)
+					result.Error.TryLogHandled($"User: {result.User.Email}");
+			}
 		}
 
 		public void Dispose()
