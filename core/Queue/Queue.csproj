@@ -31,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.SQS" Version="3.7.400.36" />
+    <PackageReference Include="AWSSDK.SQS" Version="3.7.400.40" />
   </ItemGroup>
 
   <ItemGroup>
