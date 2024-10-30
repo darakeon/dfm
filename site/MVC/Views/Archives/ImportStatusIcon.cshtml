@@ -4,14 +4,17 @@
 	case ImportStatus.Pending:
 		@("hourglass")
 		break;
-	case ImportStatus.Canceled:
-		@("ban-circle")
-		break;
 	case ImportStatus.Success:
 		@("ok")
 		break;
 	case ImportStatus.Error:
 		@("remove")
+		break;
+	case ImportStatus.OutOfLimit:
+		@("warning-sign")
+		break;
+	case ImportStatus.Canceled:
+		@("ban-circle")
 		break;
 	default:
 		@("minus")

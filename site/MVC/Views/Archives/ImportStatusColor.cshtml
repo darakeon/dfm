@@ -4,14 +4,17 @@
 	case ImportStatus.Pending:
 		@("warning")
 		break;
-	case ImportStatus.Canceled:
-		@("info")
-		break;
 	case ImportStatus.Success:
 		@("success")
 		break;
 	case ImportStatus.Error:
 		@("danger")
+		break;
+	case ImportStatus.OutOfLimit:
+		@("danger")
+		break;
+	case ImportStatus.Canceled:
+		@("info")
 		break;
 	default:
 		@("default")
