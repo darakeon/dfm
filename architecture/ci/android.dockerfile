@@ -29,19 +29,19 @@ COPY config-git /usr/bin
 RUN chmod +x /usr/bin/config-git
 
 RUN echo "echo" >> ~/.bashrc
-RUN echo "printf '\[\e[38;5;46m\]'" >> ~/.bashrc
+RUN echo "printf '\e[38;5;46m'" >> ~/.bashrc
 RUN echo "echo --------------------------------------------------------------------------------" >> ~/.bashrc
 RUN echo "echo ------------------------------------- JAVA -------------------------------------" >> ~/.bashrc
 RUN echo "echo --------------------------------------------------------------------------------" >> ~/.bashrc
-RUN echo "printf '\[\e[38;5;51m\]'" >> ~/.bashrc
+RUN echo "printf '\e[38;5;51m'" >> ~/.bashrc
 RUN echo "java -version" >> ~/.bashrc
-RUN echo "printf '\[\e[38;5;46m\]'" >> ~/.bashrc
+RUN echo "printf '\e[38;5;46m'" >> ~/.bashrc
 RUN echo "echo" >> ~/.bashrc
 RUN echo "echo --------------------------------------------------------------------------------" >> ~/.bashrc
 RUN echo "echo ------------------------------------ GRADLE ------------------------------------" >> ~/.bashrc
 RUN echo "echo --------------------------------------------------------------------------------" >> ~/.bashrc
-RUN echo "printf '\[\e[38;5;51m\]'" >> ~/.bashrc
+RUN echo "printf '\e[38;5;51m'" >> ~/.bashrc
 RUN echo "gradle -v" >> ~/.bashrc
-RUN echo "printf '\[\e[38;5;253m\]'" >> ~/.bashrc
+RUN echo "printf '\e[38;5;253m'" >> ~/.bashrc
 
 CMD bash
