@@ -945,7 +945,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				linePosition = line.Position;
 		}
 
-		[Given(@"line (\d+) is (Pending|Success|Error|Canceled)")]
+		[Given(@"line (\d+) is (Pending|Success|Error|OutOfLimit|Canceled)")]
 		public void GivenLineIs(Int16 lineNumber, ImportStatus status)
 		{
 			var line = repos.Line.Get(archiveGuid, lineNumber);
@@ -1246,14 +1246,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the line will be (Pending|Success|Error|Canceled)")]
+		[Then(@"the line will be (Pending|Success|Error|OutOfLimit|Canceled)")]
 		public void ThenTheLineWillBe(ImportStatus status)
 		{
 			var line = repos.Line.Get(archiveGuid, linePosition);
 			Assert.That(line.Status, Is.EqualTo(status));
 		}
 
-		[Then(@"the line (\d+) will be (Pending|Success|Error|Canceled)")]
+		[Then(@"the line (\d+) will be (Pending|Success|Error|OutOfLimit|Canceled)")]
 		public void ThenTheLineWillBe(Int16 lineNumber, ImportStatus status)
 		{
 			var line = repos.Line.Get(archiveGuid, lineNumber);

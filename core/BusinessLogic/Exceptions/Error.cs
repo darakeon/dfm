@@ -112,7 +112,7 @@ namespace DFM.BusinessLogic.Exceptions
 		InvalidArchiveColumn = 1001,
 		ArchiveNotFound = 1004,
 		LineNotFound = 1005,
-		LineRetryOnlyErrorOrCanceled = 1006,
+		LineRetryOnlyErrorOutOfLimitCanceled = 1006,
 		InvalidArchiveName = 1007,
 		InvalidArchiveType = 1008,
 		LineCancelNoSuccess = 1009,

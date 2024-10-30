@@ -81,3 +81,14 @@ Scenario: Hj10. Line canceled
 	When cancel line
 	Then I will receive no core error
 		And the line will be Canceled
+
+Scenario: Hj11. Line out of limit
+	Given a moves file with this content
+			| Description         | Date       | Nature   | Out         | In         | Value |
+			| Move {scenarioCode} | 2024-07-21 | Transfer | Account Out | Account In | 1     |
+		And the moves file was imported
+		And test user login
+		But line 1 is OutOfLimit
+	When cancel line
+	Then I will receive no core error
+		And the line will be Canceled
