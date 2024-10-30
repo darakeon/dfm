@@ -725,6 +725,7 @@ Scenario: Ic39. Import account out + month above limits
 		And make move from imported
 	Then I will receive this core error: PlanLimitMoveByAccountByMonthAchieved
 	Then the move will not be saved
+		And the line will be OutOfLimit
 		And the accountOut value will not change
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
@@ -746,6 +747,7 @@ Scenario: Ic40. Import account in + month above limits
 		And make move from imported
 	Then I will receive this core error: PlanLimitMoveByAccountByMonthAchieved
 	Then the move will not be saved
+		And the line will be OutOfLimit
 		And the accountIn value will not change
 		And the month-category-accountIn value will not change
 		And the year-category-accountIn value will not change

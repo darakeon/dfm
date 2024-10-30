@@ -297,7 +297,11 @@ namespace DFM.BusinessLogic.Services
 			{
 				inTransaction("MakeMoveFromImported", () =>
 				{
-					line.Status = ImportStatus.Error;
+					line.Status =
+						e.Type == Error.PlanLimitMoveByAccountByMonthAchieved
+							? ImportStatus.OutOfLimit
+							: ImportStatus.Error;
+
 					repos.Line.SaveOrUpdate(line);
 				});
 
