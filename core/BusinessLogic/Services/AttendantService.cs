@@ -311,8 +311,15 @@ public class AttendantService : Service
 		if (line == null || line.Archive.User.ID != user.ID)
 			throw Error.LineNotFound.Throw();
 
-		if (line.Status != ImportStatus.Error && line.Status != ImportStatus.Canceled)
-			throw Error.LineRetryOnlyErrorOrCanceled.Throw();
+		var allowedRetry = new[]
+		{
+			ImportStatus.Error,
+			ImportStatus.OutOfLimit,
+			ImportStatus.Canceled,
+		};
+
+		if (!allowedRetry.Contains(line.Status))
+			throw Error.LineRetryOnlyErrorOutOfLimitCanceled.Throw();
 
 		inTransaction("RetryLine", () =>
 		{
