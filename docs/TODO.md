@@ -29,7 +29,7 @@ The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend)
 | Add rate limit to API and site                                                 |  S  | 🐳 |  1  |  3  |  6  |
 | Add [swagger] to API                                                           |  F  | 🐳 |  1  |  3  |  6  |
 | Refactor Core Steps to improve their division to entities and given/when/then  |  M  | 🐑 |  1  |  3  |  6  |
-| Replace XML at UI android by [compose jetpack]                                 |  M  | 🐉 |  3  |  4  |  5  |
+| Replace XML at UI android by [jetpack-compose-1] [jetpack-compose-2]           |  M  | 🐉 |  3  |  4  |  5  |
 | Implement security measures suggested by github                                |  S  | 🐑 |  3  |  4  |  5  |
 | Add schedule creation (mobile)                                                 |  F  | 🐉 |  2  |  3  |  5  |
 | add snyk/clair check to docker containers                                      |  S  | 🐳 |  2  |  3  |  5  |
@@ -65,7 +65,8 @@ The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend)
 | [OCR] to add values to system                                                  |  F  | 🐉 |  4  |  2  |  2  |
 | Add [gherkin jest]                                                             |  M  | 🐑 |  4  |  1  |  1  |
 
-[compose jetpack]: https://medium.com/@nglauber/jetpack-compose-o-framework-de-ui-do-android-para-os-pr%C3%B3ximos-10-anos-e19adf28e57e
+[jetpack-compose-1]: https://medium.com/@nglauber/jetpack-compose-o-framework-de-ui-do-android-para-os-pr%C3%B3ximos-10-anos-e19adf28e57e
+[jetpack-compose-2]: https://developer.android.com/courses/android-basics-compose/course
 [password rules]: https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#implement-proper-password-strength-controls
 [gherkin jest]: https://www.npmjs.com/package/gherkin-jest
 [Lint C#]: https://medium.com/@michaelparkerdev/linting-c-in-2019-stylecop-sonar-resharper-and-roslyn-73e88af57ebd
