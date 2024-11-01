@@ -13,6 +13,6 @@
 - [x] Handle Export error by Move/Order limit at Robot
 - [ ] Show Schedule error by Move/Month limit at Site
 - [x] Show Import error by Move/Month limit at Site
-- [ ] Show Export error by Move/Order limit at Site
+- [x] Show Export error by Move/Order limit at Site
 - [ ] Add plan to admin
 - [ ] Add screen with limits - Administration - look into contract for menu

@@ -1400,7 +1400,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"order status will be (Pending|Canceled|Success|Error|Expired)")]
+		[Then(@"order status will be (Pending|Success|Error|OutOfLimit|Canceled|Expired)")]
 		public void ThenOrderStatusWillBe(ExportStatus status)
 		{
 			var user = repos.User.GetByEmail(userEmail);
@@ -1497,7 +1497,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 		}
 
-		[Given(@"the order is (Pending|Success|Error|Canceled|Expired)")]
+		[Given(@"the order is (Pending|Success|Error|OutOfLimit|Canceled|Expired)")]
 		public void GivenTheOrderIsError(ExportStatus status)
 		{
 			var user = repos.User.GetByEmail(userEmail);

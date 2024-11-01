@@ -123,3 +123,15 @@ Scenario: Hp12. Order file deleted
 	When download order
 	Then I will receive this core error: OrderFileDeleted
 		And order will not be downloaded
+
+Scenario: Hp13. Order out of limit
+	Given order start date 1986-03-27
+		And order end date 1986-03-27
+		And order account account
+		And an export is ordered
+		And robot export the order
+		And test user login
+		But the order is OutOfLimit
+	When download order
+	Then I will receive this core error: OrderDownloadOnlySuccess
+		And order will not be downloaded

@@ -41,7 +41,7 @@
 		"Retry": "Try again",
 		"Cancel": "Cancel",
 		"Canceled": "Canceled",
-		"OutOfLimit": "Surpass month limit",
+		"OutOfLimit": "Out of limit",
 		"Expired": "Expired",
 
 		"Status": "Status",
@@ -245,7 +245,7 @@
 		"Retry": "Tentar novamente",
 		"Cancel": "Cancelar",
 		"Canceled": "Cancelado",
-		"OutOfLimit": "Ultrapassa o limite mensal",
+		"OutOfLimit": "Fora do limite",
 		"Expired": "Expirado",
 
 		"Status": "Status",
