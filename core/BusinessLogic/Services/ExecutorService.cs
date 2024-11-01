@@ -462,7 +462,7 @@ namespace DFM.BusinessLogic.Services
 				{
 					inTransaction(
 						"ExportOrder",
-						() => repos.Order.SetError(order)
+						() => repos.Order.SetFailure(order, e.Type)
 					);
 				}
 

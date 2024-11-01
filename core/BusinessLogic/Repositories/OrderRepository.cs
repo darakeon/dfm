@@ -84,7 +84,22 @@ internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService 
 
 	public void SetError(Order order)
 	{
-		order.Status = ExportStatus.Error;
+		setFailure(order, ExportStatus.Error);
+	}
+
+	public void SetFailure(Order order, Error type)
+	{
+		var status =
+			type == Error.PlanLimitMoveByOrderAchieved
+				? ExportStatus.OutOfLimit
+				: ExportStatus.Error;
+
+		setFailure(order, status);
+	}
+
+	private void setFailure(Order order, ExportStatus failureStatus)
+	{
+		order.Status = failureStatus;
 		order.Sent = false;
 		SaveOrUpdate(order);
 	}

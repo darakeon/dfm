@@ -4,14 +4,17 @@
 	case ExportStatus.Pending:
 		@("warning")
 		break;
-	case ExportStatus.Canceled:
-		@("info")
-		break;
 	case ExportStatus.Success:
 		@("success")
 		break;
 	case ExportStatus.Error:
 		@("danger")
+		break;
+	case ExportStatus.OutOfLimit:
+		@("danger")
+		break;
+	case ExportStatus.Canceled:
+		@("info")
 		break;
 	case ExportStatus.Expired:
 		@("default")

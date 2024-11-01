@@ -139,3 +139,15 @@ Scenario: Ig11. Order expired
 		And delete expired orders
 	Then I will receive no core error
 		And order status will be Expired
+
+Scenario: Ig12. Order out of limit
+	Given order start date 2023-01-01
+		And order end date 2024-09-06
+		And order account account
+		And an export is ordered
+		And the order is exported 90 days ago
+		But the order is OutOfLimit
+	When robot user login
+		And delete expired orders
+	Then I will receive no core error
+		And order status will be Expired

@@ -5,6 +5,20 @@
 	var order = Model.Order;
 
 	var criteriaColumnsSize = Model.IsUsingCategories ? 2 : 3;
+
+	var allowedToCancel = new[]
+	{
+		ExportStatus.Pending,
+		ExportStatus.Error,
+		ExportStatus.OutOfLimit,
+	};
+
+	var allowedToRetry = new[]
+	{
+		ExportStatus.Error,
+		ExportStatus.OutOfLimit,
+		ExportStatus.Canceled,
+	};
 }
 
 <tr class="row @hl?["Row"]" id="a@(order.Guid)">
@@ -40,7 +54,7 @@
 	</td>
 
 	<td class="col-sm-1 text-center @hl?["Cancel"]">
-		@if (order.Status == ExportStatus.Error || order.Status == ExportStatus.Pending)
+		@if (allowedToCancel.Contains(order.Status))
 		{
 			@await Html.PartialAsync(
 		       "Extensions/MicroForm",
@@ -56,7 +70,7 @@
 	</td>
 
 	<td class="col-sm-1 text-center @hl?["Retry"]">
-		@if (order.Status == ExportStatus.Error || order.Status == ExportStatus.Canceled)
+		@if (allowedToRetry.Contains(order.Status))
 		{
 			@await Html.PartialAsync(
 		       "Extensions/MicroForm",

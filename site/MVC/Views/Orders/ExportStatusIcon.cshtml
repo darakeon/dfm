@@ -4,14 +4,17 @@
 	case ExportStatus.Pending:
 		@("hourglass")
 		break;
-	case ExportStatus.Canceled:
-		@("ban-circle")
-		break;
 	case ExportStatus.Success:
 		@("ok")
 		break;
 	case ExportStatus.Error:
 		@("remove")
+		break;
+	case ExportStatus.OutOfLimit:
+		@("warning-sign")
+		break;
+	case ExportStatus.Canceled:
+		@("ban-circle")
 		break;
 	case ExportStatus.Expired:
 		@("time")

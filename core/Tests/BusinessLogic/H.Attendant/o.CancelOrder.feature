@@ -99,7 +99,7 @@ Scenario: Ho10. Order canceled
 	When cancel order
 	Then I will receive no core error
 		And order status will be Canceled
-		
+
 Scenario: Ho11. Order expired
 	Given order start date 1986-03-27
 		And order end date 1986-03-27
@@ -111,3 +111,13 @@ Scenario: Ho11. Order expired
 	When cancel order
 	Then I will receive this core error: OrderCancelNoSuccessExpired
 		And order status will be Expired
+
+Scenario: Ho12. Order out of limits
+	Given order start date 2024-09-15
+		And order end date 2024-09-15
+		And order account account
+		And an export is ordered
+		And the order is OutOfLimit
+	When cancel order
+	Then I will receive no core error
+		And order status will be Canceled

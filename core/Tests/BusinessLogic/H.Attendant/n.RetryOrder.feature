@@ -73,7 +73,7 @@ Scenario: Hn07. Order pending
 		And order account account
 		And an export is ordered
 	When retry order
-	Then I will receive this core error: OrderRetryOnlyErrorOrCanceled
+	Then I will receive this core error: OrderRetryOnlyErrorOutOfLimitCanceled
 		And order status will be Pending
 
 Scenario: Hn08. Order success
@@ -84,7 +84,7 @@ Scenario: Hn08. Order success
 		And robot export the order
 		And test user login
 	When retry order
-	Then I will receive this core error: OrderRetryOnlyErrorOrCanceled
+	Then I will receive this core error: OrderRetryOnlyErrorOutOfLimitCanceled
 		And order status will be Success
 
 Scenario: Hn09. Order error
@@ -117,5 +117,17 @@ Scenario: Hn11. Order expired
 		And test user login
 		But the order is Expired
 	When retry order
-	Then I will receive this core error: OrderRetryOnlyErrorOrCanceled
+	Then I will receive this core error: OrderRetryOnlyErrorOutOfLimitCanceled
 		And order status will be Expired
+
+Scenario: Hn12. Order out of limit
+	Given order start date 1986-03-27
+		And order end date 1986-03-27
+		And order account account
+		And an export is ordered
+		And robot export the order
+		And test user login
+		And the order is OutOfLimit
+	When retry order
+	Then I will receive no core error
+		And order status will be Pending
