@@ -141,3 +141,24 @@ Scenario: Hm10. Not able to send email
 		And order list will be
 			| Status  | Creation | Exportation | Expiration | Sent  | Start      | End        | CategoryList | AccountList | Path   |
 			| Success | Filled   | Filled      | Filled     | false | 1986-03-27 | 1989-03-17 | Category 1   | Account Out | exists |
+
+Scenario: Hm11. Out of limits
+	Given order start date 1986-03-27
+		And order end date 2024-11-01
+		And order account account_out
+		And order account account_in
+		And order account account_out_eur
+		And order account account_in_brl
+		And order category Category 1
+		And order category Category 2
+		And an export is ordered
+		But these limits in user plan
+			| OrderByMonth | MoveByOrder |
+			| 1            | 3           |
+		And robot export the order
+		And test user login
+	When get order list
+	Then I will receive no core error
+		And order list will be
+			| Status     | Creation | Exportation | Expiration | Sent  | Start      | End        | CategoryList          | AccountList                                           | Path |
+			| OutOfLimit | Filled   |             |            | false | 1986-03-27 | 2024-11-01 | Category 1,Category 2 | Account Out,Account In,Account Out EUR,Account In BRL |      |
