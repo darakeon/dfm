@@ -114,12 +114,15 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var plan = table.CreateInstance<Plan>();
 			plan.Name = $"Plan {scenarioCode}";
-			repos.Plan.SaveOrUpdate(plan);
 
 			var user = repos.User.GetByEmail(userEmail);
 			user.Control.Plan = plan;
 
-			repos.Control.SaveOrUpdate(user.Control);
+			db.Execute(() =>
+			{
+				repos.Plan.SaveOrUpdate(plan);
+				repos.Control.SaveOrUpdate(user.Control);
+			});
 		}
 
 		[When(@"test user login")]

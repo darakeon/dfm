@@ -367,7 +367,7 @@ Scenario: If14. Export moves above limits
 	When robot user login
 		And export order
 	Then I will receive this core error: PlanLimitMoveByOrderAchieved
-		And order status will be Error
+		And order status will be OutOfLimit
 		And the will have creation and expiration not set
 		And there will be no export file
 		And email with csv will not be sent

@@ -442,8 +442,15 @@ public class AttendantService : Service
 	{
 		var order = validateOrder(orderGuid);
 
-		if (order.Status != ExportStatus.Error && order.Status != ExportStatus.Canceled)
-			throw Error.OrderRetryOnlyErrorOrCanceled.Throw();
+		var allowedRetry = new[]
+		{
+			ExportStatus.Error,
+			ExportStatus.OutOfLimit,
+			ExportStatus.Canceled,
+		};
+
+		if (!allowedRetry.Contains(order.Status))
+			throw Error.OrderRetryOnlyErrorOutOfLimitCanceled.Throw();
 
 		inTransaction("RetryOrder", () =>
 		{
