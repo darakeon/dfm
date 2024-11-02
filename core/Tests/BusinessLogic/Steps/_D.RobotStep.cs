@@ -1791,6 +1791,17 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
+		[Given(@"schedule is still enabled")]
+		public void GivenScheduleIsStillEnabled()
+		{
+			var schedule = repos.Schedule.Get(scheduleInfo.Guid);
+			schedule.Active = true;
+			db.Execute(() =>
+			{
+				repos.Schedule.SaveOrUpdate(schedule);
+			});
+		}
+
 		[Then(@"the schedule will be disabled")]
 		public void ThenTheScheduleWillBeDisabled()
 		{
