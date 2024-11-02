@@ -404,7 +404,7 @@ Scenario: Ia24. Run account out + month above limits
 		And run the scheduler
 	Then I will receive this core error: PlanLimitMoveByAccountByMonthAchieved
 	Given test user login
-		Then the accountOut value will change in -20
+	Then the accountOut value will change in -20
 		And the schedule last run will be 2
 		And the schedule will be enabled
 
@@ -429,6 +429,56 @@ Scenario: Ia25. Run account in + month above limits
 		And run the scheduler
 	Then I will receive this core error: PlanLimitMoveByAccountByMonthAchieved
 	Given test user login
-		Then the accountIn value will change in 20
+	Then the accountIn value will change in 20
 		And the schedule last run will be 2
 		And the schedule will be enabled
+
+Scenario: Ia26. Run after disable Category
+	Given I have this schedule to create
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Db10   | 2014-03-22 | Out    | 10    | 1     | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
+		But I disable the category Category
+	When robot user login
+		And run the scheduler
+	Then I will receive this core error: DisabledCategory
+	Given test user login
+		Then the accountOut value will not change
+
+Scenario: Ia27. Run after close Account Out
+	Given I have this schedule to create
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Db10   | 2014-03-22 | Out    | 10    | 1     | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
+		But I close the account Account Out
+		And schedule is still enabled
+	When robot user login
+		And run the scheduler
+	Then I will receive this core error: ClosedAccount
+	Given test user login
+		Then the accountOut value will not change
+
+Scenario: Ia28. Run after close Account In
+	Given I have this schedule to create
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Db10   | 2014-03-22 | In     | 10    | 1     | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has no Account Out
+		And it has an Account In
+		And I save the schedule
+		But I close the account Account In
+		And schedule is still enabled
+	When robot user login
+		And run the scheduler
+	Then I will receive this core error: ClosedAccount
+	Given test user login
+		Then the accountIn value will not change
