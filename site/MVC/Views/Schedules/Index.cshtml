@@ -39,7 +39,7 @@
 			@Context.Translate("Description")
 		</th>
 
-		<th class="col-sm-2 text-center">@Context.Translate("Account")</th>
+		<th class="col-sm-1 text-center">@Context.Translate("Account")</th>
 
 		@if (useCategories)
 		{
@@ -54,6 +54,7 @@
 		<th class="col-sm-1 text-center">@Context.Translate("Run")</th>
 		<th class="col-sm-1 text-center">@Context.Translate("Deleted")</th>
 		<th class="col-sm-1 text-center">@Context.Translate("Value")</th>
+		<th class="col-sm-1 text-center">@Context.Translate("Status")</th>
 		<th class="col-sm-1 text-center">@Context.Translate("TODO")</th>
 	</tr>
 }
@@ -110,6 +111,10 @@
 				title="@Context.Translate(schedule.Nature.ToString())"
 			></span>
 			@schedule.Value.ToMoney(Model.Language)
+		</td>
+
+		<td class="text-center">
+			@await Html.PartialAsync("ScheduleStatus", schedule.Status)
 		</td>
 
 		<td class="text-center @hl["Delete"]">

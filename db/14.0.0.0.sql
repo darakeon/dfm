@@ -433,3 +433,7 @@ alter table control
 			(@PT, 'pt-BR', @contract_id),
 			(@EN, 'en-US', @contract_id);
 -- contract end
+
+
+alter table schedule
+	add LastStatus smallint not null default(0);

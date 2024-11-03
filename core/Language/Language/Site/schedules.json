@@ -10,6 +10,17 @@
 		"ConfirmDeleteSchedule": "Do you really want to DELETE Schedule '{0}'?",
 		"Run": "Run",
 		"Deleted": "Deleted",
+		"Ok": "Ok",
+		"CategoryInvalid": "Category invalid",
+		"UserInactive": "User inactive",
+		"UserRobot": "User robot",
+		"UserMarkedDelete": "User marked to be deleted",
+		"UserNoSignContract": "User not signed last contract",
+		"UserRequestedWipe": "User requested wipe",
+		"MoveOutOfLimit": "Move out of account month limit",
+		"CategoryDisabled": "Category disabled",
+		"AccountClosed": "Account closed",
+		"CurrencyChange": "Currency change in accounts",
 		"": null
 	},
 	"pt-BR": {
@@ -23,6 +34,17 @@
 		"ConfirmDeleteSchedule": "Realmente deseja EXCLUIR o Agendamento '{0}'?",
 		"Run": "Rodadas",
 		"Deleted": "Excluídas",
+		"Ok": "Ok",
+		"CategoryInvalid": "Categoria inválida",
+		"UserInactive": "Pessoa inativa",
+		"UserRobot": "Robô",
+		"UserMarkedDelete": "Dados marcados para exclusão",
+		"UserNoSignContract": "Último contrato não foi assinado",
+		"UserRequestedWipe": "Exclusão de dados requisitada",
+		"MoveOutOfLimit": "Movimentação fora do limite mensal por contas",
+		"CategoryDisabled": "Categoria desabilitada",
+		"AccountClosed": "Conta fechada",
+		"CurrencyChange": "Mudança de moeda nas contas",
 		"": null
 	}
 }
