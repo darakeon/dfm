@@ -114,7 +114,8 @@
 		"JustNumbers": "type just numbers at this field",
 		"BRL": "Real",
 		"EUR": "Euro",
-		"USD": "Dolar",
+		"USD": "Dollar",
+		"CAD": "Canadian Dollar",
 
 		"Local": "Local",
 		"Mobile": "Mobile",
@@ -319,6 +320,7 @@
 		"BRL": "Real",
 		"EUR": "Euro",
 		"USD": "Dólar",
+		"CAD": "Dólar Canadense",
 
 		"Local": "Local",
 		"Mobile": "Mobile",
