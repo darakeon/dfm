@@ -24,6 +24,7 @@ Scenario: 02. Get translations of Enums
 			| General   | Entities      | Enums      | OperationType     |
 			| Users     | Entities      | Enums      | RemovalReason     |
 			| Schedules | Entities      | Enums      | ScheduleFrequency |
+			| Schedules | Entities      | Enums      | ScheduleStatus    |
 			| Tokens    | Entities      | Enums      | SecurityAction    |
 			| Summary   | Entities      | Enums      | SummaryNature     |
 			| Logins    | Entities      | Enums      | TicketType        |

@@ -242,5 +242,16 @@ namespace DFM.BusinessLogic.Repositories
 			if (count >= user.Control.Plan.ScheduleActive)
 				throw Error.PlanLimitScheduleActiveAchieved.Throw();
 		}
+
+		public IList<Schedule> ByUser(User user)
+		{
+			return Where(s => s.Active && s.User == user);
+		}
+
+		public void SetFailure(Schedule schedule, Error error)
+		{
+			schedule.LastStatus = validator.Convert(error);
+			SaveOrUpdate(schedule);
+		}
 	}
 }

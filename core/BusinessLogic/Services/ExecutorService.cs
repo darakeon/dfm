@@ -102,6 +102,11 @@ namespace DFM.BusinessLogic.Services
 			}
 			catch (CoreError e)
 			{
+				inTransaction(
+					"RunSchedule",
+					() => repos.Schedule.SetFailure(schedule, e.Type)
+				);
+
 				errors.Add(schedule.User.Email, e);
 			}
 		}

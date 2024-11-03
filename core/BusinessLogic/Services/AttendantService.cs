@@ -51,10 +51,7 @@ public class AttendantService : Service
 
 		var user = parent.Auth.GetCurrent();
 
-		return repos.Schedule
-			.Where(
-				s => s.Active && s.User.ID == user.ID
-			)
+		return repos.Schedule.ByUser(user)
 			.Select(ScheduleInfo.Convert)
 			.ToList();
 	}

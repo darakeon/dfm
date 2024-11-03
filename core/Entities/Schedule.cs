@@ -39,6 +39,7 @@ namespace DFM.Entities
 		public virtual Int16 LastRun { get; set; }
 		public virtual Int16 Deleted { get; set; }
 		public virtual Int16 Times { get; set; }
+		public virtual ScheduleStatus LastStatus { get; set; }
 
 		public virtual ScheduleFrequency Frequency { get; set; }
 		public virtual Boolean Boundless { get; set; }

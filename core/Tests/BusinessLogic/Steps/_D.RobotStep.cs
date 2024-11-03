@@ -207,13 +207,15 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var user = repos.User.GetByEmail(current.Email);
 
-			repos.Schedule.SaveOrUpdate(
+			var schedule = repos.Schedule.SaveOrUpdate(
 				new Schedule
 				{
 					Description = "",
 					User = user,
 				}
 			);
+
+			scheduleInfo = ScheduleInfo.Convert(schedule);
 		}
 
 		[Given(@"robot run the scheduler")]
@@ -1810,6 +1812,22 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var schedule = repos.Schedule.Get(scheduleInfo.Guid);
 			Assert.That(schedule.LastRun, Is.EqualTo(lastRun));
+		}
+
+		[Then(@"the schedule status will be (\w+)")]
+		public void ThenTheScheduleStatusWillBe(ScheduleStatus status)
+		{
+			var schedule = repos.Schedule.Get(scheduleInfo.Guid);
+			Assert.That(schedule.LastStatus, Is.EqualTo(status));
+		}
+
+		[Then(@"the status of last schedule of (.+) will be (\w+)")]
+		public void ThenTheStatusOfLastScheduleOf_WillBe(String username, ScheduleStatus status)
+		{
+			var email = $"{username.ForScenario(scenarioCode)}@dontflymoney.com";
+			var user = repos.User.GetByEmail(email);
+			var schedule = repos.Schedule.ByUser(user).First();
+			Assert.That(schedule.LastStatus, Is.EqualTo(status));
 		}
 		#endregion
 	}

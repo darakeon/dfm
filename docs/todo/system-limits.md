@@ -9,9 +9,9 @@
 - [x] Add Order export Moves qty limit - order / export
 - [x] Add Schedule active limit - schedule
 - [x] Handle Schedule error by Move/Month limit at Robot - the error is logged and one user does not keep other user from run schedules
-- [x] Handle Import error by Move/Month limit at Robot
-- [x] Handle Export error by Move/Order limit at Robot
-- [ ] Show Schedule error by Move/Month limit at Site
+- [ ] Handle Import error by Move/Month limit at Robot - site
+- [ ] Handle Export error by Move/Order limit at Robot - site
+- [x] Show Schedule error by Move/Month limit at Site
 - [x] Show Import error by Move/Month limit at Site
 - [x] Show Export error by Move/Order limit at Site
 - [ ] Add plan to admin
