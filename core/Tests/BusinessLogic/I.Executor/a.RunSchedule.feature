@@ -219,10 +219,14 @@ Scenario: Ia12. Run with schedule start in past and end in future
 		And the schedule will be enabled
 
 Scenario: Ia13. Run with bugged schedule
-	Given I have a bugged schedule
+	Given these settings
+			| UseCategories |
+			| false         |
+		And I have a bugged schedule
 	When robot user login
 		And run the scheduler
 	Then I will receive a core error
+		And the schedule status will be Error
 
 Scenario: Ia14. Run schedule with category and categories use disabled
 	Given these settings
@@ -242,6 +246,7 @@ Scenario: Ia14. Run schedule with category and categories use disabled
 	When robot user login
 		And run the scheduler
 	Then I will receive this core error: CategoriesDisabled
+		And the schedule status will be CategoriesDisabled
 
 Scenario: Ia15. Run schedule without category and categories use enabled
 	Given these settings
@@ -261,6 +266,7 @@ Scenario: Ia15. Run schedule without category and categories use enabled
 	When robot user login
 		And run the scheduler
 	Then I will receive this core error: InvalidCategory
+		And the schedule status will be CategoryInvalid
 
 Scenario: Ia16. Run with normal user
 	Given I have this schedule to create
@@ -273,6 +279,7 @@ Scenario: Ia16. Run with normal user
 		And I save the schedule
 	When run the scheduler
 	Then I will receive this core error: Uninvited
+		And the schedule status will be Ok
 
 Scenario: Ia17. Run only that timezone schedules
 	Given I have this user created
@@ -315,6 +322,7 @@ Scenario: Ia18. Run only active users
 			| Email                                    | Password |
 			| inactive_{scenarioCode}@dontflymoney.com | password |
 	Then the accountOut value will not change
+		And the status of last schedule of inactive_{scenarioCode} will be UserInactive
 
 Scenario: Ia19. Do not run robots
 	Given I have this user created
@@ -336,6 +344,7 @@ Scenario: Ia19. Do not run robots
 			| Email                              | Password |
 			| zb_{scenarioCode}@dontflymoney.com | password |
 	Then the accountOut value will not change
+		And the status of last schedule of zb_{scenarioCode} will be UserRobot
 
 Scenario: Ia20. Run scheduler after add schedule
 	Given I have this user created
@@ -361,6 +370,7 @@ Scenario: Ia21. Not run scheduler if user is marked for deletion
 	When robot user login
 		And run the scheduler
 	Then the user deleted_{scenarioCode}@dontflymoney.com will still have no moves
+		And the status of last schedule of deleted_{scenarioCode} will be UserMarkedDelete
 
 Scenario: Ia22. Not run scheduler if user has not signed last contract
 	Given I have this user created
@@ -372,6 +382,7 @@ Scenario: Ia22. Not run scheduler if user has not signed last contract
 		And run the scheduler
 	Then I will receive no core error
 		But the user not_signed_{scenarioCode}@dontflymoney.com will still have no moves
+		And the status of last schedule of not_signed_{scenarioCode} will be UserNoSignContract
 
 Scenario: Ia23. Not run scheduler if user requested wipe
 	Given I have this user created
@@ -382,6 +393,7 @@ Scenario: Ia23. Not run scheduler if user requested wipe
 	When robot user login
 		And run the scheduler
 	Then the user askedwipe_{scenarioCode}@dontflymoney.com will still have no moves
+		And the status of last schedule of askedwipe_{scenarioCode} will be UserRequestedWipe
 
 Scenario: Ia24. Run account out + month above limits
 	Given these limits in user plan
@@ -403,6 +415,7 @@ Scenario: Ia24. Run account out + month above limits
 	When robot user login
 		And run the scheduler
 	Then I will receive this core error: PlanLimitMoveByAccountByMonthAchieved
+		And the schedule status will be MoveOutOfLimit
 	Given test user login
 	Then the accountOut value will change in -20
 		And the schedule last run will be 2
@@ -428,6 +441,7 @@ Scenario: Ia25. Run account in + month above limits
 	When robot user login
 		And run the scheduler
 	Then I will receive this core error: PlanLimitMoveByAccountByMonthAchieved
+		And the schedule status will be MoveOutOfLimit
 	Given test user login
 	Then the accountIn value will change in 20
 		And the schedule last run will be 2
@@ -446,6 +460,7 @@ Scenario: Ia26. Run after disable Category
 	When robot user login
 		And run the scheduler
 	Then I will receive this core error: DisabledCategory
+		And the schedule status will be CategoryDisabled
 	Given test user login
 		Then the accountOut value will not change
 
@@ -463,6 +478,7 @@ Scenario: Ia27. Run after close Account Out
 	When robot user login
 		And run the scheduler
 	Then I will receive this core error: ClosedAccount
+		And the schedule status will be AccountClosed
 	Given test user login
 		Then the accountOut value will not change
 
@@ -480,6 +496,7 @@ Scenario: Ia28. Run after close Account In
 	When robot user login
 		And run the scheduler
 	Then I will receive this core error: ClosedAccount
+		And the schedule status will be AccountClosed
 	Given test user login
 		Then the accountIn value will not change
 
@@ -499,6 +516,7 @@ Scenario: Ia29. With conversion but change to same currency
 	When robot user login
 		And run the scheduler
 	Then I will receive this core error: AccountsSameCurrencyConversion
+		And the schedule status will be CurrencyChange
 	Given test user login
 		Then the accountIn value will not change
 
@@ -518,5 +536,24 @@ Scenario: Ia30. Without conversion but change to different currency
 	When robot user login
 		And run the scheduler
 	Then I will receive this core error: AccountsDifferentCurrencyNoConversion
+		And the schedule status will be CurrencyChange
 	Given test user login
 		Then the accountIn value will not change
+
+Scenario: Ia31. Recover from failure
+	Given I have this schedule to create
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Db10   | 2014-03-22 | Out    | 10    | 1     | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
+		But I disable the category Category
+		And robot run the scheduler
+		And I enable the category Category
+		And user can be checked by robot again
+	When robot user login
+		And run the scheduler
+	Then I will receive no core error
+		And the schedule status will be Ok

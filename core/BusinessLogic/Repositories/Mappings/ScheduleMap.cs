@@ -29,6 +29,9 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 			mapping.Map(s => s.Active)
 				.Default("1");
 
+			mapping.Map(m => m.LastStatus)
+				.Default("0");
+
 			mapping.References(m => m.In)
 				.Nullable();
 

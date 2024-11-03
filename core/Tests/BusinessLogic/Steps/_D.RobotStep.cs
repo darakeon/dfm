@@ -32,9 +32,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 			set => set(value);
 		}
 
-		private IList<ScheduleInfo> scheduleList
+		private IList<ScheduleItem> scheduleList
 		{
-			get => get<IList<ScheduleInfo>>();
+			get => get<IList<ScheduleItem>>();
 			set => set(value);
 		}
 
@@ -207,13 +207,15 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var user = repos.User.GetByEmail(current.Email);
 
-			repos.Schedule.SaveOrUpdate(
+			var schedule = repos.Schedule.SaveOrUpdate(
 				new Schedule
 				{
 					Description = "",
 					User = user,
 				}
 			);
+
+			scheduleInfo = ScheduleItem.Convert(schedule);
 		}
 
 		[Given(@"robot run the scheduler")]
@@ -275,6 +277,16 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var user = repos.User.GetByEmail(email);
 			user.Control.IsRobot = true;
 			db.Execute(() => repos.Control.SaveOrUpdate(user.Control));
+		}
+
+		[Given(@"user can be checked by robot again")]
+		public void GivenUserCanBeCheckedByRobotAgain()
+		{
+			var user = repos.User.GetByEmail(userEmail);
+
+			db.Execute(
+				() => repos.Control.AnticipateRobotCheck(user.Control)
+			);
 		}
 
 		[When(@"run the scheduler")]
@@ -1810,6 +1822,22 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var schedule = repos.Schedule.Get(scheduleInfo.Guid);
 			Assert.That(schedule.LastRun, Is.EqualTo(lastRun));
+		}
+
+		[Then(@"the schedule status will be (\w+)")]
+		public void ThenTheScheduleStatusWillBe(ScheduleStatus status)
+		{
+			var schedule = repos.Schedule.Get(scheduleInfo.Guid);
+			Assert.That(schedule.LastStatus, Is.EqualTo(status));
+		}
+
+		[Then(@"the status of last schedule of (.+) will be (\w+)")]
+		public void ThenTheStatusOfLastScheduleOf_WillBe(String username, ScheduleStatus status)
+		{
+			var email = $"{username.ForScenario(scenarioCode)}@dontflymoney.com";
+			var user = repos.User.GetByEmail(email);
+			var schedule = repos.Schedule.ByUser(user).First();
+			Assert.That(schedule.LastStatus, Is.EqualTo(status));
 		}
 		#endregion
 	}
