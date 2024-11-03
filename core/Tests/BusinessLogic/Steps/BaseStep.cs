@@ -147,8 +147,15 @@ namespace DFM.BusinessLogic.Tests.Steps
 			createLogoffLogin(robotEmail);
 
 			var robot = repos.User.GetByEmail(robotEmail);
+
+			if (robot.Control.IsRobot)
+				return;
+
 			robot.Control.IsRobot = true;
-			repos.Control.SaveOrUpdate(robot.Control);
+
+			db.Execute(
+				() => repos.Control.SaveOrUpdate(robot.Control)
+			);
 		}
 
 		protected void createLogoffLogin(String email)

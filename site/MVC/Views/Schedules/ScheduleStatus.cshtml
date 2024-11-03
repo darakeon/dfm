@@ -1,0 +1,10 @@
+﻿@model ScheduleStatus
+
+<span
+	class="
+		glyphicon
+		glyphicon-@await Html.PartialAsync("ScheduleStatusIcon", Model)
+		text-@await Html.PartialAsync("ScheduleStatusColor", Model)
+	"
+	title="@Context.Translate(Model.ToString())">
+</span>

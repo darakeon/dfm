@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories.DataObjects;
@@ -149,6 +150,15 @@ namespace DFM.BusinessLogic.Repositories
 			return CodeGenerator
 				.Generate(secret, 2)
 				.Contains(code);
+		}
+
+		public IList<User> GetForRunSchedule()
+		{
+			return NewQuery()
+				.Where(u => u.Control, c => c.RobotCheck <= DateTime.UtcNow)
+				.Where(u => u.Control, c => c.Active)
+				.Where(u => u.Control, c => c.IsRobot == false)
+				.List;
 		}
 	}
 }

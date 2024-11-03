@@ -45,17 +45,14 @@ public class AttendantService : Service
 		};
 
 
-	public IList<ScheduleInfo> GetScheduleList()
+	public IList<ScheduleItem> GetScheduleList()
 	{
 		parent.Auth.VerifyUser();
 
 		var user = parent.Auth.GetCurrent();
 
-		return repos.Schedule
-			.Where(
-				s => s.Active && s.User.ID == user.ID
-			)
-			.Select(ScheduleInfo.Convert)
+		return repos.Schedule.ByUser(user)
+			.Select(ScheduleItem.Convert)
 			.ToList();
 	}
 

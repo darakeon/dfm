@@ -1,0 +1,10 @@
+﻿@model ScheduleStatus
+@switch (Model)
+{
+	case ScheduleStatus.Ok:
+		@("ok")
+		break;
+	default:
+		@("remove")
+		break;
+}

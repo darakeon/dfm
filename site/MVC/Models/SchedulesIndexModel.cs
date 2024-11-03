@@ -15,6 +15,6 @@ namespace DFM.MVC.Models
 					.ToList();
 		}
 
-		public IList<ScheduleInfo> ScheduleList { get; set; }
+		public IList<ScheduleItem> ScheduleList { get; set; }
 	}
 }
