@@ -6,4 +6,5 @@ public enum Currency
 	BRL = 0,
 	EUR = 1,
 	USD = 2,
+	CAD = 3,
 }
