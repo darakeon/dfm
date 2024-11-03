@@ -1701,31 +1701,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var scheduleData = table.Rows[0];
 
-			scheduleInfo = new ScheduleInfo
-			{
-				Description = scheduleData["Description"]
-			};
-
-			if (!String.IsNullOrEmpty(scheduleData["Nature"]))
-				scheduleInfo.Nature = EnumX.Parse<MoveNature>(scheduleData["Nature"]);
+			scheduleInfo = scheduleData.CreateInstance<ScheduleInfo>();
 
 			if (!String.IsNullOrEmpty(scheduleData["Date"]))
 				scheduleInfo.SetDate(DateTime.Parse(scheduleData["Date"]));
-
-			if (!String.IsNullOrEmpty(scheduleData["Value"]))
-				scheduleInfo.Value = Int32.Parse(scheduleData["Value"]);
-
-			if (!String.IsNullOrEmpty(scheduleData["Times"]))
-				scheduleInfo.Times = Int16.Parse(scheduleData["Times"]);
-
-			if (!String.IsNullOrEmpty(scheduleData["Boundless"]))
-				scheduleInfo.Boundless = Boolean.Parse(scheduleData["Boundless"]);
-
-			if (!String.IsNullOrEmpty(scheduleData["Frequency"]))
-				scheduleInfo.Frequency = EnumX.Parse<ScheduleFrequency>(scheduleData["Frequency"]);
-
-			if (!String.IsNullOrEmpty(scheduleData["ShowInstallment"]))
-				scheduleInfo.ShowInstallment = Boolean.Parse(scheduleData["ShowInstallment"]);
 		}
 
 		[Given(@"I save the schedule")]
@@ -1800,6 +1779,16 @@ namespace DFM.BusinessLogic.Tests.Steps
 			{
 				repos.Schedule.SaveOrUpdate(schedule);
 			});
+		}
+
+		[Given(@"(.+) currency is set to ([A-Z]{3})")]
+		public void Given_CurrencyIsSetTo(String accountName, Currency currency)
+		{
+			var url = accountName.IntoUrl();
+			var account = service.Admin.GetAccount(url);
+
+			account.Currency = currency;
+			service.Admin.UpdateAccount(account);
 		}
 
 		[Then(@"the schedule will be disabled")]
