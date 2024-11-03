@@ -482,3 +482,41 @@ Scenario: Ia28. Run after close Account In
 	Then I will receive this core error: ClosedAccount
 	Given test user login
 		Then the accountIn value will not change
+
+Scenario: Ia29. With conversion but change to same currency
+	Given these settings
+			| UseCurrency |
+			| true        |
+		And I have this schedule to create
+			| Description | Date       | Nature   | Value | Conversion | Times | Boundless | Frequency | ShowInstallment |
+			| Move Db10   | 2024-11-02 | Transfer | 2     | 12         | 1     | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account In BRL
+		And it has an Account Out EUR
+		And I save the schedule
+		But Account Out currency is set to BRL
+	When robot user login
+		And run the scheduler
+	Then I will receive this core error: AccountsSameCurrencyConversion
+	Given test user login
+		Then the accountIn value will not change
+
+Scenario: Ia30. Without conversion but change to different currency
+	Given these settings
+			| UseCurrency |
+			| true        |
+		And I have this schedule to create
+			| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Db10   | 2024-11-02 | Transfer | 2     | 1     | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account In EUR
+		And it has an Account Out EUR
+		And I save the schedule
+		But Account In currency is set to BRL
+	When robot user login
+		And run the scheduler
+	Then I will receive this core error: AccountsDifferentCurrencyNoConversion
+	Given test user login
+		Then the accountIn value will not change
