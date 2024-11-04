@@ -34,41 +34,45 @@ namespace DFM.BusinessLogic.Services
 
 			var errors = new DicList<CoreError>();
 
-			var users = repos.User
-				.NewQuery()
-				.Where(u => u.Control, c => c.Active)
-				.Where(u => u.Control, c => c.RobotCheck <= DateTime.UtcNow)
-				.Where(u => u.Control, c => !c.IsRobot)
-				.List;
+			var usersToRun = repos.User.GetForRunSchedule();
 
-			foreach (var user in users)
+			foreach (var user in usersToRun)
 			{
 				runSchedule(user, errors);
 			}
+
+			repos.Schedule.GetForRobot().ToList()
+				.ForEach(s => setFailure(s, ScheduleStatus.UserRobot));
+
+			repos.Schedule.GetForInactive().ToList()
+				.ForEach(s => setFailure(s, ScheduleStatus.UserInactive));
 
 			return errors;
 		}
 
 		private void runSchedule(User user, DicList<CoreError> errors)
 		{
+			var scheduleList = repos.Schedule.GetRunnable(user);
+
+			if (!scheduleList.Any())
+				return;
+
 			try
 			{
 				parent.Auth.VerifyUser(user);
 			}
 			catch (CoreError e)
 			{
-				if (e.Type != Error.NotSignedLastContract)
-					errors.Add(user.Email, e);
+				scheduleList.ToList()
+					.ForEach(s => setFailure(s, e));
 
+				errors.Add(user.Email, e);
 				return;
 			}
 
 			try
 			{
-				runSchedule(
-					repos.Schedule.GetRunnable(user),
-					errors
-				);
+				runSchedule(scheduleList, errors);
 
 				parent.BaseMove.FixSummaries(user);
 
@@ -102,11 +106,7 @@ namespace DFM.BusinessLogic.Services
 			}
 			catch (CoreError e)
 			{
-				inTransaction(
-					"RunSchedule",
-					() => repos.Schedule.SetFailure(schedule, e.Type)
-				);
-
+				setFailure(schedule, e);
 				errors.Add(schedule.User.Email, e);
 			}
 		}
@@ -124,6 +124,36 @@ namespace DFM.BusinessLogic.Services
 			schedule.MoveList.Add(move);
 
 			repos.Schedule.UpdateState(schedule);
+		}
+
+		private void setFailure(Schedule schedule, CoreError error)
+		{
+			setFailure(
+				schedule,
+				s => repos.Schedule.SetFailure(s, error.Type)
+			);
+		}
+
+		private void setFailure(Schedule schedule, ScheduleStatus status)
+		{
+			setFailure(
+				schedule,
+				s => repos.Schedule.SetFailure(s, status)
+			);
+		}
+
+		private void setFailure(Schedule schedule, Action<Schedule> setFailure)
+		{
+			var user = schedule.User;
+			var control = user.Control;
+
+			user.SetRobotCheckDay();
+
+			inTransaction("RunScheduleNot", () =>
+			{
+				repos.Control.SaveOrUpdate(control);
+				setFailure(schedule);
+			});
 		}
 
 

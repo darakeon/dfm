@@ -113,6 +113,7 @@ namespace DFM.BusinessLogic.Repositories
 
 			schedule = Get(schedule.ID);
 
+			schedule.LastStatus = ScheduleStatus.Ok;
 			schedule.LastRun = lastRun;
 			schedule.Active = active;
 
@@ -250,8 +251,30 @@ namespace DFM.BusinessLogic.Repositories
 
 		public void SetFailure(Schedule schedule, Error error)
 		{
-			schedule.LastStatus = validator.Convert(error);
+			SetFailure(schedule, validator.Convert(error));
+		}
+
+		public void SetFailure(Schedule schedule, ScheduleStatus error)
+		{
+			schedule = Get(schedule.ID);
+			schedule.LastStatus = error;
 			SaveOrUpdate(schedule);
+		}
+
+		public IList<Schedule> GetForRobot()
+		{
+			return NewQuery()
+				.Where(s => s.User.Control, c => c.RobotCheck <= DateTime.UtcNow)
+				.Where(s => s.User.Control, c => c.IsRobot)
+				.List;
+		}
+
+		public IList<Schedule> GetForInactive()
+		{
+			return NewQuery()
+				.Where(s => s.User.Control, c => c.RobotCheck <= DateTime.UtcNow)
+				.Where(s => s.User.Control, c => !c.Active)
+				.List;
 		}
 	}
 }

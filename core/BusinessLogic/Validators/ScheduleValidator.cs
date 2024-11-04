@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Amazon.Runtime.Internal.Transform;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Bases;
@@ -12,7 +11,7 @@ public class ScheduleValidator() : GenericMoveValidator<Schedule>(
 	Error.TooLargeScheduleDescription
 )
 {
-	private static IDictionary<Error, ScheduleStatus> errorToStatus =
+	private static readonly IDictionary<Error, ScheduleStatus> errorToStatus =
 		new Dictionary<Error, ScheduleStatus>
 		{
 			{ Error.NotSignedLastContract, ScheduleStatus.UserNoSignContract },

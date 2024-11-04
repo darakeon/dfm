@@ -279,6 +279,16 @@ namespace DFM.BusinessLogic.Tests.Steps
 			db.Execute(() => repos.Control.SaveOrUpdate(user.Control));
 		}
 
+		[Given(@"user can be checked by robot again")]
+		public void GivenUserCanBeCheckedByRobotAgain()
+		{
+			var user = repos.User.GetByEmail(userEmail);
+
+			db.Execute(
+				() => repos.Control.AnticipateRobotCheck(user.Control)
+			);
+		}
+
 		[When(@"run the scheduler")]
 		public void WhenITryToRunTheScheduler()
 		{

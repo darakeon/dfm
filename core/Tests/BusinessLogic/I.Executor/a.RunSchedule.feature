@@ -219,7 +219,10 @@ Scenario: Ia12. Run with schedule start in past and end in future
 		And the schedule will be enabled
 
 Scenario: Ia13. Run with bugged schedule
-	Given I have a bugged schedule
+	Given these settings
+			| UseCategories |
+			| false         |
+		And I have a bugged schedule
 	When robot user login
 		And run the scheduler
 	Then I will receive a core error
@@ -549,6 +552,7 @@ Scenario: Ia31. Recover from failure
 		But I disable the category Category
 		And robot run the scheduler
 		And I enable the category Category
+		And user can be checked by robot again
 	When robot user login
 		And run the scheduler
 	Then I will receive no core error
