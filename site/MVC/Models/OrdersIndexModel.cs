@@ -24,13 +24,13 @@ public class OrdersIndexModel : BaseSiteModel, IDisposable
 	public void Cancel(Guid id)
 	{
 		var order = attendant.CancelOrder(id);
-		Order = new OrderRowModel(order, IsUsingCurrency);
+		Order = new OrderRowModel(order, IsUsingCategories);
 	}
 
 	public void Retry(Guid id)
 	{
 		var order = attendant.RetryOrder(id);
-		Order = new OrderRowModel(order, IsUsingCurrency);
+		Order = new OrderRowModel(order, IsUsingCategories);
 	}
 
 	public void Download(Guid id)
