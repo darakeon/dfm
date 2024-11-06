@@ -32,7 +32,7 @@ namespace DFM.BusinessLogic.Response
 
 			Wizard = user.Settings.Wizard;
 
-			PlanLimitDetailByParent = user.Control.Plan.DetailByParent;
+			PlanLimitMoveDetail = user.Control.Plan.MoveDetail;
 
 			var age = DateTime.UtcNow - user.Control.Creation;
 			Age = (Int32)age.TotalDays;
@@ -70,7 +70,7 @@ namespace DFM.BusinessLogic.Response
 
 		public Boolean Wizard { get; }
 
-		public Int32 PlanLimitDetailByParent { get; }
+		public Int32 PlanLimitMoveDetail { get; }
 
 		public Int32 Age { get; }
 		public ActivateWarningLevel ActivateWarning { get; }

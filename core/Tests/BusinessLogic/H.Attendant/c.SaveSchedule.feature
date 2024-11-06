@@ -642,8 +642,8 @@ Scenario: Hc41. Not save if not signed last contract
 
 Scenario: Hc42. Save with details above limits
 	Given these limits in user plan
-			| ScheduleActive | DetailByParent |
-			| 1              | 3              |
+			| ScheduleActive | MoveDetail |
+			| 1              | 3          |
 		And I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da25   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
@@ -657,7 +657,7 @@ Scenario: Hc42. Save with details above limits
 		And it has an Account Out
 		And it has no Account In
 	When I try to save the schedule
-	Then I will receive this core error: PlanLimitDetailByParentAchieved
+	Then I will receive this core error: PlanLimitMoveDetailAchieved
 		And the schedule will not be saved
 
 Scenario: Hc43. Save above limits

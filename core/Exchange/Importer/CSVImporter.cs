@@ -14,7 +14,7 @@ namespace DFM.Exchange.Importer
 	{
 		public CSVImporter(Plan plan, string content)
 		{
-			if (content.Length > plan.SizeByArchive)
+			if (content.Length > plan.ArchiveSize)
 			{
 				ErrorList.Add(0, ImporterError.Size);
 				return;
@@ -52,7 +52,7 @@ namespace DFM.Exchange.Importer
 				}
 			}
 
-			if (line > plan.LineByArchive)
+			if (line > plan.ArchiveLine)
 			{
 				ErrorList.Add(0, ImporterError.Lines);
 			}

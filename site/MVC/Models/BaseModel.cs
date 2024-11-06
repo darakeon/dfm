@@ -43,7 +43,7 @@ namespace DFM.MVC.Models
 		protected Boolean moveCheckingEnabled => current.MoveCheck;
 		protected Boolean isUsingCurrency => current.UseCurrency;
 		
-		protected Int32 planLimitDetailByParent => current.PlanLimitDetailByParent;
+		protected Int32 planLimitMoveDetail => current.PlanLimitMoveDetail;
 
 		protected void logout()
 		{

@@ -710,8 +710,8 @@ Scenario: Ic38. Import canceled
 
 Scenario: Ic39. Import account out + month above limits
 	Given these limits in user plan
-			| ArchiveUploadMonth | LineByArchive | SizeByArchive | MoveByAccountByMonth |
-			| 1                  | 1             | 3000          | 3                    |
+			| ArchiveMonthUpload | ArchiveLine | ArchiveSize | AccountMonthMove |
+			| 1                  | 1           | 3000        | 3                |
 		And I have moves of
 			| Description           | Date       | Nature | Value | 
 			| Move {scenarioCode} 1 | 2024-09-15 | Out    | 1     |
@@ -723,7 +723,7 @@ Scenario: Ic39. Import account out + month above limits
 		And the moves file was imported
 	When robot user login
 		And make move from imported
-	Then I will receive this core error: PlanLimitMoveByAccountByMonthAchieved
+	Then I will receive this core error: PlanLimitAccountMonthMoveAchieved
 	Then the move will not be saved
 		And the line will be OutOfLimit
 		And the accountOut value will not change
@@ -732,8 +732,8 @@ Scenario: Ic39. Import account out + month above limits
 
 Scenario: Ic40. Import account in + month above limits
 	Given these limits in user plan
-			| ArchiveUploadMonth | LineByArchive | SizeByArchive | MoveByAccountByMonth |
-			| 1                  | 1             | 3000          | 3                    |
+			| ArchiveMonthUpload | ArchiveLine | ArchiveSize | AccountMonthMove |
+			| 1                  | 1           | 3000        | 3                |
 		And I have moves of
 			| Description           | Date       | Nature | Value | 
 			| Move {scenarioCode} 1 | 2024-09-15 | In     | 1     |
@@ -745,7 +745,7 @@ Scenario: Ic40. Import account in + month above limits
 		And the moves file was imported
 	When robot user login
 		And make move from imported
-	Then I will receive this core error: PlanLimitMoveByAccountByMonthAchieved
+	Then I will receive this core error: PlanLimitAccountMonthMoveAchieved
 	Then the move will not be saved
 		And the line will be OutOfLimit
 		And the accountIn value will not change

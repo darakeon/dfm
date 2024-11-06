@@ -90,7 +90,7 @@ internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService 
 	public void SetFailure(Order order, Error type)
 	{
 		var status =
-			type == Error.PlanLimitMoveByOrderAchieved
+			type == Error.PlanLimitOrderMoveAchieved
 				? ExportStatus.OutOfLimit
 				: ExportStatus.Error;
 
@@ -175,7 +175,7 @@ internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService 
 			    && a.Creation <= lastDayThisMonth
 		);
 
-		if (count >= user.Control.Plan.OrderByMonth)
-			throw Error.PlanLimitOrderByMonthAchieved.Throw();
+		if (count >= user.Control.Plan.OrderMonth)
+			throw Error.PlanLimitOrderMonthAchieved.Throw();
 	}
 }

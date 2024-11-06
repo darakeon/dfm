@@ -227,13 +227,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 				AccountOpened = 10,
 				CategoryEnabled = 10,
 				ScheduleActive = 10,
-				MoveByAccountByMonth = 10,
-				DetailByParent = 30,
-				ArchiveUploadMonth = 3,
-				LineByArchive = 10,
-				SizeByArchive = 3000,
-				OrderByMonth = 3,
-				MoveByOrder = 16,
+				AccountMonthMove = 10,
+				MoveDetail = 30,
+				ArchiveMonthUpload = 3,
+				ArchiveLine = 10,
+				ArchiveSize = 3000,
+				OrderMonth = 3,
+				OrderMove = 16,
 			};
 
 			repos.Plan.SaveOrUpdate(plan);
