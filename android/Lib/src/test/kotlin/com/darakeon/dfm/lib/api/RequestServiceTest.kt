@@ -238,7 +238,7 @@ class RequestServiceTest: BaseTest() {
 
 		val data = body.data!!
 		assertThat(data.isUsingCategories, `is`(true))
-		assertThat(data.planLimitDetailByParent, `is`(3))
+		assertThat(data.planLimitMoveDetail, `is`(3))
 
 		val accountList = data.accountList
 		assertThat(accountList.size, `is`(2))

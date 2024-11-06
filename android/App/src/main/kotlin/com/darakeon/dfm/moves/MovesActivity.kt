@@ -444,7 +444,7 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 		)
 
 		binding.addDetail.isEnabled =
-			move.detailList.count() < planLimitDetailByParent
+			move.detailList.count() < planLimitMoveDetail
 
 		scrollToTheEnd(binding.detailDescription)
 	}

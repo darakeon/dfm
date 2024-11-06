@@ -105,9 +105,9 @@ abstract class BaseActivity<Binding: ViewBinding>: Activity(), ApiCaller {
 		get() = this.getValueTyped("isUsingCategories") ?: false
 		private set(value) = this.setValueTyped("isUsingCategories", value)
 
-	protected var planLimitDetailByParent: Int
-		get() = this.getValueTyped("planLimitDetailByParent") ?: 0
-		private set(value) = this.setValueTyped("planLimitDetailByParent", value)
+	protected var planLimitMoveDetail: Int
+		get() = this.getValueTyped("planLimitMoveDetail") ?: 0
+		private set(value) = this.setValueTyped("planLimitMoveDetail", value)
 
 	protected fun populateCache(
 		refresh: Boolean = false,
@@ -118,7 +118,7 @@ abstract class BaseActivity<Binding: ViewBinding>: Activity(), ApiCaller {
 		callApi { api ->
 			api.listsForMoves {
 				isUsingCategories = it.isUsingCategories
-				planLimitDetailByParent = it.planLimitDetailByParent
+				planLimitMoveDetail = it.planLimitMoveDetail
 				accountCombo = it.accountList
 				categoryCombo = it.categoryList
 				cachedCombos = true

@@ -37,7 +37,7 @@ namespace DFM.API.Models
 		protected Boolean isUsingCategories => current.UseCategories;
 		protected Boolean isUsingAccountsSigns => current.UseAccountsSigns;
 		protected Boolean moveCheckingEnabled => current.MoveCheck;
-		protected Int32 planLimitDetailByParent => current.PlanLimitDetailByParent;
+		protected Int32 planLimitMoveDetail => current.PlanLimitMoveDetail;
 
 		protected void logout()
 		{

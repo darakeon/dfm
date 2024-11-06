@@ -21,7 +21,7 @@ internal class ArchiveRepository : Repo<Archive>
 				&& a.Uploaded <= lastDayThisMonth
 		);
 
-		if (count >= user.Control.Plan.ArchiveUploadMonth)
-			throw Error.PlanLimitArchiveUploadMonthAchieved.Throw();
+		if (count >= user.Control.Plan.ArchiveMonthUpload)
+			throw Error.PlanLimitArchiveMonthUploadAchieved.Throw();
 	}
 }

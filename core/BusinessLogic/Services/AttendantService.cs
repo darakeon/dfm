@@ -28,8 +28,8 @@ public class AttendantService : Service
 	private readonly IDictionary<ImporterError, Error> importErrors =
 		new Dictionary<ImporterError, Error>
 		{
-			{ ImporterError.Size, Error.PlanLimitSizeByArchiveAchieved },
-			{ ImporterError.Lines, Error.PlanLimitLineByArchiveAchieved },
+			{ ImporterError.Size, Error.PlanLimitArchiveSizeAchieved },
+			{ ImporterError.Lines, Error.PlanLimitArchiveLineAchieved },
 			{ ImporterError.Header, Error.InvalidArchiveColumn },
 			{ ImporterError.Empty, Error.EmptyArchive },
 			{ ImporterError.DateRequired, Error.MoveDateRequired },

@@ -24,7 +24,7 @@ public class ScheduleValidator() : GenericMoveValidator<Schedule>(
 			{ Error.CategoriesDisabled, ScheduleStatus.CategoriesDisabled },
 			{ Error.AccountsSameCurrencyConversion, ScheduleStatus.CurrencyChange },
 			{ Error.AccountsDifferentCurrencyNoConversion, ScheduleStatus.CurrencyChange },
-			{ Error.PlanLimitMoveByAccountByMonthAchieved, ScheduleStatus.MoveOutOfLimit },
+			{ Error.PlanLimitAccountMonthMoveAchieved, ScheduleStatus.MoveOutOfLimit },
 		};
 
 	public ScheduleStatus Convert(Error error)
