@@ -33,7 +33,9 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal IList<Schedule> GetRunnable(User user)
 		{
-			return getRunnable(user).List
+			return getRunnable(user)
+				.LeftJoin(s => s.MoveList)
+				.List
 				.Where(s => s.LastDateRun() < user.Now())
 				.ToList();
 		}

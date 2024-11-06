@@ -557,3 +557,25 @@ Scenario: Ia31. Recover from failure
 		And run the scheduler
 	Then I will receive no core error
 		And the schedule status will be Ok
+
+Scenario: Ia32. Failure without impact in other schedules
+	Given I already have this category
+			| Name             |
+			| Category Disable |
+		And I have these schedules created
+			| Description | Category Name    | Out Url     | In Url | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Schedule 1  | Category         | account_out |        | 2024-11-04 | Out    | 10    | 1     | False     | Yearly    | False           |
+			| Schedule 2  | Category         | account_out |        | 2024-11-04 | Out    | 10    | 1     | False     | Yearly    | False           |
+			| Schedule 3  | Category         | account_out |        | 2024-11-04 | Out    | 10    | 1     | False     | Yearly    | False           |
+			| Schedule 4  | Category Disable | account_out |        | 2024-11-04 | Out    | 10    | 1     | False     | Yearly    | False           |
+			| Schedule 5  | Category         | account_out |        | 2024-11-04 | Out    | 10    | 1     | False     | Yearly    | False           |
+			| Schedule 6  | Category Disable | account_out |        | 2024-11-04 | Out    | 10    | 1     | False     | Yearly    | False           |
+			| Schedule 7  | Category         | account_out |        | 2024-11-04 | Out    | 10    | 1     | False     | Yearly    | False           |
+			| Schedule 8  | Category         | account_out |        | 2024-11-04 | Out    | 10    | 1     | False     | Yearly    | False           |
+			| Schedule 9  | Category         | account_out |        | 2024-11-04 | Out    | 10    | 1     | False     | Yearly    | False           |
+		But I disable the category Category Disable
+	When robot user login
+		And run the scheduler
+	Then I will receive this core error: DisabledCategory
+	Given test user login
+	Then the accountOut value will change in -70
