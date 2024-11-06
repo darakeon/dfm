@@ -252,6 +252,17 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(currentTotal, Is.EqualTo(accountOutTotal + change));
 		}
 
+		[Then(@"the accountOut value will be (\-?\d+\.?\d*)")]
+		public void ThenTheAccountOutValueWillBe(Decimal value)
+		{
+			var url = accountOut?.Url ?? accountOutUrl;
+			accountOut = getOrCreateAccount(url);
+
+			var currentTotal = repos.Summary.GetTotal(accountOut);
+
+			Assert.That(currentTotal, Is.EqualTo(value));
+		}
+
 		[Then(@"the accountOut value will not change")]
 		public void ThenTheAccountOutValueWillNotChange()
 		{
@@ -311,6 +322,17 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var currentTotal = repos.Summary.GetTotal(accountIn);
 
 			Assert.That(currentTotal, Is.EqualTo(accountInTotal + change));
+		}
+
+		[Then(@"the accountIn value will be (\-?\d+\.?\d*)")]
+		public void ThenTheAccountInValueWillBe(Decimal change)
+		{
+			var url = accountIn?.Url ?? accountInUrl;
+			accountIn = getOrCreateAccount(url);
+
+			var currentTotal = repos.Summary.GetTotal(accountIn);
+
+			Assert.That(currentTotal, Is.EqualTo(change));
 		}
 
 		[Then(@"the accountIn value will not change")]
