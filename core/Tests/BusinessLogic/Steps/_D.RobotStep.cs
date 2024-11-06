@@ -1709,7 +1709,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 		#region MoreThanOne
 		[Given(@"I have this schedule to create")]
-		public void GivenIHaveThisMoveToCreate(Table table)
+		public void GivenIHaveThisScheduleToCreate(Table table)
 		{
 			var scheduleData = table.Rows[0];
 
@@ -1717,6 +1717,29 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			if (!String.IsNullOrEmpty(scheduleData["Date"]))
 				scheduleInfo.SetDate(DateTime.Parse(scheduleData["Date"]));
+		}
+
+		[Given(@"I have these schedules created")]
+		public void GivenIHaveTheseSchedulesCreated(Table table)
+		{
+			foreach (var scheduleData in table.Rows)
+			{
+				var info = scheduleData.CreateInstance<ScheduleInfo>();
+
+				if (!String.IsNullOrEmpty(scheduleData["Date"]))
+					info.SetDate(DateTime.Parse(scheduleData["Date"]));
+
+				if (info.OutUrl == String.Empty)
+					info.OutUrl = null;
+
+				if (info.InUrl == String.Empty)
+					info.InUrl = null;
+
+				if (info.CategoryName == String.Empty)
+					info.CategoryName = null;
+
+				service.Attendant.SaveSchedule(info);
+			}
 		}
 
 		[Given(@"I save the schedule")]
