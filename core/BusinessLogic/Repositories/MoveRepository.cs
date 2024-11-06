@@ -314,7 +314,7 @@ namespace DFM.BusinessLogic.Repositories
 				.OrderBy(m => m.ID)
 				.List;
 
-			validatePlanLimitMoveByOrder(order.User, moves.Count);
+			validatePlanLimitOrderMove(order.User, moves.Count);
 
 			return moves;
 		}
@@ -345,21 +345,21 @@ namespace DFM.BusinessLogic.Repositories
 					&& m.ID != existentMoveID
 			);
 
-			if (count >= account.User.Control.Plan.MoveByAccountByMonth)
-				throw Error.PlanLimitMoveByAccountByMonthAchieved.Throw();
+			if (count >= account.User.Control.Plan.AccountMonthMove)
+				throw Error.PlanLimitAccountMonthMoveAchieved.Throw();
 		}
 
 		public void ValidatePlanLimit(User user, Order order)
 		{
 			var count = filter(order).Count;
 
-			validatePlanLimitMoveByOrder(user, count);
+			validatePlanLimitOrderMove(user, count);
 		}
 
-		private static void validatePlanLimitMoveByOrder(User user, Int32 count)
+		private static void validatePlanLimitOrderMove(User user, Int32 count)
 		{
-			if (count > user.Control.Plan.MoveByOrder)
-				throw Error.PlanLimitMoveByOrderAchieved.Throw();
+			if (count > user.Control.Plan.OrderMove)
+				throw Error.PlanLimitOrderMoveAchieved.Throw();
 		}
 	}
 }

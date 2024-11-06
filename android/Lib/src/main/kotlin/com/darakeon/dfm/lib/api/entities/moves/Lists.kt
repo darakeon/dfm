@@ -5,7 +5,7 @@ import com.darakeon.dfm.lib.api.entities.ComboItem
 
 data class Lists(
 	val isUsingCategories: Boolean,
-	val planLimitDetailByParent: Int,
+	val planLimitMoveDetail: Int,
 	val accountList: Array<AccountComboItem>,
 	val categoryList: Array<ComboItem>,
 ) {
@@ -16,7 +16,7 @@ data class Lists(
 		other as Lists
 
 		if (isUsingCategories != other.isUsingCategories) return false
-		if (planLimitDetailByParent != other.planLimitDetailByParent) return false
+		if (planLimitMoveDetail != other.planLimitMoveDetail) return false
 		if (!accountList.contentEquals(other.accountList)) return false
 		if (!categoryList.contentEquals(other.categoryList)) return false
 
@@ -25,7 +25,7 @@ data class Lists(
 
 	override fun hashCode(): Int {
 		var result = isUsingCategories.hashCode()
-		result = 31 * result + planLimitDetailByParent.hashCode()
+		result = 31 * result + planLimitMoveDetail.hashCode()
 		result = 31 * result + accountList.contentHashCode()
 		result = 31 * result + categoryList.contentHashCode()
 		return result

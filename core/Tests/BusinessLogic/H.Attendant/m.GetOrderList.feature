@@ -153,8 +153,8 @@ Scenario: Hm11. Out of limits
 		And order category Category 2
 		And an export is ordered
 		But these limits in user plan
-			| OrderByMonth | MoveByOrder |
-			| 1            | 3           |
+			| OrderMonth | OrderMove |
+			| 1          | 3         |
 		And robot export the order
 		And test user login
 	When get order list

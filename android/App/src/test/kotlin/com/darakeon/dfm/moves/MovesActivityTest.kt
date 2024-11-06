@@ -75,7 +75,7 @@ class MovesActivityTest: BaseTest() {
 
 		activity.setValueTyped("accountCombo", accountCombo)
 
-		activity.setValueTyped("planLimitDetailByParent", 3)
+		activity.setValueTyped("planLimitMoveDetail", 3)
 	}
 
 	@After
@@ -1327,9 +1327,9 @@ class MovesActivityTest: BaseTest() {
 			activity.getValueTyped("isUsingCategories")
 		assertThat(isUsingCategories, `is`(true))
 
-		val planLimitDetailByParent: Int =
-			activity.getValueTyped("planLimitDetailByParent")
-		assertThat(planLimitDetailByParent, `is`(3))
+		val planLimitMoveDetail: Int =
+			activity.getValueTyped("planLimitMoveDetail")
+		assertThat(planLimitMoveDetail, `is`(3))
 
 		val accountList: Array<AccountComboItem> =
 			activity.getValueTyped("accountCombo")

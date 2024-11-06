@@ -176,7 +176,7 @@ public class GenericMoveValidator<T>(
 
 	private void testDetails(User user, T move)
 	{
-		if (move.DetailList.Count > user.Control.Plan.DetailByParent)
-			throw Error.PlanLimitDetailByParentAchieved.Throw();
+		if (move.DetailList.Count > user.Control.Plan.MoveDetail)
+			throw Error.PlanLimitMoveDetailAchieved.Throw();
 	}
 }

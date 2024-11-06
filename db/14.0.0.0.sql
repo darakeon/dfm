@@ -12,14 +12,14 @@ create table plan (
 	ScheduleActive int not null,
 
 	MoveByAccountByMonth int not null,
-	DetailByParent int not null,
+	MoveDetail int not null,
 
-	ArchiveUploadMonth int not null,
-	LineByArchive int not null,
-	SizeByArchive int not null,
+	ArchiveMonthUpload int not null,
+	ArchiveLine int not null,
+	ArchiveSize int not null,
 
-	OrderByMonth int not null,
-	MoveByOrder int not null,
+	OrderMonth int not null,
+	OrderMove int not null,
 
 	constraint PK_Plan
 		primary key (ID),
@@ -32,9 +32,9 @@ insert into plan (
 	Name, PriceCents,
 	AccountOpened, CategoryEnabled,
 	ScheduleActive,
-	MoveByAccountByMonth, DetailByParent,
-	ArchiveUploadMonth, LineByArchive, SizeByArchive,
-	OrderByMonth, MoveByOrder
+	MoveByAccountByMonth, MoveDetail,
+	ArchiveMonthUpload, ArchiveLine, ArchiveSize,
+	OrderMonth, OrderMove
 ) values (
 	'Free', 0,
 	20, 30,

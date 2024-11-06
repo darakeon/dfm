@@ -22,7 +22,7 @@ namespace DFM.MVC.Models
 		public Boolean IsUsingMoveCheck => moveCheckingEnabled;
 		public Boolean IsUsingCurrency => isUsingCurrency;
 
-		public Int32 PlanLimitDetailByParent => planLimitDetailByParent;
+		public Int32 PlanLimitMoveDetail => planLimitMoveDetail;
 
 		public Theme Theme => theme;
 		public ThemeColor Color => theme.Color();
