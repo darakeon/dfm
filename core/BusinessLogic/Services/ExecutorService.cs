@@ -333,7 +333,7 @@ namespace DFM.BusinessLogic.Services
 				inTransaction("MakeMoveFromImported", () =>
 				{
 					line.Status =
-						e.Type == Error.PlanLimitMoveByAccountByMonthAchieved
+						e.Type == Error.PlanLimitAccountMonthMoveAchieved
 							? ImportStatus.OutOfLimit
 							: ImportStatus.Error;
 

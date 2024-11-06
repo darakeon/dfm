@@ -779,8 +779,8 @@ Scenario: Hf79. Without explicit Nature
 
 Scenario: Hf80. Allowed file size and lines
 	Given these limits in user plan
-			| ArchiveUploadMonth | LineByArchive | SizeByArchive |
-			| 1                  | 5             | 3000          |
+			| ArchiveMonthUpload | ArchiveLine | ArchiveSize |
+			| 1                  | 5           | 3000        |
 		And a moves file with this content
 			| Description         | Date       | Category | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-06-05 | Category | Account Out | Account In | 1.00  |
@@ -793,29 +793,29 @@ Scenario: Hf80. Allowed file size and lines
 
 Scenario: Hf81. Not allowed file size
 	Given these limits in user plan
-			| ArchiveUploadMonth | LineByArchive | SizeByArchive |
-			| 1                  | 5             | 1             |
+			| ArchiveMonthUpload | ArchiveLine | ArchiveSize |
+			| 1                  | 5           | 1           |
 		And a moves file with this content
 			| Description         | Date       | Category | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-06-05 | Category | Account Out | Account In | 1.00  |
 			| Move {scenarioCode} | 2024-06-05 | Category |             | Account In | 1.00  |
 			| Move {scenarioCode} | 2024-06-05 | Category | Account Out |            | 1.00  |
 	When import moves file
-	Then I will receive this core error: PlanLimitSizeByArchiveAchieved
+	Then I will receive this core error: PlanLimitArchiveSizeAchieved
 		And the pre-import data will not be recorded
 		And the lines will not be queued
 
 Scenario: Hf82. Not allowed file lines
 	Given these limits in user plan
-			| ArchiveUploadMonth | LineByArchive | SizeByArchive |
-			| 1                  | 2             | 3000          |
+			| ArchiveMonthUpload | ArchiveLine | ArchiveSize |
+			| 1                  | 2           | 3000        |
 		And a moves file with this content
 			| Description         | Date       | Category | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-06-05 | Category | Account Out | Account In | 1.00  |
 			| Move {scenarioCode} | 2024-06-05 | Category |             | Account In | 1.00  |
 			| Move {scenarioCode} | 2024-06-05 | Category | Account Out |            | 1.00  |
 	When import moves file
-	Then I will receive this core error: PlanLimitLineByArchiveAchieved
+	Then I will receive this core error: PlanLimitArchiveLineAchieved
 		And the pre-import data will not be recorded
 		And the lines will not be queued
 
@@ -868,8 +868,8 @@ Scenario: Hf85. Import exported file
 
 Scenario: Hf86. Import above limits
 	Given these limits in user plan
-			| ArchiveUploadMonth | LineByArchive | SizeByArchive |
-			| 1                  | 2             | 3000          |
+			| ArchiveMonthUpload | ArchiveLine | ArchiveSize |
+			| 1                  | 2           | 3000        |
 		And a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1.00  |
@@ -878,13 +878,13 @@ Scenario: Hf86. Import above limits
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1.00  |
 	When import moves file
-	Then I will receive this core error: PlanLimitArchiveUploadMonthAchieved
+	Then I will receive this core error: PlanLimitArchiveMonthUploadAchieved
 		And the pre-import data will not be recorded
 
 Scenario: Hf87. Import reset limit
 	Given these limits in user plan
-			| ArchiveUploadMonth | LineByArchive | SizeByArchive |
-			| 1                  | 2             | 3000          |
+			| ArchiveMonthUpload | ArchiveLine | ArchiveSize |
+			| 1                  | 2           | 3000        |
 		And a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In | 1.00  |
@@ -900,11 +900,11 @@ Scenario: Hf87. Import reset limit
 
 Scenario: Hf88. Import with details above limits
 	Given these limits in user plan
-			| ArchiveUploadMonth | LineByArchive | SizeByArchive | DetailByParent |
-			| 1                  | 2             | 3000          | 3              |
+			| ArchiveMonthUpload | ArchiveLine | ArchiveSize | MoveDetail |
+			| 1                  | 2           | 3000        | 3          |
 		And a moves file with this content
 			| Description         | Date       | Category | Nature   | Out         | In         | Value | Description1 | Amount1 | Value1 | Description2 | Amount2 | Value2 | Description3 | Amount3 | Value3 | Description4 | Amount4 | Value4 | Description5 | Amount5 | Value5 | Description6 | Amount6 | Value6 | Description7 | Amount7 | Value7 | Description8 | Amount8 | Value8 | Description9 | Amount9 | Value9 | Description10 | Amount10 | Value10 | Description11 | Amount11 | Value11 | Description12 | Amount12 | Value12 | Description13 | Amount13 | Value13 | Description14 | Amount14 | Value14 | Description15 | Amount15 | Value15 | Description16 | Amount16 | Value16 | Description17 | Amount17 | Value17 | Description18 | Amount18 | Value18 | Description19 | Amount19 | Value19 | Description20 | Amount20 | Value20 | Description21 | Amount21 | Value21 | Description22 | Amount22 | Value22 | Description23 | Amount23 | Value23 | Description24 | Amount24 | Value24 | Description25 | Amount25 | Value25 | Description26 | Amount26 | Value26 | Description27 | Amount27 | Value27 | Description28 | Amount28 | Value28 | Description29 | Amount29 | Value29 | Description30 | Amount30 | Value30 |
 			| Move {scenarioCode} | 2024-04-29 | Category | Transfer | Account Out | Account In |       | D1           | 1       | 101.00 | D2           | 2       | 202.00 | D3           | 3       | 303.00 | D4           | 4       | 404.00 | D5           | 5       | 505.00 | D6           | 6       | 606.00 | D7           | 7       | 707.00 | D8           | 8       | 808.00 | D9           | 9       | 909.00 | D10           | 10       | 1010.00 | D11           | 11       | 1111.00 | D12           | 12       | 1212.00 | D13           | 13       | 1313.00 | D14           | 14       | 1414.00 | D15           | 15       | 1515.00 | D16           | 16       | 1616.00 | D17           | 17       | 1717.00 | D18           | 18       | 1818.00 | D19           | 19       | 1919.00 | D20           | 20       | 2020.00 | D21           | 21       | 2121.00 | D22           | 22       | 2222.00 | D23           | 23       | 2323.00 | D24           | 24       | 2424.00 | D25           | 25       | 2525.00 | D26           | 26       | 2626.00 | D27           | 27       | 2727.00 | D28           | 28       | 2828.00 | D29           | 29       | 2929.00 | D30           | 30       | 3030.00 |
 	When import moves file
-	Then I will receive this core error: PlanLimitDetailByParentAchieved
+	Then I will receive this core error: PlanLimitMoveDetailAchieved
 		And the pre-import data will not be recorded

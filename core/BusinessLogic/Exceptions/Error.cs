@@ -130,13 +130,13 @@ namespace DFM.BusinessLogic.Exceptions
 		PlanLimitAccountOpenedAchieved = 1201,
 		PlanLimitCategoryEnabledAchieved = 1202,
 		PlanLimitScheduleActiveAchieved = 1203,
-		PlanLimitMoveByAccountByMonthAchieved = 1204,
-		PlanLimitDetailByParentAchieved = 1205,
-		PlanLimitArchiveUploadMonthAchieved = 1206,
-		PlanLimitLineByArchiveAchieved = 1207,
-		PlanLimitSizeByArchiveAchieved = 1208,
-		PlanLimitOrderByMonthAchieved = 1209,
-		PlanLimitMoveByOrderAchieved = 1210,
+		PlanLimitAccountMonthMoveAchieved = 1204,
+		PlanLimitMoveDetailAchieved = 1205,
+		PlanLimitArchiveMonthUploadAchieved = 1206,
+		PlanLimitArchiveLineAchieved = 1207,
+		PlanLimitArchiveSizeAchieved = 1208,
+		PlanLimitOrderMonthAchieved = 1209,
+		PlanLimitOrderMoveAchieved = 1210,
 	}
 
 	public static class ErrorX

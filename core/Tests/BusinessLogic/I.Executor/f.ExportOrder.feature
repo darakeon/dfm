@@ -362,11 +362,11 @@ Scenario: If14. Export moves above limits
 		And order category Category 2
 		And an export is ordered
 		But these limits in user plan
-			| OrderByMonth | MoveByOrder |
-			| 1            | 3           |
+			| OrderMonth | OrderMove |
+			| 1          | 3         |
 	When robot user login
 		And export order
-	Then I will receive this core error: PlanLimitMoveByOrderAchieved
+	Then I will receive this core error: PlanLimitOrderMoveAchieved
 		And order status will be OutOfLimit
 		And the will have creation and expiration not set
 		And there will be no export file
@@ -376,8 +376,8 @@ Scenario: If14. Export moves above limits
 
 Scenario: If15. Export moves inside limit
 	Given these limits in user plan
-			| OrderByMonth | MoveByOrder |
-			| 1            | 16          |
+			| OrderMonth | OrderMove |
+			| 1          | 16        |
 		And order start date 1986-03-27
 		And order end date 2024-08-24
 		And order account account_out

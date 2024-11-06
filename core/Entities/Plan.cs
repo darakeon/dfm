@@ -14,13 +14,13 @@ public class Plan : IEntityLong
 	public virtual Int32 AccountOpened { get; set; }
 	public virtual Int32 CategoryEnabled { get; set; }
 	public virtual Int32 ScheduleActive { get; set; }
-	public virtual Int32 MoveByAccountByMonth { get; set; }
-	public virtual Int32 DetailByParent { get; set; }
-	public virtual Int32 ArchiveUploadMonth { get; set; }
-	public virtual Int32 LineByArchive { get; set; }
-	public virtual Int32 SizeByArchive { get; set; }
-	public virtual Int32 OrderByMonth { get; set; }
-	public virtual Int32 MoveByOrder { get; set; }
+	public virtual Int32 AccountMonthMove { get; set; }
+	public virtual Int32 MoveDetail { get; set; }
+	public virtual Int32 ArchiveMonthUpload { get; set; }
+	public virtual Int32 ArchiveLine { get; set; }
+	public virtual Int32 ArchiveSize { get; set; }
+	public virtual Int32 OrderMonth { get; set; }
+	public virtual Int32 OrderMove { get; set; }
 
 	public virtual Decimal Price
 	{

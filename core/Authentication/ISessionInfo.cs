@@ -25,7 +25,7 @@ namespace DFM.Authentication
 		Boolean SendMoveEmail { get; }
 		Boolean UseCurrency { get; }
 
-		Int32 PlanLimitDetailByParent { get; }
+		Int32 PlanLimitMoveDetail { get; }
 
 		Boolean Wizard { get; }
 

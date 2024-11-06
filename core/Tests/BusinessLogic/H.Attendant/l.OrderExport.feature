@@ -245,8 +245,8 @@ Scenario: Hl19. Only one day
 
 Scenario: Hl20. Order above limits
 	Given these limits in user plan
-			| OrderByMonth | MoveByOrder |
-			| 1            | 1           |
+			| OrderMonth | OrderMove |
+			| 1          | 1         |
 		And order start date 2024-09-16
 		And order end date 2024-09-16
 		And order account account_out
@@ -257,13 +257,13 @@ Scenario: Hl20. Order above limits
 		And order account account_out
 		And order category Category 1
 	When order export
-	Then I will receive this core error: PlanLimitOrderByMonthAchieved
+	Then I will receive this core error: PlanLimitOrderMonthAchieved
 		And no order will be recorded
 
 Scenario: Hl21. Order reset limit
 	Given these limits in user plan
-			| OrderByMonth | MoveByOrder |
-			| 1            | 1           |
+			| OrderMonth | OrderMove |
+			| 1          | 1         |
 		And order start date 2024-09-16
 		And order end date 2024-09-16
 		And order account account_out
@@ -280,8 +280,8 @@ Scenario: Hl21. Order reset limit
 
 Scenario: Hl22. Order moves above limits
 	Given these limits in user plan
-			| OrderByMonth | MoveByOrder |
-			| 1            | 10          |
+			| OrderMonth | OrderMove |
+			| 1          | 10        |
 		And order start date 1986-03-27
 		And order end date 2024-10-16
 		And order account account_out
@@ -291,5 +291,5 @@ Scenario: Hl22. Order moves above limits
 		And order category Category 1
 		And order category Category 2
 	When order export
-	Then I will receive this core error: PlanLimitMoveByOrderAchieved
+	Then I will receive this core error: PlanLimitOrderMoveAchieved
 		And no order will be recorded

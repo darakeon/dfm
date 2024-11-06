@@ -10,7 +10,7 @@ namespace DFM.API.Models
 		public MovesListsModel()
 		{
 			IsUsingCategories = isUsingCategories;
-			PlanLimitDetailByParent = planLimitDetailByParent;
+			PlanLimitMoveDetail = planLimitMoveDetail;
 
 			AccountList = admin.GetAccountList(true)
 				.Select(a => new AccountItem(a.Name, a.Url, a.Currency?.ToString()))
@@ -25,7 +25,7 @@ namespace DFM.API.Models
 		}
 
 		public Boolean IsUsingCategories { get; set; }
-		public Int32 PlanLimitDetailByParent { get; }
+		public Int32 PlanLimitMoveDetail { get; }
 		public IList<AccountItem> AccountList { get; set; }
 		public IList<CategoryItem> CategoryList { get; set; }
 
