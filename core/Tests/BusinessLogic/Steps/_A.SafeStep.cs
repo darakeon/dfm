@@ -115,6 +115,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 			get => get<Misc>();
 			set => set(value);
 		}
+
+		private Plan plan
+		{
+			get => get<Plan>();
+			set => set(value);
+		}
 		#endregion
 
 
@@ -756,6 +762,40 @@ namespace DFM.BusinessLogic.Tests.Steps
 				Assert.That(lastAccess, Is.Null);
 			else
 				Assert.That(lastAccess, Is.Not.Null);
+		}
+		#endregion
+
+		#region Get Plan
+		[When(@"get the plan")]
+		public void WhenGetThePlan()
+		{
+			try
+			{
+				plan = service.Law.GetPlan();
+			}
+			catch (CoreError e)
+			{
+				testCoreError = e;
+			}
+		}
+
+		[Then(@"the plan will be")]
+		public void ThenThePlanWillBe(Table table)
+		{
+			var expectedPlan = table.CreateInstance<Plan>();
+
+			Assert.That(plan.Name, Is.EqualTo(expectedPlan.Name));
+			Assert.That(plan.Price, Is.EqualTo(expectedPlan.Price));
+			Assert.That(plan.AccountOpened, Is.EqualTo(expectedPlan.AccountOpened));
+			Assert.That(plan.CategoryEnabled, Is.EqualTo(expectedPlan.CategoryEnabled));
+			Assert.That(plan.ScheduleActive, Is.EqualTo(expectedPlan.ScheduleActive));
+			Assert.That(plan.AccountMonthMove, Is.EqualTo(expectedPlan.AccountMonthMove));
+			Assert.That(plan.MoveDetail, Is.EqualTo(expectedPlan.MoveDetail));
+			Assert.That(plan.ArchiveMonthUpload, Is.EqualTo(expectedPlan.ArchiveMonthUpload));
+			Assert.That(plan.ArchiveLine, Is.EqualTo(expectedPlan.ArchiveLine));
+			Assert.That(plan.ArchiveSize, Is.EqualTo(expectedPlan.ArchiveSize));
+			Assert.That(plan.OrderMonth, Is.EqualTo(expectedPlan.OrderMonth));
+			Assert.That(plan.OrderMove, Is.EqualTo(expectedPlan.OrderMove));
 		}
 		#endregion
 
