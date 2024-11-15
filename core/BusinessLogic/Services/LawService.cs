@@ -98,5 +98,11 @@ namespace DFM.BusinessLogic.Services
 				repos.Control.SaveAccess(user.Control);
 			});
 		}
+
+		public Plan GetPlan()
+		{
+			var user = parent.Auth.VerifyUser();
+			return user.Control.Plan;
+		}
 	}
 }
