@@ -70,6 +70,7 @@
 		"Export": "Export",
 		"Code": "Code",
 		"WipedData": "Deleted Data",
+		"UsageLimits": "Usage Limits",
 
 		"Language": "Language",
 		"LanguageEnUs": "English",
@@ -275,6 +276,7 @@
 		"Export": "Exportação",
 		"Code": "Código",
 		"WipedData": "Dados removidos",
+		"UsageLimits": "Limites de Uso",
 
 		"Language": "Língua",
 		"LanguageEnUs": "Inglês",
