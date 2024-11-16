@@ -14,6 +14,7 @@
 	var archivesClass = hlClass(ViewBag.ArchivesMenuClass);
 	var ordersClass = hlClass(ViewBag.OrdersMenuClass);
 	var loginsClass = hlClass(ViewBag.LoginsMenuClass);
+	var plansClass = hlClass(ViewBag.PlansMenuClass);
 }
 
 <li class="dropdown">
@@ -70,6 +71,14 @@
 				Context.Translate("Logins"),
 				"Index", "Logins",
 				null, new { @class = $"text-right {loginsClass}" }
+			)
+		</li>
+
+		<li>
+			@Html.ActionLink(
+				Context.Translate("UsageLimits"),
+				"Index", "Plans",
+				null, new { @class = $"text-right {plansClass}" }
 			)
 		</li>
 	</ul>

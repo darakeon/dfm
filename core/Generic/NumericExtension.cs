@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DFM.Generic
 {
@@ -22,6 +23,22 @@ namespace DFM.Generic
 		public static Decimal? ToVisual(this Int32? value)
 		{
 			return value?.ToVisual();
+		}
+
+		public static String FileSize(this Int32 value)
+		{
+			return value.fileSize(0);
+		}
+
+		private static IList<String> dimensions =
+			new List<String>{"B", "KB", "MB", "GB", "TB"};
+
+		private static String fileSize(this Int32 value, Int32 dimension)
+		{
+			if (value < 1024 || dimension == dimensions.Count - 1)
+				return $"{value} {dimensions[dimension]}";
+
+			return (value/1024).fileSize(dimension+1);
 		}
 	}
 }
