@@ -16,7 +16,7 @@ namespace DFM.Exchange.Importer
 		{
 			if (content.Length > plan.ArchiveSize)
 			{
-				ErrorList.Add(0, ImporterError.Size);
+				addError(0, ImporterError.Size);
 				return;
 			}
 
@@ -44,17 +44,17 @@ namespace DFM.Exchange.Importer
 				}
 				catch (TypeConverterException exception)
 				{
-					ErrorList.Add(line, handleFieldError(exception));
+					addError(line, handleFieldError(exception));
 				}
 				catch (ReaderException exception)
 				{
-					ErrorList.Add(line, handleFieldError(exception));
+					addError(line, handleFieldError(exception));
 				}
 			}
 
 			if (line > plan.ArchiveLine)
 			{
-				ErrorList.Add(0, ImporterError.Lines);
+				addError(0, ImporterError.Lines);
 			}
 
 			var validHeaders =
@@ -69,12 +69,12 @@ namespace DFM.Exchange.Importer
 
 			if (hasNonValidHeaders)
 			{
-				ErrorList.Add(0, ImporterError.Header);
+				addError(0, ImporterError.Header);
 			}
 
 			if (!MoveList.Any() && !ErrorList.Any())
 			{
-				ErrorList.Add(0, ImporterError.Empty);
+				addError(0, ImporterError.Empty);
 			}
 		}
 
@@ -92,7 +92,7 @@ namespace DFM.Exchange.Importer
 
 			if (noNature && noAccounts)
 			{
-				ErrorList.Add(line, ImporterError.NatureRequired);
+				addError(line, ImporterError.NatureRequired);
 				return;
 			}
 
@@ -147,8 +147,16 @@ namespace DFM.Exchange.Importer
 			throw exception;
 		}
 
-		public IDictionary<Int16, ImporterError> ErrorList { get; }
-			= new Dictionary<Int16, ImporterError>();
+		private void addError(Int16 line, ImporterError error)
+		{
+			if (!ErrorList.ContainsKey(line))
+				ErrorList.Add(line, new List<ImporterError>());
+
+			ErrorList[line].Add(error);
+		}
+
+		public IDictionary<Int16, IList<ImporterError>> ErrorList { get; }
+			= new Dictionary<Int16, IList<ImporterError>>();
 
 		public IList<MoveCsv> MoveList { get; }
 			= new List<MoveCsv>();

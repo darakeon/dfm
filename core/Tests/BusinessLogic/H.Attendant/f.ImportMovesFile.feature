@@ -908,3 +908,20 @@ Scenario: Hf88. Import with details above limits
 	When import moves file
 	Then I will receive this core error: PlanLimitMoveDetailAchieved
 		And the pre-import data will not be recorded
+
+Scenario: Hf89. Import with two main errors
+	Given these limits in user plan
+			| ArchiveMonthUpload | ArchiveLine | ArchiveSize |
+			| 1                  | 2           | 3000        |
+		And a moves file with this content
+			| Description         | Magic              | Date       | Category | Nature   | Out         | In         | Value |
+			| Move {scenarioCode} | make me earn money | 2024-11-15 | Category | Transfer | Account Out | Account In | 1     |
+			| Move {scenarioCode} | make me earn money | 2024-11-15 | Category | Transfer | Account Out | Account In | 1     |
+			| Move {scenarioCode} | make me earn money | 2024-11-15 | Category | Transfer | Account Out | Account In | 1     |
+	When import moves file
+	Then I will receive these core errors
+			| Error                        |
+			| PlanLimitArchiveLineAchieved |
+			| InvalidArchiveColumn         |
+		And the pre-import data will not be recorded
+		And the lines will not be queued

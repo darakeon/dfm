@@ -164,9 +164,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			for (var e = 0; e < expectedErrors.Count; e++)
 			{
-				var actualError = testCoreError.Types.Single(
+				var actualError = testCoreError.Types.SingleOrDefault(
 					type => type.Metadata is Int16 metadata && metadata == e+1
-				);
+				) ?? testCoreError.Types[e];
 
 				var expectedError = expectedErrors[e];
 
