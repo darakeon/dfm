@@ -1,0 +1,121 @@
+﻿@model PlansIndexModel
+
+@{
+	ViewBag.Title = Context.Translate("PlanTitle");
+	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
+	
+	ViewBag.TableLgSize = 6;
+	ViewBag.TableSmSize = 8;
+
+	ViewBag.HasContent = Model.Plan != null;
+}
+
+@section Styles {
+	<link href="~/Assets/styles/plan.css?v=@Cfg.Version" type="text/css" rel="stylesheet"/>
+}
+
+
+@section TableHeader {
+	<tr class="row">
+		<th></th>
+		<th class="text-right">
+			@Context.Translate("Limits")
+		</th>
+	</tr>
+}
+
+@if (Model.Plan != null)
+{
+	<tr class="row">
+		<td>
+			@Context.Translate("AccountOpened")
+		</td>
+		<td class="text-right">
+			@Model.Plan.AccountOpened
+		</td>
+	</tr>
+
+	<tr class="row">
+		<td>
+			@Context.Translate("CategoryEnabled")
+		</td>
+		<td class="text-right">
+			@Model.Plan.CategoryEnabled
+		</td>
+	</tr>
+
+	<tr class="row">
+		<td>
+			@Context.Translate("ScheduleActive")
+		</td>
+		<td class="text-right">
+			@Model.Plan.ScheduleActive
+		</td>
+	</tr>
+
+	<tr class="row">
+		<td>
+			@Context.Translate("AccountMonthMove")
+		</td>
+		<td class="text-right">
+			@Model.Plan.AccountMonthMove
+		</td>
+	</tr>
+
+	<tr class="row">
+		<td>
+			@Context.Translate("MoveDetail")
+		</td>
+		<td class="text-right">
+			@Model.Plan.MoveDetail
+		</td>
+	</tr>
+
+	<tr class="row">
+		<td>
+			@Context.Translate("ArchiveMonthUpload")
+		</td>
+		<td class="text-right">
+			@Model.Plan.ArchiveMonthUpload
+		</td>
+	</tr>
+
+	<tr class="row">
+		<td>
+			@Context.Translate("ArchiveLine")
+		</td>
+		<td class="text-right">
+			@Model.Plan.ArchiveLine
+		</td>
+	</tr>
+
+	<tr class="row">
+		<td>
+			@Context.Translate("ArchiveSize")
+		</td>
+		<td class="text-right">
+			@Model.Plan.ArchiveSize.FileSize()
+		</td>
+	</tr>
+
+	<tr class="row">
+		<td>
+			@Context.Translate("OrderMonth")
+		</td>
+		<td class="text-right">
+			@Model.Plan.OrderMonth
+		</td>
+	</tr>
+
+	<tr class="row">
+		<td>
+			@Context.Translate("OrderMove")
+		</td>
+		<td class="text-right">
+			@Model.Plan.OrderMove
+		</td>
+	</tr>
+}
+
+@section Footer {
+}
