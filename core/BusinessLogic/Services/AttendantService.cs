@@ -205,7 +205,16 @@ public class AttendantService : Service
 		{
 			importer.ErrorList
 				.ToList()
-				.ForEach(e => error.AddError(importErrors[e.Value], e.Key));
+				.ForEach(
+					line => line.Value
+						.ToList()
+						.ForEach(importError =>
+							error.AddError(
+								importErrors[importError],
+								line.Key
+							)
+						)
+				);
 		}
 
 		var accountsIn = importer.MoveList.Select(m => m.In);
