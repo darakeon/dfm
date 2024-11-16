@@ -11,7 +11,7 @@ create table plan (
 
 	ScheduleActive int not null,
 
-	MoveByAccountByMonth int not null,
+	AccountMonthMove int not null,
 	MoveDetail int not null,
 
 	ArchiveMonthUpload int not null,
@@ -32,7 +32,7 @@ insert into plan (
 	Name, PriceCents,
 	AccountOpened, CategoryEnabled,
 	ScheduleActive,
-	MoveByAccountByMonth, MoveDetail,
+	AccountMonthMove, MoveDetail,
 	ArchiveMonthUpload, ArchiveLine, ArchiveSize,
 	OrderMonth, OrderMove
 ) values (
