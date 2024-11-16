@@ -1,0 +1,32 @@
+{
+	"en-US": {
+		"PlanTitle": "Plan",
+		"Limits": "Limits",
+		"AccountOpened": "Accounts Opened",
+		"CategoryEnabled": "Categories Enabled",
+		"ScheduleActive": "Schedules Active",
+		"AccountMonthMove": "Move by Account (Monthly)",
+		"MoveDetail": "Detail by Move",
+		"ArchiveMonthUpload": "Archive Upload (Monthly)",
+		"ArchiveLine": "Line by Archive",
+		"ArchiveSize": "Archive Size",
+		"OrderMonth": "Order Exports (Monthly)",
+		"OrderMove": "Move by Order",
+		"": null
+	},
+	"pt-BR": {
+		"PlanTitle": "Plano",
+		"Limits": "Limites",
+		"AccountOpened": "Contas Abertas",
+		"CategoryEnabled": "Categorias Ativas",
+		"ScheduleActive": "Agendamentos Ativos",
+		"AccountMonthMove": "Movimentação por Conta (Mensal)",
+		"MoveDetail": "Detalhe por Movimentação",
+		"ArchiveMonthUpload": "Arquivos Subidos (Mensal)",
+		"ArchiveLine": "Linhas por Arquivo",
+		"ArchiveSize": "Tamanho do Arquivo",
+		"OrderMonth": "Pedido de Exportação (Mensal)",
+		"OrderMove": "Movimentação por Exportação",
+		"": null
+	}
+}
