@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.S3" Version="3.7.406" />
+    <PackageReference Include="AWSSDK.S3" Version="3.7.406.2" />
   </ItemGroup>
 
   <ItemGroup>
