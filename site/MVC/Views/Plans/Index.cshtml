@@ -9,6 +9,31 @@
 
 	ViewBag.HasContent = Model.Plan != null;
 	ViewBag.NoContentText = Context.Translate("NoPlan");
+
+	if (!ViewBag.HasContent)
+	{
+		ViewBag.WizardSuffix = "Error";
+	}
+
+	var hl = new WizardHL(Model.Plan != null)
+		.AddBox("ChatMenu", null, 1)
+		.AddBox("AccountOpened", 3, null)
+		.AddBox("CategoryEnabled", 3, null)
+		.AddBox("ScheduleActive", 3, null)
+		.AddBox("AccountMonthMove", 4, null)
+		.AddBox("AccountMonthMoveMore", 5, null)
+		.AddBox("MoveDetail", 3, null)
+		.AddBox("ArchiveMonthUpload", 4, null)
+		.AddBox("ArchiveLine", 3, null)
+		.AddBox("ArchiveSize", 3, null)
+		.AddBox("OrderMonth", 4, null)
+		.AddBox("OrderMove", 3, null)
+		.AddBox("Donation", 6, null)
+		.AddBox("SearchMenu", 8, null);
+
+	ViewBag.ContactMenuClass = hl["ChatMenu"];
+	ViewBag.DonationButtonClass = hl["Donation"];
+	ViewBag.SearchMenuClass = hl["SearchMenu"];
 }
 
 @section Styles {
@@ -16,7 +41,7 @@
 }
 
 <div class="limits-dashboard">
-	<div class="panel panel-default">
+	<div class="panel panel-default @hl["AccountOpened"]">
 		<div class="panel-heading">
 			@Context.Translate("AccountOpened")
 		</div>
@@ -25,7 +50,7 @@
 		</div>
 	</div>
 
-	<div class="panel panel-default">
+	<div class="panel panel-default @hl["CategoryEnabled"]">
 		<div class="panel-heading">
 			@Context.Translate("CategoryEnabled")
 		</div>
@@ -36,7 +61,7 @@
 
 	<div class="break"></div>
 	
-	<div class="panel panel-default">
+	<div class="panel panel-default @hl["ScheduleActive"]">
 		<div class="panel-heading">
 			@Context.Translate("ScheduleActive")
 		</div>
@@ -45,7 +70,7 @@
 		</div>
 	</div>
 
-	<div class="panel panel-default">
+	<div class="panel panel-default @hl["AccountMonthMove"] @hl["AccountMonthMoveMore"]">
 		<div class="panel-heading">
 			@Context.Translate("AccountMonthMove")
 		</div>
@@ -59,7 +84,7 @@
 		</div>
 	</div>
 
-	<div class="panel panel-default">
+	<div class="panel panel-default @hl["MoveDetail"]">
 		<div class="panel-heading">
 			@Context.Translate("MoveDetail")
 		</div>
@@ -70,7 +95,7 @@
 
 	<div class="break"></div>
 
-	<div class="panel panel-default">
+	<div class="panel panel-default @hl["ArchiveMonthUpload"]">
 		<div class="panel-heading">
 			@Context.Translate("ArchiveMonthUpload")
 		</div>
@@ -84,7 +109,7 @@
 		</div>
 	</div>
 
-	<div class="panel panel-default">
+	<div class="panel panel-default @hl["ArchiveLine"]">
 		<div class="panel-heading">
 			@Context.Translate("ArchiveLine")
 		</div>
@@ -93,7 +118,7 @@
 		</div>
 	</div>
 
-	<div class="panel panel-default">
+	<div class="panel panel-default @hl["ArchiveSize"]">
 		<div class="panel-heading">
 			@Context.Translate("ArchiveSize")
 		</div>
@@ -104,7 +129,7 @@
 
 	<div class="break"></div>
 
-	<div class="panel panel-default">
+	<div class="panel panel-default @hl["OrderMonth"]">
 		<div class="panel-heading">
 			@Context.Translate("OrderMonth")
 		</div>
@@ -118,7 +143,7 @@
 		</div>
 	</div>
 
-	<div class="panel panel-default">
+	<div class="panel panel-default @hl["OrderMove"]">
 		<div class="panel-heading">
 			@Context.Translate("OrderMove")
 		</div>
