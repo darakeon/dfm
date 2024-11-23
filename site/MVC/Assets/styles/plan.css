@@ -1,0 +1,36 @@
+﻿.limits-dashboard {
+	text-align: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	width: 75%;
+	margin: auto;
+}
+
+	.limits-dashboard > .panel {
+		width: 32%;
+	}
+
+		.limits-dashboard > .panel > .panel-body {
+			font-size: 4vw;
+		}
+
+			.limits-dashboard > .panel > .panel-body > .panel-mark {
+				position: relative;
+			}
+
+				.limits-dashboard > .panel > .panel-body > .panel-mark > * {
+					position: absolute;
+					top: -24px;
+					left: 30px;
+					transform: rotate(25deg);
+				}
+
+				.limits-dashboard > .panel > .panel-body > .panel-mark > .alert:before {
+					content: none;
+				}
+
+	.limits-dashboard > .break {
+		flex-basis: 100%;
+		height: 0;
+	}
