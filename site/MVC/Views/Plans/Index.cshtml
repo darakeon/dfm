@@ -2,120 +2,131 @@
 
 @{
 	ViewBag.Title = Context.Translate("PlanTitle");
-	Layout = "~/Views/Shared/Layouts/_Table.cshtml";
-	
+	Layout = "~/Views/Shared/Layouts/_Clean.cshtml";
+
 	ViewBag.TableLgSize = 6;
 	ViewBag.TableSmSize = 8;
 
 	ViewBag.HasContent = Model.Plan != null;
+	ViewBag.NoContentText = Context.Translate("NoPlan");
 }
 
 @section Styles {
 	<link href="~/Assets/styles/plan.css?v=@Cfg.Version" type="text/css" rel="stylesheet"/>
 }
 
-
-@section TableHeader {
-	<tr class="row">
-		<th></th>
-		<th class="text-right">
-			@Context.Translate("Limits")
-		</th>
-	</tr>
-}
-
-@if (Model.Plan != null)
-{
-	<tr class="row">
-		<td>
+<div class="limits-dashboard">
+	<div class="panel panel-default">
+		<div class="panel-heading">
 			@Context.Translate("AccountOpened")
-		</td>
-		<td class="text-right">
+		</div>
+		<div class="panel-body">
 			@Model.Plan.AccountOpened
-		</td>
-	</tr>
+		</div>
+	</div>
 
-	<tr class="row">
-		<td>
+	<div class="panel panel-default">
+		<div class="panel-heading">
 			@Context.Translate("CategoryEnabled")
-		</td>
-		<td class="text-right">
+		</div>
+		<div class="panel-body">
 			@Model.Plan.CategoryEnabled
-		</td>
-	</tr>
+		</div>
+	</div>
 
-	<tr class="row">
-		<td>
+	<div class="break"></div>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
 			@Context.Translate("ScheduleActive")
-		</td>
-		<td class="text-right">
+		</div>
+		<div class="panel-body">
 			@Model.Plan.ScheduleActive
-		</td>
-	</tr>
+		</div>
+	</div>
 
-	<tr class="row">
-		<td>
+	<div class="panel panel-default">
+		<div class="panel-heading">
 			@Context.Translate("AccountMonthMove")
-		</td>
-		<td class="text-right">
+		</div>
+		<div class="panel-body">
 			@Model.Plan.AccountMonthMove
-		</td>
-	</tr>
+			<span class="panel-mark">
+				<span class="badge">
+					@Context.Translate("Monthly")
+				</span>
+			</span>
+		</div>
+	</div>
 
-	<tr class="row">
-		<td>
+	<div class="panel panel-default">
+		<div class="panel-heading">
 			@Context.Translate("MoveDetail")
-		</td>
-		<td class="text-right">
+		</div>
+		<div class="panel-body">
 			@Model.Plan.MoveDetail
-		</td>
-	</tr>
+		</div>
+	</div>
 
-	<tr class="row">
-		<td>
+	<div class="break"></div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
 			@Context.Translate("ArchiveMonthUpload")
-		</td>
-		<td class="text-right">
+		</div>
+		<div class="panel-body">
 			@Model.Plan.ArchiveMonthUpload
-		</td>
-	</tr>
+			<span class="panel-mark">
+				<span class="badge">
+					@Context.Translate("Monthly")
+				</span>
+			</span>
+		</div>
+	</div>
 
-	<tr class="row">
-		<td>
+	<div class="panel panel-default">
+		<div class="panel-heading">
 			@Context.Translate("ArchiveLine")
-		</td>
-		<td class="text-right">
+		</div>
+		<div class="panel-body">
 			@Model.Plan.ArchiveLine
-		</td>
-	</tr>
+		</div>
+	</div>
 
-	<tr class="row">
-		<td>
+	<div class="panel panel-default">
+		<div class="panel-heading">
 			@Context.Translate("ArchiveSize")
-		</td>
-		<td class="text-right">
+		</div>
+		<div class="panel-body">
 			@Model.Plan.ArchiveSize.FileSize()
-		</td>
-	</tr>
+		</div>
+	</div>
 
-	<tr class="row">
-		<td>
+	<div class="break"></div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
 			@Context.Translate("OrderMonth")
-		</td>
-		<td class="text-right">
+		</div>
+		<div class="panel-body">
 			@Model.Plan.OrderMonth
-		</td>
-	</tr>
+			<span class="panel-mark">
+				<span class="badge badge-secondary">
+					@Context.Translate("Monthly")
+				</span>
+			</span>
+		</div>
+	</div>
 
-	<tr class="row">
-		<td>
+	<div class="panel panel-default">
+		<div class="panel-heading">
 			@Context.Translate("OrderMove")
-		</td>
-		<td class="text-right">
+		</div>
+		<div class="panel-body">
 			@Model.Plan.OrderMove
-		</td>
-	</tr>
-}
+		</div>
+	</div>
+</div>
 
 @section Footer {
 }
