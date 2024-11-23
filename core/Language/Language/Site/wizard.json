@@ -484,10 +484,27 @@
 			"It will stop another person from looking into your expenses without having your credentials.",
 			"We also recommend that you delete all logins if you notice something strange in your data inside the system.",
 			"This is your current login. If you disconnect this, you will have to login again.",
-			"Now click in the magnifier to search some move you created before.",
+			"Let's check the last menu of Administration: Usage Limits",
 			null
 		],
 		"Wizard_LoginsIndexEmpty": [
+			"If you are seeing this screen something is wrong.",
+			"Please contact us.",
+			null
+		],
+		"Wizard_PlansIndex": [
+			"Here you can see the System usage limits.",
+			"The System is kept free but there is a cost for keeping it online.",
+			"That is why some limits were put in the System usage.",
+			"Some of the limits are for permanent stuff.",
+			"Some of them are limits that renew each month.",
+			"Moves by Account is a limit that consider the date of the Move, not its registration time.",
+			"You can consider make a donation to keep the System online!",
+			"Now let's see a way to search a Move you made in the System but you have no idea where to find.",
+			"Click in the magnifier and type a text you already used to create a Move in the System.",
+			null
+		],
+		"Wizard_PlansIndexError": [
 			"If you are seeing this screen something is wrong.",
 			"Please contact us.",
 			null
@@ -1004,10 +1021,27 @@
 			"Isso impedirá que a outra pessoa olhe seus gastos sem saber sua senha.",
 			"Também recomendamos que tire todos os acessos se notar algo que você não fez nos seus dados.",
 			"Este é seu login atual. Se desconectar esse, terá que entrar novamente no sistema.",
-			"Agora clique na lupa para buscar alguma movimentação criada antes.",
+			"Vamos olhar o último menu de Administração: Limites de Uso",
 			null
 		],
 		"Wizard_LoginsIndexEmpty": [
+			"Se você está vendo esta tela, algo está errado.",
+			"Por favor, entre em contato conosco.",
+			null
+		],
+		"Wizard_PlansIndex": [
+			"Aqui você pode conferir os limites de uso do Sistema.",
+			"O Sistema é mantido de graça mas existe um custo para mantê-lo online.",
+			"É por isso que foram colocados limites de uso no Sistema.",
+			"Alguns limites são para coisas permanentes.",
+			"Outros renovam a cada mês.",
+			"Movimentação por Conta é um limite sobre a data da Movimentação, não o momento em que você está.",
+			"Você pode fazer uma doação para manter o Sistema online!",
+			"Agora vamos olhar como encontrar uma Movimentação pela descrição dela.",
+			"Clique na lupa e digite o texto que já usou em alguma Movimentação que criou no Sistema.",
+			null
+		],
+		"Wizard_PlansIndexError": [
 			"Se você está vendo esta tela, algo está errado.",
 			"Por favor, entre em contato conosco.",
 			null
