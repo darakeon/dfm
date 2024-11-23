@@ -16,4 +16,4 @@
 - [x] Show Export error by Move/Order limit at Site
 - [x] Avoid one schedule affect others
 - [ ] Add plan to admin
-- [ ] Add screen with limits - Administration - look into contract for menu
+- [x] Add screen with limits - Administration - look into contract for menu
