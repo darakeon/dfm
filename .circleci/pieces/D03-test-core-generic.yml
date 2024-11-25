@@ -1,6 +1,6 @@
   test_core_generic:
     docker:
-      - image: darakeon/netcore
+      - image: darakeon/netcore:alpine-net8
     steps:
       - checkout
       - attach_workspace:
