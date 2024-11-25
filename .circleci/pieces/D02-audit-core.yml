@@ -1,6 +1,6 @@
   audit_core:
     docker:
-      - image: darakeon/netcore
+      - image: darakeon/netcore:alpine-net8
     steps:
       - checkout
       - attach_workspace:

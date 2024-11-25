@@ -1,6 +1,6 @@
   test_core_business_logic_money:
     docker:
-      - image: darakeon/netcore
+      - image: darakeon/netcore:alpine-net8
     resource_class: large
     steps:
       - checkout
