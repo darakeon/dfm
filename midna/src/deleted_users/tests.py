@@ -1,7 +1,8 @@
 from django.test import TestCase
 
-from deleted_users.models import Wipe
+from .models import Wipe
 from utils.crypt import check
+
 
 class WipeTests(TestCase):
 	def test_hashed_email_base64(self):
