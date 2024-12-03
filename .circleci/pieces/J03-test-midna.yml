@@ -17,4 +17,5 @@
             set +o allexport
             cd src
             python manage.py test deleted_users
+            python manage.py test plans
 

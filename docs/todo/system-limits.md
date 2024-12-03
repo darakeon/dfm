@@ -15,5 +15,5 @@
 - [x] Show Import error by Move/Month limit at Site
 - [x] Show Export error by Move/Order limit at Site
 - [x] Avoid one schedule affect others
-- [ ] Add plan to admin
+- [x] Add plan to admin
 - [x] Add screen with limits - Administration - look into contract for menu

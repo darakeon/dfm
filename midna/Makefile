@@ -56,6 +56,7 @@ midna:
 
 test:
 	@${EXEC} python manage.py test deleted_users
+	@${EXEC} python manage.py test plans
 
 audit:
 	@${EXEC} pip-audit
