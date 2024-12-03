@@ -21,6 +21,7 @@ from midna.settings import ADMIN_URL
 
 urlpatterns = [
 	path('deleted-users/', include('deleted_users.urls')),
+	path('plans/', include('plans.urls')),
 	path(ADMIN_URL, admin.site.urls),
 	path('', lambda _: redirect('https://darakeon.github.io/flyaway/', permanent = False))
 ]
