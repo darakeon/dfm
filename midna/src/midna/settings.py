@@ -42,6 +42,7 @@ else:
 
 INSTALLED_APPS = [
 	'deleted_users.apps.DeletedUsersConfig',
+	'plans.apps.PlansConfig',
 	'django.contrib.admin',
 	'django.contrib.auth',
 	'django.contrib.contenttypes',
