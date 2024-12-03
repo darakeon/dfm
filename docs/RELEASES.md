@@ -20,7 +20,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Add terms.dfm address to final clause
 - [ ] Avoid deploy terms.dfm before general update
 - [ ] Make CI run version change
-- [ ] `241002>......` Implement entities limits
+- [x] `241002>241203` Implement entities limits
 - [x] `241002>241005` Run robots at Lambda
 - [x] `241001>241002` Fix admin python site
 
