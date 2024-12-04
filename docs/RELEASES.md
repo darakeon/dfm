@@ -17,7 +17,7 @@ This is the list of project releases, past and current. To see tasks that are st
 ## <a name="14.0.0.0"></a>14.0.0.0 :🐉: <sup>`8`</sup>
 - [x] `241020>241021` Allow lambda robot to access internet
 - [ ] Add database location to terms
-- [ ] Add terms.dfm address to final clause
+- [x] `241204>241204` Add terms.dfm address to final clause
 - [ ] Avoid deploy terms.dfm before general update
 - [ ] Make CI run version change
 - [x] `241002>241203` Implement entities limits
