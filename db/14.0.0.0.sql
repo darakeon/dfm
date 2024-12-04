@@ -227,7 +227,8 @@ alter table control
 				"Text": "Estes termos podem ser encontrados a qualquer momento em que o Site esteja disponível:",
 				"Items": [
 					{ "Text": "Há um link no rodapé de todas as páginas do Site;" },
-					{ "Text": "Há links nas telas de login e configurações do Aplicativo Android." }
+					{ "Text": "Há links nas telas de login e configurações do Aplicativo Android;" },
+					{ "Text": "Os termos também podem ser encontrados em http://terms.dontflymoney.com/.", "New": true }
 				]
 			}
 		]
@@ -403,7 +404,8 @@ alter table control
 				"Text": "These terms can be found whenever the Website is available:",
 				"Items": [
 					{ "Text": "There is a link at the footer of all Website pages;" },
-					{ "Text": "There are links inside the Android App in login and settings screens." }
+					{ "Text": "There are links inside the Android App in login and settings screens;" },
+					{ "Text": "The terms can also be find at http://terms.dontflymoney.com/.", "New": true }
 				]
 			}
 		]
