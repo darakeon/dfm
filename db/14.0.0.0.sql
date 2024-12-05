@@ -113,6 +113,15 @@ alter table control
 					{ "Text": "O código fonte é ABERTO, podendo QUALQUER pessoa com acesso não-censurado a internet visualizá-lo e sugerir edições, usando uma conta do github." }
 				]
 			},
+			{
+				"Text": "Os dados registrados no Sistema estão armazenados geograficamente no Oregon - Estados Unidos da America;",
+				"Items": [
+					{ "Text": "Não é possível a Pessoa escolher outro local para armazenamento;" },
+					{ "Text": "Esta também é a localização dos dados exportados do Sistema;" },
+					{ "Text": "Caso o local de armazenamento seja mudado, estes termos serão alterados assim que possível." }
+				],
+				"New": true
+			},
 			{ "Text": "Cookies são usados para controlar seu acesso a informações e a segurança dos formulários deste Site;" },
 			{
 				"Text": "Após colocar seu e-mail e senha e se logar no Site ou no Aplicativo Android, seu login é mantido e seus dados disponíveis no dispositivo sem data de expiração definida:",
@@ -287,6 +296,15 @@ alter table control
 					{ "Text": "The address is public: https://github.com/darakeon/dfm ;" },
 					{ "Text": "The source code is OPEN and ANY person using uncensored internet access can see it and suggest changes, using a github login." }
 				]
+			},
+			{
+				"Text": "Data registered at the System are stored in geographically at Oregon - United States of America;",
+				"Items": [
+					{ "Text": "It is not possible to the Person to choose another place to store them;" },
+					{ "Text": "This is also System exported data location;" },
+					{ "Text": "In case this place changes the terms will be updated as soon as possible." }
+				],
+				"New": true
 			},
 			{ "Text": "Cookies are used to control logon and security of forms of this Website;" },
 			{
