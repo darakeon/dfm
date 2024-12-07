@@ -104,7 +104,7 @@ namespace DFM.Entities
 
 		public virtual Boolean IsFull()
 		{
-			return Permanent + Temporary == sum();
+			return (Permanent | Temporary) >= sum();
 		}
 
 		private UInt64 sum()
