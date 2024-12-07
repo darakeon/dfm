@@ -41,7 +41,13 @@ namespace DFM.Entities
 					&& ((TipMobile)Permanent & tipMobile) == tipMobile;
 			}
 
-			return false;
+			if (tip is TipLocal tipLocal)
+			{
+				return Type == TipType.Local
+					&& ((TipLocal)Permanent & tipLocal) == tipLocal;
+			}
+
+			return true;
 		}
 
 		public virtual String LastGiven()
