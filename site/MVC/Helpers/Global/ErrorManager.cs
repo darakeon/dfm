@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using DFM.BusinessLogic;
 using Keon.MVC.Cookies;
 using DFM.Email;
 using DfM.Logs;
@@ -54,14 +55,20 @@ namespace DFM.MVC.Helpers.Global
 
 		private void sendEmail(Exception exception)
 		{
-			var user = context.User.Identity;
 			var request = context.Request;
 
 			var parameters = request.GetSafeFields();
 
 			var urlReferrer = request.Headers["Referer"].ToString();
 
-			var authenticated = user?.IsAuthenticated ?? false;
+			var services = new Service(() => context);
+			var current = services.Current;
+			var authenticated = current.IsAuthenticated;
+
+			var identification =
+				authenticated
+					? current.SafeTicketKey
+					: "Off";
 
 			EmailSent = Error.SendReport(
 				exception,
@@ -69,7 +76,7 @@ namespace DFM.MVC.Helpers.Global
 				urlReferrer,
 				request.Method,
 				parameters,
-				authenticated ? user.Name : "Off"
+				identification
 			);
 		}
 
