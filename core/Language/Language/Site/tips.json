@@ -1,10 +1,14 @@
 {
 	"en-US": {
 		"DeleteLogins": "Going to menu Logins (at Accounts page) you can logoff any places where you previously logged in",
+		"EnableCurrency": "You can use different currencies for different Accounts if you enable it at Settings (⚙️) > Main Options > Use Currency at Accounts",
+		"ScheduleMoves": "It is possible to schedule a future Move: at the start screen click at the Account then, at the top menu, click at \"Schedule\"",
 		"": null
 	},
 	"pt-BR": {
 		"DeleteLogins": "Se você for ao menu Logins (na página de Contas), você pode remover seu login de qualquer lugar onde tenha se logado anteriormente",
+		"EnableCurrency": "Você pode usar diferentes moedas em diferentes Contas se habilitar isso em Configurações (⚙️) > Opções Gerais > Usar Moedas nas Contas",
+		"ScheduleMoves": "É possível agendar uma Movimentação futura: na tela inicial clique na Conta, depois, no menu no topo, clique em \"Agendar\"",
 		"": null
 	}
 }
