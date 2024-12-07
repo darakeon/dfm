@@ -31,6 +31,7 @@ namespace DFM.Authentication
 
 		private ClientTicket ticket => getTicket(false);
 		public String TicketKey => ticket?.Key;
+		public String SafeTicketKey => TicketKey[..Defaults.TicketShowedPart];
 		public TipType TipType => (TipType)(ticket?.Type??TicketType.None);
 
 		private ClientTicket getTicket(Boolean remember)
