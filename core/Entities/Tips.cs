@@ -52,14 +52,16 @@ namespace DFM.Entities
 
 		public virtual String LastGiven()
 		{
-			return Last == 0 ? null : all()[Last];
+			var all = listValids();
+			return all.ContainsKey(Last)
+				? all[Last]
+				: null;
 		}
 
 		private static readonly Random random = new();
 		public virtual String Random()
 		{
-			var available = all()
-				.Where(n => n.Key != 0)
+			var available = listValids()
 				.Where(n => (n.Key & Permanent) == 0)
 				.Where(n => (n.Key & Temporary) == 0)
 				.ToList();
@@ -76,14 +78,27 @@ namespace DFM.Entities
 			return chosen.Value;
 		}
 
-		private IDictionary<UInt64, String> all()
+		private IDictionary<UInt64, String> listValids()
 		{
 			return Type switch
 			{
-				TipType.Tests => Enum.GetValues<TipTests>().ToDictionary(v => (UInt64)v, v => v.ToString()),
-				TipType.Browser => Enum.GetValues<TipBrowser>().ToDictionary(v => (UInt64)v, v => v.ToString()),
-				TipType.Mobile => Enum.GetValues<TipMobile>().ToDictionary(v => (UInt64)v, v => v.ToString()),
-				_ => throw new ArgumentOutOfRangeException()
+				TipType.Browser => Enum.GetValues<TipBrowser>()
+					.Where(n => n != TipBrowser.None)
+					.ToDictionary(v => (UInt64)v, v => v.ToString()),
+
+				TipType.Mobile => Enum.GetValues<TipMobile>()
+					.Where(n => n != TipMobile.None)
+					.ToDictionary(v => (UInt64)v, v => v.ToString()),
+
+				TipType.Local => Enum.GetValues<TipLocal>()
+					.Where(n => n != TipLocal.None)
+					.ToDictionary(v => (UInt64)v, v => v.ToString()),
+
+				TipType.Tests => Enum.GetValues<TipTests>()
+					.Where(n => n != TipTests.None)
+					.ToDictionary(v => (UInt64)v, v => v.ToString()),
+
+				_ => new Dictionary<UInt64, String>()
 			};
 		}
 
@@ -96,7 +111,7 @@ namespace DFM.Entities
 		{
 			UInt64 sum = 0;
 
-			foreach (var tip in all())
+			foreach (var tip in listValids())
 			{
 				sum += tip.Key;
 			}
