@@ -25,6 +25,8 @@ namespace DFM.Entities.Enums
 	{
 		None = 0,
 		DeleteLogins = 1UL << 0,
+		EnableCurrency = 2UL << 0,
+		ScheduleMoves = 3UL << 0,
 	}
 
 	[Flags]

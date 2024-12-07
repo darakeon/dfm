@@ -17,7 +17,7 @@ This is the list of project releases, past and current. To see tasks that are st
 ## <a name="14.0.0.0"></a>14.0.0.0 :🐉: <sup>`11`</sup>
 - [ ] Improve information about already opened transaction - which is opened?
 - [ ] If a error happens in Ops controller, do not redirect
-- [ ] Avoid error getting Tips
+- [ ] `241207>......` Avoid error getting Tips
 - [x] `241020>241021` Allow lambda robot to access internet
 - [x] `241204>241205` Add database location to terms
 - [x] `241204>241204` Add terms.dfm address to final clause

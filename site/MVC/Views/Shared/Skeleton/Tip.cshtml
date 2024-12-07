@@ -13,7 +13,11 @@
 		{
 			TipBrowser.DeleteLogins.ToString(),
 			Url.RouteUrl(mainRoute.Name, new { controller = "Logins", action = "Index" })
-		}
+		},
+		{
+			TipBrowser.EnableCurrency.ToString(),
+			Url.RouteUrl(mainRoute.Name, new { controller = "Settings", action = "Index" })
+		},
 	};
 
 	var dismissUrl = Url.RouteUrl(mainRoute.Name, new {controller = "Reports", action = "DismissTip"});
@@ -25,9 +29,16 @@
 			class="image-decolorize" />
 
 		<div class="balloon">
-			<a href="@links[tip]">
+			@if (links.ContainsKey(tip))
+			{
+				<a href="@links[tip]">
+					@Context.Translate(tip)
+				</a>
+			}
+			else
+			{
 				@Context.Translate(tip)
-			</a>
+			}
 			<button class="tip-close" data-url="@dismissUrl">
 				@Context.Translate("Close")
 			</button>
