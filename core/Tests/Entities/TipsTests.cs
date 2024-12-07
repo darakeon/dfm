@@ -297,6 +297,297 @@ namespace DFM.Entities.Tests
 		}
 		#endregion
 
+		#region Random
+		[Test]
+		public void Random_NoneCleanTip()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.None,
+			};
+
+			var randomTip = tips.Random();
+
+			Assert.That(randomTip, Is.Null);
+		}
+
+		[Test]
+		public void Random_NoneHasPermanent()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.None,
+				Permanent = 1,
+			};
+
+			var randomTip = tips.Random();
+
+			Assert.That(randomTip, Is.Null);
+		}
+
+		[Test]
+		public void Random_NoneHasTemporary()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.None,
+				Temporary = 1,
+			};
+
+			var randomTip = tips.Random();
+
+			Assert.That(randomTip, Is.Null);
+		}
+
+		[Test]
+		public void Random_BrowserCleanTip()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Browser,
+			};
+
+			var randomTip = tips.Random();
+
+			var tipsAccepted = EnumX.AllValues<TipBrowser>()
+				.Where(t => t != TipBrowser.None)
+				.Select(t => t.ToString())
+				.ToList();
+			Assert.That(randomTip, Is.AnyOf(tipsAccepted));
+		}
+
+		[Test]
+		public void Random_BrowserHasPermanent()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Browser,
+				Permanent = (UInt64)TipBrowser.DeleteLogins,
+			};
+
+			var randomTip = tips.Random();
+
+			Assert.That(randomTip, Is.Not.EqualTo(TipBrowser.DeleteLogins.ToString()));
+
+			var tipsAccepted = EnumX.AllValues<TipBrowser>()
+				.Where(t => t != TipBrowser.DeleteLogins && t != TipBrowser.None)
+				.Select(t => t.ToString())
+				.ToList();
+
+			Assert.That(randomTip, Is.AnyOf(tipsAccepted));
+		}
+
+		[Test]
+		public void Random_BrowserHasTemporary()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Browser,
+				Temporary = (UInt64)TipBrowser.DeleteLogins,
+			};
+
+			var randomTip = tips.Random();
+
+			Assert.That(randomTip, Is.Not.EqualTo(TipBrowser.DeleteLogins.ToString()));
+
+			var tipsAccepted = EnumX.AllValues<TipBrowser>()
+				.Where(t => t != TipBrowser.DeleteLogins && t != TipBrowser.None)
+				.Select(t => t.ToString())
+				.ToList();
+
+			Assert.That(randomTip, Is.AnyOf(tipsAccepted));
+		}
+
+		[Test]
+		public void Random_MobileCleanTip()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Mobile,
+			};
+
+			var randomTip = tips.Random();
+
+			// Once the enum has valid elements
+			// adjust this test to use the first element
+			//var tipsAccepted = EnumX.AllValues<TipMobile>()
+			//	.Where(t => t != TipMobile.None)
+			//	.Select(t => t.ToString())
+			//	.ToList();
+			//Assert.That(randomTip, Is.AnyOf(tipsAccepted));
+			Assert.That(randomTip, Is.Null);
+			Assert.That(EnumX.AllValues<TipMobile>().Count, Is.EqualTo(1));
+		}
+
+		[Test]
+		public void Random_MobileHasPermanent()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Mobile,
+				Permanent = 1,
+			};
+
+			var randomTip = tips.Random();
+
+			// Once the enum has more elements than 2
+			// adjust this test to use the first element
+			//Assert.That(randomTip, Is.Not.EqualTo(TipMobile.---.ToString()));
+			//var tipsAccepted = EnumX.AllValues<TipMobile>()
+			//	.Where(t => t != TipMobile.--- && t != TipMobile.None)
+			//	.Select(t => t.ToString());
+			//Assert.That(randomTip, Is.AnyOf(tipsAccepted));
+			Assert.That(randomTip, Is.Null);
+			Assert.That(EnumX.AllValues<TipMobile>().Count, Is.EqualTo(1));
+		}
+
+		[Test]
+		public void Random_MobileHasTemporary()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Mobile,
+				Temporary = 1,
+			};
+
+			var randomTip = tips.Random();
+
+			// Once the enum has more elements than 2
+			// adjust this test to use the first element
+			//Assert.That(randomTip, Is.Not.EqualTo(TipMobile.---.ToString()));
+			//var tipsAccepted = EnumX.AllValues<TipMobile>()
+			//	.Where(t => t != TipMobile.--- && t != TipMobile.None)
+			//	.Select(t => t.ToString());
+			//Assert.That(randomTip, Is.AnyOf(tipsAccepted));
+			Assert.That(randomTip, Is.Null);
+			Assert.That(EnumX.AllValues<TipMobile>().Count, Is.EqualTo(1));
+		}
+
+		[Test]
+		public void Random_LocalCleanTip()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Local,
+			};
+
+			var randomTip = tips.Random();
+
+			// Once the enum has valid elements
+			// adjust this test to use the first element
+			//var tipsAccepted = EnumX.AllValues<TipLocal>()
+			//	.Where(t => t != TipLocal.None)
+			//	.Select(t => t.ToString())
+			//	.ToList();
+			//Assert.That(randomTip, Is.AnyOf(tipsAccepted));
+			Assert.That(randomTip, Is.Null);
+			Assert.That(EnumX.AllValues<TipLocal>().Count, Is.EqualTo(1));
+		}
+
+		[Test]
+		public void Random_LocalHasPermanent()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Local,
+				Permanent = 1,
+			};
+
+			var randomTip = tips.Random();
+
+			// Once the enum has more elements than 2
+			// adjust this test to use the first element
+			//Assert.That(randomTip, Is.Not.EqualTo(TipLocal.---.ToString()));
+			//var tipsAccepted = EnumX.AllValues<TipLocal>()
+			//	.Where(t => t != TipLocal.--- && t != TipLocal.None)
+			//	.Select(t => t.ToString());
+			//Assert.That(randomTip, Is.AnyOf(tipsAccepted));
+			Assert.That(randomTip, Is.Null);
+			Assert.That(EnumX.AllValues<TipLocal>().Count, Is.EqualTo(1));
+		}
+
+		[Test]
+		public void Random_LocalHasTemporary()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Local,
+				Temporary = 1,
+			};
+
+			var randomTip = tips.Random();
+
+			// Once the enum has more elements than 2
+			// adjust this test to use the first element
+			//Assert.That(randomTip, Is.Not.EqualTo(TipLocal.---.ToString()));
+			//var tipsAccepted = EnumX.AllValues<TipLocal>()
+			//	.Where(t => t != TipLocal.--- && t != TipLocal.None)
+			//	.Select(t => t.ToString());
+			//Assert.That(randomTip, Is.AnyOf(tipsAccepted));
+			Assert.That(randomTip, Is.Null);
+			Assert.That(EnumX.AllValues<TipLocal>().Count, Is.EqualTo(1));
+		}
+
+		[Test]
+		public void Random_TestsCleanTip()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Tests,
+			};
+
+			var randomTip = tips.Random();
+
+			var tipsAccepted = EnumX.AllValues<TipTests>()
+				.Where(t => t != TipTests.None)
+				.Select(t => t.ToString())
+				.ToList();
+			Assert.That(randomTip, Is.AnyOf(tipsAccepted));
+		}
+
+		[Test]
+		public void Random_TestsHasPermanent()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Tests,
+				Permanent = (UInt64)TipTests.TestTip1,
+			};
+
+			var randomTip = tips.Random();
+
+			Assert.That(randomTip, Is.Not.EqualTo(TipTests.TestTip1.ToString()));
+
+			var tipsAccepted = EnumX.AllValues<TipTests>()
+				.Where(t => t != TipTests.TestTip1 && t != TipTests.None)
+				.Select(t => t.ToString())
+				.ToList();
+
+			Assert.That(randomTip, Is.AnyOf(tipsAccepted));
+		}
+
+		[Test]
+		public void Random_TestsHasTemporary()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Tests,
+				Permanent = (UInt64)TipTests.TestTip1,
+			};
+
+			var randomTip = tips.Random();
+
+			Assert.That(randomTip, Is.Not.EqualTo(TipTests.TestTip1.ToString()));
+
+			var tipsAccepted = EnumX.AllValues<TipTests>()
+				.Where(t => t != TipTests.TestTip1 && t != TipTests.None)
+				.Select(t => t.ToString())
+				.ToList();
+
+			Assert.That(randomTip, Is.AnyOf(tipsAccepted));
+		}
+		#endregion
+
 		#region IsFull
 		[Test]
 		public void IsFull_NoneEmpty()
