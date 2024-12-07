@@ -165,5 +165,136 @@ namespace DFM.Entities.Tests
 			Assert.That(disabled, Is.True);
 		}
 		#endregion
+
+		#region LastGiven
+		[Test]
+		public void LastGiven_NoneLastZero()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.None,
+			};
+
+			var lastTip = tips.LastGiven();
+
+			Assert.That(lastTip, Is.Null);
+		}
+
+		[Test]
+		public void LastGiven_BrowserLastZero()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Browser,
+			};
+
+			var lastTip = tips.LastGiven();
+
+			Assert.That(lastTip, Is.Null);
+		}
+
+		[Test]
+		public void LastGiven_BrowserLastOne()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Browser,
+				Last = (UInt64)TipBrowser.DeleteLogins,
+			};
+
+			var lastTip = tips.LastGiven();
+
+			Assert.That(lastTip, Is.EqualTo(TipBrowser.DeleteLogins.ToString()));
+		}
+
+		[Test]
+		public void LastGiven_MobileLastZero()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Mobile,
+			};
+
+			var lastTip = tips.LastGiven();
+
+			Assert.That(lastTip, Is.Null);
+		}
+
+		[Test]
+		public void LastGiven_MobileLastOne()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Mobile,
+				Last = 1,
+			};
+
+			var lastTip = tips.LastGiven();
+
+			// Once the enum has more elements than None
+			// adjust this test to use the first element
+			// Assert.That(disabled, Is.EqualTo(TipMobile.---.ToString()));
+			Assert.That(lastTip, Is.Null);
+			Assert.That(EnumX.AllValues<TipMobile>().Count, Is.EqualTo(1));
+		}
+
+		[Test]
+		public void LastGiven_LocalLastZero()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Local,
+			};
+
+			var lastTip = tips.LastGiven();
+
+			Assert.That(lastTip, Is.Null);
+		}
+
+		[Test]
+		public void LastGiven_LocalLastOne()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Local,
+				Last = 1,
+			};
+
+			var lastTip = tips.LastGiven();
+
+			// Once the enum has more elements than None
+			// adjust this test to use the first element
+			// Assert.That(disabled, Is.EqualTo(TipLocal.---.ToString()));
+			Assert.That(lastTip, Is.Null);
+			Assert.That(EnumX.AllValues<TipLocal>().Count, Is.EqualTo(1));
+		}
+
+		[Test]
+		public void LastGiven_TestsLastZero()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Tests,
+			};
+
+			var lastTip = tips.LastGiven();
+
+			Assert.That(lastTip, Is.Null);
+		}
+
+		[Test]
+		public void LastGiven_TestsLastOne()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Tests,
+				Last = (UInt64)TipTests.TestTip1,
+			};
+
+			var lastTip = tips.LastGiven();
+
+			Assert.That(lastTip, Is.EqualTo(TipTests.TestTip1.ToString()));
+		}
+		#endregion
 	}
 }
