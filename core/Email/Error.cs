@@ -17,13 +17,14 @@ namespace DFM.Email
 		/// <param name="origin">Previous url</param>
 		/// <param name="httpMethod">Get, Post, Delete, etc</param>
 		/// <param name="parameters">Parameters of url (post / get)</param>
-		/// <param name="user">Name of current user logged</param>
+		/// <param name="safeTicket">Safe part of the ticket</param>
 		/// <returns>Status of e-mail</returns>
 		public static Status SendReport(
 			Exception exception,
 			String url, String origin, String httpMethod,
 			IDictionary<String, String> parameters,
-			String user)
+			String safeTicket
+		)
 		{
 			if (exception == null)
 				return Status.Empty;
@@ -41,7 +42,7 @@ namespace DFM.Email
 					origin = "typed";
 
 				var body = $@"
-					<h4>{user} at {url}</h4>
+					<h4>{safeTicket} at {url}</h4>
 					<h5>{parametersFormatted}</h5>
 					<h6>origin: {origin}</h6>
 					<h6>http method: {httpMethod}</h6>
