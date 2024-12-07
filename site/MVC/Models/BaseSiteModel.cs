@@ -3,11 +3,14 @@ using System.Linq;
 using System.Linq.Expressions;
 using DFM.Entities;
 using DFM.Generic;
+using DfM.Logs;
 using DFM.MVC.Controllers;
 using DFM.MVC.Helpers.Controllers;
 using Keon.Util.Collection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Error = DFM.Email.Error;
+using DFM.Entities.Bases;
 
 namespace DFM.MVC.Models
 {
@@ -58,13 +61,33 @@ namespace DFM.MVC.Models
 				&& action.Any(a => a.ShouldHaveWizard());
 		}
 
-		public String Tip =>
-			current.IsAuthenticated
-				&& current.IsVerified
-				&& IsLastContractAccepted
-				&& !ShowWizard
-			? clip.ShowTip()
-			: null;
+		public String Tip => showTip();
+
+		private String showTip()
+		{
+			if (!current.IsAuthenticated)
+				return null;
+			
+			if (!current.IsVerified)
+				return null;
+			
+			if (!IsLastContractAccepted)
+				return null;
+			
+			if (ShowWizard)
+				return null;
+
+			try
+			{
+				return clip.ShowTip();
+			}
+			catch (Exception e)
+			{
+				Error.SendReport(e, current.TipType, current.SafeTicketKey);
+				e.TryLog();
+				return null;
+			}
+		}
 
 		public Boolean IsExternal
 		{
