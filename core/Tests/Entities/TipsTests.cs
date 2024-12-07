@@ -296,5 +296,462 @@ namespace DFM.Entities.Tests
 			Assert.That(lastTip, Is.EqualTo(TipTests.TestTip1.ToString()));
 		}
 		#endregion
+
+		#region IsFull
+		[Test]
+		public void IsFull_NoneEmpty()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.None,
+			};
+
+			var full = tips.IsFull();
+
+			Assert.That(full, Is.True);
+		}
+
+		[Test]
+		public void IsFull_NoneFull()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.None,
+				Permanent = UInt64.MaxValue,
+				Temporary = UInt64.MaxValue
+			};
+
+			var full = tips.IsFull();
+
+			Assert.That(full, Is.True);
+		}
+
+
+		[Test]
+		public void IsFull_BrowserEmpty()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Browser,
+			};
+
+			var full = tips.IsFull();
+
+			Assert.That(full, Is.False);
+		}
+
+		[Test]
+		public void IsFull_BrowserOnePermanent()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Browser,
+			};
+
+			tips.Permanent += (UInt64)TipBrowser.DeleteLogins;
+
+			var full = tips.IsFull();
+
+			Assert.That(full, Is.False);
+		}
+
+		[Test]
+		public void IsFull_BrowserOneTemporary()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Browser,
+			};
+
+			tips.Temporary += (UInt64)TipBrowser.DeleteLogins;
+
+			var full = tips.IsFull();
+
+			Assert.That(full, Is.False);
+		}
+
+		[Test]
+		public void IsFull_BrowserFullPermanent()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Browser,
+			};
+
+			foreach (var tip in EnumX.AllValues<TipBrowser>())
+			{
+				tips.Permanent += (UInt64)tip;
+			}
+
+			var full = tips.IsFull();
+
+			Assert.That(full, Is.True);
+		}
+
+		[Test]
+		public void IsFull_BrowserFullTemporary()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Browser,
+			};
+
+			foreach (var tip in EnumX.AllValues<TipBrowser>())
+			{
+				tips.Temporary += (UInt64)tip;
+			}
+
+			var full = tips.IsFull();
+
+			Assert.That(full, Is.True);
+		}
+
+		[Test]
+		public void IsFull_BrowserPermanentAndTemporaryNotFull()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Browser,
+			};
+
+			var last = EnumX.AllValues<TipBrowser>()
+				.Where(t => t != TipBrowser.None)
+				.Select(t => (UInt64)t)
+				.Max();
+
+			tips.Permanent += last;
+			tips.Temporary += last;
+
+			var full = tips.IsFull();
+
+			Assert.That(full, Is.False);
+		}
+
+
+		[Test]
+		public void IsFull_MobileEmpty()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Mobile,
+			};
+
+			var full = tips.IsFull();
+
+			// Once the enum has more elements than 2
+			// adjust this test to use the first element
+			//Assert.That(full, Is.False);
+			Assert.That(full, Is.True);
+			Assert.That(EnumX.AllValues<TipMobile>().Count, Is.EqualTo(1));
+		}
+
+		[Test]
+		public void IsFull_MobileOnePermanent()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Mobile,
+			};
+
+			//tips.Permanent += (UInt64)TipMobile.---;
+			tips.Permanent += 1;
+
+			var full = tips.IsFull();
+
+			// Once the enum has more elements than 2
+			// adjust this test to use the first element
+			//Assert.That(full, Is.False);
+			Assert.That(full, Is.True);
+			Assert.That(EnumX.AllValues<TipMobile>().Count, Is.EqualTo(1));
+		}
+
+		[Test]
+		public void IsFull_MobileOneTemporary()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Mobile,
+			};
+
+			//tips.Temporary += (UInt64)TipMobile.---;
+			tips.Temporary += 1;
+
+			var full = tips.IsFull();
+
+			// Once the enum has more elements than 2
+			// adjust this test to use the first element
+			//Assert.That(full, Is.False);
+			Assert.That(full, Is.True);
+			Assert.That(EnumX.AllValues<TipMobile>().Count, Is.EqualTo(1));
+		}
+
+		[Test]
+		public void IsFull_MobileFullPermanent()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Mobile,
+			};
+
+			foreach (var tip in EnumX.AllValues<TipMobile>())
+			{
+				tips.Permanent += (UInt64)tip;
+			}
+
+			var full = tips.IsFull();
+
+			Assert.That(full, Is.True);
+		}
+
+		[Test]
+		public void IsFull_MobileFullTemporary()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Mobile,
+			};
+
+			foreach (var tip in EnumX.AllValues<TipMobile>())
+			{
+				tips.Temporary += (UInt64)tip;
+			}
+
+			var full = tips.IsFull();
+
+			Assert.That(full, Is.True);
+		}
+
+		[Test]
+		public void IsFull_MobilePermanentAndTemporaryNotFull()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Mobile,
+			};
+
+			/*
+			var last = EnumX.AllValues<TipMobile>()
+				.Where(t => t != TipMobile.None)
+				.Select(t => (UInt64)t)
+				.Max();
+
+			tips.Permanent += last;
+			tips.Temporary += last;
+			*/
+
+			var full = tips.IsFull();
+
+			// Once the enum has more elements than 2
+			// adjust this test to use the first element
+			//Assert.That(full, Is.False);
+			Assert.That(full, Is.True);
+			Assert.That(EnumX.AllValues<TipMobile>().Count, Is.EqualTo(1));
+		}
+
+
+		[Test]
+		public void IsFull_LocalOnePermanent()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Local,
+			};
+
+			//tips.Permanent += (UInt64)TipLocal.---;
+			tips.Permanent += 1;
+
+			var full = tips.IsFull();
+
+			// Once the enum has more elements than 2
+			// adjust this test to use the first element
+			//Assert.That(full, Is.False);
+			Assert.That(full, Is.True);
+			Assert.That(EnumX.AllValues<TipLocal>().Count, Is.EqualTo(1));
+		}
+
+		[Test]
+		public void IsFull_LocalOneTemporary()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Local,
+			};
+
+			//tips.Temporary += (UInt64)TipLocal.---;
+			tips.Temporary += 1;
+
+			var full = tips.IsFull();
+
+			// Once the enum has more elements than 2
+			// adjust this test to use the first element
+			//Assert.That(full, Is.False);
+			Assert.That(full, Is.True);
+			Assert.That(EnumX.AllValues<TipLocal>().Count, Is.EqualTo(1));
+		}
+
+		[Test]
+		public void IsFull_LocalFullPermanent()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Local,
+			};
+
+			foreach (var tip in EnumX.AllValues<TipLocal>())
+			{
+				tips.Permanent += (UInt64)tip;
+			}
+
+			var full = tips.IsFull();
+
+			Assert.That(full, Is.True);
+		}
+
+		[Test]
+		public void IsFull_LocalFullTemporary()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Local,
+			};
+
+			foreach (var tip in EnumX.AllValues<TipLocal>())
+			{
+				tips.Temporary += (UInt64)tip;
+			}
+
+			var full = tips.IsFull();
+
+			Assert.That(full, Is.True);
+		}
+
+		[Test]
+		public void IsFull_LocalPermanentAndTemporaryNotFull()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Local,
+			};
+
+			/*
+			var last = EnumX.AllValues<TipLocal>()
+				.Where(t => t != TipLocal.None)
+				.Select(t => (UInt64)t)
+				.Max();
+
+			tips.Permanent += last;
+			tips.Temporary += last;
+			*/
+
+			var full = tips.IsFull();
+
+			// Once the enum has more elements than 2
+			// adjust this test to use the first element
+			//Assert.That(full, Is.False);
+			Assert.That(full, Is.True);
+			Assert.That(EnumX.AllValues<TipLocal>().Count, Is.EqualTo(1));
+		}
+
+
+		[Test]
+		public void IsFull_TestsEmpty()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Tests,
+			};
+
+			var full = tips.IsFull();
+
+			Assert.That(full, Is.False);
+		}
+
+		[Test]
+		public void IsFull_TestsOnePermanent()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Tests,
+			};
+
+			tips.Permanent += (UInt64)TipTests.TestTip1;
+
+			var full = tips.IsFull();
+
+			Assert.That(full, Is.False);
+		}
+
+		[Test]
+		public void IsFull_TestsOneTemporary()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Tests,
+			};
+
+			tips.Temporary += (UInt64)TipTests.TestTip1;
+
+			var full = tips.IsFull();
+
+			Assert.That(full, Is.False);
+		}
+
+		[Test]
+		public void IsFull_TestsFullPermanent()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Tests,
+			};
+
+			foreach (var tip in EnumX.AllValues<TipTests>())
+			{
+				tips.Permanent += (UInt64)tip;
+			}
+
+			var full = tips.IsFull();
+
+			Assert.That(full, Is.True);
+		}
+
+		[Test]
+		public void IsFull_TestsFullTemporary()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Tests,
+			};
+
+			foreach (var tip in EnumX.AllValues<TipTests>())
+			{
+				tips.Temporary += (UInt64)tip;
+			}
+
+			var full = tips.IsFull();
+
+			Assert.That(full, Is.True);
+		}
+
+		[Test]
+		public void IsFull_TestsPermanentAndTemporaryNotFull()
+		{
+			var tips = new Tips
+			{
+				Type = TipType.Tests,
+			};
+
+			var last = EnumX.AllValues<TipTests>()
+				.Where(t => t != TipTests.None)
+				.Select(t => (UInt64)t)
+				.Max();
+
+			tips.Permanent += last;
+			tips.Temporary += last;
+
+			var full = tips.IsFull();
+
+			Assert.That(full, Is.False);
+		}
+		#endregion
 	}
 }
