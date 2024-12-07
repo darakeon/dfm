@@ -34,4 +34,10 @@ namespace DFM.Entities.Enums
 	{
 		None = 0,
 	}
+
+	[Flags]
+	public enum TipLocal : UInt64
+	{
+		None = 0,
+	}
 }
