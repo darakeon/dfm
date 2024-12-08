@@ -15,7 +15,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="14.0.0.0"></a>14.0.0.0 :🐉: <sup>`12`</sup>
-- [ ] Improve information about already opened transaction - which is opened?
+- [x] `241208>241208` Improve information about already opened transaction - which is opened?
 - [x] `241208>241208` If a error happens in Ops controller, do not redirect
 - [x] `241207>241208` Avoid error getting Tips
 - [x] `241207>241207` Fix identity at error reports
