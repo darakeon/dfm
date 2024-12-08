@@ -15,7 +15,7 @@ namespace DFM.MVC.Starters
 					options.AddRedirect(origin, destiny)
 			);
 
-			app.Use<Rewrite>(() => app.UseRewriter(options));
+			app.Use<Rewrite>("Rewrites", () => app.UseRewriter(options));
 		}
 	}
 }

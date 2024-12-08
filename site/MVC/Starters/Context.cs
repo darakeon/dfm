@@ -31,7 +31,8 @@ namespace DFM.MVC.Starters
 			app.Use<Context>("Authorization", () => app.UseAuthorization());
 			app.Use<Context>("Session", () => app.UseSession());
 
-			Accessor = app.ApplicationServices
+			Accessor = app
+				.ApplicationServices
 				.GetRequiredService<IHttpContextAccessor>();
 		}
 
