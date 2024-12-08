@@ -82,10 +82,9 @@ namespace DFM.MVC.Helpers.Global
 
 		private void redirect()
 		{
-			context.Response.Redirect(
-				Route.GetUrl<Default.Main>
-					("Ops", "Code", 500)
-			);
+			var error500Url = Route.GetUrl<Default.Main>("Ops", "Code", 500);
+			if (context.Request.Path != error500Url)
+				context.Response.Redirect(error500Url);
 		}
 
 		/// <summary>
