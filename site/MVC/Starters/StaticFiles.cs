@@ -18,7 +18,7 @@ namespace DFM.MVC.Starters
 			if (!Directory.Exists(folder))
 				return;
 
-			app.Use<StaticFiles>(() =>
+			app.Use<StaticFiles>("StaticFiles", () =>
 			{
 				app.UseStaticFiles(new StaticFileOptions
 				{
