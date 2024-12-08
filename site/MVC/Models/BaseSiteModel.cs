@@ -61,7 +61,8 @@ namespace DFM.MVC.Models
 				&& action.Any(a => a.ShouldHaveWizard());
 		}
 
-		public String Tip => showTip();
+		protected virtual Boolean ShowTip => true;
+		public String Tip => ShowTip ? showTip() : null;
 
 		private String showTip()
 		{

@@ -1,4 +1,5 @@
-﻿using DFM.BusinessLogic.Exceptions;
+﻿using System;
+using DFM.BusinessLogic.Exceptions;
 
 namespace DFM.MVC.Models
 {
@@ -12,5 +13,7 @@ namespace DFM.MVC.Models
 		}
 
 		public Error Error { get; set; }
+
+		protected override Boolean ShowTip => false;
 	}
 }
