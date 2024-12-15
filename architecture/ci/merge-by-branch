@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo "This is being used instead of simple push because "
+echo "'$CIRCLE_BRANCH' branch may be protected by status checks"
+echo "see https://app.circleci.com/pipelines/github/darakeon/dfm/4973/workflows/f0be7a5f-2809-45ff-b5f0-214e741c54ba/jobs/60464"
+
 NEW_BRANCH=$1
 LABEL=$1
 
