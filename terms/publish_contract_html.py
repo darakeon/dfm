@@ -18,8 +18,8 @@ def publish_contract():
 
 	bucket = environ['S3_TERMS_BUCKET']
 
-	upload(s3, bucket, 'terms.html', 'html', 'utf-8')
-	upload(s3, bucket, '../site/MVC/Assets/styles/contract.css', 'css')
+	upload(s3, bucket, 'static/index.html', 'html', 'utf-8')
+	upload(s3, bucket, 'static/contract.css', 'css')
 
 
 def upload(s3, bucket, file_path, file_type, encoding = None):

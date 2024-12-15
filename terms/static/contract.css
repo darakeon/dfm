@@ -1,0 +1,46 @@
+﻿.contract {
+	padding: 10px;
+}
+
+.contract > ol {
+	padding-left: 15px;
+}
+
+.contract > ol > li {
+	margin-top: 20px;
+}
+
+.contract > ol > li > ol {
+	padding-left: 30px;
+}
+
+.contract > ol > li > ol > li {
+	list-style-type: lower-alpha;
+	margin-top: 5px;
+}
+
+.contract > ol > li > ol > li > ol > li {
+	list-style-type: upper-roman;
+	margin-top: 5px;
+}
+
+@media screen {
+	.contract .new-clause {
+		font-size: 120%;
+		border: 1px solid var(--highlight-0);
+		padding: 0 0.25em;
+		vertical-align: top;
+	}
+
+		.contract .new-clause.new-clause-explain {
+			text-align: right;
+			width: 50%;
+			margin: 0 0 1em 50%;
+		}
+}
+
+@media print {
+	.contract a[href]::after {
+		content: "";
+	}
+}

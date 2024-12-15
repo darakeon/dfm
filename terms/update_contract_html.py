@@ -5,28 +5,44 @@ from MySQLdb._mysql import connect
 
 
 def update_contract():
+	copy_static()
+
 	contracts = get_contracts()
 
 	if not contracts:
 		print('No contract to update')
 		return
 
-	with open('terms-template.html') as readme:
-		template = readme.read()
+	with open('terms-template.html') as file:
+		template = file.read()
 
 	html = create_html(contracts, template)
 
-	with open('terms.html') as readme:
-		original = readme.read()
+	with open('static/index.html') as file:
+		original = file.read()
 
 	if original == html:
 		print('Contracts already up to date')
 		return
 
-	with open('terms.html', 'w') as readme:
-		readme.write(html)
+	with open('static/index.html', 'w') as file:
+		file.write(html)
 
 	print('Contracts updated')
+
+
+def copy_static():
+	copy('styles/contract.css', 'contract.css', '')
+	copy('images/pig-on.ico', 'dfm.ico', 'b')
+	copy('images/face-pig-on.png', 'dfm.png', 'b')
+
+
+def copy(origin, destiny, mode):
+	with open(f'../site/MVC/Assets/{origin}', f'r{mode}') as file:
+		content = file.read()
+
+	with open(f'static/{destiny}', f'w{mode}') as file:
+		file.write(content)
 
 
 def get_contracts():
