@@ -1,0 +1,11 @@
+  publish_terms:
+    docker:
+      - image: darakeon/dfm-migrator-ci
+    steps:
+      - checkout
+      - run:
+          name: upload terms html to S3
+          path: terms
+          command: |
+            python publish_contract_html.py
+
