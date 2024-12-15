@@ -1,4 +1,6 @@
+MAKEFLAGS += --no-print-directory
 VERSION=$$(git branch --show-current)
+
 
 run-db:
 	@cd ../db && make run
@@ -6,8 +8,8 @@ run-db:
 update-contract-readme:
 	@docker run \
 		-it \
-		-v .:/var/dfm \
-		-w /var/dfm \
+		-v ${PWD}/..:/var/dfm \
+		-w /var/dfm/terms \
 		--env-file ../architecture/publish/tests/cfg/python.env \
 		-e VERSION=${VERSION} \
 		--rm \
@@ -17,8 +19,8 @@ update-contract-readme:
 update-contract-html:
 	@docker run \
 		-it \
-		-v .:/var/dfm \
-		-w /var/dfm \
+		-v ${PWD}/..:/var/dfm \
+		-w /var/dfm/terms \
 		--env-file ../architecture/publish/tests/cfg/python.env \
 		-e VERSION=${VERSION} \
 		--rm \
