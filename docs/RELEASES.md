@@ -23,7 +23,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [x] `241204>241205` Add database location to terms
 - [x] `241204>241204` Add terms.dfm address to final clause
 - [x] `241215>241215` Avoid deploy terms.dfm before general update
-- [ ] `241215>......` Make CI run version change
+- [x] `241215>241230` Make CI run version change
 - [x] `241002>241203` Implement entities limits
 - [x] `241002>241005` Run robots at Lambda
 - [x] `241001>241002` Fix admin python site
