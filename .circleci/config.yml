@@ -1116,13 +1116,6 @@ jobs:
 
               merge-by-branch feature/terms legal
             fi
-      - run:
-          name: upload terms html to S3
-          path: terms
-          command: |
-            if [ "$CIRCLE_BRANCH" == "main" ]; then
-              python publish_contract_html.py
-            fi
       - store_artifacts:
           path: terms/README.md
 
@@ -1371,6 +1364,17 @@ jobs:
           path: android/App/build/outputs/bundle/release/
           destination: bundle
 
+  publish_terms:
+    docker:
+      - image: darakeon/dfm-migrator-ci
+    steps:
+      - checkout
+      - run:
+          name: upload terms html to S3
+          path: terms
+          command: |
+            python publish_contract_html.py
+
 workflows:
   version: 2.1
 
@@ -1585,6 +1589,9 @@ workflows:
           requires:
             - approve_deploy
       - publish_android:
+          requires:
+            - approve_deploy
+      - publish_terms:
           requires:
             - approve_deploy
 
