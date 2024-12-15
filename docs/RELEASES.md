@@ -22,7 +22,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [x] `241020>241021` Allow lambda robot to access internet
 - [x] `241204>241205` Add database location to terms
 - [x] `241204>241204` Add terms.dfm address to final clause
-- [ ] Avoid deploy terms.dfm before general update
+- [ ] `241215>......` Avoid deploy terms.dfm before general update
 - [ ] Make CI run version change
 - [x] `241002>241203` Implement entities limits
 - [x] `241002>241005` Run robots at Lambda

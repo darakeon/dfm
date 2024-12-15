@@ -1098,16 +1098,6 @@ jobs:
             export VERSION=$CIRCLE_BRANCH
             python update_contract_html.py
       - run:
-          name: upload terms html to S3
-          path: terms
-          command: |
-            DIFF=$(git diff)
-            if [ "$DIFF" == "" ]; then
-              echo "Nothing to upload"
-            else
-              python publish_contract_html.py
-            fi
-      - run:
           name: commit readme if changed
           path: terms
           command: |
@@ -1118,10 +1108,20 @@ jobs:
               source config-git
 
               git add README.md
-              git add terms.html
+              git add static/index.html
+              git add static/contract.css
+              git add static/dfm.ico
+              git add static/dfm.png
               git commit -m "legal: add new contract to git"
 
               merge-by-branch feature/terms legal
+            fi
+      - run:
+          name: upload terms html to S3
+          path: terms
+          command: |
+            if [ "$CIRCLE_BRANCH" == "main" ]; then
+              python publish_contract_html.py
             fi
       - store_artifacts:
           path: terms/README.md

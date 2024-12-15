@@ -50,7 +50,10 @@
               source config-git
 
               git add README.md
-              git add terms.html
+              git add static/index.html
+              git add static/contract.css
+              git add static/dfm.ico
+              git add static/dfm.png
               git commit -m "legal: add new contract to git"
 
               merge-by-branch feature/terms legal
