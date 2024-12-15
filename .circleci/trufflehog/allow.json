@@ -14,5 +14,6 @@
 	"midna-wipe-test-2": "JDJiJDEyJGliaVNhTDdFaUFGeFBjUHdEbXg2dk9acm5wRXZVakVoOTV2ektDVi5qajU0NDVZbFZDbUpL",
 	"pseudo-secret-key": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
 	"template-key": "1tI0z29LBJJAQCYq1fptWCN8jgL6b2yj",
+	"circleci-url": "https://app.circleci.com/pipelines/github/darakeon/dfm/4973/workflows/f0be7a5f-2809-45ff-b5f0-214e741c54ba/jobs/60464",
 	"": ""
 }
