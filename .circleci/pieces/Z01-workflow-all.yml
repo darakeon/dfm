@@ -211,4 +211,7 @@
       - publish_android:
           requires:
             - approve_deploy
+      - publish_terms:
+          requires:
+            - approve_deploy
 

@@ -30,16 +30,6 @@
             export VERSION=$CIRCLE_BRANCH
             python update_contract_html.py
       - run:
-          name: upload terms html to S3
-          path: terms
-          command: |
-            DIFF=$(git diff)
-            if [ "$DIFF" == "" ]; then
-              echo "Nothing to upload"
-            else
-              python publish_contract_html.py
-            fi
-      - run:
           name: commit readme if changed
           path: terms
           command: |
