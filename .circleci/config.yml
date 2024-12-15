@@ -1114,7 +1114,7 @@ jobs:
               git add static/dfm.png
               git commit -m "legal: add new contract to git"
 
-              merge-by-branch feature/terms legal
+              git push
             fi
       - store_artifacts:
           path: terms/README.md
