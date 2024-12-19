@@ -2,7 +2,7 @@ FROM darakeon/netcore-libman:ubuntu-net8
 LABEL maintainer="Dara Keon <laboon@darakeon.com>"
 RUN maintain
 
-RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
 RUN apt-get install -y nodejs
 
 RUN echo "echo" >> ~/.bashrc
