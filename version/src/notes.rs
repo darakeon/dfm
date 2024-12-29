@@ -36,7 +36,7 @@ pub fn update_notes_for_language(version: &Version, language: &str) -> i32 {
 	let mut tasks = version.tasks.clone();
 
 	let translations_path = get_path(vec!["..", "docs", "translations.json"]);
-	let translations_file = get_content(translations_path);
+	let translations_file = get_content(translations_path.clone());
 	let translations = json::parse(&translations_file).unwrap();
 
 	while let Some(task) = tasks.pop_front() {
@@ -76,6 +76,8 @@ pub fn update_notes_for_language(version: &Version, language: &str) -> i32 {
 		let new_content = format!("{}{}", new_release, content);
 	
 		set_content(path, new_content);
+	} else {
+		println!("{}", translations_path);
 	}
 
 	println!();
