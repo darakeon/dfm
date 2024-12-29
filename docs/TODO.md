@@ -48,7 +48,7 @@ The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend)
 | Report with more than one account                                              |  F  | 🐉 |  3  |  3  |  4  |
 | Add schedule anticipation                                                      |  F  | 🐳 |  3  |  3  |  4  |
 | Handle split screen layout at android app                                      |  F  | 🐳 |  3  |  3  |  4  |
-| Create service to translate site ("put in your language")                      |  F  | 🐉 |  2  |  2  |  4  |
+| Create service to translate site ('put in your language')                      |  F  | 🐉 |  2  |  2  |  4  |
 | Add category creation (mobile)                                                 |  F  | 🐉 |  2  |  2  |  4  |
 | Add account creation (mobile)                                                  |  F  | 🐉 |  2  |  2  |  4  |
 | Enable Copy Move (web+mobile)                                                  |  F  | 🐳 |  2  |  2  |  4  |
