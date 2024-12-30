@@ -1930,9 +1930,9 @@ workflows:
                 - /^feature/version/.+$/
                 - /^fix/version/.+$/
                 - /^dependabot/cargo/version/.+$/
-      - test_ci:
-          requires:
-            - trufflehog
+      - test_ci #:
+      #    requires:
+      #      - trufflehog
       - push_docker_rust_github_cli:
           requires:
             - test_ci
