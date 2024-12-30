@@ -62,13 +62,19 @@ fn mount_version(
 	task_list: &Vec<String>,
 	numbers: Vec<usize>,
 ) -> Version {
+	let version_pattern = r"(\d+\.\d+\.\d+\.\d+)";
+
 	let mut version = Version::new(dev, prod);
+
+	if !is_match(&branch, version_pattern) {
+		version.done = false;
+		return version;
+	}
 
 	let start = start_of_current_tasks(task_list, branch);
 
 	if start != START_OF_VERSIONS {
-		let pattern = r"(\d+\.\d+\.\d+\.\d+)";
-		version.next = extract_line(task_list, START_OF_VERSIONS, pattern);
+		version.next = extract_line(task_list, START_OF_VERSIONS, version_pattern);
 	} else if numbers.len() > 0 {
 		let code = version.code.clone();
 
