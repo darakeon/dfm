@@ -18,6 +18,9 @@ build_migrator:
 	@cd ../publish && make migrator
 	@make single_build MACHINE=dfm-migrator-ci CONTEXT=../.. PUSH=${PUSH}
 
+build_rust_github_cli:
+	@make single_build MACHINE=rust-github-cli CONTEXT=../.. PUSH=${PUSH}
+
 single_build:
 	@if [ "${MACHINE}" = "" ]; then \
 		echo "please set the MACHINE to build"; \
