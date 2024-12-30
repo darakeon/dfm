@@ -20,7 +20,13 @@ O sistema Don't fly Money, abaixo constando como Sistema, e a pessoa que registr
 
 - A funcionalidade de Agendamento permite agendar Movimentações para serem criadas no futuro. Existe uma automação executando a cada 15 minutos para inserir as Movimentações de agendamentos pendentes. Se a Pessoa agendar uma Movimentação para uma data passada, esta será criada na próxima vez que esta automação executar.
 
-- As funcionalidade disponíveis no Sistema possuem limites de uso. Esses limites podem ser encontrados após realizar o login no site, no menu de Adminitração > Limites de Uso.
+- Algumas funcionalidades disponíveis no Sistema possuem limites de uso:
+
+    - Esses limites podem ser encontrados após realizar o login no site, no menu de Adminitração > Limites de Uso;
+
+    - Os limites podem ser alterados de acordo com a necessidade do Sistema;
+
+    - Limites mensais usam o horário UTC.
 
 - Dados apresentados em Sistema e decisões tomadas com base nestes dados são de total responsabilidade da Pessoa:
 
@@ -41,6 +47,14 @@ O sistema Don't fly Money, abaixo constando como Sistema, e a pessoa que registr
     - O endereço é público: https://github.com/darakeon/dfm ;
 
     - O código fonte é ABERTO, podendo QUALQUER pessoa com acesso não-censurado a internet visualizá-lo e sugerir edições, usando uma conta do github.
+
+- Os dados registrados no Sistema estão armazenados geograficamente no Oregon - Estados Unidos da America;
+
+    - Não é possível a Pessoa escolher outro local para armazenamento;
+
+    - Esta também é a localização dos dados exportados do Sistema;
+
+    - Caso o local de armazenamento seja mudado, estes termos serão alterados assim que possível.
 
 - Cookies são usados para controlar seu acesso a informações e a segurança dos formulários deste Site;
 
@@ -154,7 +168,9 @@ O sistema Don't fly Money, abaixo constando como Sistema, e a pessoa que registr
 
     - Há um link no rodapé de todas as páginas do Site;
 
-    - Há links nas telas de login e configurações do Aplicativo Android.
+    - Há links nas telas de login e configurações do Aplicativo Android;
+
+    - Os termos também podem ser encontrados em http://terms.dontflymoney.com/.
 
 ## Terms of use
 
@@ -176,7 +192,13 @@ The Don't fly Money system, below referred as System, and the person who is regi
 
 - Schedule feature allow to schedule Moves to be created at the future. There is an automation running every 15 minutes to insert the Moves for the pending Schedules. If the Person schedule a Move for a past date, it will be created in the next time this automation runs.
 
-- System features have usage limitation. There limits can be found after login in the website inside menu Administration > Usage Limits.
+- Some system features have usage limitation:
+
+    - These limits can be found after login in the website inside menu Administration > Usage Limits;
+
+    - The limits can be changed according to the System needs;
+
+    - Monthly limits use UTC time.
 
 - System data and decisions made based on this data are sole responsibility of the Person:
 
@@ -197,6 +219,14 @@ The Don't fly Money system, below referred as System, and the person who is regi
     - The address is public: https://github.com/darakeon/dfm ;
 
     - The source code is OPEN and ANY person using uncensored internet access can see it and suggest changes, using a github login.
+
+- Data registered at the System are stored in geographically at Oregon - United States of America;
+
+    - It is not possible to the Person to choose another place to store them;
+
+    - This is also System exported data location;
+
+    - In case this place changes the terms will be updated as soon as possible.
 
 - Cookies are used to control logon and security of forms of this Website;
 
@@ -310,5 +340,7 @@ The Don't fly Money system, below referred as System, and the person who is regi
 
     - There is a link at the footer of all Website pages;
 
-    - There are links inside the Android App in login and settings screens.
+    - There are links inside the Android App in login and settings screens;
+
+    - The terms can also be find at http://terms.dontflymoney.com/.
 
