@@ -8,7 +8,6 @@
 
 ## Tasks to publish
 
-- [ ] Upgrade version and create new release
 - [ ] Test Site
 - [ ] Test API
 - [ ] Test error handler
