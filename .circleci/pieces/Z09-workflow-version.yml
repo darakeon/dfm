@@ -10,6 +10,9 @@
       - test_ci:
           requires:
             - trufflehog
+      - push_docker_rust_github_cli:
+          requires:
+            - test_ci
       - audit_version_changer:
           requires:
             - test_ci
@@ -17,10 +20,12 @@
           requires:
             - test_ci
             - audit_version_changer
+            - push_docker_rust_github_cli
       - workflow_ran:
           requires:
             - trufflehog
             - test_ci
+            - push_docker_rust_github_cli
             - audit_version_changer
             - change_version
 
