@@ -103,6 +103,24 @@ jobs:
           path: architecture/ci
           command: make build_migrator PUSH=1
 
+  push_docker_rust_github_cli:
+    docker:
+      - image: docker
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Install make
+          command: apk add make
+      - run:
+          name: Login
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - run:
+          name: Build images
+          path: architecture/ci
+          command: make build_rust_github_cli PUSH=1
+
   build_core:
     docker:
       - image: darakeon/netcore:alpine-net8
@@ -1398,6 +1416,9 @@ workflows:
       - push_docker_migrator_ci:
           requires:
             - test_ci
+      - push_docker_rust_github_cli:
+          requires:
+            - test_ci
       - build_core:
           requires:
             - test_ci
@@ -1524,6 +1545,7 @@ workflows:
             - push_docker_browser
             - push_docker_android
             - push_docker_migrator_ci
+            - push_docker_rust_github_cli
             - build_core
             - audit_core
             - test_core_generic
@@ -1911,6 +1933,9 @@ workflows:
       - test_ci:
           requires:
             - trufflehog
+      - push_docker_rust_github_cli:
+          requires:
+            - test_ci
       - audit_version_changer:
           requires:
             - test_ci
@@ -1918,10 +1943,12 @@ workflows:
           requires:
             - test_ci
             - audit_version_changer
+            - push_docker_rust_github_cli
       - workflow_ran:
           requires:
             - trufflehog
             - test_ci
+            - push_docker_rust_github_cli
             - audit_version_changer
             - change_version
 
