@@ -18,6 +18,9 @@
       - push_docker_migrator_ci:
           requires:
             - test_ci
+      - push_docker_rust_github_cli:
+          requires:
+            - test_ci
       - build_core:
           requires:
             - test_ci
@@ -144,6 +147,7 @@
             - push_docker_browser
             - push_docker_android
             - push_docker_migrator_ci
+            - push_docker_rust_github_cli
             - build_core
             - audit_core
             - test_core_generic
