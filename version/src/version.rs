@@ -66,7 +66,7 @@ fn mount_version(
 
 	let mut version = Version::new(dev, prod);
 
-	if !is_match(&branch, version_pattern) {
+	if !is_match(&branch, version_pattern) || branch != version.code {
 		version.done = false;
 		return version;
 	}
