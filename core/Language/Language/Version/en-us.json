@@ -1,4 +1,18 @@
 {
+	"14.0.0.0": [
+		"Improve internal error handling",
+		"Avoid non stop redirect error page",
+		"Avoid error getting Tips from website",
+		"Fix internal error reports",
+		"Fix running schedules",
+		"Add to terms location where System data is stored",
+		"Add to contract fixed internet address to terms",
+		"Fix terms update",
+		"Improve new version creation",
+		"Implement System Limits",
+		"Improve running schedules and other automations",
+		"Fix wipe management"
+	],
 	"13.1.0.0": [
 		"Fix date and currency with wrong localization on site",
 		"Add website only for terms: http://terms.dontflymoney.com",

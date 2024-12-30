@@ -4,7 +4,7 @@ on:
     types: [opened, reopened, synchronize]
     branches: [ "main" ]
   push:
-    branches: [ "14.0.0.0" ]
+    branches: [ "14.1.0.0" ]
 
 jobs:
   check-commit-message:
