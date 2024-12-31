@@ -1,4 +1,18 @@
 {
+	"14.0.0.0": [
+		"Melhoria de manejamento de erro interno",
+		"Evitado redirecionamento infinito em página de erro",
+		"Corrigido erro em Dicas no site",
+		"Corrigido reportação de erros internos",
+		"Corrigida execução de agendamentos",
+		"Adicionada nos termos a localização de onde estão guardados os dados do Sistema",
+		"Adicionado ao contrato endereço fixo para os termos",
+		"Corrigida atualização dos termos",
+		"Melhoria na criação de novas versões",
+		"Implementados Limites de Uso",
+		"Melhoria na execução de agendamentos e outras automações",
+		"Correção no gerenciamento de dados apagados"
+	],
 	"13.1.0.0": [
 		"Arrumado problema com datas e moedas erradas no site",
 		"Adicionado endereço novo para os termos de uso: http://terms.dontflymoney.com",
