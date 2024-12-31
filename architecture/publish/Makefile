@@ -33,6 +33,9 @@ aws_login: env
 		echo "Fill .env file or set environment variables in the terminal"; \
 		exit 1; \
 	fi
+	@if [ ! -e ~/.aws ]; then \
+		mkdir ~/.aws; \
+	fi
 	@if [ ! -e ~/.aws/config ]; then \
 		echo "[default]\nregion = ${AWS_ECR_REGION}\noutput = json" > ~/.aws/config; \
 	fi
