@@ -1376,7 +1376,7 @@ jobs:
           name: Publish to Play Store
           command: |
             export ANDROID_BUNDLE=android/App/build/outputs/bundle/release/App-release.aab
-            export ANDROID_APP_VERSION=$(git tag -l --sort=-creatordate | head -n1)
+            export ANDROID_APP_VERSION=$(git branch --show-current)
             python3 .circleci/android/publish.py
       - store_artifacts:
           path: android/App/build/outputs/bundle/release/
