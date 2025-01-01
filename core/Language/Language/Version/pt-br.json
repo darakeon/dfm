@@ -1,16 +1,16 @@
 {
 	"14.0.0.0": [
 		"Melhoria de manejamento de erro interno",
-		"Evitado redirecionamento infinito em página de erro",
+		"Evitado redirecionamento em página de erro",
 		"Corrigido erro em Dicas no site",
 		"Corrigido reportação de erros internos",
 		"Corrigida execução de agendamentos",
-		"Adicionada nos termos a localização de onde estão guardados os dados do Sistema",
-		"Adicionado ao contrato endereço fixo para os termos",
-		"Corrigida atualização dos termos",
-		"Melhoria na criação de novas versões",
-		"Implementados Limites de Uso",
-		"Melhoria na execução de agendamentos e outras automações",
+		"Adição nos termos da localização de dados do Sistema",
+		"Adição de endereço web no contrato",
+		"Corrigida atualização de termos",
+		"Melhoria na criação de nova versão",
+		"Implementado Limite de Uso",
+		"Melhoria na execução de automações",
 		"Correção no gerenciamento de dados apagados"
 	],
 	"13.1.0.0": [
