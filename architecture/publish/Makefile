@@ -34,12 +34,15 @@ aws_login: env
 		exit 1; \
 	fi
 	@if [ ! -e ~/.aws ]; then \
+		echo "Making directory"; \
 		mkdir ~/.aws; \
 	fi
 	@if [ ! -e ~/.aws/config ]; then \
+		echo "Making config"; \
 		echo "[default]\nregion = ${AWS_ECR_REGION}\noutput = json" > ~/.aws/config; \
 	fi
 	@if [ ! -e ~/.aws/credentials ]; then \
+		echo "Making credentials"; \
 		echo "[default]\naws_access_key_id = ${AWS_ECR_USER}\naws_secret_access_key = ${AWS_ECR_PASS}" >> ~/.aws/credentials; \
 	fi
 	@aws ecr get-login-password --region ${AWS_ECR_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT}.dkr.ecr.${AWS_ECR_REGION}.amazonaws.com
