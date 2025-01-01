@@ -25,6 +25,16 @@ def main():
 		'pt-br', VERSION
 	)
 
+	if len(en_us) > 500:
+		print(f"too long en_us: {len(en_us)}")
+		print(en_us)
+		exit(1)
+
+	if len(pt_br) > 500:
+		print(f"too long pt_br: {len(pt_br)}")
+		print(pt_br)
+		exit(1)
+
 	edits = get_edits()
 	edit_id = start_edit(edits)
 
