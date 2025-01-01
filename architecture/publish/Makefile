@@ -45,7 +45,11 @@ aws_login: env
 		echo "Making credentials"; \
 		echo "[default]\naws_access_key_id = ${AWS_ECR_USER}\naws_secret_access_key = ${AWS_ECR_PASS}" >> ~/.aws/credentials; \
 	fi
-	@aws ecr get-login-password --region ${AWS_ECR_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT}.dkr.ecr.${AWS_ECR_REGION}.amazonaws.com
+	@aws ecr get-login-password --region ${AWS_ECR_REGION} \
+		| docker login \
+			--username AWS \
+			--password-stdin \
+			${AWS_ACCOUNT}.dkr.ecr.${AWS_ECR_REGION}.amazonaws.com
 
 
 all: site api robot midna
