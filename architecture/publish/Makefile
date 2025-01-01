@@ -39,11 +39,15 @@ aws_login: env
 	fi
 	@if [ ! -e ~/.aws/config ]; then \
 		echo "Making config"; \
-		echo "[default]\nregion = ${AWS_ECR_REGION}\noutput = json" > ~/.aws/config; \
+		echo "[default]" > ~/.aws/config; \
+		echo "region = ${AWS_ECR_REGION}" >> ~/.aws/config; \
+		echo "output = json" >> ~/.aws/config; \
 	fi
 	@if [ ! -e ~/.aws/credentials ]; then \
 		echo "Making credentials"; \
-		echo "[default]\naws_access_key_id = ${AWS_ECR_USER}\naws_secret_access_key = ${AWS_ECR_PASS}" >> ~/.aws/credentials; \
+		echo "[default]" > ~/.aws/credentials; \
+		echo "aws_access_key_id = ${AWS_ECR_USER}" >> ~/.aws/credentials; \
+		echo "aws_secret_access_key = ${AWS_ECR_PASS}" >> ~/.aws/credentials; \
 	fi
 	@aws ecr get-login-password --region ${AWS_ECR_REGION} \
 		| docker login \
