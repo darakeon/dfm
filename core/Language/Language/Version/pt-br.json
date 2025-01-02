@@ -1,4 +1,7 @@
 {
+	"14.1.0.0": [
+		"Adicionada verificação de segurança"
+	],
 	"14.0.0.0": [
 		"Melhoria de manejamento de erro interno",
 		"Evitado redirecionamento em página de erro",
