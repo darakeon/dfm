@@ -14,7 +14,7 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend) then Type.
 
-| Task (47)                                                                      | Typ | Siz | Dif | Imp | Pts |
+| Task (48)                                                                      | Typ | Siz | Dif | Imp | Pts |
 | ------------------------------------------------------------------------------ | --- | --- | --- | --- | --- |
 | [clear headers on nginx](todo/clear-headers.png)                               |  S  | 🐳 |  2  |  4  |  6  |
 | Check [nginx example configuration](todo/nginx-example.conf)                   |  S  | 🐑 |  2  |  4  |  6  |
@@ -30,6 +30,7 @@ The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend)
 | Refactor Core Steps to improve their division to entities and given/when/then  |  M  | 🐑 |  1  |  3  |  6  |
 | Replace XML at UI android by [jetpack-compose]                                 |  M  | 🐉 |  3  |  4  |  5  |
 | Implement security measures suggested by github                                |  S  | 🐑 |  3  |  4  |  5  |
+| Upload new mobile screenshots automatically when deploy                        |  M  | 🐑 |  3  |  4  |  5  |
 | Add schedule creation (mobile)                                                 |  F  | 🐉 |  2  |  3  |  5  |
 | add snyk/clair check to docker containers                                      |  S  | 🐳 |  2  |  3  |  5  |
 | Add schedule edit                                                              |  F  | 🐳 |  2  |  3  |  5  |
