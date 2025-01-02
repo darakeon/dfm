@@ -18,6 +18,7 @@ use git2::{
 	Reference,
 	RemoteCallbacks,
 	Repository,
+	ResetType,
 	Signature,
 };
 
@@ -268,6 +269,12 @@ pub fn stash(message: &str) {
 			repo().stash_save(&signature(), message, None).unwrap();
 		}
 	}
+}
+
+pub fn reset_all() {
+	let repo = repo();
+	let head = repo.head().unwrap().peel(ObjectType::Commit).unwrap();
+	repo.reset(&head, ResetType::Hard, None).unwrap();
 }
 
 pub fn commit(message: &str) {

@@ -3,7 +3,7 @@ use std::collections::LinkedList;
 use crate::arguments::ProgramOption;
 use crate::end::{success,throw,throw_format};
 use crate::file::{get_path, get_lines};
-use crate::git::{current_branch,has_pull_request};
+use crate::git::{current_branch,has_pull_request,reset_all};
 use crate::regex::{extract, extract_line, is_match};
 use crate::todos::add_release;
 
@@ -98,6 +98,10 @@ fn mount_version(
 		} else {
 			break;
 		}
+	}
+
+	if !version.done {
+		reset_all();
 	}
 
 	return version;
