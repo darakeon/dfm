@@ -4,15 +4,18 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#14.0.0.0)
-- [go to version in development](#14.1.0.0)
-- [dev version state](../../14.1.0.0/docs/RELEASES.md#14.1.0.0)
+- [go to published version](#14.1.0.0)
+- [go to version in development](#14.2.0.0)
+- [dev version state](../../14.2.0.0/docs/RELEASES.md#14.2.0.0)
 
 ## Legend
 - 🐉: at least one huge change (increases first number)
 - 🐳: at least one big change, like a new feature (increases second number)
 - 🐑: at least one little change, as a change at an existing feature (increases third number)
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="14.2.0.0"></a>14.2.0.0 :🐳: <sup>`1`</sup>
+- [ ] [clear headers on nginx](todo/clear-headers.png)
 
 ## <a name="14.1.0.0"></a>14.1.0.0 :🐳: <sup>`1`</sup>
 - [x] `250102>250102` Add semgrep to dfm, dk-lib, meak and server
