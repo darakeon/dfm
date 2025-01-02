@@ -15,7 +15,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="14.1.0.0"></a>14.1.0.0 :🐳: <sup>`1`</sup>
-- [ ] Add semgrep to dfm, dk-lib, meak and server
+- [x] `250102>250102` Add semgrep to dfm, dk-lib, meak and server
 
 ## <a name="14.0.0.0"></a>14.0.0.0 :🐉: <sup>`12`</sup>
 - [x] `241208>241208` Improve information about already opened transaction - which is opened?
