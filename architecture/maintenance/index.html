@@ -16,12 +16,36 @@
 			padding: 0;
 			margin: 0;
 			font-family: Calibri;
-			font-size: 3vmax;
 		}
 
 		main {
 			margin: auto;
 			text-align: center;
+		}
+
+		section {
+			width: 30vw;
+			display: inline-block;
+		}
+
+		h1 {
+			font-size: 3vmax;
+		}
+
+		h2 {
+			font-size: 2.4vmax;
+		}
+
+		ul {
+			margin: 0;
+			padding: 0;
+		}
+
+		p, li {
+			font-size: 1.8vmax;
+			list-style: none;
+			margin: 0;
+			padding: 0;
 		}
 
 		img#pave {
@@ -52,17 +76,61 @@
 			width: 5vmax;
 		}
 	</style>
-
 </head>
 
 <body>
 	<main>
-		<h1>Maintenance</h1>
-		<img id="pave" src="pave.png" alt="Pavê" title="Pavê"/>
-		<img id="plumeria" src="plumeria.png" alt="Plumeria" title="Plumeria"/>
-		<img id="keon" src="dara-keon.png" alt="Dara Keon" title="Dara Keon"/>
-		<img id="dfm" src="dfm.png" alt="Don't fly Money" title="Don't fly Money"/>
+		<h1>Don't fly Money</h1>
+		<p id="clock">🕰️ 🗺️</p>
+		<section>
+			<h2>Horários de<br/>funcionamento</h2>
+			<ul>
+				<li>00:00 até 01:00</li>
+				<li>03:00 até 02:00</li>
+				<li>06:00 até 07:00</li>
+				<li>09:00 até 10:00</li>
+				<li>12:00 até 13:00</li>
+				<li>15:00 até 16:00</li>
+				<li>18:00 até 19:00</li>
+				<li>21:00 até 22:00</li>
+			</ul>
+		</section>
+		<section>
+			<h2>Working<br/>hours</h2>
+			<ul>
+				<li>00 am to 01 am</li>
+				<li>03 am to 02 am</li>
+				<li>06 am to 07 am</li>
+				<li>09 am to 10 am</li>
+				<li>12 pm to 13 pm</li>
+				<li>15 pm to 16 pm</li>
+				<li>18 pm to 19 pm</li>
+				<li>21 pm to 22 pm</li>
+			</ul>
+		</section>
 	</main>
+	<img id="pave" src="pave.png" alt="Pavê" title="Pavê"/>
+	<img id="plumeria" src="plumeria.png" alt="Plumeria" title="Plumeria"/>
+	<img id="keon" src="dara-keon.png" alt="Dara Keon" title="Dara Keon"/>
+	<img id="dfm" src="dfm.png" alt="Don't fly Money" title="Don't fly Money"/>
+
+	<script>
+		setInterval(() => {
+			var date = new Date()
+
+			var hours = date.getUTCHours()
+			var minutes = date.getUTCMinutes()
+			var seconds = date.getUTCSeconds()
+
+			hours = String(hours).padStart(2, '0')
+			minutes = String(minutes).padStart(2, '0')
+			seconds = String(seconds).padStart(2, '0')
+
+			var time = `🕰️ ${hours}:${minutes}:${seconds} 🗺️`
+
+			document.getElementById('clock').innerHTML = time
+		}, 1000)
+	</script>
 </body>
 
 </html>
