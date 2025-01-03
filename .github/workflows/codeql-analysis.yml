@@ -29,13 +29,21 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'csharp', 'javascript' ]
+        language: [ 'csharp', 'javascript', 'python', 'actions' ]
+        # add 'java-kotlin' when I have time to make it work
         # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby' ]
         # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+
+    #- name: Set up JDK 17 for Kotlin
+    #  if: matrix.language == 'java-kotlin'
+    #  uses: actions/setup-java@v3
+    #  with:
+    #    java-version: '17'
+    #    distribution: 'temurin'
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
@@ -49,7 +57,15 @@ jobs:
         # Details on CodeQL's query packs refer to : https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
         # queries: security-extended,security-and-quality
 
-        
+    #- name: keystore.properties for kotlin
+    #  if: matrix.language == 'java-kotlin'
+    #  run: |
+    #    echo "" > android/App/fake.keystore
+    #    echo "storeFile=fake.keystore" > android/keystore.properties
+    #    echo "storePassword=" >> android/keystore.properties
+    #    echo "keyAlias=" >> android/keystore.properties
+    #    echo "keyPassword=" >> android/keystore.properties
+
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)
     - name: Autobuild
