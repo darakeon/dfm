@@ -1,4 +1,5 @@
 ﻿using System;
+using DFM.Generic;
 
 namespace DFM.API.Models
 {
@@ -22,6 +23,8 @@ namespace DFM.API.Models
 		public object Data { get; set; }
 		public Environment Environment { get; set; }
 		public ErrorModel Error { get; set; }
+
+		public String Version => Cfg.Version;
 
 
 
