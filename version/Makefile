@@ -47,7 +47,7 @@ check:
 create_old_tag_and_new_branch:
 	@head -n 7 ../docs/RELEASES.md | tail -n 1 | cut -d "#" -f 2 | cut -d ")" -f 1 > branch.git
 	@git checkout main
-	@git branch -d ${BRANCH}
+	@git branch -d ${BRANCH} || echo "no branch ${BRANCH}"
 	@git pull --prune
 	@git tag -a ${BRANCH}
 	@git push --tags
