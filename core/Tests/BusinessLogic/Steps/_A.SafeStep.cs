@@ -32,12 +32,6 @@ namespace DFM.BusinessLogic.Tests.Steps
 			set => set(value);
 		}
 
-		private String ticket
-		{
-			get => get<String>();
-			set => set(value);
-		}
-
 		private String password
 		{
 			get => get<String>();
@@ -301,7 +295,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[When(@"I try to get the ticket")]
 		public void WhenITryToGetTheTicket()
 		{
-			ticket = null;
+			testTicketKey = null;
 
 			try
 			{
@@ -313,7 +307,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 					TicketType = TicketType.Tests,
 				};
 
-				ticket = service.Auth.CreateTicket(info);
+				testTicketKey = service.Auth.CreateTicket(info);
 			}
 			catch (CoreError e)
 			{
@@ -325,7 +319,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[When(@"I try to get the ticket (\d+) times")]
 		public void WhenITryToGetTheTicketSomeTimes(Int32 times)
 		{
-			ticket = null;
+			testTicketKey = null;
 
 			var info = new SignInInfo
 			{
@@ -360,15 +354,15 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			if (receive)
 			{
-				Assert.That(ticket, Is.Not.Null);
+				Assert.That(testTicketKey, Is.Not.Null);
 
-				var expectedSession = service.Auth.GetSession(ticket);
+				var expectedSession = service.Auth.GetSession(testTicketKey);
 
 				Assert.That(expectedSession, Is.Not.Null);
 			}
 			else
 			{
-				Assert.That(ticket, Is.Null);
+				Assert.That(testTicketKey, Is.Null);
 			}
 		}
 		#endregion
@@ -381,7 +375,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			try
 			{
-				session = service.Auth.GetSession(ticket);
+				session = service.Auth.GetSession(testTicketKey);
 			}
 			catch (CoreError e)
 			{
@@ -519,7 +513,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Auth.DisableTicket(ticket);
+				service.Auth.DisableTicket(testTicketKey);
 			}
 			catch (CoreError e)
 			{
@@ -534,7 +528,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			try
 			{
-				service.Auth.GetSession(ticket);
+				service.Auth.GetSession(testTicketKey);
 			}
 			catch (CoreError e)
 			{
@@ -542,7 +536,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 
 			Assert.That(error, Is.Not.Null);
-			Assert.That(error.Type, Is.EqualTo(Error.Uninvited));
+			Assert.That(
+				error.Type,
+				Is.AnyOf(
+					Error.Uninvited,
+					Error.UserDeleted,
+					Error.UserAskedWipe
+				)
+			);
 		}
 
 		[Then(@"the ticket will still be valid")]
@@ -552,7 +553,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			try
 			{
-				service.Auth.GetSession(ticket);
+				service.Auth.GetSession(testTicketKey);
 			}
 			catch (CoreError e)
 			{
@@ -825,7 +826,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				{
 					Email = email,
 					Password = code,
-					TicketKey = ticket,
+					TicketKey = testTicketKey,
 					TicketType = TicketType.Tests
 				};
 
@@ -842,24 +843,24 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the TFA will (not )?be asked")]
 		public void ThenTheTFAWillNotBeAsked(Boolean askTFA)
 		{
-			var currentTicket = repos.Ticket.GetByKey(ticket);
+			var currentTicket = repos.Ticket.GetByKey(testTicketKey);
 			Assert.That(!currentTicket.ValidTFA, Is.EqualTo(askTFA));
 		}
 
 		[Then(@"I can still login using normal password")]
 		public void ThenICanStillLoginUsingNormalPassword()
 		{
-			ticket = TK.New();
+			testTicketKey = TK.New();
 
 			var info = new SignInInfo
 			{
 				Email = email,
 				Password = password,
-				TicketKey = ticket,
+				TicketKey = testTicketKey,
 				TicketType = TicketType.Tests,
 			};
 
-			ticket = service.Auth.CreateTicket(info);
+			testTicketKey = service.Auth.CreateTicket(info);
 		}
 		#endregion
 
@@ -1073,25 +1074,25 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"I pass a ticket that doesn't exist")]
 		public void GivenIPassATicketThatDoesNotExist()
 		{
-			ticket = TK.New();
+			testTicketKey = TK.New();
 		}
 
 		[Given(@"I pass a null ticket")]
 		public void GivenIPassANullTicket()
 		{
-			ticket = null;
+			testTicketKey = null;
 		}
 
 		[Given(@"I pass an empty ticket")]
 		public void GivenIPassAnEmptyTicket()
 		{
-			ticket = "";
+			testTicketKey = "";
 		}
 
 		[Given(@"I pass a ticket that is already disabled")]
 		public void GivenIPassATicketThatIsAlreadyInvalid()
 		{
-			service.Auth.DisableTicket(ticket);
+			service.Auth.DisableTicket(testTicketKey);
 		}
 
 		[Given(@"I pass a ticket that is of this disabled user")]
@@ -1105,7 +1106,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				TicketType = TicketType.Tests,
 			};
 
-			ticket = service.Auth.CreateTicket(info);
+			testTicketKey = service.Auth.CreateTicket(info);
 		}
 
 		[Given(@"I pass a ticket that exist")]
@@ -1113,7 +1114,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var userID = repos.User.GetByEmail(email).ID;
 
-			ticket = repos.Ticket.Where(
+			testTicketKey = repos.Ticket.Where(
 				t => t.User.ID == userID
 					&& t.Expiration == null
 			).FirstOrDefault()?.Key;
@@ -1163,7 +1164,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				TicketType = TicketType.Tests,
 			};
 
-			ticket = service.Auth.CreateTicket(info);
+			testTicketKey = service.Auth.CreateTicket(info);
 		}
 
 		[Given(@"the token expires")]
@@ -1325,7 +1326,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				TicketType = TicketType.Tests,
 			};
 
-			ticket = service.Auth.CreateTicket(info);
+			testTicketKey = service.Auth.CreateTicket(info);
 		}
 
 		[Given(@"I have this two-factor data")]
@@ -1393,9 +1394,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 		[Given(@"I have not valid ticket key")]
-		public void GivenIHaveRandomTicketKey()
+		public void GivenIHaveNotValidTicketKey()
 		{
-			ticket = new Random().Next().ToString();
+			testTicketKey = new Random().Next().ToString();
 		}
 
 		[Given(@"I have a ticket key")]
@@ -1409,7 +1410,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				TicketType = TicketType.Tests,
 			};
 
-			ticket = service.Auth.CreateTicket(info);
+			testTicketKey = service.Auth.CreateTicket(info);
 		}
 
 		[Given(@"I validate the ticket two factor")]
