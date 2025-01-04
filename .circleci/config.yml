@@ -1242,6 +1242,17 @@ jobs:
               source config-git
               merge-by-branch feature/version/new version
             fi
+      - run:
+          name: release
+          command: |
+            if [ "$CIRCLE_BRANCH" == "feature/version/new" ]; then
+              echo "No release"
+            else
+              circleci run release log \
+                --environment-name=DFM \
+                --component-name=$CIRCLE_JOB \
+                --target-version=$CIRCLE_BRANCH
+            fi
 
   publish_migrator:
     docker:
@@ -1260,6 +1271,13 @@ jobs:
           name: Build images
           path: architecture/publish
           command: make migrator_push
+      - run:
+          name: release
+          command: |
+            circleci run release log \
+              --environment-name=DFM \
+              --component-name=$CIRCLE_JOB \
+              --target-version=$CIRCLE_BRANCH
 
   publish_site:
     docker:
@@ -1278,6 +1296,13 @@ jobs:
           name: Build images
           path: architecture/publish
           command: make site_push
+      - run:
+          name: release
+          command: |
+            circleci run release log \
+              --environment-name=DFM \
+              --component-name=$CIRCLE_JOB \
+              --target-version=$CIRCLE_BRANCH
 
   publish_api:
     docker:
@@ -1296,6 +1321,13 @@ jobs:
           name: Build images
           path: architecture/publish
           command: make api_push
+      - run:
+          name: release
+          command: |
+            circleci run release log \
+              --environment-name=DFM \
+              --component-name=$CIRCLE_JOB \
+              --target-version=$CIRCLE_BRANCH
 
   publish_robot:
     docker:
@@ -1324,6 +1356,14 @@ jobs:
             make aws_login
             make robot_aws_push
             make robot_aws_deploy
+      - run:
+          name: release
+          command: |
+            circleci run release log \
+              --environment-name=DFM \
+              --component-name=$CIRCLE_JOB \
+              --target-version=$CIRCLE_BRANCH
+
   publish_midna:
     docker:
       - image: docker
@@ -1341,6 +1381,13 @@ jobs:
           name: Build images
           path: architecture/publish
           command: make midna_push
+      - run:
+          name: release
+          command: |
+            circleci run release log \
+              --environment-name=DFM \
+              --component-name=$CIRCLE_JOB \
+              --target-version=$CIRCLE_BRANCH
 
   publish_android:
     docker:
@@ -1381,6 +1428,13 @@ jobs:
       - store_artifacts:
           path: android/App/build/outputs/bundle/release/
           destination: bundle
+      - run:
+          name: release
+          command: |
+            circleci run release log \
+              --environment-name=DFM \
+              --component-name=$CIRCLE_JOB \
+              --target-version=$CIRCLE_BRANCH
 
   publish_terms:
     docker:
@@ -1392,6 +1446,13 @@ jobs:
           path: terms
           command: |
             python publish_contract_html.py
+      - run:
+          name: release
+          command: |
+            circleci run release log \
+              --environment-name=DFM \
+              --component-name=$CIRCLE_JOB \
+              --target-version=$CIRCLE_BRANCH
 
 workflows:
   version: 2.1
