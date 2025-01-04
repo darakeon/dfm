@@ -25,3 +25,11 @@
             make aws_login
             make robot_aws_push
             make robot_aws_deploy
+      - run:
+          name: release
+          command: |
+            circleci run release log \
+              --environment-name=DFM \
+              --component-name=$CIRCLE_JOB \
+              --target-version=$CIRCLE_BRANCH
+

@@ -37,4 +37,15 @@
               source config-git
               merge-by-branch feature/version/new version
             fi
+      - run:
+          name: release
+          command: |
+            if [ "$CIRCLE_BRANCH" == "feature/version/new" ]; then
+              echo "No release"
+            else
+              circleci run release log \
+                --environment-name=DFM \
+                --component-name=$CIRCLE_JOB \
+                --target-version=$CIRCLE_BRANCH
+            fi
 

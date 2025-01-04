@@ -37,4 +37,11 @@
       - store_artifacts:
           path: android/App/build/outputs/bundle/release/
           destination: bundle
+      - run:
+          name: release
+          command: |
+            circleci run release log \
+              --environment-name=DFM \
+              --component-name=$CIRCLE_JOB \
+              --target-version=$CIRCLE_BRANCH
 

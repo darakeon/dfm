@@ -16,7 +16,6 @@ The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend)
 
 | Task (47)                                                                      | Typ | Siz | Dif | Imp | Pts |
 | ------------------------------------------------------------------------------ | --- | --- | --- | --- | --- |
-| Check [nginx example configuration](todo/nginx-example.conf)                   |  S  | 🐑 |  2  |  4  |  6  |
 | Expire tickets with more than 30 days without access (add to contract)         |  F  | 🐑 |  2  |  4  |  6  |
 | Implement [password rules]                                                     |  F  | 🐑 |  2  |  4  |  6  |
 | Create measure of recovering after lost authy                                  |  F  | 🐑 |  2  |  4  |  6  |
