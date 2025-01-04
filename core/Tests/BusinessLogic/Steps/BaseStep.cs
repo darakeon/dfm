@@ -317,6 +317,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 			set => set(value);
 		}
 
+		protected String testTicketKey
+		{
+			get => get<String>();
+			set => set(value);
+		}
+
 		protected CoreError testCoreError
 		{
 			get => get<CoreError>();
