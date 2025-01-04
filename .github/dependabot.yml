@@ -7,7 +7,7 @@ version: 2
 updates:
   - package-ecosystem: "nuget"
     directory: "/core/"
-    target-branch: "14.1.1.0"
+    target-branch: "14.1.2.0"
     schedule:
       interval: "weekly"
     rebase-strategy: "disabled"
@@ -19,7 +19,7 @@ updates:
 
   - package-ecosystem: "nuget"
     directory: "/site/"
-    target-branch: "14.1.1.0"
+    target-branch: "14.1.2.0"
     schedule:
       interval: "weekly"
     rebase-strategy: "disabled"
@@ -31,7 +31,7 @@ updates:
 
   - package-ecosystem: "nuget"
     directory: "/api/"
-    target-branch: "14.1.1.0"
+    target-branch: "14.1.2.0"
     schedule:
       interval: "weekly"
     rebase-strategy: "disabled"
@@ -43,7 +43,7 @@ updates:
 
   - package-ecosystem: "nuget"
     directory: "/robot/"
-    target-branch: "14.1.1.0"
+    target-branch: "14.1.2.0"
     schedule:
       interval: "weekly"
     rebase-strategy: "disabled"
@@ -55,7 +55,7 @@ updates:
 
   - package-ecosystem: "npm"
     directory: "/site/Tests/Browser/"
-    target-branch: "14.1.1.0"
+    target-branch: "14.1.2.0"
     schedule:
       interval: "weekly"
     rebase-strategy: "disabled"
@@ -67,7 +67,7 @@ updates:
 
   - package-ecosystem: "gradle"
     directory: "/android/"
-    target-branch: "14.1.1.0"
+    target-branch: "14.1.2.0"
     schedule:
       interval: "weekly"
     rebase-strategy: "disabled"
@@ -79,7 +79,7 @@ updates:
 
   - package-ecosystem: "docker"
     directory: "/architecture/ci/"
-    target-branch: "14.1.1.0"
+    target-branch: "14.1.2.0"
     schedule:
       interval: "weekly"
     rebase-strategy: "disabled"
@@ -91,7 +91,7 @@ updates:
 
   - package-ecosystem: "docker"
     directory: "/architecture/publish/"
-    target-branch: "14.1.1.0"
+    target-branch: "14.1.2.0"
     schedule:
       interval: "weekly"
     rebase-strategy: "disabled"
@@ -103,7 +103,7 @@ updates:
 
   - package-ecosystem: "cargo"
     directory: "/version/"
-    target-branch: "14.1.1.0"
+    target-branch: "14.1.2.0"
     schedule:
       interval: "weekly"
     rebase-strategy: "disabled"
@@ -115,7 +115,7 @@ updates:
 
   - package-ecosystem: "pip"
     directory: "/midna/"
-    target-branch: "14.1.1.0"
+    target-branch: "14.1.2.0"
     schedule:
       interval: "weekly"
     rebase-strategy: "disabled"

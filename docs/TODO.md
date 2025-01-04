@@ -14,9 +14,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend) then Type.
 
-| Task (47)                                                                      | Typ | Siz | Dif | Imp | Pts |
+| Task (46)                                                                      | Typ | Siz | Dif | Imp | Pts |
 | ------------------------------------------------------------------------------ | --- | --- | --- | --- | --- |
-| Expire tickets with more than 30 days without access (add to contract)         |  F  | 🐑 |  2  |  4  |  6  |
 | Implement [password rules]                                                     |  F  | 🐑 |  2  |  4  |  6  |
 | Create measure of recovering after lost authy                                  |  F  | 🐑 |  2  |  4  |  6  |
 | Move all logs to CloudWatch                                                    |  S  | 🐜 |  2  |  4  |  6  |
