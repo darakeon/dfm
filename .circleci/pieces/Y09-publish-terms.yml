@@ -8,4 +8,11 @@
           path: terms
           command: |
             python publish_contract_html.py
+      - run:
+          name: release
+          command: |
+            circleci run release log \
+              --environment-name=DFM \
+              --component-name=$CIRCLE_JOB \
+              --target-version=$CIRCLE_BRANCH
 
