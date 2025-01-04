@@ -46,6 +46,7 @@ check:
 
 create_old_tag_and_new_branch:
 	@head -n 7 ../docs/RELEASES.md | tail -n 1 | cut -d "#" -f 2 | cut -d ")" -f 1 > branch.git
+	@echo "\e[31mOld branch: ${BRANCH}\e[m"
 	@git checkout main
 	@git branch -d ${BRANCH} || echo "no branch ${BRANCH}"
 	@git stash
@@ -54,6 +55,7 @@ create_old_tag_and_new_branch:
 	@git tag -a ${BRANCH}
 	@git push --tags
 	@head -n 8 ../docs/RELEASES.md | tail -n 1 | cut -d "#" -f 2 | cut -d ")" -f 1 > branch.git
+	@echo "\e[35mNew branch: ${BRANCH}\e[m"
 	@git checkout -b ${BRANCH}
 	@git branch -d main
 	@rm branch.git
