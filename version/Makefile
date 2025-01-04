@@ -55,7 +55,6 @@ create_old_tag_and_new_branch:
 	@git push --tags
 	@head -n 8 ../docs/RELEASES.md | tail -n 1 | cut -d "#" -f 2 | cut -d ")" -f 1 > branch.git
 	@git checkout -b ${BRANCH}
-	@git push -u origin ${BRANCH}
 	@git branch -d main
 	@rm branch.git
 
