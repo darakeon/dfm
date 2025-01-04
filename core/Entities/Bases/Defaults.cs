@@ -17,6 +17,7 @@ namespace DFM.Entities.Bases
 		public const Theme DefaultTheme = Theme.LightSober;
 
 		public const Int32 TicketShowedPart = 5;
+		public const Int32 TicketExpirationDays = 30;
 
 	}
 }

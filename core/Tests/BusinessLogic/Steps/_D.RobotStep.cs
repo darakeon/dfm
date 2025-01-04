@@ -1707,6 +1707,45 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 		#endregion
 
+		#region ExpireTicket
+		[Given(@"the ticket was last accessed (\d+) days ago")]
+		public void GivenTheTicketWasLastAccessedDaysAgo(Int32 days)
+		{
+			testTicketKey = $"{scenarioCode}{DateTime.Now:HHmmssffffff}";
+
+			service.Auth.CreateTicket(new SignInInfo
+			{
+				Email = userEmail,
+				Password = userPassword,
+				TicketKey = testTicketKey,
+				TicketType = TicketType.Tests
+			});
+
+			var ticket = repos.Ticket.SingleOrDefault(
+				t => t.Key == testTicketKey
+			);
+
+			ticket.LastAccess = DateTime.Today.AddDays(-days);
+
+			db.Execute(() =>
+				repos.Ticket.SaveOrUpdate(ticket)
+			);
+		}
+
+		[When(@"expire tickets not accessed anymore")]
+		public void WhenExpireTicketsNotAccessedAnymore()
+		{
+			try
+			{
+				service.Executor.ExpireTickets();
+			}
+			catch (CoreError e)
+			{
+				testCoreError = e;
+			}
+		}
+		#endregion
+
 		#region MoreThanOne
 		[Given(@"I have this schedule to create")]
 		public void GivenIHaveThisScheduleToCreate(Table table)

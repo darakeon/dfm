@@ -15,7 +15,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="14.1.2.0"></a>14.1.2.0 :🐑: <sup>`1`</sup>
-- [ ] Expire tickets with more than 30 days without access (add to contract)
+- [ ] `250104>......` Expire tickets with more than 30 days without access (add to contract)
 
 ## <a name="14.1.1.0"></a>14.1.1.0 :🐑: <sup>`1`</sup>
 - [x] `250103>250104` Check [nginx example configuration](todo/nginx-example.conf)

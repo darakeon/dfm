@@ -541,5 +541,28 @@ namespace DFM.BusinessLogic.Services
 				return new ExecutorResult(order.User, e);
 			}
 		}
+
+
+		public void ExpireTickets()
+		{
+			if (!parent.Current.IsRobot)
+				throw Error.Uninvited.Throw();
+
+			var lastAccessLimit = DateTime.UtcNow.AddDays(
+				-Defaults.TicketExpirationDays
+			);
+
+			var tickets = repos.Ticket.Where(
+				t => t.LastAccess <= lastAccessLimit
+			);
+
+			foreach (var ticket in tickets)
+			{
+				inTransaction(
+					"ExpireTickets",
+					() => repos.Ticket.Disable(ticket)
+				);
+			}
+		}
 	}
 }
