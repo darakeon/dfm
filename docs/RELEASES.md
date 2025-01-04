@@ -15,7 +15,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="14.1.1.0"></a>14.1.1.0 :🐑: <sup>`1`</sup>
-- [ ] Check [nginx example configuration](todo/nginx-example.conf)
+- [x] `250103>250104` Check [nginx example configuration](todo/nginx-example.conf)
 
 ## <a name="14.1.0.0"></a>14.1.0.0 :🐳: <sup>`1`</sup>
 - [x] `250102>250102` Add semgrep to dfm, dk-lib, meak and server
