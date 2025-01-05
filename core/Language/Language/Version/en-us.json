@@ -1,4 +1,7 @@
 {
+	"14.1.2.0": [
+		"Expire tickets with more than 30 days without access"
+	],
 	"14.1.1.0": [
 		"Improve web system security"
 	],
