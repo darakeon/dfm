@@ -10,5 +10,6 @@
 		Requeue = 5,
 		Export = 6,
 		Expire = 7,
+		Logout = 8,
 	}
 }

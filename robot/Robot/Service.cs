@@ -64,6 +64,7 @@ namespace DFM.Robot
 				{ RobotTask.Requeue, requeue },
 				{ RobotTask.Export, export },
 				{ RobotTask.Expire, expire },
+				{ RobotTask.Logout, logout },
 			};
 		}
 
@@ -146,6 +147,11 @@ namespace DFM.Robot
 				if (!result.Success)
 					result.Error.TryLogHandled($"User: {result.User.Email}");
 			}
+		}
+
+		private async Task logout()
+		{
+			service.Executor.ExpireTickets();
 		}
 
 		public void Dispose()
