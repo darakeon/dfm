@@ -36,5 +36,6 @@
             else
               source config-git
               merge-by-branch feature/version/new version
+              ci_stop
             fi
 

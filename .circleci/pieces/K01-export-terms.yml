@@ -47,6 +47,8 @@
               git commit -m "legal: add new contract to git"
 
               merge-by-branch feature/terms legal
+
+              ci_stop
             fi
       - store_artifacts:
           path: terms/README.md
