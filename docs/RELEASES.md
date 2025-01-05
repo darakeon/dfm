@@ -4,15 +4,18 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#14.1.1.0)
-- [go to version in development](#14.1.2.0)
-- [dev version state](../../14.1.2.0/docs/RELEASES.md#14.1.2.0)
+- [go to published version](#14.1.2.0)
+- [go to version in development](#14.1.3.0)
+- [dev version state](../../14.1.3.0/docs/RELEASES.md#14.1.3.0)
 
 ## Legend
 - 🐉: at least one huge change (increases first number)
 - 🐳: at least one big change, like a new feature (increases second number)
 - 🐑: at least one little change, as a change at an existing feature (increases third number)
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="14.1.3.0"></a>14.1.3.0 :🐑: <sup>`1`</sup>
+- [ ] Implement [password rules]
 
 ## <a name="14.1.2.0"></a>14.1.2.0 :🐑: <sup>`1`</sup>
 - [x] `250104>250105` Expire tickets with more than 30 days without access (add to contract)
@@ -1071,3 +1074,4 @@ This is the list of project releases, past and current. To see tasks that are st
 [Reduce Docker Images]:https://www.ecloudcontrol.com/best-practices-to-reduce-docker-images-size/
 [template]: dirigir-1tI0z29LBJJAQCYq1fptWCN8jgL6b2yj-
 [Deploy APKs using CI]:https://developer.android.com/build/building-cmdline
+[password rules]:https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#implement-proper-password-strength-controls

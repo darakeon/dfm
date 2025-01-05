@@ -14,9 +14,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend) then Type.
 
-| Task (45)                                                                      | Typ | Siz | Dif | Imp | Pts |
+| Task (44)                                                                      | Typ | Siz | Dif | Imp | Pts |
 | ------------------------------------------------------------------------------ | --- | --- | --- | --- | --- |
-| Implement [password rules]                                                     |  F  | 🐑 |  2  |  4  |  6  |
 | Create measure of recovering after lost authy                                  |  F  | 🐑 |  2  |  4  |  6  |
 | Move all logs to CloudWatch                                                    |  S  | 🐜 |  2  |  4  |  6  |
 | Check [android error socket](todo/android-error-socket-closed.log)             |  B  | 🐜 |  2  |  4  |  6  |
@@ -63,7 +62,6 @@ The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend)
 | Add [gherkin jest]                                                             |  M  | 🐑 |  4  |  1  |  1  |
 
 [jetpack-compose]: https://developer.android.com/courses/android-basics-compose/course
-[password rules]: https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#implement-proper-password-strength-controls
 [gherkin jest]: https://www.npmjs.com/package/gherkin-jest
 [Lint C#]: https://medium.com/@michaelparkerdev/linting-c-in-2019-stylecop-sonar-resharper-and-roslyn-73e88af57ebd
 [OCR]: https://developers.google.com/ml-kit/vision/text-recognition/android

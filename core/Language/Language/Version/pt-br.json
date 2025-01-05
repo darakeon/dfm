@@ -1,4 +1,7 @@
 {
+	"14.1.2.0": [
+		"Expiração de logins com mais de 30 dias sem acesso"
+	],
 	"14.1.1.0": [
 		"Melhorada a segurança do sistema web"
 	],
