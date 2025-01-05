@@ -64,7 +64,9 @@ O sistema Don't fly Money, abaixo constando como Sistema, e a pessoa que registr
 
     - O Aplicativo Android possui o mesmo botão, no topo a esquerda na tela inicial e abaixo a direita nas outras telas, assim é possível desfazer o login, removendo desta forma o acesso aos dados;
 
-    - O Site, na tela principal logada, possui um menu 'Logins' no topo a direita onde é possível ver todos os logins ativos e desativá-los.
+    - O Site, na tela principal logada, possui um menu 'Logins' no topo a direita onde é possível ver todos os logins ativos e desativá-los;
+
+    - Caso um login permaneça sem acesso por 30 dias ele será desativado.
 
 - A Pessoa se compromete a manter o e-mail cadastrado atualizado;
 
@@ -236,7 +238,9 @@ The Don't fly Money system, below referred as System, and the person who is regi
 
     - The Android App has the same button, at top left corner in the app start screen, at bottom right corner at other screens, so one can remove the login, removing this way the access to its data;
 
-    - The Website, in the logged in main screen, has a menu 'Logins' at the top right corner where you can see all active logins and delete them.
+    - The Website, in the logged in main screen, has a menu 'Logins' at the top right corner where you can see all active logins and delete them;
+
+    - If a login is not accessed within 30 days then it will be deactivated.
 
 - The Person agrees to keep the registered e-mail up to date;
 
