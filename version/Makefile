@@ -51,7 +51,7 @@ create_old_tag_and_new_branch:
 	@git branch -d ${BRANCH} || echo "no branch ${BRANCH}"
 	@git stash
 	@git pull --prune
-	@git stash pop
+	@git stash pop || echo "no stash"
 	@git tag -a ${BRANCH}
 	@git push --tags
 	@head -n 8 ../docs/RELEASES.md | tail -n 1 | cut -d "#" -f 2 | cut -d ")" -f 1 > branch.git
