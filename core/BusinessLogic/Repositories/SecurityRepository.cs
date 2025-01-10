@@ -44,7 +44,7 @@ namespace DFM.BusinessLogic.Repositories
 			{
 				Action = action,
 				Active = true,
-				Expire = DateTime.UtcNow.AddDays(3),
+				Expire = DateTime.UtcNow.AddDays(DayLimits.SECURITY_DEFAULT_EXPIRATION),
 				User = user,
 			};
 
@@ -117,7 +117,7 @@ namespace DFM.BusinessLogic.Repositories
 			{
 				Action = SecurityAction.DeleteCsvData,
 				Active = true,
-				Expire = DateTime.UtcNow.AddDays(DayLimits.SECURITY_EXPIRATION),
+				Expire = DateTime.UtcNow.AddDays(DayLimits.SECURITY_DELETE_CSV_EXPIRATION),
 				Wipe = wipe,
 			};
 
