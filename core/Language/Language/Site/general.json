@@ -203,6 +203,16 @@
 
 		"NoAction": "This action is not available for this Status",
 
+		"EvaluatePassword": "evaluate my password using third part tool",
+		"EvaluatePasswordThirdPart": "activating this your password will be sent to a third part tool to evaluate its strength - this is optional feature and the tool is recommended by OWASP, an internacional nonprofit foundation dedicated to improving software security",
+		"PasswordScoreOff": "Password checker turned off",
+		"PasswordScoreOn": "Waiting you to type the password",
+		"PasswordScore0": "Your password is really not safe",
+		"PasswordScore1": "Your password is improving, but can be better",
+		"PasswordScore2": "Your password is becoming better",
+		"PasswordScore3": "Your password is nice",
+		"PasswordScore4": "Your password is wonderful!",
+
 		"": null
 	},
 	"pt-BR": {
@@ -408,6 +418,16 @@
 		"UpdateApp": "Atualize seu Aplicativo Android para a versão ",
 
 		"NoAction": "Esta ação não está disponível para esse Status",
+
+		"EvaluatePassword": "avaliar senha usando ferramenta externa",
+		"EvaluatePasswordThirdPart": "ativando isto sua senha será enviada a uma ferramenta externa para avaliar a força da senha - esta funcionalidade é opcional e a ferramenta é recomendada pela OWASP, uma fundação internacional sem fins lucrativos dedicada a melhorar a segurança dos sites",
+		"PasswordScoreOff": "Verificador de senha desligado",
+		"PasswordScoreOn": "Aguardando digitar a senha",
+		"PasswordScore0": "Sua senha não é nada segura",
+		"PasswordScore1": "Sua senha está melhorando, mas pode melhorar mais",
+		"PasswordScore2": "Sua senha está ficando boa",
+		"PasswordScore3": "Sua senha é boa",
+		"PasswordScore4": "Sua senha é maravilhosa!",
 
 		"": null
 	}
