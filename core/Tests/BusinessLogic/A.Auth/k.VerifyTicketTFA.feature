@@ -2,17 +2,17 @@
 
 Background:
 	Given I have this user created
-			| Email                           | Password | Active | Signed |
-			| {scenarioCode}@dontflymoney.com | password | true   | true   |
+			| Email                           | Password  | Active | Signed |
+			| {scenarioCode}@dontflymoney.com | pass_word | true   | true   |
 		And I have this user data
-			| Email                           | Password |
-			| {scenarioCode}@dontflymoney.com | password |
+			| Email                           | Password  |
+			| {scenarioCode}@dontflymoney.com | pass_word |
 		And I login this user
-			| Email                           | Password |
-			| {scenarioCode}@dontflymoney.com | password |
+			| Email                           | Password  |
+			| {scenarioCode}@dontflymoney.com | pass_word |
 		And I have this two-factor data
-			| Secret | Code        | Password |
-			| 123    | {generated} | password |
+			| Secret | Code        | Password  |
+			| 123    | {generated} | pass_word |
 		And I set two-factor
 
 Scenario: Ak01. Check not verified ticket

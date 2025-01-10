@@ -2,11 +2,11 @@
 
 Background:
 	Given I have this user created
-			| Email                           | Password | Signed | Active |
-			| {scenarioCode}@dontflymoney.com | password | true   | true   |
+			| Email                           | Password  | Signed | Active |
+			| {scenarioCode}@dontflymoney.com | pass_word | true   | true   |
 		And I have this user data
-			| Email                           | Password |
-			| {scenarioCode}@dontflymoney.com | password |
+			| Email                           | Password  |
+			| {scenarioCode}@dontflymoney.com | pass_word |
 		And I have a ticket of this user
 		And I have a token for its password reset
 
@@ -94,4 +94,22 @@ Scenario: Gf09. Password reset with expired token
 		But the token expires
 	When I try to reset the password
 	Then I will receive this core error: InvalidToken
+		And the password will not be changed
+
+Scenario: Gf10. Save user with too short password
+	Given I pass a valid PasswordReset token
+		And I pass this password
+			| Password | Retype Password |
+			| pass     | pass            |
+	When I try to reset the password
+	Then I will receive this core error: UserPasswordTooShort
+		And the password will not be changed
+
+Scenario: Gf11. Save user with too long password
+	Given I pass a valid PasswordReset token
+		And I pass this password
+			| Password                                                                                                                                                                                                                                                                                                                                                                    | Retype Password                                                                                                                                                                                                                                                                                                                                                             |
+			| by_sending_a_very_long_password_like_1000000_characters_it_is_possible_to_cause_a_denial_a_service_attack_on_the_server-this_may_lead_to_the_website_becoming_unavailable_or_unresponsive-usually_this_problem_is_caused_by_a_vulnerable_password_hashing_implementation-when_a_long_password_is_sent_the_password_hashing_process_will_result_in_cpu_and_memory_exhaustion | by_sending_a_very_long_password_like_1000000_characters_it_is_possible_to_cause_a_denial_a_service_attack_on_the_server-this_may_lead_to_the_website_becoming_unavailable_or_unresponsive-usually_this_problem_is_caused_by_a_vulnerable_password_hashing_implementation-when_a_long_password_is_sent_the_password_hashing_process_will_result_in_cpu_and_memory_exhaustion |
+	When I try to reset the password
+	Then I will receive this core error: UserPasswordTooLong
 		And the password will not be changed

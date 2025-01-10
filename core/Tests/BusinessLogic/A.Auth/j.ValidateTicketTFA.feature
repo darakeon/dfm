@@ -2,14 +2,14 @@
 
 Background:
 	Given I have this user created
-			| Email                           | Password | Active | Signed |
-			| {scenarioCode}@dontflymoney.com | password | true   | true   |
+			| Email                           | Password  | Active | Signed |
+			| {scenarioCode}@dontflymoney.com | pass_word | true   | true   |
 		And I login this user
-			| Email                           | Password |
-			| {scenarioCode}@dontflymoney.com | password |
+			| Email                           | Password  |
+			| {scenarioCode}@dontflymoney.com | pass_word |
 		And I have this two-factor data
-			| Secret | Code        | Password |
-			| 123    | {generated} | password |
+			| Secret | Code        | Password  |
+			| 123    | {generated} | pass_word |
 		And I set two-factor
 
 Scenario: Aj01. Validate with disabled two-factor
@@ -31,8 +31,8 @@ Scenario: Aj02. Validate with invalid code
 
 Scenario: Aj03. Validate with valid code
 	Given I have this two-factor data
-			| Secret | Code        | Password |
-			| 456    | {generated} | password |
+			| Secret | Code        | Password  |
+			| 456    | {generated} | pass_word |
 		And I set two-factor
 		And I have this two-factor data
 			| Secret | Code        |
@@ -43,8 +43,8 @@ Scenario: Aj03. Validate with valid code
 
 Scenario: Aj04. Not validate if user is marked for deletion
 	Given I have this two-factor data
-			| Secret | Code        | Password |
-			| 456    | {generated} | password |
+			| Secret | Code        | Password  |
+			| 456    | {generated} | pass_word |
 		And I set two-factor
 		And I have this two-factor data
 			| Secret | Code        |
@@ -55,8 +55,8 @@ Scenario: Aj04. Not validate if user is marked for deletion
 
 Scenario: Aj05. Not validate if user requested wipe
 	Given I have this two-factor data
-			| Secret | Code        | Password |
-			| 789    | {generated} | password |
+			| Secret | Code        | Password  |
+			| 789    | {generated} | pass_word |
 		And I set two-factor
 		And I have this two-factor data
 			| Secret | Code        |

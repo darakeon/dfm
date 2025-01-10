@@ -3,7 +3,7 @@ const { generateUUID } = require('./uuid')
 const { bytesToGuid } = require('./guid')
 const { hash } = require('./crypt')
 
-const password = 'password'
+const password = 'pass_word'
 
 const language = 'pt-BR'
 const languageSecond = 'en-US'

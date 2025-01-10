@@ -631,7 +631,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				Assert.That(wipe.S3, Is.Null);
 			}
 
-			Assert.That(Crypt.Check("password", wipe.Password), Is.True);
+			Assert.That(Crypt.Check(userPassword, wipe.Password), Is.True);
 		}
 
 		[Then(@"it will not be registered at wipe table")]

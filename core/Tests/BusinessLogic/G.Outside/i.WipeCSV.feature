@@ -2,11 +2,11 @@
 
 Background:
 	Given I have this user created
-			| Email                           | Password |
-			| {scenarioCode}@dontflymoney.com | password |
+			| Email                           | Password  |
+			| {scenarioCode}@dontflymoney.com | pass_word |
 		And I have this user data
-			| Email                           | Password |
-			| {scenarioCode}@dontflymoney.com | password |
+			| Email                           | Password  |
+			| {scenarioCode}@dontflymoney.com | pass_word |
 		And the user was wiped once
 
 
