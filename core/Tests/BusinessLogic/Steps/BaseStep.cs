@@ -515,7 +515,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		protected const String anotherPersonEmail = "person@dontflymoney.com";
 		protected const String robotEmail = "robot@dontflymoney.com";
 
-		protected static String userPassword = "password";
+		protected static String userPassword = "pass_word";
 		protected const String mainAccountUrl = "Account";
 		protected const String mainCategoryName = "Category";
 

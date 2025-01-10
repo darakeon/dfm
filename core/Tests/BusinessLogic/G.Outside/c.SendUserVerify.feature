@@ -2,11 +2,11 @@
 
 Background:
 	Given I have this user created
-			| Email                           | Password |
-			| {scenarioCode}@dontflymoney.com | password |
+			| Email                           | Password  |
+			| {scenarioCode}@dontflymoney.com | pass_word |
 		And I have this user data
-			| Email                           | Password |
-			| {scenarioCode}@dontflymoney.com | password |
+			| Email                           | Password  |
+			| {scenarioCode}@dontflymoney.com | pass_word |
 
 Scenario: Gc01. Send with email that doesn't exist
 	Given I pass an e-mail that doesn't exist

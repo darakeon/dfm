@@ -2,16 +2,16 @@
 
 Background:
 	Given I have this user created
-			| Email                           | Password | Active | Signed |
-			| {scenarioCode}@dontflymoney.com | password | true   | true   |
+			| Email                           | Password  | Active | Signed |
+			| {scenarioCode}@dontflymoney.com | pass_word | true   | true   |
 		And I login this user
-			| Email                           | Password |
-			| {scenarioCode}@dontflymoney.com | password |
+			| Email                           | Password  |
+			| {scenarioCode}@dontflymoney.com | pass_word |
 
 Scenario: Ai01. With wrong password
 	Given I have this two-factor data
-			| Secret | Code        | Password |
-			| 123    | {generated} | password |
+			| Secret | Code        | Password  |
+			| 123    | {generated} | pass_word |
 		And I set two-factor
 		And I have this two-factor data
 			| Password |
@@ -22,20 +22,20 @@ Scenario: Ai01. With wrong password
 
 Scenario: Ai02. With all info right
 	Given I have this two-factor data
-			| Secret | Code        | Password |
-			| 123    | {generated} | password |
+			| Secret | Code        | Password  |
+			| 123    | {generated} | pass_word |
 		And I set two-factor
 		And I have this two-factor data
-			| Password |
-			| password |
+			| Password  |
+			| pass_word |
 	When I try to remove two-factor
 	Then I will receive no core error
 		And the two-factor will be empty
 
 Scenario: Ai03. With empty password
 	Given I have this two-factor data
-			| Secret | Code        | Password |
-			| 123    | {generated} | password |
+			| Secret | Code        | Password  |
+			| 123    | {generated} | pass_word |
 		And I set two-factor
 		And I have this two-factor data
 			| Password |
@@ -46,8 +46,8 @@ Scenario: Ai03. With empty password
 
 Scenario: Ai04. With null password
 	Given I have this two-factor data
-			| Secret | Code        | Password |
-			| 123    | {generated} | password |
+			| Secret | Code        | Password  |
+			| 123    | {generated} | pass_word |
 		And I set two-factor
 		And I have this two-factor data
 			| Password |
@@ -58,8 +58,8 @@ Scenario: Ai04. With null password
 
 Scenario: Ai05. Not remove if user is marked for deletion
 	Given I have this two-factor data
-			| Secret | Code        | Password |
-			| 123    | {generated} | password |
+			| Secret | Code        | Password  |
+			| 123    | {generated} | pass_word |
 		And I set two-factor
 		And I have this two-factor data
 			| Password |
@@ -70,8 +70,8 @@ Scenario: Ai05. Not remove if user is marked for deletion
 
 Scenario: Ai06. Not remove if user requested wipe
 	Given I have this two-factor data
-			| Secret | Code        | Password |
-			| 123    | {generated} | password |
+			| Secret | Code        | Password  |
+			| 123    | {generated} | pass_word |
 		And I set two-factor
 		And I have this two-factor data
 			| Password |
@@ -82,12 +82,12 @@ Scenario: Ai06. Not remove if user requested wipe
 
 Scenario: Ai07. Not remove if not signed last contract
 	Given I have this two-factor data
-			| Secret | Code        | Password |
-			| 123    | {generated} | password |
+			| Secret | Code        | Password  |
+			| 123    | {generated} | pass_word |
 		And I set two-factor
 		And I have this two-factor data
-			| Password |
-			| password |
+			| Password  |
+			| pass_word |
 		But there is a new contract
 	When I try to remove two-factor
 	Then I will receive this core error: NotSignedLastContract

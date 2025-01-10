@@ -2,24 +2,24 @@
 
 Background:
 	Given I have this user created
-			| Email                           | Password | Active | Signed |
-			| {scenarioCode}@dontflymoney.com | password | true   | true   |
+			| Email                           | Password  | Active | Signed |
+			| {scenarioCode}@dontflymoney.com | pass_word | true   | true   |
 		And I login this user
-			| Email                           | Password |
-			| {scenarioCode}@dontflymoney.com | password |
+			| Email                           | Password  |
+			| {scenarioCode}@dontflymoney.com | pass_word |
 
 Scenario: Ah01. With empty secret key
 	Given I have this two-factor data
-			| Secret | Code        | Password |
-			|        | {generated} | password |
+			| Secret | Code        | Password  |
+			|        | {generated} | pass_word |
 	When I try to set two-factor
 	Then I will receive this core error: TFAEmptySecret
 		And the two-factor will be empty
 
 Scenario: Ah02. With wrong code
 	Given I have this two-factor data
-			| Secret | Code  | Password |
-			| 123    | wrong | password |
+			| Secret | Code  | Password  |
+			| 123    | wrong | pass_word |
 	When I try to set two-factor
 	Then I will receive this core error: TFAWrongCode
 		And the two-factor will be empty
@@ -34,20 +34,20 @@ Scenario: Ah03. With wrong password
 
 Scenario: Ah04. With all info right
 	Given I have this two-factor data
-			| Secret | Code        | Password |
-			| 123    | {generated} | password |
+			| Secret | Code        | Password  |
+			| 123    | {generated} | pass_word |
 	When I try to set two-factor
 	Then I will receive no core error
 		And the two-factor will be [123]
 
 Scenario: Ah05. Update two-factor
 	Given I have this two-factor data
-			| Secret | Code        | Password |
-			| 123    | {generated} | password |
+			| Secret | Code        | Password  |
+			| 123    | {generated} | pass_word |
 		And I set two-factor
 		And I have this two-factor data
-			| Secret | Code        | Password |
-			| 456    | {generated} | password |
+			| Secret | Code        | Password  |
+			| 456    | {generated} | pass_word |
 	When I try to set two-factor
 	Then I will receive no core error
 		And the two-factor will be [456]
@@ -70,24 +70,24 @@ Scenario: Ah07. With null password
 
 Scenario: Ah08. Not update if user is marked for deletion
 	Given I have this two-factor data
-			| Secret | Code        | Password |
-			| 123    | {generated} | password |
+			| Secret | Code        | Password  |
+			| 123    | {generated} | pass_word |
 		But the user is marked for deletion
 	When I try to set two-factor
 	Then I will receive this core error: UserDeleted
 
 Scenario: Ah09. Not update if user requested wipe
 	Given I have this two-factor data
-			| Secret | Code        | Password |
-			| 123    | {generated} | password |
+			| Secret | Code        | Password  |
+			| 123    | {generated} | pass_word |
 		But the user asked data wipe
 	When I try to set two-factor
 	Then I will receive this core error: UserAskedWipe
 
 Scenario: Ah10. Not update if not signed last contract
 	Given I have this two-factor data
-			| Secret | Code        | Password |
-			| 123    | {generated} | password |
+			| Secret | Code        | Password  |
+			| 123    | {generated} | pass_word |
 		But there is a new contract
 	When I try to set two-factor
 	Then I will receive this core error: NotSignedLastContract
