@@ -372,3 +372,9 @@ table a.link-glyphicon,
 	align-content: center;
 	align-items: center;
 }
+
+#password-emoji {
+	padding: 4px;
+	font-size: 2em;
+	cursor: help;
+}
