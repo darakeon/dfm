@@ -1243,7 +1243,7 @@ jobs:
             else
               source config-git
               merge-by-branch feature/version/new version
-              ci_stop
+              circleci-agent step halt
             fi
 
   publish_migrator:
