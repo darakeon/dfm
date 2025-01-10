@@ -2,11 +2,11 @@
 
 Background:
 	Given I have this user created
-			| Email                           | Password | Active | Signed |
-			| {scenarioCode}@dontflymoney.com | password | true   | true   |
+			| Email                           | Password  | Active | Signed |
+			| {scenarioCode}@dontflymoney.com | pass_word | true   | true   |
 		And I have this user data
-			| Email                           | Password |
-			| {scenarioCode}@dontflymoney.com | password |
+			| Email                           | Password  |
+			| {scenarioCode}@dontflymoney.com | pass_word |
 		And I have a ticket of this user
 
 Scenario: Ac01. Select with ticket that doesn't exist
@@ -41,8 +41,8 @@ Scenario: Ac05. Select with null ticket
 
 Scenario: Ac06. Has TFA
 	Given I have this two-factor data
-			| Secret | Code        | Password |
-			| 123    | {generated} | password |
+			| Secret | Code        | Password  |
+			| 123    | {generated} | pass_word |
 		And I set two-factor
 		And I pass a ticket that exist
 	When I try to get the session

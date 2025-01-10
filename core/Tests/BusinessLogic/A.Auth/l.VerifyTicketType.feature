@@ -2,14 +2,14 @@
 
 Background:
 	Given I have this user created
-			| Email                           | Password | Active |
-			| {scenarioCode}@dontflymoney.com | password | true   |
+			| Email                           | Password  | Active |
+			| {scenarioCode}@dontflymoney.com | pass_word | true   |
 		And I have this user data
-			| Email                           | Password |
-			| {scenarioCode}@dontflymoney.com | password |
+			| Email                           | Password  |
+			| {scenarioCode}@dontflymoney.com | pass_word |
 		And I login this user
-			| Email                           | Password |
-			| {scenarioCode}@dontflymoney.com | password |
+			| Email                           | Password  |
+			| {scenarioCode}@dontflymoney.com | pass_word |
 
 Scenario: Al01. Verify ticket as none
 	Given I have a ticket key

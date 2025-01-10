@@ -283,9 +283,9 @@ Scenario: Ia16. Run with normal user
 
 Scenario: Ia17. Run only that timezone schedules
 	Given I have this user created
-			| Email                                      | Password | Active | Signed | Timezone |
-			| tz_now_{scenarioCode}@dontflymoney.com     | password | true   | true   | +0       |
-			| tz_not_now_{scenarioCode}@dontflymoney.com | password | true   | true   | +1       |
+			| Email                                      | Password  | Active | Signed | Timezone |
+			| tz_now_{scenarioCode}@dontflymoney.com     | pass_word | true   | true   | +0       |
+			| tz_not_now_{scenarioCode}@dontflymoney.com | pass_word | true   | true   | +1       |
 		And a schedule is created by tz_now_{scenarioCode}@dontflymoney.com
 		And a schedule is created by tz_not_now_{scenarioCode}@dontflymoney.com
 		But robot already ran for tz_not_now_{scenarioCode}@dontflymoney.com
@@ -293,20 +293,20 @@ Scenario: Ia17. Run only that timezone schedules
 		And run the scheduler
 	Given I logoff the user
 		And I login this user
-			| Email                                  | Password |
-			| tz_now_{scenarioCode}@dontflymoney.com | password |
+			| Email                                  | Password  |
+			| tz_now_{scenarioCode}@dontflymoney.com | pass_word |
 	Then the accountOut value will change in -8
 	Given I logoff the user
 		And I login this user
-			| Email                                      | Password |
-			| tz_not_now_{scenarioCode}@dontflymoney.com | password |
+			| Email                                      | Password  |
+			| tz_not_now_{scenarioCode}@dontflymoney.com | pass_word |
 	Then the accountOut value will not change
 
 Scenario: Ia18. Run only active users
 	Given I have this user created
-			| Email                                    | Password | Active | Signed |
-			| active_{scenarioCode}@dontflymoney.com   | password | true   | true   |
-			| inactive_{scenarioCode}@dontflymoney.com | password | true   | true   |
+			| Email                                    | Password  | Active | Signed |
+			| active_{scenarioCode}@dontflymoney.com   | pass_word | true   | true   |
+			| inactive_{scenarioCode}@dontflymoney.com | pass_word | true   | true   |
 		And a schedule is created by active_{scenarioCode}@dontflymoney.com
 		And a schedule is created by inactive_{scenarioCode}@dontflymoney.com
 		And I deactivate the user inactive_{scenarioCode}@dontflymoney.com
@@ -314,21 +314,21 @@ Scenario: Ia18. Run only active users
 		And run the scheduler
 	Given I logoff the user
 		And I login this user
-			| Email                                  | Password |
-			| active_{scenarioCode}@dontflymoney.com | password |
+			| Email                                  | Password  |
+			| active_{scenarioCode}@dontflymoney.com | pass_word |
 	Then the accountOut value will change in -8
 	Given I logoff the user
 		And I login this user
-			| Email                                    | Password |
-			| inactive_{scenarioCode}@dontflymoney.com | password |
+			| Email                                    | Password  |
+			| inactive_{scenarioCode}@dontflymoney.com | pass_word |
 	Then the accountOut value will not change
 		And the status of last schedule of inactive_{scenarioCode} will be UserInactive
 
 Scenario: Ia19. Do not run robots
 	Given I have this user created
-			| Email                                  | Password | Active | Signed |
-			| common_{scenarioCode}@dontflymoney.com | password | true   | true   |
-			| zb_{scenarioCode}@dontflymoney.com     | password | true   | true   |
+			| Email                                  | Password  | Active | Signed |
+			| common_{scenarioCode}@dontflymoney.com | pass_word | true   | true   |
+			| zb_{scenarioCode}@dontflymoney.com     | pass_word | true   | true   |
 		And a schedule is created by common_{scenarioCode}@dontflymoney.com
 		And a schedule is created by zb_{scenarioCode}@dontflymoney.com
 		But zb_{scenarioCode}@dontflymoney.com is a robot
@@ -336,20 +336,20 @@ Scenario: Ia19. Do not run robots
 		And run the scheduler
 	Given I logoff the user
 		And I login this user
-			| Email                                  | Password |
-			| common_{scenarioCode}@dontflymoney.com | password |
+			| Email                                  | Password  |
+			| common_{scenarioCode}@dontflymoney.com | pass_word |
 	Then the accountOut value will change in -8
 	Given I logoff the user
 		And I login this user
-			| Email                              | Password |
-			| zb_{scenarioCode}@dontflymoney.com | password |
+			| Email                              | Password  |
+			| zb_{scenarioCode}@dontflymoney.com | pass_word |
 	Then the accountOut value will not change
 		And the status of last schedule of zb_{scenarioCode} will be UserRobot
 
 Scenario: Ia20. Run scheduler after add schedule
 	Given I have this user created
-			| Email                                        | Password | Active | Signed |
-			| new_schedule_{scenarioCode}@dontflymoney.com | password | true   | true   |
+			| Email                                        | Password  | Active | Signed |
+			| new_schedule_{scenarioCode}@dontflymoney.com | pass_word | true   | true   |
 		And a schedule is created by new_schedule_{scenarioCode}@dontflymoney.com
 		And robot run the scheduler
 		And a schedule is created by new_schedule_{scenarioCode}@dontflymoney.com
@@ -357,14 +357,14 @@ Scenario: Ia20. Run scheduler after add schedule
 		And run the scheduler
 	Given I logoff the user
 		And I login this user
-			| Email                                        | Password |
-			| new_schedule_{scenarioCode}@dontflymoney.com | password |
+			| Email                                        | Password  |
+			| new_schedule_{scenarioCode}@dontflymoney.com | pass_word |
 	Then the accountOut value will change in -16
 
 Scenario: Ia21. Not run scheduler if user is marked for deletion
 	Given I have this user created
-			| Email                                   | Password | Active | Signed |
-			| deleted_{scenarioCode}@dontflymoney.com | password | true   | true   |
+			| Email                                   | Password  | Active | Signed |
+			| deleted_{scenarioCode}@dontflymoney.com | pass_word | true   | true   |
 		And a schedule is created by deleted_{scenarioCode}@dontflymoney.com
 		But the user deleted_{scenarioCode}@dontflymoney.com is marked for deletion
 	When robot user login
@@ -374,8 +374,8 @@ Scenario: Ia21. Not run scheduler if user is marked for deletion
 
 Scenario: Ia22. Not run scheduler if user has not signed last contract
 	Given I have this user created
-			| Email                                      | Password | Active | Signed |
-			| not_signed_{scenarioCode}@dontflymoney.com | password | true   | true   |
+			| Email                                      | Password  | Active | Signed |
+			| not_signed_{scenarioCode}@dontflymoney.com | pass_word | true   | true   |
 		And a schedule is created by not_signed_{scenarioCode}@dontflymoney.com
 		And I have a contract
 	When robot user login
@@ -386,8 +386,8 @@ Scenario: Ia22. Not run scheduler if user has not signed last contract
 
 Scenario: Ia23. Not run scheduler if user requested wipe
 	Given I have this user created
-			| Email                                     | Password | Active | Signed |
-			| askedwipe_{scenarioCode}@dontflymoney.com | password | true   | true   |
+			| Email                                     | Password  | Active | Signed |
+			| askedwipe_{scenarioCode}@dontflymoney.com | pass_word | true   | true   |
 		And a schedule is created by askedwipe_{scenarioCode}@dontflymoney.com
 		But the user askedwipe_{scenarioCode}@dontflymoney.com asked data wipe
 	When robot user login

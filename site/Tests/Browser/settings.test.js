@@ -1,3 +1,4 @@
+const db = require('./db')
 const puppy = require('./puppy')
 const { rand } = require('./utils')
 
@@ -96,7 +97,7 @@ describe('Settings', () => {
 
 		await puppy.imageLog('misc-wrong-pass', true)
 
-		await page.type('#Password', 'password')
+		await page.type('#Password', db.password)
 		await puppy.submit(`/Settings/Misc`)
 
 		const alertSuccess = await puppy.content('.alert')
@@ -118,7 +119,7 @@ describe('Settings', () => {
 		const alertError = await puppy.content('.alert')
 		await expect(alertError).toContain('Senha errada para acesso atual')
 
-		await page.type('#Password', 'password')
+		await page.type('#Password', db.password)
 		await puppy.submit(`/Settings/Wipe`)
 
 		const alertSuccess = await puppy.content('.alert')

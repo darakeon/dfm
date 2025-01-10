@@ -2,11 +2,11 @@
 
 Background:
 	Given I have this user created
-			| Email                           | Password | Active | Signed |
-			| {scenarioCode}@dontflymoney.com | password | true   | true   |
+			| Email                           | Password  | Active | Signed |
+			| {scenarioCode}@dontflymoney.com | pass_word | true   | true   |
 		And I have this user data
-			| Email                           | Password |
-			| {scenarioCode}@dontflymoney.com | password |
+			| Email                           | Password  |
+			| {scenarioCode}@dontflymoney.com | pass_word |
 		And I have a ticket of this user
 
 Scenario: Ag01. E-mail change with wrong current password
@@ -21,7 +21,7 @@ Scenario: Ag01. E-mail change with wrong current password
 Scenario: Ag02. E-mail change with empty new e-mail
 	Given I pass this new e-mail and password
 			| New E-mail | Current Password |
-			|            | password         |
+			|            | pass_word        |
 	When I try to change the e-mail
 	Then I will receive this core error: UserEmailRequired
 		And the e-mail will not be changed
@@ -30,7 +30,7 @@ Scenario: Ag02. E-mail change with empty new e-mail
 Scenario: Ag03. E-mail change with info all right
 	Given I pass this new e-mail and password
 			| New E-mail                          | Current Password |
-			| new_{scenarioCode}@dontflymoney.com | password         |
+			| new_{scenarioCode}@dontflymoney.com | pass_word        |
 	When I try to change the e-mail
 	Then I will receive no core error
 		And the e-mail will be changed
@@ -39,7 +39,7 @@ Scenario: Ag03. E-mail change with info all right
 Scenario: Ag04. Not update if user is marked for deletion
 	Given I pass this new e-mail and password
 			| New E-mail                          | Current Password |
-			| new_{scenarioCode}@dontflymoney.com | password         |
+			| new_{scenarioCode}@dontflymoney.com | pass_word        |
 		But the user is marked for deletion
 	When I try to change the e-mail
 	Then I will receive this core error: UserDeleted
@@ -47,7 +47,7 @@ Scenario: Ag04. Not update if user is marked for deletion
 Scenario: Ag05. Not update if user requested wipe
 	Given I pass this new e-mail and password
 			| New E-mail                          | Current Password |
-			| new_{scenarioCode}@dontflymoney.com | password         |
+			| new_{scenarioCode}@dontflymoney.com | pass_word        |
 		But the user asked data wipe
 	When I try to change the e-mail
 	Then I will receive this core error: UserAskedWipe
@@ -55,7 +55,7 @@ Scenario: Ag05. Not update if user requested wipe
 Scenario: Ag06. Update E-mail without signing contract
 	Given I pass this new e-mail and password
 			| New E-mail                          | Current Password |
-			| new_{scenarioCode}@dontflymoney.com | password         |
+			| new_{scenarioCode}@dontflymoney.com | pass_word        |
 		But there is a new contract
 	When I try to change the e-mail
 	Then I will receive this core error: NotSignedLastContract

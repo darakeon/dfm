@@ -2,11 +2,11 @@
 
 Background:
 	Given I have this user created
-			| Email                                       | Password |
-			| activateuser{scenarioCode}@dontflymoney.com | password |
+			| Email                                       | Password  |
+			| activateuser{scenarioCode}@dontflymoney.com | pass_word |
 		And I have this user data
-			| Email                                       | Password |
-			| activateuser{scenarioCode}@dontflymoney.com | password |
+			| Email                                       | Password  |
+			| activateuser{scenarioCode}@dontflymoney.com | pass_word |
 		And I have a token for its activation
 
 Scenario: Gd01. Activate user with invalid token

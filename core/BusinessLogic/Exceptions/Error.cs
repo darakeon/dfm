@@ -19,6 +19,8 @@ namespace DFM.BusinessLogic.Exceptions
 		UserAlreadyExists = 203,
 		UserEmailInvalid = 204,
 		UserPasswordRequired = 205,
+		UserPasswordTooShort = 226,
+		UserPasswordTooLong = 227,
 		DisabledUser = 206,
 		RetypeWrong = 208,
 		WrongPassword = 209,
