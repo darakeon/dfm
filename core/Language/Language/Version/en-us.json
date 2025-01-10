@@ -1,4 +1,7 @@
 {
+	"14.1.3.0": [
+		"Implement password rules"
+	],
 	"14.1.2.0": [
 		"Expire tickets with more than 30 days without access"
 	],

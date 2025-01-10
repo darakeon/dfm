@@ -14,9 +14,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend) then Type.
 
-| Task (44)                                                                      | Typ | Siz | Dif | Imp | Pts |
+| Task (43)                                                                      | Typ | Siz | Dif | Imp | Pts |
 | ------------------------------------------------------------------------------ | --- | --- | --- | --- | --- |
-| Create measure of recovering after lost authy                                  |  F  | 🐑 |  2  |  4  |  6  |
 | Move all logs to CloudWatch                                                    |  S  | 🐜 |  2  |  4  |  6  |
 | Check [android error socket](todo/android-error-socket-closed.log)             |  B  | 🐜 |  2  |  4  |  6  |
 | Check [android error no internet](todo/android-error-no-internet.log)          |  B  | 🐜 |  2  |  4  |  6  |
