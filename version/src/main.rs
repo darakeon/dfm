@@ -7,6 +7,7 @@ mod commit_checker;
 mod end;
 mod file;
 mod git;
+mod maintenance;
 mod notes;
 mod regex;
 mod rust;
@@ -23,6 +24,7 @@ use dependabot::update_dependabot;
 use commit_checker::update_commit_checker;
 use end::success;
 use git::{update_local,go_to_main,commit,connect_local_and_remote_branch,create_tag,create_branch,remove_branch,update_remote,stash,stash_pop};
+use maintenance::update_maintenance_api_json;
 use notes::update_notes;
 use rust::update_rust;
 use tasks::update_task_list;
@@ -100,6 +102,7 @@ fn update_version(version: Version) {
 	update_commit_checker(&version);
 	update_rust(&version);
 	update_node(&version);
+	update_maintenance_api_json(&version);
 
 	commit(&format!("version: update to {}", &version.code));
 }
