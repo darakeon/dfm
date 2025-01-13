@@ -25,3 +25,5 @@ release
 */*/debug/res/xml/network_security_config.xml
 
 java_*.hprof
+
+.kotlin
