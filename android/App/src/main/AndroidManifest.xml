@@ -53,11 +53,11 @@
 			android:name=".welcome.WelcomeActivity"
 			android:label="@string/app_short_name"
 			android:exported="true">
-			<intent-filter>
+			<intent-filter android:autoVerify="true">
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
-			<intent-filter>
+			<intent-filter android:autoVerify="true">
 				<action android:name="android.intent.action.VIEW" />
 
 				<category android:name="android.intent.category.DEFAULT" />
@@ -75,7 +75,7 @@
 		<activity
 			android:name=".login.LoginActivity"
 			android:exported="true">
-			<intent-filter>
+			<intent-filter android:autoVerify="true">
 				<action android:name="android.intent.action.VIEW" />
 
 				<category android:name="android.intent.category.DEFAULT" />
@@ -93,7 +93,7 @@
 		<activity
 			android:name=".signup.SignUpActivity"
 			android:exported="true">
-			<intent-filter>
+			<intent-filter android:autoVerify="true">
 				<action android:name="android.intent.action.VIEW" />
 
 				<category android:name="android.intent.category.DEFAULT" />
@@ -111,7 +111,7 @@
 		<activity
 			android:name=".accounts.AccountsActivity"
 			android:exported="true">
-			<intent-filter>
+			<intent-filter android:autoVerify="true">
 				<action android:name="android.intent.action.VIEW" />
 
 				<category android:name="android.intent.category.DEFAULT" />
@@ -129,7 +129,7 @@
 		<activity
 			android:name=".extract.ExtractActivity"
 			android:exported="true">
-			<intent-filter>
+			<intent-filter android:autoVerify="true">
 				<action android:name="android.intent.action.VIEW" />
 
 				<category android:name="android.intent.category.DEFAULT" />
@@ -147,7 +147,7 @@
 		<activity
 			android:name=".summary.SummaryActivity"
 			android:exported="true">
-			<intent-filter>
+			<intent-filter android:autoVerify="true">
 				<action android:name="android.intent.action.VIEW" />
 
 				<category android:name="android.intent.category.DEFAULT" />
@@ -165,7 +165,7 @@
 		<activity
 			android:name=".moves.MovesActivity"
 			android:exported="true">
-			<intent-filter>
+			<intent-filter android:autoVerify="true">
 				<action android:name="android.intent.action.VIEW" />
 
 				<category android:name="android.intent.category.DEFAULT" />
@@ -183,7 +183,7 @@
 		<activity
 			android:name=".settings.SettingsActivity"
 			android:exported="true">
-			<intent-filter>
+			<intent-filter android:autoVerify="true">
 				<action android:name="android.intent.action.VIEW" />
 
 				<category android:name="android.intent.category.DEFAULT" />
