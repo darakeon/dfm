@@ -11,8 +11,9 @@ public class TestsStatusModel : BaseApiModel
 
 	public enum ApiStatus
 	{
-		None,
-		Online,
-		DbError,
+		None = 0,
+		Online = 1,
+		DbError = 2,
+		Maintenance = 3,
 	}
 }
