@@ -262,6 +262,7 @@
     <None Remove="Assets\images\pig-on.ico" />
     <None Remove="Assets\images\pig-on.svg" />
     <None Remove="Assets\scripts\chart.js" />
+    <None Remove="Assets\scripts\password-evaluator.js" />
     <None Remove="Assets\scripts\table-sum.js" />
     <None Remove="Assets\scripts\tip.js" />
     <None Remove="Assets\scripts\wizard.js" />
@@ -965,6 +966,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\scripts\chart.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\scripts\password-evaluator.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\scripts\tip.js">
