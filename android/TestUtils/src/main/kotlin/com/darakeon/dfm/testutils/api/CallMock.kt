@@ -1,5 +1,6 @@
 package com.darakeon.dfm.testutils.api
 
+import com.darakeon.dfm.lib.api.entities.Body
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.Request
 import okhttp3.ResponseBody
@@ -8,25 +9,25 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-open class CallMock<Body>(
-	private val newBody: (String) -> Body,
-	private val result: String?,
+open class CallMock<Data>(
+	private val newBody: (Data) -> Body<Data>,
+	private val result: Data?,
 	private val error: Exception?,
-) : Call<Body> {
-	private val callbacks = ArrayList<Callback<Body>>()
+) : Call<Body<Data>> {
+	private val callbacks = ArrayList<Callback<Body<Data>>>()
 	private var executed = false
 	private var cancelled = false
 
-	protected constructor(newBody: (String) -> Body)
-		: this(newBody, "", null)
+	protected constructor(newBody: (Data) -> Body<Data>)
+		: this(newBody, null, null)
 
-	protected constructor(newBody: (String) -> Body, result: String)
+	protected constructor(newBody: (Data) -> Body<Data>, result: Data)
 		: this(newBody, result, null)
 
-	protected constructor(newBody: (String) -> Body, error: Exception)
+	protected constructor(newBody: (Data) -> Body<Data>, error: Exception)
 		: this(newBody, null, error)
 
-	override fun enqueue(callback: Callback<Body>) {
+	override fun enqueue(callback: Callback<Body<Data>>) {
 		callbacks.add(callback)
 	}
 
@@ -40,7 +41,7 @@ open class CallMock<Body>(
 		cancelled = true
 	}
 
-	override fun execute(): Response<Body> {
+	override fun execute(): Response<Body<Data>> {
 		executed = true
 
 		if (result != null) {
