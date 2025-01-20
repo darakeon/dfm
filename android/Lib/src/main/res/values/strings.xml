@@ -3,6 +3,15 @@
 	<string name="body_null">
 		Error on contacting the Pig. The error is recorded and we will solve it as soon as possible.
 	</string>
+	<string name="status_unknown">
+		Error on contacting the Pig. The error is recorded and we will solve it as soon as possible.
+	</string>
+	<string name="status_db_error">
+		Error on contacting the Pig. There is a error accessing data. The error is recorded and we will solve it as soon as possible.
+	</string>
+	<string name="status_maintenance">
+		Error on contacting the Pig. The System is in the maintenance window. To more details, visit the website.
+	</string>
 	<string name="error_contact_url">
 		Error on contacting the Pig. It\'s either a internet problem or a system issue.
 		If it\'s the second option, the error is recorded and we will solve it as soon as possible.
