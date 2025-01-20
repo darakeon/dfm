@@ -7,6 +7,7 @@ enum class Status(
 	None(0),
 	Online(1),
 	DbError(2),
+	Maintenance(3),
 	;
 
 	companion object {

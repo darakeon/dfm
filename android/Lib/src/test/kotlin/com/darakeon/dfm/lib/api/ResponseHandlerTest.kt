@@ -7,6 +7,8 @@ import com.darakeon.dfm.lib.api.entities.Environment
 import com.darakeon.dfm.lib.api.entities.Error
 import com.darakeon.dfm.lib.api.entities.Theme
 import com.darakeon.dfm.lib.api.entities.ThemeEnum
+import com.darakeon.dfm.lib.api.entities.status.StatusEnum
+import com.darakeon.dfm.lib.api.entities.status.StatusResponse
 import com.darakeon.dfm.lib.auth.getValue
 import com.darakeon.dfm.lib.auth.setValue
 import com.darakeon.dfm.lib.utils.ActivityMock
@@ -33,9 +35,14 @@ import java.net.SocketTimeoutException
 @RunWith(RobolectricTestRunner::class)
 internal class ResponseHandlerTest: BaseTest() {
 	private lateinit var activity: ApiActivity
-	private lateinit var handlerData: ResponseHandler<ApiActivity, String>
+
 	private lateinit var handlerNoData: ResponseHandler<ApiActivity, String>
-	private var result: String? = null
+
+	private lateinit var handlerText: ResponseHandler<ApiActivity, String>
+	private var resultText: String? = null
+
+	private lateinit var handlerStatus: ResponseHandler<ApiActivity, StatusResponse>
+	private var resultStatus: StatusResponse? = null
 
 	private val waitEnded
 		get() = activity.waitEnded
@@ -44,11 +51,15 @@ internal class ResponseHandlerTest: BaseTest() {
 	fun setup() {
 		activity = ActivityMock(ApiActivity::class).create()
 
-		handlerData = ResponseHandler(activity, true) {
-			result = it
+		handlerText = ResponseHandler(activity, true) {
+			resultText = it
 		}
 
 		handlerNoData = ResponseHandler(activity, false) {}
+
+		handlerStatus = ResponseHandler(activity, false) {
+			resultStatus = it
+		}
 	}
 
 	@Test
@@ -56,7 +67,7 @@ internal class ResponseHandlerTest: BaseTest() {
 		val body: Body<String>? = null
 		val response = Response.success(body)
 
-		handlerData.onResponse(CallMock.ForString(), response)
+		handlerText.onResponse(CallMock.ForString(), response)
 
 		assertThat(
 			activity.errorText,
@@ -64,7 +75,7 @@ internal class ResponseHandlerTest: BaseTest() {
 		)
 
 		assertTrue(waitEnded)
-		assertNull(result)
+		assertNull(resultText)
 	}
 
 	@Test
@@ -80,7 +91,7 @@ internal class ResponseHandlerTest: BaseTest() {
 		)
 
 		assertTrue(waitEnded)
-		assertNull(result)
+		assertNull(resultText)
 	}
 
 	@Test
@@ -88,7 +99,7 @@ internal class ResponseHandlerTest: BaseTest() {
 		val body = Body<String>(null, null, null)
 		val response = Response.success(body)
 
-		handlerData.onResponse(CallMock.ForString(), response)
+		handlerText.onResponse(CallMock.ForString(), response)
 
 		assertThat(
 			activity.errorText,
@@ -96,7 +107,7 @@ internal class ResponseHandlerTest: BaseTest() {
 		)
 
 		assertTrue(waitEnded)
-		assertNull(result)
+		assertNull(resultText)
 	}
 
 	@Test
@@ -108,7 +119,7 @@ internal class ResponseHandlerTest: BaseTest() {
 
 		assertNull(activity.errorText)
 		assertTrue(waitEnded)
-		assertNull(result)
+		assertNull(resultText)
 	}
 
 	@Test
@@ -116,7 +127,7 @@ internal class ResponseHandlerTest: BaseTest() {
 		val body = Body("success", null, Error(0, "confusing result"))
 		val response = Response.success(body)
 
-		handlerData.onResponse(CallMock.ForString(), response)
+		handlerText.onResponse(CallMock.ForString(), response)
 
 		assertThat(
 			activity.errorText,
@@ -124,7 +135,7 @@ internal class ResponseHandlerTest: BaseTest() {
 		)
 
 		assertTrue(waitEnded)
-		assertNull(result)
+		assertNull(resultText)
 	}
 
 	@Test
@@ -140,7 +151,7 @@ internal class ResponseHandlerTest: BaseTest() {
 		)
 
 		assertTrue(waitEnded)
-		assertNull(result)
+		assertNull(resultText)
 	}
 
 	@Test
@@ -149,13 +160,13 @@ internal class ResponseHandlerTest: BaseTest() {
 		val body = Body("result", env, null)
 		val response = Response.success(body)
 
-		handlerData.onResponse(CallMock.ForString(), response)
+		handlerText.onResponse(CallMock.ForString(), response)
 
 		assertThat(activity.getValue("Theme").toInt(), `is`(R.style.LightNature))
 		assertThat(activity.getValue("Language"), `is`("pt_BR"))
 
 		assertTrue(waitEnded)
-		assertThat(result, `is`("result"))
+		assertThat(resultText, `is`("result"))
 	}
 
 	@Test
@@ -170,7 +181,7 @@ internal class ResponseHandlerTest: BaseTest() {
 		assertThat(activity.getValue("Language"), `is`("pt_BR"))
 
 		assertTrue(waitEnded)
-		assertNull(result)
+		assertNull(resultText)
 	}
 
 	@Test
@@ -178,10 +189,10 @@ internal class ResponseHandlerTest: BaseTest() {
 		val body = Body("result", null, null)
 		val response = Response.success(body)
 
-		handlerData.onResponse(CallMock.ForString(), response)
+		handlerText.onResponse(CallMock.ForString(), response)
 
 		assertTrue(waitEnded)
-		assertThat(result, `is`("result"))
+		assertThat(resultText, `is`("result"))
 	}
 
 	@Test
@@ -192,7 +203,7 @@ internal class ResponseHandlerTest: BaseTest() {
 		handlerNoData.onResponse(CallMock.ForString(), response)
 
 		assertTrue(waitEnded)
-		assertNull(result)
+		assertNull(resultText)
 	}
 
 	@Test
@@ -201,13 +212,13 @@ internal class ResponseHandlerTest: BaseTest() {
 		val body = Body<String>(null, null, Error(errorCode, "TFA"))
 		val response = Response.success(body)
 
-		handlerData.onResponse(CallMock.ForString(), response)
+		handlerText.onResponse(CallMock.ForString(), response)
 
 		val alert = getLatestAlertDialog()
 		assertNull(alert)
 
 		assertTrue(waitEnded)
-		assertNull(result)
+		assertNull(resultText)
 
 		assertTrue(activity.checkedTFA)
 	}
@@ -224,7 +235,7 @@ internal class ResponseHandlerTest: BaseTest() {
 		assertNull(alert)
 
 		assertTrue(waitEnded)
-		assertNull(result)
+		assertNull(resultText)
 
 		assertTrue(activity.checkedTFA)
 	}
@@ -237,13 +248,13 @@ internal class ResponseHandlerTest: BaseTest() {
 
 		activity.setValue("Ticket", "fake")
 
-		handlerData.onResponse(CallMock.ForString(), response)
+		handlerText.onResponse(CallMock.ForString(), response)
 
 		val alert = getLatestAlertDialog()
 		assertNull(alert)
 
 		assertTrue(waitEnded)
-		assertNull(result)
+		assertNull(resultText)
 
 		assertTrue(activity.loggedOut)
 	}
@@ -262,7 +273,7 @@ internal class ResponseHandlerTest: BaseTest() {
 		assertNull(alert)
 
 		assertTrue(waitEnded)
-		assertNull(result)
+		assertNull(resultText)
 
 		assertTrue(activity.loggedOut)
 	}
@@ -272,12 +283,12 @@ internal class ResponseHandlerTest: BaseTest() {
 		val body = Body<String>(null, null, Error(273, "generic"))
 		val response = Response.success(body)
 
-		handlerData.onResponse(CallMock.ForString(), response)
+		handlerText.onResponse(CallMock.ForString(), response)
 
 		assertThat(activity.errorText, `is`("generic"))
 
 		assertTrue(waitEnded)
-		assertNull(result)
+		assertNull(resultText)
 	}
 
 	@Test
@@ -290,14 +301,53 @@ internal class ResponseHandlerTest: BaseTest() {
 		assertThat(activity.errorText, `is`("generic"))
 
 		assertTrue(waitEnded)
-		assertNull(result)
+		assertNull(resultText)
+	}
+
+	@Test
+	fun onResponse_StatusNone() {
+		val body = Body(StatusResponse(StatusEnum(0)), null, null)
+		val response = Response.success(body)
+
+		handlerStatus.onResponse(CallMock.ForStatusResponse(), response)
+
+		assertThat(activity.errorText, `is`("Error on contacting the Pig. The error is recorded and we will solve it as soon as possible."))
+
+		assertTrue(waitEnded)
+		assertNull(resultText)
+	}
+
+	@Test
+	fun onResponse_StatusDbError() {
+		val body = Body(StatusResponse(StatusEnum(2)), null, null)
+		val response = Response.success(body)
+
+		handlerStatus.onResponse(CallMock.ForStatusResponse(), response)
+
+		assertThat(activity.errorText, `is`("Error on contacting the Pig. There is a error accessing data. The error is recorded and we will solve it as soon as possible."))
+
+		assertTrue(waitEnded)
+		assertNull(resultText)
+	}
+
+	@Test
+	fun onResponse_StatusMaintenance() {
+		val body = Body(StatusResponse(StatusEnum(3)), null, null)
+		val response = Response.success(body)
+
+		handlerStatus.onResponse(CallMock.ForStatusResponse(), response)
+
+		assertThat(activity.errorText, `is`("Error on contacting the Pig. The System is in the maintenance window. To more details, visit the website."))
+
+		assertTrue(waitEnded)
+		assertNull(resultText)
 	}
 
 	@Test(expected = TestException::class)
 	fun onFailureData_ErrorCommonDebug() {
 		if (!BuildConfig.DEBUG) throw TestException()
 
-		handlerData.onFailure(CallMock.ForString(), TestException())
+		handlerText.onFailure(CallMock.ForString(), TestException())
 	}
 
 	@Test(expected = TestException::class)
@@ -313,13 +363,13 @@ internal class ResponseHandlerTest: BaseTest() {
 
 		val error = TestException()
 
-		handlerData.onFailure(CallMock.ForString(), error)
+		handlerText.onFailure(CallMock.ForString(), error)
 
 		assertThat(activity.errorText, `is`(internetError))
 		assertThat(activity.error, `is`(error))
 
 		assertTrue(waitEnded)
-		assertNull(result)
+		assertNull(resultText)
 	}
 
 	@Test
@@ -334,12 +384,12 @@ internal class ResponseHandlerTest: BaseTest() {
 		assertThat(activity.error, `is`(error))
 
 		assertTrue(waitEnded)
-		assertNull(result)
+		assertNull(resultText)
 	}
 
 	@Test
 	fun onFailureData_ErrorOfSocketTimeout() {
-		handlerData.onFailure(CallMock.ForString(), SocketTimeoutException())
+		handlerText.onFailure(CallMock.ForString(), SocketTimeoutException())
 
 		assertThat(
 			activity.errorText,
@@ -347,7 +397,7 @@ internal class ResponseHandlerTest: BaseTest() {
 		)
 
 		assertTrue(waitEnded)
-		assertNull(result)
+		assertNull(resultText)
 	}
 
 	@Test
@@ -360,12 +410,12 @@ internal class ResponseHandlerTest: BaseTest() {
 		)
 
 		assertTrue(waitEnded)
-		assertNull(result)
+		assertNull(resultText)
 	}
 
 	@Test
 	fun onFailureData_ErrorOfConnect() {
-		handlerData.onFailure(CallMock.ForString(), ConnectException())
+		handlerText.onFailure(CallMock.ForString(), ConnectException())
 
 		assertThat(
 			activity.errorText,
@@ -373,7 +423,7 @@ internal class ResponseHandlerTest: BaseTest() {
 		)
 
 		assertTrue(waitEnded)
-		assertNull(result)
+		assertNull(resultText)
 	}
 
 	@Test
@@ -386,6 +436,6 @@ internal class ResponseHandlerTest: BaseTest() {
 		)
 
 		assertTrue(waitEnded)
-		assertNull(result)
+		assertNull(resultText)
 	}
 }

@@ -3,6 +3,15 @@
 	<string name="body_null">
 		Erro ao chamar o Porquinho. O erro foi registrado e será resolvido o mais breve possível.
 	</string>
+	<string name="status_unknown">
+		Erro ao chamar o Porquinho. O erro foi registrado e será resolvido o mais breve possível.
+	</string>
+	<string name="status_db_error">
+		Erro ao chamar o Porquinho. O erro foi registrado e será resolvido o mais breve possível.
+	</string>
+	<string name="status_maintenance">
+		Erro ao chamar o Porquinho. O erro foi registrado e será resolvido o mais breve possível.
+	</string>
 	<string name="error_contact_url">
 		Erro ao chamar o Porquinho. Pode ser um problema de internet ou do sistema.
 		Caso seja o segundo, o erro foi registrado e será resolvido o mais breve possível.
