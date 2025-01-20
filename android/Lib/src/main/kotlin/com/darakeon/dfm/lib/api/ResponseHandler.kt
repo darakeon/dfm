@@ -7,6 +7,8 @@ import com.darakeon.dfm.lib.Log
 import com.darakeon.dfm.lib.R
 import com.darakeon.dfm.lib.api.entities.Body
 import com.darakeon.dfm.lib.api.entities.Error
+import com.darakeon.dfm.lib.api.entities.status.Status
+import com.darakeon.dfm.lib.api.entities.status.StatusResponse
 import com.darakeon.dfm.lib.auth.setEnvironment
 import com.google.gson.Gson
 import retrofit2.Call
@@ -55,6 +57,12 @@ class ResponseHandler<C, A>(
 				} else if (body.error != null) {
 					assemblyResponse(body.error)
 
+				} else if (body.data is StatusResponse && body.data.status.enum != Status.Online) {
+					when (body.data.status.enum) {
+						Status.DbError -> caller.error(R.string.status_db_error)
+						Status.Maintenance -> caller.error(R.string.status_maintenance)
+						else -> caller.error(R.string.status_unknown)
+					}
 				} else {
 					if (body.environment != null && caller is Activity) {
 						caller.setEnvironment(body.environment)
