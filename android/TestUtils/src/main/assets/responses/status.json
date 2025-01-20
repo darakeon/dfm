@@ -1,8 +1,8 @@
 {
 	"data": {
 		"status": {
-			"code": 2,
-			"text": "db-error"
+			"code": 1,
+			"text": "online"
 		}
 	},
 	"environment": {
