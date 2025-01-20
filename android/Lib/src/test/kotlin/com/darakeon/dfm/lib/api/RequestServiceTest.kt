@@ -18,6 +18,7 @@ import com.darakeon.dfm.testutils.api.guid
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Before
@@ -435,7 +436,7 @@ class RequestServiceTest: BaseTest() {
 		assertNotNull(body.data)
 
 		val data = body.data!!
-		assertThat(data.status.enum, `is`(Status.DbError))
+		assertThat(data.status.enum, `is`(Status.Online))
 	}
 
 	@Test
@@ -531,5 +532,41 @@ class RequestServiceTest: BaseTest() {
 		val body = response.body()!!
 
 		assertNull(body.data)
+	}
+
+	@Test
+	fun statusNone() {
+		server.enqueue("status_none")
+
+		val response = service.wakeUpSite().execute()
+		assertNotNull(response)
+		val body = response.body()!!
+
+		assertNotNull(body.data)
+		assertEquals(Status.None, body.data!!.status.enum)
+	}
+
+	@Test
+	fun statusDbError() {
+		server.enqueue("status_db_error")
+
+		val response = service.wakeUpSite().execute()
+		assertNotNull(response)
+		val body = response.body()!!
+
+		assertNotNull(body.data)
+		assertEquals(Status.DbError, body.data!!.status.enum)
+	}
+
+	@Test
+	fun statusMaintenance() {
+		server.enqueue("status_maintenance")
+
+		val response = service.wakeUpSite().execute()
+		assertNotNull(response)
+		val body = response.body()!!
+
+		assertNotNull(body.data)
+		assertEquals(Status.Maintenance, body.data!!.status.enum)
 	}
 }
