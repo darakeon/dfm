@@ -62,7 +62,7 @@ class Api<C>(
 		}
 
 		currentCall = this
-		requestHandler.call(this, hasData) {
+		requestHandler.call(this, hasData, {}) {
 			currentCall = null
 			onSuccess(it)
 		}

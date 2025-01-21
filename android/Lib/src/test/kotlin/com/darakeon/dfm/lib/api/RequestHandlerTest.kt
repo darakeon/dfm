@@ -12,6 +12,8 @@ import com.darakeon.dfm.testutils.robolectric.simulateNetwork
 import com.darakeon.dfm.testutils.robolectric.simulateOffline
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -22,11 +24,17 @@ import org.robolectric.RobolectricTestRunner
 class RequestHandlerTest: BaseTest() {
 	private lateinit var activity: ApiActivity
 	private lateinit var handler: RequestHandler<ApiActivity>
+	private var notFound: Boolean = false
 
 	@Before
 	fun setup() {
 		activity = ActivityMock(ApiActivity::class).create()
 		handler = activity.getPrivate("api", "requestHandler")
+		notFound = false
+	}
+
+	private fun onNotFound() {
+		notFound = true
 	}
 
 	@Test
@@ -36,13 +44,14 @@ class RequestHandlerTest: BaseTest() {
 		activity.simulateOffline()
 
 		val call = CallMock.ForString("result")
-		handler.call(call, true) { result = it }
+		handler.call(call, true, ::onNotFound) { result = it }
 
 		call.execute()
 
 		assertThat(result, `is`(""))
 		assertThat(activity.errorText, `is`("There is a problem with the connection to the site"))
 		assertTrue(call.isExecuted)
+		assertFalse(notFound)
 	}
 
 	@Test
@@ -52,13 +61,14 @@ class RequestHandlerTest: BaseTest() {
 		activity.simulateNetwork()
 
 		val call = CallMock.ForString("result")
-		handler.call(call, true) { result = it }
+		handler.call(call, true, ::onNotFound) { result = it }
 
 		call.execute()
 
 		assertThat(result, `is`("result"))
 
 		assertTrue(call.isExecuted)
+		assertFalse(notFound)
 	}
 
 	@Test(expected = TestException::class)
@@ -69,7 +79,7 @@ class RequestHandlerTest: BaseTest() {
 		activity.simulateNetwork()
 
 		val call = CallMock.ForString(TestException())
-		handler.call(call, false) { }
+		handler.call(call, false, ::onNotFound) { }
 
 		call.execute()
 	}
@@ -83,13 +93,31 @@ class RequestHandlerTest: BaseTest() {
 		activity.simulateNetwork()
 
 		val call = CallMock.ForString(TestException())
-		handler.call(call, true) { result = it }
+		handler.call(call, true, ::onNotFound) { result = it }
 
 		call.execute()
 
 		assertThat(result, `is`(""))
 		assertThat(activity.errorText, `is`(internetError))
 		assertTrue(call.isExecuted)
+		assertFalse(notFound)
+	}
+
+
+	@Test
+	fun notFound() {
+		var result: String? = ""
+
+		activity.simulateNetwork()
+		val call = CallMock.ForString(404)
+		handler.call(call, true, ::onNotFound) { result = it }
+
+		call.execute()
+
+		assertThat(result, `is`(""))
+		assertNull(activity.errorText)
+		assertTrue(call.isExecuted)
+		assertTrue(notFound)
 	}
 
 	@Test
@@ -97,7 +125,7 @@ class RequestHandlerTest: BaseTest() {
 		activity.simulateNetwork()
 
 		val call = CallMock.ForString("result")
-		handler.call(call, false) { }
+		handler.call(call, false, ::onNotFound) { }
 
 		assertTrue(activity.waitStarted)
 
@@ -106,5 +134,6 @@ class RequestHandlerTest: BaseTest() {
 		assertTrue(activity.waitEnded)
 
 		assertTrue(call.isCanceled)
+		assertFalse(notFound)
 	}
 }
