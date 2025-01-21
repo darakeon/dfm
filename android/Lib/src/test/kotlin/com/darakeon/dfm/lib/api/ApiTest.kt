@@ -438,6 +438,8 @@ class ApiTest: BaseTest() {
 			called = true
 		}
 
+		activity.waitTasks(mocker.server)
+
 		assertFalse(called)
 		assertEquals("/", server.lastPath())
 		assertEquals(statusUnknown, activity.errorText)
@@ -466,6 +468,8 @@ class ApiTest: BaseTest() {
 			called = true
 		}
 
+		activity.waitTasks(mocker.server)
+
 		assertFalse(called)
 		assertEquals("/", server.lastPath())
 		assertEquals(statusDbError, activity.errorText)
@@ -493,6 +497,8 @@ class ApiTest: BaseTest() {
 		api.getTerms {
 			called = true
 		}
+
+		activity.waitTasks(mocker.server)
 
 		assertFalse(called)
 		assertEquals("/", server.lastPath())
