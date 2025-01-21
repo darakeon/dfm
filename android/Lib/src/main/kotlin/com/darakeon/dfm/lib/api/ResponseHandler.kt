@@ -20,6 +20,7 @@ import java.net.SocketTimeoutException
 class ResponseHandler<C, A>(
 	private val caller: C,
 	private val hasData: Boolean,
+	private val onNotFound: () -> Unit,
 	private val onSuccess: (A?) -> Unit,
 ) : Callback<Body<A>>
 	where C: Context, C: ApiCaller
@@ -34,6 +35,8 @@ class ResponseHandler<C, A>(
 		when (response.code()) {
 			in 500 .. 599 ->
 				caller.error(R.string.body_null)
+
+			404 -> onNotFound()
 
 			in 400 .. 499 -> {
 				val body = Gson().fromJson(

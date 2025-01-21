@@ -19,6 +19,7 @@ import com.darakeon.dfm.testutils.TestException
 import com.darakeon.dfm.testutils.api.internetError
 import com.darakeon.dfm.testutils.api.internetSlow
 import com.darakeon.dfm.testutils.api.noBody
+import okhttp3.ResponseBody.Companion.toResponseBody
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertNull
@@ -36,6 +37,8 @@ import java.net.SocketTimeoutException
 internal class ResponseHandlerTest: BaseTest() {
 	private lateinit var activity: ApiActivity
 
+	private var notFound: Boolean = false
+
 	private lateinit var handlerNoData: ResponseHandler<ApiActivity, String>
 
 	private lateinit var handlerText: ResponseHandler<ApiActivity, String>
@@ -51,13 +54,15 @@ internal class ResponseHandlerTest: BaseTest() {
 	fun setup() {
 		activity = ActivityMock(ApiActivity::class).create()
 
-		handlerText = ResponseHandler(activity, true) {
+		notFound = false
+
+		handlerText = ResponseHandler(activity, true, { notFound = true }) {
 			resultText = it
 		}
 
-		handlerNoData = ResponseHandler(activity, false) {}
+		handlerNoData = ResponseHandler(activity, false, { notFound = true }) {}
 
-		handlerStatus = ResponseHandler(activity, false) {
+		handlerStatus = ResponseHandler(activity, false, { notFound = true }) {
 			resultStatus = it
 		}
 	}
@@ -341,6 +346,20 @@ internal class ResponseHandlerTest: BaseTest() {
 
 		assertTrue(waitEnded)
 		assertNull(resultText)
+	}
+
+	@Test
+	fun onResponse_NotFound() {
+		val body = "".toResponseBody()
+		val response = Response.error<Body<String>>(404, body)
+
+		handlerNoData.onResponse(CallMock.ForString(), response)
+
+		assertNull(activity.errorText)
+
+		assertTrue(waitEnded)
+		assertNull(resultText)
+		assertTrue(notFound)
 	}
 
 	@Test(expected = TestException::class)
