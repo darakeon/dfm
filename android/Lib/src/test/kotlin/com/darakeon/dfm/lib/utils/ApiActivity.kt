@@ -11,6 +11,13 @@ class ApiActivity : Activity(), ApiCaller {
 	override val ticket: String = "27"
 	private var api: Api<ApiActivity>? = null
 
+	private val ui = MockUI()
+
+	class MockUI(
+		internal var started: Int = 0,
+		internal var ended: Int = 0,
+	)
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		api = Api(this, null)
@@ -33,12 +40,14 @@ class ApiActivity : Activity(), ApiCaller {
 		private set
 	override fun startWait() {
 		weirdApiTestFix()
+		ui.started += 1
 		waitStarted = true
 	}
 
 	var waitEnded = false
 		private set
 	override fun endWait() {
+		ui.ended += 1
 		waitEnded = true
 	}
 
