@@ -41,7 +41,22 @@ class Server<RS : Any>(
 		count++
 	}
 
-	fun lastPath(): String {
+	@RequiresApi(Build.VERSION_CODES.O)
+	fun enqueue(statusCode: Int) {
+		val response = MockResponse().setResponseCode(statusCode)
+		server.enqueue(response)
+		count++
+	}
+
+	fun getPath(): String {
 		return server.takeRequest().path ?: ""
+	}
+
+	fun lastPath(): String {
+		var path = ""
+		for (i in 1..server.requestCount) {
+			path = server.takeRequest().path ?: ""
+		}
+		return path
 	}
 }
