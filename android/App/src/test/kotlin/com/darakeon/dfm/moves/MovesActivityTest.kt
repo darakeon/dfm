@@ -1201,7 +1201,7 @@ class MovesActivityTest: BaseTest() {
 
 		activity.waitTasks(mocker.server)
 
-		val requestPath = mocker.server.lastPath()
+		val requestPath = mocker.server.getPath()
 		val urlGuid = requestPath.split('/').last()
 		assertThat(urlGuid, `is`(guid.toString()))
 	}

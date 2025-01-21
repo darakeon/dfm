@@ -10,6 +10,7 @@ import com.darakeon.dfm.lib.api.entities.moves.Move
 import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
 import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
+import com.darakeon.dfm.lib.api.entities.status.StatusResponse
 import com.darakeon.dfm.lib.api.entities.summary.Summary
 import com.darakeon.dfm.lib.api.entities.terms.Terms
 import com.darakeon.dfm.lib.api.entities.wipe.Wipe
@@ -17,6 +18,9 @@ import com.darakeon.dfm.lib.utils.ActivityMock
 import com.darakeon.dfm.lib.utils.ApiActivity
 import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.api.internetError
+import com.darakeon.dfm.testutils.api.statusDbError
+import com.darakeon.dfm.testutils.api.statusMaintenance
+import com.darakeon.dfm.testutils.api.statusUnknown
 import com.darakeon.dfm.testutils.getPrivate
 import com.darakeon.dfm.testutils.robolectric.simulateNetwork
 import com.darakeon.dfm.testutils.robolectric.waitTasks
@@ -313,15 +317,15 @@ class ApiTest: BaseTest() {
 
 	@Test
 	fun wakeUpSite() {
-		server.enqueue("empty")
+		server.enqueue("status")
 
-		var called = false
+		var status: StatusResponse? = null
 		api.wakeUpSite {
-			called = true
+			status = it
 		}
 		activity.waitTasks()
 
-		assertTrue(called)
+		assertNotNull(status)
 	}
 
 	@Test
@@ -367,11 +371,11 @@ class ApiTest: BaseTest() {
 	fun error() {
 		server.enqueue("error")
 
-		var called = false
+		var status: StatusResponse? = null
 		api.wakeUpSite {
-			called = true
+			status = it
 		}
-		assertFalse(called)
+		assertNull(status)
 	}
 
 	@Test
@@ -409,5 +413,89 @@ class ApiTest: BaseTest() {
 		assertEquals(internetError, activity.errorText)
 		assertNotNull(activity.error)
 		assertEquals(activity.error!!::class, JsonSyntaxException::class)
+	}
+
+	@Test
+	fun statusNoneRoot() {
+		server.enqueue("status_none")
+
+		var status: StatusResponse? = null
+		api.wakeUpSite {
+			status = it
+		}
+
+		assertNull(status)
+		assertEquals(statusUnknown, activity.errorText)
+	}
+
+	@Test
+	fun statusNoneAfter404() {
+		server.enqueue(404)
+		server.enqueue("status_none")
+
+		var called = false
+		api.getTerms {
+			called = true
+		}
+
+		assertFalse(called)
+		assertEquals("/", server.lastPath())
+		assertEquals(statusUnknown, activity.errorText)
+	}
+
+	@Test
+	fun statusDbErrorRoot() {
+		server.enqueue("status_db_error")
+
+		var status: StatusResponse? = null
+		api.wakeUpSite {
+			status = it
+		}
+
+		assertNull(status)
+		assertEquals(statusDbError, activity.errorText)
+	}
+
+	@Test
+	fun statusDbErrorAfter404() {
+		server.enqueue(404)
+		server.enqueue("status_db_error")
+
+		var called = false
+		api.getTerms {
+			called = true
+		}
+
+		assertFalse(called)
+		assertEquals("/", server.lastPath())
+		assertEquals(statusDbError, activity.errorText)
+	}
+
+	@Test
+	fun statusMaintenanceRoot() {
+		server.enqueue("status_maintenance")
+
+		var status: StatusResponse? = null
+		api.wakeUpSite {
+			status = it
+		}
+
+		assertNull(status)
+		assertEquals(statusMaintenance, activity.errorText)
+	}
+
+	@Test
+	fun statusMaintenanceAfter404() {
+		server.enqueue(404)
+		server.enqueue("status_maintenance")
+
+		var called = false
+		api.getTerms {
+			called = true
+		}
+
+		assertFalse(called)
+		assertEquals("/", server.lastPath())
+		assertEquals(statusMaintenance, activity.errorText)
 	}
 }
