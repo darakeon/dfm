@@ -44,4 +44,15 @@ const val noBody = "Error on contacting the Pig. " +
 const val internetSlow = "There is a problem with " +
 	"the connection to the site"
 
+const val statusUnknown = "Error on contacting the Pig. " +
+	"The error is recorded and we will solve it as soon as possible."
+
+const val statusDbError = "Error on contacting the Pig. " +
+	"There is a error accessing data. " +
+	"The error is recorded and we will solve it as soon as possible."
+
+const val statusMaintenance = "Error on contacting the Pig. " +
+	"The System is in the maintenance window. " +
+	"To more details, visit the website."
+
 val guid: UUID = UUID.fromString("01234567-89AB-CDEF-FEDC-BA9876543210")

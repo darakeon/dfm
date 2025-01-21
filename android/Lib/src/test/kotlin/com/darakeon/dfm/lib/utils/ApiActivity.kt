@@ -75,8 +75,10 @@ class ApiActivity : Activity(), ApiCaller {
 	}
 
 	private fun weirdApiTestFix() {
-		// I have no idea why, but ApiTest just works if I put this.
-		// It almost 6pm, I'm seeing this bug for hours, don't judge me.
-		AlertDialog.Builder(this).show()
+		runOnUiThread {
+			// I have no idea why, but ApiTest just works if I put this.
+			// It almost 6pm, I'm seeing this bug for hours, don't judge me.
+			AlertDialog.Builder(this).show()
+		}
 	}
 }

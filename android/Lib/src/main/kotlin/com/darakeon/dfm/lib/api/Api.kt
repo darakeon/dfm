@@ -13,6 +13,7 @@ import com.darakeon.dfm.lib.api.entities.moves.MoveCreation
 import com.darakeon.dfm.lib.api.entities.moves.Nature
 import com.darakeon.dfm.lib.api.entities.settings.Settings
 import com.darakeon.dfm.lib.api.entities.signup.SignUp
+import com.darakeon.dfm.lib.api.entities.status.StatusResponse
 import com.darakeon.dfm.lib.api.entities.summary.Summary
 import com.darakeon.dfm.lib.api.entities.terms.Terms
 import com.darakeon.dfm.lib.api.entities.tfa.TFA
@@ -62,7 +63,10 @@ class Api<C>(
 		}
 
 		currentCall = this
-		requestHandler.call(this, hasData, {}) {
+		requestHandler.call(this, hasData, {
+			currentCall = null
+			wakeUpSite {}
+		}) {
 			currentCall = null
 			onSuccess(it)
 		}
@@ -211,8 +215,8 @@ class Api<C>(
 		service.getTerms().callData(onSuccess)
 	}
 
-	fun wakeUpSite(onSuccess: () -> Unit) {
-		service.wakeUpSite().callNoData(onSuccess)
+	fun wakeUpSite(onSuccess: (StatusResponse) -> Unit) {
+		service.wakeUpSite().callData(onSuccess)
 	}
 
 	fun listErrors(onSuccess: (ErrorList) -> Unit) {
