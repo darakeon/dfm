@@ -10,10 +10,10 @@ class CallMock {
 		constructor(): super({ Body(it, null, null) })
 		constructor(result: String): super({ Body(it, null, null) }, result)
 		constructor(error: Exception): super({ Body(it, null, null) }, error)
+		constructor(statusCode: Int): super({ Body(it, null, null) }, statusCode)
 	}
-	class ForStatusResponse : CallMock<StatusResponse> {
-		constructor(): super({ Body(it, null, null) })
-		constructor(result: StatusResponse): super({ Body(it, null, null) }, result)
-		constructor(error: Exception): super({ Body(it, null, null) }, error)
-	}
+
+	class ForStatusResponse : CallMock<StatusResponse>(
+		{ Body(it, null, null) }
+	)
 }

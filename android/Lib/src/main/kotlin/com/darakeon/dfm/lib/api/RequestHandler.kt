@@ -35,7 +35,8 @@ class RequestHandler<C>(
 	fun <T> call(
 		call: Call<Body<T>>,
 		hasData: Boolean,
-		onSuccess: (T?) -> Unit
+		onNotFound: () -> Unit,
+		onSuccess: (T?) -> Unit,
 	) {
 		if (Internet.isOffline(caller)) {
 			call.cancel()
@@ -44,7 +45,7 @@ class RequestHandler<C>(
 		}
 
 		call.enqueue(
-			ResponseHandler(caller, hasData, onSuccess)
+			ResponseHandler(caller, hasData, onNotFound, onSuccess)
 		)
 
 		this.isExecuted = { call.isExecuted }
