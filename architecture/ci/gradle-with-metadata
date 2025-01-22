@@ -16,7 +16,7 @@ gradle $* \
 
 if [ "$ERROR" != "" ]; then
     echyellow "Something ended wrong, let's generate metadata"
-    gradle --write-verification-metadata sha256 $*
+    gradle --write-verification-metadata sha256 --parallel --build-cache $*
 
     export HAS_METADATA=$(git status | grep "verification-metadata.xml")
 
