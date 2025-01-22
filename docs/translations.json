@@ -1,5 +1,6 @@
 {
 	"en-us": {
+		"Avoid android no-answer when site is off": "Handle site offline at mobile app",
 		"Improve information about already opened transaction - which is opened?": "Improve internal error handling",
 		"If a error happens in Ops controller, do not redirect": "Avoid non stop redirect error page",
 		"Avoid error getting Tips": "Avoid error getting Tips from website",
@@ -63,6 +64,7 @@
 		"": null
 	},
 	"pt-br": {
+		"Avoid android no-answer when site is off": "Ajuste em aplicativo de celular para quando o site está offline",
 		"Improve information about already opened transaction - which is opened?": "Melhoria de manejamento de erro interno",
 		"If a error happens in Ops controller, do not redirect": "Evitado redirecionamento infinito em página de erro",
 		"Avoid error getting Tips": "Corrigido erro em Dicas no site",
