@@ -7,9 +7,9 @@ GRADLE=docker exec -it dkdroid gradle --no-daemon
 
 start:
 	@docker run -d --rm \
-		-v ${PWD}:/var/android \
+		-v ${PWD}/../:/var/dfm \
 		-v ${PROJECTS}/keon/access:/var/keys \
-		-w /var/android \
+		-w /var/dfm/android \
 		-e NVD_API_KEY=${NVD_API_KEY} \
 		--name dkdroid \
 		darakeon/android \
