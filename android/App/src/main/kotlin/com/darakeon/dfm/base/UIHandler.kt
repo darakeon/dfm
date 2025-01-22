@@ -25,7 +25,8 @@ open class UIHandler(
 	}
 
 	private fun openDialog() {
-		dialog = activity.createWaitDialog()
+		if (dialog == null)
+			dialog = activity.createWaitDialog()
 	}
 
 	private fun disableSleep() {
@@ -46,6 +47,9 @@ open class UIHandler(
 	}
 
 	private fun closeDialog() {
+		if (ended != started)
+			return
+
 		dialog?.dismiss()
 		dialog = null
 	}
