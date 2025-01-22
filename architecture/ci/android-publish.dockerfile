@@ -1,5 +1,6 @@
 FROM darakeon/android
 LABEL maintainer="Dara Keon <laboon@darakeon.com>"
+RUN maintain
 
 RUN apt-get install -y python3-pip
 RUN pip install google-api-python-client --break-system-packages
