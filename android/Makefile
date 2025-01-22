@@ -38,7 +38,7 @@ verify:
 			|| echo "windows folder not found"
 
 write-metadata:
-	@${GRADLE} build --write-verification-metadata sha256
+	@${GRADLE} build --exclude-task :App:packageRelease --write-verification-metadata sha256 --parallel --build-cache
 
 rewrite-metadata:
 	@if [ -e gradle/verification-metadata.xml ]; then rm gradle/verification-metadata.xml; fi
