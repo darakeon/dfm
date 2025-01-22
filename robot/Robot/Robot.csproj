@@ -5,7 +5,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>DFM.$(MSBuildProjectName)</AssemblyName>
     <RootNamespace>DFM.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
-    <AssemblyVersion>14.1.2.0</AssemblyVersion>
+    <AssemblyVersion>14.1.3.0</AssemblyVersion>
     <FileVersion>$(AssemblyVersion)</FileVersion>
     <Title>DFM $(MSBuildProjectName)</Title>
     <Version>$(AssemblyVersion)</Version>
