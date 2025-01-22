@@ -1,4 +1,8 @@
 {
+	"14.1.3.0": [
+		"Ajuste em aplicativo de celular para quando o site está offline",
+		"Adicionadas regras para senhas"
+	],
 	"14.1.2.0": [
 		"Expiração de logins com mais de 30 dias sem acesso"
 	],
