@@ -9,10 +9,10 @@ build_browser:
 	@make single_build MACHINE=dfm-browser-tests PUSH=${PUSH}
 
 build_android:
-	@make single_build MACHINE=android TAG=gradle88-jdk17 PUSH=${PUSH}
+	@make single_build MACHINE=android TAG=gradle8.12-jdk17 PUSH=${PUSH}
 
 build_android_publish:
-	@make single_build MACHINE=android-publish TAG=gradle88-jdk17 PUSH=${PUSH}
+	@make single_build MACHINE=android-publish TAG=gradle8.12-jdk17 PUSH=${PUSH}
 
 build_migrator:
 	@cd ../publish && make migrator
