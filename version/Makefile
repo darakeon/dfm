@@ -63,7 +63,9 @@ create_old_tag_and_new_branch:
 move_to_new_branch:
 	@git branch --show-current > branch.git
 	@git checkout main
-	@git branch -d ${BRANCH}
+	@if [ "${BRANCH}" != "main" ]; then \
+		git branch -d ${BRANCH}; \
+	fi
 	@git pull --prune
 	@head -n 8 ../docs/RELEASES.md | tail -n 1 | cut -d "#" -f 2 | cut -d ")" -f 1 > branch.git
 	@git checkout ${BRANCH}
