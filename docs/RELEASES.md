@@ -15,7 +15,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="14.1.4.0"></a>14.1.4.0 :🐑: <sup>`1`</sup>
-- [ ] Create measure of recovering after lost authy
+- [ ] `250126>......` Create measure of recovering after lost authy
 
 ## <a name="14.1.3.0"></a>14.1.3.0 :🐑: <sup>`2`</sup>
 - [x] `250113>250122` Avoid android no-answer when site is off
