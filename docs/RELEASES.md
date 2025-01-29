@@ -14,8 +14,16 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐑: at least one little change, as a change at an existing feature (increases third number)
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="14.1.4.0"></a>14.1.4.0 :🐑: <sup>`1`</sup>
-- [ ] `250126>......` Create measure of recovering after lost authy
+## <a name="14.1.4.0"></a>14.1.4.0 :🐑: <sup>`9`</sup>
+- [ ] Show warning in mobile about MFA being disabled via email for one week
+- [ ] Show warning in website about MFA being disabled via email for one week
+- [ ] Send email warning the MFA was disabled via email
+- [ ] Disable account with too much MFA retries
+- [ ] Add MFA to change email
+- [ ] Add MFA to change password
+- [ ] Add MFA to disable MFA
+- [ ] Allow disable MFA by sending link to email in the MFA require screen, asking for password
+- [ ] `250126>250129` Create measure of recovering after lost authy
 
 ## <a name="14.1.3.0"></a>14.1.3.0 :🐑: <sup>`2`</sup>
 - [x] `250113>250122` Avoid android no-answer when site is off
