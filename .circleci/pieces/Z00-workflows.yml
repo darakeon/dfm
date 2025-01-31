@@ -1,3 +1,10 @@
+triggers:
+  - schedule:
+      cron: "0 * * * *"
+      filters:
+        branches:
+          only: /^\d+\.\d+\.\d+\.\d+$/
+
 workflows:
   version: 2.1
 

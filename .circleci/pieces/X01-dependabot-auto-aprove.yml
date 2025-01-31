@@ -5,6 +5,11 @@
     steps:
       - checkout
       - run:
+          name: check last dev version ci succeeded
+          path: .circleci/auto-merge
+          command: |
+            python check_version_pipeline.py
+      - run:
           name: Make folder
           command: |
             mkdir prs
