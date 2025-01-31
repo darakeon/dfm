@@ -1146,6 +1146,11 @@ jobs:
     steps:
       - checkout
       - run:
+          name: check last dev version ci succeeded
+          path: .circleci/auto-merge
+          command: |
+            python check_version_pipeline.py
+      - run:
           name: Make folder
           command: |
             mkdir prs
@@ -1446,10 +1451,20 @@ jobs:
               --component-name=$CIRCLE_JOB \
               --target-version=$CIRCLE_BRANCH
 
+triggers:
+  - schedule:
+      cron: "0 * * * *"
+      filters:
+        branches:
+          only: /^\d+\.\d+\.\d+\.\d+$/
+
 workflows:
   version: 2.1
 
   all:
+    when:
+      not:
+        equal: ["scheduled_pipeline", << pipeline.trigger_source >>]
     jobs:
       - trufflehog:
           filters:
@@ -1637,9 +1652,6 @@ workflows:
             - test_midna
             - export_terms
             - audit_version_changer
-      - dependabot_auto_aprove:
-          requires:
-            - change_version
       - approve_deploy:
           type: approval
           requires:
@@ -2045,3 +2057,13 @@ workflows:
       - workflow_ran:
           requires:
             - test_ci
+  independabot:
+    when:
+      equal: ["scheduled_pipeline", << pipeline.trigger_source >>]
+    jobs:
+      - dependabot_auto_aprove:
+          filters:
+            branches:
+              only:
+                - main
+                - /^\d+\.\d+\.\d+\.\d+$/
