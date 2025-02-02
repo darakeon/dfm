@@ -4,15 +4,12 @@ from urllib.request import urlopen, Request
 
 
 branch = environ['CIRCLE_BRANCH']
-token = environ.get('CIRCLECI_TOKEN')
 
 username = environ['CIRCLE_PROJECT_USERNAME']
 reponame = environ['CIRCLE_PROJECT_REPONAME']
 
 
 def get_json(url):
-    request = Request(url)
-    request.add_header('Circle-Token', token)
     response = urlopen(url)
     body = response.read()
     return loads(body)
