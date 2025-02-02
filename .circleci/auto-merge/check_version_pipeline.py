@@ -15,58 +15,75 @@ def get_json(url):
     return loads(body)
 
 
-# Pipeline
+def find_pipeline(page_token):
+    pipeline_url = f'https://circleci.com/api/v2/project/github/{username}/{reponame}/pipeline?branch={branch}'
 
-pipeline_url = f'https://circleci.com/api/v2/project/github/{username}/{reponame}/pipeline?branch={branch}'
-pipelines = get_json(pipeline_url)['items']
+    if page_token:
+        pipeline_url += f'&page-token={page_token}'
 
-pipeline_id = None
+    pipeline_response = get_json(pipeline_url)
+    next_page_token = pipeline_response['next_page_token']
+    pipelines = pipeline_response['items']
 
-for pipeline in pipelines:
-    id = pipeline['id']
-    state = pipeline['state']
+    pipeline_id = None
 
-    if pipeline['trigger']['type'] != 'scheduled_pipeline':
-        if state == 'created' or state == 'success':
-            pipeline_id = id
-            break
+    for pipeline in pipelines:
+        id = pipeline['id']
+        state = pipeline['state']
 
+        if pipeline['trigger']['type'] != 'scheduled_pipeline':
+            if state == 'created' or state == 'success':
+                pipeline_id = id
+
+                workflow = find_workflow(pipeline_id)
+
+                if workflow:
+                    return True
+
+        else:
+            print(f'Ignoring {id} ({state})...')
+
+    if next_page_token:
+        find_pipeline(next_page_token)
     else:
-        print(f'Ignoring {id} ({state})...')
+        print(f'No pipeline found for branch {branch}')
+        return False
 
-if not pipeline_id:
-    print(f'No pipeline found for branch {branch}')
+
+def find_workflow(pipeline_id):
+    workflow_url = f'https://circleci.com/api/v2/pipeline/{pipeline_id}/workflow'
+    workflows = get_json(workflow_url)['items']
+
+    workflows = list(filter(
+        lambda w: w['name'] == 'all',
+        workflows
+    ))
+
+    if not workflows:
+        print(f'No workflow "all" found for branch {branch} pipeline {pipeline_id}')
+        return False
+
+    workflow = workflows[0]
+
+    status = workflow['status']
+
+    print()
+    print(f'Last "all" status for branch {branch}: {status}')
+    print()
+
+    if status == 'running':
+        print('Workflow still in progress')
+        exit(1)
+
+    if status != 'success' and status != 'on_hold':
+        print('Workflow failed')
+        exit(1)
+
+    print('Workflow succeeded, go ahead and merge anything into it!')
+    return True
+
+
+pipeline = find_pipeline(None)
+
+if not pipeline:
     exit(1)
-
-
-# Workflow
-
-workflow_url = f'https://circleci.com/api/v2/pipeline/{pipeline_id}/workflow'
-workflows = get_json(workflow_url)['items']
-
-workflows = list(filter(
-    lambda w: w['name'] == 'all',
-    workflows
-))
-
-if not workflows:
-    print('No workflow found for branch $CIRCLE_BRANCH')
-    exit(1)
-
-workflow = workflows[0]
-
-status = workflow['status']
-
-print()
-print(f'Last "all" status for branch {branch}: {status}')
-print()
-
-if status == 'running':
-	print('Workflow still in progress')
-	exit(1)
-
-if status != 'success' and status != 'on_hold':
-	print('Workflow failed')
-	exit(1)
-
-print('Workflow succeeded, go ahead and merge anything into it!')
