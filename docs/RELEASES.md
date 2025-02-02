@@ -24,7 +24,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Add MFA to change email
 - [ ] Add MFA to change password
 - [ ] Add MFA to disable MFA
-- [ ] Allow disable MFA by sending link to email in the MFA require screen, asking for password
+- [ ] `250202>......` Allow disable MFA by sending link to email in the MFA require screen, asking for password
 - [x] `250126>250129` Create measure of recovering after lost authy
 
 ## <a name="14.1.3.0"></a>14.1.3.0 :🐑: <sup>`2`</sup>
