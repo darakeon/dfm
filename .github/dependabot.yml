@@ -30,31 +30,7 @@ updates:
       prefix: "tools: update site\n\n"
 
   - package-ecosystem: "nuget"
-    directory: "/site/Tests/MVC/"
-    target-branch: "14.1.4.0"
-    schedule:
-      interval: "weekly"
-    rebase-strategy: "disabled"
-    labels:
-      - site
-      - dependencies
-    commit-message:
-      prefix: "tools: update site\n\n"
-
-  - package-ecosystem: "nuget"
     directory: "/api/API/"
-    target-branch: "14.1.4.0"
-    schedule:
-      interval: "weekly"
-    rebase-strategy: "disabled"
-    labels:
-      - api
-      - dependencies
-    commit-message:
-      prefix: "tools: update api\n\n"
-
-  - package-ecosystem: "nuget"
-    directory: "/api/Tests/API/"
     target-branch: "14.1.4.0"
     schedule:
       interval: "weekly"
