@@ -15,7 +15,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="14.1.4.0"></a>14.1.4.0 :🐑: <sup>`11`</sup>
-- [ ] `250131>......` Add schedule to merge dependabot prs everyday
+- [x] `250131>250202` Add schedule to merge dependabot prs everyday
 - [x] `250202>250202` Check dependabot configuration to avoid duplications
 - [ ] Show warning in mobile about MFA being disabled via email for one week
 - [ ] Show warning in website about MFA being disabled via email for one week
