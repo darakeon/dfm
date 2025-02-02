@@ -18,7 +18,7 @@ updates:
       prefix: "tools: update internal\n\n"
 
   - package-ecosystem: "nuget"
-    directory: "/site/MVC/"
+    directory: "/site/"
     target-branch: "14.1.4.0"
     schedule:
       interval: "weekly"
@@ -30,7 +30,7 @@ updates:
       prefix: "tools: update site\n\n"
 
   - package-ecosystem: "nuget"
-    directory: "/api/API/"
+    directory: "/api/"
     target-branch: "14.1.4.0"
     schedule:
       interval: "weekly"
@@ -42,7 +42,7 @@ updates:
       prefix: "tools: update api\n\n"
 
   - package-ecosystem: "nuget"
-    directory: "/robot/Robot/"
+    directory: "/robot/"
     target-branch: "14.1.4.0"
     schedule:
       interval: "weekly"
