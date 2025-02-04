@@ -20,11 +20,7 @@ namespace DFM.BusinessLogic.Services
 
 			if (security.User != null)
 			{
-				if (security.User.Control.ProcessingDeletion)
-					throw Error.UserDeleted.Throw();
-
-				if (security.User.Control.WipeRequest != null)
-					throw Error.UserAskedWipe.Throw();
+				valids.User.CheckUserDeletion(security.User);
 			}
 		}
 
@@ -44,11 +40,7 @@ namespace DFM.BusinessLogic.Services
 				if (user == null)
 					throw Error.InvalidUser.Throw();
 
-				if (user.Control.ProcessingDeletion)
-					throw Error.UserDeleted.Throw();
-
-				if (user.Control.WipeRequest != null)
-					throw Error.UserAskedWipe.Throw();
+				valids.User.CheckUserDeletion(user);
 
 				SendUserVerify(user);
 			});
@@ -69,11 +61,7 @@ namespace DFM.BusinessLogic.Services
 					token, SecurityAction.UserVerification
 				);
 
-				if (security.User.Control.ProcessingDeletion)
-					throw Error.UserDeleted.Throw();
-
-				if (security.User.Control.WipeRequest != null)
-					throw Error.UserAskedWipe.Throw();
+				valids.User.CheckUserDeletion(security.User);
 
 				repos.Control.Activate(security.User);
 
@@ -90,11 +78,7 @@ namespace DFM.BusinessLogic.Services
 				if (user == null)
 					return;
 
-				if (user.Control.ProcessingDeletion)
-					throw Error.UserDeleted.Throw();
-
-				if (user.Control.WipeRequest != null)
-					throw Error.UserAskedWipe.Throw();
+				valids.User.CheckUserDeletion(user);
 
 				repos.Security.CreateAndSendToken(
 					user, SecurityAction.PasswordReset
@@ -115,11 +99,7 @@ namespace DFM.BusinessLogic.Services
 
 				var user = security.User;
 
-				if (user.Control.ProcessingDeletion)
-					throw Error.UserDeleted.Throw();
-
-				if (user.Control.WipeRequest != null)
-					throw Error.UserAskedWipe.Throw();
+				valids.User.CheckUserDeletion(user);
 
 				user.Password = reset.Password;
 
@@ -141,8 +121,8 @@ namespace DFM.BusinessLogic.Services
 				);
 
 				var user = security.User;
-				if (!parent.Law.IsLastContractAccepted(user))
-					throw Error.NotSignedLastContract.Throw();
+
+				parent.Law.CheckContractAccepted(user);
 
 				var settings = user.Settings;
 				settings.SendMoveEmail = false;
