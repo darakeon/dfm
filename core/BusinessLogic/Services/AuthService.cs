@@ -58,11 +58,7 @@ namespace DFM.BusinessLogic.Services
 			var auth = repos.User.ValidateAndGet(info.Email, info.Password);
 			var user = auth.User;
 
-			if (user.Control.ProcessingDeletion)
-				throw Error.UserDeleted.Throw();
-
-			if (user.Control.WipeRequest != null)
-				throw Error.UserAskedWipe.Throw();
+			checkUserDeletion(user);
 
 			if (String.IsNullOrEmpty(info.TicketKey))
 				info.TicketKey = Token.New();
@@ -107,11 +103,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			var user = getUserByTicket(ticketKey);
 
-			if (user.Control.ProcessingDeletion)
-				throw Error.UserDeleted.Throw();
-
-			if (user.Control.WipeRequest != null)
-				throw Error.UserAskedWipe.Throw();
+			checkUserDeletion(user);
 
 			return new(user);
 		}
@@ -148,11 +140,7 @@ namespace DFM.BusinessLogic.Services
 				if (ticket.User.ID != user?.ID)
 					throw Error.Uninvited.Throw();
 
-				if (ticket.User.Control.ProcessingDeletion)
-					throw Error.UserDeleted.Throw();
-
-				if (ticket.User.Control.WipeRequest != null)
-					throw Error.UserAskedWipe.Throw();
+				checkUserDeletion(ticket.User);
 
 				if (ticket.Active)
 					repos.Ticket.Disable(ticket);
@@ -182,8 +170,7 @@ namespace DFM.BusinessLogic.Services
 
 			var user = GetCurrent();
 
-			if (!repos.User.VerifyPassword(user, info.CurrentPassword))
-				throw Error.WrongPassword.Throw();
+			checkPassword(user, info.CurrentPassword);
 
 			inTransaction("ChangePassword", () =>
 			{
@@ -208,8 +195,7 @@ namespace DFM.BusinessLogic.Services
 
 			var user = GetCurrent();
 
-			if (!repos.User.VerifyPassword(user, password))
-				throw Error.WrongPassword.Throw();
+			checkPassword(user, password);
 
 			inTransaction("UpdateEmail", () =>
 			{
@@ -234,14 +220,8 @@ namespace DFM.BusinessLogic.Services
 				if (!repos.User.VerifyPassword(user, info.Password))
 					throw Error.TFAWrongPassword.Throw();
 
-				if (user.Control.ProcessingDeletion)
-					throw Error.UserDeleted.Throw();
-
-				if (user.Control.WipeRequest != null)
-					throw Error.UserAskedWipe.Throw();
-
-				if (!parent.Law.IsLastContractAccepted(user))
-					throw Error.NotSignedLastContract.Throw();
+				checkUserDeletion(user);
+				checkContractAccepted(user);
 
 				repos.User.SaveTFA(user, info.Secret);
 			});
@@ -253,14 +233,8 @@ namespace DFM.BusinessLogic.Services
 			{
 				var user = GetCurrent();
 
-				if (user.Control.ProcessingDeletion)
-					throw Error.UserDeleted.Throw();
-
-				if (user.Control.WipeRequest != null)
-					throw Error.UserAskedWipe.Throw();
-
-				if (!parent.Law.IsLastContractAccepted(user))
-					throw Error.NotSignedLastContract.Throw();
+				checkUserDeletion(user);
+				checkContractAccepted(user);
 
 				if (!repos.User.VerifyPassword(user, currentPassword))
 					throw Error.TFAWrongPassword.Throw();
@@ -279,11 +253,7 @@ namespace DFM.BusinessLogic.Services
 				if (secret == null)
 					throw Error.TFANotConfigured.Throw();
 
-				if (user.Control.ProcessingDeletion)
-					throw Error.UserDeleted.Throw();
-
-				if (user.Control.WipeRequest != null)
-					throw Error.UserAskedWipe.Throw();
+				checkUserDeletion(user);
 
 				if (!repos.User.IsValid(secret, code))
 					throw Error.TFAWrongCode.Throw();
@@ -300,11 +270,7 @@ namespace DFM.BusinessLogic.Services
 			if (ticket == null)
 				throw Error.Uninvited.Throw();
 
-			if (ticket.User.Control.ProcessingDeletion)
-				throw Error.UserDeleted.Throw();
-
-			if (ticket.User.Control.WipeRequest != null)
-				throw Error.UserAskedWipe.Throw();
+			checkUserDeletion(ticket.User);
 
 			return String.IsNullOrEmpty(ticket.User.TFASecret)
 				|| ticket.ValidTFA;
@@ -317,11 +283,7 @@ namespace DFM.BusinessLogic.Services
 			if (ticket == null)
 				throw Error.Uninvited.Throw();
 
-			if (ticket.User.Control.ProcessingDeletion)
-				throw Error.UserDeleted.Throw();
-
-			if (ticket.User.Control.WipeRequest != null)
-				throw Error.UserAskedWipe.Throw();
+			checkUserDeletion(ticket.User);
 
 			return ticket.Type == type;
 		}
@@ -332,14 +294,8 @@ namespace DFM.BusinessLogic.Services
 			{
 				var user = GetCurrent();
 
-				if (user.Control.ProcessingDeletion)
-					throw Error.UserDeleted.Throw();
-
-				if (user.Control.WipeRequest != null)
-					throw Error.UserAskedWipe.Throw();
-
-				if (!parent.Law.IsLastContractAccepted(user))
-					throw Error.NotSignedLastContract.Throw();
+				checkUserDeletion(user);
+				checkContractAccepted(user);
 
 				repos.User.UseTFAAsPassword(user, use);
 			});
@@ -365,8 +321,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			VerifyUserIgnoreContract(user);
 
-			if (!parent.Law.IsLastContractAccepted(user))
-				throw Error.NotSignedLastContract.Throw();
+			checkContractAccepted(user);
 		}
 
 		internal void VerifyUserIgnoreContract(User user)
@@ -374,11 +329,28 @@ namespace DFM.BusinessLogic.Services
 			if (user == null || !user.Control.ActiveOrAllowedPeriod())
 				throw Error.Uninvited.Throw();
 
+			checkUserDeletion(user);
+		}
+
+		private void checkPassword(User user, String password)
+		{
+			if (!repos.User.VerifyPassword(user, password))
+				throw Error.WrongPassword.Throw();
+		}
+
+		private static void checkUserDeletion(User user)
+		{
 			if (user.Control.ProcessingDeletion)
 				throw Error.UserDeleted.Throw();
 
 			if (user.Control.WipeRequest != null)
 				throw Error.UserAskedWipe.Throw();
+		}
+
+		private void checkContractAccepted(User user)
+		{
+			if (!parent.Law.IsLastContractAccepted(user))
+				throw Error.NotSignedLastContract.Throw();
 		}
 	}
 }
