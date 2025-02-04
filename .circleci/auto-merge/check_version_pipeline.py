@@ -44,7 +44,7 @@ def find_pipeline(page_token):
             print(f'Ignoring {id} ({state})...')
 
     if next_page_token:
-        find_pipeline(next_page_token)
+        return find_pipeline(next_page_token)
     else:
         print(f'No pipeline found for branch {branch}')
         return False
