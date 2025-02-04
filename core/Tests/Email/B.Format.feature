@@ -52,3 +52,8 @@ Scenario: B10. Format export csv
 	When an export data is formatted
 		And the e-mail is sent
 	Then there will be a export-data e-mail sent
+
+Scenario: B11. Format security action remove tfa
+	When a security action is formatted to RemoveTFA
+		And the e-mail is sent
+	Then there will be a security-action-remove-tfa e-mail sent

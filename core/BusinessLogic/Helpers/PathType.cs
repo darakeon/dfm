@@ -7,6 +7,7 @@ namespace DFM.BusinessLogic.Helpers
 		PasswordReset = 2,
 		UnsubscribeMoveMail = 3,
 		DeleteCsvData = 4,
+		RemoveTFA = 5,
 		DisableToken = 999,
 	}
 }

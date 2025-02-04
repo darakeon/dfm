@@ -30,12 +30,17 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal Security Grab(User user, SecurityAction action)
 		{
+			return Get(user, action) ?? create(user, action);
+		}
+
+		internal Security Get(User user, SecurityAction action)
+		{
 			return NewQuery().Where(
-					s => s.User.ID == user.ID
-						&& s.Action == action
-						&& s.Active
-						&& s.Expire >= DateTime.UtcNow
-				).FirstOrDefault ?? create(user, action);
+				s => s.User.ID == user.ID
+					&& s.Action == action
+					&& s.Active
+					&& s.Expire >= DateTime.UtcNow
+			).FirstOrDefault;
 		}
 
 		private Security create(User user, SecurityAction action)

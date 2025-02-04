@@ -1,0 +1,18 @@
+{
+	"en-US": {
+		"DisableText": "If you didn't request this, please, disable the Token. Won't be necessary give any information.",
+		"Subject": "Disable Safer Login",
+		"Title": "Disable Safer Login",
+		"LinkTitle": "Disable Safer Login",
+		"UrlText": "A request was made to DISABLE Safer Login. To proceed, click the link below.",
+		"": null
+	},
+	"pt-BR": {
+		"DisableText": "Se você não fez esta solicitação, por favor, desative o Token. Não será necessário passar qualquer informação.",
+		"Subject": "Desativar Login mais Seguro",
+		"Title": "Desativar Login mais Seguro",
+		"LinkTitle": "Desativar Login mais Seguro",
+		"UrlText": "Foi solicitada a DESATIVAÇÃO do Login mais Seguro no Sistema Don't fly Money. Para prosseguir, clique no link abaixo.",
+		"": null
+	}
+}
