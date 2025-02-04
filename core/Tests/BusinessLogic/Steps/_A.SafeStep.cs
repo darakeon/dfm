@@ -1032,13 +1032,19 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"I have a token for its activation")]
 		public void GivenIHaveATokenForItsActivation()
 		{
-			service.Outside.SendUserVerify(email);
+			service.Outside.SendUserVerify(email ?? userEmail);
 		}
 
 		[Given(@"I have a token for its password reset")]
 		public void GivenIHaveATokenForItsPasswordReset()
 		{
 			service.Outside.SendPasswordReset(email);
+		}
+
+		[Given(@"I have a token for its tfa removal")]
+		public void GivenIHaveATokenForItsTFARemoval()
+		{
+			service.Auth.AskRemoveTFA(userPassword);
 		}
 
 		[Given(@"I pass an invalid token")]
@@ -1120,7 +1126,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			).FirstOrDefault()?.Key;
 		}
 
-		[Given(@"I pass a valid (UserVerification|PasswordReset|UnsubscribeMoveMail|DeleteCsvData) token")]
+		[Given(@"I pass a valid (UserVerification|PasswordReset|UnsubscribeMoveMail|DeleteCsvData|RemoveTFA) token")]
 		public void GivenIPassTheValidToken(SecurityAction action)
 		{
 			this.action = action;
@@ -1382,14 +1388,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the two-factor will be empty")]
 		public void ThenTheTwoFactorWillStillBeEmpty()
 		{
-			var user = repos.User.GetByEmail(current.Email);
+			var user = repos.User.GetByEmail(userEmail);
 			Assert.That(user?.TFASecret, Is.Null);
 		}
 
 		[Then(@"the two-factor will be \[(.*)\]")]
 		public void ThenTheTwoFactorWillStillBe(String secret)
 		{
-			var user = repos.User.GetByEmail(current.Email);
+			var user = repos.User.GetByEmail(userEmail);
 			Assert.That(user.TFASecret, Is.EqualTo(secret));
 		}
 
@@ -1614,6 +1620,21 @@ namespace DFM.BusinessLogic.Tests.Steps
 			else
 			{
 				Assert.That(emails.Count, Is.EqualTo(0));
+			}
+		}
+		#endregion
+
+		#region RemoveTFAByToken
+		[When(@"remove tfa by token")]
+		public void WhenRemoveTfaByToken()
+		{
+			try
+			{
+				service.Auth.RemoveTFAByToken(token);
+			}
+			catch (CoreError e)
+			{
+				testCoreError = e;
 			}
 		}
 		#endregion
