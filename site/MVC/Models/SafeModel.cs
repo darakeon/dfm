@@ -52,6 +52,21 @@ namespace DFM.MVC.Models
 			return true;
 		}
 
+		public Boolean RemoveTFA(String token)
+		{
+			try
+			{
+				outside.TestSecurityToken(token, SecurityAction.RemoveTFA);
+				auth.RemoveTFAByToken(token);
+
+				return true;
+			}
+			catch (CoreError)
+			{
+				return false;
+			}
+		}
+
 		internal void LogOff()
 		{
 			logout();
