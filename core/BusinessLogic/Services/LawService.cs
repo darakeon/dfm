@@ -36,11 +36,7 @@ namespace DFM.BusinessLogic.Services
 
 		internal void AcceptContract(User user)
 		{
-			if (user.Control.ProcessingDeletion)
-				throw Error.UserDeleted.Throw();
-
-			if (user.Control.WipeRequest != null)
-				throw Error.UserAskedWipe.Throw();
+			valids.User.CheckUserDeletion(user);
 
 			var contract = getContract();
 			var acceptedNow = repos.Acceptance.Accept(user, contract);
@@ -55,16 +51,12 @@ namespace DFM.BusinessLogic.Services
 		{
 			var user = parent.Auth.GetCurrent();
 
-			if (user.Control.ProcessingDeletion)
-				throw Error.UserDeleted.Throw();
+			valids.User.CheckUserDeletion(user);
 
-			if (user.Control.WipeRequest != null)
-				throw Error.UserAskedWipe.Throw();
-
-			return IsLastContractAccepted(user);
+			return isLastContractAccepted(user);
 		}
 
-		internal Boolean IsLastContractAccepted(User user)
+		private Boolean isLastContractAccepted(User user)
 		{
 			var contract = getContract();
 
@@ -72,6 +64,12 @@ namespace DFM.BusinessLogic.Services
 				return true;
 
 			return repos.Acceptance.IsAccepted(user, contract);
+		}
+
+		internal void CheckContractAccepted(User user)
+		{
+			if (!isLastContractAccepted(user))
+				throw Error.NotSignedLastContract.Throw();
 		}
 
 		public void SaveAccess()
@@ -84,11 +82,7 @@ namespace DFM.BusinessLogic.Services
 
 			var user = ticket.User;
 
-			if (user.Control.ProcessingDeletion)
-				throw Error.UserDeleted.Throw();
-
-			if (user.Control.WipeRequest != null)
-				throw Error.UserAskedWipe.Throw();
+			valids.User.CheckUserDeletion(user);
 
 			inTransaction("SaveAccess", () =>
 			{

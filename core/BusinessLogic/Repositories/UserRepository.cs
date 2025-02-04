@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories.DataObjects;
+using DFM.BusinessLogic.Validators;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using Keon.TwoFactorAuth;
@@ -13,6 +14,8 @@ namespace DFM.BusinessLogic.Repositories
 	internal class UserRepository : Repo<User>
 	{
 		private const String emailPattern = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$";
+
+		private readonly UserValidator validator = new();
 
 		internal User GetByEmail(String email)
 		{
@@ -29,7 +32,7 @@ namespace DFM.BusinessLogic.Repositories
 			if (user == null)
 				throw Error.InvalidUser.Throw();
 
-			var validPass = VerifyPassword(user, password);
+			var validPass = validator.VerifyPassword(user, password);
 			var validCode = user.TFAPassword && IsValid(user.TFASecret, password);
 
 			if (!validPass && !validCode)
@@ -125,13 +128,6 @@ namespace DFM.BusinessLogic.Repositories
 			user.SetRobotCheckDay();
 		}
 
-
-
-		public Boolean VerifyPassword(User user, String password)
-		{
-			return password != null
-				&& Crypt.Check(password, user.Password);
-		}
 
 		public void SaveTFA(User user, String secret)
 		{

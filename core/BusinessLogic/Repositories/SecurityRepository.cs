@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
+using DFM.BusinessLogic.Validators;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Bases;
@@ -15,6 +16,8 @@ namespace DFM.BusinessLogic.Repositories
 	internal class SecurityRepository : Repo<Security>
 	{
 		private readonly Current.GetUrl getUrl;
+
+		private readonly UserValidator validator = new();
 
 		public SecurityRepository(Current.GetUrl getUrl)
 		{
@@ -149,11 +152,7 @@ namespace DFM.BusinessLogic.Repositories
 
 			if (security.User != null)
 			{
-				if (security.User.Control.ProcessingDeletion)
-					throw Error.UserDeleted.Throw();
-
-				if (security.User.Control.WipeRequest != null)
-					throw Error.UserAskedWipe.Throw();
+				validator.CheckUserDeletion(security.User);
 			}
 
 			security.Active = false;

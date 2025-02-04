@@ -144,11 +144,7 @@ public class AttendantService : Service
 		{
 			var user = parent.Auth.GetCurrent();
 
-			var validPassword =
-				repos.User.VerifyPassword(user, password);
-
-			if (!validPassword)
-				throw Error.WrongPassword.Throw();
+			valids.User.CheckPassword(user, password);
 
 			repos.Control.RequestWipe(user);
 		});
