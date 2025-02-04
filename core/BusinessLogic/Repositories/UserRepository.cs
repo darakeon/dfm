@@ -129,6 +129,11 @@ namespace DFM.BusinessLogic.Repositories
 		}
 
 
+		public void ClearTFA(User user)
+		{
+			SaveTFA(user, null);
+		}
+
 		public void SaveTFA(User user, String secret)
 		{
 			user.TFASecret = secret;
