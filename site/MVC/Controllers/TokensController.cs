@@ -52,6 +52,7 @@ namespace DFM.MVC.Controllers
 				PathType.UnsubscribeMoveMail => "UnsubscribeMoveMail",
 				PathType.DisableToken => "Disable",
 				PathType.DeleteCsvData => "DeleteCsvData",
+				PathType.RemoveTFA => "RemoveTFA",
 				_ => "Invalid"
 			};
 		}
@@ -121,6 +122,18 @@ namespace DFM.MVC.Controllers
 
 			return isValid
 				? baseModelView("DeleteCsvDataSuccess")
+				: baseModelView("Invalid");
+		}
+
+		[HttpGetAndHead]
+		public IActionResult RemoveTFA(String id)
+		{
+			var model = new SafeModel();
+
+			var isValid = model.RemoveTFA(id);
+
+			return isValid
+				? baseModelView("RemoveTFASuccess")
 				: baseModelView("Invalid");
 		}
 

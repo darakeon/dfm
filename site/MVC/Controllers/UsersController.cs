@@ -172,5 +172,28 @@ namespace DFM.MVC.Controllers
 				? baseModelView("SendWipedDataSuccess")
 				: View(model);
 		}
+
+		[HttpGetAndHead]
+		public IActionResult AskRemoveTFA()
+		{
+			var model = new UsersAskRemoveTFAModel();
+
+			return View(model);
+		}
+
+		[HttpPost, ValidateAntiForgeryToken]
+		public IActionResult AskRemoveTFA(UsersAskRemoveTFAModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				var errors = model.AskRemoveTFA();
+
+				addErrors(errors);
+			}
+
+			return ModelState.IsValid
+				? baseModelView("AskRemoveTFASuccess")
+				: View(model);
+		}
 	}
 }

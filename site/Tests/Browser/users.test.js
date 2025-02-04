@@ -171,7 +171,7 @@ describe('Users', () => {
 		await page.type('#Email', email)
 		await page.click('#body form button[type="submit"]')
 		const message = await puppy.content('.alert')
-		await expect(message).toContain('Se existir este e-mail no sistema, você receberá as instruções para prosseguir.')
+		await expect(message).toContain('Se existir este e-mail no sistema, você receberá por e-mail as instruções para prosseguir.')
 	})
 
 	test('Forgot Password - not existent', async () => {
@@ -184,7 +184,7 @@ describe('Users', () => {
 		await page.click('#body form button[type="submit"]')
 
 		const message = await puppy.content('.alert')
-		await expect(message).toContain('Se existir este e-mail no sistema, você receberá as instruções para prosseguir.')
+		await expect(message).toContain('Se existir este e-mail no sistema, você receberá por e-mail as instruções para prosseguir.')
 	})
 
 	test('LogOff', async () => {
@@ -248,16 +248,38 @@ describe('Users', () => {
 		await puppy.waitFor('#body form')
 		await expect(page.title()).resolves.toMatch('DfM - Login mais seguro')
 
-		await page.click('#body form a.btn-info')
-		await puppy.waitFor('#contact-modal', { visible: true })
-		await page.click('#contact-modal .close')
-		await puppy.waitFor('#contact-modal', { visible: false })
-
 		await page.type('#Code', tfa.code(secret))
 		await page.click('#body form button[type="submit"]')
 
 		await puppy.waitFor('#body')
 		await expect(page.title()).resolves.toMatch('DfM - Contas')
+	})
+
+	test('TFA - Remove', async () => {
+		const email = `tfa${rand()}@dontflymoney.com`
+		const user = await puppy.logon(email)
+
+		const secret = 'answer to the life universe and everything'
+		await db.setSecret(email, secret)
+
+		await puppy.call('Accounts')
+		await puppy.waitFor('#body form')
+		await expect(page.title()).resolves.toMatch('DfM - Login mais seguro')
+
+		await page.click('#body form a.btn-warning')
+		await puppy.waitFor('#body form')
+		await expect(page.title()).resolves.toMatch('DfM - Remover Login mais Seguro')
+		
+		await page.type('#Password', 'pass_word')
+		await page.click('#body form button[type="submit"]')
+
+		await puppy.waitFor('#body')
+		await expect(page.title()).resolves.toMatch('DfM - Remover Login mais Seguro')
+	
+		const successMessage = await puppy.content('.alert')
+		expect(successMessage).toContain(
+			`Você receberá por e-mail as instruções para prosseguir com a remoção do Login mais Seguro`
+		)
 	})
 
 	test('Send Wiped Data', async () => {
