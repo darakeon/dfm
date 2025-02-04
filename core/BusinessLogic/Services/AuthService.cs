@@ -217,9 +217,7 @@ namespace DFM.BusinessLogic.Services
 
 				var user = GetCurrent();
 
-				if (!repos.User.VerifyPassword(user, info.Password))
-					throw Error.TFAWrongPassword.Throw();
-
+				checkPassword(user, info.Password);
 				checkUserDeletion(user);
 				checkContractAccepted(user);
 
@@ -236,8 +234,7 @@ namespace DFM.BusinessLogic.Services
 				checkUserDeletion(user);
 				checkContractAccepted(user);
 
-				if (!repos.User.VerifyPassword(user, currentPassword))
-					throw Error.TFAWrongPassword.Throw();
+				checkPassword(user, currentPassword);
 
 				repos.User.SaveTFA(user, null);
 			});

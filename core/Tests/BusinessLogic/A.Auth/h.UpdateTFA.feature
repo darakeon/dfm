@@ -29,7 +29,7 @@ Scenario: Ah03. With wrong password
 			| Secret | Code        | Password |
 			| 123    | {generated} | wrong    |
 	When I try to set two-factor
-	Then I will receive this core error: TFAWrongPassword
+	Then I will receive this core error: WrongPassword
 		And the two-factor will be empty
 
 Scenario: Ah04. With all info right
@@ -57,7 +57,7 @@ Scenario: Ah06. With empty password
 			| Secret | Code        | Password |
 			| 123    | {generated} |          |
 	When I try to set two-factor
-	Then I will receive this core error: TFAWrongPassword
+	Then I will receive this core error: WrongPassword
 		And the two-factor will be empty
 
 Scenario: Ah07. With null password
@@ -65,7 +65,7 @@ Scenario: Ah07. With null password
 			| Secret | Code        | Password |
 			| 123    | {generated} | {null}   |
 	When I try to set two-factor
-	Then I will receive this core error: TFAWrongPassword
+	Then I will receive this core error: WrongPassword
 		And the two-factor will be empty
 
 Scenario: Ah08. Not update if user is marked for deletion
