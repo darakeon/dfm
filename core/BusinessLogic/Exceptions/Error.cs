@@ -27,7 +27,6 @@ namespace DFM.BusinessLogic.Exceptions
 		InvalidTheme = 210,
 		TFAEmptySecret = 211,
 		TFAWrongCode = 212,
-		TFAWrongPassword = 213,
 		TFANotConfigured = 214,
 		TFANotVerified = 215,
 		TooLargeUserEmail = 216,

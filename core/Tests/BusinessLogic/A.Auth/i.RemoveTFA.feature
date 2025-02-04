@@ -17,7 +17,7 @@ Scenario: Ai01. With wrong password
 			| Password |
 			| wrong    |
 	When I try to remove two-factor
-	Then I will receive this core error: TFAWrongPassword
+	Then I will receive this core error: WrongPassword
 		And the two-factor will be [123]
 
 Scenario: Ai02. With all info right
@@ -33,7 +33,7 @@ Scenario: Ai03. With empty password
 			| Password |
 			|          |
 	When I try to remove two-factor
-	Then I will receive this core error: TFAWrongPassword
+	Then I will receive this core error: WrongPassword
 		And the two-factor will be [123]
 
 Scenario: Ai04. With null password
@@ -41,7 +41,7 @@ Scenario: Ai04. With null password
 			| Password |
 			| {null}   |
 	When I try to remove two-factor
-	Then I will receive this core error: TFAWrongPassword
+	Then I will receive this core error: WrongPassword
 		And the two-factor will be [123]
 
 Scenario: Ai05. Not remove if user is marked for deletion
