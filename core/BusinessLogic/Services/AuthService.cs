@@ -227,17 +227,17 @@ namespace DFM.BusinessLogic.Services
 
 		public void RemoveTFA(String currentPassword)
 		{
-			inTransaction("RemoveTFA", () =>
-			{
-				var user = GetCurrent();
+			var user = GetCurrent();
 
-				valids.User.CheckUserDeletion(user);
-				parent.Law.CheckContractAccepted(user);
+			valids.User.CheckUserDeletion(user);
+			parent.Law.CheckContractAccepted(user);
 
-				valids.User.CheckPassword(user, currentPassword);
+			valids.User.CheckPassword(user, currentPassword);
 
-				repos.User.SaveTFA(user, null);
-			});
+			inTransaction(
+				"RemoveTFA",
+				() => repos.User.ClearTFA(user)
+			);
 		}
 
 		public void ValidateTicketTFA(String code)
@@ -309,6 +309,25 @@ namespace DFM.BusinessLogic.Services
 				"AskRemoveTFA",
 				() => repos.Security.CreateAndSendToken(user, SecurityAction.RemoveTFA)
 			);
+		}
+
+		public void RemoveTFAByToken(String token)
+		{
+			var security = repos.Security.ValidateAndGet(
+				token, SecurityAction.RemoveTFA
+			);
+
+			parent.Auth.VerifyUser(security.User);
+
+			var currentUserEmail = parent.Current.Email;
+			if (currentUserEmail != security.User.Email)
+				throw Error.Uninvited.Throw();
+
+			inTransaction("RemoveTFAByToken", () =>
+			{
+				repos.User.ClearTFA(security.User);
+				repos.Security.Disable(token);
+			});
 		}
 
 		internal User GetCurrent(Boolean allowDisabled = false)
