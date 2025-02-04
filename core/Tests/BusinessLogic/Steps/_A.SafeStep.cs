@@ -1551,5 +1551,71 @@ namespace DFM.BusinessLogic.Tests.Steps
 				Assert.That(user.GenerateMisc(), Is.EqualTo(misc));
 		}
 		#endregion
+
+		#region AskRemoveTFA
+		[When(@"I ask to remove two-factor")]
+		public void WhenIAskToRemoveTwo_Factor()
+		{
+			try
+			{
+				service.Auth.AskRemoveTFA(tfa.Password);
+			}
+			catch (CoreError e)
+			{
+				testCoreError = e;
+			}
+		}
+
+		[Then(@"a token for remove TFA will (not )?be generated")]
+		public void ThenATokenForRemoveTFAWill_BeGenerated(Boolean generated)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			var security = repos.Security.Get(user, SecurityAction.RemoveTFA);
+
+			if (generated)
+			{
+				Assert.That(security, Is.Not.Null);
+				token = security.Token;
+			}
+			else
+			{
+				Assert.That(security, Is.Null);
+			}
+		}
+
+		[Then(@"email with a link to remove two-factor will (not )?be sent")]
+		public void ThenEmailWill_BeSentWithALinkToRemoveTwoFactor(Boolean sent)
+		{
+			var inboxPath = Path.Combine(
+				"..", "..", "..", "..", "..", "..", "outputs", "inbox"
+			);
+			var inbox = new DirectoryInfo(inboxPath);
+
+			var emails = inbox.GetFiles("*.eml")
+				.Where(f => f.CreationTimeUtc >= testStart)
+				.Select(f => EmlReader.FromFile(f.FullName))
+				.Where(e => e.Headers["To"] == userEmail)
+				.Where(e => e.Subject == "Desativar Login mais Seguro")
+				.ToList();
+
+			if (sent)
+			{
+				Assert.That(emails.Count, Is.EqualTo(1));
+
+				var emailSent = emails.Single();
+
+				var link = $"https://dontflymoney.com/>RemoveTFA>{token}";
+
+				Assert.That(
+					emailSent.Body.Contains(link),
+					() => $"{link}\nnot found at\n{emailSent.Body}"
+				);
+			}
+			else
+			{
+				Assert.That(emails.Count, Is.EqualTo(0));
+			}
+		}
+		#endregion
 	}
 }

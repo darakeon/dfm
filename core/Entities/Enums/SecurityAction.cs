@@ -6,5 +6,6 @@
 		PasswordReset = 1,
 		UnsubscribeMoveMail = 2,
 		DeleteCsvData = 3,
+		RemoveTFA = 4,
 	}
 }

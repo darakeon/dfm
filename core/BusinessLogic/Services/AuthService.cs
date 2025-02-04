@@ -298,6 +298,19 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
+		public void AskRemoveTFA(String password)
+		{
+			var user = GetCurrent();
+			VerifyUser(user);
+
+			checkPassword(user, password);
+
+			inTransaction(
+				"AskRemoveTFA",
+				() => repos.Security.CreateAndSendToken(user, SecurityAction.RemoveTFA)
+			);
+		}
+
 		internal User GetCurrent(Boolean allowDisabled = false)
 		{
 			return getUserByTicket(parent.Current.TicketKey, allowDisabled);
