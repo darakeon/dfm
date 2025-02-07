@@ -82,3 +82,14 @@ Scenario: An07. Not remove if not signed last contract
 		And the two-factor will be [123]
 		And a token for remove TFA will not be generated
 		And email with a link to remove two-factor will not be sent
+
+Scenario: An08. Ask remove with no TFA
+	Given I have this two-factor data
+			| Password  |
+			| pass_word |
+		But I remove two-factor
+	When I ask to remove two-factor
+	Then I will receive this core error: TFANotConfigured
+		And the two-factor will be empty
+		And a token for remove TFA will not be generated
+		And email with a link to remove two-factor will not be sent

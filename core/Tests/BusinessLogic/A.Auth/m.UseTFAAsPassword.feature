@@ -59,3 +59,9 @@ Scenario: Am08. Not deactivate if not signed last contract
 	Given there is a new contract
 	When I set to not use TFA as password
 	Then I will receive this core error: NotSignedLastContract
+
+Scenario: Am09. Activate TFA as password with no TFA
+	Given I remove two-factor
+	When I set to use TFA as password
+	Then I will receive this core error: TFANotConfigured
+		And the TFA can not be used as password

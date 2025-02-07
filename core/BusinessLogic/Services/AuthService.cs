@@ -234,6 +234,8 @@ namespace DFM.BusinessLogic.Services
 
 			valids.User.CheckPassword(user, currentPassword);
 
+			checkTFAConfigured(user);
+
 			inTransaction(
 				"RemoveTFA",
 				() => repos.User.ClearTFA(user)
@@ -245,14 +247,12 @@ namespace DFM.BusinessLogic.Services
 			inTransaction("ValidateTicketTFA", () =>
 			{
 				var user = GetCurrent();
-				var secret = user.TFASecret;
 
-				if (secret == null)
-					throw Error.TFANotConfigured.Throw();
+				checkTFAConfigured(user);
 
 				valids.User.CheckUserDeletion(user);
 
-				if (!repos.User.IsValid(secret, code))
+				if (!repos.User.IsValid(user.TFASecret, code))
 					throw Error.TFAWrongCode.Throw();
 
 				var ticket = repos.Ticket.GetByKey(parent.Current.TicketKey);
@@ -294,6 +294,8 @@ namespace DFM.BusinessLogic.Services
 				valids.User.CheckUserDeletion(user);
 				parent.Law.CheckContractAccepted(user);
 
+				checkTFAConfigured(user);
+
 				repos.User.UseTFAAsPassword(user, use);
 			});
 		}
@@ -304,6 +306,8 @@ namespace DFM.BusinessLogic.Services
 			VerifyUser(user);
 
 			valids.User.CheckPassword(user, password);
+
+			checkTFAConfigured(user);
 
 			inTransaction(
 				"AskRemoveTFA",
@@ -322,6 +326,8 @@ namespace DFM.BusinessLogic.Services
 			var currentUserEmail = parent.Current.Email;
 			if (currentUserEmail != security.User.Email)
 				throw Error.Uninvited.Throw();
+
+			checkTFAConfigured(security.User);
 
 			inTransaction("RemoveTFAByToken", () =>
 			{
@@ -359,6 +365,12 @@ namespace DFM.BusinessLogic.Services
 				throw Error.Uninvited.Throw();
 
 			valids.User.CheckUserDeletion(user);
+		}
+
+		private static void checkTFAConfigured(User user)
+		{
+			if (user.TFASecret == null)
+				throw Error.TFANotConfigured.Throw();
 		}
 	}
 }
