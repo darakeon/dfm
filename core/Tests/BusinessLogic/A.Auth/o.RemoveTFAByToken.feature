@@ -100,3 +100,10 @@ Scenario: Ao12. Remove tfa no user logged in
 	When remove tfa by token
 	Then I will receive this core error: Uninvited
 		And the two-factor will be [123]
+
+Scenario: Ao13. Remove tfa with not tfa
+	Given I pass a valid RemoveTFA token
+		But I remove two-factor
+	When remove tfa by token
+	Then I will receive this core error: TFANotConfigured
+		And the two-factor will be empty
