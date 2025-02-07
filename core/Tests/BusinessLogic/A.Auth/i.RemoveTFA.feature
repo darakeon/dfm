@@ -67,3 +67,12 @@ Scenario: Ai07. Not remove if not signed last contract
 		But there is a new contract
 	When I try to remove two-factor
 	Then I will receive this core error: NotSignedLastContract
+
+Scenario: Ai08. Remove if not configured
+	Given I have this two-factor data
+			| Password  |
+			| pass_word |
+		But I remove two-factor
+	When I try to remove two-factor
+	Then I will receive this core error: TFANotConfigured
+		And the two-factor will be empty
