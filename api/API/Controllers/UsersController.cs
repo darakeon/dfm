@@ -31,7 +31,7 @@ namespace DFM.API.Controllers
 		[HttpPatch, Auth(AuthParams.IgnoreTFA)]
 		public IActionResult TFA([FromBody] UserTFAModel model)
 		{
-			return json(model.Validate);
+			return json(model.Execute);
 		}
 
 		[HttpPatch, Auth]
