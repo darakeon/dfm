@@ -18,12 +18,12 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows.shadowOf
 
 @RunWith(RobolectricTestRunner::class)
-class TFAActivityTest: BaseTest() {
-	private lateinit var mocker: ActivityMock<TFAActivity>
+class ValidateTFAActivityTest: BaseTest() {
+	private lateinit var mocker: ActivityMock<ValidateTFAActivity>
 
 	@Before
 	fun setup() {
-		mocker = ActivityMock(TFAActivity::class)
+		mocker = ActivityMock(ValidateTFAActivity::class)
 	}
 
 	@After
@@ -54,5 +54,22 @@ class TFAActivityTest: BaseTest() {
 		val intent = shadow.peekNextStartedActivity()
 
 		assertThat(intent.getCalledName(), `is`("AccountsActivity"))
+	}
+
+	@Test
+	fun goToRemove() {
+		mocker.server.enqueue("empty")
+
+		val activity = mocker.create()
+		activity.simulateNetwork()
+
+		val view = View(activity)
+
+		activity.goToRemove(view)
+
+		val shadow = shadowOf(activity)
+		val intent = shadow.peekNextStartedActivity()
+
+		assertThat(intent.getCalledName(), `is`("RemoveTFAActivity"))
 	}
 }
