@@ -190,10 +190,21 @@ class Api<C>(
 	}
 
 	fun validateTFA(
-		text: String,
+		code: String,
 		onSuccess: () -> Unit
 	) {
-		service.validateTFA(TFA(text)).callNoData(onSuccess)
+		service.patchTFA(
+			TFA.forValidate(code)
+		).callNoData(onSuccess)
+	}
+
+	fun removeTFA(
+		password: String,
+		onSuccess: () -> Unit
+	) {
+		service.patchTFA(
+			TFA.forRemove(password)
+		).callNoData(onSuccess)
 	}
 
 	fun listsForMoves(

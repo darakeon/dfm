@@ -290,6 +290,19 @@ class ApiTest: BaseTest() {
 	}
 
 	@Test
+	fun removeTFA() {
+		server.enqueue("empty")
+
+		var called = false
+		api.removeTFA("") {
+			called = true
+		}
+		activity.waitTasks()
+
+		assertTrue(called)
+	}
+
+	@Test
 	fun wipe() {
 		server.enqueue("empty")
 
