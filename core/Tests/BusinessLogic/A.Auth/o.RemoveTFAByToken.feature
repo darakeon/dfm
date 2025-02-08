@@ -107,3 +107,12 @@ Scenario: Ao13. Remove tfa with not tfa
 	When remove tfa by token
 	Then I will receive this core error: TFANotConfigured
 		And the two-factor will be empty
+
+Scenario: Ao14. Remove tfa if set to use as password
+	Given I set to use TFA as password
+		And I pass a valid RemoveTFA token
+	When remove tfa by token
+	Then I will receive no core error
+		And the two-factor will be empty
+		And the token will not be valid anymore
+		And the TFA can not be used as password

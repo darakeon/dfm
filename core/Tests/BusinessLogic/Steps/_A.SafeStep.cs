@@ -817,14 +817,20 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the TFA can (not )?be used as password")]
 		public void ThenTheTFACanBeUsedAsPassword(Boolean canBe)
 		{
+			var currentEmail = email ?? userEmail;
+			var user = repos.User.GetByEmail(currentEmail);
+
+			var code = user.TFASecret == null
+				? null
+				: CodeGenerator.Generate(user.TFASecret);
+
 			var worked = true;
-			var code = CodeGenerator.Generate(tfa.Secret);
 
 			try
 			{
 				var info = new SignInInfo
 				{
-					Email = email,
+					Email = currentEmail,
 					Password = code,
 					TicketKey = testTicketKey,
 					TicketType = TicketType.Tests
@@ -838,6 +844,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 
 			Assert.That(worked, Is.EqualTo(canBe));
+
+			Assert.That(user.TFAPassword, Is.EqualTo(canBe));
 		}
 
 		[Then(@"the TFA will (not )?be asked")]
@@ -1349,6 +1357,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 			{
 				tfa.Password = null;
 			}
+		}
+
+		[Given(@"I set to (not )?use TFA as password")]
+		public void GivenISetToUseTFAAsPassword(Boolean use)
+		{
+			service.Auth.UseTFAAsPassword(use);
 		}
 
 		[Given(@"I set two-factor")]
