@@ -257,7 +257,7 @@
 					"response": []
 				},
 				{
-					"name": "TFA",
+					"name": "TFA Validate",
 					"event": [
 						{
 							"listen": "test",
@@ -275,7 +275,46 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"code\": \"200138\"\r\n}",
+							"raw": "{\r\n    \"operation\": \"validate\",\r\n    \"code\": \"113805\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/tfa",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"tfa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TFA Remove",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"operation\": \"ask-remove\",\r\n    \"password\": \"{{test_user_password}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -858,7 +897,7 @@
 		},
 		{
 			"key": "test_user_password",
-			"value": "",
+			"value": "pass_word",
 			"type": "string"
 		},
 		{
