@@ -76,3 +76,13 @@ Scenario: Ai08. Remove if not configured
 	When I try to remove two-factor
 	Then I will receive this core error: TFANotConfigured
 		And the two-factor will be empty
+
+Scenario: Ai09. Remove if set as password
+	Given I have this two-factor data
+			| Password  |
+			| pass_word |
+		And I set to use TFA as password
+	When I try to remove two-factor
+	Then I will receive no core error
+		And the two-factor will be empty
+		And the TFA can not be used as password

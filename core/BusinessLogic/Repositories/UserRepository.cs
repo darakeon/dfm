@@ -131,6 +131,9 @@ namespace DFM.BusinessLogic.Repositories
 
 		public void ClearTFA(User user)
 		{
+			if (user.TFAPassword)
+				user.TFAPassword = false;
+
 			SaveTFA(user, null);
 		}
 
