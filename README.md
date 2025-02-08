@@ -45,6 +45,10 @@ itself. Well, we are always our most demanding client.
 - [NHibernate - ORM](https://nhibernate.info)
 - [DK](https://github.com/darakeon/dk-lib)
 
+### Database
+
+- [MySQL](https://mysql.com/)
+
 ### Site
 
 - [MVC](https://dotnet.microsoft.com/apps/aspnet/mvc)
@@ -84,6 +88,7 @@ itself. Well, we are always our most demanding client.
 - [Android Studio](https://developer.android.com/studio/index.html)
 - [Visual Studio Community](https://www.visualstudio.com/vs/)
 - [Resharper](https://www.jetbrains.com/resharper/)
+- [Workbench](https://mysql.com/products/workbench/)
 - [Git](https://git-scm.com/)
 - [CircleCI](https://circleci.com/)
 - [GitExtensions](https://github.com/gitextensions/gitextensions)
