@@ -100,7 +100,7 @@ interface RequestService {
 	): Call<Body<Summary>>
 
 	@PATCH("users/tfa")
-	fun validateTFA(
+	fun patchTFA(
 		@RetrofitBody tfa: TFA
 	): Call<Body<Any>>
 

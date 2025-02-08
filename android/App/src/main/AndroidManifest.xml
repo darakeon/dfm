@@ -198,7 +198,8 @@
 			<tools:validation testUrl="https://dontflymoney.com/@Settings" />
 		</activity>
 
-		<activity android:name=".tfa.TFAActivity" />
+		<activity android:name=".tfa.ValidateTFAActivity" />
+		<activity android:name=".tfa.RemoveTFAActivity" />
 
 		<activity android:name=".wipe.WipeActivity" />
 

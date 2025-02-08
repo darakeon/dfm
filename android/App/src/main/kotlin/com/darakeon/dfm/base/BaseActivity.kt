@@ -38,7 +38,7 @@ import com.darakeon.dfm.lib.extensions.redirect
 import com.darakeon.dfm.lib.extensions.refresh
 import com.darakeon.dfm.moves.MovesActivity
 import com.darakeon.dfm.settings.SettingsActivity
-import com.darakeon.dfm.tfa.TFAActivity
+import com.darakeon.dfm.tfa.ValidateTFAActivity
 
 abstract class BaseActivity<Binding: ViewBinding>: Activity(), ApiCaller {
 	private var api: Api<BaseActivity<Binding>>? = null
@@ -264,7 +264,7 @@ abstract class BaseActivity<Binding: ViewBinding>: Activity(), ApiCaller {
 	override fun logout() = logoutLocal()
 
 	override fun checkTFA() {
-		redirect<TFAActivity>()
+		redirect<ValidateTFAActivity>()
 	}
 
 	override fun startWait() {

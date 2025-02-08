@@ -348,8 +348,25 @@ class RequestServiceTest: BaseTest() {
 	fun validateTFA() {
 		server.enqueue("empty")
 
-		val response = service.validateTFA(
-			TFA("123456")
+		val response = service.patchTFA(
+			TFA.forValidate("123456")
+		).execute()
+		assertNotNull(response)
+		val body = response.body()!!
+
+		val environment = body.environment!!
+		assertThat(environment.language, `is`("pt-BR"))
+		assertThat(environment.theme.enum, `is`(Theme.DarkMagic))
+
+		assertNull(body.data)
+	}
+
+	@Test
+	fun removeTFA() {
+		server.enqueue("empty")
+
+		val response = service.patchTFA(
+			TFA.forRemove("password")
 		).execute()
 		assertNotNull(response)
 		val body = response.body()!!
