@@ -12,21 +12,21 @@ Background:
 			| 123    | {generated} | pass_word |
 		And I set two-factor
 
-Scenario: Ai01. With wrong password
-	Given I have this two-factor data
-			| Password |
-			| wrong    |
-	When I try to remove two-factor
-	Then I will receive this core error: WrongPassword
-		And the two-factor will be [123]
-
-Scenario: Ai02. With all info right
+Scenario: Ai01. With all info right
 	Given I have this two-factor data
 			| Password  |
 			| pass_word |
 	When I try to remove two-factor
 	Then I will receive no core error
 		And the two-factor will be empty
+
+Scenario: Ai02. With wrong password
+	Given I have this two-factor data
+			| Password |
+			| wrong    |
+	When I try to remove two-factor
+	Then I will receive this core error: WrongPassword
+		And the two-factor will be [123]
 
 Scenario: Ai03. With empty password
 	Given I have this two-factor data

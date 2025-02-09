@@ -24,7 +24,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Disable account with too much MFA retries
 - [ ] Add MFA to change email
 - [ ] Add MFA to change password
-- [ ] Add MFA to disable MFA
+- [ ] `250209>......` Add MFA to disable MFA
 - [x] `250202>250208` Allow disable MFA by sending link to email in the MFA require screen, asking for password
 - [x] `250126>250129` Create measure of recovering after lost authy
 
