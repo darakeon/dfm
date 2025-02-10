@@ -212,8 +212,7 @@ namespace DFM.BusinessLogic.Services
 				if (String.IsNullOrEmpty(info.Secret))
 					throw Error.TFAEmptySecret.Throw();
 
-				if (!repos.User.IsValid(info.Secret, info.Code))
-					throw Error.TFAWrongCode.Throw();
+				valids.User.CheckTFA(info);
 
 				var user = GetCurrent();
 
@@ -234,7 +233,7 @@ namespace DFM.BusinessLogic.Services
 
 			valids.User.CheckPassword(user, currentPassword);
 
-			checkTFAConfigured(user);
+			valids.User.CheckTFAConfigured(user);
 
 			inTransaction(
 				"RemoveTFA",
@@ -248,12 +247,11 @@ namespace DFM.BusinessLogic.Services
 			{
 				var user = GetCurrent();
 
-				checkTFAConfigured(user);
+				valids.User.CheckTFAConfigured(user);
 
 				valids.User.CheckUserDeletion(user);
 
-				if (!repos.User.IsValid(user.TFASecret, code))
-					throw Error.TFAWrongCode.Throw();
+				valids.User.CheckTFA(user, code);
 
 				var ticket = repos.Ticket.GetByKey(parent.Current.TicketKey);
 				repos.Ticket.ValidateTFA(ticket);
@@ -294,7 +292,7 @@ namespace DFM.BusinessLogic.Services
 				valids.User.CheckUserDeletion(user);
 				parent.Law.CheckContractAccepted(user);
 
-				checkTFAConfigured(user);
+				valids.User.CheckTFAConfigured(user);
 
 				repos.User.UseTFAAsPassword(user, use);
 			});
@@ -307,7 +305,7 @@ namespace DFM.BusinessLogic.Services
 
 			valids.User.CheckPassword(user, password);
 
-			checkTFAConfigured(user);
+			valids.User.CheckTFAConfigured(user);
 
 			inTransaction(
 				"AskRemoveTFA",
@@ -327,7 +325,7 @@ namespace DFM.BusinessLogic.Services
 			if (currentUserEmail != security.User.Email)
 				throw Error.Uninvited.Throw();
 
-			checkTFAConfigured(security.User);
+			valids.User.CheckTFAConfigured(security.User);
 
 			inTransaction("RemoveTFAByToken", () =>
 			{
@@ -365,12 +363,6 @@ namespace DFM.BusinessLogic.Services
 				throw Error.Uninvited.Throw();
 
 			valids.User.CheckUserDeletion(user);
-		}
-
-		private static void checkTFAConfigured(User user)
-		{
-			if (user.TFASecret == null)
-				throw Error.TFANotConfigured.Throw();
 		}
 	}
 }
