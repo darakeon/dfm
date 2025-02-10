@@ -33,7 +33,7 @@ namespace DFM.BusinessLogic.Repositories
 				throw Error.InvalidUser.Throw();
 
 			var validPass = validator.VerifyPassword(user, password);
-			var validCode = user.TFAPassword && IsValid(user.TFASecret, password);
+			var validCode = user.TFAPassword && validator.VerifyTFA(user.TFASecret, password);
 
 			if (!validPass && !validCode)
 				throw Error.InvalidUser.Throw();
@@ -147,13 +147,6 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			user.TFAPassword = use;
 			update(user);
-		}
-
-		public Boolean IsValid(String secret, String code)
-		{
-			return CodeGenerator
-				.Generate(secret, 2)
-				.Contains(code);
 		}
 
 		public IList<User> GetForRunSchedule()
