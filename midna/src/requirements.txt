@@ -3,6 +3,6 @@ mysqlclient==2.2.7
 bcrypt==4.2.1
 boto3==1.36.11
 pytest==8.3.4
-pip-audit==2.7.3
+pip-audit==2.8.0
 gunicorn==23.0.0
 tzdata==2025.1
