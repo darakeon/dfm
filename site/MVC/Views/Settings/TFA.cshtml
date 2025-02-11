@@ -25,16 +25,7 @@
 	<script type="text/javascript" src="~/Assets/scripts/qrcode.js?v=@Cfg.Version"></script>
 }
 
-@Html.HiddenFor(m => m.IsActive)
-
-@if (Model.IsActive)
-{
-	<div class="form-group">
-		@Html.LabelFor(m => m.TFA.Password, Context.Translate("CurrentPassword"), new { @class = "control-label" })
-		@Html.PasswordFor(m => m.TFA.Password, new { @class = "form-control" })
-	</div>
-}
-else
+@if (!Model.IsActive)
 {
 	<div class="text-center">
 		<span id="qrcode" data-url="@Model.UrlPath">
@@ -49,43 +40,45 @@ else
 			</a>
 		</small>
 	</div>
+}
 
-	<div class="form-group">
-		@Html.LabelFor(m => m.TFA.Code, Context.Translate("Code"), new { @class = "control-label" })
-		@Html.TextBoxFor(m => m.TFA.Code, new { @class = "form-control" })
-	</div>
+<div class="form-group">
+	@Html.LabelFor(m => m.TFA.Code, Context.Translate("Code"), new { @class = "control-label" })
+	@Html.TextBoxFor(m => m.TFA.Code, new { @class = "form-control" })
+</div>
 
-	<div class="form-group">
-		@Html.LabelFor(m => m.TFA.Password, Context.Translate("CurrentPassword"), new { @class = "control-label" })
-		@Html.PasswordFor(m => m.TFA.Password, new { @class = "form-control" })
-	</div>
+<div class="form-group">
+	@Html.LabelFor(m => m.TFA.Password, Context.Translate("CurrentPassword"), new { @class = "control-label" })
+	@Html.PasswordFor(m => m.TFA.Password, new { @class = "form-control" })
+</div>
+
+@if (Model.IsActive)
+{
+	var action = Model.TFAPassword
+		? "TFAPasswordDisable"
+		: "TFAPasswordEnable";
+
+	@Html.ActionLink(
+		Context.Translate(action),
+		action, "Settings", null,
+		new { @class = "text-warning pull-left" }
+	)
 }
 
 @await Html.PartialAsync("Modals/TFA")
 
 @section Footer {
-	@{
-		var button = "Save";
-	}
-
 	@if (Model.IsActive)
 	{
-		button = "TFARemove";
-
-		var action = Model.TFAPassword
-			? "TFAPasswordDisable"
-			: "TFAPasswordEnable";
-
-		<small>
-			<a class="pull-left text-left"
-					href="@Url.Action(action, "Settings")">
-				@Html.Raw(Context.Translate(action).Replace("\n", "<br />"))
-			</a>
-		</small>
+		@Html.ActionLink(
+			Context.Translate("LostTFA"),
+			"AskRemoveTFA", null, null,
+			new { @class = "btn btn-sm btn-info pull-left" }
+		)
 	}
 
 	<button type="submit"
-			class="btn btn-success tab-submit">
-		@Context.Translate(button)
+			class="btn btn-sm btn-@(Model.IsActive ? "warning" : "success") tab-submit">
+		@Context.Translate(Model.IsActive ? "TFARemove" : "Save")
 	</button>
 }

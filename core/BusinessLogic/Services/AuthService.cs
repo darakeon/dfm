@@ -224,16 +224,17 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
-		public void RemoveTFA(String currentPassword)
+		public void RemoveTFA(TFACheck info)
 		{
 			var user = GetCurrent();
 
 			valids.User.CheckUserDeletion(user);
 			parent.Law.CheckContractAccepted(user);
 
-			valids.User.CheckPassword(user, currentPassword);
+			valids.User.CheckPassword(user, info.Password);
 
 			valids.User.CheckTFAConfigured(user);
+			valids.User.CheckTFA(user, info.Code);
 
 			inTransaction(
 				"RemoveTFA",

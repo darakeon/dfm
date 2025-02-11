@@ -85,9 +85,12 @@ Scenario: An07. Not remove if not signed last contract
 
 Scenario: An08. Ask remove with no TFA
 	Given I have this two-factor data
+			| Code        | Password  |
+			| {generated} | pass_word |
+		And I remove two-factor
+		But I have this two-factor data
 			| Password  |
 			| pass_word |
-		But I remove two-factor
 	When I ask to remove two-factor
 	Then I will receive this core error: TFANotConfigured
 		And the two-factor will be empty
