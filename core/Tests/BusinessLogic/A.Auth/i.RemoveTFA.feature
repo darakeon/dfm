@@ -44,7 +44,31 @@ Scenario: Ai04. With null password
 	Then I will receive this core error: WrongPassword
 		And the two-factor will be [123]
 
-Scenario: Ai05. Not remove if user is marked for deletion
+Scenario: Ai05. With wrong code
+	Given I have this two-factor data
+			| Code   | Password  |
+			| 150124 | pass_word |
+	When I try to remove two-factor
+	Then I will receive this core error: TFAWrongCode
+		And the two-factor will be [123]
+
+Scenario: Ai06. With empty code
+	Given I have this two-factor data
+			| Code | Password  |
+			|      | pass_word |
+	When I try to remove two-factor
+	Then I will receive this core error: TFAWrongCode
+		And the two-factor will be [123]
+
+Scenario: Ai07. With null code
+	Given I have this two-factor data
+			| Code   | Password  |
+			| {null} | pass_word |
+	When I try to remove two-factor
+	Then I will receive this core error: TFAWrongCode
+		And the two-factor will be [123]
+
+Scenario: Ai08. Not remove if user is marked for deletion
 	Given I have this two-factor data
 			| Code        | Password |
 			| {generated} | password |
@@ -52,7 +76,7 @@ Scenario: Ai05. Not remove if user is marked for deletion
 	When I try to remove two-factor
 	Then I will receive this core error: UserDeleted
 
-Scenario: Ai06. Not remove if user requested wipe
+Scenario: Ai09. Not remove if user requested wipe
 	Given I have this two-factor data
 			| Code        | Password |
 			| {generated} | password |
@@ -60,7 +84,7 @@ Scenario: Ai06. Not remove if user requested wipe
 	When I try to remove two-factor
 	Then I will receive this core error: UserAskedWipe
 
-Scenario: Ai07. Not remove if not signed last contract
+Scenario: Ai10. Not remove if not signed last contract
 	Given I have this two-factor data
 			| Code        | Password  |
 			| {generated} | pass_word |
@@ -68,7 +92,7 @@ Scenario: Ai07. Not remove if not signed last contract
 	When I try to remove two-factor
 	Then I will receive this core error: NotSignedLastContract
 
-Scenario: Ai08. Remove if not configured
+Scenario: Ai11. Remove if not configured
 	Given I have this two-factor data
 			| Code        | Password  |
 			| {generated} | pass_word |
@@ -77,7 +101,7 @@ Scenario: Ai08. Remove if not configured
 	Then I will receive this core error: TFANotConfigured
 		And the two-factor will be empty
 
-Scenario: Ai09. Remove if set as password
+Scenario: Ai12. Remove if set as password
 	Given I have this two-factor data
 			| Code        | Password  |
 			| {generated} | pass_word |

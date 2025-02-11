@@ -33,11 +33,11 @@ namespace DFM.MVC.Models
 			try
 			{
 				if (IsActive)
-					auth.RemoveTFA(TFA.Password);
+					auth.RemoveTFA(TFA);
 				else
 					auth.UpdateTFA(TFA);
 
-				errorAlert.Add("TFAAuthenticated");
+				errorAlert.Add(IsActive ? "TFAUnset" : "TFASet");
 			}
 			catch (CoreError e)
 			{

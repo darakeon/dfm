@@ -1347,10 +1347,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void GivenIHaveThisTwoFactorData(Table table)
 		{
 			tfa = table.CreateInstance<TFAInfo>();
+			var secret = tfa.Secret
+			    ?? repos.User.GetByEmail(userEmail).TFASecret;
 
 			if (tfa.Code == "{generated}")
 			{
-				tfa.Code = CodeGenerator.Generate(tfa.Secret);
+				tfa.Code = CodeGenerator.Generate(secret);
 			}
 
 			if (tfa.Password == "{null}")
@@ -1388,7 +1390,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Auth.RemoveTFA(tfa.Password);
+				service.Auth.RemoveTFA(tfa);
 			}
 			catch (CoreError e)
 			{
