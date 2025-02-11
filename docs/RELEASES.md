@@ -14,7 +14,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐑: at least one little change, as a change at an existing feature (increases third number)
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="14.1.4.0"></a>14.1.4.0 :🐑: <sup>`12`</sup>
+## <a name="14.1.4.0"></a>14.1.4.0 :🐑: <sup>`13`</sup>
 - [x] `250204>250204` Add email images to maintenance site
 - [x] `250131>250202` Add schedule to merge dependabot prs everyday
 - [x] `250202>250202` Check dependabot configuration to avoid duplications
@@ -24,6 +24,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Disable account with too much MFA retries
 - [ ] Add MFA to change email
 - [ ] Add MFA to change password
+- [ ] Add MFA to remove TFA as password
 - [x] `250209>250211` Add MFA to disable MFA
 - [x] `250202>250208` Allow disable MFA by sending link to email in the MFA require screen, asking for password
 - [x] `250126>250129` Create measure of recovering after lost authy
