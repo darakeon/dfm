@@ -806,7 +806,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Auth.UseTFAAsPassword(use);
+				service.Auth.UseTFAAsPassword(use, tfa);
 			}
 			catch (CoreError e)
 			{
@@ -1362,7 +1362,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"I set to (not )?use TFA as password")]
 		public void GivenISetToUseTFAAsPassword(Boolean use)
 		{
-			service.Auth.UseTFAAsPassword(use);
+			service.Auth.UseTFAAsPassword(use, tfa);
 		}
 
 		[Given(@"I set two-factor")]

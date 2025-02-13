@@ -72,7 +72,7 @@ describe('Settings', () => {
 		await page.click('#settings_tfa', { visible: true })
 
 		const header = await puppy.content('.panel .header')
-		await expect(header).toContain('Login mais seguro')
+		await expect(header).toContain('Login mais Seguro')
 
 		await puppy.submit(`/Settings/TFA`)
 
