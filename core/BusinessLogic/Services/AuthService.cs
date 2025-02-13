@@ -284,7 +284,7 @@ namespace DFM.BusinessLogic.Services
 			return ticket.Type == type;
 		}
 
-		public void UseTFAAsPassword(Boolean use)
+		public void UseTFAAsPassword(Boolean use, TFACheck info)
 		{
 			inTransaction("UseTFAAsPassword", () =>
 			{
@@ -294,6 +294,9 @@ namespace DFM.BusinessLogic.Services
 				parent.Law.CheckContractAccepted(user);
 
 				valids.User.CheckTFAConfigured(user);
+
+				valids.User.CheckPassword(user, info.Password);
+				valids.User.CheckTFA(user, info.Code);
 
 				repos.User.UseTFAAsPassword(user, use);
 			});

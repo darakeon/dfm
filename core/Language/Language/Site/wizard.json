@@ -440,7 +440,7 @@
 		"Wizard_SettingsPassword": [
 			"To change your password you need to remember the current one.",
 			"In case you don't, click at Log off, go to login screen and click at 'Forgot my password'.",
-			"Let's go to Settings > Safer login",
+			"Let's go to Settings > Safer Login",
 			null
 		],
 		"Wizard_SettingsTFA": [
@@ -977,7 +977,7 @@
 		"Wizard_SettingsPassword": [
 			"Para trocar sua senha por este formulário, é necessário lembrar a senha atual.",
 			"Caso não se lembre, clique no botão de Sair, vá a tela de login e clique em 'Esqueci minha senha'.",
-			"Vamos em Configurações > Login mais seguro",
+			"Vamos em Configurações > Login mais Seguro",
 			null
 		],
 		"Wizard_SettingsTFA": [
