@@ -1,0 +1,13 @@
+﻿@model SettingsTFAModel
+
+<div class="text-center">
+	<span id="qrcode" data-url="@Model.UrlPath">
+	</span>
+
+	@Html.HiddenFor(m => m.TFA.Secret)
+
+	<br/>
+	@await Html.PartialAsync("TFAWhy")
+</div>
+
+@await Html.PartialAsync("TFAForm")
