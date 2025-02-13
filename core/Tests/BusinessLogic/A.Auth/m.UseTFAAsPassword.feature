@@ -77,6 +77,7 @@ Scenario: Am07. Activate if not signed last contract
 		But there is a new contract
 	When I set to use TFA as password
 	Then I will receive this core error: NotSignedLastContract
+		And the TFA can not be used as password
 
 Scenario: Am08. Deactivate if not signed last contract
 	Given I set to use TFA as password
@@ -86,6 +87,7 @@ Scenario: Am08. Deactivate if not signed last contract
 		But there is a new contract
 	When I set to not use TFA as password
 	Then I will receive this core error: NotSignedLastContract
+		And the TFA can be used as password
 
 Scenario: Am09. Activate TFA as password with no TFA
 	Given I have this two-factor data
