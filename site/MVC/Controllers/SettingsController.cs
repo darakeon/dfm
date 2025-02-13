@@ -97,22 +97,6 @@ namespace DFM.MVC.Controllers
 			return RedirectToAction();
 		}
 
-		[Auth, HttpGetAndHead, Wizard.Avoid]
-		public IActionResult TFAPasswordEnable()
-		{
-			var model = new SettingsTFAPasswordModel();
-			model.UseAsPassword(true);
-			return RedirectToAction("TFA");
-		}
-
-		[Auth, HttpGetAndHead, Wizard.Avoid]
-		public IActionResult TFAPasswordDisable()
-		{
-			var model = new SettingsTFAPasswordModel();
-			model.UseAsPassword(false);
-			return RedirectToAction("TFA");
-		}
-
 		[HttpPost, ValidateAntiForgeryToken, Wizard.Avoid]
 		public IActionResult ChangeLanguageOffline(SettingsIndexModel model)
 		{

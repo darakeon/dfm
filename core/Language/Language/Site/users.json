@@ -9,7 +9,6 @@
 		"EmailSentIfUserExists": "If the user exists, you will receive an e-mail with instructions.",
 		"FollowEmailInstructions": "Follow the instructions in the e-mail sent.",
 		"PayAttentionSender": "Pay attention to the sender address: it MUST be ",
-		"TFA": "Safer Login",
 
 		"ContractAccept": "I understood and agree with the {0}",
 		"ContractBeginDate": "Effective Date",
@@ -37,7 +36,6 @@
 		"EmailSentIfUserExists": "Se existir este e-mail no sistema, você receberá por e-mail as instruções para prosseguir.",
 		"FollowEmailInstructions": "Siga as instruções no e-mail enviado.",
 		"PayAttentionSender": "Atenção para remetente de e-mail: PRECISA ser ",
-		"TFA": "Login mais Seguro",
 
 		"ContractAccept": "Entendi e concordo com os {0}",
 		"ContractBeginDate": "Início de Vigência",
