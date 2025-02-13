@@ -1,5 +1,6 @@
 const db = require('./db')
 const puppy = require('./puppy')
+const tfa = require('./tfa')
 const { rand } = require('./utils')
 
 
@@ -74,10 +75,61 @@ describe('Settings', () => {
 		const header = await puppy.content('.panel .header')
 		await expect(header).toContain('Login mais Seguro')
 
+		const qrCodeUrl = await puppy.property('#qrcode', e => e.getAttribute('data-url'))
+		expect(qrCodeUrl).toMatch(/otpauth:/)
+
 		await puppy.submit(`/Settings/TFA`)
 
 		const message = await puppy.content('.alert')
 		await expect(message).toContain('Código inválido')
+	})
+
+	test('TFA - Remove using code', async () => {
+		const secret = 'answer to the life universe and everything'
+		await db.setSecret(user, secret)
+		await db.validateLastTFA(user)
+
+		await puppy.call('Settings/TFA')
+		await puppy.waitFor('#body form')
+		await expect(page.title()).resolves.toMatch('DfM - Login mais Seguro')
+
+		await page.click('#UseTFA')
+
+		await page.type('#TFA_Password', db.password)
+		await page.type('#TFA_Code', tfa.code(secret))
+		await page.click('#body form button[type="submit"]')
+
+		const successMessage = await puppy.content('.alert')
+		expect(successMessage).toContain(
+			`Configuração de Login mais Seguro alterada com sucesso!`
+		)
+
+		const qrCodeUrl = await puppy.property('#qrcode', e => e.getAttribute('data-url'))
+		expect(qrCodeUrl).toMatch(/otpauth:/)
+	})
+
+	test('TFA - Use as password', async () => {
+		const secret = 'answer to the life universe and everything'
+		await db.setSecret(user, secret)
+		await db.validateLastTFA(user)
+
+		await puppy.call('Settings/TFA')
+		await puppy.waitFor('#body form')
+		await expect(page.title()).resolves.toMatch('DfM - Login mais Seguro')
+
+		await page.click('#UseTFAPassword')
+
+		await page.type('#TFA_Password', db.password)
+		await page.type('#TFA_Code', tfa.code(secret))
+		await page.click('#body form button[type="submit"]')
+
+		const successMessage = await puppy.content('.alert')
+		expect(successMessage).toContain(
+			`Configuração de Login mais Seguro alterada com sucesso!`
+		)
+
+		const useTFA = await puppy.property('#UseTFAPassword', n => n.checked)
+		expect(useTFA).toBe(true)
 	})
 
 	test('Misc', async () => {

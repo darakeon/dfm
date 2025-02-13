@@ -1,0 +1,9 @@
+﻿@model SettingsTFAModel
+
+<small class="@Model.HL["Why"]">
+	<a href="#" role='button' data-toggle='modal' data-target='#tfa-modal'>
+		@Context.Translate("TFAWhy")
+	</a>
+</small>
+
+@await Html.PartialAsync("Modals/TFA")

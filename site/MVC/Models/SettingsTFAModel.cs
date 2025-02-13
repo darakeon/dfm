@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
+using DFM.MVC.Helpers.Views;
 using Keon.TwoFactorAuth;
 
 namespace DFM.MVC.Models
@@ -16,15 +17,19 @@ namespace DFM.MVC.Models
 			};
 
 			IsActive = current.HasTFA;
+
+			UseTFA = current.HasTFA;
+			UseTFAPassword = current.TFAPassword;
 		}
 
+		public Boolean UseTFA { get; set; }
+		public Boolean UseTFAPassword { get; set; }
 		public TFAInfo TFA { get; set; }
 
 		private String identifier => current.Email;
 		private String key => Base32.Convert(TFA.Secret);
 		public String UrlPath => $"otpauth://totp/DfM:{identifier}?secret={key}";
 		public Boolean IsActive { get; set; }
-		public Boolean TFAPassword => current.TFAPassword;
 
 		public IList<String> Save()
 		{
@@ -32,12 +37,16 @@ namespace DFM.MVC.Models
 
 			try
 			{
-				if (IsActive)
-					auth.RemoveTFA(TFA);
-				else
+				if (!IsActive)
 					auth.UpdateTFA(TFA);
 
-				errorAlert.Add(IsActive ? "TFAUnset" : "TFASet");
+				else if (!UseTFA)
+					auth.RemoveTFA(TFA);
+				
+				else
+					auth.UseTFAAsPassword(UseTFAPassword, TFA);
+
+				errorAlert.Add("TFASuccess");
 			}
 			catch (CoreError e)
 			{
@@ -48,5 +57,7 @@ namespace DFM.MVC.Models
 		}
 
 		public String BackTo { get; set; }
+
+		public WizardHL HL;
 	}
 }

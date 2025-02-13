@@ -450,6 +450,16 @@
 			"We may proceed to Settings > Colors",
 			null
 		],
+		"Wizard_SettingsTFAConfigured": [
+			"This page is about adding one more security layer to protect your login at the system.",
+			"Seems like you configured it! Congrats!",
+			"Now this page is only here if you want to disable the option...",
+			"... or maybe use it replacing the password on System login.",
+			"To make changes fill the current code and password.",
+			"If you don't have the code anymore click here.",
+			"Now we may proceed to Settings > Colors",
+			null
+		],
 		"Wizard_SettingsTheme": [
 			"The website and mobile app colors can be changed.",
 			"There are four main colors...",
@@ -985,6 +995,16 @@
 			"Você precisa ter um aplicativo específico para isso em um celular ou tablet para usar essa opção.",
 			"Clique em 'Por que usar?' abaixo da imagem para ler mais sobre.",
 			"Podemos seguir para Configurações > Cores",
+			null
+		],
+		"Wizard_SettingsTFAConfigured": [
+			"Esta página serve para adicionar uma camada a mais de segurança ao seu cadastro no sistema.",
+			"Parece que você já configurou certinho! Parabéns!",
+			"Agora esta página continua aqui caso queira desabilitar...",
+			"... ou usar o código no lugar da senha ao entrar no Sistema.",
+			"Para fazer alterações, preencha o código e a senha atuais.",
+			"Se não tiver mais o código, clique aqui.",
+			"Agora podemos seguir para Configurações > Cores",
 			null
 		],
 		"Wizard_SettingsTheme": [
