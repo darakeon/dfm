@@ -407,14 +407,11 @@ async function getLastUnsubscribeMoveMailToken(user) {
 	return result[0]["Token"]
 }
 
-async function setSecret(email, secret) {
-	const { username, domain } = splitEmail(email)
-
+async function setSecret(user, secret) {
 	return await execute(
 		`update user
 			set tfaSecret='${secret}'
-			where username = '${username}'
-				and domain = '${domain}'`
+			where ID = ${user.ID}`
 	)
 }
 
@@ -472,6 +469,23 @@ async function createWipe(email) {
 	)
 
 	return s3;
+}
+
+async function validateLastTFA(user) {
+	const result = await execute(
+		`select ID
+			from ticket
+			where user_id = '${user.ID}'
+			order by ID desc`
+	)
+
+	const id = result[0]["ID"]
+
+	await execute(
+		`update ticket
+			set validTFA = 1
+			where id = ${id}`
+	)
 }
 
 
@@ -555,4 +569,5 @@ module.exports = {
 	getTipPermanent,
 	deleteWipe,
 	createWipe,
+	validateLastTFA,
 }
