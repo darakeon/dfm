@@ -313,6 +313,37 @@ describe('Users', () => {
 		)
 	})
 
+	test('TFA - Use as password', async () => {
+		const email = `tfa${rand()}@dontflymoney.com`
+		const user = await puppy.logon(email)
+
+		const secret = 'answer to the life universe and everything'
+		await db.setSecret(email, secret)
+
+		await puppy.call('Accounts')
+		await puppy.waitFor('#body form')
+		await expect(page.title()).resolves.toMatch('DfM - Login mais seguro')
+
+		await page.type('#Code', tfa.code(secret))
+		await page.click('#body form button[type="submit"]')
+
+		await puppy.waitFor('#body')
+		await expect(page.title()).resolves.toMatch('DfM - Contas')
+
+		await puppy.call('Settings/TFAPassword')
+		await puppy.waitFor('#body form')
+		await expect(page.title()).resolves.toMatch('DfM - Login mais seguro como senha')
+
+		await page.type('#Password', db.password)
+		await page.type('#Code', tfa.code(secret))
+		await page.click('#body form button[type="submit"]')
+
+		const successMessage = await puppy.content('.alert')
+		expect(successMessage).toContain(
+			`Atualizado! Agora é possível usar o código de login mais seguro no lugar da senha!`
+		)
+	})
+
 	test('Send Wiped Data', async () => {
 		email = 'deleted@dontflymoney.com'
 		await db.deleteWipe(email)
