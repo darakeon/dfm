@@ -255,7 +255,7 @@ describe('Users', () => {
 		await expect(page.title()).resolves.toMatch('DfM - Contas')
 	})
 
-	test('TFA - Remove', async () => {
+	test('TFA - Remove by Email', async () => {
 		const email = `tfa${rand()}@dontflymoney.com`
 		const user = await puppy.logon(email)
 
@@ -270,7 +270,7 @@ describe('Users', () => {
 		await puppy.waitFor('#body form')
 		await expect(page.title()).resolves.toMatch('DfM - Remover Login mais Seguro')
 		
-		await page.type('#Password', 'pass_word')
+		await page.type('#Password', db.password)
 		await page.click('#body form button[type="submit"]')
 
 		await puppy.waitFor('#body')
@@ -279,6 +279,37 @@ describe('Users', () => {
 		const successMessage = await puppy.content('.alert')
 		expect(successMessage).toContain(
 			`Você receberá por e-mail as instruções para prosseguir com a remoção do Login mais Seguro`
+		)
+	})
+
+	test('TFA - Remove using code', async () => {
+		const email = `tfa${rand()}@dontflymoney.com`
+		const user = await puppy.logon(email)
+
+		const secret = 'answer to the life universe and everything'
+		await db.setSecret(email, secret)
+
+		await puppy.call('Accounts')
+		await puppy.waitFor('#body form')
+		await expect(page.title()).resolves.toMatch('DfM - Login mais seguro')
+
+		await page.type('#Code', tfa.code(secret))
+		await page.click('#body form button[type="submit"]')
+
+		await puppy.waitFor('#body')
+		await expect(page.title()).resolves.toMatch('DfM - Contas')
+
+		await puppy.call('Settings/TFA')
+		await puppy.waitFor('#body form')
+		await expect(page.title()).resolves.toMatch('DfM - Remover Login mais Seguro')
+
+		await page.type('#Password', db.password)
+		await page.type('#Code', tfa.code(secret))
+		await page.click('#body form button[type="submit"]')
+
+		const successMessage = await puppy.content('.alert')
+		expect(successMessage).toContain(
+			`Login mais seguro removido.`
 		)
 	})
 
