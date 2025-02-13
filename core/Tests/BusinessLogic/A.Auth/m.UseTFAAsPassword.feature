@@ -30,32 +30,32 @@ Scenario: Am02. Deactivate TFA as password
 		And the TFA can not be used as password
 		And the TFA will be asked
 
-Scenario: Am03. Not activate if user is marked for deletion
+Scenario: Am03. Activate if user is marked for deletion
 	Given the user is marked for deletion
 	When I set to use TFA as password
 	Then I will receive this core error: UserDeleted
 
-Scenario: Am04. Not deactivate if user is marked for deletion
+Scenario: Am04. Deactivate if user is marked for deletion
 	Given the user is marked for deletion
 	When I set to not use TFA as password
 	Then I will receive this core error: UserDeleted
 
-Scenario: Am05. Not activate if user requested wipe
+Scenario: Am05. Activate if user requested wipe
 	Given the user asked data wipe
 	When I set to use TFA as password
 	Then I will receive this core error: UserAskedWipe
 
-Scenario: Am06. Not deactivate if user requested wipe
+Scenario: Am06. Deactivate if user requested wipe
 	Given the user asked data wipe
 	When I set to not use TFA as password
 	Then I will receive this core error: UserAskedWipe
 
-Scenario: Am07. Not activate if not signed last contract
+Scenario: Am07. Activate if not signed last contract
 	Given there is a new contract
 	When I set to use TFA as password
 	Then I will receive this core error: NotSignedLastContract
 
-Scenario: Am08. Not deactivate if not signed last contract
+Scenario: Am08. Deactivate if not signed last contract
 	Given there is a new contract
 	When I set to not use TFA as password
 	Then I will receive this core error: NotSignedLastContract
