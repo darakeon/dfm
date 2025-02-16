@@ -301,7 +301,7 @@ describe('Users', () => {
 
 		await puppy.call('Settings/TFA')
 		await puppy.waitFor('#body form')
-		await expect(page.title()).resolves.toMatch('DfM - Remover Login mais Seguro')
+		await expect(page.title()).resolves.toMatch('DfM - Login mais Seguro')
 
 		await page.type('#Password', db.password)
 		await page.type('#Code', tfa.code(secret))
