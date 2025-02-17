@@ -303,8 +303,8 @@ describe('Users', () => {
 		await puppy.waitFor('#body form')
 		await expect(page.title()).resolves.toMatch('DfM - Login mais Seguro')
 
-		await page.type('#Password', db.password)
-		await page.type('#Code', tfa.code(secret))
+		await page.type('#TFA_Password', db.password)
+		await page.type('#TFA_Code', tfa.code(secret))
 		await page.click('#body form button[type="submit"]')
 
 		const successMessage = await puppy.content('.alert')
