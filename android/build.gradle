@@ -10,7 +10,7 @@ buildscript {
 	ext.java_version = JavaVersion.VERSION_1_8
 	ext.java_compat = JavaVersion.VERSION_1_8
 	ext.kotlin_version = '2.1.10'
-	ext.gradle_version = '8.8.0'
+	ext.gradle_version = '8.8.1'
 	ext.play_version = '17.0.0'
 	ext.retrofit_version = '2.11.0'
 	ext.mockito_version = '5.15.2'
@@ -34,7 +34,7 @@ buildscript {
 }
 
 plugins {
-	id "org.owasp.dependencycheck" version "12.0.2"
+	id "org.owasp.dependencycheck" version "12.1.0"
 }
 
 dependencyCheck  {
