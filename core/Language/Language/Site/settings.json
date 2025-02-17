@@ -47,8 +47,8 @@
 		"TFARemove": "Remove safer login",
 		"TFAPasswordEnable": "Use safer login code as password",
 		"TFAPasswordDisable": "Stop using safer login code as password",
-		"TFASet": "Safer login set!",
-		"TFAUnset": "Safer login removed.",
+		"TFASet": "Safer Login set!",
+		"TFAUnset": "Safer Login removed.",
 
 		"Wipe_Title": "Watch out, there is no way back!",
 		"Wipe_What": "Here you can ask the removal of your data from the system.",
@@ -115,8 +115,8 @@
 		"TFARemove": "Remover login mais seguro",
 		"TFAPasswordEnable": "Usar o código de login mais seguro como senha",
 		"TFAPasswordDisable": "Deixar de usar o código de login mais seguro como senha",
-		"TFASet": "Login mais seguro configurado!",
-		"TFAUnset": "Login mais seguro removido.",
+		"TFASet": "Login mais Seguro configurado!",
+		"TFAUnset": "Login mais Seguro removido.",
 
 		"Wipe_Title": "Cuidado, esse passo não tem volta!",
 		"Wipe_What": "Aqui você pode pedir a remoção de seus dados do sistema.",

@@ -246,7 +246,7 @@ describe('Users', () => {
 
 		await puppy.call('Accounts')
 		await puppy.waitFor('#body form')
-		await expect(page.title()).resolves.toMatch('DfM - Login mais seguro')
+		await expect(page.title()).resolves.toMatch('DfM - Login mais Seguro')
 
 		await page.type('#Code', tfa.code(secret))
 		await page.click('#body form button[type="submit"]')
@@ -264,7 +264,7 @@ describe('Users', () => {
 
 		await puppy.call('Accounts')
 		await puppy.waitFor('#body form')
-		await expect(page.title()).resolves.toMatch('DfM - Login mais seguro')
+		await expect(page.title()).resolves.toMatch('DfM - Login mais Seguro')
 
 		await page.click('#body form a.btn-warning')
 		await puppy.waitFor('#body form')
@@ -309,7 +309,7 @@ describe('Users', () => {
 
 		const successMessage = await puppy.content('.alert')
 		expect(successMessage).toContain(
-			`Login mais seguro removido.`
+			`Login mais Seguro removido.`
 		)
 	})
 
@@ -333,7 +333,7 @@ describe('Users', () => {
 
 		await puppy.call('Settings/TFAPassword')
 		await puppy.waitFor('#body form')
-		await expect(page.title()).resolves.toMatch('DfM - Login mais seguro como senha')
+		await expect(page.title()).resolves.toMatch('DfM - Login mais Seguro como senha')
 
 		await page.type('#Password', db.password)
 		await page.type('#Code', tfa.code(secret))
