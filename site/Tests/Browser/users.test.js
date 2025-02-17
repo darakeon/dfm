@@ -291,7 +291,7 @@ describe('Users', () => {
 
 		await puppy.call('Accounts')
 		await puppy.waitFor('#body form')
-		await expect(page.title()).resolves.toMatch('DfM - Login mais seguro')
+		await expect(page.title()).resolves.toMatch('DfM - Login mais Seguro')
 
 		await page.type('#Code', tfa.code(secret))
 		await page.click('#body form button[type="submit"]')
