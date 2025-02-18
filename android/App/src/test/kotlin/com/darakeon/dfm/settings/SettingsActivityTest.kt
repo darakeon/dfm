@@ -169,7 +169,10 @@ class SettingsActivityTest: BaseTest() {
 
 		val saved = Bundle()
 		saved.putJson("settings", Settings())
-		activity.intent.putExtra("__parent", WelcomeActivity::class.java)
+		activity.intent.putExtra(
+			"__parent",
+			WelcomeActivity::class.java.canonicalName
+		)
 
 		activity.onCreate(saved, null)
 
