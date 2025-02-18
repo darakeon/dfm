@@ -48,6 +48,10 @@ android {
 
 	namespace 'com.darakeon.dfm.lib'
 
+	buildFeatures {
+		buildConfig true
+	}
+
 }
 
 dependencies {
