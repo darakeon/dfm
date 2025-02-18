@@ -192,7 +192,10 @@ class TermsActivityTest: BaseTest() {
 
 		val saved = Bundle()
 		saved.putJson("terms", Terms())
-		activity.intent.putExtra("__parent", WelcomeActivity::class.java)
+		activity.intent.putExtra(
+			"__parent",
+			WelcomeActivity::class.java.canonicalName
+		)
 
 		activity.onCreate(saved, null)
 

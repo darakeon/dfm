@@ -18,7 +18,12 @@ fun Activity.backWithExtras() {
 	val extras = intent.extras ?:
 		throw NavException("no extras")
 
-	val parent = extras.get("__parent") as Class<*>
+	val parentName = extras.getString("__parent")
+	val parent = if (parentName == null)
+		null
+	else
+		Class.forName(parentName)
+
 	extras.remove("__parent")
 
 	val intent = Intent(this, parent)
@@ -62,7 +67,7 @@ private fun Activity.goToActivityWithBack(newActivity: Class<*>, extras: Bundle?
 		intent.putExtras(extras)
 
 	intent.putExtras(this.intent)
-	intent.putExtra("__parent", javaClass)
+	intent.putExtra("__parent", javaClass.canonicalName)
 
 	startActivity(intent)
 }
