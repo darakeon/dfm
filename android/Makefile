@@ -6,6 +6,7 @@ DKDROID=docker exec -it dkdroid
 GRADLE=docker exec -it dkdroid gradle --no-daemon
 
 start:
+	@echo "start docker machine"
 	@docker run -d --rm \
 		-v ${PWD}/../:/var/dfm \
 		-v ${PROJECTS}/keon/access:/var/keys \
@@ -14,8 +15,10 @@ start:
 		--name dkdroid \
 		darakeon/android \
 		tail -f /dev/null
+	@echo "docker machine started"
 
 stop:
+	@echo "stop docker machine"
 	@docker stop dkdroid || echo "no dkdroid to stop"
 
 sleep:
@@ -25,6 +28,8 @@ bash:
 	@docker exec -it dkdroid bash
 
 apk:
+	@echo "create android installer"
+
 	@${GRADLE} :app:bundleRelease -Phide-test-deps
 
 	@cp App/build/outputs/bundle/release/* \
@@ -32,21 +37,26 @@ apk:
 		|| echo "windows folder not found"
 
 verify:
+	@echo "check android dependencies"
+
 	@${GRADLE} dependencyCheckAnalyze \
 		|| cp -r build/reports \
 			${PROJECT}/android/ \
 			|| echo "windows folder not found"
 
 write-metadata:
+	@echo "update data for check android dependencies"
 	@${GRADLE} build --exclude-task :App:packageRelease --write-verification-metadata sha256 --parallel --build-cache
 
 rewrite-metadata:
+	@echo "recreate data for check android dependencies"
 	@if [ -e gradle/verification-metadata.xml ]; then rm gradle/verification-metadata.xml; fi
 	@make write-metadata
 
 restart: stop sleep start
 
 clean:
+	@echo "clear all dependencies and build results"
 	@sudo rm -rf .gradle
 	@sudo rm -rf .idea
 	@sudo rm -rf build
@@ -63,6 +73,7 @@ clean:
 	fi
 
 ci-keystore:
+	@echo "create fake keys for build installer"
 	@if [ ! -e fake.keystore ]; then \
 		echo "" > fake.keystore; \
 	fi
@@ -71,15 +82,19 @@ ci-keystore:
 	fi
 
 ci-androidDeps:
+	@echo "install dependencies"
 	@${GRADLE} androidDependencies
 
 ci-build:
+	@echo "build project"
 	@${GRADLE} build -x test -x androidDependencies -x packageRelease -x packageDebug
 
 ci-configure:
+	@echo "configure gradle"
 	@${GRADLE} configure
 
 ci: ci-keystore ci-androidDeps ci-build ci-configure
 
 test:
+	@echo "run all project tests"
 	@${GRADLE} test -x build -x androidDependencies -x packageRelease -x packageDebug
