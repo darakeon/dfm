@@ -8,16 +8,16 @@ import com.darakeon.dfm.testutils.execute
 import com.darakeon.dfm.utils.activity.TestBaseActivity
 import com.darakeon.dfm.utils.activity.mockContext
 import com.darakeon.dfm.welcome.WelcomeActivity
+import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.CoreMatchers.containsString
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.any
-import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
+import org.mockito.Mockito.`when`
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
@@ -56,7 +56,7 @@ class NavigationTest: BaseTest() {
 		`when`(intent.extras).thenReturn(extras)
 
 		extras.putString("test", "passed")
-		extras.putSerializable("__parent", WelcomeActivity::class.java)
+		extras.putString("__parent", WelcomeActivity::class.java.canonicalName)
 
 		activity.backWithExtras()
 
@@ -107,7 +107,11 @@ class NavigationTest: BaseTest() {
 		assertThat(calledActivity, `is`("SettingsActivity"))
 
 		val extras = calledIntent?.extras ?: Bundle()
-		assertThat(extras["__parent"]?.toString(), containsString("BaseActivity"))
+
+		assertThat(
+			extras.getString("__parent"),
+			equalTo(activity.javaClass.canonicalName)
+		)
 	}
 
 	@Test
@@ -119,7 +123,11 @@ class NavigationTest: BaseTest() {
 		assertThat(calledActivity, `is`("MovesActivity"))
 
 		val extras = calledIntent?.extras ?: Bundle()
-		assertThat(extras["__parent"]?.toString(), containsString("BaseActivity"))
+
+		assertThat(
+			extras.getString("__parent"),
+			equalTo(activity.javaClass.canonicalName)
+		)
 	}
 
 	@Test
@@ -134,7 +142,15 @@ class NavigationTest: BaseTest() {
 		assertThat(calledActivity, `is`("MovesActivity"))
 
 		val extras = calledIntent?.extras ?: Bundle()
-		assertThat(extras["__parent"]?.toString(), containsString("BaseActivity"))
-		assertThat(extras["test"]?.toString(), `is`("passed"))
+
+		assertThat(
+			extras.getString("__parent"),
+			equalTo(activity.javaClass.canonicalName)
+		)
+
+		assertThat(
+			extras.getString("test"),
+			equalTo("passed")
+		)
 	}
 }
