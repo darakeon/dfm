@@ -43,6 +43,10 @@ android {
 
 	namespace 'com.darakeon.dfm.testutils'
 
+	buildFeatures {
+		buildConfig true
+	}
+
 }
 
 dependencies {
