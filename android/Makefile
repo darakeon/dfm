@@ -10,6 +10,7 @@ start:
 	@docker run -d --rm \
 		-v ${PWD}/../:/var/dfm \
 		-v ${PROJECTS}/keon/access:/var/keys \
+		-v ${PWD}/../outputs/android/gradle:/var/cache/gradle \
 		-w /var/dfm/android \
 		-e NVD_API_KEY=${NVD_API_KEY} \
 		--name dkdroid \
