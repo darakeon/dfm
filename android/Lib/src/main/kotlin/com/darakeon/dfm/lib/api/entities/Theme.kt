@@ -2,7 +2,6 @@ package com.darakeon.dfm.lib.api.entities
 
 import com.darakeon.dfm.lib.R
 
-@Suppress("unused")
 enum class Theme(
 	val code: Int,
 	val style: Int,
