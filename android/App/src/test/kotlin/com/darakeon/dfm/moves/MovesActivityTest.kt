@@ -880,10 +880,6 @@ class MovesActivityTest: BaseTest() {
 		val saved = Bundle()
 		activity.onCreate(saved, null)
 
-		val binding = MovesBinding.bind(
-			shadowOf(activity).contentView
-		)
-
 		val move = activity.getPrivate<Move>("move")
 
 		activity.useSimple(View(activity))

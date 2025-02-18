@@ -1,6 +1,5 @@
 package com.darakeon.dfm.lib.api.entities.status
 
-@Suppress("unused")
 enum class Status(
 	val code: Int,
 ) {

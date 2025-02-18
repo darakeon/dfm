@@ -39,9 +39,9 @@ fun TimeZone.toFormattedHour(): String {
 		else " "
 
 	val hoursFormatted =
-		hours.toString().padStart(2, '0');
+		hours.toString().padStart(2, '0')
 	val onlyMinutesFormatted =
-		onlyMinutes.toString().padStart(2, '0');
+		onlyMinutes.toString().padStart(2, '0')
 
 	return "UTC$sign$hoursFormatted:$onlyMinutesFormatted"
 }
