@@ -8,8 +8,13 @@
       - restore_cache:
           keys:
             - kotlin-{{ checksum "android/android_cache_key" }}
+            - kotlin-owasp
       - run:
           name: check vulnerability
           path: android
-          command: gradle dependencyCheckAnalyze
+          command: gradle dependencyCheckAnalyze --stacktrace --info
+      - save_cache:
+          key: kotlin-owasp
+          paths:
+            - /var/cache/gradle/dependency-check-data/
 
