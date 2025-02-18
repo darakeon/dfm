@@ -56,7 +56,6 @@ class InternetTest: BaseTest() {
 	}
 
 	@Test
-	@Suppress("DEPRECATION")
 	@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 	fun isOfflineBecauseOfNotConnected_below23() {
 		assertThat(Build.VERSION.SDK_INT, `is`(Build.VERSION_CODES.LOLLIPOP))
@@ -87,7 +86,6 @@ class InternetTest: BaseTest() {
 	}
 
 	@Test
-	@Suppress("DEPRECATION")
 	@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 	fun isOfflineBecauseOfNull_below23() {
 		assertThat(Build.VERSION.SDK_INT, `is`(Build.VERSION_CODES.LOLLIPOP))
