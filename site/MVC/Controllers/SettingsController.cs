@@ -82,6 +82,18 @@ namespace DFM.MVC.Controllers
 			return settings(model, "TFA");
 		}
 
+		[Auth, HttpGetAndHead]
+		public IActionResult TFAPassword()
+		{
+			return View(new SettingsTFAPasswordModel());
+		}
+
+		[Auth, HttpPost, ValidateAntiForgeryToken]
+		public IActionResult TFAPassword(SettingsTFAPasswordModel model)
+		{
+			return settings(model, "TFAPassword");
+		}
+
 		private IActionResult settings(SettingsModel model, [AspMvcView] String view)
 		{
 			if (ModelState.IsValid)
@@ -95,22 +107,6 @@ namespace DFM.MVC.Controllers
 				return Redirect(saferBackTo);
 
 			return RedirectToAction();
-		}
-
-		[Auth, HttpGetAndHead, Wizard.Avoid]
-		public IActionResult TFAPasswordEnable()
-		{
-			var model = new SettingsTFAPasswordModel();
-			model.UseAsPassword(true);
-			return RedirectToAction("TFA");
-		}
-
-		[Auth, HttpGetAndHead, Wizard.Avoid]
-		public IActionResult TFAPasswordDisable()
-		{
-			var model = new SettingsTFAPasswordModel();
-			model.UseAsPassword(false);
-			return RedirectToAction("TFA");
 		}
 
 		[HttpPost, ValidateAntiForgeryToken, Wizard.Avoid]
