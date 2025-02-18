@@ -1160,7 +1160,7 @@ class MovesActivityTest: BaseTest() {
 
 		activity.intent.putExtra(
 			"__parent",
-			WelcomeActivity::class.java
+			WelcomeActivity::class.java.canonicalName
 		)
 		activity.intent.putExtra("id", guid)
 
@@ -1179,7 +1179,7 @@ class MovesActivityTest: BaseTest() {
 
 		val shadow = shadowOf(activity)
 		val intent = shadow.peekNextStartedActivity()
-		assertNull(intent.extras?.get("id"))
+		assertFalse(intent.extras!!.containsKey("id"))
 		assertThat(intent.getCalledName(), `is`("WelcomeActivity"))
 	}
 
@@ -1191,7 +1191,7 @@ class MovesActivityTest: BaseTest() {
 		activity.intent.putExtra("id", guid)
 		activity.intent.putExtra(
 			"__parent",
-			WelcomeActivity::class.java
+			WelcomeActivity::class.java.canonicalName
 		)
 
 		activity.onCreate(null, null)

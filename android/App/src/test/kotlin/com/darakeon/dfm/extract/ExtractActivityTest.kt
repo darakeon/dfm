@@ -26,6 +26,7 @@ import com.darakeon.dfm.testutils.robolectric.waitTasks
 import com.darakeon.dfm.utils.activity.getLastDatePicker
 import com.darakeon.dfm.utils.api.ActivityMock
 import com.google.gson.Gson
+import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
@@ -399,8 +400,10 @@ class ExtractActivityTest: BaseTest() {
 		assertThat(intent.getIntExtra("year", 0), `is`(1986))
 		assertThat(intent.getIntExtra("month", 0), `is`(aMonthJava))
 
-		val parent = intent.getSerializableExtra("__parent") as Class<*>
-		assertThat(parent.simpleName, `is`("ExtractActivity"))
+		assertThat(
+			intent.getStringExtra("__parent"),
+			equalTo(ExtractActivity::class.java.canonicalName)
+		)
 	}
 
 	@Test
