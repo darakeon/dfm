@@ -9,9 +9,7 @@ data class MoveCreation(
 
 		other as MoveCreation
 
-		if (move != other.move) return false
-
-		return true
+		return move == other.move
 	}
 
 	override fun hashCode(): Int {
