@@ -833,10 +833,15 @@ jobs:
       - restore_cache:
           keys:
             - kotlin-{{ checksum "android/android_cache_key" }}
+            - kotlin-owasp
       - run:
           name: check vulnerability
           path: android
           command: gradle dependencyCheckAnalyze
+      - save_cache:
+          key: kotlin-owasp
+          paths:
+            - /root/OWASP-Dependency-Check/data/cache
 
   test_android_lib_debug:
     docker:
