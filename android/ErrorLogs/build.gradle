@@ -11,7 +11,7 @@ android {
 		versionName "$dfm_version"
 
 		minSdkVersion 21
-		targetSdkVersion 34
+		targetSdkVersion 35
 	}
 
 	buildTypes {
