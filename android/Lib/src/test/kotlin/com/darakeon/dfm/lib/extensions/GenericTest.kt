@@ -51,7 +51,6 @@ class GenericTest: BaseTest() {
 		assertThat(test.pubChild.pubPet, `is`(27))
 	}
 
-	@Suppress("unused")
 	class TestParentClass(
 		private val child: TestChildClass
 	) {
@@ -59,7 +58,6 @@ class GenericTest: BaseTest() {
 			get() = child
 	}
 
-	@Suppress("unused")
 	class TestChildClass(
 		private var pet: Int
 	) {
