@@ -40,8 +40,7 @@ apk:
 
 verify:
 	@echo "check android dependencies"
-
-	@${GRADLE} dependencyCheckAnalyze \
+	@${GRADLE} dependencyCheckAnalyze --stacktrace --info \
 		|| cp -r build/reports \
 			${PROJECT}/android/ \
 			|| echo "windows folder not found"
