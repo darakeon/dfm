@@ -11,7 +11,6 @@ start:
 		-v ${PWD}/../:/var/dfm \
 		-v ${PROJECTS}/keon/access:/var/keys \
 		-v ${PWD}/../outputs/android/gradle:/var/cache/gradle \
-		-v ${PWD}/../outputs/android/maven:/root/.m2/repository \
 		-w /var/dfm/android \
 		-e NVD_API_KEY=${NVD_API_KEY} \
 		--name dkdroid \
