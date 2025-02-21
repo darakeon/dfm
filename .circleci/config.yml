@@ -835,6 +835,10 @@ jobs:
             - kotlin-{{ checksum "android/android_cache_key" }}
             - kotlin-owasp
       - run:
+          name: download vulnerability cache database
+          path: /var/cache/gradle/dependency-check-data/11.0
+          command: curl -L https://$NVD_CACHE_BUCKET.s3.$NVD_CACHE_REGION.amazonaws.com/$NVD_CACHE_NAME -o odc.mv.db
+      - run:
           name: check vulnerability
           path: android
           command: gradle dependencyCheckAnalyze --stacktrace --info
