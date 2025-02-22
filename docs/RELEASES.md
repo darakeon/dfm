@@ -23,6 +23,9 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Send email warning the MFA was disabled via email
 - [ ] Disable account with too much MFA retries
 - [ ] Add MFA to change email
+Add explanation to remove only with password
+    With browser test
+Improve TFA screen adding tabs
 - [ ] Add MFA to change password
 - [ ] `250213>......` Add MFA to use/remove TFA as password
 - [x] `250209>250211` Add MFA to disable MFA
