@@ -82,18 +82,6 @@ namespace DFM.MVC.Controllers
 			return settings(model, "TFA");
 		}
 
-		[Auth, HttpGetAndHead]
-		public IActionResult TFAPassword()
-		{
-			return View(new SettingsTFAPasswordModel());
-		}
-
-		[Auth, HttpPost, ValidateAntiForgeryToken]
-		public IActionResult TFAPassword(SettingsTFAPasswordModel model)
-		{
-			return settings(model, "TFAPassword");
-		}
-
 		private IActionResult settings(SettingsModel model, [AspMvcView] String view)
 		{
 			if (ModelState.IsValid)
