@@ -84,9 +84,6 @@ describe('Settings', () => {
 	})
 
 	test('TFA - Remove using code', async () => {
-		const email = `tfa${rand()}@dontflymoney.com`
-		await puppy.logon(email)
-
 		const secret = 'answer to the life universe and everything'
 		await db.setSecret(email, secret)
 		await db.validateLastTFA(email)
@@ -111,9 +108,6 @@ describe('Settings', () => {
 	})
 
 	test('TFA - Use as password', async () => {
-		const email = `tfa${rand()}@dontflymoney.com`
-		await puppy.logon(email)
-
 		const secret = 'answer to the life universe and everything'
 		await db.setSecret(email, secret)
 		await db.validateLastTFA(email)

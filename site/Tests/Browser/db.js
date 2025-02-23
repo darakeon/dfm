@@ -478,13 +478,13 @@ async function validateLastTFA(email) {
 	const { username, domain } = splitEmail(email)
 
 	const result = await execute(
-		`select id
+		`select t.id
 			from ticket t
 				inner join user u
 					on user_id = u.id
 			where u.username = '${username}'
 				and u.domain = '${domain}'
-			order by id desc`
+			order by t.id desc`
 	)
 
 	const id = result[0]["id"]
