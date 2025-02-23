@@ -18,10 +18,6 @@
     <ApplicationIcon>Assets/favicon.ico</ApplicationIcon>
   </PropertyGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="dotnet pack &quot;$(ProjectPath)&quot; --no-build --include-source --include-symbols --output &quot;../nuget&quot; -c $(Configuration)" ContinueOnError="WarnAndContinue" />
-  </Target>
-
   <ItemGroup>
     <None Include="..\..\site\MVC\Assets\images\face-pig-on.png">
       <Pack>True</Pack>
