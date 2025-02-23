@@ -74,10 +74,70 @@ describe('Settings', () => {
 		const header = await puppy.content('.panel .header')
 		await expect(header).toContain('Login mais Seguro')
 
+		const qrCode = await puppy.content('#qrcode')
+		expect(qrCode).not.toBeFalsy()
+
 		await puppy.submit(`/Settings/TFA`)
 
 		const message = await puppy.content('.alert')
 		await expect(message).toContain('Código inválido')
+	})
+
+	test('TFA - Remove using code', async () => {
+		const email = `tfa${rand()}@dontflymoney.com`
+		await puppy.logon(email)
+
+		const secret = 'answer to the life universe and everything'
+		await db.setSecret(email, secret)
+		await db.validateLastTFA(email)
+
+		await puppy.call('Settings/TFA')
+		await puppy.waitFor('#body form')
+		await expect(page.title()).resolves.toMatch('DfM - Login mais Seguro')
+
+		await page.click('#UseTFA')
+
+		await page.type('#TFA_Password', db.password)
+		await page.type('#TFA_Code', tfa.code(secret))
+		await page.click('#body form button[type="submit"]')
+
+		const successMessage = await puppy.content('.alert')
+		expect(successMessage).toContain(
+			`Configuração de Login mais Seguro alterada com sucesso!`
+		)
+
+		const qrCode = await puppy.content('#qrcode')
+		expect(qrCode).not.toBeFalsy()
+	})
+
+	test('TFA - Use as password', async () => {
+		const email = `tfa${rand()}@dontflymoney.com`
+		await puppy.logon(email)
+
+		const secret = 'answer to the life universe and everything'
+		await db.setSecret(email, secret)
+		await db.validateLastTFA(email)
+
+		await puppy.call('Settings/TFA')
+		await puppy.waitFor('#body form')
+		await expect(page.title()).resolves.toMatch('DfM - Login mais Seguro')
+
+		await page.click('#UseTFA')
+
+		await page.type('#TFA_Password', db.password)
+		await page.type('#TFA_Code', tfa.code(secret))
+		await page.click('#body form button[type="submit"]')
+
+		const successMessage = await puppy.content('.alert')
+		expect(successMessage).toContain(
+			`Configuração de Login mais Seguro alterada com sucesso!`
+		)
+
+		const qrCode = await puppy.content('#qrcode')
+		expect(qrCode).toBeFalsy()
+
+		const useTFA = await puppy.waitFor('#UseTFA', { checked: true })
+		expect(useTFA).not.toBeFalsy()
 	})
 
 	test('Misc', async () => {

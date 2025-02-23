@@ -474,6 +474,28 @@ async function createWipe(email) {
 	return s3;
 }
 
+async function validateLastTFA(email) {
+	const { username, domain } = splitEmail(email)
+
+	const result = await execute(
+		`select id
+			from ticket t
+				inner join user u
+					on user_id = u.id
+			where u.username = '${username}'
+				and u.domain = '${domain}'
+			order by id desc`
+	)
+
+	const id = result[0]["id"]
+
+	await execute(
+		`update ticket
+			set validTFA = 1
+			where id = ${id}`
+	)
+}
+
 
 async function execute(query, params) {
 	let done = false;
@@ -555,4 +577,5 @@ module.exports = {
 	getTipPermanent,
 	deleteWipe,
 	createWipe,
+	validateLastTFA,
 }
