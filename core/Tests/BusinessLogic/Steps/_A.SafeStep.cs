@@ -907,9 +907,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"(\d+ )?emails? with csv will (not )?be sent( with a link to delete it)?")]
 		public void ThenCSVWill_BeSent(Int32 emailCount, Boolean csvSent, String hasLink)
 		{
-			var inboxPath = Path.Combine(
-				"..", "..", "..", "..", "..", "..", "outputs", "inbox"
-			);
+			var inboxPath = Path.Combine(outputsPath, "inbox");
 			var inbox = new DirectoryInfo(inboxPath);
 
 			var emails = inbox.GetFiles("*.eml")
@@ -1608,9 +1606,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"email with a link to remove two-factor will (not )?be sent")]
 		public void ThenEmailWill_BeSentWithALinkToRemoveTwoFactor(Boolean sent)
 		{
-			var inboxPath = Path.Combine(
-				"..", "..", "..", "..", "..", "..", "outputs", "inbox"
-			);
+			var inboxPath = Path.Combine(outputsPath, "inbox");
 			var inbox = new DirectoryInfo(inboxPath);
 
 			var emails = inbox.GetFiles("*.eml")

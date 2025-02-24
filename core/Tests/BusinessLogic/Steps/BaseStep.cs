@@ -40,6 +40,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 		private static String logFileName;
 
+		protected static String outputsPath = Path.Combine(
+			"..", "..", "..", "..", "..", "outputs"
+		);
+
 		protected static TestService db = new(service, repos, valids);
 
 		protected static void setLogName()
