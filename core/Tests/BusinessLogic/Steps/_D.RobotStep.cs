@@ -921,9 +921,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then("no email will be sent")]
 		public void ThenNoEmailWillBeSent()
 		{
-			var inboxPath = Path.Combine(
-				"..", "..", "..", "..", "..", "..", "outputs", "inbox"
-			);
+			var inboxPath = Path.Combine(outputsPath, "inbox");
 			var inbox = new DirectoryInfo(inboxPath);
 
 			var emails = inbox.GetFiles("*.eml")
