@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
     <AssemblyName>DFM.$(MSBuildProjectName)</AssemblyName>
     <RootNamespace>DFM.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>

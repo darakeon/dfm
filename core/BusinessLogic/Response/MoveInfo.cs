@@ -31,13 +31,13 @@ namespace DFM.BusinessLogic.Response
 
 		public Boolean Checked { get; private set; }
 
-		public String OutUrl { get; set; }
-		public String OutName { get; set; }
-		public String InUrl { get; set; }
-		public String InName { get; set; }
-		public String CategoryName { get; set; }
+		public String? OutUrl { get; set; }
+		public String? OutName { get; set; }
+		public String? InUrl { get; set; }
+		public String? InName { get; set; }
+		public String? CategoryName { get; set; }
 
-		public MoveSchedule Schedule { get; set; }
+		public MoveSchedule? Schedule { get; set; }
 
 		internal void Update(Move move)
 		{

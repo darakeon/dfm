@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>DFM.$(MSBuildProjectName)</AssemblyName>
     <RootNamespace>DFM.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
