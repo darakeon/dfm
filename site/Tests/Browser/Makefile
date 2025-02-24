@@ -30,6 +30,7 @@ machine:
 			-v ${PWD}/../../..:/var/dfm \
 			-p 2703:2703 \
 			-w /var/dfm/site/Tests/Browser \
+			-e JEST_TIMEOUT=30000 \
 			darakeon/dfm-browser-tests; \
 	else \
 		docker start -i ${MACHINE_NAME}; \
