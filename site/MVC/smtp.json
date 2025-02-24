@@ -3,7 +3,7 @@
 
 	"Smtp": {
 		"deliveryMethod": "specifiedPickupDirectory",
-		"pickupDirectoryLocation": "../../outputs/inbox",
+		"pickupDirectoryLocation": "../outputs/inbox",
 		"from": "dfm@dontflymoney.com"
 	}
 }
