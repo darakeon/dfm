@@ -1,4 +1,6 @@
-﻿namespace DFM.Files;
+﻿using System;
+
+namespace DFM.Files;
 
 public interface IFileService
 {

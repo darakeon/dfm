@@ -27,7 +27,7 @@ namespace DFM.MVC.Tests
 			var up = "..";
 			var path = Path.Combine(
 				Directory.GetCurrentDirectory(),
-				up, up, up, up, up,
+				up, up, up, up,
 				"MVC"
 			);
 

@@ -1,4 +1,7 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.CompilerServices;
 using DFM.Generic;
 
 [assembly: InternalsVisibleTo("DFM.BusinessLogic.Tests")]
