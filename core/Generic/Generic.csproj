@@ -2,8 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
     <AssemblyName>DFM.$(MSBuildProjectName)</AssemblyName>
     <RootNamespace>DFM.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <AssemblyVersion>14.1.3.0</AssemblyVersion>
     <FileVersion>$(AssemblyVersion)</FileVersion>
     <Title>DFM $(MSBuildProjectName)</Title>
@@ -13,7 +16,6 @@
     <PackageProjectUrl>https://github.com/darakeon/dfm</PackageProjectUrl>
     <PackageIcon>face-pig-on.png</PackageIcon>
     <RepositoryUrl>https://github.com/darakeon/dfm</RepositoryUrl>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

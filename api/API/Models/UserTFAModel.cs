@@ -6,8 +6,8 @@ namespace DFM.API.Models
 	{
 		public PatchTFAOperation Operation { get; set; } = PatchTFAOperation.Validate;
 
-		public String Code { get; set; }
-		public String Password { get; set; }
+		public String? Code { get; set; }
+		public String? Password { get; set; }
 
 		internal void Execute()
 		{
