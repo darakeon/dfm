@@ -407,14 +407,11 @@ async function getLastUnsubscribeMoveMailToken(user) {
 	return result[0]["Token"]
 }
 
-async function setSecret(email, secret) {
-	const { username, domain } = splitEmail(email)
-
+async function setSecret(user, secret) {
 	return await execute(
 		`update user
 			set tfaSecret='${secret}'
-			where username = '${username}'
-				and domain = '${domain}'`
+			where ID = ${user.ID}`
 	)
 }
 
@@ -474,20 +471,15 @@ async function createWipe(email) {
 	return s3;
 }
 
-async function validateLastTFA(email) {
-	const { username, domain } = splitEmail(email)
-
+async function validateLastTFA(user) {
 	const result = await execute(
-		`select t.id
-			from ticket t
-				inner join user u
-					on user_id = u.id
-			where u.username = '${username}'
-				and u.domain = '${domain}'
-			order by t.id desc`
+		`select ID
+			from ticket
+			where user_id = '${user.ID}'
+			order by ID desc`
 	)
 
-	const id = result[0]["id"]
+	const id = result[0]["ID"]
 
 	await execute(
 		`update ticket

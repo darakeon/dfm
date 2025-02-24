@@ -1,5 +1,6 @@
 const db = require('./db')
 const puppy = require('./puppy')
+const tfa = require('./tfa')
 const { rand } = require('./utils')
 
 
@@ -74,8 +75,8 @@ describe('Settings', () => {
 		const header = await puppy.content('.panel .header')
 		await expect(header).toContain('Login mais Seguro')
 
-		const qrCode = await puppy.content('#qrcode')
-		expect(qrCode).not.toBeFalsy()
+		const qrCodeUrl = await puppy.property('#qrcode', e => e.getAttribute('data-url'))
+		expect(qrCodeUrl).toMatch(/otpauth:/)
 
 		await puppy.submit(`/Settings/TFA`)
 
@@ -85,8 +86,8 @@ describe('Settings', () => {
 
 	test('TFA - Remove using code', async () => {
 		const secret = 'answer to the life universe and everything'
-		await db.setSecret(email, secret)
-		await db.validateLastTFA(email)
+		await db.setSecret(user, secret)
+		await db.validateLastTFA(user)
 
 		await puppy.call('Settings/TFA')
 		await puppy.waitFor('#body form')
@@ -103,20 +104,20 @@ describe('Settings', () => {
 			`Configuração de Login mais Seguro alterada com sucesso!`
 		)
 
-		const qrCode = await puppy.content('#qrcode')
-		expect(qrCode).not.toBeFalsy()
+		const qrCodeUrl = await puppy.property('#qrcode', e => e.getAttribute('data-url'))
+		expect(qrCodeUrl).toMatch(/otpauth:/)
 	})
 
 	test('TFA - Use as password', async () => {
 		const secret = 'answer to the life universe and everything'
-		await db.setSecret(email, secret)
-		await db.validateLastTFA(email)
+		await db.setSecret(user, secret)
+		await db.validateLastTFA(user)
 
 		await puppy.call('Settings/TFA')
 		await puppy.waitFor('#body form')
 		await expect(page.title()).resolves.toMatch('DfM - Login mais Seguro')
 
-		await page.click('#UseTFA')
+		await page.click('#UseTFAPassword')
 
 		await page.type('#TFA_Password', db.password)
 		await page.type('#TFA_Code', tfa.code(secret))
@@ -127,11 +128,8 @@ describe('Settings', () => {
 			`Configuração de Login mais Seguro alterada com sucesso!`
 		)
 
-		const qrCode = await puppy.content('#qrcode')
-		expect(qrCode).toBeFalsy()
-
-		const useTFA = await puppy.waitFor('#UseTFA', { checked: true })
-		expect(useTFA).not.toBeFalsy()
+		const useTFA = await puppy.property('#UseTFAPassword', n => n.checked)
+		expect(useTFA).toBe(true)
 	})
 
 	test('Misc', async () => {

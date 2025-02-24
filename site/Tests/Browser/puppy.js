@@ -47,6 +47,11 @@ async function content(selector, options) {
 	return await page.$eval(selector, n => n.innerHTML)
 }
 
+async function property(selector, prop) {
+	await waitFor(selector)
+	return await page.$eval(selector, prop)
+}
+
 async function waitFor(selector, options) {
 	try {
 		return await page.waitForSelector(selector, options)
@@ -189,6 +194,7 @@ module.exports = {
 	call,
 	callPlain,
 	content,
+	property,
 	clear,
 	setValue,
 	logon,

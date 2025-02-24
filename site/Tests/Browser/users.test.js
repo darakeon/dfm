@@ -242,7 +242,7 @@ describe('Users', () => {
 		const user = await puppy.logon(email)
 
 		const secret = 'answer to the life universe and everything'
-		await db.setSecret(email, secret)
+		await db.setSecret(user, secret)
 
 		await puppy.call('Accounts')
 		await puppy.waitFor('#body form')
@@ -260,7 +260,7 @@ describe('Users', () => {
 		const user = await puppy.logon(email)
 
 		const secret = 'answer to the life universe and everything'
-		await db.setSecret(email, secret)
+		await db.setSecret(user, secret)
 
 		await puppy.call('Accounts')
 		await puppy.waitFor('#body form')
