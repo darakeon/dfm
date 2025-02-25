@@ -55,7 +55,7 @@ internal class UserValidator
 
 	public void CheckTFAConfigured(User user)
 	{
-		if (user.TFASecret == null)
+		if (!user.HasTFA())
 			throw Error.TFANotConfigured.Throw();
 	}
 }
