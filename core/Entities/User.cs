@@ -107,5 +107,10 @@ namespace DFM.Entities
 			return u => u.Username == username
 				&& u.Domain == domain;
 		}
+
+		public virtual Boolean HasTFA()
+		{
+			return !String.IsNullOrEmpty(TFASecret);
+		}
 	}
 }
