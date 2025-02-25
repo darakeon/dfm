@@ -1,6 +1,6 @@
-const db = require('./db')
-const puppy = require('./puppy')
-const { rand } = require('./utils')
+const db = require('../helpers/db')
+const puppy = require('../helpers/puppy')
+const { rand } = require('../helpers/math')
 
 
 describe('Accounts', () => {
