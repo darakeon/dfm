@@ -268,7 +268,7 @@ namespace DFM.BusinessLogic.Services
 
 			valids.User.CheckUserDeletion(ticket.User);
 
-			return String.IsNullOrEmpty(ticket.User.TFASecret)
+			return !ticket.User.HasTFA()
 				|| ticket.ValidTFA;
 		}
 
