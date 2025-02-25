@@ -16,7 +16,7 @@ namespace DFM.BusinessLogic.Response
 			IsRobot = user.Control.IsRobot;
 
 			Email = user.Email;
-			HasTFA = !String.IsNullOrEmpty(user.TFASecret);
+			HasTFA = user.HasTFA();
 			TFAPassword = user.TFAPassword;
 
 			Now = user.Now();
