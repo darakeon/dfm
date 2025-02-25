@@ -12,7 +12,7 @@ Background:
 
 Scenario: Gf01. Password reset with invalid token
 	Given I pass an invalid token
-		And I pass this password
+		And I pass this data to change password
 			| Password     | Retype Password |
 			| new_password | new_password    |
 	When I try to reset the password
@@ -22,7 +22,7 @@ Scenario: Gf01. Password reset with invalid token
 Scenario: Gf02. Password reset with token of user verification
 	Given I have a token for its activation
 		And I pass a valid UserVerification token
-		And I pass this password
+		And I pass this data to change password
 			| Password     | Retype Password |
 			| new_password | new_password    |
 	When I try to reset the password
@@ -38,7 +38,7 @@ Scenario: Gf03. Password reset with no password
 
 Scenario: Gf04. Password reset with info all right
 	Given I pass a valid PasswordReset token
-		And I pass this password
+		And I pass this data to change password
 			| Password     | Retype Password |
 			| new_password | new_password    |
 	When I try to reset the password
@@ -50,7 +50,7 @@ Scenario: Gf04. Password reset with info all right
 Scenario: Gf05. Password reset with token of unsubscribe move mail
 	Given I have a token for its activation
 		And I pass a valid UnsubscribeMoveMail token
-		And I pass this password
+		And I pass this data to change password
 			| Password     | Retype Password |
 			| new_password | new_password    |
 	When I try to reset the password
@@ -59,7 +59,7 @@ Scenario: Gf05. Password reset with token of unsubscribe move mail
 
 Scenario: Gf06. Password reset with token already used
 	Given I pass a valid PasswordReset token
-		And I pass this password
+		And I pass this data to change password
 			| Password     | Retype Password |
 			| new_password | new_password    |
 	When I try to reset the password
@@ -70,7 +70,7 @@ Scenario: Gf06. Password reset with token already used
 
 Scenario: Gf07. Not reset if user is marked for deletion
 	Given I pass a valid PasswordReset token
-		And I pass this password
+		And I pass this data to change password
 			| Password     | Retype Password |
 			| new_password | new_password    |
 		But the user is marked for deletion
@@ -79,7 +79,7 @@ Scenario: Gf07. Not reset if user is marked for deletion
 
 Scenario: Gf08. Not reset if user requested wipe
 	Given I pass a valid PasswordReset token
-		And I pass this password
+		And I pass this data to change password
 			| Password     | Retype Password |
 			| new_password | new_password    |
 		But the user asked data wipe
@@ -88,7 +88,7 @@ Scenario: Gf08. Not reset if user requested wipe
 
 Scenario: Gf09. Password reset with expired token
 	Given I pass a valid PasswordReset token
-		And I pass this password
+		And I pass this data to change password
 			| Password     | Retype Password |
 			| new_password | new_password    |
 		But the token expires
@@ -98,7 +98,7 @@ Scenario: Gf09. Password reset with expired token
 
 Scenario: Gf10. Save user with too short password
 	Given I pass a valid PasswordReset token
-		And I pass this password
+		And I pass this data to change password
 			| Password | Retype Password |
 			| pass     | pass            |
 	When I try to reset the password
@@ -107,7 +107,7 @@ Scenario: Gf10. Save user with too short password
 
 Scenario: Gf11. Save user with too long password
 	Given I pass a valid PasswordReset token
-		And I pass this password
+		And I pass this data to change password
 			| Password                                                                                                                                                                                                                                                                                                                                                                    | Retype Password                                                                                                                                                                                                                                                                                                                                                             |
 			| by_sending_a_very_long_password_like_1000000_characters_it_is_possible_to_cause_a_denial_a_service_attack_on_the_server-this_may_lead_to_the_website_becoming_unavailable_or_unresponsive-usually_this_problem_is_caused_by_a_vulnerable_password_hashing_implementation-when_a_long_password_is_sent_the_password_hashing_process_will_result_in_cpu_and_memory_exhaustion | by_sending_a_very_long_password_like_1000000_characters_it_is_possible_to_cause_a_denial_a_service_attack_on_the_server-this_may_lead_to_the_website_becoming_unavailable_or_unresponsive-usually_this_problem_is_caused_by_a_vulnerable_password_hashing_implementation-when_a_long_password_is_sent_the_password_hashing_process_will_result_in_cpu_and_memory_exhaustion |
 	When I try to reset the password
