@@ -56,7 +56,7 @@ install_proj_deps:
 	@npm install
 
 create_contract: install_proj_deps
-	@node setup.js 2> /dev/null
+	@node helpers/setup.js 2> /dev/null
 
 setup: publish_site run_site _wait create_contract
 

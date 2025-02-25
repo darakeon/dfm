@@ -1,5 +1,5 @@
-const db = require('./db')
-const puppy = require('./puppy')
+const db = require('../helpers/db')
+const puppy = require('../helpers/puppy')
 
 
 describe('Ops', () => {
