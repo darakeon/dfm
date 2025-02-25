@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
 using DFM.BusinessLogic.Tests.Helpers;
@@ -51,6 +52,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 		private String currentPassword
+		{
+			get => get<String>();
+			set => set(value);
+		}
+
+		private String tfaCode
 		{
 			get => get<String>();
 			set => set(value);
@@ -394,14 +401,27 @@ namespace DFM.BusinessLogic.Tests.Steps
 			);
 		}
 
-		[Given(@"I pass this password")]
-		public void GivenIPassThisPassword(Table passwordData)
+		[Given(@"I pass this data to change password")]
+		public void GivenIPassThisPassword(Table table)
 		{
-			newPassword = passwordData.Rows[0]["Password"];
-			retypePassword = passwordData.Rows[0]["Retype Password"];
+			var passwordData = table.Rows[0];
 
-			if (passwordData.Header.Any(c => c == "Current Password"))
-				currentPassword = passwordData.Rows[0]["Current Password"];
+			newPassword = passwordData["Password"];
+			retypePassword = passwordData["Retype Password"];
+
+			currentPassword = passwordData.TryGetValue(
+				"Current Password", currentPassword
+			);
+
+			tfaCode = passwordData.TryGetValue(
+				"TFA Code", tfaCode
+			);
+
+			if (tfaCode == "{generated}")
+			{
+				tfaCode = CodeGenerator.Generate(tfa.Secret);
+			}
+
 		}
 
 		[Given(@"I pass no password")]
@@ -655,7 +675,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 				{
 					CurrentPassword = currentPassword,
 					Password = newPassword,
-					RetypePassword = retypePassword
+					RetypePassword = retypePassword,
+					TFACode = tfaCode,
 				};
 
 				service.Auth.ChangePassword(info);

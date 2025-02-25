@@ -172,6 +172,9 @@ namespace DFM.BusinessLogic.Services
 
 			valids.User.CheckPassword(user, info.CurrentPassword);
 
+			if (user.HasTFA())
+				valids.User.CheckTFA(user, info.TFACode);
+
 			inTransaction("ChangePassword", () =>
 			{
 				user.Password = info.Password;
