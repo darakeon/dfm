@@ -39,6 +39,28 @@ describe('Settings', () => {
 		await expect(message).toContain('A senha não pode ser em branco')
 	})
 
+	test('Password - with TFA', async () => {
+		const secret = 'answer to the life universe and everything'
+		await db.setSecret(user, secret)
+		await db.validateLastTFA(user)
+
+		await puppy.call('')
+		await page.click('#settings')
+		await page.click('#settings_password', { visible: true })
+
+		const header = await puppy.content('.panel .header')
+		await expect(header).toContain('Senha')
+
+		await page.type('#Password_CurrentPassword', db.password)
+		await page.type('#Password_Password', db.password)
+		await page.type('#Password_RetypePassword', db.password)
+		await page.type('#Password_TFACode', tfa.code(secret))
+		await page.click('#body form button[type="submit"]')
+
+		const message = await puppy.content('.alert')
+		await expect(message).toContain('Senha atualizada com sucesso.')
+	})
+
 	test('E-mail', async () => {
 		await puppy.call('')
 		await page.click('#settings')
@@ -68,6 +90,8 @@ describe('Settings', () => {
 	})
 
 	test('TFA', async () => {
+		await db.clearSecret(user)
+
 		await puppy.call('')
 		await page.click('#settings')
 		await page.click('#settings_tfa', { visible: true })
