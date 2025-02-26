@@ -415,6 +415,14 @@ async function setSecret(user, secret) {
 	)
 }
 
+async function clearSecret(user) {
+	return await execute(
+		`update user
+			set tfaSecret=null
+			where ID = ${user.ID}`
+	)
+}
+
 async function getEndDate(url, user) {
 	const result = await execute(
 		`select endDate
@@ -565,6 +573,7 @@ module.exports = {
 	getLastAccess,
 	getLastUnsubscribeMoveMailToken,
 	setSecret,
+	clearSecret,
 	getEndDate,
 	getTipPermanent,
 	deleteWipe,
