@@ -7,9 +7,9 @@ namespace DFM.MVC.Models
 {
 	public class SettingsPasswordModel : BaseSiteModel, SettingsModel
 	{
-		public String CurrentPassword { get; set; }
-
 		public ChangePasswordInfo Password { get; set; }
+
+		public Boolean HasTFA => base.current.HasTFA;
 
 		public IList<String> Save()
 		{
