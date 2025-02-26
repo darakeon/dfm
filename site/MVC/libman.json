@@ -32,7 +32,7 @@
 			]
 		},
 		{
-			"library": "twitter-bootstrap@4.6.2",
+			"library": "bootstrap@4.6.2",
 			"destination": "Assets/libs/bootstrap/",
 			"files": [
 				"js/bootstrap.min.js"
