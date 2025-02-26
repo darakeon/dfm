@@ -59,6 +59,11 @@ describe('Settings', () => {
 
 		const message = await puppy.content('.alert')
 		await expect(message).toContain('Senha atualizada com sucesso.')
+
+		await page.click('#body form a.btn-warning')
+
+		await puppy.waitFor('#body form')
+		await expect(page.title()).resolves.toMatch('DfM - Remover Login mais Seguro')
 	})
 
 	test('E-mail', async () => {
