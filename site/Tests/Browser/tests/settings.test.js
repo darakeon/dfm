@@ -95,6 +95,8 @@ describe('Settings', () => {
 	})
 
 	test('TFA', async () => {
+		await db.clearSecret(user)
+
 		await puppy.call('')
 		await page.click('#settings')
 		await page.click('#settings_tfa', { visible: true })
