@@ -7,9 +7,11 @@ namespace DFM.MVC.Models
 {
 	public class SettingsEmailModel : BaseSiteModel, SettingsModel
 	{
-		public String BackTo { get; set; }
+		public Boolean HasTFA => base.current.HasTFA;
 
 		public UpdateEmailInfo Info { get; set; } = new();
+
+		public String BackTo { get; set; }
 
 		public IList<String> Save()
 		{
@@ -18,7 +20,6 @@ namespace DFM.MVC.Models
 			try
 			{
 				auth.UpdateEmail(Info);
-
 				errorAlert.Add("EmailUpdated");
 			}
 			catch (CoreError e)
