@@ -22,7 +22,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - [ ] Show warning in website about MFA being disabled via email for one week
 - [ ] Send email warning the MFA was disabled via email
 - [ ] Disable account with too much MFA retries
-- [ ] `250228>......` Add MFA to change email
+- [x] `250228>250228` Add MFA to change email
 - [x] `250224>250226` Add MFA to change password
 - [x] `250213>250224` Add MFA to use/remove TFA as password
 - [x] `250209>250211` Add MFA to disable MFA

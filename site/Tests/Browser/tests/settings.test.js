@@ -93,6 +93,45 @@ describe('Settings', () => {
 		await expect(message).toContain('Senha errada para acesso atual')
 	})
 
+	test('E-mail - with TFA', async () => {
+		const secret = 'answer to the life universe and everything'
+		await db.setSecret(user, secret)
+		await db.validateLastTFA(user)
+
+		await puppy.call('')
+		await page.click('#settings')
+		await page.click('#settings_email', { visible: true })
+
+		const header = await puppy.content('.panel .header')
+		await expect(header).toContain('E-mail')
+
+		await page.type('#Info_Email', `new_email_${rand()}@dontflymoney.com`)
+		await page.type('#Info_Password', db.password)
+		await page.type('#Info_TFACode', tfa.code(secret))
+		await page.click('#body form button[type="submit"]')
+
+		const message = await puppy.content('.alert')
+		await expect(message).toContain('E-mail atualizado com sucesso. Será necessária nova ativação no sistema.')
+	})
+
+	test('E-mail - lost TFA', async () => {
+		const secret = 'answer to the life universe and everything'
+		await db.setSecret(user, secret)
+		await db.validateLastTFA(user)
+
+		await puppy.call('')
+		await page.click('#settings')
+		await page.click('#settings_email', { visible: true })
+
+		const header = await puppy.content('.panel .header')
+		await expect(header).toContain('E-mail')
+
+		await page.click('#body form a.btn-warning')
+
+		await puppy.waitFor('#body form')
+		await expect(page.title()).resolves.toMatch('DfM - Remover Login mais Seguro')
+	})
+
 	test('Theme', async () => {
 		await puppy.call('')
 		await page.click('#settings')
