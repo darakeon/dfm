@@ -415,13 +415,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			tfaCode = passwordData.TryGetValue(
 				"TFA Code", tfaCode
-			);
-
-			if (tfaCode == "{generated}")
-			{
-				tfaCode = CodeGenerator.Generate(tfa.Secret);
-			}
-
+			).GenerateTFA(tfa?.Secret);
 		}
 
 		[Given(@"I pass no password")]
@@ -702,10 +696,15 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Given(@"I pass this new e-mail and password")]
 		public void GivenIPassThisNewEmailAndPassword(Table table)
 		{
-			currentPassword = table.Rows[0]["Current Password"];
+			var userData = table.Rows[0];
 
-			newEmail = table.Rows[0]["New E-mail"]
+			currentPassword = userData["Current Password"];
+
+			newEmail = userData["New E-mail"]
 				.ForScenario(scenarioCode);
+
+			tfaCode = userData.TryGetValue("TFA Code", tfaCode)
+				.GenerateTFA(tfa?.Secret);
 		}
 
 		[When(@"I try to change the e-mail")]
@@ -713,7 +712,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Auth.UpdateEmail(currentPassword, newEmail);
+				var info = new UpdateEmailInfo
+				{
+					Email = newEmail,
+					Password = currentPassword,
+					TFACode = tfaCode,
+				};
+
+				service.Auth.UpdateEmail(info);
 			}
 			catch (CoreError e)
 			{
@@ -1369,10 +1375,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var secret = tfa.Secret
 			    ?? repos.User.GetByEmail(userEmail).TFASecret;
 
-			if (tfa.Code == "{generated}")
-			{
-				tfa.Code = CodeGenerator.Generate(secret);
-			}
+			tfa.Code = tfa.Code.GenerateTFA(secret);
 
 			if (tfa.Password == "{null}")
 			{

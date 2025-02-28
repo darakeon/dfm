@@ -59,3 +59,59 @@ Scenario: Ag06. Update E-mail without signing contract
 		But there is a new contract
 	When I try to change the e-mail
 	Then I will receive this core error: NotSignedLastContract
+
+Scenario: Ag07. TFA activated but without code
+	Given I have this two-factor data
+			| Secret | Code        | Password  |
+			| 123    | {generated} | pass_word |
+		And I set two-factor
+		And I validate the ticket two factor
+		And I pass this new e-mail and password
+			| New E-mail                          | Current Password |
+			| new_{scenarioCode}@dontflymoney.com | pass_word        |
+	When I try to change the e-mail
+	Then I will receive this core error: TFAWrongCode
+		And the e-mail will not be changed
+		And the user will be activated
+
+Scenario: Ag08. TFA activated but with empty code
+	Given I have this two-factor data
+			| Secret | Code        | Password  |
+			| 123    | {generated} | pass_word |
+		And I set two-factor
+		And I validate the ticket two factor
+		And I pass this new e-mail and password
+			| New E-mail                          | Current Password | TFA Code |
+			| new_{scenarioCode}@dontflymoney.com | pass_word        |          |
+	When I try to change the e-mail
+	Then I will receive this core error: TFAWrongCode
+		And the e-mail will not be changed
+		And the user will be activated
+
+Scenario: Ag09. TFA activated but with wrong code
+	Given I have this two-factor data
+			| Secret | Code        | Password  |
+			| 123    | {generated} | pass_word |
+		And I set two-factor
+		And I validate the ticket two factor
+		And I pass this new e-mail and password
+			| New E-mail                          | Current Password | TFA Code |
+			| new_{scenarioCode}@dontflymoney.com | pass_word        | 123456   |
+	When I try to change the e-mail
+	Then I will receive this core error: TFAWrongCode
+		And the e-mail will not be changed
+		And the user will be activated
+
+Scenario: Ag10. TFA activated with right code
+	Given I have this two-factor data
+			| Secret | Code        | Password  |
+			| 123    | {generated} | pass_word |
+		And I set two-factor
+		And I validate the ticket two factor
+		And I pass this new e-mail and password
+			| New E-mail                          | Current Password | TFA Code    |
+			| new_{scenarioCode}@dontflymoney.com | pass_word        | {generated} |
+	When I try to change the e-mail
+	Then I will receive no core error
+		And the e-mail will be changed
+		And the user will not be activated
