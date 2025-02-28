@@ -7,9 +7,11 @@ namespace DFM.MVC.Models
 {
 	public class SettingsPasswordModel : BaseSiteModel, SettingsModel
 	{
+		public Boolean HasTFA => base.current.HasTFA;
+
 		public ChangePasswordInfo Password { get; set; }
 
-		public Boolean HasTFA => base.current.HasTFA;
+		public String BackTo { get; set; }
 
 		public IList<String> Save()
 		{
@@ -27,7 +29,5 @@ namespace DFM.MVC.Models
 
 			return errors;
 		}
-
-		public String BackTo { get; set; }
 	}
 }

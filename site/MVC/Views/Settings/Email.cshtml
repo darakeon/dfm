@@ -6,15 +6,22 @@
 	ViewBag.FormSizeSm = 8;
 	ViewBag.FormSizeLg = 6;
 
-	var hl = new WizardHL()
-		.AddBox("Email", 0)
-		.AddBox("Password", 1)
-		.AddBox("Settings", 4)
-		.AddBox("SettingsPassword", 4)
+	var hl = new WizardHL(Model.HasTFA)
+		.AddBox("Email", 0, 0)
+		.AddBox("Password", 1, 1)
+		.AddBox("Code", 2, null)
+		.AddBox("RemoveTFA", 3, null)
+		.AddBox("Settings", 6, 4)
+		.AddBox("SettingsPassword", 6, 4)
 		;
 
 	ViewBag.SettingsMenuClass = hl["Settings"];
 	ViewBag.SettingsPasswordMenuClass = hl["SettingsPassword"];
+
+	if (Model.HasTFA)
+	{
+		ViewBag.WizardPlus = "TFA";
+	}
 }
 
 <div class="form-group @hl["Email"]">
@@ -27,7 +34,23 @@
 	@Html.PasswordFor(m => m.Info.Password, new { @class = "form-control" })
 </div>
 
+@if (Model.HasTFA)
+{
+	<div class="form-group @hl["Code"]" title="@Context.Translate("TFALabelExplanation")">
+		@Html.LabelFor(m => m.Info.TFACode, Context.Translate("TFALabel"), new { @class = "control-label" })
+		@Html.PasswordFor(m => m.Info.TFACode, new { @class = "form-control" })
+	</div>
+}
+
 @section Footer {
+	@if (Model.HasTFA) {
+		@Html.ActionLink(
+			Context.Translate("LostTFA"),
+			"AskRemoveTFA", "Users", null,
+			new { @class = "btn btn-warning pull-left " + hl["RemoveTFA"], id = "LostTFA" }
+		)
+	}
+
 	<button type="submit"
 			class="btn btn-success tab-submit">
 		@Context.Translate("Save")
