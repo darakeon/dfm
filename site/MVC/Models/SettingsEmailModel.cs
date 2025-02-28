@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Response;
 
 namespace DFM.MVC.Models
 {
@@ -8,8 +9,7 @@ namespace DFM.MVC.Models
 	{
 		public String BackTo { get; set; }
 
-		public String Email { get; set; }
-		public String CurrentPassword { get; set; }
+		public UpdateEmailInfo Info { get; set; } = new();
 
 		public IList<String> Save()
 		{
@@ -17,7 +17,7 @@ namespace DFM.MVC.Models
 
 			try
 			{
-				auth.UpdateEmail(CurrentPassword, Email);
+				auth.UpdateEmail(Info);
 
 				errorAlert.Add("EmailUpdated");
 			}

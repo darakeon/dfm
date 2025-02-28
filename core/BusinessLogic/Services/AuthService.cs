@@ -192,17 +192,20 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
-		public void UpdateEmail(String password, String email)
+		public void UpdateEmail(UpdateEmailInfo info)
 		{
 			VerifyUser();
 
 			var user = GetCurrent();
 
-			valids.User.CheckPassword(user, password);
+			valids.User.CheckPassword(user, info.Password);
+
+			if (user.HasTFA())
+				valids.User.CheckTFA(user, info.TFACode);
 
 			inTransaction("UpdateEmail", () =>
 			{
-				user = repos.User.UpdateEmail(user.ID, email);
+				user = repos.User.UpdateEmail(user.ID, info.Email);
 				repos.Control.Deactivate(user);
 				parent.Outside.SendUserVerify(user);
 			});

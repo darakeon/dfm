@@ -18,13 +18,13 @@
 }
 
 <div class="form-group @hl["Email"]">
-	@Html.LabelFor(m => m.Email, Context.Translate("EmailToChange"), new { @class = "control-label" })
-	@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+	@Html.LabelFor(m => m.Info.Email, Context.Translate("EmailToChange"), new { @class = "control-label" })
+	@Html.TextBoxFor(m => m.Info.Email, new { @class = "form-control" })
 </div>
 
 <div class="form-group @hl["Password"]">
-	@Html.LabelFor(m => m.CurrentPassword, Context.Translate("CurrentPassword"), new { @class = "control-label" })
-	@Html.PasswordFor(m => m.CurrentPassword, new { @class = "form-control" })
+	@Html.LabelFor(m => m.Info.Password, Context.Translate("CurrentPassword"), new { @class = "control-label" })
+	@Html.PasswordFor(m => m.Info.Password, new { @class = "form-control" })
 </div>
 
 @section Footer {
