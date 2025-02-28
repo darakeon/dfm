@@ -437,6 +437,16 @@
 			"Now go to Settings > Password",
 			null
 		],
+		"Wizard_SettingsEmailTFA": [
+			"Here you can change your email address at the system.",
+			"You will need to know your current password to change the email.",
+			"Given you have Safer Login enabled, you will need also the code.",
+			"If you don't have the code anymore, you will need to remove the Safer Login.",
+			"Your email is the only way we can contact you in case of problems or for notifications.",
+			"Keep your email up to date and be sure to have access to it.",
+			"Now go to Settings > Password",
+			null
+		],
 		"Wizard_SettingsPassword": [
 			"To change your password you need to remember the current one.",
 			"In case you don't, click at Log off, go to login screen and click at 'Forgot my password'.",
@@ -987,6 +997,16 @@
 		"Wizard_SettingsEmail": [
 			"Aqui é possível trocar seu endereço de e-mail cadastrado no sistema.",
 			"Você precisa saber sua senha atual para trocar seu e-mail.",
+			"Seu e-mail é a única forma que podemos contatar você em caso de problemas ou para notificações.",
+			"Mantenha seu e-mail atualizado e tenha certeza de ter acesso a ele.",
+			"Agora vá até Configurações > Senha",
+			null
+		],
+		"Wizard_SettingsEmailTFA": [
+			"Aqui é possível trocar seu endereço de e-mail cadastrado no sistema.",
+			"Você precisa saber sua senha atual para trocar seu e-mail.",
+			"Dado que o Login mais Seguro está ativado, você também precisará do código.",
+			"Se não tiver mais essa informação, precisará remover o Login mais Seguro.",
 			"Seu e-mail é a única forma que podemos contatar você em caso de problemas ou para notificações.",
 			"Mantenha seu e-mail atualizado e tenha certeza de ter acesso a ele.",
 			"Agora vá até Configurações > Senha",
