@@ -59,6 +59,19 @@ describe('Settings', () => {
 
 		const message = await puppy.content('.alert')
 		await expect(message).toContain('Senha atualizada com sucesso.')
+	})
+
+	test('Password - lost TFA', async () => {
+		const secret = 'answer to the life universe and everything'
+		await db.setSecret(user, secret)
+		await db.validateLastTFA(user)
+
+		await puppy.call('')
+		await page.click('#settings')
+		await page.click('#settings_password', { visible: true })
+
+		const header = await puppy.content('.panel .header')
+		await expect(header).toContain('Senha')
 
 		await page.click('#body form a.btn-warning')
 
