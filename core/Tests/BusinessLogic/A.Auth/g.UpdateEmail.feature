@@ -135,3 +135,26 @@ Scenario: Ag11. TFA activated too much invalid tfa code attempts
 	Then I will receive this core error: TFATooMuchAttempt
 		And the e-mail will not be changed
 		And the user will not be activated
+
+Scenario: Ag12. TFA activated reset tfa limit on right attempt
+	Given I have this two-factor data
+			| Secret | TFA Code    | Password  |
+			| 123    | {generated} | pass_word |
+		And I set two-factor
+		And I validate the ticket two factor
+		And I pass this new e-mail and password
+			| New E-mail                          | Current Password | TFA Code |
+			| new_{scenarioCode}@dontflymoney.com | pass_word        | 123456   |
+	When I try to change the e-mail
+		And I try to change the e-mail
+		And I try to change the e-mail
+		And I try to change the e-mail
+	Then I will receive this core error: TFAWrongCode
+		And the e-mail will not be changed
+	Given I pass this new e-mail and password
+			| New E-mail                          | Current Password | TFA Code    |
+			| new_{scenarioCode}@dontflymoney.com | pass_word        | {generated} |
+	When I try to change the e-mail
+	Then I will receive no core error
+		And the e-mail will be changed
+		And the tfa wrong attempts will be 0

@@ -126,5 +126,14 @@ namespace DFM.BusinessLogic.Repositories
 
 			SaveOrUpdate(control);
 		}
+
+		public void ResetWrongTFA(User user)
+		{
+			var control = user.Control;
+
+			control.WrongTFA = 0;
+
+			SaveOrUpdate(control);
+		}
 	}
 }
