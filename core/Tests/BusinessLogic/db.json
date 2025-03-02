@@ -9,7 +9,5 @@
 		"ScriptFileFullName": "NH_DB.txt",
 
 		"FakeDB": "false"
-	},
-
-	"PasswordErrorLimit": "5"
+	}
 }

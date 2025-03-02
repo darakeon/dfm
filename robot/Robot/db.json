@@ -11,7 +11,5 @@
 		"ScriptFileFullName": "data\\log_files\\NH_DB.log",
 
 		"FakeDB": "false"
-	},
-
-	"PasswordErrorLimit": "5"
+	}
 }
