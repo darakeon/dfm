@@ -2,7 +2,7 @@
 
 namespace DFM.BusinessLogic.Response
 {
-	public class ChangePasswordInfo : IPasswordForm
+	public class ChangePasswordInfo : IPasswordForm, ITFAForm
 	{
 		public String CurrentPassword { get; set; }
 		public String Password { get; set; }

@@ -11,13 +11,13 @@ Background:
 			| Email                           | Password  |
 			| {scenarioCode}@dontflymoney.com | pass_word |
 		And I have this two-factor data
-			| Secret | Code        | Password  |
+			| Secret | TFA Code    | Password  |
 			| 123    | {generated} | pass_word |
 		And I set two-factor
 
 Scenario: Am01. Activate TFA as password
 	Given I have this two-factor data
-			| Code        | Password  |
+			| TFA Code    | Password  |
 			| {generated} | pass_word |
 	When I set to use TFA as password
 	Then I will receive no core error
@@ -29,7 +29,7 @@ Scenario: Am01. Activate TFA as password
 Scenario: Am02. Deactivate TFA as password
 	Given I set to use TFA as password
 		And I have this two-factor data
-			| Code        | Password  |
+			| TFA Code    | Password  |
 			| {generated} | pass_word |
 	When I set to not use TFA as password
 	Then I will receive no core error
@@ -38,8 +38,8 @@ Scenario: Am02. Deactivate TFA as password
 
 Scenario: Am03. Activate TFA as password with null code
 	Given I have this two-factor data
-			| Code   | Password  |
-			| {null} | pass_word |
+			| TFA Code | Password  |
+			| {null}   | pass_word |
 	When I set to use TFA as password
 	Then I will receive this core error: TFAWrongCode
 		And the TFA can not be used as password
@@ -47,16 +47,16 @@ Scenario: Am03. Activate TFA as password with null code
 Scenario: Am04. Deactivate TFA as password with null code
 	Given I set to use TFA as password
 		And I have this two-factor data
-			| Code   | Password  |
-			| {null} | pass_word |
+			| TFA Code | Password  |
+			| {null}   | pass_word |
 	When I set to not use TFA as password
 	Then I will receive this core error: TFAWrongCode
 		And the TFA can be used as password
 
 Scenario: Am05. Activate TFA as password with empty code
 	Given I have this two-factor data
-			| Code | Password  |
-			|      | pass_word |
+			| TFA Code | Password  |
+			|          | pass_word |
 	When I set to use TFA as password
 	Then I will receive this core error: TFAWrongCode
 		And the TFA can not be used as password
@@ -64,15 +64,15 @@ Scenario: Am05. Activate TFA as password with empty code
 Scenario: Am06. Deactivate TFA as password with empty code
 	Given I set to use TFA as password
 		And I have this two-factor data
-			| Code | Password  |
-			|      | pass_word |
+			| TFA Code | Password  |
+			|          | pass_word |
 	When I set to not use TFA as password
 	Then I will receive this core error: TFAWrongCode
 		And the TFA can be used as password
 
 Scenario: Am07. Activate TFA as password with null password
 	Given I have this two-factor data
-			| Code        | Password |
+			| TFA Code    | Password |
 			| {generated} | {null}   |
 	When I set to use TFA as password
 	Then I will receive this core error: WrongPassword
@@ -81,7 +81,7 @@ Scenario: Am07. Activate TFA as password with null password
 Scenario: Am08. Deactivate TFA as password with null password
 	Given I set to use TFA as password
 		And I have this two-factor data
-			| Code        | Password |
+			| TFA Code    | Password |
 			| {generated} | {null}   |
 	When I set to not use TFA as password
 	Then I will receive this core error: WrongPassword
@@ -89,7 +89,7 @@ Scenario: Am08. Deactivate TFA as password with null password
 
 Scenario: Am09. Activate TFA as password with empty password
 	Given I have this two-factor data
-			| Code        | Password |
+			| TFA Code    | Password |
 			| {generated} |          |
 	When I set to use TFA as password
 	Then I will receive this core error: WrongPassword
@@ -98,7 +98,7 @@ Scenario: Am09. Activate TFA as password with empty password
 Scenario: Am10. Deactivate TFA as password with empty password
 	Given I set to use TFA as password
 		And I have this two-factor data
-			| Code        | Password |
+			| TFA Code    | Password |
 			| {generated} |          |
 	When I set to not use TFA as password
 	Then I will receive this core error: WrongPassword
@@ -106,7 +106,7 @@ Scenario: Am10. Deactivate TFA as password with empty password
 
 Scenario: Am11. Activate if user is marked for deletion
 	Given I have this two-factor data
-			| Code        | Password  |
+			| TFA Code    | Password  |
 			| {generated} | pass_word |
 		But the user is marked for deletion
 	When I set to use TFA as password
@@ -115,7 +115,7 @@ Scenario: Am11. Activate if user is marked for deletion
 Scenario: Am12. Deactivate if user is marked for deletion
 	Given I set to use TFA as password
 		And I have this two-factor data
-			| Code        | Password  |
+			| TFA Code    | Password  |
 			| {generated} | pass_word |
 		But the user is marked for deletion
 	When I set to not use TFA as password
@@ -123,7 +123,7 @@ Scenario: Am12. Deactivate if user is marked for deletion
 
 Scenario: Am13. Activate if user requested wipe
 	Given I have this two-factor data
-			| Code        | Password  |
+			| TFA Code    | Password  |
 			| {generated} | pass_word |
 		But the user asked data wipe
 	When I set to use TFA as password
@@ -132,7 +132,7 @@ Scenario: Am13. Activate if user requested wipe
 Scenario: Am14. Deactivate if user requested wipe
 	Given I set to use TFA as password
 		And I have this two-factor data
-			| Code        | Password  |
+			| TFA Code    | Password  |
 			| {generated} | pass_word |
 		But the user asked data wipe
 	When I set to not use TFA as password
@@ -140,7 +140,7 @@ Scenario: Am14. Deactivate if user requested wipe
 
 Scenario: Am15. Activate if not signed last contract
 	Given I have this two-factor data
-			| Code        | Password  |
+			| TFA Code    | Password  |
 			| {generated} | pass_word |
 		But there is a new contract
 	When I set to use TFA as password
@@ -150,7 +150,7 @@ Scenario: Am15. Activate if not signed last contract
 Scenario: Am16. Deactivate if not signed last contract
 	Given I set to use TFA as password
 		And I have this two-factor data
-			| Code        | Password  |
+			| TFA Code    | Password  |
 			| {generated} | pass_word |
 		But there is a new contract
 	When I set to not use TFA as password
@@ -159,7 +159,7 @@ Scenario: Am16. Deactivate if not signed last contract
 
 Scenario: Am17. Activate TFA as password with no TFA
 	Given I have this two-factor data
-			| Code        | Password  |
+			| TFA Code    | Password  |
 			| {generated} | pass_word |
 		But I remove two-factor
 	When I set to use TFA as password
@@ -169,9 +169,41 @@ Scenario: Am17. Activate TFA as password with no TFA
 Scenario: Am18. Deactivate TFA as password with no TFA
 	Given I set to use TFA as password
 		And I have this two-factor data
-			| Code        | Password  |
+			| TFA Code    | Password  |
 			| {generated} | pass_word |
 		But I remove two-factor
 	When I set to not use TFA as password
 	Then I will receive this core error: TFANotConfigured
 		And the TFA can not be used as password
+
+Scenario: Am19. Activate too much invalid tfa code attempts
+	Given I have this two-factor data
+			| TFA Code | Password  |
+			| 123456   | pass_word |
+	When I set to use TFA as password
+		And I set to use TFA as password
+		And I set to use TFA as password
+		And I set to use TFA as password
+		And I set to use TFA as password
+		And I set to use TFA as password
+		And I set to use TFA as password
+	Then I will receive this core error: TFATooMuchAttempt
+		And the TFA can not be used as password
+		And the user will not be activated
+
+Scenario: Am20. Deactivate too much invalid tfa code attempts
+	Given I set to use TFA as password
+		And I have this two-factor data
+			| TFA Code | Password  |
+			| 123456   | pass_word |
+	When I set to not use TFA as password
+		And I set to not use TFA as password
+		And I set to not use TFA as password
+		And I set to not use TFA as password
+		And I set to not use TFA as password
+		And I set to not use TFA as password
+		And I set to not use TFA as password
+	Then I will receive this core error: TFATooMuchAttempt
+		And the user will not be activated
+	Given I activate the user
+	Then the TFA can be used as password

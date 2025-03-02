@@ -8,7 +8,7 @@ Background:
 			| Email                           | Password  |
 			| {scenarioCode}@dontflymoney.com | pass_word |
 		And I have this two-factor data
-			| Secret | Code        | Password  |
+			| Secret | TFA Code    | Password  |
 			| 123    | {generated} | pass_word |
 		And I set two-factor
 		And I have a token for its tfa removal
@@ -53,7 +53,7 @@ Scenario: Ao06. Remove tfa with token already used
 	Then I will receive no core error
 		And the two-factor will be empty
 	Given I have this two-factor data
-			| Secret | Code        | Password  |
+			| Secret | TFA Code    | Password  |
 			| 123    | {generated} | pass_word |
 		And I set two-factor
 	# Same token

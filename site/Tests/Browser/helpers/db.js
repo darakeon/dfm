@@ -132,10 +132,12 @@ async function createUser(email, active, wizard, creation) {
 	await execute(
 		`insert into control (
 				creation, active, isAdm, isRobot,
-				wrongLogin, removalWarningSent, robotCheck, plan_id
+				wrongLogin, wrongTFA,
+				removalWarningSent, robotCheck, plan_id
 			) values (
 				datetime('now','${creation??0} day'), ${active?1:0}, 0, 0,
-				0, 0, datetime('now'), 1
+				0, 0,
+				0, datetime('now'), 1
 			)`
 	)
 

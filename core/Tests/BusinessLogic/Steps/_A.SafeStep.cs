@@ -265,7 +265,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the user will (not )?be activated")]
 		public void ThenTheUserWillNotBeActivated(Boolean active)
 		{
-			var user = repos.User.GetByEmail(email);
+			var user = repos.User.GetByEmail(email ?? userEmail);
 			Assert.That(user.Control.Active, Is.EqualTo(active));
 		}
 		#endregion
@@ -730,8 +730,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the e-mail will not be changed")]
 		public void ThenTheEmailWillNotBeChanged()
 		{
-			var user = service.Auth.GetSession(ticketKey);
-			Assert.That(user.Email, Is.EqualTo(email));
+			var ticket = repos.Ticket.GetByKey(ticketKey);
+			Assert.That(ticket.User.Email, Is.EqualTo(email));
 		}
 
 		[Then(@"the e-mail will be changed")]
@@ -1375,7 +1375,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var secret = tfa.Secret
 			    ?? repos.User.GetByEmail(userEmail).TFASecret;
 
-			tfa.Code = tfa.Code.GenerateTFA(secret);
+			tfa.TFACode = tfa.TFACode.GenerateTFA(secret);
 
 			if (tfa.Password == "{null}")
 			{
@@ -1463,7 +1463,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			try
 			{
-				service.Auth.ValidateTicketTFA(tfa.Code);
+				service.Auth.ValidateTicketTFA(tfa.TFACode);
 			}
 			catch (CoreError exception)
 			{
