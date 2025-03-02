@@ -67,3 +67,21 @@ Scenario: Aj06. Too much invalid tfa code attempts
 	Then I will receive this core error: TFATooMuchAttempt
 		And the ticket will not be valid
 		And the user will not be activated
+
+Scenario: Aj07. Reset limit on right attempt
+	Given I have this two-factor data
+			| TFA Code |
+			| wrong    |
+	When I try to validate the ticket two factor
+		And I try to validate the ticket two factor
+		And I try to validate the ticket two factor
+		And I try to validate the ticket two factor
+	Then I will receive this core error: TFAWrongCode
+		And the ticket will not be valid
+	Given I have this two-factor data
+			| TFA Code    |
+			| {generated} |
+	When I try to validate the ticket two factor
+	Then I will receive no core error
+		And the ticket will be valid
+		And the tfa wrong attempts will be 0

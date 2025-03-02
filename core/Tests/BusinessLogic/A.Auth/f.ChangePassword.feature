@@ -158,3 +158,26 @@ Scenario: Af14. TFA activated too much invalid tfa code attempts
 	Then I will receive this core error: TFATooMuchAttempt
 		And the password will not be changed
 		And the user will not be activated
+
+Scenario: Af15. TFA activated reset tfa limit on right attempt
+	Given I have this two-factor data
+			| Secret | TFA Code    | Password  |
+			| 123    | {generated} | pass_word |
+		And I set two-factor
+		And I validate the ticket two factor
+		And I pass this data to change password
+			| Current Password | Password     | Retype Password | TFA Code |
+			| pass_word        | new_password | new_password    | 123456   |
+	When I try to change the password
+		And I try to change the password
+		And I try to change the password
+		And I try to change the password
+	Then I will receive this core error: TFAWrongCode
+		And the password will not be changed
+	Given I pass this data to change password
+			| Current Password | Password     | Retype Password | TFA Code    |
+			| pass_word        | new_password | new_password    | {generated} |
+	When I try to change the password
+	Then I will receive no core error
+		And the password will be changed
+		And the tfa wrong attempts will be 0

@@ -255,6 +255,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 		// ReSharper disable once UnusedMember.Global
+		[BeforeScenarioBlock]
+		public void CleanErrorVariable()
+		{
+			if (context.CurrentScenarioBlock == ScenarioBlock.Given)
+				testCoreError = null;
+		}
+
+		// ReSharper disable once UnusedMember.Global
 		[AfterScenarioBlock]
 		public void CloseSession()
 		{
