@@ -125,3 +125,21 @@ Scenario: Ai13. Too much invalid tfa code attempts
 	Then I will receive this core error: TFATooMuchAttempt
 		And the two-factor will be [123]
 		And the user will not be activated
+
+Scenario: Ai14. Reset tfa limit on right attempt
+	Given I have this two-factor data
+			| TFA Code | Password  |
+			| 123456   | pass_word |
+	When I try to remove two-factor
+		And I try to remove two-factor
+		And I try to remove two-factor
+		And I try to remove two-factor
+	Then I will receive this core error: TFAWrongCode
+		And the two-factor will be [123]
+	Given I have this two-factor data
+			| TFA Code    | Password  |
+			| {generated} | pass_word |
+	When I try to remove two-factor
+	Then I will receive no core error
+		And the two-factor will be empty
+		And the tfa wrong attempts will be 0
