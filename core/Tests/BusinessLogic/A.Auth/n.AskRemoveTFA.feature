@@ -8,7 +8,7 @@ Background:
 			| Email                           | Password  |
 			| {scenarioCode}@dontflymoney.com | pass_word |
 		And I have this two-factor data
-			| Secret | Code        | Password  |
+			| Secret | TFA Code    | Password  |
 			| 123    | {generated} | pass_word |
 		And I set two-factor
 
@@ -85,7 +85,7 @@ Scenario: An07. Not remove if not signed last contract
 
 Scenario: An08. Ask remove with no TFA
 	Given I have this two-factor data
-			| Code        | Password  |
+			| TFA Code    | Password  |
 			| {generated} | pass_word |
 		And I remove two-factor
 		But I have this two-factor data

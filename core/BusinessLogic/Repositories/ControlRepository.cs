@@ -114,5 +114,17 @@ namespace DFM.BusinessLogic.Repositories
 			}
 			SaveOrUpdate(user.Control);
 		}
+
+		public void WrongTFA(User user)
+		{
+			var control = user.Control;
+
+			control.WrongTFA++;
+
+			if (control.WrongTFAExceeded())
+				control.Active = false;
+
+			SaveOrUpdate(control);
+		}
 	}
 }
