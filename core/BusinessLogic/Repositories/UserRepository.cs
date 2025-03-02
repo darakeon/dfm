@@ -6,7 +6,6 @@ using DFM.BusinessLogic.Repositories.DataObjects;
 using DFM.BusinessLogic.Validators;
 using DFM.Entities;
 using DFM.Entities.Bases;
-using Keon.TwoFactorAuth;
 using Keon.Util.Crypto;
 
 namespace DFM.BusinessLogic.Repositories
