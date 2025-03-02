@@ -177,7 +177,7 @@ describe('Settings', () => {
 		await page.click('#UseTFA')
 
 		await page.type('#TFA_Password', db.password)
-		await page.type('#TFA_Code', tfa.code(secret))
+		await page.type('#TFA_TFACode', tfa.code(secret))
 		await page.click('#body form button[type="submit"]')
 
 		const successMessage = await puppy.content('.alert')
@@ -201,7 +201,7 @@ describe('Settings', () => {
 		await page.click('#UseTFAPassword')
 
 		await page.type('#TFA_Password', db.password)
-		await page.type('#TFA_Code', tfa.code(secret))
+		await page.type('#TFA_TFACode', tfa.code(secret))
 		await page.click('#body form button[type="submit"]')
 
 		const successMessage = await puppy.content('.alert')

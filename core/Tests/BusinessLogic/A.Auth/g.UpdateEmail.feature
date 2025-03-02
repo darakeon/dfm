@@ -62,7 +62,7 @@ Scenario: Ag06. Update E-mail without signing contract
 
 Scenario: Ag07. TFA activated but without code
 	Given I have this two-factor data
-			| Secret | Code        | Password  |
+			| Secret | TFA Code    | Password  |
 			| 123    | {generated} | pass_word |
 		And I set two-factor
 		And I validate the ticket two factor
@@ -76,7 +76,7 @@ Scenario: Ag07. TFA activated but without code
 
 Scenario: Ag08. TFA activated but with empty code
 	Given I have this two-factor data
-			| Secret | Code        | Password  |
+			| Secret | TFA Code    | Password  |
 			| 123    | {generated} | pass_word |
 		And I set two-factor
 		And I validate the ticket two factor
@@ -90,7 +90,7 @@ Scenario: Ag08. TFA activated but with empty code
 
 Scenario: Ag09. TFA activated but with wrong code
 	Given I have this two-factor data
-			| Secret | Code        | Password  |
+			| Secret | TFA Code    | Password  |
 			| 123    | {generated} | pass_word |
 		And I set two-factor
 		And I validate the ticket two factor
@@ -104,7 +104,7 @@ Scenario: Ag09. TFA activated but with wrong code
 
 Scenario: Ag10. TFA activated with right code
 	Given I have this two-factor data
-			| Secret | Code        | Password  |
+			| Secret | TFA Code    | Password  |
 			| 123    | {generated} | pass_word |
 		And I set two-factor
 		And I validate the ticket two factor
@@ -114,4 +114,24 @@ Scenario: Ag10. TFA activated with right code
 	When I try to change the e-mail
 	Then I will receive no core error
 		And the e-mail will be changed
+		And the user will not be activated
+
+Scenario: Ag11. TFA activated too much invalid tfa code attempts
+	Given I have this two-factor data
+			| Secret | TFA Code    | Password  |
+			| 123    | {generated} | pass_word |
+		And I set two-factor
+		And I validate the ticket two factor
+		And I pass this new e-mail and password
+			| New E-mail                          | Current Password | TFA Code |
+			| new_{scenarioCode}@dontflymoney.com | pass_word        | 123456   |
+	When I try to change the e-mail
+		And I try to change the e-mail
+		And I try to change the e-mail
+		And I try to change the e-mail
+		And I try to change the e-mail
+		And I try to change the e-mail
+		And I try to change the e-mail
+	Then I will receive this core error: TFATooMuchAttempt
+		And the e-mail will not be changed
 		And the user will not be activated

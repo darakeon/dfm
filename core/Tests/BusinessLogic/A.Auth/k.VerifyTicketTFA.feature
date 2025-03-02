@@ -11,7 +11,7 @@ Background:
 			| Email                           | Password  |
 			| {scenarioCode}@dontflymoney.com | pass_word |
 		And I have this two-factor data
-			| Secret | Code        | Password  |
+			| Secret | TFA Code    | Password  |
 			| 123    | {generated} | pass_word |
 		And I set two-factor
 
@@ -24,7 +24,7 @@ Scenario: Ak01. Check not verified ticket
 Scenario: Ak02. Check verified ticket
 	Given I have a ticket key
 		And I have this two-factor data
-			| Secret | Code        |
+			| Secret | TFA Code    |
 			| 123    | {generated} |
 		And I validate the ticket two factor
 	When I try to verify the ticket
