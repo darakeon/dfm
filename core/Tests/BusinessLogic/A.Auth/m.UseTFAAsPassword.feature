@@ -207,3 +207,40 @@ Scenario: Am20. Deactivate too much invalid tfa code attempts
 		And the user will not be activated
 	Given I activate the user
 	Then the TFA can be used as password
+
+Scenario: Am21. Activate reset tfa limit on right attempt
+	Given I have this two-factor data
+			| TFA Code | Password  |
+			| 123456   | pass_word |
+	When I set to use TFA as password
+		And I set to use TFA as password
+		And I set to use TFA as password
+		And I set to use TFA as password
+	Then I will receive this core error: TFAWrongCode
+		And the TFA can not be used as password
+	Given I have this two-factor data
+			| TFA Code    | Password  |
+			| {generated} | pass_word |
+	When I set to use TFA as password
+	Then I will receive no core error
+		And the TFA can be used as password
+		And the tfa wrong attempts will be 0
+
+Scenario: Am22. Deactivate reset tfa limit on right attempt
+	Given I set to use TFA as password
+		And I have this two-factor data
+			| TFA Code | Password  |
+			| 123456   | pass_word |
+	When I set to not use TFA as password
+		And I set to not use TFA as password
+		And I set to not use TFA as password
+		And I set to not use TFA as password
+	Then I will receive this core error: TFAWrongCode
+		And the TFA can be used as password
+	Given I have this two-factor data
+			| TFA Code    | Password  |
+			| {generated} | pass_word |
+	When I set to not use TFA as password
+	Then I will receive no core error
+		And the TFA can not be used as password
+		And the tfa wrong attempts will be 0
