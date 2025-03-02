@@ -9,6 +9,7 @@ namespace DFM.Entities.Bases
 		public const Int32 PasswordMaximumLength = 273;
 
 		public const Int32 PasswordErrorLimit = 5;
+		public const Int32 TFAErrorLimit = 7;
 
 		public const String SettingsLanguage = "pt-BR";
 		public const String SettingsTimeZone = "UTC-03:00";

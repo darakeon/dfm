@@ -8,13 +8,13 @@ Background:
 			| Email                           | Password  |
 			| {scenarioCode}@dontflymoney.com | pass_word |
 		And I have this two-factor data
-			| Secret | Code        | Password  |
+			| Secret | TFA Code    | Password  |
 			| 123    | {generated} | pass_word |
 		And I set two-factor
 
 Scenario: Ai01. With all info right
 	Given I have this two-factor data
-			| Code        | Password  |
+			| TFA Code    | Password  |
 			| {generated} | pass_word |
 	When I try to remove two-factor
 	Then I will receive no core error
@@ -22,7 +22,7 @@ Scenario: Ai01. With all info right
 
 Scenario: Ai02. With wrong password
 	Given I have this two-factor data
-			| Code        | Password |
+			| TFA Code    | Password |
 			| {generated} | wrong    |
 	When I try to remove two-factor
 	Then I will receive this core error: WrongPassword
@@ -30,7 +30,7 @@ Scenario: Ai02. With wrong password
 
 Scenario: Ai03. With empty password
 	Given I have this two-factor data
-			| Code        | Password |
+			| TFA Code    | Password |
 			| {generated} |          |
 	When I try to remove two-factor
 	Then I will receive this core error: WrongPassword
@@ -38,7 +38,7 @@ Scenario: Ai03. With empty password
 
 Scenario: Ai04. With null password
 	Given I have this two-factor data
-			| Code        | Password |
+			| TFA Code    | Password |
 			| {generated} | {null}   |
 	When I try to remove two-factor
 	Then I will receive this core error: WrongPassword
@@ -46,31 +46,31 @@ Scenario: Ai04. With null password
 
 Scenario: Ai05. With wrong code
 	Given I have this two-factor data
-			| Code   | Password  |
-			| 150124 | pass_word |
+			| TFA Code | Password  |
+			| 150124   | pass_word |
 	When I try to remove two-factor
 	Then I will receive this core error: TFAWrongCode
 		And the two-factor will be [123]
 
 Scenario: Ai06. With empty code
 	Given I have this two-factor data
-			| Code | Password  |
-			|      | pass_word |
+			| TFA Code | Password  |
+			|          | pass_word |
 	When I try to remove two-factor
 	Then I will receive this core error: TFAWrongCode
 		And the two-factor will be [123]
 
 Scenario: Ai07. With null code
 	Given I have this two-factor data
-			| Code   | Password  |
-			| {null} | pass_word |
+			| TFA Code | Password  |
+			| {null}   | pass_word |
 	When I try to remove two-factor
 	Then I will receive this core error: TFAWrongCode
 		And the two-factor will be [123]
 
 Scenario: Ai08. Not remove if user is marked for deletion
 	Given I have this two-factor data
-			| Code        | Password |
+			| TFA Code    | Password |
 			| {generated} | password |
 		But the user is marked for deletion
 	When I try to remove two-factor
@@ -78,7 +78,7 @@ Scenario: Ai08. Not remove if user is marked for deletion
 
 Scenario: Ai09. Not remove if user requested wipe
 	Given I have this two-factor data
-			| Code        | Password |
+			| TFA Code    | Password |
 			| {generated} | password |
 		But the user asked data wipe
 	When I try to remove two-factor
@@ -86,7 +86,7 @@ Scenario: Ai09. Not remove if user requested wipe
 
 Scenario: Ai10. Not remove if not signed last contract
 	Given I have this two-factor data
-			| Code        | Password  |
+			| TFA Code    | Password  |
 			| {generated} | pass_word |
 		But there is a new contract
 	When I try to remove two-factor
@@ -94,7 +94,7 @@ Scenario: Ai10. Not remove if not signed last contract
 
 Scenario: Ai11. Remove if not configured
 	Given I have this two-factor data
-			| Code        | Password  |
+			| TFA Code    | Password  |
 			| {generated} | pass_word |
 		But I remove two-factor
 	When I try to remove two-factor
@@ -103,10 +103,25 @@ Scenario: Ai11. Remove if not configured
 
 Scenario: Ai12. Remove if set as password
 	Given I have this two-factor data
-			| Code        | Password  |
+			| TFA Code    | Password  |
 			| {generated} | pass_word |
 		And I set to use TFA as password
 	When I try to remove two-factor
 	Then I will receive no core error
 		And the two-factor will be empty
 		And the TFA can not be used as password
+
+Scenario: Ai13. Too much invalid tfa code attempts
+	Given I have this two-factor data
+			| TFA Code | Password  |
+			| 123456   | pass_word |
+	When I try to remove two-factor
+		And I try to remove two-factor
+		And I try to remove two-factor
+		And I try to remove two-factor
+		And I try to remove two-factor
+		And I try to remove two-factor
+		And I try to remove two-factor
+	Then I will receive this core error: TFATooMuchAttempt
+		And the two-factor will be [123]
+		And the user will not be activated
