@@ -41,7 +41,7 @@ Scenario: Ac05. Select with null ticket
 
 Scenario: Ac06. Has TFA
 	Given I have this two-factor data
-			| Secret | Code        | Password  |
+			| Secret | TFA Code    | Password  |
 			| 123    | {generated} | pass_word |
 		And I set two-factor
 		And I pass a ticket that exist

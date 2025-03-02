@@ -38,6 +38,7 @@ namespace DFM.BusinessLogic.Exceptions
 		WipeNoMoves = 222,
 		CSVNotFound = 223,
 		TermsNotFound = 225,
+		TFATooMuchAttempt = 226,
 
 		AccountNameRequired = 301,
 		AccountNameAlreadyExists = 302,

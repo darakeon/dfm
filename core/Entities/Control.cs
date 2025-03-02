@@ -1,4 +1,5 @@
 ﻿using System;
+using DFM.Entities.Bases;
 using DFM.Generic;
 using Keon.Util.DB;
 
@@ -23,6 +24,7 @@ namespace DFM.Entities
 		public virtual Boolean IsRobot { get; set; }
 
 		public virtual Int32 WrongLogin { get; set; }
+		public virtual Int32 WrongTFA { get; set; }
 
 		public virtual Int32 RemovalWarningSent { get; set; }
 		public virtual Boolean ProcessingDeletion { get; set; }
@@ -39,6 +41,11 @@ namespace DFM.Entities
 		public virtual Boolean WrongPassExceeded()
 		{
 			return WrongLogin >= Defaults.PasswordErrorLimit;
+		}
+
+		public virtual Boolean WrongTFAExceeded()
+		{
+			return WrongTFA >= Defaults.TFAErrorLimit;
 		}
 
 		public virtual DateTime LastInteraction()
