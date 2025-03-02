@@ -38,7 +38,7 @@ namespace DFM.Entities
 
 		public virtual Boolean WrongPassExceeded()
 		{
-			return WrongLogin >= Cfg.PasswordErrorLimit;
+			return WrongLogin >= Defaults.PasswordErrorLimit;
 		}
 
 		public virtual DateTime LastInteraction()
