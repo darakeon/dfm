@@ -2,8 +2,8 @@
 
 namespace DFM.BusinessLogic.Response;
 
-public class TFACheck
+public class TFACheck : ITFAForm
 {
-	public String Code { get; set; }
+	public String TFACode { get; set; }
 	public String Password { get; set; }
 }

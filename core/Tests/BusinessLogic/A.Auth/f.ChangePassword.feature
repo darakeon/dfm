@@ -85,7 +85,7 @@ Scenario: Af09. Save user with too long password
 
 Scenario: Af10. TFA activated but without code
 	Given I have this two-factor data
-			| Secret | Code        | Password  |
+			| Secret | TFA Code    | Password  |
 			| 123    | {generated} | pass_word |
 		And I set two-factor
 		And I validate the ticket two factor
@@ -99,7 +99,7 @@ Scenario: Af10. TFA activated but without code
 
 Scenario: Af11. TFA activated but with empty code
 	Given I have this two-factor data
-			| Secret | Code        | Password  |
+			| Secret | TFA Code    | Password  |
 			| 123    | {generated} | pass_word |
 		And I set two-factor
 		And I validate the ticket two factor
@@ -113,7 +113,7 @@ Scenario: Af11. TFA activated but with empty code
 
 Scenario: Af12. TFA activated but with wrong code
 	Given I have this two-factor data
-			| Secret | Code        | Password  |
+			| Secret | TFA Code    | Password  |
 			| 123    | {generated} | pass_word |
 		And I set two-factor
 		And I validate the ticket two factor
@@ -127,7 +127,7 @@ Scenario: Af12. TFA activated but with wrong code
 
 Scenario: Af13. TFA activated with right code
 	Given I have this two-factor data
-			| Secret | Code        | Password  |
+			| Secret | TFA Code    | Password  |
 			| 123    | {generated} | pass_word |
 		And I set two-factor
 		And I validate the ticket two factor
@@ -138,3 +138,23 @@ Scenario: Af13. TFA activated with right code
 	Then I will receive no core error
 		And the password will be changed
 		And only the last login will be active
+
+Scenario: Af14. TFA activated too much invalid tfa code attempts
+	Given I have this two-factor data
+			| Secret | TFA Code    | Password  |
+			| 123    | {generated} | pass_word |
+		And I set two-factor
+		And I validate the ticket two factor
+		And I pass this data to change password
+			| Current Password | Password     | Retype Password | TFA Code |
+			| pass_word        | new_password | new_password    | 123456   |
+	When I try to change the password
+		And I try to change the password
+		And I try to change the password
+		And I try to change the password
+		And I try to change the password
+		And I try to change the password
+		And I try to change the password
+	Then I will receive this core error: TFATooMuchAttempt
+		And the password will not be changed
+		And the user will not be activated

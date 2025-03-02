@@ -173,7 +173,7 @@ namespace DFM.BusinessLogic.Services
 			valids.User.CheckPassword(user, info.CurrentPassword);
 
 			if (user.HasTFA())
-				valids.User.CheckTFA(user, info.TFACode);
+				checkTFA(user, info);
 
 			inTransaction("ChangePassword", () =>
 			{
@@ -192,6 +192,23 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
+		private void checkTFA(User user, ITFAForm info)
+		{
+			checkTFA(user, info.TFACode);
+		}
+
+		private void checkTFA(User user, String code)
+		{
+			inTransaction(
+				"ChangePassword_CheckTFA",
+				() => valids.User.CheckTFA(user, code),
+				() => inTransaction(
+					"WrongTFA",
+					() => repos.Control.WrongTFA(user)
+				)
+			);
+		}
+
 		public void UpdateEmail(UpdateEmailInfo info)
 		{
 			VerifyUser();
@@ -201,7 +218,7 @@ namespace DFM.BusinessLogic.Services
 			valids.User.CheckPassword(user, info.Password);
 
 			if (user.HasTFA())
-				valids.User.CheckTFA(user, info.TFACode);
+				checkTFA(user, info);
 
 			inTransaction("UpdateEmail", () =>
 			{
@@ -240,7 +257,7 @@ namespace DFM.BusinessLogic.Services
 			valids.User.CheckPassword(user, info.Password);
 
 			valids.User.CheckTFAConfigured(user);
-			valids.User.CheckTFA(user, info.Code);
+			checkTFA(user, info);
 
 			inTransaction(
 				"RemoveTFA",
@@ -250,16 +267,14 @@ namespace DFM.BusinessLogic.Services
 
 		public void ValidateTicketTFA(String code)
 		{
+			var user = GetCurrent();
+
+			valids.User.CheckTFAConfigured(user);
+			valids.User.CheckUserDeletion(user);
+			checkTFA(user, code);
+
 			inTransaction("ValidateTicketTFA", () =>
 			{
-				var user = GetCurrent();
-
-				valids.User.CheckTFAConfigured(user);
-
-				valids.User.CheckUserDeletion(user);
-
-				valids.User.CheckTFA(user, code);
-
 				var ticket = repos.Ticket.GetByKey(parent.Current.TicketKey);
 				repos.Ticket.ValidateTFA(ticket);
 			});
@@ -292,20 +307,20 @@ namespace DFM.BusinessLogic.Services
 
 		public void UseTFAAsPassword(Boolean use, TFACheck info)
 		{
-			inTransaction("UseTFAAsPassword", () =>
-			{
-				var user = GetCurrent();
+			var user = GetCurrent();
 
-				valids.User.CheckUserDeletion(user);
-				parent.Law.CheckContractAccepted(user);
+			valids.User.CheckUserDeletion(user);
+			parent.Law.CheckContractAccepted(user);
 
-				valids.User.CheckTFAConfigured(user);
+			valids.User.CheckTFAConfigured(user);
 
-				valids.User.CheckPassword(user, info.Password);
-				valids.User.CheckTFA(user, info.Code);
+			valids.User.CheckPassword(user, info.Password);
+			checkTFA(user, info);
 
-				repos.User.UseTFAAsPassword(user, use);
-			});
+			inTransaction(
+				"UseTFAAsPassword",
+				() => repos.User.UseTFAAsPassword(user, use)
+			);
 		}
 
 		public void AskRemoveTFA(String password)

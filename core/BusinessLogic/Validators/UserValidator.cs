@@ -2,6 +2,7 @@
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
 using DFM.Entities;
+using DFM.Entities.Bases;
 using Keon.TwoFactorAuth;
 using Keon.Util.Crypto;
 
@@ -39,18 +40,25 @@ internal class UserValidator
 
 	public void CheckTFA(TFAInfo info)
 	{
-		checkTFA(info.Secret, info.Code);
+		checkTFA(info.Secret, info.TFACode);
 	}
 
 	public void CheckTFA(User user, String code)
 	{
-		checkTFA(user.TFASecret, code);
+		checkTFA(user.TFASecret, code, user.Control.WrongTFA);
 	}
 
-	private void checkTFA(String secret, String code)
+	private void checkTFA(String secret, String code, Int32 wrongCount = 0)
 	{
-		if (!VerifyTFA(secret, code))
-			throw Error.TFAWrongCode.Throw();
+		if (VerifyTFA(secret, code))
+			return;
+
+		var error = // +1 because of the one that just happened
+			wrongCount + 1 < Defaults.TFAErrorLimit
+				? Error.TFAWrongCode
+				: Error.TFATooMuchAttempt;
+
+		throw error.Throw();
 	}
 
 	public void CheckTFAConfigured(User user)
