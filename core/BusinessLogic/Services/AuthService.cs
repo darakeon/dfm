@@ -201,7 +201,11 @@ namespace DFM.BusinessLogic.Services
 		{
 			inTransaction(
 				"ChangePassword_CheckTFA",
-				() => valids.User.CheckTFA(user, code),
+				() =>
+				{
+					valids.User.CheckTFA(user, code);
+					repos.Control.ResetWrongTFA(user);
+				},
 				() => inTransaction(
 					"WrongTFA",
 					() => repos.Control.WrongTFA(user)

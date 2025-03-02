@@ -268,6 +268,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var user = repos.User.GetByEmail(email ?? userEmail);
 			Assert.That(user.Control.Active, Is.EqualTo(active));
 		}
+
+		[Then(@"the tfa wrong attempts will be (\d+)")]
+		public void ThenTheTfaWrongAttemptsWillBe(Int32 wrongAttempts)
+		{
+			var user = repos.User.GetByEmail(email ?? userEmail);
+			Assert.That(user.Control.WrongTFA, Is.EqualTo(wrongAttempts));
+		}
 		#endregion
 
 		#region ValidateUserAndGetTicket
