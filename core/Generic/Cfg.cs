@@ -82,8 +82,6 @@ namespace DFM.Generic
 
 		public static String Version => typeof(Cfg).Assembly.GetName().Version?.ToString();
 
-		public static Int32 PasswordErrorLimit => Int32.Parse(dic["PasswordErrorLimit"]);
-
 		public static String GooglePlay => dic["GooglePlay"];
 
 		public static Int32 VersionCount => Int32.Parse(dic["VersionCount"] ?? "0");
