@@ -2,11 +2,11 @@
 
 Background:
 	Given I have this user created
-			| Email                                       | Password  |
-			| activateuser{scenarioCode}@dontflymoney.com | pass_word |
+			| Email                           | Password  | Signed |
+			| {scenarioCode}@dontflymoney.com | pass_word | true   |
 		And I have this user data
-			| Email                                       | Password  |
-			| activateuser{scenarioCode}@dontflymoney.com | pass_word |
+			| Email                           | Password  |
+			| {scenarioCode}@dontflymoney.com | pass_word |
 		And I have a token for its activation
 
 Scenario: Gd01. Activate user with invalid token
@@ -79,3 +79,28 @@ Scenario: Gd09. Reset Login Limit
 	Then I will receive no core error
 		And the user will be activated
 		And the password wrong attempts will be 0
+
+Scenario: Gd10. Reset TFA Limit
+	Given I activate the user
+		And I login the user
+		And I have this two-factor data
+			| Secret | TFA Code    | Password  |
+			| 123    | {generated} | pass_word |
+		And I set two-factor
+		But I have this two-factor data
+			| TFA Code | Password  |
+			| forgot!  | pass_word |
+	When I try to validate the ticket two factor
+		And I try to validate the ticket two factor
+		And I try to validate the ticket two factor
+		And I try to validate the ticket two factor
+		And I try to validate the ticket two factor
+		And I try to validate the ticket two factor
+		And I try to validate the ticket two factor
+	Then I will receive this core error: TFATooMuchAttempt
+	Given I have a token for its activation
+		And I pass a valid UserVerification token
+	When I try to activate the user
+	Then I will receive no core error
+		And the user will be activated
+		And the tfa wrong attempts will be 0
