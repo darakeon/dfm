@@ -25,6 +25,7 @@ namespace DFM.BusinessLogic.Repositories
 
 			control.Active = true;
 			control.WrongLogin = 0;
+			control.WrongTFA = 0;
 
 			SaveOrUpdate(control);
 		}
