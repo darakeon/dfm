@@ -65,3 +65,17 @@ Scenario: Gd08. Activate user with expired token
 	When I try to activate the user
 	Then I will receive this core error: InvalidToken
 		And the user will not be activated
+
+Scenario: Gd09. Reset Login Limit
+	Given I activate the user
+		But I have this user data
+			| Email                           | Password       |
+			| {scenarioCode}@dontflymoney.com | password_wrong |
+	When I try to get the ticket 5 times
+	Then I will receive this core error: DisabledUser
+	Given I have a token for its activation
+		And I pass a valid UserVerification token
+	When I try to activate the user
+	Then I will receive no core error
+		And the user will be activated
+		And the password wrong attempts will be 0
