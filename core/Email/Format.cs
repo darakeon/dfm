@@ -33,6 +33,9 @@ namespace DFM.Email
 
 		public static Format UserRemoval(User user, RemovalReason removalReason)
 		{
+			if (removalReason == RemovalReason.PersonAsked)
+				throw MailError.WithMessage(EmailStatus.InvalidType);
+
 			return new(user, EmailType.RemovalReason, removalReason);
 		}
 
