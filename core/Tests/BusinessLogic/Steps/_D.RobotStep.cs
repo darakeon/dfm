@@ -651,14 +651,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the e-mail subject will be ""(.*)""")]
 		public void ThenTheEmailSubjectWillBe(String subject)
 		{
-			var email = EmlHelper.ByEmail(userEmail);
+			var email = EmlHelper.ByEmail(userEmail, testStart);
 			Assert.That(email.Subject, Is.EqualTo(subject));
 		}
 
 		[Then(@"the e-mail body will contain ""(.*)""")]
 		public void ThenTheEmailBodyWillContain(String bodyPart)
 		{
-			var email = EmlHelper.ByEmail(userEmail);
+			var email = EmlHelper.ByEmail(userEmail, testStart);
 			var body = email.Body
 				.Replace("\n", "")
 				.Replace("\t", "");

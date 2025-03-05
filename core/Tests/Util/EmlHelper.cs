@@ -79,19 +79,21 @@ namespace DFM.Tests.Util
 			return types;
 		}
 
-		public static EmlHelper ByPosition(Int32 position)
+		public static EmlHelper? ByPosition(Int32 position, DateTime datetime)
 		{
 			// cannot have -0 and +0
 			if (position == 0) return null;
 
-			var emailFile = getEmailFile(position);
+			var emailFile = getEmailFile(position, datetime);
 
-			return new EmlHelper(emailFile);
+			return emailFile == null
+				? null
+				: new EmlHelper(emailFile);
 		}
 
-		private static FileInfo getEmailFile(Int32 position)
+		private static FileInfo? getEmailFile(Int32 position, DateTime datetime)
 		{
-			var files = getEmailFiles();
+			var files = getEmailFiles(datetime);
 
 			files = position > 0
 				? files.OrderBy(f => f.CreationTime)
@@ -99,35 +101,40 @@ namespace DFM.Tests.Util
 
 			position = position > 0 ? position : -position;
 
-			return files.Skip(position - 1).First();
+			return files.Skip(position - 1).FirstOrDefault();
 		}
 
-		private static IEnumerable<FileInfo> getEmailFiles()
+		private static IEnumerable<FileInfo> getEmailFiles(DateTime datetime)
 		{
 			var dir = new DirectoryInfo(Cfg.Smtp.PickupDirectory);
-			return dir.EnumerateFiles("*.eml");
+			return dir.EnumerateFiles("*.eml")
+				.Where(f => f.CreationTimeUtc > datetime);
 		}
 
 		public static Int32 CountEmails(String email, EmailType type, DateTime datetime)
 		{
-			return getEmailFiles()
-				.Where(f => f.CreationTimeUtc > datetime)
+			return getEmailFiles(datetime)
 				.Select(f => new EmlHelper(f))
 				.Count(e => e.Receiver == email && e.Type == type);
 		}
 
 
-		public static EmlHelper ByEmail(String emailAddress)
+		public static EmlHelper? ByEmail(String emailAddress, DateTime datetime)
 		{
-			EmlHelper email;
+			var emailsCount = getEmailFiles(datetime).Count();
+
+			if (emailsCount == 0)
+				return null;
+
+			EmlHelper? email;
 			var e = 0;
 
 			do
 			{
-				email = ByPosition(--e);
+				email = ByPosition(--e, datetime);
 			} while (
-				emailAddress != email.Receiver
-				&& -e < getEmailFiles().Count()
+				emailAddress != email?.Receiver
+				&& -e < emailsCount
 			);
 
 			return email;
