@@ -26,6 +26,11 @@ namespace DFM.Email
 			return new(user, EmailType.SecurityAction, securityAction);
 		}
 
+		public static Format SecurityWarning(User user, SecurityWarning securityWarning)
+		{
+			return new(user, EmailType.SecurityWarning, securityWarning);
+		}
+
 		public static Format UserRemoval(User user, RemovalReason removalReason)
 		{
 			return new(user, EmailType.RemovalReason, removalReason);

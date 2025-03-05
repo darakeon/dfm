@@ -52,7 +52,7 @@ namespace DFM.BusinessLogic.Repositories
 			Summary = new SummaryRepository();
 			Ticket = new TicketRepository();
 			Tips = new TipsRepository();
-			User = new UserRepository();
+			User = new UserRepository(getUrl);
 		}
 
 	}
