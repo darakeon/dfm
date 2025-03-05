@@ -1237,11 +1237,11 @@ namespace DFM.BusinessLogic.Tests.Steps
 		{
 			var regex = new Regex("UnsubscribeMoveMail>(\\w+)");
 
-			var email1 = EmlHelper.ByPosition(-1);
+			var email1 = EmlHelper.ByPosition(-1, testStart);
 			var match1 = regex.Match(email1.Body);
 			var token1 = match1.Groups[1].Value;
 
-			var email2 = EmlHelper.ByPosition(-2);
+			var email2 = EmlHelper.ByPosition(-2, testStart);
 			var match2 = regex.Match(email2.Body);
 			var token2 = match2.Groups[1].Value;
 

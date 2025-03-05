@@ -955,7 +955,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		[Then(@"the move e-mail will have an unsubscribe link")]
 		public void ThenTheMoveEmailWillHaveAnUnsubscribeLink()
 		{
-			var email = EmlHelper.ByPosition(-1);
+			var email = EmlHelper.ByPosition(-1, testStart);
 
 			var user = repos.User.GetByEmail(current.Email);
 
