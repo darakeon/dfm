@@ -1,3 +1,5 @@
+VERSION:=$$(git branch --show-current)
+
 run:
 	@docker compose up -d
 
@@ -11,3 +13,11 @@ reset: clear run
 
 logs:
 	@docker logs -f dfm-migrator
+
+sql:
+	@if [ ! -e ${VERSION}.sql ]; then \
+		echo "insert into migrations (name) values ('${VERSION}');" > ${VERSION}.sql; \
+		echo "" >> ${VERSION}.sql; \
+		echo "" >> ${VERSION}.sql; \
+	fi
+	@code ${VERSION}.sql
