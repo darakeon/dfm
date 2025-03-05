@@ -19,6 +19,12 @@ namespace DFM.Email.Tests
 			PlainText.Initialize(runPath);
 		}
 
+		[BeforeScenario]
+		public void RegisterRun()
+		{
+			testStart = DateTime.UtcNow;
+		}
+
 		[Given(@"I have this e-mail to send")]
 		public void GivenIHaveThisEmailToSend(Table table)
 		{
@@ -151,7 +157,7 @@ namespace DFM.Email.Tests
 				.Replace("\n", "")
 				.Replace("\t", "");
 
-			var email = EmlHelper.ByEmail(user.Email);
+			var email = EmlHelper.ByEmail(user.Email, testStart);
 
 			var body = email.Body
 				.Replace("\r", "")
@@ -166,7 +172,7 @@ namespace DFM.Email.Tests
 		[Then("there will be a header in the email sent to (.+) with the link (.+)")]
 		public void ThenThereWillBeAHeaderWithTheLink(String email, String headerLink)
 		{
-			var emailSent = EmlHelper.ByEmail(email);
+			var emailSent = EmlHelper.ByEmail(email, testStart);
 
 			Assert.That(
 				emailSent.Headers["List-Unsubscribe-Post"],
@@ -182,7 +188,7 @@ namespace DFM.Email.Tests
 		[Then(@"there will be an attachment in the email sent to (.+) with the content of (.+)")]
 		public void ThenThereWillBeAnAttachmentInTheEmailSentToWithTheContentOf(String email, String file)
 		{
-			var emailSent = EmlHelper.ByEmail(email);
+			var emailSent = EmlHelper.ByEmail(email, testStart);
 
 			file = Path.Combine("Templates", file);
 			var content = File.ReadAllText(file);
@@ -218,6 +224,12 @@ namespace DFM.Email.Tests
 		private Format format
 		{
 			get => get<Format>();
+			set => set(value);
+		}
+
+		protected DateTime testStart
+		{
+			get => get<DateTime>();
 			set => set(value);
 		}
 	}

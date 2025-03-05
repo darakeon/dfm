@@ -25,7 +25,7 @@ namespace DFM.Email
 			Type = type;
 		}
 
-		public MailError(Exception e)
+		private MailError(Exception e)
 			: base("Exception on sending e-mail", e)
 		{
 			ErrorCounter++;
