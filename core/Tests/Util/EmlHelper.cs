@@ -43,6 +43,11 @@ namespace DFM.Tests.Util
 					sa => types.Add(sa.ToString(), EmailType.SecurityAction)
 				);
 
+			EnumX.AllValues<SecurityWarning>()
+				.ForEach(
+					sw => types.Add(sw.ToString(), EmailType.SecurityWarning)
+				);
+
 			EnumX.AllValues<RemovalReason>()
 				.ForEach(
 					rr => types.Add(rr.ToString(), EmailType.RemovalReason)

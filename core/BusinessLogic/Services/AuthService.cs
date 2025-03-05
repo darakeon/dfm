@@ -265,7 +265,7 @@ namespace DFM.BusinessLogic.Services
 
 			inTransaction(
 				"RemoveTFA",
-				() => repos.User.ClearTFA(user)
+				() => repos.User.ClearTFA(user, false)
 			);
 		}
 
@@ -358,7 +358,7 @@ namespace DFM.BusinessLogic.Services
 
 			inTransaction("RemoveTFAByToken", () =>
 			{
-				repos.User.ClearTFA(security.User);
+				repos.User.ClearTFA(security.User, true);
 				repos.Security.Disable(token);
 			});
 		}

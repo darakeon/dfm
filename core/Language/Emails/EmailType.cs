@@ -8,5 +8,6 @@ namespace DFM.Language.Emails
 		RemovalReason = 3,
 		WipeNotice = 4,
 		ExportData = 5,
+		SecurityWarning = 6,
 	}
 }
