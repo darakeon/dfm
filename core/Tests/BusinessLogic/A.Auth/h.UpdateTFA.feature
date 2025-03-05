@@ -91,3 +91,17 @@ Scenario: Ah10. Not update if not signed last contract
 		But there is a new contract
 	When I try to set two-factor
 	Then I will receive this core error: NotSignedLastContract
+
+Scenario: Ah11. Remove tfa no warning after reactivate
+	Given I have this two-factor data
+			| Secret | TFA Code    | Password  |
+			| 123    | {generated} | pass_word |
+		And I set two-factor
+		And I have a token for its tfa removal
+		And I pass a valid RemoveTFA token
+	When remove tfa by token
+	Then I will receive no core error
+		And the session will have a warning about tfa removed
+	When I try to set two-factor
+	Then I will receive no core error
+		And the session will not have a warning about tfa removed

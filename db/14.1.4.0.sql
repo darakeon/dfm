@@ -1,4 +1,5 @@
 insert into migrations (name) values ('14.1.4.0');
 
 ALTER TABLE control
-    ADD WrongTFA INT NOT NULL DEFAULT 0;
+    ADD WrongTFA INT NOT NULL DEFAULT 0,
+    ADD TFAForgotten DATETIME NULL;
