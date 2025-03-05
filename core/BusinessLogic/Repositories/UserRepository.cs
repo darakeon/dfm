@@ -4,13 +4,17 @@ using System.Text.RegularExpressions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories.DataObjects;
 using DFM.BusinessLogic.Validators;
+using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Bases;
+using DFM.Entities.Enums;
+using DFM.Generic;
 using Keon.Util.Crypto;
+using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class UserRepository : Repo<User>
+	internal class UserRepository(Current.GetUrl getUrl) : Repo<User>
 	{
 		private const String emailPattern = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$";
 
@@ -128,12 +132,17 @@ namespace DFM.BusinessLogic.Repositories
 		}
 
 
-		public void ClearTFA(User user)
+		public void ClearTFA(User user, Boolean sendEmail)
 		{
 			if (user.TFAPassword)
 				user.TFAPassword = false;
 
 			SaveTFA(user, null);
+
+			if (sendEmail)
+			{
+				sendSecurityWarning(user, SecurityWarning.TFARemoval);
+			}
 		}
 
 		public void SaveTFA(User user, String secret)
@@ -155,6 +164,31 @@ namespace DFM.BusinessLogic.Repositories
 				.Where(u => u.Control, c => c.Active)
 				.Where(u => u.Control, c => c.IsRobot == false)
 				.List;
+		}
+
+		private void sendSecurityWarning(User user, SecurityWarning securityWarning)
+		{
+			var dic = new Dictionary<String, String>
+			{
+				{ "Url", getUrl() },
+			};
+
+			var format = Format.SecurityWarning(user, securityWarning);
+			var fileContent = format.Layout.Format(dic);
+
+			var sender = new Sender()
+				.To(user.Email)
+				.Subject(format.Subject)
+				.Body(fileContent);
+
+			try
+			{
+				sender.Send();
+			}
+			catch (MailError)
+			{
+				throw Error.FailOnEmailSend.Throw();
+			}
 		}
 	}
 }
