@@ -549,10 +549,10 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the ticket will not be valid anymore")]
-		public void ThenTheTicketWillNotBeValidAnymore()
+		[Then(@"the ticket will (not )?be active")]
+		public void ThenTheTicketWillBeActive(Boolean active)
 		{
-			CoreError error = null;
+			CoreError? error = null;
 
 			try
 			{
@@ -563,32 +563,22 @@ namespace DFM.BusinessLogic.Tests.Steps
 				error = e;
 			}
 
-			Assert.That(error, Is.Not.Null);
-			Assert.That(
-				error.Type,
-				Is.AnyOf(
-					Error.Uninvited,
-					Error.UserDeleted,
-					Error.UserAskedWipe
-				)
-			);
-		}
-
-		[Then(@"the ticket will still be valid")]
-		public void ThenTheTicketWillStillBeValid()
-		{
-			CoreError error = null;
-
-			try
+			if (active)
 			{
-				service.Auth.GetSession(testTicketKey);
+				Assert.That(error, Is.Null);
 			}
-			catch (CoreError e)
+			else
 			{
-				error = e;
+				Assert.That(error, Is.Not.Null);
+				Assert.That(
+					error.Type,
+					Is.AnyOf(
+						Error.Uninvited,
+						Error.UserDeleted,
+						Error.UserAskedWipe
+					)
+				);
 			}
-
-			Assert.That(error, Is.Null);
 		}
 		#endregion
 
