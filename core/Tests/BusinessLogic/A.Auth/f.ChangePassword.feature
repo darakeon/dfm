@@ -16,7 +16,7 @@ Scenario: Af01. Password change with wrong current password
 	When I try to change the password
 	Then I will receive this core error: WrongPassword
 		And the password will not be changed
-		And the ticket will still be valid
+		And the ticket will be active
 
 Scenario: Af02. Password change with empty new password
 	Given I pass this data to change password
@@ -25,7 +25,7 @@ Scenario: Af02. Password change with empty new password
 	When I try to change the password
 	Then I will receive this core error: UserPasswordRequired
 		And the password will not be changed
-		And the ticket will still be valid
+		And the ticket will be active
 
 Scenario: Af03. Password change with different retype password
 	Given I pass this data to change password
@@ -34,7 +34,7 @@ Scenario: Af03. Password change with different retype password
 	When I try to change the password
 	Then I will receive this core error: RetypeWrong
 		And the password will not be changed
-		And the ticket will still be valid
+		And the ticket will be active
 
 Scenario: Af04. Password change with info all right
 	Given I pass this data to change password
@@ -95,7 +95,7 @@ Scenario: Af10. TFA activated but without code
 	When I try to change the password
 	Then I will receive this core error: TFAWrongCode
 		And the password will not be changed
-		And the ticket will still be valid
+		And the ticket will be active
 
 Scenario: Af11. TFA activated but with empty code
 	Given I have this two-factor data
@@ -109,7 +109,7 @@ Scenario: Af11. TFA activated but with empty code
 	When I try to change the password
 	Then I will receive this core error: TFAWrongCode
 		And the password will not be changed
-		And the ticket will still be valid
+		And the ticket will be active
 
 Scenario: Af12. TFA activated but with wrong code
 	Given I have this two-factor data
@@ -123,7 +123,7 @@ Scenario: Af12. TFA activated but with wrong code
 	When I try to change the password
 	Then I will receive this core error: TFAWrongCode
 		And the password will not be changed
-		And the ticket will still be valid
+		And the ticket will be active
 
 Scenario: Af13. TFA activated with right code
 	Given I have this two-factor data

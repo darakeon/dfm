@@ -13,7 +13,7 @@ Scenario: Ad01. Disable with info all right
 	Given I pass a ticket that exist
 	When I try to disable the ticket
 	Then I will receive no core error
-		And the ticket will not be valid anymore
+		And the ticket will not be active
 
 Scenario: Ad02. Disable with inexistent ticket
 	Given I pass a ticket that doesn't exist
