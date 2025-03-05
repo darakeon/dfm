@@ -57,3 +57,8 @@ Scenario: B11. Format security action remove tfa
 	When a security action is formatted to RemoveTFA
 		And the e-mail is sent
 	Then there will be a security-action-remove-tfa e-mail sent
+
+Scenario: B12. Format security warning tfa removal
+	When a security warning is formatted to TFARemoval
+		And the e-mail is sent
+	Then there will be a security-warning-tfa-removal e-mail sent

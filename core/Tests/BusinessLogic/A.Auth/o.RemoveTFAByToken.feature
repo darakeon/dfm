@@ -46,6 +46,7 @@ Scenario: Ao05. Remove tfa with info all right
 	Then I will receive no core error
 		And the two-factor will be empty
 		And the token will not be valid anymore
+		And an email warning tfa removal will be sent
 
 Scenario: Ao06. Remove tfa with token already used
 	Given I pass a valid RemoveTFA token

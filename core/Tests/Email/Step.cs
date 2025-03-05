@@ -92,6 +92,12 @@ namespace DFM.Email.Tests
 			format = Format.SecurityAction(user, action);
 		}
 
+		[When(@"a security warning is formatted to (\w+)")]
+		public void WhenASecurityWarningIsFormattedTo(SecurityWarning warning)
+		{
+			format = Format.SecurityWarning(user, warning);
+		}
+
 		[When(@"a user removal is formatted because of (\w+)")]
 		public void WhenAUserRemovalIsFormattedBecauseOf(RemovalReason reason)
 		{

@@ -43,6 +43,7 @@ namespace DFM.MVC.Controllers
 					+ getLayout(Format.SecurityAction(fakeUser, SecurityAction.PasswordReset))
 					+ getLayout(Format.SecurityAction(fakeUser, SecurityAction.UserVerification))
 					+ getLayout(Format.SecurityAction(fakeUser, SecurityAction.RemoveTFA))
+					+ getLayout(Format.SecurityWarning(fakeUser, SecurityWarning.TFARemoval))
 					+ getLayout(Format.UserRemoval(fakeUser, RemovalReason.NoInteraction))
 					+ getLayout(Format.UserRemoval(fakeUser, RemovalReason.NotSignedContract))
 					+ getLayout(Format.WipeNotice(fakeUser, RemovalReason.NoInteraction))
