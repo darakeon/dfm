@@ -164,9 +164,14 @@ namespace DFM.Email.Tests
 				.Replace("\n", "")
 				.Replace("\t", "");
 
-			var email = EmlHelper.ByEmail(user.Email, testStart);
+			var emailSent = EmlHelper.ByEmail(user.Email, testStart);
 
-			var body = email.Body
+			Assert.That(
+				emailSent, Is.Not.Null,
+				$"No email for {testStart} - now {DateTime.Now} / {DateTime.UtcNow}"
+			);
+
+			var body = emailSent?.Body
 				.Replace("\r", "")
 				.Replace("\n", "")
 				.Replace("\t", "");
