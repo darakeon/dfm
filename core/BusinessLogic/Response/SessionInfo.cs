@@ -1,6 +1,7 @@
 ﻿using System;
 using DFM.Authentication;
 using DFM.Entities;
+using DFM.Entities.Bases;
 using DFM.Generic;
 
 namespace DFM.BusinessLogic.Response
@@ -12,32 +13,35 @@ namespace DFM.BusinessLogic.Response
 
 		public SessionInfo(User user)
 		{
-			IsAdm = user.Control.IsAdm;
-			IsRobot = user.Control.IsRobot;
+			var control = user.Control;
+			var settings = user.Settings;
+
+			IsAdm = control.IsAdm;
+			IsRobot = control.IsRobot;
 
 			Email = user.Email;
 			HasTFA = user.HasTFA();
 			TFAPassword = user.TFAPassword;
 
 			Now = user.Now();
-			TimeZone = user.Settings.TimeZone;
-			Language = user.Settings.Language;
-			Theme = user.Settings.Theme;
+			TimeZone = settings.TimeZone;
+			Language = settings.Language;
+			Theme = settings.Theme;
 
-			UseCategories = user.Settings.UseCategories;
-			UseAccountsSigns = user.Settings.UseAccountsSigns;
-			MoveCheck = user.Settings.MoveCheck;
-			SendMoveEmail = user.Settings.SendMoveEmail;
-			UseCurrency = user.Settings.UseCurrency;
+			UseCategories = settings.UseCategories;
+			UseAccountsSigns = settings.UseAccountsSigns;
+			MoveCheck = settings.MoveCheck;
+			SendMoveEmail = settings.SendMoveEmail;
+			UseCurrency = settings.UseCurrency;
 
-			Wizard = user.Settings.Wizard;
+			Wizard = settings.Wizard;
 
-			PlanLimitMoveDetail = user.Control.Plan.MoveDetail;
+			PlanLimitMoveDetail = control.Plan.MoveDetail;
 
-			var age = DateTime.UtcNow - user.Control.Creation;
+			var age = DateTime.UtcNow - control.Creation;
 			Age = (Int32)age.TotalDays;
 
-			if (!user.Control.Active)
+			if (!control.Active)
 			{
 				ActivateWarning = Age switch
 				{
@@ -46,6 +50,11 @@ namespace DFM.BusinessLogic.Response
 					_ => ActivateWarningLevel.None
 				};
 			}
+
+			var dayLimit = DateTime.UtcNow.AddDays(-Defaults.TFARemovedWarningDays);
+			TFAForgottenWarning =
+				control.TFAForgotten != null
+					&& control.TFAForgotten >= dayLimit;
 
 			Misc = user.GenerateMisc();
 		}
@@ -74,6 +83,7 @@ namespace DFM.BusinessLogic.Response
 
 		public Int32 Age { get; }
 		public ActivateWarningLevel ActivateWarning { get; }
+		public Boolean TFAForgottenWarning { get; }
 
 		public Misc Misc { get; }
 	}

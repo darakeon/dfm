@@ -47,6 +47,7 @@ Scenario: Ao05. Remove tfa with info all right
 		And the two-factor will be empty
 		And the token will not be valid anymore
 		And an email warning tfa removal will be sent
+		And the session will have a warning about tfa removed
 
 Scenario: Ao06. Remove tfa with token already used
 	Given I pass a valid RemoveTFA token
@@ -117,3 +118,24 @@ Scenario: Ao14. Remove tfa if set to use as password
 		And the two-factor will be empty
 		And the token will not be valid anymore
 		And the TFA can not be used as password
+
+Scenario: Ao15. Remove tfa no warning after 7 days
+	Given I have this user created
+			| Email                           | Password  | Active | Signed |
+			| {scenarioCode}@dontflymoney.com | pass_word | true   | true   |
+		And I login this user
+			| Email                           | Password  |
+			| {scenarioCode}@dontflymoney.com | pass_word |
+		And I have this two-factor data
+			| Secret | TFA Code    | Password  |
+			| 123    | {generated} | pass_word |
+		And I set two-factor
+		And I have a token for its tfa removal
+	Given I pass a valid RemoveTFA token
+	When remove tfa by token
+		But the tfa removal by token was 7 days ago
+	Then I will receive no core error
+		And the two-factor will be empty
+		And the token will not be valid anymore
+		And an email warning tfa removal will be sent
+		And the session will not have a warning about tfa removed
