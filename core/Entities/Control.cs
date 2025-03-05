@@ -24,6 +24,7 @@ namespace DFM.Entities
 
 		public virtual Int32 WrongLogin { get; set; }
 		public virtual Int32 WrongTFA { get; set; }
+		public virtual DateTime? TFAForgotten { get; set; }
 
 		public virtual Int32 RemovalWarningSent { get; set; }
 		public virtual Boolean ProcessingDeletion { get; set; }

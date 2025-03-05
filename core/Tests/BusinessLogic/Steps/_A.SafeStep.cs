@@ -1678,6 +1678,23 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
+		[When(@"the tfa removal by token was (\d+) days ago")]
+		public void WhenTheTfaRemovalByTokenWasDaysAgo(Int32 days)
+		{
+			var user = repos.User.GetByEmail(userEmail);
+			var control = user.Control;
+
+			if (!control.TFAForgotten.HasValue)
+				return;
+
+			control.TFAForgotten =
+				control.TFAForgotten.Value.AddDays(-days);
+
+			db.Execute(
+				() => repos.Control.SaveOrUpdate(control)
+			);
+		}
+
 		[Then(@"an email warning tfa removal will be sent")]
 		public void ThenAnEmailWarningTfaRemovalWillBeSent()
 		{
@@ -1693,6 +1710,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 				.ToList();
 
 			Assert.That(emails.Count, Is.EqualTo(1));
+		}
+
+		[Then(@"the session will (not )?have a warning about tfa removed")]
+		public void ThenTheSessionWillHaveAWarningAboutTfaRemoved(Boolean warning)
+		{
+			var session = service.Auth.GetSession(testTicketKey);
+			Assert.That(session, Is.Not.Null);
+			Assert.That(session.TFAForgottenWarning, Is.EqualTo(warning));
 		}
 		#endregion
 	}
