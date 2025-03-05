@@ -62,3 +62,8 @@ Scenario: B12. Format security warning tfa removal
 	When a security warning is formatted to TFARemoval
 		And the e-mail is sent
 	Then there will be a security-warning-tfa-removal e-mail sent
+
+Scenario: B13. Format removal by person asked
+	When a user removal is formatted because of PersonAsked
+	Then I will receive this e-mail error: InvalidType
+		And there will be no e-mail sent
