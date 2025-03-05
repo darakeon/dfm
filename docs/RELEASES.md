@@ -19,6 +19,8 @@ This is the list of project releases, past and current. To see tasks that are st
 - [x] `250204>250204` Add email images to maintenance site
 - [x] `250131>250202` Add schedule to merge dependabot prs everyday
 - [x] `250202>250202` Check dependabot configuration to avoid duplications
+Remove warning if safer login is re-enabled
+Add text about 7 days warning in email
 - [ ] Show warning in mobile about MFA being disabled via email for one week
 - [ ] Show warning in website about MFA being disabled via email for one week
 - [x] `250302>250305` Send email warning the MFA was disabled via email
