@@ -136,5 +136,27 @@ namespace DFM.BusinessLogic.Repositories
 
 			SaveOrUpdate(control);
 		}
+
+		public void SetWarning(User user)
+		{
+			changeTFARemoved(user, DateTime.UtcNow);
+		}
+
+		public void UnsetWarning(User user)
+		{
+			changeTFARemoved(user, null);
+		}
+
+		private void changeTFARemoved(User user, DateTime? tfaRemoved)
+		{
+			var control = user.Control;
+
+			if (control.TFAForgotten == tfaRemoved)
+				return;
+
+			control.TFAForgotten = tfaRemoved;
+
+			SaveOrUpdate(control);
+		}
 	}
 }

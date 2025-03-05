@@ -234,20 +234,21 @@ namespace DFM.BusinessLogic.Services
 
 		public void UpdateTFA(TFAInfo info)
 		{
+			if (String.IsNullOrEmpty(info.Secret))
+				throw Error.TFAEmptySecret.Throw();
+
+			valids.User.CheckTFA(info);
+
+			var user = GetCurrent();
+
+			valids.User.CheckPassword(user, info.Password);
+			valids.User.CheckUserDeletion(user);
+			parent.Law.CheckContractAccepted(user);
+
 			inTransaction("UpdateTFA", () =>
 			{
-				if (String.IsNullOrEmpty(info.Secret))
-					throw Error.TFAEmptySecret.Throw();
-
-				valids.User.CheckTFA(info);
-
-				var user = GetCurrent();
-
-				valids.User.CheckPassword(user, info.Password);
-				valids.User.CheckUserDeletion(user);
-				parent.Law.CheckContractAccepted(user);
-
 				repos.User.SaveTFA(user, info.Secret);
+				repos.Control.UnsetWarning(user);
 			});
 		}
 
@@ -359,6 +360,7 @@ namespace DFM.BusinessLogic.Services
 			inTransaction("RemoveTFAByToken", () =>
 			{
 				repos.User.ClearTFA(security.User, true);
+				repos.Control.SetWarning(security.User);
 				repos.Security.Disable(token);
 			});
 		}
