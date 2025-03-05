@@ -12,6 +12,7 @@ namespace DFM.Email
 		InvalidBody = 8,
 		InvalidAddress = 16,
 		EmailNotSent = 32,
+		InvalidType = 64,
 	}
 
 	public static class EmailStatusExtension
