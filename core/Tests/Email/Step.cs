@@ -107,7 +107,14 @@ namespace DFM.Email.Tests
 		[When(@"a user removal is formatted because of (\w+)")]
 		public void WhenAUserRemovalIsFormattedBecauseOf(RemovalReason reason)
 		{
-			format = Format.UserRemoval(user, reason);
+			try
+			{
+				format = Format.UserRemoval(user, reason);
+			}
+			catch (MailError e)
+			{
+				error = e;
+			}
 		}
 
 		[When(@"a wipe notice is formatted because of (\w+)")]
@@ -167,6 +174,13 @@ namespace DFM.Email.Tests
 			var resultPath = Path.Combine("Templates", "result.html");
 			File.WriteAllText(resultPath, body);
 			Assert.That(match(body, pattern), Is.True);
+		}
+
+		[Then(@"there will be no e-mail sent")]
+		public void ThenThereWillNoEmailSent()
+		{
+			var email = EmlHelper.ByEmail(user.Email, testStart);
+			Assert.That(email, Is.Null);
 		}
 
 		[Then("there will be a header in the email sent to (.+) with the link (.+)")]
