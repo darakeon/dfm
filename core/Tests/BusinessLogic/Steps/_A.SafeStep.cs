@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Amazon.Runtime.Internal.Util;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
 using DFM.BusinessLogic.Tests.Helpers;
@@ -1685,6 +1686,23 @@ namespace DFM.BusinessLogic.Tests.Steps
 			{
 				testCoreError = e;
 			}
+		}
+
+		[Then(@"an email warning tfa removal will be sent")]
+		public void ThenAnEmailWarningTfaRemovalWillBeSent()
+		{
+			var inboxPath = Path.Combine(outputsPath, "inbox");
+			var inbox = new DirectoryInfo(inboxPath);
+
+			var emlReaders = inbox.GetFiles("*.eml")
+				.Where(f => f.CreationTimeUtc >= testStart)
+				.Select(f => EmlReader.FromFile(f.FullName))
+				.Where(e => e.Headers["To"] == userEmail);
+			var emails = emlReaders
+				.Where(e => e.Subject == "Login mais Seguro desativado")
+				.ToList();
+
+			Assert.That(emails.Count, Is.EqualTo(1));
 		}
 		#endregion
 	}

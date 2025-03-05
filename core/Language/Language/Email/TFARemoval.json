@@ -1,0 +1,18 @@
+{
+	"en-US": {
+		"Subject": "Safer Login disabled",
+		"Title": "Safer Login",
+		"WarningWhy": "You are receiving this message because the removal of Safer Login was requested in the System Don't fly Money.",
+		"WarningHow": "To make this request it was asked the recorded password at the System and an email message was sent to this same address with a token for removal. After using the token the Safer Login was removed.",
+		"WarningNow": "In case this was not you we recommend enable it again and check if your Accounts seem normal. If it was you it is also possible to re-enable Safer Login via System.",
+		"": null
+	},
+	"pt-BR": {
+		"Subject": "Login mais Seguro desativado",
+		"Title": "Login mais Seguro",
+		"WarningWhy": "Você está recebendo esta mensagem porque foi solicitada a remoção do Login mais Seguro no Sistema Don't fly Money.",
+		"WarningHow": "Para realizar este procedimento, foi pedida a senha cadastrada no Sistema e em seguida foi enviado um email para este mesmo endereço com um token para a remoção. Após o uso do token, o Login mais Seguro foi removido.",
+		"WarningNow": "Caso não tenha sido você, recomendamos habilitar novamente o Login mais Seguro e verificar se suas Contas parecem normais. Se foi, também é possível reabilitar o Login mais Seguro via Sistema.",
+		"": null
+	}
+}
