@@ -164,9 +164,14 @@ namespace DFM.Email.Tests
 				.Replace("\n", "")
 				.Replace("\t", "");
 
-			var email = EmlHelper.ByEmail(user.Email, testStart);
+			var emailSent = EmlHelper.ByEmail(user.Email, testStart);
 
-			var body = email.Body
+			Assert.That(
+				emailSent, Is.Not.Null,
+				$"No email for {testStart} - now {DateTime.Now} / {DateTime.UtcNow}"
+			);
+
+			var body = emailSent?.Body
 				.Replace("\r", "")
 				.Replace("\n", "")
 				.Replace("\t", "");
@@ -189,12 +194,17 @@ namespace DFM.Email.Tests
 			var emailSent = EmlHelper.ByEmail(email, testStart);
 
 			Assert.That(
-				emailSent.Headers["List-Unsubscribe-Post"],
+				emailSent, Is.Not.Null,
+				$"No email for {testStart} - now {DateTime.Now} / {DateTime.UtcNow}"
+			);
+
+			Assert.That(
+				emailSent?.Headers["List-Unsubscribe-Post"],
 				Is.EqualTo("List-Unsubscribe=One-Click")
 			);
 
 			Assert.That(
-				emailSent.Headers["List-Unsubscribe"],
+				emailSent?.Headers["List-Unsubscribe"],
 				Is.EqualTo(headerLink)
 			);
 		}
