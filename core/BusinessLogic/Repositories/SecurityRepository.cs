@@ -13,16 +13,9 @@ using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class SecurityRepository : Repo<Security>
+	internal class SecurityRepository(Current.GetUrl getUrl) : Repo<Security>
 	{
-		private readonly Current.GetUrl getUrl;
-
 		private readonly UserValidator validator = new();
-
-		public SecurityRepository(Current.GetUrl getUrl)
-		{
-			this.getUrl = getUrl;
-		}
 
 		internal void CreateAndSendToken(User user, SecurityAction action)
 		{
