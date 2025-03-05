@@ -108,7 +108,7 @@ namespace DFM.Tests.Util
 		{
 			var dir = new DirectoryInfo(Cfg.Smtp.PickupDirectory);
 			return dir.EnumerateFiles("*.eml")
-				.Where(f => f.CreationTimeUtc > datetime);
+				.Where(f => f.CreationTimeUtc >= datetime);
 		}
 
 		public static Int32 CountEmails(String email, EmailType type, DateTime datetime)
