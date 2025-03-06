@@ -121,23 +121,10 @@ namespace DFM.Tests.Util
 
 		public static EmlHelper? ByEmail(String emailAddress, DateTime datetime)
 		{
-			var emailsCount = getEmailFiles(datetime).Count();
-
-			if (emailsCount == 0)
-				return null;
-
-			EmlHelper? email;
-			var e = 0;
-
-			do
-			{
-				email = ByPosition(--e, datetime);
-			} while (
-				emailAddress != email?.Receiver
-				&& -e < emailsCount
-			);
-
-			return email;
+			return getEmailFiles(datetime)
+				.OrderByDescending(f => f.CreationTime)
+				.Select(e => new EmlHelper(e))
+				.FirstOrDefault(e => emailAddress == e.Receiver);
 		}
 	}
 }
