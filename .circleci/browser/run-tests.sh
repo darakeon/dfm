@@ -4,7 +4,7 @@ set -e
 
 cd site/Tests/Browser/server
 
-./DFM.MVC > ../log/server.log 2> ../log/error.log & disown
+./DFM.MVC > ../../../../outputs/logs/site/Browser/server.log 2> ../../../../outputs/logs/site/Browser/error.log & disown
 
 echo
 echo "Calling site"
