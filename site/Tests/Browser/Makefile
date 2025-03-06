@@ -50,7 +50,7 @@ publish_site: restore_site
 	@cd ../../MVC && dotnet publish -c Release MVC.csproj -o ../Tests/Browser/server --no-restore
 
 run_site:
-	@cd server && ./DFM.MVC > ../log/server.log &
+	@cd server && ./DFM.MVC > ../../../../outputs/logs/site/Browser/server.log &
 
 install_proj_deps:
 	@npm install

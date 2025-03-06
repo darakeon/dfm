@@ -657,7 +657,7 @@ jobs:
           name: tests browser
           command: .circleci/browser/run-tests.sh
       - store_artifacts:
-          path: site/Tests/Browser/log
+          path: outputs/log
       - store_artifacts:
           path: site/Tests/Browser/server/tests.db
       - store_artifacts:
