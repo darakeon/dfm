@@ -62,7 +62,7 @@ setup: publish_site run_site _wait create_contract
 
 clear:
 	@cd server && rm -f tests.db
-	@pkill DFM.MVC
+	@pkill DFM.MVC || echo "site is not running"
 
 resetup: clear setup
 
