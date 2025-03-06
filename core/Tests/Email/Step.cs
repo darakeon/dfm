@@ -19,10 +19,10 @@ namespace DFM.Email.Tests
 			PlainText.Initialize(runPath);
 		}
 
-		[BeforeScenario]
-		public void RegisterRun()
+		[BeforeTestRun]
+		public static void RegisterRun()
 		{
-			testStart = DateTime.UtcNow;
+			testsStart = DateTime.UtcNow;
 		}
 
 		[Given(@"I have this e-mail to send")]
@@ -164,11 +164,11 @@ namespace DFM.Email.Tests
 				.Replace("\n", "")
 				.Replace("\t", "");
 
-			var emailSent = EmlHelper.ByEmail(user.Email, testStart);
+			var emailSent = EmlHelper.ByEmail(user.Email, testsStart);
 
 			Assert.That(
 				emailSent, Is.Not.Null,
-				$"No email for {testStart} - now {DateTime.Now} / {DateTime.UtcNow}"
+				$"No email for {testsStart} - now {DateTime.Now} / {DateTime.UtcNow}"
 			);
 
 			var body = emailSent?.Body
@@ -184,18 +184,18 @@ namespace DFM.Email.Tests
 		[Then(@"there will be no e-mail sent")]
 		public void ThenThereWillNoEmailSent()
 		{
-			var email = EmlHelper.ByEmail(user.Email, testStart);
+			var email = EmlHelper.ByEmail(user.Email, testsStart);
 			Assert.That(email, Is.Null);
 		}
 
 		[Then("there will be a header in the email sent to (.+) with the link (.+)")]
 		public void ThenThereWillBeAHeaderWithTheLink(String email, String headerLink)
 		{
-			var emailSent = EmlHelper.ByEmail(email, testStart);
+			var emailSent = EmlHelper.ByEmail(email, testsStart);
 
 			Assert.That(
 				emailSent, Is.Not.Null,
-				$"No email for {testStart} - now {DateTime.Now} / {DateTime.UtcNow}"
+				$"No email for {testsStart} - now {DateTime.Now} / {DateTime.UtcNow}"
 			);
 
 			Assert.That(
@@ -212,7 +212,7 @@ namespace DFM.Email.Tests
 		[Then(@"there will be an attachment in the email sent to (.+) with the content of (.+)")]
 		public void ThenThereWillBeAnAttachmentInTheEmailSentToWithTheContentOf(String email, String file)
 		{
-			var emailSent = EmlHelper.ByEmail(email, testStart);
+			var emailSent = EmlHelper.ByEmail(email, testsStart);
 
 			file = Path.Combine("Templates", file);
 			var content = File.ReadAllText(file);
@@ -251,10 +251,6 @@ namespace DFM.Email.Tests
 			set => set(value);
 		}
 
-		protected DateTime testStart
-		{
-			get => get<DateTime>();
-			set => set(value);
-		}
+		protected static DateTime testsStart { get; private set; }
 	}
 }
