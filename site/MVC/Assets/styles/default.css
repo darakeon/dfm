@@ -109,6 +109,12 @@ input[type="date"] {
 		display: none;
 	}
 
+.tfa-forgot-warning {
+	position: absolute;
+	left: 0;
+	margin: 5px;
+}
+
 .clock {
 	font-size: 70%;
 	text-align: right;

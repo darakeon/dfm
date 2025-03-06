@@ -125,6 +125,13 @@ describe('Users', () => {
 
 		const message = await puppy.content('.alert')
 		await expect(message).toContain('Login mais Seguro desabilitado. O código não será mais exigido.')
+
+		await puppy.call('')
+
+		const warning = await puppy.content('.tfa-forgot-warning')
+		await expect(warning).toContain('Login mais Seguro desabilitado via token.')
+		await expect(warning).toContain('Se não tiver sido uma ação sua,')
+		await expect(warning).toContain('recomendamos reabilitar.')
 	})
 
 	test('Token TFA Remove - by form', async () => {
@@ -142,6 +149,13 @@ describe('Users', () => {
 
 		const message = await puppy.content('.alert')
 		await expect(message).toContain('Login mais Seguro desabilitado. O código não será mais exigido.')
+
+		await puppy.call('')
+
+		const warning = await puppy.content('.tfa-forgot-warning')
+		await expect(warning).toContain('Login mais Seguro desabilitado via token.')
+		await expect(warning).toContain('Se não tiver sido uma ação sua,')
+		await expect(warning).toContain('recomendamos reabilitar.')
 	})
 
 	test('Token Disable', async () => {
