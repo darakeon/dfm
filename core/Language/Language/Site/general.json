@@ -153,6 +153,9 @@
 		"LostTFA": "I don't have the code",
 		"TFALabel": "Safer Login Code",
 		"TFALabelExplanation": "Safer Login is enabled, so it is necessary to use the application generated code to make this change. Maybe you used Authy or Google Authenticator to activate this feature, if you don't remember you can look into your cellphone for these apps.",
+		"TFAForgottenWarningWhat": "Safer Login disabled via token.",
+		"TFAForgottenWarningBut": "If this was not your action,",
+		"TFAForgottenWarningAction": "we recommend re-enable.",
 
 		"AndroidRobotLicenseText": "The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.",
 
@@ -374,6 +377,9 @@
 		"LostTFA": "não sei o código",
 		"TFALabel": "Código de Login mais Seguro",
 		"TFALabelExplanation": "O Login mais Seguro está ativado, por isso é necessário um código gerado por aplicativo para efetuar esta mudança. Talvez você tenha usado Authy ou Google Authenticator para ativar essa funcionalidade, se não se lembra, tente procurar em seu celular por esses aplicativos.",
+		"TFAForgottenWarningWhat": "Login mais Seguro desabilitado via token.",
+		"TFAForgottenWarningBut": "Se não tiver sido uma ação sua,",
+		"TFAForgottenWarningAction": "recomendamos reabilitar.",
 
 		"AndroidRobotLicenseText": "O robô Android é reproduzido ou modificado a partir de trabalhos criados e compartilhados pela Google e usado de acordo com os termos descritos na Licença de atribuição Creative Commons 3.0.",
 

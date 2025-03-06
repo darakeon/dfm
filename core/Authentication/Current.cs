@@ -117,6 +117,7 @@ namespace DFM.Authentication
 
 		public Boolean HasTFA => session?.HasTFA ?? false;
 		public Boolean TFAPassword => session?.TFAPassword ?? false;
+		public Boolean TFAForgottenWarning => session?.TFAForgottenWarning ?? false;
 
 		public DateTime Now => session?.Now ?? DateTime.UtcNow;
 		public String TimeZone => session?.TimeZone;

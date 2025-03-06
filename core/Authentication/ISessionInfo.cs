@@ -30,6 +30,7 @@ namespace DFM.Authentication
 		Boolean Wizard { get; }
 
 		ActivateWarningLevel ActivateWarning { get; }
+		Boolean TFAForgottenWarning { get; }
 
 		Misc Misc { get; }
 	}

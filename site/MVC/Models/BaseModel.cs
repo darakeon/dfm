@@ -38,6 +38,8 @@ namespace DFM.MVC.Models
 		protected String language => translator.Language;
 		protected Boolean wizard => current.Wizard;
 
+		protected Boolean tfaForgottenWarning => current.TFAForgottenWarning;
+
 		protected Boolean isUsingCategories => current.UseCategories;
 		protected Boolean isUsingAccountsSigns => current.UseAccountsSigns;
 		protected Boolean moveCheckingEnabled => current.MoveCheck;
