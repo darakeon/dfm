@@ -33,6 +33,7 @@ namespace DFM.MVC.Models
 		public String Language => language;
 
 		public Boolean ShowWizard => wizard;
+		public Boolean ShowTFAForgottenWarning => tfaForgottenWarning;
 
 		public ActivateWarningLevel ActivateWarning => current.ActivateWarning;
 
