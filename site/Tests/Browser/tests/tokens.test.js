@@ -3,19 +3,20 @@ const puppy = require('../helpers/puppy')
 
 
 describe('Users', () => {
+	let email = 'tokens@dontflymoney.com'
 	let user = {};
 	let account = {};
 	let category = {};
 
 	beforeEach(async () => {
 		await db.cleanupTickets()
-		user = await puppy.logon('tokens@dontflymoney.com')
+		user = await puppy.logon(email)
 		account = await db.createAccountIfNotExists('Account Token', user)
 		category = await db.createCategoryIfNotExists('Category Token', user)
 	})
 
 	test('Token User Activate - by url', async () => {
-		const email = 'token_activate_user@dontflymoney.com'
+		email = 'token_activate_user@dontflymoney.com'
 		await db.createUserIfNotExists(email)
 		const token = await db.createToken(email, 0)
 
@@ -26,7 +27,7 @@ describe('Users', () => {
 	})
 
 	test('Token User Activate - by form', async () => {
-		const email = 'token_activate_user@dontflymoney.com'
+		email = 'token_activate_user@dontflymoney.com'
 		await db.createUserIfNotExists(email)
 		const token = await db.createToken(email, 0)
 
@@ -41,7 +42,7 @@ describe('Users', () => {
 	})
 
 	test('Token Password Reset - by url', async () => {
-		const email = 'token_reset_password@dontflymoney.com'
+		email = 'token_reset_password@dontflymoney.com'
 		await db.createUserIfNotExists(email, {active:true})
 		const token = await db.createToken(email, 1)
 
@@ -57,7 +58,7 @@ describe('Users', () => {
 	})
 
 	test('Token Password Reset - by form', async () => {
-		const email = 'token_reset_password@dontflymoney.com'
+		email = 'token_reset_password@dontflymoney.com'
 		await db.createUserIfNotExists(email, {active:true})
 		const token = await db.createToken(email, 1)
 
@@ -114,9 +115,36 @@ describe('Users', () => {
 		await expect(message).toContain('Caso queira reativar, vá até as Configurações.')
 	})
 
+	test('Token TFA Remove - by url', async () => {
+		const secret = 'answer to the life universe and everything'
+		await db.setSecret(user, secret)
+
+		const token = await db.createToken(email, 4)
+
+		await puppy.call(`Tokens/RemoveTFA/${token}`)
+
+		const message = await puppy.content('.alert')
+		await expect(message).toContain('Login mais Seguro desabilitado. O código não será mais exigido.')
+	})
+
+	test('Token TFA Remove - by form', async () => {
+		const secret = 'answer to the life universe and everything'
+		await db.setSecret(user, secret)
+
+		const token = await db.createToken(email, 4)
+
+		await puppy.call('Tokens')
+		await puppy.waitFor('#body form')
+
+		await page.type('#Token', token)
+		await page.select('#SecurityAction', "RemoveTFA")
+		await page.click('#body form button[type="submit"]')
+
+		const message = await puppy.content('.alert')
+		await expect(message).toContain('Login mais Seguro desabilitado. O código não será mais exigido.')
+	})
+
 	test('Token Disable', async () => {
-		const email = 'token_disable@dontflymoney.com'
-		await db.createUserIfNotExists(email, {active:true})
 		const token = await db.createToken(email, 1)
 
 		await puppy.call(`Tokens/Disable/${token}`)
