@@ -183,7 +183,7 @@ async function imageLog(name, silent) {
 	})
 
 	await page.screenshot({
-		path: 'log/' + name + '.png'
+		path: '../../../outputs/logs/site/Browser/' + name + '.png'
 	})
 
 	if (!silent)
