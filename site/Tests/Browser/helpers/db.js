@@ -500,43 +500,54 @@ async function validateLastTFA(user) {
 
 
 async function execute(query, params) {
-	let done = false;
-	let result;
-	let error;
+	let db = {close:()=>{}};
 
-	if (!params) params = []
+	try {
+		let done = false;
+		let result;
+		let error;
 
-	const db = new sqlite.Database(
-		'server/tests.db',
-		(err) => { if (err) throw err }
-	)
+		if (!params) params = []
+	
+		const db = new sqlite.Database(
+			'server/tests.db',
+			(err) => { if (err) throw err }
+		)
 
-	if (query.indexOf('select') == 0) {
-		db.all(query, params, (err, rows) => {
-			done = true
-			error = err
-			result = rows
-		})
-	} else {
-		db.run(query, params, function(err) {
-			done = true
-			error = err
-			result = this
-		})
-	}
-
-	while (!done)
-		await delay(100)
-
-	db.close()
-
-	if (error) {
-		console.log(query)
+		if (query.indexOf('select') == 0) {
+			db.all(query, params, (err, rows) => {
+				done = true
+				error = err
+				result = rows
+			})
+		} else {
+			db.run(query, params, function(err) {
+				done = true
+				error = err
+				result = this
+			})
+		}
+	
+		while (!done)
+			await delay(100)
+	
+		db.close()
+	
+		if (error) {
+			console.log(query)
+			console.error(error)
+			throw error
+		}
+	
+		return result			
+	} catch (error) {
+		console.error(new Date())
 		console.error(error)
+
+		db.close()
+
 		throw error
 	}
-
-	return result
 }
 
 function delay(time, val) {
