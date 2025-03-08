@@ -14,7 +14,7 @@
 	"overrides": {
 	},
 	"scripts": {
-		"test": "jest --runInBand --bail"
+		"test": "jest --runInBand --bail --verbose"
 	},
 	"repository": {
 		"type": "git",
