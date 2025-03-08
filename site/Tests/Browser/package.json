@@ -12,9 +12,6 @@
 		"jest-puppeteer": "^11.0.0"
 	},
 	"overrides": {
-		"semver": "^7.5.2",
-		"optionator": "^0.9.3",
-		"micromatch": "^4.0.8"
 	},
 	"scripts": {
 		"test": "jest --runInBand --bail"
