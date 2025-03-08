@@ -30,7 +30,7 @@ machine:
 			-v ${PWD}/../../..:/var/dfm \
 			-p 2703:2703 \
 			-w /var/dfm/site/Tests/Browser \
-			darakeon/dfm-browser-tests; \
+			darakeon/dfm-browser-tests:sqlite-ok; \
 	else \
 		docker start -i ${MACHINE_NAME}; \
 	fi

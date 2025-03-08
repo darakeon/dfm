@@ -1,6 +1,6 @@
   test_browser:
     docker:
-      - image: darakeon/dfm-browser-tests
+      - image: darakeon/dfm-browser-tests:sqlite-ok
     steps:
       - checkout
       - attach_workspace:
