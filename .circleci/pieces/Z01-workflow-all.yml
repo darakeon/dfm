@@ -90,6 +90,9 @@
             - audit_test_browser
             - build_site
             - push_docker_browser
+      - test_browser_wait_fix:
+          requires:
+            - test_browser
       - build_api:
           requires:
             - build_core
