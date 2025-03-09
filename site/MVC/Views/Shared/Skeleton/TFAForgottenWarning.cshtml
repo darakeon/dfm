@@ -1,0 +1,10 @@
+﻿@model BaseSiteModel
+
+<div id="tfa-forgotten-warning" class="well well-sm text-center">
+	@Context.Translate("TFAForgottenWarningWhat")<br/>
+	@Context.Translate("TFAForgottenWarningBut")
+	@Html.ActionLink(
+		Context.Translate("TFAForgottenWarningAction"),
+		"TFA", "Settings"
+	)
+</div>
