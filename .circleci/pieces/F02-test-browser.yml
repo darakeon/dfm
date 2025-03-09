@@ -56,8 +56,14 @@
       - restore_cache:
           keys:
             - dotnet-{{ checksum "site/site_cache_key" }}
+      - restore_cache:
+          keys:
             - dotnet-libman-{{ checksum "site/MVC/libman.json" }}
+      - restore_cache:
+          keys:
             - dotnet-browser-server-{{ checksum "site/Tests/Browser/server/DFM.MVC" }}
+      - restore_cache:
+          keys:
             - node-{{ checksum "site/Tests/Browser/package.json" }}-{{ checksum "site/Tests/Browser/package-lock.json" }}
       - run:
           name: clear database
