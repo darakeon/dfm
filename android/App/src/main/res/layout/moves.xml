@@ -40,7 +40,7 @@
 				android:id="@+id/no_accounts"
 				android:text="@string/no_accounts_move"
 				android:visibility="gone"
-				android:textSize="20sp"
+				android:textSize="@dimen/font_default"
 				android:gravity="top|center"
 				android:paddingBottom="20sp"
 				/>
@@ -51,7 +51,7 @@
 				android:id="@+id/no_categories"
 				android:text="@string/no_categories_move"
 				android:visibility="gone"
-				android:textSize="20sp"
+				android:textSize="@dimen/font_default"
 				android:gravity="top|center"
 				/>
 
@@ -301,7 +301,7 @@
 
 					<EditText
 						android:id="@+id/detail_description"
-						android:textSize="14sp"
+						android:textSize="@dimen/font_small"
 						android:layout_width="0dp"
 						android:layout_height="wrap_content"
 						android:layout_columnSpan="1"
@@ -313,7 +313,7 @@
 						/>
 					<EditText
 						android:id="@+id/detail_amount"
-						android:textSize="14sp"
+						android:textSize="@dimen/font_small"
 						android:layout_width="0dp"
 						android:layout_height="wrap_content"
 						android:layout_columnWeight="@integer/move_detail_amount_weight"
@@ -324,7 +324,7 @@
 						/>
 					<EditText
 						android:id="@+id/detail_value"
-						android:textSize="14sp"
+						android:textSize="@dimen/font_small"
 						android:layout_width="0dp"
 						android:layout_height="wrap_content"
 						android:layout_columnWeight="@integer/move_detail_value_weight"
@@ -336,7 +336,7 @@
 						/>
 					<EditText
 						android:id="@+id/detail_conversion"
-						android:textSize="14sp"
+						android:textSize="@dimen/font_small"
 						android:layout_width="0dp"
 						android:layout_height="wrap_content"
 						android:layout_columnWeight="@integer/move_detail_conversion_weight"
