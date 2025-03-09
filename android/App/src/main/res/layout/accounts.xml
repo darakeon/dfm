@@ -23,7 +23,7 @@
 			android:layout_weight="1"
 			android:gravity="top|center"
 			android:visibility="gone"
-			android:textSize="17sp"
+			android:textSize="@dimen/font_default"
 			android:paddingTop="20dp"
 			android:paddingBottom="20dp"
 			android:text="@string/no_accounts"
