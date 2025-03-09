@@ -14,7 +14,7 @@ namespace DFM.API.Models
 
 		public Boolean RememberMe { private get; set; }
 
-		public String Ticket { get; private set; }
+		public String? Ticket { get; private set; }
 
 		internal UsersLoginModel LogOn()
 		{
