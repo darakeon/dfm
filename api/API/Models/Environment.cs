@@ -3,15 +3,14 @@ using DFM.Generic;
 
 namespace DFM.API.Models
 {
-	public class Environment
+	public class Environment(
+		Theme theme,
+		string language,
+		Boolean tfaForgottenWarning
+	)
 	{
-		public Environment(Theme theme, string language)
-		{
-			Theme = theme;
-			Language = language;
-		}
-
-		public Theme Theme { get; }
-		public String Language { get; }
+		public Theme Theme { get; } = theme;
+		public String Language { get; } = language;
+		public Boolean TFAForgottenWarning { get; } = tfaForgottenWarning;
 	}
 }
