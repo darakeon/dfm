@@ -28,7 +28,7 @@
 				android:layout_height="wrap_content"
 				android:gravity="center"
 				android:layout_columnSpan="8"
-				android:textSize="28sp"
+				android:textSize="@dimen/font_huge"
 				android:text="@string/settings_warning"
 				/>
 
