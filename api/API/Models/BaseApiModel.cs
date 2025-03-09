@@ -4,7 +4,11 @@
 	{
 		public BaseApiModel()
 		{
-			Environment = new Environment(theme, language);
+			Environment = new Environment(
+				theme,
+				language,
+				tfaForgottenWarning
+			);
 		}
 
 		internal Environment Environment { get; }
