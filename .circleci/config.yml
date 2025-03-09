@@ -650,9 +650,44 @@ jobs:
           name: publish site
           path: site/MVC
           command: dotnet publish -c Release MVC.csproj -o ../Tests/Browser/server --no-restore
+      - save_cache:
+          key: dotnet-browser-server-{{ checksum "site/Tests/Browser/server/DFM.MVC" }}
+          paths:
+            - site/Tests/Browser/server
       - restore_cache:
           keys:
             - node-{{ checksum "site/Tests/Browser/package.json" }}-{{ checksum "site/Tests/Browser/package-lock.json" }}
+      - run:
+          name: tests browser
+          command: .circleci/browser/run-tests.sh
+      - store_artifacts:
+          path: outputs/logs
+      - store_artifacts:
+          path: site/Tests/Browser/server/tests.db
+      - store_artifacts:
+          path: outputs/inbox
+      - store_artifacts:
+          path: outputs/s3
+
+  test_browser_wait_fix:
+    docker:
+      - image: darakeon/dfm-browser-tests
+    steps:
+      - checkout
+      - attach_workspace:
+          at: core
+      - attach_workspace:
+          at: site
+      - restore_cache:
+          keys:
+            - dotnet-{{ checksum "site/site_cache_key" }}
+            - dotnet-libman-{{ checksum "site/MVC/libman.json" }}
+            - dotnet-browser-server-{{ checksum "site/Tests/Browser/server/DFM.MVC" }}
+            - node-{{ checksum "site/Tests/Browser/package.json" }}-{{ checksum "site/Tests/Browser/package-lock.json" }}
+      - run:
+          name: clear database
+          path: site/Tests/Browser/server
+          command: rm tests.db
       - run:
           name: tests browser
           command: .circleci/browser/run-tests.sh
@@ -1562,6 +1597,9 @@ workflows:
             - audit_test_browser
             - build_site
             - push_docker_browser
+      - test_browser_wait_fix:
+          requires:
+            - test_browser
       - build_api:
           requires:
             - build_core
