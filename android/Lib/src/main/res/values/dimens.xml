@@ -9,4 +9,9 @@
 	<dimen name="mini_button_font">12sp</dimen>
 	<dimen name="button_margin">2sp</dimen>
 
+	<dimen name="font_huge">29sp</dimen>
+	<dimen name="font_large">20sp</dimen>
+	<dimen name="font_default">17sp</dimen>
+	<dimen name="font_small">14sp</dimen>
+
 </resources>

@@ -10,7 +10,7 @@
 		android:gravity="start"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:textSize="17sp"
+		android:textSize="@dimen/font_default"
 		/>
 
 	<TextView android:id="@+id/name"
@@ -19,7 +19,7 @@
 			  android:layout_width="0dp"
 			  android:layout_height="wrap_content"
 			  android:layout_weight="1"
-			  android:textSize="17sp"
+			  android:textSize="@dimen/font_default"
 		/>
 
 	<TextView android:id="@+id/value"
@@ -28,7 +28,7 @@
 			  android:layout_width="0dp"
 			  android:layout_height="wrap_content"
 			  android:layout_weight="1"
-			  android:textSize="17sp"
+			  android:textSize="@dimen/font_default"
 		/>
 
 	<TextView android:id="@+id/move_status"
@@ -39,7 +39,7 @@
 			   android:gravity="end"
 			   android:layout_width="wrap_content"
 			   android:layout_height="wrap_content"
-			   android:textSize="17sp"
+			   android:textSize="@dimen/font_default"
 			   android:contentDescription="@string/check"
 		/>
 
