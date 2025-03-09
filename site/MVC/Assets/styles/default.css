@@ -109,11 +109,22 @@ input[type="date"] {
 		display: none;
 	}
 
-.tfa-forgot-warning {
-	position: absolute;
-	left: 0;
-	margin: 5px;
+#tfa-forgotten-warning {
+	border: dashed var(--highlight-0) 1px;
 }
+
+	#tfa-forgotten-warning:before {
+		content: "😨";
+		float: left;
+		font-size: 2em;
+	}
+
+	#tfa-forgotten-warning:after {
+		content: "😱";
+		float: right;
+		font-size: 2em;
+		margin-top: -0.75em;
+	}
 
 .clock {
 	font-size: 70%;

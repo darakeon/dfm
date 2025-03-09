@@ -32,16 +32,4 @@
 	</div>
 
 	<div class="well well-lg top-right-highlight"></div>
-
-	@if (Model.ShowTFAForgottenWarning)
-	{
-		<div class="well well-lg tfa-forgot-warning">
-			@Context.Translate("TFAForgottenWarningWhat")
-			@Context.Translate("TFAForgottenWarningBut")
-			@Html.ActionLink(
-				Context.Translate("TFAForgottenWarningAction"),
-				"TFA", "Settings"
-			)
-		</div>
-	}
 </nav>
