@@ -38,6 +38,7 @@ namespace DFM.API.Models
 		protected Boolean isUsingAccountsSigns => current.UseAccountsSigns;
 		protected Boolean moveCheckingEnabled => current.MoveCheck;
 		protected Int32 planLimitMoveDetail => current.PlanLimitMoveDetail;
+		protected Boolean tfaForgottenWarning => current.TFAForgottenWarning;
 
 		protected void logout()
 		{
