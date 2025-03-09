@@ -84,6 +84,11 @@
 			@await Html.PartialAsync("Skeleton/Wizard")
 		}
 
+		@if (Model.ShowTFAForgottenWarning)
+		{
+			@await Html.PartialAsync("Skeleton/TFAForgottenWarning")
+		}
+
 		@RenderBody()
 	</div>
 

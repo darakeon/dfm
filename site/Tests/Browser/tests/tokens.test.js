@@ -128,7 +128,7 @@ describe('Users', () => {
 
 		await puppy.call('')
 
-		const warning = await puppy.content('.tfa-forgot-warning')
+		const warning = await puppy.content('#tfa-forgotten-warning')
 		await expect(warning).toContain('Login mais Seguro desabilitado via token.')
 		await expect(warning).toContain('Se não tiver sido uma ação sua,')
 		await expect(warning).toContain('recomendamos reabilitar.')
@@ -152,7 +152,7 @@ describe('Users', () => {
 
 		await puppy.call('')
 
-		const warning = await puppy.content('.tfa-forgot-warning')
+		const warning = await puppy.content('#tfa-forgotten-warning')
 		await expect(warning).toContain('Login mais Seguro desabilitado via token.')
 		await expect(warning).toContain('Se não tiver sido uma ação sua,')
 		await expect(warning).toContain('recomendamos reabilitar.')
