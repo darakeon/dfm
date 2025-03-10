@@ -457,6 +457,20 @@ class RequestServiceTest: BaseTest() {
 	}
 
 	@Test
+	fun tfaForgottenWarning() {
+		server.enqueue("tfa-forgotten-warning")
+
+		val response = service.wakeUpSite().execute()
+		assertNotNull(response)
+		val body = response.body()!!
+
+		val environment = body.environment!!
+		assertThat(environment.language, `is`("pt-BR"))
+		assertThat(environment.theme.enum, `is`(Theme.DarkMagic))
+		assertThat(environment.tfaForgottenWarning, `is`(true))
+	}
+
+	@Test
 	fun error() {
 		server.enqueue("error")
 

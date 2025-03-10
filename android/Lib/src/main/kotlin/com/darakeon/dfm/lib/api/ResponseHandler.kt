@@ -69,6 +69,7 @@ class ResponseHandler<C, A>(
 				} else {
 					if (body.environment != null && caller is Activity) {
 						caller.setEnvironment(body.environment)
+						caller.toggleTfaForgottenWarning(body.environment.tfaForgottenWarning)
 					}
 
 					if (body.data == null) {

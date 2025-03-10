@@ -24,6 +24,7 @@
 			"code": 1,
 			"text": "dark-magic"
 		},
-		"language": "pt-BR"
+		"language": "pt-BR",
+		"tfa-forgotten-warning": false
 	}
 }

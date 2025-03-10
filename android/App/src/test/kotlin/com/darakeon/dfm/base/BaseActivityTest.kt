@@ -132,7 +132,7 @@ class BaseActivityTest: BaseTest() {
 	}
 
 	@Test
-	fun onCreateTFAForgottenWarningVisible() {
+	fun toggleTfaForgottenWarningVisible() {
 		val activity = mocker.get()
 		activity.onCreate(null, null)
 
@@ -143,7 +143,7 @@ class BaseActivityTest: BaseTest() {
 	}
 
 	@Test
-	fun onCreateTFAForgottenWarningGone() {
+	fun toggleTfaForgottenWarningGone() {
 		val activity = mocker.get()
 		activity.onCreate(null, null)
 
@@ -151,6 +151,20 @@ class BaseActivityTest: BaseTest() {
 
 		val warning = activity.findViewById<View>(R.id.tfa_forgotten_warning)
 		assertThat(warning.visibility, `is`(GONE))
+	}
+
+	@Test
+	fun toggleTfaForgottenWarningNoView() {
+		val activity = mocker.get()
+
+		activity.isLoginScreenTest = true
+		activity.onCreate(null, null)
+
+		val warning = activity.findViewById<View>(R.id.tfa_forgotten_warning)
+		assertNull(warning)
+
+		activity.toggleTfaForgottenWarning(false)
+		activity.toggleTfaForgottenWarning(true)
 	}
 
 	@Test

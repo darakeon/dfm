@@ -51,6 +51,12 @@ class ApiActivity : Activity(), ApiCaller {
 		waitEnded = true
 	}
 
+	var showTfaForgottenWarning: Boolean? = null
+		private set
+	override fun toggleTfaForgottenWarning(show: Boolean) {
+		showTfaForgottenWarning = show
+	}
+
 	var errorText: String? = null
 		private set
 
