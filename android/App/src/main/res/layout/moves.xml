@@ -16,6 +16,11 @@
 		android:orientation="vertical"
 		>
 
+		<include
+			android:id="@+id/tfa_forgotten_warning"
+			layout="@layout/tfa_forgotten_warning"
+			/>
+
 		<Button
 			android:id="@+id/update_cache"
 			android:layout_width="match_parent"
