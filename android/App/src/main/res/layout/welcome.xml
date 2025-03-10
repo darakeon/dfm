@@ -70,4 +70,11 @@
 
 	</GridLayout>
 
+	<include
+		android:id="@+id/tfa_forgotten_warning"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		layout="@layout/tfa_forgotten_warning"
+		/>
 </RelativeLayout>

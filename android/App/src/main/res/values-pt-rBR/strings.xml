@@ -105,4 +105,7 @@
 	<string name="remove_tfa_check_email">Você receberá por e-mail as instruções para prosseguir com a remoção do Login mais Seguro</string>
 	<string name="remove_tfa_open">não possuo o código</string>
 	<string name="back">voltar</string>
+	<string name="tfa_forgotten_warning_what">Login mais Seguro removido via token</string>
+	<string name="tfa_forgotten_warning_but">Se não tiver sido uma ação sua,</string>
+	<string name="tfa_forgotten_warning_action">recomendamos reabilitar pelo Site.</string>
 </resources>

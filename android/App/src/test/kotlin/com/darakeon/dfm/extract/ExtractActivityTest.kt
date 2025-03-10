@@ -70,6 +70,7 @@ class ExtractActivityTest: BaseTest() {
 	fun structure() {
 		activity.onCreate(Bundle(), null)
 
+		assertNotNull(activity.findViewById(R.id.tfa_forgotten_warning))
 		assertNotNull(activity.findViewById(R.id.highlight))
 		assertNotNull(activity.findViewById(R.id.total_title))
 		assertNotNull(activity.findViewById(R.id.total_value))

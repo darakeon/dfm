@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_margin="0sp"
+	android:padding="@dimen/activity_horizontal_margin"
+	android:gravity="center"
+	android:id="@+id/tfa_forgotten_warning"
+	android:visibility="gone"
+	android:background="?attr/background_highlight"
+	>
+
+	<TextView
+		android:id="@+id/tfa_forgotten_warning_what"
+		android:text="@string/tfa_forgotten_warning_what"
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:gravity="center"
+		android:textSize="@dimen/font_default"
+		android:textColor="?attr/emphasis" />
+
+	<TextView
+		android:id="@+id/tfa_forgotten_warning_but"
+		android:text="@string/tfa_forgotten_warning_but"
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:gravity="center"
+		android:textSize="@dimen/font_small"
+		android:textColor="?attr/main_highlight" />
+
+	<TextView
+		android:id="@+id/tfa_forgotten_warning_action"
+		android:text="@string/tfa_forgotten_warning_action"
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:gravity="center"
+		android:textSize="@dimen/font_small"
+		android:textColor="?attr/main_highlight" />
+
+</LinearLayout>

@@ -2,6 +2,8 @@ package com.darakeon.dfm.base
 
 import android.net.Uri
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
@@ -127,6 +129,28 @@ class BaseActivityTest: BaseTest() {
 			.getPrivate<Int>("mThemeImpl", "mThemeResId")
 
 		assertThat(newTheme, not(`is`(originalTheme)))
+	}
+
+	@Test
+	fun onCreateTFAForgottenWarningVisible() {
+		val activity = mocker.get()
+		activity.onCreate(null, null)
+
+		activity.toggleTfaForgottenWarning(true)
+
+		val warning = activity.findViewById<View>(R.id.tfa_forgotten_warning)
+		assertThat(warning.visibility, `is`(VISIBLE))
+	}
+
+	@Test
+	fun onCreateTFAForgottenWarningGone() {
+		val activity = mocker.get()
+		activity.onCreate(null, null)
+
+		activity.toggleTfaForgottenWarning(false)
+
+		val warning = activity.findViewById<View>(R.id.tfa_forgotten_warning)
+		assertThat(warning.visibility, `is`(GONE))
 	}
 
 	@Test
