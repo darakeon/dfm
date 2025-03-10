@@ -87,6 +87,7 @@ class MovesActivityTest: BaseTest() {
 	fun structure() {
 		activity.onCreate(Bundle(), null)
 
+		assertNotNull(activity.findViewById(R.id.tfa_forgotten_warning))
 		assertNotNull(activity.findViewById(R.id.warnings))
 		assertNotNull(activity.findViewById(R.id.no_accounts))
 		assertNotNull(activity.findViewById(R.id.no_categories))

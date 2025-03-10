@@ -55,6 +55,7 @@ class SettingsActivityTest: BaseTest() {
 		saved.putJson("settings", Settings())
 		activity.onCreate(saved, null)
 
+		assertNotNull(activity.findViewById(R.id.tfa_forgotten_warning))
 		assertNotNull(activity.findViewById(R.id.use_categories))
 		assertNotNull(activity.findViewById(R.id.move_check))
 		assertNotNull(activity.findViewById(R.id.site))

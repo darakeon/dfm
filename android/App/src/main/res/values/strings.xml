@@ -105,4 +105,7 @@
 	<string name="remove_tfa_check_email">You will receive an e-mail with instructions to remove the Safer Login</string>
 	<string name="remove_tfa_open">I don\'t have the code</string>
 	<string name="back">back</string>
+	<string name="tfa_forgotten_warning_what">Safer Login disabled via token</string>
+	<string name="tfa_forgotten_warning_but">If this was not your action,</string>
+	<string name="tfa_forgotten_warning_action">we recommend re-enable via Website.</string>
 </resources>
