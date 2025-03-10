@@ -6,7 +6,6 @@ import com.darakeon.dfm.lib.api.entities.Body
 import com.darakeon.dfm.lib.api.entities.Environment
 import com.darakeon.dfm.lib.api.entities.Error
 import com.darakeon.dfm.lib.api.entities.Theme
-import com.darakeon.dfm.lib.api.entities.ThemeEnum
 import com.darakeon.dfm.lib.api.entities.status.StatusEnum
 import com.darakeon.dfm.lib.api.entities.status.StatusResponse
 import com.darakeon.dfm.lib.auth.getValue
@@ -22,6 +21,8 @@ import com.darakeon.dfm.testutils.api.noBody
 import okhttp3.ResponseBody.Companion.toResponseBody
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -49,6 +50,9 @@ internal class ResponseHandlerTest: BaseTest() {
 
 	private val waitEnded
 		get() = activity.waitEnded
+
+	private val showTfaForgottenWarning
+		get() = activity.showTfaForgottenWarning
 
 	@Before
 	fun setup() {
@@ -161,7 +165,7 @@ internal class ResponseHandlerTest: BaseTest() {
 
 	@Test
 	fun onResponseData_ResponseBodyEnvironment() {
-		val env = Environment(ThemeEnum(Theme.LightNature.code), "pt-BR")
+		val env = Environment(Theme.LightNature, "pt-BR")
 		val body = Body("result", env, null)
 		val response = Response.success(body)
 
@@ -176,7 +180,7 @@ internal class ResponseHandlerTest: BaseTest() {
 
 	@Test
 	fun onResponseNoData_ResponseBodyEnvironment() {
-		val env = Environment(ThemeEnum(Theme.LightNature.code), "pt-BR")
+		val env = Environment(Theme.LightNature, "pt-BR")
 		val body = Body("result", env, null)
 		val response = Response.success(body)
 
@@ -186,6 +190,62 @@ internal class ResponseHandlerTest: BaseTest() {
 		assertThat(activity.getValue("Language"), `is`("pt_BR"))
 
 		assertTrue(waitEnded)
+		assertNull(resultText)
+	}
+
+	@Test
+	fun onResponseData_ResponseBodyTFAForgottenWarningTrue() {
+		val env = Environment(true)
+		val body = Body("result", env, null)
+		val response = Response.success(body)
+
+		handlerText.onResponse(CallMock.ForString(), response)
+
+		assertTrue(waitEnded)
+		assertNotNull(showTfaForgottenWarning)
+		assertTrue(showTfaForgottenWarning!!)
+		assertThat(resultText, `is`("result"))
+	}
+
+	@Test
+	fun onResponseNoData_ResponseBodyTFAForgottenWarningTrue() {
+		val env = Environment(true)
+		val body = Body("result", env, null)
+		val response = Response.success(body)
+
+		handlerNoData.onResponse(CallMock.ForString(), response)
+
+		assertTrue(waitEnded)
+		assertNotNull(showTfaForgottenWarning)
+		assertTrue(showTfaForgottenWarning!!)
+		assertNull(resultText)
+	}
+
+	@Test
+	fun onResponseData_ResponseBodyTFAForgottenWarningFalse() {
+		val env = Environment(false)
+		val body = Body("result", env, null)
+		val response = Response.success(body)
+
+		handlerText.onResponse(CallMock.ForString(), response)
+
+		assertTrue(waitEnded)
+		assertNotNull(showTfaForgottenWarning)
+		assertFalse(showTfaForgottenWarning!!)
+		assertThat(resultText, `is`("result"))
+	}
+
+	@Test
+	fun onResponseNoData_ResponseBodyTFAForgottenWarningFalse() {
+		val env = Environment(false)
+		val body = Body("result", env, null)
+		val response = Response.success(body)
+
+		handlerNoData.onResponse(CallMock.ForString(), response)
+
+		assertTrue(waitEnded)
+		assertNotNull(showTfaForgottenWarning)
+		assertFalse(showTfaForgottenWarning!!)
 		assertNull(resultText)
 	}
 
