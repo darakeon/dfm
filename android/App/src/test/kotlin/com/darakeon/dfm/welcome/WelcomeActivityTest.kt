@@ -34,6 +34,7 @@ class WelcomeActivityTest: BaseTest() {
 		val activity = mocker.create()
 		activity.waitTasks(mocker.server)
 
+		assertNotNull(activity.findViewById(R.id.tfa_forgotten_warning))
 		assertNotNull(activity.findViewById(R.id.pig))
 		assertNotNull(activity.findViewById(R.id.action_logout))
 		assertNotNull(activity.findViewById(R.id.action_close))

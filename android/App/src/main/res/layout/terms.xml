@@ -11,6 +11,11 @@
 	android:orientation="vertical"
 	>
 
+	<include
+		android:id="@+id/tfa_forgotten_warning"
+		layout="@layout/tfa_forgotten_warning"
+		/>
+
 	<ListView
 		android:id="@+id/content"
 		android:layout_width="match_parent"

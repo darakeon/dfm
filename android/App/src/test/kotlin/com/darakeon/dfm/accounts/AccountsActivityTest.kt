@@ -40,6 +40,7 @@ class AccountsActivityTest: BaseTest() {
 	fun structure() {
 		activity.onCreate(Bundle(), null)
 
+		assertNotNull(activity.findViewById(R.id.tfa_forgotten_warning))
 		assertNotNull(activity.findViewById(R.id.empty_list))
 		assertNotNull(activity.findViewById(R.id.main_table))
 	}

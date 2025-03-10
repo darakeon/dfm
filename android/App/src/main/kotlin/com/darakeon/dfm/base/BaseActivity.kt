@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.Window
 import android.widget.Button
 import android.widget.Toast
@@ -273,5 +275,10 @@ abstract class BaseActivity<Binding: ViewBinding>: Activity(), ApiCaller {
 
 	override fun endWait() {
 		ui?.endUIWait()
+	}
+
+	override fun toggleTfaForgottenWarning(show: Boolean) {
+		val view = findViewById<View>(R.id.tfa_forgotten_warning)
+		view.visibility = if (show) VISIBLE else GONE
 	}
 }

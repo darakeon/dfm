@@ -50,6 +50,7 @@ class TermsActivityTest: BaseTest() {
 		saved.putJson("terms", Terms())
 		activity.onCreate(saved, null)
 
+		assertNotNull(activity.findViewById(R.id.tfa_forgotten_warning))
 		assertNotNull(activity.findViewById(R.id.content))
 		assertNotNull(activity.findViewById(R.id.date))
 		assertNotNull(activity.findViewById(R.id.ok_button))
