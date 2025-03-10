@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using DFM.API.Helpers.Extensions;
+using Konkah.LibraryCSharpColorTerminal;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 
@@ -93,6 +94,37 @@ namespace DFM.API.Starters
 					throw;
 				}
 			});
+		}
+
+		public static void LogAllRequests(IApplicationBuilder app)
+		{
+			app.Use(async (context, next) =>
+			{
+				var text = $"{context.Request.Method} {context.Request.Path}";
+
+				var color = getRequestColor(context, text);
+
+				ConsoleColored.WriteLine($"{DateTime.Now:yyyy:MM:dd HH:mm:ss} START {text}", color);
+
+				await next();
+
+				ConsoleColored.WriteLine($"{DateTime.Now:yyyy:MM:dd HH:mm:ss} END   {text}", color);
+			});
+		}
+
+		private static ConsoleColor getRequestColor(HttpContext context, String text)
+		{
+			return context.Request.Method switch
+			{
+				"GET" => ConsoleColor.Green,
+				"POST" => ConsoleColor.Yellow,
+				"PATCH" => ConsoleColor.Magenta,
+				"PUT" => ConsoleColor.Blue,
+				"DELETE" => ConsoleColor.Red,
+				"HEAD" => ConsoleColor.Cyan,
+				"OPTIONS" => ConsoleColor.White,
+				_ => ConsoleColor.Gray,
+			};
 		}
 	}
 }

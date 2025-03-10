@@ -38,6 +38,8 @@ namespace DFM.API
 		// Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime life)
 		{
+			AppLog.LogAllRequests(app);
+
 			PrometheusConfig.UseMetrics(app);
 
 			AppLog.ShowLogOnError(app);
