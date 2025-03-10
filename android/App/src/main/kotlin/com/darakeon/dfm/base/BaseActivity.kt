@@ -279,6 +279,8 @@ abstract class BaseActivity<Binding: ViewBinding>: Activity(), ApiCaller {
 
 	override fun toggleTfaForgottenWarning(show: Boolean) {
 		val view = findViewById<View>(R.id.tfa_forgotten_warning)
-		view.visibility = if (show) VISIBLE else GONE
+
+		if (view != null)
+			view.visibility = if (show) VISIBLE else GONE
 	}
 }

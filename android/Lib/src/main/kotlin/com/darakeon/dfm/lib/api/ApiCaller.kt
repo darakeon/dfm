@@ -16,4 +16,6 @@ interface ApiCaller {
 	fun error(resId: Int)
 	fun error(resMessage: Int, resButton: Int, action: () -> Unit)
 	fun error(url: String, error: Throwable)
+
+	fun toggleTfaForgottenWarning(show: Boolean) {}
 }
