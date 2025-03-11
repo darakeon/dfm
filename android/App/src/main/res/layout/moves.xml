@@ -21,6 +21,28 @@
 			layout="@layout/tfa_forgotten_warning"
 			/>
 
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/no_accounts"
+			android:text="@string/no_accounts_move"
+			android:visibility="gone"
+			android:textSize="@dimen/font_default"
+			android:gravity="top|center"
+			android:paddingBottom="20sp"
+			/>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/no_categories"
+			android:text="@string/no_categories_move"
+			android:visibility="gone"
+			android:textSize="@dimen/font_default"
+			android:gravity="top|center"
+			android:paddingBottom="20sp"
+			/>
+
 		<Button
 			android:id="@+id/update_cache"
 			android:layout_width="match_parent"
@@ -38,27 +60,6 @@
 			android:orientation="vertical"
 			android:id="@+id/warnings"
 			>
-
-			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:id="@+id/no_accounts"
-				android:text="@string/no_accounts_move"
-				android:visibility="gone"
-				android:textSize="@dimen/font_default"
-				android:gravity="top|center"
-				android:paddingBottom="20sp"
-				/>
-
-			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:id="@+id/no_categories"
-				android:text="@string/no_categories_move"
-				android:visibility="gone"
-				android:textSize="@dimen/font_default"
-				android:gravity="top|center"
-				/>
 
 		</LinearLayout>
 
