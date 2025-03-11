@@ -108,4 +108,5 @@
 	<string name="tfa_forgotten_warning_what">Safer Login disabled via token</string>
 	<string name="tfa_forgotten_warning_but">If this was not your action,</string>
 	<string name="tfa_forgotten_warning_action">we recommend re-enable via Website.</string>
+	<string name="add_detail_limit">Cannot add more details, System limit is %d</string>
 </resources>

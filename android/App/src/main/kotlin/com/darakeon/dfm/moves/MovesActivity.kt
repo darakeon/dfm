@@ -6,6 +6,7 @@ import android.view.View
 import android.view.View.FOCUS_DOWN
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.widget.Toast
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
@@ -381,7 +382,9 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 			value,
 			conversion,
 			showConversion(),
-		) { binding.addDetail.isEnabled = true }
+		) {
+			binding.addDetail.text = "+"
+		}
 
 		binding.details.addView(row)
 	}
@@ -420,6 +423,15 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 	}
 
 	fun addDetail(@Suppress(ON_CLICK) view: View) {
+		if (move.detailList.count() >= planLimitMoveDetail) {
+			Toast.makeText(
+				this,
+				getString(R.string.add_detail_limit).format(planLimitMoveDetail),
+				Toast.LENGTH_LONG
+			).show()
+			return
+		}
+
 		val description = binding.detailDescription.text.toString()
 		val amount = binding.detailAmount.text.toString().toIntOrNull()
 		val value = binding.detailValue.text.toString().toDoubleByCulture()
@@ -443,8 +455,9 @@ class MovesActivity : BaseActivity<MovesBinding>() {
 			move, description, amount, value, conversion
 		)
 
-		binding.addDetail.isEnabled =
-			move.detailList.count() < planLimitMoveDetail
+		if (move.detailList.count() >= planLimitMoveDetail) {
+			binding.addDetail.text = "?"
+		}
 
 		scrollToTheEnd(binding.detailDescription)
 	}

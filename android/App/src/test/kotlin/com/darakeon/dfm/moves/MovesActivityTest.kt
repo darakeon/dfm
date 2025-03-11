@@ -46,6 +46,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog
+import org.robolectric.shadows.ShadowToast.getTextOfLatestToast
 import java.util.Calendar
 import java.util.UUID
 
@@ -1132,23 +1133,35 @@ class MovesActivityTest: BaseTest() {
 		binding.detailValue.setText("1.00".getDecimal())
 		activity.addDetail(View(activity))
 
+		assertThat(binding.addDetail.text, `is`("+"))
+
 		binding.detailDescription.setText("d2")
 		binding.detailAmount.setText("2")
 		binding.detailValue.setText("2.00".getDecimal())
 		activity.addDetail(View(activity))
+
+		assertThat(binding.addDetail.text, `is`("+"))
 
 		binding.detailDescription.setText("d3")
 		binding.detailAmount.setText("3")
 		binding.detailValue.setText("3.00".getDecimal())
 		activity.addDetail(View(activity))
 
-		assertThat(binding.addDetail.isEnabled, `is`(false))
+		assertThat(binding.addDetail.text, `is`("?"))
+
+		binding.detailDescription.setText("d4")
+		binding.detailAmount.setText("4")
+		binding.detailValue.setText("4.00".getDecimal())
+		activity.addDetail(View(activity))
+
+		val text = getTextOfLatestToast()
+		assertThat(text, `is`("Cannot add more details, System limit is 3"))
 
 		val detail = binding.details.getChildAt(0) as DetailBox
 		val getField = { id: Int -> detail.findViewById<TextView>(id) }
-
 		getField(R.id.detail_remove).performClick()
-		assertThat(binding.addDetail.isEnabled, `is`(true))
+
+		assertThat(binding.addDetail.text, `is`("+"))
 	}
 
 	@Test
