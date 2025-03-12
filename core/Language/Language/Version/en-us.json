@@ -1,4 +1,16 @@
 {
+	"14.1.4.0": [
+		"Fix not adding second detail in mobile app",
+		"Fix problem of images in emails",
+		"Improvements in security maintenance",
+		"Improve Safer Login protection",
+		"Add Safer Login code to email change",
+		"Add Safer Login code to password change",
+		"Add Safer Login code to use code as password",
+		"Add Safer Login code to disable Safer Login",
+		"Allow disable Safer Login in case it is lost",
+		"Create measure of recovering after lost access to Safer Login"
+	],
 	"14.1.3.0": [
 		"Handle site offline at mobile app",
 		"Implement password rules"

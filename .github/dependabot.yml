@@ -7,7 +7,7 @@ version: 2
 updates:
   - package-ecosystem: "nuget"
     directory: "/core/"
-    target-branch: "14.1.4.0"
+    target-branch: "14.1.4.1"
     schedule:
       interval: "weekly"
       day: "sunday"
@@ -20,7 +20,7 @@ updates:
 
   - package-ecosystem: "nuget"
     directory: "/site/"
-    target-branch: "14.1.4.0"
+    target-branch: "14.1.4.1"
     schedule:
       interval: "weekly"
       day: "monday"
@@ -33,7 +33,7 @@ updates:
 
   - package-ecosystem: "nuget"
     directory: "/api/"
-    target-branch: "14.1.4.0"
+    target-branch: "14.1.4.1"
     schedule:
       interval: "weekly"
       day: "tuesday"
@@ -46,7 +46,7 @@ updates:
 
   - package-ecosystem: "nuget"
     directory: "/robot/"
-    target-branch: "14.1.4.0"
+    target-branch: "14.1.4.1"
     schedule:
       interval: "weekly"
       day: "wednesday"
@@ -59,7 +59,7 @@ updates:
 
   - package-ecosystem: "npm"
     directory: "/site/Tests/Browser/"
-    target-branch: "14.1.4.0"
+    target-branch: "14.1.4.1"
     schedule:
       interval: "weekly"
       day: "sunday"
@@ -72,7 +72,7 @@ updates:
 
   - package-ecosystem: "gradle"
     directory: "/android/"
-    target-branch: "14.1.4.0"
+    target-branch: "14.1.4.1"
     schedule:
       interval: "weekly"
       day: "sunday"
@@ -85,7 +85,7 @@ updates:
 
   - package-ecosystem: "docker"
     directory: "/architecture/ci/"
-    target-branch: "14.1.4.0"
+    target-branch: "14.1.4.1"
     schedule:
       interval: "weekly"
       day: "sunday"
@@ -98,7 +98,7 @@ updates:
 
   - package-ecosystem: "docker"
     directory: "/architecture/publish/"
-    target-branch: "14.1.4.0"
+    target-branch: "14.1.4.1"
     schedule:
       interval: "weekly"
       day: "sunday"
@@ -111,7 +111,7 @@ updates:
 
   - package-ecosystem: "cargo"
     directory: "/version/"
-    target-branch: "14.1.4.0"
+    target-branch: "14.1.4.1"
     schedule:
       interval: "weekly"
       day: "sunday"
@@ -124,7 +124,7 @@ updates:
 
   - package-ecosystem: "pip"
     directory: "/midna/"
-    target-branch: "14.1.4.0"
+    target-branch: "14.1.4.1"
     schedule:
       interval: "weekly"
       day: "sunday"
