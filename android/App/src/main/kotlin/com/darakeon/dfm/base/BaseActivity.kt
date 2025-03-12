@@ -24,13 +24,13 @@ import com.darakeon.dfm.extensions.logout
 import com.darakeon.dfm.extensions.logoutLocal
 import com.darakeon.dfm.lib.api.Api
 import com.darakeon.dfm.lib.api.ApiCaller
+import com.darakeon.dfm.lib.api.MainInfo
 import com.darakeon.dfm.lib.api.entities.AccountComboItem
 import com.darakeon.dfm.lib.api.entities.ComboItem
 import com.darakeon.dfm.lib.auth.Authentication
 import com.darakeon.dfm.lib.auth.getValue
 import com.darakeon.dfm.lib.auth.getValueTyped
 import com.darakeon.dfm.lib.auth.recoverEnvironment
-import com.darakeon.dfm.lib.auth.setValue
 import com.darakeon.dfm.lib.auth.setValueTyped
 import com.darakeon.dfm.lib.extensions.applyGlyphicon
 import com.darakeon.dfm.lib.extensions.composeErrorApi
@@ -91,9 +91,13 @@ abstract class BaseActivity<Binding: ViewBinding>: Activity(), ApiCaller {
 
 	val query = HashMap<String, String>()
 
+	private val version get() = MainInfo.getAppVersion(this)
 	private var cachedCombos: Boolean
-		get() = this.getValue("cachedCombos").toBoolean()
-		set(value) = this.setValue("cachedCombos", value.toString())
+		get() = this.getValue("cachedCombos") == version
+		set(value) = this.setValueTyped(
+			"cachedCombos",
+			if (value) version else null
+		)
 
 	protected var accountCombo: Array<AccountComboItem>
 		get() = this.getValueTyped("accountCombo") ?: emptyArray()
