@@ -9,7 +9,6 @@ username = environ['CIRCLE_PROJECT_USERNAME']
 reponame = environ['CIRCLE_PROJECT_REPONAME']
 
 temporary_jobs = [
-    'test_browser_wait_fix'
 ]
 
 
