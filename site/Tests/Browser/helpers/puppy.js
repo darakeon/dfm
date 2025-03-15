@@ -1,4 +1,5 @@
 const db = require('./db')
+const { delay } = require('./time')
 
 let initialized = false;
 
@@ -54,6 +55,7 @@ async function property(selector, prop) {
 
 async function waitFor(selector, options) {
 	try {
+		await delay(20)
 		return await page.waitForSelector(selector, options)
 	} catch (error) {
 		const now = new Date()
