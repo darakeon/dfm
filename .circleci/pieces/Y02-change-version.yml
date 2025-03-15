@@ -27,6 +27,10 @@
               cargo run -q -- -q 1
             fi
       - run:
+          name: Check translations length
+          command: |
+            python3 .circleci/android/publish.py test-translations
+      - run:
           name: push
           path: architecture/ci
           command: |
