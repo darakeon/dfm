@@ -57,11 +57,14 @@ async function waitFor(selector, options) {
 		return await page.waitForSelector(selector, options)
 	} catch (error) {
 		const now = new Date()
-		const logName = selector.replace(/[^\w]/g, '') +
-			now.toISOString().replace(/[^\d]/g, '')
+		const logName =
+			now.toISOString().replace(/[^\d]/g, '') +
+				selector.replace(/[^\w]/g, '')
+
+		console.error(error)
 
 		await imageLog(logName)
-		
+
 		throw error
 	}
 }
