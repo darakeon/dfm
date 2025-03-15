@@ -625,7 +625,7 @@ jobs:
 
   test_browser:
     docker:
-      - image: darakeon/dfm-browser-tests:sqlite-ok
+      - image: darakeon/dfm-browser-tests
     steps:
       - checkout
       - attach_workspace:
@@ -654,39 +654,6 @@ jobs:
           key: dotnet-browser-server
           paths:
             - site/Tests/Browser/server
-      - restore_cache:
-          keys:
-            - node-{{ checksum "site/Tests/Browser/package.json" }}-{{ checksum "site/Tests/Browser/package-lock.json" }}
-      - run:
-          name: tests browser
-          command: .circleci/browser/run-tests.sh
-      - store_artifacts:
-          path: outputs/logs
-      - store_artifacts:
-          path: site/Tests/Browser/server/tests.db
-      - store_artifacts:
-          path: outputs/inbox
-      - store_artifacts:
-          path: outputs/s3
-
-  test_browser_wait_fix:
-    docker:
-      - image: darakeon/dfm-browser-tests
-    steps:
-      - checkout
-      - attach_workspace:
-          at: core
-      - attach_workspace:
-          at: site
-      - restore_cache:
-          keys:
-            - dotnet-{{ checksum "site/site_cache_key" }}
-      - restore_cache:
-          keys:
-            - dotnet-libman-{{ checksum "site/MVC/libman.json" }}
-      - restore_cache:
-          keys:
-            - dotnet-browser-server
       - restore_cache:
           keys:
             - node-{{ checksum "site/Tests/Browser/package.json" }}-{{ checksum "site/Tests/Browser/package-lock.json" }}
@@ -1603,9 +1570,6 @@ workflows:
             - audit_test_browser
             - build_site
             - push_docker_browser
-      - test_browser_wait_fix:
-          requires:
-            - test_browser
       - build_api:
           requires:
             - build_core
@@ -1888,9 +1852,6 @@ workflows:
             - build_site
             - audit_test_browser
             - push_docker_browser
-      - test_browser_wait_fix:
-          requires:
-            - test_browser
       - workflow_ran:
           requires:
             - trufflehog
