@@ -1,14 +1,11 @@
 {
 	"14.1.4.0": [
 		"Corrigido problema ao adicionar detalhes em Movimentação no aplicativo de celular",
-		"Corrigido problema com imagens em e-mails",
+		"Corrigidas imagens em e-mails",
 		"Melhorias nas manutenções de segurança",
 		"Melhorias na proteção de Login mais Seguro",
-		"Adicionado código de Login mais Seguro em mudança de e-amil",
-		"Adicionado código de Login mais Seguro em mudança de senha",
-		"Adicionado código de Login mais Seguro em usar o código como senha",
-		"Adicionado código de Login mais Seguro em desabilitar o próprio Login mais Seguro",
-		"Possibilidade de desabilitar o Login mais Seguro caso o tenha perdido",
+		"Adicionado código de Login mais Seguro em: mudar e-mail, mudanr senha, usar código como senha e desabilitar Login mais Seguro",
+		"Possibilidade de desabilitar Login mais Seguro caso tenha perdido",
 		"Criada medida de recuperação após perda de acesso ao Safer Login"
 	],
 	"14.1.3.0": [

@@ -146,7 +146,7 @@
 		"Show warning in website about MFA being disabled via email for one week": "-",
 		"Send email warning the MFA was disabled via email": "-",
 		"Disable account with too much MFA retries": "Melhorias na proteção de Login mais Seguro",
-		"Add MFA to change email": "Adicionado código de Login mais Seguro em mudança de e-amil",
+		"Add MFA to change email": "Adicionado código de Login mais Seguro em mudança de e-mail",
 		"Add MFA to change password": "Adicionado código de Login mais Seguro em mudança de senha",
 		"Add MFA to use/remove TFA as password": "Adicionado código de Login mais Seguro em usar o código como senha",
 		"Add MFA to disable MFA": "Adicionado código de Login mais Seguro em desabilitar o próprio Login mais Seguro",
