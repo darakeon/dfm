@@ -1,18 +1,32 @@
-# pip install google-api-python-client
-from base64 import b64decode
 from json import loads
-from os import environ
-from re import search
+from sys import argv
 
-from apiclient.discovery import build
-from google.oauth2 import service_account
+TEST = len(argv) >= 2 and argv[1] == 'test-translations'
+
+if TEST:
+	from subprocess import run
+
+else:
+	from base64 import b64decode
+	from os import environ
+	from re import search
+
+	from apiclient.discovery import build
+	from google.oauth2 import service_account
 
 
-SERVICE_ACCOUNT = environ['ANDROID_SERVICE_ACCOUNT']
-PACKAGE_NAME = environ['ANDROID_PACKAGE_NAME']
-BUNDLE = environ['ANDROID_BUNDLE']
-TRACK = environ['ANDROID_TRACK']
-VERSION = environ['ANDROID_APP_VERSION']
+if TEST:
+	VERSION = run(
+		['git', 'branch', '--show-current'],
+		capture_output=True,
+		text=True
+	).stdout.strip()
+else:
+	SERVICE_ACCOUNT = environ['ANDROID_SERVICE_ACCOUNT']
+	PACKAGE_NAME = environ['ANDROID_PACKAGE_NAME']
+	BUNDLE = environ['ANDROID_BUNDLE']
+	TRACK = environ['ANDROID_TRACK']
+	VERSION = environ['ANDROID_APP_VERSION']
 
 
 def main():
@@ -34,6 +48,10 @@ def main():
 		print(f"too long pt_br: {len(pt_br)}")
 		print(pt_br)
 		exit(1)
+
+	if TEST:
+		print('All ok!')
+		return
 
 	edits = get_edits()
 	edit_id = start_edit(edits)
@@ -148,6 +166,4 @@ def commit(edits, edit_id):
 	).execute()
 
 
-
-if __name__ == '__main__':
-	main()
+main()
