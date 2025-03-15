@@ -53,7 +53,7 @@
 			android:name=".welcome.WelcomeActivity"
 			android:label="@string/app_short_name"
 			android:exported="true">
-			<intent-filter android:autoVerify="true">
+			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
