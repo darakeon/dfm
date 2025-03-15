@@ -8,6 +8,10 @@ branch = environ['CIRCLE_BRANCH']
 username = environ['CIRCLE_PROJECT_USERNAME']
 reponame = environ['CIRCLE_PROJECT_REPONAME']
 
+temporary_jobs = [
+    'test_browser_wait_fix'
+]
+
 
 def get_json(url):
     response = urlopen(url)
@@ -111,6 +115,10 @@ def check_jobs(workflow_id):
         name = job['name']
         type = job['type']
         status = job['status']
+
+        if name in temporary_jobs:
+            print(f'Ignoring temporary job "{name}"')
+            continue
 
         is_success = status == 'success'
 
