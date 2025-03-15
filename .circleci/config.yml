@@ -1888,6 +1888,9 @@ workflows:
             - build_site
             - audit_test_browser
             - push_docker_browser
+      - test_browser_wait_fix:
+          requires:
+            - test_browser
       - workflow_ran:
           requires:
             - trufflehog
