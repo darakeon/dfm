@@ -21,7 +21,7 @@ The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend)
 | Inject ServiceAccess with AddScoped at MVC (because of Session NH)            |  M  | 🐜 |  2  |  4  |  6  |
 | Add rate limit to API and site                                                |  S  | 🐳 |  1  |  3  |  6  |
 | Add [swagger] to API                                                          |  F  | 🐳 |  1  |  3  |  6  |
-| Refactor Core Steps to improve their division to entities and given/when/then |  M  | 🐑 |  1  |  3  |  6  |
+| Refactor Core Steps - improve division to entities and given/when/then        |  M  | 🐑 |  1  |  3  |  6  |
 | Replace XML at UI android by [jetpack-compose]                                |  M  | 🐉 |  3  |  4  |  5  |
 | Implement security measures suggested by github                               |  S  | 🐑 |  3  |  4  |  5  |
 | Upload new mobile screenshots automatically when deploy                       |  M  | 🐑 |  3  |  4  |  5  |
@@ -30,9 +30,9 @@ The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend)
 | Add schedule edit                                                             |  F  | 🐳 |  2  |  3  |  5  |
 | Add plain text to emails                                                      |  F  | 🐳 |  2  |  3  |  5  |
 | Add weekly scheduling                                                         |  F  | 🐑 |  2  |  3  |  5  |
-| Complete all screens in E2E, with all its cases (empty/filled, normal,error)  |  M  | 🐑 |  2  |  3  |  5  |
+| Complete screens in E2E - all cases (empty/filled, normal, error)             |  M  | 🐑 |  2  |  3  |  5  |
 | [Lint C#]                                                                     |  M  | 🐜 |  2  |  3  |  5  |
-| Make default language EN if browser is not PT, ES, IT or FR, otherwise PT     |  F  | 🐑 |  1  |  2  |  5  |
+| Make default lang PT if browser is PT, ES, IT or FR, otherwise EN             |  F  | 🐑 |  1  |  2  |  5  |
 | Remove unused/duplicated errors                                               |  M  | 🐑 |  1  |  2  |  5  |
 | Add user last access reports to Admin (hide username)                         |  M  | 🐑 |  1  |  2  |  5  |
 | Look at empty screen buttons to check if they are sticked                     |  M  | 🐜 |  1  |  2  |  5  |
