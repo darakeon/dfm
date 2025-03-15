@@ -2,6 +2,7 @@ const sqlite = require('sqlite3')
 const { generateUUID } = require('./uuid')
 const { bytesToGuid } = require('./guid')
 const { hash } = require('./crypt')
+const { delay } = require('./time')
 
 const password = 'pass_word'
 
@@ -529,17 +530,27 @@ async function execute(query, params) {
 		}
 	
 		while (!done)
-			await delay(100)
-	
-		db.close()
+			await delay(50)
 	
 		if (error) {
-			console.log(query)
-			console.error(error)
-			throw error
+			if (error.code === 'SQLITE_BUSY') {
+				console.warn("Database is locked. Trying to unlock...")
+
+				removeLock(db)
+				db.close()
+
+				return await execute(query, params)
+
+			} else {
+				console.error(query)
+				throw error
+			}
 		}
 	
-		return result			
+		removeLock(db)
+		db.close()
+
+		return result
 	} catch (error) {
 		console.error(new Date())
 		console.error(error)
@@ -550,12 +561,9 @@ async function execute(query, params) {
 	}
 }
 
-function delay(time, val) {
-   return new Promise(function(resolve) {
-       setTimeout(function() {
-           resolve(val);
-       }, time);
-   });
+async function removeLock(db) {
+	db.run("PRAGMA wal_checkpoint(TRUNCATE);")
+	await delay(50)
 }
 
 function splitEmail(email) {
