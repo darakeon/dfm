@@ -49,7 +49,10 @@ namespace DFM.BusinessLogic.Repositories
 				User = user,
 			};
 
-			security.CreateToken();
+			do
+			{
+				security.CreateToken();
+			} while (GetByToken(security.Token) != null);
 
 			return SaveOrUpdate(security);
 		}
