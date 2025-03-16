@@ -18,9 +18,13 @@ namespace DFM.Entities
 		public virtual User User { get; set; }
 		public virtual Wipe Wipe { get; set; }
 
+		private static readonly object tokenLock = new();
 		public virtual void CreateToken()
 		{
-			Token = token.New();
+			lock (tokenLock)
+			{
+				Token = token.New();
+			}
 		}
 
 		public virtual Boolean IsValid()
