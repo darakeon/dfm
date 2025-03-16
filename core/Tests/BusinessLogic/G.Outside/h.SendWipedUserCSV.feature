@@ -105,3 +105,31 @@ Scenario: Gh09. Recover wiped file
 			| {scenarioCode}@dontflymoney.com | pass_word |
 	Then I will receive this core error: CSVNotFound
 		And email with csv will not be sent
+
+Scenario: Gh10. No username
+	When ask wiped user csv
+			| Email | Password  |
+			|       | pass_word |
+	Then I will receive this core error: WipeInvalid
+		And email with csv will not be sent
+
+Scenario: Gh11. No password
+	When ask wiped user csv
+			| Email                           | Password |
+			| {scenarioCode}@dontflymoney.com |          |
+	Then I will receive this core error: WipeInvalid
+		And email with csv will not be sent
+
+Scenario: Gh12. Short username
+	When ask wiped user csv
+			| Email              | Password  |
+			| u@dontflymoney.com | pass_word |
+	Then I will receive this core error: WipeInvalid
+		And email with csv will not be sent
+
+Scenario: Gh13. Short domain
+	When ask wiped user csv
+			| Email            | Password  |
+			| {scenarioCode}@d | pass_word |
+	Then I will receive this core error: WipeInvalid
+		And email with csv will not be sent
