@@ -160,13 +160,21 @@ namespace DFM.BusinessLogic.Repositories
 
 		public IList<Wipe> GetByUser(String email, String password)
 		{
+			if (String.IsNullOrEmpty(password))
+				throw Error.WipeInvalid.Throw();
+
 			var emailParts = email.Split("@");
 			if (emailParts.Length != 2)
 				throw Error.WipeInvalid.Throw();
 
 			var username = emailParts[0];
-			var domain = emailParts[1];
+			if (username.Length < MaxLen.WipeUsernameStart)
+				throw Error.WipeInvalid.Throw();
 			var usernameStart = username[..MaxLen.WipeUsernameStart];
+
+			var domain = emailParts[1];
+			if (domain.Length < MaxLen.WipeDomainStart)
+				throw Error.WipeInvalid.Throw();
 			var domainStart = domain[..MaxLen.WipeDomainStart];
 
 			var wipes = Where(
