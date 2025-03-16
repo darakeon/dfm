@@ -6,7 +6,8 @@
 		"Improve Safer Login protection",
 		"Add Safer Login code to: email change, password change, use code as password and disable Safer Login",
 		"Allow disable Safer Login in case it is lost",
-		"Create measure of recovering after lost access to Safer Login"
+		"Create measure of recovering after lost access to Safer Login",
+		"Fix registration issue"
 	],
 	"14.1.3.0": [
 		"Handle site offline at mobile app",

@@ -6,7 +6,8 @@
 		"Melhorias na proteção de Login mais Seguro",
 		"Adicionado código de Login mais Seguro em: mudar e-mail, mudanr senha, usar código como senha e desabilitar Login mais Seguro",
 		"Possibilidade de desabilitar Login mais Seguro caso tenha perdido",
-		"Criada medida de recuperação após perda de acesso ao Safer Login"
+		"Criada medida de recuperação após perda de acesso ao Safer Login",
+		"Correção de problema no cadastro"
 	],
 	"14.1.3.0": [
 		"Ajuste em aplicativo de celular para quando o site está offline",

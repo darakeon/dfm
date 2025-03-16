@@ -22,20 +22,20 @@ namespace DFM.BusinessLogic.Services
 
 		public void SaveUser(SignUpInfo info)
 		{
+			info.VerifyPassword();
+
+			if (!PlainText.AcceptLanguage(info.Language))
+				throw Error.LanguageUnknown.Throw();
+
+			if (!TZ.IsValid(info.TimeZone))
+				throw Error.TimeZoneUnknown.Throw();
+
+			var user = info.GetEntity();
+			user.Control.MiscDna = Misc.RandomDNA();
+			user.Control.Plan = repos.Plan.GetFree();
+
 			inTransaction("SaveUser", () =>
 			{
-				info.VerifyPassword();
-
-				if (!PlainText.AcceptLanguage(info.Language))
-					throw Error.LanguageUnknown.Throw();
-
-				if (!TZ.IsValid(info.TimeZone))
-					throw Error.TimeZoneUnknown.Throw();
-
-				var user = info.GetEntity();
-				user.Control.MiscDna = Misc.RandomDNA();
-				user.Control.Plan = repos.Plan.GetFree();
-
 				user = repos.User.Save(user);
 
 				if (info.AcceptedContract)
