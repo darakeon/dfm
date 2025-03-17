@@ -1,5 +1,8 @@
 MAKEFLAGS += --no-print-directory
 BRANCH:=$$(cat branch.git)
+OLD_BRANCH:=$$(head -n 7 ../docs/RELEASES.md | tail -n 1 | cut -d "\#" -f 2 | cut -d ")" -f 1)
+NEW_BRANCH:=$$(head -n 8 ../docs/RELEASES.md | tail -n 1 | cut -d "\#" -f 2 | cut -d ")" -f 1)
+
 
 help:
 	@echo
@@ -45,7 +48,7 @@ check:
 	@cargo run -q -- -c
 
 create_old_tag_and_new_branch:
-	@head -n 7 ../docs/RELEASES.md | tail -n 1 | cut -d "#" -f 2 | cut -d ")" -f 1 > branch.git
+	@echo ${OLD_BRANCH} > branch.git
 	@echo "\e[31mOld branch: ${BRANCH}\e[m"
 	@git checkout main
 	@git branch -d ${BRANCH} || echo "no branch ${BRANCH}"
@@ -54,7 +57,7 @@ create_old_tag_and_new_branch:
 	@git stash pop || echo "no stash"
 	@git tag -a ${BRANCH}
 	@git push --tags
-	@head -n 8 ../docs/RELEASES.md | tail -n 1 | cut -d "#" -f 2 | cut -d ")" -f 1 > branch.git
+	@echo ${NEW_BRANCH} > branch.git
 	@echo "\e[35mNew branch: ${BRANCH}\e[m"
 	@git checkout -b ${BRANCH}
 	@git branch -d main
@@ -67,7 +70,7 @@ move_to_new_branch:
 		git branch -d ${BRANCH}; \
 	fi
 	@git pull --prune
-	@head -n 8 ../docs/RELEASES.md | tail -n 1 | cut -d "#" -f 2 | cut -d ")" -f 1 > branch.git
+	@echo ${NEW_BRANCH} > branch.git
 	@git checkout ${BRANCH}
 	@git branch -d main
 	@rm branch.git
@@ -77,7 +80,7 @@ clear:
 	@git checkout main
 	@git branch -d ${BRANCH}
 	@git pull --prune
-	@head -n 8 ../docs/RELEASES.md | tail -n 1 | cut -d "#" -f 2 | cut -d ")" -f 1 > branch.git
+	@echo ${NEW_BRANCH} > branch.git
 	@git checkout ${BRANCH}
 	@git branch -d main
 	@rm branch.git
