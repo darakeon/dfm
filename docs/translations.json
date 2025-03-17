@@ -74,6 +74,7 @@
 		"Add MFA to use/remove TFA as password": "Add Safer Login code to use code as password",
 		"Add MFA to disable MFA": "Add Safer Login code to disable Safer Login",
 		"Allow disable MFA by sending link to email in the MFA require screen, asking for password": "Allow disable Safer Login in case it is lost",
+		"Fix problem with change version in main": "-",
 		"": null
 	},
 	"pt-br": {
@@ -151,6 +152,7 @@
 		"Add MFA to use/remove TFA as password": "Adicionado código de Login mais Seguro em usar o código como senha",
 		"Add MFA to disable MFA": "Adicionado código de Login mais Seguro em desabilitar o próprio Login mais Seguro",
 		"Allow disable MFA by sending link to email in the MFA require screen, asking for password": "Possibilidade de desabilitar o Login mais Seguro caso o tenha perdido",
+		"Fix problem with change version in main": "-",
 		"": null
 	}
 }
