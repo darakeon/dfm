@@ -16,7 +16,9 @@
       - run:
           name: List PRs
           command: |
-            gh pr list --base $CIRCLE_BRANCH --author app/dependabot --state open --json author,autoMergeRequest,baseRefName,closed,commits,headRefName,headRepository,headRepositoryOwner,id,isCrossRepository,isDraft,labels,number,state,statusCheckRollup > prs/list.json
+            export VERSION=$(head -n 8 docs/RELEASES.md | tail -n 1 | cut -d "#" -f 2 | cut -d ")" -f 1)
+            echo $VERSION
+            gh pr list --base $VERSION --author app/dependabot --state open --json author,autoMergeRequest,baseRefName,closed,commits,headRefName,headRepository,headRepositoryOwner,id,isCrossRepository,isDraft,labels,number,state,statusCheckRollup > prs/list.json
       - run:
           name: Get PR to merge
           command: |
