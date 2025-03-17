@@ -14,8 +14,9 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐑: at least one little change, as a change at an existing feature (increases third number)
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="14.1.4.1"></a>14.1.4.1 :🐜: <sup>`1`</sup>
+## <a name="14.1.4.1"></a>14.1.4.1 :🐜: <sup>`2`</sup>
 - [ ] Move all logs to CloudWatch
+- [x] `250317>250317` Fix problem with change version in main
 
 ## <a name="14.1.4.0"></a>14.1.4.0 :🐑: <sup>`14`</sup>
 - [x] `250311>250312` Fix not adding second detail in mobile app

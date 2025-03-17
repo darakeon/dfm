@@ -76,6 +76,10 @@ def get_translation(title, lang, key):
 		content = file.read()
 
 	all_versions = loads(content)
+
+	if TEST and key not in all_versions:
+		return []
+
 	for_version = all_versions[key]
 
 	for_version.insert(0, title)

@@ -1,5 +1,3 @@
-use regex::Regex;
-
 use crate::file::{get_path, get_content, set_content};
 use crate::version::Version;
 
