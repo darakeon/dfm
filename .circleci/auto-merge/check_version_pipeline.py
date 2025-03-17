@@ -1,25 +1,56 @@
 from json import dumps, loads
 from os import environ
+from re import search
+from subprocess import run
 from urllib.request import urlopen, Request
 
-
-branch = environ['CIRCLE_BRANCH']
-
-username = environ['CIRCLE_PROJECT_USERNAME']
-reponame = environ['CIRCLE_PROJECT_REPONAME']
 
 temporary_jobs = [
 ]
 
 
-def get_json(url):
-    response = urlopen(url)
-    body = response.read()
-    return loads(body)
+def main():
+    git_info = get_git_info()
+    username = git_info[0]
+    reponame = git_info[1]
+
+    version = get_version()
+
+    pipeline = find_pipeline(username, reponame, version, None)
+
+    if not pipeline:
+        exit(1)
 
 
-def find_pipeline(page_token):
-    pipelines_url = f'https://circleci.com/api/v2/project/github/{username}/{reponame}/pipeline?branch={branch}'
+def get_git_info():
+    git_info = run(
+        ['git', 'remote', 'get-url', 'origin'],
+        capture_output=True,
+        text=True
+    ).stdout
+
+    return search(
+        'git@github.com:(.+)/(.+).git',
+        git_info
+    ).groups()
+
+
+def get_version():
+    pattern = 'version in development.+#(\d+\.\d+\.\d+\.\d+)'
+
+    with open('../../docs/RELEASES.md') as file:
+        while file.readable():
+            line = file.readline()
+            result = search(pattern, line)
+
+            if result:
+                return result.group(1)
+
+    return None
+
+
+def find_pipeline(username, reponame, version, page_token):
+    pipelines_url = f'https://circleci.com/api/v2/project/github/{username}/{reponame}/pipeline?branch={version}'
 
     if page_token:
         pipelines_url += f'&page-token={page_token}'
@@ -38,7 +69,7 @@ def find_pipeline(page_token):
             if state == 'created' or state == 'success':
                 pipeline_id = id
 
-                workflow = find_workflow(pipeline_id)
+                workflow = find_workflow(pipeline_id, version)
 
                 if workflow:
                     return True
@@ -47,13 +78,19 @@ def find_pipeline(page_token):
             print(f'Ignoring {id} ({state})...')
 
     if next_page_token:
-        return find_pipeline(next_page_token)
+        return find_pipeline(username, reponame, version, next_page_token)
     else:
-        print(f'No pipeline found for branch {branch}')
+        print(f'No pipeline found for branch {version}')
         return False
 
 
-def find_workflow(pipeline_id):
+def get_json(url):
+    response = urlopen(url)
+    body = response.read()
+    return loads(body)
+
+
+def find_workflow(pipeline_id, version):
     workflows_url = f'https://circleci.com/api/v2/pipeline/{pipeline_id}/workflow'
     workflows = get_json(workflows_url)['items']
 
@@ -63,7 +100,7 @@ def find_workflow(pipeline_id):
     ))
 
     if not workflows:
-        print(f'No workflow "all" found for branch {branch} pipeline {pipeline_id}')
+        print(f'No workflow "all" found for branch {version} pipeline {pipeline_id}')
         return False
 
     workflow = workflows[0]
@@ -71,7 +108,7 @@ def find_workflow(pipeline_id):
     status = workflow['status']
 
     print()
-    print(f'Last "all" status for branch {branch}: {status}')
+    print(f'Last "all" status for branch {version}: {status}')
 
     if status == 'canceled':
         only_publish_canceled = check_jobs(workflow['id'])
@@ -143,7 +180,4 @@ def check_jobs(workflow_id):
     return only_publish_canceled
 
 
-pipeline = find_pipeline(None)
-
-if not pipeline:
-    exit(1)
+main()
