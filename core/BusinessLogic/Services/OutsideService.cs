@@ -144,7 +144,7 @@ namespace DFM.BusinessLogic.Services
 				throw Error.WipeUserAsked.Throw();
 
 			wipes = wipes.Where(
-				w => !String.IsNullOrEmpty(w.S3)
+				w => !String.IsNullOrEmpty(w.CSVAddress)
 			).ToList();
 
 			if (!wipes.Any())
@@ -163,7 +163,7 @@ namespace DFM.BusinessLogic.Services
 				token, SecurityAction.DeleteCsvData
 			);
 
-			var csv = security.Wipe.S3;
+			var csv = security.Wipe.CSVAddress;
 
 			inTransaction("WipeCsv", () =>
 			{

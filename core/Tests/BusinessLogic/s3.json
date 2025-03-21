@@ -1,6 +1,0 @@
-{
-	"S3": {
-		"Local": true,
-		"Directory": "../../../../../outputs/s3"
-	}
-}

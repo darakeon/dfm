@@ -42,7 +42,7 @@ namespace DFM.BusinessLogic.Repositories
 
 			wipe.Why = reason;
 
-			wipe.S3 = reason == RemovalReason.PersonAsked
+			wipe.CSVAddress = reason == RemovalReason.PersonAsked
 				? null
 				: extractToFile(wipe, accounts);
 
@@ -96,7 +96,7 @@ namespace DFM.BusinessLogic.Repositories
 
 		private String extractToFile(Wipe wipe, IList<Account> accounts)
 		{
-			String s3 = null;
+			String csvPath = null;
 
 			using var csv = new CSVExporter();
 
@@ -111,10 +111,10 @@ namespace DFM.BusinessLogic.Repositories
 			if (csv.Path != null)
 			{
 				wipeFileService.Upload(csv.Path);
-				s3 = csv.Path;
+				csvPath = csv.Path;
 			}
 
-			return s3;
+			return csvPath;
 		}
 
 		private void notifyWipe(User user, DateTime dateTime, RemovalReason removalReason)
@@ -193,7 +193,7 @@ namespace DFM.BusinessLogic.Repositories
 
 		public void SendCSV(String email, Security security)
 		{
-			if (!wipeFileService.Exists(security.Wipe.S3))
+			if (!wipeFileService.Exists(security.Wipe.CSVAddress))
 				throw Error.CSVNotFound.Throw();
 
 			var dic = new Dictionary<String, String>
@@ -212,8 +212,8 @@ namespace DFM.BusinessLogic.Repositories
 				.Subject(format.Subject)
 				.Body(fileContent);
 
-			wipeFileService.Download(security.Wipe.S3);
-			sender.Attach(security.Wipe.S3);
+			wipeFileService.Download(security.Wipe.CSVAddress);
+			sender.Attach(security.Wipe.CSVAddress);
 
 			try
 			{
