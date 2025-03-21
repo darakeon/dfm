@@ -10,7 +10,7 @@ namespace DFM.Generic
 	public class Cfg
 	{
 		private static readonly ImmutableList<String> configTypes =
-			ImmutableList.Create("db", "smtp", "login", "storage", "sqs");
+			ImmutableList.Create("db", "smtp", "login", "storage", "queue");
 
 		public static void Init(String environment = null)
 		{
@@ -89,7 +89,7 @@ namespace DFM.Generic
 		public static Smtp Smtp => new(dic.GetSection("Smtp"));
 		public static Rewrite Rewrites => new("rewrites.json");
 		public static Storage Storage => new(dic.GetSection("Storage"));
-		public static SQS SQS => new(dic.GetSection("SQS"));
+		public static Queue Queue => new(dic.GetSection("Queue"));
 
 		public static String LanguagePath { get; set; }
 

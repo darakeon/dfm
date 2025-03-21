@@ -3,22 +3,22 @@ using Microsoft.Extensions.Configuration;
 
 namespace DFM.Generic.Settings;
 
-public class SQS
+public class Queue
 {
-	public SQS(IConfiguration sqs)
+	public Queue(IConfiguration config)
 	{
-		Local = !String.IsNullOrEmpty(sqs["Local"])
-		        && Boolean.Parse(sqs["Local"]);
+		Local = !String.IsNullOrEmpty(config["Local"])
+		        && Boolean.Parse(config["Local"]);
 
-		QueueImporter = sqs["QueueImporter"];
+		QueueImporter = config["QueueImporter"];
 
 		if (!Local)
 		{
-			QueueLimit = Int32.Parse(sqs["QueueLimit"]);
-			Account = sqs["Account"];
-			Region = sqs["region"];
-			AccessKey = sqs["accessKey"];
-			SecretKey = sqs["secretKey"];
+			QueueLimit = Int32.Parse(config["QueueLimit"]);
+			Account = config["Account"];
+			Region = config["region"];
+			AccessKey = config["accessKey"];
+			SecretKey = config["secretKey"];
 		}
 	}
 

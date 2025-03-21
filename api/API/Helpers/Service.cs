@@ -21,7 +21,7 @@ namespace DFM.API.Helpers
 				createFileService(StoragePurpose.Export);
 
 			IQueueService queueService =
-				Cfg.SQS.Local
+				Cfg.Queue.Local
 					? new LocalQueueService()
 					: new SQSService();
 
