@@ -13,17 +13,17 @@ public class LocalQueueService : IQueueService
 {
 	public LocalQueueService()
 	{
-		if (!Cfg.SQS.LocalFilled)
-			throw new SystemError("Must have section SQS whole configured for local files");
+		if (!Cfg.Queue.LocalFilled)
+			throw new SystemError("Must have section Queue whole configured for local files");
 	}
 
 	private IDictionary<String, IDictionary<String, String>> queues =
 		new Dictionary<String, IDictionary<String, String>>
 		{
-			{ Cfg.SQS.QueueImporter, new Dictionary<String, String>() },
+			{ Cfg.Queue.QueueImporter, new Dictionary<String, String>() },
 		};
 
-	private IDictionary<String, String> importer => queues[Cfg.SQS.QueueImporter];
+	private IDictionary<String, String> importer => queues[Cfg.Queue.QueueImporter];
 
 	public Task<IDictionary<Line, Boolean>> Enqueue(IList<Line> lineList)
 	{

@@ -16,18 +16,18 @@ public class SQSService : IQueueService, IDisposable
 {
 	public SQSService()
 	{
-		if (!Cfg.SQS.SQSFilled)
-			throw new SystemError("Must have section SQS whole configured for aws");
+		if (!Cfg.Queue.SQSFilled)
+			throw new SystemError("Must have section Queue whole configured for aws");
 
-		var region = RegionEndpoint.GetBySystemName(Cfg.SQS.Region);
-		var accessKey = Cfg.SQS.AccessKey;
-		var secretKey = Cfg.SQS.SecretKey;
+		var region = RegionEndpoint.GetBySystemName(Cfg.Queue.Region);
+		var accessKey = Cfg.Queue.AccessKey;
+		var secretKey = Cfg.Queue.SecretKey;
 
 		sqsClient = new(accessKey, secretKey, region);
 	}
 
 	private static String importerQueueUrl =>
-		$"https://sqs.{Cfg.SQS.Region}.amazonaws.com/{Cfg.SQS.Account}/{Cfg.SQS.QueueImporter}";
+		$"https://sqs.{Cfg.Queue.Region}.amazonaws.com/{Cfg.Queue.Account}/{Cfg.Queue.QueueImporter}";
 
 	private readonly AmazonSQSClient sqsClient;
 

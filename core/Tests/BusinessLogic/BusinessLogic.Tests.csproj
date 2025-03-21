@@ -31,7 +31,7 @@
     <None Remove="db.json" />
     <None Remove="storage.json" />
     <None Remove="smtp.json" />
-    <None Remove="sqs.json" />
+    <None Remove="queue.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,7 +41,7 @@
     <Content Include="db.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sqs.json">
+    <Content Include="queue.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="storage.json">
