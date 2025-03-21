@@ -1,0 +1,6 @@
+{
+	"Storage": {
+		"Test": true,
+		"Directory": "../../../../outputs/storage"
+	}
+}

@@ -985,14 +985,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 			var user = repos.User.GetByEmail(email);
 			var wipe = Wipe.FromUser(user);
 
-			wipe.S3 = $"{scenarioCode}.csv";
+			wipe.CSVAddress = $"{scenarioCode}.csv";
 
 			repos.Wipe.SaveOrUpdate(wipe);
 
 			var path = Path.Combine(
-				Cfg.S3.Directory,
+				Cfg.Storage.Directory,
 				StoragePurpose.Wipe.ToString(),
-				wipe.S3
+				wipe.CSVAddress
 			);
 			File.WriteAllText(path, "hey, listen!");
 		}
@@ -1014,7 +1014,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void ThenTheFileWill_BeWiped(Boolean wiped)
 		{
 			var path = Path.Combine(
-				Cfg.S3.Directory,
+				Cfg.Storage.Directory,
 				StoragePurpose.Wipe.ToString(),
 				$"{scenarioCode}.csv"
 			);

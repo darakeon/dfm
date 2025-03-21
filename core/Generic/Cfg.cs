@@ -10,7 +10,7 @@ namespace DFM.Generic
 	public class Cfg
 	{
 		private static readonly ImmutableList<String> configTypes =
-			ImmutableList.Create("db", "smtp", "login", "s3", "sqs");
+			ImmutableList.Create("db", "smtp", "login", "storage", "sqs");
 
 		public static void Init(String environment = null)
 		{
@@ -45,7 +45,7 @@ namespace DFM.Generic
 				ct => builder.AddJsonFile($"{ct}.{environment}.json", true)
 			);
 		}
-		
+
 		private static void fromBase64EnvVars(IConfigurationBuilder builder)
 		{
 			foreach (var configType in configTypes)
@@ -88,7 +88,7 @@ namespace DFM.Generic
 
 		public static Smtp Smtp => new(dic.GetSection("Smtp"));
 		public static Rewrite Rewrites => new("rewrites.json");
-		public static S3 S3 => new(dic.GetSection("S3"));
+		public static Storage Storage => new(dic.GetSection("Storage"));
 		public static SQS SQS => new(dic.GetSection("SQS"));
 
 		public static String LanguagePath { get; set; }

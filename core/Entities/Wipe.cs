@@ -19,7 +19,7 @@ namespace DFM.Entities
 		public virtual RemovalReason Why { get; set; }
 
 		public virtual String Password { get; set; }
-		public virtual String S3 { get; set; }
+		public virtual String CSVAddress { get; set; }
 
 		public virtual Theme Theme { get; set; }
 		public virtual String Language { get; set; }
