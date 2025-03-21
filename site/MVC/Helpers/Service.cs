@@ -36,7 +36,7 @@ namespace DFM.MVC.Helpers
 
 		private static IFileService createFileService(StoragePurpose purpose)
 		{
-			return Cfg.S3.Local
+			return Cfg.Storage.Local
 				? new LocalFileService(purpose)
 				: new S3Service(purpose);
 		}

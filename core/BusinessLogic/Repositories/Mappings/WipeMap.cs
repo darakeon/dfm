@@ -24,7 +24,7 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 				.Length(MaxLen.WipeDomainStart)
 				.CustomType<String>();
 
-			mapping.Map(p => p.S3)
+			mapping.Map(p => p.CSVAddress)
 				.Nullable();
 		}
 	}

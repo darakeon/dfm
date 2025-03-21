@@ -42,5 +42,5 @@
       - store_artifacts:
           path: outputs/inbox
       - store_artifacts:
-          path: outputs/s3
+          path: outputs/storage
 

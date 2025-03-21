@@ -547,7 +547,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public void ThenThereWillBeNoExportFile()
 		{
 			var file = Directory
-				.GetFiles(Cfg.S3.Directory, "*.csv")
+				.GetFiles(Cfg.Storage.Directory, "*.csv")
 				.FirstOrDefault(f => f.Contains(scenarioCode));
 
 			Assert.That(file, Is.Null);
@@ -566,7 +566,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				: StoragePurpose.Wipe;
 
 			var path = Path.Combine(
-				Cfg.S3.Directory,
+				Cfg.Storage.Directory,
 				purpose.ToString()
 			);
 
@@ -618,9 +618,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			if (hasCSV)
 			{
-				Assert.That(wipe.S3, Is.Not.Null);
+				Assert.That(wipe.CSVAddress, Is.Not.Null);
 				Assert.That(
-					wipe.S3.StartsWith(
+					wipe.CSVAddress.StartsWith(
 						wipe.HashedEmail.ToBase64()
 					),
 					Is.True
@@ -628,7 +628,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 			else
 			{
-				Assert.That(wipe.S3, Is.Null);
+				Assert.That(wipe.CSVAddress, Is.Null);
 			}
 
 			Assert.That(Crypt.Check(userPassword, wipe.Password), Is.True);
@@ -780,13 +780,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			csvName = order.Path;
 
-			var fakeS3Path = Path.Combine(
-				Cfg.S3.Directory,
+			var fakeStoragePath = Path.Combine(
+				Cfg.Storage.Directory,
 				StoragePurpose.Export.ToString(),
 				order.Path
 			);
 
-			csvContent = File.ReadAllText(fakeS3Path);
+			csvContent = File.ReadAllText(fakeStoragePath);
 		}
 
 		[Given(@"archive is from (\d+) month\(s\) ago")]
@@ -1336,7 +1336,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			orderInfo ??= new OrderInfo();
 			orderInfo.CategoryList.Add(categoryName);
 		}
-		
+
 		[Given(@"order is from (\d+) month\(s\) ago")]
 		public void GivenOrderIsFromMonthSAgo(Int32 months)
 		{
@@ -1628,7 +1628,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 					Assert.That(actual.Path, Is.Not.Null);
 
 					var path = Path.Combine(
-						Cfg.S3.Directory,
+						Cfg.Storage.Directory,
 						StoragePurpose.Export.ToString(),
 						actual.Path
 					);
