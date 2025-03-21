@@ -52,7 +52,7 @@ internal class LineRepository : Repo<Line>
 				l => l.Status == ImportStatus.Pending
 					&& l.Scheduled < DateTime.UtcNow.AddDays(-1)
 			)
-			.Take(Cfg.SQS.QueueLimit)
+			.Take(Cfg.Queue.QueueLimit)
 			.List;
 	}
 }

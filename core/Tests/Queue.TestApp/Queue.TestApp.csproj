@@ -27,11 +27,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="sqs.json" />
+    <None Remove="queue.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="sqs.json">
+    <Content Include="queue.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
