@@ -4,27 +4,27 @@ using Microsoft.Extensions.Configuration;
 
 namespace DFM.Generic.Settings
 {
-	public class S3
+	public class Storage
 	{
-		public S3(IConfiguration s3)
+		public Storage(IConfiguration config)
 		{
-			Local = !String.IsNullOrEmpty(s3["Local"])
-				&& Boolean.Parse(s3["Local"]);
+			Local = !String.IsNullOrEmpty(config["Local"])
+				&& Boolean.Parse(config["Local"]);
 
 			if (Local)
 			{
-				Directory = s3["Directory"];
+				Directory = config["Directory"];
 			}
 			else
 			{
-				Region = s3["region"];
-				AccessKey = s3["accessKey"];
-				SecretKey = s3["secretKey"];
+				Region = config["region"];
+				AccessKey = config["accessKey"];
+				SecretKey = config["secretKey"];
 
 				Buckets = new Dictionary<StoragePurpose, String>
 				{
-					{ StoragePurpose.Wipe, s3["bucketWipe"] },
-					{ StoragePurpose.Export, s3["bucketExport"] },
+					{ StoragePurpose.Wipe, config["bucketWipe"] },
+					{ StoragePurpose.Export, config["bucketExport"] },
 				};
 			}
 		}

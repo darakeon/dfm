@@ -22,7 +22,7 @@ env:
 		echo "" >> .env; \
 		echo "CFG_DB=" >> .env; \
 		echo "CFG_LOGIN=" >> .env; \
-		echo "CFG_S3=" >> .env; \
+		echo "CFG_STORAGE=" >> .env; \
 		echo "CFG_SMTP=" >> .env; \
 		echo "CFG_SQS=" >> .env; \
 	fi
@@ -74,7 +74,7 @@ robot_aws_create:
 		--package-type Image \
 		--code ImageUri=${AWS_IMAGE} \
 		--vpc-config SubnetIds=${AWS_SUBNETS},SecurityGroupIds=${AWS_SG},Ipv6AllowedForDualStack=false \
-		--environment Variables={CFG_DB=${CFG_DB},CFG_LOGIN=${CFG_LOGIN},CFG_S3=${CFG_S3},CFG_SMTP=${CFG_SMTP},CFG_SQS=${CFG_SQS}} \
+		--environment Variables={CFG_DB=${CFG_DB},CFG_LOGIN=${CFG_LOGIN},CFG_STORAGE=${CFG_STORAGE},CFG_SMTP=${CFG_SMTP},CFG_SQS=${CFG_SQS}} \
 		--timeout 600 \
 		| grep StateReasonCode \
 		| sed 's/"//g' \

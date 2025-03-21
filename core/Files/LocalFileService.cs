@@ -11,13 +11,13 @@ namespace DFM.Files
 	{
 		public LocalFileService(StoragePurpose purpose)
 		{
-			if (!Cfg.S3.LocalFilled)
-				throw new SystemError("Must have section S3 whole configured for local files");
+			if (!Cfg.Storage.LocalFilled)
+				throw new SystemError("Must have section Storage whole configured for local files");
 
-			fakeS3Path = Path.Combine(Cfg.S3.Directory, purpose.ToString());
+			fakeStoragePath = Path.Combine(Cfg.Storage.Directory, purpose.ToString());
 		}
 
-		private String fakeS3Path;
+		private readonly String fakeStoragePath;
 
 		public void Upload(String path)
 		{
@@ -28,39 +28,39 @@ namespace DFM.Files
 				);
 			}
 
-			var s3Path = getS3Path(path);
-			File.Copy(path, s3Path);
+			var storagePath = getStoragePath(path);
+			File.Copy(path, storagePath);
 		}
 
 		public void Download(String path)
 		{
-			var s3Path = getS3Path(path);
+			var storagePath = getStoragePath(path);
 
-			File.Copy(s3Path, path, true);
+			File.Copy(storagePath, path, true);
 		}
 
 		public Boolean Exists(String path)
 		{
-			var s3Path = getS3Path(path);
-			return File.Exists(s3Path);
+			var storagePath = getStoragePath(path);
+			return File.Exists(storagePath);
 		}
 
 		public void Delete(String path)
 		{
-			var s3Path = getS3Path(path);
-			File.Delete(s3Path);
+			var storagePath = getStoragePath(path);
+			File.Delete(storagePath);
 		}
 
 		internal IList<String> List()
 		{
-			return Directory.GetFiles(fakeS3Path);
+			return Directory.GetFiles(fakeStoragePath);
 		}
 
-		private String getS3Path(String path)
+		private String getStoragePath(String path)
 		{
 			var info = new FileInfo(path);
 			var filename = info.Name;
-			return Path.Combine(fakeS3Path, filename);
+			return Path.Combine(fakeStoragePath, filename);
 		}
 	}
 }
