@@ -474,7 +474,7 @@ async function createWipe(email) {
 
 	await execute(
 		`insert into wipe
-				(hashedEmail, usernameStart, domainStart, when_, why, password, csdAddress, theme, language)
+				(hashedEmail, usernameStart, domainStart, when_, why, password, csvAddress, theme, language)
 			values
 				('${hashedEmail}', '${username}', '${domain}', datetime('now'), ${why}, '${hashedPassword}', '${csvAddress}', 3, 'pt-BR')`
 	)
