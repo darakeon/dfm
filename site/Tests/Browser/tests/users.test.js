@@ -306,8 +306,8 @@ describe('Users', () => {
 			`E-mail não encontrado entre dados excluídos de pessoas`
 		)
 
-		const s3 = await db.createWipe(email)
-		const path = `../../../outputs/s3/Wipe/${s3}`
+		const csvAddress = await db.createWipe(email)
+		const path = `../../../outputs/storage/Wipe/${csvAddress}`
 		await fs.writeFile(path, 'test')
 
 		await page.type('#Password', db.password)

@@ -12,14 +12,14 @@ namespace DFM.Files
 	{
 		public S3Service(StoragePurpose purpose)
 		{
-			if (!Cfg.S3.S3Filled)
-				throw new SystemError("Must have section S3 whole configured for aws");
+			if (!Cfg.Storage.S3Filled)
+				throw new SystemError("Must have section Storage whole configured for aws");
 
-			var region = RegionEndpoint.GetBySystemName(Cfg.S3.Region);
-			var accessKey = Cfg.S3.AccessKey;
-			var secretKey = Cfg.S3.SecretKey;
+			var region = RegionEndpoint.GetBySystemName(Cfg.Storage.Region);
+			var accessKey = Cfg.Storage.AccessKey;
+			var secretKey = Cfg.Storage.SecretKey;
 
-			bucket = Cfg.S3.Buckets[purpose];
+			bucket = Cfg.Storage.Buckets[purpose];
 
 			s3 = new TransferUtility(accessKey, secretKey, region);
 		}

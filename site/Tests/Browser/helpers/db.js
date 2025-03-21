@@ -470,16 +470,16 @@ async function createWipe(email) {
 	const hashedPassword = await hash(password)
 
 	var hashedEmailBase64 = Buffer.from(hashedEmail).toString('base64');
-	const s3 = `${hashedEmailBase64}_19860327012000.csv`;
+	const csvAddress = `${hashedEmailBase64}_19860327012000.csv`;
 
 	await execute(
 		`insert into wipe
-				(hashedEmail, usernameStart, domainStart, when_, why, password, s3, theme, language)
+				(hashedEmail, usernameStart, domainStart, when_, why, password, csvAddress, theme, language)
 			values
-				('${hashedEmail}', '${username}', '${domain}', datetime('now'), ${why}, '${hashedPassword}', '${s3}', 3, 'pt-BR')`
+				('${hashedEmail}', '${username}', '${domain}', datetime('now'), ${why}, '${hashedPassword}', '${csvAddress}', 3, 'pt-BR')`
 	)
 
-	return s3;
+	return csvAddress;
 }
 
 async function validateLastTFA(user) {
