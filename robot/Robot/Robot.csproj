@@ -52,12 +52,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>smtp.json</DependentUpon>
     </Content>
-    <Content Include="sqs.json">
+    <Content Include="queue.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sqs.*.json">
+    <Content Include="queue.*.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <DependentUpon>sqs.json</DependentUpon>
+      <DependentUpon>queue.json</DependentUpon>
     </Content>
     <Content Include="login.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

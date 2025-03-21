@@ -1,5 +1,5 @@
 {
-	"SQS": {
+	"Queue": {
 		"Local": true,
 		"QueueImporter": "importer"
 	}
