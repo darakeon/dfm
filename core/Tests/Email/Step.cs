@@ -4,6 +4,7 @@ using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Language;
+using DFM.Logs;
 using DFM.Tests.Util;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -30,7 +31,7 @@ namespace DFM.Email.Tests
 		{
 			var email = table.Rows[0];
 
-			sender = new Sender()
+			sender = new Sender(logService)
 				.Subject(email["Subject"])
 				.Body(email["Body"])
 				.To(email["To"]);
@@ -52,7 +53,7 @@ namespace DFM.Email.Tests
 		{
 			var email = table.Rows[0];
 
-			sender = new Sender()
+			sender = new Sender(logService)
 				.Subject(email["Subject"])
 				.Body(email["Body"])
 				.ToDefault();
@@ -132,7 +133,7 @@ namespace DFM.Email.Tests
 		[When(@"the e-mail is sent")]
 		public void WhenTheEmailIsSent()
 		{
-			new Sender()
+			new Sender(logService)
 				.To(user.Email)
 				.Subject(format.Subject)
 				.Body(format.Layout)
@@ -252,5 +253,6 @@ namespace DFM.Email.Tests
 		}
 
 		protected static DateTime testsStart { get; private set; }
+		protected static ILogService logService { get; } = new LocalLogService();
 	}
 }

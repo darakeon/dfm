@@ -24,12 +24,7 @@ namespace DFM.MVC.Controllers
 			if (!id.IsIn(404, 500))
 				return RedirectToAction("Index");
 
-			var errorManager = new ErrorManager(HttpContext);
-
-			var model = new OpsCodeModel
-			{
-				EmailSent = errorManager.EmailSent
-			};
+			var model = new OpsCodeModel(HttpContext);
 
 			return View(id.ToString(), model);
 		}

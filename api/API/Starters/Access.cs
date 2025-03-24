@@ -11,9 +11,10 @@ namespace DFM.API.Starters
 		{
 			app.Use<Access>(async (context, next) =>
 			{
+				var service = context.GetService();
+
 				try
 				{
-					var service = context.GetService();
 					var current = service.Current;
 
 					if (current.IsAuthenticated)
@@ -21,7 +22,7 @@ namespace DFM.API.Starters
 				}
 				catch (Exception e)
 				{
-					e.TryLogHandled("Error on logging access");
+					service.LogService.LogHandled(e, "Error on logging access");
 				}
 
 				await next();
