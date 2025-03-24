@@ -5,20 +5,15 @@ using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
+using DFM.Logs;
 using Keon.Util.Extensions;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class ControlRepository : Repo<Control>
+	internal class ControlRepository(Current.GetUrl getUrl, ILogService logService)
+		: Repo<Control>
 	{
-		private readonly Current.GetUrl getUrl;
-
-		public ControlRepository(Current.GetUrl getUrl)
-		{
-			this.getUrl = getUrl;
-		}
-
 		internal void Activate(User user)
 		{
 			var control = user.Control;
@@ -57,7 +52,7 @@ namespace DFM.BusinessLogic.Repositories
 
 			var fileContent = format.Layout.Format(dic);
 
-			var sender = new Sender()
+			var sender = new Sender(logService)
 				.To(user.Email)
 				.Subject(format.Subject)
 				.Body(fileContent);

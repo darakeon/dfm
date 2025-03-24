@@ -5,6 +5,7 @@ using DFM.BusinessLogic;
 using Keon.MVC.Cookies;
 using DFM.Email;
 using DfM.Logs;
+using DFM.Logs;
 using DFM.MVC.Helpers.Extensions;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
@@ -13,25 +14,19 @@ using Microsoft.AspNetCore.Http.Extensions;
 
 namespace DFM.MVC.Helpers.Global
 {
-	public class ErrorManager
+	public class ErrorManager(HttpContext context, ILogService logService)
 	{
-		public static Task Process(HttpContext context)
+		public static Task Process(HttpContext context, ILogService logService)
 		{
-			var manager = new ErrorManager(context);
+			var manager = new ErrorManager(context, logService);
 			return Task.Run(manager.process);
 		}
 
-		private readonly HttpContext context;
 		private String key => BrowserId.Get(() => context);
 
 		private static readonly
 			IDictionary<String, Error.Status> errors
 				= new Dictionary<String, Error.Status>();
-
-		public ErrorManager(HttpContext context)
-		{
-			this.context = context;
-		}
 
 		private void process()
 		{
@@ -41,13 +36,13 @@ namespace DFM.MVC.Helpers.Global
 					.Get<IExceptionHandlerFeature>()
 					.Error;
 
-				exception.TryLog();
+				logService.Log(exception);
 
 				sendEmail(exception);
 			}
 			catch (Exception e)
 			{
-				e.TryLog();
+				logService.Log(e);
 			}
 
 			redirect();
@@ -71,6 +66,7 @@ namespace DFM.MVC.Helpers.Global
 					: "Off";
 
 			EmailSent = Error.SendReport(
+				logService,
 				exception,
 				request.GetDisplayUrl(),
 				urlReferrer,

@@ -88,6 +88,7 @@ namespace DFM.Generic
 
 		public static Smtp Smtp => new(dic.GetSection("Smtp"));
 		public static Rewrite Rewrites => new("rewrites.json");
+		public static Log Log => new(dic.GetSection("Log"));
 		public static Storage Storage => new(dic.GetSection("Storage"));
 		public static Queue Queue => new(dic.GetSection("Queue"));
 

@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using DFM.Authentication;
 using DFM.BusinessLogic;
-using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.Response;
 using DFM.Entities.Enums;
 using DFM.Files;
 using DFM.Generic;
 using DFM.Generic.Datetime;
-using DfM.Logs;
+using DFM.Logs;
 using DFM.Queue;
 
 namespace DFM.Robot
@@ -20,6 +18,7 @@ namespace DFM.Robot
 		private readonly Action<Object> logOk;
 		
 		private readonly ServiceAccess service;
+		private readonly CloudWatchService log;
 		private readonly S3Service wipeS3;
 		private readonly S3Service exportS3;
 		private readonly SQSService sqs;
@@ -47,8 +46,10 @@ namespace DFM.Robot
 					break;
 			}
 
+			log = new CloudWatchService();
+
 			service = new ServiceAccess(
-				getTicket, getSite, wipeS3, exportS3, sqs
+				getTicket, getSite, log, wipeS3, exportS3, sqs
 			);
 
 			if (this.task != RobotTask.Check)
@@ -96,7 +97,7 @@ namespace DFM.Robot
 			{
 				foreach (var error in errors)
 				{
-					error.TryLogHandled($"User: {email}");
+					log.LogHandled(error, $"User: {email}");
 				}
 			}
 		}
@@ -116,7 +117,7 @@ namespace DFM.Robot
 					return;
 
 				if (!result.Success)
-					result.Error.TryLogHandled($"User: {result.User.Email}");
+					log.LogHandled(result.Error, $"User: {result.User.Email}");
 			}
 		}
 
@@ -135,7 +136,7 @@ namespace DFM.Robot
 			var result = service.Executor.ExportOrder();
 
 			if (!result.Success)
-				result.Error.TryLogHandled($"User: {result.User.Email}");
+				log.LogHandled(result.Error, $"User: {result.User.Email}");
 		}
 
 		private async Task expire()
@@ -145,7 +146,7 @@ namespace DFM.Robot
 			foreach (var result in results)
 			{
 				if (!result.Success)
-					result.Error.TryLogHandled($"User: {result.User.Email}");
+					log.LogHandled(result.Error, $"User: {result.User.Email}");
 			}
 		}
 

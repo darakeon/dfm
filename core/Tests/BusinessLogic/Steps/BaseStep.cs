@@ -13,6 +13,7 @@ using DFM.Entities.Enums;
 using DFM.Files;
 using DFM.Generic;
 using DFM.Generic.Datetime;
+using DFM.Logs;
 using DFM.Queue;
 using DFM.Tests.Util;
 using Keon.Util.Extensions;
@@ -34,6 +35,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 		private protected static Valids valids;
 		private protected static Repos repos;
+		private protected static LocalLogService logService;
 		private protected static LocalFileService wipeFileService;
 		private protected static LocalFileService exportFileService;
 		private protected static LocalQueueService queueService;
@@ -65,11 +67,12 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 		protected static void setRepositories()
 		{
+			logService = new LocalLogService();
 			wipeFileService = new LocalFileService(StoragePurpose.Wipe);
 			exportFileService = new LocalFileService(StoragePurpose.Export);
 			queueService = new LocalQueueService();
 			valids = new Valids();
-			repos = new Repos(getSite, valids, wipeFileService, exportFileService);
+			repos = new Repos(getSite, valids, logService, wipeFileService, exportFileService);
 		}
 
 		protected static String getSite()

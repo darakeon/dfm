@@ -2,6 +2,7 @@
 using DFM.BusinessLogic;
 using DFM.Files;
 using DFM.Generic;
+using DFM.Logs;
 using DFM.Queue;
 using Keon.MVC.Cookies;
 using Microsoft.AspNetCore.Http;
@@ -25,9 +26,15 @@ namespace DFM.MVC.Helpers
 					? new LocalQueueService()
 					: new SQSService();
 
+			LogService =
+				Cfg.Log.Local
+					? new LocalLogService()
+					: new CloudWatchService();
+
 			Access = new ServiceAccess(
 				new Session(getContext).GetTicket,
 				getUrl,
+				LogService,
 				wipeFileService,
 				exportFileService,
 				queueService
@@ -45,7 +52,8 @@ namespace DFM.MVC.Helpers
 		private HttpContext context => getContext();
 		private HttpRequest request => context.Request;
 
-		public ServiceAccess Access;
+		public readonly ServiceAccess Access;
+		public readonly ILogService LogService;
 		public Current Current => Access?.Current;
 
 

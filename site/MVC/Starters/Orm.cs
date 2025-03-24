@@ -3,6 +3,7 @@ using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.Entities;
 using DFM.Generic;
 using DfM.Logs;
+using DFM.Logs;
 using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Extensions;
 using Keon.NHibernate.Schema;
@@ -37,7 +38,12 @@ namespace DFM.MVC.Starters
 			}
 			catch (Exception e)
 			{
-				e.TryLogHandled("Error on initialize DB");
+				ILogService logService =
+					Cfg.Log.Local
+						? new LocalLogService()
+						: new CloudWatchService();
+
+				logService.LogHandled(e, "Error on initialize DB");
 			}
 		}
 	}
