@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Error = DFM.Email.Error;
 using DFM.Entities.Bases;
+using DFM.Logs;
 
 namespace DFM.MVC.Models
 {
@@ -85,8 +86,10 @@ namespace DFM.MVC.Models
 			}
 			catch (Exception e)
 			{
-				Error.SendReport(e, current.TipType, current.SafeTicketKey);
-				e.TryLog();
+				Error.SendReport(
+					logService, e, current.TipType, current.SafeTicketKey
+				);
+				logService.Log(e);
 				return null;
 			}
 		}

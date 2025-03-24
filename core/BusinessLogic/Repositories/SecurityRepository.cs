@@ -8,12 +8,14 @@ using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Generic.Datetime;
+using DFM.Logs;
 using Keon.Util.Extensions;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class SecurityRepository(Current.GetUrl getUrl) : Repo<Security>
+	internal class SecurityRepository(Current.GetUrl getUrl, ILogService logService)
+		: Repo<Security>
 	{
 		private readonly UserValidator validator = new();
 
@@ -71,7 +73,7 @@ namespace DFM.BusinessLogic.Repositories
 			var format = Format.SecurityAction(security.User, security.Action);
 			var fileContent = format.Layout.Format(dic);
 
-			var sender = new Sender()
+			var sender = new Sender(logService)
 				.To(security.User.Email)
 				.Subject(format.Subject)
 				.Body(fileContent);

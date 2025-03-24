@@ -7,6 +7,7 @@ using DFM.Generic;
 using DFM.Language;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
+using DFM.MVC.Helpers.Extensions;
 using DFM.MVC.Models;
 using Keon.Util.Exceptions;
 using Microsoft.AspNetCore.Mvc;
@@ -88,7 +89,7 @@ namespace DFM.MVC.Controllers
 
 			try
 			{
-				new Sender()
+				new Sender(HttpContext.GetService().LogService)
 					.Subject("Test")
 					.Body(message)
 					.To("darakeon@gmail.com")

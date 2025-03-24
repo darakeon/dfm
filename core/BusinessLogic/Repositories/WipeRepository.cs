@@ -9,6 +9,7 @@ using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Exchange.Exporter;
 using DFM.Files;
+using DFM.Logs;
 using Keon.Util.Crypto;
 using Keon.Util.DB;
 using Keon.Util.Extensions;
@@ -16,24 +17,15 @@ using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class WipeRepository : Repo<Wipe>
-	{
-		public WipeRepository(
-			Repos repos, Current.GetUrl getUrl,
-			IFileService wipeFileService, IFileService exportFileService
+	internal class WipeRepository(
+			Repos repos,
+			Current.GetUrl getUrl,
+			ILogService logService,
+			IFileService wipeFileService,
+			IFileService exportFileService
 		)
-		{
-			this.repos = repos;
-			this.getUrl = getUrl;
-			this.wipeFileService = wipeFileService;
-			this.exportFileService = exportFileService;
-		}
-
-		private readonly Repos repos;
-		private readonly Current.GetUrl getUrl;
-		private readonly IFileService wipeFileService;
-		private readonly IFileService exportFileService;
-
+		: Repo<Wipe>
+	{
 		public void Execute(User user, DateTime date, RemovalReason reason)
 		{
 			var accounts = repos.Account.Where(a => a.User.ID == user.ID);
@@ -130,7 +122,7 @@ namespace DFM.BusinessLogic.Repositories
 
 			var fileContent = format.Layout.Format(dic);
 
-			var sender = new Sender()
+			var sender = new Sender(logService)
 				.To(user.Email)
 				.Subject(format.Subject)
 				.Body(fileContent);
@@ -207,7 +199,7 @@ namespace DFM.BusinessLogic.Repositories
 			var format = Format.WipeCSVRecover(security.Wipe);
 			var fileContent = format.Layout.Format(dic);
 
-			var sender = new Sender()
+			var sender = new Sender(logService)
 				.To(email)
 				.Subject(format.Subject)
 				.Body(fileContent);

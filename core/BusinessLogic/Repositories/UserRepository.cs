@@ -9,12 +9,14 @@ using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Generic;
+using DFM.Logs;
 using Keon.Util.Crypto;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class UserRepository(Current.GetUrl getUrl) : Repo<User>
+	internal class UserRepository(Current.GetUrl getUrl, ILogService logService)
+		: Repo<User>
 	{
 		private const String emailPattern = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$";
 
@@ -176,7 +178,7 @@ namespace DFM.BusinessLogic.Repositories
 			var format = Format.SecurityWarning(user, securityWarning);
 			var fileContent = format.Layout.Format(dic);
 
-			var sender = new Sender()
+			var sender = new Sender(logService)
 				.To(user.Email)
 				.Subject(format.Subject)
 				.Body(fileContent);

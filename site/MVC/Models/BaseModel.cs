@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Services;
 using DFM.Generic;
+using DFM.Logs;
 using DFM.MVC.Helpers.Extensions;
 using DFM.MVC.Helpers.Global;
 using DFM.MVC.Starters;
 using Microsoft.AspNetCore.Http;
+using Service = DFM.MVC.Helpers.Service;
 
 namespace DFM.MVC.Models
 {
@@ -20,7 +22,8 @@ namespace DFM.MVC.Models
 		protected ErrorAlert errorAlert => context.GetErrorAlert();
 		protected Dictionary<String, String> route => context.GetRouteText();
 
-		private static ServiceAccess service => context.GetService().Access;
+		private static Service contextService => context.GetService();
+		private static ServiceAccess service => contextService.Access;
 
 		protected static AuthService auth => service.Auth;
 		protected static LawService law => service.Law;
@@ -30,6 +33,8 @@ namespace DFM.MVC.Models
 		protected static ReportService report => service.Report;
 		protected static OutsideService outside => service.Outside;
 		protected static AttendantService attendant => service.Attendant;
+
+		protected static ILogService logService = contextService.LogService;
 
 		protected Current current => service.Current;
 

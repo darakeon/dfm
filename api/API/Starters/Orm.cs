@@ -9,6 +9,7 @@ using Keon.NHibernate.Schema;
 using Keon.NHibernate.Sessions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
+using DFM.Logs;
 
 namespace DFM.API.Starters
 {
@@ -37,7 +38,12 @@ namespace DFM.API.Starters
 			}
 			catch (Exception e)
 			{
-				e.TryLogHandled("Error on initialize DB");
+				ILogService logService =
+					Cfg.Log.Local
+						? new LocalLogService()
+						: new CloudWatchService();
+
+				logService.LogHandled(e, "Error on initialize DB");
 			}
 		}
 	}

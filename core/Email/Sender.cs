@@ -5,20 +5,24 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using DFM.Generic;
-using DfM.Logs;
+using DFM.Logs;
 
 namespace DFM.Email
 {
 	public class Sender
 	{
+		private readonly ILogService logService;
+
 		private readonly String from;
 		private String to, subject, body;
 		private readonly IList<String> files;
 		private readonly NameValueCollection headers;
 		private readonly String @default;
 
-		public Sender()
+		public Sender(ILogService logService)
 		{
+			this.logService = logService;
+
 			files = new List<String>();
 			headers = new NameValueCollection();
 
@@ -114,7 +118,7 @@ namespace DFM.Email
 			}
 			catch (Exception exception)
 			{
-				exception.TryLog();
+				logService.Log(exception);
 				throw MailError.WithMessage(exception);
 			}
 		}

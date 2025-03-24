@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities.Enums;
 using DFM.Generic.Datetime;
-using DfM.Logs;
+using DFM.Logs;
 using Keon.Util.Exceptions;
 
 namespace DFM.Email
@@ -21,6 +21,7 @@ namespace DFM.Email
 		/// <param name="safeTicket">Safe part of the ticket</param>
 		/// <returns>Status of e-mail</returns>
 		public static Status SendReport(
+			ILogService logService,
 			Exception exception,
 			String url, String origin, String httpMethod,
 			IDictionary<String, String> parameters,
@@ -49,7 +50,7 @@ namespace DFM.Email
 					<h6>http method: {httpMethod}</h6>
 					{exceptionsFormatted}";
 
-				new Sender()
+				new Sender(logService)
 					.To("darakeon@gmail.com")
 					.Subject(subject)
 					.Body(body)
@@ -59,7 +60,7 @@ namespace DFM.Email
 			}
 			catch (Exception e)
 			{
-				e.TryLog();
+				logService.Log(e);
 				return Status.Error;
 			}
 		}
@@ -72,6 +73,7 @@ namespace DFM.Email
 		/// <param name="safeTicket">Safe part of the ticket</param>
 		/// <returns>Status of e-mail</returns>
 		public static Status SendReport(
+			ILogService logService,
 			Exception exception,
 			TipType tips,
 			String safeTicket
@@ -89,7 +91,7 @@ namespace DFM.Email
 					<h5>{safeTicket}</h5>
 					{exceptionsFormatted}";
 
-				new Sender()
+				new Sender(logService)
 					.To("darakeon@gmail.com")
 					.Subject(subject)
 					.Body(body)
@@ -99,7 +101,7 @@ namespace DFM.Email
 			}
 			catch (Exception e)
 			{
-				e.TryLog();
+				logService.Log(e);
 				return Status.Error;
 			}
 		}

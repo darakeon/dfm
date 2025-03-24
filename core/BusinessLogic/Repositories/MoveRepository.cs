@@ -13,13 +13,14 @@ using DFM.Entities.Enums;
 using DFM.Language;
 using DFM.Language.Emails;
 using DFM.Language.Extensions;
+using DFM.Logs;
 using Keon.NHibernate.Queries;
 using Keon.Util.Extensions;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class MoveRepository(Current.GetUrl getUrl, MoveValidator validator)
+	internal class MoveRepository(Current.GetUrl getUrl, MoveValidator validator, ILogService logService)
 		: GenericMoveRepository<Move>(validator)
 	{
 		internal Move Get(Guid guid)
@@ -94,7 +95,7 @@ namespace DFM.BusinessLogic.Repositories
 
 			var unsubscribeLink = $"{getUrl()}/>{security.Action}>{security.Token}";
 
-			var sender = new Sender()
+			var sender = new Sender(logService)
 				.To(user.Email)
 				.Subject(format.Subject)
 				.Body(fileContent)

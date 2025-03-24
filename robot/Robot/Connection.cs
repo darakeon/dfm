@@ -7,6 +7,7 @@ using DFM.Language;
 using DfM.Logs;
 using Keon.NHibernate.Schema;
 using Keon.NHibernate.Sessions;
+using DFM.Logs;
 
 namespace DFM.Robot
 {
@@ -29,7 +30,12 @@ namespace DFM.Robot
 			}
 			catch (Exception e)
 			{
-				e.TryLog();
+				ILogService logService =
+					Cfg.Log.Local
+						? new LocalLogService()
+						: new CloudWatchService();
+
+				logService.Log(e);
 				throw;
 			}
 		}
