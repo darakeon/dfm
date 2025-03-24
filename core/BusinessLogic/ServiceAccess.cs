@@ -3,6 +3,7 @@ using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Services;
 using DFM.BusinessLogic.Validators;
 using DFM.Files;
+using DFM.Logs;
 using DFM.Queue;
 
 [assembly: InternalsVisibleTo("DFM.BusinessLogic.Tests")]
@@ -13,13 +14,14 @@ namespace DFM.BusinessLogic
 		public ServiceAccess(
 			Current.GetTicket getTicket,
 			Current.GetUrl getUrl,
+			ILogService logService,
 			IFileService wipeFileService,
 			IFileService exportFileService,
 			IQueueService queueService
 		)
 		{
 			var valids = new Valids();
-			var repos = new Repos(getUrl, valids, wipeFileService, exportFileService);
+			var repos = new Repos(getUrl, valids, logService, wipeFileService, exportFileService);
 
 			BaseMove = new BaseMoveSaverService(this, repos, valids);
 

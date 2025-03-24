@@ -199,7 +199,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			SessionManager.Init(getTicketKey);
 
 			service = new ServiceAccess(
-				getTicket, getSite, wipeFileService, exportFileService, queueService
+				getTicket, getSite, logService, wipeFileService, exportFileService, queueService
 			);
 
 			createContract();
