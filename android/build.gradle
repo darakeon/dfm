@@ -9,13 +9,13 @@ buildscript {
 
 	ext.java_version = JavaVersion.VERSION_1_8
 	ext.java_compat = JavaVersion.VERSION_1_8
-	ext.kotlin_version = '2.1.10'
-	ext.gradle_version = '8.9.0'
+	ext.kotlin_version = '2.2.0'
+	ext.gradle_version = '8.10.1'
 	ext.play_version = '17.0.0'
 	ext.retrofit_version = '2.11.0'
-	ext.mockito_version = '5.16.0'
+	ext.mockito_version = '5.18.0'
 	ext.junit_version = '4.13.2'
-	ext.robolectric_version = '4.14.1'
+	ext.robolectric_version = '4.15.1'
 	ext.mockserver_version = '4.12.0'
 	ext.testrunner_version = '1.0.2'
 	ext.expresso_version = '3.0.2'
@@ -33,7 +33,7 @@ buildscript {
 }
 
 plugins {
-	id "org.owasp.dependencycheck" version "12.1.0"
+	id "org.owasp.dependencycheck" version "12.1.3"
 }
 
 dependencyCheck  {
@@ -61,10 +61,10 @@ allprojects {
 					TestLogEvent.STANDARD_OUT,
 					TestLogEvent.STANDARD_ERROR
 
-			exceptionFormat TestExceptionFormat.FULL
-			showExceptions true
-			showCauses true
-			showStackTraces true
+			exceptionFormat = TestExceptionFormat.FULL
+			showExceptions = true
+			showCauses = true
+			showStackTraces = true
 		}
 	}
 }
