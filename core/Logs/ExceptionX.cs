@@ -6,7 +6,19 @@ namespace DfM.Logs
 {
 	public static class ExceptionX
 	{
-		public static void TryLog(this ErrorLog error)
+		public static void TryLog(this Exception exception)
+		{
+			new ErrorLog(exception, false).tryLog();
+		}
+
+		public static void TryLogHandled(this Exception exception, String message)
+		{
+			new ErrorLog(
+				new SystemError(message, exception), true
+			).tryLog();
+		}
+
+		private static void tryLog(this ErrorLog error)
 		{
 			var textError = error.ToString();
 
@@ -27,18 +39,6 @@ namespace DfM.Logs
 			{
 				Console.WriteLine($"Error that happened: {textError.Replace("\\n", "\n")}");
 			}
-		}
-
-		public static void TryLog(this Exception exception)
-		{
-			new ErrorLog(exception, false).TryLog();
-		}
-
-		public static void TryLogHandled(this Exception exception, String message)
-		{
-			new ErrorLog(
-				new SystemError(message, exception), true
-			).TryLog();
 		}
 	}
 }
