@@ -10,12 +10,14 @@ using DFM.Entities.Enums;
 using DFM.Exchange.Exporter;
 using DFM.Files;
 using DFM.Generic.Datetime;
+using DFM.Logs;
 using Keon.Util.Extensions;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Repositories;
 
-internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService fileService) : Repo<Order>
+internal class OrderRepository(Repos repos, Current.GetUrl getUrl, ILogService logService, IFileService fileService)
+	: Repo<Order>
 {
 	public Order GetNext()
 	{
@@ -65,7 +67,7 @@ internal class OrderRepository(Repos repos, Current.GetUrl getUrl, IFileService 
 		var format = Format.ExportData(order.User);
 		var fileContent = format.Layout.Format(dic);
 
-		var sender = new Sender()
+		var sender = new Sender(logService)
 			.To(order.User.Email)
 			.Subject(format.Subject)
 			.Body(fileContent)

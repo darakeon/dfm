@@ -1,4 +1,6 @@
-﻿using DFM.MVC.Helpers.Global;
+﻿using DFM.Generic;
+using DFM.Logs;
+using DFM.MVC.Helpers.Global;
 using DFM.MVC.Starters.Routes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -22,9 +24,14 @@ namespace DFM.MVC.Starters
 			}
 			else
 			{
+				ILogService logService =
+					Cfg.Log.Local
+						? new LocalLogService()
+						: new CloudWatchService();
+
 				var handler = new ExceptionHandlerOptions
 				{
-					ExceptionHandler = ErrorManager.Process
+					ExceptionHandler = exception => ErrorManager.Process(exception, logService)
 				};
 
 				app.Use<Error>("Handler", () => app.UseExceptionHandler(handler));
