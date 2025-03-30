@@ -76,6 +76,7 @@
 		"Allow disable MFA by sending link to email in the MFA require screen, asking for password": "Allow disable Safer Login in case it is lost",
 		"Fix problem with change version in main": "-",
 		"Allow run independabot in any branch": "-",
+		"Migrate cloud db": "Changed data place",
 		"": null
 	},
 	"pt-br": {
@@ -155,6 +156,7 @@
 		"Allow disable MFA by sending link to email in the MFA require screen, asking for password": "Possibilidade de desabilitar o Login mais Seguro caso o tenha perdido",
 		"Fix problem with change version in main": "-",
 		"Allow run independabot in any branch": "-",
+		"Migrate cloud db": "Mudado lugar de armazenamento de dados",
 		"": null
 	}
 }

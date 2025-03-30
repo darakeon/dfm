@@ -21,3 +21,6 @@ sql:
 		echo "" >> ${VERSION}.sql; \
 	fi
 	@code ${VERSION}.sql
+
+check_cloud_migration:
+	@cd engine && python3 verify.py
