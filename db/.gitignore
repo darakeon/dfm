@@ -1,2 +1,5 @@
 data
 all.sql
+
+__pycache__
+prod.py
