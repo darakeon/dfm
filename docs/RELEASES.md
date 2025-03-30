@@ -14,7 +14,8 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐑: at least one little change, as a change at an existing feature (increases third number)
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="14.1.4.1"></a>14.1.4.1 :🐜: <sup>`3`</sup>
+## <a name="14.1.4.1"></a>14.1.4.1 :🐜: <sup>`4`</sup>
+- [ ] `250330>......` Migrate cloud db
 - [ ] `250319>......` Move all logs to CloudWatch
 - [x] `250317>250317` Allow run independabot in any branch
 - [x] `250317>250317` Fix problem with change version in main
