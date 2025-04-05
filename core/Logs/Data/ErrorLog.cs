@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using DFM.Generic;
 using DFM.Generic.Datetime;
 using Newtonsoft.Json;
 
-namespace DfM.Logs
+namespace DFM.Logs.Data
 {
-	public class ErrorLog
+	internal class ErrorLog
 	{
 		public String ID { get; set; }
 		public DateTime Date { get; set; }
@@ -20,7 +21,13 @@ namespace DfM.Logs
 		// this is for serialization
 		public ErrorLog() { }
 
-		public ErrorLog(Exception exception, Boolean handled)
+		public ErrorLog(Exception exception)
+			: this(exception, false) { }
+
+		public ErrorLog(Exception exception, String handledMessage)
+			: this(new SystemError(handledMessage, exception), true) { }
+
+		private ErrorLog(Exception exception, Boolean handled)
 		{
 			Date = DateTime.UtcNow;
 			ID = Date.UntilMicrosecond();

@@ -66,6 +66,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>login.json</DependentUpon>
     </Content>
+    <Content Include="log.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="log.*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DependentUpon>log.json</DependentUpon>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -81,3 +88,4 @@
   </ItemGroup>
 
 </Project>
+

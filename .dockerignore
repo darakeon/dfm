@@ -38,6 +38,7 @@ site/MVC/Properties/PublishProfiles
 */*/login.*.json
 */*/storage.*.json
 */*/queue.*.json
+*/*/log.*.json
 
 midna/.env
 midna/gunicorn/log

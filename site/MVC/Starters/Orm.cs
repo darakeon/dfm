@@ -2,7 +2,6 @@ using System;
 using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.Entities;
 using DFM.Generic;
-using DfM.Logs;
 using DFM.Logs;
 using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Extensions;

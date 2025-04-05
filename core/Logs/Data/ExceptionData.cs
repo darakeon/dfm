@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace DfM.Logs
+namespace DFM.Logs.Data
 {
-	public class ExceptionData
+	internal class ExceptionData
 	{
 		// ReSharper disable once UnusedMember.Global
 		// this is for serialization
