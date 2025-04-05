@@ -33,12 +33,12 @@ def main():
 	)
 
 	if len(en_us) > 500:
-		print(f"too long en_us: {len(en_us)}")
+		print(f'too long en_us: {len(en_us)}')
 		print(en_us)
 		exit(1)
 
 	if len(pt_br) > 500:
-		print(f"too long pt_br: {len(pt_br)}")
+		print(f'too long pt_br: {len(pt_br)}')
 		print(pt_br)
 		exit(1)
 
@@ -65,7 +65,7 @@ def main():
 
 
 def get_version():
-	pattern = r"^\- \[.+\]\(\#(\d+\.\d+\.\d+\.\d+)\)$"
+	pattern = r'^\- \[.+\]\(\#(\d+\.\d+\.\d+\.\d+)\)$'
 
 	with open(f'docs/RELEASES.md') as file:
 		task_list = file.readlines()
@@ -150,17 +150,17 @@ def update_track(version, edits, edit_id, bundle, en_us, pt_br):
 				{
 					'name': version,
 					'versionCodes': [bundle['versionCode']],
-					"releaseNotes": [
+					'releaseNotes': [
 						{
-							"language": "en-US",
-							"text": en_us,
+							'language': 'en-US',
+							'text': en_us,
 						},
 						{
-							"language": "pt-BR",
-							"text": pt_br,
+							'language': 'pt-BR',
+							'text': pt_br,
 						}
 					],
-					"status": "completed",
+					'status': 'completed',
 				}
 			]
 		}
