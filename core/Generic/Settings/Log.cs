@@ -10,33 +10,38 @@ public class Log
 		Local = !String.IsNullOrEmpty(config["Local"])
 		        && Boolean.Parse(config["Local"]);
 
-		Group = config["Group"];
-
-		if (!Local)
+		if (Local)
+		{
+			Path = config["path"];
+		}
+		else
 		{
 			Account = config["Account"];
-			Region = config["region"];
 			AccessKey = config["accessKey"];
 			SecretKey = config["secretKey"];
+			Region = config["region"];
+			Group = config["group"];
 		}
 	}
 
-	public readonly String Account;
-	public readonly String Region;
-	public readonly String Group;
-	public readonly String AccessKey;
-	public readonly String SecretKey;
-
 	public readonly Boolean Local;
 
+	public readonly String Path;
+
+	public readonly String Account;
+	public readonly String AccessKey;
+	public readonly String SecretKey;
+	public readonly String Region;
+	public readonly String Group;
+
 	public Boolean LocalFilled =>
-		Local && !String.IsNullOrEmpty(Group);
+		Local && !String.IsNullOrEmpty(Path);
 
 	public Boolean CloudWatchFilled =>
 		!Local
 		&& !String.IsNullOrEmpty(Account)
-		&& !String.IsNullOrEmpty(Region)
-		&& !String.IsNullOrEmpty(Group)
 		&& !String.IsNullOrEmpty(AccessKey)
-		&& !String.IsNullOrEmpty(SecretKey);
+		&& !String.IsNullOrEmpty(SecretKey)
+		&& !String.IsNullOrEmpty(Region)
+		&& !String.IsNullOrEmpty(Group);
 }

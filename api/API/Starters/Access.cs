@@ -1,6 +1,5 @@
 using System;
 using DFM.API.Helpers.Extensions;
-using DfM.Logs;
 using Microsoft.AspNetCore.Builder;
 
 namespace DFM.API.Starters

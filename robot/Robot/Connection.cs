@@ -4,7 +4,6 @@ using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.Entities;
 using DFM.Generic;
 using DFM.Language;
-using DfM.Logs;
 using Keon.NHibernate.Schema;
 using Keon.NHibernate.Sessions;
 using DFM.Logs;
