@@ -46,7 +46,10 @@ namespace DFM.Robot
 					break;
 			}
 
-			log = new CloudWatchService();
+			if (this.task != RobotTask.Check)
+			{
+				log = new CloudWatchService();
+			}
 
 			service = new ServiceAccess(
 				getTicket, getSite, log, wipeS3, exportS3, sqs

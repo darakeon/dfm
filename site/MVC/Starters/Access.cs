@@ -1,5 +1,4 @@
 using System;
-using DfM.Logs;
 using DFM.MVC.Helpers.Extensions;
 using Microsoft.AspNetCore.Builder;
 

@@ -10,7 +10,7 @@ namespace DFM.Generic
 	public class Cfg
 	{
 		private static readonly ImmutableList<String> configTypes =
-			ImmutableList.Create("db", "smtp", "login", "storage", "queue");
+			ImmutableList.Create("db", "smtp", "login", "log", "storage", "queue");
 
 		public static void Init(String environment = null)
 		{
@@ -93,12 +93,6 @@ namespace DFM.Generic
 		public static Queue Queue => new(dic.GetSection("Queue"));
 
 		public static String LanguagePath { get; set; }
-
-		public static String LogErrorsPath =>
-			Path.Combine(dic["LogErrorsPath"].Split(","));
-
-		public static String LogErrorsFile(String name) =>
-			Path.Combine(LogErrorsPath, $"{name}.log");
 
 		private static IConfiguration robot => dic.GetSection("Robot");
 		public static String RobotEmail => robot["Email"];

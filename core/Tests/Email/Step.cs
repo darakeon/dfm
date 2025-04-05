@@ -14,15 +14,13 @@ namespace DFM.Email.Tests
 	[Binding]
 	public class Step : ContextHelper
 	{
-		public Step(ScenarioContext context) : base(context)
-		{
-			Cfg.Init();
-			PlainText.Initialize(runPath);
-		}
+		public Step(ScenarioContext context) : base(context) { }
 
 		[BeforeTestRun]
 		public static void RegisterRun()
 		{
+			Cfg.Init();
+			PlainText.Initialize(runPath);
 			testsStart = DateTime.UtcNow;
 		}
 
