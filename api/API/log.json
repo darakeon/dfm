@@ -1,0 +1,6 @@
+{
+	"Log": {
+		"Local": true,
+		"Path": "data/log_errors"
+	}
+}

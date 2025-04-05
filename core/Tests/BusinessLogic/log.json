@@ -1,0 +1,6 @@
+{
+	"Log": {
+		"Local": true,
+		"Path": "../../../../../outputs/logs/core/errors"
+	}
+}

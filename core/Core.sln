@@ -44,6 +44,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Queue.TestApp", "Tests\Queu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Files", "Files\Files.csproj", "{2D492082-2389-4EB9-8345-3F8E6022B6CB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logs.TestApp", "Tests\Logs.TestApp\Logs.TestApp.csproj", "{6361362B-94A4-47B8-9E3B-A0DA0232EABE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		BrowserTests|Any CPU = BrowserTests|Any CPU
@@ -151,6 +153,12 @@ Global
 		{2D492082-2389-4EB9-8345-3F8E6022B6CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D492082-2389-4EB9-8345-3F8E6022B6CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D492082-2389-4EB9-8345-3F8E6022B6CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6361362B-94A4-47B8-9E3B-A0DA0232EABE}.BrowserTests|Any CPU.ActiveCfg = Debug|Any CPU
+		{6361362B-94A4-47B8-9E3B-A0DA0232EABE}.BrowserTests|Any CPU.Build.0 = Debug|Any CPU
+		{6361362B-94A4-47B8-9E3B-A0DA0232EABE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6361362B-94A4-47B8-9E3B-A0DA0232EABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6361362B-94A4-47B8-9E3B-A0DA0232EABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6361362B-94A4-47B8-9E3B-A0DA0232EABE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

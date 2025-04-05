@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using DFM.BusinessLogic;
 using Keon.MVC.Cookies;
 using DFM.Email;
-using DfM.Logs;
 using DFM.Logs;
 using DFM.MVC.Helpers.Extensions;
 using Microsoft.AspNetCore.Diagnostics;
