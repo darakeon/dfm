@@ -1,12 +1,12 @@
 from json import loads
 from sys import argv
+from re import search
+
 
 TEST = len(argv) >= 2 and argv[1] == 'test-translations'
 
-if TEST:
-	from subprocess import run
 
-else:
+if not TEST:
 	from base64 import b64decode
 	from os import environ
 	from re import search
@@ -14,29 +14,22 @@ else:
 	from apiclient.discovery import build
 	from google.oauth2 import service_account
 
-
-if TEST:
-	VERSION = run(
-		['git', 'branch', '--show-current'],
-		capture_output=True,
-		text=True
-	).stdout.strip()
-else:
 	SERVICE_ACCOUNT = environ['ANDROID_SERVICE_ACCOUNT']
 	PACKAGE_NAME = environ['ANDROID_PACKAGE_NAME']
 	BUNDLE = environ['ANDROID_BUNDLE']
 	TRACK = environ['ANDROID_TRACK']
-	VERSION = environ['ANDROID_APP_VERSION']
 
 
 def main():
+	version = get_version()
+
 	en_us = get_translation(
 		'System Updates (some only at website):',
-		'en-us', VERSION
+		'en-us', version
 	)
 	pt_br = get_translation(
 		'Atualizações no Sistema (algumas apenas no site):',
-		'pt-br', VERSION
+		'pt-br', version
 	)
 
 	if len(en_us) > 500:
@@ -64,11 +57,22 @@ def main():
 
 	bundle = upload_bundle(edits, edit_id)
 
-	update_track(edits, edit_id, bundle, en_us, pt_br)
+	update_track(version, edits, edit_id, bundle, en_us, pt_br)
 
 	result = commit(edits, edit_id)
 
 	print(result)
+
+
+def get_version():
+	pattern = r"^\- \[.+\]\(\#(\d+\.\d+\.\d+\.\d+)\)$"
+
+	with open(f'docs/RELEASES.md') as file:
+		task_list = file.readlines()
+
+	dev = task_list[7]
+
+	return search(pattern, dev).group(1)
 
 
 def get_translation(title, lang, key):
@@ -78,7 +82,7 @@ def get_translation(title, lang, key):
 	all_versions = loads(content)
 
 	if TEST and key not in all_versions:
-		return []
+		return ''
 
 	for_version = all_versions[key]
 
@@ -136,7 +140,7 @@ def upload_bundle(edits, edit_id):
 	).execute()
 
 
-def update_track(edits, edit_id, bundle, en_us, pt_br):
+def update_track(version, edits, edit_id, bundle, en_us, pt_br):
 	return edits.tracks().update(
 		editId=edit_id,
 		track=TRACK,
@@ -144,7 +148,7 @@ def update_track(edits, edit_id, bundle, en_us, pt_br):
 		body={
 			'releases': [
 				{
-					'name': VERSION,
+					'name': version,
 					'versionCodes': [bundle['versionCode']],
 					"releaseNotes": [
 						{
