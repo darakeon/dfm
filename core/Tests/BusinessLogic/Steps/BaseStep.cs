@@ -54,7 +54,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			var path =
 				Path.Combine(
-					Cfg.LogErrorsPath, "..", "tests"
+					Cfg.Log.Path, "..", "tests"
 				);
 
 			path = Path.GetFullPath(path);

@@ -3,7 +3,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using DFM.Entities;
 using DFM.Generic;
-using DfM.Logs;
 using DFM.MVC.Controllers;
 using DFM.MVC.Helpers.Controllers;
 using Keon.Util.Collection;

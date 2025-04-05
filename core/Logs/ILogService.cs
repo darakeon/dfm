@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace DFM.Logs;
 
 public interface ILogService
 {
-	void Log(Exception exception);
-	void LogHandled(Exception exception, String message);
+	Task Log(Exception exception);
+	Task LogHandled(Exception exception, String message);
 }

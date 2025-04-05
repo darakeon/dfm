@@ -4,7 +4,6 @@ using DFM.API.Helpers.Extensions;
 using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.Entities;
 using DFM.Generic;
-using DfM.Logs;
 using Keon.NHibernate.Schema;
 using Keon.NHibernate.Sessions;
 using Microsoft.AspNetCore.Builder;
