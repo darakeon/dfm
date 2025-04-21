@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using DFM.Logs;
 using DFM.Logs.Data.Application;
+using DFM.Logs.Data.Requests;
 using DFM.MVC.Helpers.Extensions;
 using Konkah.LibraryCSharpColorTerminal;
 using Microsoft.AspNetCore.Builder;
@@ -107,20 +108,35 @@ namespace DFM.MVC.Starters
 			});
 		}
 
-		public static void LogAllRequests(IApplicationBuilder app)
+		public static void LogAllRequests(IApplicationBuilder app, IHostEnvironment env)
 		{
 			app.Use(async (context, next) =>
 			{
-				var text = $"{context.Request.Method} {context.Request.Path}";
-
-				var color = getRequestColor(context, text);
-
-				ConsoleColored.WriteLine($"{DateTime.Now:yyyy:MM:dd HH:mm:ss} START {text}", color);
+				logRequestMoment(env, context, "START");
 
 				await next();
 
-				ConsoleColored.WriteLine($"{DateTime.Now:yyyy:MM:dd HH:mm:ss} END   {text}", color);
+				logRequestMoment(env, context, "END");
 			});
+		}
+
+		private static void logRequestMoment(IHostEnvironment env, HttpContext context, String moment)
+		{
+			var time = DateTime.Now;
+
+			if (env.IsDevelopment())
+			{
+				var text = $"{context.Request.Method} {context.Request.Path}";
+				var color = getRequestColor(context, text);
+				ConsoleColored.WriteLine($"{time:yyyy:MM:dd HH:mm:ss} {moment} {text}", color);
+			}
+
+			LogFactory.Service.LogRequest(
+				moment,
+				context.Request.Method,
+				context.Request.Path,
+				time
+			);
 		}
 
 		private static ConsoleColor getRequestColor(HttpContext context, String text)

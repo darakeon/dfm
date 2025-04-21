@@ -42,7 +42,7 @@ namespace DFM.MVC
 		// Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime life)
 		{
-			AppLog.LogAllRequests(app);
+			AppLog.LogAllRequests(app, env);
 
 			PrometheusConfig.UseMetrics(app);
 
