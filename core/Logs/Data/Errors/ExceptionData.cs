@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace DFM.Logs.Data
+namespace DFM.Logs.Data.Errors
 {
 	internal class ExceptionData
 	{
