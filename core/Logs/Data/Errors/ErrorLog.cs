@@ -6,7 +6,7 @@ using DFM.Generic;
 using DFM.Generic.Datetime;
 using Newtonsoft.Json;
 
-namespace DFM.Logs.Data
+namespace DFM.Logs.Data.Errors
 {
 	internal class ErrorLog
 	{
