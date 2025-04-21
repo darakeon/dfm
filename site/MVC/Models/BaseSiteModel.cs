@@ -9,8 +9,6 @@ using Keon.Util.Collection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Error = DFM.Email.Error;
-using DFM.Entities.Bases;
-using DFM.Logs;
 
 namespace DFM.MVC.Models
 {
