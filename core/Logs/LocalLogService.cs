@@ -28,10 +28,7 @@ public class LocalLogService : BaseLogService, ILogService
 		catch (Exception e)
 		{
 			Console.WriteLine($"Error while recording log: {e}");
-		}
-		finally
-		{
-			Console.WriteLine($"Error that happened: {text?.Replace("\\n", "\n")}");
+			Console.WriteLine($"Original log: {text?.Replace("\\n", "\n")}");
 		}
 	}
 

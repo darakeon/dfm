@@ -12,14 +12,16 @@ namespace DFM.MVC
 {
 	public class Startup
 	{
-		public Startup(IConfiguration configuration)
+		public Startup(IConfiguration configuration, IHostEnvironment environment)
 		{
 			Configuration = configuration;
+			Environment = environment;
 
 			PrometheusConfig.Start();
 		}
 
 		public IConfiguration Configuration { get; }
+		public IHostEnvironment Environment { get; }
 
 		// This method gets called by the runtime.
 		// Use this method to add services to the container.
@@ -32,6 +34,8 @@ namespace DFM.MVC
 				.AddNewtonsoftJson();
 
 			services.AddAntiforgery();
+
+			AppLog.CommonLog(services, Environment);
 		}
 
 		// This method gets called by the runtime.

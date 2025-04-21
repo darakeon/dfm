@@ -1,14 +1,30 @@
 using System;
 using System.Threading.Tasks;
+using DFM.Logs;
+using DFM.Logs.Data.Application;
 using DFM.MVC.Helpers.Extensions;
 using Konkah.LibraryCSharpColorTerminal;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace DFM.MVC.Starters
 {
 	static class AppLog
 	{
+		public static void CommonLog(IServiceCollection services, IHostEnvironment env)
+		{
+			services.AddLogging((builder) =>
+			{
+				if (!env.IsDevelopment())
+					builder.ClearProviders();
+
+				builder.AddProvider(new ApplicationLoggerProvider());
+			});
+		}
+
 		public static void Use<T>(this IApplicationBuilder app, String specific, Action action)
 		{
 			app.Use(async (context, next) =>
