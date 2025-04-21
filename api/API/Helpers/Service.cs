@@ -26,10 +26,7 @@ namespace DFM.API.Helpers
 					? new LocalQueueService()
 					: new SQSService();
 
-			LogService =
-				Cfg.Log.Local
-					? new LocalLogService()
-					: new CloudWatchService();
+			LogService = LogFactory.Service;
 
 			Access = new ServiceAccess(
 				new Session(getContext).GetTicket,
