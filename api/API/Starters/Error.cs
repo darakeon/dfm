@@ -17,14 +17,11 @@ namespace DFM.API.Starters
 			}
 			else
 			{
-				ILogService logService =
-					Cfg.Log.Local
-						? new LocalLogService()
-						: new CloudWatchService();
-
 				var handler = new ExceptionHandlerOptions
 				{
-					ExceptionHandler = exception => ErrorManager.Process(exception, logService)
+					ExceptionHandler = exception => ErrorManager.Process(
+						exception, LogFactory.Service
+					)
 				};
 
 				app.Use<Error>("Handler", () => app.UseExceptionHandler(handler));

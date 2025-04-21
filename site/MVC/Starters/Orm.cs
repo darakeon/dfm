@@ -37,12 +37,8 @@ namespace DFM.MVC.Starters
 			}
 			catch (Exception e)
 			{
-				ILogService logService =
-					Cfg.Log.Local
-						? new LocalLogService()
-						: new CloudWatchService();
-
-				logService.LogHandled(e, "Error on initialize DB");
+				LogFactory.Service
+					.LogHandled(e, "Error on initialize DB");
 			}
 		}
 	}
