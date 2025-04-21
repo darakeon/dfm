@@ -4,5 +4,6 @@
 	{
 		Exception = 1,
 		Application = 2,
+		Request = 3,
 	}
 }

@@ -10,4 +10,5 @@ public interface ILogService
 	Task LogHandled(Exception exception, String message);
 
 	Task LogApplication<T>(String category, LogLevel logLevel, EventId eventId, T state, Exception? exception, Func<T, Exception?, String> formatter);
+	Task LogRequest(String moment, String method, String path, DateTime time);
 }
