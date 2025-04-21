@@ -29,12 +29,7 @@ namespace DFM.Robot
 			}
 			catch (Exception e)
 			{
-				ILogService logService =
-					Cfg.Log.Local
-						? new LocalLogService()
-						: new CloudWatchService();
-
-				logService.Log(e);
+				LogFactory.Service.Log(e);
 				throw;
 			}
 		}
