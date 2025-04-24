@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using DFM.Generic;
 using DFM.Logs.Data;
+using Konkah.LibraryCSharpColorTerminal;
 
 namespace DFM.Logs;
 
@@ -24,6 +26,19 @@ public class LocalLogService : BaseLogService, ILogService
 			var line = $"{DateTime.UtcNow:yyyy-MM-dd-HH-mm-ss-ffffff}\n{text}\n\n";
 
 			await File.AppendAllTextAsync(path, line);
+		}
+		catch (IOException e)
+		{
+			if (e.Message.Contains("because it is being used by another process"))
+			{
+				ConsoleColored.WriteLine($"{division}.log in use, wait a bit!", ConsoleColor.Yellow);
+				Thread.Sleep(100);
+				await saveLog(division, content);
+			}
+			else
+			{
+				throw;
+			}
 		}
 		catch (Exception e)
 		{
