@@ -27,6 +27,8 @@ namespace DFM.MVC
 		// Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			Settings.Initialize(Environment);
+
 			Route.Configure(services);
 			Context.Configure(services);
 
@@ -50,8 +52,6 @@ namespace DFM.MVC
 
 			BaseModel.IsDev = env.IsDevelopment();
 			TZ.Init(env.IsDevelopment());
-
-			Settings.Initialize(env);
 
 			Security.DenyFrame(app);
 
