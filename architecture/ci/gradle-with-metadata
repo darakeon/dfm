@@ -20,8 +20,10 @@ if [ "$ERROR" != "" ]; then
 
     export HAS_METADATA=$(git status | grep "verification-metadata.xml")
 
-    if [ "$HAS_METADATA" != "" ]; then
+    if [ "$HAS_METADATA" == "" ]; then
+        echyellow "The error was not metadata. Wish you luck."
 
+    else
         echyellow "Let's commit the verification metadata"
 
         source config-git
@@ -31,11 +33,6 @@ if [ "$ERROR" != "" ]; then
         git push
 
         echyellow "Branch updated, CI will run again"
-
-    else
-
-        echyellow "The error was not metadata. Wish you luck."
-
     fi
 
     echyellow "Now finishing with the original error"
