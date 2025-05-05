@@ -8,9 +8,6 @@
 - [ ] Container logs in migrator
 - [ ] Container logs in midna
 - [ ] Container logs in nginx
-- [ ] ./data for site
-- [ ] ./data for robot
-- [ ] ./data for api
 - [ ] NH for site
 - [ ] NH for robot
 - [ ] NH for api
