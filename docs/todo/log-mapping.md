@@ -1,9 +1,9 @@
 # All logs that need to be migrated to Cloud Watch
 
-- [ ] Error logs in site
+- [x] Error logs in site
 - [ ] Error logs in robot
 - [ ] Error logs in api
-- [ ] Container logs in site
+- [x] Container logs in site
 - [ ] Container logs in api
 - [ ] Container logs in migrator
 - [ ] Container logs in midna
