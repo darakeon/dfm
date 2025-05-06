@@ -1,4 +1,5 @@
 ﻿using System;
+using DFM.BaseWeb.Starters.Routes;
 
 namespace DFM.API.Starters.Routes
 {
@@ -8,6 +9,8 @@ namespace DFM.API.Starters.Routes
 		public const String IdPath = "{id?}";
 		public const String ActionPath = "{action=Index}";
 		public const String IdActionPath = $"{IdPath}/{ActionPath}";
+
+		public override String Area => null;
 
 		public class Main : Apis
 		{
