@@ -5,7 +5,7 @@ using System.Net;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
 
-namespace DFM.MVC.Helpers.Extensions
+namespace DFM.BaseWeb.Helpers.Extensions
 {
 	public static class RequestX
 	{
@@ -30,7 +30,7 @@ namespace DFM.MVC.Helpers.Extensions
 					return request.Form;
 
 				default:
-					return new KeyValuePair<String, StringValues>[0];
+					return Array.Empty<KeyValuePair<String, StringValues>>();
 			}
 		}
 

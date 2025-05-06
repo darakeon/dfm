@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.API.Helpers.Global;
+using DFM.BaseWeb.Helpers.Global;
 using DFM.BusinessLogic.Response;
 
 namespace DFM.API.Models
