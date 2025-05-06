@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using DFM.BaseWeb.Helpers.Authorize;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
