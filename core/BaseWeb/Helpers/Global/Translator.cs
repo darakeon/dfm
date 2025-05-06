@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using DFM.BaseWeb.Helpers.Extensions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Email;
 using DFM.Entities.Bases;
 using DFM.Generic;
 using DFM.Language;
 using DFM.Language.Extensions;
-using DFM.MVC.Helpers.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 using Version = DFM.Language.Version;
 
-namespace DFM.MVC.Helpers.Global
+namespace DFM.BaseWeb.Helpers.Global
 {
 	public class Translator
 	{
@@ -120,7 +120,7 @@ namespace DFM.MVC.Helpers.Global
 				.Split(",").Where(PlainText.AcceptLanguage)
 				.FirstOrDefault();
 		}
-
+		
 		public IDictionary<T, String> GetEnumNames<T>()
 		{
 			return EnumHelper.GetEnumNames<T>(section, Language);
