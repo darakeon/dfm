@@ -1116,6 +1116,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\core\Authentication\Authentication.csproj" />
+    <ProjectReference Include="..\..\core\BaseWeb\BaseWeb.csproj" />
     <ProjectReference Include="..\..\core\BusinessLogic\BusinessLogic.csproj" />
     <ProjectReference Include="..\..\core\Logs\Logs.csproj" />
   </ItemGroup>
