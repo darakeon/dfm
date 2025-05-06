@@ -1,5 +1,6 @@
 using System;
 using DFM.BaseWeb.Helpers.Extensions;
+using DFM.BaseWeb.Starters;
 using Microsoft.AspNetCore.Builder;
 
 namespace DFM.MVC.Starters

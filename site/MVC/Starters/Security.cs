@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using DFM.BaseWeb.Starters;
+using Microsoft.AspNetCore.Builder;
 
 namespace DFM.MVC.Starters
 {
