@@ -1,7 +1,6 @@
 ﻿using System.Globalization;
 using System.IO;
 using DFM.BaseWeb.Helpers.Extensions;
-using DFM.BaseWeb.Starters;
 using DFM.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
@@ -10,9 +9,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace DFM.API.Starters
+namespace DFM.BaseWeb.Starters
 {
-	class Context
+	public class Context
 	{
 		public static IHttpContextAccessor Accessor { get; private set; }
 
@@ -32,7 +31,8 @@ namespace DFM.API.Starters
 			app.Use<Context>("Authorization", () => app.UseAuthorization());
 			app.Use<Context>("Session", () => app.UseSession());
 
-			Accessor = app.ApplicationServices
+			Accessor = app
+				.ApplicationServices
 				.GetRequiredService<IHttpContextAccessor>();
 		}
 
