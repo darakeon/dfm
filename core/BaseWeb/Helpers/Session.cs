@@ -1,10 +1,11 @@
 ﻿using System;
 using DFM.Authentication;
-using DFM.Entities.Enums;
+using DFM.Generic;
+using DFM.Generic.Settings;
 using Keon.MVC.Cookies;
 using Microsoft.AspNetCore.Http;
 
-namespace DFM.MVC.Helpers
+namespace DFM.BaseWeb.Helpers
 {
 	public class Session
 	{
@@ -24,8 +25,12 @@ namespace DFM.MVC.Helpers
 
 		public ClientTicket GetTicket(Boolean remember = false)
 		{
-			var type = TicketType.Browser;
-			var key = BrowserId.Get(() => context, remember);
+			var type = Cfg.TicketType;
+
+			var key = type == TicketType.Browser
+				? BrowserId.Get(() => context, remember)
+				: request.Headers["ticket"].ToString();
+
 			return new ClientTicket(key, type);
 		}
 	}
