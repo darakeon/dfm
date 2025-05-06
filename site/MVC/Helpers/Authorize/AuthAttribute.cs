@@ -1,4 +1,5 @@
 ﻿using System;
+using DFM.BaseWeb.Helpers.Authorize;
 using DFM.BusinessLogic;
 using DFM.MVC.Helpers.Extensions;
 using DFM.MVC.Starters.Routes;
