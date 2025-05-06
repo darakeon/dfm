@@ -10,9 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace DFM.MVC.Starters
+namespace DFM.BaseWeb.Starters
 {
-	static class AppLog
+	public static class AppLog
 	{
 		public static void CommonLog(IServiceCollection services, IHostEnvironment env)
 		{
@@ -23,6 +23,11 @@ namespace DFM.MVC.Starters
 
 				builder.AddProvider(new ApplicationLoggerProvider());
 			});
+		}
+
+		public static void Use<T>(this IApplicationBuilder app, Action action)
+		{
+			app.Use<T>(null, action);
 		}
 
 		public static void Use<T>(this IApplicationBuilder app, String specific, Action action)
