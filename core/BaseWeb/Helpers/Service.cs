@@ -7,7 +7,7 @@ using DFM.Queue;
 using Keon.MVC.Cookies;
 using Microsoft.AspNetCore.Http;
 
-namespace DFM.API.Helpers
+namespace DFM.BaseWeb.Helpers
 {
 	public class Service
 	{

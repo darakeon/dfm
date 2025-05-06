@@ -9,6 +9,7 @@ using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Generic;
+using DFM.Generic.Settings;
 using DFM.Language.Emails;
 using DFM.Tests.Util;
 using Keon.Eml;
