@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DFM.BaseWeb.Helpers;
+using DFM.BaseWeb.Helpers.Extensions;
 using Keon.MVC.Cookies;
 using DFM.Email;
 using DFM.Logs;
