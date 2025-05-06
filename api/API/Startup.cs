@@ -1,6 +1,7 @@
 using DFM.API.Models;
 using DFM.API.Starters;
 using DFM.API.Starters.Routes;
+using DFM.BaseWeb.Starters;
 using DFM.Generic.Datetime;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -38,7 +39,7 @@ namespace DFM.API
 		// Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime life)
 		{
-			AppLog.LogAllRequests(app);
+			AppLog.LogAllRequests(app, env);
 
 			PrometheusConfig.UseMetrics(app);
 
