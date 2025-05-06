@@ -1,5 +1,4 @@
 ﻿using DFM.API.Helpers.Global;
-using DFM.Generic;
 using DFM.Logs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

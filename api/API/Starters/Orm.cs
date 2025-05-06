@@ -1,5 +1,6 @@
 using System;
-using DFM.API.Helpers.Extensions;
+using DFM.BaseWeb.Helpers;
+using DFM.BaseWeb.Helpers.Extensions;
 using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.Entities;
 using DFM.Generic;
@@ -8,7 +9,6 @@ using Keon.NHibernate.Sessions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 using DFM.Logs;
-using DFM.BaseWeb.Helpers;
 
 namespace DFM.API.Starters
 {
