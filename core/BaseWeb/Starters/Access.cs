@@ -1,11 +1,10 @@
 using System;
 using DFM.BaseWeb.Helpers.Extensions;
-using DFM.BaseWeb.Starters;
 using Microsoft.AspNetCore.Builder;
 
-namespace DFM.MVC.Starters
+namespace DFM.BaseWeb.Starters
 {
-	class Access
+	public class Access
 	{
 		public static void Run(IApplicationBuilder app)
 		{
