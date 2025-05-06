@@ -1,11 +1,10 @@
 using System;
 using DFM.BaseWeb.Helpers;
+using DFM.BaseWeb.Helpers.Extensions;
 using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.Entities;
 using DFM.Generic;
 using DFM.Logs;
-using DFM.MVC.Helpers;
-using DFM.MVC.Helpers.Extensions;
 using Keon.NHibernate.Schema;
 using Keon.NHibernate.Sessions;
 using Microsoft.AspNetCore.Builder;
