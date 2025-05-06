@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -16,7 +16,6 @@
     <PackageProjectUrl>https://github.com/darakeon/dfm</PackageProjectUrl>
     <PackageIcon>face-pig-on.png</PackageIcon>
     <RepositoryUrl>https://github.com/darakeon/dfm</RepositoryUrl>
-    <ApplicationIcon>Assets/favicon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,45 +25,19 @@
     </None>
   </ItemGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>bin</OutputPath>
-  </PropertyGroup>
-
   <ItemGroup>
-    <Compile Remove="data\**" />
-    <Content Remove="data\**" />
-    <EmbeddedResource Remove="data\**" />
-    <None Remove="data\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove=".gitignore" />
-    <None Remove="Assets" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Assets\favicon.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
     <PackageReference Include="JetBrains.Annotations" Version="2024.3.0" />
-    <PackageReference Include="Keon.MVC" Version="5.0.8" />
+    <PackageReference Include="Keon.MVC" Version="5.0.11" />
     <PackageReference Include="Konkah.LibraryCSharpColorTerminal" Version="1.0.0" />
-    <PackageReference Include="MySql.Data" Version="9.2.0" />
+    <PackageReference Include="MySql.Data" Version="9.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="prometheus-net.AspNetCore" Version="8.2.1" />
     <PackageReference Include="prometheus-net.DotNetRuntime" Version="4.4.1" />
-    <PackageReference Include="System.IO.Pipelines" Version="9.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\core\Authentication\Authentication.csproj" />
-    <ProjectReference Include="..\..\core\BaseWeb\BaseWeb.csproj" />
-    <ProjectReference Include="..\..\core\BusinessLogic\BusinessLogic.csproj" />
-    <ProjectReference Include="..\..\core\Logs\Logs.csproj" />
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj" />
+    <ProjectReference Include="..\Language\Language.csproj" />
   </ItemGroup>
 
 </Project>
