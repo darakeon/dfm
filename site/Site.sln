@@ -34,6 +34,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Queue", "..\core\Queue\Queu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Files", "..\core\Files\Files.csproj", "{51D184DC-B808-48F1-B1A9-19F4A8347705}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseWeb", "..\core\BaseWeb\BaseWeb.csproj", "{8D52CF2D-43A6-475A-8606-E8D7849CD243}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,6 +92,10 @@ Global
 		{51D184DC-B808-48F1-B1A9-19F4A8347705}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51D184DC-B808-48F1-B1A9-19F4A8347705}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51D184DC-B808-48F1-B1A9-19F4A8347705}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D52CF2D-43A6-475A-8606-E8D7849CD243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D52CF2D-43A6-475A-8606-E8D7849CD243}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D52CF2D-43A6-475A-8606-E8D7849CD243}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D52CF2D-43A6-475A-8606-E8D7849CD243}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
