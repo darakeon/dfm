@@ -4,6 +4,7 @@ using System.Linq;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Generic.Datetime;
+using DFM.Generic.Settings;
 
 namespace DFM.BusinessLogic.Repositories
 {

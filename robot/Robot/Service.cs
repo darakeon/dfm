@@ -7,6 +7,7 @@ using DFM.Entities.Enums;
 using DFM.Files;
 using DFM.Generic;
 using DFM.Generic.Datetime;
+using DFM.Generic.Settings;
 using DFM.Logs;
 using DFM.Queue;
 
