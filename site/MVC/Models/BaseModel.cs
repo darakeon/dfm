@@ -8,7 +8,7 @@ using DFM.MVC.Helpers.Extensions;
 using DFM.MVC.Helpers.Global;
 using DFM.MVC.Starters;
 using Microsoft.AspNetCore.Http;
-using Service = DFM.MVC.Helpers.Service;
+using Service = DFM.BaseWeb.Helpers.Service;
 
 namespace DFM.MVC.Models
 {
