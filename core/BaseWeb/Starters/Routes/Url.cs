@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 
-[assembly: InternalsVisibleTo("DFM.MVC.Tests")]
-namespace DFM.MVC.Starters.Routes
+namespace DFM.BaseWeb.Starters.Routes
 {
-	class Url
+	public class Url
 	{
 		public Url(String pattern)
 		{
