@@ -1,11 +1,10 @@
-﻿using DFM.BaseWeb.Starters;
-using DFM.Generic;
+﻿using DFM.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Rewrite;
 
-namespace DFM.API.Starters
+namespace DFM.BaseWeb.Starters
 {
-	class Rewrite
+	public class Rewrite
 	{
 		public static void TestThemAll(IApplicationBuilder app)
 		{
@@ -16,7 +15,7 @@ namespace DFM.API.Starters
 					options.AddRedirect(origin, destiny)
 			);
 
-			app.Use<Rewrite>(() => app.UseRewriter(options));
+			app.Use<Rewrite>("Rewrites", () => app.UseRewriter(options));
 		}
 	}
 }
