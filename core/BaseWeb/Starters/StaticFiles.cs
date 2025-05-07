@@ -1,16 +1,16 @@
 ﻿using System;
 using System.IO;
-using DFM.BaseWeb.Starters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.FileProviders;
 
-namespace DFM.API.Starters
+namespace DFM.BaseWeb.Starters
 {
-	class StaticFiles
+	public class StaticFiles
 	{
 		public static void Configure(IApplicationBuilder app)
 		{
 			addStaticPath(app, "Assets");
+			addStaticPath(app, ".well-known");
 		}
 
 		private static void addStaticPath(IApplicationBuilder app, String folder)
@@ -18,7 +18,7 @@ namespace DFM.API.Starters
 			if (!Directory.Exists(folder))
 				return;
 
-			app.Use<StaticFiles>(() =>
+			app.Use<StaticFiles>("StaticFiles", () =>
 			{
 				app.UseStaticFiles(new StaticFileOptions
 				{

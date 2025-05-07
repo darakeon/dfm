@@ -25,11 +25,6 @@ namespace DFM.BaseWeb.Starters
 			});
 		}
 
-		public static void Use<T>(this IApplicationBuilder app, Action action)
-		{
-			app.Use<T>(null, action);
-		}
-
 		public static void Use<T>(this IApplicationBuilder app, String specific, Action action)
 		{
 			app.Use(async (context, next) =>
