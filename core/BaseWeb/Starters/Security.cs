@@ -1,9 +1,8 @@
-﻿using DFM.BaseWeb.Starters;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 
-namespace DFM.MVC.Starters
+namespace DFM.BaseWeb.Starters
 {
-	class Security
+	public class Security
 	{
 		public static void DenyFrame(IApplicationBuilder app)
 		{
