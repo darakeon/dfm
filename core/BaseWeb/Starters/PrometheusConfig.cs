@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Prometheus;
 using Prometheus.DotNetRuntime;
 
-namespace DFM.MVC.Starters
+namespace DFM.BaseWeb.Starters
 {
 	public class PrometheusConfig
 	{
