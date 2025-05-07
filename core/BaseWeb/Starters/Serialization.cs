@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace DFM.API.Starters
+namespace DFM.BaseWeb.Starters
 {
 	public class Serialization : DefaultContractResolver
 	{
