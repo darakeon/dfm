@@ -2,9 +2,9 @@
 using DFM.Generic;
 using Microsoft.Extensions.Hosting;
 
-namespace DFM.MVC.Starters
+namespace DFM.BaseWeb.Starters
 {
-	class Settings
+	public class Settings
 	{
 		public static void Initialize(IHostEnvironment env)
 		{
