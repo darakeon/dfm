@@ -1,7 +1,6 @@
 using System;
 using DFM.BaseWeb.Helpers;
 using DFM.BaseWeb.Helpers.Extensions;
-using DFM.BaseWeb.Starters;
 using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.Entities;
 using DFM.Generic;
@@ -11,9 +10,9 @@ using Keon.NHibernate.Sessions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 
-namespace DFM.MVC.Starters
+namespace DFM.BaseWeb.Starters
 {
-	class Orm
+	public class Orm
 	{
 		public static void Configure(IApplicationBuilder app, IHostApplicationLifetime life)
 		{
