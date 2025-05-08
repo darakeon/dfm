@@ -1,19 +1,14 @@
 ﻿using System;
+using DFM.BaseWeb.Helpers.Global;
 using DFM.Email;
-using DFM.MVC.Helpers.Global;
 using Microsoft.AspNetCore.Http;
 
 namespace DFM.MVC.Models
 {
-	public class OpsCodeModel : BaseSiteModel
+	public class OpsCodeModel(HttpContext httpContext) : BaseSiteModel
 	{
-		public OpsCodeModel(HttpContext httpContext)
-		{
-			var errorManager = new ErrorManager(httpContext, logService);
-			EmailSent = errorManager.EmailSent;
-		}
-
-		public Error.Status EmailSent { get; set; }
+		public Error.Status EmailSent { get; set; } =
+			ErrorManager.GetEmailSent(httpContext);
 
 		protected override Boolean ShowTip => false;
 	}
