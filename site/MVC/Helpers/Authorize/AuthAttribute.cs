@@ -1,9 +1,7 @@
 ﻿using System;
-using DFM.BaseWeb.Helpers;
 using DFM.BaseWeb.Helpers.Authorize;
-using DFM.BaseWeb.Helpers.Extensions;
 using DFM.BaseWeb.Starters.Routes;
-using DFM.BusinessLogic;
+using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Starters.Routes;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Mvc;
@@ -11,51 +9,31 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace DFM.MVC.Helpers.Authorize
 {
-	public class AuthAttribute : Attribute, IAuthorizationFilter
+	public class AuthAttribute : BaseAuthAttribute
 	{
-		private readonly AuthParams mandatory;
-
 		public AuthAttribute(AuthParams mandatory = AuthParams.None)
+			: base(mandatory) { }
+
+		protected override void makeResult(AuthorizationFilterContext context, Error error)
 		{
-			this.mandatory = mandatory;
-		}
+			switch (error)
+			{
+				case Error.LoginRequested:
+					goToUninvited(context);
+					break;
 
-		private Service service;
-		private Current current => service.Current;
-		private ServiceAccess access => service.Access;
-		private Boolean isAuthenticated => current.IsAuthenticated;
+				case Error.TFANotVerified:
+					goToTFA(context);
+					break;
 
-		private Boolean denyByAdmin    => mandatory.HasFlag(AuthParams.Admin)
-											&& !current.IsAdm;
+				case Error.NotSignedLastContract:
+					goToContractPage(context);
+					break;
 
-		private Boolean denyByContract => !mandatory.HasFlag(AuthParams.IgnoreContract)
-											&& !access.Law.IsLastContractAccepted();
-		
-		private Boolean denyByTFA      => !mandatory.HasFlag(AuthParams.IgnoreTFA)
-											&& !access.Auth.VerifyTicketTFA();
-
-		public void OnAuthorization(AuthorizationFilterContext context)
-		{
-			service = context.HttpContext.GetService();
-
-			var goAhead = isAuthenticated
-							&& !denyByAdmin
-							&& !denyByContract
-							&& !denyByTFA;
-
-			if (goAhead) return;
-
-			if (!isAuthenticated)
-				goToUninvited(context);
-
-			else if (denyByTFA)
-				goToTFA(context);
-
-			else if (denyByContract)
-				goToContractPage(context);
-
-			else
-				goToUninvited(context);
+				default:
+					goToUninvited(context);
+					break;
+			}
 		}
 
 		protected virtual void goToContractPage(AuthorizationFilterContext filterContext)
