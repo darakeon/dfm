@@ -1,4 +1,5 @@
-﻿using DFM.BaseWeb.Starters;
+﻿using DFM.BaseWeb.Helpers.Global;
+using DFM.BaseWeb.Starters;
 using DFM.Logs;
 using DFM.MVC.Helpers.Global;
 using DFM.MVC.Starters.Routes;
@@ -27,7 +28,8 @@ namespace DFM.MVC.Starters
 				var handler = new ExceptionHandlerOptions
 				{
 					ExceptionHandler = exception => ErrorManager.Process(
-						exception, LogFactory.Service
+						exception, LogFactory.Service,
+						Route.GetUrl<Default.Main>("Ops", "Code", 500)
 					)
 				};
 
