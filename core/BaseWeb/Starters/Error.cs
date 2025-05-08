@@ -1,23 +1,26 @@
-﻿using DFM.BaseWeb.Helpers.Global;
-using DFM.BaseWeb.Starters;
+﻿using System;
+using DFM.BaseWeb.Helpers.Global;
 using DFM.Logs;
-using DFM.MVC.Helpers.Global;
-using DFM.MVC.Starters.Routes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace DFM.MVC.Starters
+namespace DFM.BaseWeb.Starters
 {
-	class Error
+	public class Error
 	{
+		public static Func<String>? GetErrorUrl;
+
 		public static void AddHandlers(IApplicationBuilder app, IWebHostEnvironment env)
 		{
-			app.Use<Error>("StatusCode", () =>
-				app.UseStatusCodePagesWithReExecute(
-					Route.GetUrl<Default.Main>("Ops", "Code", "{0}")
-				)
-			);
+			var errorUrl = GetErrorUrl?.Invoke();
+
+			if (errorUrl != null)
+			{
+				app.Use<Error>("StatusCode", () =>
+					app.UseStatusCodePagesWithReExecute(errorUrl)
+				);
+			}
 
 			if (env.IsDevelopment())
 			{
@@ -29,7 +32,7 @@ namespace DFM.MVC.Starters
 				{
 					ExceptionHandler = exception => ErrorManager.Process(
 						exception, LogFactory.Service,
-						Route.GetUrl<Default.Main>("Ops", "Code", 500)
+						errorUrl?.Replace("{0}", "500")
 					)
 				};
 

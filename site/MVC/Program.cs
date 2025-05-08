@@ -1,4 +1,6 @@
 using System;
+using DFM.BaseWeb.Starters;
+using DFM.MVC.Starters.Routes;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
@@ -8,6 +10,8 @@ namespace DFM.MVC
 	{
 		public static void Main(String[] args)
 		{
+			Error.GetErrorUrl = () => Route.GetUrl<Default.Main>("Ops", "Code", "{0}");
+
 			Host.CreateDefaultBuilder(args)
 				.ConfigureWebHostDefaults(b => b.UseStartup<Startup>())
 				.Build()
