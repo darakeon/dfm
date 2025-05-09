@@ -3,9 +3,9 @@ using DFM.MVC.Helpers.Extensions;
 
 namespace DFM.MVC.Helpers.Models
 {
-	public class DateFromInt
+	public static class DateFromInt
 	{
-		internal static Int16 GetDateYear(Int32? year, DateTime today)
+		public static Int16 GetDateYear(this Int32? year, DateTime today)
 		{
 			var currentYear = (Int16)today.Year;
 
@@ -16,7 +16,7 @@ namespace DFM.MVC.Helpers.Models
 			return dateYear.ForceBetween(1900, 9998);
 		}
 
-		internal static Int16 GetDateMonth(Int32? month, DateTime today)
+		public static Int16 GetDateMonth(this Int32? month, DateTime today)
 		{
 			var currentMonth = (Int16)today.Month;
 
@@ -27,14 +27,12 @@ namespace DFM.MVC.Helpers.Models
 			return dateMonth.ForceBetween(1, 12);
 		}
 
-		internal static Int16 GetDateYear(Int16? year, DateTime today)
+		public static Int16 GetDateYear(this Int16? year, DateTime today)
 		{
 			var currentYear = (Int16)today.Year;
 			var dateYear = year ?? currentYear;
 
 			return dateYear.ForceBetween(1900, Int16.MaxValue);
 		}
-
-
 	}
 }

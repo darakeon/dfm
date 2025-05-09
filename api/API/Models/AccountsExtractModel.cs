@@ -9,8 +9,8 @@ namespace DFM.API.Models
 	{
 		public AccountsExtractModel(String accountUrl, Int16? year, Int16? month)
 		{
-			var monthDate = DateFromInt.GetDateMonth(month, now);
-			var yearDate = DateFromInt.GetDateYear(year, now);
+			var monthDate = month.GetDateMonth(now);
+			var yearDate = year.GetDateYear(now);
 
 			var extract = report.GetMonthReport(accountUrl, yearDate, monthDate);
 
