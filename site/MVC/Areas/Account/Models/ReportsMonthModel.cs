@@ -12,8 +12,8 @@ namespace DFM.MVC.Areas.Account.Models
 	{
 		public ReportsMonthModel(Int32? id)
 		{
-			var dateMonth = DateFromInt.GetDateMonth(id, now);
-			var dateYear = DateFromInt.GetDateYear(id, now);
+			var dateMonth = id.GetDateMonth(now);
+			var dateYear = id.GetDateYear(now);
 
 			var month = report.GetMonthReport(CurrentAccountUrl, dateYear, dateMonth);
 
