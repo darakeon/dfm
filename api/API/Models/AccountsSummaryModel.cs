@@ -9,7 +9,7 @@ namespace DFM.API.Models
 	{
 		public AccountsSummaryModel(String accountUrl, Int16? year)
 		{
-			var yearDate = DateFromInt.GetDateYear(year, now);
+			var yearDate = year.GetDateYear(now);
 
 			MonthList =
 				report.GetYearReport(accountUrl, yearDate)
