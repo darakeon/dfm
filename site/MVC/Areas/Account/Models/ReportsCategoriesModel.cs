@@ -17,8 +17,8 @@ namespace DFM.MVC.Areas.Account.Models
 			}
 			else
 			{
-				Month = DateFromInt.GetDateMonth(id, now);
-				Year = DateFromInt.GetDateYear(id, now);
+				Month = id.GetDateMonth(now);
+				Year = id.GetDateYear(now);
 			}
 
 			var data = report.GetCategoryReport(CurrentAccountUrl, Year, Month);

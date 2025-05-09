@@ -10,7 +10,7 @@ namespace DFM.MVC.Areas.Account.Models
 	{
 		public ReportsYearModel(Int16? id)
 		{
-			var yearDate = DateFromInt.GetDateYear(id, now);
+			var yearDate = id.GetDateYear(now);
 			Year = report.GetYearReport(CurrentAccountUrl, yearDate);
 		}
 
