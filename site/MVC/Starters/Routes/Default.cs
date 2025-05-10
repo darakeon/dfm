@@ -13,7 +13,8 @@ namespace DFM.MVC.Starters.Routes
 			[AspMvcAction] String action
 		) : base(controller, action) { }
 
-		public override String Area => Route.DefaultArea;
+		public static String AreaName = null;
+		public override String Area => AreaName;
 
 		public class Main : Default
 		{

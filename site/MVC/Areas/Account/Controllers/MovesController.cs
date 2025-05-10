@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Areas.Account.Controllers
 {
-	[Area(Route.AccountArea)]
+	[Area(Accounts.AreaName)]
 	public class MovesController : BaseAccountsController
 	{
 		[Auth, HttpGetAndHead, Wizard.Avoid]
