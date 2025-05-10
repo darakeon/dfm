@@ -27,7 +27,7 @@ Scenario: 02. Get translations of Enums
 			| Schedules | Entities      | Enums      | ScheduleStatus    |
 			| Tokens    | Entities      | Enums      | SecurityAction    |
 			| Summary   | Entities      | Enums      | SummaryNature     |
-			| Logins    | Entities      | Enums      | TicketType        |
+			| Logins    | Generic       | Settings   | TicketType        |
 			| Tips      | Entities      | Enums      | TipType           |
 			| Tips      | Entities      | Enums      | TipBrowser        |
 			| Tips      | Entities      | Enums      | TipMobile         |
