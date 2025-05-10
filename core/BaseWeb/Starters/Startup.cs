@@ -1,7 +1,6 @@
-using DFM.API.Models;
-using DFM.API.Routes;
+using System;
+using System.Reflection;
 using DFM.BaseWeb.Routes;
-using DFM.BaseWeb.Starters;
 using DFM.Generic.Datetime;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,23 +8,39 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace DFM.API
+namespace DFM.BaseWeb.Starters
 {
 	public class Startup
 	{
-		public Startup(IConfiguration configuration)
+		public static void Run<Program>(String[] args)
+		{
+			Host.CreateDefaultBuilder(args)
+				.ConfigureWebHostDefaults(
+					builder => builder
+						.UseStartup<Startup>()
+						.UseSetting(WebHostDefaults.ApplicationKey, typeof(Program).GetTypeInfo().Assembly.FullName)
+				)
+				.Build()
+				.Run();
+		}
+
+		public Startup(IConfiguration configuration, IHostEnvironment environment)
 		{
 			Configuration = configuration;
+			Environment = environment;
 
 			PrometheusConfig.Start();
 		}
 
 		public IConfiguration Configuration { get; }
+		public IHostEnvironment Environment { get; }
 
 		// This method gets called by the runtime.
 		// Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			Settings.Initialize(Environment);
+
 			Route.Configure(services);
 			Context.Configure(services);
 
@@ -33,6 +48,8 @@ namespace DFM.API
 				.AddNewtonsoftJson(Serialization.Set);
 
 			services.AddAntiforgery();
+
+			AppLog.CommonLog(services, Environment);
 		}
 
 		// This method gets called by the runtime.
@@ -46,8 +63,6 @@ namespace DFM.API
 			AppLog.ShowLogOnError(app);
 
 			TZ.Init(env.IsDevelopment());
-
-			Settings.Initialize(env);
 
 			Security.DenyFrame(app);
 
