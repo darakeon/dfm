@@ -6,7 +6,7 @@ using DFM.MVC.Starters.Routes;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Http;
 
-namespace DFM.MVC.Helpers.Views
+namespace DFM.MVC.Models.Views
 {
 	public class MicroForm
 	{
