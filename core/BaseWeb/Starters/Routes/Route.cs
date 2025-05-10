@@ -1,38 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.BaseWeb.Starters;
-using DFM.BaseWeb.Starters.Routes;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DFM.MVC.Starters.Routes
+namespace DFM.BaseWeb.Starters.Routes
 {
 	public class Route
 	{
-		internal const String DefaultArea = null;
-		internal const String AccountArea = "Account";
-
 		public static void Configure(IServiceCollection services)
 		{
 			services.AddControllersWithViews();
 		}
 
-		public static void CreateRoutes()
-		{
-			addUrl<Default.Robots>();
-			addUrl<Default.SiteMap>();
-			addUrl<Accounts>();
-			addUrl<Default.Contract>();
-			addUrl<Default.Misc>();
-			addUrl<Default.Mail>();
-			addUrl<Default.Mobile>();
-			addUrl<Default.Main>();
-		}
-
-		private static void addUrl<T>()
+		public static void AddUrl<T>()
 			where T : BaseRoute, new()
 		{
 			var t = new T();
