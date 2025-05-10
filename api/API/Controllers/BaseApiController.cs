@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 using DFM.API.Models;
-using DFM.BaseWeb.Helpers.Extensions;
+using DFM.BaseWeb.Extensions;
 using DFM.BusinessLogic.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.BaseWeb.Helpers.Global;
+using DFM.BaseWeb.Errors;
 using DFM.Logs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

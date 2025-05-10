@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
-using System;
-using DFM.Generic.Settings;
-using DFM.BaseWeb.Helpers.Extensions;
+﻿using System;
+using DFM.BaseWeb.Extensions;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Generic.Settings;
+using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace DFM.BaseWeb.Helpers.Authorize
+namespace DFM.BaseWeb.Authorize
 {
 	public abstract class BaseAuthAttribute(AuthParams mandatory)
 		: Attribute, IAuthorizationFilter

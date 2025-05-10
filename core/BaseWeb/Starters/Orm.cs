@@ -1,6 +1,6 @@
 using System;
-using DFM.BaseWeb.Helpers;
-using DFM.BaseWeb.Helpers.Extensions;
+using DFM.BaseWeb.BusinessLogic;
+using DFM.BaseWeb.Extensions;
 using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.Entities;
 using DFM.Generic;

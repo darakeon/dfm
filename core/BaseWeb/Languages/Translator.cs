@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
-using DFM.BaseWeb.Helpers.Extensions;
+using DFM.BaseWeb.Extensions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Email;
 using DFM.Entities.Bases;
@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Routing;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 using Version = DFM.Language.Version;
 
-namespace DFM.BaseWeb.Helpers.Global
+namespace DFM.BaseWeb.Languages
 {
 	public class Translator
 	{
@@ -80,7 +80,7 @@ namespace DFM.BaseWeb.Helpers.Global
 
 				if (current.ContainsKey("route"))
 				{
-					var route = (Route) current["route"];
+					var route = (Route)current["route"];
 					return route.Defaults["controller"].ToLower();
 				}
 
@@ -120,7 +120,7 @@ namespace DFM.BaseWeb.Helpers.Global
 				.Split(",").Where(PlainText.AcceptLanguage)
 				.FirstOrDefault();
 		}
-		
+
 		public IDictionary<T, String> GetEnumNames<T>()
 		{
 			return EnumHelper.GetEnumNames<T>(section, Language);

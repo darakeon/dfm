@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using DFM.BaseWeb.Helpers.Extensions;
+using DFM.BaseWeb.Extensions;
 using DFM.Logs;
 using DFM.Logs.Data.Application;
 using Konkah.LibraryCSharpColorTerminal;

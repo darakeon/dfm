@@ -1,5 +1,5 @@
 ﻿using DFM.API.Controllers;
-using DFM.BaseWeb.Helpers.Authorize;
+using DFM.BaseWeb.Authorize;
 using DFM.BusinessLogic.Exceptions;
 using Microsoft.AspNetCore.Mvc.Filters;
 

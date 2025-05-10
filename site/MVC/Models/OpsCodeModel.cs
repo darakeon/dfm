@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.BaseWeb.Helpers.Global;
+using DFM.BaseWeb.Errors;
 using DFM.Email;
 using Microsoft.AspNetCore.Http;
 

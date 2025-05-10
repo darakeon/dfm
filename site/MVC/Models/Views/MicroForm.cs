@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using DFM.BaseWeb.Helpers.Extensions;
+using DFM.BaseWeb.Extensions;
 using DFM.BaseWeb.Routes;
 using DFM.MVC.Routes;
 using JetBrains.Annotations;

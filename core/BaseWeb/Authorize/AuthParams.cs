@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DFM.BaseWeb.Helpers.Authorize
+namespace DFM.BaseWeb.Authorize
 {
 	[Flags]
 	public enum AuthParams

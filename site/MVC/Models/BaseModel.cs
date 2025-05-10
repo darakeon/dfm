@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using DFM.BaseWeb.Helpers.Extensions;
-using DFM.BaseWeb.Helpers.Global;
+using DFM.BaseWeb.Extensions;
+using DFM.BaseWeb.Languages;
 using DFM.BaseWeb.Starters;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Services;
 using DFM.Generic;
 using DFM.Logs;
 using DFM.MVC.Errors;
-using DFM.MVC.Extensions;
 using Microsoft.AspNetCore.Http;
-using Service = DFM.BaseWeb.Helpers.Service;
+using Service = DFM.BaseWeb.BusinessLogic.Service;
 
 namespace DFM.MVC.Models
 {

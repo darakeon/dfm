@@ -5,7 +5,7 @@ using DFM.Generic.Settings;
 using Keon.MVC.Cookies;
 using Microsoft.AspNetCore.Http;
 
-namespace DFM.BaseWeb.Helpers
+namespace DFM.BaseWeb.BusinessLogic
 {
 	public class Session
 	{

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.BaseWeb.Helpers.Global;
+using DFM.BaseWeb.BusinessLogic;
+using DFM.BaseWeb.Languages;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Language.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
-namespace DFM.BaseWeb.Helpers.Extensions
+namespace DFM.BaseWeb.Extensions
 {
 	public static class HttpContextX
 	{
@@ -41,7 +42,7 @@ namespace DFM.BaseWeb.Helpers.Extensions
 		{
 			return context.GetTranslator()[text];
 		}
-		
+
 		public static IList<String> TranslateList(this HttpContext context, String text)
 		{
 			return context.GetTranslator().List(text);

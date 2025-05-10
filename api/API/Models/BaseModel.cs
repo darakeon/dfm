@@ -1,6 +1,6 @@
 ﻿using System;
-using DFM.BaseWeb.Helpers.Extensions;
-using DFM.BaseWeb.Helpers.Global;
+using DFM.BaseWeb.Extensions;
+using DFM.BaseWeb.Languages;
 using DFM.BaseWeb.Starters;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Services;
