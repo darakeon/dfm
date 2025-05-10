@@ -54,9 +54,6 @@ namespace DFM.API
 
 			StaticFiles.Configure(app);
 
-			Route.AddUrl<Apis.Main>();
-			Route.AddUrl<Apis.Object>();
-
 			Rewrite.TestThemAll(app);
 
 			Context.Set(app);
