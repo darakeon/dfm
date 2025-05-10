@@ -16,9 +16,9 @@ public class UserTermsModel : BaseApiModel
 
 	public ContractInfo.Clause Content { get; }
 
-	public int Year { get; private set; }
-	public int Month { get; private set; }
-	public int Day { get; private set; }
+	public Int32 Year { get; private set; }
+	public Int32 Month { get; private set; }
+	public Int32 Day { get; private set; }
 
 	private DateTime date
 	{
