@@ -1,7 +1,7 @@
 using System;
 using DFM.Generic.Pages;
 
-namespace DFM.MVC.Helpers.Views
+namespace DFM.MVC.Models.Views
 {
 	public class YearUnit : IPage
 	{

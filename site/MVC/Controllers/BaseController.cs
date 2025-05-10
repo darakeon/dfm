@@ -6,7 +6,7 @@ using DFM.MVC.Models;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DFM.MVC.Helpers.Controllers
+namespace DFM.MVC.Controllers
 {
 	public abstract class BaseController : Controller
 	{

@@ -1,7 +1,7 @@
 ﻿using DFM.BaseWeb.Helpers.Authorize;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace DFM.MVC.Helpers.Authorize
+namespace DFM.MVC.Authorize
 {
 	public class JsonAuthAttribute : AuthAttribute
 	{

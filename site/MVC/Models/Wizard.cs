@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 
-namespace DFM.MVC.Helpers.Controllers
+namespace DFM.MVC.Models
 {
 	public static class Wizard
 	{

@@ -2,12 +2,12 @@
 using DFM.BaseWeb.Helpers.Authorize;
 using DFM.BaseWeb.Starters.Routes;
 using DFM.BusinessLogic.Exceptions;
-using DFM.MVC.Starters.Routes;
+using DFM.MVC.Routes;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace DFM.MVC.Helpers.Authorize
+namespace DFM.MVC.Authorize
 {
 	public class AuthAttribute : BaseAuthAttribute
 	{
