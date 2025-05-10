@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
 using DFM.BaseWeb.Starters;
 using DFM.BaseWeb.Routes;
 using DFM.MVC.Routes;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
 
 namespace DFM.MVC
 {
@@ -23,10 +20,7 @@ namespace DFM.MVC
 			Route.AddUrl<Default.Mobile>();
 			Route.AddUrl<Default.Main>();
 
-			Host.CreateDefaultBuilder(args)
-				.ConfigureWebHostDefaults(b => b.UseStartup<Startup>())
-				.Build()
-				.Run();
+			Startup.Run<Program>(args);
 		}
 	}
 }
