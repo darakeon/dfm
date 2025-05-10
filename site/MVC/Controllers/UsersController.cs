@@ -1,6 +1,6 @@
 ﻿using System;
-using DFM.BaseWeb.Helpers.Authorize;
-using DFM.BaseWeb.Helpers.Extensions;
+using DFM.BaseWeb.Authorize;
+using DFM.BaseWeb.Extensions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Authorize;
 using DFM.MVC.Models;

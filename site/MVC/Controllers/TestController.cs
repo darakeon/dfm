@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using DFM.BaseWeb.Helpers.Authorize;
-using DFM.BaseWeb.Helpers.Extensions;
+using DFM.BaseWeb.Authorize;
+using DFM.BaseWeb.Extensions;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;

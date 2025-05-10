@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 
-namespace DFM.BaseWeb.Helpers.Extensions;
+namespace DFM.BaseWeb.Extensions;
 
 public class ContextDic<T>
 {

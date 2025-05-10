@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DFM.BaseWeb.Helpers.Extensions;
+using DFM.BaseWeb.BusinessLogic;
+using DFM.BaseWeb.Extensions;
 using DFM.Email;
 using DFM.Logs;
 using Keon.MVC.Cookies;
@@ -9,7 +10,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 
-namespace DFM.BaseWeb.Helpers.Global
+namespace DFM.BaseWeb.Errors
 {
 	public class ErrorManager
 	{
