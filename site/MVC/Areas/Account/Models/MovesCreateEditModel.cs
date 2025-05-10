@@ -12,7 +12,7 @@ namespace DFM.MVC.Areas.Account.Models
 			: base(new MoveInfo(), OperationType.Creation)  { }
 
 		public MovesCreateEditModel(Guid id)
-			: base(money.GetMove(id), OperationType.Edition) { }
+			: base(id, OperationType.Edition) { }
 
 		internal override void Save()
 		{

@@ -51,7 +51,6 @@ namespace DFM.MVC
 
 			AppLog.ShowLogOnError(app);
 
-			BaseModel.IsDev = env.IsDevelopment();
 			TZ.Init(env.IsDevelopment());
 
 			Security.DenyFrame(app);

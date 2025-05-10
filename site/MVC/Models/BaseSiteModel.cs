@@ -12,7 +12,7 @@ using Error = DFM.Email.Error;
 namespace DFM.MVC.Models
 {
 	[ValidateNever]
-	public class BaseSiteModel : BaseModel
+	public class BaseSiteModel : BaseErrorModel
 	{
 		public Boolean IsAuthenticated => current.IsAuthenticated;
 		public Boolean IsLastContractAccepted => law.IsLastContractAccepted();
