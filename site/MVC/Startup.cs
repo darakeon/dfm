@@ -58,15 +58,6 @@ namespace DFM.MVC
 
 			StaticFiles.Configure(app);
 
-			Route.AddUrl<Default.Robots>();
-			Route.AddUrl<Default.SiteMap>();
-			Route.AddUrl<Accounts>();
-			Route.AddUrl<Default.Contract>();
-			Route.AddUrl<Default.Misc>();
-			Route.AddUrl<Default.Mail>();
-			Route.AddUrl<Default.Mobile>();
-			Route.AddUrl<Default.Main>();
-
 			Rewrite.TestThemAll(app);
 
 			Context.Set(app);
