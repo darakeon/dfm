@@ -1,8 +1,8 @@
 ﻿using System;
 using DFM.BusinessLogic.Response;
 using DFM.Entities.Enums;
+using DFM.Generic.Datetime;
 using DFM.MVC.Areas.Account.Models.SubModels;
-using DFM.MVC.Helpers.Models;
 
 namespace DFM.MVC.Areas.Account.Models
 {
