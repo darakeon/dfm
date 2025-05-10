@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Response;
 using DFM.Entities.Enums;
-using DFM.MVC.Helpers.Models;
+using DFM.Generic.Datetime;
 
 namespace DFM.MVC.Areas.Account.Models
 {
