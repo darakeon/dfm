@@ -14,6 +14,8 @@ namespace DFM.Generic
 
 		public static void Init(String environment = null)
 		{
+			IsDev = environment == null;
+
 			var builder = new ConfigurationBuilder()
 				.SetBasePath(Directory.GetCurrentDirectory());
 
@@ -69,12 +71,15 @@ namespace DFM.Generic
 
 		private static IConfiguration dic;
 
+		public static Boolean IsDev { get; private set; }
+
 		public static TicketType TicketType =>
 			dic["TicketType"] == null
 				? TicketType.None
 				: EnumX.Parse<TicketType>(dic["TicketType"]);
 
 		public static IConfiguration DB => dic.GetSection("DB");
+
 
 		public static String Server => DB["Server"];
 		public static String DataBase => DB["DataBase"];

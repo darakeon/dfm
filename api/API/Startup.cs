@@ -45,7 +45,6 @@ namespace DFM.API
 
 			AppLog.ShowLogOnError(app);
 
-			BaseModel.IsDev = env.IsDevelopment();
 			TZ.Init(env.IsDevelopment());
 
 			Settings.Initialize(env);
