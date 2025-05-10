@@ -30,8 +30,8 @@ namespace DFM.API.Models
 		}
 
 		public IList<SimpleMoveJson> MoveList { get; }
-		public string Title { get; }
-		public decimal Total { get; }
-		public bool CanCheck { get; }
+		public String Title { get; }
+		public Decimal Total { get; }
+		public Boolean CanCheck { get; }
 	}
 }

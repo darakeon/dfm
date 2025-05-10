@@ -41,7 +41,7 @@ namespace DFM.API.Models
 
 		internal class CategoryItem : SelectItem<String, String>
 		{
-			public CategoryItem(string text, string value) : base(text, value)
+			public CategoryItem(String text, String value) : base(text, value)
 			{
 			}
 		}
