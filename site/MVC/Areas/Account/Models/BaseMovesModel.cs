@@ -26,12 +26,7 @@ namespace DFM.MVC.Areas.Account.Models
 		protected BaseMovesModel(IMoveInfo move)
 			: this()
 		{
-			GenericMove = move;
-
-			if (GenericMove.GetDate() == DateTime.MinValue)
-				Date = now.ToShortDateString();
-
-			arrangeDetails();
+			setMove(move);
 		}
 
 		protected BaseMovesModel(IMoveInfo iMove, OperationType type)
@@ -40,11 +35,19 @@ namespace DFM.MVC.Areas.Account.Models
 			Type = type;
 		}
 
+		protected BaseMovesModel(Guid id, OperationType type)
+			: this()
+		{
+			setMove(money.GetMove(id));
+			Type = type;
+		}
+
 		public void SetDefaultAccount()
 		{
 			AccountOutUrl = CurrentAccountUrl;
 			AccountInUrl = CurrentAccountUrl;
 		}
+
 
 
 
@@ -82,6 +85,16 @@ namespace DFM.MVC.Areas.Account.Models
 
 			AccountInSelectList = SelectListExtension
 				.CreateSelect(accountList, a => a.Url, a => a.Name);
+		}
+
+		private void setMove(IMoveInfo move)
+		{
+			GenericMove = move;
+
+			if (GenericMove.GetDate() == DateTime.MinValue)
+				Date = now.ToShortDateString();
+
+			arrangeDetails();
 		}
 
 		private void arrangeDetails()

@@ -1,4 +1,6 @@
-﻿namespace DFM.API.Models
+﻿using DFM.BaseWeb.Models;
+
+namespace DFM.API.Models
 {
 	public class BaseApiModel : BaseModel
 	{
