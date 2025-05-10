@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.BaseWeb.Starters.Routes;
+using DFM.BaseWeb.Routes;
 using JetBrains.Annotations;
 
 namespace DFM.MVC.Routes
