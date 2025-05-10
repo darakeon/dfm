@@ -1,6 +1,6 @@
 ﻿using System;
 using DFM.BusinessLogic.Response;
-using DFM.MVC.Helpers.Views;
+using DFM.MVC.Models.Views;
 
 namespace DFM.MVC.Models;
 

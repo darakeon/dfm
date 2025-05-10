@@ -7,8 +7,8 @@ using DFM.BusinessLogic;
 using DFM.BusinessLogic.Services;
 using DFM.Generic;
 using DFM.Logs;
-using DFM.MVC.Helpers.Extensions;
-using DFM.MVC.Helpers.Global;
+using DFM.MVC.Errors;
+using DFM.MVC.Extensions;
 using Microsoft.AspNetCore.Http;
 using Service = DFM.BaseWeb.Helpers.Service;
 
