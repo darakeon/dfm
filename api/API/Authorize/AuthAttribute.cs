@@ -3,7 +3,7 @@ using DFM.BaseWeb.Helpers.Authorize;
 using DFM.BusinessLogic.Exceptions;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace DFM.API.Helpers.Authorize
+namespace DFM.API.Authorize
 {
 	public class AuthAttribute : BaseAuthAttribute
 	{
