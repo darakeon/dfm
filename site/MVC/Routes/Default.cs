@@ -2,7 +2,7 @@
 using DFM.BaseWeb.Starters.Routes;
 using JetBrains.Annotations;
 
-namespace DFM.MVC.Starters.Routes
+namespace DFM.MVC.Routes
 {
 	public abstract class Default : BaseRoute
 	{

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DFM.MVC.Helpers.Views
+namespace DFM.MVC.Models.Views
 {
 	public class WizardHL
 	{

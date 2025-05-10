@@ -1,7 +1,7 @@
 ﻿using System;
 using DFM.BaseWeb.Starters.Routes;
 
-namespace DFM.MVC.Starters.Routes
+namespace DFM.MVC.Routes
 {
 	public class Accounts : BaseRoute
 	{

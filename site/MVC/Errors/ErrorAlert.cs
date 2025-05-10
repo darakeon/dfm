@@ -5,7 +5,7 @@ using DFM.BaseWeb.Helpers.Global;
 using DFM.Email;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
-namespace DFM.MVC.Helpers.Global
+namespace DFM.MVC.Errors
 {
 	public class ErrorAlert
 	{
