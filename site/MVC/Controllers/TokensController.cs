@@ -1,6 +1,6 @@
 ﻿using System;
 using DFM.BusinessLogic.Helpers;
-using DFM.MVC.Helpers.Controllers;
+using DFM.MVC.Authorize;
 using DFM.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 

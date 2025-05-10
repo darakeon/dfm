@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DFM.MVC.Helpers.Authorize;
-using DFM.MVC.Helpers.Controllers;
+using DFM.MVC.Authorize;
 using DFM.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 
