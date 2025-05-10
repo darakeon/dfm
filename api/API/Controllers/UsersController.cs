@@ -1,7 +1,7 @@
 ﻿using DFM.API.Authorize;
 using DFM.API.Models;
 using DFM.API.Routes;
-using DFM.BaseWeb.Helpers.Authorize;
+using DFM.BaseWeb.Authorize;
 using DFM.BusinessLogic.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
