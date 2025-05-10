@@ -52,7 +52,7 @@ namespace DFM.API.Starters
 			return property;
 		}
 
-		private static bool shouldSerialize(MemberInfo member, object instance)
+		private static Boolean shouldSerialize(MemberInfo member, Object instance)
 		{
 			return member is not PropertyInfo info 
 				|| info.GetValue(instance, null) != null;
@@ -68,7 +68,7 @@ namespace DFM.API.Starters
 
 		class EnumConverter(Type realType) : JsonConverter
 		{
-			public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+			public override void WriteJson(JsonWriter writer, Object value, JsonSerializer serializer)
 			{
 				if (value == null)
 				{
@@ -78,7 +78,7 @@ namespace DFM.API.Starters
 				{
 					serializer.Serialize(writer, new
 					{
-						code = (int)value,
+						code = (Int32)value,
 						text = kebabCase(value.ToString()),
 					});
 				}
@@ -93,7 +93,7 @@ namespace DFM.API.Starters
 				return text.ToLower();
 			}
 
-			public override object ReadJson(JsonReader reader, Type type, object existingValue, JsonSerializer serializer)
+			public override Object ReadJson(JsonReader reader, Type type, Object existingValue, JsonSerializer serializer)
 			{
 				var value = readEnumValue(reader, serializer);
 
@@ -119,7 +119,7 @@ namespace DFM.API.Starters
 					: null;
 			}
 
-			public override bool CanConvert(Type objectType)
+			public override Boolean CanConvert(Type objectType)
 			{
 				return objectType.IsEnum;
 			}

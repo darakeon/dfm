@@ -1,4 +1,5 @@
-﻿using DFM.API.Helpers.Global;
+﻿using System;
+using DFM.API.Helpers.Global;
 using DFM.BusinessLogic.Response;
 
 namespace DFM.API.Models
@@ -14,15 +15,15 @@ namespace DFM.API.Models
 			Total = month.CurrentTotal;
 		}
 
-		public SimpleMonthJson(short month, Translator translator)
+		public SimpleMonthJson(Int16 month, Translator translator)
 		{
 			Number = month;
 			Name = translator.GetMonthName(month);
 			Total = 0;
 		}
 
-		public int Number { get; set; }
-		public string Name { get; set; }
-		public decimal Total { get; set; }
+		public Int32 Number { get; set; }
+		public String Name { get; set; }
+		public Decimal Total { get; set; }
 	}
 }
