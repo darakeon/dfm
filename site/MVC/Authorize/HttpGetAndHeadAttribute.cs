@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using Microsoft.AspNetCore.Mvc.Routing;
 
-namespace DFM.MVC.Helpers.Controllers
+namespace DFM.MVC.Authorize
 {
 	public class HttpGetAndHeadAttribute : HttpMethodAttribute
 	{
@@ -12,6 +12,7 @@ namespace DFM.MVC.Helpers.Controllers
 					WebRequestMethods.Http.Get,
 					WebRequestMethods.Http.Head
 				}
-			) { }
+			)
+		{ }
 	}
 }
