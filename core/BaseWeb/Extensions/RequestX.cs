@@ -5,7 +5,7 @@ using System.Net;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
 
-namespace DFM.BaseWeb.Helpers.Extensions
+namespace DFM.BaseWeb.Extensions
 {
 	public static class RequestX
 	{
@@ -47,7 +47,7 @@ namespace DFM.BaseWeb.Helpers.Extensions
 
 		public static void AddLog(this HttpContext context, String log)
 		{
-			GetLogs(context).Add(log);
+			context.GetLogs().Add(log);
 		}
 
 		public static List<String> GetLogs(this HttpContext context)
