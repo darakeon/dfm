@@ -2,7 +2,7 @@
 using DFM.MVC.Areas.Account.Models;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
-using DFM.MVC.Starters.Routes;
+using DFM.MVC.Routes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Areas.Account.Controllers

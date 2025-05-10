@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.API.Helpers.Models;
 
 namespace DFM.API.Models
 {

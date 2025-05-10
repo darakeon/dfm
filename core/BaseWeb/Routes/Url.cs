@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 
-namespace DFM.BaseWeb.Starters.Routes
+namespace DFM.BaseWeb.Routes
 {
 	public class Url
 	{

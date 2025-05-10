@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace DFM.BaseWeb.Starters.Routes
+namespace DFM.BaseWeb.Routes
 {
 	public abstract class BaseRoute
 	{

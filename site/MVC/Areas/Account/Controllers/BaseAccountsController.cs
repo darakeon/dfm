@@ -1,6 +1,6 @@
 ﻿using DFM.Entities.Bases;
 using DFM.MVC.Areas.Account.Models;
-using DFM.MVC.Helpers.Controllers;
+using DFM.MVC.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Areas.Account.Controllers
