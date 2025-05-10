@@ -1,4 +1,5 @@
 using DFM.BaseWeb.Starters;
+using DFM.BaseWeb.Starters.Routes;
 using DFM.Generic.Datetime;
 using DFM.MVC.Models;
 using DFM.MVC.Starters.Routes;
@@ -57,7 +58,14 @@ namespace DFM.MVC
 
 			StaticFiles.Configure(app);
 
-			Route.CreateRoutes();
+			Route.AddUrl<Default.Robots>();
+			Route.AddUrl<Default.SiteMap>();
+			Route.AddUrl<Accounts>();
+			Route.AddUrl<Default.Contract>();
+			Route.AddUrl<Default.Misc>();
+			Route.AddUrl<Default.Mail>();
+			Route.AddUrl<Default.Mobile>();
+			Route.AddUrl<Default.Main>();
 
 			Rewrite.TestThemAll(app);
 
