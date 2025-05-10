@@ -13,16 +13,16 @@ internal class SafeSerial
 		ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
 	};
 
-	internal static String Serialize(object obj)
+	internal static String Serialize(Object obj)
 	{
 		var properties = toDictionary(obj);
 
 		return JsonConvert.SerializeObject(properties, settings);
 	}
 
-	private static Dictionary<String, object> toDictionary(object obj)
+	private static Dictionary<String, Object> toDictionary(Object obj)
 	{
-		var properties = new Dictionary<String, object>();
+		var properties = new Dictionary<String, Object>();
 
 		foreach (var property in obj.GetType().GetProperties())
 		{
@@ -40,7 +40,7 @@ internal class SafeSerial
 
 				case IEnumerable enumerable and not String:
 				{
-					var list = new List<object>();
+					var list = new List<Object>();
 
 					foreach (var item in enumerable)
 					{

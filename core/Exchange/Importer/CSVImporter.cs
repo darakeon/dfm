@@ -12,7 +12,7 @@ namespace DFM.Exchange.Importer
 {
 	public class CSVImporter
 	{
-		public CSVImporter(Plan plan, string content)
+		public CSVImporter(Plan plan, String content)
 		{
 			if (content.Length > plan.ArchiveSize)
 			{

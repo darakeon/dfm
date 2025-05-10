@@ -8,19 +8,19 @@ namespace DFM.API.Models
 	{
 		public Guid Guid { get; set; }
 
-		public string Description { get; set; }
+		public String Description { get; set; }
 
-		public short Year { get; set; }
-		public short Month { get; set; }
-		public short Day { get; set; }
+		public Int16 Year { get; set; }
+		public Int16 Month { get; set; }
+		public Int16 Day { get; set; }
 
 		public MoveNature Nature { get; set; }
 
-		public bool Checked { get; set; }
+		public Boolean Checked { get; set; }
 
-		public decimal Total { get; set; }
+		public Decimal Total { get; set; }
 
-		public SimpleMoveJson(MoveInfo move, string accountUrl)
+		public SimpleMoveJson(MoveInfo move, String accountUrl)
 		{
 			Guid = move.Guid;
 

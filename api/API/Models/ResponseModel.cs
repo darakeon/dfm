@@ -7,7 +7,7 @@ namespace DFM.API.Models
 	{
 		public ResponseModel() { }
 
-		public ResponseModel(object data, Environment environment) : this()
+		public ResponseModel(Object data, Environment environment) : this()
 		{
 			Data = data;
 			Environment = environment;
@@ -20,7 +20,7 @@ namespace DFM.API.Models
 
 
 
-		public object Data { get; set; }
+		public Object Data { get; set; }
 		public Environment Environment { get; set; }
 		public ErrorModel Error { get; set; }
 

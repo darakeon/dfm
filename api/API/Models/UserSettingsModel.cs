@@ -1,4 +1,5 @@
-﻿using DFM.BusinessLogic.Response;
+﻿using System;
+using DFM.BusinessLogic.Response;
 
 namespace DFM.API.Models
 {
@@ -10,8 +11,8 @@ namespace DFM.API.Models
 			MoveCheck = moveCheckingEnabled;
 		}
 
-		public bool UseCategories { get; set; }
-		public bool MoveCheck { get; set; }
+		public Boolean UseCategories { get; set; }
+		public Boolean MoveCheck { get; set; }
 
 		internal void Save()
 		{

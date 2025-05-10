@@ -17,7 +17,7 @@ namespace DFM.API.Models
 					.Select(m => new SimpleMonthJson(m, translator))
 					.ToList();
 
-			for (short ym = 1; ym < 13; ym++)
+			for (Int16 ym = 1; ym < 13; ym++)
 			{
 				if (MonthList.All(m => m.Number != ym))
 				{
@@ -40,7 +40,7 @@ namespace DFM.API.Models
 		}
 
 		public IList<SimpleMonthJson> MonthList { get; }
-		public string Title { get; }
-		public decimal Total { get; }
+		public String Title { get; }
+		public Decimal Total { get; }
 	}
 }

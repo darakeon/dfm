@@ -5,7 +5,7 @@ namespace DFM.API.Models
 {
 	public class Environment(
 		Theme theme,
-		string language,
+		String language,
 		Boolean tfaForgottenWarning
 	)
 	{

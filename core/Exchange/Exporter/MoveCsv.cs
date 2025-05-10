@@ -56,7 +56,7 @@ namespace DFM.Exchange.Exporter
 		public String Conversion { get; }
 		public IList<DetailCsv> DetailList { get; }
 
-		public bool Equals(IMove other)
+		public Boolean Equals(IMove other)
 		{
 			return guid == other.Guid;
 		}

@@ -23,7 +23,7 @@ namespace DFM.BusinessLogic.Exceptions
 			Types = new() { new ErrorWithMetadata(type) };
 		}
 
-		internal void AddError(Error error, object metadata = null)
+		internal void AddError(Error error, Object metadata = null)
 		{
 			Types.Add(new ErrorWithMetadata(error, metadata));
 		}
