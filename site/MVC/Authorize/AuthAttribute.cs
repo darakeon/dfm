@@ -1,6 +1,6 @@
 ﻿using System;
 using DFM.BaseWeb.Helpers.Authorize;
-using DFM.BaseWeb.Starters.Routes;
+using DFM.BaseWeb.Routes;
 using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Routes;
 using JetBrains.Annotations;

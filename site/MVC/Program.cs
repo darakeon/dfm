@@ -1,6 +1,6 @@
 using System;
 using DFM.BaseWeb.Starters;
-using DFM.BaseWeb.Starters.Routes;
+using DFM.BaseWeb.Routes;
 using DFM.MVC.Routes;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;

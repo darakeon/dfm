@@ -2,8 +2,7 @@
 using DFM.BaseWeb.Helpers.Authorize;
 using DFM.BaseWeb.Helpers.Extensions;
 using DFM.BusinessLogic.Exceptions;
-using DFM.MVC.Helpers.Authorize;
-using DFM.MVC.Helpers.Controllers;
+using DFM.MVC.Authorize;
 using DFM.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,4 +1,4 @@
-﻿using DFM.API.Helpers.Authorize;
+﻿using DFM.API.Authorize;
 using DFM.API.Models;
 using DFM.API.Routes;
 using DFM.BaseWeb.Helpers.Authorize;
