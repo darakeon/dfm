@@ -1,7 +1,7 @@
 ﻿using System;
 using Keon.Util.Collection;
 using DFM.BusinessLogic.Exceptions;
-using DFM.MVC.Helpers.Controllers;
+using DFM.MVC.Authorize;
 using DFM.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 
