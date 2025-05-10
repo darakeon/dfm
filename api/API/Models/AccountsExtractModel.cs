@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.API.Helpers.Models;
+using DFM.Generic.Datetime;
 
 namespace DFM.API.Models
 {
