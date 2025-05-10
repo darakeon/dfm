@@ -1,4 +1,4 @@
-﻿namespace DFM.API.Helpers.Models
+﻿namespace DFM.API.Models
 {
 	public abstract class SelectItem<TText, TValue>
 	{
