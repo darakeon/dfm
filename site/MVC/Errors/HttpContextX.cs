@@ -1,8 +1,7 @@
-﻿using DFM.BaseWeb.Helpers.Extensions;
-using DFM.MVC.Errors;
+﻿using DFM.BaseWeb.Extensions;
 using Microsoft.AspNetCore.Http;
 
-namespace DFM.MVC.Extensions
+namespace DFM.MVC.Errors
 {
 	public static class HttpContextX
 	{

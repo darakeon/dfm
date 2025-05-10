@@ -1,4 +1,4 @@
-﻿using DFM.BaseWeb.Helpers.Authorize;
+﻿using DFM.BaseWeb.Authorize;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace DFM.MVC.Authorize
