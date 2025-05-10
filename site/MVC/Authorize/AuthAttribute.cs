@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.BaseWeb.Helpers.Authorize;
+using DFM.BaseWeb.Authorize;
 using DFM.BaseWeb.Routes;
 using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Routes;

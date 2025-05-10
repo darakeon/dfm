@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.BaseWeb.Helpers.Extensions;
+using DFM.BaseWeb.Extensions;
 using DFM.Entities.Enums;
 using DFM.MVC.Authorize;
 using DFM.MVC.Models;
