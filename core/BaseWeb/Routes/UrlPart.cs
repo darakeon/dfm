@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace DFM.BaseWeb.Starters.Routes
+namespace DFM.BaseWeb.Routes
 {
 	class UrlPart
 	{

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DFM.BaseWeb.Starters;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DFM.BaseWeb.Starters.Routes
+namespace DFM.BaseWeb.Routes
 {
 	public class Route
 	{
