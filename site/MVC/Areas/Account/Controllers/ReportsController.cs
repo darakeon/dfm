@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Areas.Account.Controllers
 {
-	[Auth, Area(Route.AccountArea)]
+	[Auth, Area(Accounts.AreaName)]
 	public class ReportsController : BaseAccountsController
 	{
 		[HttpGetAndHead, Wizard.Avoid]
