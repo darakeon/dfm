@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
-using DFM.MVC.Helpers.Views;
+using DFM.MVC.Models.Views;
 using Keon.TwoFactorAuth;
 
 namespace DFM.MVC.Models

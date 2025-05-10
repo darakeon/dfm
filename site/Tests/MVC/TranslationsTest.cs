@@ -8,7 +8,7 @@ using DFM.Generic;
 using DFM.Language;
 using DFM.Language.Entities;
 using DFM.Language.Extensions;
-using DFM.MVC.Helpers.Controllers;
+using DFM.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 
