@@ -1,7 +1,7 @@
 ﻿using System;
 using JetBrains.Annotations;
 
-namespace DFM.MVC.Helpers.Views
+namespace DFM.MVC.Models.Views
 {
 	public class Button
 	{

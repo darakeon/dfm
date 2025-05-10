@@ -1,7 +1,7 @@
 ﻿using System;
-using DFM.BaseWeb.Starters.Routes;
+using DFM.BaseWeb.Routes;
 
-namespace DFM.API.Starters.Routes
+namespace DFM.API.Routes
 {
 	public abstract class Apis : BaseRoute
 	{

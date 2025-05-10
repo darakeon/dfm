@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using JetBrains.Annotations;
 
-namespace DFM.MVC.Helpers.Views
+namespace DFM.MVC.Models.Views
 {
 	public class MobileUrls
 	{
