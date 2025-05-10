@@ -3,10 +3,10 @@ using Newtonsoft.Json;
 
 namespace DFM.BusinessLogic.Exceptions;
 
-public class ErrorWithMetadata(Error error, object metadata = null)
+public class ErrorWithMetadata(Error error, Object metadata = null)
 {
 	public Error Error { get; } = error;
-	public object Metadata { get; } = metadata;
+	public Object Metadata { get; } = metadata;
 
 	public override String ToString()
 	{

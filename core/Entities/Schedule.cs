@@ -207,7 +207,7 @@ namespace DFM.Entities
 			}
 		}
 
-		private int valueToShow(Account account)
+		private Int32 valueToShow(Account account)
 		{
 			return In?.ID == account.ID
 					&& ConversionCents.HasValue
