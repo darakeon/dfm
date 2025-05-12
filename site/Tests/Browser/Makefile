@@ -60,7 +60,7 @@ create_contract: install_proj_deps
 setup: publish_site run_site _wait create_contract
 
 clear:
-	@cd server && sudo rm -f tests.db
+	@cd server && rm -f tests.db
 	@pkill DFM.MVC || echo "site is not running"
 
 resetup: clear setup
