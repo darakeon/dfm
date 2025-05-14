@@ -6,7 +6,11 @@
 version: 2
 updates:
   - package-ecosystem: "nuget"
-    directory: "/core/"
+    directories:
+      - "/core/"
+      - "/site/"
+      - "/api/"
+      - "/robot/"
     target-branch: "14.1.4.1"
     schedule:
       interval: "weekly"
@@ -14,48 +18,12 @@ updates:
     rebase-strategy: "disabled"
     labels:
       - internal
-      - dependencies
-    commit-message:
-      prefix: "tools: update internal\n\n"
-
-  - package-ecosystem: "nuget"
-    directory: "/site/"
-    target-branch: "14.1.4.1"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-    rebase-strategy: "disabled"
-    labels:
       - site
-      - dependencies
-    commit-message:
-      prefix: "tools: update site\n\n"
-
-  - package-ecosystem: "nuget"
-    directory: "/api/"
-    target-branch: "14.1.4.1"
-    schedule:
-      interval: "weekly"
-      day: "tuesday"
-    rebase-strategy: "disabled"
-    labels:
       - api
-      - dependencies
-    commit-message:
-      prefix: "tools: update api\n\n"
-
-  - package-ecosystem: "nuget"
-    directory: "/robot/"
-    target-branch: "14.1.4.1"
-    schedule:
-      interval: "weekly"
-      day: "wednesday"
-    rebase-strategy: "disabled"
-    labels:
       - robot
       - dependencies
     commit-message:
-      prefix: "tools: update robot\n\n"
+      prefix: "tools: update core\n\n"
 
   - package-ecosystem: "npm"
     directory: "/site/Tests/Browser/"
