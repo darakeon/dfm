@@ -2,9 +2,9 @@
 
 - [x] Error logs in site
 - [ ] Error logs in robot
-- [ ] Error logs in api
+- [x] Error logs in api
 - [x] Container logs in site
-- [ ] Container logs in api
+- [x] Container logs in api
 - [ ] Container logs in migrator
 - [ ] Container logs in midna
 - [ ] Container logs in nginx
