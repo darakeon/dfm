@@ -4,11 +4,11 @@
 	"description": "DfM Site Tests",
 	"main": "index.js",
 	"dependencies": {
-		"bcrypt": "^5.1.1",
+		"bcrypt": "^6.0.0",
 		"sqlite3": "^5.1.7"
 	},
 	"devDependencies": {
-		"jest": "^29.7.0",
+		"jest": "^30.0.2",
 		"jest-puppeteer": "^11.0.0"
 	},
 	"overrides": {
