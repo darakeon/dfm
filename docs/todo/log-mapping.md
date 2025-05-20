@@ -1,7 +1,7 @@
 # All logs that need to be migrated to Cloud Watch
 
 - [x] Error logs in site
-- [ ] Error logs in robot
+- [x] Error logs in robot
 - [x] Error logs in api
 - [x] Container logs in site
 - [x] Container logs in api
