@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using DFM.Logs.Data;
 using DFM.Logs.Data.Application;
+using DFM.Logs.Data.Console;
 using DFM.Logs.Data.Errors;
 using DFM.Logs.Data.Requests;
 using Microsoft.Extensions.Logging;
@@ -32,6 +33,18 @@ public abstract class BaseLogService : ILogService
 	{
 		var log = new RequestLog(moment, method, path, time);
 		await saveLog(Division.Request, log);
+	}
+
+	public async Task LogConsoleOk(Object message)
+	{
+		var log = ConsoleLog.Ok(message);
+		await saveLog(Division.Console, log);
+	}
+
+	public async Task LogConsoleError(Object message)
+	{
+		var log = ConsoleLog.Error(message);
+		await saveLog(Division.Console, log);
 	}
 
 	private protected abstract Task saveLog(Division division, Object content);

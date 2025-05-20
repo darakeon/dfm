@@ -7,14 +7,26 @@ using Amazon.Lambda.Core;
 using Amazon.Lambda.RuntimeSupport;
 using Amazon.Lambda.Serialization.SystemTextJson;
 using Newtonsoft.Json;
+using DFM.Generic.Settings;
+using DFM.Logs;
 
 namespace DFM.Robot
 {
 	class Program
 	{
+		private const String envVarName = "ASPNETCORE_ENVIRONMENT";
+
+		private static readonly String name = 
+			Environment.GetEnvironmentVariable(envVarName);
+
+		private static ILogService log => LogFactory.Service;
+
+
 		public static async Task Main(String[] args)
 		{
-			Log.Ok("Starting lambda async");
+			Cfg.Init(name);
+
+			await log.LogConsoleOk("Starting lambda async");
 
 			await Connection.Run(async () =>
 			{
@@ -33,7 +45,7 @@ namespace DFM.Robot
 				}
 			});
 
-			Log.Ok("Ended lambda async");
+			await log.LogConsoleOk("Ended lambda async");
 		}
 		
 		public static String FunctionHandler(String input, ILambdaContext context)
@@ -43,18 +55,18 @@ namespace DFM.Robot
 			return input.ToUpper();
 		}
 
-		private static void main(RobotTask task)
+		private static async void main(RobotTask task)
 		{
-			Log.Ok($"Starting {task}");
+			await log.LogConsoleOk($"Starting {task}");
 
-			var service = new Service(task, Log.Ok);
+			var service = new Service(task, log.LogConsoleOk);
 			var process = service.Execute();
 			process.Wait();
 
 			if (process.Exception != null)
-				Log.Error(process.Exception);
+				await log.LogConsoleError(process.Exception);
 
-			Log.Ok($"Ended {task}");
+			await log.LogConsoleOk($"Ended {task}");
 		}
 
 		private static RobotTask getTask(String[] args)

@@ -1,6 +1,6 @@
 {
 	"Log": {
 		"Local": true,
-		"Path": "../../outputs/logs/robot"
+		"Path": "../../../../outputs/logs/robot"
 	}
 }

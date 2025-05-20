@@ -12,15 +12,10 @@ namespace DFM.Robot
 {
 	class Connection
 	{
-		private const String envVarName = "ASPNETCORE_ENVIRONMENT";
 		private const String sessionName = "ROBOT";
-
-		private static readonly String name = 
-			Environment.GetEnvironmentVariable(envVarName);
 
 		public static async Task Run(Func<Task> action)
 		{
-			Cfg.Init(name);
 			PlainText.Initialize();
 
 			try

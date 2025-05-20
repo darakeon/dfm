@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using DFM.Authentication;
 using DFM.BusinessLogic;
-using DFM.Entities.Enums;
 using DFM.Files;
 using DFM.Generic;
 using DFM.Generic.Datetime;
@@ -16,7 +15,7 @@ namespace DFM.Robot
 	internal class Service : IDisposable
 	{
 		private readonly RobotTask task;
-		private readonly Action<Object> logOk;
+		private readonly Func<object, Task> logOk;
 		
 		private readonly ServiceAccess service;
 		private readonly CloudWatchService log;
@@ -26,7 +25,7 @@ namespace DFM.Robot
 
 		private readonly IDictionary<RobotTask, Func<Task>> actions;
 
-		public Service(RobotTask task, Action<object> logOk)
+		public Service(RobotTask task, Func<object, Task> logOk)
 		{
 			this.task = task;
 			this.logOk = logOk;
@@ -45,11 +44,6 @@ namespace DFM.Robot
 				case RobotTask.Requeue:
 					sqs = new SQSService();
 					break;
-			}
-
-			if (this.task != RobotTask.Check)
-			{
-				log = new CloudWatchService();
 			}
 
 			service = new ServiceAccess(
@@ -90,7 +84,7 @@ namespace DFM.Robot
 
 		private async Task check()
 		{
-			logOk("Sunariom");
+			await logOk("Sunariom");
 		}
 
 		private async Task schedules()
@@ -101,7 +95,7 @@ namespace DFM.Robot
 			{
 				foreach (var error in errors)
 				{
-					log.LogHandled(error, $"User: {email}");
+					await log.LogHandled(error, $"User: {email}");
 				}
 			}
 		}
@@ -121,7 +115,7 @@ namespace DFM.Robot
 					return;
 
 				if (!result.Success)
-					log.LogHandled(result.Error, $"User: {result.User.Email}");
+					await log.LogHandled(result.Error, $"User: {result.User.Email}");
 			}
 		}
 
@@ -140,7 +134,7 @@ namespace DFM.Robot
 			var result = service.Executor.ExportOrder();
 
 			if (!result.Success)
-				log.LogHandled(result.Error, $"User: {result.User.Email}");
+				await log.LogHandled(result.Error, $"User: {result.User.Email}");
 		}
 
 		private async Task expire()
@@ -150,7 +144,7 @@ namespace DFM.Robot
 			foreach (var result in results)
 			{
 				if (!result.Success)
-					log.LogHandled(result.Error, $"User: {result.User.Email}");
+					await log.LogHandled(result.Error, $"User: {result.User.Email}");
 			}
 		}
 
