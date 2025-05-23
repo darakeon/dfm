@@ -1074,7 +1074,7 @@ jobs:
       - run:
           path: midna/src
           name: check vulnerability
-          command: python -m pip_audit
+          command: python -m pip_audit -r requirements.txt
 
   test_midna:
     docker:
