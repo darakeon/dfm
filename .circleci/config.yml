@@ -1038,12 +1038,12 @@ jobs:
 
   build_midna:
     docker:
-      - image: python:3.11 # if change, remember to change save_cache
+      - image: python:3.13 # if change, remember to change save_cache
     steps:
       - checkout
       - restore_cache:
           keys:
-            - python-{{ checksum "midna/src/requirements.txt" }}
+            - python-3-13-{{ checksum "midna/src/requirements.txt" }}
       - run:
           path: midna/src
           name: Upgrade pip
@@ -1053,9 +1053,9 @@ jobs:
           name: dependencies
           command: pip install -r requirements.txt
       - save_cache:
-          key: python-{{ checksum "midna/src/requirements.txt" }}
+          key: python-3-13-{{ checksum "midna/src/requirements.txt" }}
           paths:
-            - /usr/local/lib/python3.11/site-packages/
+            - /usr/local/lib/python3.13/site-packages/
       #- persist_to_workspace:
       #    root: midna
       #    paths:
@@ -1063,14 +1063,14 @@ jobs:
 
   audit_midna:
     docker:
-      - image: python:3.11 # if change, remember to change save_cache
+      - image: python:3.13 # if change, remember to change save_cache
     steps:
       - checkout
       #- attach_workspace:
       #    at: midna
       - restore_cache:
           keys:
-            - python-{{ checksum "midna/src/requirements.txt" }}
+            - python-3-13-{{ checksum "midna/src/requirements.txt" }}
       - run:
           path: midna/src
           name: check vulnerability
@@ -1078,14 +1078,14 @@ jobs:
 
   test_midna:
     docker:
-      - image: python:3.11 # if change, remember to change save_cache
+      - image: python:3.13 # if change, remember to change save_cache
     steps:
       - checkout
       #- attach_workspace:
       #    at: midna
       - restore_cache:
           keys:
-            - python-{{ checksum "midna/src/requirements.txt" }}
+            - python-3-13-{{ checksum "midna/src/requirements.txt" }}
       - run:
           path: midna
           name: run tests
