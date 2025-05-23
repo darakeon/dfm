@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DFM.Logs.Data.Console;
 using Microsoft.Extensions.Logging;
 
 namespace DFM.Logs;
