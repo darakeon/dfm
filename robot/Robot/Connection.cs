@@ -16,10 +16,10 @@ namespace DFM.Robot
 
 		public static async Task Run(Func<Task> action)
 		{
-			PlainText.Initialize();
-
 			try
 			{
+				PlainText.Initialize();
+
 				await sessionFactory(() => session(action));
 			}
 			catch (Exception e)
