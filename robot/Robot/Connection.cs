@@ -24,7 +24,7 @@ namespace DFM.Robot
 			}
 			catch (Exception e)
 			{
-				LogFactory.Service.Log(e);
+				await LogFactory.Service.Log(e);
 				throw;
 			}
 		}
