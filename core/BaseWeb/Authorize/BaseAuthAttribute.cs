@@ -1,7 +1,7 @@
 ﻿using System;
 using DFM.BaseWeb.Extensions;
 using DFM.BusinessLogic.Exceptions;
-using DFM.Generic.Settings;
+using DFM.Entities.Enums;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace DFM.BaseWeb.Authorize

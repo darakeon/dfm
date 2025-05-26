@@ -8,7 +8,6 @@ using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Generic.Datetime;
-using DFM.Generic.Settings;
 using Keon.Util.Exceptions;
 
 namespace DFM.Authentication
