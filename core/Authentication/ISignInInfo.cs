@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.Generic.Settings;
+using DFM.Entities.Enums;
 
 namespace DFM.Authentication
 {
