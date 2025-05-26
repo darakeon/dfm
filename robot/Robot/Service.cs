@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using DFM.Authentication;
 using DFM.BusinessLogic;
+using DFM.Entities.Enums;
 using DFM.Files;
 using DFM.Generic;
 using DFM.Generic.Datetime;

@@ -1,7 +1,7 @@
 ﻿using System;
 using DFM.Entities;
 using DFM.Entities.Bases;
-using DFM.Generic.Settings;
+using DFM.Entities.Enums;
 
 namespace DFM.BusinessLogic.Response
 {

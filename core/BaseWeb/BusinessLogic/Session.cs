@@ -1,5 +1,6 @@
 ﻿using System;
 using DFM.Authentication;
+using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Generic.Settings;
 using Keon.MVC.Cookies;
@@ -25,7 +26,14 @@ namespace DFM.BaseWeb.BusinessLogic
 
 		public ClientTicket GetTicket(Boolean remember = false)
 		{
-			var type = Cfg.TicketType;
+			var type = Cfg.AppType switch
+			{
+				AppType.Site => TicketType.Browser,
+				AppType.Api => TicketType.Mobile,
+				AppType.Robot => TicketType.Local,
+				AppType.Tests => TicketType.Tests,
+				_ => TicketType.None
+			};
 
 			var key = type == TicketType.Browser
 				? BrowserId.Get(() => context, remember)
