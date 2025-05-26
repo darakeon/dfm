@@ -1,4 +1,4 @@
-﻿namespace DFM.Generic.Settings
+﻿namespace DFM.Entities.Enums
 {
 	public enum TicketType
 	{

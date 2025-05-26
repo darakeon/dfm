@@ -1,6 +1,6 @@
 ﻿using System;
 using DFM.Authentication;
-using DFM.Generic.Settings;
+using DFM.Entities.Enums;
 
 namespace DFM.BusinessLogic.Response
 {

@@ -73,10 +73,10 @@ namespace DFM.Generic
 
 		public static Boolean IsDev { get; private set; }
 
-		public static TicketType TicketType =>
-			dic["TicketType"] == null
-				? TicketType.None
-				: EnumX.Parse<TicketType>(dic["TicketType"]);
+		public static AppType AppType =>
+			dic["AppType"] == null
+				? AppType.None
+				: EnumX.Parse<AppType>(dic["AppType"]);
 
 		public static IConfiguration DB => dic.GetSection("DB");
 

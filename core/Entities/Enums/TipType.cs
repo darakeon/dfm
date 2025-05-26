@@ -1,5 +1,4 @@
 ﻿using System;
-using DFM.Generic.Settings;
 
 namespace DFM.Entities.Enums
 {
