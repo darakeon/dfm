@@ -12,6 +12,8 @@ internal class Program
 
 		var cloudWatch = new CloudWatchService();
 
+		cloudWatch.CreateStreams().Wait();
+
 		var log = cloudWatch.Log(new Exception("Not handled"));
 		var logHandled = cloudWatch.LogHandled(new Exception("Handled"), "Under control!");
 

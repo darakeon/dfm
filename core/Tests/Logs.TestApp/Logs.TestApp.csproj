@@ -20,11 +20,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="log.json" />
+    <None Remove="*.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="log.json">
+    <Content Include="*.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
