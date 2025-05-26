@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Amazon;
 using Amazon.CloudWatchLogs;
 using Amazon.CloudWatchLogs.Model;
 using DFM.Generic;
+using DFM.Generic.Settings;
 using DFM.Logs.Data;
 
 namespace DFM.Logs;
@@ -26,12 +28,37 @@ public class CloudWatchService : BaseLogService, ILogService
 
 	private readonly AmazonCloudWatchLogsClient client;
 
+	public async Task CreateStreams()
+	{
+		var streams = await client.DescribeLogStreamsAsync(new DescribeLogStreamsRequest
+		{
+			LogGroupName = Cfg.Log.Group,
+		});
+
+		foreach (var appType in EnumX.AllExcept(AppType.None))
+		foreach (var division in EnumX.AllValues<Division>())
+		{
+			var logStreamName = getLogStreamName(appType, division);
+			var logStream = streams.LogStreams
+				.SingleOrDefault(ls => ls.LogStreamName == logStreamName);
+
+			if (logStream == null)
+			{
+				await client.CreateLogStreamAsync(new CreateLogStreamRequest
+				{
+					LogGroupName = Cfg.Log.Group,
+					LogStreamName = logStreamName
+				});
+			}
+		}
+	}
+
 	private protected override async Task saveLog(Division division, Object content)
 	{
 		var request = new PutLogEventsRequest
 		{
 			LogGroupName = Cfg.Log.Group,
-			LogStreamName = division.ToString(),
+			LogStreamName = getLogStreamName(Cfg.AppType, division),
 			LogEvents = new List<InputLogEvent>
 			{
 				new()
@@ -43,5 +70,10 @@ public class CloudWatchService : BaseLogService, ILogService
 		};
 
 		await client.PutLogEventsAsync(request, CancellationToken.None);
+	}
+
+	private static String getLogStreamName(AppType appType, Division division)
+	{
+		return $"{appType}-{division}".ToLower();
 	}
 }
