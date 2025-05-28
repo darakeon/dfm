@@ -8,8 +8,8 @@
 - [ ] Container logs in migrator
 - [ ] Container logs in midna
 - [ ] Container logs in nginx
-- [ ] NH for site
-- [ ] NH for robot
-- [ ] NH for api
+- [x] NH for site
+- [x] NH for robot
+- [x] NH for api
 - [ ] gunicorn for midna
 - [ ] nginx access and error logs

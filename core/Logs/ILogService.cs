@@ -15,4 +15,6 @@ public interface ILogService
 
 	Task LogConsoleOk(object message);
 	Task LogConsoleError(object message);
+
+	Task LogNH(String query);
 }
