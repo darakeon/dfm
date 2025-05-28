@@ -1104,7 +1104,6 @@
 
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
-    <PackageReference Include="Keon.MVC" Version="5.0.11" />
   </ItemGroup>
 
   <ItemGroup>
