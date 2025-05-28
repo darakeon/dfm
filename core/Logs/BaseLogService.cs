@@ -47,5 +47,11 @@ public abstract class BaseLogService : ILogService
 		await saveLog(Division.Console, log);
 	}
 
+	public async Task LogNH(String message)
+	{
+		var log = ConsoleLog.Error(message);
+		await saveLog(Division.NHibernate, log);
+	}
+
 	private protected abstract Task saveLog(Division division, Object content);
 }

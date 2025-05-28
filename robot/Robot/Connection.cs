@@ -31,7 +31,9 @@ namespace DFM.Robot
 
 		private static async Task sessionFactory(Func<Task> action)
 		{
-			SessionFactoryManager.Initialize<UserMap, User>(Cfg.DB);
+			SessionFactoryManager.Initialize<UserMap, User>(
+				Cfg.DB, query => LogFactory.Service.LogNH(query)
+			);
 
 			try
 			{

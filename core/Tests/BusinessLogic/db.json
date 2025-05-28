@@ -6,7 +6,6 @@
 
 		"ShowSQL": "true",
 		"DBAction": "Recreate",
-		"ScriptFileFullName": "NH_DB.txt",
 
 		"FakeDB": "false"
 	}

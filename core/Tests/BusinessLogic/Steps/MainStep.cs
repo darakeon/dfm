@@ -9,6 +9,7 @@ using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Generic.Datetime;
 using DFM.Language;
+using DFM.Logs;
 using Keon.NHibernate.Schema;
 using Keon.NHibernate.Sessions;
 using NUnit.Framework;
@@ -195,7 +196,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			ControlMap.IsTest = true;
 
-			SessionFactoryManager.Initialize<UserMap, User>(Cfg.DB);
+			SessionFactoryManager.Initialize<UserMap, User>(
+				Cfg.DB, query => LogFactory.Service.LogNH(query)
+			);
 			SessionManager.Init(getTicketKey);
 
 			service = new ServiceAccess(
