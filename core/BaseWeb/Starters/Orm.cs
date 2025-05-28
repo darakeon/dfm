@@ -18,7 +18,9 @@ namespace DFM.BaseWeb.Starters
 		{
 			try
 			{
-				SessionFactoryManager.Initialize<UserMap, User>(Cfg.DB);
+				SessionFactoryManager.Initialize<UserMap, User>(
+					Cfg.DB, query => LogFactory.Service.LogNH(query)
+				);
 
 				app.Use<Orm>(async (context, next) =>
 				{
