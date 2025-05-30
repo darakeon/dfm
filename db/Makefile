@@ -1,4 +1,5 @@
 VERSION:=$$(git branch --show-current)
+VERSION_SQL:=$$(echo migrations/${VERSION}.sql)
 
 run:
 	@docker compose up -d
@@ -15,12 +16,12 @@ logs:
 	@docker logs -f dfm-migrator
 
 sql:
-	@if [ ! -e ${VERSION}.sql ]; then \
-		echo "insert into migrations (name) values ('${VERSION}');" > ${VERSION}.sql; \
-		echo "" >> ${VERSION}.sql; \
-		echo "" >> ${VERSION}.sql; \
+	@if [ ! -e ${VERSION_SQL} ]; then \
+		echo "insert into migrations (name) values ('${VERSION}');" > ${VERSION_SQL}; \
+		echo "" >> ${VERSION_SQL}; \
+		echo "" >> ${VERSION_SQL}; \
 	fi
-	@code ${VERSION}.sql
+	@code ${VERSION_SQL}
 
 check_cloud_migration:
 	@cd engine && python3 verify.py
