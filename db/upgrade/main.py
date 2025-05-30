@@ -1,4 +1,4 @@
-import os
+from os import environ, listdir, path
 
 from db import Db
 from migration import Migration
@@ -12,7 +12,7 @@ def main(log: Log):
 	pending_migrations = get_pending_migrations(done_migrations)
 
 	for migration in pending_migrations:
-		if not migration.is_data or os.environ.get("RUN_DATA"):
+		if not migration.is_data or environ.get("RUN_DATA"):
 			execute_migration(log, db, migration)
 
 
@@ -26,14 +26,15 @@ def get_done_migrations(db: Db):
 
 
 def get_pending_migrations(done_migrations):
-	sqls = os.listdir(".")
+	sqls = listdir("migrations")
 	migrations = []
 
 	for sql in sqls:
 		migration = Migration.create(sql)
 
 		if migration and migration.name not in done_migrations:
-			with open(sql) as migration_file:
+			sql_path = path.join("migrations", sql)
+			with open(sql_path) as migration_file:
 				migration.set_queries(migration_file.read())
 				migrations.append(migration)
 
