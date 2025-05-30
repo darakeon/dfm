@@ -4,12 +4,17 @@ import time
 from mysql.connector import connect
 from mysql.connector.errors import InterfaceError
 
+from log import Log
+
 
 class Db:
 	DATABASE_HOST=os.environ.get("DATABASE_HOST")
 	DATABASE_NAME=os.environ.get("DATABASE_NAME")
 	DATABASE_USER=os.environ.get("DATABASE_USER")
 	DATABASE_PASS=os.environ.get("DATABASE_PASS")
+
+	def __init__(self, log: Log):
+		self.log = log
 
 	def execute_multi(self, queries):
 		connection = self.connect_db(0)
@@ -22,7 +27,7 @@ class Db:
 
 			while keep_executing:
 				statement += 1
-				print("statement", statement)
+				self.log.text(f"statement {statement}")
 
 				sub_statement = 0
 				for (result,) in cursor.fetchall():
@@ -30,7 +35,7 @@ class Db:
 						continue
 
 					sub_statement += 1
-					print("sub statement", sub_statement)
+					self.log.text(f"sub statement {sub_statement}")
 
 				keep_executing = cursor.nextset()
 
@@ -54,6 +59,6 @@ class Db:
 			if count == 9:
 				raise
 
-			print(f"Try: {count+2} (retry {count+1})")
+			self.log.text(f"Try: {count+2} (retry {count+1})")
 			time.sleep(2)
 			return self.connect_db(count + 1)
