@@ -4,7 +4,7 @@
 
 		"ConnectionString": "Data Source=/db/tests.db; Version=3;",
 
-		"ShowSQL": "false",
+		"ShowSQL": "true",
 		"DBAction": "Recreate",
 
 		"FakeDB": "false"
