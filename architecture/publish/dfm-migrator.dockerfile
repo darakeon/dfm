@@ -10,7 +10,9 @@ RUN apk add --no-cache mariadb-connector-c-dev; \
 	apk del .build-deps;
 
 RUN apk add gcc libc-dev python3-dev; \
-	python3 -m pip install --break-system-packages mysqlclient mysql-connector-python pytest pip-audit tzdata
+	pip install --break-system-packages mysqlclient mysql-connector-python pytest pip-audit tzdata
+
+RUN pip install --break-system-packages boto3
 
 WORKDIR /var/db
 
