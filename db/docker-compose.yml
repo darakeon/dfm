@@ -15,6 +15,16 @@ services:
       timeout: 10s
       retries: 5
 
+  cloud_watch:
+    image: localstack/localstack
+    container_name: aws-cloud-watch
+    hostname: aws-cloud-watch
+    ports:
+      - 4566:4566
+    env_file: db.env
+    volumes:
+      - ./localstack.sh:/etc/localstack/init/ready.d/script.sh
+
   migrator:
     image: darakeon/dfm-migrator
     container_name: dfm-migrator
@@ -23,4 +33,6 @@ services:
       - .:/var/db
     depends_on:
       mysql:
+        condition: service_healthy
+      cloud_watch:
         condition: service_healthy

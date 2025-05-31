@@ -7,6 +7,7 @@
           DATABASE_USER: root
           DATABASE_PASS: password
           RUN_DATA: 1
+          LOGS_OFF: 1
       - image: mysql
         environment:
           MYSQL_ROOT_PASSWORD: password
