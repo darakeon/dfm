@@ -2,6 +2,7 @@ VERSION:=$$(git branch --show-current)
 VERSION_SQL:=$$(echo migrations/${VERSION}.sql)
 
 run:
+	@chmod +x localstack.sh
 	@docker compose up -d
 
 stop:
