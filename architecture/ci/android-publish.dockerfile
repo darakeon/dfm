@@ -13,4 +13,5 @@ RUN echo "echo -----------------------------------------------------------------
 RUN echo "printf '\e[38;5;51m'" >> ~/.bashrc
 RUN echo "pip --version" >> ~/.bashrc
 
+SHELL ["/bin/bash", "-c"]
 CMD bash

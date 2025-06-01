@@ -25,4 +25,5 @@ EXPOSE 2011
 
 WORKDIR /var/www
 
+SHELL ["/bin/bash", "-c"]
 CMD cp /var/cfg/* . && ./DFM.MVC

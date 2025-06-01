@@ -18,4 +18,5 @@ WORKDIR /var/db
 
 COPY ./db /var/db/
 
+SHELL ["/bin/bash", "-c"]
 CMD python upgrade/main.py

@@ -24,4 +24,5 @@ EXPOSE 2023
 
 WORKDIR /var/www
 
+SHELL ["/bin/bash", "-c"]
 CMD cp /var/cfg/* . && ./DFM.API
