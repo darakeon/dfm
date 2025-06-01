@@ -32,6 +32,7 @@ RUN SECRET_KEY=collectstatic \
 	DOMAIN=collectstatic \
 	python3 manage.py collectstatic
 
+SHELL ["/bin/bash", "-c"]
 CMD cp -r ../static/inside/* ../static/outside \
 	&& python3 manage.py migrate \
 	&& python3 manage.py createsuperuser --noinput \

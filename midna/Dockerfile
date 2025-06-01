@@ -8,4 +8,5 @@ RUN pip install -r requirements.txt
 
 WORKDIR /var/midna/src
 
+SHELL ["/bin/bash", "-c"]
 CMD python manage.py runserver 0.0.0.0:8000
