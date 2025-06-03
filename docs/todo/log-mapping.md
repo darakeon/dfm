@@ -11,5 +11,5 @@
 - [x] NH for site
 - [x] NH for robot
 - [x] NH for api
-- [ ] gunicorn for midna
+- [x] gunicorn for midna
 - [ ] nginx access and error logs

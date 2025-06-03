@@ -15,6 +15,7 @@ RUN apk add gcc libc-dev python3-dev; \
 	python3 -m pip install --break-system-packages -r requirements.txt
 
 COPY midna/src /var/midna/src
+COPY midna/gunicorn/config/prod.py /var/midna/config/prod.py
 
 EXPOSE 8627
 
@@ -30,6 +31,7 @@ RUN SECRET_KEY=collectstatic \
 	DATABASE_HOST= \
 	DATABASE_PORT= \
 	DOMAIN=collectstatic \
+	LOGS_OFF=1 \
 	python3 manage.py collectstatic
 
 SHELL ["/bin/bash", "-c"]
