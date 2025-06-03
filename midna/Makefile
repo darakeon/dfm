@@ -14,7 +14,6 @@ env:
 	fi
 
 build:
-	@docker login
 	@docker build . -t midna
 
 db:
