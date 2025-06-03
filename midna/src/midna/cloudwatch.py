@@ -8,12 +8,15 @@ from boto3 import client
 
 
 class Boto3CloudWatchHandler(Handler):
+	LOGS_OFF = environ.get('LOGS_OFF') == '1'
 	LOGS_URL = environ.get('LOGS_URL')
 	LOGS_ACCESS_KEY = environ.get('LOGS_ACCESS_KEY')
 	LOGS_SECRET_KEY = environ.get('LOGS_SECRET_KEY')
 	LOGS_REGION = environ.get('LOGS_REGION')
 	LOGS_GROUP = environ.get('LOGS_GROUP')
 	LOGS_STREAM = environ.get('LOGS_STREAM')
+
+	FORMAT = '%(asctime)s %(name)s [%(levelname)s]: %(message)s'
 
 	MAX_MSG_SIZE = 256 * 1024  # 256 KB
 
@@ -23,14 +26,8 @@ class Boto3CloudWatchHandler(Handler):
 	def __init__(self):
 		super().__init__()
 
-		print("''''''''''''''''''''''''''''''''''''''''''")
-		print(self.LOGS_REGION)
-		print(self.LOGS_ACCESS_KEY)
-		print(self.LOGS_SECRET_KEY)
-		print(self.LOGS_URL)
-		print(self.LOGS_GROUP)
-		print(self.LOGS_STREAM)
-		print("__________________________________________")
+		if self.LOGS_OFF:
+			return
 
 		if (
 			not self.LOGS_ACCESS_KEY
