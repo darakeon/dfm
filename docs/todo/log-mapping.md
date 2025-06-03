@@ -6,7 +6,7 @@
 - [x] Container logs in site
 - [x] Container logs in api
 - [x] Container logs in migrator
-- [ ] Container logs in midna
+- [x] Container logs in midna
 - [ ] Container logs in nginx
 - [x] NH for site
 - [x] NH for robot
