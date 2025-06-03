@@ -1,5 +1,5 @@
 #!/bin/sh
-echo "Initializing localstack s3"
+echo "Initializing localstack"
 
 echo $LOGS_GROUP
 echo $LOGS_REGION
