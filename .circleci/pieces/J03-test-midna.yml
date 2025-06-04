@@ -15,6 +15,7 @@
             set -o allexport
             source env/example.env
             set +o allexport
+            export LOGS_OFF=1
             cd src
             python manage.py test deleted_users
             python manage.py test plans
