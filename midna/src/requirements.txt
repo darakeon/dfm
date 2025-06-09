@@ -1,4 +1,4 @@
-django==5.2.1
+django==5.2.2
 mysqlclient==2.2.7
 bcrypt==4.3.0
 boto3==1.38.27
