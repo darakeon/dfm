@@ -1,5 +1,6 @@
 {
 	"en-us": {
+		"Adapt maintenance times to get from source (javascript and lambda)": "Update System working hours",
 		"Avoid android no-answer when site is off": "Handle site offline at mobile app",
 		"Improve information about already opened transaction - which is opened?": "Improve internal error handling",
 		"If a error happens in Ops controller, do not redirect": "Avoid non stop redirect error page",
@@ -80,6 +81,7 @@
 		"": null
 	},
 	"pt-br": {
+		"Adapt maintenance times to get from source (javascript and lambda)": "Atualização dos horários de funcionamento",
 		"Avoid android no-answer when site is off": "Ajuste em aplicativo de celular para quando o site está offline",
 		"Improve information about already opened transaction - which is opened?": "Melhoria de manejamento de erro interno",
 		"If a error happens in Ops controller, do not redirect": "Evitado redirecionamento infinito em página de erro",
