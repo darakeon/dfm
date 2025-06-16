@@ -7,9 +7,10 @@
 - [x] Container logs in api
 - [x] Container logs in migrator
 - [x] Container logs in midna
-- [ ] Container logs in nginx
+- [x] Container logs in nginx
 - [x] NH for site
 - [x] NH for robot
 - [x] NH for api
 - [x] gunicorn for midna
-- [ ] nginx access and error logs
+- [x] nginx access and error logs
+- [x] move cron logs
