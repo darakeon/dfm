@@ -1,4 +1,8 @@
 {
+	"14.1.4.1": [
+		"Atualização dos horários de funcionamento",
+		"Melhorado armazenamento de dados de erros do Sistema"
+	],
 	"14.1.4.0": [
 		"Corrigido adição de detalhes em Movimentação no aplicativo de celular",
 		"Corrigidas imagens em e-mails",
