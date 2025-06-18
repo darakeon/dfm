@@ -61,10 +61,10 @@ allprojects {
 					TestLogEvent.STANDARD_OUT,
 					TestLogEvent.STANDARD_ERROR
 
-			exceptionFormat TestExceptionFormat.FULL
-			showExceptions true
-			showCauses true
-			showStackTraces true
+			exceptionFormat = TestExceptionFormat.FULL
+			showExceptions = true
+			showCauses = true
+			showStackTraces = true
 		}
 	}
 }
