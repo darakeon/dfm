@@ -81,7 +81,7 @@
 <body>
 	<main>
 		<h1>Don't fly Money</h1>
-		<p id="clock">🕰️ 🗺️</p>
+		<p id="clock">🕰️ ..:..:.. 🗺️</p>
 		<section>
 			<h2>Horários de<br/>funcionamento</h2>
 			<ul id="times-pt-br">
@@ -113,6 +113,22 @@
 			return `${toString(hour)} am`
 		}
 
+		function setClock() {
+			var date = new Date()
+
+			var hours = date.getUTCHours()
+			var minutes = date.getUTCMinutes()
+			var seconds = date.getUTCSeconds()
+
+			hours = toString(hours)
+			minutes = toString(minutes)
+			seconds = toString(seconds)
+
+			var time = `🕰️ ${hours}:${minutes}:${seconds} 🗺️`
+
+			document.getElementById('clock').innerHTML = time
+		}
+
 		fetch('https://raw.githubusercontent.com/darakeon/server/refs/heads/main/online-hours.json')
 			.then(async (response) => {
 				let times = await response.json()
@@ -132,21 +148,8 @@
 						).toString().replace(",", "")
 			})
 
-		setInterval(() => {
-			var date = new Date()
-
-			var hours = date.getUTCHours()
-			var minutes = date.getUTCMinutes()
-			var seconds = date.getUTCSeconds()
-
-			hours = String(hours).padStart(2, '0')
-			minutes = String(minutes).padStart(2, '0')
-			seconds = String(seconds).padStart(2, '0')
-
-			var time = `🕰️ ${hours}:${minutes}:${seconds} 🗺️`
-
-			document.getElementById('clock').innerHTML = time
-		}, 1000)
+		setClock()
+		setInterval(setClock, 1000)
 	</script>
 </body>
 
