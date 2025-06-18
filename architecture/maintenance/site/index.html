@@ -81,31 +81,17 @@
 <body>
 	<main>
 		<h1>Don't fly Money</h1>
-		<p id="clock">🕰️ 🗺️</p>
+		<p id="clock">🕰️ ..:..:.. 🗺️</p>
 		<section>
 			<h2>Horários de<br/>funcionamento</h2>
-			<ul>
-				<li>00:00 até 01:00</li>
-				<li>03:00 até 02:00</li>
-				<li>06:00 até 07:00</li>
-				<li>09:00 até 10:00</li>
-				<li>12:00 até 13:00</li>
-				<li>15:00 até 16:00</li>
-				<li>18:00 até 19:00</li>
-				<li>21:00 até 22:00</li>
+			<ul id="times-pt-br">
+				<li>carregando...</li>
 			</ul>
 		</section>
 		<section>
 			<h2>Working<br/>hours</h2>
-			<ul>
-				<li>00 am to 01 am</li>
-				<li>03 am to 02 am</li>
-				<li>06 am to 07 am</li>
-				<li>09 am to 10 am</li>
-				<li>12 pm to 13 pm</li>
-				<li>15 pm to 16 pm</li>
-				<li>18 pm to 19 pm</li>
-				<li>21 pm to 22 pm</li>
+			<ul id="times-en-us">
+				<li>loading...</li>
 			</ul>
 		</section>
 	</main>
@@ -115,21 +101,55 @@
 	<img id="dfm" src="dfm.png" alt="Don't fly Money" title="Don't fly Money"/>
 
 	<script>
-		setInterval(() => {
+		function toString(hour) {
+			return hour.toString().padStart(2, '0')
+		}
+
+		function toAmPm(hour) {
+			if (hour > 12)
+				return `${toString(hour - 12)} pm`
+			if (hour == 12)
+				return `${toString(hour)} pm`
+			return `${toString(hour)} am`
+		}
+
+		function setClock() {
 			var date = new Date()
 
 			var hours = date.getUTCHours()
 			var minutes = date.getUTCMinutes()
 			var seconds = date.getUTCSeconds()
 
-			hours = String(hours).padStart(2, '0')
-			minutes = String(minutes).padStart(2, '0')
-			seconds = String(seconds).padStart(2, '0')
+			hours = toString(hours)
+			minutes = toString(minutes)
+			seconds = toString(seconds)
 
 			var time = `🕰️ ${hours}:${minutes}:${seconds} 🗺️`
 
 			document.getElementById('clock').innerHTML = time
-		}, 1000)
+		}
+
+		fetch('https://raw.githubusercontent.com/darakeon/server/refs/heads/main/online-hours.json')
+			.then(async (response) => {
+				let times = await response.json()
+
+				document.getElementById('times-pt-br').innerHTML =
+					times.map(
+							t => { return { start: toString(t), end: toString(t+1) } }
+						).map(
+							t => `<li>${t.start}:00 até ${t.end}:00</li>`
+						).toString().replace(",", "")
+
+				document.getElementById('times-en-us').innerHTML =
+					times.map(
+							t => { return { start: toAmPm(t), end: toAmPm(t+1) } }
+						).map(
+							t => `<li>${t.start} até ${t.end}</li>`
+						).toString().replace(",", "")
+			})
+
+		setClock()
+		setInterval(setClock, 1000)
 	</script>
 </body>
 
