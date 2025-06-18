@@ -4,15 +4,18 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#14.1.4.0)
-- [go to version in development](#14.1.4.1)
-- [dev version state](../../14.1.4.1/docs/RELEASES.md#14.1.4.1)
+- [go to published version](#14.1.4.1)
+- [go to version in development](#14.1.4.2)
+- [dev version state](../../14.1.4.2/docs/RELEASES.md#14.1.4.2)
 
 ## Legend
 - 🐉: at least one huge change (increases first number)
 - 🐳: at least one big change, like a new feature (increases second number)
 - 🐑: at least one little change, as a change at an existing feature (increases third number)
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="14.1.4.2"></a>14.1.4.2 :🐜: <sup>`1`</sup>
+- [ ] Check [android error socket](todo/android-error-socket-closed.log)
 
 ## <a name="14.1.4.1"></a>14.1.4.1 :🐜: <sup>`4`</sup>
 - [x] `250616>250618` Adapt maintenance times to get from source (javascript and lambda)
