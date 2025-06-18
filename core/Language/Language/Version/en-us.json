@@ -1,4 +1,8 @@
 {
+	"14.1.4.1": [
+		"Update System working hours",
+		"Improve system errors data storage"
+	],
 	"14.1.4.0": [
 		"Fix not adding second detail in mobile app",
 		"Fix problem of images in emails",
