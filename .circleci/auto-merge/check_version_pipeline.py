@@ -14,8 +14,7 @@ def main():
     username = git_info[0]
     reponame = git_info[1]
 
-    version = get_version()
-
+    version = environ.get("VERSION")
     pipeline = find_pipeline(username, reponame, version, None)
 
     if not pipeline:
@@ -33,20 +32,6 @@ def get_git_info():
         'git@github.com:(.+)/(.+).git',
         git_info
     ).groups()
-
-
-def get_version():
-    pattern = 'version in development.+#(\d+\.\d+\.\d+\.\d+)'
-
-    with open('../../docs/RELEASES.md') as file:
-        while file.readable():
-            line = file.readline()
-            result = search(pattern, line)
-
-            if result:
-                return result.group(1)
-
-    return None
 
 
 def find_pipeline(username, reponame, version, page_token):

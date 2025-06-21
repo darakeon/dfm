@@ -1164,23 +1164,28 @@ jobs:
           name: check last dev version ci succeeded
           path: .circleci/auto-merge
           command: |
+            export VERSION=$(./get_version.sh)
             python check_version_pipeline.py
       - run:
           name: Make folder
+          path: .circleci/auto-merge
           command: |
             mkdir prs
       - run:
           name: List PRs
+          path: .circleci/auto-merge
           command: |
-            export VERSION=$(head -n 8 docs/RELEASES.md | tail -n 1 | cut -d "#" -f 2 | cut -d ")" -f 1)
-            echo $VERSION
+            export VERSION=$(./get_version.sh)
             gh pr list --base $VERSION --author app/dependabot --state open --json author,autoMergeRequest,baseRefName,closed,commits,headRefName,headRepository,headRepositoryOwner,id,isCrossRepository,isDraft,labels,number,state,statusCheckRollup > prs/list.json
       - run:
           name: Get PR to merge
+          path: .circleci/auto-merge
           command: |
-            python .circleci/auto-merge/get_next_auto_merge.py prs/list.json > prs/chosen
+            export VERSION=$(./get_version.sh)
+            python get_next_auto_merge.py prs/list.json > prs/chosen
       - run:
           name: Merge PR
+          path: .circleci/auto-merge
           command: |
             export PR=$(tail -n 1 prs/chosen)
             if [ "$PR" != "" ]; then
@@ -1190,7 +1195,7 @@ jobs:
               echo "No PRs to merge"
             fi
       - store_artifacts:
-          path: prs
+          path: .circleci/auto-merge/prs
           destination: prs
 
   audit_version_changer:
