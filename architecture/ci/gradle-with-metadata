@@ -15,8 +15,11 @@ gradle $* \
     || ERROR=$?
 
 if [ "$ERROR" != "" ]; then
+    rm -rf ~/.gradle/caches
+    rm -rf .gradle
+
     echyellow "Something ended wrong, let's generate metadata"
-    gradle --write-verification-metadata sha256 --parallel --build-cache $*
+    gradle $* --write-verification-metadata sha256 --parallel
 
     export HAS_METADATA=$(git status | grep "verification-metadata.xml")
 
