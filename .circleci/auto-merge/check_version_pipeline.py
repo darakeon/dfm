@@ -14,9 +14,12 @@ def main():
     username = git_info[0]
     reponame = git_info[1]
 
-    version = get_version()
+    dev_version = get_version('version in development')
+    pipeline = find_pipeline(username, reponame, dev_version, None)
 
-    pipeline = find_pipeline(username, reponame, version, None)
+    if not pipeline:
+        prd_version = get_version('published version')
+        pipeline = find_pipeline(username, reponame, prd_version, None)
 
     if not pipeline:
         exit(1)
@@ -35,8 +38,8 @@ def get_git_info():
     ).groups()
 
 
-def get_version():
-    pattern = 'version in development.+#(\d+\.\d+\.\d+\.\d+)'
+def get_version(text: str):
+    pattern = f'{text}.+#(\d+\.\d+\.\d+\.\d+)'
 
     with open('../../docs/RELEASES.md') as file:
         while file.readable():
