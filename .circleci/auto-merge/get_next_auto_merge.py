@@ -1,4 +1,5 @@
 from json import dumps, loads
+from os import environ
 from re import search
 from subprocess import run
 from sys import argv
@@ -30,7 +31,7 @@ def filter_prs(prs):
 	username = git_info[0]
 	reponame = git_info[1]
 
-	version = get_version()
+	version = environ.get("VERSION")
 
 	dependabot_pr = 'app/dependabot'
 	dependabot_commit = 'dependabot[bot]'
@@ -82,20 +83,6 @@ def get_git_info():
 		'git@github.com:(.+)/(.+).git',
 		git_info
 	).groups()
-
-
-def get_version():
-	pattern = 'version in development.+#(\d+\.\d+\.\d+\.\d+)'
-
-	with open('docs/RELEASES.md') as file:
-		while file.readable():
-			line = file.readline()
-			result = search(pattern, line)
-
-			if result:
-				return result.group(1)
-
-	return None
 
 
 main()
