@@ -1,6 +1,6 @@
   test_android_app_release:
     docker:
-      - image: darakeon/android
+      - image: darakeon/android:gradle8.13-jdk17
     resource_class: large
     steps:
       - checkout
