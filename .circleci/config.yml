@@ -758,7 +758,7 @@ jobs:
 
   build_android:
     docker:
-      - image: darakeon/android
+      - image: darakeon/android:gradle8.13-jdk17
     resource_class: large
     steps:
       - checkout
@@ -829,7 +829,7 @@ jobs:
 
   audit_android:
     docker:
-      - image: darakeon/android
+      - image: darakeon/android:gradle8.13-jdk17
     steps:
       - checkout
       - attach_workspace:
@@ -853,7 +853,7 @@ jobs:
 
   test_android_lib_debug:
     docker:
-      - image: darakeon/android
+      - image: darakeon/android:gradle8.13-jdk17
     resource_class: large
     steps:
       - checkout
@@ -877,7 +877,7 @@ jobs:
 
   test_android_lib_release:
     docker:
-      - image: darakeon/android
+      - image: darakeon/android:gradle8.13-jdk17
     resource_class: large
     steps:
       - checkout
@@ -901,7 +901,7 @@ jobs:
 
   test_android_app_debug:
     docker:
-      - image: darakeon/android
+      - image: darakeon/android:gradle8.13-jdk17
     resource_class: large
     steps:
       - checkout
@@ -925,7 +925,7 @@ jobs:
 
   test_android_app_release:
     docker:
-      - image: darakeon/android
+      - image: darakeon/android:gradle8.13-jdk17
     resource_class: large
     steps:
       - checkout
