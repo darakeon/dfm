@@ -1263,6 +1263,7 @@ jobs:
       - run:
           name: Check translations length
           command: |
+            export VERSION=$(./circleci/auto-merge/get_version.sh)
             python3 .circleci/android/publish.py test-translations
       - run:
           name: push
