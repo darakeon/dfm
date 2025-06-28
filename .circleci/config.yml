@@ -1446,6 +1446,7 @@ jobs:
           name: Publish to Play Store
           command: |
             export ANDROID_BUNDLE=android/App/build/outputs/bundle/release/App-release.aab
+            export VERSION=$(./.circleci/auto-merge/get_version.sh)
             python3 .circleci/android/publish.py
       - store_artifacts:
           path: android/App/build/outputs/bundle/release/

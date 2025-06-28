@@ -1,7 +1,7 @@
 from json import loads
 from sys import argv
 from re import search
-
+from os import environ
 
 TEST = len(argv) >= 2 and argv[1] == 'test-translations'
 
@@ -21,7 +21,7 @@ if not TEST:
 
 
 def main():
-	version = get_version()
+	version = environ["VERSION"]
 
 	en_us = get_translation(
 		'System Updates (some only at website):',
@@ -62,17 +62,6 @@ def main():
 	result = commit(edits, edit_id)
 
 	print(result)
-
-
-def get_version():
-	pattern = r'^\- \[.+\]\(\#(\d+\.\d+\.\d+\.\d+)\)$'
-
-	with open(f'docs/RELEASES.md') as file:
-		task_list = file.readlines()
-
-	dev = task_list[7]
-
-	return search(pattern, dev).group(1)
 
 
 def get_translation(title, lang, key):
