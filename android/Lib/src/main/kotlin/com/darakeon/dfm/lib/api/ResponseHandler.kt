@@ -28,7 +28,7 @@ class ResponseHandler<C, A>(
 	init { logDebug("INIT") }
 
 	override fun onResponse(call: Call<Body<A>>, response: Response<Body<A>>) {
-		logDebug("RESPONSE ${call.request().method()} ${call.request().url()}")
+		logDebug("RESPONSE ${call.request().method} ${call.request().url}")
 
 		logDebug("STATUS ${response.code()}")
 
@@ -89,7 +89,7 @@ class ResponseHandler<C, A>(
 	}
 
 	override fun onFailure(call: Call<Body<A>>, throwable: Throwable) {
-		logDebug("FAIL ${call.request().url()}")
+		logDebug("FAIL ${call.request().url}")
 
 		caller.endWait()
 
@@ -102,7 +102,7 @@ class ResponseHandler<C, A>(
 	}
 
 	private fun onError(call: Call<Body<A>>, error: Throwable) {
-		val url = call.request().url().encodedPath()
+		val url = call.request().url.encodedPath
 
 		if (BuildConfig.DEBUG) {
 			caller.error(url, error)
