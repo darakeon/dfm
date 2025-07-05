@@ -13,7 +13,7 @@ import org.junit.Test
 
 
 class ManagerTest {
-	private lateinit var manager: Manager<Int>
+	private lateinit var manager: Manager<Fake>
 
 	private lateinit var activity: Activity
 
@@ -27,8 +27,7 @@ class ManagerTest {
 			.mockTheme()
 
 		activity = mockContext.activity
-
-		manager = Manager(activity, Int::class)
+		manager = Manager(activity, Fake::class)
     }
 
     @After
@@ -46,22 +45,24 @@ class ManagerTest {
 		assertThat(manager.run, `is`(false))
 		assertNull(manager.error)
 
-		manager.add(1)
+		val fake = Fake(1)
+		manager.add(fake)
 
-		assertThat(manager.next?.obj, `is`(1))
+		assertThat(manager.next?.obj, `is`(fake))
 		assertThat(manager.run, `is`(true))
 		assertNull(manager.error)
     }
 
     @Test
     fun success() {
-		manager.add(2)
+		val fake = Fake(2)
+		manager.add(fake)
 
-		assertThat(manager.next?.obj, `is`( 2))
+		assertThat(manager.next?.obj, `is`(fake))
 		assertThat(manager.run, `is`(true))
 		assertNull(manager.error)
 
-		manager.success(2)
+		manager.success(fake)
 
 		assertNull(manager.next)
 		assertThat(manager.run, `is`(false))
@@ -70,65 +71,69 @@ class ManagerTest {
 
     @Test
     fun error_onlyKey() {
-		manager.add(3)
+		val fake = Fake(3)
+		manager.add(fake)
 
-		assertThat(manager.next?.obj, `is`(3))
+		assertThat(manager.next?.obj, `is`(fake))
 		assertThat(manager.run, `is`(true))
 		assertNull(manager.error)
 
-		manager.error(3)
+		manager.error(fake)
 
 		assertNull(manager.next)
 		assertThat(manager.run, `is`(false))
 
 		assertNotNull(manager.error)
-		assertThat(manager.error?.obj, `is`(3))
+		assertThat(manager.error?.obj, `is`(fake))
 		assertThat(manager.error?.error, `is`("fail_at_offline_insert"))
     }
 
     @Test
     fun error_keyAndErrorCode() {
-		manager.add(4)
+		val fake = Fake(4)
+		manager.add(fake)
 
-		assertThat(manager.next?.obj, `is`(4))
+		assertThat(manager.next?.obj, `is`(fake))
 		assertThat(manager.run, `is`(true))
 		assertNull(manager.error)
 
-		manager.error(4, R.string.error_not_identified)
+		manager.error(fake, R.string.error_not_identified)
 
 		assertNull(manager.next)
 		assertThat(manager.run, `is`(false))
 
 		assertNotNull(manager.error)
-		assertThat(manager.error?.obj, `is`(4))
+		assertThat(manager.error?.obj, `is`(fake))
 		assertThat(manager.error?.error, `is`("error_not_identified"))
     }
 
     @Test
     fun error_keyAndErrorText() {
-		manager.add(5)
+		val fake = Fake(5)
+		manager.add(fake)
 
-		assertThat(manager.next?.obj, `is`(5))
+		assertThat(manager.next?.obj, `is`(fake))
 		assertThat(manager.run, `is`(true))
 		assertNull(manager.error)
 
-		manager.error(5, "21")
+		manager.error(fake, "21")
 
 		assertNull(manager.next)
 		assertThat(manager.run, `is`(false))
 
 		assertNotNull(manager.error)
-		assertThat(manager.error?.obj, `is`(5))
+		assertThat(manager.error?.obj, `is`(fake))
 		assertThat(manager.error?.error, `is`("21"))
     }
 
     @Test
     fun remove() {
-		manager.add(6)
+		val fake = Fake(6)
+		manager.add(fake)
 
 		val item = manager.next!!
 
-		assertThat(item.obj, `is`(6))
+		assertThat(item.obj, `is`(fake))
 		assertThat(manager.run, `is`(true))
 		assertNull(manager.error)
 
@@ -141,22 +146,25 @@ class ManagerTest {
 
     @Test
     fun clearSucceeded() {
-		manager.add(7)
+		val fake = Fake(7)
+		manager.add(fake)
 
-		assertThat(manager.next?.obj, `is`(7))
+		assertThat(manager.next?.obj, `is`(fake))
 		assertThat(manager.run, `is`(true))
 		assertNull(manager.error)
 
 		manager.clearSucceeded()
 
-		assertThat(manager.next?.obj, `is`(7))
+		assertThat(manager.next?.obj, `is`(fake))
 		assertThat(manager.run, `is`(true))
 		assertNull(manager.error)
 
-		manager.success(7)
+		manager.success(fake)
 
 		assertNull(manager.next)
 		assertThat(manager.run, `is`(false))
 		assertNull(manager.error)
     }
+
+	data class Fake(val number: Int)
 }
