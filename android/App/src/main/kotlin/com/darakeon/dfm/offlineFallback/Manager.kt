@@ -23,8 +23,10 @@ class Manager<O : Any>(
 		get() = if (queue.isEmpty()) {
 			arrayOf()
 		} else {
-			val arrayType = object : TypeToken<Array<ObjStatus<O>>>() {}.type
-			Gson().fromJson<Array<ObjStatus<O>>>(
+			val statusType = TypeToken.getParameterized(ObjStatus::class.java, type.java).type
+			val arrayType = TypeToken.getParameterized(List::class.java, statusType).type
+
+			Gson().fromJson<List<ObjStatus<O>>>(
 				queue, arrayType
 			).map {
 				ObjStatus(
