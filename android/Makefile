@@ -2,8 +2,9 @@ MAKEFLAGS += --no-print-directory
 
 PROJECTS=/mnt/c/Users/${WINDOWS_USER}/Projects
 PROJECT=${PROJECTS}/keon/dfm
+
 DKDROID=docker exec -it dkdroid
-GRADLE=docker exec -it dkdroid gradle --no-daemon
+GRADLE=${DKDROID} gradle --no-daemon
 
 start:
 	@echo "start docker machine"
@@ -18,6 +19,11 @@ start:
 		tail -f /dev/null
 	@echo "docker machine started"
 
+start-if-off:
+	@if [ "$$(docker ps -a -f name=dkdroid -q)" = "" ]; then \
+		make start; \
+	fi
+
 stop:
 	@echo "stop docker machine"
 	@docker stop dkdroid || echo "no dkdroid to stop"
@@ -25,10 +31,10 @@ stop:
 sleep:
 	@sleep 2
 
-bash:
-	@docker exec -it dkdroid bash
+bash: start-if-off
+	@${DKDROID} bash
 
-apk:
+apk: start-if-off
 	@echo "create android installer"
 
 	@${GRADLE} :app:bundleRelease -Phide-test-deps
@@ -37,18 +43,18 @@ apk:
 		${PROJECT}/android/publish/ \
 		|| echo "windows folder not found"
 
-verify:
+verify: start-if-off
 	@echo "check android dependencies"
 	@${GRADLE} dependencyCheckAnalyze --stacktrace --info \
 		|| cp -r build/reports \
 			${PROJECT}/android/ \
 			|| echo "windows folder not found"
 
-write-metadata:
+write-metadata: start-if-off
 	@echo "update data for check android dependencies"
 	@${GRADLE} build --exclude-task :App:packageRelease --write-verification-metadata sha256 --parallel
 
-rewrite-metadata:
+rewrite-metadata: start-if-off
 	@echo "recreate data for check android dependencies"
 	@if [ -e gradle/verification-metadata.xml ]; then rm gradle/verification-metadata.xml; fi
 	@make write-metadata
@@ -72,7 +78,7 @@ clean:
 		mv keystore.properties keystore-$$(date +%Y%m%d%H%M%S%N).properties; \
 	fi
 
-ci-keystore:
+ci-keystore: start-if-off
 	@echo "create fake keys for build installer"
 	@if [ ! -e fake.keystore ]; then \
 		echo "" > fake.keystore; \
@@ -81,20 +87,20 @@ ci-keystore:
 		echo "storeFile=fake.keystore\nstorePassword=\nkeyAlias=\nkeyPassword=" > keystore.properties; \
 	fi
 
-ci-androidDeps:
+ci-androidDeps: start-if-off
 	@echo "install dependencies"
 	@${GRADLE} androidDependencies
 
-ci-build:
+ci-build: start-if-off
 	@echo "build project"
 	@${GRADLE} build -x test -x androidDependencies -x packageRelease -x packageDebug
 
-ci-configure:
+ci-configure: start-if-off
 	@echo "configure gradle"
 	@${GRADLE} configure
 
 ci: ci-keystore ci-androidDeps ci-build ci-configure
 
-test:
+test: start-if-off
 	@echo "run all project tests"
 	@${GRADLE} test -x build -x androidDependencies -x packageRelease -x packageDebug
