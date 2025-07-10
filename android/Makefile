@@ -46,7 +46,7 @@ verify:
 
 write-metadata:
 	@echo "update data for check android dependencies"
-	@${GRADLE} build --exclude-task :App:packageRelease --write-verification-metadata sha256 --parallel --build-cache
+	@${GRADLE} build --exclude-task :App:packageRelease --write-verification-metadata sha256 --parallel
 
 rewrite-metadata:
 	@echo "recreate data for check android dependencies"
