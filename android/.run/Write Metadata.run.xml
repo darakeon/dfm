@@ -4,7 +4,7 @@
       <option name="executionName" />
       <option name="externalProjectPath" value="$PROJECT_DIR$" />
       <option name="externalSystemIdString" value="GRADLE" />
-      <option name="scriptParameters" value="--exclude-task :App:packageRelease --write-verification-metadata sha256 --parallel --build-cache" />
+      <option name="scriptParameters" value="--exclude-task :App:packageRelease --write-verification-metadata sha256 --parallel" />
       <option name="taskDescriptions">
         <list />
       </option>
