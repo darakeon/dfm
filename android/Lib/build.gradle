@@ -42,6 +42,10 @@ android {
 		jvmTarget = "$java_version"
 	}
 
+	packagingOptions {
+		resources.excludes.add("META-INF/versions/9/OSGI-INF/MANIFEST.MF")
+	}
+
 	lint {
 		abortOnError = true
 	}
