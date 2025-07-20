@@ -24,14 +24,10 @@ class Manager<O : Any>(
 		get() = if (queue.isEmpty()) {
 			arrayOf()
 		} else {
-			val generic = (this.javaClass
-				.genericSuperclass as ParameterizedType)
-				.actualTypeArguments[0]
-
 			val arrayType = TypeToken.getParameterized(
 				Array::class.java,
 				ObjStatus::class.java,
-				generic
+				type
 			).type
 
 			Gson().fromJson<Array<ObjStatus<O>>>(
