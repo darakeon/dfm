@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-	compileSdk 34
+	compileSdk = 34
 
 	defaultConfig {
 		applicationId "com.darakeon.dfm.error_logs"
@@ -26,8 +26,8 @@ android {
 	}
 
 	buildFeatures {
-		viewBinding true
-		buildConfig true
+		viewBinding = true
+		buildConfig = true
 	}
 
 	sourceSets {
@@ -51,11 +51,15 @@ android {
 		jvmTarget = "$java_version"
 	}
 
-	lint {
-		abortOnError true
+	packagingOptions {
+		resources.excludes.add("META-INF/versions/9/OSGI-INF/MANIFEST.MF")
 	}
 
-	namespace 'com.darakeon.dfm.error_logs'
+	lint {
+		abortOnError = true
+	}
+
+	namespace = 'com.darakeon.dfm.error_logs'
 
 }
 

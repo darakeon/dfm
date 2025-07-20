@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-	compileSdk 34
+	compileSdk = 34
 
 	defaultConfig {
 
@@ -37,14 +37,18 @@ android {
 		jvmTarget = "$java_version"
 	}
 
-	lint {
-		abortOnError true
+	packagingOptions {
+		resources.excludes.add("META-INF/versions/9/OSGI-INF/MANIFEST.MF")
 	}
 
-	namespace 'com.darakeon.dfm.testutils'
+	lint {
+		abortOnError = true
+	}
+
+	namespace = 'com.darakeon.dfm.testutils'
 
 	buildFeatures {
-		buildConfig true
+		buildConfig = true
 	}
 
 }

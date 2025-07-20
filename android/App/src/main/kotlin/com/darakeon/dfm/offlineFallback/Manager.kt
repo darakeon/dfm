@@ -7,6 +7,7 @@ import com.darakeon.dfm.lib.auth.getValue
 import com.darakeon.dfm.lib.auth.setValue
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import java.lang.reflect.ParameterizedType
 import kotlin.reflect.KClass
 
 class Manager<O : Any>(
@@ -23,7 +24,16 @@ class Manager<O : Any>(
 		get() = if (queue.isEmpty()) {
 			arrayOf()
 		} else {
-			val arrayType = object : TypeToken<Array<ObjStatus<O>>>() {}.type
+			val generic = (this.javaClass
+				.genericSuperclass as ParameterizedType)
+				.actualTypeArguments[0]
+
+			val arrayType = TypeToken.getParameterized(
+				Array::class.java,
+				ObjStatus::class.java,
+				generic
+			).type
+
 			Gson().fromJson<Array<ObjStatus<O>>>(
 				queue, arrayType
 			).map {
