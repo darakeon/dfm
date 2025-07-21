@@ -6,7 +6,7 @@ def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
-	compileSdk 34
+	compileSdk = 34
 
 	defaultConfig {
 		applicationId "com.dontflymoney.view"
@@ -34,7 +34,7 @@ android {
 		release {
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-			signingConfig signingConfigs.release
+			signingConfig = signingConfigs.release
 			zipAlignEnabled true
 		}
 		debug {
@@ -43,8 +43,8 @@ android {
 	}
 
 	buildFeatures {
-		viewBinding true
-		buildConfig true
+		viewBinding = true
+		buildConfig = true
 	}
 
 	sourceSets {
@@ -69,10 +69,10 @@ android {
 	}
 
 	lint {
-		abortOnError true
+		abortOnError = true
 	}
 
-	namespace 'com.darakeon.dfm'
+	namespace = 'com.darakeon.dfm'
 
 }
 
