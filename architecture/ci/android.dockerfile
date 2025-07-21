@@ -4,10 +4,10 @@ RUN maintain
 
 RUN apt-get install -y openjdk-17-jdk
 
-RUN curl -sL https://services.gradle.org/distributions/gradle-8.13-all.zip > /tmp/gradle.zip \
+RUN curl -sL https://services.gradle.org/distributions/gradle-8.14.3-all.zip > /tmp/gradle.zip \
 	&& unzip -d /opt/gradle /tmp/gradle.zip \
 	&& rm /tmp/gradle.zip
-ENV GRADLE_HOME=/opt/gradle/gradle-8.13
+ENV GRADLE_HOME=/opt/gradle/gradle-8.14.3
 ENV PATH=${GRADLE_HOME}/bin/:${PATH}
 ENV GRADLE_USER_HOME=/var/cache/gradle
 

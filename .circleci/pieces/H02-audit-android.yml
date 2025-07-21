@@ -1,6 +1,6 @@
   audit_android:
     docker:
-      - image: darakeon/android:gradle8.13-jdk17
+      - image: darakeon/android:gradle8.14.3-jdk17
     steps:
       - checkout
       - attach_workspace:
