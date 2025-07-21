@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-	compileSdk 34
+	compileSdk = 34
 
 	defaultConfig {
 
@@ -38,13 +38,13 @@ android {
 	}
 
 	lint {
-		abortOnError true
+		abortOnError = true
 	}
 
-	namespace 'com.darakeon.dfm.testutils'
+	namespace = 'com.darakeon.dfm.testutils'
 
 	buildFeatures {
-		buildConfig true
+		buildConfig = true
 	}
 
 }
