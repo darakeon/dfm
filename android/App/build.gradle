@@ -6,7 +6,7 @@ def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
-	compileSdk = 34
+	compileSdk = 36
 
 	defaultConfig {
 		applicationId "com.dontflymoney.view"
