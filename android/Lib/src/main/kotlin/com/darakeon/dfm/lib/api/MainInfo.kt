@@ -27,6 +27,6 @@ object MainInfo {
 		return context.packageManager.getPackageInfo(
 			context.packageName,
 			0
-		).versionName
+		).versionName ?: ""
 	}
 }
