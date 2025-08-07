@@ -138,14 +138,14 @@
 							t => { return { start: toString(t), end: toString(t+1) } }
 						).map(
 							t => `<li>${t.start}:00 até ${t.end}:00</li>`
-						).toString().replace(",", "")
+						).toString().replace(/,/g, "")
 
 				document.getElementById('times-en-us').innerHTML =
 					times.map(
 							t => { return { start: toAmPm(t), end: toAmPm(t+1) } }
 						).map(
 							t => `<li>${t.start} até ${t.end}</li>`
-						).toString().replace(",", "")
+						).toString().replace(/,/g, "")
 			})
 
 		setClock()
