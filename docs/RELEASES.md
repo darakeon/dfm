@@ -15,6 +15,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="14.1.4.2"></a>14.1.4.2 :🐜: <sup>`2`</sup>
+- [ ] Temp avoid change version
 - [x] `250808>250808` Fix dependabot checks
 - [x] `250808>250808` Fix robot error on start program
 
