@@ -14,7 +14,8 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐑: at least one little change, as a change at an existing feature (increases third number)
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="14.1.4.2"></a>14.1.4.2 :🐜: <sup>`1`</sup>
+## <a name="14.1.4.2"></a>14.1.4.2 :🐜: <sup>`2`</sup>
+- [ ] Fix dependabot checks
 - [ ] Fix robot error on start program
 
 ## <a name="14.1.4.1"></a>14.1.4.1 :🐜: <sup>`4`</sup>
