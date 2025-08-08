@@ -1,5 +1,6 @@
 {
 	"en-us": {
+		"Fix dependabot checks": "Security fix",
 		"Fix robot error on start program": "Fix problem with schedules",
 		"Add javascript to insert several details parsing tab": "Add feature to ease insert Details in Moves",
 		"Adapt maintenance times to get from source (javascript and lambda)": "Update System working hours",
@@ -83,6 +84,7 @@
 		"": null
 	},
 	"pt-br": {
+		"Fix dependabot checks": "Correção de segurança",
 		"Fix robot error on start program": "Fix problem with schedules",
 		"Add javascript to insert several details parsing tab": "Funcionalidade para facilitar inserção de Detalhes nas Movimentações",
 		"Adapt maintenance times to get from source (javascript and lambda)": "Atualização dos horários de funcionamento",
