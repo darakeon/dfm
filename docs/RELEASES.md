@@ -16,7 +16,7 @@ This is the list of project releases, past and current. To see tasks that are st
 
 ## <a name="14.1.4.2"></a>14.1.4.2 :🐜: <sup>`2`</sup>
 - [ ] Fix dependabot checks
-- [ ] Fix robot error on start program
+- [x] `250808>250808` Fix robot error on start program
 
 ## <a name="14.1.4.1"></a>14.1.4.1 :🐜: <sup>`4`</sup>
 - [x] `250616>250618` Adapt maintenance times to get from source (javascript and lambda)
