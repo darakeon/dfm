@@ -10,6 +10,7 @@
 
 - [ ] Test Site
 - [ ] Test API
+- [ ] Test Robot
 - [ ] Test error handler
 - [ ] Upload new mobile prints
 - [ ] Merge PR
