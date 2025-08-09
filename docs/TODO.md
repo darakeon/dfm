@@ -14,9 +14,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend) then Type.
 
-| Task (43)                                                              | Typ | Siz | Dif | Imp | Pts |
+| Task (42)                                                              | Typ | Siz | Dif | Imp | Pts |
 | ---------------------------------------------------------------------- | --- | --- | --- | --- | --- |
-| Add javascript to insert several details parsing tab                   |  F  | 🐑 |  1  |  4  |  7  |
 | Check [android error socket](todo/android-error-socket-closed.log)     |  B  | 🐜 |  2  |  4  |  6  |
 | Check [android error no internet](todo/android-error-no-internet.log)  |  B  | 🐜 |  2  |  4  |  6  |
 | Inject ServiceAccess with AddScoped at MVC (because of Session NH)     |  M  | 🐜 |  2  |  4  |  6  |

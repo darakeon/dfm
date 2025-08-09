@@ -1,4 +1,8 @@
 {
+	"14.1.4.2": [
+		"Security fix",
+		"Fix problem with schedules"
+	],
 	"14.1.4.1": [
 		"Update System working hours",
 		"Improve system errors data storage"

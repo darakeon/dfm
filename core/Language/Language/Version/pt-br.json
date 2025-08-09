@@ -1,4 +1,8 @@
 {
+	"14.1.4.2": [
+		"Correção de segurança",
+		"Correção de problemas com agendamentos"
+	],
 	"14.1.4.1": [
 		"Atualização dos horários de funcionamento",
 		"Melhorado armazenamento de dados de erros do Sistema"
