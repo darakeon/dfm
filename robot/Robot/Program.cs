@@ -41,27 +41,27 @@ namespace DFM.Robot
 				catch (UriFormatException) // not lambda
 				{
 					var task = getTask(args);
-					main(task);
+					await main(task);
 				}
 			});
 
 			await log.LogConsoleOk("Ended lambda async");
 		}
 		
-		public static String FunctionHandler(String input, ILambdaContext context)
+		public static async Task<String> FunctionHandler(String input, ILambdaContext context)
 		{
 			var task = getTask(input);
-			main(task);
+			await main(task);
 			return input.ToUpper();
 		}
 
-		private static async void main(RobotTask task)
+		private static async Task main(RobotTask task)
 		{
 			await log.LogConsoleOk($"Starting {task}");
 
 			var service = new Service(task, log.LogConsoleOk);
 			var process = service.Execute();
-			process.Wait();
+			await process;
 
 			if (process.Exception != null)
 				await log.LogConsoleError(process.Exception);
