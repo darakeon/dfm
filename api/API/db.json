@@ -6,7 +6,7 @@
 		"DataBase": "dfm",
 		"Login": "dfm_user",
 
-		"ShowSQL": "true",
+		"ShowSQL": "false",
 		"DBAction": "Validate",
 
 		"FakeDB": "false"
