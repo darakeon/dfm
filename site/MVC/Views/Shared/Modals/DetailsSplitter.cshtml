@@ -1,0 +1,36 @@
+﻿@model BaseMovesModel
+
+@using DFM.Language.Extensions
+
+<div class="modal" id="details-splitter">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<em class="modal-title">
+					@Context.Translate("AddMultipleDetails")
+				</em>
+				@await Html.PartialAsync("Modals/Close")
+			</div>
+
+			<div class="modal-body">
+				<label class="control-label" for="details-splitter-content">
+					@Context.Translate("AddMultipleDetailsExplanation")
+				</label>
+				<textarea id="details-splitter-content"
+					class="form-control"
+					rows="4"
+					placeholder="@Context.Translate("Description")	3	@(2.7m.ToMoney(Model.Language))"
+				></textarea>
+			</div>
+			<div class="modal-footer text-right">
+				<button class="btn btn-info btn-glyph"
+					id="details-splitter-button"
+					type="button"
+					data-dismiss="modal"
+					title="@Context.Translate("Process")">
+					@Context.Translate("AddMultipleDetails")
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

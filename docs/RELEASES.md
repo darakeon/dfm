@@ -16,7 +16,7 @@ This is the list of project releases, past and current. To see tasks that are st
 
 ## <a name="14.1.5.0"></a>14.1.5.0 :🐑: <sup>`2`</sup>
 - [x] `250812>250812` Remove print SQL from Site, API and Robot
-- [ ] Add javascript to insert several details parsing tab
+- [x] `250813>250813` Add javascript to insert several details parsing tab
 
 ## <a name="14.1.4.2"></a>14.1.4.2 :🐜: <sup>`2`</sup>
 - [x] `250808>250808` Fix dependabot checks

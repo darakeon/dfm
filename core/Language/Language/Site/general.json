@@ -34,6 +34,7 @@
 		"Continue": "Continue",
 		"Upload": "Upload",
 		"Download": "Download",
+		"Process": "Process",
 		"Conversion": "Conversion",
 		"Pending": "Pending",
 		"Success": "Success",
@@ -146,6 +147,8 @@
 		"MoveLosingCategory": "This move has a Category, but Categories use is DISABLED.\nWhen you save this move, the Category will be lost.",
 		"MoveRemoveCheck": "This move is marked as checked.\nWhen you save this move, the check will be removed.",
 		"ScheduleRobotInterval": "Schedules are run periodically.\nIn case your schedule should have run today and the move is not created yet wait half an hour.\nIf it still does not happen contact us.",
+		"AddMultipleDetails": "Add multiple Details",
+		"AddMultipleDetailsExplanation": "To insert multiple details at once fill the box below. Put each detail in one line. For each detail add description (maximum 50 characters), quantity (integer number) and unitary value (decimal number, max 2 places), adding tabs or semicollon (';') between the values.",
 
 		"TFA": "Safer Login",
 		"TFATitle": "These Settings keeps your data safer",
@@ -258,6 +261,7 @@
 		"Continue": "Continuar",
 		"Upload": "Subir",
 		"Download": "Baixar",
+		"Process": "Processar",
 		"Conversion": "Conversão",
 		"Pending": "Pendente",
 		"Success": "Sucesso",
@@ -370,6 +374,8 @@
 		"MoveLosingCategory": "Esta Movimentação tem uma categoria, mas o uso de Categorias está DESABILITADO.\nA Categoria registrada antes será perdida se a Movimentação for editada.",
 		"MoveRemoveCheck": "Esta Movimentação está marcada como verificada.\nA marcação será removida quando salvar o formulário.",
 		"ScheduleRobotInterval": "Agendamentos são executados periodicamente.\nCaso seu agendamento seja para hoje e a movimentação não tenha sido criada ainda, aguarde meia hora.\nSe ainda não tiver sido executado, entre em contato conosco.",
+		"AddMultipleDetails": "Adicionar múltiplos Detalhes",
+		"AddMultipleDetailsExplanation": "Para inserir diversos detalhes de uma vez só preencha a caixa abaixo. Coloque um detalhe em cada linha. Para cada detalhe adicione descrição (máximo 50 caracteres), quantidade (número inteiro) e valor unitário (número decimal, máximo 2 casas), separando esse valores por tabs ou ponto-e-vírgula (';').",
 
 		"TFA": "Login mais Seguro",
 		"TFATitle": "Esta configuração mantém seus dados mais seguros",
