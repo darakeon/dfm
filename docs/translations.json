@@ -1,5 +1,6 @@
 {
 	"en-us": {
+		"Automate android verification metadata cleanup": "Improve system publish time",
 		"Fix dependabot checks": "Security fix",
 		"Fix robot error on start program": "Fix problem with schedules",
 		"Add javascript to insert several details parsing tab": "Add feature to ease insert Details in Moves",
@@ -85,6 +86,7 @@
 		"": null
 	},
 	"pt-br": {
+		"Automate android verification metadata cleanup": "Melhoria do tempo de publicação do sistema",
 		"Fix dependabot checks": "Correção de segurança",
 		"Fix robot error on start program": "Correção de problemas com agendamentos",
 		"Add javascript to insert several details parsing tab": "Funcionalidade para facilitar inserção de Detalhes nas Movimentações",
