@@ -14,7 +14,8 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐑: at least one little change, as a change at an existing feature (increases third number)
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="14.1.5.1"></a>14.1.5.1 :🐜: <sup>`1`</sup>
+## <a name="14.1.5.1"></a>14.1.5.1 :🐜: <sup>`2`</sup>
+- [ ] Automate android verification metadata cleanup
 - [ ] Check [android error socket](todo/android-error-socket-closed.log)
 
 ## <a name="14.1.5.0"></a>14.1.5.0 :🐑: <sup>`2`</sup>
