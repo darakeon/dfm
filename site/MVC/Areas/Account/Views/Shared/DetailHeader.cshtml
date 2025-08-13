@@ -14,6 +14,14 @@
 		<th class="col-sm-2 text-center conversion-element">
 			@Context.Translate("Conversion")
 		</th>
-		<th class="col-sm-1"></th>
+		<th class="col-sm-1">
+			<a role="button" data-toggle="modal" data-target="#details-splitter"
+				class="btn btn-sm btn-info btn-glyph"
+				title="@Context.Translate("AddMultipleDetails")"
+			>
+				<span class="glyphicon glyphicon-duplicate"></span>
+			</a>
+			@await Html.PartialAsync("Modals/DetailsSplitter")
+		</th>
 	</tr>
 </thead>

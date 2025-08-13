@@ -108,7 +108,7 @@ namespace DFM.MVC.Areas.Account.Models
 
 		public IMoveInfo GenericMove { get; set; }
 
-		public const Int32 DetailCount = 100;
+		public Int32 DetailCount => current.PlanLimitMoveDetail;
 
 		private IList<DetailUI> detailList;
 
