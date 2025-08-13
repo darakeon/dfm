@@ -1,4 +1,8 @@
 {
+	"14.1.5.0": [
+		"Melhoria de performace",
+		"Funcionalidade para facilitar inserção de Detalhes nas Movimentações"
+	],
 	"14.1.4.2": [
 		"Correção de segurança",
 		"Correção de problemas com agendamentos"
