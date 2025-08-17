@@ -11,6 +11,7 @@ class RequestHandler<C>(
 	url: String?,
 ) where C: Context, C: ApiCaller {
 	internal val service: RequestService
+	private val internet = Internet(caller)
 	private val dispatcher = Dispatcher()
 
 	init {
@@ -38,7 +39,7 @@ class RequestHandler<C>(
 		onNotFound: () -> Unit,
 		onSuccess: (T?) -> Unit,
 	) {
-		if (Internet.isOffline(caller)) {
+		if (internet.isOffline()) {
 			call.cancel()
 			caller.offline()
 			return

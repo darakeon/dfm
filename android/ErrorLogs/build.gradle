@@ -10,7 +10,7 @@ android {
 		versionCode 29
 		versionName "$dfm_version"
 
-		minSdkVersion 21
+		minSdkVersion 23
 		targetSdkVersion 35
 	}
 
