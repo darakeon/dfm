@@ -29,3 +29,5 @@ java_*.hprof
 .kotlin
 
 reports
+
+google-services.json
