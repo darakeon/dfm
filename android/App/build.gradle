@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.google.gms.google-services'
+
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
@@ -87,8 +89,13 @@ dependencies {
 		implementation project(":TestUtils")
 	}
 
+	implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_refresh_version"
+
 	implementation "com.google.android.gms:play-services-iid:$play_version"
 	implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+	implementation platform("com.google.firebase:firebase-bom:$firebase_bom_version")
+	implementation "com.google.firebase:firebase-messaging"
 
 	if (!project.hasProperty("hide-test-deps")) {
 		testImplementation project(":TestUtils")
