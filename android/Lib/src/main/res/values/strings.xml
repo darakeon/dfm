@@ -22,6 +22,9 @@
 	<string name="connection_fail">
 		There is a problem with the connection to the site
 	</string>
+	<string name="interrupted">
+		The connection was interrupted
+	</string>
 	<string name="offline_fallback_moves">
 		There was a problem with the connection, but your move can be send when the problem is solved
 	</string>

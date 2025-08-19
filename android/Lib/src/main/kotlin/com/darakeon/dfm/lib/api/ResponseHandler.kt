@@ -15,6 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.net.ConnectException
+import java.net.SocketException
 import java.net.SocketTimeoutException
 
 class ResponseHandler<C, A>(
@@ -96,6 +97,8 @@ class ResponseHandler<C, A>(
 		when (throwable) {
 			is SocketTimeoutException, is ConnectException ->
 				caller.offline()
+			is SocketException ->
+				caller.interrupted()
 			else ->
 				onError(call, throwable)
 		}

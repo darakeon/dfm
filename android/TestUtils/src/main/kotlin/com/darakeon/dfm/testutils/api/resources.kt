@@ -44,6 +44,8 @@ const val noBody = "Error on contacting the Pig. " +
 const val internetSlow = "There is a problem with " +
 	"the connection to the site"
 
+const val interrupted = "The connection was interrupted"
+
 const val statusUnknown = "Error on contacting the Pig. " +
 	"The error is recorded and we will solve it as soon as possible."
 

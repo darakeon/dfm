@@ -22,6 +22,9 @@
 	<string name="connection_fail">
 		Há um problema na conexão com o site
 	</string>
+	<string name="interrupted">
+		A conexão foi interrompida
+	</string>
 	<string name="offline_fallback_moves">
 		Há um problema com a conexão, mas sua movimentação pode ser enviada assim que normalizar
 	</string>
