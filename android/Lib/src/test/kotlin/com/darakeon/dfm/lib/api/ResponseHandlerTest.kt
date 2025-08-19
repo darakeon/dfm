@@ -17,6 +17,7 @@ import com.darakeon.dfm.testutils.BaseTest
 import com.darakeon.dfm.testutils.TestException
 import com.darakeon.dfm.testutils.api.internetError
 import com.darakeon.dfm.testutils.api.internetSlow
+import com.darakeon.dfm.testutils.api.interrupted
 import com.darakeon.dfm.testutils.api.noBody
 import okhttp3.ResponseBody.Companion.toResponseBody
 import org.hamcrest.CoreMatchers.`is`
@@ -32,6 +33,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog
 import retrofit2.Response
 import java.net.ConnectException
+import java.net.SocketException
 import java.net.SocketTimeoutException
 
 @RunWith(RobolectricTestRunner::class)
@@ -486,6 +488,32 @@ internal class ResponseHandlerTest: BaseTest() {
 		assertThat(
 			activity.errorText,
 			`is`(internetSlow)
+		)
+
+		assertTrue(waitEnded)
+		assertNull(resultText)
+	}
+
+	@Test
+	fun onFailureData_ErrorOfSocket() {
+		handlerText.onFailure(CallMock.ForString(), SocketException())
+
+		assertThat(
+			activity.errorText,
+			`is`(interrupted)
+		)
+
+		assertTrue(waitEnded)
+		assertNull(resultText)
+	}
+
+	@Test
+	fun onFailureNoData_ErrorOfSocket() {
+		handlerNoData.onFailure(CallMock.ForString(), SocketException())
+
+		assertThat(
+			activity.errorText,
+			`is`(interrupted)
 		)
 
 		assertTrue(waitEnded)
