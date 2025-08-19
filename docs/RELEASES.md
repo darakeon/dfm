@@ -17,7 +17,7 @@ This is the list of project releases, past and current. To see tasks that are st
 ## <a name="14.1.5.1"></a>14.1.5.1 :🐜: <sup>`3`</sup>
 - [ ] Add to tasklist security measures to avoid bots on form
 - [ ] Automate android verification metadata cleanup
-- [ ] Check [android error socket](todo/android-error-socket-closed.log)
+- [x] `250819>250819` Check [android error socket](todo/android-error-socket-closed.log)
 
 ## <a name="14.1.5.0"></a>14.1.5.0 :🐑: <sup>`2`</sup>
 - [x] `250812>250812` Remove print SQL from Site, API and Robot

@@ -12,6 +12,7 @@ interface ApiCaller {
 	fun endWait() {}
 
 	fun offline() = error(R.string.connection_fail)
+	fun interrupted() = error(R.string.interrupted)
 	fun error(text: String)
 	fun error(resId: Int)
 	fun error(resMessage: Int, resButton: Int, action: () -> Unit)
