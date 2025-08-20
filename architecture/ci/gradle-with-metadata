@@ -24,7 +24,7 @@ if [ "$ERROR" != "" ]; then
     python ../.circleci/android/verification_metadata_cleanup.py
 
     echyellow "2. Regenerate metadata"
-    gradle $* --write-verification-metadata sha256 --parallel
+    gradle $* --write-verification-metadata sha256
     export HAS_METADATA=$(git diff gradle/verification-metadata.xml)
 
     if [ "$HAS_METADATA" == "" ]; then
@@ -37,7 +37,7 @@ if [ "$ERROR" != "" ]; then
 
         while [ "$HAS_METADATA" != "" ]; do
             git add gradle/verification-metadata.xml
-            gradle $* --write-verification-metadata sha256 --parallel
+            gradle $* --write-verification-metadata sha256
             export HAS_METADATA=$(git diff gradle/verification-metadata.xml)
         done
 
