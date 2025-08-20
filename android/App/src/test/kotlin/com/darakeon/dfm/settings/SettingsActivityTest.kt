@@ -180,6 +180,7 @@ class SettingsActivityTest: BaseTest() {
 		mocker.server.enqueue("empty")
 		activity.saveSettings(View(activity))
 		activity.waitTasks(mocker.server)
+		activity.waitTasks(mocker.server)
 
 		val alert = getShownDialogs()
 			.filterIsInstance<AlertDialog>()
