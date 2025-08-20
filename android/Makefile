@@ -52,7 +52,7 @@ verify: start-if-off
 
 write-metadata: start-if-off
 	@echo "update data for check android dependencies"
-	@${GRADLE} build --exclude-task :App:packageRelease --write-verification-metadata sha256 --parallel
+	@${GRADLE} build --exclude-task :App:packageRelease --write-verification-metadata sha256
 
 rewrite-metadata: start-if-off
 	@echo "recreate data for check android dependencies"
