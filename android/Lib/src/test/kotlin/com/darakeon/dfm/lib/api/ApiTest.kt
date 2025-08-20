@@ -467,6 +467,8 @@ class ApiTest: BaseTest() {
 			status = it
 		}
 
+		activity.waitTasks(mocker.server)
+
 		assertNull(status)
 		assertEquals(statusDbError, activity.errorText)
 	}
@@ -496,6 +498,8 @@ class ApiTest: BaseTest() {
 		api.wakeUpSite {
 			status = it
 		}
+
+		activity.waitTasks(mocker.server)
 
 		assertNull(status)
 		assertEquals(statusMaintenance, activity.errorText)
