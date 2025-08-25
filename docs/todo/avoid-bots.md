@@ -9,9 +9,5 @@
   - Give an error like the problem is connection
   - Block IP for 1 week
 
-- Disallow too fast forms
-  - Register form code when render into memory with datetime
-  - If it is sent less than 3 seconds after, block
-
 - Remove tolerance of not active user
   - Remove clause about this from contract
