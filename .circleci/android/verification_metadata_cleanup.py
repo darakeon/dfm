@@ -1,7 +1,5 @@
-from json import loads
-from sys import argv
+from os import path
 from re import search
-from os import environ, path
 from xml.etree import ElementTree
 
 
@@ -9,10 +7,6 @@ file_path = path.join(
 	path.dirname(__file__),
 	"..", "..", "android", "gradle", "verification-metadata.xml"
 )
-
-with open(file_path, "r") as file:
-	first_line = file.readline().strip()
-
 
 tree = ElementTree.parse(file_path)
 root = tree.getroot()
