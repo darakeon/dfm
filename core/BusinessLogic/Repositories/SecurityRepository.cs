@@ -41,6 +41,7 @@ namespace DFM.BusinessLogic.Repositories
 			).FirstOrDefault;
 		}
 
+		private static readonly Object tokenLock = new();
 		private Security create(User user, SecurityAction action)
 		{
 			var security = new Security
@@ -51,12 +52,15 @@ namespace DFM.BusinessLogic.Repositories
 				User = user,
 			};
 
-			do
+			lock (tokenLock)
 			{
-				security.CreateToken();
-			} while (GetByToken(security.Token) != null);
+				do
+				{
+					security.CreateToken();
+				} while (GetByToken(security.Token) != null);
 
-			return SaveOrUpdate(security);
+				return SaveOrUpdate(security);
+			}
 		}
 
 		private void sendEmail(Security security)
