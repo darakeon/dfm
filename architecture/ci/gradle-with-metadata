@@ -41,6 +41,11 @@ if [ "$ERROR" != "" ]; then
             export HAS_METADATA=$(git diff gradle/verification-metadata.xml)
         done
 
+        echyellow "3. Generate docs metadata"
+        python ../.circleci/android/verification_metadata_docs.py
+        git ../.circleci/android/verification_metadata_resource_not_exists.txt
+
+        echyellow "4. Commit!"
         git commit -m "android: update deps metadata"
         git push
 
