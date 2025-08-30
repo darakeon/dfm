@@ -14,8 +14,10 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend) then Type.
 
-| Task (41)                                                              | Typ | Siz | Dif | Imp | Pts |
+| Task (43)                                                              | Typ | Siz | Dif | Imp | Pts |
 | ---------------------------------------------------------------------- | --- | --- | --- | --- | --- |
+| Add tests monthly schedules at 2025-01-31, 2025-01-30 and 2025-01-29   |  B  | 🐜 |  1  |  4  |  7  |
+| Add to tasklist security measures to avoid bots [todo/avoid-bots.md]   |  F  | 🐳 |  2  |  4  |  6  |
 | Check [android error no internet](todo/android-error-no-internet.log)  |  B  | 🐜 |  2  |  4  |  6  |
 | Inject ServiceAccess with AddScoped at MVC (because of Session NH)     |  M  | 🐜 |  2  |  4  |  6  |
 | Add rate limit to API and site                                         |  S  | 🐳 |  1  |  3  |  6  |
