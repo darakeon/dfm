@@ -53,8 +53,8 @@ namespace DFM.BusinessLogic.Response
 
 			var dayLimit = DateTime.UtcNow.AddDays(-Defaults.TFARemovedWarningDays);
 			TFAForgottenWarning =
-				control.TFAForgotten != null
-					&& control.TFAForgotten >= dayLimit;
+				control.TFAForgotten.HasValue
+					&& control.TFAForgotten.Value.ToUniversalTime() >= dayLimit;
 
 			Misc = user.GenerateMisc();
 		}
