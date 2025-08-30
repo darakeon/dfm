@@ -305,9 +305,6 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			queueService.Clear();
 
-			if (current.IsAuthenticated)
-				current.Clear();
-
 			var loggedTickets = repos.Ticket.Where(s => s.Active);
 			foreach (var ticket in loggedTickets)
 			{
