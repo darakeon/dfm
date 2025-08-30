@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Threading;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Generic;
-using DFM.Generic.Datetime;
-using Keon.Util.Exceptions;
 
 namespace DFM.Authentication
 {
@@ -39,74 +34,15 @@ namespace DFM.Authentication
 			return clientGetTicket?.Invoke(remember);
 		}
 
-		public Boolean IsVerified => userService.VerifyTicketTFA();
 
-		private readonly IDictionary<String, SessionInfo> sessions =
-			new Dictionary<String, SessionInfo>();
-		private readonly Random random = new();
+		private CacheAndRetry<Boolean> isVerifiedCache =>
+			new(TicketKey, false, (key) => userService.VerifyTicketTFA());
+		public Boolean IsVerified => isVerifiedCache.Get();
 
-		private SessionInfo session => getSession(0);
+		private CacheAndRetry<SessionInfo> sessionCache =>
+			new(TicketKey, null, (key) => userService.GetSession(key));
+		private SessionInfo session => sessionCache.Get();
 
-		private SessionInfo getSession(Int32 count)
-		{
-			var key = ticket?.Key;
-
-			if (String.IsNullOrEmpty(key))
-				return null;
-
-			if (count == 10)
-				return null;
-
-			var now = nowKey();
-			clearDeadSessions(now);
-
-			var dicKey = key + "_" + now;
-
-			if (sessions.ContainsKey(dicKey))
-				return sessions[dicKey];
-
-			try
-			{
-				var value = userService.GetSession(key);
-				if (value != null)
-					sessions.Add(dicKey, value);
-				return value;
-			}
-			catch (SystemError)
-			{
-				return null;
-			}
-			catch (DKException)
-			{
-				return null;
-			}
-			catch
-			{
-				// random to not all the threads try the same time again
-				var milliseconds = random.Next(1000);
-
-				Thread.Sleep(milliseconds);
-
-				return getSession(++count);
-			}
-		}
-
-		private static Int64 nowKey()
-		{
-			var text = DateTime.UtcNow.UntilSecond();
-			var factor = Int64.Parse(text);
-
-			return factor / 2;
-		}
-
-		private void clearDeadSessions(Int64 now)
-		{
-			sessions
-				.Select(s => s.Key)
-				.Where(key => !key.StartsWith(now.ToString()))
-				.ToList()
-				.ForEach(key => sessions.Remove(key, out SessionInfo _));
-		}
 
 		public Boolean IsAuthenticated => session != null;
 

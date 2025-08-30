@@ -10,7 +10,7 @@ namespace DFM.Generic
 	public class Cfg
 	{
 		private static readonly ImmutableList<String> configTypes =
-			ImmutableList.Create("db", "smtp", "login", "log", "storage", "queue");
+			ImmutableList.Create("appSettings", "tips", "db", "smtp", "login", "log", "storage", "queue");
 
 		public static void Init(String environment = null)
 		{
@@ -30,10 +30,6 @@ namespace DFM.Generic
 
 		private static void fromDefaultFiles(IConfigurationBuilder builder)
 		{
-			builder
-				.AddJsonFile("appSettings.json", true)
-				.AddJsonFile("tips.json", true);
-
 			configTypes.ForEach(
 				ct => builder.AddJsonFile($"{ct}.json", true)
 			);
@@ -95,6 +91,8 @@ namespace DFM.Generic
 		public static String GooglePlay => dic["GooglePlay"];
 
 		public static Int32 VersionCount => Int32.Parse(dic["VersionCount"] ?? "0");
+
+		public static Int32 MillisecondsToCache => Int32.Parse(dic["MillisecondsToCache"] ?? "2000");
 
 		public static Smtp Smtp => new(dic.GetSection("Smtp"));
 		public static Rewrite Rewrites => new("rewrites.json");
