@@ -14,9 +14,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐑: at least one little change, as a change at an existing feature (increases third number)
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
-## <a name="14.1.5.1"></a>14.1.5.1 :🐜: <sup>`6`</sup>
-- [ ] Add tests for monthly schedules at days 2025-01-31, 2025-01-30 and 2025-01-29
-- [ ] Add to tasklist security measures to avoid bots on form
+## <a name="14.1.5.1"></a>14.1.5.1 :🐜: <sup>`4`</sup>
 - [x] `250830>250830` Reduce db calls at site
 - [x] `250819>250825` Automate android verification metadata docs generation
 - [x] `250819>250825` Automate android verification metadata cleanup
