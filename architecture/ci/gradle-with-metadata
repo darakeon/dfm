@@ -20,10 +20,7 @@ if [ "$ERROR" != "" ]; then
 
     echyellow "Something ended wrong, let's generate metadata"
 
-    echyellow "1. Cleanup metadata"
-    python3 ../.circleci/android/verification_metadata_cleanup.py
-
-    echyellow "2. Regenerate metadata"
+    echyellow "1. Regenerate metadata"
     gradle $* --write-verification-metadata sha256
     export HAS_METADATA=$(git diff gradle/verification-metadata.xml | wc -l)
 
@@ -39,11 +36,11 @@ if [ "$ERROR" != "" ]; then
             export HAS_METADATA=$(git diff gradle/verification-metadata.xml | wc -l)
         done
 
-        echyellow "3. Generate docs metadata"
+        echyellow "2. Generate docs metadata"
         python3 ../.circleci/android/verification_metadata_docs.py
         git add ../.circleci/android/verification_metadata_resource_not_exists.txt
 
-        echyellow "4. Commit!"
+        echyellow "3. Commit!"
         source config-git
         git commit -m "android: update deps metadata"
         git push
