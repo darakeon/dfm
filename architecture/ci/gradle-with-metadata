@@ -21,7 +21,7 @@ if [ "$ERROR" != "" ]; then
     echyellow "Something ended wrong, let's generate metadata"
 
     echyellow "1. Regenerate metadata"
-    gradle $* --write-verification-metadata sha256
+    gradle $* --write-verification-metadata sha256 --update
     export HAS_METADATA=$(git diff gradle/verification-metadata.xml | wc -l)
 
     if [ "$HAS_METADATA" == "0" ]; then
@@ -32,7 +32,7 @@ if [ "$ERROR" != "" ]; then
             echyellow "---- found metadata to add: $HAS_METADATA!"
             git add gradle/verification-metadata.xml
             echyellow "---- let's recheck!"
-            gradle $* --write-verification-metadata sha256
+            gradle $* --write-verification-metadata sha256 --update
             export HAS_METADATA=$(git diff gradle/verification-metadata.xml | wc -l)
         done
 
