@@ -28,7 +28,7 @@
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2025.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.8" />
-  <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.8" />
     <ProjectReference Include="..\Entities\Entities.csproj" />
   </ItemGroup>
 
