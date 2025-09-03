@@ -25,8 +25,17 @@ if [ "$ERROR" != "" ]; then
     export HAS_METADATA=$(git diff gradle/verification-metadata.xml | wc -l)
 
     if [ "$HAS_METADATA" == "0" ]; then
-        echyellow "The error was not metadata. Wish you luck."
+        echyellow "---- ok, manual generation is needed"
 
+        gradle $* > failure.txt 2>&1 || ERROR=$?
+        while [ "$ERROR" != "" ]; do
+            ERROR=""
+            echyellow "---- found error: $ERROR!"
+            python3 ../.circleci/android/verification_metadata_libs.py
+            git add gradle/verification-metadata.xml
+            echyellow "---- let's run again!"
+            gradle $* > failure.txt 2>&1 || ERROR=$?
+        done
     else
         while [ "$HAS_METADATA" != "0" ]; do
             echyellow "---- found metadata to add: $HAS_METADATA!"
@@ -35,18 +44,18 @@ if [ "$ERROR" != "" ]; then
             gradle $* --write-verification-metadata sha256
             export HAS_METADATA=$(git diff gradle/verification-metadata.xml | wc -l)
         done
-
-        echyellow "2. Generate docs metadata"
-        python3 ../.circleci/android/verification_metadata_docs.py
-        git add ../.circleci/android/verification_metadata_resource_not_exists.txt
-
-        echyellow "3. Commit!"
-        source config-git
-        git commit -m "android: update deps metadata"
-        git push
-
-        echyellow "Branch updated, CI will run again"
     fi
+
+    echyellow "2. Generate docs metadata"
+    python3 ../.circleci/android/verification_metadata_docs.py
+    git add ../.circleci/android/verification_metadata_resource_not_exists.txt
+
+    echyellow "3. Commit!"
+    source config-git
+    git commit -m "android: update deps metadata"
+    git push
+
+    echyellow "Branch updated, CI will run again"
 
     echyellow "Now finishing with the original error"
     exit $ERROR
