@@ -14,7 +14,7 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend) then Type.
 
-| Task (42)                                                              | Typ | Siz | Dif | Imp | Pts |
+| Task (43)                                                              | Typ | Siz | Dif | Imp | Pts |
 | ---------------------------------------------------------------------- | --- | --- | --- | --- | --- |
 | Add to tasklist security measures to avoid bots [todo/avoid-bots.md]   |  F  | 🐳 |  2  |  4  |  6  |
 | Check [android error no internet](todo/android-error-no-internet.log)  |  B  | 🐜 |  2  |  4  |  6  |
@@ -29,6 +29,7 @@ The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend)
 | add snyk/clair check to docker containers                              |  S  | 🐳 |  2  |  3  |  5  |
 | Add schedule edit                                                      |  F  | 🐳 |  2  |  3  |  5  |
 | Add plain text to emails                                               |  F  | 🐳 |  2  |  3  |  5  |
+| Allow to anticipate schedule run                                       |  F  | 🐑 |  2  |  3  |  5  |
 | Add weekly scheduling                                                  |  F  | 🐑 |  2  |  3  |  5  |
 | Complete screens in E2E - all cases (empty/filled, normal, error)      |  M  | 🐑 |  2  |  3  |  5  |
 | [Lint C#]                                                              |  M  | 🐜 |  2  |  3  |  5  |
