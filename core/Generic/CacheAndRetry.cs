@@ -34,8 +34,8 @@ public class CacheAndRetry<T>(String key, T defaultValue, Func<String, T> getNon
 
 		lock (items)
 		{
-			if (items.ContainsKey(dicKey))
-				return items[dicKey];
+			if (items.TryGetValue(dicKey, out var item))
+				return item;
 
 			try
 			{
