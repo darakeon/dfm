@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using DFM.Generic;
 using DFM.Generic.Datetime;
 using Keon.Util.Exceptions;
 
-namespace DFM.Authentication;
+namespace DFM.Generic;
 
-class CacheAndRetry<T>(String ticketKey, T defaultValue, Func<String, T> getFromDb)
+public class CacheAndRetry<T>(String ticketKey, T defaultValue, Func<String, T> getFromDb)
 {
 	private static readonly IDictionary<String, T> items =
 		new Dictionary<String, T>();
