@@ -7,7 +7,7 @@ using Keon.Util.Exceptions;
 
 namespace DFM.Generic;
 
-public class CacheAndRetry<T>(String ticketKey, T defaultValue, Func<String, T> getFromDb)
+public class CacheAndRetry<T>(String key, T defaultValue, Func<String, T> getNonCached)
 {
 	private static readonly IDictionary<String, T> items =
 		new Dictionary<String, T>();
@@ -21,8 +21,6 @@ public class CacheAndRetry<T>(String ticketKey, T defaultValue, Func<String, T> 
 
 	private T get(Int32 count)
 	{
-		var key = ticketKey;
-
 		if (String.IsNullOrEmpty(key))
 			return defaultValue;
 
@@ -41,7 +39,7 @@ public class CacheAndRetry<T>(String ticketKey, T defaultValue, Func<String, T> 
 
 			try
 			{
-				var value = getFromDb(key);
+				var value = getNonCached(key);
 				if (value != null)
 					items.Add(dicKey, value);
 				return value;
@@ -77,15 +75,13 @@ public class CacheAndRetry<T>(String ticketKey, T defaultValue, Func<String, T> 
 	{
 		items
 			.Select(s => s.Key)
-			.Where(key => !key.EndsWith(now.ToString()))
+			.Where(k => !k.EndsWith(now.ToString()))
 			.ToList()
-			.ForEach(key => items.Remove(key));
+			.ForEach(k => items.Remove(k));
 	}
 
 	public Int32 Size()
 	{
-		return items
-			.Select(s => s.Key)
-			.Count(key => key.StartsWith(ticketKey));
+		return items.Count(i => i.Key.StartsWith(key));
 	}
 }
