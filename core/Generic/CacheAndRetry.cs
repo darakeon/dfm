@@ -81,4 +81,11 @@ public class CacheAndRetry<T>(String ticketKey, T defaultValue, Func<String, T> 
 			.ToList()
 			.ForEach(key => items.Remove(key));
 	}
+
+	public Int32 Size()
+	{
+		return items
+			.Select(s => s.Key)
+			.Count(key => key.StartsWith(ticketKey));
+	}
 }
