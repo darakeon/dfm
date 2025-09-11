@@ -75,12 +75,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Keon.Util" Version="5.1.0" />
+    <PackageReference Include="Keon.Util" Version="5.1.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.CloudWatchLogs" Version="4.0.7.3" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.8" />
+    <PackageReference Include="AWSSDK.CloudWatchLogs" Version="4.0.7.7" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.9" />
     <ProjectReference Include="..\Language\Language.csproj" />
     <ProjectReference Include="..\Logs\Logs.csproj" />
   </ItemGroup>
