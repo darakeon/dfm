@@ -1754,6 +1754,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			if (!String.IsNullOrEmpty(scheduleData["Date"]))
 				scheduleInfo.SetDate(DateTime.Parse(scheduleData["Date"]));
+
+			scheduleInfo.Description =
+				scheduleInfo.Description.ForScenario(scenarioCode);
 		}
 
 		[Given(@"I have these schedules created")]
@@ -1765,6 +1768,9 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 				if (!String.IsNullOrEmpty(scheduleData["Date"]))
 					info.SetDate(DateTime.Parse(scheduleData["Date"]));
+				
+				info.Description =
+					info.Description.ForScenario(scenarioCode);
 
 				if (info.OutUrl == String.Empty)
 					info.OutUrl = null;
