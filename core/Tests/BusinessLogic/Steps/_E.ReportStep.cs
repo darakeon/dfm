@@ -181,7 +181,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 				if (row.ContainsKey("Description"))
 				{
-					var description = row["Description"];
+					var description = row["Description"].ForScenario(scenarioCode);
 					Assert.That(line.Description, Is.EqualTo(description));
 				}
 

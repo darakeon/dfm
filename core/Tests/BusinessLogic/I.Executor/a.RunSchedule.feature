@@ -579,3 +579,61 @@ Scenario: Ia32. Failure without impact in other schedules
 	Then I will receive this core error: DisabledCategory
 	Given test user login
 	Then the accountOut value will change in -70
+
+Scenario: Ia33. Run on end of month with smaller month after
+	Given I have these schedules created
+			| Description               | Category Name | Out Url     | In Url | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Schedule {scenarioCode} 1 | Category      | account_out |        | 2025-01-28 | Out    | 10    | 4     | False     | Monthly   | False           |
+			| Schedule {scenarioCode} 2 | Category      | account_out |        | 2025-01-29 | Out    | 10    | 4     | False     | Monthly   | False           |
+			| Schedule {scenarioCode} 3 | Category      | account_out |        | 2025-01-30 | Out    | 10    | 4     | False     | Monthly   | False           |
+			| Schedule {scenarioCode} 4 | Category      | account_out |        | 2025-01-31 | Out    | 10    | 4     | False     | Monthly   | False           |
+	When robot user login
+		And run the scheduler
+	Then I will receive no core error
+	Given test user login
+		And I pass Account Out url
+		And I pass this date
+			| Month | Year |
+			| 2     | 2025 |
+	When I try to get the month report
+	Then I will receive the month report
+		And there will be these moves
+			| Date       | Description               |
+			| 2025-02-28 | Schedule {scenarioCode} 1 |
+			| 2025-02-28 | Schedule {scenarioCode} 2 |
+			| 2025-02-28 | Schedule {scenarioCode} 3 |
+			| 2025-02-28 | Schedule {scenarioCode} 4 |
+	Given I pass Account Out url
+		And I pass this date
+			| Month | Year |
+			| 3     | 2025 |
+	When I try to get the month report
+	Then I will receive the month report
+		And there will be these moves
+			| Date       | Description               |
+			| 2025-03-28 | Schedule {scenarioCode} 1 |
+			| 2025-03-29 | Schedule {scenarioCode} 2 |
+			| 2025-03-30 | Schedule {scenarioCode} 3 |
+			| 2025-03-31 | Schedule {scenarioCode} 4 |
+	Given I pass this date
+			| Month | Year |
+			| 3     | 2025 |
+	When I try to get the month report
+	Then I will receive the month report
+		And there will be these moves
+			| Date       | Description               |
+			| 2025-03-28 | Schedule {scenarioCode} 1 |
+			| 2025-03-29 | Schedule {scenarioCode} 2 |
+			| 2025-03-30 | Schedule {scenarioCode} 3 |
+			| 2025-03-31 | Schedule {scenarioCode} 4 |
+	Given I pass this date
+			| Month | Year |
+			| 4     | 2025 |
+	When I try to get the month report
+	Then I will receive the month report
+		And there will be these moves
+			| Date       | Description               |
+			| 2025-04-28 | Schedule {scenarioCode} 1 |
+			| 2025-04-29 | Schedule {scenarioCode} 2 |
+			| 2025-04-30 | Schedule {scenarioCode} 3 |
+			| 2025-04-30 | Schedule {scenarioCode} 4 |
