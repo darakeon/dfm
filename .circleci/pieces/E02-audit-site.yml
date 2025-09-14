@@ -14,12 +14,13 @@
           path: site
           name: check vulnerability
           command: |
-            RESULT=$(dotnet list package --vulnerable --include-transitive | grep 'has no vulnerable')
+            RESULT=$(dotnet list package --vulnerable --include-transitive)
+            NO_VULNERABLE=$(echo "$RESULT" | grep 'has no vulnerable')
 
             echo "$RESULT"
 
             NUMBER_OF_PROJECTS=$(cat Site.sln | grep .csproj | wc -l)
-            CURRENT=$(echo "$RESULT" | wc -l)
+            CURRENT=$(echo "$NO_VULNERABLE" | wc -l)
 
             if [ $CURRENT != $NUMBER_OF_PROJECTS ]; then
                 exit 1
