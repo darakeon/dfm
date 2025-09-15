@@ -1,5 +1,7 @@
 {
 	"en-us": {
+		"Add tests monthly schedules at 2025-01-31, 2025-01-30 and 2025-01-29": "Melhorias nos testes",
+		"Refactor cache and retry and move it to generic": "Melhorias de manutenção",
 		"Reduce db calls at site": "Speed up site pages",
 		"Automate android verification metadata docs generation": "-",
 		"Automate android verification metadata cleanup": "Improve system publish time",
@@ -88,6 +90,8 @@
 		"": null
 	},
 	"pt-br": {
+		"Add tests monthly schedules at 2025-01-31, 2025-01-30 and 2025-01-29": "Tests improvements",
+		"Refactor cache and retry and move it to generic": "Maintenance improvements",
 		"Reduce db calls at site": "Acelerada velocidade do site",
 		"Automate android verification metadata docs generation": "-",
 		"Automate android verification metadata cleanup": "Melhoria do tempo de publicação do sistema",
