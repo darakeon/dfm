@@ -4,15 +4,18 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#14.1.5.1)
-- [go to version in development](#14.1.5.2)
-- [dev version state](../../14.1.5.2/docs/RELEASES.md#14.1.5.2)
+- [go to published version](#14.1.5.2)
+- [go to version in development](#14.2.0.0)
+- [dev version state](../../14.2.0.0/docs/RELEASES.md#14.2.0.0)
 
 ## Legend
 - 🐉: at least one huge change (increases first number)
 - 🐳: at least one big change, like a new feature (increases second number)
 - 🐑: at least one little change, as a change at an existing feature (increases third number)
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="14.2.0.0"></a>14.2.0.0 :🐳: <sup>`1`</sup>
+- [ ] Add to tasklist security measures to avoid bots [todo/avoid-bots.md]
 
 ## <a name="14.1.5.2"></a>14.1.5.2 :🐜: <sup>`2`</sup>
 - [x] `250913>250913` Add tests monthly schedules at 2025-01-31, 2025-01-30 and 2025-01-29
