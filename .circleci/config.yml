@@ -612,6 +612,15 @@ jobs:
           name: dependencies node
           path: site/Tests/Browser
           command: npm install
+      - run:
+          name: check for unexpected changes
+          command: |
+            DIFF=$(git diff)
+            if [ "$DIFF" != "" ]; then
+              echo "Something has being changed, it should not happen:"
+              echo "$DIFF"
+              exit 1
+            fi
       - save_cache:
           key: node-{{ checksum "site/Tests/Browser/package.json" }}-{{ checksum "site/Tests/Browser/package-lock.json" }}
           paths:
@@ -624,6 +633,8 @@ jobs:
           path: /root/.npm/_logs/
       - store_artifacts:
           path: /root/.npm/eresolve-report.txt
+      - store_artifacts:
+          path: site/Tests/Browser/package-lock.json
 
   test_browser:
     docker:
