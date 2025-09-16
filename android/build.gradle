@@ -9,7 +9,7 @@ buildscript {
 
 	ext.java_version = JavaVersion.VERSION_17
 	ext.java_compat = JavaVersion.VERSION_17
-	ext.kotlin_version = '2.2.10'
+	ext.kotlin_version = '2.2.20'
 	ext.gradle_version = '8.12.2'
 	ext.play_version = '17.0.0'
 	ext.retrofit_version = '3.0.0'
