@@ -496,3 +496,5 @@ android-test-plugin-result-listener-gradle-proto-31.13.0-javadoc.jar
 utp-common-31.13.0-javadoc.jar
 kotlin-stdlib-common-2.2.0-javadoc.jar
 kotlin-stdlib-common-2.2.0-sources.jar
+aapt2-8.13.0-13719691-javadoc.jar
+aapt2-8.13.0-13719691-sources.jar
