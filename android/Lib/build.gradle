@@ -121,6 +121,8 @@ afterEvaluate {
 			task.name.contains('packageDebugResources')
 			||
 			task.name.contains('generateDebugResources')
+			||
+			task.name.contains('processDebugNavigationResources')
 		) {
 			task.dependsOn ipNetwork, ipAddress
 		}
