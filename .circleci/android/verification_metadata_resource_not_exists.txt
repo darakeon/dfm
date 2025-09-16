@@ -498,3 +498,11 @@ kotlin-stdlib-common-2.2.0-javadoc.jar
 kotlin-stdlib-common-2.2.0-sources.jar
 aapt2-8.13.0-13719691-javadoc.jar
 aapt2-8.13.0-13719691-sources.jar
+play-sdk-proto-31.13.0-javadoc.jar
+intellij-core-31.13.0-javadoc.jar
+kotlin-compiler-31.13.0-javadoc.jar
+uast-31.13.0-javadoc.jar
+lint-31.13.0-javadoc.jar
+lint-api-31.13.0-javadoc.jar
+lint-checks-31.13.0-javadoc.jar
+lint-gradle-31.13.0-javadoc.jar
