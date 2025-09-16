@@ -454,3 +454,10 @@ lint-31.12.2-javadoc.jar
 lint-api-31.12.2-javadoc.jar
 lint-checks-31.12.2-javadoc.jar
 lint-gradle-31.12.2-javadoc.jar
+kotlin-gradle-plugins-bom-2.2.20-javadoc.jar
+kotlin-gradle-plugins-bom-2.2.20-sources.jar
+kotlin-stdlib-common-2.2.20-javadoc.jar
+kotlin-stdlib-common-2.2.20-sources.jar
+kotlinx-serialization-bom-1.7.3-javadoc.jar
+kotlinx-serialization-bom-1.7.3-sources.jar
+kotlinx-serialization-core-1.7.3-javadoc.jar
