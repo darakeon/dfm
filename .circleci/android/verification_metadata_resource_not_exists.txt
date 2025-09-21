@@ -506,3 +506,5 @@ lint-31.13.0-javadoc.jar
 lint-api-31.13.0-javadoc.jar
 lint-checks-31.13.0-javadoc.jar
 lint-gradle-31.13.0-javadoc.jar
+byte-buddy-parent-1.17.7-javadoc.jar
+byte-buddy-parent-1.17.7-sources.jar
