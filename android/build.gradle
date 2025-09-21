@@ -13,7 +13,7 @@ buildscript {
 	ext.gradle_version = '8.13.0'
 	ext.play_version = '17.0.0'
 	ext.retrofit_version = '3.0.0'
-	ext.mockito_version = '5.19.0'
+	ext.mockito_version = '5.20.0'
 	ext.junit_version = '4.13.2'
 	ext.robolectric_version = '4.16'
 	ext.mockserver_version = '5.1.0'
