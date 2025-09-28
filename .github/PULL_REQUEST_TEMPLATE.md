@@ -1,6 +1,6 @@
 ## Task list
 
-[{{ refName }}](https://github.com/darakeon/dfm/blob/main/docs/RELEASES.md#{{ refName }})
+[{code}](https://github.com/darakeon/dfm/blob/main/docs/RELEASES.md#{code})
 
 ## Issues to close
 
