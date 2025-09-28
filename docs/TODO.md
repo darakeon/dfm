@@ -14,9 +14,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend) then Type.
 
-| Task (45)                                                              | Typ | Siz | Dif | Imp | Pts |
+| Task (44)                                                              | Typ | Siz | Dif | Imp | Pts |
 | ---------------------------------------------------------------------- | --- | --- | --- | --- | --- |
-| Check [android error no internet](todo/android-error-no-internet.log)  |  B  | 🐜 |  2  |  4  |  6  |
 | Add rate limit to API and site                                         |  S  | 🐳 |  1  |  3  |  6  |
 | Add [swagger] to API                                                   |  F  | 🐳 |  1  |  3  |  6  |
 | Refactor Core Steps - improve division to entities and given/when/then |  M  | 🐑 |  1  |  3  |  6  |
