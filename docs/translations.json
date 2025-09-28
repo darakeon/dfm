@@ -1,5 +1,6 @@
 {
 	"en-us": {
+		"Add to tasklist security measures to avoid bots [todo/avoid-bots.md]": "Review security",
 		"Add tests monthly schedules at 2025-01-31, 2025-01-30 and 2025-01-29": "Melhorias nos testes",
 		"Refactor cache and retry and move it to generic": "Melhorias de manutenção",
 		"Reduce db calls at site": "Speed up site pages",
@@ -90,6 +91,7 @@
 		"": null
 	},
 	"pt-br": {
+		"Add to tasklist security measures to avoid bots [todo/avoid-bots.md]": "Revisão de segurança",
 		"Add tests monthly schedules at 2025-01-31, 2025-01-30 and 2025-01-29": "Tests improvements",
 		"Refactor cache and retry and move it to generic": "Maintenance improvements",
 		"Reduce db calls at site": "Acelerada velocidade do site",
