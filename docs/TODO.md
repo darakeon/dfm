@@ -17,13 +17,13 @@ The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend)
 | Task (42)                                                              | Typ | Siz | Dif | Imp | Pts |
 | ---------------------------------------------------------------------- | --- | --- | --- | --- | --- |
 | Check [android error no internet](todo/android-error-no-internet.log)  |  B  | 🐜 |  2  |  4  |  6  |
-| Inject ServiceAccess with AddScoped at MVC (because of Session NH)     |  M  | 🐜 |  2  |  4  |  6  |
 | Add rate limit to API and site                                         |  S  | 🐳 |  1  |  3  |  6  |
 | Add [swagger] to API                                                   |  F  | 🐳 |  1  |  3  |  6  |
 | Refactor Core Steps - improve division to entities and given/when/then |  M  | 🐑 |  1  |  3  |  6  |
 | Replace XML at UI android by [jetpack-compose]                         |  M  | 🐉 |  3  |  4  |  5  |
 | Implement security measures suggested by github                        |  S  | 🐑 |  3  |  4  |  5  |
 | Upload new mobile screenshots automatically when deploy                |  M  | 🐑 |  3  |  4  |  5  |
+| Inject ServiceAccess with AddScoped at MVC (because of Session NH)     |  M  | 🐜 |  3  |  4  |  5  |
 | Add schedule creation (mobile)                                         |  F  | 🐉 |  2  |  3  |  5  |
 | add snyk/clair check to docker containers                              |  S  | 🐳 |  2  |  3  |  5  |
 | Add schedule edit                                                      |  F  | 🐳 |  2  |  3  |  5  |
