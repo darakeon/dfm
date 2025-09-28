@@ -71,7 +71,7 @@ move_to_new_branch:
 	fi
 	@git pull --prune
 	@echo ${NEW_BRANCH} > branch.git
-	@git checkout ${BRANCH}
+	@git checkout ${BRANCH} || git checkout -b ${BRANCH}
 	@git branch -d main
 	@rm branch.git
 
