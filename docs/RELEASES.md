@@ -15,7 +15,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="14.2.0.0"></a>14.2.0.0 :🐳: <sup>`1`</sup>
-- [ ] Add to tasklist security measures to avoid bots [todo/avoid-bots.md]
+- [x] `250928>250928` Add to tasklist security measures to avoid bots [todo/avoid-bots.md]
 
 ## <a name="14.1.5.2"></a>14.1.5.2 :🐜: <sup>`2`</sup>
 - [x] `250913>250913` Add tests monthly schedules at 2025-01-31, 2025-01-30 and 2025-01-29
