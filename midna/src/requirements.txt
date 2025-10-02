@@ -1,6 +1,6 @@
 django==5.2.6
 mysqlclient==2.2.7
-bcrypt==4.3.0
+bcrypt==5.0.0
 boto3==1.40.40
 pytest==8.4.2
 pip-audit==2.9.0
