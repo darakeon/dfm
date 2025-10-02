@@ -27,18 +27,18 @@
 
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2025.2.2" />
-    <PackageReference Include="Keon.MVC" Version="5.0.16" />
+    <PackageReference Include="Keon.MVC" Version="5.0.18" />
     <PackageReference Include="Konkah.LibraryCSharpColorTerminal" Version="1.0.0" />
     <PackageReference Include="MySql.Data" Version="9.4.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="prometheus-net.AspNetCore" Version="8.2.1" />
     <PackageReference Include="prometheus-net.DotNetRuntime" Version="4.4.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.CloudWatchLogs" Version="4.0.7.7" />
-    <PackageReference Include="AWSSDK.S3" Version="4.0.7" />
-    <PackageReference Include="AWSSDK.SQS" Version="4.0.1.2" />
+    <PackageReference Include="AWSSDK.CloudWatchLogs" Version="4.0.8.4" />
+    <PackageReference Include="AWSSDK.S3" Version="4.0.7.7" />
+    <PackageReference Include="AWSSDK.SQS" Version="4.0.1.8" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.9" />
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj" />
   </ItemGroup>
