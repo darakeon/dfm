@@ -23,7 +23,7 @@ class HashGen():
 		self.name = name
 		self.version = version
 		self.artifact = artifact
-		
+
 		self.url = f"{self.resource}/{self.group}/{name}/{version}/{artifact}"
 
 	def sha256(self):
@@ -63,7 +63,7 @@ with open(failure_path) as failure_file:
 
 artifact_line = -1
 artifacts = []
-artifact_pattern = r"    - (.+) \((.+):(.+):(.+)\) from repository (.+)"
+artifact_pattern = r" *- (.+) \((.+):(.+):(.+)\) from repository (.+)"
 for (index, failure) in enumerate(failures):
 	if "artifacts failed verification" in failure:
 		artifact_line = index
