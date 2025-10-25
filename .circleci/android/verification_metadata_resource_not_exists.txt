@@ -536,3 +536,17 @@ dependency-check-parent-12.1.6-javadoc.jar
 dependency-check-parent-12.1.6-sources.jar
 org.owasp.dependencycheck.gradle.plugin-12.1.6-javadoc.jar
 org.owasp.dependencycheck.gradle.plugin-12.1.6-sources.jar
+commons-jcs3-3.0-javadoc.jar
+commons-jcs3-3.0-sources.jar
+commons-parent-50-javadoc.jar
+commons-parent-50-sources.jar
+commons-parent-88-javadoc.jar
+commons-parent-88-sources.jar
+httpcore5-parent-5.3.6-javadoc.jar
+httpcore5-parent-5.3.6-sources.jar
+dependency-check-gradle-12.1.8-javadoc.jar
+dependency-check-gradle-12.1.8-sources.jar
+dependency-check-parent-12.1.8-javadoc.jar
+dependency-check-parent-12.1.8-sources.jar
+org.owasp.dependencycheck.gradle.plugin-12.1.8-javadoc.jar
+org.owasp.dependencycheck.gradle.plugin-12.1.8-sources.jar
