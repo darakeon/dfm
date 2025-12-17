@@ -619,6 +619,10 @@ jobs:
             if [ "$DIFF" != "" ]; then
               echo "Something has being changed, it should not happen:"
               echo "$DIFF"
+              echo ""
+              echo "Check potential differences in environment:"
+              echo -n "Node: " && node --version
+              echo -n "NPM: " && npm --version
               exit 1
             fi
       - save_cache:
