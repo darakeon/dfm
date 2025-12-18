@@ -50,7 +50,10 @@ if [ "$ERROR" != "" ]; then
     python3 ../.circleci/android/verification_metadata_docs.py
     git add ../.circleci/android/verification_metadata_resource_not_exists.txt
 
-    echyellow "3. Commit!"
+    echyellow "3. Generate windows metadata"
+    python3 ../.circleci/android/verification_metadata_windows.py
+
+    echyellow "4. Commit!"
     source config-git
     git commit -m "android: update deps metadata"
     git push
