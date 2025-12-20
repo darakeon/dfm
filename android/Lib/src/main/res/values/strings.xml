@@ -25,6 +25,9 @@
 	<string name="interrupted">
 		The connection was interrupted
 	</string>
+	<string name="unknown_host">
+		Error on contacting the Pig. Check your internet connection and try again.
+	</string>
 	<string name="offline_fallback_moves">
 		There was a problem with the connection, but your move can be send when the problem is solved
 	</string>
