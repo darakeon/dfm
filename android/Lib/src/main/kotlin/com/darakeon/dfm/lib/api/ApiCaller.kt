@@ -13,6 +13,7 @@ interface ApiCaller {
 
 	fun offline() = error(R.string.connection_fail)
 	fun interrupted() = error(R.string.interrupted)
+	fun siteNotFound() = error(R.string.unknown_host)
 	fun error(text: String)
 	fun error(resId: Int)
 	fun error(resMessage: Int, resButton: Int, action: () -> Unit)
