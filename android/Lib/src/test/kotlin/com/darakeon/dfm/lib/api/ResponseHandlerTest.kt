@@ -19,6 +19,7 @@ import com.darakeon.dfm.testutils.api.internetError
 import com.darakeon.dfm.testutils.api.internetSlow
 import com.darakeon.dfm.testutils.api.interrupted
 import com.darakeon.dfm.testutils.api.noBody
+import com.darakeon.dfm.testutils.api.unknownHost
 import okhttp3.ResponseBody.Companion.toResponseBody
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
@@ -35,6 +36,7 @@ import retrofit2.Response
 import java.net.ConnectException
 import java.net.SocketException
 import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 
 @RunWith(RobolectricTestRunner::class)
 internal class ResponseHandlerTest: BaseTest() {
@@ -540,6 +542,32 @@ internal class ResponseHandlerTest: BaseTest() {
 		assertThat(
 			activity.errorText,
 			`is`(internetSlow)
+		)
+
+		assertTrue(waitEnded)
+		assertNull(resultText)
+	}
+
+	@Test
+	fun onFailureData_UnknownHost() {
+		handlerText.onFailure(CallMock.ForString(), UnknownHostException())
+
+		assertThat(
+			activity.errorText,
+			`is`(unknownHost)
+		)
+
+		assertTrue(waitEnded)
+		assertNull(resultText)
+	}
+
+	@Test
+	fun onFailureNoData_UnknownHost() {
+		handlerNoData.onFailure(CallMock.ForString(), UnknownHostException())
+
+		assertThat(
+			activity.errorText,
+			`is`(unknownHost)
 		)
 
 		assertTrue(waitEnded)

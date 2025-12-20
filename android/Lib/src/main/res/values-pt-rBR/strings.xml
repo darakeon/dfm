@@ -25,6 +25,9 @@
 	<string name="interrupted">
 		A conexão foi interrompida
 	</string>
+	<string name="unknown_host">
+		Erro ao chamar o Porquinho. Verifique sua conexão de internet e tente novamente.
+	</string>
 	<string name="offline_fallback_moves">
 		Há um problema com a conexão, mas sua movimentação pode ser enviada assim que normalizar
 	</string>

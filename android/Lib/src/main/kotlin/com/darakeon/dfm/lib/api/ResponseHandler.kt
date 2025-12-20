@@ -17,6 +17,7 @@ import retrofit2.Response
 import java.net.ConnectException
 import java.net.SocketException
 import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 
 class ResponseHandler<C, A>(
 	private val caller: C,
@@ -99,6 +100,8 @@ class ResponseHandler<C, A>(
 				caller.offline()
 			is SocketException ->
 				caller.interrupted()
+			is UnknownHostException ->
+				caller.siteNotFound()
 			else ->
 				onError(call, throwable)
 		}
