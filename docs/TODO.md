@@ -48,9 +48,9 @@ The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend)
 | Enable Copy Move (web+mobile)                                          |  F  | 🐳 |  2  |  2  |  4  |
 | Add nickname field - show it at every screen and e-mail                |  F  | 🐳 |  2  |  2  |  4  |
 | Remove tolerance of not active user (fix terms)                        |  S  | 🐑 |  2  |  2  |  4  |
+| Only allow 3 users by IP (register user agents + counting) (+terms)    |  S  | 🐜 |  2  |  2  |  4  |
 | If session drop, call history.go(-2) after re-login                    |  F  | 🐑 |  1  |  1  |  4  |
 | Add category url calculate without diacritics                          |  F  | 🐑 |  1  |  1  |  4  |
-| Only allow 3 users by IP (register user agents + counting) (+terms)    |  S  | 🐜 |  2  |  2  |  4  |
 | Add a hidden empty/filled field to sign up form (phone/confirm_mail)   |  S  | 🐜 |  1  |  1  |  4  |
 | Fix GetNext null from export Order                                     |  B  | 🐜 |  1  |  1  |  4  |
 | Add error for schedule with 0 times                                    |  F  | 🐜 |  1  |  1  |  4  |
@@ -59,8 +59,8 @@ The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend)
 | Transform Error Logs notification into widget                          |  M  | 🐜 |  2  |  1  |  3  |
 | Replace hardcoded scenario codes from tests                            |  M  | 🐜 |  2  |  1  |  3  |
 | Remove GetOrCreate                                                     |  M  | 🐜 |  2  |  1  |  3  |
-| Separate validators from service/repository                            |  M  | 🐑 |  4  |  2  |  2  |
 | [OCR] to add values to system                                          |  F  | 🐉 |  4  |  2  |  2  |
+| Separate validators from service/repository                            |  M  | 🐑 |  4  |  2  |  2  |
 | Add [gherkin jest]                                                     |  M  | 🐑 |  4  |  1  |  1  |
 
 [jetpack-compose]: https://developer.android.com/courses/android-basics-compose/course
