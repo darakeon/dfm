@@ -625,3 +625,7 @@ lint-31.13.2-javadoc.jar
 lint-api-31.13.2-javadoc.jar
 lint-checks-31.13.2-javadoc.jar
 lint-gradle-31.13.2-javadoc.jar
+kotlin-gradle-plugins-bom-2.3.0-javadoc.jar
+kotlin-gradle-plugins-bom-2.3.0-sources.jar
+kotlin-stdlib-common-2.3.0-javadoc.jar
+kotlin-stdlib-common-2.3.0-sources.jar
