@@ -14,7 +14,7 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend) then Type.
 
-| Task (45)                                                              | Typ | Siz | Dif | Imp | Pts |
+| Task (46)                                                              | Typ | Siz | Dif | Imp | Pts |
 | ---------------------------------------------------------------------- | --- | --- | --- | --- | --- |
 | Replace sqlite deprecated library                                      |  S  | 🐜 |  1  |  4  |  7  |
 | Replace Specflow by Reqnroll                                           |  S  | 🐜 |  2  |  4  |  6  |
@@ -52,6 +52,7 @@ The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend)
 | Add category url calculate without diacritics                          |  F  | 🐑 |  1  |  1  |  4  |
 | Only allow 3 users by IP (register user agents + counting) (+terms)    |  S  | 🐜 |  2  |  2  |  4  |
 | Add a hidden empty/filled field to sign up form (phone/confirm_mail)   |  S  | 🐜 |  1  |  1  |  4  |
+| Fix GetNext null from export Order                                     |  B  | 🐜 |  1  |  1  |  4  |
 | Add error for schedule with 0 times                                    |  F  | 🐜 |  1  |  1  |  4  |
 | Change putJson to putSerializable/Parcelable at extras in android      |  M  | 🐜 |  1  |  1  |  4  |
 | Add logs to Admin                                                      |  M  | 🐑 |  1  |  2  |  3  |
