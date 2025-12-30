@@ -14,7 +14,7 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend) then Type.
 
-| Task (46)                                                              | Typ | Siz | Dif | Imp | Pts |
+| Task (47)                                                              | Typ | Siz | Dif | Imp | Pts |
 | ---------------------------------------------------------------------- | --- | --- | --- | --- | --- |
 | Replace sqlite deprecated library                                      |  S  | 🐜 |  1  |  4  |  7  |
 | Replace Specflow by Reqnroll                                           |  S  | 🐜 |  2  |  4  |  6  |
@@ -40,6 +40,7 @@ The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend)
 | Add accessibility to automated tests                                   |  F  | 🐳 |  4  |  4  |  4  |
 | Test android tests payloads x .net api objects                         |  M  | 🐑 |  4  |  4  |  4  |
 | Report with more than one account                                      |  F  | 🐉 |  3  |  3  |  4  |
+| Create related move - interest or else, all fields filled but opened   |  F  | 🐉 |  3  |  3  |  4  |
 | Add schedule anticipation                                              |  F  | 🐳 |  3  |  3  |  4  |
 | Handle split screen layout at android app                              |  F  | 🐳 |  3  |  3  |  4  |
 | Create service to translate site ('put in your language')              |  F  | 🐉 |  2  |  2  |  4  |
