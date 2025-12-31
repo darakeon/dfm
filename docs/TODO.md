@@ -14,9 +14,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend) then Type.
 
-| Task (47)                                                              | Typ | Siz | Dif | Imp | Pts |
+| Task (46)                                                              | Typ | Siz | Dif | Imp | Pts |
 | ---------------------------------------------------------------------- | --- | --- | --- | --- | --- |
-| Replace sqlite deprecated library                                      |  S  | 🐜 |  1  |  4  |  7  |
 | Replace Specflow by Reqnroll                                           |  S  | 🐜 |  2  |  4  |  6  |
 | Add [swagger] to API                                                   |  F  | 🐳 |  1  |  3  |  6  |
 | Refactor Core Steps - improve division to entities and given/when/then |  M  | 🐑 |  1  |  3  |  6  |
