@@ -15,7 +15,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="14.3.0.0"></a>14.3.0.0 :🐳: <sup>`1`</sup>
-- [ ] Add rate limit to API and site
+- [x] `251222>251231` Add rate limit to API and site
 
 ## <a name="14.2.0.1"></a>14.2.0.1 :🐜: <sup>`1`</sup>
 - [x] `251219>251220` Check [android error no internet](todo/android-error-no-internet.log)
