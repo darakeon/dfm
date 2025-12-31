@@ -4,15 +4,18 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#14.2.0.1)
-- [go to version in development](#14.3.0.0)
-- [dev version state](../../14.3.0.0/docs/RELEASES.md#14.3.0.0)
+- [go to published version](#14.3.0.0)
+- [go to version in development](#14.3.0.1)
+- [dev version state](../../14.3.0.1/docs/RELEASES.md#14.3.0.1)
 
 ## Legend
 - 🐉: at least one huge change (increases first number)
 - 🐳: at least one big change, like a new feature (increases second number)
 - 🐑: at least one little change, as a change at an existing feature (increases third number)
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+
+## <a name="14.3.0.1"></a>14.3.0.1 :🐜: <sup>`1`</sup>
+- [ ] Replace sqlite deprecated library
 
 ## <a name="14.3.0.0"></a>14.3.0.0 :🐳: <sup>`1`</sup>
 - [x] `251222>251231` Add rate limit to API and site
