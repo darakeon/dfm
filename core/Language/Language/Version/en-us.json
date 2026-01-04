@@ -1,4 +1,7 @@
 {
+	"14.3.0.1": [
+		"Security fix"
+	],
 	"14.3.0.0": [
 		"Add security limit for requests"
 	],
