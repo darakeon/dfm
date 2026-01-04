@@ -1,4 +1,7 @@
 {
+	"14.3.0.1": [
+		"Correção de segurança"
+	],
 	"14.3.0.0": [
 		"Adicionado limite de segurança para chamadas ao site"
 	],
