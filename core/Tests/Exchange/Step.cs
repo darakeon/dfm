@@ -8,8 +8,8 @@ using DFM.Exchange.Exporter;
 using DFM.Generic;
 using DFM.Tests.Util;
 using NUnit.Framework;
-using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
+using Reqnroll;
+using Reqnroll.Assist;
 
 namespace DFM.Exchange.Tests
 {

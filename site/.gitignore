@@ -17,6 +17,4 @@ Tests/Core/log
 MVC/Assets/libs
 MVC/Assets/themes/bootstrap.min.css
 
-Tests/*/SpecFlow
-
 *.nupkg

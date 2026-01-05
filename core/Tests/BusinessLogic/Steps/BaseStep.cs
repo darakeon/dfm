@@ -17,8 +17,8 @@ using DFM.Logs;
 using DFM.Queue;
 using DFM.Tests.Util;
 using Keon.Util.Extensions;
-using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
+using Reqnroll;
+using Reqnroll.Assist;
 
 namespace DFM.BusinessLogic.Tests.Steps
 {
@@ -531,7 +531,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		protected static String accountOutUrl = accountOutName.IntoUrl();
 		protected static String accountInUrl = accountInName.IntoUrl();
 
-		protected DetailInfo getDetailFromTable(TableRow detailData)
+		protected DetailInfo getDetailFromTable(DataTableRow detailData)
 		{
 			return detailData.CreateInstance<DetailInfo>();
 		}

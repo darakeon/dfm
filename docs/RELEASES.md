@@ -15,7 +15,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
 ## <a name="14.3.0.2"></a>14.3.0.2 :🐜: <sup>`1`</sup>
-- [ ] Replace Specflow by Reqnroll
+- [x] `260105>260110` Replace Specflow by Reqnroll
 
 ## <a name="14.3.0.1"></a>14.3.0.1 :🐜: <sup>`1`</sup>
 - [x] `260103>260103` Replace sqlite deprecated library

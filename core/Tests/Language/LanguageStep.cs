@@ -10,8 +10,8 @@ using DFM.Language.Emails;
 using DFM.Language.Extensions;
 using DFM.Tests.Util;
 using NUnit.Framework;
-using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
+using Reqnroll;
+using Reqnroll.Assist;
 
 namespace DFM.Language.Tests
 {

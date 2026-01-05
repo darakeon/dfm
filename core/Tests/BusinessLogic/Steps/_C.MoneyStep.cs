@@ -13,8 +13,8 @@ using DFM.Generic.Datetime;
 using DFM.Language;
 using DFM.Tests.Util;
 using NUnit.Framework;
-using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
+using Reqnroll;
+using Reqnroll.Assist;
 
 namespace DFM.BusinessLogic.Tests.Steps
 {
@@ -126,7 +126,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the move value will be (\d+\.?\d*)")]
+		[Then(@"^the move value will be (\d+\.?\d*)$")]
 		public void ThenTheMoveValueWillBe(Decimal value)
 		{
 			var move = repos.Move.Get(moveResult.Guid);
@@ -163,13 +163,13 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(currentEmailStatus, Is.EqualTo(EmailStatus.EmailSent));
 		}
 
-		[Then(@"the accountIn begin date will be (\d{4}\-\d{2}\-\d{2})")]
+		[Then(@"^the accountIn begin date will be (\d{4}\-\d{2}\-\d{2})$")]
 		public void ThenTheAccountInBeginDateWillBe(DateTime beginDate)
 		{
 			thenTheAccountBeginDateWillBe(accountInUrl, beginDate);
 		}
 
-		[Then(@"the accountOut begin date will be (\d{4}\-\d{2}\-\d{2})")]
+		[Then(@"^the accountOut begin date will be (\d{4}\-\d{2}\-\d{2})$")]
 		public void ThenTheAccountOutBeginDateWillBe(DateTime beginDate)
 		{
 			thenTheAccountBeginDateWillBe(accountOutUrl, beginDate);
@@ -185,7 +185,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		#endregion
 
 		#region UpdateMove
-		[Given(@"I change the move date in (\-?\d+\.?\d*) (days?|months?|years?)")]
+		[Given(@"^I change the move date in (\-?\d+\.?\d*) (days?|months?|years?)$")]
 		public void GivenIChangeTheMoveDateIn(Int32 count, String frequency)
 		{
 			moveInfo.AddByFrequency(frequency, count);
@@ -204,7 +204,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Given(@"I change the move date to (\d{4}-\d{2}-\d{2})")]
+		[Given(@"^I change the move date to (\d{4}-\d{2}-\d{2})$")]
 		public void GivenIChangeTheMoveDateTo(DateTime newDate)
 		{
 			moveInfo.SetDate(newDate);
@@ -268,7 +268,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			categoryName = newCategoryName;
 		}
 
-		[When(@"I change the account out of the move(?: to (\w+)(?: \(([A-Z]{3})\))?)?")]
+		[When(@"^I change the account out of the move(?: to (\w+)(?: \(([A-Z]{3})\))|()())$")]
 		public void GivenIChangeTheAccountOutOfTheMove(String url, Currency? currency)
 		{
 			if (String.IsNullOrEmpty(url))
@@ -281,7 +281,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			setAccountOutNewTotals(accountOut, category, moveInfo);
 		}
 
-		[When(@"I change the account in of the move(?: to (\w+)(?: \(([A-Z]{3})\))?)?")]
+		[When(@"^I change the account in of the move(?: to (\w+)(?: \(([A-Z]{3})\))|()())$")]
 		public void GivenIChangeTheAccountInOfTheMove(String url, Currency? currency)
 		{
 			if (String.IsNullOrEmpty(url))
@@ -322,7 +322,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			setAccountOutNewTotals(accountOut, category, moveInfo);
 		}
 
-		[When(@"I change the move value to (\d+)")]
+		[When(@"^I change the move value to (\d+)$")]
 		public void WhenIChangeTheMoveValueTo(Int32 value)
 		{
 			moveInfo.Value = value;
@@ -370,7 +370,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the old-accountOut value will change in (\-?\d+\.?\d*)")]
+		[Then(@"^the old-accountOut value will change in (\-?\d+\.?\d*)$")]
 		public void ThenTheOldAccountOutValueWillChangeIn(Decimal value)
 		{
 			var account = getOrCreateAccount(accountOutUrl);
@@ -386,7 +386,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			ThenTheOldAccountOutValueWillChangeIn(0);
 		}
 
-		[Then(@"the new-accountOut value will change in (\-?\d+\.?\d*)")]
+		[Then(@"^the new-accountOut value will change in (\-?\d+\.?\d*)$")]
 		public void ThenTheNewAccountOutValueWillChangeIn(Decimal value)
 		{
 			var account = getOrCreateAccount(accountOut.Name);
@@ -402,7 +402,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			ThenTheNewAccountOutValueWillChangeIn(0);
 		}
 
-		[Then(@"the old-year-category-accountOut value will change in (\-?\d+\.?\d*)")]
+		[Then(@"^the old-year-category-accountOut value will change in (\-?\d+\.?\d*)$")]
 		public void ThenTheOldYearCategoryAccountOutValueWillChangeIn(Decimal value)
 		{
 			var account = getOrCreateAccount(accountOutUrl);
@@ -419,7 +419,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			ThenTheOldYearCategoryAccountOutValueWillChangeIn(0);
 		}
 
-		[Then(@"the new-year-category-accountOut value will change in (\-?\d+\.?\d*)")]
+		[Then(@"^the new-year-category-accountOut value will change in (\-?\d+\.?\d*)$")]
 		public void ThenTheNewYearCategoryAccountOutValueWillChangeIn(Decimal value)
 		{
 			var account = getOrCreateAccount(accountOut.Name);
@@ -436,7 +436,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			ThenTheNewYearCategoryAccountOutValueWillChangeIn(0);
 		}
 
-		[Then(@"the old-month-category-accountOut value will change in (\-?\d+\.?\d*)")]
+		[Then(@"^the old-month-category-accountOut value will change in (\-?\d+\.?\d*)$")]
 		public void ThenTheOldMonthCategoryAccountOutValueWillChangeIn(Decimal value)
 		{
 			var account = getOrCreateAccount(accountOutUrl);
@@ -453,7 +453,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			ThenTheOldMonthCategoryAccountOutValueWillChangeIn(0);
 		}
 
-		[Then(@"the new-month-category-accountOut value will change in (\-?\d+\.?\d*)")]
+		[Then(@"^the new-month-category-accountOut value will change in (\-?\d+\.?\d*)$")]
 		public void ThenTheNewMonthCategoryAccountOutValueWillChangeIn(Decimal value)
 		{
 			var account = getOrCreateAccount(accountOut.Name);
@@ -470,7 +470,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			ThenTheNewMonthCategoryAccountOutValueWillChangeIn(0);
 		}
 
-		[Then(@"the old-accountIn value will change in (\-?\d+\.?\d*)")]
+		[Then(@"^the old-accountIn value will change in (\-?\d+\.?\d*)$")]
 		public void ThenTheOldAccountInValueWillChangeIn(Decimal value)
 		{
 			var account = getOrCreateAccount(accountInUrl);
@@ -486,7 +486,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			ThenTheOldAccountInValueWillChangeIn(0);
 		}
 
-		[Then(@"the new-accountIn value will change in (\-?\d+\.?\d*)")]
+		[Then(@"^the new-accountIn value will change in (\-?\d+\.?\d*)$")]
 		public void ThenTheNewAccountInValueWillChangeIn(Decimal value)
 		{
 			var account = getOrCreateAccount(accountIn.Name);
@@ -502,7 +502,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			ThenTheNewAccountInValueWillChangeIn(0);
 		}
 
-		[Then(@"the old-year-category-accountIn value will change in (\-?\d+\.?\d*)")]
+		[Then(@"^the old-year-category-accountIn value will change in (\-?\d+\.?\d*)$")]
 		public void ThenTheOldYearCategoryAccountInValueWillChangeIn(Decimal value)
 		{
 			var account = getOrCreateAccount(accountInUrl);
@@ -519,7 +519,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			ThenTheOldYearCategoryAccountInValueWillChangeIn(0);
 		}
 
-		[Then(@"the new-year-category-accountIn value will change in (\-?\d+\.?\d*)")]
+		[Then(@"^the new-year-category-accountIn value will change in (\-?\d+\.?\d*)$")]
 		public void ThenTheNewYearCategoryAccountInValueWillChangeIn(Decimal value)
 		{
 			var account = getOrCreateAccount(accountIn.Name);
@@ -536,7 +536,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			ThenTheNewYearCategoryAccountInValueWillChangeIn(0);
 		}
 
-		[Then(@"the old-month-category-accountIn value will change in (\-?\d+\.?\d*)")]
+		[Then(@"^the old-month-category-accountIn value will change in (\-?\d+\.?\d*)$")]
 		public void ThenTheOldMonthCategoryAccountInValueWillChangeIn(Decimal value)
 		{
 			var account = getOrCreateAccount(accountInUrl);
@@ -553,7 +553,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			ThenTheOldMonthCategoryAccountInValueWillChangeIn(0);
 		}
 
-		[Then(@"the new-month-category-accountIn value will change in (\-?\d+\.?\d*)")]
+		[Then(@"^the new-month-category-accountIn value will change in (\-?\d+\.?\d*)$")]
 		public void ThenTheNewMonthCategoryAccountInValueWillChangeIn(Decimal value)
 		{
 			var account = getOrCreateAccount(accountIn.Name);
@@ -596,14 +596,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(move.Schedule.Guid, Is.EqualTo(scheduleInfo.Guid));
 		}
 
-		[Then(@"the move is (not )?checked for account (Out|In)")]
+		[Then(@"^the move is( not | )checked for account (Out|In)$")]
 		public void ThenTheMoveIsNotCheckedForAccountOutAnymore(Boolean @checked, PrimalMoveNature nature)
 		{
 			var move = repos.Move.Get(moveInfo.Guid);
 			Assert.That(move.IsChecked(nature), Is.EqualTo(@checked));
 		}
 
-		[Then(@"the description will still be (.+)")]
+		[Then(@"^the description will still be (.+)$")]
 		public void ThenTheDescriptionWillStillBeScheduleCb(String description)
 		{
 			var report = service.Report.GetMonthReport(
@@ -647,7 +647,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(moveInfo, Is.Not.Null);
 		}
 
-		[Then(@"the Move description will be (.+)")]
+		[Then(@"^the Move description will be (.+)$")]
 		public void ThenTheMoveDescriptionWillBe(String description)
 		{
 			Assert.That(moveInfo.Description, Is.EqualTo(description));
@@ -703,7 +703,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the move will (not )?be deleted")]
+		[Then(@"^the move will( not | )be deleted$")]
 		public void ThenTheMoveWillOrNotBeDeleted(Boolean deleted)
 		{
 			var move = repos.Move.Get(guid);
@@ -712,7 +712,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		#endregion
 
 		#region ToggleMoveChecked
-		[Given(@"the move is (not )?checked for account (In|Out)")]
+		[Given(@"^the move is( not | )checked for account (In|Out)$")]
 		public void GivenTheMoveIsChecked(Boolean @checked, PrimalMoveNature nature)
 		{
 			var move = repos.Move.Get(moveInfo.Guid);
@@ -727,7 +727,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				service.Money.UncheckMove(moveInfo.Guid, nature);
 		}
 
-		[When(@"I try to mark it as (not )?checked for account (In|Out)")]
+		[When(@"^I try to mark it as( not | )checked for account (In|Out)$")]
 		public void WhenIMarkItAsChecked(Boolean @checked, PrimalMoveNature nature)
 		{
 			try
@@ -743,7 +743,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the move will (not )?be checked for account (In|Out)")]
+		[Then(@"^the move will( not | )be checked for account (In|Out)$")]
 		public void ThenTheMoveWillBeChecked(Boolean @checked, PrimalMoveNature nature)
 		{
 			var move = repos.Move.Get(moveInfo.Guid);
@@ -771,7 +771,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			makeMove(10, MoveNature.Out, null, null);
 		}
 
-		[Given(@"I have a move with these details \((\w+)\)")]
+		[Given(@"^I have a move with these details \((\w+)\)$")]
 		public void GivenIHaveAMoveWithTheseDetails(MoveNature nature, Table details)
 		{
 			makeMove(details, nature);
@@ -791,7 +791,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			setMoveExternals(nature, null, null);
 		}
 
-		[Given(@"I have a move with value (\-?\d+\.?\d*) \((\w+)\)(?: at account (\w+))?")]
+		[Given(@"^I have a move with value (\-?\d+\.?\d*) \((\w+)\)(?: at account (\w+)|())$")]
 		public void GivenIHaveAMoveWithValue(Decimal value, MoveNature nature, String moveAccountUrl)
 		{
 			if (moveAccountUrl == "")
@@ -824,7 +824,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			);
 		}
 
-		[Given(@"I have a move with value in (\-?\d+\.?\d*) at account (\w+) \(([A-Z]{3})\) and out (\-?\d+\.?\d*) at account (\w+) \(([A-Z]{3})\)")]
+		[Given(@"^I have a move with value in (\-?\d+\.?\d*) at account (\w+) \(([A-Z]{3})\) and out (\-?\d+\.?\d*) at account (\w+) \(([A-Z]{3})\)$")]
 		public void GivenIHaveAMoveWithValues(Decimal valueIn, String moveAccountIn, Currency moveAccountInCurrency, Decimal valueOut, String moveAccountOut, Currency moveAccountOutCurrency)
 		{
 			accountInUrl = moveAccountIn?.IntoUrl();

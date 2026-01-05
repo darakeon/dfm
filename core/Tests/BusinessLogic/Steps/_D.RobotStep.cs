@@ -14,8 +14,8 @@ using DFM.Tests.Util;
 using Keon.Eml;
 using Keon.Util.Crypto;
 using NUnit.Framework;
-using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
+using Reqnroll;
+using Reqnroll.Assist;
 
 namespace DFM.BusinessLogic.Tests.Steps
 {
@@ -166,7 +166,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(scheduleInfo.Guid, Is.Not.EqualTo(Guid.Empty));
 		}
 
-		[Then(@"the schedule value will be (\d+\.?\d*)")]
+		[Then(@"^the schedule value will be (\d+\.?\d*)$")]
 		public void ThenTheScheduleValueWillBe(Decimal value)
 		{
 			var schedule = repos.Schedule.Get(scheduleResult.Guid);
@@ -185,7 +185,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		#endregion
 
 		#region RunSchedule
-		[Given(@"I have no logged user \(logoff\)")]
+		[Given(@"^I have no logged user \(logoff\)$")]
 		public void GivenIHaveNoLoggedUserLogoff()
 		{
 			if (current.IsAuthenticated)
@@ -224,7 +224,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			robotRunSchedule();
 		}
 
-		[Given(@"a schedule is created by (.+)")]
+		[Given(@"^a schedule is created by (.+)$")]
 		public void GivenTheCreatedUserHasASchedule(String email)
 		{
 			email = email.ForScenario(scenarioCode);
@@ -250,7 +250,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			service.Attendant.SaveSchedule(info);
 		}
 
-		[Given(@"robot already ran for (.+)")]
+		[Given(@"^robot already ran for (.+)$")]
 		public void GivenRobotAlreadyRanFor(String email)
 		{
 			db.Execute(() =>
@@ -370,7 +370,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the schedule list will (not )?have this")]
+		[Then(@"^the schedule list will( not | )have this$")]
 		public void ThenTheScheduleListsWillBeThis(Boolean has, Table table)
 		{
 			var expectedList = new List<Schedule>();
@@ -413,7 +413,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			db.Execute(() => repos.Control.SaveOrUpdate(control));
 		}
 
-		[Given(@"the user have being warned (once|twice)")]
+		[Given(@"^the user have being warned (once|twice)$")]
 		public void GivenTheUserHaveBeingWarned(Int32 times)
 		{
 			var user = repos.User.GetByEmail(userEmail);
@@ -461,8 +461,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Given(@"user(.*) language is (pt-BR|en-US)")]
-		[When(@"user(.*) language is (pt-BR|en-US)")]
+		[Given(@"^user(.*) language is (pt-BR|en-US)$")]
+		[When(@"^user(.*) language is (pt-BR|en-US)$")]
 		public void GivenUserLanguageIsPt_BR(String email, String language)
 		{
 			email = email.Trim();
@@ -514,7 +514,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(user, Is.Null);
 		}
 
-		[Then(@"the count of warnings sent will be (\d+)")]
+		[Then(@"^the count of warnings sent will be (\d+)$")]
 		public void ThenTheCountOfWarningsSendWillBe(Int32 expectedCount)
 		{
 			var actualCount = EmlHelper.CountEmails(
@@ -536,7 +536,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(actualCount, Is.EqualTo(1));
 		}
 
-		[Then(@"and the user warning count will be (\d+)")]
+		[Then(@"^and the user warning count will be (\d+)$")]
 		public void ThenAndTheUserWarningCountWillBe(Int32 count)
 		{
 			var user = repos.User.GetByEmail(userEmail);
@@ -648,14 +648,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the e-mail subject will be ""(.*)""")]
+		[Then(@"the e-mail subject will be {string}")]
 		public void ThenTheEmailSubjectWillBe(String subject)
 		{
 			var email = EmlHelper.ByEmail(userEmail, testStart);
 			Assert.That(email.Subject, Is.EqualTo(subject));
 		}
 
-		[Then(@"the e-mail body will contain ""(.*)""")]
+		[Then(@"the e-mail body will contain {string}")]
 		public void ThenTheEmailBodyWillContain(String bodyPart)
 		{
 			var email = EmlHelper.ByEmail(userEmail, testStart);
@@ -699,7 +699,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the answer is (Yes|No)")]
+		[Then(@"^the answer is (Yes|No)$")]
 		public void ThenTheAnswerIsYes(Boolean hasSchedule)
 		{
 			Assert.That(this.hasSchedule, Is.EqualTo(hasSchedule));
@@ -750,7 +750,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			).ForScenario(scenarioCode);
 		}
 
-		[Given(@"a moves file with ([\w ]+)")]
+		[Given(@"^a moves file with ([\w ]+)$")]
 		public void GivenAMovesFile(String filename)
 		{
 			csvName = $"{filename.Replace(" ", "_")}.csv";
@@ -955,7 +955,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				linePosition = line.Position;
 		}
 
-		[Given(@"line (\d+) is (Pending|Success|Error|OutOfLimit|Canceled)")]
+		[Given(@"^line (\d+) is (Pending|Success|Error|OutOfLimit|Canceled)$")]
 		public void GivenLineIs(Int16 lineNumber, ImportStatus status)
 		{
 			var line = repos.Line.Get(archiveGuid, lineNumber);
@@ -1000,7 +1000,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then("the line status will change to (Success|Error|Canceled)")]
+		[Then(@"^the line status will change to (Success|Error|Canceled)$")]
 		public void ThenTheLineStatusWillChangeTo(ImportStatus status)
 		{
 			var user = repos.User.GetByEmail(userEmail);
@@ -1043,7 +1043,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the archive status will change to (Pending|Success|Error|Canceled)")]
+		[Then(@"^the archive status will change to (Pending|Success|Error|Canceled)$")]
 		public void ThenTheArchiveStatusWillChangeTo(ImportStatus status)
 		{
 			var user = repos.User.GetByEmail(userEmail);
@@ -1099,7 +1099,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 		}
 
-		[Then(@"the scheduled time will( not)? change")]
+		[Then(@"^the scheduled time will( not | )change$")]
 		public void ThenTheScheduledTimeWillChange(Boolean change)
 		{
 			var user = repos.User.GetByEmail(userEmail);
@@ -1256,21 +1256,21 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the line will be (Pending|Success|Error|OutOfLimit|Canceled)")]
+		[Then(@"^the line will be (Pending|Success|Error|OutOfLimit|Canceled)$")]
 		public void ThenTheLineWillBe(ImportStatus status)
 		{
 			var line = repos.Line.Get(archiveGuid, linePosition);
 			Assert.That(line.Status, Is.EqualTo(status));
 		}
 
-		[Then(@"the line (\d+) will be (Pending|Success|Error|OutOfLimit|Canceled)")]
+		[Then(@"^the line (\d+) will be (Pending|Success|Error|OutOfLimit|Canceled)$")]
 		public void ThenTheLineWillBe(Int16 lineNumber, ImportStatus status)
 		{
 			var line = repos.Line.Get(archiveGuid, lineNumber);
 			Assert.That(line.Status, Is.EqualTo(status));
 		}
 
-		[Then(@"the archive will be (Pending|Success|Error|Canceled)")]
+		[Then(@"^the archive will be (Pending|Success|Error|Canceled)$")]
 		public void ThenTheArchiveWillBe(ImportStatus status)
 		{
 			var archive = repos.Archive.Get(archiveGuid);
@@ -1309,28 +1309,28 @@ namespace DFM.BusinessLogic.Tests.Steps
 		#endregion
 
 		#region OrderExport
-		[Given(@"order start date (\d{4}-\d{2}-\d{2})")]
+		[Given(@"^order start date (\d{4}-\d{2}-\d{2})$")]
 		public void GivenOrderStartDate(DateTime date)
 		{
 			orderInfo ??= new OrderInfo();
 			orderInfo.Start = date;
 		}
 
-		[Given(@"order end date (\d{4}-\d{2}-\d{2})")]
+		[Given(@"^order end date (\d{4}-\d{2}-\d{2})$")]
 		public void GivenOrderEndDate(DateTime date)
 		{
 			orderInfo ??= new OrderInfo();
 			orderInfo.End = date;
 		}
 
-		[Given(@"order account (.+)")]
+		[Given(@"^order account (.+)$")]
 		public void GivenOrderAccount(String accountUrl)
 		{
 			orderInfo ??= new OrderInfo();
 			orderInfo.AccountList.Add(accountUrl);
 		}
 
-		[Given(@"order category (.+)")]
+		[Given(@"^order category (.+)$")]
 		public void GivenOrderCategory(String categoryName)
 		{
 			orderInfo ??= new OrderInfo();
@@ -1364,7 +1364,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"(no )?order will be recorded")]
+		[Then(@"^(no |)order will be recorded$")]
 		public void ThenOrderWillBeRecorded(Boolean expectedRecorded)
 		{
 			var user = repos.User.GetByEmail(userEmail);
@@ -1410,7 +1410,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"order status will be (Pending|Success|Error|OutOfLimit|Canceled|Expired)")]
+		[Then(@"^order status will be (Pending|Success|Error|OutOfLimit|Canceled|Expired)$")]
 		public void ThenOrderStatusWillBe(ExportStatus status)
 		{
 			var user = repos.User.GetByEmail(userEmail);
@@ -1423,7 +1423,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(order.Status, Is.EqualTo(status));
 		}
 
-		[Then(@"the will have creation and expiration (not )?set")]
+		[Then(@"^the will have creation and expiration( not | )set$")]
 		public void ThenTheWillHaveCreationAndExpirationSet(Boolean set)
 		{
 			var user = repos.User.GetByEmail(userEmail);
@@ -1457,7 +1457,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the order will be marked as (not )?sent")]
+		[Then(@"^the order will be marked as( not | )sent$")]
 		public void ThenTheOrderWillBeMarkedAsSent(Boolean sent)
 		{
 			var user = repos.User.GetByEmail(userEmail);
@@ -1470,7 +1470,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(order.Sent, Is.EqualTo(sent));
 		}
 
-		[Then(@"the order file will (not )?exist")]
+		[Then(@"^the order file will( not | )exist$")]
 		public void ThenTheOrderFileWillExist(Boolean expectedExists)
 		{
 			var user = repos.User.GetByEmail(userEmail);
@@ -1507,7 +1507,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 		}
 
-		[Given(@"the order is (Pending|Success|Error|OutOfLimit|Canceled|Expired)")]
+		[Given(@"^the order is (Pending|Success|Error|OutOfLimit|Canceled|Expired)$")]
 		public void GivenTheOrderIsError(ExportStatus status)
 		{
 			var user = repos.User.GetByEmail(userEmail);
@@ -1695,7 +1695,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"order will (not )?be downloaded")]
+		[Then(@"^order will( not | )be downloaded$")]
 		public void ThenOrderWillBeDownloaded(Boolean downloaded)
 		{
 			Assert.That(
@@ -1768,7 +1768,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 				if (!String.IsNullOrEmpty(scheduleData["Date"]))
 					info.SetDate(DateTime.Parse(scheduleData["Date"]));
-				
+
 				info.Description =
 					info.Description.ForScenario(scenarioCode);
 
@@ -1859,7 +1859,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			});
 		}
 
-		[Given(@"(.+) currency is set to ([A-Z]{3})")]
+		[Given(@"^(.+) currency is set to ([A-Z]{3})$")]
 		public void Given_CurrencyIsSetTo(String accountName, Currency currency)
 		{
 			var url = accountName.IntoUrl();
@@ -1883,21 +1883,21 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(schedule.Active, Is.True);
 		}
 
-		[Then(@"the schedule last run will be (\d+)")]
+		[Then(@"^the schedule last run will be (\d+)$")]
 		public void ThenTheScheduleLastRunWillBe(Int32 lastRun)
 		{
 			var schedule = repos.Schedule.Get(scheduleInfo.Guid);
 			Assert.That(schedule.LastRun, Is.EqualTo(lastRun));
 		}
 
-		[Then(@"the schedule status will be (\w+)")]
+		[Then(@"^the schedule status will be (\w+)$")]
 		public void ThenTheScheduleStatusWillBe(ScheduleStatus status)
 		{
 			var schedule = repos.Schedule.Get(scheduleInfo.Guid);
 			Assert.That(schedule.LastStatus, Is.EqualTo(status));
 		}
 
-		[Then(@"the status of last schedule of (.+) will be (\w+)")]
+		[Then(@"^the status of last schedule of (.+) will be (\w+)$")]
 		public void ThenTheStatusOfLastScheduleOf_WillBe(String username, ScheduleStatus status)
 		{
 			var email = $"{username.ForScenario(scenarioCode)}@dontflymoney.com";
