@@ -14,6 +14,4 @@ Tests/Core/log
 
 *.amazon.json
 
-Tests/*/SpecFlow
-
 *.nupkg

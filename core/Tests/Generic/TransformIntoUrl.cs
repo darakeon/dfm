@@ -1,7 +1,7 @@
 ﻿using System;
 using DFM.Tests.Util;
 using NUnit.Framework;
-using TechTalk.SpecFlow;
+using Reqnroll;
 
 namespace DFM.Generic.Tests
 {

@@ -7,7 +7,7 @@ using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Generic.Datetime;
 using NUnit.Framework;
-using TechTalk.SpecFlow;
+using Reqnroll;
 
 namespace DFM.BusinessLogic.Tests.Steps
 {
@@ -17,7 +17,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		public MoneyRobotStep(ScenarioContext context)
 			: base(context) { }
 
-		[Given(@"I have two accounts(?: with currency ([A-Z]{3}))?")]
+		[Given(@"^I have two accounts(?: with currency ([A-Z]{3})|())?$")]
 		public void GivenIHaveTwoAccounts(Currency? currency)
 		{
 			accountOutUrl = accountOutName.IntoUrl();
@@ -71,7 +71,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 
-		[Given(@"it has an Account Out( [A-Z]{3})?")]
+		[Given(@"^it has an Account Out( [A-Z]{3}|)?$")]
 		public void GivenItHasAnAccountOut(Currency? currency)
 		{
 			accountOut = getOrCreateAccount(accountOutUrl, currency);
@@ -141,7 +141,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 
-		[Given(@"it has an Account In( [A-Z]{3})?")]
+		[Given(@"^it has an Account In( [A-Z]{3}|)?$")]
 		public void GivenItHasAnAccountIn(Currency? currency)
 		{
 			accountIn = getOrCreateAccount(accountInUrl, currency);
@@ -241,7 +241,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				)?.Out ?? 0;
 		}
 
-		[Then(@"the accountOut value will change in (\-?\d+\.?\d*)")]
+		[Then(@"^the accountOut value will change in (\-?\d+\.?\d*)$")]
 		public void ThenTheAccountOutValueWillChangeIn(Decimal change)
 		{
 			var url = accountOut?.Url ?? accountOutUrl;
@@ -252,7 +252,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(currentTotal, Is.EqualTo(accountOutTotal + change));
 		}
 
-		[Then(@"the accountOut value will be (\-?\d+\.?\d*)")]
+		[Then(@"^the accountOut value will be (\-?\d+\.?\d*)$")]
 		public void ThenTheAccountOutValueWillBe(Decimal value)
 		{
 			var url = accountOut?.Url ?? accountOutUrl;
@@ -269,7 +269,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			ThenTheAccountOutValueWillChangeIn(0);
 		}
 
-		[Then(@"the month-category-accountOut value will change in (\-?\d+\.?\d*)")]
+		[Then(@"^the month-category-accountOut value will change in (\-?\d+\.?\d*)$")]
 		public void ThenTheMonthCategoryAccountOutValueWillChangeIn(Decimal change)
 		{
 			var url = accountOut?.Url ?? accountOutUrl;
@@ -291,7 +291,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			ThenTheMonthCategoryAccountOutValueWillChangeIn(0);
 		}
 
-		[Then(@"the year-category-accountOut value will change in (\-?\d+\.?\d*)")]
+		[Then(@"^the year-category-accountOut value will change in (\-?\d+\.?\d*)$")]
 		public void ThenTheYearCategoryAccountOutValueWillChangeIn(Decimal change)
 		{
 			var url = accountOut?.Url ?? accountOutUrl;
@@ -313,7 +313,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			ThenTheYearCategoryAccountOutValueWillChangeIn(0);
 		}
 
-		[Then(@"the accountIn value will change in (\-?\d+\.?\d*)")]
+		[Then(@"^the accountIn value will change in (\-?\d+\.?\d*)$")]
 		public void ThenTheAccountInValueWillChangeIn(Decimal change)
 		{
 			var url = accountIn?.Url ?? accountInUrl;
@@ -324,7 +324,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(currentTotal, Is.EqualTo(accountInTotal + change));
 		}
 
-		[Then(@"the accountIn value will be (\-?\d+\.?\d*)")]
+		[Then(@"^the accountIn value will be (\-?\d+\.?\d*)$")]
 		public void ThenTheAccountInValueWillBe(Decimal change)
 		{
 			var url = accountIn?.Url ?? accountInUrl;
@@ -341,7 +341,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			ThenTheAccountInValueWillChangeIn(0);
 		}
 
-		[Then(@"the month-category-accountIn value will change in (\-?\d+\.?\d*)")]
+		[Then(@"^the month-category-accountIn value will change in (\-?\d+\.?\d*)$")]
 		public void ThenTheMonthCategoryAccountInValueWillChangeIn(Decimal change)
 		{
 			var url = accountIn?.Url ?? accountInUrl;
@@ -363,7 +363,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			ThenTheMonthCategoryAccountInValueWillChangeIn(0);
 		}
 
-		[Then(@"the year-category-accountIn value will change in (\-?\d+\.?\d*)")]
+		[Then(@"^the year-category-accountIn value will change in (\-?\d+\.?\d*)$")]
 		public void ThenTheYearCategoryAccountInValueWillChangeIn(Decimal change)
 		{
 			var url = accountIn?.Url ?? accountInUrl;

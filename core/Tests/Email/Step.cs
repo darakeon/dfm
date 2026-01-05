@@ -7,7 +7,7 @@ using DFM.Language;
 using DFM.Logs;
 using DFM.Tests.Util;
 using NUnit.Framework;
-using TechTalk.SpecFlow;
+using Reqnroll;
 
 namespace DFM.Email.Tests
 {
@@ -91,19 +91,19 @@ namespace DFM.Email.Tests
 			format = Format.MoveNotification(user);
 		}
 
-		[When(@"a security action is formatted to (\w+)")]
+		[When(@"^a security action is formatted to (\w+)$")]
 		public void WhenASecurityActionIsFormattedTo(SecurityAction action)
 		{
 			format = Format.SecurityAction(user, action);
 		}
 
-		[When(@"a security warning is formatted to (\w+)")]
+		[When(@"^a security warning is formatted to (\w+)$")]
 		public void WhenASecurityWarningIsFormattedTo(SecurityWarning warning)
 		{
 			format = Format.SecurityWarning(user, warning);
 		}
 
-		[When(@"a user removal is formatted because of (\w+)")]
+		[When(@"^a user removal is formatted because of (\w+)$")]
 		public void WhenAUserRemovalIsFormattedBecauseOf(RemovalReason reason)
 		{
 			try
@@ -116,7 +116,7 @@ namespace DFM.Email.Tests
 			}
 		}
 
-		[When(@"a wipe notice is formatted because of (\w+)")]
+		[When(@"^a wipe notice is formatted because of (\w+)$")]
 		public void WhenAWipeNoticeIsFormattedBecauseOf(RemovalReason reason)
 		{
 			format = Format.WipeNotice(user, reason);
@@ -138,7 +138,7 @@ namespace DFM.Email.Tests
 				.Send();
 		}
 
-		[Then(@"I will receive this e-mail error: ([A-Za-z]+)")]
+		[Then(@"^I will receive this e-mail error: ([A-Za-z]+)$")]
 		public void ThenIWillReceiveThisError(String errorMessage)
 		{
 			Assert.That(error, Is.Not.Null);
@@ -187,7 +187,7 @@ namespace DFM.Email.Tests
 			Assert.That(email, Is.Null);
 		}
 
-		[Then("there will be a header in the email sent to (.+) with the link (.+)")]
+		[Then(@"^there will be a header in the email sent to (.+) with the link (.+)$")]
 		public void ThenThereWillBeAHeaderWithTheLink(String email, String headerLink)
 		{
 			var emailSent = EmlHelper.ByEmail(email, testsStart);
@@ -208,7 +208,7 @@ namespace DFM.Email.Tests
 			);
 		}
 
-		[Then(@"there will be an attachment in the email sent to (.+) with the content of (.+)")]
+		[Then(@"^there will be an attachment in the email sent to (.+) with the content of (.+)$")]
 		public void ThenThereWillBeAnAttachmentInTheEmailSentToWithTheContentOf(String email, String file)
 		{
 			var emailSent = EmlHelper.ByEmail(email, testsStart);

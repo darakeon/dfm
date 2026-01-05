@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities;
-using TechTalk.SpecFlow;
+using Reqnroll;
 
 namespace DFM.Tests.Util
 {

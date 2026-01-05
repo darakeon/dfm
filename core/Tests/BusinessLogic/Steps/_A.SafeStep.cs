@@ -13,8 +13,8 @@ using Keon.Eml;
 using Keon.TwoFactorAuth;
 using Keon.Util.Crypto;
 using NUnit.Framework;
-using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
+using Reqnroll;
+using Reqnroll.Assist;
 using TK = Keon.Util.Extensions.Token;
 
 namespace DFM.BusinessLogic.Tests.Steps
@@ -67,7 +67,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			get => get<String>();
 			set => set(value);
 		}
-		
+
 		private String timezone
 		{
 			get => get<String>();
@@ -181,7 +181,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(rightPassword, Is.True);
 		}
 
-		[Then(@"the user will (not )?be saved")]
+		[Then(@"^the user will( not | )?be saved$")]
 		public void ThenTheUserWillBeSaved(Boolean saved)
 		{
 			var savedUser = repos.User.GetByEmail(email);
@@ -261,21 +261,21 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the user will (not )?be activated")]
+		[Then(@"^the user will( not | )be activated$")]
 		public void ThenTheUserWillNotBeActivated(Boolean active)
 		{
 			var user = repos.User.GetByEmail(email ?? userEmail);
 			Assert.That(user.Control.Active, Is.EqualTo(active));
 		}
 
-		[Then(@"the password wrong attempts will be (\d+)")]
+		[Then(@"^the password wrong attempts will be (\d+)$")]
 		public void ThenThePasswordWrongAttemptsWillBe(Int32 wrongAttempts)
 		{
 			var user = repos.User.GetByEmail(email ?? userEmail);
 			Assert.That(user.Control.WrongLogin, Is.EqualTo(wrongAttempts));
 		}
 
-		[Then(@"the tfa wrong attempts will be (\d+)")]
+		[Then(@"^the tfa wrong attempts will be (\d+)$")]
 		public void ThenTheTfaWrongAttemptsWillBe(Int32 wrongAttempts)
 		{
 			var user = repos.User.GetByEmail(email ?? userEmail);
@@ -304,7 +304,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			db.Execute(() => repos.Control.Deactivate(user));
 		}
 
-		[Given(@"I deactivate the user (.+)")]
+		[Given(@"^I deactivate the user (.+)$")]
 		public void GivenIDeactivateTheUser(String email)
 		{
 			email = email.ForScenario(scenarioCode);
@@ -369,7 +369,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"I will (not )?receive the ticket")]
+		[Then(@"^I will( not | )receive the ticket$")]
 		public void ThenIWillReceiveTheTicket(Boolean receive)
 		{
 			if (receive)
@@ -480,7 +480,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		#endregion
 
 		#region TestSecurityToken
-		[Given(@"I pass a token of ([A-Za-z]+) with action ([A-Za-z]+)")]
+		[Given(@"^I pass a token of ([A-Za-z]+) with action ([A-Za-z]+)$")]
 		public void GivenIPassATokenOfUserVerificationWithActionPasswordReset(SecurityAction tokenOf, SecurityAction actionOf)
 		{
 			token = getLastTokenForUser(email, tokenOf);
@@ -548,7 +548,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the ticket will (not )?be active")]
+		[Then(@"^the ticket will( not | )be active$")]
 		public void ThenTheTicketWillBeActive(Boolean active)
 		{
 			CoreError? error = null;
@@ -763,7 +763,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the ticket access will( not)? be after test start time")]
+		[Then(@"^the ticket access will( not | )be after test start time$")]
 		public void ThenTheTicketAccessWillBeAfterTestStartTime(Boolean after)
 		{
 			var ticketList = repos.Ticket.NewQuery()
@@ -783,7 +783,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(updated, Is.EqualTo(expectedUpdated));
 		}
 
-		[Then(@"the user access will( not)? be null")]
+		[Then(@"^the user access will( not | )be null$")]
 		public void ThenTheUserAccessWillBeNull(Boolean isNull)
 		{
 			var user = repos.User.GetByEmail(userEmail);
@@ -831,7 +831,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		#endregion
 
 		#region UseTFAAsPassword
-		[When(@"I set to (not )?use TFA as password")]
+		[When(@"^I set to( not | )use TFA as password$")]
 		public void WhenISetToUseTFAAsPassword(Boolean use)
 		{
 			try
@@ -844,7 +844,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the TFA can (not )?be used as password")]
+		[Then(@"^the TFA can( not | )be used as password$")]
 		public void ThenTheTFACanBeUsedAsPassword(Boolean canBe)
 		{
 			var currentEmail = email ?? userEmail;
@@ -878,7 +878,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(user.TFAPassword, Is.EqualTo(canBe));
 		}
 
-		[Then(@"the TFA will (not )?be asked")]
+		[Then(@"^the TFA will( not | )be asked$")]
 		public void ThenTheTFAWillNotBeAsked(Boolean askTFA)
 		{
 			var currentTicket = repos.Ticket.GetByKey(testTicketKey);
@@ -934,8 +934,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"(\d+ )?emails? with csv will (not )?be sent( with a link to delete it)?")]
-		public void ThenCSVWill_BeSent(Int32 emailCount, Boolean csvSent, String hasLink)
+		[Then(@"^(\d+ |)emails? with csv will( not | )be sent( with a link to delete it|)?$")]
+		public void ThenEmailsWithCSVWill_BeSent(Int32? emailCount, Boolean csvSent, String hasLink)
 		{
 			var inboxPath = Path.Combine(outputsPath, "inbox");
 			var inbox = new DirectoryInfo(inboxPath);
@@ -949,7 +949,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			if (csvSent)
 			{
-				Assert.That(emails.Count, Is.EqualTo(emailCount));
+				Assert.That(emails.Count, Is.EqualTo(emailCount ?? 1));
 
 				foreach (var email in emails)
 				{
@@ -1009,7 +1009,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the file will (not )?be wiped")]
+		[Then(@"^the file will( not | )be wiped$")]
 		public void ThenTheFileWill_BeWiped(Boolean wiped)
 		{
 			var path = Path.Combine(
@@ -1017,7 +1017,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				StoragePurpose.Wipe.ToString(),
 				$"{scenarioCode}.csv"
 			);
-			
+
 			Assert.That(
 				wiped,
 				Is.EqualTo(!File.Exists(path)),
@@ -1027,7 +1027,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		#endregion
 
 		#region MoreThanOne
-		[Given(@"I have (?:this user|these users) created")]
+		[Given(@"^I have (?:this user|these users) created$")]
 		public void GivenIHaveThisUserCreated(Table table)
 		{
 			foreach (var userData in table.Rows)
@@ -1089,7 +1089,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			token = TK.New();
 		}
 
-		[Given(@"I pass an expired (UserVerification|PasswordReset|UnsubscribeMoveMail) token")]
+		[Given(@"I pass an expired {SecurityAction} token")]
 		public void GivenIPassExpiredToken(SecurityAction action)
 		{
 			GivenIPassTheValidToken(action);
@@ -1098,7 +1098,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			repos.Security.SaveOrUpdate(security);
 		}
 
-		[Given(@"I pass an inactive (UserVerification|PasswordReset|UnsubscribeMoveMail) token")]
+		[Given(@"I pass an inactive {SecurityAction} token")]
 		public void GivenIPassInactiveToken(SecurityAction action)
 		{
 			GivenIPassTheValidToken(action);
@@ -1162,7 +1162,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			).FirstOrDefault()?.Key;
 		}
 
-		[Given(@"I pass a valid (UserVerification|PasswordReset|UnsubscribeMoveMail|DeleteCsvData|RemoveTFA) token")]
+		[Given(@"^I pass a valid (UserVerification|PasswordReset|UnsubscribeMoveMail|DeleteCsvData|RemoveTFA) token$")]
 		public void GivenIPassTheValidToken(SecurityAction action)
 		{
 			this.action = action;
@@ -1244,7 +1244,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(session.Email, Is.EqualTo(email));
 		}
 
-		[Then(@"the TFA will (not )?be enabled")]
+		[Then(@"^the TFA will( not | )be enabled$")]
 		public void ThenTheTFAWill_BeEnabled(Boolean enabled)
 		{
 			Assert.That(session.HasTFA, Is.EqualTo(enabled));
@@ -1327,7 +1327,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the contract status will be (not )?accepted")]
+		[Then(@"^the contract status will be( not | )accepted$")]
 		public void ThenTheContractStatusWillBeAccepted(Boolean expectAccepted)
 		{
 			if (!current.IsAuthenticated)
@@ -1386,7 +1386,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Given(@"I set to (not )?use TFA as password")]
+		[Given(@"^I set to( not | )use TFA as password$")]
 		public void GivenISetToUseTFAAsPassword(Boolean use)
 		{
 			service.Auth.UseTFAAsPassword(use, tfa);
@@ -1433,7 +1433,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(user?.TFASecret, Is.Null);
 		}
 
-		[Then(@"the two-factor will be \[(.*)\]")]
+		[Then(@"^the two-factor will be \[(.*)\]$")]
 		public void ThenTheTwoFactorWillStillBe(String secret)
 		{
 			var user = repos.User.GetByEmail(userEmail);
@@ -1490,7 +1490,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[When(@"I try to verify the ticket type to be (\w+)")]
+		[When(@"^I try to verify the ticket type to be (\w+)$")]
 		public void WhenITryToCheckTicketType(TicketType type)
 		{
 			try
@@ -1503,14 +1503,14 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the ticket will (not )?be verified")]
+		[Then(@"^the ticket will( not | )be verified$")]
 		public void ThenTheTicketWillBeVerified(Boolean verified)
 		{
 			var recordedVerified = ticketVerified == true;
 			Assert.That(recordedVerified, Is.EqualTo(verified));
 		}
 
-		[Then(@"the ticket will (not )?be valid")]
+		[Then(@"^the ticket will( not | )be valid$")]
 		public void ThenTheTicketWillBeValidated(Boolean valid)
 		{
 			var recordedValidated = service.Auth.VerifyTicketTFA();
@@ -1536,7 +1536,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			db.Execute(() => repos.Control.RequestWipe(user));
 		}
 
-		[When(@"pass a password that is( not)? right")]
+		[When(@"^pass a password that is( not | )right$")]
 		public void PassAPasswordThatIs(Boolean rightPassword)
 		{
 			password = rightPassword ? userPassword : "wrong";
@@ -1555,7 +1555,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the user will (not )?be marked for deletion")]
+		[Then(@"^the user will( not | )be marked for deletion$")]
 		public void ThenTheUserWillBeMarkedForDeletion(Boolean marked)
 		{
 			var user = repos.User.GetByEmail(userEmail);
@@ -1587,7 +1587,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the user will (not )?have changed misc")]
+		[Then(@"^the user will( not | )have changed misc$")]
 		public void ThenTheUserWillHaveChangedMisc(Boolean changed)
 		{
 			var user = repos.User.GetByEmail(userEmail);
@@ -1613,7 +1613,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"a token for remove TFA will (not )?be generated")]
+		[Then(@"^a token for remove TFA will( not | )be generated$")]
 		public void ThenATokenForRemoveTFAWill_BeGenerated(Boolean generated)
 		{
 			var user = repos.User.GetByEmail(userEmail);
@@ -1630,7 +1630,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"email with a link to remove two-factor will (not )?be sent")]
+		[Then(@"^email with a link to remove two-factor will( not | )be sent$")]
 		public void ThenEmailWill_BeSentWithALinkToRemoveTwoFactor(Boolean sent)
 		{
 			var inboxPath = Path.Combine(outputsPath, "inbox");
@@ -1711,7 +1711,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(emails.Count, Is.EqualTo(1));
 		}
 
-		[Then(@"the session will (not )?have a warning about tfa removed")]
+		[Then(@"^the session will( not | )have a warning about tfa removed$")]
 		public void ThenTheSessionWillHaveAWarningAboutTfaRemoved(Boolean warning)
 		{
 			var session = service.Auth.GetSession(testTicketKey);

@@ -13,8 +13,8 @@ using DFM.Logs;
 using Keon.NHibernate.Schema;
 using Keon.NHibernate.Sessions;
 using NUnit.Framework;
-using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
+using Reqnroll;
+using Reqnroll.Assist;
 
 namespace DFM.BusinessLogic.Tests.Steps
 {
@@ -144,7 +144,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(testCoreError, Is.Not.Null);
 		}
 
-		[Then(@"I will receive this core error: ([A-Za-z]+)")]
+		[Then(@"^I will receive this core error: ([A-Za-z]+)$")]
 		public void ThenIWillReceiveThisError(Error expectedError)
 		{
 			Assert.That(testCoreError, Is.Not.Null);
@@ -322,7 +322,8 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 		// ReSharper disable once UnusedMember.Global
-		[StepArgumentTransformation(@"( not?|not? )?")]
+		[StepArgumentTransformation(@"^(no |)$")]
+		[StepArgumentTransformation(@"^( not | )$")]
 		public Boolean NotToBoolTransform(String not)
 		{
 			return not.Trim() != "not" && not.Trim() != "no";

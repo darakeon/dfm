@@ -7,7 +7,7 @@ using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Generic;
 using NUnit.Framework;
-using TechTalk.SpecFlow;
+using Reqnroll;
 
 namespace DFM.BusinessLogic.Tests.Steps
 {
@@ -126,7 +126,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(monthReport.MoveList, Is.Empty);
 		}
 
-		[Then(@"there will have a move with description (.*)")]
+		[Then(@"^there will have a move with description (.*)$")]
 		public void ThenThereWillHaveAMoveWithDescriptionScheduleEa(String description)
 		{
 			Assert.That(
@@ -159,7 +159,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the foreseen future value part will be ((?:\+|\-)\d+)")]
+		[Then(@"^the foreseen future value part will be ((?:\+|\-)\d+)$")]
 		public void ThenTheForeseenValueWillBe(Int32 value)
 		{
 			var foreseen = monthReport.ForeseenTotal - monthReport.AccountTotal;
@@ -309,7 +309,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		#endregion
 
 		#region SearchByDescription
-		[When(@"I try to search by description (.+)")]
+		[When(@"^I try to search by description (.+)$")]
 		public void WhenITryToSearchByDescription(String description)
 		{
 			// ReSharper disable once SwitchStatementMissingSomeCases
@@ -437,7 +437,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			service.Clip.DismissTip();
 		}
 
-		[Given(@"disabled tip (.+)")]
+		[Given(@"^disabled tip (.+)$")]
 		public void GivenDisabledTip(TipTests tip)
 		{
 			service.Clip.DisableTip(tip);
@@ -469,7 +469,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[When(@"disable tip (.+)")]
+		[When(@"^disable tip (.+)$")]
 		public void WhenDisableTip(TipTests tip)
 		{
 			try
@@ -495,7 +495,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"tip will (not )?be shown")]
+		[Then(@"^tip will( not | )be shown$")]
 		public void ThenTipWillBeShown(Boolean shown)
 		{
 			if (shown)
@@ -504,7 +504,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				Assert.That(tip, Is.Null);
 		}
 
-		[Then(@"tip shown will (not )?be equal to last one")]
+		[Then(@"^tip shown will( not | )be equal to last one$")]
 		public void ThenTipShownWillBeEqualToLastOne(Boolean equal)
 		{
 			if (equal)

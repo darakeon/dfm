@@ -12,8 +12,8 @@ using DFM.Generic;
 using DFM.Language;
 using DFM.Tests.Util;
 using NUnit.Framework;
-using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
+using Reqnroll;
+using Reqnroll.Assist;
 
 namespace DFM.BusinessLogic.Tests.Steps
 {
@@ -191,7 +191,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			Assert.That(newAccount.Currency, Is.EqualTo(accountInfo.Currency));
 		}
 
-		[Then(@"the account url will be (.+)")]
+		[Then(@"^the account url will be (.+)$")]
 		public void ThenTheAccountUrlWillBe(String url)
 		{
 			url = url.ForScenario(scenarioCode.ToLower());
@@ -390,7 +390,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			service.Admin.DeleteAccount(accountUrl);
 		}
 
-		[Given(@"I delete the moves of ([\w ]+)")]
+		[Given(@"^I delete the moves of ([\w ]+)$")]
 		public void GivenIDeleteTheMovesOf(String givenAccountUrl)
 		{
 			var user = repos.User.GetByEmail(current.Email);
@@ -447,7 +447,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		#endregion
 
 		#region GetAccountList
-		[Given(@"I open the account (.+)")]
+		[Given(@"^I open the account (.+)$")]
 		public void GivenIOpenTheAccount(String url)
 		{
 			url = url.IntoUrl();
@@ -458,7 +458,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				service.Admin.ReopenAccount(url);
 		}
 
-		[Given(@"I close the account (.+)")]
+		[Given(@"^I close the account (.+)$")]
 		public void GivenICloseTheAccount(String url)
 		{
 			url = url.IntoUrl();
@@ -504,7 +504,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[When(@"ask for the (not )?active account list")]
+		[When(@"^ask for the( not | )active account list$")]
 		public void WhenAskForTheActiveAccountList(Boolean active)
 		{
 			try
@@ -517,7 +517,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the account list will (not )?have this")]
+		[Then(@"^the account list will( not | )have this$")]
 		public void ThenTheAccountListWillHaveThis(Boolean has, Table table)
 		{
 			var expectedList = new List<Account>();
@@ -566,7 +566,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the account will (not )?be open")]
+		[Then(@"^the account will( not | )be open$")]
 		public void ThenTheAccountWillBeOpen(Boolean opened)
 		{
 			var url = accountUrl ?? accountInfo?.Name.IntoUrl();
@@ -707,7 +707,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the category will (not )?be changed")]
+		[Then(@"^the category will( not | )be changed$")]
 		public void ThenTheCategoryWillBeChanged(Boolean changed)
 		{
 			CategoryInfo category = null;
@@ -750,7 +750,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		#endregion
 
 		#region DisableCategory
-		[Given(@"I give the enabled category ([\w ]+)")]
+		[Given(@"^I give the enabled category ([\w ]+)$")]
 		public void GivenIGiveAnEnabledCategory(String givenCategoryName)
 		{
 			service.Admin.CreateCategory(
@@ -794,7 +794,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		#endregion
 
 		#region EnableCategory
-		[Given(@"I give the disabled category ([\w ]+)")]
+		[Given(@"^I give the disabled category ([\w ]+)$")]
 		public void GivenIGiveADisabledCategory(String givenCategoryName)
 		{
 			service.Admin.CreateCategory(
@@ -830,7 +830,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the category will (not )?be enabled")]
+		[Then(@"^the category will( not | )be enabled$")]
 		public void ThenTheCategoryWillBeEnabled(Boolean enabled)
 		{
 			var user = repos.User.GetByEmail(current.Email);
@@ -840,7 +840,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		#endregion
 
 		#region GetCategoryList
-		[Given(@"I enable the category (.+)")]
+		[Given(@"^I enable the category (.+)$")]
 		public void GivenIEnableTheCategory(String name)
 		{
 			var user = repos.User.GetByEmail(current.Email);
@@ -850,7 +850,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				service.Admin.EnableCategory(name);
 		}
 
-		[Given(@"I disable the category (.+)")]
+		[Given(@"^I disable the category (.+)$")]
 		public void GivenIDisableTheCategory(String name)
 		{
 			var user = repos.User.GetByEmail(current.Email);
@@ -875,7 +875,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[When(@"ask for the (not )?active category list")]
+		[When(@"^ask for the( not | )active category list$")]
 		public void WhenAskForTheActiveCategoryList(Boolean active)
 		{
 			try
@@ -888,7 +888,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the category list will (not )?have this")]
+		[Then(@"^the category list will( not | )have this$")]
 		public void ThenTheCategoryListsWillBeThis(Boolean has, Table table)
 		{
 			var expectedList = new List<Category>();
@@ -941,7 +941,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			repos.Summary.SaveOrUpdate(summary);
 		}
 
-		[When(@"unify categories (.+) to (.+)")]
+		[When(@"^unify categories (.+) to (.+)$")]
 		public void WhenUnifyCategoriesCatAAndCatB(String categoryToDelete, String categoryToKeep)
 		{
 			try
@@ -954,7 +954,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"category (.+) will( not)? exist")]
+		[Then(@"^category (.+) will( not | )exist$")]
 		public void ThenCategoryCatBWillNotExist(String categoryName, Boolean exist)
 		{
 			var user = repos.User.GetByEmail(userEmail);
@@ -1103,7 +1103,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the account list will( not)? have sign")]
+		[Then(@"^the account list will( not | )have sign$")]
 		public void ThenTheAccountListWillHaveSign(Boolean hasSign)
 		{
 			var accountList = service.Admin.GetAccountList(true);
@@ -1116,7 +1116,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 				Assert.That(account.Sign, Is.EqualTo(AccountSign.NoLimit));
 		}
 
-		[Then(@"the year report will( not)? have sign")]
+		[Then(@"^the year report will( not | )have sign$")]
 		public void ThenTheYearReportWillNotHaveSign(Boolean hasSign)
 		{
 			var url = accountInfo.Name.IntoUrl();
@@ -1135,7 +1135,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the month report will( not)? have sign")]
+		[Then(@"^the month report will( not | )have sign$")]
 		public void ThenTheMonthReportWillNotHaveSign(Boolean hasSign)
 		{
 			var url = accountInfo.Name.IntoUrl();
@@ -1157,7 +1157,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		#endregion
 
 		#region ChangeTheme
-		[Given(@"a theme (\w+)")]
+		[Given(@"^a theme (\w+)$")]
 		public void GivenAThemeSlate(Theme chosenTheme)
 		{
 			theme = chosenTheme;
@@ -1176,7 +1176,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the Theme will be (\w+)")]
+		[Then(@"^the Theme will be (\w+)$")]
 		public void ThenTheThemeWillBeSlate(Theme chosenTheme)
 		{
 			Assert.That(current.Theme, Is.EqualTo(chosenTheme));
@@ -1212,7 +1212,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[When(@"I unsubscribe move mail \(invalid token\)")]
+		[When(@"^I unsubscribe move mail \(invalid token\)$")]
 		public void WhenIUnsubscribeMoveMailInvalidToken()
 		{
 			try
@@ -1225,7 +1225,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the move mail will( not)? be enabled")]
+		[Then(@"^the move mail will( not | )be enabled$")]
 		public void ThenTheMoveMailWill_BeEnabled(Boolean enabled)
 		{
 			var user = repos.User.GetByEmail(userEmail);
@@ -1300,7 +1300,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			service.Money.SaveMove(move);
 		}
 
-		[Given(@"the account has a schedule( with details)?")]
+		[Given(@"^the account has a schedule( with details|)?$")]
 		public void GivenTheAccountHasSchedules(String withDetails)
 		{
 			scheduleInfo = new ScheduleInfo
@@ -1336,7 +1336,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			scheduleInfo.Guid = schedule.Guid;
 		}
 
-		[Given(@"the account has a disabled schedule( with details)?")]
+		[Given(@"^the account has a disabled schedule( with details|)?$")]
 		public void GivenTheAccountHasADisabledSchedule(String withDetails)
 		{
 			scheduleInfo = new ScheduleInfo
@@ -1394,7 +1394,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 			}
 		}
 
-		[Then(@"the account will (not )?have an end date")]
+		[Then(@"^the account will( not | )have an end date$")]
 		public void ThenTheAccountWillHaveAnEndDate(Boolean hasEndDate)
 		{
 			var url = accountUrl ?? accountInfo?.Name.IntoUrl();
