@@ -20,7 +20,7 @@ jobs:
           error: '
             The title is too long, 50 characters are just enough.
             If you have more to say, put it at the message body.
-            
+
             For more explanations:
             https://github.com/darakeon/dfm/blob/main/CONTRIBUTING.md
             '
@@ -42,7 +42,7 @@ jobs:
             `version`, `docs`, `tests`, `tools`, `security`, `db`,
             `ci`, `mail`, `language`, `publish`, `accessibility`,
             `legal`, `midna`, `struct`
-            
+
             For more explanations:
             https://github.com/darakeon/dfm/blob/main/CONTRIBUTING.md
             '
@@ -60,7 +60,7 @@ jobs:
             The body can have a longer description than the subject,
             but if you break it in lines with 72 characters,
             it will be easier to read.
-            
+
             For more explanations:
             https://github.com/darakeon/dfm/blob/main/CONTRIBUTING.md
             '
