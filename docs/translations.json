@@ -89,6 +89,7 @@
 		"Allow run independabot in any branch": "-",
 		"Migrate cloud db": "Changed data place",
 		"Replace sqlite deprecated library": "Security fix",
+		"Replace Specflow by Reqnroll": "Internal tool replacement",
 		"": null
 	},
 	"pt-br": {
@@ -181,6 +182,7 @@
 		"Allow run independabot in any branch": "-",
 		"Migrate cloud db": "Mudado lugar de armazenamento de dados",
 		"Replace sqlite deprecated library": "Correção de segurança",
+		"Replace Specflow by Reqnroll": "Substituição de ferramenta interna",
 		"": null
 	}
 }
