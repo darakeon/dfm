@@ -14,9 +14,8 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend) then Type.
 
-| Task (45)                                                              | Typ | Siz | Dif | Imp | Pts |
+| Task (44)                                                              | Typ | Siz | Dif | Imp | Pts |
 | ---------------------------------------------------------------------- | --- | --- | --- | --- | --- |
-| Add [swagger] to API                                                   |  F  | 🐳 |  1  |  3  |  6  |
 | Refactor Core Steps - improve division to entities and given/when/then |  M  | 🐑 |  1  |  3  |  6  |
 | Replace XML at UI android by [jetpack-compose]                         |  M  | 🐉 |  3  |  4  |  5  |
 | Implement security measures suggested by github                        |  S  | 🐑 |  3  |  4  |  5  |
