@@ -1134,3 +1134,4 @@ This is the list of project releases, past and current. To see tasks that are st
 [template]: dirigir-1tI0z29LBJJAQCYq1fptWCN8jgL6b2yj-
 [Deploy APKs using CI]:https://developer.android.com/build/building-cmdline
 [password rules]:https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#implement-proper-password-strength-controls
+[swagger]: https://learn.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger?view=aspnetcore-8.0
