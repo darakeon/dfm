@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <PackageReference Include="Keon.Eml" Version="6.0.2" />
-    <PackageReference Include="Reqnroll" Version="3.3.0" />
+    <PackageReference Include="Reqnroll" Version="3.3.2" />
   </ItemGroup>
 
   <ItemGroup>
