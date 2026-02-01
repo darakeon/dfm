@@ -34,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.CloudWatchLogs" Version="4.0.14.3" />
+    <PackageReference Include="AWSSDK.CloudWatchLogs" Version="4.0.14.5" />
     <PackageReference Include="AWSSDK.S3" Version="4.0.17.2" />
     <PackageReference Include="AWSSDK.SQS" Version="4.0.2.12" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.2" />
