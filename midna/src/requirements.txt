@@ -1,7 +1,7 @@
 django==6.0.2
 mysqlclient==2.2.7
 bcrypt==5.0.0
-boto3==1.42.44
+boto3==1.42.49
 pytest==9.0.2
 pip-audit==2.10.0
 gunicorn==25.0.3
