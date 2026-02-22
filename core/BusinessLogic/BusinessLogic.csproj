@@ -37,7 +37,7 @@
     <PackageReference Include="AWSSDK.CloudWatchLogs" Version="4.0.14.5" />
     <PackageReference Include="AWSSDK.S3" Version="4.0.18.1" />
     <PackageReference Include="AWSSDK.SQS" Version="4.0.2.14" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.3" />
     <ProjectReference Include="..\Authentication\Authentication.csproj" />
     <ProjectReference Include="..\Email\Email.csproj" />
     <ProjectReference Include="..\Exchange\Exchange.csproj" />
