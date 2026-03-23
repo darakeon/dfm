@@ -79,8 +79,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.CloudWatchLogs" Version="4.0.14.5" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.2" />
+    <PackageReference Include="AWSSDK.CloudWatchLogs" Version="4.0.15.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.5" />
     <ProjectReference Include="..\Language\Language.csproj" />
     <ProjectReference Include="..\Logs\Logs.csproj" />
   </ItemGroup>

@@ -26,11 +26,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.S3" Version="4.0.18.1" />
+    <PackageReference Include="AWSSDK.S3" Version="4.0.19.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Text.Json" Version="10.0.2" />
+    <PackageReference Include="System.Text.Json" Version="10.0.5" />
     <ProjectReference Include="..\Generic\Generic.csproj" />
   </ItemGroup>
 

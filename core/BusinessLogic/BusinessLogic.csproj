@@ -27,17 +27,17 @@
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="33.1.0" />
-    <PackageReference Include="Keon.NHibernate" Version="5.6.8" />
+    <PackageReference Include="Keon.NHibernate" Version="5.6.9" />
     <PackageReference Include="Keon.TwoFactorAuth" Version="4.0.5" />
     <PackageReference Include="SourceGear.sqlite3" Version="3.50.4.5" />
-    <PackageReference Include="System.Data.SQLite" Version="2.0.2" />
+    <PackageReference Include="System.Data.SQLite" Version="2.0.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.CloudWatchLogs" Version="4.0.14.5" />
-    <PackageReference Include="AWSSDK.S3" Version="4.0.18.1" />
-    <PackageReference Include="AWSSDK.SQS" Version="4.0.2.14" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.2" />
+    <PackageReference Include="AWSSDK.CloudWatchLogs" Version="4.0.15.3" />
+    <PackageReference Include="AWSSDK.S3" Version="4.0.19.1" />
+    <PackageReference Include="AWSSDK.SQS" Version="4.0.2.18" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.5" />
     <ProjectReference Include="..\Authentication\Authentication.csproj" />
     <ProjectReference Include="..\Email\Email.csproj" />
     <ProjectReference Include="..\Exchange\Exchange.csproj" />
