@@ -649,3 +649,7 @@ kotlin-gradle-plugins-bom-2.3.10-javadoc.jar
 kotlin-gradle-plugins-bom-2.3.10-sources.jar
 kotlin-stdlib-common-2.3.10-javadoc.jar
 kotlin-stdlib-common-2.3.10-sources.jar
+kotlin-gradle-plugins-bom-2.3.20-javadoc.jar
+kotlin-gradle-plugins-bom-2.3.20-sources.jar
+kotlin-stdlib-common-2.3.20-javadoc.jar
+kotlin-stdlib-common-2.3.20-sources.jar
