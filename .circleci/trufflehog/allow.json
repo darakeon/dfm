@@ -15,5 +15,6 @@
 	"pseudo-secret-key": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
 	"template-key": "1tI0z29LBJJAQCYq1fptWCN8jgL6b2yj",
 	"circleci-url": "https://app.circleci.com/pipelines/github/darakeon/dfm/4973/workflows/f0be7a5f-2809-45ff-b5f0-214e741c54ba/jobs/60464",
+	"scoped-services": "https://media.licdn.com/dms/image/v2/D5622AQGzoIF8zdB5yg/feedshare-shrink_800/B56Z1M.bXTKYAc-/0/1775112926927?e=1776902400&v=beta&t=Lcl6gq2-xNt3N8iRfPgImoed4Ai9uwcD8P1e4T7jmt4",
 	"": ""
 }

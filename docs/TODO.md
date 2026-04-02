@@ -14,8 +14,9 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend) then Type.
 
-| Task (44)                                                              | Typ | Siz | Dif | Imp | Pts |
+| Task (45)                                                              | Typ | Siz | Dif | Imp | Pts |
 | ---------------------------------------------------------------------- | --- | --- | --- | --- | --- |
+| Make service [Scoped] in MVC and API                                   |  M  | 🐑 |  2  |  4  |  6  |
 | Refactor Core Steps - improve division to entities and given/when/then |  M  | 🐑 |  1  |  3  |  6  |
 | Replace XML at UI android by [jetpack-compose]                         |  M  | 🐉 |  3  |  4  |  5  |
 | Implement security measures suggested by github                        |  S  | 🐑 |  3  |  4  |  5  |
@@ -65,3 +66,5 @@ The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend)
 [gherkin jest]: https://www.npmjs.com/package/gherkin-jest
 [Lint C#]: https://medium.com/@michaelparkerdev/linting-c-in-2019-stylecop-sonar-resharper-and-roslyn-73e88af57ebd
 [OCR]: https://developers.google.com/ml-kit/vision/text-recognition/android
+[Scoped]: https://media.licdn.com/dms/image/v2/D5622AQGzoIF8zdB5yg/feedshare-shrink_800/B56Z1M.bXTKYAc-/0/1775112926927?e=1776902400&v=beta&t=Lcl6gq2-xNt3N8iRfPgImoed4Ai9uwcD8P1e4T7jmt4
+
