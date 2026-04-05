@@ -38,7 +38,7 @@
   <ItemGroup>
     <PackageReference Include="AWSSDK.CloudWatchLogs" Version="4.0.16.1" />
     <PackageReference Include="AWSSDK.S3" Version="4.0.19.1" />
-    <PackageReference Include="AWSSDK.SQS" Version="4.0.2.18" />
+    <PackageReference Include="AWSSDK.SQS" Version="4.0.2.23" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.5" />
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj" />
   </ItemGroup>
