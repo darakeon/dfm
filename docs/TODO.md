@@ -14,8 +14,9 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend) then Type.
 
-| Task (45)                                                              | Typ | Siz | Dif | Imp | Pts |
+| Task (46)                                                              | Typ | Siz | Dif | Imp | Pts |
 | ---------------------------------------------------------------------- | --- | --- | --- | --- | --- |
+| Add total to account to make it faster calculated                      |  S  | 🐑 |  2  |  4  |  6  |
 | Make service [Scoped] in MVC and API                                   |  M  | 🐑 |  2  |  4  |  6  |
 | Refactor Core Steps - improve division to entities and given/when/then |  M  | 🐑 |  1  |  3  |  6  |
 | Replace XML at UI android by [jetpack-compose]                         |  M  | 🐉 |  3  |  4  |  5  |
