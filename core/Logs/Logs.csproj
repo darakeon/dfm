@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.CloudWatchLogs" Version="4.0.16.1" />
+    <PackageReference Include="AWSSDK.CloudWatchLogs" Version="4.0.20" />
     <PackageReference Include="Konkah.LibraryCSharpColorTerminal" Version="1.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.5" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />

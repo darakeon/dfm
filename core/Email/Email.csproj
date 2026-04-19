@@ -79,7 +79,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.CloudWatchLogs" Version="4.0.16.1" />
+    <PackageReference Include="AWSSDK.CloudWatchLogs" Version="4.0.20" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.5" />
     <ProjectReference Include="..\Language\Language.csproj" />
     <ProjectReference Include="..\Logs\Logs.csproj" />
