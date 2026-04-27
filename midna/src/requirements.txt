@@ -1,8 +1,8 @@
-django==6.0.3
+django==6.0.4
 mysqlclient==2.2.8
 bcrypt==5.0.0
-boto3==1.42.49
-pytest==9.0.2
+boto3==1.42.97
+pytest==9.0.3
 pip-audit==2.10.0
-gunicorn==25.1.0
-tzdata==2026.1
+gunicorn==25.3.0
+tzdata==2026.2
