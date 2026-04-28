@@ -1,6 +1,6 @@
   build_core:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     steps:
       - checkout
       - run:

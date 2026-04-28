@@ -123,7 +123,7 @@ jobs:
 
   build_core:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     steps:
       - checkout
       - run:
@@ -161,7 +161,7 @@ jobs:
 
   audit_core:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     steps:
       - checkout
       - attach_workspace:
@@ -187,7 +187,7 @@ jobs:
 
   test_core_generic:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     steps:
       - checkout
       - attach_workspace:
@@ -205,7 +205,7 @@ jobs:
 
   test_core_language:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     steps:
       - checkout
       - attach_workspace:
@@ -223,7 +223,7 @@ jobs:
 
   test_core_email:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     steps:
       - checkout
       - attach_workspace:
@@ -247,7 +247,7 @@ jobs:
 
   test_core_exchange:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     steps:
       - checkout
       - attach_workspace:
@@ -265,7 +265,7 @@ jobs:
 
   test_core_entities:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     steps:
       - checkout
       - attach_workspace:
@@ -283,7 +283,7 @@ jobs:
 
   test_core_business_logic_auth:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     resource_class: large
     steps:
       - checkout
@@ -308,7 +308,7 @@ jobs:
 
   test_core_business_logic_law:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     resource_class: large
     steps:
       - checkout
@@ -333,7 +333,7 @@ jobs:
 
   test_core_business_logic_admin:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     resource_class: large
     steps:
       - checkout
@@ -358,7 +358,7 @@ jobs:
 
   test_core_business_logic_clip:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     resource_class: large
     steps:
       - checkout
@@ -383,7 +383,7 @@ jobs:
 
   test_core_business_logic_money:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     resource_class: large
     steps:
       - checkout
@@ -408,7 +408,7 @@ jobs:
 
   test_core_business_logic_report:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     resource_class: large
     steps:
       - checkout
@@ -433,7 +433,7 @@ jobs:
 
   test_core_business_logic_outside:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     resource_class: large
     steps:
       - checkout
@@ -458,7 +458,7 @@ jobs:
 
   test_core_business_logic_attendant:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     resource_class: large
     steps:
       - checkout
@@ -485,7 +485,7 @@ jobs:
 
   test_core_business_logic_executor:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     resource_class: large
     steps:
       - checkout
@@ -512,7 +512,7 @@ jobs:
 
   build_site:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     steps:
       - checkout
       - attach_workspace:
@@ -552,7 +552,7 @@ jobs:
 
   audit_site:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     steps:
       - checkout
       - attach_workspace:
@@ -580,7 +580,7 @@ jobs:
 
   test_site:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     steps:
       - checkout
       - attach_workspace:
@@ -688,7 +688,7 @@ jobs:
 
   build_api:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     steps:
       - checkout
       - attach_workspace:
@@ -728,7 +728,7 @@ jobs:
 
   audit_api:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     steps:
       - checkout
       - attach_workspace:
@@ -756,7 +756,7 @@ jobs:
 
   test_api:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     steps:
       - checkout
       - attach_workspace:
@@ -967,7 +967,7 @@ jobs:
 
   build_robot:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     resource_class: small
     environment:
       ASPNETCORE_ENVIRONMENT: circleCI
@@ -1008,7 +1008,7 @@ jobs:
 
   audit_robot:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     resource_class: small
     environment:
       ASPNETCORE_ENVIRONMENT: circleCI
@@ -1039,7 +1039,7 @@ jobs:
 
   check_robot:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     resource_class: small
     environment:
       ASPNETCORE_ENVIRONMENT: circleCI
