@@ -1,6 +1,6 @@
   audit_robot:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     resource_class: small
     environment:
       ASPNETCORE_ENVIRONMENT: circleCI

@@ -1,6 +1,6 @@
   test_site:
     docker:
-      - image: darakeon/netcore:alpine-net8
+      - image: darakeon/netcore:alpine-net9
     steps:
       - checkout
       - attach_workspace:
