@@ -14,7 +14,7 @@ This is the task list for the project.
 
 The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend) then Type.
 
-| Task (47)                                                              | Typ | Siz | Dif | Imp | Pts |
+| Task (48)                                                              | Typ | Siz | Dif | Imp | Pts |
 | ---------------------------------------------------------------------- | --- | --- | --- | --- | --- |
 | Add [swagger] to API                                                   |  F  | 🐳 |  1  |  3  |  6  |
 | Add total to account to make it faster calculated                      |  S  | 🐑 |  2  |  4  |  6  |
@@ -56,6 +56,7 @@ The tasks are ordered by: Points then Importance then [Size](RELEASES.md#legend)
 | Fix GetNext null from export Order                                     |  B  | 🐜 |  1  |  1  |  4  |
 | Add error for schedule with 0 times                                    |  F  | 🐜 |  1  |  1  |  4  |
 | Change putJson to putSerializable/Parcelable at extras in android      |  M  | 🐜 |  1  |  1  |  4  |
+| Update or replace bootstrap https://ui.shadcn.com/docs/components      |  F  | 🐉 |  3  |  2  |  3  |
 | Add logs to Admin                                                      |  M  | 🐑 |  1  |  2  |  3  |
 | Transform Error Logs notification into widget                          |  M  | 🐜 |  2  |  1  |  3  |
 | Replace hardcoded scenario codes from tests                            |  M  | 🐜 |  2  |  1  |  3  |
