@@ -6,7 +6,7 @@ edition = "2021"
 
 [dependencies]
 dirs = "6.0.0"
-git2 = "0.20.4"
+git2 = "0.21.0"
 regex = "1.12.3"
 reqwest = { version = "0.13.3", features = ["blocking"] }
 json = "0.12.4"
