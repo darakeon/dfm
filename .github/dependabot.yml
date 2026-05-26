@@ -5,6 +5,17 @@
 
 version: 2
 updates:
+  - package-ecosystem: "github-actions"
+    directories:
+      - "/"
+    target-branch: "15.0.0.0"
+    schedule:
+      interval: "weekly"
+      day: "sunday"
+    rebase-strategy: "disabled"
+    commit-message:
+      prefix: "tools: update ci\n\n"
+
   - package-ecosystem: "nuget"
     directories:
       - "/core/"
