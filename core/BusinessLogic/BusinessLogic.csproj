@@ -34,10 +34,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.CloudWatchLogs" Version="4.0.22" />
-    <PackageReference Include="AWSSDK.S3" Version="4.0.22.1" />
-    <PackageReference Include="AWSSDK.SQS" Version="4.0.2.27" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.7" />
+    <PackageReference Include="AWSSDK.CloudWatchLogs" Version="4.0.26" />
+    <PackageReference Include="AWSSDK.S3" Version="4.0.24" />
+    <PackageReference Include="AWSSDK.SQS" Version="4.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.8" />
     <ProjectReference Include="..\Authentication\Authentication.csproj" />
     <ProjectReference Include="..\Email\Email.csproj" />
     <ProjectReference Include="..\Exchange\Exchange.csproj" />
