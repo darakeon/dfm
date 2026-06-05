@@ -1,4 +1,4 @@
-FROM darakeon/netcore-libman:ubuntu-net8
+FROM darakeon/netcore-libman:ubuntu-net9
 LABEL maintainer="Dara Keon <laboon@darakeon.com>"
 RUN maintain
 
