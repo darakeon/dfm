@@ -1,6 +1,6 @@
   test_android_lib_release:
     docker:
-      - image: darakeon/android:gradle9.3.1-jdk17
+      - image: darakeon/android:gradle9.5.1-jdk17
     resource_class: large
     steps:
       - checkout
