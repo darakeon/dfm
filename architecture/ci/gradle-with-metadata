@@ -28,13 +28,24 @@ if [ "$ERROR" != "" ]; then
         echyellow "---- ok, manual generation is needed"
 
         gradle $* > failure.txt 2>&1 || ERROR=$?
+        export COUNTER=0
         while [ "$ERROR" != "" ]; do
-            ERROR=""
+
             echyellow "---- found error: $ERROR!"
+
+            ERROR=""
             python3 ../.circleci/android/verification_metadata_libs.py
             git add gradle/verification-metadata.xml
+
             echyellow "---- let's run again!"
             gradle $* > failure.txt 2>&1 || ERROR=$?
+
+            export COUNTER=$((COUNTER+1))
+
+            if [ "$COUNTER" -gt 10 ]; then
+                echyellow "---- too many attempts, giving up"
+                exit 1
+            fi
         done
     else
         while [ "$HAS_METADATA" != "0" ]; do
