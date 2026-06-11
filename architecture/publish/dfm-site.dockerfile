@@ -1,4 +1,4 @@
-FROM darakeon/netcore-libman AS builder
+FROM darakeon/netcore-libman:alpine-net9 AS builder
 LABEL maintainer="Dara Keon <laboon@darakeon.com>"
 
 COPY core /var/dfm/core
@@ -11,7 +11,7 @@ RUN cd /var/dfm/site/MVC \
 	&& dotnet publish MVC.csproj -o /var/www
 
 
-FROM darakeon/netcore-server
+FROM darakeon/netcore-server:net9
 
 COPY --from=builder /var/www /var/www
 
