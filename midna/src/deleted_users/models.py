@@ -25,7 +25,7 @@ class Wipe(models.Model):
 
 	password = models.CharField(max_length=60)
 
-	csvAddress = models.CharField(null=True, max_length=500)
+	csv_address = models.CharField(null=True, max_length=500)
 
 	def masked_email(self):
 		return f"{self.username_start}...@{self.domain_start}..."
