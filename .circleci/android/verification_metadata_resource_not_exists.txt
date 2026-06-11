@@ -721,3 +721,7 @@ dependency-check-parent-12.2.2-javadoc.jar
 dependency-check-parent-12.2.2-sources.jar
 org.owasp.dependencycheck.gradle.plugin-12.2.2-javadoc.jar
 org.owasp.dependencycheck.gradle.plugin-12.2.2-sources.jar
+kotlin-gradle-plugins-bom-2.4.0-javadoc.jar
+kotlin-gradle-plugins-bom-2.4.0-sources.jar
+kotlin-stdlib-common-2.4.0-javadoc.jar
+kotlin-stdlib-common-2.4.0-sources.jar
