@@ -1,0 +1,18 @@
+- [ ] Review change version
+  - [ ] Docs
+    - [ ] When to change version number
+    - [ ] Should it document dependabot PR?
+  - [ ] .NET
+  - [ ] Python
+  - [ ] Rust
+  - [ ] Test Browser
+  - [ ] Kotlin
+- [ ] Review CI
+  - [ ] Dependabot in github
+    - [ ] Increase ant version part
+    - [ ] Config to main
+    - [ ] All in Thursday
+  - [ ] Auto approval
+  - [ ] Tests and builds - all branches or keep?
+  - [ ] Deploys run in main
+- [ ] Remove version branch creation from make
