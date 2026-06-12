@@ -74,7 +74,8 @@ resource_urls = [
 components = root.find(f"{tag_prefix}components")
 
 
-for component in components:
+for index, component in enumerate(components):
+	print(f"{index/len(components)*100:.1f}%")
 	group = component.attrib.get("group")
 	name = component.attrib.get("name")
 	version = component.attrib.get("version")
