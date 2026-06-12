@@ -125,6 +125,8 @@ afterEvaluate {
 			task.name.contains('generateDebugResources')
 			||
 			task.name.contains('processDebugNavigationResources')
+			||
+			task.name.contains('mapDebugSourceSetPaths')
 		) {
 			task.dependsOn ipNetwork, ipAddress
 		}
