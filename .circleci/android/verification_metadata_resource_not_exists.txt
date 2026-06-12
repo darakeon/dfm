@@ -778,3 +778,5 @@ android-test-plugin-0.0.9-alpha04-javadoc.jar
 core-0.0.9-alpha04-javadoc.jar
 core-proto-0.0.9-alpha04-javadoc.jar
 launcher-0.0.9-alpha04-javadoc.jar
+aapt2-9.2.1-15009934-javadoc.jar
+aapt2-9.2.1-15009934-sources.jar
