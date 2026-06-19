@@ -2097,6 +2097,7 @@ workflows:
               only:
                 - /^feature/ci/.+$/
                 - /^fix/ci/.+$/
+                - /^dependabot/github_actions/.+$/
       - test_ci:
           requires:
             - trufflehog
