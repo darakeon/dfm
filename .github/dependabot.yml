@@ -14,7 +14,7 @@ updates:
       day: "sunday"
     rebase-strategy: "disabled"
     labels:
-      - security
+      - automations
       - dependencies
     commit-message:
       prefix: "tools: update ci\n\n"
