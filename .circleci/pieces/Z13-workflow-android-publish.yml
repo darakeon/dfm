@@ -1,0 +1,36 @@
+  android_publish:
+    jobs:
+      - trufflehog:
+          filters:
+            branches:
+              only:
+                - android-publish
+      - test_ci:
+          requires:
+            - trufflehog
+      - push_docker_android:
+          requires:
+            - test_ci
+      - build_android:
+          requires:
+            - test_ci
+            - push_docker_android
+      - test_android_lib_debug:
+          requires:
+            - build_android
+      - test_android_lib_release:
+          requires:
+            - build_android
+      - test_android_app_debug:
+          requires:
+            - build_android
+      - test_android_app_release:
+          requires:
+            - build_android
+      - publish_android:
+          requires:
+            - test_android_lib_debug
+            - test_android_lib_release
+            - test_android_app_debug
+            - test_android_app_release
+
