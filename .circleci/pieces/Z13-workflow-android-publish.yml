@@ -33,4 +33,7 @@
             - test_android_lib_release
             - test_android_app_debug
             - test_android_app_release
+      - workflow_ran:
+          requires:
+            - publish_android
 
