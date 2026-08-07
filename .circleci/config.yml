@@ -2143,12 +2143,16 @@ workflows:
       - test_android_app_release:
           requires:
             - build_android
-      - publish_android:
+      - approve_deploy:
+          type: approval
           requires:
             - test_android_lib_debug
             - test_android_lib_release
             - test_android_app_debug
             - test_android_app_release
+      - publish_android:
+          requires:
+            - approve_deploy
       - workflow_ran:
           requires:
             - publish_android
