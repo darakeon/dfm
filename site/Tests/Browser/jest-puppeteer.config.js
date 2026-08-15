@@ -12,6 +12,6 @@ module.exports = {
 	launch: {
 		args,
 		executablePath: browser,
-		dumpio: true,
+		dumpio: false,
 	},
 }
