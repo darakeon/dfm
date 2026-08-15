@@ -15,7 +15,8 @@
 	"overrides": {
 		"axios": ">=1.12.0",
 		"tar": ">=7.5.7",
-		"js-yaml": ">4.1.1"
+		"js-yaml": ">4.1.1",
+		"jest-environment-node": ">=30"
 	},
 	"scripts": {
 		"test": "jest --runInBand --bail --verbose"
