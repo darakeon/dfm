@@ -10,8 +10,8 @@ android {
 		versionCode 31
 		versionName "$dfm_version"
 
-		minSdkVersion 23
-		targetSdkVersion 35
+		minSdkVersion 24
+		targetSdkVersion 36
 	}
 
 	buildTypes {
