@@ -17,8 +17,8 @@ android {
 		versionCode 2011000078
 		versionName "$dfm_version"
 
-		minSdkVersion 23
-		targetSdkVersion 35
+		minSdkVersion 24
+		targetSdkVersion 36
 	}
 
 	signingConfigs {
