@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="33.1.0" />
-    <PackageReference Include="Keon.NHibernate" Version="6.0.2" />
+    <PackageReference Include="Keon.NHibernate" Version="6.0.5" />
     <PackageReference Include="Keon.TwoFactorAuth" Version="5.0.1" />
     <PackageReference Include="SourceGear.sqlite3" Version="3.50.4.5" />
     <PackageReference Include="System.Data.SQLite" Version="2.0.3" />
