@@ -10,17 +10,34 @@ fn path_error_logs() -> String { get_path(vec!["..", "android", "ErrorLogs", "bu
 
 pub fn update_android(version: &Version) {
 	let changes = list_changes_main();
+
 	let changed_general = general_changed(&changes);
+	let changed_error_logs = changed("ErrorLogs", &changes);
+	let changed_app = changed("App", &changes);
 
 	let updated_main = update_main(version);
 
+	let green = "\x1b[92m";
+	let red = "\x1b[91m";
+	let blue = "\x1b[94m";
+	let reset = "\x1b[m";
+
+	println!("");
+	println!("{}Android! ==========================={}", green, reset);
+	println!("{}Updated now: {}{}{}", green, if updated_main { blue } else { red }, updated_main, reset);
+	println!("{}Has general changes: {}{}{}", green, if changed_general { blue } else { red }, changed_general, reset);
+	println!("{}Has app changes: {}{}{}", green, if changed_app { blue } else { red }, changed_app, reset);
+	println!("{}Has error logs changes: {}{}{}", green, if changed_error_logs { blue } else { red }, changed_error_logs, reset);
+	println!("{}===================================={}", green, reset);
+	println!("");
+
 	if !updated_main { return }
 
-	if changed_general || changed("App", &changes) {
+	if changed_general || changed_app {
 		change_code(path_app(), "(2011\\d{6})");
 	}
 
-	if changed_general || changed("ErrorLogs", &changes) {
+	if changed_general || changed_error_logs {
 		change_code(path_error_logs(), "(\\d+)");
 	}
 }
@@ -73,7 +90,7 @@ fn update_main(version: &Version) -> bool {
 }
 
 fn version_name(version: &str) -> String {
-	format!(r#"ext.dfm_version = "{}""#, version)
+	return format!(r#"ext.dfm_version = "{}""#, version)
 }
 
 fn change_code(path: String, pattern: &str) {
@@ -102,5 +119,5 @@ fn change_code(path: String, pattern: &str) {
 }
 
 fn version_code(version: &str) -> String {
-	format!("versionCode {}", version)
+	return format!("versionCode {}", version)
 }
