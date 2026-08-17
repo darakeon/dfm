@@ -4,7 +4,8 @@
       - In the end of the development of the branch
     - [x] Should it document dependabot PR?
       - Yes, add a release for dependabot with only "update libs"
-    - [ ] Move all ants to sheeps in TODO?
+    - [x] Move all ants to sheeps in TODO?
+      - Yes!
   - [ ] .NET
   - [ ] Python
   - [ ] Rust
