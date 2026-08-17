@@ -1,7 +1,10 @@
 - [ ] Review change version
   - [ ] Docs
-    - [ ] When to change version number
-    - [ ] Should it document dependabot PR?
+    - [x] When to change version number
+      - In the end of the development of the branch
+    - [x] Should it document dependabot PR?
+      - Yes, add a release for dependabot with only "update libs"
+    - [ ] Move all ants to sheeps in TODO?
   - [ ] .NET
   - [ ] Python
   - [ ] Rust
@@ -9,7 +12,7 @@
   - [ ] Kotlin
 - [ ] Review CI
   - [ ] Dependabot in github
-    - [ ] Increase ant version part
+    - [ ] Increase ant version part for all dependabot
     - [ ] Config to main
     - [ ] All in Thursday
   - [ ] Auto approval
