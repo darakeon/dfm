@@ -11,6 +11,7 @@
   - [ ] Rust
   - [ ] Test Browser
   - [ ] Kotlin
+  - [ ] Check if current number higher previous by right place
 - [ ] Review CI
   - [ ] Dependabot in github
     - [ ] Increase ant version part for all dependabot
