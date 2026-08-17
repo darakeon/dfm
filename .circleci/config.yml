@@ -459,6 +459,8 @@ jobs:
   test_core_business_logic_attendant:
     docker:
       - image: darakeon/netcore:alpine-net9
+    environment:
+      MSBUILDTERMINALLOGGER: "off"
     resource_class: large
     steps:
       - checkout
