@@ -11,8 +11,8 @@ This is the list of project releases, past and current. To see tasks that are st
 ## Legend
 - 🐉: at least one huge change (increases first number)
 - 🐳: at least one big change, like a new feature (increases second number)
-- 🐑: at least one little change, as a change at an existing feature (increases third number)
-- 🐜: the developer is improving stuff or fixing some sh\*t it did (increases last number)
+- 🐑: at least one little change, as a change at an existing feature, improves and fixes (increases third number)
+- 🐜: automated updates from libraries (increases last number)
 
 ## <a name="15.0.0.0"></a>15.0.0.0 :🐉: <sup>`1`</sup>
 - [ ] `260817>......` Make repository trunk based
