@@ -10,7 +10,7 @@
 	"devDependencies": {
 		"jest": "^30.4.2",
 		"jest-puppeteer": "^11.0.0",
-		"puppeteer": "25.7.0"
+		"puppeteer": "25.8.0"
 	},
 	"overrides": {
 		"axios": ">=1.12.0",
