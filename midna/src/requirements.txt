@@ -4,5 +4,5 @@ bcrypt==5.0.0
 boto3==1.43.70
 pytest==9.1.1
 pip-audit==2.10.1
-gunicorn==26.0.0
+gunicorn==26.1.0
 tzdata==2026.3
