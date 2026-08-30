@@ -12,7 +12,6 @@ mod rust;
 mod tasks;
 mod todos;
 mod version;
-mod version_id;
 
 use crate::end::throw;
 use android::update_android;
@@ -26,8 +25,8 @@ use maintenance::update_maintenance_api_json;
 use notes::update_notes;
 use rust::update_rust;
 use tasks::update_task_list;
-use version::{create_version,Version};
-use version_id::update_version_id;
+use version::{create_version,update_version_id,Version};
+
 
 fn main() {
 	stash("running version");
