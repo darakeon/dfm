@@ -6,4 +6,4 @@
           filters:
             branches:
               only:
-                - main
+                - development
