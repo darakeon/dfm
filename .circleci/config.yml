@@ -1202,12 +1202,23 @@ jobs:
           command: |
             python get_next_auto_merge.py prs/list.json > prs/chosen
       - run:
+          name: Create branch dependabots if not exists
+          path: architecture/ci
+          command: |
+            export EXISTS=$(git branch --all | grep dependabots)
+            if [ "$EXISTS" == "" ]; then
+              source config-git
+              git branch dependabots origin/main
+              git push -u origin dependabots
+            fi
+      - run:
           name: Merge PR
           path: .circleci/auto-merge
           command: |
             export PR=$(tail -n 1 prs/chosen)
             if [ "$PR" != "" ]; then
               gh pr comment $PR --body "@dependabot recreate"
+              gh pr edit --base dependabots $PR
               gh pr merge --auto --rebase $PR
             else
               echo "No PRs to merge"
@@ -1515,6 +1526,7 @@ workflows:
               only:
                 - main
                 - development
+                - dependabots
       - test_ci:
           requires:
             - trufflehog
@@ -1703,6 +1715,7 @@ workflows:
             branches:
               only:
                 - development
+                - dependabots
       - publish_migrator:
           requires:
             - approve_deploy
@@ -2109,7 +2122,7 @@ workflows:
           filters:
             branches:
               only:
-                - main
+                - development
   android_publish:
     jobs:
       - trufflehog:
