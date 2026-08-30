@@ -22,5 +22,4 @@
     - [x] All in Thursday
   - [x] Auto approval
   - [ ] Tests and builds - all branches or keep?
-  - [ ] Deploys run in main
 - [ ] Remove version branch creation from make
