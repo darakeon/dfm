@@ -3,7 +3,7 @@ use std::collections::LinkedList;
 
 use crate::arguments::ProgramOption;
 use crate::end::{success,throw};
-use crate::file::{get_path, get_lines};
+use crate::file::{get_path, get_lines, set_content};
 use crate::regex::{extract, extract_line};
 
 
@@ -116,6 +116,12 @@ fn get_new_version(size: String) -> Option<(String, String)> {
 
 	return None;
 }
+
+
+pub fn update_version_id(version: &Version) {
+	set_content(current_version_path(), version.dev.clone());
+}
+
 
 #[derive(Debug)]
 pub struct Version {
