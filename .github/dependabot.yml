@@ -11,7 +11,7 @@ updates:
     target-branch: "main"
     schedule:
       interval: "weekly"
-      day: "sunday"
+      day: "thursday"
     rebase-strategy: "disabled"
     labels:
       - automations
@@ -28,7 +28,7 @@ updates:
     target-branch: "main"
     schedule:
       interval: "weekly"
-      day: "sunday"
+      day: "thursday"
     rebase-strategy: "disabled"
     labels:
       - internal
@@ -44,7 +44,7 @@ updates:
     target-branch: "main"
     schedule:
       interval: "weekly"
-      day: "sunday"
+      day: "thursday"
     rebase-strategy: "disabled"
     labels:
       - tests
@@ -57,7 +57,7 @@ updates:
     target-branch: "main"
     schedule:
       interval: "weekly"
-      day: "sunday"
+      day: "thursday"
     rebase-strategy: "disabled"
     labels:
       - mobile
@@ -70,7 +70,7 @@ updates:
     target-branch: "main"
     schedule:
       interval: "weekly"
-      day: "sunday"
+      day: "thursday"
     rebase-strategy: "disabled"
     labels:
       - tests
@@ -83,7 +83,7 @@ updates:
     target-branch: "main"
     schedule:
       interval: "weekly"
-      day: "sunday"
+      day: "thursday"
     rebase-strategy: "disabled"
     labels:
       - internal
@@ -96,7 +96,7 @@ updates:
     target-branch: "main"
     schedule:
       interval: "weekly"
-      day: "sunday"
+      day: "thursday"
     rebase-strategy: "disabled"
     labels:
       - version
@@ -109,7 +109,7 @@ updates:
     target-branch: "main"
     schedule:
       interval: "weekly"
-      day: "sunday"
+      day: "thursday"
     rebase-strategy: "disabled"
     labels:
       - midna
