@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
 using DFM.BusinessLogic.Tests.Helpers;
@@ -853,7 +854,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 		}
 
 		[Then(@"the lines will be queued")]
-		public void ThenTheLinesWillBeQueued()
+		public async Task ThenTheLinesWillBeQueued()
 		{
 			var user = repos.User.GetByEmail(userEmail);
 
@@ -871,11 +872,7 @@ namespace DFM.BusinessLogic.Tests.Steps
 
 			do
 			{
-				var task = queueService.Dequeue();
-
-				task.Wait();
-
-				item = task.Result;
+				item = await queueService.Dequeue();
 
 				if (item.HasValue)
 				{
