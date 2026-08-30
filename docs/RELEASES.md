@@ -15,7 +15,7 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐜: automated updates from libraries (increases last number)
 
 ## <a name="development"></a>Development :🐉: <sup>`1`</sup>
-- [ ] `260817>......` Make repository trunk based
+- [x] `260817>......` Make repository trunk based
 
 ## <a name="14.3.0.2"></a>14.3.0.2 :🐜: <sup>`1`</sup>
 - [x] `260105>260110` Replace Specflow by Reqnroll
