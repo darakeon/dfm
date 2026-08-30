@@ -1205,9 +1205,16 @@ jobs:
           name: Merge PR
           path: .circleci/auto-merge
           command: |
+            export EXISTS=$(git branch --all | grep dependabots)
+            if [ "$EXISTS" == "" ]; then
+              git branch dependabots origin/main
+              git push origin dependabots
+            fi
+
             export PR=$(tail -n 1 prs/chosen)
             if [ "$PR" != "" ]; then
               gh pr comment $PR --body "@dependabot recreate"
+              gh pr edit --base dependabots $PR
               gh pr merge --auto --rebase $PR
             else
               echo "No PRs to merge"
@@ -1508,6 +1515,7 @@ workflows:
               only:
                 - main
                 - development
+                - dependabots
       - test_ci:
           requires:
             - trufflehog
@@ -1696,6 +1704,7 @@ workflows:
             branches:
               only:
                 - development
+                - dependabots
       - publish_migrator:
           requires:
             - approve_deploy
@@ -2102,7 +2111,7 @@ workflows:
           filters:
             branches:
               only:
-                - main
+                - development
   android_publish:
     jobs:
       - trufflehog:

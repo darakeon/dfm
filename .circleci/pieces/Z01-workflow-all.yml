@@ -9,6 +9,7 @@
               only:
                 - main
                 - development
+                - dependabots
       - test_ci:
           requires:
             - trufflehog
@@ -197,6 +198,7 @@
             branches:
               only:
                 - development
+                - dependabots
       - publish_migrator:
           requires:
             - approve_deploy
