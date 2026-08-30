@@ -20,7 +20,7 @@
     - [ ] Increase ant version part for all dependabot
     - [ ] Config to main
     - [ ] All in Thursday
-  - [ ] Auto approval
+  - [x] Auto approval
   - [ ] Tests and builds - all branches or keep?
   - [ ] Deploys run in main
 - [ ] Remove version branch creation from make
