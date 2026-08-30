@@ -30,7 +30,7 @@ def filter_prs(prs):
 	git_info = get_git_info()
 	username = git_info[0]
 	reponame = git_info[1]
-	branch = 'main'
+	branch = environ.get('TARGET_BRANCH')
 
 	dependabot_pr = 'app/dependabot'
 	dependabot_commit = 'dependabot[bot]'
