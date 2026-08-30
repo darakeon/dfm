@@ -8,7 +8,7 @@ updates:
   - package-ecosystem: "github-actions"
     directories:
       - "/"
-    target-branch: "15.0.0.0"
+    target-branch: "main"
     schedule:
       interval: "weekly"
       day: "sunday"
@@ -25,7 +25,7 @@ updates:
       - "/site/"
       - "/api/"
       - "/robot/"
-    target-branch: "15.0.0.0"
+    target-branch: "main"
     schedule:
       interval: "weekly"
       day: "sunday"
@@ -41,7 +41,7 @@ updates:
 
   - package-ecosystem: "npm"
     directory: "/site/Tests/Browser/"
-    target-branch: "15.0.0.0"
+    target-branch: "main"
     schedule:
       interval: "weekly"
       day: "sunday"
@@ -54,7 +54,7 @@ updates:
 
   - package-ecosystem: "gradle"
     directory: "/android/"
-    target-branch: "15.0.0.0"
+    target-branch: "main"
     schedule:
       interval: "weekly"
       day: "sunday"
@@ -67,7 +67,7 @@ updates:
 
   - package-ecosystem: "docker"
     directory: "/architecture/ci/"
-    target-branch: "15.0.0.0"
+    target-branch: "main"
     schedule:
       interval: "weekly"
       day: "sunday"
@@ -80,7 +80,7 @@ updates:
 
   - package-ecosystem: "docker"
     directory: "/architecture/publish/"
-    target-branch: "15.0.0.0"
+    target-branch: "main"
     schedule:
       interval: "weekly"
       day: "sunday"
@@ -93,7 +93,7 @@ updates:
 
   - package-ecosystem: "cargo"
     directory: "/version/"
-    target-branch: "15.0.0.0"
+    target-branch: "main"
     schedule:
       interval: "weekly"
       day: "sunday"
@@ -106,7 +106,7 @@ updates:
 
   - package-ecosystem: "pip"
     directory: "/midna/"
-    target-branch: "15.0.0.0"
+    target-branch: "main"
     schedule:
       interval: "weekly"
       day: "sunday"
