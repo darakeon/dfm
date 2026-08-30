@@ -32,10 +32,8 @@ pub fn create_version(option: &ProgramOption) -> Option<Version> {
 	}
 
 	if !version.done {
-		success();
+		success("Version is not done yet");
 	}
-
-	println!("Version: {}", version.to_string());
 
 	if version.tasks.len() == 0 {
 		throw(12, "Version without tasks");
@@ -119,6 +117,7 @@ fn get_new_version(size: String) -> Option<(String, String)> {
 	return None;
 }
 
+#[derive(Debug)]
 pub struct Version {
 	pub dev: String,
 	pub prod: String,
