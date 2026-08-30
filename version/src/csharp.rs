@@ -39,8 +39,8 @@ fn update_csharp_file(version: &Version, file_relative: Vec<&str>) {
 
 	let file = get_path(path);
 
-	let old_assembly = assembly_version(&version.prev);
-	let new_assembly = assembly_version(&version.code);
+	let old_assembly = assembly_version(&version.prod);
+	let new_assembly = assembly_version(&version.dev);
 
 	let content = get_content(file.clone())
 		.replace(&old_assembly, &new_assembly);

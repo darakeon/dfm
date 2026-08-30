@@ -1,29 +1,30 @@
+use regex::Regex;
 use std::collections::LinkedList;
 
 use crate::arguments::ProgramOption;
-use crate::end::{success,throw,throw_format};
+use crate::end::{success,throw};
 use crate::file::{get_path, get_lines};
-use crate::git::{current_branch,has_pull_request,reset_all};
-use crate::regex::{extract, extract_line, is_match};
-use crate::todos::add_release;
+use crate::regex::{extract, extract_line};
 
-fn path() -> String { get_path(vec!["..", "docs", "RELEASES.md"]) }
 
-pub fn create_version(option: &ProgramOption, numbers: Vec<usize>) -> Option<Version> {
-	let task_list = get_lines(path());
-	let pattern = r"^\- \[.+\]\(\#(\d+\.\d+\.\d+\.\d+)\)$";
+const START_OF_VERSIONS: usize = 16;
 
-	let prod = extract_line(&task_list, 6, pattern);
-	let dev = extract_line(&task_list, 7, pattern);
+fn current_version_path() -> String { get_path(vec!["..", "docs", "current-version"]) }
+fn releases_path() -> String { get_path(vec!["..", "docs", "RELEASES.md"]) }
 
-	let branch = current_branch().unwrap();
+
+pub fn create_version(option: &ProgramOption) -> Option<Version> {
+	let prod = get_lines(current_version_path())[0].clone();
+
+	let task_list = get_lines(releases_path());
+	let pattern = r"Development :(.):";
+
+	let dev_augmentor = extract_line(&task_list, START_OF_VERSIONS, pattern);
 
 	let version = mount_version(
 		prod.clone(),
-		dev.clone(),
-		branch.clone(),
+		dev_augmentor.clone(),
 		&task_list,
-		numbers,
 	);
 
 	if option == &ProgramOption::Git {
@@ -31,66 +32,39 @@ pub fn create_version(option: &ProgramOption, numbers: Vec<usize>) -> Option<Ver
 	}
 
 	if !version.done {
-		return end_not_done(version.code);
+		success();
 	}
 
-	let just_check = option == &ProgramOption::Check;
+	println!("Version: {}", version.to_string());
 
-	let compare = if just_check { prod } else { dev };
-
-	let should_check = is_match(&branch, pattern);
-
-	if should_check {
-		if branch != compare {
-			throw_format(12, format!("Branch is '{}', but release is of '{}'", branch, compare));
-		}
-
-		if branch != "main" && version.tasks.len() == 0 {
-			throw(13, "Version without tasks");
-		}
+	if version.tasks.len() == 0 {
+		throw(12, "Version without tasks");
 	}
 
 	Some(version)
 }
 
-const START_OF_VERSIONS: usize = 16;
-
 fn mount_version(
 	prod: String,
-	dev: String,
-	branch: String,
+	dev_augmentor: String,
 	task_list: &Vec<String>,
-	numbers: Vec<usize>,
 ) -> Version {
-	let version_pattern = r"(\d+\.\d+\.\d+\.\d+)";
+	let dev = get_next(dev_augmentor, prod.clone());
 
 	let mut version = Version::new(dev, prod);
-
-	if !is_match(&branch, version_pattern) || branch != version.code {
-		version.done = false;
-		return version;
-	}
-
-	let start = start_of_current_tasks(task_list, branch);
-
-	if start != START_OF_VERSIONS {
-		version.next = extract_line(task_list, START_OF_VERSIONS, version_pattern);
-	} else if numbers.len() > 0 {
-		let code = version.code.clone();
-
-		if let Some(next) = add_release(code, numbers) {
-			version.next = next;
-		}
-	}
 
 	let done_pattern = r"^\- \[([ x])\] ";
 	let task_pattern = r"^\- \[[ x]\](?: `.{6}>.{6}`)? (.+)";
 
-	for l in (start+1)..task_list.len() {
+	let mut count_all = 0;
+	let mut count_done = 0;
+
+	for l in (START_OF_VERSIONS+1)..task_list.len() {
 		let line = task_list.get(l).unwrap();
 
 		if let Some(done) = extract(&line, done_pattern) {
-			version.done &= done == "x";
+			count_all += 1;
+			count_done += if done == "x" { 1 } else { 0 };
 
 			if let Some(task) = extract(&line, task_pattern) {
 				version.tasks.push_back(task);
@@ -100,52 +74,64 @@ fn mount_version(
 		}
 	}
 
-	if !version.done {
-		reset_all();
-	}
+	version.done = count_all == count_done;
 
 	return version;
 }
 
-fn start_of_current_tasks(task_list: &Vec<String>, branch: String) -> usize {
-	let mut start = START_OF_VERSIONS;
+fn get_next(size: String, current: String) -> String {
+	let new_version = get_new_version(size);
 
-	let header = format!("## <a name=\"{}\">", branch);
+	if let Some((size_pattern, end)) = new_version {
+		let regex = Regex::new(&size_pattern).unwrap();
+		let captures = regex.captures(&current).unwrap();
 
-	while start < task_list.len() && !task_list.get(start).unwrap().starts_with(&header) {
-		start += 1;
+		let start = captures.get(1).unwrap().as_str().to_string();
+		let change: i32 = captures.get(2).unwrap().as_str().parse().unwrap();
+
+		return format!("{}{}{}", start, change + 1, end);
 	}
 
-	if start == task_list.len() {
-		return START_OF_VERSIONS;
-	}
-
-	return start;
+	throw(11, "Unknown next version");
 }
 
-fn end_not_done(version: String) -> Option<Version> {
-	if has_pull_request(version) {
-		throw(11, "There is an opened pull request and the version is not done");
+fn get_new_version(size: String) -> Option<(String, String)> {
+	let dragon = "🐉".to_string();
+	if size == dragon {
+		return Some((r"()(\d+)\.\d+\.\d+\.\d+".to_string(), r".0.0.0".to_string()));
 	}
 
-	success();
+	let whale = "🐳".to_string();
+	if size == whale {
+		return Some((r"(\d+\.)(\d+)\.\d+\.\d+".to_string(), r".0.0".to_string()));
+	}
+
+	let sheep = "🐑".to_string();
+	if size == sheep {
+		return Some((r"(\d+\.\d+\.)(\d+)\.\d+".to_string(), r".0".to_string()));
+	}
+
+	let ant = "🐜".to_string();
+	if size == ant {
+		return Some((r"(\d+\.\d+\.\d+\.)(\d+)".to_string(), r"".to_string()));
+	}
+
+	return None;
 }
 
 pub struct Version {
-	pub code: String,
+	pub dev: String,
+	pub prod: String,
 	pub done: bool,
-	pub prev: String,
-	pub next: String,
 	pub tasks: LinkedList<String>,
 }
 
 impl Version {
-	pub fn new(code: String, prev: String) -> Self {
+	pub fn new(dev: String, prod: String) -> Self {
 		Version {
-			code,
-			done: true,
-			prev,
-			next: String::new(),
+			dev: dev,
+			prod: prod,
+			done: false,
 			tasks: LinkedList::new(),
 		}
 	}
@@ -154,8 +140,8 @@ impl Version {
 impl ToString for Version {
 	fn to_string(&self) -> String {
 		format!(
-			"{} [{}] .. > {} .. < {}",
-			self.code, self.done, self.prev, self.next
+			"{} > {} [{}]",
+			self.prod, self.dev, self.done
 		)
 	}
 }

@@ -7,8 +7,8 @@ fn path_toml() -> String { get_path(vec!["..", "version", "Cargo.toml"]) }
 fn path_lock() -> String { get_path(vec!["..", "version", "Cargo.lock"]) }
 
 pub fn update_rust(version: &Version) {
-	let old_version = config_version(&version.prev);
-	let new_version = config_version(&version.code);
+	let old_version = config_version(&version.prod);
+	let new_version = config_version(&version.dev);
 
 	let content_toml = get_content(path_toml())
 		.replace(&old_version, &new_version);
