@@ -19,7 +19,7 @@
   - [ ] Dependabot in github
     - [ ] Increase ant version part for all dependabot
     - [x] Config to main
-    - [ ] All in Thursday
+    - [x] All in Thursday
   - [x] Auto approval
   - [ ] Tests and builds - all branches or keep?
   - [ ] Deploys run in main
