@@ -1179,10 +1179,12 @@ jobs:
     docker:
       - image: darakeon/github-cli
     resource_class: small
+    environment:
+      TARGET_BRANCH: "15.0.0.0"
     steps:
       - checkout
       - run:
-          name: check last main version ci succeeded
+          name: check last ci succeeded for target branch
           path: .circleci/auto-merge
           command: |
             python check_version_pipeline.py
@@ -1195,7 +1197,7 @@ jobs:
           name: List PRs
           path: .circleci/auto-merge
           command: |
-            gh pr list --base main --author app/dependabot --state open --json author,autoMergeRequest,baseRefName,closed,commits,headRefName,headRepository,headRepositoryOwner,id,isCrossRepository,isDraft,labels,number,state,statusCheckRollup > prs/list.json
+            gh pr list --base $TARGET_BRANCH --author app/dependabot --state open --json author,autoMergeRequest,baseRefName,closed,commits,headRefName,headRepository,headRepositoryOwner,id,isCrossRepository,isDraft,labels,number,state,statusCheckRollup > prs/list.json
       - run:
           name: Get PR to merge
           path: .circleci/auto-merge
@@ -1207,7 +1209,7 @@ jobs:
           command: |
             export EXISTS=$(git branch --all | grep dependabots)
             if [ "$EXISTS" == "" ]; then
-              git branch dependabots origin/main
+              git branch dependabots origin/$TARGET_BRANCH
               git push origin dependabots
             fi
 
