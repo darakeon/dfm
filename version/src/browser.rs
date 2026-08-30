@@ -7,8 +7,8 @@ fn path_main() -> String { get_path(vec!["..", "site", "Tests", "Browser", "pack
 fn path_lock() -> String { get_path(vec!["..", "site", "Tests", "Browser", "package-lock.json"]) }
 
 pub fn update_node(version: &Version) {
-	let old_version = config_version(&version.prev);
-	let new_version = config_version(&version.code);
+	let old_version = config_version(&version.prod);
+	let new_version = config_version(&version.dev);
 
 	let content_main = get_content(path_main())
 		.replace(&old_version, &new_version);

@@ -1,6 +1,6 @@
 use std::process::exit;
 
-use crate::git::stash_pop;
+use crate::git::{stash_pop, reset_all};
 
 pub fn success() -> ! {
 	stop(0)
@@ -11,10 +11,6 @@ pub fn throw(code: i32, text: &str) -> ! {
 	stop(code)
 }
 
-pub fn throw_format(code: i32, text: String) -> ! {
-	throw(code, &text)
-}
-
 pub fn throw_multiple(code: i32, texts: Vec<&str>) -> ! {
 	for text in texts {
 		eprintln!("{}", text);
@@ -23,6 +19,7 @@ pub fn throw_multiple(code: i32, texts: Vec<&str>) -> ! {
 }
 
 fn stop(code: i32) -> ! {
+	reset_all();
 	stash_pop();
 	exit(code)
 }
