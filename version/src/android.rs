@@ -75,12 +75,12 @@ fn changed(name: &str, list: &Vec<String>) -> bool {
 fn update_main(version: &Version) -> bool {
 	let mut content = get_content(path_main());
 
-	if !content.contains(&version.prev) {
+	if !content.contains(&version.prod) {
 		return false;
 	}
 
-	let old_name = version_name(&version.prev);
-	let new_name = version_name(&version.code);
+	let old_name = version_name(&version.prod);
+	let new_name = version_name(&version.dev);
 
 	content = content.replace(&old_name, &new_name);
 

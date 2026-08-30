@@ -5,7 +5,7 @@ fn path_api() -> String { get_path(vec!["..", "architecture", "maintenance", "ap
 
 pub fn update_maintenance_api_json(version: &Version) {
 	let content_api = get_content(path_api())
-		.replace(&version.prev, &version.code);
+		.replace(&version.prod, &version.dev);
 
 	set_content(path_api(), content_api);
 }
