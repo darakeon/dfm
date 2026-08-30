@@ -2,6 +2,8 @@ from json import loads
 from sys import argv
 from re import search
 from os import environ
+from io import open
+
 
 TEST = len(argv) >= 2 and argv[1] == 'test-translations'
 
@@ -21,7 +23,8 @@ if not TEST:
 
 
 def main():
-	version = environ["VERSION"]
+	with open ('docs/current-version') as file:
+		version = file.read()
 
 	en_us = get_translation(
 		'System Updates (some only at website):',
