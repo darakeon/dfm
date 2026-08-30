@@ -6,12 +6,16 @@
       - Yes, add a release for dependabot with only "update libs"
     - [x] Move all ants to sheeps in TODO?
       - Yes!
+    - [ ] Create new release:
+      - [ ] Do not put a number, only "development"
+      - [ ] Update last "development" to calculated new number
+    - [ ] Check history aligned to main in deploy
+    - [ ] Check version number before deploy
   - [ ] .NET
   - [ ] Python
   - [ ] Rust
   - [ ] Test Browser
   - [ ] Kotlin
-  - [ ] Check if current number higher previous by right place
 - [ ] Review CI
   - [ ] Dependabot in github
     - [ ] Increase ant version part for all dependabot
