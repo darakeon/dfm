@@ -4,8 +4,8 @@ use crate::version::Version;
 fn path() -> String { get_path(vec!["..", ".github", "workflows", "github-actions-commit-checker.yml"]) }
 
 pub fn update_commit_checker(version: &Version) {
-	let old_version = config_version(&version.code);
-	let new_version = config_version(&version.next);
+	let old_version = config_version(&version.dev);
+	let new_version = config_version("development");
 
 	let content = get_content(path())
 		.replace(&old_version, &new_version);
