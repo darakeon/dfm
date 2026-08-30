@@ -1182,10 +1182,9 @@ jobs:
     steps:
       - checkout
       - run:
-          name: check last dev version ci succeeded
+          name: check last main version ci succeeded
           path: .circleci/auto-merge
           command: |
-            export VERSION=$(./get_version.sh)
             python check_version_pipeline.py
       - run:
           name: Make folder
@@ -1196,13 +1195,11 @@ jobs:
           name: List PRs
           path: .circleci/auto-merge
           command: |
-            export VERSION=$(./get_version.sh)
-            gh pr list --base $VERSION --author app/dependabot --state open --json author,autoMergeRequest,baseRefName,closed,commits,headRefName,headRepository,headRepositoryOwner,id,isCrossRepository,isDraft,labels,number,state,statusCheckRollup > prs/list.json
+            gh pr list --base main --author app/dependabot --state open --json author,autoMergeRequest,baseRefName,closed,commits,headRefName,headRepository,headRepositoryOwner,id,isCrossRepository,isDraft,labels,number,state,statusCheckRollup > prs/list.json
       - run:
           name: Get PR to merge
           path: .circleci/auto-merge
           command: |
-            export VERSION=$(./get_version.sh)
             python get_next_auto_merge.py prs/list.json > prs/chosen
       - run:
           name: Merge PR
@@ -1284,7 +1281,6 @@ jobs:
       - run:
           name: Check translations length
           command: |
-            export VERSION=$(./circleci/auto-merge/get_version.sh)
             python3 .circleci/android/publish.py test-translations
       - run:
           name: push
@@ -1468,7 +1464,6 @@ jobs:
           name: Publish to Play Store
           command: |
             export ANDROID_BUNDLE=android/App/build/outputs/bundle/release/App-release.aab
-            export VERSION=$(./.circleci/auto-merge/get_version.sh)
             python3 .circleci/android/publish.py
       - store_artifacts:
           path: android/App/build/outputs/bundle/release/
