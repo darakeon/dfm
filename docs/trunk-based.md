@@ -19,8 +19,8 @@
   - [ ] Dependabot in github
     - [x] Config to main
     - [x] All in Thursday
-    - [ ] Auto approve change target to dependabots
-      - [ ] If no branch dependabots exist, create it
+    - [x] Auto approve change target to dependabots
+      - [x] If no branch dependabots exist, create it
     - [ ] If no PRs exist, create PR from dependabots to main
       - [ ] With auto merge
     - [ ] Increase ant version part for all dependabot
