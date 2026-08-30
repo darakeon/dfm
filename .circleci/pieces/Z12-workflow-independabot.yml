@@ -2,9 +2,8 @@
     when:
       equal: ["scheduled_pipeline", << pipeline.trigger_source >>]
     jobs:
-      - dependabot_auto_aprove:
+      - dependabot_auto_approve:
           filters:
             branches:
               only:
                 - main
-                - /^\d+\.\d+\.\d+\.\d+$/
