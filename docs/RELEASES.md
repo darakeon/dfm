@@ -4,7 +4,7 @@
 
 This is the list of project releases, past and current. To see tasks that are still on hold, go to [TODO](TODO.md).
 
-- [go to published version](#14.3.0.2)
+- [go to published version](#15.0.0.0)
 - [go to version in development](#development)
 - [dev version state](../../development/docs/RELEASES.md#development)
 
@@ -14,7 +14,10 @@ This is the list of project releases, past and current. To see tasks that are st
 - 🐑: at least one little change, as a change at an existing feature, improves and fixes (increases third number)
 - 🐜: automated updates from libraries (increases last number)
 
-## <a name="development"></a>Development :🐉: <sup>`1`</sup>
+## <a name="development"></a>Development :🐳: <sup>`1`</sup>
+- [ ] Add [swagger] to API
+
+## <a name="15.0.0.0"></a>15.0.0.0 :🐉: <sup>`1`</sup>
 - [x] `260817>......` Make repository trunk based
 
 ## <a name="14.3.0.2"></a>14.3.0.2 :🐜: <sup>`1`</sup>
