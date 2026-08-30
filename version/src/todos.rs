@@ -6,18 +6,12 @@ use crate::file::{get_path,get_lines,set_lines};
 fn path_todo() -> String { get_path(vec!["..", "docs", "TODO.md"]) }
 fn path_release() -> String { get_path(vec!["..", "docs", "RELEASES.md"]) }
 
-pub fn add_release(code: String, numbers: Vec<usize>) -> Option<String> {
+pub fn add_release(code: String, numbers: Vec<usize>) {
 	let (new_tasks, sizes) = process_tasks(numbers);
 
-	let try_next = get_next(sizes, code);
-	if try_next.is_none() {
-		return None;
-	}
-	let (next, icon) = try_next.unwrap();
+	let icon = get_new_version_icon(sizes);
 
-	write_release(next.clone(), new_tasks, icon);
-
-	return Some(next);
+	write_release(code.clone(), new_tasks, icon);
 }
 
 fn process_tasks(mut numbers: Vec<usize>) -> (Vec<String>, Vec<String>) {
@@ -102,55 +96,38 @@ fn extract_count(text: &str) -> usize {
 	return captures.get(1).unwrap().as_str().parse::<usize>().unwrap();
 }
 
-fn get_next(sizes: Vec<String>, current: String) -> Option<(String, String)> {
-	let new_version = get_new_version(sizes);
+fn get_new_version_icon(sizes: Vec<String>) -> String {
+	let dragon = "🐉".to_string();
+	if sizes.contains(&dragon) {
+		return dragon;
+	}
 
-	if let Some((size_pattern, end, icon)) = new_version {
-		let regex = Regex::new(&size_pattern).unwrap();
-		let captures = regex.captures(&current).unwrap();
+	let whale = "🐳".to_string();
+	if sizes.contains(&whale) {
+		return whale;
+	}
 
-		let start = captures.get(1).unwrap().as_str().to_string();
-		let change: i32 = captures.get(2).unwrap().as_str().parse().unwrap();
+	let sheep = "🐑".to_string();
+	if sizes.contains(&sheep) {
+		return sheep;
+	}
 
-		return Some((format!("{}{}{}", start, change + 1, end), icon));
+	let ant = "🐜".to_string();
+	if sizes.contains(&ant) {
+		return ant;
 	}
 
 	throw(21, "Unknown version size");
 }
 
-fn get_new_version(sizes: Vec<String>) -> Option<(String, String, String)> {
-	let dragon = "🐉".to_string();
-
-	if sizes.contains(&dragon) {
-		return Some((r"()(\d+)\.\d+\.\d+\.\d+".to_string(), r".0.0.0".to_string(), dragon));
-	}
-
-	let whale = "🐳".to_string();
-	if sizes.contains(&whale) {
-		return Some((r"(\d+\.)(\d+)\.\d+\.\d+".to_string(), r".0.0".to_string(), whale));
-	}
-
-	let sheep = "🐑".to_string();
-	if sizes.contains(&sheep) {
-		return Some((r"(\d+\.\d+\.)(\d+)\.\d+".to_string(), r".0".to_string(), sheep));
-	}
-
-	let ant = "🐜".to_string();
-	if sizes.contains(&ant) {
-		return Some((r"(\d+\.\d+\.\d+\.)(\d+)".to_string(), r"".to_string(), ant));
-	}
-
-	return None;
-}
-
-fn write_release(next: String, new_tasks: Vec<String>, icon: String) {
+fn write_release(prod: String, new_tasks: Vec<String>, icon: String) {
 	let mut new_version: Vec<String> = Vec::new();
 
 	let count = new_tasks.len();
 
 	new_version.push(format!(
-		"## <a name=\"{}\"></a>{} :{}: <sup>`{}`</sup>",
-		next, next, icon, count
+		"## <a name=\"development\"></a>Development :{}: <sup>`{}`</sup>",
+		icon, count
 	));
 
 	for t in (0..count).rev() {
@@ -161,7 +138,13 @@ fn write_release(next: String, new_tasks: Vec<String>, icon: String) {
 	new_version.push("".to_string());
 
 	let mut release_list = get_lines(path_release());
-	release_list.splice(16..16, new_version);
+
+	let mut prod_version = release_list.get(16).unwrap().to_string();
+	prod_version = prod_version.replace("Development", &prod);
+	prod_version = prod_version.replace("development", &prod);
+	new_version.push(prod_version);
+
+	release_list.splice(16..17, new_version);
 
 	set_lines(path_release(), release_list);
 }
