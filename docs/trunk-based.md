@@ -17,9 +17,13 @@
   - [x] Kotlin
 - [ ] Review CI
   - [ ] Dependabot in github
-    - [ ] Increase ant version part for all dependabot
     - [x] Config to main
     - [x] All in Thursday
+    - [ ] Auto approve change target to dependabots
+      - [ ] If no branch dependabots exist, create it
+    - [ ] If no PRs exist, create PR from dependabots to main
+      - [ ] With auto merge
+    - [ ] Increase ant version part for all dependabot
   - [x] Auto approval
   - [ ] Tests and builds - all branches or keep?
 - [ ] Remove version branch creation from make
