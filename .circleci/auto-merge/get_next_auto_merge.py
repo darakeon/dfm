@@ -30,8 +30,7 @@ def filter_prs(prs):
 	git_info = get_git_info()
 	username = git_info[0]
 	reponame = git_info[1]
-
-	version = environ.get("VERSION")
+	branch = 'main'
 
 	dependabot_pr = 'app/dependabot'
 	dependabot_commit = 'dependabot[bot]'
@@ -42,7 +41,7 @@ def filter_prs(prs):
 
 	return list(filter(
 		lambda pr:
-			pr['baseRefName'] == version
+			pr['baseRefName'] == branch
 			and pr['author']['is_bot']
 			and pr['author']['login'] == dependabot_pr
 			and pr['state'] == 'OPEN'
