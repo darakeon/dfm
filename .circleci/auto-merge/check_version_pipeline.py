@@ -2,6 +2,7 @@ from json import loads
 from re import search
 from subprocess import run
 from urllib.request import urlopen
+from os import environ
 
 
 temporary_jobs = [
@@ -12,7 +13,7 @@ def main():
     git_info = get_git_info()
     username = git_info[0]
     reponame = git_info[1]
-    branch = 'main'
+    branch = environ.get('TARGET_BRANCH')
 
     pipeline = find_pipeline(username, reponame, branch, None)
 
