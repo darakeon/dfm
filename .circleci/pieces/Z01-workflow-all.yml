@@ -8,7 +8,7 @@
             branches:
               only:
                 - main
-                - /^\d+\.\d+\.\d+\.\d+$/
+                - development
       - test_ci:
           requires:
             - trufflehog
@@ -196,7 +196,7 @@
           filters:
             branches:
               only:
-                - /^\d+\.\d+\.\d+\.\d+$/
+                - development
       - publish_migrator:
           requires:
             - approve_deploy

@@ -3,7 +3,7 @@ triggers:
       cron: "0 * * * *"
       filters:
         branches:
-          only: /^\d+\.\d+\.\d+\.\d+$/
+          only: development
 
 workflows:
   version: 2.1
