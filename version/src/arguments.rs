@@ -109,6 +109,7 @@ fn empty(option: ProgramOption) -> Option<(ProgramOption, Vec<usize>)> {
 }
 
 #[derive(PartialEq)]
+#[derive(Debug)]
 pub enum ProgramOption {
 	Quantity,
 	Numbers,

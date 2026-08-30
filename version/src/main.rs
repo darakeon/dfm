@@ -37,7 +37,7 @@ fn main() {
 			if let Some(version) = create_version(&option) {
 				match option {
 					ProgramOption::Check =>
-						success(),
+						success("Version is alright!"),
 					ProgramOption::Git =>
 						update_git(version),
 					_ =>
