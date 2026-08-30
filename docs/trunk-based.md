@@ -18,7 +18,7 @@
 - [ ] Review CI
   - [ ] Dependabot in github
     - [ ] Increase ant version part for all dependabot
-    - [ ] Config to main
+    - [x] Config to main
     - [ ] All in Thursday
   - [x] Auto approval
   - [ ] Tests and builds - all branches or keep?
