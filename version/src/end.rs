@@ -2,7 +2,8 @@ use std::process::exit;
 
 use crate::git::{stash_pop, reset_all};
 
-pub fn success() -> ! {
+pub fn success(text: &str) -> ! {
+	println!("{}", text);
 	stop(0)
 }
 
