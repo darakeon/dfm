@@ -27,7 +27,7 @@ pub fn update_notes_for_language(version: &Version, language: &str) -> i32 {
 
 	let mut errors = 0;
 
-	if content.contains(&version.code) {
+	if content.contains(&version.dev) {
 		return errors;
 	}
 
@@ -67,7 +67,7 @@ pub fn update_notes_for_language(version: &Version, language: &str) -> i32 {
 	if errors == 0 {
 		let new_release = format!(
 			"{{\n\t\"{}\": [\n{}\n\t],",
-			&version.code,
+			&version.dev,
 			tasks_json
 		);
 
