@@ -1175,7 +1175,7 @@ jobs:
       - store_artifacts:
           path: terms/README.md
 
-  dependabot_auto_aprove:
+  dependabot_auto_approve:
     docker:
       - image: darakeon/github-cli
     resource_class: small
@@ -1499,7 +1499,7 @@ triggers:
       cron: "0 * * * *"
       filters:
         branches:
-          only: /^\d+\.\d+\.\d+\.\d+$/
+          only: development
 
 workflows:
   version: 2.1
@@ -1514,7 +1514,7 @@ workflows:
             branches:
               only:
                 - main
-                - /^\d+\.\d+\.\d+\.\d+$/
+                - development
       - test_ci:
           requires:
             - trufflehog
@@ -1702,7 +1702,7 @@ workflows:
           filters:
             branches:
               only:
-                - /^\d+\.\d+\.\d+\.\d+$/
+                - development
       - publish_migrator:
           requires:
             - approve_deploy
@@ -2105,12 +2105,11 @@ workflows:
     when:
       equal: ["scheduled_pipeline", << pipeline.trigger_source >>]
     jobs:
-      - dependabot_auto_aprove:
+      - dependabot_auto_approve:
           filters:
             branches:
               only:
                 - main
-                - /^\d+\.\d+\.\d+\.\d+$/
   android_publish:
     jobs:
       - trufflehog:
