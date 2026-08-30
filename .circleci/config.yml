@@ -1494,13 +1494,6 @@ jobs:
               --component-name=$CIRCLE_JOB \
               --target-version=$CIRCLE_BRANCH
 
-triggers:
-  - schedule:
-      cron: "0 * * * *"
-      filters:
-        branches:
-          only: development
-
 workflows:
   version: 2.1
 
