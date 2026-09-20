@@ -1,5 +1,5 @@
 django==6.1
-mysqlclient==2.2.8
+mysqlclient==2.3.0
 bcrypt==5.0.0
 boto3==1.43.70
 pytest==9.1.1
