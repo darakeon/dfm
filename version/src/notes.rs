@@ -1,5 +1,4 @@
-use json;
-use json::JsonValue;
+use serde_json::Value as JsonValue;
 
 use crate::file::{get_path, get_content, set_content};
 use crate::version::Version;
@@ -37,7 +36,7 @@ pub fn update_notes_for_language(version: &Version, language: &str) -> i32 {
 
 	let translations_path = get_path(vec!["..", "docs", "translations.json"]);
 	let translations_file = get_content(translations_path.clone());
-	let translations = json::parse(&translations_file).unwrap();
+	let translations: JsonValue = serde_json::from_str(&translations_file).unwrap();
 
 	while let Some(task) = tasks.pop_front() {
 		let translated = &translations[language][&task];
@@ -51,7 +50,7 @@ pub fn update_notes_for_language(version: &Version, language: &str) -> i32 {
 							tasks_json,
 						);
 					}
-		
+
 					tasks_json = format!(
 						"{}{}",
 						tasks_json,
@@ -71,10 +70,10 @@ pub fn update_notes_for_language(version: &Version, language: &str) -> i32 {
 			&version.code,
 			tasks_json
 		);
-	
+
 		content.remove(0);
 		let new_content = format!("{}{}", new_release, content);
-	
+
 		set_content(path, new_content);
 	} else {
 		println!("{}", translations_path);
@@ -95,7 +94,7 @@ fn format(language: &str, task: &str, translation: &JsonValue) -> Result<Option<
 		return Err(());
 	}
 
-	let mut result = translation.to_string().trim().to_string();
+	let mut result = translation.as_str().unwrap().trim().to_string();
 
 	println!("\"{}\": {}", task, result);
 
