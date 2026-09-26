@@ -3,7 +3,7 @@
       - image: darakeon/github-cli
     resource_class: small
     environment:
-      TARGET_BRANCH: "main"
+      TARGET_BRANCH: "15.0.0.0"
     steps:
       - checkout
       - run:
