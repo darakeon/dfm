@@ -753,3 +753,7 @@ slf4j-bom-2.0.18-javadoc.jar
 slf4j-bom-2.0.18-sources.jar
 slf4j-parent-2.0.18-javadoc.jar
 slf4j-parent-2.0.18-sources.jar
+kotlin-gradle-plugins-bom-2.4.10-javadoc.jar
+kotlin-gradle-plugins-bom-2.4.10-sources.jar
+kotlin-stdlib-common-2.4.10-javadoc.jar
+kotlin-stdlib-common-2.4.10-sources.jar
