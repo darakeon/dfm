@@ -753,3 +753,11 @@ slf4j-bom-2.0.18-javadoc.jar
 slf4j-bom-2.0.18-sources.jar
 slf4j-parent-2.0.18-javadoc.jar
 slf4j-parent-2.0.18-sources.jar
+auto-value-parent-1.11.1-javadoc.jar
+auto-value-parent-1.11.1-sources.jar
+test-parameter-injector-parent-1.22-javadoc.jar
+test-parameter-injector-parent-1.22-sources.jar
+bc-jdk18on-bom-1.85-javadoc.jar
+bc-jdk18on-bom-1.85-sources.jar
+nativeruntime-dist-compat-1.0.19-javadoc.jar
+nativeruntime-dist-compat-1.0.19-sources.jar
