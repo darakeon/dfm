@@ -5,7 +5,7 @@ authors = ["Dara Keon <lc.sales.duarte@gmail.com>"]
 edition = "2021"
 
 [dependencies]
-dirs = "6.0.0"
+dirs = "7.0.0"
 git2 = "0.21.0"
 regex = "1.13.1"
 reqwest = { version = "0.13.4", features = ["blocking"] }
