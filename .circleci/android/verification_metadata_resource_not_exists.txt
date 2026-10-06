@@ -761,3 +761,7 @@ bc-jdk18on-bom-1.85-javadoc.jar
 bc-jdk18on-bom-1.85-sources.jar
 nativeruntime-dist-compat-1.0.19-javadoc.jar
 nativeruntime-dist-compat-1.0.19-sources.jar
+kotlin-gradle-plugins-bom-2.4.20-javadoc.jar
+kotlin-gradle-plugins-bom-2.4.20-sources.jar
+kotlin-stdlib-common-2.4.20-javadoc.jar
+kotlin-stdlib-common-2.4.20-sources.jar
