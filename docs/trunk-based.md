@@ -21,8 +21,8 @@
     - [x] All in Thursday
     - [x] Auto approve change target to dependabots
       - [x] If no branch dependabots exist, create it
-    - [ ] If no PRs exist, create PR from dependabots to main
-      - [ ] With auto merge
+    - [x] If no PRs exist, create PR from dependabots to main
+      - [x] With auto merge
     - [ ] Increase ant version part for all dependabot
   - [x] Auto approval
   - [ ] Tests and builds - all branches or keep?
