@@ -46,7 +46,7 @@
               gh pr edit --base dependabots $PR
               gh pr merge --auto --rebase $PR
             else
-              echo "No PRs to merge"
+              gh pr create --head dependabots --base $TARGET_BRANCH --title "Dependabots" --body "Auto merge and deploy dependabot updates"
             fi
       - store_artifacts:
           path: .circleci/auto-merge/prs
