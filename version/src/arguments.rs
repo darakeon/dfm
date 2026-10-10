@@ -14,6 +14,7 @@ pub fn parse_arguments() -> Option<(ProgramOption, Vec<usize>)> {
 	match &cmd[..] {
 		"-q" => { return parse_quantity(args); },
 		"-n" => { return parse_numbers(args); },
+		"-d" => { return empty(ProgramOption::Dependabot); },
 		"-e" => { return empty(ProgramOption::Empty); },
 		"-c" => { return empty(ProgramOption::Check); },
 		"-g" => { return empty(ProgramOption::Git); },
@@ -33,6 +34,9 @@ fn stop_program() -> Option<(ProgramOption, Vec<usize>)> {
 		"    |                                                                             |",
 		"    |    -n {p1} {p2} {p3} ...                                                    |",
 		"    |    >>> get tasks by position;                                               |",
+		"    |                                                                             |",
+		"    |    -d                                                                       |",
+		"    |    >>> deploy a version with only dependabot updates                        |",
 		"    |                                                                             |",
 		"    |    -e                                                                       |",
 		"    |    >>> empty, to use when the new release is already created                |",
@@ -113,6 +117,7 @@ fn empty(option: ProgramOption) -> Option<(ProgramOption, Vec<usize>)> {
 pub enum ProgramOption {
 	Quantity,
 	Numbers,
+	Dependabot,
 	Empty,
 	Check,
 	Git,

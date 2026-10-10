@@ -91,6 +91,7 @@
 		"Replace sqlite deprecated library": "Security fix",
 		"Replace Specflow by Reqnroll": "Internal tool replacement",
 		"Make repository trunk based": "Improvement in security updates",
+		"Dependabot updates": "Security updates",
 		"": null
 	},
 	"pt-br": {
@@ -185,6 +186,7 @@
 		"Replace sqlite deprecated library": "Correção de segurança",
 		"Replace Specflow by Reqnroll": "Substituição de ferramenta interna",
 		"Make repository trunk based": "Melhoria em atualizações de segurança",
+		"Dependabot updates": "Atualizações de segurança",
 		"": null
 	}
 }
