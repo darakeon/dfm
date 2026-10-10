@@ -17,7 +17,9 @@ from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import path, include
 
-from midna.settings import ADMIN_URL
+from midna.settings import ADMIN_URL, APP_VERSION
+
+admin.site.site_header = f"DfM - {APP_VERSION}"
 
 urlpatterns = [
 	path('deleted-users/', include('deleted_users.urls')),
