@@ -2,9 +2,11 @@ use regex::Regex;
 
 use crate::end::throw;
 use crate::file::{get_path,get_lines,set_lines};
+use crate::version::{DRAGON, WHALE, SHEEP, ANT};
 
 fn path_todo() -> String { get_path(vec!["..", "docs", "TODO.md"]) }
 fn path_release() -> String { get_path(vec!["..", "docs", "RELEASES.md"]) }
+
 
 pub fn add_release(code: String, numbers: Vec<usize>) {
 	let (new_tasks, sizes) = process_tasks(numbers);
@@ -97,24 +99,20 @@ fn extract_count(text: &str) -> usize {
 }
 
 fn get_new_version_icon(sizes: Vec<String>) -> String {
-	let dragon = "🐉".to_string();
-	if sizes.contains(&dragon) {
-		return dragon;
+	if sizes.contains(&DRAGON.to_string()) {
+		return DRAGON.to_string();
 	}
 
-	let whale = "🐳".to_string();
-	if sizes.contains(&whale) {
-		return whale;
+	if sizes.contains(&WHALE.to_string()) {
+		return WHALE.to_string();
 	}
 
-	let sheep = "🐑".to_string();
-	if sizes.contains(&sheep) {
-		return sheep;
+	if sizes.contains(&SHEEP.to_string()) {
+		return SHEEP.to_string();
 	}
 
-	let ant = "🐜".to_string();
-	if sizes.contains(&ant) {
-		return ant;
+	if sizes.contains(&ANT.to_string()) {
+		return ANT.to_string();
 	}
 
 	throw(21, "Unknown version size");
