@@ -1290,7 +1290,11 @@ jobs:
             else
               export GIT_EMAIL=$GITHUB_CIRCLE_EMAIL
               export GIT_NAME=$GITHUB_CIRCLE_NAME
-              cargo run -q -- -q 1
+              if [ "$CIRCLE_BRANCH" == "dependabots" ]; then
+                cargo run -q -- -d
+              else
+                cargo run -q -- -q 1
+              fi
             fi
       - run:
           name: Check translations length
