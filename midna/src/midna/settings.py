@@ -210,3 +210,5 @@ LOGGING = {
 		},
 	}
 }
+
+APP_VERSION = "14.3.0.2"
