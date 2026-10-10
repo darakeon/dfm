@@ -90,7 +90,7 @@ fn update_version(version: Version, option: ProgramOption, numbers: Vec<usize>) 
 		throw(31, "errors while translating release");
 	}
 
-	if option != ProgramOption::Empty {
+	if option != ProgramOption::Empty && option != ProgramOption::Dependabot {
 		add_release(version.dev.clone(), numbers);
 	}
 

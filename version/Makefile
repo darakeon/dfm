@@ -19,6 +19,9 @@ help:
 	@echo "    |    make new_by_numbers NUMBERS=\"{p1} {p2} {p3} ...\"                         |"
 	@echo "    |    >>> get tasks by position;                                               |"
 	@echo "    |                                                                             |"
+	@echo "    |    make dependabot                                                          |"
+	@echo "    |    >>> deploy a version with only dependabot updates                        |"
+	@echo "    |                                                                             |"
 	@echo "    |    make existing                                                            |"
 	@echo "    |    >>> to use when the new release is already created                       |"
 	@echo "    |                                                                             |"
@@ -43,6 +46,9 @@ new_by_numbers:
 
 existing:
 	@cargo run -q -- -e
+
+dependabot:
+	@cargo run -q -- -d
 
 check:
 	@cargo run -q -- -c

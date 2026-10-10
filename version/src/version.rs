@@ -12,6 +12,11 @@ const START_OF_VERSIONS: usize = 16;
 fn current_version_path() -> String { get_path(vec!["..", "docs", "current-version"]) }
 fn releases_path() -> String { get_path(vec!["..", "docs", "RELEASES.md"]) }
 
+pub const DRAGON: &str = "🐉";
+pub const WHALE: &str = "🐳";
+pub const SHEEP: &str = "🐑";
+pub const ANT: &str = "🐜";
+
 
 pub fn create_version(option: &ProgramOption) -> Option<Version> {
 	let prod = get_lines(current_version_path())[0].clone();
@@ -19,15 +24,21 @@ pub fn create_version(option: &ProgramOption) -> Option<Version> {
 	let task_list = get_lines(releases_path());
 	let pattern = r"Development :(.):";
 
-	let dev_augmentor = extract_line(&task_list, START_OF_VERSIONS, pattern);
+	let dev_augmentor =
+		if option == &ProgramOption::Dependabot {
+			ANT.to_string()
+		} else {
+			extract_line(&task_list, START_OF_VERSIONS, pattern)
+		};
 
 	let version = mount_version(
 		prod.clone(),
 		dev_augmentor.clone(),
+		option,
 		&task_list,
 	);
 
-	if option == &ProgramOption::Git {
+	if option == &ProgramOption::Git || option == &ProgramOption::Dependabot {
 		return Some(version);
 	}
 
@@ -45,6 +56,7 @@ pub fn create_version(option: &ProgramOption) -> Option<Version> {
 fn mount_version(
 	prod: String,
 	dev_augmentor: String,
+	option: &ProgramOption,
 	task_list: &Vec<String>,
 ) -> Version {
 	let dev = get_next(dev_augmentor, prod.clone());
@@ -57,18 +69,23 @@ fn mount_version(
 	let mut count_all = 0;
 	let mut count_done = 0;
 
-	for l in (START_OF_VERSIONS+1)..task_list.len() {
-		let line = task_list.get(l).unwrap();
+	if option == &ProgramOption::Dependabot {
+		version.tasks.push_back("Dependabot updates".to_string());
+	}
+	else {
+		for l in (START_OF_VERSIONS+1)..task_list.len() {
+			let line = task_list.get(l).unwrap();
 
-		if let Some(done) = extract(&line, done_pattern) {
-			count_all += 1;
-			count_done += if done == "x" { 1 } else { 0 };
+			if let Some(done) = extract(&line, done_pattern) {
+				count_all += 1;
+				count_done += if done == "x" { 1 } else { 0 };
 
-			if let Some(task) = extract(&line, task_pattern) {
-				version.tasks.push_back(task);
+				if let Some(task) = extract(&line, task_pattern) {
+					version.tasks.push_back(task);
+				}
+			} else {
+				break;
 			}
-		} else {
-			break;
 		}
 	}
 
@@ -94,23 +111,19 @@ fn get_next(size: String, current: String) -> String {
 }
 
 fn get_new_version(size: String) -> Option<(String, String)> {
-	let dragon = "🐉".to_string();
-	if size == dragon {
+	if size == DRAGON {
 		return Some((r"()(\d+)\.\d+\.\d+\.\d+".to_string(), r".0.0.0".to_string()));
 	}
 
-	let whale = "🐳".to_string();
-	if size == whale {
+	if size == WHALE {
 		return Some((r"(\d+\.)(\d+)\.\d+\.\d+".to_string(), r".0.0".to_string()));
 	}
 
-	let sheep = "🐑".to_string();
-	if size == sheep {
+	if size == SHEEP {
 		return Some((r"(\d+\.\d+\.)(\d+)\.\d+".to_string(), r".0".to_string()));
 	}
 
-	let ant = "🐜".to_string();
-	if size == ant {
+	if size == ANT {
 		return Some((r"(\d+\.\d+\.\d+\.)(\d+)".to_string(), r"".to_string()));
 	}
 
