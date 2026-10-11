@@ -16,7 +16,7 @@
   - [x] Test Browser
   - [x] Kotlin
 - [ ] Review CI
-  - [x] Dependabot in github
+  - [ ] Dependabot in github
     - [x] Config to main
     - [x] All in Thursday
     - [x] Auto approve change target to dependabots
@@ -24,6 +24,8 @@
     - [x] If no PRs exist, create PR from dependabots to main
       - [x] With auto merge
     - [x] Increase ant version part for all dependabot
+    - [ ] Fix commit messages from dependabot
   - [x] Auto approval
-  - [ ] Tests and builds - all branches or keep?
+  - [x] Tests and builds
+    - [x] development and dependabots, same deploy
 - [ ] Remove version branch creation from make
