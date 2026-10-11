@@ -15,6 +15,7 @@ jobs:
       - image: cimg/base:current
     steps:
       - run: echo "Now it can be merged into version branch!"
+
   trufflehog:
     docker:
       - image: python:3-alpine
@@ -2122,6 +2123,7 @@ workflows:
       - workflow_ran:
           requires:
             - test_ci
+
   independabot:
     when:
       equal: ["scheduled_pipeline", << pipeline.trigger_source >>]
@@ -2131,6 +2133,7 @@ workflows:
             branches:
               only:
                 - development
+
   android_publish:
     jobs:
       - trufflehog:
