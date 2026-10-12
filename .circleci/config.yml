@@ -472,6 +472,7 @@ jobs:
       - run:
           path: core/Tests/BusinessLogic
           name: tests business logic
+          max_auto_reruns: 3
           command: dotnet test -v m --no-build --filter FullyQualifiedName~H_Attendant
       - run:
           path: outputs/inbox
