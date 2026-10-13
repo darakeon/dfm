@@ -765,3 +765,7 @@ kotlin-gradle-plugins-bom-2.4.20-javadoc.jar
 kotlin-gradle-plugins-bom-2.4.20-sources.jar
 kotlin-stdlib-common-2.4.20-javadoc.jar
 kotlin-stdlib-common-2.4.20-sources.jar
+kotlin-gradle-plugins-bom-2.4.21-javadoc.jar
+kotlin-gradle-plugins-bom-2.4.21-sources.jar
+kotlin-stdlib-common-2.4.21-javadoc.jar
+kotlin-stdlib-common-2.4.21-sources.jar
