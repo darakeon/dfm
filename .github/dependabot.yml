@@ -8,7 +8,7 @@ updates:
   - package-ecosystem: "github-actions"
     directories:
       - "/"
-    target-branch: "main"
+    target-branch: "dependabots"
     schedule:
       interval: "weekly"
       day: "thursday"
@@ -25,7 +25,7 @@ updates:
       - "/site/"
       - "/api/"
       - "/robot/"
-    target-branch: "main"
+    target-branch: "dependabots"
     schedule:
       interval: "weekly"
       day: "thursday"
@@ -41,7 +41,7 @@ updates:
 
   - package-ecosystem: "npm"
     directory: "/site/Tests/Browser/"
-    target-branch: "main"
+    target-branch: "dependabots"
     schedule:
       interval: "weekly"
       day: "thursday"
@@ -54,7 +54,7 @@ updates:
 
   - package-ecosystem: "gradle"
     directory: "/android/"
-    target-branch: "main"
+    target-branch: "dependabots"
     schedule:
       interval: "weekly"
       day: "thursday"
@@ -67,7 +67,7 @@ updates:
 
   - package-ecosystem: "docker"
     directory: "/architecture/ci/"
-    target-branch: "main"
+    target-branch: "dependabots"
     schedule:
       interval: "weekly"
       day: "thursday"
@@ -80,7 +80,7 @@ updates:
 
   - package-ecosystem: "docker"
     directory: "/architecture/publish/"
-    target-branch: "main"
+    target-branch: "dependabots"
     schedule:
       interval: "weekly"
       day: "thursday"
@@ -93,7 +93,7 @@ updates:
 
   - package-ecosystem: "cargo"
     directory: "/version/"
-    target-branch: "main"
+    target-branch: "dependabots"
     schedule:
       interval: "weekly"
       day: "thursday"
@@ -106,7 +106,7 @@ updates:
 
   - package-ecosystem: "pip"
     directory: "/midna/"
-    target-branch: "main"
+    target-branch: "dependabots"
     schedule:
       interval: "weekly"
       day: "thursday"
