@@ -11,11 +11,13 @@ def main():
 
 	prs = filter_prs(prs)
 
-	for pr in prs:
-		id = pr['id']
+	pr = prs[-1] if prs else None
+
+	if pr:
 		number = pr['number']
-		ask_auto_merge = not pr['autoMergeRequest']
 		print(number)
+		merge_state = pr['mergeStateStatus'] # BEHIND / DIRTY: recreate
+		print(merge_state)
 
 	'''
 	commits: dependabot / darakeon-ci
@@ -32,7 +34,7 @@ def filter_prs(prs):
 	reponame = git_info[1]
 	branch = environ.get('TARGET_BRANCH')
 
-	dependabot_pr = 'app/dependabot'
+	dependabot_pr = 'dependabot'
 	dependabot_commit = 'dependabot[bot]'
 	owner_ci_commit = f'{username}-circleci'
 	owner_commit = username
@@ -42,7 +44,6 @@ def filter_prs(prs):
 	return list(filter(
 		lambda pr:
 			pr['baseRefName'] == branch
-			and pr['author']['is_bot']
 			and pr['author']['login'] == dependabot_pr
 			and pr['state'] == 'OPEN'
 			and not pr['closed']
