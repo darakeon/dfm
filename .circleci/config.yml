@@ -1199,39 +1199,68 @@ jobs:
           name: List PRs
           path: .circleci/auto-merge
           command: |
-            gh pr list --base $TARGET_BRANCH --author app/dependabot --state open --json author,autoMergeRequest,baseRefName,closed,commits,headRefName,headRepository,headRepositoryOwner,id,isCrossRepository,isDraft,labels,number,state,statusCheckRollup > prs/list.json
+            gh pr list --base $TARGET_BRANCH --author app/dependabot --state open --json author,mergeable,mergeStateStatus,baseRefName,closed,commits,headRefName,headRepository,headRepositoryOwner,id,isCrossRepository,isDraft,labels,number,state,statusCheckRollup > prs/list.json
       - run:
           name: Get PR to merge
           path: .circleci/auto-merge
           command: |
             python get_next_auto_merge.py prs/list.json > prs/chosen
       - run:
-          name: Create branch dependabots if not exists
-          path: architecture/ci
-          command: |
-            export EXISTS=$(git branch --all | grep dependabots)
-            if [ "$EXISTS" == "" ]; then
-              source config-git
-              git branch dependabots origin/$TARGET_BRANCH
-              git push -u origin dependabots
-            fi
-      - run:
           name: Merge PR
           path: .circleci/auto-merge
           command: |
-            export PR=$(tail -n 1 prs/chosen)
+            export PR=$(head -n 1 prs/chosen)
+            export STATE=$(tail -n 1 prs/chosen)
+
             if [ "$PR" != "" ]; then
-              gh pr comment $PR --body "@dependabot recreate"
-              gh pr edit --base dependabots $PR
+              if [ "$STATE" == "BEHIND" ] || [ "$STATE" == "DIRTY" ]; then
+                gh pr comment $PR --body "@dependabot recreate"
+              fi
               gh pr merge --auto --rebase $PR
+
             else
-              gh pr create --head dependabots --base $TARGET_BRANCH --title "Dependabots" --body "Auto merge and deploy dependabot updates"
-              gh pr merge --auto --rebase dependabots
+              export EXISTING_PR=$(gh pr list --head dependabots --base "$TARGET_BRANCH" --state open --json number --jq '.[0].number')
+
+              if [ "$EXISTING_PR" == "" ]; then
+                gh pr create --head dependabots --base $TARGET_BRANCH --title "Dependabots" --body "Auto merge and deploy dependabot updates"
+              else
+                echo "dependabots PR already exists"
+              fi
+
+              gh pr merge --auto --rebase --delete-branch=false dependabots
             fi
       - store_artifacts:
           path: .circleci/auto-merge/prs
           destination: prs
 
+  dependabot_fix_commit:
+    docker:
+      - image: darakeon/github-cli
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Rewrite commit message if needed
+          path: .circleci/auto-merge
+          command: |
+            export LAST_COMMIT=$(git log -1 --pretty=%B)
+            export NEW_MESSAGE=$(python rewrite_commit_message.py)
+
+            if [ "$NEW_MESSAGE" == "-" ]; then
+              echo "Wait, no commit message..."
+              exit 1
+            fi
+
+            if [ "$NEW_MESSAGE" == "" ]; then
+              echo "Oh, nice, everything is fine!"
+              exit 0
+            fi
+
+            echo "Bad, bad dependabot, let's redo it for you"
+            source ../../architecture/ci/config-git
+            git commit --amend -m "$NEW_MESSAGE"
+            git push --force-with-lease
+            circleci-agent step halt
   audit_version_changer:
     docker:
       - image: rust
@@ -1759,6 +1788,13 @@ workflows:
       - test_ci:
           requires:
             - trufflehog
+      - dependabot_fix_commit:
+          requires:
+            - test_ci
+          filters:
+            branches:
+              only:
+                - /^dependabot/.+$/
       - build_core:
           requires:
             - test_ci
@@ -1840,6 +1876,13 @@ workflows:
       - test_ci:
           requires:
             - trufflehog
+      - dependabot_fix_commit:
+          requires:
+            - test_ci
+          filters:
+            branches:
+              only:
+                - /^dependabot/.+$/
       - push_docker_browser:
           requires:
             - test_ci
@@ -1882,6 +1925,13 @@ workflows:
       - test_ci:
           requires:
             - trufflehog
+      - dependabot_fix_commit:
+          requires:
+            - test_ci
+          filters:
+            branches:
+              only:
+                - /^dependabot/.+$/
       - push_docker_browser:
           requires:
             - test_ci
@@ -1922,6 +1972,13 @@ workflows:
       - test_ci:
           requires:
             - trufflehog
+      - dependabot_fix_commit:
+          requires:
+            - test_ci
+          filters:
+            branches:
+              only:
+                - /^dependabot/.+$/
       - build_core:
           requires:
             - test_ci
@@ -1955,6 +2012,13 @@ workflows:
       - test_ci:
           requires:
             - trufflehog
+      - dependabot_fix_commit:
+          requires:
+            - test_ci
+          filters:
+            branches:
+              only:
+                - /^dependabot/.+$/
       - build_core:
           requires:
             - test_ci
@@ -1988,6 +2052,13 @@ workflows:
       - test_ci:
           requires:
             - trufflehog
+      - dependabot_fix_commit:
+          requires:
+            - test_ci
+          filters:
+            branches:
+              only:
+                - /^dependabot/.+$/
       - push_docker_android:
           requires:
             - test_ci
@@ -2034,6 +2105,13 @@ workflows:
       - test_ci:
           requires:
             - trufflehog
+      - dependabot_fix_commit:
+          requires:
+            - test_ci
+          filters:
+            branches:
+              only:
+                - /^dependabot/.+$/
       - build_midna:
           requires:
             - test_ci
@@ -2063,6 +2141,13 @@ workflows:
       - test_ci:
           requires:
             - trufflehog
+      - dependabot_fix_commit:
+          requires:
+            - test_ci
+          filters:
+            branches:
+              only:
+                - /^dependabot/.+$/
       - push_docker_rust_github_cli:
           requires:
             - test_ci
@@ -2120,6 +2205,13 @@ workflows:
       - test_ci:
           requires:
             - trufflehog
+      - dependabot_fix_commit:
+          requires:
+            - test_ci
+          filters:
+            branches:
+              only:
+                - /^dependabot/.+$/
       - workflow_ran:
           requires:
             - test_ci

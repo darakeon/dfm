@@ -15,8 +15,8 @@
   - [x] Rust
   - [x] Test Browser
   - [x] Kotlin
-- [ ] Review CI
-  - [ ] Dependabot in github
+- [x] Review CI
+  - [x] Dependabot in github
     - [x] Config to main
     - [x] All in Thursday
     - [x] Auto approve change target to dependabots
@@ -24,7 +24,7 @@
     - [x] If no PRs exist, create PR from dependabots to main
       - [x] With auto merge
     - [x] Increase ant version part for all dependabot
-    - [ ] Fix commit messages from dependabot
+    - [x] Fix commit messages from dependabot
   - [x] Auto approval
   - [x] Tests and builds
     - [x] development and dependabots, same deploy
