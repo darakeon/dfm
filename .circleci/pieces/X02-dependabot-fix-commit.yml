@@ -1,0 +1,28 @@
+  dependabot_fix_commit:
+    docker:
+      - image: darakeon/github-cli
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Rewrite commit message if needed
+          path: .circleci/auto-merge
+          command: |
+            export LAST_COMMIT=$(git log -1 --pretty=%B)
+            export NEW_MESSAGE=$(python rewrite_commit_message.py)
+
+            if [ "$NEW_MESSAGE" == "-" ]; then
+              echo "Wait, no commit message..."
+              exit 1
+            fi
+
+            if [ "$NEW_MESSAGE" == "" ]; then
+              echo "Oh, nice, everything is fine!"
+              exit 0
+            fi
+
+            echo "Bad, bad dependabot, let's redo it for you"
+            source config-git
+            git commit --amend -m "$NEW_MESSAGE"
+            git push --force-with-lease
+            circleci-agent step halt
