@@ -2,12 +2,12 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-	compileSdk = 36
+	compileSdk = 37
 
 	defaultConfig {
 
 		minSdkVersion 23
-		targetSdkVersion 35
+		targetSdkVersion 37
 
 		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 	}
