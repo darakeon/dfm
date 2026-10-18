@@ -51,6 +51,7 @@ def filter_prs(prs):
 			)
 			and pr['state'] == 'OPEN'
 			and not pr['closed']
+			and pr['mergeStateStatus'] != 'UNKNOWN'
 			and pr['headRefName'].startswith('dependabot/')
 			and pr['headRepository']['name'] == reponame
 			and pr['headRepositoryOwner']['login'] == username
