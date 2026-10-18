@@ -36,9 +36,8 @@
             if [ "$PR" != "" ]; then
               if [ "$STATE" == "BEHIND" ] || [ "$STATE" == "DIRTY" ]; then
                 gh pr comment $PR --body "@dependabot recreate"
-              else
-                gh pr merge --auto --rebase $PR
               fi
+              gh pr merge --auto --rebase $PR
 
             else
               export EXISTING_PR=$(gh pr list --head dependabots --base "$TARGET_BRANCH" --state open --json number --jq '.[0].number')
