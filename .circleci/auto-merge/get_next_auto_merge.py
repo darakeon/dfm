@@ -34,7 +34,8 @@ def filter_prs(prs):
 	reponame = git_info[1]
 	branch = environ.get('TARGET_BRANCH')
 
-	dependabot_pr = 'dependabot'
+	dependabot_pr_old = 'app/dependabot'
+	dependabot_pr_new = 'dependabot'
 	dependabot_commit = 'dependabot[bot]'
 	owner_ci_commit = f'{username}-circleci'
 	owner_commit = username
@@ -44,7 +45,10 @@ def filter_prs(prs):
 	return list(filter(
 		lambda pr:
 			pr['baseRefName'] == branch
-			and pr['author']['login'] == dependabot_pr
+			and (
+				pr['author']['login'] == dependabot_pr_old
+				or pr['author']['login'] == dependabot_pr_new
+			)
 			and pr['state'] == 'OPEN'
 			and not pr['closed']
 			and pr['headRefName'].startswith('dependabot/')

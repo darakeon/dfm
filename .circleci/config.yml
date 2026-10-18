@@ -1213,7 +1213,7 @@ jobs:
             export STATE=$(tail -n 1 prs/chosen)
 
             if [ "$PR" != "" ]; then
-              if [ "$STATE" == "BEHIND" ] || [ "$STATE" == "DIRTY" ]; then
+              if [ "$STATE" == "BEHIND" ] || [ "$STATE" == "DIRTY" ] || [ "$STATE" == "UNKNOWN" ]; then
                 gh pr comment $PR --body "@dependabot recreate"
               else
                 gh pr merge --auto --rebase $PR
