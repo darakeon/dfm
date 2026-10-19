@@ -1,7 +1,7 @@
   all:
     when:
       not:
-        equal: ["scheduled_pipeline", << pipeline.trigger_source >>]
+        equal: ["scheduled_pipeline", << pipeline.trigger.type >>]
     jobs:
       - trufflehog:
           filters:
