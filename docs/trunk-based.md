@@ -1,5 +1,5 @@
-- [ ] Review change version
-  - [ ] Docs
+- [x] Review change version
+  - [x] Docs
     - [x] When to change version number
       - In the end of the development of the branch
     - [x] Should it document dependabot PR?
@@ -9,7 +9,6 @@
     - [x] Create new release:
       - [x] Do not put a number, only "development"
       - [x] Update last "development" to calculated new number
-    - [ ] Check history aligned to main in deploy
   - [x] .NET
   - [x] Rust
   - [x] Test Browser
