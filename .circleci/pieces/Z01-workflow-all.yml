@@ -10,7 +10,6 @@
                 - main
                 - development
                 - dependabots
-                - 15.0.0.0
       - test_ci:
           requires:
             - trufflehog
