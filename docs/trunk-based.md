@@ -26,4 +26,4 @@
   - [x] Auto approval
   - [x] Tests and builds
     - [x] development and dependabots, same deploy
-- [ ] Remove version branch creation from make
+- [x] Remove version branch creation from make
