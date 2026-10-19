@@ -10,7 +10,6 @@
       - [x] Do not put a number, only "development"
       - [x] Update last "development" to calculated new number
     - [ ] Check history aligned to main in deploy
-    - [ ] Check version number before deploy
   - [x] .NET
   - [x] Rust
   - [x] Test Browser
