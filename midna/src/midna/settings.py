@@ -211,4 +211,4 @@ LOGGING = {
 	}
 }
 
-APP_VERSION = "14.3.0.2"
+APP_VERSION = "15.0.0.0"
