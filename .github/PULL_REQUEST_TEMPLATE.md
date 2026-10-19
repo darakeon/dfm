@@ -14,4 +14,4 @@
 - [ ] Test error handler
 - [ ] Upload new mobile prints
 - [ ] Merge PR
-- [ ] Create branch of new dev version and tag of prod version
+- [ ] Update development branch and tag of prod version
