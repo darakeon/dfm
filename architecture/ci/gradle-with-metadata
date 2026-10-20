@@ -15,6 +15,8 @@ gradle $* \
     || ERROR=$?
 
 if [ "$ERROR" != "" ]; then
+    ORIGINAL_ERROR=$ERROR
+
     rm -rf ~/.gradle/caches
     rm -rf .gradle
 
@@ -72,5 +74,5 @@ if [ "$ERROR" != "" ]; then
     echyellow "Branch updated, CI will run again"
 
     echyellow "Now finishing with the original error"
-    exit $ERROR
+    exit $ORIGINAL_ERROR
 fi
