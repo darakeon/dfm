@@ -6,7 +6,7 @@ def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
-	compileSdk = 36
+	compileSdk = 37
 
 	defaultConfig {
 		applicationId "com.dontflymoney.view"
@@ -14,11 +14,11 @@ android {
 		// read the explanation
 		// at the end of the file
 		//noinspection HighAppVersionCode
-		versionCode 2011000077
+		versionCode 2011000079
 		versionName "$dfm_version"
 
-		minSdkVersion 23
-		targetSdkVersion 35
+		minSdkVersion 24
+		targetSdkVersion 37
 	}
 
 	signingConfigs {

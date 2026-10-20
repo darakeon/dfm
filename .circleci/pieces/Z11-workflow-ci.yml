@@ -6,9 +6,18 @@
               only:
                 - /^feature/ci/.+$/
                 - /^fix/ci/.+$/
+                - /^dependabot/github_actions/.+$/
       - test_ci:
           requires:
             - trufflehog
+      - dependabot_fix_commit:
+          requires:
+            - test_ci
+          filters:
+            branches:
+              only:
+                - /^dependabot/.+$/
       - workflow_ran:
           requires:
             - test_ci
+

@@ -1,6 +1,6 @@
 {
 	"name": "browser-tests",
-	"version": "1403.0.2",
+	"version": "1500.0.0",
 	"description": "DfM Site Tests",
 	"main": "index.js",
 	"dependencies": {
@@ -8,12 +8,15 @@
 		"sqlite3": "^6.0.1"
 	},
 	"devDependencies": {
-		"jest": "^29.7.0",
-		"jest-puppeteer": "^11.0.0"
+		"jest": "^30.4.2",
+		"jest-puppeteer": "^11.0.0",
+		"puppeteer": "25.14.0"
 	},
 	"overrides": {
 		"axios": ">=1.12.0",
-		"tar": ">=7.5.7"
+		"tar": ">=7.5.7",
+		"js-yaml": ">4.1.1",
+		"jest-environment-node": ">=30"
 	},
 	"scripts": {
 		"test": "jest --runInBand --bail --verbose"
@@ -36,5 +39,8 @@
 		"modulePathIgnorePatterns": [
 			"node_modules*"
 		]
+	},
+	"allowScripts": {
+		"sqlite3@*": true
 	}
 }

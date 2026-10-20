@@ -19,14 +19,17 @@ help:
 	@echo "    |    make new_by_numbers NUMBERS=\"{p1} {p2} {p3} ...\"                         |"
 	@echo "    |    >>> get tasks by position;                                               |"
 	@echo "    |                                                                             |"
+	@echo "    |    make dependabot                                                          |"
+	@echo "    |    >>> deploy a version with only dependabot updates                        |"
+	@echo "    |                                                                             |"
 	@echo "    |    make existing                                                            |"
 	@echo "    |    >>> to use when the new release is already created                       |"
 	@echo "    |                                                                             |"
 	@echo "    |    make check                                                               |"
 	@echo "    |    >>> just check if the version is right.                                  |"
 	@echo "    |                                                                             |"
-	@echo "    |    make create_old_tag_and_new_branch                                       |"
-	@echo "    |    >>> start new version at git tree (branch, tag, clear remote)            |"
+	@echo "    |    make create_old_tag_and_change_branch                                    |"
+	@echo "    |    >>> start new version at git tree (tag and development branch)           |"
 	@echo "    |                                                                             |"
 	@echo "    |                             use just numbers at parameters, not the braces  |"
 	@echo "    |                                                                             |"
@@ -44,43 +47,23 @@ new_by_numbers:
 existing:
 	@cargo run -q -- -e
 
+dependabot:
+	@cargo run -q -- -d
+
 check:
 	@cargo run -q -- -c
 
-create_old_tag_and_new_branch:
-	@echo ${OLD_BRANCH} > branch.git
-	@echo "\e[31mOld branch: ${BRANCH}\e[m"
+create_old_tag_and_change_branch:
+	@echo "\e[31mOld dev\e[m"
 	@git checkout main
-	@git branch -d ${BRANCH} || echo "no branch ${BRANCH}"
 	@git stash
 	@git pull --prune
-	@git stash pop || echo "no stash"
-	@git tag -a ${BRANCH}
+	@git tag -a ${TAG}
 	@git push --tags
-	@echo ${NEW_BRANCH} > branch.git
-	@echo "\e[35mNew branch: ${BRANCH}\e[m"
-	@git checkout -b ${BRANCH}
+	@git stash pop || echo "no stash"
+	@echo "\e[35mNew dev\e[m"
+	@git checkout development
 	@git branch -d main
-	@rm branch.git
-
-move_to_new_branch:
-	@git branch --show-current > branch.git
-	@git checkout main
-	@if [ "${BRANCH}" != "main" ]; then \
-		git branch -d ${BRANCH}; \
-	fi
-	@git pull --prune
-	@echo ${NEW_BRANCH} > branch.git
-	@git checkout ${BRANCH} || git checkout -b ${BRANCH}
-	@git branch -d main
-	@rm branch.git
-
-clear:
-	@git branch --show-current > branch.git
-	@git checkout main
-	@git branch -d ${BRANCH}
-	@git pull --prune
-	@echo ${NEW_BRANCH} > branch.git
-	@git checkout ${BRANCH}
-	@git branch -d main
-	@rm branch.git
+	@git pull
+	@git rebase origin/main
+	@git push --force-with-lease

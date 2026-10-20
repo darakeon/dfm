@@ -1,0 +1,56 @@
+  dependabot_auto_approve:
+    docker:
+      - image: darakeon/github-cli
+    resource_class: small
+    environment:
+      TARGET_BRANCH: "main"
+    steps:
+      - checkout
+      - run:
+          name: check last ci succeeded for target branch
+          path: .circleci/auto-merge
+          command: |
+            python check_version_pipeline.py
+      - run:
+          name: Make folder
+          path: .circleci/auto-merge
+          command: |
+            mkdir prs
+      - run:
+          name: List PRs
+          path: .circleci/auto-merge
+          command: |
+            gh pr list --base $TARGET_BRANCH --author app/dependabot --state open --json author,mergeable,mergeStateStatus,baseRefName,closed,commits,headRefName,headRepository,headRepositoryOwner,id,isCrossRepository,isDraft,labels,number,state,statusCheckRollup > prs/list.json
+      - run:
+          name: Get PR to merge
+          path: .circleci/auto-merge
+          command: |
+            python get_next_auto_merge.py prs/list.json > prs/chosen
+      - run:
+          name: Merge PR
+          path: .circleci/auto-merge
+          command: |
+            export PR=$(head -n 1 prs/chosen)
+            export STATE=$(tail -n 1 prs/chosen)
+
+            if [ "$PR" != "" ]; then
+              if [ "$STATE" == "BEHIND" ] || [ "$STATE" == "DIRTY" ]; then
+                gh pr comment $PR --body "@dependabot recreate"
+              fi
+              gh pr merge --auto --rebase $PR
+
+            else
+              export EXISTING_PR=$(gh pr list --head dependabots --base "$TARGET_BRANCH" --state open --json number --jq '.[0].number')
+
+              if [ "$EXISTING_PR" == "" ]; then
+                gh pr create --head dependabots --base $TARGET_BRANCH --title "Dependabots" --body "Auto merge and deploy dependabot updates"
+              else
+                echo "dependabots PR already exists"
+              fi
+
+              gh pr merge --auto --rebase --delete-branch=false dependabots
+            fi
+      - store_artifacts:
+          path: .circleci/auto-merge/prs
+          destination: prs
+

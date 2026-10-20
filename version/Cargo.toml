@@ -1,12 +1,12 @@
 [package]
 name = "dfm-version"
-version = "1403.0.2"
+version = "1500.0.0"
 authors = ["Dara Keon <lc.sales.duarte@gmail.com>"]
 edition = "2021"
 
 [dependencies]
-dirs = "6.0.0"
+dirs = "7.0.0"
 git2 = "0.21.0"
-regex = "1.12.3"
+regex = "1.13.1"
 reqwest = { version = "0.13.4", features = ["blocking"] }
-json = "0.12.4"
+serde_json = "1.0.151"
