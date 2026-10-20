@@ -12,12 +12,14 @@ ENV PATH=${GRADLE_HOME}/bin/:${PATH}
 ENV GRADLE_USER_HOME=/var/cache/gradle
 
 ENV ANDROID_SDK_ROOT=/usr/lib/android-sdk
-ENV PATH=${ANDROID_SDK_ROOT}/cmdline-tools/bin/:${PATH}
-RUN apt-get install -y android-sdk \
-	&& curl -sL https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip > /tmp/sdkmanager.zip \
-	&& unzip -d $ANDROID_SDK_ROOT /tmp/sdkmanager.zip \
+RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools
+ENV PATH=${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/:${PATH}
+RUN curl -sL https://dl.google.com/android/repository/commandlinetools-linux-16111833_latest.zip > /tmp/sdkmanager.zip \
+	&& unzip -d ${ANDROID_SDK_ROOT}/cmdline-tools /tmp/sdkmanager.zip \
 	&& rm /tmp/sdkmanager.zip \
-	&& yes | sdkmanager --licenses --sdk_root=$ANDROID_SDK_ROOT
+	&& mv ${ANDROID_SDK_ROOT}/cmdline-tools/cmdline-tools ${ANDROID_SDK_ROOT}/cmdline-tools/latest
+
+RUN android sdk install "platforms;android-37.0" "build-tools;37.0.0" --sdk=$ANDROID_SDK_ROOT
 
 RUN gradle -v # to avoid excessive info at gradle version check
 
