@@ -65,6 +65,7 @@ if [ "$ERROR" != "" ]; then
 
     echyellow "3. Generate windows metadata"
     python3 ../.circleci/android/verification_metadata_windows.py
+    git add gradle/verification-metadata.xml
 
     echyellow "4. Commit!"
     source config-git
