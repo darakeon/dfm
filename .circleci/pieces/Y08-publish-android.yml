@@ -36,6 +36,9 @@
       - store_artifacts:
           path: android/App/build/outputs/bundle/release/
           destination: bundle
+      - store_artifacts:
+          path: android/build/reports
+          destination: reports/main
       - run:
           name: release
           command: |
