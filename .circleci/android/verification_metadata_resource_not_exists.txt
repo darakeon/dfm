@@ -807,3 +807,5 @@ lint-model-32.4.0-javadoc.jar
 lint-typedef-remover-32.4.0-javadoc.jar
 groovy-bom-4.0.29-javadoc.jar
 groovy-bom-4.0.29-sources.jar
+aapt2-9.4.0-15978811-javadoc.jar
+aapt2-9.4.0-15978811-sources.jar
