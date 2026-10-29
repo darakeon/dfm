@@ -2,6 +2,12 @@ MAKEFLAGS += --no-print-directory
 
 CONTEXT=.
 
+GRADLE=9.6.0
+JAVA=17
+TOOLS=16111833
+API=37
+ANDROID_BUILD_ARGS=--build-arg GRADLE=${GRADLE} --build-arg JAVA=${JAVA} --build-arg TOOLS=${TOOLS} --build-arg API=${API}
+
 
 build_browser:
 	@make single_build MACHINE=netcore-libman-node PUSH=${PUSH}
@@ -9,10 +15,10 @@ build_browser:
 	@make single_build MACHINE=dfm-browser-tests PUSH=${PUSH}
 
 build_android:
-	@make single_build MACHINE=android TAG=gradle9.5.1-jdk17 PUSH=${PUSH}
+	@make single_build MACHINE=android TAG=gradle${GRADLE}-jdk${JAVA} PUSH=${PUSH} ARGS="${ANDROID_BUILD_ARGS}"
 
 build_android_publish:
-	@make single_build MACHINE=android-publish TAG=gradle9.5.1-jdk17 PUSH=${PUSH}
+	@make single_build MACHINE=android-publish TAG=gradle${GRADLE}-jdk${JAVA} PUSH=${PUSH} ARGS="${ANDROID_BUILD_ARGS}"
 
 build_migrator:
 	@cd ../publish && make migrator
@@ -26,7 +32,7 @@ single_build:
 		echo "please set the MACHINE to build"; \
 	fi
 
-	@docker build ${CONTEXT} -f ${MACHINE}.dockerfile -t darakeon/${MACHINE} --network=host
+	@docker build ${CONTEXT} -f ${MACHINE}.dockerfile -t darakeon/${MACHINE} --network=host ${ARGS}
 	@docker tag darakeon/${MACHINE} ${MACHINE}
 	@docker image prune -f > /dev/null
 

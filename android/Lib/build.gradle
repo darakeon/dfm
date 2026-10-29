@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
 
 android {
 	compileSdk = 37
@@ -36,10 +35,6 @@ android {
 	compileOptions {
 		sourceCompatibility "$java_compat"
 		targetCompatibility "$java_compat"
-	}
-
-	kotlinOptions {
-		jvmTarget = "$java_version"
 	}
 
 	packagingOptions {
@@ -79,6 +74,11 @@ dependencies {
 
 task wrapper(type: Wrapper) {
 	gradleVersion = '8.14.3'
+}
+
+tasks.matching { it.name.startsWith("map") && it.name.endsWith("SourceSetPaths") }.configureEach { task ->
+    task.mustRunAfter(":Lib:ipAddress")
+    task.mustRunAfter(":Lib:ipNetwork")
 }
 
 static def getLocalIP() {

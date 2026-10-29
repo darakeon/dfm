@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
@@ -62,10 +61,6 @@ android {
 	compileOptions {
 		sourceCompatibility "$java_compat"
 		targetCompatibility "$java_compat"
-	}
-
-	kotlinOptions {
-		jvmTarget = "$java_version"
 	}
 
 	packagingOptions {
