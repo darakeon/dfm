@@ -1,6 +1,6 @@
   test_android_app_release:
     docker:
-      - image: darakeon/android:gradle9.5.1-jdk17
+      - image: darakeon/android:gradle9.6.0-jdk17
     resource_class: large
     steps:
       - checkout
@@ -12,7 +12,7 @@
       - run:
           name: tests app release
           path: android
-          command: gradle-with-metadata :App:testReleaseUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
+          command: gradle-with-metadata :App:testReleaseUnitTest -x dependencies -x build -x packageRelease -x packageDebug
       - store_artifacts:
           path: outputs/logs/android
           destination: logs
