@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
 
 android {
 	compileSdk = 37
@@ -31,10 +30,6 @@ android {
 	compileOptions {
 		sourceCompatibility "$java_compat"
 		targetCompatibility "$java_compat"
-	}
-
-	kotlinOptions {
-		jvmTarget = "$java_version"
 	}
 
 	packagingOptions {

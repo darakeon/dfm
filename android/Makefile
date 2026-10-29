@@ -89,11 +89,11 @@ ci-keystore: start-if-off
 
 ci-androidDeps: start-if-off
 	@echo "install dependencies"
-	@${GRADLE} androidDependencies
+	@${GRADLE} dependencies
 
 ci-build: start-if-off
 	@echo "build project"
-	@${GRADLE} build -x test -x androidDependencies -x packageRelease -x packageDebug
+	@${GRADLE} build -x test -x dependencies -x packageRelease -x packageDebug
 
 ci-configure: start-if-off
 	@echo "configure gradle"
@@ -103,4 +103,4 @@ ci: ci-keystore ci-androidDeps ci-build ci-configure
 
 test: start-if-off
 	@echo "run all project tests"
-	@${GRADLE} test -x build -x androidDependencies -x packageRelease -x packageDebug
+	@${GRADLE} test -x build -x dependencies -x packageRelease -x packageDebug

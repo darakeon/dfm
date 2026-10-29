@@ -2,24 +2,29 @@ FROM darakeon/ubuntu
 LABEL maintainer="Dara Keon <laboon@darakeon.com>"
 RUN maintain
 
-RUN apt-get install -y openjdk-17-jdk
+ARG GRADLE
+ARG JAVA
+ARG TOOLS
+ARG API
 
-RUN curl -sL https://services.gradle.org/distributions/gradle-9.5.1-all.zip > /tmp/gradle.zip \
+RUN apt-get install -y openjdk-${JAVA}-jdk
+
+RUN curl -sL https://services.gradle.org/distributions/gradle-${GRADLE}-all.zip > /tmp/gradle.zip \
 	&& unzip -d /opt/gradle /tmp/gradle.zip \
 	&& rm /tmp/gradle.zip
-ENV GRADLE_HOME=/opt/gradle/gradle-9.5.1
+ENV GRADLE_HOME=/opt/gradle/gradle-${GRADLE}
 ENV PATH=${GRADLE_HOME}/bin/:${PATH}
 ENV GRADLE_USER_HOME=/var/cache/gradle
 
 ENV ANDROID_SDK_ROOT=/usr/lib/android-sdk
 RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools
 ENV PATH=${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/:${PATH}
-RUN curl -sL https://dl.google.com/android/repository/commandlinetools-linux-16111833_latest.zip > /tmp/sdkmanager.zip \
+RUN curl -sL https://dl.google.com/android/repository/commandlinetools-linux-${TOOLS}_latest.zip > /tmp/sdkmanager.zip \
 	&& unzip -d ${ANDROID_SDK_ROOT}/cmdline-tools /tmp/sdkmanager.zip \
 	&& rm /tmp/sdkmanager.zip \
 	&& mv ${ANDROID_SDK_ROOT}/cmdline-tools/cmdline-tools ${ANDROID_SDK_ROOT}/cmdline-tools/latest
 
-RUN android sdk install "platforms;android-37.0" "build-tools;37.0.0" --sdk=$ANDROID_SDK_ROOT
+RUN android sdk install "platforms;android-${API}.0" "build-tools;${API}.0.0" --sdk=$ANDROID_SDK_ROOT
 
 RUN gradle -v # to avoid excessive info at gradle version check
 

@@ -780,7 +780,7 @@ jobs:
 
   build_android:
     docker:
-      - image: darakeon/android:gradle9.5.1-jdk17
+      - image: darakeon/android:gradle9.6.0-jdk17
     resource_class: large
     steps:
       - checkout
@@ -806,7 +806,7 @@ jobs:
       - run:
           name: project dependencies
           path: android
-          command: gradle-with-metadata --no-daemon androidDependencies
+          command: gradle-with-metadata --no-daemon dependencies
       - save_cache:
           key: kotlin-{{ checksum "android/android_cache_key" }}
           paths:
@@ -815,7 +815,7 @@ jobs:
       - run:
           name: build
           path: android
-          command: gradle-with-metadata --no-daemon build -x test -x androidDependencies -x packageRelease -x packageDebug
+          command: gradle-with-metadata --no-daemon build -x test -x dependencies -x packageRelease -x packageDebug
       - run:
           name: configure
           path: android
@@ -851,7 +851,7 @@ jobs:
 
   audit_android:
     docker:
-      - image: darakeon/android:gradle9.5.1-jdk17
+      - image: darakeon/android:gradle9.6.0-jdk17
     steps:
       - checkout
       - attach_workspace:
@@ -875,7 +875,7 @@ jobs:
 
   test_android_lib_debug:
     docker:
-      - image: darakeon/android:gradle9.5.1-jdk17
+      - image: darakeon/android:gradle9.6.0-jdk17
     resource_class: large
     steps:
       - checkout
@@ -887,7 +887,7 @@ jobs:
       - run:
           name: tests lib debug
           path: android
-          command: gradle-with-metadata :Lib:testDebugUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
+          command: gradle-with-metadata :Lib:testDebugUnitTest -x dependencies -x build -x packageRelease -x packageDebug
       - store_artifacts:
           path: outputs/logs/android
           destination: logs
@@ -899,7 +899,7 @@ jobs:
 
   test_android_lib_release:
     docker:
-      - image: darakeon/android:gradle9.5.1-jdk17
+      - image: darakeon/android:gradle9.6.0-jdk17
     resource_class: large
     steps:
       - checkout
@@ -911,7 +911,7 @@ jobs:
       - run:
           name: tests lib release
           path: android
-          command: gradle-with-metadata :Lib:testReleaseUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
+          command: gradle-with-metadata :Lib:testReleaseUnitTest -x dependencies -x build -x packageRelease -x packageDebug
       - store_artifacts:
           path: outputs/logs/android
           destination: logs
@@ -923,7 +923,7 @@ jobs:
 
   test_android_app_debug:
     docker:
-      - image: darakeon/android:gradle9.5.1-jdk17
+      - image: darakeon/android:gradle9.6.0-jdk17
     resource_class: large
     steps:
       - checkout
@@ -935,7 +935,7 @@ jobs:
       - run:
           name: tests app debug
           path: android
-          command: gradle-with-metadata :App:testDebugUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
+          command: gradle-with-metadata :App:testDebugUnitTest -x dependencies -x build -x packageRelease -x packageDebug
       - store_artifacts:
           path: outputs/logs/android
           destination: logs
@@ -947,7 +947,7 @@ jobs:
 
   test_android_app_release:
     docker:
-      - image: darakeon/android:gradle9.5.1-jdk17
+      - image: darakeon/android:gradle9.6.0-jdk17
     resource_class: large
     steps:
       - checkout
@@ -959,7 +959,7 @@ jobs:
       - run:
           name: tests app release
           path: android
-          command: gradle-with-metadata :App:testReleaseUnitTest -x androidDependencies -x build -x packageRelease -x packageDebug
+          command: gradle-with-metadata :App:testReleaseUnitTest -x dependencies -x build -x packageRelease -x packageDebug
       - store_artifacts:
           path: outputs/logs/android
           destination: logs
