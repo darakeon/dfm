@@ -17,6 +17,7 @@ gradle $* \
 if [ "$ERROR" != "" ]; then
     ORIGINAL_ERROR=$ERROR
 
+    rm -rf $GRADLE_USER_HOME
     rm -rf ~/.gradle/caches
     rm -rf .gradle
 
