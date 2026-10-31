@@ -9,18 +9,18 @@ buildscript {
 
 	ext.java_version = JavaVersion.VERSION_17
 	ext.java_compat = JavaVersion.VERSION_17
-	ext.kotlin_version = '2.3.20'
-	ext.gradle_version = '8.13.2'
+	ext.kotlin_version = '2.4.21'
+	ext.gradle_version = '9.4.0'
 	ext.play_version = '17.0.0'
 	ext.retrofit_version = '3.0.0'
-	ext.mockito_version = '5.23.0'
+	ext.mockito_version = '5.24.0'
 	ext.junit_version = '4.13.2'
-	ext.robolectric_version = '4.16.1'
-	ext.mockserver_version = '5.3.2'
+	ext.robolectric_version = '4.17'
+	ext.mockserver_version = '5.5.0'
 	ext.testrunner_version = '1.0.2'
 	ext.expresso_version = '3.0.2'
 
-	ext.dfm_version = "14.3.0.2"
+	ext.dfm_version = "15.0.0.0"
 
 	repositories {
 		google()
@@ -33,7 +33,7 @@ buildscript {
 }
 
 plugins {
-	id "org.owasp.dependencycheck" version "12.2.2"
+	id "org.owasp.dependencycheck" version "13.0.0"
 }
 
 dependencyCheck  {

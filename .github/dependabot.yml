@@ -8,11 +8,14 @@ updates:
   - package-ecosystem: "github-actions"
     directories:
       - "/"
-    target-branch: "15.0.0.0"
+    target-branch: "dependabots"
     schedule:
       interval: "weekly"
-      day: "sunday"
+      day: "thursday"
     rebase-strategy: "disabled"
+    labels:
+      - automations
+      - dependencies
     commit-message:
       prefix: "tools: update ci\n\n"
 
@@ -22,10 +25,10 @@ updates:
       - "/site/"
       - "/api/"
       - "/robot/"
-    target-branch: "15.0.0.0"
+    target-branch: "dependabots"
     schedule:
       interval: "weekly"
-      day: "sunday"
+      day: "thursday"
     rebase-strategy: "disabled"
     labels:
       - internal
@@ -38,10 +41,10 @@ updates:
 
   - package-ecosystem: "npm"
     directory: "/site/Tests/Browser/"
-    target-branch: "15.0.0.0"
+    target-branch: "dependabots"
     schedule:
       interval: "weekly"
-      day: "sunday"
+      day: "thursday"
     rebase-strategy: "disabled"
     labels:
       - tests
@@ -51,10 +54,10 @@ updates:
 
   - package-ecosystem: "gradle"
     directory: "/android/"
-    target-branch: "15.0.0.0"
+    target-branch: "dependabots"
     schedule:
       interval: "weekly"
-      day: "sunday"
+      day: "thursday"
     rebase-strategy: "disabled"
     labels:
       - mobile
@@ -64,10 +67,10 @@ updates:
 
   - package-ecosystem: "docker"
     directory: "/architecture/ci/"
-    target-branch: "15.0.0.0"
+    target-branch: "dependabots"
     schedule:
       interval: "weekly"
-      day: "sunday"
+      day: "thursday"
     rebase-strategy: "disabled"
     labels:
       - tests
@@ -77,10 +80,10 @@ updates:
 
   - package-ecosystem: "docker"
     directory: "/architecture/publish/"
-    target-branch: "15.0.0.0"
+    target-branch: "dependabots"
     schedule:
       interval: "weekly"
-      day: "sunday"
+      day: "thursday"
     rebase-strategy: "disabled"
     labels:
       - internal
@@ -90,10 +93,10 @@ updates:
 
   - package-ecosystem: "cargo"
     directory: "/version/"
-    target-branch: "15.0.0.0"
+    target-branch: "dependabots"
     schedule:
       interval: "weekly"
-      day: "sunday"
+      day: "thursday"
     rebase-strategy: "disabled"
     labels:
       - version
@@ -103,10 +106,10 @@ updates:
 
   - package-ecosystem: "pip"
     directory: "/midna/"
-    target-branch: "15.0.0.0"
+    target-branch: "dependabots"
     schedule:
       interval: "weekly"
-      day: "sunday"
+      day: "thursday"
     rebase-strategy: "disabled"
     labels:
       - midna

@@ -1,0 +1,29 @@
+- [x] Review change version
+  - [x] Docs
+    - [x] When to change version number
+      - In the end of the development of the branch
+    - [x] Should it document dependabot PR?
+      - Yes, add a release for dependabot with only "update libs"
+    - [x] Move all ants to sheeps in TODO?
+      - Yes!
+    - [x] Create new release:
+      - [x] Do not put a number, only "development"
+      - [x] Update last "development" to calculated new number
+  - [x] .NET
+  - [x] Rust
+  - [x] Test Browser
+  - [x] Kotlin
+- [x] Review CI
+  - [x] Dependabot in github
+    - [x] Config to main
+    - [x] All in Thursday
+    - [x] Auto approve change target to dependabots
+      - [x] If no branch dependabots exist, create it
+    - [x] If no PRs exist, create PR from dependabots to main
+      - [x] With auto merge
+    - [x] Increase ant version part for all dependabot
+    - [x] Fix commit messages from dependabot
+  - [x] Auto approval
+  - [x] Tests and builds
+    - [x] development and dependabots, same deploy
+- [x] Remove version branch creation from make

@@ -1,14 +1,15 @@
   all:
     when:
       not:
-        equal: ["scheduled_pipeline", << pipeline.trigger_source >>]
+        equal: ["scheduled_pipeline", << pipeline.trigger.type >>]
     jobs:
       - trufflehog:
           filters:
             branches:
               only:
                 - main
-                - /^\d+\.\d+\.\d+\.\d+$/
+                - development
+                - dependabots
       - test_ci:
           requires:
             - trufflehog
@@ -196,7 +197,8 @@
           filters:
             branches:
               only:
-                - /^\d+\.\d+\.\d+\.\d+$/
+                - development
+                - dependabots
       - publish_migrator:
           requires:
             - approve_deploy

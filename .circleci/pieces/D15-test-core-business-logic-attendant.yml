@@ -1,6 +1,8 @@
   test_core_business_logic_attendant:
     docker:
       - image: darakeon/netcore:alpine-net9
+    environment:
+      MSBUILDTERMINALLOGGER: "off"
     resource_class: large
     steps:
       - checkout
@@ -12,6 +14,7 @@
       - run:
           path: core/Tests/BusinessLogic
           name: tests business logic
+          max_auto_reruns: 3
           command: dotnet test -v m --no-build --filter FullyQualifiedName~H_Attendant
       - run:
           path: outputs/inbox

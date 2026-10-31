@@ -1,12 +1,11 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
-	compileSdk = 36
+	compileSdk = 37
 
 	defaultConfig {
 		applicationId "com.dontflymoney.view"
@@ -14,11 +13,11 @@ android {
 		// read the explanation
 		// at the end of the file
 		//noinspection HighAppVersionCode
-		versionCode 2011000077
+		versionCode 2011000079
 		versionName "$dfm_version"
 
-		minSdkVersion 23
-		targetSdkVersion 35
+		minSdkVersion 24
+		targetSdkVersion 37
 	}
 
 	signingConfigs {
@@ -36,6 +35,7 @@ android {
 			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 			signingConfig = signingConfigs.release
 			zipAlignEnabled true
+			enableAndroidTest true
 		}
 		debug {
 			applicationIdSuffix '.debug'
@@ -62,10 +62,6 @@ android {
 	compileOptions {
 		sourceCompatibility "$java_compat"
 		targetCompatibility "$java_compat"
-	}
-
-	kotlinOptions {
-		jvmTarget = "$java_version"
 	}
 
 	packagingOptions {

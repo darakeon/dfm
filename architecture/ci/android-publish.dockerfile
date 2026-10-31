@@ -1,4 +1,7 @@
-FROM darakeon/android
+ARG GRADLE
+ARG JAVA
+
+FROM darakeon/android:gradle${GRADLE}-jdk${JAVA}
 LABEL maintainer="Dara Keon <laboon@darakeon.com>"
 RUN maintain
 
