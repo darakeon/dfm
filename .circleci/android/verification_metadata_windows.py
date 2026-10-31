@@ -79,10 +79,10 @@ for component in components:
 	name = component.attrib.get("name")
 	version = component.attrib.get("version")
 
-	linux = [
-		"-linux.jar" in artifact.attrib["name"]
-			for artifact in component.findall(f"{tag_prefix}artifact")
-	]
+	linux = list(filter(
+		lambda artifact: "-linux.jar" in artifact.attrib["name"],
+		component.findall(f"{tag_prefix}artifact")
+	))
 
 	if not len(linux):
 		continue

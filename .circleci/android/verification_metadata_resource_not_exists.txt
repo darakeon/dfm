@@ -809,3 +809,13 @@ groovy-bom-4.0.29-javadoc.jar
 groovy-bom-4.0.29-sources.jar
 aapt2-9.4.0-15978811-javadoc.jar
 aapt2-9.4.0-15978811-sources.jar
+jackson-base-2.22.1-javadoc.jar
+jackson-base-2.22.1-sources.jar
+jackson-dataformats-text-2.22.1-javadoc.jar
+jackson-dataformats-text-2.22.1-sources.jar
+jackson-modules-base-2.22.1-javadoc.jar
+jackson-modules-base-2.22.1-sources.jar
+jackson-modules-java8-2.22.1-javadoc.jar
+jackson-modules-java8-2.22.1-sources.jar
+guava-parent-33.4.0-jre-javadoc.jar
+guava-parent-33.4.0-jre-sources.jar
