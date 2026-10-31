@@ -17,7 +17,9 @@
 		"tar": ">=7.5.7",
 		"js-yaml": ">4.1.1",
 		"jest-environment-node": ">=30",
-		"deepmerge": "4.1.2"
+		"deepmerge": "4.1.2",
+		"minimatch": ">=11.0.1",
+		"glob": "14.0.2"
 	},
 	"scripts": {
 		"test": "jest --runInBand --bail --verbose"
