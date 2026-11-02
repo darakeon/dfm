@@ -1,6 +1,6 @@
   publish_android:
     docker:
-      - image: darakeon/android-publish
+      - image: darakeon/android-publish:gradle9.6.0-jdk17
     steps:
       - checkout
       - attach_workspace:
