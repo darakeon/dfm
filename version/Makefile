@@ -1,7 +1,5 @@
 MAKEFLAGS += --no-print-directory
-BRANCH:=$$(cat branch.git)
-OLD_BRANCH:=$$(head -n 7 ../docs/RELEASES.md | tail -n 1 | cut -d "\#" -f 2 | cut -d ")" -f 1)
-NEW_BRANCH:=$$(head -n 8 ../docs/RELEASES.md | tail -n 1 | cut -d "\#" -f 2 | cut -d ")" -f 1)
+TAG:=$(cat ../docs/current-version)
 
 
 help:
@@ -55,15 +53,14 @@ check:
 
 create_old_tag_and_change_branch:
 	@echo "\e[31mOld dev\e[m"
-	@git checkout main
 	@git stash
+	@git checkout main
 	@git pull --prune
 	@git tag -a ${TAG}
 	@git push --tags
-	@git stash pop || echo "no stash"
 	@echo "\e[35mNew dev\e[m"
 	@git checkout development
 	@git branch -d main
-	@git pull
 	@git rebase origin/main
 	@git push --force-with-lease
+	@git stash pop || echo "no stash"
