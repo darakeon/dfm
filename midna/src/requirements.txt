@@ -5,4 +5,4 @@ boto3==1.43.114
 pytest==9.2.0
 pip-audit==2.10.1
 gunicorn==26.2.0
-tzdata==2026.5
+tzdata==2026.6
