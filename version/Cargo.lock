@@ -161,7 +161,7 @@ dependencies = [
 
 [[package]]
 name = "dfm-version"
-version = "1500.0.0"
+version = "1500.0.1"
 dependencies = [
  "dirs",
  "git2",
