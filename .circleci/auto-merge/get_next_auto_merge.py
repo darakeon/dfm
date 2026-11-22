@@ -6,7 +6,7 @@ from sys import argv
 
 
 def main():
-	with open(argv[1]) as prs_file:
+	with open(argv[2]) as prs_file:
 		prs = loads(prs_file.read())
 
 	prs = filter_prs(prs)
@@ -32,7 +32,7 @@ def filter_prs(prs):
 	git_info = get_git_info()
 	username = git_info[0]
 	reponame = git_info[1]
-	branch = environ.get('TARGET_BRANCH')
+	branch = argv[1]
 
 	dependabot_pr_old = 'app/dependabot'
 	dependabot_pr_new = 'dependabot'

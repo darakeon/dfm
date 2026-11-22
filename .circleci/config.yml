@@ -1182,14 +1182,14 @@ jobs:
       - image: darakeon/github-cli
     resource_class: small
     environment:
-      TARGET_BRANCH: "main"
+      TARGET_BRANCH: "dependabots"
     steps:
       - checkout
       - run:
           name: check last ci succeeded for target branch
           path: .circleci/auto-merge
           command: |
-            python check_version_pipeline.py
+            python check_version_pipeline.py $TARGET_BRANCH
       - run:
           name: Make folder
           path: .circleci/auto-merge
@@ -1204,7 +1204,7 @@ jobs:
           name: Get PR to merge
           path: .circleci/auto-merge
           command: |
-            python get_next_auto_merge.py prs/list.json > prs/chosen
+            python get_next_auto_merge.py $TARGET_BRANCH prs/list.json > prs/chosen
       - run:
           name: Merge PR
           path: .circleci/auto-merge
@@ -1219,15 +1219,15 @@ jobs:
               gh pr merge --auto --rebase $PR
 
             else
-              export EXISTING_PR=$(gh pr list --head dependabots --base "$TARGET_BRANCH" --state open --json number --jq '.[0].number')
+              export EXISTING_PR=$(gh pr list --head $TARGET_BRANCH --base main --state open --json number --jq '.[0].number')
 
               if [ "$EXISTING_PR" == "" ]; then
-                gh pr create --head dependabots --base $TARGET_BRANCH --title "Dependabots" --body "Auto merge and deploy dependabot updates"
+                gh pr create --head $TARGET_BRANCH --base main --title "Dependabots" --body "Auto merge and deploy dependabot updates"
               else
-                echo "dependabots PR already exists"
+                echo "$TARGET_BRANCH PR already exists"
               fi
 
-              gh pr merge --auto --rebase --delete-branch=false dependabots
+              gh pr merge --auto --rebase --delete-branch=false $TARGET_BRANCH
             fi
       - store_artifacts:
           path: .circleci/auto-merge/prs
