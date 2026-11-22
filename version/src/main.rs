@@ -17,7 +17,7 @@ mod version;
 use crate::end::throw;
 use android::update_android;
 use arguments::{parse_arguments,ProgramOption};
-use todos::add_release;
+use todos::{add_release, add_deps_release};
 use browser::update_node;
 use csharp::update_csharp;
 use end::success;
@@ -92,7 +92,10 @@ fn update_version(version: Version, option: ProgramOption, numbers: Vec<usize>) 
 		throw(31, "errors while translating release");
 	}
 
-	if option != ProgramOption::Empty && option != ProgramOption::Dependabot {
+	if option == ProgramOption::Dependabot {
+		add_deps_release(version.dev.clone());
+	}
+	else if option != ProgramOption::Empty {
 		add_release(version.dev.clone(), numbers);
 	}
 
