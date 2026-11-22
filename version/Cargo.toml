@@ -1,6 +1,6 @@
 [package]
 name = "dfm-version"
-version = "1500.0.1"
+version = "1500.0.2"
 authors = ["Dara Keon <lc.sales.duarte@gmail.com>"]
 edition = "2021"
 
