@@ -819,3 +819,13 @@ jackson-modules-java8-2.22.1-javadoc.jar
 jackson-modules-java8-2.22.1-sources.jar
 guava-parent-33.4.0-jre-javadoc.jar
 guava-parent-33.4.0-jre-sources.jar
+error_prone_parent-2.50.0-javadoc.jar
+error_prone_parent-2.50.0-sources.jar
+guava-parent-33.7.2-jre-javadoc.jar
+guava-parent-33.7.2-jre-sources.jar
+test-parameter-injector-parent-1.25-javadoc.jar
+test-parameter-injector-parent-1.25-sources.jar
+bc-jdk18on-bom-1.86.2-javadoc.jar
+bc-jdk18on-bom-1.86.2-sources.jar
+nativeruntime-dist-compat-1.0.20-javadoc.jar
+nativeruntime-dist-compat-1.0.20-sources.jar
