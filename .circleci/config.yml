@@ -1322,7 +1322,10 @@ jobs:
               export GIT_EMAIL=$GITHUB_CIRCLE_EMAIL
               export GIT_NAME=$GITHUB_CIRCLE_NAME
               if [ "$CIRCLE_BRANCH" == "dependabots" ]; then
-                cargo run -q -- -d
+                export VERSION_CHANGED=$(git log origin/main..HEAD --oneline | grep "version: update to")
+                if [ -z "$VERSION_CHANGED" ]; then
+                  cargo run -q -- -d
+                fi
               else
                 cargo run -q -- -q 1
               fi

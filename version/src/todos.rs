@@ -146,3 +146,29 @@ fn write_release(prod: String, new_tasks: Vec<String>, icon: String) {
 
 	set_lines(path_release(), release_list);
 }
+
+pub fn add_deps_release(dev: String) {
+	let icon = ANT.to_string();
+
+	let mut new_version: Vec<String> = Vec::new();
+
+	new_version.push("".to_string());
+
+	new_version.push(format!(
+		"## <a name=\"{}\"></a>{} :{}: <sup>`{}`</sup>",
+		dev, dev, icon, 1
+	));
+
+	new_version.push("- [x] Update dependencies".to_string());
+
+	let mut release_list = get_lines(path_release());
+
+	let mut end_current_dev = 16;
+	while !release_list.get(end_current_dev).unwrap().is_empty() {
+		end_current_dev += 1;
+	}
+
+	release_list.splice(end_current_dev..end_current_dev, new_version);
+
+	set_lines(path_release(), release_list);
+}
